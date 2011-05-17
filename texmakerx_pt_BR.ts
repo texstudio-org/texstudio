@@ -21,7 +21,7 @@
         <location filename="aboutdialog.cpp" line="20"/>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
         <oldsource>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</oldsource>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="21"/>
@@ -845,7 +845,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <location filename="configdialog.ui" line="1491"/>
         <source>Show help as tooltip on text in editor</source>
         <oldsource>Show help as tooltip on ext in editor</oldsource>
-        <translation type="unfinished">Mostrar ajuda como dica no editor</translation>
+        <translation>Mostrar ajuda como dica no editor</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1498"/>
@@ -1064,7 +1064,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1234"/>
         <source>French quotes (babel): \og \fg{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Aspas francesas (babel): \og \fg{}</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1920"/>
@@ -3123,53 +3123,53 @@ Você deseja desfazer as alterações?</translation>
         <translation>Apresentação</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1634"/>
-        <location filename="PDFDocument.cpp" line="2230"/>
+        <location filename="PDFDocument.cpp" line="1636"/>
+        <location filename="PDFDocument.cpp" line="2232"/>
         <source>of %1</source>
         <translation>de %1</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1876"/>
+        <location filename="PDFDocument.cpp" line="1878"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
         <translation>Arquivo PDF  &quot;%1&quot; está bloqueado; não há suporte para ele no momento.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1910"/>
+        <location filename="PDFDocument.cpp" line="1912"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2101"/>
+        <location filename="PDFDocument.cpp" line="2103"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2104"/>
+        <location filename="PDFDocument.cpp" line="2106"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2198"/>
+        <location filename="PDFDocument.cpp" line="2200"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2198"/>
+        <location filename="PDFDocument.cpp" line="2200"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2228"/>
+        <location filename="PDFDocument.cpp" line="2230"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2229"/>
+        <location filename="PDFDocument.cpp" line="2231"/>
         <source>pages %1 to %2 of %3</source>
         <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2237"/>
+        <location filename="PDFDocument.cpp" line="2239"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
@@ -3262,52 +3262,52 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="PDFDocument.cpp" line="372"/>
+        <location filename="PDFDocument.cpp" line="374"/>
         <source>Zoom In</source>
         <translation>Ampliar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="374"/>
+        <location filename="PDFDocument.cpp" line="376"/>
         <source>Zoom Out</source>
         <translation>Reduzir</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="377"/>
+        <location filename="PDFDocument.cpp" line="379"/>
         <source>Actual Size</source>
         <translation>Tamanho Real</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="380"/>
+        <location filename="PDFDocument.cpp" line="382"/>
         <source>Fit to Width</source>
         <translation>Ajustar à Largura</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="383"/>
+        <location filename="PDFDocument.cpp" line="385"/>
         <source>Fit to Window</source>
         <translation>Ajustar à Janela</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="718"/>
+        <location filename="PDFDocument.cpp" line="720"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="718"/>
+        <location filename="PDFDocument.cpp" line="720"/>
         <source>Could not open browser</source>
         <translation>Não foi possívl abrir o navegador</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="821"/>
+        <location filename="PDFDocument.cpp" line="823"/>
         <source>Jump to Source</source>
         <translation>Ir para Fonte</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1280"/>
+        <location filename="PDFDocument.cpp" line="1282"/>
         <source>Go to Page</source>
         <translation>Ir para página</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1281"/>
+        <location filename="PDFDocument.cpp" line="1283"/>
         <source>Page number:</source>
         <translation>Número da Paǵina:</translation>
     </message>
