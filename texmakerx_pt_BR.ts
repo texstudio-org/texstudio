@@ -1376,7 +1376,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configdialog.cpp" line="704"/>
         <source>one</source>
-        <translation type="unfinished"></translation>
+        <translation>um</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="705"/>
@@ -1386,7 +1386,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configdialog.cpp" line="705"/>
         <source>two</source>
-        <translation type="unfinished"></translation>
+        <translation>dois</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="706"/>
