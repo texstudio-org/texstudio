@@ -1416,6 +1416,18 @@ Which one of the three wise will always tell the truth?</source>
         <source>French quotes (babel): \og \fg{}</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>two</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>third</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>

@@ -1396,7 +1396,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>three</source>
-        <translation>dritte</translation>
+        <translation>drei</translation>
     </message>
     <message>
         <source>last</source>
@@ -1461,6 +1461,18 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>French quotes (babel): \og \fg{}</source>
         <translation>Französische Anführungszeichen (babel):  \og \fg{}</translation>
+    </message>
+    <message>
+        <source>one</source>
+        <translation>Eins</translation>
+    </message>
+    <message>
+        <source>two</source>
+        <translation>Zwei</translation>
+    </message>
+    <message>
+        <source>third</source>
+        <translation>dritte</translation>
     </message>
 </context>
 <context>

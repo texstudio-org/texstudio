@@ -1374,9 +1374,19 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation>primeiro</translation>
     </message>
     <message>
+        <location filename="configdialog.cpp" line="704"/>
+        <source>one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="configdialog.cpp" line="705"/>
         <source>second</source>
         <translation>segundo</translation>
+    </message>
+    <message>
+        <location filename="configdialog.cpp" line="705"/>
+        <source>two</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="706"/>
@@ -3124,7 +3134,7 @@ Você deseja desfazer as alterações?</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="1636"/>
-        <location filename="PDFDocument.cpp" line="2232"/>
+        <location filename="PDFDocument.cpp" line="2229"/>
         <source>of %1</source>
         <translation>de %1</translation>
     </message>
@@ -3134,42 +3144,42 @@ Você deseja desfazer as alterações?</translation>
         <translation>Arquivo PDF  &quot;%1&quot; está bloqueado; não há suporte para ele no momento.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="1912"/>
+        <location filename="PDFDocument.cpp" line="1909"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Falha ao carregar arquivo &quot;%1&quot;; talvez não seja um arquivo PDF válido.</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2103"/>
+        <location filename="PDFDocument.cpp" line="2100"/>
         <source>No SyncTeX data available</source>
         <translation>Dados SyncTeX não disponíveis</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2106"/>
+        <location filename="PDFDocument.cpp" line="2103"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2200"/>
+        <location filename="PDFDocument.cpp" line="2197"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2200"/>
+        <location filename="PDFDocument.cpp" line="2197"/>
         <source>TexMakerX</source>
         <translation>TexMakerX</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2230"/>
+        <location filename="PDFDocument.cpp" line="2227"/>
         <source>page %1 of %2</source>
         <translation>página %1 de %2</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2231"/>
+        <location filename="PDFDocument.cpp" line="2228"/>
         <source>pages %1 to %2 of %3</source>
         <translation>páginas %1 a %2 de %3</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="2239"/>
+        <location filename="PDFDocument.cpp" line="2236"/>
         <source>%1%</source>
         <translation>%1%</translation>
     </message>
