@@ -701,9 +701,9 @@ bool ConfigDialog::askRiddle(){
 			"You ask the last: \"Is the second one lying?\", and he answers: \"No\".\n\n"
 			"Which one of the three wise will always tell the truth?"));
 	if (solution.isEmpty()) return false;
-	bool a1 = solution.contains("1") || solution.contains(tr("first"),Qt::CaseInsensitive);
-	bool a2 = solution.contains("2") || solution.contains(tr("second"),Qt::CaseInsensitive);
-	bool a3 = solution.contains("3") || solution.contains(tr("three"),Qt::CaseInsensitive) || solution.contains(tr("last"),Qt::CaseInsensitive);
+	bool a1 = solution.contains("1") || solution.contains(tr("first"),Qt::CaseInsensitive) || solution.contains(tr("one"),Qt::CaseInsensitive);
+	bool a2 = solution.contains("2") || solution.contains(tr("second"),Qt::CaseInsensitive) || solution.contains(tr("two"),Qt::CaseInsensitive);
+	bool a3 = solution.contains("3") || solution.contains(tr("third"),Qt::CaseInsensitive) || solution.contains(tr("three"),Qt::CaseInsensitive) || solution.contains(tr("last"),Qt::CaseInsensitive);
 	if (!a1 && !a2 && !a3) { QMessageBox::warning(this,tr("Riddle"),tr("Please answer 1, 2 or 3")); return false; }
 	if ((a1 && a2) || (a1 && a3) || (a2 && a3)) { QMessageBox::warning(this,tr("Riddle"),tr("Only one answer allowed")); return false; }
 	if (a3) return true;
