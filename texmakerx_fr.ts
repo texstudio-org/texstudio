@@ -515,7 +515,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
-        <translation>Remplacement automatique commandes LaTeX</translation>
+        <translation>Remplacement automatique des commandes LaTeX</translation>
     </message>
     <message>
         <source>Add line</source>
@@ -1272,7 +1272,7 @@ You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No
 
 Which one of the three wise will always tell the truth?</source>
         <translation>Vous arrivez sur une île magique où vous rencontrez trois amis étranges et sages.
-L&apos;;un d&apos;eux dit toujours la vérité, un autre ment toujours et le troisième est sourd,si bien qu&apos;il répond au hasard et ne peut pas mentir (!).
+L&apos;;un d&apos;eux dit toujours la vérité, un autre ment toujours et le troisième est sourd, si bien qu&apos;il répond au hasard et ne peut pas mentir (!).
 Vous demandez au premier : « Mentez-vous ? » et il répond : « Non ».
 Vous demandez au second : « Le premier ment-il ? » et il répond : « Non ».
 Vous demandez au dernier : « Le second ment-il ? » et il répond : « Non ».
@@ -3408,7 +3408,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
 Perhaps it is read-only or opened in another program?</source>
         <translation>Je n&apos;ai pas réussi à obtenir les droits d&apos;écriture sur le fichier %1.
 
-Peut-être n&apos;est-il accessible qu&apos;en lecture ou bien est-il déjà ouvert par un autre programme</translation>
+Peut-être n&apos;est-il accessible qu&apos;en lecture ou bien est-il déjà ouvert par un autre programme.</translation>
     </message>
     <message>
         <source>Writing the document to file %1 failed after the old content was deleted.
