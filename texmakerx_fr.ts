@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?} {2.2 ?} {1)?}</translation>
+        <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation type="unfinished">Utilisateur : (% nom de fichier sans extension)</translation>
+        <translation>Utilisateur : (% : nom de fichier sans extension)</translation>
     </message>
 </context>
 <context>
@@ -515,7 +515,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
-        <translation>Auto-remplacement des commandes LaTeX</translation>
+        <translation>Remplacement automatique commandes LaTeX</translation>
     </message>
     <message>
         <source>Add line</source>
@@ -1096,7 +1096,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Maximal characters:</source>
-        <translation>Nb. caractères maximal :</translation>
+        <translation>un nb de caractères de au plus :</translation>
     </message>
     <message>
         <source>Hacks/Workarounds</source>
@@ -1177,91 +1177,91 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de compilations supplémentaires si requis :</translation>
     </message>
     <message>
         <source>no line wrap</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de coupure de ligne</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation type="unfinished"></translation>
+        <translation>Coupure de ligne douce en bord de fenêtre</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Coupure de ligne douce après un nombre de caractères maximal</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Coupure de ligne brutale après un nombre de caractères maximal</translation>
     </message>
     <message>
         <source>Additional Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Commandes additionnelles</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>typique</translation>
     </message>
     <message>
         <source>Prefer &quot;Most Used&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>le plus fréquent</translation>
     </message>
     <message>
         <source>Prefer &quot;All&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>tous</translation>
     </message>
     <message>
         <source>Riddle</source>
-        <translation type="unfinished"></translation>
+        <translation>Devinette</translation>
     </message>
     <message>
         <source>first</source>
-        <translation type="unfinished"></translation>
+        <translation>premier</translation>
     </message>
     <message>
         <source>second</source>
-        <translation type="unfinished"></translation>
+        <translation>deuxième</translation>
     </message>
     <message>
         <source>three</source>
-        <translation type="unfinished"></translation>
+        <translation>trois</translation>
     </message>
     <message>
         <source>last</source>
-        <translation type="unfinished"></translation>
+        <translation>dernier</translation>
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Merci de répondre « 1 », « 2 » ou « 3 »</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Une seule réponse est autorisée</translation>
     </message>
     <message>
         <source>Replace double quotes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer les guillemets :</translation>
     </message>
     <message>
         <source>no replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>pas de remplacement</translation>
     </message>
     <message>
         <source>English quotes:  `` &apos;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>guillemets anglais : `` &apos;&apos;</translation>
     </message>
     <message>
         <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>guillemets français : «   »</translation>
     </message>
     <message>
         <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>guillemets allemands : &quot;` &quot;&apos;</translation>
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la prévisualisation en info-bulle sur les formules dans l&apos;éditeur</translation>
     </message>
     <message>
         <source>You come to a magic island where you meet three strange and wise friends. 
@@ -1271,27 +1271,33 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous arrivez sur une île magique où vous rencontrez trois amis étranges et sages.
+L&apos;;un d&apos;eux dit toujours la vérité, un autre ment toujours et le troisième est sourd,si bien qu&apos;il répond au hasard et ne peut pas mentir (!).
+Vous demandez au premier : « Mentez-vous ? » et il répond : « Non ».
+Vous demandez au second : « Le premier ment-il ? » et il répond : « Non ».
+Vous demandez au dernier : « Le second ment-il ? » et il répond : « Non ».
+
+Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;aide en info-bulle sur le texte dans l&apos;éditeur</translation>
     </message>
     <message>
         <source>French quotes (babel): \og \fg{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Guillemets français (babel) : \og  \fg{}</translation>
     </message>
     <message>
         <source>one</source>
-        <translation type="unfinished"></translation>
+        <translation>un</translation>
     </message>
     <message>
         <source>two</source>
-        <translation type="unfinished"></translation>
+        <translation>deux</translation>
     </message>
     <message>
         <source>third</source>
-        <translation type="unfinished"></translation>
+        <translation>troisème</translation>
     </message>
 </context>
 <context>
@@ -1746,7 +1752,7 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Key replacement: %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Touche de remplacement : %1 %2</translation>
     </message>
 </context>
 <context>
@@ -2048,7 +2054,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>typical</source>
-        <translation type="unfinished"></translation>
+        <translation>typique</translation>
     </message>
 </context>
 <context>
@@ -2137,7 +2143,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Thesaurus...</source>
-        <translation type="unfinished">Thésaurus...</translation>
+        <translation>Thésaurus...</translation>
     </message>
 </context>
 <context>
@@ -2651,7 +2657,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Esc</source>
-        <translation>Échap.</translation>
+        <translation>Échap</translation>
     </message>
     <message>
         <source>Scrolling follows cursor</source>
@@ -2747,7 +2753,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Continu</translation>
     </message>
 </context>
 <context>
@@ -3394,19 +3400,23 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>Saving failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de l&apos;enregistrement</translation>
     </message>
     <message>
         <source>I failed to acquire write permissions on the file %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"></translation>
+        <translation>Je n&apos;ai pas réussi à obtenir les droits d&apos;écriture sur le fichier %1.
+
+Peut-être n&apos;est-il accessible qu&apos;en lecture ou bien est-il déjà ouvert par un autre programme</translation>
     </message>
     <message>
         <source>Writing the document to file %1 failed after the old content was deleted.
 
 The file may have been corrupted!</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;enregistrement du document dans le fichier %1 a échoué après la suppression de l&apos;ancien contenu.
+
+Le fichier a pu être corrompu!</translation>
     </message>
 </context>
 <context>
@@ -5560,63 +5570,63 @@ TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;nregistrer le profil...</translation>
     </message>
     <message>
         <source>Could not start %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrage de %1 impossible.</translation>
     </message>
     <message>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher tous les documents ouverts dans cette arborescence</translation>
     </message>
     <message>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher seulement le document courant dans cette arborescence</translation>
     </message>
     <message>
         <source>Save Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer le profil</translation>
     </message>
     <message>
         <source>&amp;Searching</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Recherche</translation>
     </message>
     <message>
         <source>Continue F&amp;ind</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuer à &amp;chercher</translation>
     </message>
     <message>
         <source>Find &amp;Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher le &amp;précédent</translation>
     </message>
     <message>
         <source>&amp;Count</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Compter</translation>
     </message>
     <message>
         <source>Find &amp;Dialog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Boîte de &amp;dialogue « Chercher »...</translation>
     </message>
     <message>
         <source>Replace Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer le suivant</translation>
     </message>
     <message>
         <source>Replace Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer le précédent</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer &amp;tout</translation>
     </message>
     <message>
         <source>&amp;Go to</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aller à</translation>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sélectionner toutes les occurrences...</translation>
     </message>
 </context>
 <context>
@@ -5926,11 +5936,11 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Déclencheur</translation>
     </message>
     <message>
         <source>If this trigger string is written in any tex document, 
@@ -5942,19 +5952,27 @@ if something is written before the remaining part of the trigger.
 Since this trigger is not a plain string, but a regular expression, 
 (?&lt;=\S) can be used to mark replacements which should only occur after a word, 
 and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si cette chaîne de déclenchement est insérée dans un document tex,
+elle est remplacée par la balise courante.
+
+Si le déclencheur commence par (?&lt;= quelque chose), le remplacement se produit seulement
+si quelque chose figure avant la partie restante du déclencheur.
+
+Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression régulière, il est possible d&apos;utiliser :
+  (?&lt;=\S)   pour marquer les remplacements ne devant se produire qu&apos;après un mot ;
+  (?&lt;=\s|^) pour marquer les remplacements ne devant se produire qu&apos;avant un mot.</translation>
     </message>
     <message>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation>?</translation>
     </message>
     <message>
         <source>Abbrev</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrév.</translation>
     </message>
     <message>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Balise</translation>
     </message>
 </context>
 <context>
