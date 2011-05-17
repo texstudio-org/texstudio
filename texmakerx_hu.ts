@@ -1081,6 +1081,18 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <source>French quotes (babel): \og \fg{}</source>
         <translation>Francia idézőjelek (babel): \og \fg{}</translation>
     </message>
+    <message>
+        <source>one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>two</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>third</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
