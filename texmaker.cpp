@@ -3034,7 +3034,7 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 				externalViewer.remove(0,BuildManager::TMX_INTERNAL_PDF_VIEWER.length());
 				if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
 			}
-			externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1);
+			externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1).first();
 			if (PDFDocument::documentList().isEmpty()) {
 				newPdfPreviewer();
 				Q_ASSERT(!PDFDocument::documentList().isEmpty());
@@ -3075,51 +3075,53 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 		remainingReRunCount = 0;
 
 
-	ProcessX* procX = buildManager.newProcess(commandline,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
+	QList<ProcessX*> procs = buildManager.newProcesses(commandline,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
 
-	if (!procX) return; //a singleInstance that is already running
+	if (procs.isEmpty()) return; //a singleInstance that is already running
 
-	procX->setBuffer(buffer);
+	foreach (ProcessX* procX, procs) {
+		procX->setBuffer(buffer);
 
-	connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
-	if (procX->showStdout())
-		procX->setShowStdout((configManager.showStdoutOption == 2) || (RCF_SHOW_STDOUT & flags));
-	if (procX->showStdout() || buffer)
-		connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
-	connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
+		connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
+		if (procX->showStdout())
+			procX->setShowStdout((configManager.showStdoutOption == 2) || (RCF_SHOW_STDOUT & flags));
+		if (procX->showStdout() || buffer)
+			connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
+		connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
 
-	if (flags & RCF_VIEW_LOG) ClearMarkers();
-	outputView->resetMessages();
+		if (flags & RCF_VIEW_LOG) ClearMarkers();
+		outputView->resetMessages();
 
-	if (flags & RCF_VIEW_LOG && configManager.showLogAfterCompiling)
-		connect(procX,SIGNAL(finished(int)),this,SLOT(ViewLogOrReRun()));
+		if (flags & RCF_VIEW_LOG && configManager.showLogAfterCompiling)
+			connect(procX,SIGNAL(finished(int)),this,SLOT(ViewLogOrReRun()));
 
-	//OutputTextEdit->insertLine(commandline+"\n");
-	FINPROCESS = false;
-	procX->startCommand();
-	if (!procX->waitForStarted(1000)) {
-		ERRPROCESS=true;
-		return;
-	}
-
-	if (flags & RCF_WAIT_FOR_FINISHED) {
-		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-		QTime time;
-		time.start();
-		KILLPROCESS=false;
-		PROCESSRUNNING=true;
-		while (!FINPROCESS) {
-			qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
-			if (time.elapsed()>2000)
-				qApp->instance()->processEvents(QEventLoop::AllEvents);
-			if (KILLPROCESS) {
-				procX->kill();
-				FINPROCESS=ERRPROCESS=true;
-				break;
-			}
+		//OutputTextEdit->insertLine(commandline+"\n");
+		FINPROCESS = false;
+		procX->startCommand();
+		if (!procX->waitForStarted(1000)) {
+			ERRPROCESS=true;
+			return;
 		}
-		PROCESSRUNNING=false;
-		QApplication::restoreOverrideCursor();
+
+		if (flags & RCF_WAIT_FOR_FINISHED || procX != procs.last()) {
+			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+			QTime time;
+			time.start();
+			KILLPROCESS=false;
+			PROCESSRUNNING=true;
+			while (!FINPROCESS) {
+				qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
+				if (time.elapsed()>2000)
+					qApp->instance()->processEvents(QEventLoop::AllEvents);
+				if (KILLPROCESS) {
+					procX->kill();
+					FINPROCESS=ERRPROCESS=true;
+					break;
+				}
+			}
+			PROCESSRUNNING=false;
+			QApplication::restoreOverrideCursor();
+		}
 	}
 }
 
