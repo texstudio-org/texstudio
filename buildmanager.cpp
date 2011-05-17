@@ -52,22 +52,24 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 	}
 }
 
-QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
-	str=str+" "; //end character  so str[i++] is always defined
-	QString result;
-	result.reserve(2*str.length());
+QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
+		str=str+" "; //end character  so str[i++] is always defined
+	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
+		QString add;
 		if (str.at(i)==QChar('%')) {
-			if (str.at(i+1)==QChar('%')) result+=str.at(++i);
-			else result+="\""+mainFile.completeBaseName()+"\"";
+			if (str.at(i+1)==QChar('%')) add=str.at(++i);
+			else add="\""+mainFile.completeBaseName()+"\"";
 		} else if (str.at(i)==QChar('@')) {
-			if (str.at(i+1)==QChar('@')) result+=str.at(++i);
-			else result+=QString::number(currentline);
+			if (str.at(i+1)==QChar('@')) add=str.at(++i);
+			else add=QString::number(currentline);
 		} else if (str.at(i)==QChar('?')) {
-			if (str.at(++i)==QChar('?')) result+="?";
+			if (str.at(++i)==QChar('?')) add="?";
 			else {
-				QString command;
+				QString command, commandRem;
+				QString* createCommand = &command;
 				int endMode=0;
+				bool fullSearch = false;
 				while (i<str.size()) {
 					if (str.at(i)==QChar(')')) {
 						endMode=1;
@@ -78,16 +80,20 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 					} else if (str.at(i)==QChar('\"')) {
 						endMode=3;
 						break;
-					} else if (str.at(i)==QChar('.')) {
+					} else if (str.at(i)==QChar('.') && !fullSearch) {
 						endMode=4;
 						break;
+					} else if (str.at(i)==QChar('*')) {
+						fullSearch = true;
+						createCommand = &commandRem;
 					}
-					command+=str.at(i);
+					(*createCommand)+=str.at(i);
 					i++;
 				}
 				bool useCurrentFile=command.startsWith("c:");
 				const QFileInfo& selectedFile=useCurrentFile?currentFile:mainFile;
 				if (useCurrentFile) command=command.mid(2);
+				bool absPath = command.startsWith('a');
 				//check only sane commands
 				if (command=="ame") command=QDir::toNativeSeparators(selectedFile.absoluteFilePath());
 				else if (command=="am") {
@@ -101,6 +107,7 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 				else if (command=="e") command=selectedFile.suffix();
 				else continue; //invalid command
 				//TODO: relative paths rme, rm, re
+				command.append(commandRem);
 				switch (endMode) {
 				case 2:
 					command+=" ";
@@ -114,17 +121,34 @@ QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mai
 				default:
 					;
 				}
-				result+=command;
+				if (!fullSearch) add = command;
+				else {
+					QDir dir(QFileInfo(mainFile).absoluteDir());
+					QStringList commands = QDir(dir).entryList(QStringList() << command.trimmed(), QDir::Files);
+					QString mid;
+					if (absPath) {
+						mid = dir.canonicalPath();
+						if (!mid.endsWith('/')) mid+="/";
+					}
+					QStringList temp = result;
+					result.clear();
+					for (int i=0;i<temp.size();i++)
+						for (int j=0;j<commands.size();j++)
+							result.append(temp[i]+mid+commands[j]);
+				}
 			}
-		} else result+=str.at(i);
+		} else add=str.at(i);
+		if (!add.isEmpty())
+			for (int i=0;i<result.size();i++)
+				result[i] += add;
 	}
 	//  QMessageBox::information(0,"",str+"->"+result,0);
-	if (result.endsWith(" ")) result.chop(1); //remove additional end character
+	for (int i=0;i<result.size();i++) result[i] = result[i].trimmed(); //remove useless characters
 	return result;
 }
 
 QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine) {
-		return parseExtendedCommandLine(str, mainFile, mainFile, currentLine);
+		return parseExtendedCommandLine(str, mainFile, mainFile, currentLine).first();
 }
 
 
@@ -309,7 +333,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 		case CMD_SVNADMIN:
 			return "svnadmin ";
 		case CMD_ASY:
-			return "asy %.asy";
+			return "asy ?m*.asy";
 		case CMD_USER_PRECOMPILE:
 		case CMD_MAXIMUM_COMMAND_VALUE:
 			return "";
@@ -494,7 +518,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		case CMD_VIEWPDF: return "%.pdf";
 		case CMD_SVN: return "";
 		case CMD_SVNADMIN: return "";
-		case CMD_ASY: return "%.asy";
+		case CMD_ASY: return "?m*.asy";
 		case CMD_GHOSTSCRIPT: return "\"?am.ps\"";
 		default: return "";
 	}
@@ -629,8 +653,31 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 	QFileInfo cfi;
 	if (mainFile==currentFile) cfi=mfi;
 	else cfi=QFileInfo(currentFile);
-	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine).trimmed();
+	QString cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine).first();
 
+	return newProcessInternal(cmd,mainFile,singleInstance);
+
+}
+QList<ProcessX*> BuildManager::newProcesses(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine, bool singleInstance){
+	QFileInfo mfi(mainFile);
+	QFileInfo cfi;
+	if (mainFile==currentFile) cfi=mfi;
+	else cfi=QFileInfo(currentFile);
+	QStringList cmd=BuildManager::parseExtendedCommandLine(unparsedCommandLine,mfi,cfi,currentLine);
+
+	QList<ProcessX*> res;
+	foreach (const QString& c, cmd){
+		ProcessX * px = newProcessInternal(c,mainFile,singleInstance);
+		if (px) res << px;
+	}
+	return res;
+
+}
+ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine){
+	return newProcess(unparsedCommandLine, mainFile, mainFile, currentLine);
+}
+//don't use this
+ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QString& mainFile, bool singleInstance){
 	if (singleInstance && runningCommands.contains(cmd))
 		return 0;
 
@@ -642,7 +689,7 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 		runningCommands.insert(cmd, proc);
 	}
 	if(!mainFile.isEmpty())
-	    proc->setWorkingDirectory(mfi.absolutePath());
+		proc->setWorkingDirectory(QFileInfo(mainFile).absolutePath());
 
 #ifdef Q_WS_MACX
 #if (QT_VERSION >= 0x040600)
@@ -656,14 +703,11 @@ ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QSt
 		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 		env.insert("PATH", env.value("PATH") + ":"+path); //apply user path as well
 		proc->setProcessEnvironment(env);
-        }
+	 }
 #endif
 #endif
 
 	return proc;
-}
-ProcessX* BuildManager::newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine){
-	return newProcess(unparsedCommandLine, mainFile, mainFile, currentLine);
 }
 
 QString BuildManager::createTemporaryFileName(){

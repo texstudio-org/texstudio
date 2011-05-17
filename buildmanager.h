@@ -36,7 +36,7 @@ public:
 	};
 	static QString findFileInPath(QString fileName);
 	static QString cmdToConfigString(LatexCommand cmd);
-	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine=0);
+	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine=0);
 	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine=0);	
 	static QString guessCommandName(LatexCommand cmd);
 	static QString baseCommandName(LatexCommand cmd); //returns a platform independent base name if it exists
@@ -59,7 +59,9 @@ public:
 	ProcessX* newProcess(LatexCommand cmd, const QString &additionalParameters, const QString &fileToCompile, int currentLine=0);
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
+	QList<ProcessX*> newProcesses(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, int currentLine=0);
+	ProcessX* newProcessInternal(const QString &fullCommandLine, const QString& mainFile, bool singleInstance = false);
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
