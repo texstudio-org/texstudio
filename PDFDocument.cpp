@@ -1894,10 +1894,7 @@ void PDFDocument::reload(bool fillCache)
 
 			// set page viewer only once
 			QFontMetrics fontMetrics(font());
-			QString placeHolder = "#";
-			for (int i=0; i<=log10(document->numPages()); i++) {
-				placeHolder.append("#");
-			}
+			QString placeHolder(3+log10(document->numPages()), '#');
 			leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
 			leCurrentPageValidator->setTop(document->numPages());
 
