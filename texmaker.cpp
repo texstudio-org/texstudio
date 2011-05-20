@@ -3028,7 +3028,7 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 	if (!(flags & RCF_IS_RERUN_CALL)) {
 		if (commandline.trimmed().startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
 #ifndef NO_POPPLER_PREVIEW
-			QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame);
+			QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame).first();
 			QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
 			if (externalViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
 				externalViewer.remove(0,BuildManager::TMX_INTERNAL_PDF_VIEWER.length());
