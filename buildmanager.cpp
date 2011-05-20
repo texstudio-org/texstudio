@@ -147,8 +147,8 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	return result;
 }
 
-QString BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine) {
-		return parseExtendedCommandLine(str, mainFile, mainFile, currentLine).first();
+QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine) {
+		return parseExtendedCommandLine(str, mainFile, mainFile, currentLine);
 }
 
 
@@ -952,7 +952,7 @@ void BuildManager::conversionPreviewCompleted(int status){
 	if (!p2) return;
 	// put image in preview
 	QString processedFile=p2->getFile();
-	QString fn=parseExtendedCommandLine("?am)1.png",processedFile);
+	QString fn=parseExtendedCommandLine("?am)1.png",processedFile).first();
 	if(QFileInfo(fn).exists())
 		emit previewAvailable(fn,previewFileNameToText[processedFile].first,previewFileNameToText[processedFile].second);
 }

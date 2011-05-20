@@ -37,7 +37,7 @@ public:
 	static QString findFileInPath(QString fileName);
 	static QString cmdToConfigString(LatexCommand cmd);
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine=0);
-	static QString parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine=0);	
+	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, int currentLine=0);
 	static QString guessCommandName(LatexCommand cmd);
 	static QString baseCommandName(LatexCommand cmd); //returns a platform independent base name if it exists
 	static QString defaultCommandOptions(LatexCommand cmd);
