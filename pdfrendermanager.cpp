@@ -113,8 +113,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	if(img.isNull() && renderedPages.contains(pageNr)){ // try cache first
 		img=*renderedPages[pageNr];
 	}
-	if(img.isNull()) // not cached, thumbnail present ?
-		img=QPixmap::fromImage(page->thumbnail());
+	//if(img.isNull()) // not cached, thumbnail present ? (fix crash?)
+	//	img=QPixmap::fromImage(page->thumbnail());
 	if(!img.isNull() && !partialImage){ // if a image was found, scale it apropriately
 		QSize sz=page->pageSize();
 		scale=sz.width()*xres/(72.0*img.width());
