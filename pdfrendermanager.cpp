@@ -99,6 +99,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	    enqueueCmd=false;
 	// return best guess/cached at once, refine later
 	Poppler::Page *page=document->page(pageNr);
+	if(!page)
+	    return QPixmap();
 	CachePixmap img;
 	qreal scale=10;
 	bool partialImage=false;
@@ -137,7 +139,9 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	if(img.isNull()){
 		// generate deafult empty, to be rendered image
 		if(w<0 || h<0){
-			QSize sz=page->pageSize();
+			QSize sz;
+			if(page)
+			    sz=page->pageSize();
 			w=sz.width();
 			h=sz.height();
 		}
