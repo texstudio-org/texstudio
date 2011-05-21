@@ -1834,8 +1834,6 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalVi
 
 void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert)
 {
-	delete renderManager;
-	renderManager=new PDFRenderManager(this);
 	externalViewerCmdLine = externalViewer;
 	setCurrentFile(fileName);
 	reload(false);
@@ -1868,10 +1866,12 @@ void PDFDocument::reload(bool fillCache)
 		scanner = NULL;
 	}
 
-
 	emit documentClosed();
 	if (document != NULL)
 		delete document;
+
+	renderManager->deleteLater();
+	renderManager=0;
 
 	document = Poppler::Document::load(curFile);
 	if (document != NULL) {
@@ -1884,6 +1884,7 @@ void PDFDocument::reload(bool fillCache)
 		}
 		else {
 			//reinitialize rendermanager
+			renderManager=new PDFRenderManager(this);
 			renderManager->setDocument(curFile,document);
 
 			document->setRenderBackend(Poppler::Document::SplashBackend);

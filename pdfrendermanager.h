@@ -38,6 +38,35 @@ private:
 	int x,y;
 };
 
+class PDFQueue : public QObject
+{
+public:
+    explicit PDFQueue(QObject *parent=0);
+
+    inline void ref() { m_ref.ref(); }
+    void deref();
+    int getRef(){ return m_ref; }
+
+    QQueue<RenderCommand> mCommands;
+    QSemaphore mCommandsAvailable;
+    QMutex mQueueLock;
+    bool stopped;
+
+    QMutex mPriorityLock;
+
+    int num_renderQueues;
+
+    QList<PDFRenderEngine *>renderQueues;
+
+private:
+
+#if QT_VERSION < 0x040400
+    QBasicAtomic m_ref;
+#else
+    QAtomicInt m_ref;
+#endif
+};
+
 class PDFRenderManager : public QObject
 {
 	Q_OBJECT
@@ -60,21 +89,12 @@ private:
 
 	Poppler::Document *document;
 
-	QList<PDFRenderEngine *>renderQueues;
 	QCache<int,CachePixmap> renderedPages;
 	QMultiMap<int,RecInfo> lstOfReceivers;
 	int currentTicket;
 
-	QQueue<RenderCommand> mCommands;
-	QSemaphore mCommandsAvailable;
-	QMutex mQueueLock;
-	bool stopped;
-
-	QMutex mPriorityLock;
-
-	int num_renderQueues;
-
 	QMap<int,RecInfo> lstForThumbs;
+	PDFQueue *queueAdministration;
 };
 
 #endif // PDFRENDERMANAGER_H
