@@ -63,7 +63,7 @@ void PDFRenderManager::stopRendering(){
 	document=0;
 }
 
-void PDFRenderManager::setDocument(QString fileName){
+void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointer){
 	renderedPages.clear();
 	for(int i=0;i<num_renderQueues;i++){
 		document=Poppler::Document::load(fileName);
@@ -75,7 +75,8 @@ void PDFRenderManager::setDocument(QString fileName){
 		if(!renderQueues[i]->isRunning())
 			renderQueues[i]->start();
 	}
-	document=Poppler::Document::load(fileName);
+	//document=Poppler::Document::load(fileName);
+	document=docPointer;
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
