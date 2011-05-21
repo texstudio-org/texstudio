@@ -9,7 +9,8 @@
 #include <QSemaphore>
 #include <QMutex>
 #include <QQueue>
-class PDFRenderManager;
+
+class PDFQueue;
 
 class RenderCommand {
 public:
@@ -29,7 +30,7 @@ class PDFRenderEngine : public QThread
 {
 	Q_OBJECT
 public:
-	explicit PDFRenderEngine(QObject *parent);
+	explicit PDFRenderEngine(QObject *parent,PDFQueue *mQueue);
 	~PDFRenderEngine();
 
 	void setDocument(Poppler::Document *doc){
@@ -46,7 +47,7 @@ protected:
 
 private:
 	Poppler::Document	*document;
-	PDFRenderManager *manager;
+	PDFQueue *queue;
 
 };
 

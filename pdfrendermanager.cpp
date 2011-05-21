@@ -16,6 +16,22 @@
 const int kMaxPageZoom=1000000;
 const qreal kMaxDpiForFullPage=200.0;
 
+PDFQueue::PDFQueue(QObject *parent){
+#if QT_VERSION < 0x040400
+    m_ref.init(1);
+#else
+    m_ref=1;
+#endif
+}
+
+void PDFQueue::deref() {
+    if ( m_ref )
+	m_ref.deref();
+    if ( !m_ref ) {
+	delete this;
+    }
+}
+
 CachePixmap::CachePixmap(const QPixmap &pixmap) :
 		QPixmap(pixmap), resolution(0), x(0), y(0)
 {
@@ -34,17 +50,18 @@ void CachePixmap::setRes(qreal res, int x, int y){
 PDFRenderManager::PDFRenderManager(QObject *parent) :
 		QObject(parent)
 {
-	num_renderQueues=2;
+	queueAdministration=new PDFQueue();
+	queueAdministration->num_renderQueues=2;
 	if(QThread::idealThreadCount()>2)
-		num_renderQueues=QThread::idealThreadCount();
-	for(int i=0;i<num_renderQueues;i++){
-		PDFRenderEngine *renderQueue=new PDFRenderEngine(this);
+		queueAdministration->num_renderQueues=QThread::idealThreadCount();
+	for(int i=0;i<queueAdministration->num_renderQueues;i++){
+		PDFRenderEngine *renderQueue=new PDFRenderEngine(0,queueAdministration);
 		connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));
-		renderQueues.append(renderQueue);
+		queueAdministration->renderQueues.append(renderQueue);
 	}
 	document=0;
 	currentTicket=0;
-	stopped=false;
+	queueAdministration->stopped=false;
 }
 
 PDFRenderManager::~PDFRenderManager(){
@@ -53,27 +70,23 @@ PDFRenderManager::~PDFRenderManager(){
 
 void PDFRenderManager::stopRendering(){
 	lstOfReceivers.clear();
-	stopped=true;
-	mCommandsAvailable.release(num_renderQueues);
-	for(int i=0;i<num_renderQueues;i++){
-		while(renderQueues[i]->isRunning()){
-			QCoreApplication::processEvents();
-		}
-	}
+	queueAdministration->stopped=true;
+	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
+	queueAdministration->deref();
 	document=0;
 }
 
 void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointer){
 	renderedPages.clear();
-	for(int i=0;i<num_renderQueues;i++){
+	for(int i=0;i<queueAdministration->num_renderQueues;i++){
 		document=Poppler::Document::load(fileName);
-		renderQueues[i]->setDocument(document);
+		queueAdministration->renderQueues[i]->setDocument(document);
 		if (!document) return;
 		document->setRenderBackend(Poppler::Document::SplashBackend);
 		document->setRenderHint(Poppler::Document::Antialiasing);
 		document->setRenderHint(Poppler::Document::TextAntialiasing);
-		if(!renderQueues[i]->isRunning())
-			renderQueues[i]->start();
+		if(!queueAdministration->renderQueues[i]->isRunning())
+			queueAdministration->renderQueues[i]->start();
 	}
 	//document=Poppler::Document::load(fileName);
 	document=docPointer;
@@ -264,14 +277,14 @@ bool PDFRenderManager::checkDuplicate(int &,RecInfo &info){
 }
 
 void PDFRenderManager::enqueue(RenderCommand cmd,bool priority){
-	mQueueLock.lock();
+	queueAdministration->mQueueLock.lock();
 	if(priority){
-		mCommands.prepend(cmd);
+		queueAdministration->mCommands.prepend(cmd);
 	}else{
-		mCommands.enqueue(cmd);
+		queueAdministration->mCommands.enqueue(cmd);
 	}
-	mQueueLock.unlock();
-	mCommandsAvailable.release();
+	queueAdministration->mQueueLock.unlock();
+	queueAdministration->mCommandsAvailable.release();
 }
 
 #endif

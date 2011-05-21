@@ -19,36 +19,38 @@ RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h)
 {
 }
 
-PDFRenderEngine::PDFRenderEngine(QObject *parent) :
+PDFRenderEngine::PDFRenderEngine(QObject *parent,PDFQueue *mQueue) :
 		QThread(parent)
 {
 	document=0;
-	manager=qobject_cast<PDFRenderManager*>(parent);
+	queue=mQueue;
+	queue->ref();
 }
 
 PDFRenderEngine::~PDFRenderEngine(){
+	wait();
 	delete document;
 }
 
 void PDFRenderEngine::run(){
 	forever {
-		bool priorityThread=manager->mPriorityLock.tryLock();
+		bool priorityThread=queue->mPriorityLock.tryLock();
 		RenderCommand command(-1);
 		if(priorityThread){
 		    forever{
 			bool leave=false;
-			{ QMutexLocker(&manager->mQueueLock);
-			    if(manager->stopped)
+			{ QMutexLocker(&queue->mQueueLock);
+			    if(queue->stopped)
 				break;
-			    if(!manager->mCommands.isEmpty()){
-				command=manager->mCommands.head();
+			    if(!queue->mCommands.isEmpty()){
+				command=queue->mCommands.head();
 				if(command.priority){
-				    leave=manager->mCommandsAvailable.tryAcquire();
+				    leave=queue->mCommandsAvailable.tryAcquire();
 				    if(leave)
-					manager->mCommands.dequeue();
+					queue->mCommands.dequeue();
 				}
 				if(leave){
-				    manager->mPriorityLock.unlock();
+				    queue->mPriorityLock.unlock();
 				    break;
 				}
 			    }
@@ -57,14 +59,14 @@ void PDFRenderEngine::run(){
 		    }
 		}else{
 		    //wait for enqueued lines
-		    manager->mCommandsAvailable.acquire();
-		    if(manager->stopped) break;
+		    queue->mCommandsAvailable.acquire();
+		    if(queue->stopped) break;
 		    // get Linedata
-		    manager->mQueueLock.lock();
-		    command=manager->mCommands.dequeue();
-		    manager->mQueueLock.unlock();
+		    queue->mQueueLock.lock();
+		    command=queue->mCommands.dequeue();
+		    queue->mQueueLock.unlock();
 		}
-		if(manager->stopped)
+		if(queue->stopped)
 		    break;
 
 		// render Image
@@ -74,9 +76,12 @@ void PDFRenderEngine::run(){
 							     command.x, command.y, command.w, command.h);
 			//qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << priorityThread << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;
 			delete page;
-			emit sendImage(image,command.pageNr,command.ticket);
+			if(!queue->stopped)
+			    emit sendImage(image,command.pageNr,command.ticket);
 		}
 	}
+	queue->deref();
+	deleteLater();
 }
 
 #endif
