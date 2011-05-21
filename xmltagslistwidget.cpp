@@ -40,7 +40,7 @@ void XmlTagsListWidget::populate(){
     }
 }
 
-void XmlTagsListWidget::showEvent(QShowEvent *event){
+void XmlTagsListWidget::showEvent(QShowEvent *){
     if(!mLoaded)
 	populate();
 }
