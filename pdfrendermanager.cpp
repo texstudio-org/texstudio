@@ -75,6 +75,7 @@ void PDFRenderManager::setDocument(QString fileName){
 		if(!renderQueues[i]->isRunning())
 			renderQueues[i]->start();
 	}
+	document=Poppler::Document::load(fileName);
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
@@ -140,8 +141,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 		// generate deafult empty, to be rendered image
 		if(w<0 || h<0){
 			QSize sz;
-			if(page)
-			    sz=page->pageSize();
+			sz=page->pageSize();
 			w=sz.width();
 			h=sz.height();
 		}
