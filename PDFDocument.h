@@ -294,7 +294,7 @@ public:
 	}
 
 	bool followCursor() const;
-	PDFRenderManager renderManager;
+	PDFRenderManager *renderManager;
 
 protected:
 	virtual void changeEvent(QEvent *event);

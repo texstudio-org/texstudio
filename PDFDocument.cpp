@@ -260,7 +260,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				QPoint loc = tl * kMagFactor;
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
 					//don't cache in rendermanager in order to reduce memory consumption
-					image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi, dpi, loc.x(), loc.y(), size.width(), size.height(),false,true);
+					image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi, dpi, loc.x(), loc.y(), size.width(), size.height(),false,true);
 				}
 				imagePage = page;
 				imageDpi = dpi;
@@ -441,7 +441,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
-			image = doc->renderManager.renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
+			image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
 								      newRect.x(), newRect.y(), newRect.width(), newRect.height(),true,true);
 			painter.drawPixmap(event->rect(), image, event->rect());
 			if (!highlightPath.isEmpty()) {
@@ -483,7 +483,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				if(!drawTo.intersects(visRect)) // don't draw invisible pages
 					continue;
 				int pageNr=pages[i];
-				QPixmap temp = doc->renderManager.renderToImage(
+				QPixmap temp = doc->renderManager->renderToImage(
 						pageNr,this,"setImage",
 						dpi * scaleFactor,
 						dpi * scaleFactor,
@@ -1533,7 +1533,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-	: renderManager(this),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false)
+	: renderManager(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -1560,7 +1560,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 PDFDocument::~PDFDocument()
 {
 	docList.removeAll(this);
-	renderManager.stopRendering();
+	delete renderManager;
 	emit documentClosed();
 	if (scanner != NULL)
 		synctex_scanner_free(scanner);
@@ -1834,6 +1834,8 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalVi
 
 void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert)
 {
+	delete renderManager;
+	renderManager=new PDFRenderManager(this);
 	externalViewerCmdLine = externalViewer;
 	setCurrentFile(fileName);
 	reload(false);
@@ -1853,7 +1855,8 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 }
 
 void PDFDocument::fillRenderCache(int pg){
-	renderManager.fillCache(pg);
+	if(renderManager)
+	    renderManager->fillCache(pg);
 }
 
 void PDFDocument::reload(bool fillCache)
@@ -1881,7 +1884,7 @@ void PDFDocument::reload(bool fillCache)
 		}
 		else {
 			//reinitialize rendermanager
-			renderManager.setDocument(curFile);
+			renderManager->setDocument(curFile,document);
 
 			document->setRenderBackend(Poppler::Document::SplashBackend);
 			document->setRenderHint(Poppler::Document::Antialiasing);
@@ -1900,7 +1903,7 @@ void PDFDocument::reload(bool fillCache)
 
 			loadSyncData();
 			if(fillCache){
-				renderManager.fillCache();
+				renderManager->fillCache();
 			}
 			emit reloaded();
 		}
