@@ -735,6 +735,16 @@ QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, 
 	return m_regexp;
 }
 
+QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp, int cap){
+	int offset = regexp.indexIn(searchIn);
+	QStringList res;
+	while (offset > -1){
+		res << regexp.cap(cap);
+		offset = regexp.indexIn(searchIn, offset + regexp.matchedLength());
+	}
+	return res;
+}
+
 void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QString& EnvironMode){
 	QDomElement root= doc.documentElement();
 	QDomElement tag = doc.createElement("context");

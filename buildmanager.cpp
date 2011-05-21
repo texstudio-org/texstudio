@@ -717,14 +717,15 @@ QString BuildManager::createTemporaryFileName(){
 	return temp->fileName();
 }
 
-void addLaTeXInputPath(ProcessX* p, const QString& path){
-	if (path.isEmpty()) return;
+void addLaTeXInputPaths(ProcessX* p, const QStringList& paths){
+	if (paths.isEmpty()) return;
 #ifdef Q_WS_WIN
 	static const QString SEP = ";";
 #else
 	static const QString SEP = ":";
 #endif
 	static const QStringList envNames = QStringList() << "TEXINPUTS" << "BIBINPUTS" << "BSTINPUTS" << "MFINPUTS" << "MPINPUTS" << "TFMFONTS";
+	QString addPath = paths.join(SEP) + SEP + "." + SEP;
 	QStringList env = p->environment();
 	env << QProcess::systemEnvironment();
 	foreach (const QString& envname, envNames) {
@@ -732,11 +733,11 @@ void addLaTeXInputPath(ProcessX* p, const QString& path){
 		for (int i=0;i<env.size();i++)
 			if (env[i].startsWith(envname+"=")) {
 				found = true;
-				env[i] = env[i] + SEP + path+SEP+"."+SEP;
+				env[i] = env[i] + SEP + addPath;
 				break;
 			}
 		if (!found)
-			env.append(envname + "="+path+SEP+"."+SEP);
+			env.append(envname + "="+addPath);
 	}
 	p->setEnvironment(env);
 }
@@ -761,6 +762,16 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 	//preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
 
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
+	QStringList addPaths;
+	addPaths << masterDir;
+	if (preamble_mod.contains("\\usepackage{import}")) {
+		QStringList imports = regExpFindAllMatches(preamble_mod, QRegExp("\\\\subimport\\{([^}\n]*)\\}\\{[^}\n]*\\}"), 1);
+		imports.sort();
+		for (int i=imports.size()-1;i>0;i--)
+			if (imports[i] == imports[i-1]) imports.removeAt(i);
+		foreach (const QString& dir, imports)
+			addPaths << masterDir+QDir::separator()+dir;
+	}
 
 	QString preambleFormatFile;
 	if (previewPrecompilePreamble) {
@@ -785,7 +796,7 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 				preambleFormatFile = fi.completeBaseName();
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = newProcess(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getLatexCommandExecutable(CMD_LATEX)).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
-				addLaTeXInputPath(p, masterDir);
+				addLaTeXInputPaths(p, addPaths);
 				p->setProperty("preamble", preamble_mod);
 				p->setProperty("preambleFile", preambleFormatFile);
 				connect(p,SIGNAL(finished(int)),this,SLOT(preamblePrecompileCompleted(int)));
@@ -832,7 +843,7 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 	// start conversion
 	// tex -> dvi
 	ProcessX *p1 = newProcess(CMD_LATEX,ffn); //no delete! goes automatically
-	addLaTeXInputPath(p1, masterDir);
+	addLaTeXInputPaths(p1, addPaths);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
 

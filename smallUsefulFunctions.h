@@ -104,6 +104,8 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 // generate multiple times used regexpression
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);
 
+QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp, int cap = 0);
+
 // add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc,const QString& EnvironName,const QString& EnvironMode);
 
