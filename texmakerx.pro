@@ -174,8 +174,6 @@ SOURCES += main.cpp \
     userquickdialog.cpp \
     PDFDocument.cpp \
     PDFDocks.cpp \
-    synctex_parser_utils.c \
-    synctex_parser.c \
     tests/qdocumentline_t.cpp \
     latexstyleparser.cpp \
     pdfrenderengine.cpp \
@@ -522,3 +520,9 @@ exists(./.svn/entries){
   else: system(echo \"const char * TEXMAKERX_SVN_VERSION = 0;\" > svn_revision.cpp)
   SOURCES += svn_revision.cpp
 }
+
+# moved to the end because it seems to destroy the precompiled header
+SOURCES+=synctex_parser_utils.c synctex_parser.c 
+
+
+QMAKE_CXXFLAGS_DEBUG = -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline 
