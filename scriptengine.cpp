@@ -1,6 +1,8 @@
 #include "scriptengine.h"
 #include "filechooser.h"
 #include "smallUsefulFunctions.h"
+#include "qdocumentsearch.h"
+
 Q_DECLARE_METATYPE(QDocument*);
 
 //copied from trolltech mailing list
@@ -52,23 +54,89 @@ void scriptengine::setEditor(QEditor *editor){
 	m_editor = editor;
 }
 
+#define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
+
 QScriptValue alertFunction(QScriptContext *context, QScriptEngine *engine)
 {
-	if (context->argumentCount()<1)  {
-		context->throwError(scriptengine::tr("no arguments to alert"));
-		return engine->undefinedValue();
-	}
-	if (context->argumentCount()>1)  {
-		context->throwError(scriptengine::tr("too much arguments to alert"));
-		return engine->undefinedValue();
-	}
+	SCRIPT_REQUIRE(context->argumentCount()==1, "alert needs exactly one argument");
 	QMessageBox::information(0, scriptengine::tr("Script-Message"), context->argument(0).toString());
 	return engine->undefinedValue();
+}
+
+QDocumentCursor cursorFromValue(const QScriptValue& value){
+	QDocumentCursor * c = qobject_cast<QDocumentCursor*> (value.toQObject());
+	if (!c) {
+		if (value.engine() && value.engine()->currentContext()) value.engine()->currentContext()->throwError(scriptengine::tr("Expected cursor object"));
+		return QDocumentCursor();
+	}
+	return *c;
+}
+
+QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engine, bool replace){
+	QEditor *editor = qobject_cast<QEditor*>(context->thisObject().toQObject());
+	//read arguments
+	SCRIPT_REQUIRE(editor, "invalid object");
+	SCRIPT_REQUIRE(!replace || context->argumentCount()>=2, "at least two arguments are required");
+	SCRIPT_REQUIRE(context->argumentCount()>=1, "at least one argument is required");
+	SCRIPT_REQUIRE(context->argumentCount()<=4, "too many arguments");
+	SCRIPT_REQUIRE(context->argument(0).isString()||context->argument(0).isRegExp(), "first argument must be a string or regexp");
+	QDocumentSearch::Options flags = QDocumentSearch::Silent;
+	QString searchFor;
+	if (context->argument(0).isRegExp()) {
+		flags |= QDocumentSearch::RegExp;
+		searchFor = context->argument(0).toRegExp().pattern();
+	} else searchFor = context->argument(0).toString();
+	QScriptValue handler;
+	QDocumentCursor scope = editor->document()->cursor(0,0,editor->document()->lineCount(),0);
+	for (int i=1; i<context->argumentCount();i++) {
+		QScriptValue a = context->argument(i);
+		if (a.isFunction() || (replace && a.isString())) {
+			SCRIPT_REQUIRE(!handler.isValid(), "Multiple callbacks");
+			handler = a;
+		} else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
+		else if (a.isObject()) scope = cursorFromValue(a);
+		else SCRIPT_REQUIRE(false, "Invalid argument");
+	}
+	SCRIPT_REQUIRE(handler.isValid() || !replace, "No callback given");
+
+
+	//search/replace
+	QDocumentSearch search(editor, searchFor, flags);
+	search.setScope(scope);
+	qDebug() << scope.lineNumber() << ":"<<scope.columnNumber()<<" - "<<scope.anchorLineNumber()<<":"<<scope.anchorColumnNumber()
+			<<"  => "<<search.searchText()<<" "<<search.options();
+	if (replace && handler.isString()) {
+		search.setReplaceText(handler.toString());
+		search.setOption(QDocumentSearch::Replace,true);
+		return search.next(false, true, true, false);
+	}
+	if (!handler.isValid())
+		return search.next(false,true,true,false);
+	int count=0;
+	while (search.next(false, false, true, false) && search.cursor().isValid()) {
+		count++;
+		QDocumentCursor temp = search.cursor();
+		QScriptValue cb = handler.call(QScriptValue(), QScriptValueList() << engine->newQObject(&temp));
+		if (replace && cb.isValid()){
+			search.cursor().replaceSelectedText(cb.toString());
+			search.setCursor(search.cursor().selectionEnd());
+		}
+	}
+	return count;
+}
+
+QScriptValue searchFunction(QScriptContext *context, QScriptEngine *engine){
+	return searchReplaceFunction(context, engine, false);
+}
+QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
+	return searchReplaceFunction(context, engine, true);
 }
 
 void scriptengine::run(){
 	if(m_editor){
 		QScriptValue editorValue = engine->newQObject(m_editor);
+		editorValue.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
+		editorValue.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 		engine->globalObject().setProperty("editor", editorValue);
 		QDocumentCursor c=m_editor->cursor();
 		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor
@@ -80,6 +148,8 @@ void scriptengine::run(){
 		QScriptValue qsFileChooserObject = engine->newQObject(&flchooser);
 		engine->globalObject().setProperty("fileChooser", qsFileChooserObject);
 		engine->globalObject().setProperty("alert", engine->newFunction(&alertFunction));
+		engine->globalObject().setProperty("searchEnums", engine->newQMetaObject(&QDocumentSearch::staticMetaObject));
+
 
 		engine->evaluate(m_script);
 
@@ -91,10 +161,6 @@ void scriptengine::run(){
 		}
 
 		if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
-		else {
-			QDocumentCursor* newC = qobject_cast<QDocumentCursor*>(engine->globalObject().property("cursor").toQObject());
-			REQUIRE(newC);
-			m_editor->setCursor(*newC);
-		}
+		else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
 	}
 }

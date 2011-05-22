@@ -542,7 +542,7 @@ void Texmaker::setupMenus() {
 	newManagedEditorAction(submenu,"select",tr("&Select all matches..."), "selectAllMatches");
 	newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
 	submenu->addSeparator();
-	newManagedEditorAction(submenu,"replace",tr("&Replace"), "replace", Qt::CTRL+Qt::Key_R);
+	newManagedEditorAction(submenu,"replace",tr("&Replace"), "replacePanel", Qt::CTRL+Qt::Key_R);
 	newManagedEditorAction(submenu,"replacenext",tr("Replace Next"), "replaceNext");
 	newManagedEditorAction(submenu,"replaceprev",tr("Replace Prev"), "replacePrev");
 	newManagedEditorAction(submenu,"replaceall",tr("Replace &All"), "replaceAll");

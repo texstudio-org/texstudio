@@ -1033,6 +1033,9 @@ void QDocumentSearch::visibleLinesChanged(){
 
 void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScope)
 {
+	if (hasOption(Silent))
+		return;
+
 	QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
 	int sid = f ? f->id("selection") : 0;
 	if (!sid) return;

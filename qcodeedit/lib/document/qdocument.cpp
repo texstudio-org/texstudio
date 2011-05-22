@@ -1274,7 +1274,7 @@ QDocumentCursor QDocument::cursor(int line, int column, int lineTo, int columnTo
 			else c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
 		} else {
 			c.setLineNumber(lineCount()-1, QDocumentCursor::KeepAnchor);
-			c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
+			c.setColumnNumber(this->line(lineCount()-1).length(), QDocumentCursor::KeepAnchor);
 		}
 		return c;
 	}
