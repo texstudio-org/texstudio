@@ -576,12 +576,14 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		// ctrl key - this is a sync click, don't handle the mouseDown here
 	}
 	else if (currentTool != kPresentation){
-		Poppler::Page *page;
+		Poppler::Page *page=0;
 		QPointF scaledPos;
 		int pageNr;
 		gridMapToScaledPosition(event->pos(), pageNr, scaledPos);
 		if (pageNr>=0) {
 			page=document->page(pageNr);
+		}
+		if (page) {
 			// check for click in link
 			foreach (Poppler::Link* link, page->links()) {
 				if (link->linkArea().contains(scaledPos)) {
@@ -963,6 +965,8 @@ void PDFWidget::updateCursor(const QPoint& pos)
 	if (pageNr<0) return;
 	// check for link
 	page=document->page(pageNr);
+	if(!page)
+	    return;
 	foreach (Poppler::Link* link, page->links()) {
 		// poppler's linkArea is relative to the page rect
 		if (link->linkArea().contains(scaledPos)) {
@@ -1463,8 +1467,9 @@ void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPoi
 	QPoint rp = position - gridPagePosition(pageIndex);
 	// poppler's pos is relative to the page rect
 	Poppler::Page *popplerPage=document->page(page);
-	scaledPos = QPointF(rp.x() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().width(),
-			      rp.y() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().height());
+	if(popplerPage)
+	    scaledPos = QPointF(rp.x() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().width(),
+				rp.y() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().height());
 	delete popplerPage;
 
 }
@@ -1474,11 +1479,12 @@ QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
 	QRect r = gridPageRect(0);
 	int i=pages.first();
 	Poppler::Page *popplerPage=document->page(i);
+	if(!popplerPage)
+	    return QPoint();
 	int w=popplerPage->pageSizeF().width();
 	int h=popplerPage->pageSizeF().height();
 	delete popplerPage;
 	return (QPointF(scaledPos.x() * w, scaledPos.y() * h)   * scaleFactor * dpi / 72.0 ).toPoint();
-
 }
 
 QSizeF PDFWidget::maxPageSizeF() const{
@@ -2069,6 +2075,8 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
 			page = document->page(pageIdx);
+			if(!page)
+			    return;
 
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
 				lastSearchResult.doc = this;
