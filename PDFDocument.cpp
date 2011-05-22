@@ -2234,7 +2234,7 @@ void PDFDocument::zoomToRight(QWidget *otherWindow)
 
 void PDFDocument::showPage(int page)
 {
-	Q_ASSERT(document);
+	//Q_ASSERT(document);
 	if (!document) return;
 	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(page).arg(document->numPages()));
 	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(document->numPages()));
