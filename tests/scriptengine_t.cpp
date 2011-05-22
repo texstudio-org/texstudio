@@ -65,19 +65,41 @@ void ScriptEngineTest::script_data(){
 
 	QTest::newRow("Search/Replace Test 1")
 		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"b\"); "
-		<< "Hbllo1\nHbllo2\nHbllo3";
+		<< "Hbllo1\nHallo2\nHallo3";
 	QTest::newRow("Search/Replace Test 2")
 		<< "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
-		<< "Hbllo1\nHbtto2\nHbllo3";
+		<< "Hbllo1\nHatto2\nHallo3";
 	QTest::newRow("Search/Replace Test 3")
 		<< "editor.replace(/b..o/, function(c){return editor.search(c.selectedText());}); "
-		<< "H21\nH12\nH13";
+		<< "H11\nHatto2\nHallo3";
 	QTest::newRow("Search/Replace Test 4 (no conversion)")
 		<< "editor.replace(/[0-9]*/, function(c){return 17+c.selectedText();}); "
-		<<  "H1721\nH1712\nH1713";
+		<<  "H1711\nHatto2\nHallo3";
 	QTest::newRow("Search/Replace Test 5")
 		<< "editor.replace(/[0-9]*/, function(c){return 17+1*c.selectedText();}); "
+		<< "H1728\nHatto2\nHallo3";
+
+	QTest::newRow("Search/Replace Test 1g")
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"g\", \"b\"); "
+		<< "Hbllo1\nHbllo2\nHbllo3";
+	QTest::newRow("Search/Replace Test 2g")
+		<< "editor.replace(\"ll\", \"g\", \"tt\", editor.document().cursor(1,0,1,6)); "
+		<< "Hbllo1\nHbtto2\nHbllo3";
+	QTest::newRow("Search/Replace Test 3gg")
+		<< "editor.replace(/b..o/g, function(c){return editor.search(c.selectedText(),\"g\");}); "
+		<< "H21\nH12\nH13";
+	QTest::newRow("Search/Replace Test 4g (no conversion)")
+		<< "editor.replace(/[0-9]*/g, function(c){return 17+c.selectedText();}); "
+		<<  "H1721\nH1712\nH1713";
+	QTest::newRow("Search/Replace Test 5g")
+		<< "editor.replace(/[0-9]*/g, function(c){return 17+1*c.selectedText();}); "
 		<< "H1738\nH1729\nH1730";
+	QTest::newRow("Search/Replace Test 6g")
+		<< "editor.replace(/h/g, 'test'); "
+		<< "H1738\nH1729\nH1730";
+	QTest::newRow("Search/Replace Test 7gi")
+		<< "editor.replace(/h/gi, 'test'); "
+		<< "test1738\ntest1729\ntest1730";
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);

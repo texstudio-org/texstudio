@@ -81,24 +81,44 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 	SCRIPT_REQUIRE(context->argumentCount()<=4, "too many arguments");
 	SCRIPT_REQUIRE(context->argument(0).isString()||context->argument(0).isRegExp(), "first argument must be a string or regexp");
 	QDocumentSearch::Options flags = QDocumentSearch::Silent;
+	bool global = false, caseInsensitive = false;
 	QString searchFor;
 	if (context->argument(0).isRegExp()) {
 		flags |= QDocumentSearch::RegExp;
-		searchFor = context->argument(0).toRegExp().pattern();
+		QRegExp r = context->argument(0).toRegExp();
+		searchFor = r.pattern();
+		caseInsensitive = r.caseSensitivity() == Qt::CaseInsensitive;
+		Q_ASSERT(caseInsensitive == context->argument(0).property("ignoreCase").toBool()); //check assumption about javascript core
+		global = context->argument(0).property("global").toBool();
 	} else searchFor = context->argument(0).toString();
 	QScriptValue handler;
 	QDocumentCursor scope = editor->document()->cursor(0,0,editor->document()->lineCount(),0);
+	int strCount = 0;
+	for (int i=1; i<context->argumentCount();i++)
+		if (context->argument(i).isString()) strCount++;
+	SCRIPT_REQUIRE(strCount <= (replace?2:1), "too many string arguments");
 	for (int i=1; i<context->argumentCount();i++) {
 		QScriptValue a = context->argument(i);
-		if (a.isFunction() || (replace && a.isString())) {
+		if (a.isFunction()) {
 			SCRIPT_REQUIRE(!handler.isValid(), "Multiple callbacks");
 			handler = a;
+		} else if (a.isString()) {
+			if (!replace || strCount > 1) {
+				QString s = a.toString().toLower();
+				global = s.contains("g");
+				caseInsensitive = s.contains("i");
+				if (s.contains("w")) flags |= QDocumentSearch::WholeWords;
+			} else {
+				SCRIPT_REQUIRE(!handler.isValid(), "Multiple callbacks");
+				handler = a;
+			}
+			strCount--;
 		} else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
 		else if (a.isObject()) scope = cursorFromValue(a);
 		else SCRIPT_REQUIRE(false, "Invalid argument");
 	}
 	SCRIPT_REQUIRE(handler.isValid() || !replace, "No callback given");
-
+	if (!caseInsensitive) flags |= QDocumentSearch::CaseSensitive;
 
 	//search/replace
 	QDocumentSearch search(editor, searchFor, flags);
@@ -106,10 +126,10 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 	if (replace && handler.isString()) {
 		search.setReplaceText(handler.toString());
 		search.setOption(QDocumentSearch::Replace,true);
-		return search.next(false, true, true, false);
+		return search.next(false, global, false, false);
 	}
 	if (!handler.isValid())
-		return search.next(false,true,true,false);
+		return search.next(false,global,true,false);
 	int count=0;
 	while (search.next(false, false, true, false) && search.cursor().isValid()) {
 		count++;
@@ -120,6 +140,7 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 			tmp.replaceSelectedText(cb.toString());
 			search.setCursor(tmp.selectionEnd());
 		}
+		if (!global) break;
 	}
 	return count;
 }
@@ -147,8 +168,6 @@ void scriptengine::run(){
 		QScriptValue qsFileChooserObject = engine->newQObject(&flchooser);
 		engine->globalObject().setProperty("fileChooser", qsFileChooserObject);
 		engine->globalObject().setProperty("alert", engine->newFunction(&alertFunction));
-		engine->globalObject().setProperty("searchEnums", engine->newQMetaObject(&QDocumentSearch::staticMetaObject));
-
 
 		engine->evaluate(m_script);
 
