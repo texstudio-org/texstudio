@@ -1,6 +1,6 @@
 #include "scriptengine.h"
 #include "filechooser.h"
-
+#include "smallUsefulFunctions.h"
 Q_DECLARE_METATYPE(QDocument*);
 
 //copied from trolltech mailing list
@@ -89,6 +89,12 @@ void scriptengine::run(){
 			qDebug() << error;
 			QMessageBox::critical(0, tr("Script-Error"), error);
 		}
-		m_editor->setCursor(c);
+
+		if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
+		else {
+			QDocumentCursor* newC = qobject_cast<QDocumentCursor*>(engine->globalObject().property("cursor").toQObject());
+			REQUIRE(newC);
+			m_editor->setCursor(*newC);
+		}
 	}
 }
