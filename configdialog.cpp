@@ -169,12 +169,10 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 			if (!li2.empty() && li2[0] && li2[0]->text(0) == model->data(model->index(index.row(),0,index.parent()))) li2.removeFirst();
 			li << li2;
 			REQUIRE(treeWidget->topLevelItem(1));
-			Q_ASSERT(treeWidget->topLevelItem(1)->childCount()>=2);
+			REQUIRE(treeWidget->topLevelItem(1)->childCount()>=1);
 			QTreeWidgetItem* editorKeys = treeWidget->topLevelItem(1)->child(0);
 			REQUIRE(editorKeys);
-			QTreeWidgetItem* editorKeysReplacements = treeWidget->topLevelItem(1)->child(1);
-			REQUIRE(editorKeysReplacements);
-			if (!li.empty() && li.first() && (li.first()->parent() != editorKeys || isBasicEditorKey(index)) && (li.first()->parent() != editorKeysReplacements)) {
+			if (!li.empty() && li.first() && (li.first()->parent() != editorKeys || isBasicEditorKey(index))) {
 				QString duplicate=li.first()->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
 				switch (QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
 				                             ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"),
