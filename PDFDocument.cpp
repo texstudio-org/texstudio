@@ -2259,7 +2259,8 @@ void PDFDocument::goToSource()
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
 {
 	//current page has changed
-
+        if(!document)
+            return;
 	//#ifndef Q_WS_MAC
 	// On Mac OS X, disabling these leads to a crash if we hit the end of document while auto-repeating a key
 	// (seems like a Qt bug, but needs further investigation)
