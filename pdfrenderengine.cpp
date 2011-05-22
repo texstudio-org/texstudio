@@ -71,13 +71,15 @@ void PDFRenderEngine::run(){
 
 		// render Image
 		if(document){
-			Poppler::Page *page=document->page(command.pageNr);
-			QImage	image=page->renderToImage(command.xres, command.yres,
-							     command.x, command.y, command.w, command.h);
-			//qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << priorityThread << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;
+		    Poppler::Page *page=document->page(command.pageNr);
+		    if(page){
+			QImage image=page->renderToImage(command.xres, command.yres,
+							  command.x, command.y, command.w, command.h);
 			delete page;
 			if(!queue->stopped)
 			    emit sendImage(image,command.pageNr,command.ticket);
+		    }
+		    //qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << priorityThread << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;
 		}
 	}
 	queue->deref();
