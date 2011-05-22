@@ -103,8 +103,6 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 	//search/replace
 	QDocumentSearch search(editor, searchFor, flags);
 	search.setScope(scope);
-	qDebug() << scope.lineNumber() << ":"<<scope.columnNumber()<<" - "<<scope.anchorLineNumber()<<":"<<scope.anchorColumnNumber()
-			<<"  => "<<search.searchText()<<" "<<search.options();
 	if (replace && handler.isString()) {
 		search.setReplaceText(handler.toString());
 		search.setOption(QDocumentSearch::Replace,true);
@@ -118,8 +116,9 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 		QDocumentCursor temp = search.cursor();
 		QScriptValue cb = handler.call(QScriptValue(), QScriptValueList() << engine->newQObject(&temp));
 		if (replace && cb.isValid()){
-			search.cursor().replaceSelectedText(cb.toString());
-			search.setCursor(search.cursor().selectionEnd());
+			QDocumentCursor tmp = search.cursor();
+			tmp.replaceSelectedText(cb.toString());
+			search.setCursor(tmp.selectionEnd());
 		}
 	}
 	return count;

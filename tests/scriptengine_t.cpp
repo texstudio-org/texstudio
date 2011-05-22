@@ -62,6 +62,22 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("check cursor movement out of range")
 		<< "cursor.moveTo(20,10);cursor.deleteChar();cursor.deletePreviousChar();cursor.eraseLine();cursor.insertText(\"as\")"
 		<< "bello";  // invalid cursors are not executed
+
+	QTest::newRow("Search/Replace Test 1")
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"b\"); "
+		<< "Hbllo1\nHbllo2\nHbllo3";
+	QTest::newRow("Search/Replace Test 2")
+		<< "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
+		<< "Hbllo1\nHbtto2\nHbllo3";
+	QTest::newRow("Search/Replace Test 3")
+		<< "editor.replace(/b..o/, function(c){return editor.search(c.selectedText());}); "
+		<< "H21\nH12\nH13";
+	QTest::newRow("Search/Replace Test 4 (no conversion)")
+		<< "editor.replace(/[0-9]*/, function(c){return 17+c.selectedText();}); "
+		<<  "H1721\nH1712\nH1713";
+	QTest::newRow("Search/Replace Test 5")
+		<< "editor.replace(/[0-9]*/, function(c){return 17+1*c.selectedText();}); "
+		<< "H1738\nH1729\nH1730";
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
