@@ -626,7 +626,7 @@ void QEditor::init(bool actions,QDocument *doc)
 		a->setObjectName("replace");
 		Q_SHORTCUT(a, "Ctrl+R", "Search");
 		connect(a	, SIGNAL( triggered() ),
-				this, SLOT  ( replace() ) );
+				this, SLOT  ( replacePanel() ));
 
 		addAction(a, "&Search", "Search");
 
@@ -1222,7 +1222,7 @@ void QEditor::selectAllMatches(){
 /*!
 	\brief Show the search/replace panel, if any
 */
-void QEditor::replace()
+void QEditor::replacePanel()
 {
 	relayPanelCommand("Search", "display", QList<QVariant>() << 1 << true);
 }
@@ -2849,7 +2849,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	case SelectAll: selectAll(); break;
 	case Find: find(); break;
 	case FindNext: findNext(); break;
-	case Replace: replace(); break;
+	case Replace: replacePanel(); break;
 
 	case NoOperation:
 	case DeleteLeft:

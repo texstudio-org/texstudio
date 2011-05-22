@@ -812,8 +812,8 @@ void QSearchReplacePanel::on_bReplacePrevious_clicked()
 
 void QSearchReplacePanel::on_bReplaceAll_clicked()
 {
-        leFind->setStyleSheet(QString());
-        findReplace(false,true,true);
+	 leFind->setStyleSheet(QString());
+	 findReplace(false,true,true);
 }
 
 void QSearchReplacePanel::init()

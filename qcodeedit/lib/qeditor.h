@@ -324,7 +324,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void findPrev();
 		void findCount();
 		void selectAllMatches();
-		void replace();
+		void replacePanel();
 		void replaceNext();
 		void replacePrev();
 		void replaceAll();
