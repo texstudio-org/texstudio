@@ -500,16 +500,20 @@ The following table gives an overview on the possible commands.
     <td> <b>description</b> </td>
   </tr>
   <tr>
-    <td> editor.setText(<i>text</i>) </td> 
-    <td> replace the whole text of the current document by <i>text</i> </td>
+  	<td> editor.search(searchFor, [options], [scope], [callback]) </td>
+	<td> Searchs something in the editor. 
+	     <ul>
+	     <li>searchFor is the text which is searched. It can be either a string (e.g. "..") or a regexp (e.g. /[.]{2}/). </li>
+	     <li>options is a string and a combination of "i", "g", "w" to specify a case-<em>i</em>nsensitive search, a <em>g</em>lobal search (continue after the first match) or a whole-<em>w</em>ord-only search. </li>
+	     <li>scope is a cursor constraining the search scope (see editor.document().cursor).</li>
+	     <li>callback is a function which is called for every match. A cursor describing the position of the match is passed as first argument.</li>
+	  </ul> 
+	  All arguments except searchFor are optional, and the order may be changed (which may not be future compatible). The function returns the number of found matches.
+	  </td>
   </tr>
   <tr>
-    <td> editor.text()
-    <td> return the text of the complete document
-  </tr>
-  <tr>
-    <td> editor.text(int line)
-    <td> return text of <i>line</i>
+  	<td> editor.replace(searchFor, [options], [scope], [replaceWith]) </td>
+  	<td> This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.  </td>  	
   </tr>
   <tr>
     <td> editor.undo();
@@ -556,7 +560,7 @@ The following table gives an overview on the possible commands.
     <td> find next
   </tr>
   <tr>
-    <td> editor.replace();
+    <td> editor.replacePanel();
     <td> replace (if find panel open and something is selected)
   <tr>
     <td> editor.gotoLine();
@@ -610,8 +614,36 @@ The following table gives an overview on the possible commands.
     <td> editor.insertText(cursor, str) </td>
     <td> inserts str at the position of cursor </td>
   <tr>-->
+  <tr>
+    <td> editor.setText(<i>text</i>) </td> 
+    <td> replace the whole text of the current document by <i>text</i> </td>
+  </tr>
+  <tr>
+    <td> editor.text()
+    <td> return the text of the complete document
+  </tr>
+  <tr>
+    <td> editor.text(int line)
+    <td> return text of <i>line</i>
+  </tr>
 
-  <tr> <td colspan="2">&nbsp;</td> </tr>
+  <tr> <td colspan="2"><hr></td> </tr>
+<tr><td>editor.document().lineCount() </td><td>   Returns the number of lines     </td></tr>
+<tr><td>editor.document().visualLineCount() </td><td>    Returns the number of visual lines (counting wrapped lines)    </td></tr>
+<tr><td>editor.document().cursor(line, [column = 0], [lineTo = -1], [columnTo = length of lineTo]) </td><td>  Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.   </td></tr>
+<tr><td>editor.document().text([removeTrailing = false], [preserveIndent = true]) </td><td>  Returns the complete text of the document </td></tr>
+<tr><td>editor.document().textLines() </td><td>   Returns an array of all text lines     </td></tr>
+<tr><td>editor.document().lineEndingString() </td><td> Returns a string containing the ending of a line (\n or \n\r)       </td></tr>
+<tr><td>editor.document().canUndo() </td><td>   Returns true if undo is possible     </td></tr>
+<tr><td>editor.document().canRedo() </td><td>    Returns true if redo is possible    </td></tr>
+<tr><td>editor.document().expand(lineNr)</td><td>    Expands the line    </td></tr>
+<tr><td>editor.document().collapse(lineNr)</td><td>   Collapse the line     </td></tr>
+<tr><td>editor.document().expandParents(lineNr)</td><td>  Expand all parents of the line until it is visible     </td></tr>
+<tr><td>editor.document().foldBlockAt(bool unFold, lineNr);</td><td>  Collapses or expands the first block before lineNr     </td></tr>
+  </tr>
+
+
+  <tr> <td colspan="2"><hr></td> </tr>
 
   <tr>
     <td> cursor.atEnd()
@@ -650,7 +682,7 @@ The following table gives an overview on the possible commands.
     <td> returns the column of the cursor
   </tr>
   <tr>
-    <td> cursor.anchorLineNumber() const;
+    <td> cursor.anchorLineNumber() 
     <td> returns the line number of the anchor.
   </tr>
   <tr>
@@ -748,7 +780,7 @@ The following table gives an overview on the possible commands.
     <td> cursor.endEditBlock();
     <td> ends an edit block
   </tr>
-  <tr> <td colspan="2">&nbsp;</td> </tr>
+  <tr> <td colspan="2"><hr></td> </tr>
   <tr>
 	<td> fileChooser.exec()
 	<td> show dialog and wait until it is closed again
@@ -765,7 +797,7 @@ The following table gives an overview on the possible commands.
 	<td> fileChooser.fileName()
 	<td> return selected filename (after exec)
   </tr>  
-  <tr> <td colspan="2">&nbsp;</td> </tr>
+  <tr> <td colspan="2"><hr></td> </tr>
   <tr>
   	<td> alert(str) </td>
 	<td> shows str in a messagebox </td>
