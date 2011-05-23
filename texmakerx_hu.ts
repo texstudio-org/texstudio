@@ -44,10 +44,6 @@
         <translation>A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL).és SyncTeX (szerző: Jerome Laurens)&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
         <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
     </message>
@@ -791,7 +787,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>60 minutes</source>
-        <translation>óránként</translation>
+        <translation>Óránként</translation>
     </message>
     <message>
         <source>Indentation mode:</source>
@@ -979,19 +975,19 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>no line wrap</source>
-        <translation>nincs sortörés</translation>
+        <translation>Nincs sortörés</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation>puha sortörés ablak szélén</translation>
+        <translation>Puha sortörés ablak szélén</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation>puha sortörés a max. karakterszám után</translation>
+        <translation>Puha sortörés a max. karakterszám után</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation>kemény sortörés a max. karakterszám után</translation>
+        <translation>Kemény sortörés a max. karakterszám után</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
@@ -1083,15 +1079,15 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>one</source>
-        <translation type="unfinished"></translation>
+        <translation>egy</translation>
     </message>
     <message>
         <source>two</source>
-        <translation type="unfinished"></translation>
+        <translation>kettő</translation>
     </message>
     <message>
         <source>third</source>
-        <translation type="unfinished"></translation>
+        <translation>harmadik</translation>
     </message>
 </context>
 <context>
@@ -5796,14 +5792,6 @@ The html files are located in the %1 directory.</source>
 <context>
     <name>scriptengine</name>
     <message>
-        <source>no arguments to alert</source>
-        <translation>az értesítésnek nincs argumentuma</translation>
-    </message>
-    <message>
-        <source>too much arguments to alert</source>
-        <translation>az értesítésnek túl sok argumentuma van</translation>
-    </message>
-    <message>
         <source>Script-Message</source>
         <translation>Parancsfájl üzenet</translation>
     </message>
@@ -5823,6 +5811,10 @@ The html files are located in the %1 directory.</source>
     <message>
         <source>Script-Error</source>
         <translation>Parancsfájl hiba</translation>
+    </message>
+    <message>
+        <source>Expected cursor object</source>
+        <translation>Várt kurzor</translation>
     </message>
 </context>
 <context>
