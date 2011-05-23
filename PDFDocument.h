@@ -193,6 +193,7 @@ private:
 	qreal	dpi;
 	autoScaleOption scaleOption;
 
+        int docPages;
 	qreal			saveScaleFactor;
 	autoScaleOption	saveScaleOption;
 
