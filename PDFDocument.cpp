@@ -402,6 +402,7 @@ PDFWidget::PDFWidget()
 	highlightRemover.setSingleShot(true);
 	highlightPage=-1;
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
+        docPages=0;
 }
 
 PDFWidget::~PDFWidget()
@@ -412,6 +413,10 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 {
 	pages.clear();
 	document = doc;
+        if(document)
+            docPages=document->numPages();
+        else
+            docPages=0;
 	reloadPage();
 }
 
@@ -1127,7 +1132,8 @@ int PDFWidget::visiblePages() const {
 
 int PDFWidget::numPages() const{
 	if (!document) return 0;
-	return document->numPages();
+        return docPages;
+        //return document->numPages();
 }
 
 int PDFWidget::pageStep() {
