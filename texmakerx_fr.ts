@@ -1756,11 +1756,11 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>before word</source>
-        <translation type="unfinished"></translation>
+        <translation>avant le mot</translation>
     </message>
     <message>
         <source>after word</source>
-        <translation type="unfinished"></translation>
+        <translation>après le mot</translation>
     </message>
 </context>
 <context>
@@ -6373,7 +6373,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Expected cursor object</source>
-        <translation type="unfinished"></translation>
+        <translation>Objet curseur attendu</translation>
     </message>
 </context>
 <context>
