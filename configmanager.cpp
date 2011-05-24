@@ -525,12 +525,12 @@ QSettings* ConfigManager::readSettings() {
 	while (userTriggers.size()<userTags.size()) userTriggers << "";
 
 	for (int i=0; i < keyReplace.size(); i++) {
-		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("before word"));
+		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
 		userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
 		userAbbrevs.append("");
 		userTriggers.append("(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
 
-		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg("after word"));
+		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
 		userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
 		userAbbrevs.append("");
 		userTriggers.append("(?<=\\S)"+QRegExp::escape(keyReplace[i]));

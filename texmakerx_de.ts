@@ -1941,6 +1941,14 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <source>Key replacement: %1 %2</source>
         <translation>Tatenersetzung: %1 %2</translation>
     </message>
+    <message>
+        <source>before word</source>
+        <translation>vor Wort</translation>
+    </message>
+    <message>
+        <source>after word</source>
+        <translation>nach Wort</translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -7129,14 +7137,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>scriptengine</name>
     <message>
-        <source>no arguments to alert</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>too much arguments to alert</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Script-Message</source>
         <translation>Script-Mitteilung</translation>
     </message>
@@ -7156,6 +7156,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Script-Error</source>
         <translation>Script-Fehler</translation>
+    </message>
+    <message>
+        <source>Expected cursor object</source>
+        <translation>Erwartetes Cursor-Objekt</translation>
     </message>
 </context>
 <context>

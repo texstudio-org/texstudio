@@ -1711,6 +1711,14 @@ Which one of the three wise will always tell the truth?</source>
         <source>Key replacement: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>before word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>after word</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -6295,14 +6303,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>scriptengine</name>
     <message>
-        <source>no arguments to alert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>too much arguments to alert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Script-Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6321,6 +6321,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Script-Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expected cursor object</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
