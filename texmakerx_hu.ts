@@ -1536,6 +1536,14 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <source>Key replacement: %1 %2</source>
         <translation>Kulcs csere: %1 %2</translation>
     </message>
+    <message>
+        <source>before word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>after word</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>

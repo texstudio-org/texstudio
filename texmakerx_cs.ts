@@ -1891,6 +1891,14 @@ Which one of the three wise will always tell the truth?</source>
         <source>Key replacement: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>before word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>after word</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -6934,11 +6942,11 @@ p, li { white-space: pre-wrap; }
     <name>scriptengine</name>
     <message>
         <source>no arguments to alert</source>
-        <translation>žádné argumenty k upozornění</translation>
+        <translation type="obsolete">žádné argumenty k upozornění</translation>
     </message>
     <message>
         <source>too much arguments to alert</source>
-        <translation>příliš mnoho argumentů k upozornění</translation>
+        <translation type="obsolete">příliš mnoho argumentů k upozornění</translation>
     </message>
     <message>
         <source>Script-Message</source>
@@ -6960,6 +6968,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Script-Error</source>
         <translation>Chyba skriptu</translation>
+    </message>
+    <message>
+        <source>Expected cursor object</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

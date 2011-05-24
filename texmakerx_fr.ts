@@ -1754,6 +1754,14 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <source>Key replacement: %1 %2</source>
         <translation>Touche de remplacement : %1 %2</translation>
     </message>
+    <message>
+        <source>before word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>after word</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -6335,11 +6343,11 @@ p, li { white-space: pre-wrap; }
     <name>scriptengine</name>
     <message>
         <source>no arguments to alert</source>
-        <translation>Pas d&apos;argument à signaler</translation>
+        <translation type="obsolete">Pas d&apos;argument à signaler</translation>
     </message>
     <message>
         <source>too much arguments to alert</source>
-        <translation>Trop d&apos;arguments à signaler</translation>
+        <translation type="obsolete">Trop d&apos;arguments à signaler</translation>
     </message>
     <message>
         <source>Script-Message</source>
@@ -6362,6 +6370,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Script-Error</source>
         <translation>Erreur de script</translation>
+    </message>
+    <message>
+        <source>Expected cursor object</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
