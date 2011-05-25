@@ -450,15 +450,35 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//TODO: handle optional arguments
 			if (LatexParser::definitionCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
-				QRegExp rx("^\\s*\\[(\\d+)\\]");
+				QRegExp rx("^\\s*\\[(\\d+)\\](\\[.+\\])?");
 				int options=0;
-				if(rx.indexIn(remainder)>-1)
+				int def=0;
+				if(rx.indexIn(remainder)>-1){
 					options=rx.cap(1).toInt(); //returns 0 if conversion fails
+					if(!rx.cap(2).isEmpty())
+					    def=1;
+				}
 				ltxCommands.possibleCommands["user"].insert(name);
 				addedUserCommands << name;
+				if(def==1){
+				    QString helper=name;
+				    for (int j=0; j<options; j++) {
+					    if (j==1)
+						helper.append("{%<arg1%|%>}");
+					    if(j>1)
+						helper.append(QString("{%<arg%1%>}").arg(j));
+				    }
+				    mUserCommandList.insert(line(i).handle(),helper);
+
+				}
 				for (int j=0; j<options; j++) {
-					if (j==0) name.append("{%<arg1%|%>}");
-					else name.append(QString("{%<arg%1%>}").arg(j+1));
+					if (j==0) {
+					    if(def==0)
+						name.append("{%<arg1%|%>}");
+					    else
+						name.append("[%<opt. arg1%|%>]");
+					} else
+					    name.append(QString("{%<arg%1%>}").arg(j+1));
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				// remove obsolete Overlays (maybe this can be refined
