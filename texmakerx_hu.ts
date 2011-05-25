@@ -1538,11 +1538,11 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>before word</source>
-        <translation type="unfinished"></translation>
+        <translation>szó előtt</translation>
     </message>
     <message>
         <source>after word</source>
-        <translation type="unfinished"></translation>
+        <translation>szó után</translation>
     </message>
 </context>
 <context>
