@@ -35,6 +35,8 @@ public:
 	XmlTagsListWidget(QWidget *parent, QString file);
 	QStringList tagsTxtFromCategory(const QString & category);
 	QString tagsFromTagTxt(const QString& tagTxt);
+	bool isPopulated();
+	void populate();
 
 protected:
 	void showEvent ( QShowEvent * event );
@@ -45,7 +47,6 @@ private:
 	void addListWidgetItems(const xmlTagList &tagList);
 	QString mFile;
 	bool mLoaded;
-	void populate();
 };
 
 #endif
