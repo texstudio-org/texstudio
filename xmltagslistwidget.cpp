@@ -26,23 +26,30 @@ XmlTagsListWidget::XmlTagsListWidget(QWidget *parent, QString file):QListWidget(
 }
 
 void XmlTagsListWidget::populate(){
-    QFile tagsFile(mFile);
-    if (tagsFile.open(QFile::ReadOnly)){
+    if(!mLoaded){
+	QFile tagsFile(mFile);
+	if (tagsFile.open(QFile::ReadOnly)){
 	    QDomDocument domDocument;
 	    if (domDocument.setContent(&tagsFile)){
-		    QDomElement root = domDocument.documentElement();
-		    if (root.tagName() == "texmakertags"){
-			    xmlSections=getTags(root);
-			    for (int i = 0; i < xmlSections.children.size(); ++i)
-			    addListWidgetItems(xmlSections.children.at(i));
-		    }
+		QDomElement root = domDocument.documentElement();
+		if (root.tagName() == "texmakertags"){
+		    xmlSections=getTags(root);
+		    for (int i = 0; i < xmlSections.children.size(); ++i)
+			addListWidgetItems(xmlSections.children.at(i));
+		}
 	    }
+	}
+	mLoaded=true;
     }
 }
 
 void XmlTagsListWidget::showEvent(QShowEvent *){
     if(!mLoaded)
 	populate();
+}
+
+bool XmlTagsListWidget::isPopulated(){
+    return mLoaded;
 }
 
 QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString & category){

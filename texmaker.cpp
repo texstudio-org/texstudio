@@ -839,6 +839,8 @@ void Texmaker::setupToolBars() {
 				int tagCategorySep=actionName.indexOf("/",5);
 				XmlTagsListWidget* tagsWidget = findChild<XmlTagsListWidget*>(actionName.left(tagCategorySep));
 				if (!tagsWidget) continue;
+				if(!tagsWidget->isPopulated())
+				    tagsWidget->populate();
 				QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
 				if (list.isEmpty()) continue;
 				QFontMetrics fontMetrics(mtb.toolbar->font());
