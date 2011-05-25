@@ -2117,7 +2117,7 @@ void PDFDocument::loadSyncData()
 	if (scanner == NULL)
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
-		QString synctexName = QString::fromUtf8(synctex_scanner_get_synctex(scanner));
+		QString synctexName = QFile::decodeName(synctex_scanner_get_synctex(scanner));
 		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(synctexName), 3000);
 	}
 }
@@ -2131,7 +2131,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 	if (synctex_edit_query(scanner, pageIndex + 1, pos.x(), pos.y()) > 0) {
 		synctex_node_t node;
 		while ((node = synctex_next_result(scanner)) != NULL) {
-			QString filename = QString::fromUtf8(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
+			QString filename = QFile::decodeName(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
 			QDir curDir(QFileInfo(curFile).canonicalPath());
 			QString fullName = QFileInfo(curDir, filename).canonicalFilePath();
 			if (!globalConfig->syncFileMask.trimmed().isEmpty()) {
@@ -2165,7 +2165,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 	QString name;
 	bool found = false;
 	while (node != NULL) {
-		name = QString::fromUtf8(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
+		name = QFile::decodeName(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
 		const QFileInfo fi(curDir, name);
 		if (fi == sourceFileInfo) {
 			found = true;
@@ -2176,7 +2176,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 	if (!found)
 		return -1;
 
-	if (synctex_display_query(scanner, name.toUtf8().data(), lineNo, 0) > 0) {
+	if (synctex_display_query(scanner, QFile::encodeName(name).data(), lineNo, 0) > 0) {
 		int page = -1;
 		QPainterPath path;
 		while ((node = synctex_next_result(scanner)) != NULL) {
