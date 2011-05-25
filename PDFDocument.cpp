@@ -2113,7 +2113,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 void PDFDocument::loadSyncData()
 {
-	scanner = synctex_scanner_new_with_output_file(curFile.toUtf8().data(), NULL, 1);
+	scanner = synctex_scanner_new_with_output_file(QFile::encodeName(curFile).data(), NULL, 1);
 	if (scanner == NULL)
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
