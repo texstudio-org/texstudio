@@ -247,13 +247,13 @@ void PDFRenderManager::fillCache(int pg){
 	int i=pg-1;
 	int j=pg;
 	if(j<0)
-		j=0;
+		j=-1;
 	int max=document->numPages();
 	while(i>=0 || j<max){
 		j++;
 		if(i>=0 &&!renderedPage.contains(i)) // don't rerender page
 			renderToImage(i,0,"");
-		if(j>0 && j<max &&!renderedPage.contains(j)) // don't rerender page
+		if(j>=0 && j<max &&!renderedPage.contains(j)) // don't rerender page
 			renderToImage(j,0,"");
 		i--;
 	}

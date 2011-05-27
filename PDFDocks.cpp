@@ -843,7 +843,8 @@ void PDFOverviewDock::showImage(){
 void PDFOverviewDock::insertImage(QPixmap image,int page){
     QPixmap pxMap=image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QListWidgetItem *lw = list->item(page);
-    lw->setIcon(QIcon(pxMap));
+    if(lw)
+	lw->setIcon(QIcon(pxMap));
 }
 
 
