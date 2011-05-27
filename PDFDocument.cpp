@@ -443,6 +443,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	qreal newDpi = dpi * scaleFactor;
 	QRect newRect = rect();
 	PDFDocument *doc=getPDFDocument();
+	if(!doc || !doc->renderManager)
+	    return;
 	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
@@ -1071,10 +1073,10 @@ void PDFWidget::reloadPage(bool sync)
 	image = QPixmap();
 	//highlightPath = QPainterPath();
 	if (document != NULL) {
-		if (pageIndex >= document->numPages())
-			pageIndex = document->numPages() - 1;
+		if (pageIndex >= docPages)
+			pageIndex = docPages - 1;
 		if (pageIndex >= 0) {
-			int pageCount = qMin(gridx*gridy, document->numPages() - pageIndex);
+			int pageCount = qMin(gridx*gridy, docPages - pageIndex);
 			//use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
 			int firstCommonPage = qMax(pageIndex, oldPageIndex);
 			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
@@ -1291,7 +1293,7 @@ void PDFWidget::doPageDialog()
 	setCursor(Qt::ArrowCursor);
 	int pageNo = QInputDialog::getInteger(this, tr("Go to Page"),
 						   tr("Page number:"), pageIndex + 1,
-						   1, document->numPages(), 1, &ok);
+						   1, docPages, 1, &ok);
 	if (ok)
 		getScrollArea()->goToPage(pageNo - 1);
 }
@@ -1300,7 +1302,8 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	p -= p % pageStep();
 	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
-		if (p >= 0 && p < document->numPages()) {
+		//if (p >= 0 && p < document->numPages()) {
+		if (p >= 0 && p < docPages) {
 			pageIndex = p;
 			reloadPage(sync);
 			update();
@@ -1931,6 +1934,7 @@ void PDFDocument::reload(bool fillCache)
 
 void PDFDocument::reloadWhenIdle()
 {
+	document=0;
 	if (reloadTimer)
 		reloadTimer->stop();
 	else {
