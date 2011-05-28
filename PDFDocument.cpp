@@ -1168,23 +1168,26 @@ void PDFWidget::setSinglePageStep(bool step){
 
 void PDFWidget::goFirst()
 {
+	if (!document) return;
 	getScrollArea()->goToPage(0);
 }
 
 void PDFWidget::goPrev()
 {
+	if (!document) return;
 	getScrollArea()->goToPage(pageIndex - pageStep());
 }
 
 void PDFWidget::goNext()
 {
+	if (!document) return;
 	getScrollArea()->goToPage(pageIndex + pageStep());
 }
 
 void PDFWidget::goLast()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(document->numPages() - 1);
+	getScrollArea()->goToPage(docPages - 1);
 }
 
 void PDFWidget::upOrPrev()
@@ -1934,6 +1937,9 @@ void PDFDocument::reload(bool fillCache)
 
 void PDFDocument::reloadWhenIdle()
 {
+	pdfWidget->setDocument(0);
+	if(document)
+	    delete document;
 	document=0;
 	if (reloadTimer)
 		reloadTimer->stop();
