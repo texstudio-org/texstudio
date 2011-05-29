@@ -1917,12 +1917,12 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configmanager.cpp" line="528"/>
         <source>before word</source>
-        <translation type="unfinished"></translation>
+        <translation>antes da palavra</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="533"/>
         <source>after word</source>
-        <translation type="unfinished"></translation>
+        <translation>depois da palavra</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="740"/>
@@ -7534,7 +7534,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="scriptengine.cpp" line="69"/>
         <source>Expected cursor object</source>
-        <translation type="unfinished"></translation>
+        <translation>Esperado objeto cursor</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="167"/>
