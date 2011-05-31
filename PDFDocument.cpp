@@ -884,7 +884,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 						   : getScrollArea()->verticalScrollBar();
 		if (scrollBar->minimum() < scrollBar->maximum()) {
 			int oldValue = scrollBar->value();
-			scrollBar->setValue(scrollBar->value() - numSteps * scrollBar->singleStep());
+			scrollBar->setValue(scrollBar->value() - 3 * numSteps * scrollBar->singleStep());
 			if (scrollBar->value() != oldValue) {
 				lastScrollTime = QTime::currentTime();
 				mayChangePage = false;
