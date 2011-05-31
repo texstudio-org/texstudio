@@ -70,7 +70,7 @@ void PDFRenderEngine::run(){
 		    break;
 
 		// render Image
-		if(document){
+		if(document && command.pageNr >= 0 && command.pageNr < document->numPages()){
 		    Poppler::Page *page=document->page(command.pageNr);
 		    if(page){
 			QImage image=page->renderToImage(command.xres, command.yres,
