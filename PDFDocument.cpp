@@ -2097,9 +2097,11 @@ void PDFDocument::search(bool backwards, bool incremental){
 		}
 
 		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
+			if(pageIdx < 0 || pageIdx >= document->numPages())
+				return;
 			page = document->page(pageIdx);
-			if(pageIdx < 0 || pageIdx >= document->numPages() || !page)
-			    return;
+			if(!page)
+				return;
 
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
 				lastSearchResult.doc = this;
