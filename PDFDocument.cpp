@@ -587,9 +587,8 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		QPointF scaledPos;
 		int pageNr;
 		gridMapToScaledPosition(event->pos(), pageNr, scaledPos);
-		if (pageNr>=0) {
+		if (pageNr>=0 && pageNr < document->numPages()) 
 			page=document->page(pageNr);
-		}
 		if (page) {
 			// check for click in link
 			foreach (Poppler::Link* link, page->links()) {
@@ -967,11 +966,12 @@ void PDFWidget::updateCursor()
 
 void PDFWidget::updateCursor(const QPoint& pos)
 {
+	REQUIRE(document);
 	Poppler::Page* page;
 	QPointF scaledPos;
 	int pageNr;
 	gridMapToScaledPosition(pos, pageNr, scaledPos);
-	if (pageNr<0) return;
+	if (pageNr<0 || pageNr >= document->numPages()) return;
 	// check for link
 	page=document->page(pageNr);
 	if(!page)
@@ -1474,10 +1474,12 @@ int PDFWidget::gridPage(const QPoint& position) const{
 }
 
 void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const{
+	if (!document) return;
 	int pageIndex = gridPageIndex(position);
 	page = -1;
 	if (pageIndex<0) return;
 	page = pages[pageIndex];
+	if (page < 0 || page >= document->numPages()) return;
 	QPoint rp = position - gridPagePosition(pageIndex);
 	// poppler's pos is relative to the page rect
 	Poppler::Page *popplerPage=document->page(page);
@@ -1489,9 +1491,10 @@ void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPoi
 }
 
 QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
-	if (pages.size() == 0) return QPoint();
+	if (!document || pages.size() == 0) return QPoint();
 	QRect r = gridPageRect(0);
 	int i=pages.first();
+	if (i < 0 || i >= document->numPages()) return QPoint();
 	Poppler::Page *popplerPage=document->page(i);
 	if(!popplerPage)
 	    return QPoint();
@@ -1502,8 +1505,10 @@ QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
 }
 
 QSizeF PDFWidget::maxPageSizeF() const{
+	REQUIRE_RET(document, QSizeF());
 	QSizeF maxPageSize;
 	foreach (int page, pages) {
+		if (page < 0 || page >= document->numPages()) continue;
 		Poppler::Page *popplerPage=document->page(page);
 		if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
 		if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
@@ -2093,7 +2098,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
 			page = document->page(pageIdx);
-			if(!page)
+			if(pageIdx < 0 || pageIdx >= document->numPages() || !page)
 			    return;
 
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {

@@ -94,6 +94,7 @@ void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointe
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
 	if (!document) return QPixmap();
+	if (pageNr < 0 || pageNr >= document->numPages()) return QPixmap();
 	RecInfo info;
 	info.obj=obj;
 	info.slot=rec;
