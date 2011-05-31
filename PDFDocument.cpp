@@ -876,7 +876,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		}
 	}else{
 		static QTime lastScrollTime = QTime::currentTime();
-		bool mayChangePage = true;
+		bool mayChangePage = !getScrollArea()->getContinuous();
 		int numDegrees = event->delta() / 8;
 		int numSteps = numDegrees / 15;
 		QScrollBar *scrollBar = (event->orientation() == Qt::Horizontal)
@@ -891,6 +891,8 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			}
 			if (QTime::currentTime() < lastScrollTime.addMSecs(500))
 				mayChangePage = false;
+		}else{
+		    mayChangePage=false;
 		}
 		if (mayChangePage) {
 			if (event->delta() > 0 && pageIndex > 0) {
