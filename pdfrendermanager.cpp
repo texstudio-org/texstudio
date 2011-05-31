@@ -249,12 +249,14 @@ void PDFRenderManager::fillCache(int pg){
 	int j=pg;
 	if(j<0)
 		j=-1;
-	int max=document->numPages();
-	while(i>=0 || j<max){
+	const int MAX_CACHE_OFFSET = 20;
+	int max=qMin(document->numPages(), pg+MAX_CACHE_OFFSET);
+	int min=qMax(0, pg-MAX_CACHE_OFFSET);
+	while(i>=min || j<max){
 		j++;
-		if(i>=0 &&!renderedPage.contains(i)) // don't rerender page
+		if(i >= min && i < max && !renderedPage.contains(i)) // don't rerender page
 			renderToImage(i,0,"");
-		if(j>=0 && j<max &&!renderedPage.contains(j)) // don't rerender page
+		if(j >= min && j < max &&!renderedPage.contains(j)) // don't rerender page
 			renderToImage(j,0,"");
 		i--;
 	}
