@@ -587,7 +587,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		QPointF scaledPos;
 		int pageNr;
 		gridMapToScaledPosition(event->pos(), pageNr, scaledPos);
-		if (pageNr>=0 && pageNr < document->numPages()) 
+		if (pageNr>=0 && pageNr < numPages()) 
 			page=document->page(pageNr);
 		if (page) {
 			// check for click in link
@@ -896,7 +896,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 				goPrev();
 				scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
 			}
-			else if (event->delta() < 0 && pageIndex < document->numPages() - 1) {
+			else if (event->delta() < 0 && pageIndex < numPages() - 1) {
 				goNext();
 				scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 			}
@@ -969,7 +969,7 @@ void PDFWidget::updateCursor(const QPoint& pos)
 	QPointF scaledPos;
 	int pageNr;
 	gridMapToScaledPosition(pos, pageNr, scaledPos);
-	if (pageNr<0 || pageNr >= document->numPages()) return;
+	if (pageNr<0 || pageNr >= numPages()) return;
 	// check for link
 	page=document->page(pageNr);
 	if(!page)
@@ -1134,8 +1134,8 @@ int PDFWidget::visiblePages() const {
 
 int PDFWidget::numPages() const{
 	if (!document) return 0;
-        return docPages;
-        //return document->numPages();
+	return docPages;
+	//return document->numPages();
 }
 
 int PDFWidget::pageStep() {
@@ -1247,7 +1247,7 @@ void PDFWidget::downOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderSingleStepAdd);
 	else {
-		if (pageIndex < document->numPages() - 1) {
+		if (pageIndex < numPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
@@ -1263,7 +1263,7 @@ void PDFWidget::rightOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderSingleStepAdd);
 	else {
-		if (pageIndex < document->numPages() - 1) {
+		if (pageIndex < numPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
@@ -1279,7 +1279,7 @@ void PDFWidget::pageDownOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderPageStepAdd);
 	else {
-		if (pageIndex < document->numPages() - 1) {
+		if (pageIndex < numPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
@@ -1305,7 +1305,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	p -= p % pageStep();
 	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
-		//if (p >= 0 && p < document->numPages()) {
+		//if (p >= 0 && p < numPages()) {
 		if (p >= 0 && p < docPages) {
 			pageIndex = p;
 			reloadPage(sync);
@@ -1477,7 +1477,7 @@ void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPoi
 	page = -1;
 	if (pageIndex<0) return;
 	page = pages[pageIndex];
-	if (page < 0 || page >= document->numPages()) return;
+	if (page < 0 || page >= numPages()) return;
 	QPoint rp = position - gridPagePosition(pageIndex);
 	// poppler's pos is relative to the page rect
 	Poppler::Page *popplerPage=document->page(page);
@@ -1492,7 +1492,7 @@ QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
 	if (!document || pages.size() == 0) return QPoint();
 	QRect r = gridPageRect(0);
 	int i=pages.first();
-	if (i < 0 || i >= document->numPages()) return QPoint();
+	if (i < 0 || i >= numPages()) return QPoint();
 	Poppler::Page *popplerPage=document->page(i);
 	if(!popplerPage)
 	    return QPoint();
@@ -1506,7 +1506,7 @@ QSizeF PDFWidget::maxPageSizeF() const{
 	REQUIRE_RET(document, QSizeF());
 	QSizeF maxPageSize;
 	foreach (int page, pages) {
-		if (page < 0 || page >= document->numPages()) continue;
+		if (page < 0 || page >= numPages()) continue;
 		Poppler::Page *popplerPage=document->page(page);
 		if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
 		if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
@@ -2259,9 +2259,9 @@ void PDFDocument::showPage(int page)
 {
 	//Q_ASSERT(document);
 	if (!document) return;
-	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(page).arg(document->numPages()));
-	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(document->numPages()));
-	pageCountLabel->setText(tr("of %1").arg(document->numPages()));
+	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(page).arg(pdfWidget->numPages()));
+	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(pdfWidget->numPages()));
+	pageCountLabel->setText(tr("of %1").arg(pdfWidget->numPages()));
 	leCurrentPage->setText(QString("%1").arg(page));
 
 }
@@ -2290,8 +2290,8 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	// 2008-09-07: seems to no longer be a problem, probably thanks to Qt 4.4 update
 	actionFirst_Page->setEnabled(pageIndex > 0);
 	actionPrevious_Page->setEnabled(pageIndex > 0);
-	actionNext_Page->setEnabled(pageIndex < document->numPages() - 1);
-	actionLast_Page->setEnabled(pageIndex < document->numPages() - 1);
+	actionNext_Page->setEnabled(pageIndex < pdfWidget->numPages() - 1);
+	actionLast_Page->setEnabled(pageIndex < pdfWidget->numPages() - 1);
 	//#endif
 
 

@@ -33,10 +33,7 @@ public:
 	explicit PDFRenderEngine(QObject *parent,PDFQueue *mQueue);
 	~PDFRenderEngine();
 
-	void setDocument(Poppler::Document *doc){
-		document=doc;
-	}
-
+	void setDocument(Poppler::Document *doc);
 signals:
 	void sendImage(QImage image,int page,int ticket);
 
@@ -47,6 +44,7 @@ protected:
 
 private:
 	Poppler::Document	*document;
+	int cachedNumPages;
 	PDFQueue *queue;
 
 };

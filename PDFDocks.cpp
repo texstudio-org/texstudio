@@ -780,11 +780,11 @@ void PDFOverviewDock::fillInfo()
 {
     list->clear();
     toGenerate=0;
-    if (!document || !document->popplerDoc()) return;
+    if (!document || !document->widget() || !document->popplerDoc()) return;
     Poppler::Document *doc = document->popplerDoc();
     int sx=128;
     int sy=128;
-    if(doc->numPages()>0){
+    if(document->widget()->numPages()>0){
 	Poppler::Page* page=doc->page(0);
 	QSize  sz=page->pageSize();
 	if(sz.width()>sz.height()){
@@ -796,7 +796,7 @@ void PDFOverviewDock::fillInfo()
     }
     QPixmap pxMap(sx,sy);
     pxMap.fill();
-    for(int i=0;i<doc->numPages();i++){
+    for(int i=0;i<document->widget()->numPages();i++){
 	    QListWidgetItem *lw = new QListWidgetItem(list);
 
 	    lw->setIcon(QIcon(pxMap));
@@ -834,7 +834,7 @@ void PDFOverviewDock::pageChanged(int page)
 }
 
 void PDFOverviewDock::showImage(){
-    for(int i=0;i<document->popplerDoc()->numPages();i++){
+    for(int i=0;i<document->widget()->numPages();i++){
 	QPixmap image=document->renderManager->renderToImage(i,this,"insertImage",-1,-1,-1,-1,-1,-1,false);
 	insertImage(image,i);
     }
@@ -910,7 +910,7 @@ void PDFClockDock::paintEvent(QPaintEvent * event){
 	QRect r = rect();
 	p.fillRect(r, QColor::fromRgb(0,0,0));
 	p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(start.secsTo(end), 1),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
-	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getCurrentPageIndex() / qMax(1, document->popplerDoc()->numPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
+	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getCurrentPageIndex() / qMax(1, document->widget()->numPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
 	QFont f = p.font();
 	f.setPixelSize(r.height());
 	QFontMetrics met(f);
