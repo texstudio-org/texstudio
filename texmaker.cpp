@@ -3053,7 +3053,7 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 		}
 
 		if (flags & RCF_CHANGE_PDF)
-			emit beginChangingPDF();
+			emit beginChangingPDF(finame.replace(QRegExp("[.]tex$"),".pdf"));
 		
 
 		
@@ -3927,6 +3927,7 @@ void Texmaker::newPdfPreviewer(){
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
 	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&)), SLOT(runCommand(const QString&)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
+	connect(this, SIGNAL(beginChangingPDF(QString)), pdfviewerWindow, SLOT(fileDestroyed(QString)));
 
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
 	if (from) {

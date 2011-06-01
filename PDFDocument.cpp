@@ -964,7 +964,7 @@ void PDFWidget::updateCursor()
 
 void PDFWidget::updateCursor(const QPoint& pos)
 {
-	REQUIRE(document);
+	if (!document) return;
 	Poppler::Page* page;
 	QPointF scaledPos;
 	int pageNr;
@@ -1875,6 +1875,12 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 
 }
 
+void PDFDocument::fileDestroyed(const QString& fileName){
+	if (QFileInfo(fileName) == QFileInfo(curFile) ||
+	   !QFileInfo(fileName).exists()) 
+		reloadWhenIdle();
+}
+
 void PDFDocument::fillRenderCache(int pg){
 	if(renderManager)
 	    renderManager->fillCache(pg);
@@ -1893,9 +1899,11 @@ void PDFDocument::reload(bool fillCache)
 	if (document != NULL)
 		delete document;
 
-	renderManager->deleteLater();
-	renderManager=0;
-
+	if (renderManager){
+		renderManager->stopRendering();
+		renderManager->deleteLater();
+		renderManager=0;
+	}
 	document = Poppler::Document::load(curFile);
 	if (document != NULL) {
 		if (document->isLocked()) {
@@ -1906,6 +1914,8 @@ void PDFDocument::reload(bool fillCache)
 			pdfWidget->hide();
 		}
 		else {
+			if (reloadTimer) reloadTimer->stop();
+			
 			//reinitialize rendermanager
 			renderManager=new PDFRenderManager(this);
 			renderManager->setDocument(curFile,document);
@@ -1946,12 +1956,17 @@ void PDFDocument::reloadWhenIdle()
 	if(document)
 	    delete document;
 	document=0;
+	if (renderManager) {
+		renderManager->stopRendering();
+		renderManager->deleteLater();
+		renderManager = 0;
+	}
 	if (reloadTimer)
 		reloadTimer->stop();
 	else {
 		reloadTimer = new QTimer(this);
 		reloadTimer->setSingleShot(true);
-		reloadTimer->setInterval(1000);
+		reloadTimer->setInterval(1500);
 		connect(reloadTimer, SIGNAL(timeout()), this, SLOT(reload()));
 	}
 	reloadTimer->start();

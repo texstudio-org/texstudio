@@ -406,8 +406,7 @@ private slots:
 	void stopPackageParser();
 	void packageParserFinished();
 signals:
-	void beginChangingPDF();
-	void endChangingPDF();
+	void beginChangingPDF(QString name);
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);

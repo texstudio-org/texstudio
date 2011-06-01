@@ -66,13 +66,13 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 
 PDFRenderManager::~PDFRenderManager(){
 	stopRendering();
+	queueAdministration->deref();
 }
 
 void PDFRenderManager::stopRendering(){
 	lstOfReceivers.clear();
 	queueAdministration->stopped=true;
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
-	queueAdministration->deref();
 	document=0;
 	cachedNumPages = 0;
 }
