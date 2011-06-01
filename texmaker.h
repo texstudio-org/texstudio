@@ -57,7 +57,7 @@ enum RunCommandFlag{
 	RCF_WAIT_FOR_FINISHED = 2,
 	RCF_VIEW_LOG = 4, //show the log (only use if the command changes the log i.e. is latex), also enable reruns
 	RCF_SINGLE_INSTANCE = 8, //single viewer only
-	RCF_CHECK_PDF_LOCK = 16,
+	RCF_CHANGE_PDF = 16,
 	RCF_NO_DOCUMENT = 32, // don't check if document is saved as it is not used
 	RCF_IS_RERUN_CALL = 64 // call is an automatically rerun (internal)
 		      };
@@ -405,6 +405,9 @@ private slots:
 	void packageScanCompleted(QString name);
 	void stopPackageParser();
 	void packageParserFinished();
+signals:
+	void beginChangingPDF();
+	void endChangingPDF();
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);

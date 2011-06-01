@@ -3004,7 +3004,7 @@ void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags)
 		flags = flags | RCF_VIEW_LOG;
 		break;
 	case BuildManager::CMD_PDFLATEX:
-		flags = flags | RCF_VIEW_LOG | RCF_CHECK_PDF_LOCK;
+		flags = flags | RCF_VIEW_LOG | RCF_CHANGE_PDF;
 		break;
 	default:
 		break;
@@ -3052,9 +3052,13 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 			return;
 		}
 
+		if (flags & RCF_CHANGE_PDF)
+			emit beginChangingPDF();
+		
 
+		
 		// check for locking of pdf
-		if((flags & RCF_CHECK_PDF_LOCK) && configManager.autoCheckinAfterSave){
+		if((flags & RCF_CHANGE_PDF) && configManager.autoCheckinAfterSave){
 			QFileInfo fi(finame);
 			QString basename=fi.baseName();
 			QString path=fi.path();
@@ -3245,7 +3249,7 @@ void Texmaker::runCommandList(const QStringList& commandList, const RunCommandFl
 		bool isPdfLatex = commandList.at(i).contains("pdflatex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
 		RunCommandFlags flags = additionalFlags;
 		if (isLatex) flags |= RCF_VIEW_LOG;
-		if (isPdfLatex) flags |= RCF_CHECK_PDF_LOCK;
+		if (isPdfLatex) flags |= RCF_CHANGE_PDF;
 		if (isLatex || i != commandList.size()-1) flags |= RCF_WAIT_FOR_FINISHED;
 		if (!ERRPROCESS) runCommand(commandList.at(i),flags);
 		else break;
