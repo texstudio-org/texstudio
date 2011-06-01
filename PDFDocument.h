@@ -314,7 +314,8 @@ public slots:
 	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
-
+	void fileDestroyed(const QString& fileName);
+	
 private slots:
 	void enablePageActions(int, bool);
 	void enableZoomActions(qreal);
