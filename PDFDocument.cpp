@@ -890,8 +890,6 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			}
 			if (QTime::currentTime() < lastScrollTime.addMSecs(500))
 				mayChangePage = false;
-		}else{
-		    mayChangePage=false;
 		}
 		if (mayChangePage) {
 			if (event->delta() > 0 && pageIndex > 0) {
