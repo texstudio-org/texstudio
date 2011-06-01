@@ -234,7 +234,7 @@ private:
 	static QCursor	*zoomInCursor;
 	static QCursor	*zoomOutCursor;
 
-
+	mutable QSizeF maxPageSize; //cache pageSize
 };
 
 class PDFSearchResult {
@@ -396,6 +396,7 @@ private:
 
 	bool wasMaximized;
 	bool syncFromSourceBlock;  //temporary disable sync from source
+
 };
 
 #endif
