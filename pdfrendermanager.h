@@ -88,6 +88,7 @@ private:
 	void enqueue(RenderCommand cmd,bool priority);
 
 	Poppler::Document *document;
+	int cachedNumPages;
 
 	QCache<int,CachePixmap> renderedPages;
 	QMultiMap<int,RecInfo> lstOfReceivers;

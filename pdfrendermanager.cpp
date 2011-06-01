@@ -48,7 +48,7 @@ void CachePixmap::setRes(qreal res, int x, int y){
 }
 
 PDFRenderManager::PDFRenderManager(QObject *parent) :
-		QObject(parent)
+       QObject(parent), cachedNumPages(0)
 {
 	queueAdministration=new PDFQueue();
 	queueAdministration->num_renderQueues=2;
@@ -74,6 +74,7 @@ void PDFRenderManager::stopRendering(){
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
 	queueAdministration->deref();
 	document=0;
+	cachedNumPages = 0;
 }
 
 void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointer){
@@ -89,12 +90,13 @@ void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointe
 			queueAdministration->renderQueues[i]->start();
 	}
 	//document=Poppler::Document::load(fileName);
-	document=docPointer;
+	document = docPointer;
+	cachedNumPages = document->numPages();
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
 	if (!document) return QPixmap();
-	if (pageNr < 0 || pageNr >= document->numPages()) return QPixmap();
+	if (pageNr < 0 || pageNr >= cachedNumPages) return QPixmap();
 	RecInfo info;
 	info.obj=obj;
 	info.slot=rec;
@@ -250,7 +252,7 @@ void PDFRenderManager::fillCache(int pg){
 	if(j<0)
 		j=-1;
 	const int MAX_CACHE_OFFSET = 20;
-	int max=qMin(document->numPages(), pg+MAX_CACHE_OFFSET);
+	int max=qMin(cachedNumPages, pg+MAX_CACHE_OFFSET);
 	int min=qMax(0, pg-MAX_CACHE_OFFSET);
 	while(i>=min || j<max){
 		j++;

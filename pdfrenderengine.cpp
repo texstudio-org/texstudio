@@ -20,7 +20,7 @@ RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h)
 }
 
 PDFRenderEngine::PDFRenderEngine(QObject *parent,PDFQueue *mQueue) :
-		QThread(parent)
+       QThread(parent), cachedNumPages(0)
 {
 	document=0;
 	queue=mQueue;
@@ -31,6 +31,12 @@ PDFRenderEngine::~PDFRenderEngine(){
 	wait();
 	delete document;
 }
+
+void PDFRenderEngine::setDocument(Poppler::Document *doc){
+	document = doc;
+	cachedNumPages = document->numPages();
+}
+
 
 void PDFRenderEngine::run(){
 	forever {
@@ -70,7 +76,7 @@ void PDFRenderEngine::run(){
 		    break;
 
 		// render Image
-		if(document && command.pageNr >= 0 && command.pageNr < document->numPages()){
+		if(document && command.pageNr >= 0 && command.pageNr < cachedNumPages){
 		    Poppler::Page *page=document->page(command.pageNr);
 		    if(page){
 			QImage image=page->renderToImage(command.xres, command.yres,
