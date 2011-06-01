@@ -340,6 +340,8 @@ PDFWidget::PDFWidget()
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
 
+	maxPageSize.setHeight(-1.0);
+	maxPageSize.setWidth(-1.0);
 
 	dpi = globalConfig->dpi;
 	if (dpi<=0) dpi = 72; //it crashes if dpi=0
@@ -413,6 +415,8 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 {
 	pages.clear();
 	document = doc;
+	maxPageSize.setHeight(-1.0);
+	maxPageSize.setWidth(-1.0);
         if(document)
             docPages=document->numPages();
         else
@@ -495,7 +499,17 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						dpi * scaleFactor,
 						dpi * scaleFactor,
 						0,0,drawTo.width(), drawTo.height(),true,true);
-				painter.drawPixmap(drawTo.left(), drawTo.top(), temp);
+				int xOffset=(drawTo.width()-temp.width())/2;
+				int yOffset=(drawTo.height()-temp.height())/2;
+				if(xOffset>0){
+				    painter.drawRect(drawTo.left(),drawTo.top(),xOffset,drawTo.height());
+				    painter.drawRect(drawTo.right(),drawTo.top(),-xOffset,drawTo.height());
+				}
+				if(yOffset>0){
+				    painter.drawRect(drawTo.left(),drawTo.top(),drawTo.width(),yOffset);
+				    painter.drawRect(drawTo.left(),drawTo.bottom(),drawTo.width(),-yOffset);
+				}
+				painter.drawPixmap(drawTo.left()+xOffset, drawTo.top()+yOffset, temp);
 				if(pageNr==highlightPage){
 					if (!highlightPath.isEmpty()) {
 						painter.save();
@@ -1504,13 +1518,16 @@ QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
 
 QSizeF PDFWidget::maxPageSizeF() const{
 	REQUIRE_RET(document, QSizeF());
-	QSizeF maxPageSize;
-	foreach (int page, pages) {
-		if (page < 0 || page >= numPages()) continue;
+	//QSizeF maxPageSize;
+	//foreach (int page, pages) {
+	if(!maxPageSize.isValid()){
+	    for(int page=0;page<docPages;page++){
+		//if (page < 0 || page >= numPages()) continue;
 		Poppler::Page *popplerPage=document->page(page);
 		if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
 		if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
 		delete popplerPage;
+	    }
 	}
 	return maxPageSize;
 }
