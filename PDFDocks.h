@@ -249,6 +249,7 @@ private:
 	void updateScrollBars();
 	bool continuous;
 	PDFWidget* pdf;
+	int updateWidgetPositionStackWatch, onResizeStackWatch;
 };
 
 class PDFOverviewDock : public PDFDock

@@ -583,7 +583,7 @@ bool PDFSearchDock::hasFlagSync() const {
 //////////////// SCROLL AREA ////////////////
 
 PDFScrollArea::PDFScrollArea(QWidget *parent)
-	: QAbstractScrollArea(parent),continuous(true),pdf(0)
+       : QAbstractScrollArea(parent),continuous(true),pdf(0), updateWidgetPositionStackWatch(0), onResizeStackWatch(0)
 {
 	viewport()->setBackgroundRole(QPalette::NoRole);
 	verticalScrollBar()->setSingleStep(20);
@@ -672,10 +672,12 @@ bool PDFScrollArea::event(QEvent * e){
 }
 
 bool PDFScrollArea::eventFilter(QObject * o, QEvent * e){
-	if (o == pdf && e->type() == QEvent::Resize) {
+	if (onResizeStackWatch < 3 && o == pdf && e->type() == QEvent::Resize) {
+		onResizeStackWatch++;
 		if (continuous)
 			pdf->setGridSize(pdf->gridCols(), height() / pdf->gridRowHeight() + 2);
 		updateScrollBars();
+		onResizeStackWatch--;
 	}
 
 	return false;
@@ -699,6 +701,8 @@ void PDFScrollArea::scrollContentsBy(int, int)
 
 void PDFScrollArea::updateWidgetPosition(){
 	Q_ASSERT(pdf);
+	if (updateWidgetPositionStackWatch >= 3) return;
+	updateWidgetPositionStackWatch++;
 	Qt::LayoutDirection dir = layoutDirection();
 	QScrollBar* hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
 	if (!continuous) {
@@ -716,6 +720,7 @@ void PDFScrollArea::updateWidgetPosition(){
 		int pos = vbar->value();
 		pdf->goToPageDirect((pos / rowHeight)*pdf->gridCols() ,true);
 	}
+	updateWidgetPositionStackWatch--;
 }
 
 void PDFScrollArea::updateScrollBars(){
