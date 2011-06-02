@@ -1171,7 +1171,7 @@ int PDFWidget::getXOffset(int p){
 	if(gridCols()==2){
 	    int pageOffset= !singlePageStep ? 1 : 0;
 	    bool cont=getScrollArea()->getContinuous();
-	    if(!cont)
+	    if(!cont && singlePageStep)
 		pageOffset=pages.first()&1;
 	    offset= ((p&1)==pageOffset) ? qRound(rel*rec.width()) : 0;
 	}
@@ -2024,9 +2024,9 @@ void PDFDocument::reload(bool fillCache)
 
 			// set page viewer only once
 			QFontMetrics fontMetrics(font());
-			QString placeHolder(3+log10(document->numPages()), '#');
+			QString placeHolder(3+log10(pdfWidget->realNumPages()), '#');
 			leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
-			leCurrentPageValidator->setTop(document->numPages());
+			leCurrentPageValidator->setTop(pdfWidget->realNumPages());
 
 			loadSyncData();
 			if(fillCache){
@@ -2368,12 +2368,14 @@ void PDFDocument::showPage(int page)
 {
 	//Q_ASSERT(document);
 	if (!document) return;
-	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(page).arg(pdfWidget->numPages()));
-	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(pdfWidget->numPages()));
-	pageCountLabel->setText(tr("of %1").arg(pdfWidget->numPages()));
 	int p=page-pdfWidget->getPageOffset();
 	if(p<1)
 	    p=1;
+	int p2=page+pdfWidget->visiblePages()-1-pdfWidget->getPageOffset();
+	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(p).arg(pdfWidget->realNumPages()));
+	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(p).arg(p2).arg(pdfWidget->realNumPages()));
+	pageCountLabel->setText(tr("of %1").arg(pdfWidget->realNumPages()));
+
 	leCurrentPage->setText(QString("%1").arg(p));
 }
 
