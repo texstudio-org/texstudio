@@ -349,8 +349,6 @@ PDFWidget::PDFWidget()
 	dpi = globalConfig->dpi;
 	if (dpi<=0) dpi = 72; //it crashes if dpi=0
 
-	singlePageStep=globalConfig->singlepagestep;
-	
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setFocusPolicy(Qt::StrongFocus);
@@ -422,9 +420,10 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 	document = doc;
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
-        if(document)
+	if(document){
             docPages=document->numPages();
-        else
+	    setSinglePageStep(globalConfig->singlepagestep);
+	}else
             docPages=0;
 	reloadPage();
 }
