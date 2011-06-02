@@ -108,6 +108,9 @@ public:
 	int gridCols() const;
 	int gridRowHeight() const;
 	PDFDocument * getPDFDocument();
+	int getXOffset(int p);
+	int getYOffset(int p);
+	int getPageOffset() const;
 
 private slots:
 	void goFirst();
@@ -260,7 +263,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 	Q_PROPERTY(QString fileName READ fileName)
 
 public:
-			PDFDocument(PDFDocumentConfig* const pdfConfig );
+	PDFDocument(PDFDocumentConfig* const pdfConfig );
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);

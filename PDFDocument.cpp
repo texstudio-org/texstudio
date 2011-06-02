@@ -282,9 +282,12 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	drawFrame(&painter);
+	PDFWidget *pdf=qobject_cast<PDFWidget *>(parent());
+	int xOffset=pdf->getXOffset(imagePage);
+	int yOffset=pdf->getYOffset(imagePage);
 	painter.drawPixmap(event->rect(), image,
-			     event->rect().translated(((x() - mouseOffset.x()) * kMagFactor - imageLoc.x()) + width() / 2  ,
-							  ((y() - mouseOffset.y()) * kMagFactor - imageLoc.y()) + height() / 2));
+			     event->rect().translated(((x() - mouseOffset.x()-xOffset) * kMagFactor - imageLoc.x()) + width() / 2  ,
+							  ((y() - mouseOffset.y()-yOffset) * kMagFactor - imageLoc.y()) + height() / 2));
 
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
@@ -345,6 +348,8 @@ PDFWidget::PDFWidget()
 
 	dpi = globalConfig->dpi;
 	if (dpi<=0) dpi = 72; //it crashes if dpi=0
+
+	singlePageStep=globalConfig->singlepagestep;
 	
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -493,7 +498,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				QRect drawTo = gridPageRect(i);
 				if(!drawTo.intersects(visRect)) // don't draw invisible pages
 					continue;
-				int pageNr=pages[i];
+				int pageOffset= getPageOffset();
+				int pageNr=pages[i]-pageOffset;
 				QPixmap temp = doc->renderManager->renderToImage(
 						pageNr,this,"setImage",
 						dpi * scaleFactor,
@@ -561,7 +567,8 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 		magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
 	//magnifier->setPage(pages[pageIndex], scaleFactor, gridPageRect(pageIndex));
-	magnifier->setPage(pages[localPageIndex], scaleFactor, gridPageRect(localPageIndex));
+	int pageOffset= getPageOffset();
+	magnifier->setPage(pages[localPageIndex]-pageOffset, scaleFactor, gridPageRect(localPageIndex));
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
@@ -1097,10 +1104,10 @@ void PDFWidget::reloadPage(bool sync)
 	image = QPixmap();
 	//highlightPath = QPainterPath();
 	if (document != NULL) {
-		if (pageIndex >= docPages)
-			pageIndex = docPages - 1;
+		if (pageIndex >= numPages())
+			pageIndex = numPages() - 1;
 		if (pageIndex >= 0) {
-			int pageCount = qMin(gridx*gridy, docPages - pageIndex);
+			int pageCount = qMin(gridx*gridy, numPages() - pageIndex);
 			//use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
 			int firstCommonPage = qMax(pageIndex, oldPageIndex);
 			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
@@ -1138,6 +1145,49 @@ PDFDocument * PDFWidget::getPDFDocument(){
 	return doc;
 }
 
+int PDFWidget::getPageOffset() const{
+    int pageOffset= (!singlePageStep) && (gridCols()==2) ? 1 : 0;
+    return pageOffset;
+}
+
+int PDFWidget::getXOffset(int p){
+    int offset= 0;
+    Poppler::Page *popplerPage=document->page(p);
+    if(popplerPage){
+	qreal maxWidth=maxPageSizeF().width();
+	if(maxWidth<0.1)
+	    return 0;
+	qreal w=popplerPage->pageSizeF().width();
+	qreal rel=(maxWidth-w)/maxWidth;
+	QRect rec=gridPageRect(p);
+	offset=qRound(rel*rec.width())/2;
+	if(gridCols()==2){
+	    int pageOffset= !singlePageStep ? 1 : 0;
+	    offset= ((p&1)==pageOffset) ? qRound(rel*rec.width()) : 0;
+	}
+    }
+    delete popplerPage;
+
+    return offset;
+}
+
+int PDFWidget::getYOffset(int p){
+    int offset= 0;
+    Poppler::Page *popplerPage=document->page(p);
+    if(popplerPage){
+	qreal maxHeight=maxPageSizeF().height();
+	if(maxHeight<0.1)
+	    return 0;
+	qreal h=popplerPage->pageSizeF().height();
+	qreal rel=(maxHeight-h)/maxHeight;
+	QRect rec=gridPageRect(p);
+	offset=qRound(rel*rec.height())/2;
+    }
+    delete popplerPage;
+
+    return offset;
+}
+
 void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault){
 	if (gridx == gx && gridy == gy)
 		return;
@@ -1158,7 +1208,8 @@ int PDFWidget::visiblePages() const {
 
 int PDFWidget::numPages() const{
 	if (!document) return 0;
-	return docPages;
+	int pageOffset= getPageOffset();
+	return docPages+pageOffset;
 	//return document->numPages();
 }
 
@@ -1188,6 +1239,7 @@ void PDFWidget::setSinglePageStep(bool step){
 		return;
 	singlePageStep = step;
 	getScrollArea()->goToPage(pageIndex);
+	update();
 }
 
 void PDFWidget::goFirst()
@@ -1211,7 +1263,7 @@ void PDFWidget::goNext()
 void PDFWidget::goLast()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(docPages - 1);
+	getScrollArea()->goToPage(numPages() - 1);
 }
 
 void PDFWidget::upOrPrev()
@@ -1320,7 +1372,7 @@ void PDFWidget::doPageDialog()
 	setCursor(Qt::ArrowCursor);
 	int pageNo = QInputDialog::getInteger(this, tr("Go to Page"),
 						   tr("Page number:"), pageIndex + 1,
-						   1, docPages, 1, &ok);
+						   1, numPages(), 1, &ok);
 	if (ok)
 		getScrollArea()->goToPage(pageNo - 1);
 }
@@ -1329,8 +1381,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	p -= p % pageStep();
 	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
-		//if (p >= 0 && p < numPages()) {
-		if (p >= 0 && p < docPages) {
+		if (p >= 0 && p < numPages()) {
 			pageIndex = p;
 			reloadPage(sync);
 			update();
@@ -1618,8 +1669,7 @@ PDFDocument::~PDFDocument()
 		delete document;
 }
 
-void
-		PDFDocument::init()
+void PDFDocument::init()
 {
 	ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
 
@@ -2027,7 +2077,8 @@ void PDFDocument::setGrid(){
 
 void PDFDocument::jumpToPage(){
 	int index=leCurrentPage->text().toInt();
-	scrollArea->goToPage(index-1);
+	//scrollArea->goToPage(index-1);
+	goToPage(index-1);
 }
 
 void PDFDocument::closeSomething(){
@@ -2304,8 +2355,10 @@ void PDFDocument::showPage(int page)
 	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(page).arg(pdfWidget->numPages()));
 	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(page).arg(page+pdfWidget->visiblePages()-1).arg(pdfWidget->numPages()));
 	pageCountLabel->setText(tr("of %1").arg(pdfWidget->numPages()));
-	leCurrentPage->setText(QString("%1").arg(page));
-
+	int p=page-pdfWidget->getPageOffset();
+	if(p<1)
+	    p=1;
+	leCurrentPage->setText(QString("%1").arg(p));
 }
 
 void PDFDocument::showScale(qreal scale)
@@ -2478,7 +2531,8 @@ void PDFDocument::goToDestination(const QString& destName)
 void PDFDocument::goToPage(const int page)
 {
 	if (pdfWidget && scrollArea) {
-		scrollArea->goToPage(page);
+		int off=pdfWidget->getPageOffset();
+		scrollArea->goToPage(page+off);
 	}
 }
 
