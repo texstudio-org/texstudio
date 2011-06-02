@@ -1089,6 +1089,11 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 	}
 }
 
+
+double PDFWidget::totalScaleFactor() const{
+    return dpi / 72 * scaleFactor;
+}
+
 int PDFWidget::getHighlightPage() const{
 	return highlightPage;
 }
@@ -2188,13 +2193,13 @@ void PDFDocument::search(bool backwards, bool incremental){
 		switch (run) {
 		case 0:
 			// first run = normal search
-			lastPage = (backwards ? -1 : document->numPages());
+			lastPage = (backwards ? -1 : pdfWidget->realNumPages());
 			firstPage = startPage;
 			break;
 		case 1:
 			// second run = after wrap
-			lastPage = (backwards ? -1 : document->numPages());
-			firstPage = (backwards ? document->numPages() - 1 : 0);
+			lastPage = (backwards ? -1 : pdfWidget->realNumPages());
+			firstPage = (backwards ? pdfWidget->realNumPages() - 1 : 0);
 			break;
 		default:
 			// should not happen
@@ -2203,7 +2208,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 		}
 
 		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
-			if(pageIdx < 0 || pageIdx >= document->numPages())
+			if(pageIdx < 0 || pageIdx >= pdfWidget->realNumPages())
 				return;
 			page = document->page(pageIdx);
 			if(!page)
@@ -2219,8 +2224,19 @@ void PDFDocument::search(bool backwards, bool incremental){
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
-				scrollArea->goToPage(lastSearchResult.pageIdx);
+				scrollArea->goToPage(lastSearchResult.pageIdx+pdfWidget->getPageOffset());
 				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
+				//scroll horizontally
+				QPoint pagePos= pdfWidget->gridPagePosition(lastSearchResult.pageIdx+pdfWidget->getPageOffset());
+				int px=qRound(pdfWidget->totalScaleFactor()*lastSearchResult.selRect.left())+pagePos.x()+pdfWidget->getXOffset(lastSearchResult.pageIdx); //correct x position
+				int py=qRound(pdfWidget->totalScaleFactor()*lastSearchResult.selRect.top())+pdfWidget->getYOffset(lastSearchResult.pageIdx); //correct x position
+				scrollArea->horizontalScrollBar()->setValue(px);
+				// scroll vertically
+				int val=0;
+				if(scrollArea->getContinuous())
+				    val=scrollArea->verticalScrollBar()->value();
+				scrollArea->verticalScrollBar()->setValue(py+val);
+
 				pdfWidget->update();
 
 				delete page;

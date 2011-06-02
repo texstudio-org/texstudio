@@ -112,6 +112,16 @@ public:
 	int getXOffset(int p);
 	int getYOffset(int p);
 	int getPageOffset() const;
+	double totalScaleFactor() const;
+
+	QPoint gridPagePosition(int pageIndex) const;
+	QRect gridPageRect(int pageIndex) const;
+	int gridPageIndex(const QPoint& position) const;
+	int gridPage(const QPoint& position) const;
+	void gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const;
+	QPoint gridMapFromScaledPosition(const QPointF& scaledPos) const;
+	QSizeF maxPageSizeF() const;
+	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
 
 private slots:
 	void goFirst();
@@ -176,15 +186,6 @@ private:
 	void goToDestination(const Poppler::LinkDestination& dest);
 	void doLink(const Poppler::Link *link);
 	void doZoom(const QPoint& clickPos, int dir);
-
-	QPoint gridPagePosition(int pageIndex) const;
-	QRect gridPageRect(int pageIndex) const;
-	int gridPageIndex(const QPoint& position) const;
-	int gridPage(const QPoint& position) const;
-	void gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const;
-	QPoint gridMapFromScaledPosition(const QPointF& scaledPos) const;
-	QSizeF maxPageSizeF() const;
-	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
 
 	PDFScrollArea* getScrollArea();
 	
