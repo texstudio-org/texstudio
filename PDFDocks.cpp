@@ -789,19 +789,19 @@ void PDFOverviewDock::fillInfo()
     Poppler::Document *doc = document->popplerDoc();
     int sx=128;
     int sy=128;
-    if(document->widget()->numPages()>0){
+    if(document->widget()->realNumPages()>0){
 	Poppler::Page* page=doc->page(0);
 	QSize  sz=page->pageSize();
 	if(sz.width()>sz.height()){
-	    sy=floor(1.0*sz.height()/sz.width()*sx+0.5);
+	    sy=qRound(1.0*sz.height()/sz.width()*sx);
 	}else{
-	    sx=floor(1.0*sz.width()/sz.height()*sy+0.5);
+	    sx=qRound(1.0*sz.width()/sz.height()*sy);
 	}
 	delete page;
     }
     QPixmap pxMap(sx,sy);
     pxMap.fill();
-    for(int i=0;i<document->widget()->numPages();i++){
+    for(int i=0;i<document->widget()->realNumPages();i++){
 	    QListWidgetItem *lw = new QListWidgetItem(list);
 
 	    lw->setIcon(QIcon(pxMap));
@@ -839,7 +839,7 @@ void PDFOverviewDock::pageChanged(int page)
 }
 
 void PDFOverviewDock::showImage(){
-    for(int i=0;i<document->widget()->numPages();i++){
+    for(int i=0;i<document->widget()->realNumPages();i++){
 	QPixmap image=document->renderManager->renderToImage(i,this,"insertImage",-1,-1,-1,-1,-1,-1,false);
 	insertImage(image,i);
     }

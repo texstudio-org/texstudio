@@ -104,6 +104,7 @@ public:
 	void setGridSize(int gx, int gy, bool setAsDefault=false);
 	int visiblePages() const;
 	int numPages() const;
+	int realNumPages() const;
 	int pageStep();
 	int gridCols() const;
 	int gridRowHeight() const;
