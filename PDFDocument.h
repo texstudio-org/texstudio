@@ -320,6 +320,7 @@ public slots:
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
 	void fileDestroyed(const QString& fileName);
+	void printPDF();
 	
 private slots:
 	void enablePageActions(int, bool);

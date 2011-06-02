@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -38,6 +38,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="action_Print"/>
     <addaction name="actionClose"/>
     <addaction name="separator"/>
     <addaction name="actionQuit_TeXworks"/>
@@ -782,6 +783,11 @@
    </property>
    <property name="text">
     <string>&amp;Continuous</string>
+   </property>
+  </action>
+  <action name="action_Print">
+   <property name="text">
+    <string>&amp;Print</string>
    </property>
   </action>
  </widget>
