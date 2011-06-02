@@ -530,7 +530,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 					if (!highlightPath.isEmpty()) {
 						painter.save();
 						painter.setRenderHint(QPainter::Antialiasing);
-						painter.translate(drawTo.left(), drawTo.top());
+						painter.translate(drawTo.left()+getXOffset(pageNr), drawTo.top());
 						painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
 						painter.setPen(QColor(0, 0, 0, 0));
 						painter.setBrush(QColor(255, 255, 0, 63));
@@ -889,9 +889,12 @@ void PDFWidget::jumpToSource()
 	QAction *act = qobject_cast<QAction*>(sender());
 	if (act != NULL) {
 		QPoint eventPos = act->data().toPoint();
+		syncWindowClick(eventPos.x(), eventPos.y(), true);
+		/*
 		QPointF pagePos(eventPos.x() / scaleFactor * 72.0 / dpi,
 				  eventPos.y() / scaleFactor * 72.0 / dpi);
 		emit syncClick(pageIndex, pagePos, true);
+		*/
 	}
 }
 
@@ -950,7 +953,9 @@ void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
 		QPoint p = gridPagePosition(page);
 		x -= p.x();
 		y -= p.y();
-		page +=  pageIndex;                        //page index in document
+		page +=  pageIndex - getPageOffset();                        //page index in document
+		x -= getXOffset(page);
+		y -= getYOffset(page);
 	}
 	QPointF pagePos(x / scaleFactor * 72.0 / dpi,
 			  y / scaleFactor * 72.0 / dpi);
