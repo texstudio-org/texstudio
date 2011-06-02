@@ -476,7 +476,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			int realPageSizeY = (rect().height()-totalBorderY) / gridy;
 
 			QBrush mBrush(QApplication::palette().color(QPalette::Dark));
-			painter.save();
+			//painter.save();
 			painter.setBrush(mBrush);
 			painter.setPen(QApplication::palette().color(QPalette::Dark));
 			for(int i=1;i<gridx;i++){
@@ -526,7 +526,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				}
 			}
 			//p.end();
-			painter.restore();
+			//painter.restore();
 		}
 	}
 
