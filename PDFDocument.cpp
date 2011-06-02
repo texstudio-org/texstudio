@@ -702,11 +702,13 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 	if (dest.pageNumber() > 0) {
 		PDFScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
-			scrollArea->goToPage(dest.pageNumber() - 1);
+			scrollArea->goToPage(dest.pageNumber() - 1 + getPageOffset());
 			if (dest.isChangeZoom()) {
 				// FIXME
 			}
 			QPoint p = gridMapFromScaledPosition(QPointF( dest.left(), dest.top()));
+			QPoint pagePos= gridPagePosition(dest.pageNumber() - 1 + getPageOffset());
+			p.setX(p.x()+pagePos.x()+getXOffset(dest.pageNumber() - 1)); //correct x position
 			if (dest.isChangeLeft())
 				scrollArea->horizontalScrollBar()->setValue(p.x());
 
@@ -1570,8 +1572,8 @@ void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPoi
 
 QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
 	if (!document || pages.size() == 0) return QPoint();
-	QRect r = gridPageRect(0);
-	int i=pages.first();
+	//QRect r = gridPageRect(0);
+	int i=pages.first()-getPageOffset();
 	if (i < 0 || i >= numPages()) return QPoint();
 	Poppler::Page *popplerPage=document->page(i);
 	if(!popplerPage)
