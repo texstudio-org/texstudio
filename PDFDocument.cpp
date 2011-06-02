@@ -502,8 +502,18 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				int xOffset=(drawTo.width()-temp.width())/2;
 				int yOffset=(drawTo.height()-temp.height())/2;
 				if(xOffset>0){
-				    painter.drawRect(drawTo.left(),drawTo.top(),xOffset,drawTo.height());
-				    painter.drawRect(drawTo.right(),drawTo.top(),-xOffset,drawTo.height());
+				    if(gridx==2){
+					if(i&1==1){
+					    painter.drawRect(drawTo.right(),drawTo.top(),-2*xOffset,drawTo.height());
+					    xOffset=0;
+					}else{
+					    painter.drawRect(drawTo.left(),drawTo.top(),2*xOffset,drawTo.height());
+					    xOffset=2*xOffset;
+					}
+				    }else{
+					painter.drawRect(drawTo.left(),drawTo.top(),xOffset,drawTo.height());
+					painter.drawRect(drawTo.right(),drawTo.top(),-xOffset,drawTo.height());
+				    }
 				}
 				if(yOffset>0){
 				    painter.drawRect(drawTo.left(),drawTo.top(),drawTo.width(),yOffset);
