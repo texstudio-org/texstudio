@@ -508,7 +508,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				int yOffset=(drawTo.height()-temp.height())/2;
 				if(xOffset>0){
 				    if(gridx==2){
-					if(i&1==1){
+					if((i&1)==1){
 					    painter.drawRect(drawTo.right(),drawTo.top(),-2*xOffset,drawTo.height());
 					    xOffset=0;
 					}else{
@@ -1715,6 +1715,7 @@ void PDFDocument::init()
 	actionNew->setIcon(getRealIcon("filenew"));
 	actionOpen->setIcon(getRealIcon("fileopen"));
 	actionClose->setIcon(getRealIcon("fileclose"));
+	action_Print->setIcon(getRealIcon("fileprint"));
 	actionUndo->setIcon(getRealIcon("undo"));
 	actionRedo->setIcon(getRealIcon("redo"));
 	actionCut->setIcon(getRealIcon("cut"));
@@ -1792,6 +1793,7 @@ void PDFDocument::init()
 	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
 	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), this, SLOT(enablePageActions(int,bool)));
+	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
@@ -2609,5 +2611,57 @@ void PDFDocument::doFindAgain()
 	search(false, false);
 }
 
+void PDFDocument::printPDF(){
+    if(!document)
+	return;
 
+    QPrinter printer;
+
+    QPrintDialog *dialog = new QPrintDialog(&printer, this);
+    dialog->setWindowTitle(tr("Print PDF-Document"));
+    dialog->setFromTo(1,pdfWidget->realNumPages());
+    if (dialog->exec() != QDialog::Accepted)
+	return;
+
+    QPainter painter;
+    painter.begin(&printer);
+
+    double printerDPI=printer.resolution();
+    int start=printer.fromPage();
+    int end=printer.toPage();
+    if(start=0){
+	start=1;
+	end=pdfWidget->realNumPages();
+    }
+
+    for (int i = start-1; i < end; ++i) {
+
+	// Use the painter to draw on the page.
+	Poppler::Page *page=document->page(i);
+	if(!page)
+	    break;
+
+	Poppler::Page::Rotation rotate;
+	Poppler::Page::Orientation orient=page->orientation();
+	switch (orient){
+	    case Poppler::Page::Landscape:rotate=Poppler::Page::Rotate270;
+		break;
+	    case Poppler::Page::Portrait:rotate=Poppler::Page::Rotate0;
+		break;
+	    case Poppler::Page::Seascape:rotate=Poppler::Page::Rotate90;
+		break;
+	    case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
+		break;
+	}
+
+	QImage image=page->renderToImage(printerDPI,printerDPI,-1,-1,-1,-1,rotate);
+	painter.drawImage(0,0,image);
+	delete page;
+
+	if (i != end-1)
+	    printer.newPage();
+    }
+
+    painter.end();
+}
 #endif
