@@ -1170,6 +1170,9 @@ int PDFWidget::getXOffset(int p){
 	offset=qRound(rel*rec.width())/2;
 	if(gridCols()==2){
 	    int pageOffset= !singlePageStep ? 1 : 0;
+	    bool cont=getScrollArea()->getContinuous();
+	    if(!cont)
+		pageOffset=pages.first()&1;
 	    offset= ((p&1)==pageOffset) ? qRound(rel*rec.width()) : 0;
 	}
     }
@@ -1219,6 +1222,12 @@ int PDFWidget::numPages() const{
 	return docPages+pageOffset;
 	//return document->numPages();
 }
+
+int PDFWidget::realNumPages() const{
+	if (!document) return 0;
+	return docPages;
+}
+
 
 int PDFWidget::pageStep() {
 	bool cont=getScrollArea()->getContinuous();
