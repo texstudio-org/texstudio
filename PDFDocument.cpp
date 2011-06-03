@@ -2629,7 +2629,7 @@ void PDFDocument::printPDF(){
     double printerDPI=printer.resolution();
     int start=printer.fromPage();
     int end=printer.toPage();
-    if(start=0){
+    if(start==0){
 	start=1;
 	end=pdfWidget->realNumPages();
     }
