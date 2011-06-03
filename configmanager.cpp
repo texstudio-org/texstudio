@@ -1284,7 +1284,7 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Close","\"'", "","(?<=\\S)\""));
 	    break;
 	case 4:
-	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Open","\\og", "","(?<=\\s|^)\""));
+	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Open","\\og ", "","(?<=\\s|^)\""));
 	    completerConfig->userMacro.append(Macro("TMX:Replace Quote Close","\\fg{}", "","(?<=\\S)\""));
 	    break;
 	default:
