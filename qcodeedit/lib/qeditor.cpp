@@ -3799,7 +3799,7 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	case NextPlaceHolderOrWord:
 		op = CursorWordRight;
 		foreach (const PlaceHolder& ph, m_placeHolders)
-			if (ph.cursor > m_cursor && !ph.autoOverride){
+			if (ph.cursor.selectionStart() > m_cursor.selectionEnd() && !ph.autoOverride){
 				op = NextPlaceHolder;
 				break;
 			}
@@ -3807,7 +3807,7 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	case PreviousPlaceHolderOrWord:
 		op = CursorWordLeft;
 		foreach (const PlaceHolder& ph, m_placeHolders)
-			if (ph.cursor < m_cursor && !ph.autoOverride){
+			if (ph.cursor.selectionEnd() < m_cursor.selectionStart() && !ph.autoOverride){
 				op = PreviousPlaceHolder;
 				break;
 			}
