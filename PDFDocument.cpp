@@ -48,6 +48,7 @@
 #include <QFileSystemWatcher>
 #include <QDebug>
 #include <QToolTip>
+#include <QProgressDialog>
 
 #include <math.h>
 #include "universalinputdialog.h"
@@ -2699,7 +2700,15 @@ void PDFDocument::printPDF(){
 	end=pdfWidget->realNumPages();
     }
 
+    QProgressDialog progress(tr("Printing Document"), tr("Abort Print"), start, end, this);
+    progress.setWindowModality(Qt::WindowModal);
+
     for (int i = start-1; i < end; ++i) {
+	 progress.setValue(i);
+	 //QApplication::processEvents();
+	 qApp->processEvents();
+	 if (progress.wasCanceled())
+	    break;
 
 	// Use the painter to draw on the page.
 	Poppler::Page *page=document->page(i);
