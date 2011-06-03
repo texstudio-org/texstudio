@@ -55,6 +55,7 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 	queueAdministration->num_renderQueues=2;
 	if(QThread::idealThreadCount()>2)
 		queueAdministration->num_renderQueues=QThread::idealThreadCount();
+	queueAdministration->runningQueues.release(queueAdministration->num_renderQueues);
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
 		PDFRenderEngine *renderQueue=new PDFRenderEngine(0,queueAdministration);
 		connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));
@@ -77,6 +78,8 @@ void PDFRenderManager::stopRendering(){
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
 	document=0;
 	cachedNumPages = 0;
+	queueAdministration->runningQueues.acquire(queueAdministration->num_renderQueues); //wait for all started engines to stop
+	queueAdministration->runningQueues.release(queueAdministration->num_renderQueues); //allow not yet started engines to start and immediately stop
 }
 
 void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointer){
