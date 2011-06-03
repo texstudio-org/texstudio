@@ -180,6 +180,7 @@ class QCE_EXPORT QDocumentPrivate
 		}
 
 
+		QList<int> testGetHiddenLines();
 	protected:
 		void updateHidden(int line, int count);
 		void updateWrapped(int line, int count);

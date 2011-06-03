@@ -294,7 +294,7 @@ class QCE_EXPORT QDocument : public QObject
 		Q_INVOKABLE void expandParents(int l);
 		Q_INVOKABLE void foldBlockAt(bool unFold, int line);
 		bool linesPartiallyFolded(int fromInc, int toInc);
-		void correctFolding(int fromInc, int toInc);
+		void correctFolding(int fromInc, int toInc, bool forceCorrection = false);
 
 		void adjustWidth(int line);
 

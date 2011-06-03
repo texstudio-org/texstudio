@@ -760,7 +760,14 @@ void QDocumentEraseCommand::redo()
 	m_state = false;
 
 	bool commandAffectsFolding = m_doc->linesPartiallyFolded(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
-
+	bool foldStart = false;
+	if (commandAffectsFolding) 
+		for (int i=m_data.lineNumber; i<=m_data.lineNumber+m_data.handles.count();i++)
+			if (m_doc->line(i).hasFlag(QDocumentLine::CollapsedBlockStart)) {
+				foldStart = true;
+				break;
+			}
+	
 	//QDocumentIterator it = m_doc->impl()->index(m_data.line);
 
 	QDocumentLineHandle *hl = m_doc->impl()->at(m_data.lineNumber);
@@ -790,7 +797,7 @@ void QDocumentEraseCommand::redo()
 		markRedone(h, m_first);
 
 	if (commandAffectsFolding)
-		m_doc->correctFolding(m_data.lineNumber, m_data.lineNumber+m_data.handles.count());
+		m_doc->correctFolding(m_data.lineNumber, m_data.lineNumber+m_data.handles.count(), foldStart);
 
 	//m_doc->impl()->emitContentsChanged();
 	m_first = false;

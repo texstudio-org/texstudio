@@ -4,6 +4,7 @@
 #include "qdocumentline.h"
 #include "testutil.h"
 #include "smallUsefulFunctions.h"
+#include "qdocument_p.h"
 #include <QtTest/QtTest>
 Q_DECLARE_METATYPE(QList<int>);
 
@@ -112,6 +113,15 @@ void QEditorTest::loadSave(){
 	editor->document()->setLineEnding(QDocument::Conservative); //reset line ending so we won't screw up the other tests
 }
 
+void compareLists(const QList<int> actual, const QList<int> exp){
+	if (actual.length() != exp.length()) {
+		QFAIL(qPrintable(QString("length %1 != %2 ").arg(actual.length()).arg(exp.length())));
+		return;
+	}
+	for (int i=0;i<actual.length();i++)
+		QEQUAL(actual[i],exp[i]);
+} 
+
 
 void QEditorTest::foldedText_data(){
 	QTest::addColumn<QString>("editorText");
@@ -215,6 +225,7 @@ void QEditorTest::foldedText(){
 		editor->document()->collapse(i);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
+	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines);
 	editor->setCursor(editor->document()->cursor(froml,fromc,tol,toc));
 	if (operation=="indent") editor->indentSelection();
 	else if (operation=="unindent") editor->unindentSelection();
@@ -224,6 +235,7 @@ void QEditorTest::foldedText(){
 	QEQUAL(editor->document()->text(), newEditorText);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
+	compareLists(editor->document()->impl()->testGetHiddenLines(), newHiddenLines);
 }
 
 
@@ -313,19 +325,25 @@ void QEditorTest::passiveFolding(){
 
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);
+	
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines1.contains(i),qPrintable(QString::number(i)));
 
+	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines1);
+	
 	foreach(const int &i, unFoldAt)
 		editor->document()->expand(i);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines2.contains(i),qPrintable(QString::number(i)));
+
+	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines2);
 
 	foreach(const int &i, foldAtAgain)
 		editor->document()->collapse(i);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines3.contains(i),qPrintable(QString::number(i)));
 
+	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines3);
 }
 
 
@@ -412,6 +430,26 @@ void QEditorTest::activeFolding_data(){
 		<< "$"
 		<< "0\n1$\n2{\n3\n4$\n5}\n6\n"
 		<< (QList<int> () << 3);
+	
+	QTest::newRow("multi line deletion")
+	              << "0\n1{\n2abc\n3}\n4\n"
+	              << (QList<int>() << 1)
+	              << (QList<int>() << 2 << 3)
+	              << 1 << 0 << 4 << 0
+	              << "x"
+	              << "0\nx4\n"
+	              << (QList<int>());
+
+	
+	QTest::newRow("latex test") 
+	       << "\\begin{document}\n\n\\subsection{Bilder}\n\n\\subsection{end}\n\n\\end{document}"
+	       << (QList<int>() << 2)
+	       << (QList<int>() << 3)
+	       << 1 << 0 << 5 << 0
+	       << "x"
+	       << "\\begin{document}\nx\n\\end{document}"
+	       << (QList<int>());
+		
 }
 //tests if folded text can be edited
 void QEditorTest::activeFolding(){
@@ -432,6 +470,7 @@ void QEditorTest::activeFolding(){
 		editor->document()->collapse(i);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
+	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines);
 
 	QDocumentCursor editCursor = editor->document()->cursor(cursorAL,cursorAC,cursorL,cursorC);
 	editCursor.insertText(textToInsert);
@@ -440,6 +479,7 @@ void QEditorTest::activeFolding(){
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
 
+	compareLists(editor->document()->impl()->testGetHiddenLines(), newHiddenLines);
 }
 
 void QEditorTest::indentation_data(){
