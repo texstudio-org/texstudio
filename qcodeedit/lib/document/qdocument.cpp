@@ -1745,7 +1745,7 @@ bool QDocument::linesPartiallyFolded(int fromInc, int toInc){
     i.e., it ensures that no line is hidden which is not in an collapsable block
     (useful if the blocks have changed)
 */
-void QDocument::correctFolding(int fromInc, int toInc){
+void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 	Q_UNUSED(fromInc);
 	Q_UNUSED(toInc);
 	//TODO: Optimize it, use fromInc/toInc to handle it locally (problem: behaviour of closing brackets depends on open brackets
@@ -1757,7 +1757,8 @@ void QDocument::correctFolding(int fromInc, int toInc){
 	if (!ld)
 		return;
 
-	if (!ld->correctFolding(this))
+	bool cf = ld->correctFolding(this);
+	if (!cf && !forceCorrection)
 		return;
 
 	//recalculate the map of hidden lines (=cache) from the hidden flag of the lines
@@ -6319,6 +6320,16 @@ void QDocumentPrivate::removeWrap(int i){
     m_wrapped.remove(i);
 }
 
+QList<int> QDocumentPrivate::testGetHiddenLines(){
+	QSet<int> res;
+	for (QMap<int, int>::iterator it = m_hidden.begin(); it != m_hidden.end(); ++it )
+		for (int i=1;i<=it.value();i++)
+			res.insert(i+it.key());
+	QList<int> tmp = res.toList();
+	qSort(tmp);
+	return tmp;
+}
+
 void QDocumentPrivate::setWidth()
 {
 	m_largest.clear();
@@ -6708,12 +6719,16 @@ void QDocumentPrivate::removeLines(int after, int n)
 	if ( (after >= 0) && (after < m_lines.count()) )
 		m_lines.at(after)->setFlag(QDocumentLine::CollapsedBlockStart, false);
 
-	//QMap<int, int>::iterator it = m_hidden.begin();
 
 	//qDebug("translating %i", visualLine);
-/*	//remove/resize the m_hidden cache if the removed lines are within a hidden block
+	//remove/resize the m_hidden cache if the removed lines are within a hidden block
 	//buggy (test {\n}\ndeleted\n{\n}) and not needed if the qdocumentcommand corrects
 	//the folding of modified lines
+	
+	
+	//Turned out: it is important, if a whole folded block is deleted. TODO: Try to fix it???
+	
+	/*{	QMap<int, int>::iterator it = m_hidden.begin();
 	while ( it != m_hidden.end() )
 	{
 		if ( (it.key() > after) && (it.key() <= (after + n)) )
@@ -6766,7 +6781,8 @@ void QDocumentPrivate::removeLines(int after, int n)
 			++it;
 		}
 	}
-*/
+}*/
+	
 	QMap<int, int>::iterator it = m_wrapped.begin();
 
 	while ( it != m_wrapped.end() )
