@@ -152,6 +152,9 @@
    <addaction name="actionTypeset"/>
    <addaction name="actionExternalViewer"/>
    <addaction name="separator"/>
+   <addaction name="actionMagnify"/>
+   <addaction name="actionScroll"/>
+   <addaction name="separator"/>
    <addaction name="actionFirst_Page"/>
    <addaction name="actionPrevious_Page"/>
    <addaction name="actionNext_Page"/>
@@ -161,8 +164,8 @@
    <addaction name="actionFit_to_Width"/>
    <addaction name="actionFit_to_Window"/>
    <addaction name="separator"/>
-   <addaction name="actionMagnify"/>
-   <addaction name="actionScroll"/>
+   <addaction name="actionZoom_Out"/>
+   <addaction name="actionZoom_In"/>
   </widget>
   <action name="actionAbout_TW">
    <property name="text">

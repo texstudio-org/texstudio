@@ -123,6 +123,8 @@ public:
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
 
+	void zoom(qreal scale);
+
 private slots:
 	void goFirst();
 	void goPrev();
@@ -185,7 +187,7 @@ private:
 	void useMagnifier(const QMouseEvent *inEvent);
 	void goToDestination(const Poppler::LinkDestination& dest);
 	void doLink(const Poppler::Link *link);
-	void doZoom(const QPoint& clickPos, int dir);
+	void doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor=1.0);
 
 	PDFScrollArea* getScrollArea();
 	
@@ -342,6 +344,7 @@ private slots:
 
 	void search(bool backward, bool incremental);
 	void setZoom();
+	void zoomSliderChange(int pos = 0);
 signals:
 	void documentClosed();
 	void reloaded();
@@ -365,6 +368,9 @@ private:
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
+	qreal zoomSliderPosToScale(int pos);
+	int scaleToZoomSliderPos(qreal scale);
+
 	QString curFile;
 	QString externalViewerCmdLine;
 
@@ -380,6 +386,7 @@ private:
 
 	QLabel *pageLabel;
 	QLabel *scaleLabel;
+	QSlider *zoomSlider;
 	QList<QAction*> recentFileActions;
 	QShortcut* exitFullscreen;
 

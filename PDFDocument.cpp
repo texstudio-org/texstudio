@@ -1473,7 +1473,7 @@ void PDFWidget::fitWindow(bool checked)
 	emit changedScaleOption(scaleOption);
 }
 
-void PDFWidget::doZoom(const QPoint& clickPos, int dir) // dir = 1 for in, -1 for out
+void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) // dir = 1 for in, -1 for out
 {
 	QPointF pagePos(clickPos.x() / scaleFactor * 72.0 / dpi,
 			  clickPos.y() / scaleFactor * 72.0 / dpi);
@@ -1495,8 +1495,10 @@ void PDFWidget::doZoom(const QPoint& clickPos, int dir) // dir = 1 for in, -1 fo
 		if (scaleFactor < kMinScaleFactor)
 			scaleFactor = kMinScaleFactor;
 	}
-	else
-		return;
+	else {
+	    //dir==0
+	    scaleFactor=newScaleFactor;
+	}
 
 	adjustSize();
 	update();
@@ -1531,6 +1533,14 @@ void PDFWidget::zoomOut()
 	if (parent != NULL) {
 		QPoint ctr = mapFromParent(QPoint(parent->width() / 2, parent->height() / 2));
 		doZoom(ctr, -1);
+	}
+}
+
+void PDFWidget::zoom(qreal scale){
+	QWidget *parent = parentWidget();
+	if (parent != NULL) {
+		QPoint ctr = mapFromParent(QPoint(parent->width() / 2, parent->height() / 2));
+		doZoom(ctr, 0,scale);
 	}
 }
 
@@ -1742,7 +1752,7 @@ void PDFDocument::init()
 	lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
 	QFontMetrics fontMetrics(font());
 	comboZoom=createComboToolButton(toolBar,lst,0,fontMetrics,this,SLOT(setZoom()),"100%");
-	toolBar->addWidget(comboZoom);
+	toolBar->insertWidget(actionZoom_In, comboZoom);
 	addAction(toolBar->toggleViewAction());
 
 	leCurrentPage=new QLineEdit(toolBar);
@@ -1758,15 +1768,41 @@ void PDFDocument::init()
 	toolBar->insertWidget(actionNext_Page, leCurrentPage);
 	toolBar->insertWidget(actionNext_Page, pageCountLabel);
 
-	scaleLabel = new QLabel();
-	statusBar()->addPermanentWidget(scaleLabel);
-	scaleLabel->setFrameStyle(QFrame::StyledPanel);
-	scaleLabel->setFont(statusBar()->font());
-	
 	pageLabel = new QLabel();
 	statusBar()->addPermanentWidget(pageLabel);
 	pageLabel->setFrameStyle(QFrame::StyledPanel);
 	pageLabel->setFont(statusBar()->font());
+
+	scaleLabel = new QLabel();
+	statusBar()->addPermanentWidget(scaleLabel);
+	scaleLabel->setFrameStyle(QFrame::StyledPanel);
+	scaleLabel->setFont(statusBar()->font());
+
+	QToolButton *buttonZoomOut = new QToolButton();
+	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
+	statusBar()->addPermanentWidget(buttonZoomOut);
+	connect(buttonZoomOut, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomOut()));
+
+//	statusBar()->addAction(actionZoom_Out);
+
+	zoomSlider = new QSlider(toolBar);
+	zoomSlider->setOrientation(Qt::Horizontal);
+	zoomSlider->setSingleStep(25);
+	zoomSlider->setMinimum(-100);
+	zoomSlider->setMaximum(100);
+	zoomSlider->setFixedWidth(100);
+	//zoomSlider->setTickInterval(100);
+	//zoomSlider->setTickPosition(QSlider::TicksBelow);
+	statusBar()->addPermanentWidget(zoomSlider);
+
+	//connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
+	connect(zoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(zoomSliderChange(int)));
+
+//	statusBar()->addAction(actionZoom_In);
+	QToolButton *buttonZoomIn = new QToolButton();
+	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
+	statusBar()->addPermanentWidget(buttonZoomIn);
+	connect(buttonZoomIn, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomIn()));
 
 	scrollArea = new PDFScrollArea;
 	scrollArea->setBackgroundRole(QPalette::Dark);
@@ -2381,6 +2417,34 @@ void PDFDocument::zoomToRight(QWidget *otherWindow)
 	setGeometry(screenRect);
 }
 
+qreal PDFDocument::zoomSliderPosToScale(int pos) {
+	if (pos < 0) {
+		return 0.009 * pos + 1;
+	} else {
+		return 0.03 * pos + 1;
+	}
+}
+
+int PDFDocument::scaleToZoomSliderPos(qreal scale) {
+	if (scale < 1) {
+		return (scale-1) / 0.009;
+	} else {
+		return (scale-1) / 0.03;
+	}
+}
+
+void PDFDocument::zoomSliderChange(int pos)
+{
+    qDebug()<<"slider";
+	if (pos >-10 && pos < 10) {
+		pos = 0;
+		zoomSlider->setValue(pos);
+	}
+	//widget()->fixedScale(zoomSliderPosToScale(pos));
+	widget()->zoom(zoomSliderPosToScale(pos));
+}
+
+
 void PDFDocument::showPage(int page)
 {
 	//Q_ASSERT(document);
@@ -2399,6 +2463,7 @@ void PDFDocument::showPage(int page)
 void PDFDocument::showScale(qreal scale)
 {
 	scaleLabel->setText(tr("%1%").arg(ROUND(scale * 10000.0) / 100.0));
+	zoomSlider->setValue(scaleToZoomSliderPos(scale));
 }
 
 
