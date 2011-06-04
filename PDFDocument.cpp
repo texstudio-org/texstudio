@@ -265,8 +265,10 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				imagePage = page;
 				imageDpi = dpi;
 				imageLoc = loc;
-				mouseOffset = visibleRect.topLeft();
 				imageSize = size;
+
+				mouseTranslate = rect().center() - imageLoc - (visibleRect.topLeft() /*- offset*/) * kMagFactor;
+				
 			}
 		}
 	}
@@ -282,13 +284,8 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	drawFrame(&painter);
-	PDFWidget *pdf=qobject_cast<PDFWidget *>(parent());
-	int xOffset=pdf->getXOffset(imagePage);
-	int yOffset=pdf->getYOffset(imagePage);
-	painter.drawPixmap(event->rect(), image,
-			     event->rect().translated(((x() - mouseOffset.x()-xOffset) * kMagFactor - imageLoc.x()) + width() / 2  ,
-							  ((y() - mouseOffset.y()-yOffset) * kMagFactor - imageLoc.y()) + height() / 2));
-
+	painter.drawPixmap(event->rect(), image, event->rect().translated(kMagFactor * pos() + mouseTranslate));
+	
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
 		switch (globalConfig->magnifierShape) {
@@ -485,7 +482,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			painter.drawPixmap(event->rect(), image, event->rect());
 			if (!highlightPath.isEmpty()) {
 				painter.setRenderHint(QPainter::Antialiasing);
-				painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
+				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
 				painter.setBrush(QColor(255, 255, 0, 63));
 				painter.drawPath(highlightPath);
@@ -548,7 +545,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.save();
 						painter.setRenderHint(QPainter::Antialiasing);
 						painter.translate(drawGrid.left(), drawGrid.top());
-						painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
+						painter.scale(totalScaleFactor(), totalScaleFactor());
 						painter.setPen(QColor(0, 0, 0, 0));
 						painter.setBrush(QColor(255, 255, 0, 63));
 						//QPainterPath path=highlightPath;
@@ -731,26 +728,12 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 {
-	if (dest.pageNumber() > 0) {
-		PDFScrollArea*	scrollArea = getScrollArea();
-		if (scrollArea) {
-			int page = dest.pageNumber() - 1;
-			scrollArea->goToPage(page);
-			if (dest.isChangeZoom()) {
-				// FIXME
-			}
-			QPoint p = mapFromScaledPosition(page, QPointF( dest.left(), dest.top()));
-			if (dest.isChangeLeft())
-				scrollArea->horizontalScrollBar()->setValue(p.x());
-
-			if (dest.isChangeTop()){
-				int val=0;
-				if(scrollArea->getContinuous())
-					val=scrollArea->verticalScrollBar()->value();
-				scrollArea->verticalScrollBar()->setValue(p.y()+val);
-			}
-		}
-	}
+	if (dest.pageNumber() > 0) 
+		goToPageRelativePosition(dest.pageNumber() - 1, dest.isChangeLeft()?dest.left():NAN, dest.isChangeTop()?dest.top():NAN);
+	
+	/*if (dest.isChangeZoom()) {
+		// FIXME
+	}*/
 }
 
 void PDFWidget::goToDestination(const QString& destName)
@@ -759,6 +742,27 @@ void PDFWidget::goToDestination(const QString& destName)
 	if (dest)
 		goToDestination(*dest);
 }
+
+void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf){
+	PDFScrollArea* scrollArea = getScrollArea();
+	if (!scrollArea) return;
+
+	scrollArea->goToPage(page);
+	
+	QPoint p = mapFromScaledPosition(page, QPointF( isnan(xinpdf)?0:xinpdf, isnan(yinpdf)?0:yinpdf));
+	
+	if (!isnan(xinpdf)) 
+		scrollArea->horizontalScrollBar()->setValue(p.x());
+
+	if (!isnan(yinpdf)) {
+		int val=0;
+		if(scrollArea->getContinuous())
+			val=scrollArea->verticalScrollBar()->value();
+		scrollArea->verticalScrollBar()->setValue(p.y()+val);
+	}	
+}
+
+
 
 void PDFWidget::doLink(const Poppler::Link *link)
 {
@@ -1098,18 +1102,16 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 	highlightRemover.stop();
 	highlightPath = path;
 	highlightPage=page;
-	if (!path.isEmpty()) {
-		//if (gridx*gridy >= 1)
-		//	highlightPath.translate(QPointF(gridPagePosition(page - pageIndex)) / dpi * 72 / scaleFactor);
-		PDFScrollArea*	scrollArea = getScrollArea();
-		if (scrollArea) {
-			QRectF r = highlightPath.boundingRect();
-			scrollArea->ensureVisible((int)((r.left() + r.right()) / 2 * dpi / 72 * scaleFactor),
-						     (int)((r.top() + r.bottom()) / 2 * dpi / 72 * scaleFactor));
-		}
-		if (kPDFHighlightDuration > 0)
-			highlightRemover.start(kPDFHighlightDuration);
-	}
+	if (path.isEmpty()) return;
+	
+	
+	PDFScrollArea* scrollArea = getScrollArea();
+	if (scrollArea) 
+		scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
+	//if (kPDFHighlightDuration > 0)
+	//TODOD	highlightRemover.start(kPDFHighlightDuration);
+	
+	
 }
 
 
@@ -1190,47 +1192,6 @@ PDFDocument * PDFWidget::getPDFDocument(){
 int PDFWidget::getPageOffset() const{
     int pageOffset= (!singlePageStep) && (gridCols()==2) ? 1 : 0;
     return pageOffset;
-}
-
-int PDFWidget::getXOffset(int p){
-    int offset= 0;
-    Poppler::Page *popplerPage=document->page(p);
-    if(popplerPage){
-	qreal maxWidth=maxPageSizeF().width();
-	if(maxWidth<0.1)
-	    return 0;
-	qreal w=popplerPage->pageSizeF().width();
-	qreal rel=(maxWidth-w)/maxWidth;
-	QRect rec=gridPageRect(p);
-	offset=qRound(rel*rec.width())/2;
-	if(gridCols()==2){
-	    int pageOffset= !singlePageStep ? 1 : 0;
-	    bool cont=getScrollArea()->getContinuous();
-	    if(!cont && singlePageStep)
-		pageOffset=pages.first()&1;
-	    offset= ((p&1)==pageOffset) ? qRound(rel*rec.width()) : 0;
-	}
-    }
-    delete popplerPage;
-
-    return offset;
-}
-
-int PDFWidget::getYOffset(int p){
-    int offset= 0;
-    Poppler::Page *popplerPage=document->page(p);
-    if(popplerPage){
-	qreal maxHeight=maxPageSizeF().height();
-	if(maxHeight<0.1)
-	    return 0;
-	qreal h=popplerPage->pageSizeF().height();
-	qreal rel=(maxHeight-h)/maxHeight;
-	QRect rec=gridPageRect(p);
-	offset=qRound(rel*rec.height())/2;
-    }
-    delete popplerPage;
-
-    return offset;
 }
 
 void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault){
@@ -1428,11 +1389,16 @@ void PDFWidget::doPageDialog()
 		getScrollArea()->goToPage(pageNo - 1);
 }
 
+int PDFWidget::normalizedPageIndex(int p){
+	if (p > 0) return  p - (p - getPageOffset())  % pageStep();
+	else return p;
+}
+
 void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	if (p < 0) p = 0;
 	if (p >= realNumPages()) p = realNumPages() - 1;
-	if (p > 0) p -= (p - getPageOffset())  % pageStep();
+	p = normalizedPageIndex(p);
 	if (p != realPageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
@@ -1654,8 +1620,8 @@ QRect PDFWidget::pageRect(int page) const{
 	int xOffset=(grect.width()-realSizeW)/2;
 	int yOffset=(grect.height()-realSizeH)/2;
 	if (gridx == 2 && getPageOffset() == 1) {
-		if (page & 1) xOffset = 0;
-		else xOffset *= 2;
+		if (page & 1) xOffset *= 2;
+		else xOffset = 0;
 	}
 	delete p;
 	return QRect(grect.left() + xOffset, grect.top() + yOffset, realSizeW, realSizeH);
@@ -2280,7 +2246,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 	int startPage = lastSearchResult.pageIdx;
 	if (lastSearchResult.pageIdx != pdfWidget->getPageIndex()) {
 		if (pdfWidget->pageStep() == 1 || 
-		    pdfWidget->getPageIndex() != lastSearchResult.pageIdx - lastSearchResult.pageIdx % pdfWidget->pageStep() ){			
+		    pdfWidget->getPageIndex() != pdfWidget->normalizedPageIndex(lastSearchResult.pageIdx)){			
 			startPage = pdfWidget->getPageIndex();
 			lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
 		}
@@ -2321,19 +2287,9 @@ void PDFDocument::search(bool backwards, bool incremental){
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
-				scrollArea->goToPage(lastSearchResult.pageIdx+pdfWidget->getPageOffset());
 				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
 				//scroll horizontally
-				QPoint pagePos= pdfWidget->gridPagePosition(lastSearchResult.pageIdx+pdfWidget->getPageOffset());
-				int px=qRound(pdfWidget->totalScaleFactor()*lastSearchResult.selRect.left())+pagePos.x()+pdfWidget->getXOffset(lastSearchResult.pageIdx); //correct x position
-				int py=qRound(pdfWidget->totalScaleFactor()*lastSearchResult.selRect.top())+pdfWidget->getYOffset(lastSearchResult.pageIdx); //correct x position
-				scrollArea->horizontalScrollBar()->setValue(px);
-				// scroll vertically
-				int val=0;
-				if(scrollArea->getContinuous())
-				    val=scrollArea->verticalScrollBar()->value();
-				scrollArea->verticalScrollBar()->setValue(py+val);
-
+				//scrollArea->ensureVisiblePageAbsolutePos(lastSearchResult.pageIdx, lastSearchResult.selRect.topLeft());
 				pdfWidget->update();
 
 				delete page;

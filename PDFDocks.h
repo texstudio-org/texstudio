@@ -234,6 +234,7 @@ public:
 public slots:
 	void setContinuous(bool cont);
 	void goToPage(int page, bool sync=true);
+	void ensureVisiblePageAbsolutePos(int page, const QPointF& pos, int xmargin=50, int ymargin=50);
 
 protected:
 	bool event(QEvent *);
