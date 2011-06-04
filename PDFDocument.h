@@ -47,6 +47,7 @@ class QShortcut;
 class QFileSystemWatcher;
 class ConfigManagerInterface;
 class PDFDocument;
+class PDFWidget;
 
 class PDFMagnifier : public QLabel
 {
@@ -75,6 +76,20 @@ private:
 	int imagePage;
 };
 
+#include <Phonon/VideoPlayer>
+
+class PDFMovie: public Phonon::VideoPlayer
+{
+	Q_OBJECT
+public:
+	PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page);
+	void place();
+private:
+	QRectF boundary;
+	int page;
+};
+
+
 typedef enum {
 	kFixedMag,
 	kFitWidth,
@@ -100,12 +115,12 @@ public:
 	void setHighlightPath(const int pageIndex, const QPainterPath& path);
 	int getHighlightPage() const;
 	void goToDestination(const QString& destName);
-	int getCurrentPageIndex() { return pageIndex; }
+	int getPageIndex();
 	void reloadPage(bool sync = true);
 	void updateStatusBar();
 	void setGridSize(int gx, int gy, bool setAsDefault=false);
 	int visiblePages() const;
-	int numPages() const;
+	int pseudoNumPages() const;
 	int realNumPages() const;
 	int pageStep();
 	int gridCols() const;
@@ -120,8 +135,10 @@ public:
 	QRect gridPageRect(int pageIndex) const;
 	int gridPageIndex(const QPoint& position) const;
 	int gridPage(const QPoint& position) const;
-	void gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const;
-	QPoint gridMapFromScaledPosition(const QPointF& scaledPos) const;
+	void mapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const;
+	QPoint mapFromScaledPosition(int page, const QPointF& scaledPos) const;
+	int pageFromPos(const QPoint& pos) const;
+	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
 
@@ -194,15 +211,16 @@ private:
 	PDFScrollArea* getScrollArea();
 	
 	Poppler::Document	*document;
-	QList<int> pages;
+	//QList<int> pages;
 	Poppler::Link		*clickedLink;
 
-	int pageIndex, oldPageIndex;
+	int realPageIndex, oldRealPageIndex;
+	QList<int> pages;
 	qreal	scaleFactor;
 	qreal	dpi;
 	autoScaleOption scaleOption;
 
-        int docPages;
+	int docPages;
 	qreal			saveScaleFactor;
 	autoScaleOption	saveScaleOption;
 
@@ -227,6 +245,7 @@ private:
 	int	imagePage;
 
 	PDFMagnifier	*magnifier;
+	PDFMovie	*movie;
 	int		currentTool;	// the current tool selected in the toolbar
 	int		usingTool;	// the tool actually being used in an ongoing mouse drag
 	bool		singlePageStep;

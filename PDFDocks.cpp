@@ -618,7 +618,7 @@ void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin){
 	    horizontalScrollBar()->setValue(qMin(logicalX - viewport()->width() + xmargin, horizontalScrollBar()->maximum()));
 	}
 
-	if (continuous) y += pdf->gridRowHeight() * (pdf->getCurrentPageIndex() / pdf->gridCols());
+	if (continuous) y += pdf->gridRowHeight() * ((pdf->getPageIndex() + pdf->getPageOffset()) / pdf->gridCols());
 
 	if (y - ymargin < verticalScrollBar()->value()) {
 	    verticalScrollBar()->setValue(qMax(0, y - ymargin));
@@ -643,7 +643,7 @@ void PDFScrollArea::setContinuous(bool cont){
 	continuous = cont;
 	if (!cont) pdf->setGridSize(pdf->gridCols(), 1);
 	else {
-		int page = pdf->getCurrentPageIndex();
+		int page = pdf->getPageIndex();
 		resizeEvent(0);
 		goToPage(page,false);
 	}
@@ -740,7 +740,7 @@ void PDFScrollArea::updateScrollBars(){
 	if (!continuous) {
 		vbar->setRange(0, v.height() - p.height());
 	} else {
-		vbar->setRange(0,((pdf->numPages() + pdf->gridCols() - 1)/ pdf->gridCols()) * pdf->gridRowHeight() - p.height());
+		vbar->setRange(0,((pdf->pseudoNumPages() + pdf->gridCols() - 1)/ pdf->gridCols()) * pdf->gridRowHeight() - p.height());
 	}
 	vbar->setPageStep(p.height());
 	updateWidgetPosition();
@@ -915,7 +915,7 @@ void PDFClockDock::paintEvent(QPaintEvent * event){
 	QRect r = rect();
 	p.fillRect(r, QColor::fromRgb(0,0,0));
 	p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(start.secsTo(end), 1),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
-	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getCurrentPageIndex() / qMax(1, document->widget()->numPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
+	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
 	QFont f = p.font();
 	f.setPixelSize(r.height());
 	QFontMetrics met(f);
