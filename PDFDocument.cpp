@@ -316,7 +316,27 @@ void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
 		}
 	default:; //rectangular
 	}
+	
 }
+
+
+PDFMovie::PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page):VideoPlayer(parent), page(page){
+	REQUIRE(parent && annot);
+	boundary = annot->boundary();
+	QString url = annot->movie()->url();
+	this->load(url);
+}
+
+void PDFMovie::place(){
+	PDFWidget *pdf = qobject_cast<PDFWidget*>(parent());
+	REQUIRE(pdf);
+	QPointF tl = pdf->mapFromScaledPosition(page, boundary.topLeft());
+	QPointF br = pdf->mapFromScaledPosition(page, boundary.bottomRight());
+	setFixedSize(br.x()-tl.x(),br.y()-tl.y());
+	move(tl.toPoint());
+}
+
+
 
 //#pragma mark === PDFWidget ===
 
@@ -328,13 +348,13 @@ PDFWidget::PDFWidget()
 	: QLabel()
 	, document(NULL)
 	, clickedLink(NULL)
-	, pageIndex(0), oldPageIndex(0)
+	, realPageIndex(0), oldRealPageIndex(0)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
 	, imageDpi(0)
 	, imagePage(-1)
-	, magnifier(NULL)
+       , magnifier(NULL), movie(0)
 	, usingTool(kNone)
 	, singlePageStep(true)
 	, gridx(1), gridy(1)
@@ -425,6 +445,10 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 	    setSinglePageStep(globalConfig->singlepagestep);
 	}else
             docPages=0;
+	if (movie) {
+		delete movie;
+		movie = 0;
+	}
 	reloadPage();
 }
 
@@ -453,7 +477,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	PDFDocument *doc=getPDFDocument();
 	if(!doc || !doc->renderManager)
 	    return;
-	if (pages.size() > 0 && (pages.first() != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+	if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
 			image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
@@ -493,43 +517,31 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				if(rec.intersects(visRect))
 					painter.drawRect(rec);
 			}
-			for (int i=0;i<pages.size();i++){
-				QRect drawTo = gridPageRect(i);
-				if(!drawTo.intersects(visRect)) // don't draw invisible pages
+			
+			int curGrid = getPageOffset();
+			foreach (int pageNr, pages){
+				QRect basicGrid = gridPageRect(curGrid++);
+				QRect drawGrid = pageRect(pageNr);
+				if(!drawGrid.intersects(visRect)) // don't draw invisible pages
 					continue;
-				int pageOffset= getPageOffset();
-				int pageNr=pages[i]-pageOffset;
 				QPixmap temp = doc->renderManager->renderToImage(
 						pageNr,this,"setImage",
 						dpi * scaleFactor,
 						dpi * scaleFactor,
-						0,0,drawTo.width(), drawTo.height(),true,true);
-				int xOffset=(drawTo.width()-temp.width())/2;
-				int yOffset=(drawTo.height()-temp.height())/2;
-				if(xOffset>0){
-				    if(gridx==2){
-					if((i&1)==1){
-					    painter.drawRect(drawTo.right(),drawTo.top(),-2*xOffset,drawTo.height());
-					    xOffset=0;
-					}else{
-					    painter.drawRect(drawTo.left(),drawTo.top(),2*xOffset,drawTo.height());
-					    xOffset=2*xOffset;
-					}
-				    }else{
-					painter.drawRect(drawTo.left(),drawTo.top(),xOffset,drawTo.height());
-					painter.drawRect(drawTo.right(),drawTo.top(),-xOffset,drawTo.height());
-				    }
+						0,0,drawGrid.width(),drawGrid.height(),true,true);
+				if (drawGrid != basicGrid) {
+					painter.drawRect(basicGrid.x(),    basicGrid.y(), drawGrid.x()      - basicGrid.x(),    basicGrid.height());
+					painter.drawRect(drawGrid.right(), basicGrid.y(), basicGrid.right() - drawGrid.right(), basicGrid.height());
+					
+					painter.drawRect(drawGrid.x(), basicGrid.y(),     drawGrid.width(), drawGrid.y()       - basicGrid.y());
+					painter.drawRect(drawGrid.x(), drawGrid.bottom(), drawGrid.width(), basicGrid.bottom() - drawGrid.bottom());
 				}
-				if(yOffset>0){
-				    painter.drawRect(drawTo.left(),drawTo.top(),drawTo.width(),yOffset);
-				    painter.drawRect(drawTo.left(),drawTo.bottom(),drawTo.width(),-yOffset);
-				}
-				painter.drawPixmap(drawTo.left()+xOffset, drawTo.top()+yOffset, temp);
+				painter.drawPixmap(drawGrid.left(), drawGrid.top(), temp);
 				if(pageNr==highlightPage){
 					if (!highlightPath.isEmpty()) {
 						painter.save();
 						painter.setRenderHint(QPainter::Antialiasing);
-						painter.translate(drawTo.left()+getXOffset(pageNr), drawTo.top());
+						painter.translate(drawGrid.left(), drawGrid.top());
 						painter.scale(dpi / 72.0 * scaleFactor, dpi / 72.0 * scaleFactor);
 						painter.setPen(QColor(0, 0, 0, 0));
 						painter.setBrush(QColor(255, 255, 0, 63));
@@ -545,7 +557,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 		}
 	}
 
-	imagePage = pages.isEmpty()?-1:pages.first();
+	imagePage = pages.isEmpty()?-1:realPageIndex;
 	imageDpi = newDpi;
 	imageRect = newRect;
 }
@@ -559,15 +571,11 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 {
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
-	int localPageIndex = gridPageIndex(inEvent->pos());
-	if (localPageIndex < 0)
-		return;
-	if (!magnifier)
-		magnifier = new PDFMagnifier(this, dpi);
+	int page = pageFromPos(inEvent->pos());
+	if (page < 0) return;
+	if (!magnifier) magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
-	//magnifier->setPage(pages[pageIndex], scaleFactor, gridPageRect(pageIndex));
-	int pageOffset= getPageOffset();
-	magnifier->setPage(pages[localPageIndex]-pageOffset, scaleFactor, gridPageRect(localPageIndex));
+	magnifier->setPage(page, scaleFactor, pageRect(page));
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
@@ -616,8 +624,8 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		Poppler::Page *page=0;
 		QPointF scaledPos;
 		int pageNr;
-		gridMapToScaledPosition(event->pos(), pageNr, scaledPos);
-		if (pageNr>=0 && pageNr < numPages()) 
+		mapToScaledPosition(event->pos(), pageNr, scaledPos);
+		if (pageNr>=0 && pageNr < realNumPages()) 
 			page=document->page(pageNr);
 		if (page) {
 			// check for click in link
@@ -628,21 +636,38 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 				}
 			}
 			if (clickedLink == NULL) {
-				switch (currentTool) {
-				case kMagnifier:
-					if (mouseDownModifiers & (Qt::ShiftModifier | Qt::AltModifier))
-						; // do nothing - zoom in or out (on mouseUp)
-					else
-						useMagnifier(event);
-					break;
-
-				case kScroll:
-					setCursor(Qt::ClosedHandCursor);
-					scrollClickPos = event->globalPos();
-					usingTool = kScroll;
-					break;
+				bool clickedAnnon = false;
+				
+				
+				foreach (Poppler::Annotation* annon, page->annotations()) 
+					if (annon->boundary().contains(scaledPos)) {
+						if (movie) delete movie;
+						movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(annon), pageNr);
+						movie->place();
+						movie->show();
+						movie->play();
+						clickedAnnon = true;
+						break;
+					}
+				
+				
+				if (!clickedAnnon) {
+					switch (currentTool) {
+					case kMagnifier:
+						if (mouseDownModifiers & (Qt::ShiftModifier | Qt::AltModifier))
+							; // do nothing - zoom in or out (on mouseUp)
+						else
+							useMagnifier(event);
+						break;
+	
+					case kScroll:
+						setCursor(Qt::ClosedHandCursor);
+						scrollClickPos = event->globalPos();
+						usingTool = kScroll;
+						break;
+					}
 				}
-			}
+			} 
 			delete page;
 		}
 	}
@@ -654,7 +679,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 	if (clickedLink != NULL) {
 		int page;
 		QPointF scaledPos;
-		gridMapToScaledPosition(event->pos(), page, scaledPos);
+		mapToScaledPosition(event->pos(), page, scaledPos);
 		if (page>-1 && clickedLink->linkArea().contains(scaledPos)) {
 			doLink(clickedLink);
 		}
@@ -705,9 +730,7 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 			if (dest.isChangeZoom()) {
 				// FIXME
 			}
-			QPoint p = gridMapFromScaledPosition(QPointF( dest.left(), dest.top()));
-			QPoint pagePos= gridPagePosition(dest.pageNumber() - 1 + getPageOffset());
-			p.setX(p.x()+pagePos.x()+getXOffset(dest.pageNumber() - 1)); //correct x position
+			QPoint p = mapFromScaledPosition(dest.pageNumber(), QPointF( dest.left(), dest.top()));
 			if (dest.isChangeLeft())
 				scrollArea->horizontalScrollBar()->setValue(p.x());
 
@@ -927,11 +950,11 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 				mayChangePage = false;
 		}
 		if (mayChangePage) {
-			if (event->delta() > 0 && pageIndex > 0) {
+			if (event->delta() > 0 && realPageIndex > 0) {
 				goPrev();
 				scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
 			}
-			else if (event->delta() < 0 && pageIndex < numPages() - 1) {
+			else if (event->delta() < 0 && realPageIndex < realNumPages() - 1) {
 				goNext();
 				scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 			}
@@ -954,7 +977,7 @@ void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
 		QPoint p = gridPagePosition(page);
 		x -= p.x();
 		y -= p.y();
-		page +=  pageIndex - getPageOffset();                        //page index in document
+		page +=  realPageIndex;
 		x -= getXOffset(page);
 		y -= getYOffset(page);
 	}
@@ -965,7 +988,7 @@ void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
 
 void PDFWidget::syncCurrentPage(bool activate){
 	//single page step mode: jump to center of first page in grid; multi page step: jump to center of grid
-	int curPage = pageIndex + (pageStep()>1?pages.size()/2:0);
+	int curPage = realPageIndex + (pageStep()>1?pages.size()/2:0);
 	QRect r = gridPageRect(curPage);
 	syncWindowClick(r.width()/2, r.height()/2, activate, curPage);
 }
@@ -1005,8 +1028,8 @@ void PDFWidget::updateCursor(const QPoint& pos)
 	Poppler::Page* page;
 	QPointF scaledPos;
 	int pageNr;
-	gridMapToScaledPosition(pos, pageNr, scaledPos);
-	if (pageNr<0 || pageNr >= numPages()) return;
+	mapToScaledPosition(pos, pageNr, scaledPos);
+	if (pageNr<0 || pageNr >= realNumPages()) return;
 	// check for link
 	page=document->page(pageNr);
 	if(!page)
@@ -1105,6 +1128,10 @@ void PDFWidget::clearHighlight()
 	update();
 }
 
+int PDFWidget::getPageIndex(){
+	return realPageIndex;
+}
+
 void PDFWidget::reloadPage(bool sync)
 {
 	QList<int> oldpages = pages;
@@ -1115,11 +1142,15 @@ void PDFWidget::reloadPage(bool sync)
 	image = QPixmap();
 	//highlightPath = QPainterPath();
 	if (document != NULL) {
-		if (pageIndex >= numPages())
-			pageIndex = numPages() - 1;
-		if (pageIndex >= 0) {
-			int pageCount = qMin(gridx*gridy, numPages() - pageIndex);
-			//use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
+		if (realPageIndex >= realNumPages())
+			realPageIndex = realNumPages() - 1;
+		if (realPageIndex >= 0) {
+			int firstVisiblePage = realPageIndex - getPageOffset();
+			if (firstVisiblePage < 0) firstVisiblePage = 0;
+			int visiblePageCount = qMin(gridx*gridy, realNumPages() - firstVisiblePage);
+			for (int i=0;i<visiblePageCount;i++) 
+				pages << firstVisiblePage + i;
+			/*/use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
 			int firstCommonPage = qMax(pageIndex, oldPageIndex);
 			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
 
@@ -1130,15 +1161,16 @@ void PDFWidget::reloadPage(bool sync)
 				for (int i=pageIndex; i < firstCommonPage; i++) pages.append(i);
 				for (int i=firstCommonPage; i <= lastCommonPage; i++) pages.append(oldpages[i-oldPageIndex]);
 				for (int i=lastCommonPage + 1; i < pageIndex + pageCount; i++) pages.append(i);
-			}
-			oldPageIndex = pageIndex;
+			}*/
+			//oldPageIndex = pageIndex;
+			oldRealPageIndex = realPageIndex;
 		}
 	}
 
 	adjustSize();
 	update();
 	updateStatusBar();
-	emit changedPage(pageIndex, sync);
+	emit changedPage(realPageIndex, sync);
 }
 
 void PDFWidget::updateStatusBar()
@@ -1146,9 +1178,10 @@ void PDFWidget::updateStatusBar()
 	QWidget *widget = window();
 	PDFDocument *doc = qobject_cast<PDFDocument*>(widget);
 	if (doc) {
-		doc->showPage(pageIndex + 1);
+		doc->showPage(realPageIndex + 1);
 		doc->showScale(scaleFactor);
 	}
+	if (movie) movie->place();
 }
 PDFDocument * PDFWidget::getPDFDocument(){
 	QWidget *widget = window();
@@ -1209,9 +1242,9 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault){
 	gridy = gy;
 	if(setAsDefault)
 		return;
-	int pi = pageIndex;
-	getScrollArea()->goToPage(pageIndex);
-	if (pi == pageIndex)
+	int pi = realPageIndex;
+	getScrollArea()->goToPage(realPageIndex);
+	if (pi == realPageIndex)
 		reloadPage();
 	//update();
 }
@@ -1220,7 +1253,7 @@ int PDFWidget::visiblePages() const {
 	return pages.size();
 }
 
-int PDFWidget::numPages() const{
+int PDFWidget::pseudoNumPages()  const{
 	if (!document) return 0;
 	int pageOffset= getPageOffset();
 	return docPages+pageOffset;
@@ -1258,7 +1291,7 @@ void PDFWidget::setSinglePageStep(bool step){
 	if (singlePageStep == step)
 		return;
 	singlePageStep = step;
-	getScrollArea()->goToPage(pageIndex);
+	getScrollArea()->goToPage(realPageIndex);
 	update();
 }
 
@@ -1271,19 +1304,19 @@ void PDFWidget::goFirst()
 void PDFWidget::goPrev()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(pageIndex - pageStep());
+	getScrollArea()->goToPage(realPageIndex - pageStep());
 }
 
 void PDFWidget::goNext()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(pageIndex + pageStep());
+	getScrollArea()->goToPage(realPageIndex + pageStep());
 }
 
 void PDFWidget::goLast()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(numPages() - 1);
+	getScrollArea()->goToPage(realNumPages() - 1);
 }
 
 void PDFWidget::upOrPrev()
@@ -1294,7 +1327,7 @@ void PDFWidget::upOrPrev()
 	if (scrollBar->value() > scrollBar->minimum())
 		scrollBar->triggerAction(QAbstractSlider::SliderSingleStepSub);
 	else {
-		if (pageIndex > 0) {
+		if (realPageIndex > 0) {
 			goPrev();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
 		}
@@ -1310,7 +1343,7 @@ void PDFWidget::leftOrPrev()
 	if (scrollBar->value() > scrollBar->minimum())
 		scrollBar->triggerAction(QAbstractSlider::SliderSingleStepSub);
 	else {
-		if (pageIndex > 0) {
+		if (realPageIndex > 0) {
 			goPrev();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
 		}
@@ -1327,7 +1360,7 @@ void PDFWidget::pageUpOrPrev()
 	if (scrollBar->value() > scrollBar->minimum())
 		scrollBar->triggerAction(QAbstractSlider::SliderPageStepSub);
 	else {
-		if (pageIndex > 0) {
+		if (realPageIndex > 0) {
 			goPrev();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
 		}
@@ -1343,7 +1376,7 @@ void PDFWidget::downOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderSingleStepAdd);
 	else {
-		if (pageIndex < numPages() - 1) {
+		if (realPageIndex < realNumPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
@@ -1359,7 +1392,7 @@ void PDFWidget::rightOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderSingleStepAdd);
 	else {
-		if (pageIndex < numPages() - 1) {
+		if (realPageIndex < realNumPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
@@ -1375,7 +1408,7 @@ void PDFWidget::pageDownOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderPageStepAdd);
 	else {
-		if (pageIndex < numPages() - 1) {
+		if (realPageIndex < realNumPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
@@ -1391,8 +1424,8 @@ void PDFWidget::doPageDialog()
 	bool ok;
 	setCursor(Qt::ArrowCursor);
 	int pageNo = QInputDialog::getInteger(this, tr("Go to Page"),
-						   tr("Page number:"), pageIndex + 1,
-						   1, numPages(), 1, &ok);
+						   tr("Page number:"), realPageIndex + 1,
+						   1, realNumPages(), 1, &ok);
 	if (ok)
 		getScrollArea()->goToPage(pageNo - 1);
 }
@@ -1400,9 +1433,9 @@ void PDFWidget::doPageDialog()
 void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	p -= p % pageStep();
-	if (p != pageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
-		if (p >= 0 && p < numPages()) {
-			pageIndex = p;
+	if (p != realPageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
+		if (p >= 0 && p < realNumPages()) {
+			realPageIndex = p;
 			reloadPage(sync);
 			update();
 		}
@@ -1578,36 +1611,55 @@ int PDFWidget::gridPage(const QPoint& position) const{
 	return pages[index];
 }
 
-void PDFWidget::gridMapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const{
+void PDFWidget::mapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const{
 	if (!document) return;
-	int pageIndex = gridPageIndex(position);
-	page = -1;
-	if (pageIndex<0) return;
-	page = pages[pageIndex];
-	if (page < 0 || page >= numPages()) return;
-	QPoint rp = position - gridPagePosition(pageIndex);
+	page = pageFromPos(position);
+	QRect r = pageRect(page);
+	if (r.isNull()) return;
 	// poppler's pos is relative to the page rect
-	Poppler::Page *popplerPage=document->page(page);
-	if(popplerPage)
-	    scaledPos = QPointF(rp.x() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().width(),
-				rp.y() / scaleFactor / dpi * 72.0 / popplerPage->pageSizeF().height());
-	delete popplerPage;
-
+	QPoint temp = position - r.topLeft();
+	scaledPos.setX(temp.x() * 1.0 / r.width());
+	scaledPos.setY(temp.y() * 1.0 / r.height());
 }
 
-QPoint PDFWidget::gridMapFromScaledPosition(const QPointF& scaledPos) const {
+QPoint PDFWidget::mapFromScaledPosition(int page, const QPointF& scaledPos) const {
 	if (!document || pages.size() == 0) return QPoint();
-	//QRect r = gridPageRect(0);
-	int i=pages.first()-getPageOffset();
-	if (i < 0 || i >= numPages()) return QPoint();
-	Poppler::Page *popplerPage=document->page(i);
+	QRect r = pageRect(page);
+	if (r.isNull()) return QPoint();
+	return r.topLeft() + QPoint( scaledPos.x() * r.width(), scaledPos.y() * r.height() );
+/*	if (rpage < 0 || rpage >= realNumPages()) return QPoint();
+	QPoint p = pageRect(rpage).topLeft();
+	Poppler::Page *popplerPage=document->page(rpage);
 	if(!popplerPage)
-	    return QPoint();
+		return QPoint();
 	int w=popplerPage->pageSizeF().width();
 	int h=popplerPage->pageSizeF().height();
 	delete popplerPage;
-	return (QPointF(scaledPos.x() * w, scaledPos.y() * h)   * scaleFactor * dpi / 72.0 ).toPoint();
+	return (QPointF(scaledPos.x() * w, scaledPos.y() * h)   * scaleFactor * dpi / 72.0 ).toPoint() + p;*/
 }
+
+int PDFWidget::pageFromPos(const QPoint& pos) const{
+	int page = gridPageIndex(pos) - getPageOffset() + realPageIndex;
+	if (pageRect(page).contains(pos)) return page;
+	else return -1;
+}
+QRect PDFWidget::pageRect(int page) const{
+	if (!document)
+		return QRect();
+	if (page < pages.first() || page > pages.last()) 
+		return QRect();
+	QRect grect = gridPageRect(page - realPageIndex + getPageOffset());
+	Poppler::Page* p = document->page(page);
+	if (!p) 
+		return grect;
+	int realSizeW =  dpi * scaleFactor / 72.0 * p->pageSizeF().width();
+	int realSizeH =  dpi * scaleFactor / 72.0 * p->pageSizeF().height();
+	int xOffset=(grect.width()-realSizeW)/2;
+	int yOffset=(grect.height()-realSizeH)/2;
+	delete p;
+	return QRect(grect.left() + xOffset, grect.top() + yOffset, grect.width() - 2*xOffset, grect.height() - 2*yOffset);
+}
+
 
 QSizeF PDFWidget::maxPageSizeF() const{
 	REQUIRE_RET(document, QSizeF());
@@ -1990,7 +2042,7 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalVi
 		return;
 	if (pdfFile != curFile || externalViewerCmdLine != externalViewer)
 		loadFile(pdfFile, externalViewer, false);
-	if (page != widget()->getCurrentPageIndex())
+	if (page != widget()->getPageIndex())
 		scrollArea->goToPage(page,false);
 }
 
@@ -2224,9 +2276,10 @@ void PDFDocument::search(bool backwards, bool incremental){
 	}
 
 	int startPage = lastSearchResult.pageIdx;
-	if (lastSearchResult.pageIdx != pdfWidget->getCurrentPageIndex()) {
-		if (pdfWidget->pageStep() == 1 || pdfWidget->getCurrentPageIndex() != lastSearchResult.pageIdx - lastSearchResult.pageIdx % pdfWidget->pageStep() ){			
-			startPage = pdfWidget->getCurrentPageIndex();
+	if (lastSearchResult.pageIdx != pdfWidget->getPageIndex()) {
+		if (pdfWidget->pageStep() == 1 || 
+		    pdfWidget->getPageIndex() != lastSearchResult.pageIdx - lastSearchResult.pageIdx % pdfWidget->pageStep() ){			
+			startPage = pdfWidget->getPageIndex();
 			lastSearchResult.selRect = backwards ? QRectF(0,100000,1,1) : QRectF();
 		}
 	}
@@ -2488,8 +2541,8 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	// 2008-09-07: seems to no longer be a problem, probably thanks to Qt 4.4 update
 	actionFirst_Page->setEnabled(pageIndex > 0);
 	actionPrevious_Page->setEnabled(pageIndex > 0);
-	actionNext_Page->setEnabled(pageIndex < pdfWidget->numPages() - 1);
-	actionLast_Page->setEnabled(pageIndex < pdfWidget->numPages() - 1);
+	actionNext_Page->setEnabled(pageIndex < pdfWidget->realNumPages() - 1);
+	actionLast_Page->setEnabled(pageIndex < pdfWidget->realNumPages() - 1);
 	//#endif
 
 
@@ -2498,7 +2551,7 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
 	if (actionSynchronize_multiple_views->isChecked() && sync)
-		emit syncView(curFile, externalViewerCmdLine, widget()->getCurrentPageIndex());;
+		emit syncView(curFile, externalViewerCmdLine, widget()->getPageIndex());;
 }
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
@@ -2633,10 +2686,8 @@ void PDFDocument::goToDestination(const QString& destName)
 
 void PDFDocument::goToPage(const int page)
 {
-	if (pdfWidget && scrollArea) {
-		int off=pdfWidget->getPageOffset();
-		scrollArea->goToPage(page+off);
-	}
+	if (pdfWidget && scrollArea) 
+		scrollArea->goToPage(page);
 }
 
 void PDFDocument::dragEnterEvent(QDragEnterEvent *event)
