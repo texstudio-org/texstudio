@@ -734,11 +734,12 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 	if (dest.pageNumber() > 0) {
 		PDFScrollArea*	scrollArea = getScrollArea();
 		if (scrollArea) {
-			scrollArea->goToPage(dest.pageNumber() - 1 + getPageOffset());
+			int page = dest.pageNumber() - 1;
+			scrollArea->goToPage(page);
 			if (dest.isChangeZoom()) {
 				// FIXME
 			}
-			QPoint p = mapFromScaledPosition(dest.pageNumber(), QPointF( dest.left(), dest.top()));
+			QPoint p = mapFromScaledPosition(page, QPointF( dest.left(), dest.top()));
 			if (dest.isChangeLeft())
 				scrollArea->horizontalScrollBar()->setValue(p.x());
 
