@@ -134,7 +134,6 @@ public:
 	QPoint gridPagePosition(int pageIndex) const;
 	QRect gridPageRect(int pageIndex) const;
 	int gridPageIndex(const QPoint& position) const;
-	int gridPage(const QPoint& position) const;
 	void mapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const;
 	QPoint mapFromScaledPosition(int page, const QPointF& scaledPos) const;
 	int pageFromPos(const QPoint& pos) const;
@@ -171,7 +170,7 @@ public slots:
 	void windowResized();
 	void fitWindow(bool checked = true);
 	void setTool(int tool);	
-	void syncWindowClick(int x, int y, bool activate, int page = -1);
+	void syncWindowClick(const QPoint& p, bool activate);
 	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
 	void setImage(QPixmap img,int pageNr);
