@@ -518,12 +518,18 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 					painter.drawRect(rec);
 			}
 			
-			int curGrid = getPageOffset();
+			int curGrid = 0;
+			if (getPageOffset() && realPageIndex == 0) {
+				painter.drawRect(gridPageRect(0));
+				curGrid++;
+			}
 			foreach (int pageNr, pages){
 				QRect basicGrid = gridPageRect(curGrid++);
 				QRect drawGrid = pageRect(pageNr);
-				if(!drawGrid.intersects(visRect)) // don't draw invisible pages
+				if(!drawGrid.intersects(visRect)) {// don't draw invisible pages
+					painter.drawRect(basicGrid);
 					continue;
+				}
 				QPixmap temp = doc->renderManager->renderToImage(
 						pageNr,this,"setImage",
 						dpi * scaleFactor,
@@ -692,7 +698,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			// Ctrl-click to sync
 			if (mouseDownModifiers & Qt::ControlModifier) {
 				if (event->modifiers() & Qt::ControlModifier)
-					syncWindowClick(event->pos().x(), event->pos().y(), true);
+					syncWindowClick(event->pos(), true);
 
 				break;
 			}
@@ -913,7 +919,7 @@ void PDFWidget::jumpToSource()
 	QAction *act = qobject_cast<QAction*>(sender());
 	if (act != NULL) {
 		QPoint eventPos = act->data().toPoint();
-		syncWindowClick(eventPos.x(), eventPos.y(), true);
+		syncWindowClick(eventPos, true);
 		/*
 		QPointF pagePos(eventPos.x() / scaleFactor * 72.0 / dpi,
 				  eventPos.y() / scaleFactor * 72.0 / dpi);
@@ -971,26 +977,17 @@ void PDFWidget::setTool(int tool)
 }
 
 
-void PDFWidget::syncWindowClick(int x, int y, bool activate, int page){
-	if (page == -1) {
-		page = qMax(0,gridPageIndex(QPoint(x,y))); //page index in grid
-		QPoint p = gridPagePosition(page);
-		x -= p.x();
-		y -= p.y();
-		page +=  realPageIndex;
-		x -= getXOffset(page);
-		y -= getYOffset(page);
-	}
-	QPointF pagePos(x / scaleFactor * 72.0 / dpi,
-			  y / scaleFactor * 72.0 / dpi);
+void PDFWidget::syncWindowClick(const QPoint& p, bool activate){
+	int page;
+	QPointF pagePos;
+	mapToScaledPosition(p, page, pagePos);
 	emit syncClick(page, pagePos, activate);
 }
 
 void PDFWidget::syncCurrentPage(bool activate){
 	//single page step mode: jump to center of first page in grid; multi page step: jump to center of grid
-	int curPage = realPageIndex + (pageStep()>1?pages.size()/2:0);
-	QRect r = gridPageRect(curPage);
-	syncWindowClick(r.width()/2, r.height()/2, activate, curPage);
+	if (pageStep() > 1) syncWindowClick(rect().center(), activate);
+	else emit syncClick(pages.first(), QPointF(0.5,0.5), activate);
 }
 
 void PDFWidget::updateCursor()
@@ -1145,11 +1142,9 @@ void PDFWidget::reloadPage(bool sync)
 		if (realPageIndex >= realNumPages())
 			realPageIndex = realNumPages() - 1;
 		if (realPageIndex >= 0) {
-			int firstVisiblePage = realPageIndex - getPageOffset();
-			if (firstVisiblePage < 0) firstVisiblePage = 0;
-			int visiblePageCount = qMin(gridx*gridy, realNumPages() - firstVisiblePage);
+			int visiblePageCount = qMin(gridx*gridy, realNumPages() - realPageIndex);
 			for (int i=0;i<visiblePageCount;i++) 
-				pages << firstVisiblePage + i;
+				pages << i + realPageIndex;
 			/*/use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
 			int firstCommonPage = qMax(pageIndex, oldPageIndex);
 			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
@@ -1432,7 +1427,9 @@ void PDFWidget::doPageDialog()
 
 void PDFWidget::goToPageDirect(int p, bool sync)
 {
-	p -= p % pageStep();
+	if (p < 0) p = 0;
+	if (p >= realNumPages()) p = realNumPages() - 1;
+	if (p > 0) p -= (p - getPageOffset())  % pageStep();
 	if (p != realPageIndex && document != NULL) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
@@ -1598,17 +1595,11 @@ QPoint PDFWidget::gridPagePosition(int pageIndex) const{
 
 int PDFWidget::gridPageIndex(const QPoint& position) const{
 	if (pages.size()==0) return -1;
-	if (pages.size()==1) return 0;
-	for (int i=0;i<pages.size();i++)
+	if (gridx*gridy==1) return 0;
+	for (int i=0;i<gridx*gridy;i++)
 		if (gridPageRect(i).contains(position))
 			return i;
 	return -1;
-}
-
-int PDFWidget::gridPage(const QPoint& position) const{
-	int index = gridPageIndex(position);
-	if (index<0) return 0;
-	return pages[index];
 }
 
 void PDFWidget::mapToScaledPosition(const QPoint& position, int & page, QPointF& scaledPos) const{
@@ -1639,7 +1630,8 @@ QPoint PDFWidget::mapFromScaledPosition(int page, const QPointF& scaledPos) cons
 }
 
 int PDFWidget::pageFromPos(const QPoint& pos) const{
-	int page = gridPageIndex(pos) - getPageOffset() + realPageIndex;
+	int page = gridPageIndex(pos) + realPageIndex;
+	if (realPageIndex == 0) page -= getPageOffset();
 	if (pageRect(page).contains(pos)) return page;
 	else return -1;
 }
@@ -1648,7 +1640,9 @@ QRect PDFWidget::pageRect(int page) const{
 		return QRect();
 	if (page < pages.first() || page > pages.last()) 
 		return QRect();
-	QRect grect = gridPageRect(page - realPageIndex + getPageOffset());
+	QRect grect;
+	if (realPageIndex == 0) grect = gridPageRect(page + getPageOffset());
+	else grect = gridPageRect(page - realPageIndex);
 	Poppler::Page* p = document->page(page);
 	if (!p) 
 		return grect;
