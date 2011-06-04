@@ -343,8 +343,6 @@ public slots:
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
 	void fileDestroyed(const QString& fileName);
 	void printPDF();
-	void printImage(QPixmap img,int pg);
-	void cancelPrint();
 	
 private slots:
 	void enablePageActions(int, bool);
@@ -432,10 +430,6 @@ private:
 	bool wasMaximized;
 	bool syncFromSourceBlock;  //temporary disable sync from source
 
-	//for printing
-	QPrinter *printer;
-	QProgressDialog *progress;
-	QPainter printPainter;
 };
 
 #endif
