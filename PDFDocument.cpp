@@ -558,6 +558,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 					}
 				}
 			}
+			for (;curGrid<gridx*gridy;curGrid++)
+				painter.drawRect(gridPageRect(curGrid));
 			//p.end();
 			//painter.restore();
 		}
