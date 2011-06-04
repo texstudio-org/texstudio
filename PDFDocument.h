@@ -27,6 +27,8 @@
 
 #include "mostQtHeaders.h"
 
+#include <QProgressDialog>
+
 //#include "FindDialog.h"
 #include "poppler-qt4.h"
 #include "synctex_parser.h"
@@ -323,6 +325,7 @@ public slots:
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
 	void fileDestroyed(const QString& fileName);
 	void printPDF();
+	void printImage(QPixmap img,int pg);
 	
 private slots:
 	void enablePageActions(int, bool);
@@ -410,6 +413,11 @@ private:
 	bool wasMaximized;
 	bool syncFromSourceBlock;  //temporary disable sync from source
 
+	//for printing
+	QPrinter printer;
+	QProgressDialog *progress;
+	QPainter printPainter;
+	void cancelPrint();
 };
 
 #endif
