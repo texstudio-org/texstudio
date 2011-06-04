@@ -464,6 +464,14 @@ void PDFWidget::windowResized()
 	update();
 }
 
+void fillRectBorder(QPainter& painter, const QRect& inner, const QRect& outer){
+	painter.drawRect(outer.x(),    outer.y(), inner.x()      - outer.x(),    outer.height());
+	painter.drawRect(inner.right(), outer.y(), outer.right() - inner.right(), outer.height());
+	
+	painter.drawRect(inner.x(), outer.y(),     inner.width(), inner.y()       - outer.y());
+	painter.drawRect(inner.x(), inner.bottom(), inner.width(), outer.bottom() - inner.bottom());
+}
+
 void PDFWidget::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
@@ -475,11 +483,15 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	if(!doc || !doc->renderManager)
 	    return;
 	if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+		painter.setBrush(QApplication::palette().color(QPalette::Dark));
+		painter.setPen(QApplication::palette().color(QPalette::Dark));
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
+			QRect drawTo = pageRect(pageNr);
 			image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
-								      newRect.x(), newRect.y(), newRect.width(), newRect.height(),true,true);
-			painter.drawPixmap(event->rect(), image, event->rect());
+								      0,0, newRect.width(), newRect.height(),true,true);
+			fillRectBorder(painter, drawTo, newRect);
+			painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
 			if (!highlightPath.isEmpty()) {
 				painter.setRenderHint(QPainter::Antialiasing);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
@@ -500,10 +512,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			int realPageSizeX = (rect().width()-totalBorderX) / gridx;
 			int realPageSizeY = (rect().height()-totalBorderY) / gridy;
 
-			QBrush mBrush(QApplication::palette().color(QPalette::Dark));
 			//painter.save();
-			painter.setBrush(mBrush);
-			painter.setPen(QApplication::palette().color(QPalette::Dark));
 			for(int i=1;i<gridx;i++){
 				QRect rec((realPageSizeX+GridBorder)*i,0,-GridBorder,newRect.height());
 				if(rec.intersects(visRect))
@@ -532,13 +541,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						dpi * scaleFactor,
 						dpi * scaleFactor,
 						0,0,drawGrid.width(),drawGrid.height(),true,true);
-				if (drawGrid != basicGrid) {
-					painter.drawRect(basicGrid.x(),    basicGrid.y(), drawGrid.x()      - basicGrid.x(),    basicGrid.height());
-					painter.drawRect(drawGrid.right(), basicGrid.y(), basicGrid.right() - drawGrid.right(), basicGrid.height());
-					
-					painter.drawRect(drawGrid.x(), basicGrid.y(),     drawGrid.width(), drawGrid.y()       - basicGrid.y());
-					painter.drawRect(drawGrid.x(), drawGrid.bottom(), drawGrid.width(), basicGrid.bottom() - drawGrid.bottom());
-				}
+				if (drawGrid != basicGrid) 
+					fillRectBorder(painter, drawGrid, basicGrid);
 				painter.drawPixmap(drawGrid.left(), drawGrid.top(), temp);
 				if(pageNr==highlightPage){
 					if (!highlightPath.isEmpty()) {
