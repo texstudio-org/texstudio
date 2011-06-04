@@ -1652,8 +1652,12 @@ QRect PDFWidget::pageRect(int page) const{
 	int realSizeH =  dpi * scaleFactor / 72.0 * p->pageSizeF().height();
 	int xOffset=(grect.width()-realSizeW)/2;
 	int yOffset=(grect.height()-realSizeH)/2;
+	if (gridx == 2 && getPageOffset() == 1) {
+		if (page & 1) xOffset = 0;
+		else xOffset *= 2;
+	}
 	delete p;
-	return QRect(grect.left() + xOffset, grect.top() + yOffset, grect.width() - 2*xOffset, grect.height() - 2*yOffset);
+	return QRect(grect.left() + xOffset, grect.top() + yOffset, realSizeW, realSizeH);
 }
 
 
