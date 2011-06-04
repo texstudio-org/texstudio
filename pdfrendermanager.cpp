@@ -99,7 +99,7 @@ void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointe
 	cachedNumPages = document->numPages();
 }
 
-QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority){
+QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority,Poppler::Page::Rotation rotate){
 	if (!document) return QPixmap();
 	if (pageNr < 0 || pageNr >= cachedNumPages) return QPixmap();
 	RecInfo info;
@@ -200,6 +200,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 					cmd.w=w;
 					cmd.h=h;
 				}
+				cmd.rotate=rotate;
 				cmd.ticket=mCurrentTicket;
 				cmd.priority=priority;
 				lstOfReceivers.insert(mCurrentTicket,info);

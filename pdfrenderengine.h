@@ -22,6 +22,7 @@ public:
 	int y;
 	int w;
 	int h;
+	Poppler::Page::Rotation rotate;
 	int ticket;
 	bool priority;
 };

@@ -15,7 +15,7 @@
 #include "pdfrendermanager.h"
 
 RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h) :
-    pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1),priority(false)
+    pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1),priority(false),rotate(Poppler::Page::Rotate0)
 {
 }
 
@@ -81,7 +81,7 @@ void PDFRenderEngine::run(){
 		    Poppler::Page *page=document->page(command.pageNr);
 		    if(page){
 			QImage image=page->renderToImage(command.xres, command.yres,
-							  command.x, command.y, command.w, command.h);
+							  command.x, command.y, command.w, command.h,command.rotate);
 			delete page;
 			if(!queue->stopped)
 			    emit sendImage(image,command.pageNr,command.ticket);

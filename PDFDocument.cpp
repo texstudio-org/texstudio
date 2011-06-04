@@ -48,7 +48,6 @@
 #include <QFileSystemWatcher>
 #include <QDebug>
 #include <QToolTip>
-#include <QProgressDialog>
 
 #include <math.h>
 #include "universalinputdialog.h"
@@ -1669,7 +1668,8 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
-	globalConfig = pdfConfig,
+	globalConfig = pdfConfig;
+	progress=0;
 
 	init();
 
@@ -2681,16 +2681,13 @@ void PDFDocument::printPDF(){
     if(!document)
 	return;
 
-    QPrinter printer;
-
-    QPrintDialog *dialog = new QPrintDialog(&printer, this);
-    dialog->setWindowTitle(tr("Print PDF-Document"));
-    dialog->setFromTo(1,pdfWidget->realNumPages());
-    if (dialog->exec() != QDialog::Accepted)
+    QPrintDialog dialog(&printer, this);
+    dialog.setWindowTitle(tr("Print PDF-Document"));
+    dialog.setFromTo(1,pdfWidget->realNumPages());
+    if (dialog.exec() != QDialog::Accepted)
 	return;
 
-    QPainter painter;
-    painter.begin(&printer);
+    printPainter.begin(&printer);
 
     double printerDPI=printer.resolution();
     int start=printer.fromPage();
@@ -2700,42 +2697,78 @@ void PDFDocument::printPDF(){
 	end=pdfWidget->realNumPages();
     }
 
-    QProgressDialog progress(tr("Printing Document"), tr("Abort Print"), start, end, this);
-    progress.setWindowModality(Qt::WindowModal);
+    progress=new QProgressDialog(tr("Printing Document"), tr("Abort Print"), start, end, this);
+    connect(progress,SIGNAL(canceled()),this,SLOT(cancelPrint()));
+    progress->setWindowModality(Qt::NonModal);
 
-    for (int i = start-1; i < end; ++i) {
-	 progress.setValue(i);
-	 //QApplication::processEvents();
-	 qApp->processEvents();
-	 if (progress.wasCanceled())
-	    break;
+    progress->setValue(start);
 
-	// Use the painter to draw on the page.
-	Poppler::Page *page=document->page(i);
-	if(!page)
-	    break;
-
+    // Use the painter to draw on the page.
+    Poppler::Page *page=document->page(start-1);
+    if(page){
 	Poppler::Page::Rotation rotate;
 	Poppler::Page::Orientation orient=page->orientation();
 	switch (orient){
-	    case Poppler::Page::Landscape:rotate=Poppler::Page::Rotate270;
-		break;
-	    case Poppler::Page::Portrait:rotate=Poppler::Page::Rotate0;
-		break;
-	    case Poppler::Page::Seascape:rotate=Poppler::Page::Rotate90;
-		break;
-	    case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
-		break;
+	case Poppler::Page::Landscape:rotate=Poppler::Page::Rotate270;
+	    break;
+	case Poppler::Page::Portrait:rotate=Poppler::Page::Rotate0;
+	    break;
+	case Poppler::Page::Seascape:rotate=Poppler::Page::Rotate90;
+	    break;
+	case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
+	    break;
 	}
 
-	QImage image=page->renderToImage(printerDPI,printerDPI,-1,-1,-1,-1,rotate);
-	painter.drawImage(0,0,image);
-	delete page;
-
-	if (i != end-1)
-	    printer.newPage();
+	renderManager->renderToImage(start-1,this,"printImage",printerDPI,printerDPI,-1,-1,-1,-1,false,true,rotate);
     }
-
-    painter.end();
 }
+
+void PDFDocument::printImage(QPixmap img,int pg){
+    if(!progress)
+	return;
+    bool renderNextPage=false;
+    double printerDPI=printer.resolution();
+    int start=printer.fromPage();
+    int end=printer.toPage();
+    if(start==0){
+	start=1;
+	end=pdfWidget->realNumPages();
+    }
+    if(!img.isNull() && pg>=0){
+	progress->setValue(pg+1);
+    	printPainter.drawPixmap(0,0,img);
+	if (pg != end-1){
+	    printer.newPage();
+	    Poppler::Page *page=document->page(pg+1);
+	    if(page){
+		Poppler::Page::Rotation rotate;
+		Poppler::Page::Orientation orient=page->orientation();
+		switch (orient){
+		case Poppler::Page::Landscape:rotate=Poppler::Page::Rotate270;
+		    break;
+		case Poppler::Page::Portrait:rotate=Poppler::Page::Rotate0;
+		    break;
+		case Poppler::Page::Seascape:rotate=Poppler::Page::Rotate90;
+		    break;
+		case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
+		    break;
+		}
+		renderManager->renderToImage(pg+1,this,"printImage",printerDPI,printerDPI,-1,-1,-1,-1,false,true,rotate);
+		renderNextPage=true;
+	    }
+	}
+    }
+    if(!renderNextPage){
+	printPainter.end();
+	delete progress;
+	progress=0;
+    }
+}
+
+void PDFDocument::cancelPrint(){
+    delete progress;
+    progress=0;
+    printPainter.end();
+}
+
 #endif
