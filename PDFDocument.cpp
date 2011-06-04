@@ -1777,7 +1777,7 @@ void PDFDocument::init()
 	actionClose->setIcon(getRealIcon("fileclose"));
 	action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_WS_WIN
-	action_Print->setVisible(false);
+	//action_Print->setVisible(false);
 #endif
 	actionUndo->setIcon(getRealIcon("undo"));
 	actionRedo->setIcon(getRealIcon("redo"));
@@ -2732,9 +2732,6 @@ void PDFDocument::printPDF(){
 	return;
 
     QString command;
-#ifdef Q_WS_WIN
-    return;
-#else
     // texmaker 3.0.1 solution
     unsigned int firstPage, lastPage;
     QPrinter printer(QPrinter::HighResolution);
@@ -2762,6 +2759,60 @@ void PDFDocument::printPDF(){
 
     if(!printer.printerName().isEmpty())
     {
+#ifdef Q_WS_WIN
+	QString paper;
+	switch (printer.paperSize()){
+	A0:paper="a0";
+	    break;
+	A1:paper="a1";
+	    break;
+	A2:paper="a2";
+	    break;
+	A3:paper="a3";
+	    break;
+	A4:paper="a4";
+		break;
+	A5:paper="a5";
+		break;
+	A6:paper="a6";
+		break;
+	B0:paper="isob0";
+		break;
+	B1:paper="isob1";
+		break;
+	B2:paper="isob2";
+		break;
+	B3:paper="isob3";
+		break;
+	B4:paper="isob4";
+		break;
+	B5:paper="isob5";
+		break;
+	B6:paper="isob6";
+		break;
+	Letter:paper="letter";
+		break;
+	Ledger:paper="ledger";
+		break;
+	Legal:paper="legal";
+		break;
+	default:
+	    paper="a4";
+	}
+
+	QStringList args;
+	args << "mgs";
+	args << "-sDEVICE=mswinpr2";
+	args << QString("-sOutputFile=\"\%printer\%%1\"").arg(printer.printerName().replace(" ","_"));
+	args << "-dBATCH";
+	args << "-dNOPAUSE";
+	args << "-dQUIET";
+	args << "-dNoCancel";
+	args << "-sPAPERSIZE="+paper;
+	args << "-dFirstPage="+QString::number(firstPage);
+	args << "-dLastPage="+QString::number(lastPage);
+	args << "\""+fileName()+"\"";
+#else
 	QStringList args;
 	args << "lp";
 	args << QString("-d %1").arg(printer.printerName().replace(" ","_"));
@@ -2784,10 +2835,11 @@ void PDFDocument::printPDF(){
 	}
 	args << "--";
 	args << QString("\"%1\"").arg(fileName());
+#endif
 	command=args.join(" ");
     }
     else return;
-#endif
+
     if(QProcess::execute(command) == 0) return;
 }
 
