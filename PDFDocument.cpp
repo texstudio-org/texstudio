@@ -1719,8 +1719,6 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig;
-	progress=0;
-	printer=0;
 
 	init();
 
@@ -1778,6 +1776,9 @@ void PDFDocument::init()
 	actionOpen->setIcon(getRealIcon("fileopen"));
 	actionClose->setIcon(getRealIcon("fileclose"));
 	action_Print->setIcon(getRealIcon("fileprint"));
+#ifdef Q_WS_WIN
+	action_Print->setVisible(false);
+#endif
 	actionUndo->setIcon(getRealIcon("undo"));
 	actionRedo->setIcon(getRealIcon("redo"));
 	actionCut->setIcon(getRealIcon("cut"));
@@ -2730,112 +2731,65 @@ void PDFDocument::printPDF(){
     if(!document)
 	return;
 
-    if(printer)
-	return;
+    QString command;
+#ifdef Q_WS_WIN
+    return;
+#else
+    // texmaker 3.0.1 solution
+    unsigned int firstPage, lastPage;
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog printDlg(&printer, this);
+    printer.setDocName(fileName());
+    printDlg.setMinMax(1, pdfWidget->realNumPages());
+    printDlg.setFromTo(1, pdfWidget->realNumPages());
+    printDlg.setOption(QAbstractPrintDialog::PrintToFile, false);
+    printDlg.setOption(QAbstractPrintDialog::PrintSelection, false);
+    printDlg.setOption(QAbstractPrintDialog::PrintPageRange, true);
+    printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, true);
 
-    printer=new QPrinter(QPrinter::HighResolution);
-
-    QPrintDialog dialog(printer, this);
-    dialog.setWindowTitle(tr("Print PDF-Document"));
-    dialog.setFromTo(1,pdfWidget->realNumPages());
-    if (dialog.exec() != QDialog::Accepted)
-	return;
-
-    printPainter.begin(printer);
-
-    int printerDPI=printer->resolution();
-    qDebug()<<printerDPI;
-    int start=printer->fromPage();
-    int end=printer->toPage();
-    if(start==0){
-	start=1;
-	end=pdfWidget->realNumPages();
+    printDlg.setWindowTitle(tr("Print"));
+    if(printDlg.exec() != QDialog::Accepted) return;
+    switch(printDlg.printRange())
+    {
+    case QAbstractPrintDialog::PageRange:
+	firstPage = printDlg.fromPage();
+	lastPage = printDlg.toPage();
+	break;
+    default:
+	firstPage = 1;
+	lastPage = pdfWidget->realNumPages();
     }
-    if(printer->pageOrder()==QPrinter::LastPageFirst){
-	start=end;
-    }
 
-    progress=new QProgressDialog(tr("Printing Document"), tr("Abort Print"), start-1, end, this);
-    connect(progress,SIGNAL(canceled()),this,SLOT(cancelPrint()));
-    progress->setWindowModality(Qt::NonModal);
-
-    progress->setValue(start-1);
-
-    // Use the painter to draw on the page.
-    Poppler::Page *page=document->page(start-1);
-    if(page){
-	Poppler::Page::Rotation rotate;
-	Poppler::Page::Orientation orient=page->orientation();
-	switch (orient){
-	case Poppler::Page::Landscape:rotate=Poppler::Page::Rotate270;
+    if(!printer.printerName().isEmpty())
+    {
+	QStringList args;
+	args << "lp";
+	args << QString("-d %1").arg(printer.printerName().replace(" ","_"));
+	args << QString("-n %1").arg(printer.numCopies());
+	//  args << QString("-t \"%1\"").arg(printer.docName());
+	args << QString("-P %1-%2").arg(firstPage).arg(lastPage);
+	switch(printer.duplex())
+	{
+	case QPrinter::DuplexNone:
+	    args << "-o sides=one-sided";
 	    break;
-	case Poppler::Page::Portrait:rotate=Poppler::Page::Rotate0;
+	case QPrinter::DuplexShortSide:
+	    args << "-o sides=two-sided-short-edge";
 	    break;
-	case Poppler::Page::Seascape:rotate=Poppler::Page::Rotate90;
+	case QPrinter::DuplexLongSide:
+	    args << "-o sides=two-sided-long-edge";
 	    break;
-	case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
+	default:
 	    break;
 	}
-
-	renderManager->renderToImage(start-1,this,"printImage",1.0*printerDPI,1.0*printerDPI,-1,-1,-1,-1,false,true,rotate);
+	args << "--";
+	args << QString("\"%1\"").arg(fileName());
+	command=args.join(" ");
     }
+    else return;
+#endif
+    if(QProcess::execute(command) == 0) return;
 }
 
-void PDFDocument::printImage(QPixmap img,int pg){
-    if(!progress)
-	return;
-    bool renderNextPage=false;
-    int printerDPI=printer->resolution();
-    int start=printer->fromPage();
-    int end=printer->toPage();
-    if(start==0){
-	start=1;
-	end=pdfWidget->realNumPages();
-    }
-    int printIncrement=1;
-    if(printer->pageOrder()==QPrinter::LastPageFirst){
-	printIncrement=-1;
-    }
-    if(!img.isNull() && pg>=0){
-	progress->setValue(pg+1);
-    	printPainter.drawPixmap(0,0,img);
-	if (pg != end-1){
-	    printer->newPage();
-	    Poppler::Page *page=document->page(pg+1);
-	    if(page){
-		Poppler::Page::Rotation rotate;
-		Poppler::Page::Orientation orient=page->orientation();
-		switch (orient){
-		case Poppler::Page::Landscape:rotate=Poppler::Page::Rotate270;
-		    break;
-		case Poppler::Page::Portrait:rotate=Poppler::Page::Rotate0;
-		    break;
-		case Poppler::Page::Seascape:rotate=Poppler::Page::Rotate90;
-		    break;
-		case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
-		    break;
-		}
-		renderManager->renderToImage(pg+printIncrement,this,"printImage",1.0*printerDPI,1.0*printerDPI,-1,-1,-1,-1,false,true,rotate);
-		renderNextPage=true;
-	    }
-	}
-    }
-    if(!renderNextPage){
-	printPainter.end();
-	delete progress;
-	progress=0;
-	delete printer;
-	printer=0;
-    }
-}
-
-void PDFDocument::cancelPrint(){
-    delete progress;
-    progress=0;
-    printer->abort();
-    printPainter.end();
-    delete printer;
-    printer=0;
-}
 
 #endif
