@@ -6,7 +6,6 @@
 #ifndef NO_POPPLER_PREVIEW
 
 #include <QCache>
-#include <QSemaphore>
 
 #include "pdfrenderengine.h"
 
@@ -56,8 +55,6 @@ public:
     QMutex mPriorityLock;
 
     int num_renderQueues;
-
-    QSemaphore runningQueues;
 
     
     QList<PDFRenderEngine *>renderQueues;
