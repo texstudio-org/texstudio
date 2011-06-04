@@ -326,6 +326,7 @@ public slots:
 	void fileDestroyed(const QString& fileName);
 	void printPDF();
 	void printImage(QPixmap img,int pg);
+	void cancelPrint();
 	
 private slots:
 	void enablePageActions(int, bool);
@@ -414,10 +415,9 @@ private:
 	bool syncFromSourceBlock;  //temporary disable sync from source
 
 	//for printing
-	QPrinter printer;
+	QPrinter *printer;
 	QProgressDialog *progress;
 	QPainter printPainter;
-	void cancelPrint();
 };
 
 #endif
