@@ -1473,7 +1473,7 @@ void PDFWidget::fitWindow(bool checked)
 	emit changedScaleOption(scaleOption);
 }
 
-void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) // dir = 1 for in, -1 for out
+void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) // dir = 1 for in, -1 for out, 0 to use newScaleFactor
 {
 	QPointF pagePos(clickPos.x() / scaleFactor * 72.0 / dpi,
 			  clickPos.y() / scaleFactor * 72.0 / dpi);
@@ -1495,9 +1495,11 @@ void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) //
 		if (scaleFactor < kMinScaleFactor)
 			scaleFactor = kMinScaleFactor;
 	}
+	else if (dir == 0) {
+		scaleFactor=newScaleFactor;
+	}
 	else {
-	    //dir==0
-	    scaleFactor=newScaleFactor;
+		return;
 	}
 
 	adjustSize();
@@ -1670,6 +1672,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig;
 	progress=0;
+	printer=0;
 
 	init();
 
@@ -2420,23 +2423,22 @@ void PDFDocument::zoomToRight(QWidget *otherWindow)
 
 qreal PDFDocument::zoomSliderPosToScale(int pos) {
 	if (pos < 0) {
-		return 0.009 * pos + 1;
+		return (1-kMinScaleFactor)/abs(zoomSlider->minimum()) * pos + 1;
 	} else {
-		return 0.03 * pos + 1;
+		return (kMaxScaleFactor-1)/zoomSlider->maximum() * pos + 1;
 	}
 }
 
 int PDFDocument::scaleToZoomSliderPos(qreal scale) {
 	if (scale < 1) {
-		return (scale-1) / 0.009;
+		return (scale-1) / (1-kMinScaleFactor)*abs(zoomSlider->minimum());
 	} else {
-		return (scale-1) / 0.03;
+		return (scale-1) / (kMaxScaleFactor-1)*zoomSlider->maximum();
 	}
 }
 
 void PDFDocument::zoomSliderChange(int pos)
 {
-    qDebug()<<"slider";
 	if (pos >-10 && pos < 10) {
 		pos = 0;
 		zoomSlider->setValue(pos);
@@ -2681,27 +2683,36 @@ void PDFDocument::printPDF(){
     if(!document)
 	return;
 
-    QPrintDialog dialog(&printer, this);
+    if(printer)
+	return;
+
+    printer=new QPrinter(QPrinter::HighResolution);
+
+    QPrintDialog dialog(printer, this);
     dialog.setWindowTitle(tr("Print PDF-Document"));
     dialog.setFromTo(1,pdfWidget->realNumPages());
     if (dialog.exec() != QDialog::Accepted)
 	return;
 
-    printPainter.begin(&printer);
+    printPainter.begin(printer);
 
-    double printerDPI=printer.resolution();
-    int start=printer.fromPage();
-    int end=printer.toPage();
+    int printerDPI=printer->resolution();
+    qDebug()<<printerDPI;
+    int start=printer->fromPage();
+    int end=printer->toPage();
     if(start==0){
 	start=1;
 	end=pdfWidget->realNumPages();
     }
+    if(printer->pageOrder()==QPrinter::LastPageFirst){
+	start=end;
+    }
 
-    progress=new QProgressDialog(tr("Printing Document"), tr("Abort Print"), start, end, this);
+    progress=new QProgressDialog(tr("Printing Document"), tr("Abort Print"), start-1, end, this);
     connect(progress,SIGNAL(canceled()),this,SLOT(cancelPrint()));
     progress->setWindowModality(Qt::NonModal);
 
-    progress->setValue(start);
+    progress->setValue(start-1);
 
     // Use the painter to draw on the page.
     Poppler::Page *page=document->page(start-1);
@@ -2719,7 +2730,7 @@ void PDFDocument::printPDF(){
 	    break;
 	}
 
-	renderManager->renderToImage(start-1,this,"printImage",printerDPI,printerDPI,-1,-1,-1,-1,false,true,rotate);
+	renderManager->renderToImage(start-1,this,"printImage",1.0*printerDPI,1.0*printerDPI,-1,-1,-1,-1,false,true,rotate);
     }
 }
 
@@ -2727,18 +2738,22 @@ void PDFDocument::printImage(QPixmap img,int pg){
     if(!progress)
 	return;
     bool renderNextPage=false;
-    double printerDPI=printer.resolution();
-    int start=printer.fromPage();
-    int end=printer.toPage();
+    int printerDPI=printer->resolution();
+    int start=printer->fromPage();
+    int end=printer->toPage();
     if(start==0){
 	start=1;
 	end=pdfWidget->realNumPages();
+    }
+    int printIncrement=1;
+    if(printer->pageOrder()==QPrinter::LastPageFirst){
+	printIncrement=-1;
     }
     if(!img.isNull() && pg>=0){
 	progress->setValue(pg+1);
     	printPainter.drawPixmap(0,0,img);
 	if (pg != end-1){
-	    printer.newPage();
+	    printer->newPage();
 	    Poppler::Page *page=document->page(pg+1);
 	    if(page){
 		Poppler::Page::Rotation rotate;
@@ -2753,7 +2768,7 @@ void PDFDocument::printImage(QPixmap img,int pg){
 		case Poppler::Page::UpsideDown:rotate=Poppler::Page::Rotate180;
 		    break;
 		}
-		renderManager->renderToImage(pg+1,this,"printImage",printerDPI,printerDPI,-1,-1,-1,-1,false,true,rotate);
+		renderManager->renderToImage(pg+printIncrement,this,"printImage",1.0*printerDPI,1.0*printerDPI,-1,-1,-1,-1,false,true,rotate);
 		renderNextPage=true;
 	    }
 	}
@@ -2762,13 +2777,18 @@ void PDFDocument::printImage(QPixmap img,int pg){
 	printPainter.end();
 	delete progress;
 	progress=0;
+	delete printer;
+	printer=0;
     }
 }
 
 void PDFDocument::cancelPrint(){
     delete progress;
     progress=0;
+    printer->abort();
     printPainter.end();
+    delete printer;
+    printer=0;
 }
 
 #endif
