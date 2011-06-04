@@ -70,6 +70,8 @@ private:
 	qreal	parentDpi;
 	QPixmap	image;
 	
+	QPoint mouseTranslate;
+	
 	QPoint	imageLoc, mouseOffset;
 	QSize	imageSize;
 	qreal	imageDpi;
@@ -111,10 +113,12 @@ public:
 	void restoreState();
 	void setResolution(int res);
 	void resetMagnifier();
+	int normalizedPageIndex(int pageIndex);
 	void goToPageDirect(int pageIndex, bool sync);
 	void setHighlightPath(const int pageIndex, const QPainterPath& path);
 	int getHighlightPage() const;
 	void goToDestination(const QString& destName);
+	void goToPageRelativePosition(int page, float xinpage, float yinpage);
 	int getPageIndex();
 	void reloadPage(bool sync = true);
 	void updateStatusBar();
@@ -126,8 +130,6 @@ public:
 	int gridCols() const;
 	int gridRowHeight() const;
 	PDFDocument * getPDFDocument();
-	int getXOffset(int p);
-	int getYOffset(int p);
 	int getPageOffset() const;
 	double totalScaleFactor() const;
 

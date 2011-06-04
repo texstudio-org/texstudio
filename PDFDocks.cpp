@@ -656,6 +656,14 @@ void PDFScrollArea::goToPage(int page,bool sync){
 	} else pdf->goToPageDirect(page, sync);
 }
 
+void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF& pos, int xmargin, int ymargin){
+	Q_ASSERT(pdf);
+	if (!pdf || page < 0 || page >= pdf->realNumPages()) return;
+	goToPage(page);
+	QPoint scaled = (pdf->totalScaleFactor() * pos).toPoint() + pdf->pageRect(page).topLeft();
+	ensureVisible(scaled.x(), scaled.y(), xmargin, ymargin);
+}
+
 bool PDFScrollArea::event(QEvent * e){
 	if (e->type() == QEvent::StyleChange || e->type() == QEvent::LayoutRequest) {
 		updateScrollBars();
