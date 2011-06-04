@@ -39,8 +39,7 @@ void PDFRenderEngine::setDocument(Poppler::Document *doc){
 
 
 void PDFRenderEngine::run(){
-	queue->runningQueues.acquire(1);
-	while (!queue->stopped) {
+	forever {
 		bool priorityThread=queue->mPriorityLock.tryLock();
 		RenderCommand command(-1);
 		if(priorityThread){
@@ -89,7 +88,6 @@ void PDFRenderEngine::run(){
 		    //qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << priorityThread << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;
 		}
 	}
-	queue->runningQueues.release(1);
 	queue->deref();
 	deleteLater();
 }
