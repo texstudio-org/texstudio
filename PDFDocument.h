@@ -145,6 +145,8 @@ public:
 
 	void zoom(qreal scale);
 
+	virtual void wheelEvent(QWheelEvent *event);
+
 private slots:
 	void goFirst();
 	void goPrev();
@@ -197,7 +199,6 @@ protected:
 	virtual void focusInEvent(QFocusEvent *event);
 
 	virtual void contextMenuEvent(QContextMenuEvent *event);
-	virtual void wheelEvent(QWheelEvent *event);
 
 private:
 	void init();

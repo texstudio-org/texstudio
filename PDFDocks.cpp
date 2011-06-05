@@ -691,6 +691,14 @@ bool PDFScrollArea::eventFilter(QObject * o, QEvent * e){
 	return false;
 }
 
+void PDFScrollArea::wheelEvent(QWheelEvent * e){
+	if (pdf && !getContinuous()) {
+		pdf->wheelEvent(e);
+		return;
+	}
+	QAbstractScrollArea::wheelEvent(e);
+}
+
 void
 PDFScrollArea::resizeEvent(QResizeEvent *)
 {
