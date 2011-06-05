@@ -1697,6 +1697,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig;
+	gsCommand="mgs.exe";
 
 	init();
 
@@ -2021,9 +2022,11 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalVi
 		scrollArea->goToPage(page,false);
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert)
+void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert,const QString gs)
 {
 	externalViewerCmdLine = externalViewer;
+	if(!gs.isEmpty())
+	    gsCommand=gs;
 	setCurrentFile(fileName);
 	reload(false);
 	if (watcher) {
@@ -2769,7 +2772,7 @@ void PDFDocument::printPDF(){
 	}
 
 	QStringList args;
-	args << "mgs";
+	args << gsCommand;
 	args << "-sDEVICE=mswinpr2";
 	args << QString("-sOutputFile=\"\%printer\%%1\"").arg(printer.printerName().replace(" ","_"));
 	args << "-dBATCH";
