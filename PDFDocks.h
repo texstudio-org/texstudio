@@ -239,6 +239,7 @@ public slots:
 protected:
 	bool event(QEvent *);
 	bool eventFilter(QObject *, QEvent *);
+	void wheelEvent(QWheelEvent *);
 	void resizeEvent(QResizeEvent *event);
 	void scrollContentsBy(int dx, int dy);
 
