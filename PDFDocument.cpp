@@ -319,9 +319,21 @@ void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
 
 PDFMovie::PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page):VideoPlayer(parent), page(page){
 	REQUIRE(parent && annot);
+	REQUIRE(annot->subType() == Poppler::Annotation::AMovie);
+	REQUIRE(annot->movie());
 	boundary = annot->boundary();
 	QString url = annot->movie()->url();
 	this->load(url);
+	
+	popup = new QMenu(this);
+	popup->addAction(tr("Play"), this,SLOT(play()));
+	popup->addAction(tr("Pause"), this,SLOT(pause()));
+	popup->addAction(tr("Stop"), this,SLOT(stop()));
+	popup->addSeparator();
+	popup->addAction(tr("Seek"), this, SLOT(seekDialog()));
+	popup->addAction(tr("Set volume"), this, SLOT(setVolumeDialog()));
+	
+	setCursor(Qt::PointingHandCursor);
 }
 
 void PDFMovie::place(){
@@ -333,6 +345,33 @@ void PDFMovie::place(){
 	move(tl.toPoint());
 }
 
+void PDFMovie::contextMenuEvent(QContextMenuEvent * e){
+	popup->popup(e->globalPos());
+	e->accept();
+}
+
+
+void PDFMovie::mouseReleaseEvent(QMouseEvent *e){
+	if (isPlaying()) pause();
+	else play();
+	e->accept();
+}
+
+void PDFMovie::setVolumeDialog(){
+	float vol = volume();
+	UniversalInputDialog uid;
+	uid.addVariable(&vol, tr("Volume:"));
+	if (!uid.exec()) return;
+	setVolume(vol);
+}
+
+void PDFMovie::seekDialog(){
+	float pos = currentTime() * 0.001;
+	UniversalInputDialog uid;
+	uid.addVariable(&pos, tr("Time:"));
+	if (!uid.exec()) return;
+	seek(pos * 1000LL);
+}
 
 
 //#pragma mark === PDFWidget ===
@@ -344,7 +383,7 @@ QCursor *PDFWidget::zoomOutCursor = NULL;
 PDFWidget::PDFWidget()
 	: QLabel()
 	, document(NULL)
-	, clickedLink(NULL)
+       , clickedLink(NULL), clickedAnnotation(0)
 	, realPageIndex(0), oldRealPageIndex(0)
 	, scaleFactor(1.0)
 	, dpi(72.0)
@@ -619,6 +658,7 @@ static Qt::KeyboardModifiers mouseDownModifiers;
 void PDFWidget::mousePressEvent(QMouseEvent *event)
 {
 	clickedLink = NULL;
+	clickedAnnotation = 0;
 	
 	if (event->button() != Qt::LeftButton) {
 		QWidget::mousePressEvent(event);
@@ -644,39 +684,29 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 					break;
 				}
 			}
-			if (clickedLink == NULL) {
-				bool clickedAnnon = false;
-				
-				
+			if (!clickedLink) 
 				foreach (Poppler::Annotation* annon, page->annotations()) 
 					if (annon->boundary().contains(scaledPos)) {
-						if (movie) delete movie;
-						movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(annon), pageNr);
-						movie->place();
-						movie->show();
-						movie->play();
-						clickedAnnon = true;
+						clickedAnnotation = annon;
 						break;
 					}
-				
-				
-				if (!clickedAnnon) {
-					switch (currentTool) {
-					case kMagnifier:
-						if (mouseDownModifiers & (Qt::ShiftModifier | Qt::AltModifier))
-							; // do nothing - zoom in or out (on mouseUp)
-						else
-							useMagnifier(event);
-						break;
-	
-					case kScroll:
-						setCursor(Qt::ClosedHandCursor);
-						scrollClickPos = event->globalPos();
-						usingTool = kScroll;
-						break;
-					}
+			
+			if (!clickedLink && !clickedAnnotation) {
+				switch (currentTool) {
+				case kMagnifier:
+					if (mouseDownModifiers & (Qt::ShiftModifier | Qt::AltModifier))
+						; // do nothing - zoom in or out (on mouseUp)
+					else
+						useMagnifier(event);
+					break;
+
+				case kScroll:
+					setCursor(Qt::ClosedHandCursor);
+					scrollClickPos = event->globalPos();
+					usingTool = kScroll;
+					break;
 				}
-			} 
+			}
 			delete page;
 		}
 	}
@@ -685,12 +715,23 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-	if (clickedLink != NULL) {
+	if (clickedLink) {
 		int page;
 		QPointF scaledPos;
 		mapToScaledPosition(event->pos(), page, scaledPos);
 		if (page>-1 && clickedLink->linkArea().contains(scaledPos)) {
 			doLink(clickedLink);
+		}
+	} else if (clickedAnnotation && clickedAnnotation->subType() == Poppler::Annotation::AMovie) {
+		int page;
+		QPointF scaledPos;
+		mapToScaledPosition(event->pos(), page, scaledPos);
+		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos) ) {
+			if (movie) delete movie;
+			movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(clickedAnnotation), page);
+			movie->place();
+			movie->show();
+			movie->play();
 		}
 	} else if (currentTool == kPresentation) {
 		if (event->button() == Qt::LeftButton) goNext();
@@ -725,6 +766,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 		}
 	}
 	clickedLink = NULL;
+	clickedAnnotation = 0;
 	usingTool = kNone;
 	updateCursor(event->pos());
 	event->accept();
@@ -1066,6 +1108,15 @@ void PDFWidget::updateCursor(const QPoint& pos)
 			return;
 		}
 	}
+	
+	foreach (Poppler::Annotation* annot, page->annotations()) {
+		if (annot->boundary().contains(scaledPos) && annot->subType() == Poppler::Annotation::AMovie){
+			setCursor(Qt::PointingHandCursor);
+			delete page;
+			return;
+		}
+	}
+
 	delete page;
 	updateCursor();
 }

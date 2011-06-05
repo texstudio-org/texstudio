@@ -86,7 +86,14 @@ class PDFMovie: public Phonon::VideoPlayer
 public:
 	PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page);
 	void place();
+protected:
+	void contextMenuEvent(QContextMenuEvent *);
+	void mouseReleaseEvent(QMouseEvent *e);
+public slots:
+	void setVolumeDialog();
+	void seekDialog();
 private:
+	QMenu* popup;
 	QRectF boundary;
 	int page;
 };
@@ -215,6 +222,7 @@ private:
 	Poppler::Document	*document;
 	//QList<int> pages;
 	Poppler::Link		*clickedLink;
+	Poppler::Annotation	*clickedAnnotation;
 
 	int realPageIndex, oldRealPageIndex;
 	QList<int> pages;
