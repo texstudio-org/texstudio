@@ -318,11 +318,16 @@ void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
 
 
 PDFMovie::PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page):VideoPlayer(parent), page(page){
-	REQUIRE(parent && annot);
+	REQUIRE(parent && annot && parent->getPDFDocument());
 	REQUIRE(annot->subType() == Poppler::Annotation::AMovie);
 	REQUIRE(annot->movie());
 	boundary = annot->boundary();
 	QString url = annot->movie()->url();
+	url = QFileInfo(parent->getPDFDocument()->fileName()).dir().absoluteFilePath(url);
+	if (!QFileInfo(url).exists()) {
+		QMessageBox::warning(this, "", tr("File %1 does not exists").arg(url));
+		return;
+	}
 	this->load(url);
 	
 	popup = new QMenu(this);
