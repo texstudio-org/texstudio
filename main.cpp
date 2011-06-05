@@ -156,6 +156,7 @@ int main(int argc, char ** argv) {
 			return 0;
 		}
 
+	a.setApplicationName( "TexMakerX" );
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
 #if QT_VERSION >= 0x040400
