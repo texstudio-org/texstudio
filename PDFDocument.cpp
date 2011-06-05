@@ -989,16 +989,19 @@ void PDFWidget::setTool(int tool)
 
 
 void PDFWidget::syncWindowClick(const QPoint& p, bool activate){
-	int page;
-	QPointF pagePos;
-	mapToScaledPosition(p, page, pagePos);
-	emit syncClick(page, pagePos, activate);
+	int page = pageFromPos(p);
+	if (page < 0) return;
+	QRect r = pageRect(page);
+	emit syncClick(page, QPointF(p - r.topLeft()) / totalScaleFactor(), activate); 
+	
 }
 
 void PDFWidget::syncCurrentPage(bool activate){
+	if (pages.isEmpty()) return;
 	//single page step mode: jump to center of first page in grid; multi page step: jump to center of grid
-	if (pageStep() > 1) syncWindowClick(rect().center(), activate);
-	else emit syncClick(pages.first(), QPointF(0.5,0.5), activate);
+	int midPage = pageStep() > 1?pages[pages.size()/2]:pages.first();
+	QSize s = pageRect(midPage).size();
+	emit syncClick(midPage, QPointF(s.width(),s.height()) / totalScaleFactor(), activate);
 }
 
 void PDFWidget::updateCursor()
