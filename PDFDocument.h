@@ -301,6 +301,7 @@ public:
 
 	QString fileName() const { return curFile; }
 	QString externalViewer() const { return externalViewerCmdLine; }
+	QString getGSCommand() const { return gsCommand; }
 
 	void zoomToRight(QWidget *otherWindow);
 	void showScale(qreal scale);
@@ -343,7 +344,7 @@ public slots:
 	void toggleFullScreen(const bool fullscreen);
 	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
-	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true);
+	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true,const QString gs="");
 	void fileDestroyed(const QString& fileName);
 	void printPDF();
 	
@@ -396,6 +397,7 @@ private:
 
 	QString curFile;
 	QString externalViewerCmdLine;
+	QString gsCommand;
 
 	Poppler::Document	*document;
 	

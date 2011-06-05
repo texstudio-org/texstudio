@@ -3931,7 +3931,7 @@ void Texmaker::newPdfPreviewer(){
 
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
 	if (from) {
-		pdfviewerWindow->loadFile(from->fileName(), from->externalViewer(), true);
+		pdfviewerWindow->loadFile(from->fileName(), from->externalViewer(), true,from->getGSCommand());
 		pdfviewerWindow->goToPage(from->widget()->getPageIndex());
 	}//load file before enabling sync or it will jump to the first page
 
