@@ -162,6 +162,15 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 		}
 		const QStringList tokens("\\\\");
 		breakLoop=(findNextToken(cur,tokens)==-1);
+		// go over \hline if present
+		QString text=cur.line().text();
+		int col=cur.columnNumber();
+		QRegExp rxHL("(\\s*\\\\hline\\s*)");
+		int pos_hline=rxHL.indexIn(text,col);
+		if(pos_hline>-1){
+		    int l=rxHL.cap().length();
+		    cur.movePosition(l,QDocumentCursor::Right);
+		}
 		if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
 		line=cur.line().text();
 		if(line.contains("\\end{")) breakLoop=true;
