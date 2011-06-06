@@ -2529,7 +2529,7 @@ void PDFDocument::showPage(int page)
 {
 	//Q_ASSERT(document);
 	if (!document) return;
-	int p=page-pdfWidget->getPageOffset();
+	int p=page;//-pdfWidget->getPageOffset();
 	if(p<1)
 	    p=1;
 	int p2=page+pdfWidget->visiblePages()-1-pdfWidget->getPageOffset();
