@@ -45,6 +45,23 @@ void PDFRenderEngine::run(){
 		if(priorityThread){
 			forever{
 				bool leave=false;
+				queue->mCommandsAvailable.acquire();
+				if(queue->stopped) break;
+				// get Linedata
+				queue->mQueueLock.lock();
+				command=queue->mCommands.dequeue();
+				if(command.priority){
+				    leave=true;
+				}else{
+				    queue->mCommands.prepend(command);
+				    queue->mCommandsAvailable.release();
+				}
+				queue->mQueueLock.unlock();
+				if(leave){
+				    queue->mPriorityLock.unlock();
+				    break;
+				}
+				/*
 				{ QMutexLocker(&queue->mQueueLock);
 					if(queue->stopped)
 						break;
@@ -52,7 +69,7 @@ void PDFRenderEngine::run(){
 						command=queue->mCommands.head();
 						if(command.priority){
 							leave=queue->mCommandsAvailable.tryAcquire();
-							if(leave)
+							if(leave && !queue->mCommands.isEmpty())
 								queue->mCommands.dequeue();
 						}
 						if(leave){
@@ -60,7 +77,7 @@ void PDFRenderEngine::run(){
 							break;
 						}
 					}
-				}
+				}*/
 				msleep(1);
 			}
 		}else{
