@@ -2628,7 +2628,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 
 		QDocumentPrivate *d = m_doc->impl();
 
-		int column;
+		int column=0;
 		foreach (const RenderRange& r, ranges) {
 			int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
 			d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, newFont);
