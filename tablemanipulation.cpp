@@ -165,8 +165,9 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 		// go over \hline if present
 		QString text=cur.line().text();
 		int col=cur.columnNumber();
-		QRegExp rxHL("(\\s*\\\\hline\\s*)");
-		int pos_hline=rxHL.indexIn(text,col);
+		text=text.mid(col);
+		QRegExp rxHL("^(\\s*\\\\hline\\s*)");
+		int pos_hline=rxHL.indexIn(text);
 		if(pos_hline>-1){
 		    int l=rxHL.cap().length();
 		    cur.movePosition(l,QDocumentCursor::Right);
