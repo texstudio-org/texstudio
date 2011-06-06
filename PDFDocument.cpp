@@ -1326,13 +1326,13 @@ void PDFWidget::goFirst()
 void PDFWidget::goPrev()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(realPageIndex - pageStep());
+	getScrollArea()->goToPage(realPageIndex+ getPageOffset() - pageStep());
 }
 
 void PDFWidget::goNext()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(realPageIndex + pageStep());
+	getScrollArea()->goToPage(realPageIndex+ getPageOffset() + pageStep());
 }
 
 void PDFWidget::goLast()
