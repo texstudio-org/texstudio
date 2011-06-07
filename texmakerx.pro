@@ -10,7 +10,9 @@ exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
     script
-QT += phonon
+!isEmpty(PHONON){
+    QT += phonon
+}
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
