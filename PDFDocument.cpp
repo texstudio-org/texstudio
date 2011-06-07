@@ -316,7 +316,7 @@ void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
 	
 }
 
-
+#ifdef PHONON
 PDFMovie::PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page):VideoPlayer(parent), page(page){
 	REQUIRE(parent && annot && parent->getPDFDocument());
 	REQUIRE(annot->subType() == Poppler::Annotation::AMovie);
@@ -377,7 +377,7 @@ void PDFMovie::seekDialog(){
 	if (!uid.exec()) return;
 	seek(pos * 1000LL);
 }
-
+#endif
 
 //#pragma mark === PDFWidget ===
 
@@ -395,7 +395,7 @@ PDFWidget::PDFWidget()
 	, scaleOption(kFixedMag)
 	, imageDpi(0)
 	, imagePage(-1)
-       , magnifier(NULL), movie(0)
+       , magnifier(NULL)
 	, usingTool(kNone)
 	, singlePageStep(true)
 	, gridx(1), gridy(1)
@@ -404,6 +404,9 @@ PDFWidget::PDFWidget()
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
 
+#ifdef PHONON
+	movie=0;
+#endif
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
 
@@ -486,10 +489,12 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 	    setSinglePageStep(globalConfig->singlepagestep);
 	}else
             docPages=0;
+#ifdef PHONON
 	if (movie) {
 		delete movie;
 		movie = 0;
 	}
+#endif
 	reloadPage();
 }
 
@@ -731,6 +736,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 		int page;
 		QPointF scaledPos;
 		mapToScaledPosition(event->pos(), page, scaledPos);
+#ifdef PHONON
 		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos) ) {
 			if (movie) delete movie;
 			movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(clickedAnnotation), page);
@@ -738,6 +744,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			movie->show();
 			movie->play();
 		}
+#endif
 	} else if (currentTool == kPresentation) {
 		if (event->button() == Qt::LeftButton) goNext();
 		else if (event->button() == Qt::RightButton) goPrev();
@@ -1244,7 +1251,9 @@ void PDFWidget::updateStatusBar()
 		doc->showPage(realPageIndex + 1);
 		doc->showScale(scaleFactor);
 	}
+#ifdef PHONON
 	if (movie) movie->place();
+#endif
 }
 PDFDocument * PDFWidget::getPDFDocument(){
 	QWidget *widget = window();

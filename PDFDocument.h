@@ -78,6 +78,7 @@ private:
 	int imagePage;
 };
 
+#ifdef PHONON
 #include <Phonon/VideoPlayer>
 
 class PDFMovie: public Phonon::VideoPlayer
@@ -97,7 +98,7 @@ private:
 	QRectF boundary;
 	int page;
 };
-
+#endif
 
 typedef enum {
 	kFixedMag,
@@ -255,7 +256,9 @@ private:
 	int	imagePage;
 
 	PDFMagnifier	*magnifier;
+#ifdef PHONON
 	PDFMovie	*movie;
+#endif
 	int		currentTool;	// the current tool selected in the toolbar
 	int		usingTool;	// the tool actually being used in an ongoing mouse drag
 	bool		singlePageStep;
