@@ -388,14 +388,14 @@ QCursor *PDFWidget::zoomOutCursor = NULL;
 PDFWidget::PDFWidget()
 	: QLabel()
 	, document(NULL)
-       , clickedLink(NULL), clickedAnnotation(0)
+	, clickedLink(NULL), clickedAnnotation(0)
 	, realPageIndex(0), oldRealPageIndex(0)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
 	, imageDpi(0)
 	, imagePage(-1)
-       , magnifier(NULL)
+	, magnifier(NULL)
 	, usingTool(kNone)
 	, singlePageStep(true)
 	, gridx(1), gridy(1)
@@ -721,6 +721,21 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 			}
 			delete page;
 		}
+	} else {
+		Poppler::Page *page=0;
+		QPointF scaledPos;
+		int pageNr;
+		mapToScaledPosition(event->pos(), pageNr, scaledPos);
+		if (pageNr>=0 && pageNr < realNumPages()) 
+			page=document->page(pageNr);
+		if (page) {
+			foreach (Poppler::Annotation* annon, page->annotations()) 
+				if (annon->boundary().contains(scaledPos)) {
+					clickedAnnotation = annon;
+					break;
+				}			
+		}
+		delete page;
 	}
 	event->accept();
 }
@@ -746,7 +761,10 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			movie->show();
 			movie->play();
 		}
+#else
+		QMessageBox::warning(this, "TexMakerX", "You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TexMakerX with the option PHONON=true", QMessageBox::Ok);
 #endif
+
 	} else if (currentTool == kPresentation) {
 		if (event->button() == Qt::LeftButton) goNext();
 		else if (event->button() == Qt::RightButton) goPrev();

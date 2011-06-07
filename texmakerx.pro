@@ -12,6 +12,7 @@ QT += network \
     script
 !isEmpty(PHONON){
     QT += phonon
+    DEFINES += PHONON
 }
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
