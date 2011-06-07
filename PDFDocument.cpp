@@ -2197,6 +2197,8 @@ void PDFDocument::reload(bool fillCache)
 			if(fillCache){
 				renderManager->fillCache();
 			}
+			scrollArea->updateScrollBars();
+			
 			emit reloaded();
 		}
 	}
