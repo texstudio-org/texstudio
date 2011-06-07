@@ -231,6 +231,7 @@ public:
 
 	virtual ~PDFScrollArea();
 
+	void updateScrollBars();
 public slots:
 	void setContinuous(bool cont);
 	void goToPage(int page, bool sync=true);
@@ -248,7 +249,6 @@ signals:
 
 private:
 	void updateWidgetPosition();
-	void updateScrollBars();
 	bool continuous;
 	PDFWidget* pdf;
 	int updateWidgetPositionStackWatch, onResizeStackWatch;
