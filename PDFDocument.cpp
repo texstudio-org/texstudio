@@ -1024,8 +1024,10 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		}
 	}else{
 		static QTime lastScrollTime = QTime::currentTime();
+		static int totalScrolling = 0;
 		bool mayChangePage = !getScrollArea()->getContinuous();
 		int numDegrees = event->delta() / 8;
+		totalScrolling+=numDegrees;
 		int numSteps = numDegrees / 15;
 		QScrollBar *scrollBar = (event->orientation() == Qt::Horizontal)
 					   ? getScrollArea()->horizontalScrollBar()
@@ -1035,9 +1037,10 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			scrollBar->setValue(scrollBar->value() - 3 * numSteps * scrollBar->singleStep());
 			if (scrollBar->value() != oldValue) {
 				lastScrollTime = QTime::currentTime();
+				totalScrolling = 0;
 				mayChangePage = false;
 			}
-			if (QTime::currentTime() < lastScrollTime.addMSecs(500))
+			if (QTime::currentTime() < lastScrollTime.addMSecs(500) && qAbs(totalScrolling) < 180)
 				mayChangePage = false;
 		}
 		if (mayChangePage) {
@@ -1050,6 +1053,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 				scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 			}
 			lastScrollTime = QTime::currentTime();
+			totalScrolling = 0;
 		}
 		event->accept();
 	}
