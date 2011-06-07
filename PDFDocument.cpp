@@ -548,6 +548,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.setBrush(QColor(255, 255, 0, 63));
 				painter.drawPath(highlightPath);
 			}
+			if (currentTool == kPresentation)
+				doc->renderManager->renderToImage(pageNr+1,this,"",dpi * scaleFactor, dpi * scaleFactor, 0,0, newRect.width(), newRect.height(),true,true);
 		} else {
 			QRect visRect=visibleRegion().boundingRect();
 			//image = QPixmap(newRect.width(), newRect.height());
