@@ -38,6 +38,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionFileOpen"/>
     <addaction name="action_Print"/>
     <addaction name="actionClose"/>
     <addaction name="separator"/>
@@ -791,6 +792,14 @@
   <action name="action_Print">
    <property name="text">
     <string>&amp;Print</string>
+   </property>
+  </action>
+  <action name="actionFileOpen">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

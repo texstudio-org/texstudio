@@ -360,6 +360,8 @@ public slots:
 	void printPDF();
 	
 private slots:
+	void fileOpen();
+	
 	void enablePageActions(int, bool);
 	void enableZoomActions(qreal);
 	void adjustScaleActions(autoScaleOption);

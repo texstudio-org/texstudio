@@ -1841,7 +1841,7 @@ void PDFDocument::init()
 	actionActual_Size->setIcon(getRealIcon("zoom-original"));
 	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
 	actionNew->setIcon(getRealIcon("filenew"));
-	actionOpen->setIcon(getRealIcon("fileopen"));
+	actionFileOpen->setIcon(getRealIcon("fileopen"));
 	actionClose->setIcon(getRealIcon("fileclose"));
 	action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_WS_WIN
@@ -1950,6 +1950,7 @@ void PDFDocument::init()
 	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
 	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), this, SLOT(enablePageActions(int,bool)));
+	connect(actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
 	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
@@ -2587,6 +2588,12 @@ void PDFDocument::goToSource()
 	Q_ASSERT(pdfWidget);
 	if (!pdfWidget) return;
 	pdfWidget->syncCurrentPage(true);
+}
+
+void PDFDocument::fileOpen(){
+	QString newFile = QFileDialog::getOpenFileName(this,tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
+	if (newFile.isEmpty()) return;
+	loadFile(newFile, externalViewer().replace(curFile,newFile), false);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)

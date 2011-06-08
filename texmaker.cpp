@@ -3698,15 +3698,36 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
 	QStringList filesToLoad;
 	bool activateMasterMode = false;
-	int line=-1;
+	int line=-1, page=-1;
+	bool pdfViewerOnly = false;
 	for (int i = 0; i < args.size(); ++i) {
 		if (args[i]=="") continue;
 		if (args[i][0] != '-')  filesToLoad << args[i];
 		//-form is for backward compatibility
 		if (args[i] == "--master") activateMasterMode=true;
 		if (args[i] == "--line" && i+1<args.size())  line=args[++i].toInt()-1;
+#ifndef NO_POPPLER_PREVIEW
+		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
+		if (args[i] == "--page") page = args[++i].toInt()-1;
+#endif
 	}
 
+#ifndef NO_POPPLER_PREVIEW
+	if (pdfViewerOnly) {
+		if (PDFDocument::documentList().isEmpty())
+			newPdfPreviewer();
+		foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(),"");
+			connect(viewer,SIGNAL(destroyed()), SLOT(deleteLater()));
+			viewer->show();
+			viewer->setFocus();
+			if (page!=-1) viewer->goToPage(page);
+		}
+		hide();
+		return;
+	}
+#endif
+	
 	// execute command line
 	foreach(const QString& fileToLoad,filesToLoad){
 		QFileInfo ftl(fileToLoad);
