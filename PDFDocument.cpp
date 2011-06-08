@@ -358,7 +358,10 @@ void PDFMovie::contextMenuEvent(QContextMenuEvent * e){
 
 void PDFMovie::mouseReleaseEvent(QMouseEvent *e){
 	if (isPlaying()) pause();
-	else play();
+	else {
+		if (!isPaused()) seek(0);
+		play();
+	}
 	e->accept();
 }
 
