@@ -262,6 +262,7 @@
         <file>completion/nameref.cwl</file>
         <file>completion/natbib.cwl</file>
         <file>completion/nicefrac.cwl</file>
+        <file>completion/multimedia.cwl</file>        
         <file>completion/nomencl.cwl</file>
         <file>completion/pdfpages.cwl</file>
         <file>completion/pgfcore.cwl</file>

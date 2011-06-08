@@ -41,6 +41,11 @@ beamer:
 class-beamer
 latex-document
 latex-mathsymbols
+amsthm
+enumerate
+multimedia
+hyperref
+color
 tex
 hyperref:
 hyperref
