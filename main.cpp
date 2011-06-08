@@ -131,6 +131,8 @@ int main(int argc, char ** argv) {
 				startAlways = true;
 			else if ((cmdArgument == "-line" || cmdArgument == "--line") && (++i < args.count()))
 				cmdLine << "--line" << args[i];
+			else if ((cmdArgument == "-page" || cmdArgument == "--page") && (++i < args.count()))
+				cmdLine << "--page" << args[i];
 			else if (cmdArgument.startsWith("-"))
 				cmdLine << cmdArgument;			
 		} else
