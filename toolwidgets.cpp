@@ -2,6 +2,8 @@
 #include "math.h"
 #include "smallUsefulFunctions.h"
 
+Q_DECLARE_METATYPE(QAction*)
+
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
 	scrollBar->setValue(int(factor * scrollBar->value()
@@ -491,6 +493,8 @@ void CustomWidgetList::showPageFromAction(){
 	QWidget* wid=widget(act->data().toString());
 	stack->setCurrentWidget(wid);
 	setWindowTitle(act->toolTip());
+	foreach (QAction* a, toolbar->actions())
+		a->setChecked(a==act);
 }
 void CustomWidgetList::currentWidgetChanged(int i){
 	Q_ASSERT(newStyle==false);
@@ -552,8 +556,11 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
 				stack->addWidget(widgets[i]);
 				QAction* act=toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()),widgets[i]->property("Name").toString());
+				act->setCheckable(true);
+				if (i==0) act->setChecked(true);
 				act->setData(widgetId(widgets[i]));
 				connect(act,SIGNAL(triggered()),this,SLOT(showPageFromAction()));
+				widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction*>(act));
 			} else widgets[i]->hide();
 		
 		QHBoxLayout* hlayout= new QHBoxLayout(frame);
@@ -608,6 +615,9 @@ QWidget* CustomWidgetList::widget(const QString& id) const{
 void CustomWidgetList::setCurrentWidget(QWidget* widget){
 	if (newStyle) {
 		stack->setCurrentWidget(widget);
+		QAction* act = widget->property("associatedAction").value<QAction*>();
+		foreach (QAction* a, toolbar->actions())
+			a->setChecked(a==act);
 	} else {
 		toolbox->setCurrentWidget(widget);
 	}
