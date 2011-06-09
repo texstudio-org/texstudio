@@ -2821,7 +2821,11 @@ void PDFDocument::printPDF(){
     printDlg.setOption(QAbstractPrintDialog::PrintToFile, false);
     printDlg.setOption(QAbstractPrintDialog::PrintSelection, false);
     printDlg.setOption(QAbstractPrintDialog::PrintPageRange, true);
+#ifdef Q_WS_WIN
+    printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, false);
+#else
     printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, true);
+#endif
 
     printDlg.setWindowTitle(tr("Print"));
     if(printDlg.exec() != QDialog::Accepted) return;
