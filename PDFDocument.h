@@ -91,6 +91,7 @@ protected:
 	void contextMenuEvent(QContextMenuEvent *);
 	void mouseReleaseEvent(QMouseEvent *e);
 public slots:
+	void realPlay();
 	void setVolumeDialog();
 	void seekDialog();
 private:
