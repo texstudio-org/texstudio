@@ -331,7 +331,7 @@ PDFMovie::PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page)
 	this->load(url);
 	
 	popup = new QMenu(this);
-	popup->addAction(tr("Play"), this,SLOT(play()));
+	popup->addAction(tr("Play"), this,SLOT(realPlay()));
 	popup->addAction(tr("Pause"), this,SLOT(pause()));
 	popup->addAction(tr("Stop"), this,SLOT(stop()));
 	popup->addSeparator();
@@ -357,12 +357,19 @@ void PDFMovie::contextMenuEvent(QContextMenuEvent * e){
 
 
 void PDFMovie::mouseReleaseEvent(QMouseEvent *e){
+	//qDebug() << "click: "<<isPaused() << " == !" << isPlaying() << " " << currentTime() << " / " << totalTime();
 	if (isPlaying()) pause();
-	else {
-		if (!isPaused()) seek(0);
-		play();
-	}
+	else realPlay();
 	e->accept();
+}
+
+void PDFMovie::realPlay(){
+	if (isPlaying()) return;
+	if (isPaused() && currentTime() < totalTime()) play();
+	else {
+		seek(0);
+		QTimer::singleShot(500, this, SLOT(play()));
+	}
 }
 
 void PDFMovie::setVolumeDialog(){
