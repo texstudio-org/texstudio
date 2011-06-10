@@ -2807,123 +2807,123 @@ void PDFDocument::doFindAgain()
 }
 
 void PDFDocument::printPDF(){
-    if(!document)
-	return;
-
-    QString command;
-    // texmaker 3.0.1 solution
-    unsigned int firstPage, lastPage;
-    QPrinter printer(QPrinter::HighResolution);
-    QPrintDialog printDlg(&printer, this);
-    printer.setDocName(fileName());
-    printDlg.setMinMax(1, pdfWidget->realNumPages());
-    printDlg.setFromTo(1, pdfWidget->realNumPages());
-    printDlg.setOption(QAbstractPrintDialog::PrintToFile, false);
-    printDlg.setOption(QAbstractPrintDialog::PrintSelection, false);
-    printDlg.setOption(QAbstractPrintDialog::PrintPageRange, true);
+	if(!document)
+		return;
+	
+	QString command;
+	// texmaker 3.0.1 solution
+	unsigned int firstPage, lastPage;
+	QPrinter printer(QPrinter::HighResolution);
+	QPrintDialog printDlg(&printer, this);
+	printer.setDocName(fileName());
+	printDlg.setMinMax(1, pdfWidget->realNumPages());
+	printDlg.setFromTo(1, pdfWidget->realNumPages());
+	printDlg.setOption(QAbstractPrintDialog::PrintToFile, false);
+	printDlg.setOption(QAbstractPrintDialog::PrintSelection, false);
+	printDlg.setOption(QAbstractPrintDialog::PrintPageRange, true);
 #ifdef Q_WS_WIN
-    printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, false);
+	printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, false);
 #else
-    printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, true);
+	printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, true);
 #endif
-
-    printDlg.setWindowTitle(tr("Print"));
-    if(printDlg.exec() != QDialog::Accepted) return;
-    switch(printDlg.printRange())
-    {
-    case QAbstractPrintDialog::PageRange:
-	firstPage = printDlg.fromPage();
-	lastPage = printDlg.toPage();
-	break;
-    default:
-	firstPage = 1;
-	lastPage = pdfWidget->realNumPages();
-    }
-
-    if(!printer.printerName().isEmpty())
-    {
-#ifdef Q_WS_WIN
-	QString paper;
-	switch (printer.paperSize()){
-	A0:paper="a0";
-	    break;
-	A1:paper="a1";
-	    break;
-	A2:paper="a2";
-	    break;
-	A3:paper="a3";
-	    break;
-	A4:paper="a4";
-		break;
-	A5:paper="a5";
-		break;
-	A6:paper="a6";
-		break;
-	B0:paper="isob0";
-		break;
-	B1:paper="isob1";
-		break;
-	B2:paper="isob2";
-		break;
-	B3:paper="isob3";
-		break;
-	B4:paper="isob4";
-		break;
-	B5:paper="isob5";
-		break;
-	B6:paper="isob6";
-		break;
-	Letter:paper="letter";
-		break;
-	Ledger:paper="ledger";
-		break;
-	Legal:paper="legal";
-		break;
-	default:
-	    paper="a4";
-	}
-
-	QStringList args;
-	args << gsCommand;
-	args << "-sDEVICE=mswinpr2";
-	args << QString("-sOutputFile=\"\%printer\%%1\"").arg(printer.printerName().replace(" ","_"));
-	args << "-dBATCH";
-	args << "-dNOPAUSE";
-	args << "-dQUIET";
-	args << "-dNoCancel";
-	args << "-sPAPERSIZE="+paper;
-	args << "-dFirstPage="+QString::number(firstPage);
-	args << "-dLastPage="+QString::number(lastPage);
-	args << "\""+fileName()+"\"";
-#else
-	QStringList args;
-	args << "lp";
-	args << QString("-d %1").arg(printer.printerName().replace(" ","_"));
-	args << QString("-n %1").arg(printer.numCopies());
-	//  args << QString("-t \"%1\"").arg(printer.docName());
-	args << QString("-P %1-%2").arg(firstPage).arg(lastPage);
-	switch(printer.duplex())
+	
+	printDlg.setWindowTitle(tr("Print"));
+	if(printDlg.exec() != QDialog::Accepted) return;
+	switch(printDlg.printRange())
 	{
-	case QPrinter::DuplexNone:
-	    args << "-o sides=one-sided";
-	    break;
-	case QPrinter::DuplexShortSide:
-	    args << "-o sides=two-sided-short-edge";
-	    break;
-	case QPrinter::DuplexLongSide:
-	    args << "-o sides=two-sided-long-edge";
-	    break;
+	case QAbstractPrintDialog::PageRange:
+		firstPage = printDlg.fromPage();
+		lastPage = printDlg.toPage();
+		break;
 	default:
-	    break;
+		firstPage = 1;
+		lastPage = pdfWidget->realNumPages();
 	}
-	args << "--";
-	args << QString("\"%1\"").arg(fileName());
+	
+	if(!printer.printerName().isEmpty())
+	{
+#ifdef Q_WS_WIN
+		QString paper;
+		switch (printer.paperSize()){
+		case QPrinter::A0:paper="a0";
+			break;
+		case QPrinter::A1:paper="a1";
+			break;
+		case QPrinter::A2:paper="a2";
+			break;
+		case QPrinter::A3:paper="a3";
+			break;
+		case QPrinter::A4:paper="a4";
+			break;
+		case QPrinter::A5:paper="a5";
+			break;
+		case QPrinter::A6:paper="a6";
+			break;
+		case QPrinter::B0:paper="isob0";
+			break;
+		case QPrinter::B1:paper="isob1";
+			break;
+		case QPrinter::B2:paper="isob2";
+			break;
+		case QPrinter::B3:paper="isob3";
+			break;
+		case QPrinter::B4:paper="isob4";
+			break;
+		case QPrinter::B5:paper="isob5";
+			break;
+		case QPrinter::B6:paper="isob6";
+			break;
+		case QPrinter::Letter:paper="letter";
+			break;
+		case QPrinter::Ledger:paper="ledger";
+			break;
+		case QPrinter::Legal:paper="legal";
+			break;
+		default:
+			paper="a4";
+		}
+		
+		QStringList args;
+		args << gsCommand;
+		args << "-sDEVICE=mswinpr2";
+		args << QString("-sOutputFile=\"\%printer\%%1\"").arg(printer.printerName().replace(" ","_"));
+		args << "-dBATCH";
+		args << "-dNOPAUSE";
+		args << "-dQUIET";
+		args << "-dNoCancel";
+		args << "-sPAPERSIZE="+paper;
+		args << "-dFirstPage="+QString::number(firstPage);
+		args << "-dLastPage="+QString::number(lastPage);
+		args << "\""+fileName()+"\"";
+#else
+		QStringList args;
+		args << "lp";
+		args << QString("-d %1").arg(printer.printerName().replace(" ","_"));
+		args << QString("-n %1").arg(printer.numCopies());
+		//  args << QString("-t \"%1\"").arg(printer.docName());
+		args << QString("-P %1-%2").arg(firstPage).arg(lastPage);
+		switch(printer.duplex())
+		{
+		case QPrinter::DuplexNone:
+			args << "-o sides=one-sided";
+			break;
+		case QPrinter::DuplexShortSide:
+			args << "-o sides=two-sided-short-edge";
+			break;
+		case QPrinter::DuplexLongSide:
+			args << "-o sides=two-sided-long-edge";
+			break;
+		default:
+			break;
+		}
+		args << "--";
+		args << QString("\"%1\"").arg(fileName());
 #endif
-	command=args.join(" ");
-    }
-    else return;
-
-    if(QProcess::execute(command) == 0) return;
+		command=args.join(" ");
+	}
+	else return;
+	
+	if(QProcess::execute(command) == 0) return;
 }
 
 
