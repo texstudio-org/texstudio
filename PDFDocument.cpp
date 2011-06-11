@@ -2920,7 +2920,7 @@ void PDFDocument::printPDF(){
 	else return;
 	
 	for(int i=0;i<printer.numCopies();i++){
-	    if(QProcess::execute(command) == 0) return;
+	    if(QProcess::execute(command) != 0) return;
 	}
 }
 
