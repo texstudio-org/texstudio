@@ -2821,11 +2821,7 @@ void PDFDocument::printPDF(){
 	printDlg.setOption(QAbstractPrintDialog::PrintToFile, false);
 	printDlg.setOption(QAbstractPrintDialog::PrintSelection, false);
 	printDlg.setOption(QAbstractPrintDialog::PrintPageRange, true);
-#ifdef Q_WS_WIN
 	printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, false);
-#else
-	printDlg.setOption(QAbstractPrintDialog::PrintCollateCopies, true);
-#endif
 	
 	printDlg.setWindowTitle(tr("Print"));
 	if(printDlg.exec() != QDialog::Accepted) return;
@@ -2899,7 +2895,7 @@ void PDFDocument::printPDF(){
 		QStringList args;
 		args << "lp";
 		args << QString("-d %1").arg(printer.printerName().replace(" ","_"));
-		args << QString("-n %1").arg(printer.numCopies());
+		//args << QString("-n %1").arg(printer.numCopies());
 		//  args << QString("-t \"%1\"").arg(printer.docName());
 		args << QString("-P %1-%2").arg(firstPage).arg(lastPage);
 		switch(printer.duplex())
@@ -2923,7 +2919,9 @@ void PDFDocument::printPDF(){
 	}
 	else return;
 	
-	if(QProcess::execute(command) == 0) return;
+	for(int i=0;i<printer.numCopies();i++){
+	    if(QProcess::execute(command) == 0) return;
+	}
 }
 
 
