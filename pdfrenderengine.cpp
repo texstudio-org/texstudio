@@ -15,7 +15,7 @@
 #include "pdfrendermanager.h"
 
 RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h) :
-       pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1),priority(false),rotate(Poppler::Page::Rotate0)
+       pageNr(p),xres(xr),yres(yr),x(x),y(y),w(w),h(h),ticket(-1),rotate(Poppler::Page::Rotate0),priority(false)
 {
 }
 

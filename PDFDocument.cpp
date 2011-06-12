@@ -1819,12 +1819,11 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 PDFDocument::~PDFDocument()
 {
 	docList.removeAll(this);
-	delete renderManager;
 	emit documentClosed();
 	if (scanner != NULL)
 		synctex_scanner_free(scanner);
-	if (document)
-		delete document;
+	if (renderManager)
+		delete renderManager;
 }
 
 void PDFDocument::init()
@@ -2144,15 +2143,9 @@ void PDFDocument::loadFile(const QString &fileName, const QString& externalViewe
 
 }
 
-void PDFDocument::fileDestroyed(const QString& fileName){
-	if (QFileInfo(fileName) == QFileInfo(curFile) ||
-	   !QFileInfo(fileName).exists()) 
-		reloadWhenIdle();
-}
-
 void PDFDocument::fillRenderCache(int pg){
 	if(renderManager)
-	    renderManager->fillCache(pg);
+		renderManager->fillCache(pg);
 }
 
 void PDFDocument::reload(bool fillCache)
@@ -2164,74 +2157,51 @@ void PDFDocument::reload(bool fillCache)
 		scanner = NULL;
 	}
 
-	emit documentClosed();
-	if (document != NULL)
-		delete document;
-
 	if (renderManager){
 		renderManager->stopRendering();
 		renderManager->deleteLater();
 		renderManager=0;
 	}
-	document = Poppler::Document::load(curFile);
-	if (document != NULL) {
-		if (document->isLocked()) {
-			delete document;
-			document = NULL;
-			statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile));
-			//.arg(TWUtils::strippedName(curFile)));
-			pdfWidget->hide();
+	
+	renderManager = new PDFRenderManager(this);
+	int errorType;
+	document = renderManager->loadDocument(curFile, errorType);
+	if (!document) {
+		switch (errorType) {
+		case 1: statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFile)); break;
+		case 2: statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case 3: statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;			
 		}
-		else {
-			if (reloadTimer) reloadTimer->stop();
-			
-			//reinitialize rendermanager
-			renderManager=new PDFRenderManager(this);
-			renderManager->setDocument(curFile,document);
-
-			document->setRenderBackend(Poppler::Document::SplashBackend);
-			document->setRenderHint(Poppler::Document::Antialiasing);
-			document->setRenderHint(Poppler::Document::TextAntialiasing);
-			//			globalParams->setScreenType(screenDispersed);
-
-			pdfWidget->setDocument(document);
-			pdfWidget->show();
-			pdfWidget->setFocus();
-
-			// set page viewer only once
-			QFontMetrics fontMetrics(font());
-			QString placeHolder(3+log10(pdfWidget->realNumPages()), '#');
-			leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
-			leCurrentPageValidator->setTop(pdfWidget->realNumPages());
-
-			loadSyncData();
-			if(fillCache){
-				renderManager->fillCache();
-			}
-			scrollArea->updateScrollBars();
-			
-			emit reloaded();
-		}
-	}
-	else {
-		statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile));
-		//									.arg(TWUtils::strippedName(curFile)));
+		delete renderManager;
+		renderManager = 0;
 		pdfWidget->hide();
+	} else {
+		if (reloadTimer) reloadTimer->stop();
+							
+		pdfWidget->setDocument(document);
+		pdfWidget->show();
+		pdfWidget->setFocus();
+		
+		// set page viewer only once
+		QFontMetrics fontMetrics(font());
+		QString placeHolder(3+log10(pdfWidget->realNumPages()), '#');
+		leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
+		leCurrentPageValidator->setTop(pdfWidget->realNumPages());
+		
+		loadSyncData();
+		if(fillCache){
+			renderManager->fillCache();
+		}
+		scrollArea->updateScrollBars();
+		
+		emit reloaded();
 	}
+
 	QApplication::restoreOverrideCursor();
 }
 
 void PDFDocument::reloadWhenIdle()
 {
-	pdfWidget->setDocument(0);
-	if(document)
-	    delete document;
-	document=0;
-	if (renderManager) {
-		renderManager->stopRendering();
-		renderManager->deleteLater();
-		renderManager = 0;
-	}
 	if (reloadTimer)
 		reloadTimer->stop();
 	else {

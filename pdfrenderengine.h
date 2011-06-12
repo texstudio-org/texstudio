@@ -34,6 +34,7 @@ public:
 	explicit PDFRenderEngine(QObject *parent,PDFQueue *mQueue);
 	~PDFRenderEngine();
 
+	QByteArray tempData;
 	void setDocument(Poppler::Document *doc);
 signals:
 	void sendImage(QImage image,int page,int ticket);
