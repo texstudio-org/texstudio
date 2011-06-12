@@ -79,21 +79,51 @@ void PDFRenderManager::stopRendering(){
 	cachedNumPages = 0;
 }
 
-void PDFRenderManager::setDocument(QString fileName,Poppler::Document *docPointer){
+Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &errorType){
 	renderedPages.clear();
+	QFile f(fileName);
+	if (!f.open(QFile::ReadOnly)) {
+		errorType = 1;
+		return 0;
+	}
+	
+	queueAdministration->documentData = f.readAll();
+	document = Poppler::Document::loadFromData(queueAdministration->documentData);
+	if (!document) {
+		errorType = 2;
+		return 0;
+	}
+	
+	if (document->isLocked()) {
+		delete document;
+		document = 0;
+		errorType = 2;
+		return 0;
+	}
+
+	cachedNumPages = document->numPages();
+
+	document->setRenderBackend(Poppler::Document::SplashBackend);
+	document->setRenderHint(Poppler::Document::Antialiasing);
+	document->setRenderHint(Poppler::Document::TextAntialiasing);
+
+
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
-		document=Poppler::Document::load(fileName);
-		queueAdministration->renderQueues[i]->setDocument(document);
-		if (!document) return;
-		document->setRenderBackend(Poppler::Document::SplashBackend);
-		document->setRenderHint(Poppler::Document::Antialiasing);
-		document->setRenderHint(Poppler::Document::TextAntialiasing);
+		Poppler::Document *doc=Poppler::Document::loadFromData(queueAdministration->documentData);
+		queueAdministration->renderQueues[i]->setDocument(doc);
+		if (!doc) {
+			Q_ASSERT(false);			
+			errorType = 4;
+			return 0;
+		}
+		doc->setRenderBackend(Poppler::Document::SplashBackend);
+		doc->setRenderHint(Poppler::Document::Antialiasing);
+		doc->setRenderHint(Poppler::Document::TextAntialiasing);
 		if(!queueAdministration->renderQueues[i]->isRunning())
 			queueAdministration->renderQueues[i]->start();
 	}
-	//document=Poppler::Document::load(fileName);
-	document = docPointer;
-	cachedNumPages = document->numPages();
+	
+	return document;
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority,Poppler::Page::Rotation rotate){

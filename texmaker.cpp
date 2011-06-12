@@ -3051,11 +3051,6 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 #endif
 			return;
 		}
-
-		if (flags & RCF_CHANGE_PDF)
-			emit beginChangingPDF(finame.replace(QRegExp("[.]tex$"),".pdf"));
-		
-
 		
 		// check for locking of pdf
 		if((flags & RCF_CHANGE_PDF) && configManager.autoCheckinAfterSave){
@@ -3948,7 +3943,6 @@ void Texmaker::newPdfPreviewer(){
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
 	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&)), SLOT(runCommand(const QString&)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
-	connect(this, SIGNAL(beginChangingPDF(QString)), pdfviewerWindow, SLOT(fileDestroyed(QString)));
 
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
 	if (from) {
