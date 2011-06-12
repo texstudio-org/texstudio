@@ -551,7 +551,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 								      0,0, newRect.width(), newRect.height(),true,true);
 			fillRectBorder(painter, drawTo, newRect);
 			painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
-			if (!highlightPath.isEmpty()) {
+			if (pageNr==highlightPage && !highlightPath.isEmpty() ) {
 				painter.setRenderHint(QPainter::Antialiasing);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
