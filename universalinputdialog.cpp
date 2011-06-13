@@ -1,9 +1,9 @@
 #include "universalinputdialog.h"
 #include "qdialogbuttonbox.h"
-
+#include "smallUsefulFunctions.h"
 UniversalInputDialog::UniversalInputDialog(QWidget* parent): QDialog(parent)
 {
-	setWindowTitle("TexMakerX");
+	setWindowTitle(TEXSTUDIO);
 	gridLayout=new QGridLayout();
 }
 

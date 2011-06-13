@@ -30,7 +30,7 @@ void EncodingDialog::changeEvent(QEvent *e) {
 }
 
 void EncodingDialog::on_view_clicked() {
-	if (QMessageBox::warning(this,"TexMakerX",tr("If the new and old encodings are incompatible, some characters may be destroyed.\nAre you sure you want accept data loss?"),QMessageBox::Yes|QMessageBox::No) != QMessageBox::Yes) {
+	if (!txsConfirmWarning(tr("If the new and old encodings are incompatible, some characters may be destroyed.\nAre you sure you want accept data loss?"))) {
 		reject();
 		return;
 	}
@@ -43,7 +43,7 @@ void EncodingDialog::on_change_clicked() {
 }
 void EncodingDialog::on_reload_clicked() {
 	if (edit->isContentModified())
-		if (QMessageBox::warning(this,"TexMakerX",tr("The document has been changed.\nThese changes will be lost, if you reload it with the new encoding.\nAre you sure you want to undo all changes?"),QMessageBox::Yes|QMessageBox::No) != QMessageBox::Yes) {
+		if (!txsConfirmWarning(tr("The document has been changed.\nThese changes will be lost, if you reload it with the new encoding.\nAre you sure you want to undo all changes?"))){
 			reject();
 			return;
 		}

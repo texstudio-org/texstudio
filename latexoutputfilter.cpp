@@ -106,7 +106,7 @@ bool OutputFilter::run(const QTextDocument* log)
 		/*f.close();
 	}
 	else {
-		QMessageBox::warning(0,"TexMakerX", tr("Cannot open log file; did you run LaTeX?"));
+		QMessageBox::warning(0,"MakerX", tr("Cannot open log file; did you run LaTeX?"));
 		return false;
 	}*/
 

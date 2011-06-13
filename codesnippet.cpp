@@ -53,7 +53,8 @@ bool CodeSnippet::autoReplaceCommands=true;
 CodeSnippet::CodeSnippet(const QString &newWord) {
 	QString realNewWord=newWord;
 	// \begin magic
-	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"){
+	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>" ||
+	    newWord == "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"){
 		realNewWord = "\\begin{%<"+QObject::tr("*environment-name*")+"%:select,id:2%>}\n"
 			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
 			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";

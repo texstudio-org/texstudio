@@ -90,7 +90,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 	}
 
 	//menu shortcut key
-	if (index.column()==1) QMessageBox::warning(0,"TexMakerX",tr("Sorry, you clicked in the wrong column.\nTo change a shortcut, you have to edit the third or fourth column."),QMessageBox::Ok);
+	if (index.column()==1) txsWarning(tr("Sorry, you clicked in the wrong column.\nTo change a shortcut, you have to edit the third or fourth column."));
 	if (index.column()!=2 && index.column()!=3) return 0;
 	ShortcutComboBox *editor = new ShortcutComboBox(parent);
 
@@ -135,7 +135,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	QLineEdit *le = qobject_cast<QLineEdit*>(editor);
 	if (le) {
 		if (le->text().size()!=1 && index.column()==1) {
-			QMessageBox::warning(editor,"TexMakerX",tr("Only single characters are allowed as key"),QMessageBox::Ok);
+			txsWarning(tr("Only single characters are allowed as key"));
 			return;
 		}
 		model->setData(index, le->text(), Qt::EditRole);
@@ -150,9 +150,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	else {
 		value=QKeySequence(box->currentText()).toString(QKeySequence::NativeText);
 		if (value=="" || (value.endsWith("+") && !value.endsWith("++"))) { //Alt+wrong=>Alt+
-			QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
-			                     ConfigDialog::tr("The shortcut you entered is invalid."),
-			                     QMessageBox::Ok, QMessageBox::Ok);
+			txsWarning(ConfigDialog::tr("The shortcut you entered is invalid."));
 			return;
 		}
 
@@ -174,16 +172,10 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 			REQUIRE(editorKeys);
 			if (!li.empty() && li.first() && (li.first()->parent() != editorKeys || isBasicEditorKey(index))) {
 				QString duplicate=li.first()->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
-				switch (QMessageBox::warning(editor, ConfigDialog::tr("TexMakerX"),
-				                             ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"),
-				                             QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes)) {
-								 case QMessageBox::Yes:
+				if (txsConfirmWarning(ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"))) {
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					if (li[0]->text(2) == value)  li[0]->setText(2,"");
 					else if (li[0]->text(3) == value)  li[0]->setText(3,"");
-					break;
-								 default:
-					;
 				}
 			}
 		}
@@ -230,16 +222,10 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem * item, int column)
 	       style->drawControl(QStyle::CE_PushButton, &  sob, &p);
 	    }*/
 	if (item->text(0)==deleteRowButton) {
-		switch (QMessageBox::question(item->treeWidget(), ConfigDialog::tr("TexMakerX"),
-		                              ConfigDialog::tr("Do you really want to delete this row?"),
-		                              QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes)) {
-						  case QMessageBox::Yes:
+		if (txsConfirm(ConfigDialog::tr("Do you really want to delete this row?"))) {
 			Q_ASSERT(item->parent());
 			if (!item->parent()) return;
 			item->parent()->removeChild(item);
-			break;
-						  default:
-			;
 		}
 	} else if (item->text(0)==addRowButton) {
 		REQUIRE(item->parent());

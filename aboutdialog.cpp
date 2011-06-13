@@ -11,17 +11,18 @@
 
 #include "aboutdialog.h"
 
-extern const char* TEXMAKERX_SVN_VERSION;
+#include "smallUsefulFunctions.h"
+extern const char* TEXSTUDIO_SVN_VERSION;
 
 AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-	ui.textBrowser->setHtml(tr("<b>TexMakerX 2.2 (SVN %1)</b>").arg(TEXMAKERX_SVN_VERSION?TEXMAKERX_SVN_VERSION:"??") + "<br>" +
+	ui.textBrowser->setHtml(tr("<b>" TEXSTUDIO TXSVERSION "(SVN %1)</b>").arg(TEXSTUDIO_SVN_VERSION?TEXSTUDIO_SVN_VERSION:"??") + "<br>" +
 				tr("Using Qt Version %1, compiled with Qt %2").arg(qVersion()).arg(QT_VERSION_STR) + "<br>" +
 				tr("Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet<br>")+
-				tr("TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+
-				tr("TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.<br>TexMakerX uses the pdf viewer of TeXworks.<br> TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>")+
+				tr(TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+
+	                        tr(TEXSTUDIO " contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.<br>" TEXSTUDIO " uses the pdf viewer of TeXworks.<br> " TEXSTUDIO  " uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>")+
 				tr("Thanks to ")+QString::fromUtf8("Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, mattgk, A. Weder, Pavel Fric, Tim Hoffmann, András Somogyi, István Blahota & Edson Henriques.<br><br>")+
 				tr("Project home site : <a href=\"http://texmakerx.sourceforge.net/\">http://texmakerx.sourceforge.net/</a><br><br>")+
 				tr("Home site of original Texmaker: <a href=\"http://www.xm1math.net/texmaker/\">http://www.xm1math.net/texmaker/</a><br><br>")+

@@ -484,7 +484,7 @@ QSettings* ConfigManager::readSettings() {
 
 	//build commands
 	if (!buildManager) {
-		QMessageBox::critical(0,"TexMakerX","No build Manager created! => crash",QMessageBox::Ok);
+		txsCritical("No build Manager created! => crash");
 		return 0;
 	}
 	buildManager->readSettings(*config);
@@ -726,8 +726,8 @@ bool ConfigManager::execConfigDialog() {
 	
 	
 	lastLanguage = language;
-	QStringList languageFiles=findResourceFiles("translations","texmakerx_*.qm")
-							<< findResourceFiles("","texmakerx_*.qm");
+	QStringList languageFiles=findResourceFiles("translations","texstudio_*.qm") << findResourceFiles("","texstudio_*.qm");
+	languageFiles << findResourceFiles("translations","texmakerx_*.qm") << findResourceFiles("","texmakerx_*.qm");
 	int langId=-1;
 	for (int i=0;i<languageFiles.count();i++){
 		//_gettext. 
@@ -1160,20 +1160,14 @@ bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){
 }
 
 void ConfigManager::activateInternalViewer(bool activated){
-    if(!activated) return;
-    QLineEdit *le=commandsToEdits.value(BuildManager::CMD_PDFLATEX);
-    if(le->text().contains("synctex")) return;
-    QMessageBox msgBox;
-     msgBox.setText("Internal Viewer");
-     msgBox.setInformativeText(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?"));
-     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-     msgBox.setDefaultButton(QMessageBox::Yes);
-     int ret = msgBox.exec();
-     if(ret==QMessageBox::Yes){
-	 QString zw=le->text();
-	 zw.replace("pdflatex ","pdflatex -synctex=1 ",Qt::CaseSensitive);
-	 le->setText(zw);
-     }
+	if(!activated) return;
+	QLineEdit *le=commandsToEdits.value(BuildManager::CMD_PDFLATEX);
+	if(le->text().contains("synctex")) return;
+	if (!txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall " TEXSTUDIO " do it now?")))
+		return;
+	QString zw=le->text();
+	zw.replace("pdflatex ","pdflatex -synctex=1 ",Qt::CaseSensitive);
+	le->setText(zw);
 }
 
 void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
@@ -1538,7 +1532,9 @@ void ConfigManager::loadTranslations(QString locale){
 		locale = QString(QLocale::system().name()).left(2);
 		if (locale.length() < 2) locale = "en";
 	}
-	QString tmxTranslationFile=findResourceFile("texmakerx_"+locale+".qm");
+	QString tmxTranslationFile=findResourceFile("texstudio_"+locale+".qm");
+	if (tmxTranslationFile == "")
+		tmxTranslationFile=findResourceFile("texmakerx_"+locale+".qm");
 	//if (tmxTranslationFile!="") {
 		appTranslator->load(tmxTranslationFile);
 		basicTranslator->load(findResourceFile("qt_"+locale+".qm"));

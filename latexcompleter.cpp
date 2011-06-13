@@ -19,10 +19,10 @@ class CompleterInputBinding: public QEditorInputBinding {
 public:
 	CompleterInputBinding():active(0),showAlways(false),showMostUsed(0),completer(0),editor(0),oldBinding(0),curStart(0),maxWritten(0) {}
 	virtual QString id() const {
-		return "TexMakerX::CompleteInputBinding";
+		return "TXS::CompleterInputBinding";
 	}
 	virtual QString name() const {
-		return "TexMakerX::CompleteInputBinding";
+		return "TXS::CompleterInputBinding";
 	}
 
 	virtual bool mousePressEvent(QMouseEvent* mouse, QEditor *editor) {

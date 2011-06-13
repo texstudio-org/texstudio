@@ -772,7 +772,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			movie->play();
 		}
 #else
-		QMessageBox::warning(this, "TexMakerX", "You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TexMakerX with the option PHONON=true", QMessageBox::Ok);
+		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile " TEXSTUDIO " with the option PHONON=true");
 #endif
 
 	} else if (currentTool == kPresentation) {
@@ -2488,7 +2488,7 @@ void PDFDocument::setCurrentFile(const QString &fileName)
 {
 	curFile = QFileInfo(fileName).canonicalFilePath();
 	QString niceFile = QFileInfo(curFile).fileName();
-	setWindowTitle(tr("%1[*] - %2").arg(niceFile).arg(tr("TexMakerX")));
+	setWindowTitle(tr("%1[*] - %2").arg(niceFile).arg(tr(TEXSTUDIO)));
 }
 
 PDFDocument *PDFDocument::findDocument(const QString &fileName)

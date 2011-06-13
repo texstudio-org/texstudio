@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "TexMakerX compilation :"
+echo "TeXstudio compilation :"
 echo "----------------------------------------"
 echo "Enter SYSTEM (1: UNIX ; 2: MACOSX) :"
 read SYSTEM

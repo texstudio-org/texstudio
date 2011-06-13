@@ -1,6 +1,22 @@
 #include "smallUsefulFunctions.h"
 #include "latexcompleter_config.h"
 
+bool txsConfirm(const QString &message){
+	return QMessageBox::question(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
+}
+bool txsConfirmWarning(const QString &message){
+	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
+}
+void txsInformation(const QString &message){
+		QMessageBox::information(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
+}
+void txsWarning(const QString &message){
+		QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
+}
+void txsCritical(const QString &message){
+		QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
+}
+
 #ifdef Q_WS_MAC
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
@@ -51,6 +67,7 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter, QSt
 	searchFiles<<QCoreApplication::applicationDirPath() + dn; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 #if defined( Q_WS_X11 )
+	searchFiles<<PREFIX"/share/texstudio"+dn; //X_11
 	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
 #ifdef Q_WS_MAC
@@ -92,6 +109,7 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 	else searchFiles << s + "/";
 #ifdef Q_WS_X11
+	searchFiles<<PREFIX"/share/texstudio/"; //X_11
 	searchFiles<<PREFIX"/share/texmakerx/"; //X_11
 #endif
 #ifdef Q_WS_MAC
