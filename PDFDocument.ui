@@ -170,7 +170,7 @@
   </widget>
   <action name="actionAbout_TW">
    <property name="text">
-    <string>&amp;About TexMakerX...</string>
+    <string>&amp;About TeXstudio...</string>
    </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>

@@ -514,14 +514,14 @@ exists(./.svn/entries){
   } else: {
     svn_revision.target = svn_revision.cpp
     svn_revision.depends = .svn/entries  
-    svn_revision.commands = echo \"const char* TEXMAKERX_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
+    svn_revision.commands = echo \"const char* TEXSTUDIO_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
     QMAKE_EXTRA_TARGETS += svn_revision
     !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
     SOURCES += svn_revision.cpp
   }
 } else {
-  win32: system(echo const char * TEXMAKERX_SVN_VERSION = 0; > svn_revision.cpp)
-  else: system(echo \"const char * TEXMAKERX_SVN_VERSION = 0;\" > svn_revision.cpp)
+  win32: system(echo const char * TEXSTUDIO_SVN_VERSION = 0; > svn_revision.cpp)
+  else: system(echo \"const char * TEXSTUDIO_SVN_VERSION = 0;\" > svn_revision.cpp)
   SOURCES += svn_revision.cpp
 }
 

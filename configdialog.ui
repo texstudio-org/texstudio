@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Configure TexMakerX</string>
+   <string>Configure TeXstudio</string>
   </property>
   <layout class="QGridLayout">
    <property name="margin">
@@ -151,8 +151,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>823</width>
-            <height>579</height>
+            <width>793</width>
+            <height>577</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">

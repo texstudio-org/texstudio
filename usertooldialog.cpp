@@ -11,7 +11,7 @@
 
 #include "usertooldialog.h"
 #include "buildmanager.h"
-
+#include "smallUsefulFunctions.h"
 UserToolDialog::UserToolDialog(QWidget *parent, QString name, BuildManager* bm) : QDialog(parent), buildManager(bm) {
 	setWindowTitle(name);
 	setModal(true);
@@ -67,13 +67,13 @@ void UserToolDialog::slotAdd(){
 }
 
 void UserToolDialog::slotRemove(){
-	if (QMessageBox::question(this, "TexMakerX", "Do you really want to delete the current command?", QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		Name.removeAt(ui.comboBox->currentIndex());
-		Tool.removeAt(ui.comboBox->currentIndex());
-		previous_index = -1;
-		ui.comboBox->removeItem(ui.comboBox->currentIndex());
-		change(ui.comboBox->currentIndex());
-	}
+	if (!txsConfirm(tr("Do you really want to delete the current command?"))) 
+		return;
+	Name.removeAt(ui.comboBox->currentIndex());
+	Tool.removeAt(ui.comboBox->currentIndex());
+	previous_index = -1;
+	ui.comboBox->removeItem(ui.comboBox->currentIndex());
+	change(ui.comboBox->currentIndex());
 }
 
 void UserToolDialog::openWizard(){

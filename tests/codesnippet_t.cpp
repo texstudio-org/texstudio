@@ -156,7 +156,7 @@ void CodeSnippetTest::insert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic of environment mirror")))
 			<< "abcd\nefgh"
 			<< i*(int)QEditor::AutoIndent << (int)(QEditor::AutoIndent|QEditor::ReplaceTabs) << 0 << 2
-			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
+			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< "ab\\begin{"+translatedEnvironmentName+"}\n"+content+"\n\\end{"+translatedEnvironmentName+"}cd\nefgh"
 			<< CP(0,9,9 + translatedEnvironmentName.length(),
 			   QList<CP>() << CP(0,9,9+ translatedEnvironmentName.length(), QList<CP>() << CP(2,5,5+translatedEnvironmentName.length()))
@@ -486,7 +486,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing another placeholder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
-			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
+			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "testenv"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"testenv\n\\end{"+translatedEnvironmentName+"}i\nng"
@@ -495,7 +495,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing/inserting another placehoder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
-			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
+			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "\\miau{%<testenv%>}"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"\\miau{"+content+"}\n\\end{"+translatedEnvironmentName+"}i\nng"
@@ -505,9 +505,9 @@ void CodeSnippetTest::nestedInsert_data(){
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with nested mirrors"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
-			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
+			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
-			<< "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>"
+			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+
 			    indent+"\\begin{"+content+"}\n"+ //selected text (content) is pasted to new placeholder
 				indent+indent+content+"\n"+

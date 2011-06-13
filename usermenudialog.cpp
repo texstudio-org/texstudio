@@ -21,6 +21,8 @@
 #include "qsearchreplacepanel.h"
 #include "qfoldpanel.h"
 
+#include "smallUsefulFunctions.h"
+
 class StringListTableModel: public QAbstractTableModel{
 public:
 	StringListTableModel(QObject* p):QAbstractTableModel(p){}
@@ -232,12 +234,13 @@ void UserMenuDialog::slotAdd(){
 }
 
 void UserMenuDialog::slotRemove(){
-	if (QMessageBox::question(this, "TexMakerX", "Do you really want to delete the current macro?", QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-		int index = ui.tableView->currentIndex().row();
-		if (index < 0) return;
-		model->removeRow(index);
-		change(ui.tableView->currentIndex(),QModelIndex());
-	}
+	if (!txsConfirm("Do you really want to delete the current macro?")) 
+		return;
+	int index = ui.tableView->currentIndex().row();
+	if (index < 0) return;
+	model->removeRow(index);
+	change(ui.tableView->currentIndex(),QModelIndex());
+
 }
 
 void UserMenuDialog::slotMoveUp(){

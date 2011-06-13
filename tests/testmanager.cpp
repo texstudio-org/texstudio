@@ -25,7 +25,7 @@ const QRegExp TestToken::specialCharTextRegExp ("[A-Z'\"\\\\\\{\\}a-z0-9ö]+");
 
 QString TestManager::performTest(QObject* obj){
 	char* argv[3];
-	argv[0]=(char*)"texmakerx";
+	argv[0]=(char*)"texstudio";
 	argv[1]=(char*)"-o";
 	argv[2]=(char*)"tempResult.txt";
 	QTest::qExec(obj,3,argv);

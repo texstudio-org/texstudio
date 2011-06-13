@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<title>TexMakerX : user manual</title>
+<title>TeXstudio : user manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css"><!--
 a:link { color: #004faf; text-decoration: none }
@@ -11,7 +11,7 @@ body { background: #ffffff; color: black; }
 --></style>
 </head>
 <body>
-<h1 align=center><A NAME="top">TexMakerX : User manual</a></h1>
+<h1 align=center><A NAME="top">TeXstudio : User manual</a></h1>
 <h2><a name="sommaire">Contents </a>:</h2>
 <ul>
 <li><a href="#SECTIONNEW">0. What's new</a></li>
@@ -23,7 +23,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</a></li>
 	<li><a href="#SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></li>
 	</ul>
-<li><a href="#SECTION0">1. Configuring TexMakerX</a></li>
+<li><a href="#SECTION0">1. Configuring TeXstudio</a></li>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
 	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
@@ -79,8 +79,8 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTION34">4.6 Pstricks support</a></li>
 	<li><a href="#SECTION35">4.7 Metapost support</a></li>
 	<li><a href="#SECTION36">4.8 The "Convert to Html" command</a></li>
-	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TexMakerX</a></li>
-	<li><a href="#SECTION38">4.10 Synopsis of the TexMakerX command</a></li>
+	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TeXstudio</a></li>
+	<li><a href="#SECTION38">4.10 Synopsis of the TeXstudio command</a></li>
 	<li><a href="#SECTION39">4.11 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.12 Description of the cwl format</a></li>
 	</ul>
@@ -89,7 +89,7 @@ body { background: #ffffff; color: black; }
 <h1><a name="SECTIONNEW">0. What's new</a></h1>
 <h2><a name="SECTIONNEW19">0.1 Version 1.8.1 -> Version 1.9</a></h2>
 
-<P>TexMakerX has been diligently extended for the last months. The
+<P>TeXstudio has been diligently extended for the last months. The
 subsequent list gives a probably incomplete overview of new and
 changed functionality:</P>
 <ul>
@@ -210,24 +210,24 @@ changed functionality:</P>
 	<li><p>completer distinguishes between usual,most often used and all possible commands</p>
 	<li><p>as always, bug fixes and small improvements</p>
 </ul>
-<h1><a name="SECTION0">1. Configuring TexMakerX</a></h1>
-Before using TexMakerX, you should configure the editor and latex related commands via the "Configure TexMakerX" command in the "Options" menu ("Preferences" under macosx).
+<h1><a name="SECTION0">1. Configuring TeXstudio</a></h1>
+Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under macosx).
 <h2><a name="SECTION01">1.1 Configuring the editor</a></h2>
 <p>
-You can should set the default encoding for new files ("Configure TexMakerX" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
-TexMakerX can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
+You can should set the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
+TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
 </p>
 <p>
 <ul>
 <li>"Show Line State Change" sets yellow markers left to the text to show which lines have been changed and are still unsaved. That marker turns grreen if they are saved.
 <li>"Show modify time" prints the time since the last key stroke in the status panel.
-<li>The selection box "Keep indentation" let you select, wether indented lines are followed by lines of the same indentation after pressing Enter or letting TexMakerX do automatic indentation.
+<li>The selection box "Keep indentation" let you select, wether indented lines are followed by lines of the same indentation after pressing Enter or letting TeXstudio do automatic indentation.
 </ul>
 </p>
 <p><IMG src="configure_editor.png" border="1"></p>
 <h2><a name="SECTION02">1.2 Configuring the latex related commands</a></h2>
-<p>TexMakerX can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
-The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TexMakerX" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TexMakerX will adapt automatically the syntax of the command.<br>
+<p>TeXstudio can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
+The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TeXstudio will adapt automatically the syntax of the command.<br>
 The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog. <br>
 Section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.
 </p>
@@ -235,7 +235,7 @@ Section <a href="#SECTION37">Forward/Inverse search</a> gives some example comma
 <h2><a name="SECTION030">1.3 Configuring some general issues</a></h2>
 This panel allows the setting of some general aspects.
 <ul>
-<li>The "style" and "color scheme" of TexMakerX can be selected. The modern variant is closer to texmaker 1.9.
+<li>The "style" and "color scheme" of TeXstudio can be selected. The modern variant is closer to texmaker 1.9.
 <li>The symbol list can either appear "tabbed" (old behaviour, tabbed activated) or can have small symbol tabs besides the symbol lists which leaves more room for the symbols.
 <li>Also the log viewer can appear tabbed which allows faster change between error table, log view and previewer ...
 <li>The language of the menus can be changed directly to ignore system settings.
@@ -243,18 +243,18 @@ This panel allows the setting of some general aspects.
 <p><IMG src="configure_general.png" border="1"></p>
 <h2><a name="SECTION03">1.3.1 Configuring the spell checker</a></h2>
 <p>
-TexMakerX checks the spelling while you type. If the typed text is within a LaTeX-command, TexMakerX takes information from the command-completion-list to determine whether the text is natural language which needs to be checked or just command options which are left alone. Only known LaTeX-commands are considered to be checked in its options!
+TeXstudio checks the spelling while you type. If the typed text is within a LaTeX-command, TeXstudio takes information from the command-completion-list to determine whether the text is natural language which needs to be checked or just command options which are left alone. Only known LaTeX-commands are considered to be checked in its options!
 Therefore make sure that all used packages are activated in the option/completion menu, see the corresponding <a href="#SECTION040">section</a> <br>
-The spell checker uses the OpenOffice.org dictionaries. Only GPL French and British dictionaries are distributed with TexMakerX.<br>
+The spell checker uses the OpenOffice.org dictionaries. Only GPL French and British dictionaries are distributed with TeXstudio.<br>
 Users can download others dictionaries here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
-To configure the spell checker : "Configure TexMakerX" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser. If you specify a non existing file the edit gets red.<br>
+To configure the spell checker : "Configure TeXstudio" -> "Editor" -> "Spelling dictionary" -> click on the button at the end of the line to select the dictionary with the file browser. If you specify a non existing file the edit gets red.<br>
 Warning : spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.<br><br>
 If the interactive spell checker is enabled (default), any wrong spelled word is underlined with a red wave. Click on it with the right mouse to open an menu with a list of possible corrections. There you can also move it to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.<br><br>
 The ignore list is normally saved in the same directory as the dictionary with the extension .ign. If this isn't possible (e.g. missing access) the list is stored in the user configuration directory.
 </p>
 <h2><a name="SECTION04">1.3.2 Configuring the thesaurus</a></h2>
 <p>
-The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TexMakerX.<br>
+The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TeXstudio.<br>
 Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 </p>
 <h2><a name="SECTION041">1.3.3 Configuring latex syntax checker</a></h2>
@@ -262,11 +262,11 @@ The latex syntax checker takes the list of possible completion commands to deter
 Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
 <h2><a name="SECTION040">1.4 Configuring the autocompletion</a></h2>
 <p>
-TexMakerX has taken up completion word list from kile which extended the number of known commands for completion considerably.
-TexMakerX understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
-However TexMakerX allows to select the additional word lists under 
-"Configure TexMakerX" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
-Concerning auto completion, TexMakerX allows to adapt the behaviour to your liking.
+TeXstudio has taken up completion word list from kile which extended the number of known commands for completion considerably.
+TeXstudio understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
+However TeXstudio allows to select the additional word lists under 
+"Configure TeXstudio" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
+Concerning auto completion, TeXstudio allows to adapt the behaviour to your liking.
 Following options are available:
 <ul>
 <li>Completion enabled: self explanatory
@@ -299,23 +299,23 @@ Since many of those item don't have icons, user icons can be loaded as well. Thi
 </p>
 <p><IMG src="configure_customToolbar.png" border="1"></p>
 <h2><a name="SECTION08">1.8 Configuring SVN support</a></h2>
-<p>To provide documenten versioning, TexMakerX makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
+<p>To provide documenten versioning, TeXstudio makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
 Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
 <p>
 The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the svn configure page, see below.
-Furthermore the user can choose the degree of automation, which TexMakerX provides.
+Furthermore the user can choose the degree of automation, which TeXstudio provides.
 </p>
 <p>
-"Automatically check in after save" allows TexMakerX to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
+"Automatically check in after save" allows TeXstudio to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
 Since text documents are rather small compared to disk spaces, size of the svn database should not be a problem.
 In addition newly saved files (save as) are automatically added to svn control,provided that the directory is alredy under svn control.
-If that is not the case, TexMakerX searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
+If that is not the case, TeXstudio searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
 If no appropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
 Thus the user does not need to look up the necessary commands to set up a repository. This functionality is only activated when "Auto checkin in" is enabled !
 </p>
 <p>
-With "User SVN revisions to undo before last save" TexMakerX will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in svn history.
+With "User SVN revisions to undo before last save" TeXstudio will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in svn history.
 Further undo commands allows to back further to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing svn revisions directly via a menu command, see <a href="#SECTION33a">section 4.3</a>
 </p>
@@ -337,7 +337,7 @@ New templates can be added by using the command "File/Make Template" on a opened
 User added templates can be edited or deleted by using the context menu in the template selection dialogue.
 Built-in templates can not be changed.
 <h2><a name="SECTION13">2.3 Structure of a document</a></h2>
-<p>To define a new part (section,subsection...) in your document with TexMakerX, just use this combo box in the tool bar :</p>
+<p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box in the tool bar :</p>
 <p><IMG src="doc3.png" border="1"></p>
 <p>This will cause a dialog to pop up which allows you to define the style of the part (section,subsection...).<br>Note : the "Structure View" is automatically updated.</p>
 <p><IMG src="doc4.png" border="1"></p>
@@ -369,7 +369,7 @@ Section can be indented/unindented which means that the hierarchy level is chang
 <p><IMG src="doc7.png" border="1"></p>
 <p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
 <h2><a name="SECTION18a">2.8.1 Manipulating tables</a></h2>
-TexMakerX provides some commands to ease handling of tables. For this a toolbar "tables" is offered which gives easy access to these commands.
+TeXstudio provides some commands to ease handling of tables. For this a toolbar "tables" is offered which gives easy access to these commands.
 Please be aware that some unexpected results may arise, if the table constructing commands get to complex.
 Following commands are offered:
 <ul>
@@ -386,7 +386,7 @@ Following commands are offered:
 <p>To insert a picture in your document, just use the "\includegraphics" command in the "LaTeX" menu. Then, click on the "browser" button in the dialog to select the graphic file.<br>Note : you can insert a "figure" LaTeX environment ("LaTeX - Environments" menu) before inserting the picture.</p>
 <p><IMG src="doc9.png" border="1"></p>
 <h2><a name="SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></h2>
-<p>TexMakerX offers a wizard for picture insertion in your document. Apart from selecting a file, you can also have TexMakerX include an appropriate figure-environment with label and caption correctly set.</p>
+<p>TeXstudio offers a wizard for picture insertion in your document. Apart from selecting a file, you can also have TeXstudio include an appropriate figure-environment with label and caption correctly set.</p>
 <p><IMG src="wizard_figure.png" border="1"></p>
 <h2><a name="SECTION111">2.11 Cross References and notes</a></h2>
 <p>This toolbox in the toolbar allows you to insert quickly the label, cite, ref, footnote... code.<br>Note : the labels used in your documents are displayed in the "Structure View".</p>
@@ -411,7 +411,7 @@ If you change a command by completing a new command, only the command name is su
 </p>
 
 <h2><a name="SECTION114">2.14 Thesaurus</a></h2>
-TexMakerX has integrated a simple thesaurus. OpenOffice 2.x databases are used for this.
+TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases are used for this.
 By placing the cursor on a word and activating the thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms for this word. Please be patient if you start the thesaurus at first time since loading the database just occurs then and can take a few moments.
 <p><IMG src="thesaurus.png" border="1"></p>
 The first line to the left contains the word, for which a synonym is searched for.
@@ -433,7 +433,7 @@ If you select something and then start to type in a command and complete it, the
 E.g. you have a "text", select it and start typing "\textbf", command which is completed. The resulting text is "\textbf{text}"
 <h1><a name="SECTION2">3. Compiling a document</a></h1>
 <h2><a name="SECTION22">3.1 Compiling</a></h2>
-<p>The easiest way to compile a document is to use the "Quick Build" command ("Quick" button - shortcut : F1). You can define the sequence of commands used by the "Quick Build" command via the "Configure TexMakerX" dialog.<br>You can also launch each command one by one (shortcuts : F2...F12 - see the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
+<p>The easiest way to compile a document is to use the "Quick Build" command ("Quick" button - shortcut : F1). You can define the sequence of commands used by the "Quick Build" command via the "Configure TeXstudio" dialog.<br>You can also launch each command one by one (shortcuts : F2...F12 - see the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
 <b>Warning : all yours files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
 <h2><a name="SECTION23">3.2 The log files</a></h2>
 <p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
@@ -444,11 +444,11 @@ Remark : a summary of the latex errors and warnings is displayed before the full
 A tool tip will show more details of the mistake if you jump to a line (it is also shown if you move the mouse over the mark left from the line numbers).</p>
 <h1><a name="SECTION3">4. Other features</a></h1>
 <h2><a name="SECTION31">4.1 About documents separated in several files</a></h2>
-<p>TexMakerX allows you to work onto documents separated in several files.<br>
-To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TexMakerX will open it.</p>
-<p>TexMakerX now understands parent/child relations of loaded documents (1 level only !). Therefor, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
+<p>TeXstudio allows you to work onto documents separated in several files.<br>
+To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TeXstudio will open it.</p>
+<p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefor, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
 <p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
-If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TexMakerX. 
+If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio. 
 <br>Note : you can leave the "master" mode with the "Options" menu.</p>
 <h2><a name="SECTION32a">4.2 Syntax Check</a></h2>
 The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
@@ -460,7 +460,7 @@ The number of columns is analyzed and checked in the subsequent rows. If more or
 <p><IMG src="doc16.png" border="1"></p>
 <h2><a name="SECTION33a">4.4 SVN Support</a></h2>
 <p>
-Apart from the supported svn features already describes in section 1.8, TexMakerX supports two more commands.
+Apart from the supported svn features already describes in section 1.8, TeXstudio supports two more commands.
 </p>
 <p>
 "File/chekin" performs an explicit save and check in, with a input dialog which asks for an checkin in message which is stored in the svn history.
@@ -471,7 +471,7 @@ You can can select and copy old parts to transfer them to the most recent versio
 most recent version though yet unsaved.
 </p>
 <h2><a name="SECTION33">4.5 Personals tags and tools</a></h2>
-<p>TexMakerX allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", TexMakerX will directly insert:<br>
+<p>TeXstudio allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", TeXstudio will directly insert:<br>
 \begin{environment }<br>
 <br>
 \end{environment }<br>
@@ -900,76 +900,76 @@ Synopsis :<br>
 <p><IMG src="doc19.png" border="1"></p>
 
 
-<h2><a name="SECTION37">4.9 "Forward/Inverse search" with TexMakerX</a></h2>
+<h2><a name="SECTION37">4.9 "Forward/Inverse search" with TeXstudio</a></h2>
 <p>
 <h3>Integrated pdf-viewer</h3>
-TexMakerX provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TexMakerX will ask you if it can correct the command itself if it is not set correctly.<br>
-Forward search is automatically done evry time the pdf-viewer is opened. TexMakerX will jump to the position where your cursor is currentyl positioned.
+TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
+Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currentyl positioned.
 Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
 Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
 Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
 
 <h3>General Set-up for external viewers</h3>
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
-To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TexMakerX" -> "Commands").
+To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
 When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
-On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde://service/control/[commands...]</span> or (since TexMakerX 1.9.9) also <span class="command">dde://programpath:service/control/[commands...]</span> to start the program if necessary.
+On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde://service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde://programpath:service/control/[commands...]</span> to start the program if necessary.
 <br><br>
 Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
 
 <h3>Sumatra</h3>
-To launch Sumatra from TexMakerX and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TexMakerX path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
+To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TeXstudio path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
 To jump to a line in a running Sumatra (Windows only): <span class="command">dde://SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde://<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
-To launch TexMakerX from Sumatra: <span class="command">"<i>(your TexMakerX path)</i>" "%f" -line %l </span><br><br>
+To launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
 A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
 
 <h3>Foxit Reader</h3>
-To launch Foxit Reader from TexMakerX: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+To launch Foxit Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
 
 <h3>Acrobat Reader</h3>
-To launch Acrobat Reader from TexMakerX: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+To launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
 To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
 
 To close the document in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
 
 
 <h3>Yap (Yet Another Previewer)</h3>
-To launch Yap from TexMakerX : <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
+To launch Yap from TeXstudio : <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
 <br><br>
-To launch TexMakerX from Yap: <span class="command">"<i>(your TexMakerX path)</i>" "%f" -line %l </span><br><br>
+To launch TeXstudio from Yap: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
 A possible value for <i>(your Yap path)</i> is <span class="command">C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe</span>
 <h3>xdvi</h3>
-To launch xdvi from TexMakerX : <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
+To launch xdvi from TeXstudio : <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
 
-To launch xdvi from TexMakerX and enable inverse search : <span class="command">xdvi -editor "texmakerx %f -line" %.dvi -sourceposition @:%.tex</span>
+To launch xdvi from TeXstudio and enable inverse search : <span class="command">xdvi -editor "texstudio %f -line" %.dvi -sourceposition @:%.tex</span>
 
 <h3>kdvi</h3>
-To launch kdvi from TexMakerX : <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
+To launch kdvi from TeXstudio : <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
 
 <h3>Okular</h3>
-To launch okular from TexMakerX: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
-To launch TexMakerX from Okular: <span class="command">texmakerx %f -line %l</span>
+To launch okular from TeXstudio: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
+To launch TeXstudio from Okular: <span class="command">texstudio %f -line %l</span>
 
 
 <h3>Skim</h3>
-To launch Skim from TexMakerX: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
-To launch TexMakerX from skim : Command: <span class="command">/applications/texmakerx.app/contents/macos/texmakerx</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
+To launch Skim from TeXstudio: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
+To launch TeXstudio from skim : Command: <span class="command">/applications/texstudio.app/contents/macos/texstudio</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
 
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 
-<h2><a name="SECTION38">4.10 Synopsis of the TexMakerX command</a></h2>
+<h2><a name="SECTION38">4.10 Synopsis of the TeXstudio command</a></h2>
 <p>
-TexMakerX file [-master] [-line xx] [--start-always]<br>
+TeXstudio file [-master] [-line xx] [--start-always]<br>
 With the "-master" option, the document will be automatically defined as a "master" document.<br>
-With the "-line xx" option, TexMakerX will ask you if you want to jump to the xx line after loading the document.<br>
-With the "--start-always" option, TexMakerX will start, even if another instance of it is already running.
+With the "-line xx" option, TeXstudio will ask you if you want to jump to the xx line after loading the document.<br>
+With the "--start-always" option, TeXstudio will start, even if another instance of it is already running.
 </p>
 <h2><a name="SECTION39">4.11 Keyboard shortcuts</a></h2>
 <p>
-Defaults keyboard shortcuts <!--(*:can be modified - "Configure TexMakerX" -> "Editor") -->:
+Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "Editor") -->:
 <ul>
 <li> "File" menu :
 	<ul>

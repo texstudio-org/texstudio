@@ -112,7 +112,7 @@ int main(int argc, char ** argv) {
 		int l=user.indexOf("=",0);
 		user="_"+user.right(user.length()-l-1);
 	}
-	user="TexMakerX"+user;
+	user=TEXSTUDIO+user;
 #if QT_VERSION >= 0x040400
 	TexmakerApp a(user,argc, argv);
 #else
@@ -158,7 +158,7 @@ int main(int argc, char ** argv) {
 			return 0;
 		}
 
-	a.setApplicationName( "TexMakerX" );
+	a.setApplicationName( TEXSTUDIO );
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
 #if QT_VERSION >= 0x040400

@@ -49,10 +49,10 @@ class DefaultInputBinding: public QEditorInputBinding {
 public:
 	DefaultInputBinding():completerConfig(0),contextMenu(0) {}
 	virtual QString id() const {
-		return "TexMakerX::DefaultInputBinding";
+		return "TXS::DefaultInputBinding";
 	}
 	virtual QString name() const {
-		return "TexMakerX::DefaultInputBinding";
+		return "TXS::DefaultInputBinding";
 	}
 
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);

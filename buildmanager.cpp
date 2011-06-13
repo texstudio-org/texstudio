@@ -717,7 +717,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QString& ma
 }
 
 QString BuildManager::createTemporaryFileName(){
-	QTemporaryFile *temp=new QTemporaryFile(QDir::tempPath ()+"/texmakerx_XXXXXX.tex");
+	QTemporaryFile *temp=new QTemporaryFile(QDir::tempPath ()+"/texstudio_XXXXXX.tex");
 	temp->open();
 	temp->setAutoRemove(false);
 	return temp->fileName();

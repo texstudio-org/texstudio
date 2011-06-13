@@ -14,6 +14,16 @@
 #include "mostQtHeaders.h"
 //#inlcude "latexcompleter_config.h"
 
+#define TEXSTUDIO "TeXstudio"
+#define TXSVERSION "2.2"
+
+bool txsConfirm(const QString &message);
+bool txsConfirmWarning(const QString &message);
+void txsInformation(const QString &message);
+void txsWarning(const QString& message);
+void txsCritical(const QString& message);
+
+
 class LatexCompleterConfig;
 
 #define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
