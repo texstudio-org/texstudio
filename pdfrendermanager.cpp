@@ -14,7 +14,7 @@
 #include "pdfrendermanager.h"
 
 const int kMaxPageZoom=1000000;
-const qreal kMaxDpiForFullPage=200.0;
+const qreal kMaxDpiForFullPage=500.0;
 const int kMaxCachedPages=400;
 
 PDFQueue::PDFQueue(QObject *parent): QObject(parent){
@@ -251,7 +251,10 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
 					pageNr=pageNr+kMaxPageZoom;
 				CachePixmap *image=new CachePixmap(QPixmap::fromImage(img));
 				image->setRes(info.xres,info.x,info.y);
-				renderedPages.insert(pageNr,image);
+				int cost=qRound(info.xres*info.xres/10000.0);
+				if(cost<1)
+				    cost=1;
+				renderedPages.insert(pageNr,image,cost);
 			}
 			if(info.obj){
 				if(info.x>-1 && info.y>-1 && info.w>-1 && info.h>-1 && !(info.xres>kMaxDpiForFullPage))
