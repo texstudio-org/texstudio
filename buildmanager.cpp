@@ -210,6 +210,8 @@ QStringList getProgramFilesPaths(){
 	QStringList res;
 	QString a=getenv("PROGRAMFILES");
 	if (!a.isEmpty()) res << addPathDelimeter(a);
+	a=getenv("PROGRAMFILES(X86)");
+	if (!a.isEmpty()) res << addPathDelimeter(a);
 	if (a != "C:/Program Files" && QDir("C:/Program Files").exists()) res << "C:/Program Files/";
 	if (a != "C:/Program Files (x86)" && QDir("C:/Program Files (x86)").exists()) res << "C:/Program Files (x86)/";
 	if (a + " (x86)" != "C:/Program Files (x86)" && QDir(a+" (x86)").exists()) res << (a+" (x86)");
@@ -225,6 +227,10 @@ QString getMiKTeXBinPathReal() {
 		foreach (const QString& p, QDir(d).entryList(QStringList(), QDir::AllDirs, QDir::Time))
 			if (p.toLower().contains("miktex") && QDir(d+addPathDelimeter(p)+"miktex\\bin\\").exists())
 				return d+addPathDelimeter(p)+"miktex\\bin\\";
+	static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin" << "C:\\tex\\texmf\\miktex\\bin" << "C:\\miktex\\bin";
+	foreach (const QString& d, candidates)
+		if (QDir(d).exists())
+			return d + "\\";
 	return "";
 }
 QString getMiKTeXBinPath() {
