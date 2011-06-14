@@ -791,12 +791,12 @@
   </action>
   <action name="action_Print">
    <property name="text">
-    <string>&amp;Print</string>
+    <string>&amp;Print...</string>
    </property>
   </action>
   <action name="actionFileOpen">
    <property name="text">
-    <string>&amp;Open</string>
+    <string>&amp;Open...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>

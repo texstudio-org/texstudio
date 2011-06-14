@@ -9,16 +9,12 @@
     </message>
     <message>
         <source>About TexMakerX</source>
-        <translation>Informazioni su TexMakerX
+        <translation type="obsolete">Informazioni su TexMakerX
 </translation>
     </message>
     <message>
         <source>OK</source>
         <translation>OK</translation>
-    </message>
-    <message>
-        <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thanks to </source>
@@ -45,11 +41,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
+        <source>About TeXstudio</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -276,7 +268,7 @@
     <name>ConfigDialog</name>
     <message>
         <source>TexMakerX</source>
-        <translation>TexMakerX</translation>
+        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
@@ -388,7 +380,7 @@
     </message>
     <message>
         <source>Configure TexMakerX</source>
-        <translation type="unfinished">Configura Texmaker</translation>
+        <translation type="obsolete">Configura Texmaker</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1252,6 +1244,10 @@ Which one of the three wise will always tell the truth?</source>
         <source>third</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configure TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1700,10 +1696,6 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;* Open all files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1717,6 +1709,10 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>after word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2466,7 +2462,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation type="unfinished">TexMakerX</translation>
+        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
@@ -2494,10 +2490,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;About TexMakerX...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2732,6 +2724,30 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <source>&amp;Continuous</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;About TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Open...</source>
+        <translation type="unfinished">&amp;Apri...</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2776,6 +2792,41 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     <name>PDFInfoDock</name>
     <message>
         <source>PDF Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFMovie</name>
+    <message>
+        <source>File %1 does not exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;eek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set &amp;volume</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5195,7 +5246,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>&amp;Configure TexMakerX...</source>
-        <translation>Configura TexMakerX...</translation>
+        <translation type="obsolete">Configura TexMakerX...</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
@@ -5219,7 +5270,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation>Informazioni su TexMakerX...</translation>
+        <translation type="obsolete">Informazioni su TexMakerX...</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -5489,11 +5540,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Insert Graphic</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5531,12 +5577,6 @@ However, you are using a version of TexMakerX that was compiled without the inte
     </message>
     <message>
         <source>Open Documents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You are trying to save the file under the name %1, but a file with this name is already open.
-TexMakerX does not support multiple instances of the same file.
-Are you sure you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5629,6 +5669,29 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+ TeXstudio does not support multiple instances of the same file.
+Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6033,6 +6096,10 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
     </message>
     <message>
         <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the current command?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

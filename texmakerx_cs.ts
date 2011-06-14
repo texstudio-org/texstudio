@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>About TexMakerX</source>
-        <translation>O programu TexMakerX</translation>
+        <translation type="obsolete">O programu TexMakerX</translation>
     </message>
     <message>
         <source>OK</source>
@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;převod html: </translation>
+        <translation type="obsolete">TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;převod html: </translation>
     </message>
     <message>
         <source>Thanks to </source>
@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation>TexMakerX obsahuje kód z programů Hunspell (GPL), QtCreator (GPL, autorské právo (C) Nokia), KILE (GPL) a SyncTeX (od Jeromeho Laurense).&lt;br&gt;TexMakerX používá prohlížeč PDF TeXworks.&lt;br&gt; TexMakerX používá třídu DSingleApplication (Autor: Dima Fedorov Levit - autorské právo (C) BioImage Informatics - povolení: GPL)&lt;br&gt;</translation>
+        <translation type="obsolete">TexMakerX obsahuje kód z programů Hunspell (GPL), QtCreator (GPL, autorské právo (C) Nokia), KILE (GPL) a SyncTeX (od Jeromeho Laurense).&lt;br&gt;TexMakerX používá prohlížeč PDF TeXworks.&lt;br&gt; TexMakerX používá třídu DSingleApplication (Autor: Dima Fedorov Levit - autorské právo (C) BioImage Informatics - povolení: GPL)&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
@@ -61,7 +61,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?} {2.2 ?} {1)?}</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?} {2.2 ?} {1)?}</translation>
+    </message>
+    <message>
+        <source>About TeXstudio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -387,7 +391,7 @@
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation>TexMakerX</translation>
+        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
@@ -405,7 +409,7 @@
     </message>
     <message>
         <source>Configure TexMakerX</source>
-        <translation>Nastavit Texmaker</translation>
+        <translation type="obsolete">Nastavit Texmaker</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -1428,6 +1432,10 @@ Which one of the three wise will always tell the truth?</source>
         <source>third</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configure TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1881,7 +1889,7 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation>Pro plné používání vnitřního prohlížeče PDF musí být zapnut synctex. Má to teď TexMakerX udělat?</translation>
+        <translation type="obsolete">Pro plné používání vnitřního prohlížeče PDF musí být zapnut synctex. Má to teď TexMakerX udělat?</translation>
     </message>
     <message>
         <source>&amp;* Open all files</source>
@@ -1897,6 +1905,10 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>after word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2677,7 +2689,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation>TexMakerX</translation>
+        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
@@ -2709,7 +2721,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>&amp;About TexMakerX...</source>
-        <translation>&amp;O programu TexMakerX...</translation>
+        <translation type="obsolete">&amp;O programu TexMakerX...</translation>
     </message>
     <message>
         <source>&amp;First Page</source>
@@ -2943,6 +2955,30 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>&amp;Continuous</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;About TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished">Tisk</translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Open...</source>
+        <translation type="unfinished">&amp;Otevřít...</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2988,6 +3024,41 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>PDF Info</source>
         <translation>Informace o PDF</translation>
+    </message>
+</context>
+<context>
+    <name>PDFMovie</name>
+    <message>
+        <source>File %1 does not exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;eek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set &amp;volume</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4990,7 +5061,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;Configure TexMakerX...</source>
-        <translation>&amp;Nastavit TexMakerX...</translation>
+        <translation type="obsolete">&amp;Nastavit TexMakerX...</translation>
     </message>
     <message>
         <source>Change Interface Font</source>
@@ -5018,7 +5089,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation>O programu TexMakerX...</translation>
+        <translation type="obsolete">O programu TexMakerX...</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -6014,7 +6085,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation>Zavolal jste příkaz k otevření vnitřního prohlížeče PDF.
+        <translation type="obsolete">Zavolal jste příkaz k otevření vnitřního prohlížeče PDF.
 Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřního prohlížeče PDF.</translation>
     </message>
     <message>
@@ -6061,7 +6132,7 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
+        <translation type="obsolete">Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
 TexMakerX nepodporuje více případů téhož souboru.
 Jste si jistý, že chcete pokračovat?</translation>
     </message>
@@ -6155,6 +6226,29 @@ Jste si jistý, že chcete pokračovat?</translation>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+ TeXstudio does not support multiple instances of the same file.
+Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6635,6 +6729,10 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
     <message>
         <source>-</source>
         <translation>-</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the current command?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
