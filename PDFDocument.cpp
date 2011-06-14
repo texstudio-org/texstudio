@@ -1212,8 +1212,8 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 	PDFScrollArea* scrollArea = getScrollArea();
 	if (scrollArea) 
 		scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
-	//if (kPDFHighlightDuration > 0)
-	//TODOD	highlightRemover.start(kPDFHighlightDuration);
+	if (kPDFHighlightDuration > 0)
+		highlightRemover.start(kPDFHighlightDuration);
 	
 	
 }
