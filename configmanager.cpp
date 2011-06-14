@@ -1163,7 +1163,7 @@ void ConfigManager::activateInternalViewer(bool activated){
 	if(!activated) return;
 	QLineEdit *le=commandsToEdits.value(BuildManager::CMD_PDFLATEX);
 	if(le->text().contains("synctex")) return;
-	if (!txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall " TEXSTUDIO " do it now?")))
+	if (!txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?")))
 		return;
 	QString zw=le->text();
 	zw.replace("pdflatex ","pdflatex -synctex=1 ",Qt::CaseSensitive);

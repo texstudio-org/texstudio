@@ -745,7 +745,7 @@ void Texmaker::setupMenus() {
 
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-	newManagedAction(menu, "config",tr("&Configure " TEXSTUDIO "..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
+	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
 
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
@@ -762,7 +762,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
 
 	menu->addSeparator();
-	newManagedAction(menu, "appinfo",tr("About " TEXSTUDIO "..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
+	newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
 
 	//additional elements for development
 
@@ -1478,7 +1478,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 				fn.append(fileExt.cap(1));
 		}
 		if (getEditorViewFromFileName(fn) && getEditorViewFromFileName(fn) != currentEditorView())
-			if (!txsConfirmWarning(tr("You are trying to save the file under the name %1, but a file with this name is already open.\n " TEXSTUDIO " does not support multiple instances of the same file.\nAre you sure you want to continue?").arg(fn)))
+			if (!txsConfirmWarning(tr("You are trying to save the file under the name %1, but a file with this name is already open.\n TeXstudio does not support multiple instances of the same file.\nAre you sure you want to continue?").arg(fn)))
 				return;
 
 		// save file
@@ -3047,7 +3047,7 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 				viewer->fillRenderCache(pg);
 			}
 #else
-			txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of  " TEXSTUDIO "  that was compiled without the internal pdf viewer."));
+			txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer."));
 #endif
 			return;
 		}

@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>About TexMakerX</source>
-        <translation>À propos de TexMakerX</translation>
+        <translation type="obsolete">À propos de TexMakerX</translation>
     </message>
     <message>
         <source>OK</source>
@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation>TexMakerX : Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion : </translation>
+        <translation type="obsolete">TexMakerX : Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion : </translation>
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
@@ -57,7 +57,7 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation>TexMakerX contient du code provenant des programmes Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (par Jerôme Laurens). &lt;br&gt; TexMakerX utilise l&apos;afficheur PDF de Texworks &lt;br&gt; TexMakerX utilise la classe DSingleApplication (auteur: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</translation>
+        <translation type="obsolete">TexMakerX contient du code provenant des programmes Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (par Jerôme Laurens). &lt;br&gt; TexMakerX utilise l&apos;afficheur PDF de Texworks &lt;br&gt; TexMakerX utilise la classe DSingleApplication (auteur: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
@@ -69,7 +69,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>About TeXstudio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -288,7 +292,7 @@
     <name>ConfigDialog</name>
     <message>
         <source>Configure TexMakerX</source>
-        <translation>Configuration de TexMakerX</translation>
+        <translation type="obsolete">Configuration de TexMakerX</translation>
     </message>
     <message>
         <source>OK</source>
@@ -822,10 +826,6 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>Afficher les options avancées</translation>
     </message>
     <message>
-        <source>TexMakerX</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>The shortcut you entered is invalid.</source>
         <translation>Ce raccourci n&apos;est pas valable.</translation>
     </message>
@@ -1299,6 +1299,10 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <source>third</source>
         <translation>troisème</translation>
     </message>
+    <message>
+        <source>Configure TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1744,7 +1748,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation>Pour une utilisation optimale de l&apos;afficheur pdf intégré, synctex doit être activé. TexMakerX doit-il le faire?</translation>
+        <translation type="obsolete">Pour une utilisation optimale de l&apos;afficheur pdf intégré, synctex doit être activé. TexMakerX doit-il le faire?</translation>
     </message>
     <message>
         <source>&amp;* Open all files</source>
@@ -1761,6 +1765,10 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     <message>
         <source>after word</source>
         <translation>après le mot</translation>
+    </message>
+    <message>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2519,10 +2527,6 @@ Continuer tout de même ?</translation>
         <translation></translation>
     </message>
     <message>
-        <source>TexMakerX</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>page %1 of %2</source>
         <translation>page %1 sur %2</translation>
     </message>
@@ -2552,7 +2556,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;About TexMakerX...</source>
-        <translation>À &amp;propos de TexMakerX...</translation>
+        <translation type="obsolete">À &amp;propos de TexMakerX...</translation>
     </message>
     <message>
         <source>&amp;First Page</source>
@@ -2763,6 +2767,30 @@ Continuer tout de même ?</translation>
         <source>&amp;Continuous</source>
         <translation>&amp;Continu</translation>
     </message>
+    <message>
+        <source>&amp;About TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished">Imprimer</translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Open...</source>
+        <translation type="unfinished">&amp;Ouvrir...</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -2808,6 +2836,41 @@ Continuer tout de même ?</translation>
     <message>
         <source>PDF Info</source>
         <translation>Info sur le PDF</translation>
+    </message>
+</context>
+<context>
+    <name>PDFMovie</name>
+    <message>
+        <source>File %1 does not exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;ause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;eek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set &amp;volume</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5049,7 +5112,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;Configure TexMakerX...</source>
-        <translation>&amp;Configurer TexMakerX...</translation>
+        <translation type="obsolete">&amp;Configurer TexMakerX...</translation>
     </message>
     <message>
         <source>Load &amp;Profile...</source>
@@ -5090,7 +5153,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation>À propos de TexMakerX...</translation>
+        <translation type="obsolete">À propos de TexMakerX...</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -5493,7 +5556,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation>Vous cherchez à ouvrir la visionneuse pdf interne.
+        <translation type="obsolete">Vous cherchez à ouvrir la visionneuse pdf interne.
 Cependant, cette version de TexMakerX a été compilée sans le support de cette fonction.</translation>
     </message>
     <message>
@@ -5540,7 +5603,7 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>Vous essayez de sauvegarder le fichier sous le nom %1, mais un fichier du même nom est déjà ouvert.
+        <translation type="obsolete">Vous essayez de sauvegarder le fichier sous le nom %1, mais un fichier du même nom est déjà ouvert.
 TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
 Êtes-vous certain de vouloir continuer ?</translation>
     </message>
@@ -5635,6 +5698,29 @@ TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
     <message>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Sélectionner toutes les occurrences...</translation>
+    </message>
+    <message>
+        <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About TeXstudio...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+ TeXstudio does not support multiple instances of the same file.
+Are you sure you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6055,6 +6141,10 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     <message>
         <source>-</source>
         <translation>-</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the current command?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

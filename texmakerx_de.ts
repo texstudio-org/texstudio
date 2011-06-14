@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>About TexMakerX</source>
-        <translation>Über TexMakerX</translation>
+        <translation type="obsolete">Über TexMakerX</translation>
     </message>
     <message>
         <source>OK</source>
@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html Konversion: </translation>
+        <translation type="obsolete">TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html Konversion: </translation>
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) and KILE (GPL) program.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation>TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt den PDF-Betrachter von TeXworks.&lt;br&gt;TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
+        <translation type="obsolete">TexMakerX enthält Code aus den Programmen Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia) und KILE (GPL).&lt;br&gt; TexMakerX nutzt den PDF-Betrachter von TeXworks.&lt;br&gt;TexMakerX nutzt die  DSingleApplication Klasse (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lizenz: GPL)&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
@@ -73,7 +73,11 @@
     </message>
     <message>
         <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
+        <translation type="obsolete">&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>About TeXstudio</source>
+        <translation>Über TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -407,7 +411,7 @@
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation>TexMakerX</translation>
+        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
@@ -425,7 +429,7 @@
     </message>
     <message>
         <source>Configure TexMakerX</source>
-        <translation>TexMakerX konfigurieren</translation>
+        <translation type="obsolete">TexMakerX konfigurieren</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -1474,6 +1478,10 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <source>third</source>
         <translation>dritte</translation>
     </message>
+    <message>
+        <source>Configure TeXstudio</source>
+        <translation>TeXstudio konfigurieren</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1931,7 +1939,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TexMakerX nun ereldigen ?</translation>
+        <translation type="obsolete">Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TexMakerX nun ereldigen ?</translation>
     </message>
     <message>
         <source>&amp;* Open all files</source>
@@ -1948,6 +1956,14 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>after word</source>
         <translation>nach Wort</translation>
+    </message>
+    <message>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall </source>
+        <translation type="obsolete">Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TeXstudio nun ereldigen ?</translation>
+    </message>
+    <message>
+        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
+        <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TeXstudio nun erledigen?</translation>
     </message>
 </context>
 <context>
@@ -2782,7 +2798,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>TexMakerX</source>
-        <translation>TexMakerX</translation>
+        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
@@ -2822,7 +2838,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>&amp;About TexMakerX...</source>
-        <translation>Ü&amp;ber TexMakerX...</translation>
+        <translation type="obsolete">Ü&amp;ber TexMakerX...</translation>
     </message>
     <message>
         <source>&amp;First Page</source>
@@ -3060,6 +3076,38 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>&amp;Continuous</source>
         <translation>&amp;Fortlaufend</translation>
     </message>
+    <message>
+        <source>&amp;About TeXstudio...</source>
+        <translation>Über TeXstudio</translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation type="obsolete">&amp;Drucken</translation>
+    </message>
+    <message>
+        <source>&amp;Open</source>
+        <translation type="obsolete">&amp;Öffnen...</translation>
+    </message>
+    <message>
+        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
+        <translation>&quot;%1&quot; konnte nicht gefunden werden. Vielleicht wurde die Datei gelöscht?</translation>
+    </message>
+    <message>
+        <source>Open PDF</source>
+        <translation>&amp;Öffne PDF...</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>&amp;Drucken...</translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation>&amp;Drucken...</translation>
+    </message>
+    <message>
+        <source>&amp;Open...</source>
+        <translation>&amp;Öffnen...</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -3105,6 +3153,45 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>PDF Info</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>PDFMovie</name>
+    <message>
+        <source>File %1 does not exists</source>
+        <translation>Datei %1 nicht gefunden.</translation>
+    </message>
+    <message>
+        <source>Play</source>
+        <translation type="obsolete">Abspielen</translation>
+    </message>
+    <message>
+        <source>Volume:</source>
+        <translation>Lautstärke:</translation>
+    </message>
+    <message>
+        <source>Time:</source>
+        <translation>Position:</translation>
+    </message>
+    <message>
+        <source>&amp;Play</source>
+        <translation>&amp;Abspielen</translation>
+    </message>
+    <message>
+        <source>P&amp;ause</source>
+        <translation>&amp;Pause</translation>
+    </message>
+    <message>
+        <source>&amp;Stop</source>
+        <translation>&amp;Stop</translation>
+    </message>
+    <message>
+        <source>S&amp;eek</source>
+        <translation>Springe &amp;zu</translation>
+    </message>
+    <message>
+        <source>Set &amp;volume</source>
+        <translation>&amp;Lautstärke festlegen</translation>
     </message>
 </context>
 <context>
@@ -5155,7 +5242,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>&amp;Configure TexMakerX...</source>
-        <translation>TexMakerX einri&amp;chten...</translation>
+        <translation type="obsolete">TexMakerX einri&amp;chten...</translation>
     </message>
     <message>
         <source>Change Interface Font</source>
@@ -5183,7 +5270,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>About TexMakerX...</source>
-        <translation>Über TexMakerX...</translation>
+        <translation type="obsolete">Über TexMakerX...</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -6211,7 +6298,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
+        <translation type="obsolete">Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
 Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
     </message>
     <message>
@@ -6258,7 +6345,7 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
 TexMakerX does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>Sie versuchen eine Datei unter dem gleichen Namen &quot;%1&quot; zu sichern, aber eine Datei dieses Namens ist bereits in TmX geöffnet.
+        <translation type="obsolete">Sie versuchen eine Datei unter dem gleichen Namen &quot;%1&quot; zu sichern, aber eine Datei dieses Namens ist bereits in TmX geöffnet.
 TexMakerX unterstützt keine verfachen Instanzen der gleichen Datei.
 SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
@@ -6353,6 +6440,50 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     <message>
         <source>&amp;Select all matches...</source>
         <translation>Alle Treffer &amp;markieren</translation>
+    </message>
+    <message>
+        <source>&amp;Configure </source>
+        <translation type="obsolete">&amp;Optionen</translation>
+    </message>
+    <message>
+        <source>About </source>
+        <translation type="obsolete">Über</translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+ </source>
+        <translation type="obsolete">Du hast versucht die Datei unter dem Namen %1 abzuspeichern, aber eine Datei mit diesem Namen ist bereits geöffnet.</translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of  </source>
+        <translation type="obsolete">Du hast den internen PDF-Viewer aufgerufen, aber diese Version von TeXstudio ist ohne </translation>
+    </message>
+    <message>
+        <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
+        <translation>Datei &quot;%1&quot; konnte leider nicht gefunden werden.</translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio...</source>
+        <translation>TeXstudio konfigurieren...</translation>
+    </message>
+    <message>
+        <source>About TeXstudio...</source>
+        <translation>Über TeXstudio...</translation>
+    </message>
+    <message>
+        <source>You are trying to save the file under the name %1, but a file with this name is already open.
+ TeXstudio does not support multiple instances of the same file.
+Are you sure you want to continue?</source>
+        <translation>Sie versuchen eine Datei unter dem Namen &quot;%1&quot; zu speichrn, aber eine Datei dieses Namens ist bereits in TeXstudio geöffnet.
+TeXstudio unterstützt keine mehrfachen Instanzen der gleichen Datei.
+SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+        <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
+Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
     </message>
 </context>
 <context>
@@ -6832,6 +6963,10 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
     <message>
         <source>-</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the current command?</source>
+        <translation>Soll diese Zeile wirklich gelöscht werden?</translation>
     </message>
 </context>
 <context>

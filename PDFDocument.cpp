@@ -331,12 +331,12 @@ PDFMovie::PDFMovie(PDFWidget* parent, Poppler::MovieAnnotation* annot, int page)
 	this->load(url);
 	
 	popup = new QMenu(this);
-	popup->addAction(tr("Play"), this,SLOT(realPlay()));
-	popup->addAction(tr("Pause"), this,SLOT(pause()));
-	popup->addAction(tr("Stop"), this,SLOT(stop()));
+	popup->addAction(tr("&Play"), this,SLOT(realPlay()));
+	popup->addAction(tr("P&ause"), this,SLOT(pause()));
+	popup->addAction(tr("&Stop"), this,SLOT(stop()));
 	popup->addSeparator();
-	popup->addAction(tr("Seek"), this, SLOT(seekDialog()));
-	popup->addAction(tr("Set volume"), this, SLOT(setVolumeDialog()));
+	popup->addAction(tr("S&eek"), this, SLOT(seekDialog()));
+	popup->addAction(tr("Set &volume"), this, SLOT(setVolumeDialog()));
 	
 	setCursor(Qt::PointingHandCursor);
 }
@@ -772,7 +772,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			movie->play();
 		}
 #else
-		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile " TEXSTUDIO " with the option PHONON=true");
+		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
 #endif
 
 	} else if (currentTool == kPresentation) {
