@@ -914,7 +914,7 @@ void PDFClockDock::restart(){
 
 void PDFClockDock::setInterval(){
 	bool ok;
-	int inter = QInputDialog::getInt(0, "TexMakerX", "New clock interval (in minutes)", 60, 1, 9999, 5, &ok);
+	int inter = QInputDialog::getInt(0, "TeXstudio", "New clock interval (in minutes)", 60, 1, 9999, 5, &ok);
 	if (!ok) return;
 	start = QDateTime::currentDateTime();
 	end = start.addSecs(inter * 60);
