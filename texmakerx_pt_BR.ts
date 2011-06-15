@@ -7,7 +7,7 @@
         <location filename="aboutdialog.ui" line="14"/>
         <source>About TeXstudio</source>
         <oldsource>About TexMakerX</oldsource>
-        <translation type="unfinished">Sobre TexMakerX</translation>
+        <translation>Sobre TeXstudio</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="78"/>
@@ -267,7 +267,7 @@
         <location filename="configdialog.ui" line="14"/>
         <source>Configure TeXstudio</source>
         <oldsource>Configure TexMakerX</oldsource>
-        <translation type="unfinished">Configurar TexMakerX</translation>
+        <translation>Configurar TeXstudio</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="53"/>
@@ -1397,7 +1397,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configdialog.cpp" line="690"/>
         <source>third</source>
-        <translation type="unfinished"></translation>
+        <translation>terceiro</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="691"/>
@@ -1971,7 +1971,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="configmanager.cpp" line="1166"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <oldsource>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Para utilizar plenamente o visualizador de pdf interno, synctex deve estar ativado.  TeXstudio deve ativá-lo agora?</translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
@@ -3107,13 +3107,13 @@ Você deseja desfazer as alterações?</translation>
         <location filename="PDFDocument.ui" line="794"/>
         <source>&amp;Print...</source>
         <oldsource>&amp;Print</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Imprimir...</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="799"/>
         <source>&amp;Open...</source>
         <oldsource>&amp;Open</oldsource>
-        <translation type="unfinished">&amp;Abrir...</translation>
+        <translation>&amp;Abrir...</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="702"/>
@@ -3123,7 +3123,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocument.ui" line="173"/>
         <source>&amp;About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sobre TeXstudio...</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="710"/>
@@ -3184,7 +3184,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocument.cpp" line="2171"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao encontrar o arquivo &quot;%1&quot;: talvez ele tenha sido apagado.</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2394"/>
@@ -3204,12 +3204,12 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocument.cpp" line="2574"/>
         <source>Open PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir PDF</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2796"/>
         <source>Print</source>
-        <translation type="unfinished">Imprimir</translation>
+        <translation>Imprimir</translation>
     </message>
     <message>
         <source>TexMakerX</source>
@@ -3292,47 +3292,47 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="PDFDocument.cpp" line="328"/>
         <source>File %1 does not exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo %1 não existe</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="334"/>
         <source>&amp;Play</source>
         <oldsource>Play</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Reproduzir</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="335"/>
         <source>P&amp;ause</source>
         <oldsource>Pause</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;ausar</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="336"/>
         <source>&amp;Stop</source>
         <oldsource>Stop</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Parar</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="338"/>
         <source>S&amp;eek</source>
         <oldsource>Seek</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Buscar</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="339"/>
         <source>Set &amp;volume</source>
         <oldsource>Set volume</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar &amp;volume</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="378"/>
         <source>Volume:</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume:</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="386"/>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo:</translation>
     </message>
 </context>
 <context>
@@ -6167,7 +6167,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="748"/>
         <source>&amp;Configure TeXstudio...</source>
         <oldsource>&amp;Configure </oldsource>
-        <translation type="unfinished">&amp;Configurar TexMakerX...</translation>
+        <translation>&amp;Configurar TeXstudio...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="751"/>
@@ -6401,7 +6401,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="765"/>
         <source>About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre TeXstudio...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1398"/>
@@ -6614,7 +6614,9 @@ Você tem que salvar um documento antes de compilá-lo.</translation>
 Are you sure you want to continue?</source>
         <oldsource>You are trying to save the file under the name %1, but a file with this name is already open.
  </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Você está tentando salvar o arquivo sob o nome %1, mas um arquivo com este nome já se encontra aberto.
+TeXstudio não suporta múltiplas instâncias do mesmo arquivo.
+Você tem certeza que deseja continuar?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3050"/>
@@ -6622,7 +6624,8 @@ Are you sure you want to continue?</source>
 However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
         <oldsource>You have called the command to open the internal pdf viewer.
 However, you are using a version of  </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Você chamou o comando para abrir o visualizador interno de pdf.
+Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem o visualizador interno de pdf.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3540"/>
@@ -6758,7 +6761,7 @@ However, you are using a version of  </oldsource>
     <message>
         <location filename="texmaker.cpp" line="5055"/>
         <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Desculpe. não foi possível encontrar o arquivo &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5205"/>
@@ -7282,7 +7285,7 @@ devem ocorrer somente antes de uma palavra.</translation>
     <message>
         <location filename="usertooldialog.cpp" line="70"/>
         <source>Do you really want to delete the current command?</source>
-        <translation type="unfinished"></translation>
+        <translation>Você realmente deseja apagar o comando atual?</translation>
     </message>
 </context>
 <context>
