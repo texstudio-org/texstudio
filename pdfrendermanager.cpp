@@ -174,8 +174,19 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 			scale=1.0;
 		int sx=qRound(img.width()*scale);
 		int sy=qRound(img.height()*scale);
-		if(scale>1.01 || scale<0.99)
+		if(scale>1.01 || scale<0.99){
 			img=img.scaled(QSize(sx,sy),Qt::KeepAspectRatio,Qt::FastTransformation);
+			if(cache){
+			    if(xres>kMaxDpiForFullPage)
+				pageNr=pageNr+kMaxPageZoom;
+			    CachePixmap *image=new CachePixmap(img);
+			    image->setRes(xres,x,y);
+			    int cost=qRound(xres*xres/10000.0);
+			    if(cost<1)
+				cost=1;
+			    renderedPages.insert(pageNr,image,cost);
+			}
+		}
 		if(x>-1 && y>-1 && w>-1 && h>-1){
 			img=img.copy(x,y,w,h);
 		}
