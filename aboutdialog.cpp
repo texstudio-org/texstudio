@@ -18,7 +18,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-	ui.textBrowser->setHtml(QString("<b>" TEXSTUDIO TXSVERSION "(SVN %1)</b>").arg(TEXSTUDIO_SVN_VERSION?TEXSTUDIO_SVN_VERSION:"??") + "<br>" +
+	ui.textBrowser->setHtml(QString("<b>%1 %2</b> (SVN %3)").arg(TEXSTUDIO).arg(TXSVERSION).arg(TEXSTUDIO_SVN_VERSION?TEXSTUDIO_SVN_VERSION:"??") + "<br>" +
 				tr("Using Qt Version %1, compiled with Qt %2").arg(qVersion()).arg(QT_VERSION_STR) + "<br>" +
 				tr("Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet<br>")+
 				tr(TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+

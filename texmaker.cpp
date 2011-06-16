@@ -3047,7 +3047,7 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 				viewer->fillRenderCache(pg);
 			}
 #else
-			txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer."));
+			txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
 			return;
 		}
