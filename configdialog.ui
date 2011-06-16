@@ -74,7 +74,7 @@
      <property name="minimumSize">
       <size>
        <width>170</width>
-       <height>442</height>
+       <height>390</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -132,12 +132,12 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>450</width>
-       <height>442</height>
+       <width>400</width>
+       <height>390</height>
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">

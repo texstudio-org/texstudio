@@ -351,6 +351,17 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 #if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11))
 	ui.checkBoxUseSystemTheme->setVisible(false);
 #endif
+	
+	QRect screen = QApplication::desktop()->screenGeometry();
+	if (!screen.isEmpty()) {
+		int nwidth = width(), nheight = height();
+		if (nwidth > screen.width()) nwidth = screen.width();
+		if (nheight > screen.height()) nheight = screen.height();
+		if (nwidth == width() && nheight == height()) return;
+		resize(nwidth, nheight);
+		move(frameGeometry().right() > screen.right()?screen.left():x(),
+		     frameGeometry().bottom() > screen.bottom()?screen.top():y());
+	}	
 }
 
 ConfigDialog::~ConfigDialog() {
