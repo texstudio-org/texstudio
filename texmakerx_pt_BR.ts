@@ -2904,8 +2904,9 @@ Você deseja desfazer as alterações?</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="447"/>
-        <source>&amp;Configure TexMakerX</source>
-        <translation>&amp;Configurar TexMakerX</translation>
+        <source>&amp;Configure TeXstudio</source>
+        <oldsource>&amp;Configure TexMakerX</oldsource>
+        <translation type="unfinished">&amp;Configurar TexMakerX</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="455"/>
@@ -2994,8 +2995,9 @@ Você deseja desfazer as alterações?</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="573"/>
-        <source>&amp;Quit TexMakerX</source>
-        <translation>&amp;Encerrar TexMakerX</translation>
+        <source>&amp;Quit TeXstudio</source>
+        <oldsource>&amp;Quit TexMakerX</oldsource>
+        <translation type="unfinished">&amp;Encerrar TexMakerX</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="576"/>
@@ -6621,9 +6623,9 @@ Você tem certeza que deseja continuar?</translation>
     <message>
         <location filename="texmaker.cpp" line="3050"/>
         <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <oldsource>You have called the command to open the internal pdf viewer.
-However, you are using a version of  </oldsource>
+However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</oldsource>
         <translation>Você chamou o comando para abrir o visualizador interno de pdf.
 Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem o visualizador interno de pdf.</translation>
     </message>

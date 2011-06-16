@@ -2632,7 +2632,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;Configure TexMakerX</source>
-        <translation>&amp;Configurer TexMakerX</translation>
+        <translation type="obsolete">&amp;Configurer TexMakerX</translation>
     </message>
     <message>
         <source>Stac&amp;k</source>
@@ -2661,7 +2661,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;Quit TexMakerX</source>
-        <translation>&amp;Quitter TexMakerX</translation>
+        <translation type="obsolete">&amp;Quitter TexMakerX</translation>
     </message>
     <message>
         <source>&amp;Close something</source>
@@ -2790,6 +2790,14 @@ Continuer tout de même ?</translation>
     <message>
         <source>&amp;Open...</source>
         <translation type="unfinished">&amp;Ouvrir...</translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Quit TeXstudio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5719,7 +5727,7 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

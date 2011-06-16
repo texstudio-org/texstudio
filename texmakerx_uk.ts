@@ -2736,10 +2736,6 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Configure TexMakerX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Stac&amp;k</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2761,10 +2757,6 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>&amp;Side by Side</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Quit TexMakerX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2917,6 +2909,14 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>&amp;Open...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Quit TeXstudio</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6239,7 +6239,7 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

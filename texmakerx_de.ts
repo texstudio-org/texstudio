@@ -2914,7 +2914,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>&amp;Configure TexMakerX</source>
-        <translation>TexMakerX einri&amp;chten...</translation>
+        <translation type="obsolete">TexMakerX einri&amp;chten...</translation>
     </message>
     <message>
         <source>Stac&amp;k</source>
@@ -2942,7 +2942,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>&amp;Quit TexMakerX</source>
-        <translation>Be&amp;ende TexMakerX</translation>
+        <translation type="obsolete">Be&amp;ende TexMakerX</translation>
     </message>
     <message>
         <source>&amp;Close something</source>
@@ -3107,6 +3107,14 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>&amp;Open...</source>
         <translation>&amp;Öffnen...</translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio</source>
+        <translation>TeXstudio &amp;konfigurieren</translation>
+    </message>
+    <message>
+        <source>&amp;Quit TeXstudio</source>
+        <translation>Be&amp;ende TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -6482,6 +6490,12 @@ SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+        <translation type="obsolete">Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
+Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
+    </message>
+    <message>
+        <source>You have called the command to open the internal pdf viewer.
+However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
 Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
     </message>

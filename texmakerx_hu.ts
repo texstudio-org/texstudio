@@ -2386,7 +2386,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Quit TexMakerX</source>
-        <translation>&amp;Kilépés aTexMakerX-ből</translation>
+        <translation type="obsolete">&amp;Kilépés aTexMakerX-ből</translation>
     </message>
     <message>
         <source>&amp;Close something</source>
@@ -2402,7 +2402,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;Configure TexMakerX</source>
-        <translation>&amp;A TexMakerX beállításai</translation>
+        <translation type="obsolete">&amp;A TexMakerX beállításai</translation>
     </message>
     <message>
         <source>Scrolling follows cursor</source>
@@ -2523,6 +2523,14 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>&amp;Open...</source>
         <translation type="unfinished">&amp;Megnyitás...</translation>
+    </message>
+    <message>
+        <source>&amp;Configure TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Quit TeXstudio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5226,7 +5234,7 @@ Are you sure you want to continue?</source>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of  TeXstudio  that was compiled without the internal pdf viewer.</source>
+However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
