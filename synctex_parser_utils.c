@@ -1,11 +1,12 @@
 /* 
-Copyright (c) 2008, 2009 jerome DOT laurens AT u-bourgogne DOT fr
+Copyright (c) 2008, 2009, 2010 , 2011 jerome DOT laurens AT u-bourgogne DOT fr
 
 This file is part of the SyncTeX package.
 
-Latest Revision: Wed Nov  4 11:52:35 UTC 2009
+Latest Revision: Tue Jun 14 08:23:30 UTC 2011
 
-Version: 1.9
+Version: 1.16
+
 See synctex_parser_readme.txt for more details
 
 License:
@@ -39,7 +40,6 @@ authorization from the copyright holder.
 */
 
 /*  In this file, we find all the functions that may depend on the operating system. */
-#ifndef NO_POPPLER_PREVIEW
 
 #include <synctex_parser_utils.h>
 #include <stdlib.h>
@@ -141,8 +141,22 @@ void _synctex_strip_last_path_extension(char * string) {
 	}
 }
 
+const char * synctex_ignore_leading_dot_slash(const char * name)
+{
+    while(SYNCTEX_IS_DOT(*name) && SYNCTEX_IS_PATH_SEPARATOR(name[1])) {
+        name += 2;
+        while (SYNCTEX_IS_PATH_SEPARATOR(*name)) {
+            ++name;
+        }
+    }
+    return name;
+}
+
 /*  Compare two file names, windows is sometimes case insensitive... */
 synctex_bool_t _synctex_is_equivalent_file_name(const char *lhs, const char *rhs) {
+    /*  Remove the leading regex '(\./+)*' in both rhs and lhs */
+    lhs = synctex_ignore_leading_dot_slash(lhs);
+    rhs = synctex_ignore_leading_dot_slash(rhs);
 #	if SYNCTEX_WINDOWS
     /*  On Windows, filename should be compared case insensitive.
 	 *  The characters '/' and '\' are both valid path separators.
@@ -295,121 +309,115 @@ char * _synctex_merge_strings(const char * first,...) {
  *  There is a list of possible filenames from which we return the most recent one and try to remove all the others.
  *  With two runs of pdftex or xetex we are sure the the synctex file is really the most appropriate.
  */
-int _synctex_get_name(const char * output, const char * build_directory, char ** synctex_name_ref, synctex_compress_mode_t * compress_mode_ref)
+int _synctex_get_name(const char * output, const char * build_directory, char ** synctex_name_ref, synctex_io_mode_t * io_mode_ref)
 {
-	if(output && synctex_name_ref && compress_mode_ref) {
-#		define synctex_name (*synctex_name_ref)
-#		define compress_mode (*compress_mode_ref)
+	if(output && synctex_name_ref && io_mode_ref) {
 		/*  If output is already absolute, we just have to manage the quotes and the compress mode */
-		const char * basename = NULL; /*  base name of output*/
 		size_t size = 0;
-		/*  Initialize the return values. */
-		synctex_name = NULL;
-		compress_mode = synctex_compress_mode_none;
-		basename = _synctex_last_path_component(output); /*  do not free, output is the owner. */
+        char * synctex_name = NULL;
+        synctex_io_mode_t io_mode = *io_mode_ref;
+		const char * base_name = _synctex_last_path_component(output); /*  do not free, output is the owner. base name of output*/
 		/*  Do we have a real base name ? */
-		if((size = strlen(basename))>0) {
+		if(strlen(base_name)>0) {
 			/*  Yes, we do. */
 			const char * temp = NULL;
-			char * corename = NULL; /*  base name of output without path extension. */
-			char * dirname = NULL; /*  dir name of output */
-			char * quoted_corename = NULL;
-			char * none = NULL;
-			char * gz = NULL;
-			char * quoted = NULL;
-			char * quoted_gz = NULL;
-			char * build = NULL;
-			char * build_gz = NULL;
-			char * build_quoted = NULL;
-			char * build_quoted_gz = NULL;
+			char * core_name = NULL; /*  base name of output without path extension. */
+			char * dir_name = NULL; /*  dir name of output */
+			char * quoted_core_name = NULL;
+			char * basic_name = NULL;
+			char * gz_name = NULL;
+			char * quoted_name = NULL;
+			char * quoted_gz_name = NULL;
+			char * build_name = NULL;
+			char * build_gz_name = NULL;
+			char * build_quoted_name = NULL;
+			char * build_quoted_gz_name = NULL;
 			struct stat buf;
-			time_t time = 0;
-			/*  Create corename: let temp point to the dot before the path extension of basename;
+			time_t the_time = 0;
+			/*  Create core_name: let temp point to the dot before the path extension of base_name;
 			 *  We start form the \0 terminating character and scan the string upward until we find a dot.
-			 *  The first dot is not accepted. */
-			temp = strrchr(basename,'.');
-			size = temp - basename;
-			if(size>0) {
-				/*  dot properly found, now create corename  */
-				if(NULL == (corename = (char *)malloc(size+1))) {
+			 *  The leading dot is not accepted. */
+			if((temp = strrchr(base_name,'.')) && (size = temp - base_name)>0) {
+				/*  There is a dot and it is not at the leading position    */
+				if(NULL == (core_name = (char *)malloc(size+1))) {
 					_synctex_error("!  _synctex_get_name: Memory problem 1");
 					return -1;
 				}
-				if(corename != strncpy(corename,basename,size)) {
+				if(core_name != strncpy(core_name,base_name,size)) {
 					_synctex_error("!  _synctex_get_name: Copy problem 1");
-					free(corename);
-					dirname = NULL;
+					free(core_name);
+					dir_name = NULL;
 					return -2;
 				}
-				corename[size] = '\0';
+				core_name[size] = '\0';
 			} else {
 				/*  There is no path extension,
-				 *  Just make a copy of basename */
-				corename = _synctex_merge_strings(basename);
+				 *  Just make a copy of base_name */
+				core_name = _synctex_merge_strings(base_name);
 			}
-			/*  corename is properly set up, owned by "self". */
-			/*  creating dirname. */
-			size = strlen(output)-strlen(basename);
+			/*  core_name is properly set up, owned by "self". */
+			/*  creating dir_name. */
+			size = strlen(output)-strlen(base_name);
 			if(size>0) {
 				/*  output contains more than one path component */
-				if(NULL == (dirname = (char *)malloc(size+1))) {
+				if(NULL == (dir_name = (char *)malloc(size+1))) {
 					_synctex_error("!  _synctex_get_name: Memory problem");
-					free(corename);
-					dirname = NULL;
+					free(core_name);
+					dir_name = NULL;
 					return -1;
 				}
-				if(dirname != strncpy(dirname,output,size)) {
+				if(dir_name != strncpy(dir_name,output,size)) {
 					_synctex_error("!  _synctex_get_name: Copy problem");
-					free(dirname);
-					dirname = NULL;
-					free(corename);
-					dirname = NULL;
+					free(dir_name);
+					dir_name = NULL;
+					free(core_name);
+					dir_name = NULL;
 					return -2;
 				}
-				dirname[size] = '\0';
+				dir_name[size] = '\0';
 			}
-			/*  dirname is properly set up. It ends with a path separator, if non void. */
-			/*  creating quoted_corename. */
-			if(strchr(corename,' ')) {
-				quoted_corename = _synctex_merge_strings("\"",corename,"\"");
+			/*  dir_name is properly set up. It ends with a path separator, if non void. */
+			/*  creating quoted_core_name. */
+			if(strchr(core_name,' ')) {
+				quoted_core_name = _synctex_merge_strings("\"",core_name,"\"");
 			}
-			/*  quoted_corename is properly set up. */
-			if(dirname &&strlen(dirname)>0) {
-				none = _synctex_merge_strings(dirname,corename,synctex_suffix,NULL);
-				if(quoted_corename && strlen(quoted_corename)>0) {
-					quoted = _synctex_merge_strings(dirname,quoted_corename,synctex_suffix,NULL);
+			/*  quoted_core_name is properly set up. */
+			if(dir_name &&strlen(dir_name)>0) {
+				basic_name = _synctex_merge_strings(dir_name,core_name,synctex_suffix,NULL);
+				if(quoted_core_name && strlen(quoted_core_name)>0) {
+					quoted_name = _synctex_merge_strings(dir_name,quoted_core_name,synctex_suffix,NULL);
 				}
 			} else {
-				none = _synctex_merge_strings(corename,synctex_suffix,NULL);
-				if(quoted_corename && strlen(quoted_corename)>0) {
-					quoted = _synctex_merge_strings(quoted_corename,synctex_suffix,NULL);
+				basic_name = _synctex_merge_strings(core_name,synctex_suffix,NULL);
+				if(quoted_core_name && strlen(quoted_core_name)>0) {
+					quoted_name = _synctex_merge_strings(quoted_core_name,synctex_suffix,NULL);
 				}
 			}
 			if(!_synctex_path_is_absolute(output) && build_directory && (size = strlen(build_directory))) {
 				temp = build_directory + size - 1;
 				if(_synctex_path_is_absolute(temp)) {
-					build = _synctex_merge_strings(build_directory,none,NULL);
-					if(quoted_corename && strlen(quoted_corename)>0) {
-						build_quoted = _synctex_merge_strings(build_directory,quoted,NULL);
+					build_name = _synctex_merge_strings(build_directory,basic_name,NULL);
+					if(quoted_core_name && strlen(quoted_core_name)>0) {
+						build_quoted_name = _synctex_merge_strings(build_directory,quoted_name,NULL);
 					}
 				} else {
-					build = _synctex_merge_strings(build_directory,"/",none,NULL);
-					if(quoted_corename && strlen(quoted_corename)>0) {
-						build_quoted = _synctex_merge_strings(build_directory,"/",quoted,NULL);
+					build_name = _synctex_merge_strings(build_directory,"/",basic_name,NULL);
+					if(quoted_core_name && strlen(quoted_core_name)>0) {
+						build_quoted_name = _synctex_merge_strings(build_directory,"/",quoted_name,NULL);
 					}
 				}
 			}
-			if(none) {
-				gz = _synctex_merge_strings(none,synctex_suffix_gz,NULL);
+			if(basic_name) {
+				gz_name = _synctex_merge_strings(basic_name,synctex_suffix_gz,NULL);
 			}
-			if(quoted) {
-				quoted_gz =	_synctex_merge_strings(quoted,synctex_suffix_gz,NULL);
+			if(quoted_name) {
+				quoted_gz_name = _synctex_merge_strings(quoted_name,synctex_suffix_gz,NULL);
 			}
-			if(build) {
-				build_gz = _synctex_merge_strings(build,synctex_suffix_gz,NULL);
+			if(build_name) {
+				build_gz_name = _synctex_merge_strings(build_name,synctex_suffix_gz,NULL);
 			}
-			if(build_quoted) {
-				build_quoted_gz = _synctex_merge_strings(build_quoted,synctex_suffix_gz,NULL);
+			if(build_quoted_name) {
+				build_quoted_gz_name = _synctex_merge_strings(build_quoted_name,synctex_suffix_gz,NULL);
 			}
 			/*  All the others names are properly set up... */
 			/*  retain the most recently modified file */
@@ -418,22 +426,24 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 				if (stat(FILENAME, &buf)) { \
 					free(FILENAME);\
 					FILENAME = NULL;\
-				} else { \
-					if(buf.st_mtime>time) { \
-						time=buf.st_mtime; \
-						synctex_name = FILENAME; \
-						compress_mode = COMPRESS_MODE; \
-					} \
+				} else if (buf.st_mtime>the_time) { \
+                    the_time=buf.st_mtime; \
+                    synctex_name = FILENAME; \
+                    if (COMPRESS_MODE) { \
+                        io_mode |= synctex_io_gz_mask; \
+                    } else { \
+                        io_mode &= ~synctex_io_gz_mask; \
+                    } \
 				} \
 			}
-			TEST(none,synctex_compress_mode_none);
-			TEST(gz,synctex_compress_mode_gz);
-			TEST(quoted,synctex_compress_mode_none);
-			TEST(quoted_gz,synctex_compress_mode_gz);
-			TEST(build,synctex_compress_mode_none);
-			TEST(build_gz,synctex_compress_mode_gz);
-			TEST(build_quoted,synctex_compress_mode_none);
-			TEST(build_quoted_gz,synctex_compress_mode_gz);
+			TEST(basic_name,synctex_DONT_COMPRESS);
+			TEST(gz_name,synctex_COMPRESS);
+			TEST(quoted_name,synctex_DONT_COMPRESS);
+			TEST(quoted_gz_name,synctex_COMPRESS);
+			TEST(build_name,synctex_DONT_COMPRESS);
+			TEST(build_gz_name,synctex_COMPRESS);
+			TEST(build_quoted_name,synctex_DONT_COMPRESS);
+			TEST(build_quoted_gz_name,synctex_COMPRESS);
 #			undef TEST
 			/*  Free all the intermediate filenames, except the one that will be used as returned value. */
 #			define CLEAN_AND_REMOVE(FILENAME) \
@@ -443,22 +453,27 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 				free(FILENAME);\
 				FILENAME = NULL;\
 			}
-			CLEAN_AND_REMOVE(none);
-			CLEAN_AND_REMOVE(gz);
-			CLEAN_AND_REMOVE(quoted);
-			CLEAN_AND_REMOVE(quoted_gz);
-			CLEAN_AND_REMOVE(build);
-			CLEAN_AND_REMOVE(build_gz);
-			CLEAN_AND_REMOVE(build_quoted);
-			CLEAN_AND_REMOVE(build_quoted_gz);
+			CLEAN_AND_REMOVE(basic_name);
+			CLEAN_AND_REMOVE(gz_name);
+			CLEAN_AND_REMOVE(quoted_name);
+			CLEAN_AND_REMOVE(quoted_gz_name);
+			CLEAN_AND_REMOVE(build_name);
+			CLEAN_AND_REMOVE(build_gz_name);
+			CLEAN_AND_REMOVE(build_quoted_name);
+			CLEAN_AND_REMOVE(build_quoted_gz_name);
 #			undef CLEAN_AND_REMOVE
+            /* set up the returned values */
+            * synctex_name_ref = synctex_name;
+            * io_mode_ref = io_mode;
 			return 0;
 		}
 		return -1;/*  bad argument */
-#		undef synctex_name
-#		undef compress_mode 
 	}
 	return -2;
 }
 
-#endif
+const char * _synctex_get_io_mode_name(synctex_io_mode_t io_mode) {
+    static const char * synctex_io_modes[4] = {"r","rb","a","ab"}; 
+    unsigned index = ((io_mode & synctex_io_gz_mask)?1:0) + ((io_mode & synctex_io_append_mask)?2:0);// bug pointed out by Jose Alliste
+    return synctex_io_modes[index];
+}
