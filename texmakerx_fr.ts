@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>About TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos de TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -1301,7 +1301,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -1768,7 +1768,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour profiter plienement de l&apos;afficheur PDFintégré, synctex doit être activé. TeXstudio doit-il le faire maintenant ?</translation>
     </message>
 </context>
 <context>
@@ -2769,35 +2769,35 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>À &amp;propos de TeXstudio</translation>
     </message>
     <message>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier « %1 » n&apos;a pas été trouvé ; peut-être a-t-il été supprimé.</translation>
     </message>
     <message>
         <source>Open PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le PDF</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation type="unfinished">Imprimer</translation>
+        <translation>Imprimer</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation type="unfinished">&amp;Ouvrir...</translation>
+        <translation>&amp;Ouvrir...</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configurer TeXstudio</translation>
     </message>
     <message>
         <source>&amp;Quit TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Quitter TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -2850,35 +2850,35 @@ Continuer tout de même ?</translation>
     <name>PDFMovie</name>
     <message>
         <source>File %1 does not exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier %1 n&apos;existe pas</translation>
     </message>
     <message>
         <source>Volume:</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume :</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Temps :</translation>
     </message>
     <message>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lecture</translation>
     </message>
     <message>
         <source>P&amp;ause</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;ause</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Arrêter</translation>
     </message>
     <message>
         <source>S&amp;eek</source>
-        <translation type="unfinished"></translation>
+        <translation>Ch&amp;ercher</translation>
     </message>
     <message>
         <source>Set &amp;volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuster le &amp;volume</translation>
     </message>
 </context>
 <context>
@@ -5709,26 +5709,29 @@ TexMakerX n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
     </message>
     <message>
         <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Désolé, je n&apos;ai pas trouvé le fichier « %1 »</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configurer TeXstudio</translation>
     </message>
     <message>
         <source>About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos de TeXstudio</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous essayez de sauvegarder le fichier sous le nom %1, mais un fichier du même nom est déjà ouvert.
+TeXstudio n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
+Êtes-vous certain de vouloir continuer ?</translation>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous cherchez à ouvrir la visionneuse pdf interne.
+Cependant, cette version de TeXstudio a été compilée sans le support de cette fonction.</translation>
     </message>
 </context>
 <context>
@@ -6152,7 +6155,7 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous réellement supprimer la commande en cours ?</translation>
     </message>
 </context>
 <context>
