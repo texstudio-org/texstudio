@@ -2906,7 +2906,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="PDFDocument.ui" line="447"/>
         <source>&amp;Configure TeXstudio</source>
         <oldsource>&amp;Configure TexMakerX</oldsource>
-        <translation type="unfinished">&amp;Configurar TexMakerX</translation>
+        <translation>&amp;Configurar TeXstudio</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="455"/>
@@ -2997,7 +2997,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="PDFDocument.ui" line="573"/>
         <source>&amp;Quit TeXstudio</source>
         <oldsource>&amp;Quit TexMakerX</oldsource>
-        <translation type="unfinished">&amp;Encerrar TexMakerX</translation>
+        <translation>&amp;Encerrar TeXstudio</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="576"/>
