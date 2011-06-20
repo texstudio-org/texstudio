@@ -360,7 +360,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 		if (nwidth == width() && nheight == height()) return;
 		resize(nwidth, nheight);
 		move(frameGeometry().right() > screen.right()?screen.left():x(),
-		     frameGeometry().bottom() > screen.bottom()?screen.top():y());
+		     frameGeometry().bottom() > screen.bottom()?screen.left():y());
 	}	
 }
 
