@@ -93,17 +93,17 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 	} else searchFor = context->argument(0).toString();
 	QScriptValue handler;
 	QDocumentCursor scope = editor->document()->cursor(0,0,editor->document()->lineCount(),0);
-	int strCount = 0;
+	int handlerCount = 0;
 	for (int i=1; i<context->argumentCount();i++)
-		if (context->argument(i).isString()) strCount++;
-	SCRIPT_REQUIRE(strCount <= (replace?2:1), "too many string arguments");
+		if (context->argument(i).isString() || context->argument(i).isFunction()) handlerCount++;
+	SCRIPT_REQUIRE(handlerCount <= (replace?2:1), "too many string or function arguments");
 	for (int i=1; i<context->argumentCount();i++) {
 		QScriptValue a = context->argument(i);
 		if (a.isFunction()) {
 			SCRIPT_REQUIRE(!handler.isValid(), "Multiple callbacks");
 			handler = a;
 		} else if (a.isString()) {
-			if (!replace || strCount > 1) {
+			if (!replace || handlerCount > 1) {
 				QString s = a.toString().toLower();
 				global = s.contains("g");
 				caseInsensitive = s.contains("i");
@@ -112,7 +112,7 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 				SCRIPT_REQUIRE(!handler.isValid(), "Multiple callbacks");
 				handler = a;
 			}
-			strCount--;
+			handlerCount--;
 		} else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
 		else if (a.isObject()) scope = cursorFromValue(a);
 		else SCRIPT_REQUIRE(false, "Invalid argument");

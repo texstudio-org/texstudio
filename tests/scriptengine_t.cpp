@@ -100,6 +100,12 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Search/Replace Test 7gi")
 		<< "editor.replace(/h/gi, 'test'); "
 		<< "test1738\ntest1729\ntest1730";
+	QTest::newRow("Search/Replace Test function replacing")
+	       << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+		<< "H>a<llo1\nH>a<llo2\nH>a<llo3";
+	QTest::newRow("Search/Replace Test function replacing 2")
+	       << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\"); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+		<< "H>al<lo1\nH>am<lo2\nH>al<lo3";
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
