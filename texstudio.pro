@@ -206,13 +206,13 @@ FORMS += structdialog.ui \
     findGlobalDialog.ui \
     userquickdialog.ui \
     PDFDocument.ui
-TRANSLATIONS += texmakerx_fr.ts \
-    texmakerx_de.ts \
-    texmakerx_it.ts \
-    texmakerx_cs.ts \
-    texmakerx_hu.ts \
-    texmakerx_pt_BR.ts \
-    texmakerx_uk.ts
+TRANSLATIONS += texstudio_fr.ts \
+    texstudio_de.ts \
+    texstudio_it.ts \
+    texstudio_cs.ts \
+    texstudio_hu.ts \
+    texstudio_pt_BR.ts \
+    texstudio_uk.ts
 
 # ###############################
 win32:RC_FILE = win.rc
@@ -288,12 +288,12 @@ unix {
         utilities/template.png \
         utilities/thesaurus.png \
         utilities/latexhelp.html \
-        texmakerx_fr.qm \
-        texmakerx_de.qm \
-        texmakerx_it.qm \
-        texmakerx_cs.qm \
-        texmakerx_hu.qm \
-        texmakerx_pt_BR.qm \
+	texstudio_fr.qm \
+	texstudio_de.qm \
+	texstudio_it.qm \
+	texstudio_cs.qm \
+	texstudio_hu.qm \
+	texstudio_pt_BR.qm \
         qt_fr.qm \
         qt_de.qm \
         qt_hu.qm \
