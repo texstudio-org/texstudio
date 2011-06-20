@@ -869,6 +869,7 @@ bool ConfigManager::execConfigDialog() {
 		keysReversed.insertMulti(it.value(), it.key());
 		++it;
 	}
+	int ht=confDlg->ui.comboBoxLanguage->sizeHint().height();
 	foreach(const int elem, editorAvailableOperations){
 	    QList<int> keys=keysReversed.values(elem);
 	    bool listEmpty=false;
@@ -885,9 +886,13 @@ bool ConfigManager::execConfigDialog() {
 		}
 		twi->setData(0, Qt::UserRole, elem);
 		twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+		QSize sz=twi->sizeHint(0);
+		twi->setSizeHint(0,QSize(sz.width(),ht));
 	    }
 	}
-	new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
+	QTreeWidgetItem * twi=new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
+	QSize sz=twi->sizeHint(0);
+	twi->setSizeHint(0,QSize(sz.width(),ht));
 
 	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
 	editorItem->setExpanded(true);
