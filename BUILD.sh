@@ -13,18 +13,18 @@ if [ "$SYSTEM" = 1 ]
 then
 echo "Enter PREFIX (/usr , /usr/local or /opt) :"
 read PREFIX
-qmake -unix PREFIX=$PREFIX texmakerx.pro
+qmake -unix PREFIX=$PREFIX texstudio.pro
 make
 make install
 echo "Compilation and installation done"
-echo "Icons and desktop file can be found in the $PREFIX/share/texmakerx directory"
+echo "Icons and desktop file can be found in the $PREFIX/share/texstudio directory"
 # set the -spec option, if necessary. Ex : qmake -unix -spec linux-g++ PREFIX=$PREFIX texmaker.pro
 exit 0
 fi
 
 if [ "$SYSTEM" = 2 ] 
 then
-qmake -macx -spec macx-g++ texmakerx.pro
+qmake -macx -spec macx-g++ texstudio.pro
 make
 make install
 echo "Compilation and installation done"
