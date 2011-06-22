@@ -822,7 +822,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	QDocumentCursor c=editor->cursor();
 	if (!c.isValid()) return;
 	int phId=editor->currentPlaceHolder();
-	if(phId>-1){
+	if(phId>-1 && phId<editor->placeHolderCount()){
 		PlaceHolder ph=editor->getPlaceHolder(phId);
 		if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
 			editor->removePlaceHolder(phId);
