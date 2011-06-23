@@ -1959,7 +1959,7 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	if (m_placeHolderSynchronizing) return;
 	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)	
 
-	PlaceHolder& ph = m_placeHolders[i]; //using reference to change the placeholder
+	PlaceHolder ph = m_placeHolders[i]; //using reference to change the placeholder
 	QDocumentCursor cc = ph.cursor;
 	selectCursors|=!cc.isWithinSelection(m_cursor);// && cc.hasSelection() && cc.selectionStart()!=cc.selectionEnd();
 	
