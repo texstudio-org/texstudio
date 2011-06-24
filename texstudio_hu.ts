@@ -4,10 +4,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About TexMakerX</source>
-        <translation type="obsolete">A TexMakerX névjegye</translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -18,10 +14,6 @@
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
         <translation>Copyright (c) (eredeti TexMaker) 2004-2010, Pascal Brachet&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation type="obsolete">TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;Html konvertálás: </translation>
     </message>
     <message>
         <source>Thanks to </source>
@@ -40,16 +32,8 @@
         <translation>Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján.</translation>
     </message>
     <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="obsolete">A TexMakerX felhasznál az alábbi programok kódjaiból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL).és SyncTeX (szerző: Jerome Laurens)&lt;br&gt;A TexMakerX a TeXworks PDF-megjelenítőt használja.&lt;br&gt; A TexMakerX a DSingleApplication (szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL) osztályt használja.&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>About TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio névjegye</translation>
     </message>
 </context>
 <context>
@@ -214,10 +198,6 @@
 </context>
 <context>
     <name>ConfigDialog</name>
-    <message>
-        <source>Configure TexMakerX</source>
-        <translation type="obsolete">A TexMakerX beállításai</translation>
-    </message>
     <message>
         <source>OK</source>
         <translation>OK</translation>
@@ -652,10 +632,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Show advanced options</source>
         <translation>Haladó beállítások megjelenítése</translation>
-    </message>
-    <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
@@ -1095,7 +1071,7 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio beállításai</translation>
     </message>
 </context>
 <context>
@@ -1533,10 +1509,6 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <translation>Belső megjelenítő</translation>
     </message>
     <message>
-        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation type="obsolete">A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TexMakerX Ön helyett?</translation>
-    </message>
-    <message>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Minden fájl megnyitása</translation>
     </message>
@@ -1554,7 +1526,7 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
     </message>
 </context>
 <context>
@@ -2257,10 +2229,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
-    </message>
-    <message>
         <source>page %1 of %2</source>
         <translation>%1\%2 oldal</translation>
     </message>
@@ -2287,10 +2255,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>&amp;Window</source>
         <translation>&amp;Ablak</translation>
-    </message>
-    <message>
-        <source>&amp;About TexMakerX...</source>
-        <translation type="obsolete">&amp;A TexMakerX névjegye...</translation>
     </message>
     <message>
         <source>&amp;First Page</source>
@@ -2385,10 +2349,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>&amp;Egymás mellett</translation>
     </message>
     <message>
-        <source>&amp;Quit TexMakerX</source>
-        <translation type="obsolete">&amp;Kilépés aTexMakerX-ből</translation>
-    </message>
-    <message>
         <source>&amp;Close something</source>
         <translation>&amp;Bezárás</translation>
     </message>
@@ -2399,10 +2359,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>&amp;Configure</source>
         <translation>&amp;Beállítások</translation>
-    </message>
-    <message>
-        <source>&amp;Configure TexMakerX</source>
-        <translation type="obsolete">&amp;A TexMakerX beállításai</translation>
     </message>
     <message>
         <source>Scrolling follows cursor</source>
@@ -2502,35 +2458,35 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>&amp;About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;A TeXstudio névjegye...</translation>
     </message>
     <message>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az &quot;%1&quot; nevű fájl nem található, talán törölve lett</translation>
     </message>
     <message>
         <source>Open PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF megnyitása</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation type="unfinished">Nyomtatás</translation>
+        <translation>Nyomtatás</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nyomtatás...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation type="unfinished">&amp;Megnyitás...</translation>
+        <translation>&amp;Megnyitás...</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;A TeXstudio beállításai</translation>
     </message>
     <message>
         <source>&amp;Quit TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kilépés aTeXstudio-ból</translation>
     </message>
 </context>
 <context>
@@ -2583,35 +2539,35 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>PDFMovie</name>
     <message>
         <source>File %1 does not exists</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) &quot;%1&quot; nevű fájl nem létezik</translation>
     </message>
     <message>
         <source>Volume:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hangerő:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Idő:</translation>
     </message>
     <message>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lejátszás</translation>
     </message>
     <message>
         <source>P&amp;ause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Szünet</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Megállítás</translation>
     </message>
     <message>
         <source>S&amp;eek</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Keresés</translation>
     </message>
     <message>
         <source>Set &amp;volume</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hangerő beállítása</translation>
     </message>
 </context>
 <context>
@@ -4681,10 +4637,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Beállí&amp;tások</translation>
     </message>
     <message>
-        <source>&amp;Configure TexMakerX...</source>
-        <translation type="obsolete">&amp;A TexMakerX beállításai...</translation>
-    </message>
-    <message>
         <source>Load &amp;Profile...</source>
         <translation>&amp;Profil betöltése...</translation>
     </message>
@@ -4756,10 +4708,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>User Manual...</source>
         <translation>&amp;Felhasználói kézikönyv...</translation>
-    </message>
-    <message>
-        <source>About TexMakerX...</source>
-        <translation type="obsolete">&amp;A TexMakerX névjegye...</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -5067,11 +5015,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>A böngésző nem futtatható</translation>
     </message>
     <message>
-        <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation type="obsolete">Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TexMakerX verzió anélkül lett fordítva</translation>
-    </message>
-    <message>
         <source>SVN &amp;update...</source>
         <translation>SVN &amp;frissítés...</translation>
     </message>
@@ -5114,13 +5057,6 @@ However, you are using a version of TexMakerX that was compiled without the inte
     <message>
         <source>Open Documents</source>
         <translation>Dokumentumok megnyitása</translation>
-    </message>
-    <message>
-        <source>You are trying to save the file under the name %1, but a file with this name is already open.
-TexMakerX does not support multiple instances of the same file.
-Are you sure you want to continue?</source>
-        <translation type="obsolete">A(z) %1 nevű fájlt próbálja menteni, de ilyen nevű fájl már létezik.
-Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>check in whole directory ?</source>
@@ -5216,26 +5152,28 @@ Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Sajnos nem találom a &quot;%1&quot; fájlt</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;A TeXstudio beállításai...</translation>
     </message>
     <message>
         <source>About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio névjegye...</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 nevű fájlt próbálja menteni, de ilyen nevű fájl már meg van nyitva.
+A TeXstudio nem támogatja ezt 
+Biztos, hogy folytatni akarja?</translation>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TeXstudio változat anélkül lett fordítva.</translation>
     </message>
 </context>
 <context>
@@ -5631,7 +5569,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tényleg törli az aktuális parancsot?</translation>
     </message>
 </context>
 <context>
