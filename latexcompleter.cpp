@@ -99,11 +99,14 @@ public:
 				if(cursor.nextChar()=='}')
 					cursor.deleteChar();
 			}
-			if(isMirrored() && cw.lines.first().startsWith("\\begin")){
+			if(isMirrored() && (cw.lines.first().startsWith("\\begin")||cw.lines.first().startsWith("\\end"))){
 			    QString text=cw.lines.first();
 			    int i=cursor.columnNumber()-curStart;
 			    text.remove(0,i);
 			    text.remove('}');
+			    while(!cursor.atLineEnd() && cursor.nextChar()!='}'){
+				cursor.deleteChar();
+			    }
 			    insertText(text);
 			    return true;
 			}
