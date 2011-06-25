@@ -10,6 +10,7 @@
 #include "qdocumentline_p.h"
 
 #include "latexdocument.h"
+#include "qdocument.h"
 
 #include <algorithm>
 
@@ -39,9 +40,35 @@ public:
 		return curLine.text().mid(curStart,editor->cursor().columnNumber()-curStart);
 	}
 
+	// check if current cursor/placeholder is mirrored
+	bool isMirrored(){
+	    if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
+	    {
+		    PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
+		    return ph.mirrors.count()>0;
+	    }
+	    return false;
+	}
+
 	void insertText(const QString& text){
 		maxWritten += text.length();
+		//editor->cursor().insertText(text);
 		editor->cursor().insertText(text);
+		//cursor mirrors
+		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
+		{
+			PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
+
+			QString baseText = ph.cursor.selectedText();
+
+			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+			{
+				//QString s = ph.affector ?  ph.affector->affect(text, baseText, m_curPlaceHolder, phm) : baseText;
+
+				ph.mirrors[phm].replaceSelectedText(baseText);
+			}
+		}
+		//end cursor mirrors
 		if (editor->cursor().columnNumber()+1>curStart && !completer->isVisible()){
 			QString wrd=getCurWord();
 			completer->filterList(wrd,showMostUsed);
@@ -71,6 +98,14 @@ public:
 					cursor.deleteChar();
 				if(cursor.nextChar()=='}')
 					cursor.deleteChar();
+			}
+			if(isMirrored() && cw.lines.first().startsWith("\\begin")){
+			    QString text=cw.lines.first();
+			    int i=cursor.columnNumber()-curStart;
+			    text.remove(0,i);
+			    text.remove('}');
+			    insertText(text);
+			    return true;
 			}
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
@@ -821,13 +856,13 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	if (!editor) return;
 	QDocumentCursor c=editor->cursor();
 	if (!c.isValid()) return;
-	int phId=editor->currentPlaceHolder();
+	/*int phId=editor->currentPlaceHolder();
 	if(phId>-1 && phId<editor->placeHolderCount()){
 		PlaceHolder ph=editor->getPlaceHolder(phId);
 		if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
 			editor->removePlaceHolder(phId);
 		}
-	}
+	}*/
 	if (c.hasSelection()) {
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
 		editor->setCursor(c);
