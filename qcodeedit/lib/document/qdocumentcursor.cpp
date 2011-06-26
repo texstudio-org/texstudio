@@ -288,6 +288,20 @@ bool QDocumentCursor::beginBoundaryLarger (const QDocumentCursor& c) const{
 	else 
 		return line1>line2;	
 }
+
+bool QDocumentCursor::equalBoundaries(const QDocumentCursor& c) const{
+	if (!m_handle) return false;
+	if (m_handle == c.m_handle) return true;
+	return m_handle->equalBoundaries(c.m_handle);
+}
+
+bool QDocumentCursor::equal(const QDocumentCursor& c) const{
+	if (!m_handle) return false;
+	if (m_handle == c.m_handle) return true;
+	return m_handle->equal(c.m_handle);
+}
+
+
 /*!
   Returns if my right boundary is larger (line/offset) than c
 */
@@ -935,6 +949,7 @@ void QDocumentCursor::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& 
 	if (m_handle)
 		m_handle->intersectBoundaries(lbeg, cbeg, lend, cend);
 }
+
 
 
 void QDocumentCursor::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal){

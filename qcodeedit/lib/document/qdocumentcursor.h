@@ -114,6 +114,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		bool beginBoundaryLarger (const QDocumentCursor& c) const;
 		bool endBoundaryLarger (const QDocumentCursor& c) const;
+		bool equalBoundaries(const QDocumentCursor& c) const;
+		bool equal(const QDocumentCursor& c) const;
 		
 		void beginBoundary(int& begline, int& begcol) const;
 		void endBoundary(int& endline, int& endcol) const;

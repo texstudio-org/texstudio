@@ -132,7 +132,7 @@ public:
 		QDocumentCursor cursor=editor->cursor();
 		for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 		maxWritten=cursor.columnNumber();
-		editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)
+		editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)  TODO: remove this line (it cause \ to disable placeholders which other keys don't disable)
 	}
 
 	//selects an index in the completion suggestion list
