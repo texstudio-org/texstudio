@@ -1,0 +1,13 @@
+texstudio (2.2-2) natty; urgency=low
+
+  * direct linking to libpoppler removed
+
+ -- J. Sundermeyer <jsundermeyer@users.sourceforge.net>  Sun, 26 Jun 2011 17:50:28 +0200
+
+texstudio (2.2-1) natty; urgency=low
+
+  * Initial release (2.2) 
+
+ -- J. Sundermeyer <jsundermeyer@users.sourceforge.net>  Sun, 26 Jun 2011 13:22:28 +0200
+
+
