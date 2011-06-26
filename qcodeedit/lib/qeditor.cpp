@@ -1949,7 +1949,7 @@ void QEditor::resizeAutoOverridenPlaceholder(const QDocumentCursor& start, int l
 */
 void QEditor::setPlaceHolder(int i, bool selectCursors)
 {
-	if (i == m_curPlaceHolder) 
+	if (i == m_curPlaceHolder && i == -1) 
 		return;
 	
 	if (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft) {
@@ -1965,7 +1965,7 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	}
 
 	if (m_placeHolderSynchronizing) return;
-	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)	
+	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)	TODO: move the synchronizing there
 
 	QDocumentCursor cc = m_placeHolders[i].cursor;
 	selectCursors|=!cc.isWithinSelection(m_cursor);// && cc.hasSelection() && cc.selectionStart()!=cc.selectionEnd();
@@ -5084,6 +5084,7 @@ void QEditor::documentWidthChanged(int newWidth)
 */
 void QEditor::documentHeightChanged(int newHeight)
 {
+
 	if ( flag(LineWrap) )
 	{
 		m_doc->setWidthConstraint(wrapWidth());
