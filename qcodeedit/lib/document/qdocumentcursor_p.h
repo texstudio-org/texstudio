@@ -150,6 +150,9 @@ class QCE_EXPORT QDocumentCursorHandle
 		void boundaries(int& begline, int& begcol, int& endline, int& endcol) const;
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 		void intersectBoundaries(QDocumentCursorHandle *h, int& lbeg, int& cbeg, int& lend, int& cend) const;
+		bool equalBoundaries(const QDocumentCursorHandle* c);
+		bool equal(const QDocumentCursorHandle* c);
+			
 		
 		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal);
 

@@ -26,8 +26,6 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	mLabelItem.clear();
 	mUserCommandList.clear();
 	mMentionedBibTeXFiles.clear();
-	m_magicPlaceHolder=-1;
-	m_mirrorInLine=-1;
 	masterDocument=0;
 	this->parent=0;
 }

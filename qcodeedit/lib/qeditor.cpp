@@ -1700,7 +1700,7 @@ void QEditor::setCursor(const QDocumentCursor& c)
 		
 		if ( !ph.cursor.isWithinSelection(m_cursor) )
 		{
-			m_curPlaceHolder = -1;
+			setPlaceHolder(-1);
 			viewport()->update();
 		}
 	}
@@ -1872,7 +1872,7 @@ void QEditor::removePlaceHolder(int id)
 		return;
 	if ( id == m_curPlaceHolder){
 		clearCursorMirrors();
-		m_curPlaceHolder=-1;
+		m_curPlaceHolder = -1;
 	}
 	
 	PlaceHolder& ph = m_placeHolders[id];
@@ -1949,6 +1949,14 @@ void QEditor::resizeAutoOverridenPlaceholder(const QDocumentCursor& start, int l
 */
 void QEditor::setPlaceHolder(int i, bool selectCursors)
 {
+	if (i == m_curPlaceHolder) 
+		return;
+	
+	if (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft) {
+		if (i > m_curPlaceHolder) i--;
+		removePlaceHolder(m_curPlaceHolder);
+	}
+	
 	m_curPlaceHolder = -1; 
 	clearCursorMirrors();
 	if ( i < 0 || i >= m_placeHolders.count() ){
@@ -1959,8 +1967,7 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	if (m_placeHolderSynchronizing) return;
 	m_placeHolderSynchronizing=true; //prevent recursive calls (from updateContent)	
 
-	PlaceHolder ph = m_placeHolders[i]; //using reference to change the placeholder
-	QDocumentCursor cc = ph.cursor;
+	QDocumentCursor cc = m_placeHolders[i].cursor;
 	selectCursors|=!cc.isWithinSelection(m_cursor);// && cc.hasSelection() && cc.selectionStart()!=cc.selectionEnd();
 	
 	//qDebug("set placeholder: %i, select cursors: %i", i, (int)selectCursors);
@@ -1970,6 +1977,15 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	else if (m_cursor.hasColumnMemory()) 
 		m_cursor.setColumnMemory(false);
 
+	i = -1;
+	for (int j=0;j<m_placeHolders.size();j++)
+		if (cc.equal(m_placeHolders[j].cursor)) {
+			i = j;
+			break;
+		}
+	if (i == -1) return;
+	
+	PlaceHolder& ph = m_placeHolders[i]; //using reference to change the placeholder
 	QString base = cc.selectedText();
 	for ( int j=0; j< ph.mirrors.size(); j++)
 	{
@@ -2759,8 +2775,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				leftLine = m_mirrors[i].lineNumber() != curLine;
 			}
 
-		if ( leftLine )
-			m_curPlaceHolder = -1;
+		if ( leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
+			setPlaceHolder(-1);
 			/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
 			{
 				// allow mirror movement out of line while in placeholder
@@ -4161,8 +4177,8 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 */
 void QEditor::pageUp(QDocumentCursor::MoveMode moveMode)
 {
+	setPlaceHolder(-1);
 	clearCursorMirrors();
-	m_curPlaceHolder = -1;
 
 	if ( m_cursor.atStart() )
 		return;
@@ -4185,7 +4201,7 @@ void QEditor::pageUp(QDocumentCursor::MoveMode moveMode)
 void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 {
 	clearCursorMirrors();
-	m_curPlaceHolder = -1;
+	setPlaceHolder(-1);
 
 	if ( m_cursor.atEnd() )
 		return;
@@ -4953,7 +4969,7 @@ void QEditor::clearCursorMirrors()
 	if ( m_mirrors.isEmpty() )
 		return;
 	
-	m_curPlaceHolder = -1;
+	setPlaceHolder(-1);
 	repaintCursor();
 
 	for ( int i = 0; i < m_mirrors.count(); ++i )

@@ -138,10 +138,6 @@ public:
 
 	LatexDocuments *parent;
 
-	int m_magicPlaceHolder;
-	int m_mirrorInLine;
-
-
 	void setTemporaryFileName(const QString& fileName);
 	QString getTemporaryFileName();
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension);

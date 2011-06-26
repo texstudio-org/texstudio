@@ -5521,6 +5521,27 @@ QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
 	return QDocumentCursor();
 }
 
+bool QDocumentCursorHandle::equalBoundaries(const QDocumentCursorHandle* c){
+	REQUIRE_RET(c, false);
+	int l1, c1, l2, c2;
+	beginBoundary(l1,c1);
+	c->beginBoundary(l2, c2);
+	if (l1 != l2 || c1 != c2) return false;
+	endBoundary(l1,c1);
+	c->endBoundary(l2, c2);
+	if (l1 != l2 || c1 != c2) return false;
+	return true;
+}
+
+bool QDocumentCursorHandle::equal(const QDocumentCursorHandle* c){
+	REQUIRE_RET(c,false);
+	if (lineNumber() != c->lineNumber()) return false;
+	if (columnNumber() != c->columnNumber()) return false;	
+	if (anchorLineNumber() != c->anchorLineNumber()) return false;
+	if (anchorColumnNumber() != c->anchorColumnNumber()) return false;	
+	return true;
+}
+
 void QDocumentCursorHandle::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal){
 	if (!m_doc || !m_doc->languageDefinition()) {
 		from = to = QDocumentCursor();

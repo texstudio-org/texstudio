@@ -79,17 +79,20 @@ struct PlaceHolder
 {
 	class Affector
 	{
-		public:
-			virtual ~Affector() {}
-			virtual QString affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const = 0;
+	public:
+		virtual ~Affector() {}
+		virtual QString affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const = 0;
 	};
-
-	PlaceHolder() : length(0), autoRemove(true), autoOverride(false), affector(0) {}
-	PlaceHolder(const PlaceHolder& ph) : length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), affector(ph.affector), cursor(ph.cursor), mirrors(ph.mirrors){}
-	PlaceHolder(int len, const QDocumentCursor &cur): length(len), autoRemove(true), autoOverride(false), affector(0), cursor(cur) {}
-
+	
+	PlaceHolder() : 
+	       length(0), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(0) {}
+	PlaceHolder(const PlaceHolder& ph) : 
+	       length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), autoRemoveIfLeft(ph.autoRemoveIfLeft), affector(ph.affector), cursor(ph.cursor), mirrors(ph.mirrors){}
+	PlaceHolder(int len, const QDocumentCursor &cur): 
+	       length(len), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(0), cursor(cur) {}
+	
 	int length;
-	bool autoRemove, autoOverride;
+	bool autoRemove, autoOverride, autoRemoveIfLeft;
 	Affector *affector;
 	QDocumentCursor cursor;
 	QList<QDocumentCursor> mirrors;

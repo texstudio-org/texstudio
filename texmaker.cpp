@@ -4578,13 +4578,6 @@ void Texmaker::cursorPositionChanged(){
 	if (!currentEditorView()) return;
 	int i=currentEditor()->cursor().lineNumber();
 
-	//remove mirror cursors generated after hover if linenumber has changed
-	if(currentEditorView()->document->m_mirrorInLine>-1 && i!=currentEditorView()->document->m_mirrorInLine){
-		currentEditorView()->document->m_mirrorInLine=-1;
-		currentEditor()->removePlaceHolder(currentEditorView()->document->m_magicPlaceHolder);
-		currentEditorView()->document->m_magicPlaceHolder=-1;
-	}
-
 	// search line in structure
 	if (currentLine==i) return;
 	currentLine=i;
@@ -4959,10 +4952,10 @@ bool Texmaker::generateMirror(bool setCur){
 			//currentEditorView()->editor->setCursor(cursor);
 			LatexDocument* doc=currentEditorView()->document;
 
-			doc->m_magicPlaceHolder=currentEditor()->placeHolderCount();
 			PlaceHolder ph;
 			ph.cursor=cursor;
-			currentEditor()->addPlaceHolder(ph,true);
+			ph.autoRemove=true;
+			ph.autoRemoveIfLeft=true;
 			// remove curly brakets as well
 			QString searchWord="\\end{"+value+"}";
 			QString inhibitor="\\begin{"+value+"}";
@@ -4984,15 +4977,12 @@ bool Texmaker::generateMirror(bool setCur){
 				line=doc->line(endLine).text();
 				int start=line.indexOf(searchWord);
 				int offset=searchWord.indexOf("{");
-				PlaceHolder ph;
-				ph.length=searchWord.length()-offset-1;
-				ph.cursor=currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
-				currentEditor()->addPlaceHolderMirror(doc->m_magicPlaceHolder,ph.cursor);
+				ph.mirrors << currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
 			}
-			currentEditor()->setPlaceHolder(doc->m_magicPlaceHolder);
-			if(setCur) {
+			currentEditor()->addPlaceHolder(ph);
+			currentEditor()->setPlaceHolder(currentEditor()->placeHolderCount()-1);
+			if(setCur) 
 				currentEditorView()->editor->setCursor(oldCursor);
-			}
 			return true;
 		}
 	}
@@ -5058,9 +5048,7 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 
 void Texmaker::cursorHovered(){
 	if(completer->isVisible()) return;
-	if(generateMirror(true)){
-		currentEditorView()->document->m_mirrorInLine=currentEditorView()->editor->cursor().lineNumber();
-	}
+	generateMirror(true);
 }
 
 void Texmaker::saveProfile(){
