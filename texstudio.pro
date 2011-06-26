@@ -467,7 +467,6 @@ isEmpty(NO_POPPLER_PREVIEW) {
         INCLUDEPATH += /usr/include/poppler/qt4
         LIBS += -L/usr/lib \
             -lpoppler-qt4 \
-            -lpoppler \
             -lz
     }
     macx { 
@@ -475,14 +474,12 @@ isEmpty(NO_POPPLER_PREVIEW) {
         LIBS += -L/usr/lib \
             -L/usr/local/lib \
             -lpoppler-qt4 \
-            -lpoppler \
             -lz
     }
     win32 { 
 	INCLUDEPATH  += ./include_win32
 	LIBS += ./zlib1.dll \
 	    ./libpoppler-qt4.dll \
-	    ./libpoppler.dll
     }
 }
 !isEmpty(NO_POPPLER_PREVIEW) { 
