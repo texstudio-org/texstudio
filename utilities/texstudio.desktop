@@ -1,15 +1,14 @@
 [Desktop Entry]
 Categories=Office;Publishing;Qt;X-SuSE-Core-Office;X-Mandriva-Office-Publishing;X-Misc;
 Encoding=UTF-8
-Exec=texmakerx
+Exec=texstudio
 GenericName=LaTeX Editor
 GenericName[fr]=Editeur LaTeX
 Comment=LaTeX development environment
 Comment[fr]=Environnement de développement LaTeX
 Icon=/usr/share/texmakerx/texmaker48x48.png
 MimeType=text/x-tex;
-Name=TexMakerX
-Name[fr]=TexMakerX
+Name=TexStudio
 StartupNotify=false
 Terminal=false
 Type=Application

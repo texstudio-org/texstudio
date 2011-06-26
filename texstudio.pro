@@ -240,7 +240,7 @@ unix:!macx {
     isEmpty( PREFIX ):PREFIX = /usr
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
-    utilities.path = $${PREFIX}/share/texmakerx
+    utilities.path = $${PREFIX}/share/texstudio
     utilities.files = utilities/texmaker16x16.png \
         utilities/texmaker22x22.png \
         utilities/texmaker32x32.png \
@@ -249,7 +249,7 @@ unix:!macx {
         utilities/texmaker128x128.png \
         utilities/texmaker.svg
     applicationmenu.path = $${PREFIX}/share/applications
-    applicationmenu.files = utilities/texmakerx.desktop
+    applicationmenu.files = utilities/texstudio.desktop
     INSTALLS += applicationmenu
 }
 
