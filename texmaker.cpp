@@ -1370,7 +1370,7 @@ void Texmaker::fileNewFromTemplate() {
 
 		QString mTemplate;
 		QTextStream in(&file);
-		in.setAutoDetectUnicode(true);
+		in.setCodec(QTextCodec::codecForMib(MIB_UTF8));
 		while (!in.atEnd()) {
 			QString line = in.readLine();
 			mTemplate+=line+"\n";
