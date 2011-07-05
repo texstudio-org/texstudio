@@ -27,7 +27,22 @@ AboutDialog::AboutDialog(QWidget *parent)
 				tr("Project home site : <a href=\"http://texmakerx.sourceforge.net/\">http://texmakerx.sourceforge.net/</a><br><br>")+
 				tr("Home site of original Texmaker: <a href=\"http://www.xm1math.net/texmaker/\">http://www.xm1math.net/texmaker/</a><br><br>")+
 				tr("This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation."));
+	QAction* act = new QAction("large", this);
+	connect(act,SIGNAL(triggered()),SLOT(largeLogo()));
+	ui.label->addAction(act);
+	ui.label->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 AboutDialog::~AboutDialog() {
+}
+
+
+void AboutDialog::largeLogo(){
+	QDialog * d = new QDialog(0);
+	d->setAttribute(Qt::WA_DeleteOnClose);
+	d->setLayout(new QHBoxLayout(d));
+	QLabel *l = new QLabel(d);
+	l->setPixmap(QPixmap(":/images/splash_large.png"));
+	d->layout()->addWidget(l);
+	d->exec();
 }
