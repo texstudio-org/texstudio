@@ -22,6 +22,8 @@ public:
 	AboutDialog(QWidget *parent=0);
 	~AboutDialog();
 	Ui::AboutDialog ui;
+private slots:
+	void largeLogo();
 };
 
 
