@@ -2380,9 +2380,6 @@ void QEditor::indentSelection()
 */
 void QEditor::unindentSelection()
 {
-	if ( !m_cursor.line().firstChar() )
-		return;
-
 	if ( m_mirrors.count() )
 	{
 		m_doc->beginMacro();
