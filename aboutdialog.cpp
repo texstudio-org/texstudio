@@ -44,5 +44,6 @@ void AboutDialog::largeLogo(){
 	QLabel *l = new QLabel(d);
 	l->setPixmap(QPixmap(":/images/splash_large.png"));
 	d->layout()->addWidget(l);
+	d->setWindowTitle("TeXstudio");
 	d->exec();
 }
