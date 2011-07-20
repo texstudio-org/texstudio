@@ -231,7 +231,7 @@ macx {
     target.path = /Applications
     utilities.path = Contents/Resources
     QMAKE_BUNDLE_DATA += utilities
-    ICON = texmaker.icns
+    ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
 }
 
@@ -241,13 +241,13 @@ unix:!macx {
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
     utilities.path = $${PREFIX}/share/texstudio
-    utilities.files = utilities/texmaker16x16.png \
-        utilities/texmaker22x22.png \
-        utilities/texmaker32x32.png \
-        utilities/texmaker48x48.png \
-        utilities/texmaker64x64.png \
-        utilities/texmaker128x128.png \
-        utilities/texmaker.svg
+    utilities.files = utilities/texstudio16x16.png \
+        utilities/texstudio22x22.png \
+        utilities/texstudio32x32.png \
+        utilities/texstudio48x48.png \
+        utilities/texstudio64x64.png \
+        utilities/texstudio128x128.png \
+        utilities/texstudio.svg
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texstudio.desktop
     INSTALLS += applicationmenu
@@ -454,7 +454,7 @@ HEADERS += tests/testmanager.h \
 
 # win32:LIBS += -lQtTest4
 win32:LIBS += -lQtTestd4
-unix:!macx:LIBS += -lQtTest
+#unix:!macx:LIBS += -lQtTest
 macx:LIBS += -framework \
     QtTest
 macx:LIBS += -framework \
