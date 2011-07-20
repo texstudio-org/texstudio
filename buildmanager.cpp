@@ -745,7 +745,7 @@ void addLaTeXInputPaths(ProcessX* p, const QStringList& paths){
 		if (!found)
 			env.append(envname + "="+addPath);
 	}
-	p->setEnvironment(env);
+	p->setOverrideEnvironment(env);
 }
 
 //there are 3 ways to generate a preview png:
@@ -858,6 +858,7 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 		// dvi -> png
 		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
 		ProcessX *p2 = newProcess(CMD_DVIPNG,"--follow", ffn);
+		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
@@ -939,6 +940,7 @@ void BuildManager::latexPreviewCompleted(int status){
 		if (!p1) return;
 		// dvi -> png
 		ProcessX *p2 = newProcess(CMD_DVIPNG,p1->getFile());
+		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
@@ -947,6 +949,7 @@ void BuildManager::latexPreviewCompleted(int status){
 		if (!p1) return;
 		// dvi -> ps
 		ProcessX *p2 = newProcess(CMD_DVIPS,"-E",p1->getFile());
+		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
 	}
@@ -959,6 +962,7 @@ void BuildManager::dvi2psPreviewCompleted(int status){
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
 	ProcessX *p3 = newProcess(CMD_GHOSTSCRIPT,"-q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m -dEPSCrop -sOutputFile=\"?am)1.png\"",p2->getFile());
+	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
 	connect(p3,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
 }
@@ -1126,6 +1130,16 @@ bool ProcessX::showStdout() const{
 void ProcessX::setShowStdout(bool show){
 	stdoutEnabled = show;
 }
+
+void ProcessX::setOverrideEnvironment(const QStringList& env) {
+	overriddenEnvironment = env;
+	setEnvironment(env);
+}
+
+const QStringList& ProcessX::overrideEnvironment(){
+	return overriddenEnvironment;
+}
+
 
 void ProcessX::onStarted(){
 	if (started) return; //why am I called twice?

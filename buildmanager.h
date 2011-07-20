@@ -127,6 +127,8 @@ public:
 	}
 	bool showStdout() const;
 	void setShowStdout(bool show);
+	void setOverrideEnvironment(const QStringList& env);
+	const QStringList& overrideEnvironment();
 signals:
 	void processNotification(const QString& message);
 
@@ -142,6 +144,7 @@ private:
 	QString file;
 	bool started, stdoutEnabled;
 	QString *mBuffer;
+	QStringList overriddenEnvironment;
 #ifdef PROFILE_PROCESSES
 	QTime time;
 #endif
