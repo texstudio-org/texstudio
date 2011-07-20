@@ -720,7 +720,9 @@ QString BuildManager::createTemporaryFileName(){
 	QTemporaryFile *temp=new QTemporaryFile(QDir::tempPath ()+"/texstudio_XXXXXX.tex");
 	temp->open();
 	temp->setAutoRemove(false);
-	return temp->fileName();
+	QString tempName = temp->fileName();
+	delete temp;
+	return tempName;
 }
 
 void addLaTeXInputPaths(ProcessX* p, const QStringList& paths){
