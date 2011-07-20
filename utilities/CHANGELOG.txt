@@ -1,4 +1,18 @@
 (look also at the usermanual)
+
+TexMakerX 2.1 -> TeXstudio 2.2  SVN 2143
+-----------------------------------------
+- pdf viewer can show multiple pages in continous fashion
+- pdf viewer works non-blocking (multi-threaded)
+- preview works with included files
+- key replacements can trigger arbitrary user macros
+- double quote replacement can easily be selected from predefined list
+- completer distinguishes between usual, most often used and all possible commands
+- saving/loading profiles working
+- more environments are syntax highlighted
+- as always, bug fixes and small improvements
+
+
 TexMakerX 2.0 -> TexMakerX 2.1  SVN 1772
 --------------------------------------
 - improved latex syntax checking: auto detect used packages and more reliable
