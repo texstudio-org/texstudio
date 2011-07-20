@@ -556,7 +556,7 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Tools/Quick Mode",&quickmode,-1);
 	Q_ASSERT(sizeof(dvi2pngMode) == sizeof(int));
 	cmi.registerOption("Tools/Dvi2Png Mode",reinterpret_cast<int*>(&dvi2pngMode), -1);
-	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ALWAYS);
+	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ONLY_NAMED);
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
 }
