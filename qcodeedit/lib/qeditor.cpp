@@ -907,22 +907,41 @@ void QEditor::save()
 		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
 		QDocumentCursor cur(m_doc);
 
-		foreach ( QDocumentLineHandle* dlh,handles )
-		{
-			QList<int> lineBreaks=dlh->getBreaks();
-                        // only valid for latex ... check for that !!!! (To be done)
-                        QString line=dlh->text();
-                        int commentStart=LatexParser::commentStart(line);
-
-			if(!lineBreaks.isEmpty()){
-				while(!lineBreaks.isEmpty()){
-                                        int last;
-                                        cur.moveTo(dlh->line(),last=lineBreaks.takeLast());
-					cur.insertText("\n");
-                                        if(last>commentStart && commentStart>-1)
-                                            cur.insertText("%");
+		while (!handles.isEmpty()) {
+			QList<QDocumentLineHandle*> newhandles;
+			foreach ( QDocumentLineHandle* dlh,handles )
+			{
+				int lineNr = document()->indexOf(dlh);
+				if (lineNr < 0) continue;
+	
+				QList<int> lineBreaks = dlh->getBreaks();
+				
+				QString line=dlh->text();
+				//todo: support other languages except latex (either search the comment starting with document()->languageDefinition()->singleLineComment() in the highlighting info, or modify singleLineComment to return a regex matching the comment start
+				QList<int> commentStarts;
+				QString temp = line;
+				int commentStart;
+				while ((commentStart=LatexParser::commentStart(temp)) >= 0 ) {
+					temp = temp.mid(commentStart+1);
+					commentStarts << commentStart + (commentStarts.isEmpty()?0:commentStarts.last());
+				}
+				
+				
+				if(!lineBreaks.isEmpty()){
+					while(!lineBreaks.isEmpty()){
+						int last = lineBreaks.takeLast();
+						cur.moveTo(lineNr, last);
+						cur.insertText("\n");
+						while (!commentStarts.isEmpty() && last <= commentStarts.last()) 
+							commentStarts.removeLast();
+						if(!commentStarts.isEmpty()) {
+							cur.insertText(QString(commentStarts.size(), '%'));
+							newhandles << cur.line().handle();
+						}
+					}
 				}
 			}
+			handles = newhandles;
 		}
 		cur.endEditBlock();
 	}
