@@ -39,10 +39,10 @@ if [ "$SYSTEM" = 1 ]; then
 fi
 readvalue "Enter path to QT4 (e.g. /usr/lib/qt4, you can leave it empty if qmake is in PATH)" $QTDIR;
 QTDIR=$NEWVALUE
-readoption "Do you want to use the internal pdf viewer? yes/no" yes;
+readoption "Do you want to use the internal pdf viewer (requires the Poppler library)? yes/no" yes;
 OPTION_PDFVIEWER=$NEWVALUE
 if [ "$OPTION_PDFVIEWER" = yes ]; then
-readoption "Do you want to use the phonon video player in pdf files? yes/no" no;
+readoption "Do you want to use the video player in pdf files (requires the Phonon library)? yes/no" no;
 OPTION_PHONON=$NEWVALUE
 else
 OPTION_PHONON=no
@@ -53,7 +53,8 @@ echo "Warning, QT path may be invalid"
 fi
 
 #compile
-TXSCOMPILEOPTIONS=
+#pass parameters to qmake
+TXSCOMPILEOPTIONS=$@
 if [ "$OPTION_PDFVIEWER" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_POPPLER_PREVIEW=true"; fi
 if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON=true"; fi
 
