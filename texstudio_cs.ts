@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>About TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>O TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -289,7 +289,7 @@
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation type="unfinished">Uživatel: (%: název souboru bez přípony)</translation>
+        <translation>Uživatel: (% : název souboru bez přípony)</translation>
     </message>
 </context>
 <context>
@@ -1316,91 +1316,91 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolikrát spustit LaTex znovu, je-li to požadováno:</translation>
     </message>
     <message>
         <source>no line wrap</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádné zalamování řádků</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation type="unfinished"></translation>
+        <translation>Měkké zalomení řádků na okraji okna</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Měkké zalomení řádků po největším počtu znaků</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvrdé zalomení řádků po největším počtu znaků</translation>
     </message>
     <message>
         <source>Additional Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatečné příkazy</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Upřednostňovat &quot;typické&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;Most Used&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Upřednostňovat &quot;nejpoužívanější&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;All&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Upřednostňovat &quot;všechny&quot;</translation>
     </message>
     <message>
         <source>Riddle</source>
-        <translation type="unfinished"></translation>
+        <translation>Hádanka</translation>
     </message>
     <message>
         <source>first</source>
-        <translation type="unfinished"></translation>
+        <translation>první</translation>
     </message>
     <message>
         <source>second</source>
-        <translation type="unfinished"></translation>
+        <translation>druhý</translation>
     </message>
     <message>
         <source>three</source>
-        <translation type="unfinished"></translation>
+        <translation>třetí</translation>
     </message>
     <message>
         <source>last</source>
-        <translation type="unfinished"></translation>
+        <translation>poslední</translation>
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpovězte, prosím, 1, 2 nebo 3</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dovolena pouze jedna odpověď</translation>
     </message>
     <message>
         <source>Replace double quotes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit dvojité uvozovky:</translation>
     </message>
     <message>
         <source>no replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>žádné nahrazování</translation>
     </message>
     <message>
         <source>English quotes:  `` &apos;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Anglické uvozovky:  `` &apos;&apos;</translation>
     </message>
     <message>
         <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Francouzské uvozovky:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
         <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Německé uvozovky:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat náhled jako nástrojovou radu na vzorcích v editoru</translation>
     </message>
     <message>
         <source>You come to a magic island where you meet three strange and wise friends. 
@@ -1410,31 +1410,37 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
+        <translation>Přicházíte na kouzelný ostrov, kde se potkáváte se třemi podivnými a moudrými přáteli.
+Jeden z nich vždy říká pravdu, druhý vždycky lže a třetí je hluchý, takže odpovídá náhodně a nemůže lhát (!).
+Ptáte se prvního: &quot;Lžeš?&quot;, a on odpovídá: &quot;Ne&quot;.
+Ptáte se druhého: &quot;První lže?&quot;, a on odpovídá: &quot;Ne&quot;.
+Ptáte se posledního: &quot;Druhý lže?&quot;, a on odpovídá: &quot;Ne&quot;.
+
+Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat nápovědu jako nástrojovou radu na textu v editoru</translation>
     </message>
     <message>
         <source>French quotes (babel): \og \fg{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Francouzské uvozovky (babel): \og \fg{}</translation>
     </message>
     <message>
         <source>one</source>
-        <translation type="unfinished"></translation>
+        <translation>jedna</translation>
     </message>
     <message>
         <source>two</source>
-        <translation type="unfinished"></translation>
+        <translation>dvě</translation>
     </message>
     <message>
         <source>third</source>
-        <translation type="unfinished"></translation>
+        <translation>tři</translation>
     </message>
     <message>
         <source>Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -1897,19 +1903,19 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Key replacement: %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrazení kláves: %1 %2</translation>
     </message>
     <message>
         <source>before word</source>
-        <translation type="unfinished"></translation>
+        <translation>před slovem</translation>
     </message>
     <message>
         <source>after word</source>
-        <translation type="unfinished"></translation>
+        <translation>za slovem</translation>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro úplné využití vnitřního prohlížeče PDF je potřeba, aby byl zapnut synctex. Má to teď TeXstudio udělat?</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2215,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>typical</source>
-        <translation type="unfinished"></translation>
+        <translation>Typický</translation>
     </message>
 </context>
 <context>
@@ -2308,7 +2314,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Thesaurus...</source>
-        <translation type="unfinished">Slovník...</translation>
+        <translation>Slovník...</translation>
     </message>
 </context>
 <context>
@@ -2953,39 +2959,39 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Souvislý</translation>
     </message>
     <message>
         <source>&amp;About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;O programu TeXstudio...</translation>
     </message>
     <message>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se najít soubor &quot;%1&quot;; možná byl smazán.</translation>
     </message>
     <message>
         <source>Open PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít PDF</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation type="unfinished">Tisk</translation>
+        <translation>Tisk</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation type="unfinished">&amp;Otevřít...</translation>
+        <translation>&amp;Otevřít...</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nastavit TeXstudio</translation>
     </message>
     <message>
         <source>&amp;Quit TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ukončit TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -3038,35 +3044,35 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <name>PDFMovie</name>
     <message>
         <source>File %1 does not exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor %1 neexistuje</translation>
     </message>
     <message>
         <source>Volume:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlasitost:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas:</translation>
     </message>
     <message>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Přehrát</translation>
     </message>
     <message>
         <source>P&amp;ause</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;ozastavit</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Za&amp;stavit</translation>
     </message>
     <message>
         <source>S&amp;eek</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
         <source>Set &amp;volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit h&amp;lasitost</translation>
     </message>
 </context>
 <context>
@@ -3669,19 +3675,23 @@ Má se soubor nahrát znovu?</translation>
     </message>
     <message>
         <source>Saving failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložení se nezdařilo</translation>
     </message>
     <message>
         <source>I failed to acquire write permissions on the file %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se získat oprávnění k zápisu pro soubor: %1.
+
+Možná je pouze pro čtení nebo je otevřený v jiném programu?</translation>
     </message>
     <message>
         <source>Writing the document to file %1 failed after the old content was deleted.
 
 The file may have been corrupted!</source>
-        <translation type="unfinished"></translation>
+        <translation>Zápis dokumentu do souboru %1 se nezdařil, poté co byl starý obsah smazán.
+
+Soubor mohl být poškozen!</translation>
     </message>
 </context>
 <context>
@@ -6178,86 +6188,89 @@ Jste si jistý, že chcete pokračovat?</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit profil...</translation>
     </message>
     <message>
         <source>Could not start %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se spustit %1.</translation>
     </message>
     <message>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat všechny otevřené dokumenty v tomto stromu</translation>
     </message>
     <message>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat v tomto stromu pouze současný dokument</translation>
     </message>
     <message>
         <source>Save Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit profil</translation>
     </message>
     <message>
         <source>&amp;Searching</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledání</translation>
     </message>
     <message>
         <source>Continue F&amp;ind</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokračovat v h&amp;ledání</translation>
     </message>
     <message>
         <source>Find &amp;Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>Najít &amp;předchozí</translation>
     </message>
     <message>
         <source>&amp;Count</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;očet</translation>
     </message>
     <message>
         <source>Find &amp;Dialog...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Dialog hledání...</translation>
     </message>
     <message>
         <source>Replace Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit další</translation>
     </message>
     <message>
         <source>Replace Prev</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit předchozí</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit vš&amp;e</translation>
     </message>
     <message>
         <source>&amp;Go to</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Jít na</translation>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat všechny shody...</translation>
     </message>
     <message>
         <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Promiňte, ale nepodařilo se najít soubor &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nastavit TeXstudio...</translation>
     </message>
     <message>
         <source>About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation>O programu TeXstudio...</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
+TeXstudio nepodporuje více případů téhož souboru.
+Jste si jistý, že chcete pokračovat?</translation>
     </message>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavolal jste příkaz k otevření vnitřního prohlížeče PDF.
+Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřního prohlížeče PDF.</translation>
     </message>
 </context>
 <context>
@@ -6634,11 +6647,11 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Spouštěč</translation>
     </message>
     <message>
         <source>If this trigger string is written in any tex document, 
@@ -6650,19 +6663,27 @@ if something is written before the remaining part of the trigger.
 Since this trigger is not a plain string, but a regular expression, 
 (?&lt;=\S) can be used to mark replacements which should only occur after a word, 
 and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je tento spouštěcí řetězec napsán v jakémkoli TeXovém dokumentu,
+je nahrazen současnou značkou.
+
+Pokud spouštěč začíná (?&lt;=something), stane se to jen tehdy, když
+je něco napsáno před zbývající část spouštěče.
+
+Protože tento spouštěč není prostý řetězec ale regulární výraz,
+lze pro označení nahrazení, která by se měla objevit pouze za slovem, použít (?&lt;=\S),
+a pro označení nahrazení, která by se měla objevit pouze před slovem, použít (?&lt;=\s|^).</translation>
     </message>
     <message>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation>?</translation>
     </message>
     <message>
         <source>Abbrev</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkratka</translation>
     </message>
     <message>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Značka</translation>
     </message>
 </context>
 <context>
@@ -6740,7 +6761,7 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete smazat nynější příkaz?</translation>
     </message>
 </context>
 <context>
@@ -7077,7 +7098,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Expected cursor object</source>
-        <translation type="unfinished"></translation>
+        <translation>Očekáván předmět ukazovátka</translation>
     </message>
 </context>
 <context>
