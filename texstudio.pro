@@ -1,11 +1,7 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
-CONFIG = $$unique(CONFIG)
-CONFIG -= debug \
-    debug_and_release \
-    release
-CONFIG += qt debug_and_release precompile_header
+CONFIG += qt precompile_header
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
@@ -419,44 +415,46 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
     qcodeedit/lib/qnfa/xml2qnfa.cpp
 
 # ###############################
-# these files should be debug only, but debug-only thing in a qmake file become an
-# incredible mess, so they are always compiled (but empty through #define in release mode)
-SOURCES += tests/testmanager.cpp \
-    tests/testutil.cpp \
-    tests/qcetestutil.cpp \
-    tests/codesnippet_t.cpp \
-    tests/scriptengine_t.cpp \
-    tests/qdocumentcursor_t.cpp \
-    tests/qdocumentsearch_t.cpp \
-    tests/qsearchreplacepanel_t.cpp \
-    tests/qeditor_t.cpp \
-    tests/latexeditorview_t.cpp \
-    tests/latexeditorview_bm.cpp \
-    tests/tablemanipulation_t.cpp \
-    tests/structureview_t.cpp \
-    tests/syntaxcheck_t.cpp
-HEADERS += tests/testmanager.h \
-    tests/testutil.h \
-    tests/qcetestutil.h \
-    tests/smallUsefulFunctions_t.h \
-    tests/buildManager_t.h \
-    tests/codesnippet_t.h \
-    tests/scriptengine_t.h \
-    tests/qdocumentcursor_t.h \
-    tests/qdocumentsearch_t.h \
-    tests/qsearchreplacepanel_t.h \
-    tests/qeditor_t.h \
-    tests/latexeditorview_t.h \
-    tests/latexeditorview_bm.h \
-    tests/tablemanipulation_t.h \
-    tests/structureview_t.h \
-    tests/syntaxcheck_t.h
 
+debug{
+    message(Creating debug version)
+    
+    SOURCES += tests/testmanager.cpp \
+        tests/testutil.cpp \
+        tests/qcetestutil.cpp \
+        tests/codesnippet_t.cpp \
+        tests/scriptengine_t.cpp \
+        tests/qdocumentcursor_t.cpp \
+        tests/qdocumentsearch_t.cpp \
+        tests/qsearchreplacepanel_t.cpp \
+        tests/qeditor_t.cpp \
+        tests/latexeditorview_t.cpp \
+        tests/latexeditorview_bm.cpp \
+        tests/tablemanipulation_t.cpp \
+        tests/structureview_t.cpp \
+        tests/syntaxcheck_t.cpp
+    HEADERS += tests/testmanager.h \
+        tests/testutil.h \
+        tests/qcetestutil.h \
+        tests/smallUsefulFunctions_t.h \
+        tests/buildManager_t.h \
+        tests/codesnippet_t.h \
+        tests/scriptengine_t.h \
+        tests/qdocumentcursor_t.h \
+        tests/qdocumentsearch_t.h \
+        tests/qsearchreplacepanel_t.h \
+        tests/qeditor_t.h \
+        tests/latexeditorview_t.h \
+        tests/latexeditorview_bm.h \
+        tests/tablemanipulation_t.h \
+        tests/structureview_t.h \
+        tests/syntaxcheck_t.h
 # win32:LIBS += -lQtTest4
 win32:LIBS += -lQtTestd4
-#unix:!macx:LIBS += -lQtTest
-macx:LIBS += -framework \
-    QtTest
+unix:!macx:LIBS += -lQtTest
+macx:LIBS += QtTest
+}
+macx:LIBS += -framework 
 macx:LIBS += -framework \
     CoreFoundation
 
