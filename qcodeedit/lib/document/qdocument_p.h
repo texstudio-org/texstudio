@@ -90,7 +90,7 @@ class QCE_EXPORT QDocumentPrivate
 		void setWidth();
 		void setHeight();
 		
-		static void setFont(const QFont& f);
+		static void setFont(const QFont& f, bool forceUpdate = false);
 		
 		void beginChangeBlock();
 		void endChangeBlock();
