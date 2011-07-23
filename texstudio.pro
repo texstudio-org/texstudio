@@ -416,8 +416,11 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 
 # ###############################
 
+
+
 debug{
     message(Creating debug version)
+    CONFIG -= release
     
     SOURCES += tests/testmanager.cpp \
         tests/testutil.cpp \
