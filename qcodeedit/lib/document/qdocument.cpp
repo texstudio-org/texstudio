@@ -6487,32 +6487,32 @@ void QDocumentPrivate::setHeight()
 		emitHeightChanged();
 }
 
-void QDocumentPrivate::setFont(const QFont& f)
+void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 {
-	//also changes everything is f is equal to the old font (necessesary so setFont can be used to
-	//reset the width cache)
+	qDeleteAll(m_fmtWidthCache);
+	m_fmtWidthCache.clear(); //there was a comment saying this was necessary here
 
 	if ( !m_font )
 	{
 		m_font = new QFont;
 	}
 
-	qDeleteAll(m_fmtWidthCache);
-	m_fmtWidthCache.clear();
-
-	*m_font = f;
-
-	// ensures the font is fixed pitch to avoid idsplay glitches
-	// and inconsistency of column selections
-	// :( does not work well...
-	//m_font->setFixedPitch(true);
-
+	
+	QFont modifiedF = f;
 	// set the styling so that if the font is not found Courier one will be used
-	m_font->setStyleHint(QFont::Courier, QFont::PreferQuality);
-
+	modifiedF.setStyleHint(QFont::Courier, QFont::PreferQuality);
 	//disable kerning because words are drawn at once, but there width is calculated character
 	//by character (in functions which calculate the cursor position)
-	m_font->setKerning(false);
+	modifiedF.setKerning(false);
+	
+	qDebug() << f.toString()<<" => "<<modifiedF.toString();
+	if ( *m_font  == modifiedF && !forceUpdate )
+		return;
+	qDebug()<<"xxx";
+	
+
+	*m_font = modifiedF;
+
 
 	QFontMetrics fm(*m_font);
 	m_spaceWidth = fm.width(' ');
@@ -6539,8 +6539,10 @@ void QDocumentPrivate::setFont(const QFont& f)
 
 void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
 {
+	bool updateFont = m_formatScheme != f;
 	m_formatScheme = f;
-	setFont(*m_font);
+	if (updateFont) 
+		setFont(*m_font, true);
 }
 
 void QDocumentPrivate::tunePainter(QPainter *p, int fid)
