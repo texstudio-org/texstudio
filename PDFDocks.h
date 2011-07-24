@@ -124,15 +124,33 @@ private:
 	QListWidget *list;
 };
 
+class PDFDockListView : public QListView 
+{
+	Q_OBJECT
+public:
+	PDFDockListView(QWidget *parent = 0);
+	virtual QSize sizeHint() const;
+};
 class PDFDockListWidget : public QListWidget
 {
 	Q_OBJECT
-
 public:
-	PDFDockListWidget(QWidget* parent);
-	virtual ~PDFDockListWidget();
-
+	PDFDockListWidget(QWidget *parent = 0);
 	virtual QSize sizeHint() const;
+};
+
+class PDFOverviewModel: public QAbstractListModel
+{
+	Q_OBJECT
+public:
+	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
+	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;		
+	void setDocument(PDFDocument* doc);
+public slots:
+	void updateImage(const QPixmap& pm, int page);
+private:
+	PDFDocument *document; 
+	mutable QList<QPixmap> cache;
 };
 
 
@@ -265,7 +283,6 @@ public:
 public slots:
 	virtual void documentClosed();
 	virtual void pageChanged(int page);
-	void insertImage(QPixmap image,int page);
 
 protected:
 	virtual void fillInfo();
@@ -276,11 +293,10 @@ protected slots:
 
 private slots:
 	void followTocSelection();
-	void showImage();
 
 private:
-	QListWidget *list;
-        int toGenerate;
+	QListView *list;
+	int toGenerate;
 	bool dontFollow;
 };
 
