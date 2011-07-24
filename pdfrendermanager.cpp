@@ -298,9 +298,9 @@ void PDFRenderManager::fillCache(int pg){
 	int j=pg;
 	if(j<0)
 		j=-1;
-	//const int MAX_CACHE_OFFSET = 20; // disables filling of overview dock ...
-	int max=cachedNumPages;//qMin(cachedNumPages, pg+MAX_CACHE_OFFSET);
-	int min=0;//qMax(0, pg-MAX_CACHE_OFFSET);
+	const int MAX_CACHE_OFFSET = 20; // disables filling of overview dock ...
+	int max=qMin(cachedNumPages, pg+MAX_CACHE_OFFSET);
+	int min=qMax(0, pg-MAX_CACHE_OFFSET);
 	while(i>=min || j<max){
 		j++;
 		if(i >= min && i < max && !renderedPage.contains(i)) // don't rerender page
