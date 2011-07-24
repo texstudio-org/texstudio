@@ -21,11 +21,11 @@
     </message>
     <message>
         <source>Thanks to </source>
-        <translation>Poděkování</translation>
+        <translation>Poděkování: </translation>
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -66,6 +66,10 @@
     <message>
         <source>About TeXstudio</source>
         <translation>O TeXstudio</translation>
+    </message>
+    <message>
+        <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation>Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -319,15 +323,15 @@
     </message>
     <message>
         <source>Default Shortcut</source>
-        <translation>Výchozí klávesová zkratka</translation>
+        <translation>Výchozí zkratka</translation>
     </message>
     <message>
         <source>Current Shortcut</source>
-        <translation>Nynější klávesová zkratka</translation>
+        <translation>Nynější zkratka</translation>
     </message>
     <message>
         <source>Additional Shortcut</source>
-        <translation>Doplňková klávesová zkratka</translation>
+        <translation>Doplňková zkratka</translation>
     </message>
     <message>
         <source>General</source>
@@ -347,7 +351,7 @@
     </message>
     <message>
         <source>Custom Toolbar</source>
-        <translation>Uživatelsky stanovený nástrojový pruh</translation>
+        <translation>Uživatelsky stanovený nástrojový panel</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -569,7 +573,7 @@
     </message>
     <message>
         <source>Toolbar Customization</source>
-        <translation>Úprava nástrojového pruhu</translation>
+        <translation>Úprava nástrojového panelu</translation>
     </message>
     <message>
         <source>&lt;</source>
@@ -2464,7 +2468,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Toolbar</source>
-        <translation>Pruh s nástroji</translation>
+        <translation>Panel s nástroji</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
@@ -5324,7 +5328,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Accented letters</source>
-        <translation>Zdůrazněná písmena</translation>
+        <translation>Písmena s přízvukem</translation>
     </message>
     <message>
         <source>Favorites</source>
