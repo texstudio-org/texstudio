@@ -6505,10 +6505,8 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 	//by character (in functions which calculate the cursor position)
 	modifiedF.setKerning(false);
 	
-	qDebug() << f.toString()<<" => "<<modifiedF.toString();
 	if ( *m_font  == modifiedF && !forceUpdate )
 		return;
-	qDebug()<<"xxx";
 	
 
 	*m_font = modifiedF;
