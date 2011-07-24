@@ -332,10 +332,8 @@ public:
 		return document;
 	}
 	
-	PDFWidget *widget()
-	{
-		return pdfWidget;
-	}
+	PDFWidget *widget(){ return pdfWidget; }
+	const PDFWidget *widget() const { return pdfWidget; }
 
 	bool followCursor() const;
 	PDFRenderManager *renderManager;

@@ -222,18 +222,63 @@ void PDFInfoDock::documentClosed()
 	PDFDock::documentClosed();
 }
 
+PDFDockListView::PDFDockListView(QWidget *parent)
+	: QListView(parent)
+{
+}
+
+QSize PDFDockListView::sizeHint() const
+{
+	return QSize(200, 300);
+}
+
 PDFDockListWidget::PDFDockListWidget(QWidget *parent)
 	: QListWidget(parent)
 {
 }
 
-PDFDockListWidget::~PDFDockListWidget()
-{
-}
 
 QSize PDFDockListWidget::sizeHint() const
 {
 	return QSize(200, 300);
+}
+
+int PDFOverviewModel::rowCount ( const QModelIndex & parent ) const{
+	if (!document) return 0;
+	if (parent.isValid()) return 0;
+	return document->widget()->realNumPages();
+}
+
+QVariant PDFOverviewModel::data ( const QModelIndex & index, int role) const{
+	if (!index.isValid() || index.column() != 0 || index.row() < 0 || index.row() >= document->widget()->realNumPages()) return QVariant();
+	switch (role){
+	case Qt::DisplayRole: return QString::number(index.row()+1); 
+	case Qt::DecorationRole: 
+		while (index.row() >= cache.size()) cache << QPixmap();
+		if (cache[index.row()].isNull()) {
+			const QObject* o = this; //TODO: get rid of const_cast
+			qDebug() << index.row();
+			cache[index.row()] = document->renderManager->renderToImage(index.row(),const_cast<QObject*>(o),"updateImage",-1,-1,-1,-1,-1,-1,false).scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+		}
+		return cache[index.row()];
+	case Qt::BackgroundColorRole:
+		return Qt::gray;
+	}
+	return QVariant();
+}
+
+void PDFOverviewModel::setDocument(PDFDocument* doc){
+	document = doc;
+	if (!doc) return;
+	if (!doc->widget() || !doc->popplerDoc()) document = 0;
+	cache.clear();
+	reset();
+}
+
+void PDFOverviewModel::updateImage(const QPixmap& pm, int page){
+	if (!document || page < 0 || page >= cache.size()) return;
+	cache[page] = pm.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+	emit dataChanged(index(page),index(page));
 }
 
 //////////////// FONT LIST ////////////////
@@ -776,12 +821,16 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 {
 	setObjectName("outline");
 	setWindowTitle(getTitle());
-	list = new PDFDockListWidget(this);
+	list = new PDFDockListView(this);
 	list->setViewMode(QListView::IconMode);
 	list->setIconSize(QSize(128, 128));
 	list->setMovement(QListView::Static);
 	list->setSpacing(12);
 	list->setBackgroundRole(QPalette::Mid);
+	list->setLayoutMode(QListView::Batched);
+	list->setBatchSize(10);
+	list->setUniformItemSizes(true); //necessary to prevent it from rendering all pages
+	list->setModel(new PDFOverviewModel());
 	setWidget(list);
 	dontFollow=false;
 }
@@ -799,75 +848,31 @@ void PDFOverviewDock::changeLanguage()
 
 void PDFOverviewDock::fillInfo()
 {
-    list->clear();
-    toGenerate=0;
-    if (!document || !document->widget() || !document->popplerDoc()) return;
-    Poppler::Document *doc = document->popplerDoc();
-    int sx=128;
-    int sy=128;
-    if(document->widget()->realNumPages()>0){
-	Poppler::Page* page=doc->page(0);
-	QSize  sz=page->pageSize();
-	if(sz.width()>sz.height()){
-	    sy=qRound(1.0*sz.height()/sz.width()*sx);
-	}else{
-	    sx=qRound(1.0*sz.width()/sz.height()*sy);
-	}
-	delete page;
-    }
-    QPixmap pxMap(sx,sy);
-    pxMap.fill();
-    for(int i=0;i<document->widget()->realNumPages();i++){
-	    QListWidgetItem *lw = new QListWidgetItem(list);
-
-	    lw->setIcon(QIcon(pxMap));
-	    lw->setBackgroundColor(Qt::gray);
-	    lw->setText(QString("%1").arg(i+1));
-	    connect(list, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
-    }
-
-    //list->setCurrentRow(0);
-    showImage();
+	qobject_cast<PDFOverviewModel*>(list->model())->setDocument(document);
+	connect(list->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(followTocSelection()));
 }
 
 void PDFOverviewDock::documentClosed()
 {
-    list->clear();
-    PDFDock::documentClosed();
+	qobject_cast<PDFOverviewModel*>(list->model())->setDocument(0);
+	PDFDock::documentClosed();
 }
 
 void PDFOverviewDock::followTocSelection()
 {
-    if(!dontFollow){
-	QList<QListWidgetItem* >lst=list->selectedItems();
-	if(lst.isEmpty())
-	    return;
-	int page=lst.first()->text().toInt();
-	document->goToPage(page-1);
-    }
+	if(dontFollow) return;
+	
+	QModelIndex mi = list->currentIndex();
+	if (mi.isValid()) 
+		document->goToPage(mi.row());
 }
 
 void PDFOverviewDock::pageChanged(int page)
 {
-    dontFollow=true;
-    list->setCurrentRow(page);
-    dontFollow=false;
+	dontFollow=true;
+	list->setCurrentIndex(list->model()->index(page,0));
+	dontFollow=false;
 }
-
-void PDFOverviewDock::showImage(){
-    for(int i=0;i<document->widget()->realNumPages();i++){
-	QPixmap image=document->renderManager->renderToImage(i,this,"insertImage",-1,-1,-1,-1,-1,-1,false);
-	insertImage(image,i);
-    }
-}
-
-void PDFOverviewDock::insertImage(QPixmap image,int page){
-    QPixmap pxMap=image.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
-    QListWidgetItem *lw = list->item(page);
-    if(lw)
-	lw->setIcon(QIcon(pxMap));
-}
-
 
 
 PDFClockDock::PDFClockDock(PDFDocument *parent):PDFDock(parent){
