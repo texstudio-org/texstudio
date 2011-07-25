@@ -236,6 +236,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 						if(tp.name==env){
 							activeEnv.pop();
 							if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
+								// stop excesscols from being handed on
+								excessCols=0;
 								// get new cols
 								cols=containsEnv("tabular",activeEnv);
 							}
