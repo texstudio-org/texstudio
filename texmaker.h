@@ -63,6 +63,7 @@ enum RunCommandFlag{
 		      };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
+class UserMenuDialog;
 class Texmaker : public QMainWindow {
 	Q_OBJECT
 
@@ -282,8 +283,10 @@ private slots:
 	void InsertBibEntryFromAction();
 	void InsertBibEntry(const QString& id="");
 	
-	void InsertUserTag();
+	void insertUserTag(const QString& macro);
+	void insertUserTag();
 	void EditUserMenu();
+	void userMacroDialogAccepted();
 
 	void InsertRef();
 	void InsertPageRef();
@@ -422,6 +425,7 @@ protected:
 	QByteArray stateFullScreen;
 
 	QDialog *svndlg;
+	UserMenuDialog *userMacroDialog;
 	QComboBox *cmbLog;
 
 	QStringList m_columnCutBuffer;

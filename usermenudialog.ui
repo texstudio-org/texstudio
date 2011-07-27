@@ -322,6 +322,32 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</st
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="runScriptButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>run script</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="okButton">
        <property name="text">
         <string>OK</string>
@@ -352,12 +378,28 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</st
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>253</y>
+     <x>931</x>
+     <y>351</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
      <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButtonScript</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>runScriptButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>824</x>
+     <y>128</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>686</x>
+     <y>330</y>
     </hint>
    </hints>
   </connection>

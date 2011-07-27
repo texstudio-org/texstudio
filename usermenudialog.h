@@ -38,11 +38,14 @@ private:
 public slots:
 	void init();
 
+signals:
+	void runScript(const QString& script);
 
 private slots:
 	void change(const QModelIndex& nev,const QModelIndex& old);
 	void modelDataChanged(const QModelIndex& from ,const QModelIndex& to);
 	void slotOk();
+	void slotRunScript();
 	void slotAdd();
 	void slotRemove();
 	void slotMoveUp();
