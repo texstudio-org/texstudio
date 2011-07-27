@@ -122,10 +122,11 @@ void StringListTableModel::addStringList(QStringList* list, const QString& name)
 UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory* languageFactory)
 		: QDialog(parent), languages(languageFactory) {
 	setWindowTitle(name);
-	setModal(true);
 	ui.setupUi(this);
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
+	
+	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotRunScript()));
 
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), SLOT(slotRemove()));
@@ -222,6 +223,10 @@ void UserMenuDialog::modelDataChanged(const QModelIndex& from ,const QModelIndex
 void UserMenuDialog::slotOk() {
 	accept();
 }
+void UserMenuDialog::slotRunScript(){
+	emit runScript(codeedit->editor()->text());
+}
+
 void UserMenuDialog::slotAdd(){
 	model->insertRow(ui.tableView->currentIndex().row()+1);
 	if (model->rowCount() == 1) {

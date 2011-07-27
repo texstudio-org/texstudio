@@ -23,7 +23,6 @@ void txsInformation(const QString &message);
 void txsWarning(const QString& message);
 void txsCritical(const QString& message);
 
-
 class LatexCompleterConfig;
 
 #define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;

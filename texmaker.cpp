@@ -59,6 +59,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	currentLine=-1;
 	previewEquation=false;
 	svndlg=0;
+	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
 	comboSpellHeight=0;
 	latexStyleParser=0;
@@ -1629,6 +1630,7 @@ bool Texmaker::canCloseNow(){
 	SaveSettings();
 	bool accept = closeAllFilesAsking();
 	if (accept){
+		if (userMacroDialog) delete userMacroDialog;
 		if (mainSpeller) {
 			delete mainSpeller; //this saves the ignore list
 			mainSpeller=0;
@@ -2911,38 +2913,51 @@ void Texmaker::InsertBibEntry(const QString& id){
 	delete bd;
 }
 
-void Texmaker::InsertUserTag() {
-	if (!currentEditorView()) return;
+void Texmaker::insertUserTag() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	int id = action->data().toInt();
 	const QString& userTag=configManager.completerConfig->userMacro.value(id,Macro()).tag;
-	currentEditorView()->insertMacro(userTag);
+	insertUserTag(userTag);
+}
+
+void Texmaker::insertUserTag(const QString& macro){
+	if (!currentEditorView()) return;
+	currentEditorView()->insertMacro(macro);
 }
 
 void Texmaker::EditUserMenu() {
-	UserMenuDialog *umDlg = new UserMenuDialog(this,tr("Edit User &Tags"),m_languages);
-	foreach (const Macro& m, configManager.completerConfig->userMacro) {
-		if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close")
-			continue;
-		umDlg->names << m.name;
-		umDlg->tags << m.tag;
-		umDlg->abbrevs << m.abbrev;
-		umDlg->triggers << m.trigger;
+	if (!userMacroDialog)  {
+		userMacroDialog = new UserMenuDialog(0,tr("Edit User &Tags"),m_languages);
+		foreach (const Macro& m, configManager.completerConfig->userMacro) {
+			if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close")
+				continue;
+			userMacroDialog->names << m.name;
+			userMacroDialog->tags << m.tag;
+			userMacroDialog->abbrevs << m.abbrev;
+			userMacroDialog->triggers << m.trigger;
+		}
+		userMacroDialog->init();
+		connect(userMacroDialog, SIGNAL(accepted()), SLOT(userMacroDialogAccepted()));
+		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(insertUserTag(QString)));
 	}
-	umDlg->init();
-	if (umDlg->exec()) {
-		configManager.completerConfig->userMacro.clear();
-		Q_ASSERT(umDlg->names.size() == umDlg->tags.size());
-		Q_ASSERT(umDlg->names.size() == umDlg->abbrevs.size());
-		Q_ASSERT(umDlg->names.size() == umDlg->triggers.size());
-		for (int i=0;i<umDlg->names.size();i++)
-			configManager.completerConfig->userMacro.append(Macro(umDlg->names[i], umDlg->tags[i], umDlg->abbrevs[i], umDlg->triggers[i]));
-		configManager.updateUserMacroMenu();
-		completer->updateAbbreviations();
-	}
-	delete umDlg; //must be deleted before the formatscheme is deleted
+	userMacroDialog->show();
+	userMacroDialog->setFocus();
 }
+
+void Texmaker::userMacroDialogAccepted(){
+	configManager.completerConfig->userMacro.clear();
+	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->tags.size());
+	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->abbrevs.size());
+	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->triggers.size());
+	for (int i=0;i<userMacroDialog->names.size();i++)
+		configManager.completerConfig->userMacro.append(Macro(userMacroDialog->names[i], userMacroDialog->tags[i], userMacroDialog->abbrevs[i], userMacroDialog->triggers[i]));
+	configManager.updateUserMacroMenu();
+	completer->updateAbbreviations();
+	userMacroDialog->deleteLater();
+	userMacroDialog = 0;
+}
+
 
 void Texmaker::InsertRef() {
 	//updateStructure();
