@@ -206,6 +206,8 @@ private slots:
 		
 		QTest::newRow("reference") << "bummerang\\ref{  xyz  }abcdef" << 9 << false << false
 		                           << (int)NW_REFERENCE << 21 << "  xyz  " << 14;
+		QTest::newRow("unknown")   << "bummerang\\adxas{  x:y:z  }abcdef" << 9 << false << false
+		                           << (int)NW_TEXT << 32 << "abcdef" << 26;
 		QTest::newRow("label")     << "bummerang\\label{  x:y:z  }abcdef" << 9 << false << false
 		                           << (int)NW_LABEL << 25 << "  x:y:z  " << 16;
 		QTest::newRow("citation0") << "012345\\cite{aaaHallob}abcdef" << 6 << false << false

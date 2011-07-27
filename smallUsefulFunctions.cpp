@@ -497,25 +497,15 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			break; //ignore
 		case '}':
 			if (reference!=-1) {
-				if (LatexParser::refCommands.contains(lastCommand)){
+				NextWordFlag result = NW_NOTHING;
+				if (LatexParser::refCommands.contains(lastCommand)) result = NW_REFERENCE;
+				else if (LatexParser::labelCommands.contains(lastCommand)) result = NW_LABEL;
+				else if (LatexParser::citeCommands.contains(lastCommand)) result = NW_CITATION;
+				if (result != NW_NOTHING) {
 					wordStartIndex=reference;
 					--index;
 					outWord=line.mid(reference,index-reference);
-					return NW_REFERENCE;
-				} else {
-					if (LatexParser::labelCommands.contains(lastCommand)){
-						wordStartIndex=reference;
-						--index;
-						outWord=line.mid(reference,index-reference);
-						return NW_LABEL;
-					} else {
-						if (LatexParser::citeCommands.contains(lastCommand)){
-							wordStartIndex=reference;
-							--index;
-							outWord=line.mid(reference,index-reference);
-							return NW_CITATION;
-						}
-					}
+					return result;
 				}
 			}
 			lastCommand="";
@@ -523,19 +513,12 @@ NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordS
 			inEnv=false;
 			if(inStructure) *inStructure=false;
 			break;//command doesn't matter anymore
-                case '$':
+		case '$': case '^': case '&':
 			return NW_COMMAND;
-			break;
-                case '_':
+		case '_':
 			if(!inOption){
 				return NW_COMMAND;
 			}
-			break;
-                case '^':
-			return NW_COMMAND;
-			break;
-                case '&':
-			return NW_COMMAND;
 			break;
 		case '\\':
 			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
