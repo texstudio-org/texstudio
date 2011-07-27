@@ -448,7 +448,8 @@ QSettings* ConfigManager::readSettings() {
 		QStringList temp;
 		QStringList fallBackPaths;
 #ifndef Q_WS_WIN
-		fallBackPaths << "/usr/share/hunspell";
+		fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
+		              << "/usr/share/hunspell" << "/usr/share/myspell" ;
 #endif
 		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic", true, temp, fallBackPaths);
 		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic", true, temp, fallBackPaths);
