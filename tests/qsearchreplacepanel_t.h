@@ -13,11 +13,13 @@ class QSearchReplacePanelTest: public QObject{
 	Q_OBJECT
 	public:
 		QSearchReplacePanelTest(QCodeEdit* codeedit, bool executeAllTests=true);
+		~QSearchReplacePanelTest();
 	private:
 		QEditor *ed;
 		QSearchReplacePanel *panel;
 		QSearchReplacePanelProtectedBreaker *widget;
 		bool allTests;
+		QStringList oldFindHistory, oldReplaceHistory;
 	private slots:
 		void initTestCase();
 		void incrementalsearch_data();

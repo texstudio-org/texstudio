@@ -73,8 +73,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		virtual void resizeEvent(QResizeEvent *e);
 
 	private slots:
-		void on_leFind_textEdited(const QString& text);
-		void on_leReplace_textEdited(const QString& text);
+		void cFind_textEdited(const QString& text);
+		void cReplace_textEdited(const QString& text);
 		
 		void on_cbReplace_toggled(bool on);
 		
@@ -101,16 +101,19 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 	private:
 		void init();
 		void updateSearchOptions(bool replace, bool replaceAll);
-		void on_leFind_returnPressed(bool backward);
-		void on_leReplace_returnPressed(bool backward);
+		void on_cFind_returnPressed(bool backward);
+		void on_cReplace_returnPressed(bool backward);
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
 		int minimum_width;
 
 	protected:
+		QStringList getHistory(bool findHistory = true);
+		void setHistory(const QStringList& newHistory, bool findHistory = true);
+		void rememberLastSearch(QStringList& history, const QString& str, bool incremental);
 		//protected to give unit tests access
 		QToolButton *bClose;
-		QLineEdit *leFind;
+		QComboBox *cFind;
 		QToolButton *bNext, *bPrevious, *bCount;
 		QGridLayout *gridLayout1;
 		QCheckBox *cbCase;
@@ -124,7 +127,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QCheckBox *cbReplaceAll;
 		QCheckBox *cbEscapeSeq;
 		QCheckBox *cbReplace;
-		QLineEdit *leReplace;
+		QComboBox *cReplace;
 		QToolButton *bReplaceNext;
 		QToolButton *bReplacePrevious;
 

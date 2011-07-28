@@ -41,6 +41,8 @@ public:
 	//Setting a link changes the object value to the current option value
 	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options=0) = 0;
 
+	virtual void updateAllLinkedObjects(const void* optionStorage) = 0;
+	
 	static ConfigManagerInterface* getInstance();
 };
 
