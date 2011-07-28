@@ -86,8 +86,14 @@ QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit, bool execu
 	ed->setFlag(QEditor::HardLineWrap, false);
 	panel=qobject_cast<QSearchReplacePanel*>(codeedit->panels("Search")[0]);
 	Q_ASSERT(panel);
+	oldFindHistory = static_cast<QSearchReplacePanelProtectedBreaker*>(panel)->getHistory();
+	oldReplaceHistory = static_cast<QSearchReplacePanelProtectedBreaker*>(panel)->getHistory(false);
 }
 
+QSearchReplacePanelTest::~QSearchReplacePanelTest(){
+	static_cast<QSearchReplacePanelProtectedBreaker*>(panel)->setHistory(oldFindHistory);
+	static_cast<QSearchReplacePanelProtectedBreaker*>(panel)->setHistory(oldReplaceHistory, false);
+}
 
 void QSearchReplacePanelTest::initTestCase(){
 	QVERIFY(panel);
@@ -194,13 +200,13 @@ void QSearchReplacePanelTest::incrementalsearch(){
 			
 			//it doesn't react to setText
 			if (search.isEmpty()) {
-				widget->leFind->setText("a");
-				widget->leFind->cursorForward(false);	
-				QTest::keyClick(widget->leFind,Qt::Key_Backspace);
+				widget->cFind->setEditText("a");
+				widget->cFind->lineEdit()->cursorForward(false);	
+				QTest::keyClick(widget->cFind->lineEdit(),Qt::Key_Backspace);
 			} else {
-				widget->leFind->setText(search.left(search.length()-1));
-				widget->leFind->cursorForward(false,search.length());	
-				QTest::keyClick(widget->leFind,search[search.length()-1].toLatin1());
+				widget->cFind->setEditText(search.left(search.length()-1));
+				widget->cFind->lineEdit()->cursorForward(false,search.length());	
+				QTest::keyClick(widget->cFind->lineEdit(),search[search.length()-1].toLatin1());
 			}
 			QDocumentCursor s=ed->cursor().selectionStart();
 			QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText()+"  "+QString::number(loop));
@@ -316,9 +322,9 @@ void QSearchReplacePanelTest::findReplace(){
 		for (int i=0;i<movements.size();i++){
 			QStringList move=movements[i].split('|');
 			QVERIFY(move.size()>=3);
-			widget->leFind->setText(move[0]);
+			widget->cFind->setEditText(move[0]);
 			if (move.size()==5) {
-				widget->leReplace->setText(move[3]);
+				widget->cReplace->setEditText(move[3]);
 				widget->bReplaceNext->click();
 				QString newText=move[4];
 				QEQUAL2(ed->document()->text(),newText,QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
@@ -342,7 +348,7 @@ void QSearchReplacePanelTest::findReplace(){
 void QSearchReplacePanelTest::findReplaceSpecialCase(){
 	//test for a strange special case
 	ed->setText("abc\n\n\nabc\n\n\nabc");
-	widget->leFind->setText("abc");
+	widget->cFind->setEditText("abc");
 	ed->setCursorPosition(0,0);
 	panel->setOptions(QDocumentSearch::HighlightAll, true, false);
 	
@@ -352,7 +358,7 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 	widget->bNext->click();
 	QEQUAL2(ed->cursor().lineNumber(),3,"b"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
 	
-	widget->leReplace->setText("abc abc");
+	widget->cReplace->setEditText("abc abc");
 	widget->bReplaceNext->click();
 	QEQUAL2(ed->cursor().lineNumber(),6,"c"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
 
@@ -433,7 +439,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		panel->display(0,false);
 		ed->setCursor(sel);
 		panel->display(1,false);
-		QEQUAL(widget->leFind->text(),"l");
+		QEQUAL(widget->cFind->currentText(),"l");
 		QEQUAL(widget->cbSelection->isChecked(),oldSel);
 	}
 
@@ -442,7 +448,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 	QDocumentCursor sel=ed->document()->cursor(0,1,2,3);
 	ed->setCursor(sel);
 	panel->display(1,false);
-	widget->leFind->setText("el");
+	widget->cFind->setEditText("el");
 	panel->findReplace(false);
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 	QCEEQUAL(ed->cursor(),ed->document()->cursor(0,1,0,3));
@@ -464,7 +470,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 	sel=ed->document()->cursor(0,1,1,3);
 	ed->setCursor(sel);
 	panel->display(1,false);
-	widget->leFind->setText("el");
+	widget->cFind->setEditText("el");
 	panel->findReplace(true);
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 	QCEEQUAL(ed->cursor(),ed->document()->cursor(1,3,1,1));

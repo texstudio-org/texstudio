@@ -222,7 +222,8 @@ public:
 	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
 	virtual void linkOptionToDialogWidget(const void* optionStorage, QWidget* widget);
 	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options);
-
+	virtual void updateAllLinkedObjects(const void* optionStorage);
+	
 	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
 private:
 	void setInterfaceStyle();

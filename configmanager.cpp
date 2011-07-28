@@ -93,23 +93,33 @@ void ManagedProperty::writeToObject(QObject* w) const{
 	QComboBox* comboBox = qobject_cast<QComboBox*>(w);
 	if (comboBox){
 		switch (type) {
-			case PT_BOOL:
-				comboBox->setCurrentIndex(*((bool*)storage)?1:0);
-				return;
-			case PT_INT:
-				comboBox->setCurrentIndex(*((int*)storage));
-				return;
-			case PT_STRING:{
-				int index = comboBox->findText(*(QString*)storage);
-				if (index > 0) comboBox->setCurrentIndex(index);
-				if (comboBox->isEditable()) comboBox->setEditText(*(QString*)storage);
-				return;
-			}
-			case PT_STRINGLIST:
-				Q_ASSERT(false);//TODO
-				return;
-			default:
-				Q_ASSERT(false);
+		case PT_BOOL:
+			comboBox->setCurrentIndex(*((bool*)storage)?1:0);
+			return;
+		case PT_INT:
+			comboBox->setCurrentIndex(*((int*)storage));
+			return;
+		case PT_STRING:{
+			int index = comboBox->findText(*(QString*)storage);
+			if (index > 0) comboBox->setCurrentIndex(index);
+			if (comboBox->isEditable()) comboBox->setEditText(*(QString*)storage);
+			return;
+		}
+		case PT_STRINGLIST:{
+			QStringList& sl = *(QStringList*)storage;
+			while (comboBox->count() > sl.size()) 
+				comboBox->removeItem(comboBox->count()-1);
+			for (int i=0;i<qMin(sl.size(),comboBox->count());i++)
+				if (comboBox->itemText(i) != sl[i]) 
+					comboBox->setItemText(i,sl[i]);
+			for (int i=comboBox->count();i<sl.size();i++)
+				comboBox->addItem(sl[i]);
+			if (!sl.isEmpty() && comboBox->currentText()!=sl.last() && comboBox->currentIndex()!=sl.size()-1)
+				comboBox->setCurrentIndex(sl.size()-1);
+			return;
+		}
+		default:
+			Q_ASSERT(false);
 		}
 	}
 	QDoubleSpinBox* doubleSpinBox = qobject_cast<QDoubleSpinBox*>(w);
@@ -1820,6 +1830,11 @@ void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* objec
 	connect(object,SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
 	if (qobject_cast<QAction*>(object) || qobject_cast<QCheckBox*>(object))
 		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionBoolToggled()));
+}
+void ConfigManager::updateAllLinkedObjects(const void* optionStorage){
+	ManagedProperty *property = getManagedProperty(optionStorage);
+	REQUIRE(property);
+	updateManagedOptionObjects(property);
 }
 
 ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
