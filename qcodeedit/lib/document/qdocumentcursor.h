@@ -112,17 +112,17 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		bool operator <= (const QDocumentCursor& c) const;
 		bool operator >= (const QDocumentCursor& c) const;
 		
-		bool beginBoundaryLarger (const QDocumentCursor& c) const;
-		bool endBoundaryLarger (const QDocumentCursor& c) const;
-		bool equalBoundaries(const QDocumentCursor& c) const;
-		bool equal(const QDocumentCursor& c) const;
+		Q_INVOKABLE bool beginBoundaryLarger (const QDocumentCursor& c) const;
+		Q_INVOKABLE bool endBoundaryLarger (const QDocumentCursor& c) const;
+		Q_INVOKABLE bool equalBoundaries(const QDocumentCursor& c) const;
+		Q_INVOKABLE bool equal(const QDocumentCursor& c) const;
 		
 		void beginBoundary(int& begline, int& begcol) const;
 		void endBoundary(int& endline, int& endcol) const;
 		void boundaries(int& begline, int& begcol, int& endline, int& endcol) const;
 		
-		bool isNull() const;
-		bool isValid() const;
+		Q_INVOKABLE bool isNull() const;
+		Q_INVOKABLE bool isValid() const;
 		
 		Q_INVOKABLE bool atEnd() const;
 		Q_INVOKABLE bool atStart() const;
@@ -135,13 +135,13 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		Q_INVOKABLE bool hasSelection() const;
 		
-		bool isSilent() const;
+		Q_INVOKABLE bool isSilent() const;
 		void setSilent(bool y);
 		
-		bool isAutoUpdated() const;
+		Q_INVOKABLE bool isAutoUpdated() const;
 		void setAutoUpdated(bool y);
 
-		bool isAutoErasable() const;
+		Q_INVOKABLE bool isAutoErasable() const;
 		void setAutoErasable(bool y);
 		
 		int position() const;
@@ -158,18 +158,18 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE int endLineNumber() const;
 		Q_INVOKABLE int endColumnNumber() const;
 
-		int visualColumnNumber() const;
+		Q_INVOKABLE int visualColumnNumber() const;
 		
 		Q_INVOKABLE void setLineNumber(int c, MoveMode m = MoveAnchor);
 		Q_INVOKABLE void setColumnNumber(int c, MoveMode m = MoveAnchor);
 		Q_INVOKABLE void setAnchorLineNumber(int c) const;
 		Q_INVOKABLE void setAnchorColumnNumber(int c) const;
 
-		int wrappedLineOffset() const;
-		int anchorWrappedLineOffset() const;
+		Q_INVOKABLE int wrappedLineOffset() const;
+		Q_INVOKABLE int anchorWrappedLineOffset() const;
 		
-		QPoint documentPosition() const;
-		QPoint anchorDocumentPosition() const;
+		Q_INVOKABLE QPoint documentPosition() const;
+		Q_INVOKABLE QPoint anchorDocumentPosition() const;
 		
 		QPolygon documentRegion() const;
 		
@@ -197,17 +197,17 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE void removeSelectedText();
 		Q_INVOKABLE void replaceSelectedText(const QString& text);
 		
-		void select(SelectionType t);
-		void setSelectionBoundary(const QDocumentCursor& c);
+		Q_INVOKABLE void select(SelectionType t);
+		Q_INVOKABLE void setSelectionBoundary(const QDocumentCursor& c);
 		
-		bool isWithinSelection(const QDocumentCursor& c) const;
-		QDocumentCursor intersect(const QDocumentCursor& c) const;
+		Q_INVOKABLE bool isWithinSelection(const QDocumentCursor& c) const;
+		Q_INVOKABLE QDocumentCursor intersect(const QDocumentCursor& c) const;
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 
 		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal = true);
 
-		QChar nextChar() const;
-		QChar previousChar() const;
+		Q_INVOKABLE QChar nextChar() const;
+		Q_INVOKABLE QChar previousChar() const;
 		
 		Q_INVOKABLE void deleteChar();
 		Q_INVOKABLE void deletePreviousChar();
