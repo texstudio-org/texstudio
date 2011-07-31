@@ -117,8 +117,6 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 
 	//qDebug("suff:%s; compSuff:%s", qPrintable(ext), qPrintable(cext));
 
-	QLanguageDefinition *oldLang = e->languageDefinition();
-
 	if ( file.count() )
 	{
 		QList<Qt::CaseSensitivity> lcs;
@@ -171,8 +169,15 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 				break;
 		}
 	}
+	
+	setLanguageFromName(e, lang);
+}
 
-	if ( lang.isEmpty() )
+	
+void QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
+	QLanguageDefinition *oldLang = e->languageDefinition();
+
+	if ( lang.isEmpty() && !m_data.contains(lang))
 	{
 		//qDebug("no lang match for %s", qPrintable(file));
 		e->setLanguageDefinition(0);

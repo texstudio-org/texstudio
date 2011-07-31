@@ -743,7 +743,10 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
 	fullscreenModeAction->setCheckable(true);
-
+	
+	menu->addSeparator();
+	newManagedAction(menu,"sethighlighting",tr("Set High&lighting..."),SLOT(viewSetHighlighting()));
+	
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
 	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
@@ -3936,6 +3939,14 @@ void Texmaker::setFullScreenMode() {
 		setWindowState(Qt::WindowFullScreen);
 		restoreState(stateFullScreen,1);
 	}
+}
+
+void Texmaker::viewSetHighlighting(){
+	if (!currentEditor()) return;
+	QString lang = QInputDialog::getItem(this, TEXSTUDIO, "New highlighting: ", 
+	                                     m_languages->languages(), m_languages->languages().indexOf(currentEditor()->document()->languageDefinition()?currentEditor()->document()->languageDefinition()->language():""));
+	if (lang.isEmpty()) return;
+	m_languages->setLanguageFromName(currentEditor(), lang);
 }
 
 void Texmaker::viewCollapseBlock() {
