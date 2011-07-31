@@ -70,6 +70,7 @@ class QCE_EXPORT QLanguageFactory : public QObject
 		void addCompletionEngine(QCodeCompletionEngine *e);
 		
 		virtual void setLanguage(QEditor *e, const QString& f);
+		virtual void setLanguageFromName(QEditor *e, const QString& lang);
 		
 	private:
 		QStringList m_languages;

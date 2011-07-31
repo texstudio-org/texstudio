@@ -263,7 +263,7 @@
         <file>completion/nameref.cwl</file>
         <file>completion/natbib.cwl</file>
         <file>completion/nicefrac.cwl</file>
-        <file>completion/multimedia.cwl</file>        
+        <file>completion/multimedia.cwl</file>
         <file>completion/nomencl.cwl</file>
         <file>completion/pdfpages.cwl</file>
         <file>completion/pgfcore.cwl</file>
@@ -298,7 +298,7 @@
         <file>completion/tex.cwl</file>
         <file>completion/texmakerx.cwl</file>
         <file>completion/textcomp.cwl</file>
-        <file>completion/tikz.cwl</file>        
+        <file>completion/tikz.cwl</file>
         <file>completion/tocbibind.cwl</file>
         <file>completion/tocloft.cwl</file>
         <file>completion/todonotes.cwl</file>
@@ -1455,5 +1455,6 @@
         <file>images/pasteCol.png</file>
         <file>completion/pifont.cwl</file>
         <file>completion/theorem.cwl</file>
+        <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
     </qresource>
 </RCC>

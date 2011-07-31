@@ -344,6 +344,7 @@ private slots:
 	void viewToggleOutputView();
 	void viewCloseSomething();
 	void setFullScreenMode();
+	void viewSetHighlighting();
 	
 	void viewCollapseBlock();
 	void viewExpandBlock();
