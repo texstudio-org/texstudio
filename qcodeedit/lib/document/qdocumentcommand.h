@@ -137,22 +137,36 @@ class QCE_EXPORT QDocumentEraseCommand : public QDocumentCommand
 
 class QCE_EXPORT QDocumentCommandBlock : public QDocumentCommand
 {
-	public:
-		QDocumentCommandBlock(QDocument *d);
-		virtual ~QDocumentCommandBlock();
-		
-		virtual void redo();
-		virtual void undo();
-		
-		void setWeakLock(bool l);
-		bool isWeakLocked() const;
-		
-		virtual void addCommand(QDocumentCommand *c);
-		virtual void removeCommand(QDocumentCommand *c);
-		
-	private:
-		bool m_weakLocked;
-		QList<QDocumentCommand*> m_commands;
+public:
+	QDocumentCommandBlock(QDocument *d);
+	virtual ~QDocumentCommandBlock();
+
+	virtual void redo();
+	virtual void undo();
+
+	void setWeakLock(bool l);
+	bool isWeakLocked() const;
+
+	virtual void addCommand(QDocumentCommand *c);
+	virtual void removeCommand(QDocumentCommand *c);
+
+private:
+	bool m_weakLocked;
+	QList<QDocumentCommand*> m_commands;
+};
+
+
+
+
+class QCE_EXPORT QDocumentCommandChangeCodec: public QDocumentCommand{
+public:
+	QDocumentCommandChangeCodec(QDocument *d, QTextCodec* newCodec);
+
+	virtual void redo();
+	virtual void undo();
+private:
+	QTextCodec *newCodec, *oldCodec;
+
 };
 
 #endif

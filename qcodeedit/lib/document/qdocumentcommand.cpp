@@ -977,5 +977,19 @@ void QDocumentCommandBlock::removeCommand(QDocumentCommand *c)
 	m_commands.removeAll(c);
 }
 
+
+
+QDocumentCommandChangeCodec::QDocumentCommandChangeCodec(QDocument *d, QTextCodec* newCodec)
+	:QDocumentCommand(Custom, d), newCodec(newCodec), oldCodec(d->codec()){
+}
+
+void QDocumentCommandChangeCodec::redo(){
+	m_doc->setCodecDirect(newCodec);
+}
+
+void QDocumentCommandChangeCodec::undo(){
+	m_doc->setCodecDirect(oldCodec);
+}
+
 /*! @} */
 

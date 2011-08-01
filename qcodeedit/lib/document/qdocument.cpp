@@ -608,7 +608,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		delete dec;
 		stopChunkLoading();
 	}
-	setCodec(codec);
+	setCodecDirect(codec);
 	setLastModified(QFileInfo(file).lastModified());
 }
 
@@ -970,6 +970,10 @@ QTextCodec* QDocument::codec() const{
 	return (m_impl && m_impl->m_codec)?m_impl->m_codec:QDocumentPrivate::m_defaultCodec;
 }
 void QDocument::setCodec(QTextCodec* codec){
+	if (!m_impl) return;
+	execute(new QDocumentCommandChangeCodec(this, codec));
+}
+void QDocument::setCodecDirect(QTextCodec* codec){
 	if (!m_impl) return;
 	m_impl->m_codec=codec;
 }

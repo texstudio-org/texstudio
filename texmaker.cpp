@@ -921,8 +921,7 @@ void Texmaker::UpdateCaption() {
 	} else {
 		title="Document : "+getCurrentFileName();
 		if (currentEditorView()->editor) {
-			if (currentEditorView()->editor->getFileCodec()) stat3->setText(currentEditorView()->editor->getFileCodec()->name());
-			else stat3->setText("unknown");
+			NewDocumentStatus();
 			QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
 			if (le==QDocument::Conservative) le= currentEditorView()->editor->document()->originalLineEnding();
 			switch (le) {
@@ -982,7 +981,7 @@ void Texmaker::showMarkTooltipForLogMessage(int error){
 
 }
 
-void Texmaker::NewDocumentStatus(bool m) {
+void Texmaker::NewDocumentStatus() {
 	LatexEditorView* edView = currentEditorView();
 	if (!edView) return;
 	int index=EditorView->currentIndex();
@@ -996,16 +995,18 @@ void Texmaker::NewDocumentStatus(bool m) {
 		}
 		if (!edView) return;
 	}
-	if (m)
+	QEditor * ed = edView->editor;
+	if (ed->isContentModified())
 		EditorView->setTabIcon(index,QIcon(":/images/modified.png"));
 	else
 		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
-	QEditor * ed = edView->editor;
 	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
 	if (EditorView->tabText(index) != tabText) {
 		EditorView->setTabText(index, tabText);
 		updateOpenDocumentMenu(true);
 	}
+	if (currentEditorView()->editor->getFileCodec()) stat3->setText(currentEditorView()->editor->getFileCodec()->name());
+	else stat3->setText("unknown");
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
@@ -1023,7 +1024,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 
 	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
-	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus(bool)));
+	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus()));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
 	connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
@@ -1059,7 +1060,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 
 	edit->editor->setFocus();
 	UpdateCaption();
-	NewDocumentStatus(!edit->editor->document()->isClean());
+	NewDocumentStatus();
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames){
