@@ -5058,7 +5058,7 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 	curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
 	bool loaded;
 	for(int i=0;i<curPaths.count();i++){
-		QString curPath=curPaths.value(i);
+		const QString& curPath=curPaths.value(i);
 		if ((loaded=load(getAbsoluteFilePath(curPath+name,defaultExt))))
 			break;
 		if ((loaded=load(getAbsoluteFilePath(curPath+name,""))))
