@@ -256,7 +256,7 @@ private slots:
 	void SaveSettings(const QString& configName="");
 
 	void showMarkTooltipForLogMessage(int error);
-	void NewDocumentStatus(bool m);
+	void NewDocumentStatus();
 	void UpdateCaption();
 	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);

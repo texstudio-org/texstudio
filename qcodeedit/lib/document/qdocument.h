@@ -103,6 +103,7 @@ class QCE_EXPORT QDocument : public QObject
 	friend class QMatcher;
 	friend class QDocumentPrivate;
 	friend class QDocumentCommand;
+	friend class QDocumentCommandChangeCodec;
 	
 	Q_OBJECT
 	
@@ -357,6 +358,7 @@ class QCE_EXPORT QDocument : public QObject
 	private:
 		QString m_leftOver;
 		QDocumentPrivate *m_impl;
+		void setCodecDirect(QTextCodec* codec);
 
 };
 
