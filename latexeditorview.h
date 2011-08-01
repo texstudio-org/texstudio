@@ -105,7 +105,7 @@ private:
 
 private slots:
 	void requestCitation(); //emits needCitation with selected text
-        void openExternalFile();
+	void openExternalFile();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);

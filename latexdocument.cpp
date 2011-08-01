@@ -1453,7 +1453,9 @@ QString LatexDocuments::getTemporaryCompileFileName(){
 
 QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	QString s=relName;
-	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
+	QString ext = extension;
+	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
+	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
 	QFileInfo fi(s);
 	if (!fi.isRelative()) return s;
 	QString compileFileName=getTemporaryCompileFileName();
@@ -1912,7 +1914,9 @@ LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc){ // d
 
 QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	QString s=relName;
-	if (!s.endsWith(extension,Qt::CaseInsensitive)) s+=extension;
+	QString ext = extension;
+	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
+	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
 	QFileInfo fi(s);
 	if (!fi.isRelative()) return s;
 	LatexDocument *masterDoc=getTopMasterDocument();
