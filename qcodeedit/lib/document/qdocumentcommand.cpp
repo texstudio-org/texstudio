@@ -979,16 +979,30 @@ void QDocumentCommandBlock::removeCommand(QDocumentCommand *c)
 
 
 
-QDocumentCommandChangeCodec::QDocumentCommandChangeCodec(QDocument *d, QTextCodec* newCodec)
-	:QDocumentCommand(Custom, d), newCodec(newCodec), oldCodec(d->codec()){
+QDocumentChangeMetaDataCommand::QDocumentChangeMetaDataCommand(QDocument *d, QTextCodec* newCodec)
+	:QDocumentCommand(Custom, d){
+	init(newCodec, d->lineEnding());
+}
+QDocumentChangeMetaDataCommand::QDocumentChangeMetaDataCommand(QDocument *d, QDocument::LineEnding newLineEnding)
+       :QDocumentCommand(Custom, d){
+	init(d->codec(), newLineEnding);
 }
 
-void QDocumentCommandChangeCodec::redo(){
+void QDocumentChangeMetaDataCommand::redo(){
 	m_doc->setCodecDirect(newCodec);
+	m_doc->setLineEndingDirect(newLineEnding);
 }
 
-void QDocumentCommandChangeCodec::undo(){
+void QDocumentChangeMetaDataCommand::undo(){
+	m_doc->setLineEndingDirect(oldLineEnding);	
 	m_doc->setCodecDirect(oldCodec);
+}
+
+void QDocumentChangeMetaDataCommand::init(QTextCodec* newCodec, QDocument::LineEnding newLineEnding){
+	this->oldCodec = m_doc->codec();
+	this->newCodec = newCodec;
+	this->oldLineEnding = m_doc->lineEnding();
+	this->newLineEnding = newLineEnding;
 }
 
 /*! @} */

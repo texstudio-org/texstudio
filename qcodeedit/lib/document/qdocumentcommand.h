@@ -158,15 +158,17 @@ private:
 
 
 
-class QCE_EXPORT QDocumentCommandChangeCodec: public QDocumentCommand{
+class QCE_EXPORT QDocumentChangeMetaDataCommand: public QDocumentCommand{
 public:
-	QDocumentCommandChangeCodec(QDocument *d, QTextCodec* newCodec);
+	QDocumentChangeMetaDataCommand(QDocument *d, QTextCodec* newCodec);
+	QDocumentChangeMetaDataCommand(QDocument *d, QDocument::LineEnding newLineEnding);
 
 	virtual void redo();
 	virtual void undo();
 private:
+	void init(QTextCodec* newCodec, QDocument::LineEnding newLineEnding);
 	QTextCodec *newCodec, *oldCodec;
-
+	QDocument::LineEnding newLineEnding, oldLineEnding;
 };
 
 #endif

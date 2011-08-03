@@ -257,6 +257,7 @@ private slots:
 
 	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus();
+	void NewDocumentLineEnding();
 	void UpdateCaption();
 	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);
