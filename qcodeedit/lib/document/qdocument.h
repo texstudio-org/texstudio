@@ -175,9 +175,11 @@ class QCE_EXPORT QDocument : public QObject
 		LineEnding originalLineEnding() const;
 		Q_INVOKABLE QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
+		void setLineEndingDirect(LineEnding le);
 		
 		QTextCodec* codec() const;
 		void setCodec(QTextCodec* codec);
+		void setCodecDirect(QTextCodec* codec);
 
 		QDateTime lastModified() const;
 		void setLastModified(const QDateTime& d);
@@ -358,7 +360,6 @@ class QCE_EXPORT QDocument : public QObject
 	private:
 		QString m_leftOver;
 		QDocumentPrivate *m_impl;
-		void setCodecDirect(QTextCodec* codec);
 
 };
 

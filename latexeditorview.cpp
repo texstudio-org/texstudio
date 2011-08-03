@@ -254,7 +254,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	editor->setInputBinding(defaultInputBinding);
 	defaultInputBinding->completerConfig = completer->getConfig();
 	Q_ASSERT(defaultInputBinding->completerConfig);
-	editor->document()->setLineEnding(QDocument::Local);
+	editor->document()->setLineEndingDirect(QDocument::Local);
 	mainlay->addWidget(editor);
 
 	setFocusProxy(editor);

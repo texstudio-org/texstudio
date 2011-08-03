@@ -245,7 +245,7 @@ QDocument::QDocument(QObject *p)
 
 
 	setText(QString());
-	setLineEnding(QDocument::Conservative);
+	setLineEndingDirect(QDocument::Conservative);
 
 	connect(&(m_impl->m_commands)	, SIGNAL( cleanChanged(bool) ),
 			this					, SIGNAL( cleanChanged(bool) ) );
@@ -504,7 +504,7 @@ void QDocument::setText(const QString& s)
 	m_impl->m_lastModified = QDateTime::currentDateTime();
 	
 	if ( lineEnding() == Conservative )
-		setLineEnding(Conservative);
+		setLineEndingDirect(Conservative);
 
 	m_impl->setWidth();
 	m_impl->setHeight();
@@ -693,7 +693,7 @@ void QDocument::stopChunkLoading()
 	m_impl->m_lastModified = QDateTime::currentDateTime();
 	
 	if ( lineEnding() == Conservative )
-		setLineEnding(Conservative);
+		setLineEndingDirect(Conservative);
 
 	m_impl->setWidth();
 	m_impl->setHeight();
@@ -916,7 +916,15 @@ QString QDocument::lineEndingString() const{
 /*!
 	\brief Set the line ending policy of the document
 */
-void QDocument::setLineEnding(LineEnding le)
+void QDocument::setLineEnding(LineEnding le){
+	if (!m_impl) return;
+	execute(new QDocumentChangeMetaDataCommand(this, le));	
+}
+
+/*!
+	\brief Set the line ending policy of the document
+*/
+void QDocument::setLineEndingDirect(LineEnding le)
 {
 	if ( !m_impl )
 		return;
@@ -971,7 +979,7 @@ QTextCodec* QDocument::codec() const{
 }
 void QDocument::setCodec(QTextCodec* codec){
 	if (!m_impl) return;
-	execute(new QDocumentCommandChangeCodec(this, codec));
+	execute(new QDocumentChangeMetaDataCommand(this, codec));
 }
 void QDocument::setCodecDirect(QTextCodec* codec){
 	if (!m_impl) return;
@@ -1518,7 +1526,7 @@ void QDocument::setDefaultLineEnding(QDocument::LineEnding le)
 
 	foreach ( QDocumentPrivate *d, QDocumentPrivate::m_documents )
 	{
-		d->m_doc->setLineEnding(le);
+		d->m_doc->setLineEndingDirect(le);
 	}
 }
 

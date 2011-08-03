@@ -922,21 +922,7 @@ void Texmaker::UpdateCaption() {
 		title="Document : "+getCurrentFileName();
 		if (currentEditorView()->editor) {
 			NewDocumentStatus();
-			QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
-			if (le==QDocument::Conservative) le= currentEditorView()->editor->document()->originalLineEnding();
-			switch (le) {
-#ifdef Q_WS_WIN
-			case QDocument::Local:
-#endif
-			case QDocument::Windows:
-				getManagedAction("main/edit/lineend/crlf")->setChecked(true);
-				break;
-			case QDocument::Mac:
-				getManagedAction("main/edit/lineend/cr")->setChecked(true);
-				break;
-			default:
-				getManagedAction("main/edit/lineend/lf")->setChecked(true);
-			}
+			NewDocumentLineEnding();
 			currentEditorView()->editor->setFocus();
 		}
 	}
@@ -1009,6 +995,25 @@ void Texmaker::NewDocumentStatus() {
 	else stat3->setText("unknown");
 }
 
+void Texmaker::NewDocumentLineEnding(){
+	if (!currentEditorView()) return;
+	QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
+	if (le==QDocument::Conservative) le= currentEditorView()->editor->document()->originalLineEnding();
+	switch (le) {
+#ifdef Q_WS_WIN
+	case QDocument::Local:
+#endif
+	case QDocument::Windows:
+		getManagedAction("main/edit/lineend/crlf")->setChecked(true);
+		break;
+	case QDocument::Mac:
+		getManagedAction("main/edit/lineend/cr")->setChecked(true);
+		break;
+	default:
+		getManagedAction("main/edit/lineend/lf")->setChecked(true);
+	}
+}
+
 LatexEditorView *Texmaker::currentEditorView() const {
 	return qobject_cast<LatexEditorView *>(EditorView->currentWidget());
 }
@@ -1025,6 +1030,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus()));
+	connect(edit->editor->document(), SIGNAL(lineEndingChanged(int)), this, SLOT(NewDocumentLineEnding()));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
 	connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
@@ -1151,7 +1157,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	//time.start();
 	edit->editor->load(f_real,QDocument::defaultCodec());
 	//qDebug() << "Load time: " << time.elapsed();
-	edit->editor->document()->setLineEnding(edit->editor->document()->originalLineEnding());
+	edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
 
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)
 
