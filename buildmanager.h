@@ -128,7 +128,14 @@ public:
 	bool showStdout() const;
 	void setShowStdout(bool show);
 	void setOverrideEnvironment(const QStringList& env);
-	const QStringList& overrideEnvironment();
+	const QStringList& overrideEnvironment();	
+	
+	Q_INVOKABLE int exitStatus() const;
+	Q_INVOKABLE int exitCode() const;
+	Q_INVOKABLE QString readAllStandardOutputStr();
+	Q_INVOKABLE QString readAllStandardErrorStr();
+	Q_INVOKABLE bool waitForFinished ( int msecs = 30000 );
+
 signals:
 	void processNotification(const QString& message);
 

@@ -37,6 +37,7 @@
 #include "universalinputdialog.h"
 #include "insertgraphics.h"
 #include "latexeditorview_config.h"
+#include "scriptengine.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -2084,6 +2085,7 @@ void Texmaker::ReadSettings() {
 	configManager.ltxCommands=&(documents.ltxCommands);
 
 	configManager.buildManager=&buildManager;
+	scriptengine::buildManager=&buildManager;
 	QSettings *config=configManager.readSettings();
 	completionBaseCommandsUpdated=true;
 

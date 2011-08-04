@@ -6,7 +6,7 @@
 #include <QScriptEngine>
 
 #include "qeditor.h"
-
+class BuildManager;
 class scriptengine : public QObject
 {
 Q_OBJECT
@@ -17,6 +17,8 @@ public:
 	void setScript(const QString& script);
 	void setEditor(QEditor *editor);
 
+	static BuildManager* buildManager;
+	
 protected:
 	QScriptEngine *engine;
 	QEditor *m_editor;

@@ -3,7 +3,10 @@
 #include "smallUsefulFunctions.h"
 #include "qdocumentsearch.h"
 #include "scriptobject.h"
+#include "buildmanager.h"
 Q_DECLARE_METATYPE(QDocument*);
+
+BuildManager* scriptengine::buildManager = 0;
 
 //copied from trolltech mailing list
 template <typename Tp> QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const &qobject)
@@ -30,7 +33,7 @@ void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qo
 	qobject = *qobject_cast<QDocumentCursor*>(value.toQObject());
 }
 
-
+Q_DECLARE_METATYPE(ProcessX*);
 
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
@@ -38,7 +41,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
 	engine=new QScriptEngine(this);
 	qScriptRegisterQObjectMetaType<QDocument*>(engine);
 	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
-//	qScriptRegisterMetaType<QDocumentCursor>(engine);
+	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
 //	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
 	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
 }
@@ -147,7 +150,7 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 
 void scriptengine::run(){
 	if(m_editor){
-		ScriptObject globalObject;
+		ScriptObject globalObject(m_script,buildManager);
 		engine->setGlobalObject(engine->newQObject(&globalObject));
 		
 		QScriptValue editorValue = engine->newQObject(m_editor);

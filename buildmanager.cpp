@@ -1143,6 +1143,13 @@ const QStringList& ProcessX::overrideEnvironment(){
 }
 
 
+int ProcessX::exitStatus() const{return QProcess::exitStatus();}
+int ProcessX::exitCode() const{return QProcess::exitCode(); }
+QString ProcessX::readAllStandardOutputStr(){return QString(QProcess::readAllStandardOutput());}
+QString ProcessX::readAllStandardErrorStr(){return QString(QProcess::readAllStandardError());}
+bool ProcessX::waitForFinished ( int msecs ){return QProcess::waitForFinished(msecs);}
+
+
 void ProcessX::onStarted(){
 	if (started) return; //why am I called twice?
 	started=true;
