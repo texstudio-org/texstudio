@@ -2,7 +2,7 @@
 #include "filechooser.h"
 #include "smallUsefulFunctions.h"
 #include "qdocumentsearch.h"
-
+#include "scriptobject.h"
 Q_DECLARE_METATYPE(QDocument*);
 
 //copied from trolltech mailing list
@@ -55,13 +55,6 @@ void scriptengine::setEditor(QEditor *editor){
 }
 
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
-
-QScriptValue alertFunction(QScriptContext *context, QScriptEngine *engine)
-{
-	SCRIPT_REQUIRE(context->argumentCount()==1, "alert needs exactly one argument");
-	QMessageBox::information(0, scriptengine::tr("Script-Message"), context->argument(0).toString());
-	return engine->undefinedValue();
-}
 
 QDocumentCursor cursorFromValue(const QScriptValue& value){
 	QDocumentCursor * c = qobject_cast<QDocumentCursor*> (value.toQObject());
@@ -154,20 +147,24 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 
 void scriptengine::run(){
 	if(m_editor){
+		ScriptObject globalObject;
+		engine->setGlobalObject(engine->newQObject(&globalObject));
+		
 		QScriptValue editorValue = engine->newQObject(m_editor);
 		editorValue.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 		editorValue.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 		engine->globalObject().setProperty("editor", editorValue);
+		
 		QDocumentCursor c=m_editor->cursor();
-		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor
+		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor		
 		QScriptValue cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);
+		
 		QScriptValue qsMetaObject = engine->newQMetaObject(c.metaObject());
 		engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+
 		FileChooser flchooser(0,scriptengine::tr("File Chooser"));
-		QScriptValue qsFileChooserObject = engine->newQObject(&flchooser);
-		engine->globalObject().setProperty("fileChooser", qsFileChooserObject);
-		engine->globalObject().setProperty("alert", engine->newFunction(&alertFunction));
+		engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
 		engine->evaluate(m_script);
 
