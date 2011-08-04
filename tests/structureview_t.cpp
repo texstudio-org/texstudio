@@ -168,7 +168,7 @@ void StructureViewTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, expectedStructure);
 
-	scriptengine eng(this);
+	scriptengine eng(0);
 	eng.setEditor(ed);
 	eng.setScript(script);
 	eng.run();
