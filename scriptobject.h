@@ -20,7 +20,11 @@ public slots:
 	void warning(const QString& message);
 	bool confirm(const QString& message);
 	bool confirmWarning(const QString& message);
+	
 	ProcessX* system(const QString& commandline);
+	
+	void writeFile(const QString& filename, const QString& content);
+	QVariant readFile(const QString& filename);
 private:
 	const QString& script;
 	BuildManager* buildManager;

@@ -26,13 +26,39 @@ ProcessX* ScriptObject::system(const QString& commandline){
 	return p;
 }
 
+void ScriptObject::writeFile(const QString& filename, const QString& content){
+	if (!needPrivileges("writeFile("+filename+",...)"))
+		return;
+	QFile f(filename);
+	f.open(QFile::WriteOnly);
+	f.write(content.toUtf8());
+	f.close();
+}
+
+QVariant ScriptObject::readFile(const QString& filename){
+	if (!needPrivileges("readFile("+filename+")"))
+		return QVariant();
+	QFile f(filename);
+	if (!f.open(QFile::ReadOnly)) 
+		return QVariant();
+	QTextStream ts(&f);
+	ts.setAutoDetectUnicode(true);
+	ts.setCodec(QTextCodec::codecForMib(MIB_UTF8));
+	return ts.readAll();
+}
+
+
 bool ScriptObject::needPrivileges(const QString& commandline){
 	if (privileges) return true;
 	static QStringList privilegedScripts;
+	static int securityMode;
 	if (scriptHash.isEmpty()) {
 		ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Scripts", &privilegedScripts);	
+		ConfigManagerInterface::getInstance()->registerOption("Scripts/Security Mode", &securityMode, 1);	
 		scriptHash = QCryptographicHash::hash(script.toLatin1(), QCryptographicHash::Sha1);
 	}
+	if (securityMode == 0) return false;
+	if (securityMode == 2) return true;
 	if (privilegedScripts.contains(scriptHash)) {
 		privileges = true;
 		return true;
