@@ -2081,6 +2081,7 @@ void Texmaker::editSectionPasteBefore(int line) {
 void Texmaker::ReadSettings() {
 	QuickDocumentDialog::registerOptions(configManager);
 	buildManager.registerOptions(configManager);
+	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
 	configManager.registerOption("User/Templates",&userTemplatesList);
 	configManager.ltxCommands=&(documents.ltxCommands);
 
