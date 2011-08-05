@@ -21,15 +21,16 @@ public slots:
 	bool confirm(const QString& message);
 	bool confirmWarning(const QString& message);
 	
+	bool hasPrivileges();
+	
 	ProcessX* system(const QString& commandline);
 	
 	void writeFile(const QString& filename, const QString& content);
-	QVariant readFile(const QString& filename);
+	QVariant readFile(const QString& filename);	
 private:
 	const QString& script;
 	BuildManager* buildManager;
 	QByteArray scriptHash;
-	bool privileges;
 	bool needPrivileges(const QString& commandline);
 };
 

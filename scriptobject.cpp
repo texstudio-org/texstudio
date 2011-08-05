@@ -5,8 +5,13 @@
 #include "configmanagerinterface.h"
 #include "buildmanager.h"
 
-ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager): script(script), buildManager(buildManager), privileges(false)
+QStringList privilegedScripts;
+int securityMode;
+
+ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager): script(script), buildManager(buildManager)
 {
+	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Scripts", &privilegedScripts);	
+	ConfigManagerInterface::getInstance()->registerOption("Scripts/Security Mode", &securityMode, 1);	
 }
 
 void ScriptObject::alert(const QString& message){ txsInformation(message); }
@@ -47,26 +52,24 @@ QVariant ScriptObject::readFile(const QString& filename){
 	return ts.readAll();
 }
 
+bool ScriptObject::hasPrivileges(){
+	if (securityMode == 0) 
+		return false;
+	if (scriptHash.isEmpty()) 
+		scriptHash = QCryptographicHash::hash(script.toLatin1(), QCryptographicHash::Sha1);
+	if (securityMode == 2 || privilegedScripts.contains(scriptHash)) 
+		return true;
+	return false;
+	
+}
 
 bool ScriptObject::needPrivileges(const QString& commandline){
-	if (privileges) return true;
-	static QStringList privilegedScripts;
-	static int securityMode;
-	if (scriptHash.isEmpty()) {
-		ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Scripts", &privilegedScripts);	
-		ConfigManagerInterface::getInstance()->registerOption("Scripts/Security Mode", &securityMode, 1);	
-		scriptHash = QCryptographicHash::hash(script.toLatin1(), QCryptographicHash::Sha1);
-	}
 	if (securityMode == 0) return false;
-	if (securityMode == 2) return true;
-	if (privilegedScripts.contains(scriptHash)) {
-		privileges = true;
-		return true;
-	}
+	if (hasPrivileges()) return true;
 	int t = QMessageBox::question(0, "TeXstudio script watcher", 
 	                              tr("The current script has requested to enter privileged mode and call following function:\n%1\n\nDo you trust this script?").arg(commandline), tr("Yes, allow this call"), 
 	                              tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
-	if (t == 0) return true;
+	if (t == 0) return true; //only now
 	if (t != 1) return false;
 	privilegedScripts.append(scriptHash);
 	return true;
