@@ -225,6 +225,7 @@ const int kMagFactor = 2;
 
 PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 	: QLabel(parent)
+	, oldshape(-2)
 	, page(-1)
 	, scaleFactor(kMagFactor)
 	, parentDpi(inDpi)
@@ -274,6 +275,22 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 	}
 	update();
 }
+void PDFMagnifier::reshape(){
+	Q_ASSERT(globalConfig);
+	if (!globalConfig || globalConfig->magnifierShape == oldshape) return;
+
+	switch (globalConfig->magnifierShape) {
+	case 1: { //circular
+			int side = qMin(width(), height());
+			QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
+			setMask(maskedRegion);
+			break;
+		}
+	default: 
+		setMask(QRect(0,0,width(),height())); //rectangular
+	}
+}
+
 void PDFMagnifier::setImage(QPixmap img,int pageNr){
 	if(pageNr==page)
 		image=img;
@@ -297,23 +314,6 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 		default: painter.drawRect(0,0,width()-1,height()-1); //rectangular
 		}
 	}
-}
-
-void PDFMagnifier::resizeEvent(QResizeEvent * /*event*/)
-{
-	Q_ASSERT(globalConfig);
-	if (!globalConfig) return;
-
-	switch (globalConfig->magnifierShape) {
-	case 1: { //circular
-			int side = qMin(width(), height());
-			QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
-			setMask(maskedRegion);
-			break;
-		}
-	default:; //rectangular
-	}
-	
 }
 
 #ifdef PHONON
@@ -646,6 +646,7 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 	if (!magnifier) magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
 	magnifier->setPage(page, scaleFactor, pageRect(page));
+	magnifier->reshape();
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp

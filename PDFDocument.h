@@ -56,15 +56,16 @@ class PDFMagnifier : public QLabel
 public:
 	PDFMagnifier(QWidget *parent, qreal inDpi);
 	void setPage(int p, qreal scale, const QRect& visibleRect);
-
+	void reshape();
+	
 public slots:
 	void setImage(QPixmap img,int pageNr);
-
+	
 protected:
 	virtual void paintEvent(QPaintEvent *event);
-	virtual void resizeEvent(QResizeEvent *event);
 
 private:
+	int oldshape;
 	int page;
 	qreal	scaleFactor;
 	qreal	parentDpi;
