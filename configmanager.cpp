@@ -33,6 +33,7 @@ QVariant ManagedProperty::valueToQVariant() const{
 	Q_ASSERT(storage);
 	if (!storage) return QVariant();
 	switch (type){
+		case PT_VARIANT: return *((QVariant*)storage);
 		case PT_INT: return QVariant(*((int*)storage));
 		case PT_BOOL: return QVariant(*((bool*)storage));
 		case PT_STRING: return QVariant(*((QString*)storage));
@@ -50,6 +51,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 	Q_ASSERT(storage);
 	if (!storage) return;
 	switch (type){
+		case PT_VARIANT: *((QVariant*)storage) = v; break;
 		case PT_INT: *((int*)storage) = v.toInt(); break;
 		case PT_BOOL: *((bool*)storage) = v.toBool(); break;
 		case PT_STRING: *((QString*)storage) = v.toString(); break;
@@ -1739,7 +1741,9 @@ void ConfigManager::registerOption(const QString& name, void* storage, PropertyT
 		persistentConfig->endGroup();
 	}
 }
-
+void ConfigManager::registerOption(const QString& name, QVariant* storage, QVariant def,  void* displayWidgetOffset){
+	registerOption(name, storage, PT_VARIANT, def, displayWidgetOffset);
+}
 void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def, void* displayWidgetOffset){
 	registerOption(name, storage, PT_BOOL, def, displayWidgetOffset);
 }
@@ -1768,7 +1772,9 @@ void ConfigManager::registerOption(const QString& name, QList<QVariant> *storage
 void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def){
 	registerOption(name, storage, type, def, 0);
 }
-
+void ConfigManager::registerOption(const QString& name, QVariant* storage, QVariant def){
+	registerOption(name, storage, def, 0);
+}
 void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def){
 	registerOption(name, storage, def, 0);
 }
@@ -1793,7 +1799,15 @@ void ConfigManager::registerOption(const QString& name, QByteArray* storage, QVa
 void ConfigManager::registerOption(const QString& name, QList<QVariant>* storage, QVariant def){
 	registerOption(name, storage, def, 0);
 }
-
+bool ConfigManager::existsOption(const QString& name) const{
+	bool result = false;
+	if (persistentConfig){
+		persistentConfig->beginGroup("texmaker");
+		result = persistentConfig->contains(name);
+		persistentConfig->endGroup();
+	}
+	return result;
+}
 void ConfigManager::linkOptionToDialogWidget(const void* optionStorage, QWidget* widget){
 	ManagedProperty *property = getManagedProperty(optionStorage);
 	REQUIRE(property);

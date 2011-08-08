@@ -12,6 +12,7 @@ ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager): s
 {
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Scripts", &privilegedScripts);	
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Security Mode", &securityMode, 1);	
+	this->subScriptObject.script = this;
 }
 
 void ScriptObject::alert(const QString& message){ txsInformation(message); }
@@ -52,15 +53,65 @@ QVariant ScriptObject::readFile(const QString& filename){
 	return ts.readAll();
 }
 
+QByteArray SubScriptObject::getScriptHash(){
+	Q_ASSERT(script);
+	return script->getScriptHash();
+}
+
+static QHash<QString, QVariant> globals;
+
+bool SubScriptObject::hasGlobal(const QString& name){
+	return globals.contains(getScriptHash()+"/"+name);
+}
+
+void SubScriptObject::setGlobal(const QString& name, const QVariant& value){
+	globals.insert(getScriptHash()+"/"+name, value);
+}
+QVariant SubScriptObject::getGlobal(const QString& name){
+	return globals.value(getScriptHash()+"/"+name, QVariant());
+}
+
+static QHash<QString, QVariant*> persistents;
+
+bool SubScriptObject::hasPersistent(const QString& name){
+	QString id = getScriptHash()+"/"+name;
+	if (persistents.contains(id)) return true;
+	return ConfigManagerInterface::getInstance()->existsOption("Script Data/"+id);
+}
+
+void SubScriptObject::setPersistent(const QString& name, const QVariant& value){
+	QString id = getScriptHash()+"/"+name;
+	if (!persistents.contains(id)) {
+		QVariant* v = new QVariant;
+		persistents.insert(id, v);
+		ConfigManagerInterface::getInstance()->registerOption("Script Data/"+id, v);
+	}
+	*persistents.value(id) = value;
+}
+QVariant SubScriptObject::getPersistent(const QString& name){
+	if (!hasPersistent(name)) return QVariant();
+	QString id = getScriptHash()+"/"+name;
+	if (!persistents.contains(id)) {
+		QVariant* v = new QVariant;
+		persistents.insert(id, v);
+		ConfigManagerInterface::getInstance()->registerOption("Script Data/"+id, v);
+	}
+	return *persistents.value(id);
+}
+
 bool ScriptObject::hasPrivileges(){
 	if (securityMode == 0) 
 		return false;
-	if (scriptHash.isEmpty()) 
-		scriptHash = QCryptographicHash::hash(script.toLatin1(), QCryptographicHash::Sha1);
-	if (securityMode == 2 || privilegedScripts.contains(scriptHash)) 
+	if (securityMode == 2 || privilegedScripts.contains(getScriptHash())) 
 		return true;
 	return false;
 	
+}
+
+QByteArray ScriptObject::getScriptHash(){
+	if (scriptHash.isEmpty()) 
+		scriptHash = QCryptographicHash::hash(script.toLatin1(), QCryptographicHash::Sha1).toHex();
+	return scriptHash;
 }
 
 bool ScriptObject::needPrivileges(const QString& commandline){
@@ -71,7 +122,10 @@ bool ScriptObject::needPrivileges(const QString& commandline){
 	                              tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
 	if (t == 0) return true; //only now
 	if (t != 1) return false;
-	privilegedScripts.append(scriptHash);
+	privilegedScripts.append(getScriptHash());
 	return true;
 }
 
+SubScriptObject* ScriptObject::getScript(){
+	return &subScriptObject;
+}

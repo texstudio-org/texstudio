@@ -203,6 +203,7 @@ public:
 	void loadTranslations(QString locale);
 
 	void registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset);
+	void registerOption(const QString& name, QVariant* storage, QVariant def,  void* displayWidgetOffset);
 	void registerOption(const QString& name, bool* storage, QVariant def,  void* displayWidgetOffset);
 	void registerOption(const QString& name, int* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, QString* storage, QVariant def, void* displayWidgetOffset);
@@ -212,6 +213,7 @@ public:
 	void registerOption(const QString& name, QByteArray* storage, QVariant def, void* displayWidgetOffset);
 	void registerOption(const QString& name, QList<QVariant>* storage, QVariant def, void* displayWidgetOffset);
 	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def);
+	virtual void registerOption(const QString& name, QVariant* storage, QVariant def);
 	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QString* storage, QVariant def=QVariant());
@@ -220,6 +222,7 @@ public:
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
+	virtual bool existsOption(const QString& name) const;
 	virtual void linkOptionToDialogWidget(const void* optionStorage, QWidget* widget);
 	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options);
 	virtual void updateAllLinkedObjects(const void* optionStorage);
