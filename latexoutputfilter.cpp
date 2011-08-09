@@ -22,7 +22,7 @@
 
 using namespace std;
 
-//====================texmakerx log data struct=======================
+//====================texstudio log data struct=======================
 LatexLogEntry::LatexLogEntry()
 		: file(""), type(LT_NONE), oldline(-1), logline(-1), message("") {
 }

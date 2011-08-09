@@ -1068,7 +1068,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 			DdeFreeDataHandle(req);
 			if (recData) DdeFreeDataHandle(recData);
 		}
-		//else QMessageBox::information(0,"TexMakerX",QObject::tr("DDE command %1 failed").arg("["+s),0); //break; send all commands
+		//else QMessageBox::information(0,"TeXstudio",QObject::tr("DDE command %1 failed").arg("["+s),0); //break; send all commands
 	}
 
 	QCoreApplication::processEvents();

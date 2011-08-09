@@ -2622,7 +2622,7 @@ void Texmaker::InsertBib() {
 	InsertTag(tag,0,1);
 	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n")+
 				  "which should contain your database in BibTeX format.\n"+
-				  "Texmaker inserts automatically the base name of the TeX file");
+				  "TeXstudio inserts automatically the base name of the TeX file");
 }
 
 void Texmaker::InsertStruct() {
