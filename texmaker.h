@@ -71,8 +71,8 @@ public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~Texmaker();
 
-	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
-	QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
+	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
 
@@ -163,8 +163,8 @@ private:
 	usercodelist symbolMostused;
 	QStringList symbolFavorites;
 	
-	LatexEditorView *currentEditorView() const;
-	QEditor* currentEditor() const;
+	Q_INVOKABLE LatexEditorView *currentEditorView() const;
+	Q_INVOKABLE QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
 	void configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster=false);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
@@ -176,6 +176,7 @@ private slots:
 	void relayToEditorSlot();
 	void relayToOwnSlot();
 
+protected slots:
 	void fileNew(QString fileName="");
 	void fileNewFromTemplate();
 	void fileMakeTemplate();
@@ -184,7 +185,9 @@ private slots:
 	void fileSave();
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
+private slots:
 	void fileSaveAs(const QString& fileName = "");
+protected slots:	
 	void fileClose();
 	void fileCloseAll();
 	void fileExit();
@@ -192,6 +195,7 @@ private slots:
 	void fileOpenAllRecent();
 	void fileOpenRecentProject();
 	void MarkCurrentFileAsRecent();
+private slots:
 	void fileCheckin(QString filename="");
 	void fileLockPdf(QString filename="");
 	void fileCheckinPdf(QString filename="");
@@ -208,6 +212,7 @@ private slots:
 	QStringList svnLog();
 	void changeToRevision(QString rev,QString old_rev="");
 	void svnDialogClosed();
+protected slots:	
 	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
 
 	void editUndo();
@@ -252,9 +257,11 @@ private slots:
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
 
+private slots:	
 	void ReadSettings();
 	void SaveSettings(const QString& configName="");
 
+protected slots:	
 	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus();
 	void NewDocumentLineEnding();
@@ -301,15 +308,17 @@ private slots:
 	void QuickDocument();
 	void QuickGraphics();
 
+private slots:	
 	void runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags);
 	void runCommand(const QString& commandline, RunCommandFlags flags = 0, QString *buffer = 0); //default flags == 0 is necessary for pdf viewer
 	void RunPreCompileCommand();
 	void readFromStderr();
 	void readFromStdoutput();
 	void SlotEndProcess(int err);
+	void runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags);
+protected slots:	
 	void processNotification(const QString& message);
 	void QuickBuild();
-	void runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags);
 	void CleanAll();
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	void UserTool();
@@ -406,6 +415,7 @@ private slots:
 
 	void latexModelViewMode();
 
+private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
 	void stopPackageParser();
@@ -448,5 +458,7 @@ protected:
 	QString rerunCommand;
 	RunCommandFlags rerunFlags;
 };
+
+Q_DECLARE_METATYPE(Texmaker*)
 
 #endif
