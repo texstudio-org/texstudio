@@ -2,7 +2,7 @@
  *   copyright       : (C) 2003-2007 by Pascal Brachet                     *
  *   http://www.xm1math.net/texmaker/                                      *
  *                         2008-2009 by Benito van der Zander              *
- *   http://texmakerx.sourceforge.net
+ *   http://texstudio.sourceforge.net
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

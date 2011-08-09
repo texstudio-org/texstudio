@@ -264,7 +264,7 @@ QString WebPublishDialog::header() {
 	QString result="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'> \n";
 	result+="<html>\n";
 	result+="<head>\n";
-	result+="<META NAME='Generator' CONTENT='texmakerx (http://texmakerx.sourceforge.net/)'>\n";
+	result+="<META NAME='Generator' CONTENT='TeXstudio (http://texstudio.sourceforge.net/)'>\n";
 	result+="<title>"+config->title+"</title>\n";
 	result+="<link rel=StyleSheet href='style.css' type='text/css'>\n";
 	result+="</head>\n";
