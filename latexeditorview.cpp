@@ -320,7 +320,7 @@ void LatexEditorView::paste(){
 void LatexEditorView::insertMacro(QString macro){
 	if (macro.isEmpty()) return;
 	if (macro.left(8)=="%SCRIPT\n"){
-		scriptengine eng(this);
+		scriptengine eng;
 		eng.setEditor(editor);
 		macro=macro.remove(0,8);
 		eng.setScript(macro);

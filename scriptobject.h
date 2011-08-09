@@ -5,6 +5,7 @@
 #include "qdocumentcursor.h"
 class ProcessX;
 class BuildManager;
+class Texmaker;
 class ScriptObject;
 
 //script object  for texworks compatibility
@@ -32,8 +33,9 @@ class ScriptObject : public QObject
 	Q_OBJECT
 
 	Q_PROPERTY(SubScriptObject* script READ getScript DESIGNABLE false STORED false CONSTANT FINAL)
+	Q_PROPERTY(Texmaker* app READ getApp DESIGNABLE false STORED false CONSTANT FINAL)
 public:
-	explicit ScriptObject(const QString& script, BuildManager* buildManager);
+	explicit ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app);
 
 	QByteArray getScriptHash();
 signals:
@@ -56,10 +58,12 @@ public slots:
 private:
 	const QString& script;
 	BuildManager* buildManager;
+	Texmaker* app;
 	QByteArray scriptHash;
 	bool needPrivileges(const QString& commandline);
 	SubScriptObject subScriptObject;
 	SubScriptObject* getScript();
+	Texmaker* getApp();
 };
 
 #endif // SCRIPTOBJECT_H

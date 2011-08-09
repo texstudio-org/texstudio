@@ -52,7 +52,6 @@
 
 #include <QMessageBox>
 
-
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags), spellToolBar(0), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 
@@ -2087,6 +2086,7 @@ void Texmaker::ReadSettings() {
 
 	configManager.buildManager=&buildManager;
 	scriptengine::buildManager=&buildManager;
+	scriptengine::app=this;	
 	QSettings *config=configManager.readSettings();
 	completionBaseCommandsUpdated=true;
 

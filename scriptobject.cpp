@@ -8,7 +8,7 @@
 QStringList privilegedScripts;
 int securityMode;
 
-ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager): script(script), buildManager(buildManager)
+ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): script(script), buildManager(buildManager), app(app)
 {
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Scripts", &privilegedScripts);	
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Security Mode", &securityMode, 1);	
@@ -128,4 +128,7 @@ bool ScriptObject::needPrivileges(const QString& commandline){
 
 SubScriptObject* ScriptObject::getScript(){
 	return &subScriptObject;
+}
+Texmaker* ScriptObject::getApp(){
+	return app;
 }
