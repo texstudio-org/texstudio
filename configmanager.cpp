@@ -1799,14 +1799,29 @@ void ConfigManager::registerOption(const QString& name, QByteArray* storage, QVa
 void ConfigManager::registerOption(const QString& name, QList<QVariant>* storage, QVariant def){
 	registerOption(name, storage, def, 0);
 }
-bool ConfigManager::existsOption(const QString& name) const{
-	bool result = false;
-	if (persistentConfig){
-		persistentConfig->beginGroup("texmaker");
-		result = persistentConfig->contains(name);
-		persistentConfig->endGroup();
+void ConfigManager::setOption(const QString& name, const QVariant& value){
+	REQUIRE(persistentConfig);
+	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
+	ManagedProperty* option;
+	if (rname.startsWith("texmaker/") && ((option = getManagedProperty(rname.mid(9))))){
+		option->valueFromQVariant(value);
+		return;
 	}
-	return result;
+	persistentConfig->setValue(rname,value);
+}
+QVariant ConfigManager::getOption(const QString& name) const{
+	REQUIRE_RET(persistentConfig,QVariant());
+	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
+	const ManagedProperty* option;
+	if (rname.startsWith("texmaker/") && (option = getManagedProperty(rname.mid(9))))
+		return option->valueToQVariant();
+	return persistentConfig->value(rname);
+}
+
+bool ConfigManager::existsOption(const QString& name) const{
+	REQUIRE_RET(persistentConfig,false);
+	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
+	return persistentConfig->contains(rname);
 }
 void ConfigManager::linkOptionToDialogWidget(const void* optionStorage, QWidget* widget){
 	ManagedProperty *property = getManagedProperty(optionStorage);
@@ -1856,6 +1871,17 @@ ManagedProperty* ConfigManager::getManagedProperty(const void* storage){
 		if (managedProperties[i].storage == storage) return &managedProperties[i];
 	return 0;
 }
+ManagedProperty* ConfigManager::getManagedProperty(const QString& name){
+	for (int i=0;i<managedProperties.size();i++)
+		if (managedProperties[i].name == name) return &managedProperties[i];
+	return 0;
+}
+const ManagedProperty* ConfigManager::getManagedProperty(const QString& name) const{
+	for (int i=0;i<managedProperties.size();i++)
+		if (managedProperties[i].name == name) return &managedProperties[i];
+	return 0;
+}
+
 void ConfigManager::getDefaultEncoding(const QByteArray&, QTextCodec*&guess, int &sure){
 	if (sure >= 100) return;
 	if (!newFileEncoding) return;

@@ -5,13 +5,15 @@
 #include "configmanagerinterface.h"
 #include "buildmanager.h"
 
-QStringList privilegedScripts;
-int securityMode;
+QStringList privilegedReadScripts, privilegedWriteScripts;
+int readSecurityMode, writeSecurityMode;
 
 ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): script(script), buildManager(buildManager), app(app)
 {
-	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Scripts", &privilegedScripts);	
-	ConfigManagerInterface::getInstance()->registerOption("Scripts/Security Mode", &securityMode, 1);	
+	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Read Scripts", &privilegedReadScripts);	
+	ConfigManagerInterface::getInstance()->registerOption("Scripts/Read Security Mode", &readSecurityMode, 1);	
+	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Write Scripts", &privilegedWriteScripts);	
+	ConfigManagerInterface::getInstance()->registerOption("Scripts/Write Security Mode", &writeSecurityMode, 1);	
 	this->subScriptObject.script = this;
 }
 
@@ -23,7 +25,7 @@ bool ScriptObject::confirm(const QString& message){ return txsConfirm(message); 
 bool ScriptObject::confirmWarning(const QString& message){ return txsConfirmWarning(message); }
 
 ProcessX* ScriptObject::system(const QString& commandline){
-	if (!buildManager || !needPrivileges("system("+commandline+")"))
+	if (!buildManager || !needWritePrivileges("system",commandline))
 		return 0;
 	ProcessX* p = buildManager->newProcess(commandline,"");
 	if (!p) return 0;
@@ -33,7 +35,7 @@ ProcessX* ScriptObject::system(const QString& commandline){
 }
 
 void ScriptObject::writeFile(const QString& filename, const QString& content){
-	if (!needPrivileges("writeFile("+filename+",...)"))
+	if (!needWritePrivileges("writeFile",filename))
 		return;
 	QFile f(filename);
 	f.open(QFile::WriteOnly);
@@ -42,7 +44,7 @@ void ScriptObject::writeFile(const QString& filename, const QString& content){
 }
 
 QVariant ScriptObject::readFile(const QString& filename){
-	if (!needPrivileges("readFile("+filename+")"))
+	if (!needReadPrivileges("readFile",filename))
 		return QVariant();
 	QFile f(filename);
 	if (!f.open(QFile::ReadOnly)) 
@@ -52,6 +54,31 @@ QVariant ScriptObject::readFile(const QString& filename){
 	ts.setCodec(QTextCodec::codecForMib(MIB_UTF8));
 	return ts.readAll();
 }
+
+static QHash<QString, QVariant> globalGlobals;
+
+bool ScriptObject::hasGlobal(const QString& name){ 
+	return globalGlobals.contains(name); 
+}
+void ScriptObject::setGlobal(const QString& name, const QVariant& value){ 
+	globalGlobals.insert(name,value);
+}
+QVariant ScriptObject::getGlobal(const QString& name){ 
+	return globalGlobals.value(name); 
+}
+
+bool ScriptObject::hasPersistent(const QString& name){
+	return ConfigManagerInterface::getInstance()->existsOption(name);
+}
+void ScriptObject::setPersistent(const QString& name, const QVariant& value){
+	if (!needWritePrivileges("setPersistent",name+"="+value.toString())) return;
+	ConfigManagerInterface::getInstance()->setOption(name, value);
+}
+QVariant ScriptObject::getPersistent(const QString& name){
+	if (!needReadPrivileges("getPersistent",name)) return QVariant();
+	return ConfigManagerInterface::getInstance()->getOption(name);
+}
+
 
 QByteArray SubScriptObject::getScriptHash(){
 	Q_ASSERT(script);
@@ -99,10 +126,22 @@ QVariant SubScriptObject::getPersistent(const QString& name){
 	return *persistents.value(id);
 }
 
-bool ScriptObject::hasPrivileges(){
-	if (securityMode == 0) 
+bool ScriptObject::hasReadPrivileges(){
+	if (readSecurityMode == 0) 
 		return false;
-	if (securityMode == 2 || privilegedScripts.contains(getScriptHash())) 
+	if (readSecurityMode == 2
+	    || privilegedReadScripts.contains(getScriptHash())
+	    || privilegedWriteScripts.contains(getScriptHash())) 
+		return true;
+	return false;
+	
+}
+
+bool ScriptObject::hasWritePrivileges(){
+	if (writeSecurityMode == 0) 
+		return false;
+	if (writeSecurityMode == 2
+	    || privilegedWriteScripts.contains(getScriptHash())) 
 		return true;
 	return false;
 	
@@ -114,15 +153,27 @@ QByteArray ScriptObject::getScriptHash(){
 	return scriptHash;
 }
 
-bool ScriptObject::needPrivileges(const QString& commandline){
-	if (securityMode == 0) return false;
-	if (hasPrivileges()) return true;
+bool ScriptObject::needWritePrivileges(const QString& fn, const QString& param){
+	if (writeSecurityMode == 0) return false;
+	if (hasWritePrivileges()) return true;
 	int t = QMessageBox::question(0, "TeXstudio script watcher", 
-	                              tr("The current script has requested to enter privileged mode and call following function:\n%1\n\nDo you trust this script?").arg(commandline), tr("Yes, allow this call"), 
+	                              tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn+"(\""+param+"\")"), tr("Yes, allow this call"), 
 	                              tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
 	if (t == 0) return true; //only now
 	if (t != 1) return false;
-	privilegedScripts.append(getScriptHash());
+	privilegedWriteScripts.append(getScriptHash());
+	return true;
+}
+
+bool ScriptObject::needReadPrivileges(const QString& fn, const QString& param){
+	if (readSecurityMode == 0) return false;
+	if (hasReadPrivileges()) return true;
+	int t = QMessageBox::question(0, "TeXstudio script watcher", 
+	                              tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn+"(\""+param+"\")"), tr("Yes, allow this reading"), 
+	                              tr("Yes, grant permanent read access to everything"), tr("No, abort the call"), 0, 2);
+	if (t == 0) return true; //only now
+	if (t != 1) return false;
+	privilegedReadScripts.append(getScriptHash());
 	return true;
 }
 

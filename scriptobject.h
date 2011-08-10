@@ -48,19 +48,28 @@ public slots:
 	bool confirm(const QString& message);
 	bool confirmWarning(const QString& message);
 	
-	bool hasPrivileges();
+	bool hasReadPrivileges();
+	bool hasWritePrivileges();
 	
 	ProcessX* system(const QString& commandline);
 		
 	void writeFile(const QString& filename, const QString& content);
 	QVariant readFile(const QString& filename);	
 	
+	bool hasGlobal(const QString& name);
+	void setGlobal(const QString& name, const QVariant& value);
+	QVariant getGlobal(const QString& name);
+	
+	bool hasPersistent(const QString& name);
+	void setPersistent(const QString& name, const QVariant& value);
+	QVariant getPersistent(const QString& name);
 private:
 	const QString& script;
 	BuildManager* buildManager;
 	Texmaker* app;
 	QByteArray scriptHash;
-	bool needPrivileges(const QString& commandline);
+	bool needReadPrivileges(const QString& fn, const QString& param);
+	bool needWritePrivileges(const QString& fn, const QString& param);
 	SubScriptObject subScriptObject;
 	SubScriptObject* getScript();
 	Texmaker* getApp();
