@@ -32,6 +32,11 @@ public:
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant()) = 0;
 	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant()) = 0;
 	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant()) = 0;
+	//set an option as variant (don't use it in c++, since it is not type-safe)
+	virtual void setOption(const QString& name, const QVariant& value) = 0;
+	//get an option as variant (don't use it in c++, since it is not type-safe)
+	virtual QVariant getOption(const QString& name) const = 0;
+	//check if an option exists
 	virtual bool existsOption(const QString& name) const = 0;
 	//shows the value of an registered option in the passed widget
 	//if the dialog containing widget is accepted (and not rejected), the value from the widget will be written to the option

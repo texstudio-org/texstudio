@@ -222,6 +222,8 @@ public:
 	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
 	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
+	virtual void setOption(const QString& name, const QVariant& value);
+	virtual QVariant getOption(const QString& name) const;
 	virtual bool existsOption(const QString& name) const;
 	virtual void linkOptionToDialogWidget(const void* optionStorage, QWidget* widget);
 	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options);
@@ -241,6 +243,8 @@ private:
 
 	QMap<QWidget*, QList<QWidget*> > managedOptionDialogs;
 	ManagedProperty* getManagedProperty(const void* storage);
+	ManagedProperty* getManagedProperty(const QString& name);
+	const ManagedProperty* getManagedProperty(const QString& name) const;
 
 	QMap<ManagedProperty*, QPair<LinkOptions, QList<QObject*> > > managedOptionObjects;
 private slots:
