@@ -203,8 +203,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		bool flag(EditFlag) const;
 		
-		bool canUndo() const;
-		bool canRedo() const;
+		Q_INVOKABLE bool canUndo() const;
+		Q_INVOKABLE bool canRedo() const;
 		
 		Q_INVOKABLE QString text() const;
 		Q_INVOKABLE QString text(int line) const;
@@ -217,8 +217,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		QDocumentCursor cursor() const;
 		QDocumentCursorHandle* cursorHandle() const;
 		
-		int cursorMirrorCount() const;
-		QDocumentCursor cursorMirror(int i) const;
+		Q_INVOKABLE int cursorMirrorCount() const;
+		Q_INVOKABLE QDocumentCursor cursorMirror(int i) const;
 		
 		QLanguageDefinition* languageDefinition() const;
 		QCodeCompletionEngine* completionEngine() const;
@@ -234,19 +234,19 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual int getFirstVisibleLine();
 		virtual int getLastVisibleLine();
 
-		virtual void scrollToFirstLine(int l);
+		Q_INVOKABLE virtual void scrollToFirstLine(int l);
 
 		#ifndef _QMDI_
-		QString name() const;
-		QString fileName() const;
-		QFileInfo fileInfo() const;
+		Q_INVOKABLE QString name() const;
+		Q_INVOKABLE QString fileName() const;
+		Q_INVOKABLE QFileInfo fileInfo() const;
 		
-		bool isContentModified() const;
+		Q_INVOKABLE bool isContentModified() const;
 		#endif
 		
-		bool isInConflict() const;
-		QTextCodec* getFileCodec() const;
-		void setFileCodec(QTextCodec* codec);
+		Q_INVOKABLE bool isInConflict() const;
+		Q_INVOKABLE QTextCodec* getFileCodec() const;
+		Q_INVOKABLE void setFileCodec(QTextCodec* codec);
 		void viewWithCodec(QTextCodec* codec);
 		
 		int wrapWidth() const;
