@@ -5323,3 +5323,15 @@ void Texmaker::packageParserFinished(){
 	delete latexStyleParser;
 	latexStyleParser=0;
 }
+
+
+
+
+
+
+QString Texmaker::clipboardText(const QClipboard::Mode& mode) const{
+	return QApplication::clipboard()->text(mode);
+}
+void Texmaker::setClipboardText(const QString& text, const QClipboard::Mode& mode){
+	QApplication::clipboard()->setText(text, mode);
+}
