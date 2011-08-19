@@ -96,11 +96,14 @@
       </item>
       <item row="19" column="2">
        <widget class="QSpinBox" name="lengthSpinBox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
         <property name="maximum">
-         <number>10000</number>
+         <number>2147483647</number>
         </property>
         <property name="value">
-         <number>30</number>
+         <number>40</number>
         </property>
        </widget>
       </item>
