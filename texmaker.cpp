@@ -276,6 +276,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	if(configManager.autosaveEveryMinutes>0){
 		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
 	}
+	
+	
+	//script things
+	setProperty("applicationName",TEXSTUDIO);
 }
 
 Texmaker::~Texmaker(){
@@ -5334,4 +5338,7 @@ QString Texmaker::clipboardText(const QClipboard::Mode& mode) const{
 }
 void Texmaker::setClipboardText(const QString& text, const QClipboard::Mode& mode){
 	QApplication::clipboard()->setText(text, mode);
+}
+int Texmaker::getVersion() const{
+	return 0x020200;
 }
