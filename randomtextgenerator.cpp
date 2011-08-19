@@ -111,10 +111,8 @@ void RandomTextGenerator::generateText(){
 	text = "";
 	QFile f;
 	void (RandomTextGenerator::*newWordFound)(const QString&) = &RandomTextGenerator::newWordForText;	              
-	void (RandomTextGenerator::*generationFailed)() = &RandomTextGenerator::generationFailedText; 
 	if (ui->exportCheckBox->isChecked()) {
 		newWordFound = &RandomTextGenerator::newWordForStream;
-		generationFailed = &RandomTextGenerator::generationFailedText;
 		f.setFileName(ui->exportFileNameLineEdit->text());
 		if (!f.open(QFile::WriteOnly)) {
 			txsWarning(tr("Couldn't create file %1").arg(ui->exportFileNameLineEdit->text()));
@@ -128,28 +126,53 @@ void RandomTextGenerator::generateText(){
 	
 	if (usewords) {
 		//----------generate with words ------------------
+		QList<int> wordsIds;
+		QHash<QString, int> wordToId;
+		QHash<int, QString> idToWord;
+		QMultiHash<int, int> startingIndices;
+		int totalIds = 0;
+		for (int i=0;i<words.size();i++) {
+			int id = wordToId.value(words[i],-1);
+			if (id==-1) {
+				totalIds++;
+				id = totalIds;
+				wordToId.insert(words[i],totalIds);
+				idToWord.insert(totalIds,words[i]);
+			}
+			startingIndices.insertMulti(id,i);
+			wordsIds << id;
+		}
 		QString text;
-		QStringList last = QStringList() << words[myrand(words.size())];
+		QList<int> last = QList<int>() << wordToId.value(words[myrand(words.size())]);
 		QList<int> possibleMatches;
 		for (int n=1;n<length;n++){
 			if (last.size()==order) last.removeFirst();
 			possibleMatches.clear();
-			//search possible extensions and choose one of them at random
-			for (int i=0;i<words.size()-last.size();i++){
-				bool found=true;
-				for (int j=0;j<last.size();j++)
-					if (words[i+j]!=last[j]) {
-						found=false;
-						break;
+			if (last.size() == 0)
+				last << wordsIds[myrand(wordsIds.size())];
+			else {
+				//search possible extensions and choose one of them at random
+				QMultiHash<int, int>::iterator it = startingIndices.find(last.first());			
+				while (it != startingIndices.end() && it.key() == last.first()) {
+					if (it.value() + last.size() >= wordsIds.size()) {
+						++it;
+						continue;
 					}
-				if (found) possibleMatches<<(i+last.size());
+					bool found=true;
+					for (int j=1;j<last.size();j++)
+						if (wordsIds[it.value()+j]!=last[j]) {
+							found=false;
+							break;
+						}
+					if (found) possibleMatches<<(it.value()+last.size());
+					++it;
+				}
+				if (possibleMatches.empty())
+					last = QList<int>() << wordsIds[myrand(wordsIds.size())];
+				else 
+					last << wordsIds[possibleMatches[myrand(possibleMatches.size())]];
 			}
-			if (possibleMatches.empty()) {
-				(this->*generationFailed)();
-				return;
-			}
-			last << words[possibleMatches[myrand(possibleMatches.size())]];
-			(this->*newWordFound)(last.last()+" ");
+			(this->*newWordFound)(idToWord.value(last.last())+" ");
 		}
 	} else {
 		//----------generate with characters--------------
@@ -174,8 +197,8 @@ void RandomTextGenerator::generateText(){
 						break;
 					}
 				if (foundPos==-1) {
-					(this->*generationFailed)();
-					return;
+					last = "";
+					foundPos = myrand(chars.size());
 				}
 			}
 			const QChar& c=chars.at(foundPos);
@@ -206,12 +229,3 @@ void RandomTextGenerator::newWordForStream(const QString &w){
 	textStream << w;
 }
 
-void RandomTextGenerator::generationFailedText(){
-	text+="\n\n"+tr("Couldn't find possible extension word");
-	ui->outputEdit->setText(text);
-}
-
-void RandomTextGenerator::generationFailedStream(){
-	text=tr("Couldn't find possible extension word");
-	ui->outputEdit->setText(text);
-}

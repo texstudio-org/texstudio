@@ -30,8 +30,6 @@ private:
 	
 	void newWordForText(const QString& w);
 	void newWordForStream(const QString& w);
-	void generationFailedText();
-	void generationFailedStream();
 	
 	
 private slots:
