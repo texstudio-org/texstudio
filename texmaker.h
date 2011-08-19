@@ -465,6 +465,7 @@ public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;
 	Q_INVOKABLE void setClipboardText(const QString& text, const QClipboard::Mode& mode = QClipboard::Clipboard);
+	Q_INVOKABLE int getVersion() const;
 };
 
 Q_DECLARE_METATYPE(Texmaker*)
