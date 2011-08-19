@@ -20,13 +20,23 @@ protected:
     virtual void changeEvent(QEvent *e);
 
 private:
-    Ui::RandomTextGenerator *ui;
+	Ui::RandomTextGenerator *ui;
 	QString chars;
 	QList<QString> words;
 	QStringList lines;
 	
+	QString text;
+	QTextStream textStream;
+	
+	void newWordForText(const QString& w);
+	void newWordForStream(const QString& w);
+	void generationFailedText();
+	void generationFailedStream();
+	
+	
 private slots:
 	void generateText();
+	void resetWords();
 };
 
 #endif // RANDOMTEXTGENERATOR_H

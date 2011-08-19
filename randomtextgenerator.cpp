@@ -7,8 +7,11 @@ RandomTextGenerator::RandomTextGenerator(QWidget *parent,const QStringList& text
     QDialog(parent),
     ui(new Ui::RandomTextGenerator),lines(textLines)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 	connect(ui->generateButton,SIGNAL(clicked()), this, SLOT(generateText()));
+	connect(ui->latexInput, SIGNAL(toggled(bool)), SLOT(resetWords()));
+	connect(ui->punctationCheckBox, SIGNAL(toggled(bool)), SLOT(resetWords()));
+	connect(ui->upperCaseCheckBox, SIGNAL(toggled(bool)), SLOT(resetWords()));
 }
 
 RandomTextGenerator::~RandomTextGenerator()
@@ -43,17 +46,35 @@ void RandomTextGenerator::generateText(){
 		QApplication::processEvents();
 		words.clear();
 		chars.clear();
+		bool upcase = ui->upperCaseCheckBox->isChecked();
+		bool punctation = ui->punctationCheckBox->isChecked();
 		foreach (const QString& line, lines) {
 			int index=0;
 			int wordStartIndex=0;
+			int lastIndex = 0;
 			QString outWord;
-			while (nextTextWord(line,index,outWord,wordStartIndex)) {
-				outWord=outWord.toUpper();
-				words << outWord;
-				chars += outWord+" ";
+			static const QString Punctation = ".,:;!?";
+			
+			if (ui->latexInput->isChecked()) {
+				while (nextTextWord(line,index,outWord,wordStartIndex)) {
+					if (upcase) outWord=outWord.toUpper();
+					if (punctation) {
+						for (int i=lastIndex; i<wordStartIndex;i++)
+							if (Punctation.indexOf(line[i]) >= 0) {
+								outWord += line[i];
+							}							
+					}
+					words << outWord;
+					chars += outWord+" ";
+					lastIndex = index;
+				}
+			} else {
+				QStringList newl = line.split(punctation?QRegExp("\\s+"):QRegExp("[~!@#$%^&*()_+{}|:\"\\<>?,./;[-= \t'+]"),QString::SkipEmptyParts);
+				if (upcase) for (int i=0;i<newl.size();i++) newl[i] = newl[i].toUpper();
+				words << newl;
 			}
 		}
-		lines.clear();
+		//lines.clear();
 		if (words.empty()) {
 			ui->outputEdit->setText(tr("The current document contains no words, but we need some phrases as a base to create the random text from"));
 			return;
@@ -85,8 +106,26 @@ void RandomTextGenerator::generateText(){
 	ui->outputEdit->setText(tr("Generating random text..."));
 	QApplication::processEvents();
 	
-	QString text;
 	qsrand(QDateTime::currentDateTime().toTime_t()); //TODO: milliseconds
+	
+	text = "";
+	QFile f;
+	void (RandomTextGenerator::*newWordFound)(const QString&) = &RandomTextGenerator::newWordForText;	              
+	void (RandomTextGenerator::*generationFailed)() = &RandomTextGenerator::generationFailedText; 
+	if (ui->exportCheckBox->isChecked()) {
+		newWordFound = &RandomTextGenerator::newWordForStream;
+		generationFailed = &RandomTextGenerator::generationFailedText;
+		f.setFileName(ui->exportFileNameLineEdit->text());
+		if (!f.open(QFile::WriteOnly)) {
+			txsWarning(tr("Couldn't create file %1").arg(ui->exportFileNameLineEdit->text()));
+			return;
+		}
+		textStream.setDevice(&f);
+		ui->outputEdit->setText(tr("Generating random text..."));
+	}
+	
+	
+	
 	if (usewords) {
 		//----------generate with words ------------------
 		QString text;
@@ -106,16 +145,12 @@ void RandomTextGenerator::generateText(){
 				if (found) possibleMatches<<(i+last.size());
 			}
 			if (possibleMatches.empty()) {
-				text+="\n\n"+tr("Couldn't find possible extension word");
-				ui->outputEdit->setText(text);
+				(this->*generationFailed)();
 				return;
 			}
 			last << words[possibleMatches[myrand(possibleMatches.size())]];
-			text+=last.last()+" ";
-			ui->outputEdit->setText(tr("Generating random text...")+"\n\n"+text);
-			QApplication::processEvents();
+			(this->*newWordFound)(last.last()+" ");
 		}
-		ui->outputEdit->setText(text);
 	} else {
 		//----------generate with characters--------------
 		QString text;
@@ -139,19 +174,44 @@ void RandomTextGenerator::generateText(){
 						break;
 					}
 				if (foundPos==-1) {
-					text+="\n\n"+tr("Couldn't find possible extension word");
-					ui->outputEdit->setText(text);
+					(this->*generationFailed)();
 					return;
 				}
 			}
 			const QChar& c=chars.at(foundPos);
 			last+=c;
-			text+=c;
-			ui->outputEdit->setText(tr("Generating random text...")+"\n\n"+text);
-			QApplication::processEvents();
+			(this->*newWordFound)(c);
 		}
-		ui->outputEdit->setText(text);	
+	}
+	
+	if (ui->exportCheckBox->isChecked()) {
+		ui->outputEdit->setText(tr("Finished generation"));
+		textStream.setDevice(0);
+	} else {		
+		ui->outputEdit->setText(text);
 	}
 }
 
-	
+void RandomTextGenerator::resetWords(){
+	words.clear();
+}
+
+void RandomTextGenerator::newWordForText(const QString &w){
+	text+=w;
+	ui->outputEdit->setText(tr("Generating random text...")+"\n\n"+text);
+	QApplication::processEvents();	
+}
+
+void RandomTextGenerator::newWordForStream(const QString &w){
+	textStream << w;
+}
+
+void RandomTextGenerator::generationFailedText(){
+	text+="\n\n"+tr("Couldn't find possible extension word");
+	ui->outputEdit->setText(text);
+}
+
+void RandomTextGenerator::generationFailedStream(){
+	text=tr("Couldn't find possible extension word");
+	ui->outputEdit->setText(text);
+}
