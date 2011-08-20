@@ -172,7 +172,7 @@ void RandomTextGenerator::generateText(){
 				else 
 					last << wordsIds[possibleMatches[myrand(possibleMatches.size())]];
 			}
-			(this->*newWordFound)(idToWord.value(last.last())+" ");
+			(this->*newWordFound)(idToWord.value(last.last())+(myrand(15) ==0?"\n":" "));
 		}
 	} else {
 		//----------generate with characters--------------
