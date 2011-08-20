@@ -49,7 +49,7 @@ QStringList findHistory, replaceHistory;
 	\brief Constructor
 */
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
- : QPanel(p),m_search(0),m_lastDirection(false)
+	: QPanel(p),m_search(0),m_lastDirection(false),useLineForSearch(false),searchOnlyInSelection(false)
 {
 	ConfigManagerInterface* conf = ConfigManagerInterface::getInstance();
 	//setupUi(this);
@@ -337,6 +337,23 @@ QDocumentCursor QSearchReplacePanel::getSearchScope() const{
 	return m_search->scope();
 }
 
+void QSearchReplacePanel::setUseLineForSearch(bool b){
+	useLineForSearch = b;
+}
+
+bool QSearchReplacePanel::getUseLineForSearch() const{
+	return useLineForSearch;
+}
+
+void QSearchReplacePanel::setSearchOnlyInSelection(bool b){
+	searchOnlyInSelection = b;
+}
+
+bool QSearchReplacePanel::getSearchOnlyInSelection() const{
+	return searchOnlyInSelection;
+}
+
+
 /*!
 	\brief
 */
@@ -387,9 +404,11 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		bool focusFindEdit = true;
 		if (m_search){
 			if(editor()->cursor().hasSelection()){
-				if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !editor()->UseLineForSearch() ||cbSelection->isChecked()){
-					if(cbSelection->isChecked()) on_cbSelection_toggled(true);
-					else cbSelection->setChecked(true);
+				if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !useLineForSearch ||cbSelection->isChecked()){
+					if (searchOnlyInSelection){
+						if(cbSelection->isChecked()) on_cbSelection_toggled(true);
+						else cbSelection->setChecked(true);
+					}
 				} if ( (cFind->hasFocus() || cReplace->hasFocus()) && visible) {
 					//don't copy selection to cFind, if the panel is in use
 					if ( cFind->hasFocus() && replace )

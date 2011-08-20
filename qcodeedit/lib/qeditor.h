@@ -514,10 +514,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void clearCursorMirrors();
 		void addCursorMirror(const QDocumentCursor& c);
 
-		void setUseLineForSearch(bool b)
-		{m_UseLineForSearch=b;}
-		bool UseLineForSearch()
-		{return m_UseLineForSearch;}
 
 		QString cutBuffer;
 
@@ -603,7 +599,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		static int m_manageMenu;
 
-		bool m_UseLineForSearch;
 		bool m_UseTabforMoveToPlaceholder;
 
 		bool m_blockKey,m_disableAccentHack;
