@@ -61,6 +61,9 @@ public:
 	void setWorkPath(const QString cwd){
 	    workingDir=cwd;
 	}
+	bool completingGraphic(){
+	    return forcedGraphic;
+	}
 
 	int countWords();
 	void setTab(int index);

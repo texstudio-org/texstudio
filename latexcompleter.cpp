@@ -410,9 +410,13 @@ public:
 		if (completer) {
 			completer->widget->hide();
 			completer->disconnect(editor,SIGNAL(cursorPositionChanged()),completer,SLOT(cursorPositionChanged()));
+
 		}
 		active=false;
 		curLine=QDocumentLine(); //prevent crash if the editor is destroyed
+		if(completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())){
+		    completer->complete(editor,LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
+		}
 	}
 
 	void bindTo(QEditor * edit, LatexCompleter* caller, bool forced, int start) {
@@ -941,6 +945,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		    eow.remove("/");
 		    eow.remove("\\");
 		    eow.remove(".");
+		    eow.remove(":");
 		}
 		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
