@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1232,6 +1232,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <item>
              <property name="text">
               <string>French quotes (babel): \og \fg{}</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reverse french quotes: &quot;&gt; &quot;&lt;</string>
              </property>
             </item>
            </widget>
