@@ -6,7 +6,7 @@
                   is a free and open source software
   
   QCodeEdit sources are part of Edyuk and thus GNU General Public License (GPL)
-  version 2, as published by the Free Software Fondation, applies to them.
+  version 2 (or is it 3? probably 3), as published by the Free Software Fondation, applies to them.
 
 ----------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------
@@ -68,4 +68,4 @@ team using either of these :
 	* QtCentre dedicated thread in Qt Software section : http://www.qtcentre.org/forum
 
  >>> Building :
- this copy of QCodeEdit should be automatically build when build TexMakerX
+ this copy of QCodeEdit should be automatically build when you build TeXstudio
