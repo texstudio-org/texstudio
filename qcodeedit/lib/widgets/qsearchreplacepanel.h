@@ -49,6 +49,12 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 			return m_search;
 		}
 
+		void setUseLineForSearch(bool b);
+		bool getUseLineForSearch() const;
+		void setSearchOnlyInSelection(bool b);
+		bool getSearchOnlyInSelection() const;
+		
+		
 	public slots:
 		void display(int mode, bool replace);
 		
@@ -131,6 +137,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QToolButton *bReplaceNext;
 		QToolButton *bReplacePrevious;
 
+		
+		bool useLineForSearch, searchOnlyInSelection;
 };
 
 #endif // _QSEARCH_REPLACE_PANEL_H_

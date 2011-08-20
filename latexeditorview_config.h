@@ -21,7 +21,7 @@ public:
 	int fontSize;
 	bool displayModifyTime;
 	bool closeSearchAndReplace;
-	bool useLineForSearch;
+	bool useLineForSearch, searchOnlyInSelection;
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
 	bool mouseWheelZoom;

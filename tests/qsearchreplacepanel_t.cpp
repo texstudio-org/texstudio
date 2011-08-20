@@ -424,7 +424,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		QEQUAL(widget->cbSelection->isChecked(),true);
 		
 		//single line
-		ed->setUseLineForSearch(false);
+		panel->setUseLineForSearch(false);
 		widget->cbSelection->setChecked(oldSel);
 		panel->display(0,false);
 		sel=ed->document()->cursor(0,2,0,3);
@@ -434,7 +434,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		QEQUAL(widget->cbSelection->isChecked(),true);
 		
 		//not single line (=single line with disabled take selection)
-		ed->setUseLineForSearch(true);
+		panel->setUseLineForSearch(true);
 		widget->cbSelection->setChecked(oldSel);
 		panel->display(0,false);
 		ed->setCursor(sel);
