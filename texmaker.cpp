@@ -2420,6 +2420,15 @@ void Texmaker::NormalCompletion() {
 				currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 				return;
 			}
+#if QT_VERSION >= 0x040700
+			if(LatexParser::graphicsIncludeCommands.contains(cmd)){
+			    QString fn=documents.getCompileFileName();
+			    QFileInfo fi(fn);
+			    completer->setWorkPath(fi.absolutePath());
+			    currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
+			    return;
+			}
+#endif
 		}
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();

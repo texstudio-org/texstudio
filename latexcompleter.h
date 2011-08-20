@@ -19,6 +19,10 @@
 #include "qcodeedit.h"
 #include "qeditor.h"
 #include "latexeditorview.h"
+
+#if QT_VERSION >= 0x040700
+#include <QFileSystemModel>
+#endif
 //#include "qdocumentline_p.h"
 
 
@@ -29,7 +33,7 @@ class LatexCompleterConfig;
 class LatexCompleter : public QObject  {
 	Q_OBJECT
 public:
-	enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8};
+	enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
 
 	LatexCompleter(QObject *p = 0);
@@ -54,6 +58,10 @@ public:
 	    return list->isVisible();
 	}
 
+	void setWorkPath(const QString cwd){
+	    workingDir=cwd;
+	}
+
 	int countWords();
 	void setTab(int index);
 
@@ -65,6 +73,10 @@ private:
 	int maxWordLen;
 	QListView * list;
 	CompletionListModel* listModel;
+#if QT_VERSION >= 0x040700
+	QFileSystemModel *fileModel;
+	void setDirectoryForCompletion(QString fn);
+#endif
 	QEditor *editor;
 
 	QWidget *widget;
@@ -81,6 +93,8 @@ private:
 	static QHash<QString, int> helpIndicesCache;
 
 	bool forcedRef;
+	bool forcedGraphic;
+	QString workingDir;
 
 private slots:
 	void cursorPositionChanged();
@@ -88,6 +102,7 @@ private slots:
 	void editorDestroyed();
 	void changeView(int pos);
 	void listClicked(QModelIndex index);
+	void directoryLoaded(QString dn);
 };
 
 #endif
