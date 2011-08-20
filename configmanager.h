@@ -113,7 +113,7 @@ public:
 	int tabstop;
 
 	bool useEscForClosingLog;
-	int replaceQuotes;
+	int replaceQuotes; //0: none, 1: ``..'', 2: \"< \"> 3: \"`..\"' , 4: \\og..\\fg{} 5: \"> \"<
 	
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE};
