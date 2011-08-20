@@ -37,6 +37,7 @@ QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringLis
 QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
 QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
+QSet<QString> LatexParser::graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
 QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 QSet<QString> LatexParser::customCommands;
 QMultiHash<QString,QString> LatexParser::packageAliases;
