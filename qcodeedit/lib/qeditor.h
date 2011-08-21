@@ -236,6 +236,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		Q_INVOKABLE virtual void scrollToFirstLine(int l);
 
+		void setCursorSurroundingLines(int s);
+		
 		#ifndef _QMDI_
 		Q_INVOKABLE QString name() const;
 		Q_INVOKABLE QString fileName() const;
@@ -433,7 +435,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setContentClean(bool y);
 		
 		void emitCursorPositionChanged();
-		void ensureCursorVisible();
+		void ensureCursorVisible(int surrounding = 0);
+		void ensureCursorVisibleSurrounding();
 		
 		virtual void setContentModified(bool y);
 
@@ -605,6 +608,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		int m_lastLine,m_lastColumn,m_hoverCount;
 
+		int m_cursorSurroundingLines;
+		
 		int m_LineWidth;
 };
 

@@ -14,6 +14,7 @@ public:
 	bool showWhitespace;
 	int tabStop;
 	int showlinemultiples;
+	int cursorSurroundLines;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking;
 	QString fontFamily;

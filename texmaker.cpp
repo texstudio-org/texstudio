@@ -1397,7 +1397,7 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->setFlag(QEditor::AutoIndent,flag);
 		edit->editor->setCursorPosition(0,0);
 		edit->editor->nextPlaceHolder();
-		edit->editor->ensureCursorVisible();
+		edit->editor->ensureCursorVisibleSurrounding();
 	}
 }
 
@@ -4167,10 +4167,12 @@ void Texmaker::jumpToSearch(QString filename,int lineNumber){
 		gotoLine(lineNumber);
 		col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
 		currentEditor()->setCursorPosition(lineNumber,col);
+		currentEditor()->ensureCursorVisibleSurrounding();
 	} else {
 		gotoLocation(lineNumber,filename);
 		int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
 		currentEditor()->setCursorPosition(lineNumber,col);
+		currentEditor()->ensureCursorVisibleSurrounding();
 		outputView->showSearchResults();
 	}
 }
@@ -4178,7 +4180,7 @@ void Texmaker::jumpToSearch(QString filename,int lineNumber){
 void Texmaker::gotoLine(int line) {
 	if (currentEditorView() && line>=0)	{
 		currentEditorView()->editor->setCursorPosition(line,0);
-		currentEditorView()->editor->ensureCursorVisible();
+		currentEditorView()->editor->ensureCursorVisibleSurrounding();
 		currentEditorView()->editor->setFocus();
 	}
 }
