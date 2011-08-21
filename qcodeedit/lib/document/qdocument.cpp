@@ -6585,6 +6585,8 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 				containsAsianChars = true; //character which can have a different width even in fixed pitch fonts
 			else if (cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining)
 				containsSurrogates = true; //strange characters (e.g.  0xbcd, 0x1d164)
+			else if (cat < 0x20) 
+				containsAsianChars = true;
 		}
 		if (!containsAsianChars && !containsSurrogates)
 			return text.length() * QDocumentPrivate::m_spaceWidth;
