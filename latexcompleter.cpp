@@ -110,7 +110,7 @@ public:
 			    insertText(text);
 			    return true;
 			}
-			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
+                        for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
 			if (!autoOverridenText.isEmpty()){
 				cursor.insertText(autoOverridenText);
@@ -743,9 +743,11 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	list->setAutoFillBackground(true);
 	editor=0;
 	workingDir="/";
+        dirReader=0;
+        /*
 #if QT_VERSION >= 0x040700
 	fileModel=0;
-#endif
+#endif*/
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
 	int ptSize=QApplication::font().pointSize();
@@ -778,6 +780,10 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 }
 
 LatexCompleter::~LatexCompleter() {
+    if(dirReader){
+        dirReader->quit();
+	dirReader->wait();
+    }
 	//delete list;
 }
 
@@ -906,26 +912,15 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
 	if(forcedGraphic){
-#if QT_VERSION >= 0x040700
-	    if(!fileModel){
-		fileModel= new QFileSystemModel;
-		connect(fileModel,SIGNAL(directoryLoaded(QString)),this,SLOT(directoryLoaded(QString)));
-	    }
-	    /*fileModel->setRootPath(workingDir);
-	    QModelIndex parentIndex = fileModel->index(workingDir);
-	    int numRows = fileModel->rowCount(parentIndex);
-	    QSet<QString> files;
-	    for (int row = 0; row < numRows; ++row) {
-		     QModelIndex index = fileModel->index(row, 0, parentIndex);
-		     QString text = fileModel->data(index, Qt::DisplayRole).toString();
-		     if(fileModel->isDir(index))
-			 text.append(QDir::separator());
-		     files.insert(text);
-		 }*/
+             if(!dirReader){
+                dirReader=new directoryReader(this);
+                connect(dirReader,SIGNAL(directoryLoaded(QString,QSet<QString>)),this,SLOT(directoryLoaded(QString,QSet<QString>)));
+                connect(this,SIGNAL(setDirectoryForCompletion(QString)),dirReader,SLOT(readDirectory(QString)));
+                dirReader->start();
+            }
 	    QSet<QString> files;
 	    listModel->setBaseWords(files,true);
 	    listModel->baselist=listModel->wordsText;
-#endif
 	}else{
 	    if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
 	    else listModel->baselist=listModel->wordsCommands;
@@ -959,15 +954,26 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				break;
 			}
 		}
-		if(flags & CF_FORCE_GRAPHIC){
-		    QString fn=lineText.mid(start,c.columnNumber()-start);
-		    setDirectoryForCompletion(fn);
-		    int lastIndex=fn.lastIndexOf(QDir::separator());
-		    if(lastIndex>=0)
-			start=start+lastIndex+1;
-		}
+                QString path;
+                if(flags & CF_FORCE_GRAPHIC){
+                    QString fn=lineText.mid(start,c.columnNumber()-start);
+                    int lastIndex=fn.lastIndexOf(QDir::separator());
+                    if(lastIndex>=0)
+                        start=start+lastIndex+1;
+                    if(fn.isEmpty())
+                        fn=workingDir+QDir::separator();
+                    QDir oldCurrent=QDir::current();
+                    QDir::setCurrent(workingDir);
+                    QFileInfo fi(fn);
+                    path=fi.absolutePath();
+                    QDir::setCurrent(oldCurrent.dirName()); //restore old current path
+                }
 		completerInputBinding->bindTo(editor,this,true,start);
 		adjustWidget();
+
+                if((flags & CF_FORCE_GRAPHIC) && !path.isEmpty()){
+                    emit setDirectoryForCompletion(path);
+                }
 	} else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);
 
 	if(completerInputBinding->getMostUsed()==1 && countWords()==0){ // if prefered list is empty, take next more extensive one
@@ -987,46 +993,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	//if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
 }
 
-void LatexCompleter::directoryLoaded(QString path){
-#if QT_VERSION >= 0x040700
-    QModelIndex parentIndex = fileModel->index(path);
-    int numRows = fileModel->rowCount(parentIndex);
-    QSet<QString> files;
-    for (int row = 0; row < numRows; ++row) {
-	QModelIndex index = fileModel->index(row, 0, parentIndex);
-	QString text = fileModel->data(index, Qt::DisplayRole).toString();
-	if(fileModel->isDir(index))
-	    text.append(QDir::separator());
-	files.insert(text);
-    }
-    listModel->setBaseWords(files,true);
+void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
+    listModel->setBaseWords(content,true);
     listModel->baselist=listModel->wordsText;
-#endif
-    setTab(2);
-}
-void LatexCompleter::setDirectoryForCompletion(QString fn){
-    if(fn.isEmpty())
-	fn=workingDir+QDir::separator();
-#if QT_VERSION >= 0x040700
-    QDir oldCurrent=QDir::current();
-    QDir::setCurrent(workingDir);
-    QFileInfo fi(fn);
-    QString path=fi.absolutePath();
-    fileModel->setRootPath(path);
-    QModelIndex parentIndex = fileModel->index(path);
-    int numRows = fileModel->rowCount(parentIndex);
-    QSet<QString> files;
-    for (int row = 0; row < numRows; ++row) {
-	QModelIndex index = fileModel->index(row, 0, parentIndex);
-	QString text = fileModel->data(index, Qt::DisplayRole).toString();
-	if(fileModel->isDir(index))
-	    text.append(QDir::separator());
-	files.insert(text);
-    }
-    listModel->setBaseWords(files,true);
-    listModel->baselist=listModel->wordsText;
-    QDir::setCurrent(oldCurrent.dirName()); //restore old current path
-#endif
+    //setTab(2);
+    completerInputBinding->setMostUsed(2);
 }
 
 void LatexCompleter::parseHelpfile(QString text) {

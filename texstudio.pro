@@ -105,7 +105,8 @@ HEADERS += texmaker.h \
     pdfrenderengine.h \
     pdfrendermanager.h \
     PDFDocument_config.h \
-    scriptobject.h
+    scriptobject.h \
+    directoryreader.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -180,7 +181,8 @@ SOURCES += main.cpp \
     pdfrenderengine.cpp \
     pdfrendermanager.cpp \
     qcodeedit/lib/qformat.cpp \
-    scriptobject.cpp
+    scriptobject.cpp \
+    directoryreader.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
@@ -531,5 +533,7 @@ SOURCES+=synctex_parser_utils.c synctex_parser.c
 
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
 QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
+
+
 
 

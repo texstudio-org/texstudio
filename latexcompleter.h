@@ -19,10 +19,8 @@
 #include "qcodeedit.h"
 #include "qeditor.h"
 #include "latexeditorview.h"
+#include "directoryreader.h"
 
-#if QT_VERSION >= 0x040700
-#include <QFileSystemModel>
-#endif
 //#include "qdocumentline_p.h"
 
 
@@ -69,6 +67,8 @@ public:
 	void setTab(int index);
 
 	void insertText(QString txt);
+signals:
+        void setDirectoryForCompletion(QString fn);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
@@ -76,10 +76,7 @@ private:
 	int maxWordLen;
 	QListView * list;
 	CompletionListModel* listModel;
-#if QT_VERSION >= 0x040700
-	QFileSystemModel *fileModel;
-	void setDirectoryForCompletion(QString fn);
-#endif
+        directoryReader *dirReader;
 	QEditor *editor;
 
 	QWidget *widget;
@@ -105,7 +102,7 @@ private slots:
 	void editorDestroyed();
 	void changeView(int pos);
 	void listClicked(QModelIndex index);
-	void directoryLoaded(QString dn);
+        void directoryLoaded(QString dn,QSet<QString> content);
 };
 
 #endif
