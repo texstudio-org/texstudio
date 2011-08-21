@@ -530,6 +530,7 @@ void LatexEditorView::updateSettings(){
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);;
+	editor->setCursorSurroundingLines(config->cursorSurroundLines);
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
 	lineNumberPanelAction->setChecked(config->showlinemultiples!=0);
 	lineFoldPanelAction->setChecked(config->folding);

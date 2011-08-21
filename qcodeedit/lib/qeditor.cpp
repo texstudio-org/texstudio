@@ -4658,27 +4658,29 @@ bool QEditor::isCursorVisible() const
 /*!
 	\brief Ensure that the current cursor is visible
 */
-void QEditor::ensureCursorVisible()
+void QEditor::ensureCursorVisible(int surrounding)
 {
 	if ( !isVisible() )
 	{
 		setFlag(EnsureVisible, true);
 		return;
-	}
+	}	
 	
 	QPoint pos = m_cursor.documentPosition();
 
 	const int ls = document()->getLineSpacing();
 
+	int surroundingHeight = ls * surrounding;
+	
 	int ypos = pos.y(),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
 
-	if ( ypos < yval )
-		verticalScrollBar()->setValue(ypos / ls);
-	else if ( yend > (yval + ylen) )
-		verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
+	if ( ypos - surroundingHeight < yval )
+		verticalScrollBar()->setValue(ypos / ls - surrounding);
+	else if ( yend + surroundingHeight > (yval + ylen ) )
+		verticalScrollBar()->setValue(1 + (yend - ylen) / ls + surrounding);
 
 	int xval = horizontalOffset(),
 		xlen = viewport()->width(),
@@ -4695,6 +4697,10 @@ void QEditor::ensureCursorVisible()
 	}
 	
 	setFlag(EnsureVisible, false);
+}
+
+void QEditor::ensureCursorVisibleSurrounding(){
+	ensureCursorVisible(m_cursorSurroundingLines);
 }
 
 /*!
@@ -4782,6 +4788,10 @@ void QEditor::scrollToFirstLine(int l){
 	else if ( yend > (yval + ylen) )
 	    verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
 
+}
+
+void QEditor::setCursorSurroundingLines(int s){
+	m_cursorSurroundingLines = s;
 }
 
 /*!

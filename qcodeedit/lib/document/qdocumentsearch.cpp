@@ -771,8 +771,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 					m_cursor.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
 				}
 				
-				if ( m_editor && !hasOption(Silent))
+				if ( m_editor && !hasOption(Silent)) {
 					m_editor->setCursor(m_cursor);
+					m_editor->ensureCursorVisibleSurrounding();
+				}
 				
 				foundCount++;
 				if ( foundCount == 1 ) {
