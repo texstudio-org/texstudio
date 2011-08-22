@@ -3,9 +3,6 @@
 
 #include "mostQtHeaders.h"
 #include <QThread>
-#if QT_VERSION >= 0x040400
-#include <QFileSystemModel>
-#endif
 
 class directoryReader : public QThread
 {
