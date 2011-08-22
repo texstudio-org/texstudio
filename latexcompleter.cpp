@@ -941,7 +941,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
-			if (lineText.at(i)==QChar('\\')) {
+		    if ((lineText.at(i)==QChar('\\'))&&!(flags & CF_FORCE_GRAPHIC)) {
 				start=i;
 				break;
 			} else if (eow.contains(lineText.at(i))) {
