@@ -1077,6 +1077,14 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <source>Configure TeXstudio</source>
         <translation>A TeXstudio beállításai</translation>
     </message>
+    <message>
+        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
+        <translation>Fordított francia idézőjelek: &quot;&gt; &quot;&lt;</translation>
+    </message>
+    <message>
+        <source>Restrict search scope to an existing selection</source>
+        <translation>Keresési tartomány megszorítása egy létező kiválasztásra</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1531,6 +1539,12 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation>Engedélyezte az automatikus cserét, bár előfordulnak felhasználói elemek (?&lt;=\s|^) vagy (?&lt;=\S), melyek ilyenkor megváltozhatnak.
+Szeretné azokat eltávolítani?</translation>
     </message>
 </context>
 <context>
@@ -2194,19 +2208,19 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Reload Script List</source>
-        <translation>Szkript lista újratöltése</translation>
+        <translation>Parancsfájl lista újratöltése</translation>
     </message>
     <message>
         <source>Manage Scripts</source>
-        <translation>Szkriptek kezelése</translation>
+        <translation>Parancsfájlok kezelése</translation>
     </message>
     <message>
         <source>Show Scripts Folder</source>
-        <translation>Szkript könyvtár</translation>
+        <translation>Parancsfájl könyvtár</translation>
     </message>
     <message>
         <source>About Scripts...</source>
-        <translation>Szkriptekről...</translation>
+        <translation>Parancsfájlokról...</translation>
     </message>
     <message>
         <source>s</source>
@@ -3727,7 +3741,72 @@ Néhány példa:
     </message>
     <message>
         <source>Couldn&apos;t find possible extension word</source>
-        <translation>Nem található lehetséges kiegészítőszó</translation>
+        <translation type="obsolete">Nem található lehetséges kiegészítőszó</translation>
+    </message>
+    <message>
+        <source>ignore case</source>
+        <translation>Eset mellőzése</translation>
+    </message>
+    <message>
+        <source>punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX input</source>
+        <translation>LaTeX bemenet</translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation>Mentés:</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t create file %1</source>
+        <translation>A(z) &quot;%1&quot; nevű fájlt nem sikerült létrehozni</translation>
+    </message>
+    <message>
+        <source>Finished generation</source>
+        <translation>A létrehozás befejeződött</translation>
+    </message>
+</context>
+<context>
+    <name>ScriptObject</name>
+    <message>
+        <source>The current script has requested to enter privileged write mode and call following function:
+%1
+
+Do you trust this script?</source>
+        <translation>A parancsfájl igényli az írási mód engedélyezését, és az alábbi függvényt akarja futtatni:
+%1
+Megbízik a parancsfájlban?</translation>
+    </message>
+    <message>
+        <source>Yes, allow this call</source>
+        <translation>Igen, a hívás engedélyezése</translation>
+    </message>
+    <message>
+        <source>Yes, allow all calls it will ever make</source>
+        <translation>Igen, bármilyen hívás engedélyezése akármikor</translation>
+    </message>
+    <message>
+        <source>No, abort the call</source>
+        <translation>Nem, a hívás megszakítása</translation>
+    </message>
+    <message>
+        <source>The current script has requested to enter privileged mode and read the following value:
+%1
+
+Do you trust this script?</source>
+        <translation>A parancsfájl igényli a privilégizált mód engedélyezését, és olvasni akarja az alábbi értéket:
+%1
+Megbízik a parancsfájlban?</translation>
+    </message>
+    <message>
+        <source>Yes, allow this reading</source>
+        <translation>Igen, az olvasás engedélyezése</translation>
+    </message>
+    <message>
+        <source>Yes, grant permanent read access to everything</source>
+        <translation>Igen, az olvasási jog megadása bármihez</translation>
     </message>
 </context>
 <context>
@@ -5179,6 +5258,10 @@ Biztos, hogy folytatni akarja?</translation>
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TeXstudio változat anélkül lett fordítva.</translation>
     </message>
+    <message>
+        <source>Set High&amp;lighting...</source>
+        <translation>K&amp;iemelések beállítása...</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5496,6 +5579,10 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <source>Tag</source>
         <translation>Címke</translation>
+    </message>
+    <message>
+        <source>run script</source>
+        <translation>parancsfájl futtatása</translation>
     </message>
 </context>
 <context>
@@ -5849,7 +5936,7 @@ The html files are located in the %1 directory.</source>
     <name>scriptengine</name>
     <message>
         <source>Script-Message</source>
-        <translation>Parancsfájl üzenet</translation>
+        <translation type="obsolete">Parancsfájl üzenet</translation>
     </message>
     <message>
         <source>File Chooser</source>
