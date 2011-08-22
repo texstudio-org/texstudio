@@ -744,10 +744,6 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	editor=0;
 	workingDir="/";
         dirReader=0;
-        /*
-#if QT_VERSION >= 0x040700
-	fileModel=0;
-#endif*/
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
 	int ptSize=QApplication::font().pointSize();
