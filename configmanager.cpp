@@ -423,29 +423,57 @@ QSettings* ConfigManager::readSettings() {
 	//load config
 	QSettings *config = persistentConfig;
 	bool importTexmakerSettings = false;
+	bool importTexMakerXSettings = false;
 	if (!config){
-		bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
+		bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texstudio.ini");
+		if (!usbMode)
+			if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini")) {
+				//import texmaker usb settings
+				usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmakerx.ini")).copy(QCoreApplication::applicationDirPath()+"/texstudio.ini");
+				importTexMakerXSettings = true;
+			}
 		if (!usbMode)
 			if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
 				//import texmaker usb settings
-				usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texmakerx.ini");
+				usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texstudio.ini");
 				importTexmakerSettings = true;
 			}
 		if (usbMode) {
-			config=new QSettings(QCoreApplication::applicationDirPath()+"/texmakerx.ini",QSettings::IniFormat);
+			config=new QSettings(QCoreApplication::applicationDirPath()+"/texstudio.ini",QSettings::IniFormat);
 		} else {
-			config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+			config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
 			if (config->childGroups().empty()) {
-				//import texmaker global settings
-				QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
-				QStringList keys=oldconfig.allKeys();
-				foreach(const QString& key, keys) config->setValue(key,oldconfig.value(key,""));
-				importTexmakerSettings = true;
+				QSettings texmakerxsetting(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");				
+				//import texmakerx global settings
+				if (texmakerxsetting.childGroups().empty()) {
+					//import texmaker global settings
+					QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
+					QStringList keys=oldconfig.allKeys();
+					foreach(const QString& key, keys) config->setValue(key,oldconfig.value(key,""));
+					importTexmakerSettings = true;
+				} else {
+					QDir texmakerxdir = QFileInfo(texmakerxsetting.fileName()).dir();
+					QDir texstudiodir = QFileInfo(config->fileName()).dir();
+					if (!texstudiodir.exists()) {
+						QDir txsparent = texstudiodir;
+						txsparent.cdUp();
+						txsparent.mkpath(texstudiodir.absolutePath());
+					}
+					QStringList additionalFiles = texmakerxdir.entryList(QStringList() << "*");
+					foreach (const QString &f, additionalFiles)
+						QFile::copy(texmakerxdir.absoluteFilePath(f),texstudiodir.absoluteFilePath(f));
+					
+					QStringList keys=texmakerxsetting.allKeys();
+					foreach(const QString& key, keys) config->setValue(key,texmakerxsetting.value(key,""));
+					importTexMakerXSettings = true;
+				}
+				
 			}
 		}
 		configFileName=config->fileName();
 		configFileNameBase=configFileName;
 		configBaseDir=QFileInfo(configFileName).absolutePath();
+		if (!configBaseDir.endsWith("/")) configBaseDir+="/";
 		completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
 		if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 		persistentConfig = config;
@@ -461,7 +489,7 @@ QSettings* ConfigManager::readSettings() {
 	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
 
 	//----------------------------dictionaries-------------------------
-	if (spell_dic=="<dic not found>" || (importTexmakerSettings && !QFileInfo(spell_dic).exists())) {
+	if (spell_dic=="<dic not found>" || ((importTexmakerSettings  || importTexMakerXSettings)  && !QFileInfo(spell_dic).exists())) {
 		QStringList temp;
 		QStringList fallBackPaths;
 #ifndef Q_WS_WIN
