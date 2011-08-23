@@ -266,6 +266,7 @@ protected slots:
 	void NewDocumentStatus();
 	void NewDocumentLineEnding();
 	void UpdateCaption();
+	void updateMasterDocumentCaption();
 	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);
 	void EditorTabMoved(int from,int to);

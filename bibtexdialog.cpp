@@ -144,13 +144,13 @@ QList<BibTeXType> BibTeXDialog::getPossibleBibTeXTypes(){
 
 void BibTeXDialog::changeEvent(QEvent *e)
 {
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        m_ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
+	switch (e->type()) {
+	case QEvent::LanguageChange:
+		m_ui->retranslateUi(this);
+		break;
+	default:
+		break;
+	}
 }
 void BibTeXDialog::accept(){
 	resultString="";
