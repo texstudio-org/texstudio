@@ -986,7 +986,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	
 	completerInputBinding->autoOverridenText = (flags & CF_OVERRIDEN_BACKSLASH)?"\\":"";
 
-	//if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
+	if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
 }
 
 void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
