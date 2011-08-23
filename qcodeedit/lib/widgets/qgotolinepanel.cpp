@@ -137,7 +137,7 @@ void QGotoLinePanel::on_bClose_clicked()
 void QGotoLinePanel::on_bGo_clicked()
 {
 	editor()->setCursor(QDocumentCursor(editor()->document(), spLine->value() - 1));
-	editor()->ensureCursorVisibleSurrounding();
+	editor()->ensureCursorVisibleSurrounding();	
 }
 
 void QGotoLinePanel::on_spLine_valueChanged(int v)

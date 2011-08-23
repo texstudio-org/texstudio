@@ -88,6 +88,7 @@ QSearchReplacePanelTest::QSearchReplacePanelTest(QCodeEdit* codeedit, bool execu
 	Q_ASSERT(panel);
 	oldFindHistory = static_cast<QSearchReplacePanelProtectedBreaker*>(panel)->getHistory();
 	oldReplaceHistory = static_cast<QSearchReplacePanelProtectedBreaker*>(panel)->getHistory(false);
+	panel->setSearchOnlyInSelection(true);
 }
 
 QSearchReplacePanelTest::~QSearchReplacePanelTest(){
