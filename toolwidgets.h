@@ -53,10 +53,11 @@ public:
 	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
 	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
-        int getShownPage(){
-            return OutputLayout->currentIndex();
-        }
+	int getShownPage(){
+		return OutputLayout->currentIndex();
+	}
 
+	virtual void changeEvent(QEvent *event);
 public slots:
 	void copy();
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)
@@ -70,7 +71,7 @@ public slots:
 	void gotoLogEntry(int logEntryNumber);
 	void setTabbedLogView(bool tabbed);
 	void previewLatex(const QPixmap& pixmap);
-        void addSearch(QList<QDocumentLineHandle *> search,QString name);
+	void addSearch(QList<QDocumentLineHandle *> search,QString name);
 	void clearSearch();
 signals:
 	void locationActivated(int line, QString fileName); //0-based line, absolute file name
@@ -88,6 +89,8 @@ private:
 	LatexLogModel * logModel; 
 	SearchResultModel *searchResultModel;
 	bool logpresent, tabbedLogView;
+	
+	void retranslateUi();
 private slots:
 	void clickedOnLogModelIndex(const QModelIndex& index);
 	void clickedSearchResult(const QModelIndex& index);

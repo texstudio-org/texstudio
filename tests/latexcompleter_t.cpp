@@ -283,7 +283,7 @@ void LatexCompleterTest::simple(){
 		QString ist=edView->editor->text();
 		QEQUAL(ist, text);
 	}
-
+ 
 	edView->editor->clearPlaceHolders();
 	edView->editor->clearCursorMirrors();
 }

@@ -205,11 +205,12 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 
 	// order for tabbar
 	logViewerTabBar=new QTabBar(this);
-	logViewerTabBar->addTab(tr("messages"));
-	logViewerTabBar->addTab(tr("log file"));
-	logViewerTabBar->addTab(tr("errors"));
-	logViewerTabBar->addTab(tr("preview"));
-	logViewerTabBar->addTab(tr("search results"));
+	logViewerTabBar->addTab("m");
+	logViewerTabBar->addTab("l");
+	logViewerTabBar->addTab("e");
+	logViewerTabBar->addTab("p");
+	logViewerTabBar->addTab("s");
+	retranslateUi();
 	logViewerTabBar->hide(); //internal default is non tabbed mode
 
 	this->setWidget(OutputLayout);
@@ -340,6 +341,14 @@ void OutputViewWidget::gotoLogEntry(int logEntryNumber) {
 	emit logEntryActivated(logEntryNumber);
 }
 
+void OutputViewWidget::retranslateUi(){
+	logViewerTabBar->setTabText(0,tr("messages"));
+	logViewerTabBar->setTabText(1,tr("log file"));
+	logViewerTabBar->setTabText(2,tr("errors"));
+	logViewerTabBar->setTabText(3,tr("preview"));
+	logViewerTabBar->setTabText(4,tr("search results"));
+}
+
 void OutputViewWidget::clickedOnLogModelIndex(const QModelIndex& index){
 	gotoLogEntry(index.row());
 }
@@ -391,6 +400,16 @@ int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
 }
 bool OutputViewWidget::childHasFocus(){
 	return OutputLogTextEdit->hasFocus() || (tabbedLogView?OutputTable2->hasFocus():OutputTable->hasFocus());
+}
+
+void OutputViewWidget::changeEvent(QEvent *event){
+	switch (event->type()) {
+	case QEvent::LanguageChange:
+		retranslateUi();
+		break;
+	default:
+		break;
+	}	
 }
 
 //====================================================================

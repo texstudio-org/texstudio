@@ -941,6 +941,17 @@ void Texmaker::UpdateCaption() {
 	if (finame!="") configManager.lastDocument=finame;
 }
 
+void Texmaker::updateMasterDocumentCaption(){
+	if (documents.singleMode()){
+		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
+		stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
+	} else {
+		QString shortName = documents.masterDocument->getFileInfo().fileName();
+		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
+		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
+	}	
+}
+
 void Texmaker::editorTabChanged(int index){
 	UpdateCaption();
 	if (index < 0) return; //happens if no tab is open
@@ -4020,6 +4031,7 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 		int pos=EditorView->currentIndex();
 		EditorView->moveTab(pos,0);
 	}
+	updateMasterDocumentCaption();
 }
 
 //*********************************
@@ -4048,6 +4060,7 @@ void Texmaker::changeEvent(QEvent *e) {
 		setupMenus();
 		setupDockWidgets();
 		UpdateCaption();
+		updateMasterDocumentCaption();
 		break;
 	default:
 		break;
