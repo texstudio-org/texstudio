@@ -246,6 +246,7 @@ QSize PDFDockListWidget::sizeHint() const
 int PDFOverviewModel::rowCount ( const QModelIndex & parent ) const{
 	if (!document) return 0;
 	if (parent.isValid()) return 0;
+	if(!document->widget()) return 0;
 	return document->widget()->realNumPages();
 }
 
