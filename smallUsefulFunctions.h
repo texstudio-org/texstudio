@@ -119,7 +119,7 @@ QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp,
 void addEnvironmentToDom(QDomDocument &doc,const QString& EnvironName,const QString& EnvironMode);
 
 //setup toolbutton as substitute for const combobox
-QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
 //find the tool button which contains a given action
 QToolButton* comboToolButtonFromAction(QAction* action);
 

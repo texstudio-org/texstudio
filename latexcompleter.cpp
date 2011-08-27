@@ -746,8 +746,6 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
         dirReader=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
-	int ptSize=QApplication::font().pointSize();
-	QString stSht=QString("QTabBar::tab { font-size: %1px; margin: 2pt;}").arg(ptSize*3/4);
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setSpacing(0);
 	tbAbove=new QTabBar();
@@ -757,7 +755,6 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	tbAbove->addTab(tr("all"));
 	tbAbove->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbAbove);
-	tbAbove->setStyleSheet(stSht);
 	tbAbove->hide();
 	layout->addWidget(list);
 	tbBelow=new QTabBar();
@@ -767,7 +764,6 @@ LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(f
 	tbBelow->addTab(tr("all"));
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
-	tbBelow->setStyleSheet(stSht);
 	widget->setLayout(layout);
 	connect(list,SIGNAL(clicked(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
 	// todo: change tab when shift+space is pressed ...
@@ -1029,8 +1025,13 @@ bool LatexCompleter::acceptTriggerString(const QString& trigger){
 	return trigger=="\\" && (!config || config->enabled);;
 }
 void LatexCompleter::setConfig(LatexCompleterConfig* config){
+	Q_ASSERT(config);
 	this->config=config;
 	listModel->setConfig(config);
+
+	QString stSht=QString("QTabBar::tab { font-size: %1pt; margin: 2pt;}").arg(QApplication::font().pointSize() * config->tabRelFontSizePercent / 100);
+	tbAbove->setStyleSheet(stSht);
+	tbBelow->setStyleSheet(stSht);
 }
 LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;

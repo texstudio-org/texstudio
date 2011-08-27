@@ -53,7 +53,7 @@
 #include <QMessageBox>
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-	: QMainWindow(parent, flags), spellToolBar(0), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
+	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 
 	MapForSymbols=0;
 	currentLine=-1;
@@ -466,7 +466,7 @@ void Texmaker::updateToolBarMenu(const QString& menuName){
 		foreach (const QAction* act, menu->actions())
 			if (!act->isSeparator())
 				list.append(act->text());
-		createComboToolButton(tb.toolbar,list,0,fontMetrics,this,SLOT(callToolButtonAction()),"",combo);
+		createComboToolButton(tb.toolbar,list,-1,this,SLOT(callToolButtonAction()),"",combo);
 
 		if (menuName == "main/view/documents") {
 			//workaround to select the current document
@@ -820,25 +820,7 @@ void Texmaker::setupToolBars() {
 			else mtb.toolbar = addToolBar(tr(qPrintable(mtb.name)));
 			mtb.toolbar->setObjectName(mtb.name);
 			addAction(mtb.toolbar->toggleViewAction());
-			if(mtb.name=="Math"){
-				// spelling language
-				if (!spellToolBar){
-					spellToolBar = addToolBar(tr("Spelling"));
-					spellToolBar->setObjectName("Spelling");
-					QFontMetrics fontMetrics(spellToolBar->font());
-					QStringList list;
-					QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
-					if (fic.exists() && fic.isReadable())
-						list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
-
-					if(comboSpellHeight==0)
-						comboSpellHeight=spellToolBar->height()-2;
-					comboSpell=createComboToolButton(spellToolBar,list,comboSpellHeight,fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
-					spellToolBar->addWidget(comboSpell);
-					addAction(spellToolBar->toggleViewAction());
-				}
-				addToolBarBreak();
-			}
+			if(mtb.name=="Spelling") addToolBarBreak();
 		} else mtb.toolbar->clear();
 		foreach (const QString& actionName, mtb.actualActions){
 			if (actionName == "separator") mtb.toolbar->addSeparator(); //Case 1: Separator
@@ -851,12 +833,18 @@ void Texmaker::setupToolBars() {
 				    tagsWidget->populate();
 				QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
 				if (list.isEmpty()) continue;
-				QFontMetrics fontMetrics(mtb.toolbar->font());
-				if(comboSpellHeight==0)
-					comboSpellHeight=mtb.toolbar->height()-2;
-				QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(insertXmlTagFromToolButtonAction()));
+				QToolButton* combo=createComboToolButton(mtb.toolbar,list,0,this,SLOT(insertXmlTagFromToolButtonAction()));
 				combo->setProperty("tagsID", actionName);
 				mtb.toolbar->addWidget(combo);
+			} else if (actionName == "list/dictionaries"){
+				QStringList list;
+				QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
+				if (fic.exists() && fic.isReadable())
+					list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
+
+				comboSpell=createComboToolButton(mtb.toolbar,list,0, this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
+				mtb.toolbar->addWidget(comboSpell);
+				addAction(mtb.toolbar->toggleViewAction());
 			} else {
 				QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
 				QAction *act=qobject_cast<QAction*>(obj);
@@ -873,15 +861,12 @@ void Texmaker::setupToolBars() {
 					}
 					//Case 4: A submenu mapped on a toolbutton
 					configManager.watchedMenus << actionName;
-					QFontMetrics fontMetrics(mtb.toolbar->font());
 					QStringList list;
 					foreach (const QAction* act, menu->actions())
 						if (!act->isSeparator())
 							list.append(act->text());
-					if(comboSpellHeight==0)
-						comboSpellHeight=mtb.toolbar->height()-2;
 					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
-					QToolButton* combo=createComboToolButton(mtb.toolbar,list,comboSpellHeight,fontMetrics,this,SLOT(callToolButtonAction()));
+					QToolButton* combo=createComboToolButton(mtb.toolbar,list,0,this,SLOT(callToolButtonAction()));
 					combo->setProperty("menuID", actionName);					
 					mtb.toolbar->addWidget(combo);
 				}
@@ -3623,13 +3608,6 @@ void Texmaker::GeneralOptions() {
 	if (configManager.execConfigDialog()) {
 		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
 		// refresh quick language selection combobox
-		QFontMetrics fontMetrics(spellToolBar->font());
-		QStringList list;
-		QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
-		if (fic.exists() && fic.isReadable())
-			list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
-		createComboToolButton(spellToolBar,list,comboSpell->height(),fontMetrics,this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName(),comboSpell);
-
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 
@@ -3704,6 +3682,7 @@ void Texmaker::GeneralOptions() {
 		//completion
 		completionBaseCommandsUpdated=true;
 		completerNeedsUpdate();
+		completer->setConfig(configManager.completerConfig);
 
 		//update changed line mark colors
 		QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();

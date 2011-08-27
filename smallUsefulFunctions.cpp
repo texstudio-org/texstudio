@@ -663,7 +663,11 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 
 
 
-QToolButton* createComboToolButton(QWidget *parent,const QStringList& list,const int height,const QFontMetrics fm,const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){	
+	const QFontMetrics &fm = parent->fontMetrics();
+	if (height == -1) height = 0;
+	else if (height == 0) height =parent->height()-2;		
+	
 	if (combo==0)
 		combo=new QToolButton(parent);
 	if (height != 0)

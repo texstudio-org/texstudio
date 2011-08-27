@@ -540,6 +540,9 @@ void ConfigDialog::actionsChanged(int actionClass){
 		twi=new QTreeWidgetItem(QStringList() << "tags/brackets/right");
 		twi->setData(0,Qt::UserRole,"tags/brackets/right");
 		ui.treePossibleToolbarActions->addTopLevelItem(twi);
+		twi=new QTreeWidgetItem(QStringList() << "list/dictionaries");
+		twi->setData(0,Qt::UserRole,"list/dictionaries");
+		ui.treePossibleToolbarActions->addTopLevelItem(twi);
 		return;
 	}
 
