@@ -240,6 +240,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
 			<< "tags/brackets/left" << "separator" << "tags/brackets/right"));
+	managedToolBars.append(ManagedToolBar("Spelling", QStringList() << "list/dictionaries"));
 	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
 					      "main/latex/fontsizes" << "separator" <<
 					      "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright"
@@ -339,6 +340,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
 	registerOption("Editor/Completion Prefered Tab", (int*)&completerConfig->preferedCompletionTab, 0,&pseudoDialog->comboBoxPreferedTab);
+	registerOption("Editor/Completion Tab Relative Font Size Percent", &completerConfig->tabRelFontSizePercent, 100,&pseudoDialog->spinBoxTabRelFontSize);
 
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
@@ -977,6 +979,7 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.comboBoxActions->addItem(tr("All menus"));
 	confDlg->ui.comboBoxActions->addItem(tr("Special Tags"));
 	confDlg->replacedIconsOnMenus=&replacedIconsOnMenus;
+	
 
 	//appearance
 	QString displayedInterfaceStyle=interfaceStyle==""?tr("default"):interfaceStyle;

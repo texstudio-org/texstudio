@@ -1881,14 +1881,13 @@ void PDFDocument::init()
 
 	QStringList lst;
 	lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
-	QFontMetrics fontMetrics(font());
-	comboZoom=createComboToolButton(toolBar,lst,0,fontMetrics,this,SLOT(setZoom()),"100%");
+	comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(setZoom()),"100%");
 	toolBar->insertWidget(actionZoom_In, comboZoom);
 	addAction(toolBar->toggleViewAction());
 
 	leCurrentPage=new QLineEdit(toolBar);
 	leCurrentPage->setMaxLength(5);
-	leCurrentPage->setFixedWidth(fontMetrics.width("#####"));
+	leCurrentPage->setFixedWidth(fontMetrics().width("#####"));
 	leCurrentPageValidator=new QIntValidator(1,99999,leCurrentPage);
 	leCurrentPage->setValidator(leCurrentPageValidator);
 	leCurrentPage->setText("1");

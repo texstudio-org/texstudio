@@ -137,7 +137,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>9</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -1791,6 +1791,36 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </property>
          </item>
         </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>Relative tab font size:</string>
+           </property>
+           <property name="advancedOption" stdset="0">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBoxTabRelFontSize">
+           <property name="suffix">
+            <string notr="true"> %</string>
+           </property>
+           <property name="maximum">
+            <number>10000</number>
+           </property>
+           <property name="value">
+            <number>75</number>
+           </property>
+           <property name="advancedOption" stdset="0">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QLabel" name="label_12">

@@ -130,7 +130,6 @@ private:
 
 	//toolbars
 	//
-	QToolBar *spellToolBar;
 	QAction *ToggleAct, *ToggleRememberAct;
 
 	QLabel *stat1, *stat2, *stat3;
