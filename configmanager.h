@@ -108,6 +108,9 @@ public:
 	bool lastHardWrapSmartScopeSelection;
 	bool lastHardWrapJoinLines;
 
+        QString insertGraphicsOptionText;
+        QString insertGraphicsFloatOption;
+
 	//bool autoReplaceCommands; // moved to static codesnippet
 
 	int tabstop;

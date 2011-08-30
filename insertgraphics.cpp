@@ -41,6 +41,11 @@ void InsertGraphics::chooseFile() {
 	fn =QFileDialog::getOpenFileName(this,tr("Select a File","Wizard"),dir,filter);
 	if (!fn.isEmpty()) {
 		ui.lineEdit->setText(fn);
+                if(ui.leLabel->text().isEmpty()){
+                    QFileInfo fi(fn);
+                    QString bn="fig:"+fi.baseName();
+                    ui.leLabel->setText(bn);
+                }
 		emit fileNameChanged(fn);
 	}
 }
