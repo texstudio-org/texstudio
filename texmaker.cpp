@@ -2762,6 +2762,8 @@ void Texmaker::QuickGraphics(){
         graphicsDlg->ui.cbTop->setChecked(placement.contains("t"));
         graphicsDlg->ui.cbPage->setChecked(placement.contains("p"));
         graphicsDlg->ui.cbCentering->setChecked(placement.contains("c"));
+        if(placement.contains("_"))
+            graphicsDlg->ui.cbPosition->setCurrentIndex(1);
         placement.clear();
 	graphicsDlg->setDir(docInfo.absolutePath());
 	if (graphicsDlg->exec()) {
@@ -2823,6 +2825,8 @@ void Texmaker::QuickGraphics(){
                 configManager.insertGraphicsOptionText=graphicsDlg->ui.leScale->text();
                 if(graphicsDlg->ui.cbCentering->isChecked())
                     placement.append("c");
+                if(graphicsDlg->ui.cbPosition->currentIndex()>0)
+                    placement.append("_");
                 configManager.insertGraphicsFloatOption=placement;
 	}
 }
