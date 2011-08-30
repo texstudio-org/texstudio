@@ -347,6 +347,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
 
+        registerOption("Dialogs/InsertGraphic Options", &insertGraphicsOptionText,"width=\\linewidth");
+        registerOption("Dialogs/InsertGraphic FloatOptions", &insertGraphicsFloatOption,"hbtp");
 
 	//build commands
 	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);

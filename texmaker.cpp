@@ -2753,21 +2753,32 @@ void Texmaker::QuickGraphics(){
 	QFileInfo docInfo=currentEditorView()->document->getFileInfo();
 
 	InsertGraphics *graphicsDlg = new InsertGraphics(this,tr("Insert Graphic"));
+        //TODO: remember last used path
+        graphicsDlg->ui.leScale->setText(configManager.insertGraphicsOptionText);
+        QString placement=configManager.insertGraphicsFloatOption;
+        graphicsDlg->ui.cbFloat->setChecked(!placement.startsWith("!"));
+        graphicsDlg->ui.cbHere->setChecked(placement.contains("h"));
+        graphicsDlg->ui.cbBottom->setChecked(placement.contains("b"));
+        graphicsDlg->ui.cbTop->setChecked(placement.contains("t"));
+        graphicsDlg->ui.cbPage->setChecked(placement.contains("p"));
+        graphicsDlg->ui.cbCentering->setChecked(placement.contains("c"));
+        placement.clear();
 	graphicsDlg->setDir(docInfo.absolutePath());
 	if (graphicsDlg->exec()) {
 		QString insert;
+                if(graphicsDlg->ui.cbHere->isChecked()) placement.append("h");
+                if(graphicsDlg->ui.cbBottom->isChecked()) placement.append("b");
+                if(graphicsDlg->ui.cbTop->isChecked()) placement.append("t");
+                if(graphicsDlg->ui.cbPage->isChecked()) placement.append("p");
 		if(graphicsDlg->ui.cbFloat->isChecked()){
-			insert.append("\\begin{figure}");
-			QString placement;
-			if(graphicsDlg->ui.cbHere->isChecked()) placement.append("h");
-			if(graphicsDlg->ui.cbBottom->isChecked()) placement.append("b");
-			if(graphicsDlg->ui.cbTop->isChecked()) placement.append("t");
-			if(graphicsDlg->ui.cbPage->isChecked()) placement.append("p");
-			if(!placement.isEmpty()){
-				insert.append("["+placement+"]");
-			}
-			insert.append("\n");
-		}
+                    insert.append("\\begin{figure}");
+                    if(!placement.isEmpty()){
+                        insert.append("["+placement+"]");
+                    }
+                    insert.append("\n");
+                }else{
+                    placement.prepend("!");
+                }
 		if(graphicsDlg->ui.cbCentering->isChecked()) insert.append("\\centering\n");
 		if(graphicsDlg->ui.cbPosition->currentIndex()==0){
 			if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
@@ -2808,8 +2819,12 @@ void Texmaker::QuickGraphics(){
 		}
 		int lines=insert.count("\n");
 		InsertTag(insert,0,lines);
+                // store some settings for reuse on next call
+                configManager.insertGraphicsOptionText=graphicsDlg->ui.leScale->text();
+                if(graphicsDlg->ui.cbCentering->isChecked())
+                    placement.append("c");
+                configManager.insertGraphicsFloatOption=placement;
 	}
-
 }
 
 void Texmaker::QuickTabbing() {
