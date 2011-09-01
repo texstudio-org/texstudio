@@ -268,6 +268,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	QStringList filters;
 	filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp)";
 	filters << tr("Plaintext files")+" (*.txt)";
+	filters << tr("Pdf files")+" (*.pdf)";
 	filters << tr("All files")+" (*)";
 	fileFilters = filters.join(";;");
 
@@ -1099,6 +1100,16 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
 	if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
 #endif
+	
+	if (f_real.endsWith(".pdf",Qt::CaseInsensitive)) {
+		if (PDFDocument::documentList().isEmpty())
+			newPdfPreviewer();
+		PDFDocument::documentList().first()->loadFile(f_real,"");
+		PDFDocument::documentList().first()->show();
+		PDFDocument::documentList().first()->setFocus();
+		return 0;
+	}
+	
 	raise();
 
 	//test is already opened
