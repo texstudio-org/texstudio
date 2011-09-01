@@ -476,11 +476,14 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 	QString last = history.last();
 	if (last == str) 
 		return;
-	if (incremental && (last.startsWith(str) || str.startsWith(last)))
+        if (incremental && (last.startsWith(str) || str.startsWith(last))){
+                history.removeAll(str); //avoid dublets
 		history.last() = str;
-	else
-		history.append(str);
-	ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
+        }else {
+                history.removeAll(str); //avoid dublets
+                history.append(str);
+        }
+        ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
 }
 
 void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll, bool countOnly)
