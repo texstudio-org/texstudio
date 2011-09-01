@@ -112,6 +112,7 @@ void ManagedProperty::writeToObject(QObject* w) const{
 		}
 		case PT_STRINGLIST:{
 			QStringList& sl = *(QStringList*)storage;
+                        int cp=comboBox->lineEdit()->cursorPosition();
 			while (comboBox->count() > sl.size()) 
 				comboBox->removeItem(comboBox->count()-1);
 			for (int i=0;i<qMin(sl.size(),comboBox->count());i++)
@@ -121,6 +122,7 @@ void ManagedProperty::writeToObject(QObject* w) const{
 				comboBox->addItem(sl[i]);
 			if (!sl.isEmpty() && comboBox->currentText()!=sl.last() && comboBox->currentIndex()!=sl.size()-1)
 				comboBox->setCurrentIndex(sl.size()-1);
+                        comboBox->lineEdit()->setCursorPosition(cp);
 			return;
 		}
 		default:
