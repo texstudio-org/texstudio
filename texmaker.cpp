@@ -5328,6 +5328,9 @@ void Texmaker::importPackage(QString name){
 	name.chop(4);
 	name.append(".sty");
 	latexStyleParser->addFile(name);
+        name.chop(4);
+        name.append(".cls"); // try also cls
+        latexStyleParser->addFile(name);
 }
 
 void Texmaker::packageScanCompleted(QString name){
