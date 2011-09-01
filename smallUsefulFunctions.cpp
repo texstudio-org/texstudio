@@ -316,17 +316,35 @@ QString extractSectionName(const QString& word, bool precut) {
 	return word.mid(start+1,stop-start-1);
 }
 
-int findClosingBracket(const QString& word,int &start) {
+int findClosingBracket(const QString& word,int &start,QChar oc,QChar cc) {
 	int i=0;
-	if(start<0) start=word.indexOf("{",i);
+        if(start<0) start=word.indexOf(oc,i);
 	i=start>-1 ? start : 0;
-	int stop=word.indexOf("}",i);
-	i=word.indexOf("{",i+1);
+        int stop=word.indexOf(cc,i);
+        i=word.indexOf(oc,i+1);
 	while (i>0 && stop>0 && i<stop) {
-		stop=word.indexOf("}",stop+1);
-		i=word.indexOf("{",i+1);
+                stop=word.indexOf(cc,stop+1);
+                i=word.indexOf(oc,i+1);
 	}
 	return stop;
+}
+
+int findOpeningBracket(const QString& word,int start,QChar oc,QChar cc) {
+        int i=start;
+        int n=0;
+        while (i>-1) {
+                QChar ch=word.at(i);
+                if(ch==oc){
+                    n--;
+                    if(n<0)
+                        break;
+                }
+                if(ch==cc){
+                    n++;
+                }
+                i--;
+        }
+        return i;
 }
 
 QString textToLatex(const QString& text) {
@@ -841,56 +859,104 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 	}
 }
 
-int LatexParser::findContext(QString &line,int col){
-	int start_command=col;
-	int start_ref=col;
-	int start_close=col;
-	int stop=col;
-	int bow=col;
-	QString helper=line.mid(0,col);
-	start_command=helper.lastIndexOf("\\");
-	start_ref=helper.lastIndexOf("{");
-	start_close=helper.lastIndexOf("}");
-	bow=helper.lastIndexOf("[");
-	if(bow<helper.lastIndexOf(" ")) bow=helper.lastIndexOf(" ");
-	helper=line.mid(col,line.length());
-	if((start_command>start_ref)&&(start_command>start_close)&&(start_command>bow)){
-		helper=line.mid(start_command);
-		stop=helper.indexOf("{");
-		if(stop<0) {
-			stop=helper.indexOf("[");
-			int stop2=helper.indexOf(" ");
-			if(stop==-1) stop=stop2;
-			if(stop2==-1) stop2=stop;
-			if(stop2<stop) stop=stop2;
-		}
-		if(stop==-1) stop=helper.length();
-		line=helper.mid(0,stop);
-		return 1;
-	}
-	if((start_ref>start_command)&&(start_command>start_close)){
-		stop=helper.indexOf("}")+col;
-		line=line.mid(start_command,stop-start_command);
-		return 2;
-	}
-	return 0;
+int LatexParser::findContext(QString &line,int &column){
+        if(line.isEmpty())
+            return 0;
+        QString eow="\\[]{} ";
+        int i=column;
+        if(i>=line.length())
+            i=line.length()-1;
+        if(i>0)
+            i--; // character left of pos is to be checked
+        else
+            return 0; // no context can be detected at line start (old behavior)
+        while (i>=0 && !eow.contains(line.at(i)))
+               i--;
+        if(i<0)
+            return 0; // no eow found
+        QChar ch=line.at(i);
+        if(ch=='\\'){
+            // command found
+            int start=i;
+            i++;
+            while (i<line.length() && !eow.contains(line.at(i)))
+                   i++;
+            line=line.mid(start,i-start);
+            column=start;
+            return 1;
+        }
+        int start_ref=findOpeningBracket(line,i);
+        int start_opt=findOpeningBracket(line,i,'[',']');
+        int ret=0;
+        if(start_ref>start_opt){
+            // assuming we are in command argument
+            ret=2;
+            i=start_ref-1;
+        }else{
+            if(start_opt>-1){
+                //assuming we are in command option
+                ret=3;
+                i=start_opt-1;
+            }
+        }
+        if(ret==0)
+            return 0;
+
+        int n=0;
+        QString openBrackets="[{";
+        QString closeBrackets="]}";
+        eow=getCommonEOW();
+        int stop=i;
+        while (i>-1) {
+            ch=line.at(i);
+            if(openBrackets.contains(ch)){
+                //TODO check if correct bracket was opened ...
+                n--;
+                if(n<0)
+                    break;
+                i--;
+                stop=i;
+                continue;
+            }
+            if(closeBrackets.contains(ch)){
+                n++;
+                i--;
+                continue;
+            }
+            if(n==0 && eow.contains(ch)){
+                if(ch=='\\'){
+                    //TODO: check if not \\ (newline) was found
+                    line=line.mid(i,stop-i+1);
+                    column=i;
+                    return ret;
+                }else{ // this is a overly strict interpretation of command syntax
+                    return 0;
+                }
+            }
+            i--;
+        }
+
+        return 0;
 }
 
 LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value){
 	command=line;
 	int temp=findContext(command,column);
-	int a=command.indexOf("{");
-	if (a>=0) {
-		int b=command.indexOf("}");
-		if (b<0) b = command.length();
-		value=command.mid(a+1,b-a-1);
-		command=command.left(a);
-	} else {
-		int a=line.indexOf("{",column);
-		int b=line.indexOf("}",column);
-		if(a<0 || b<0) value="";
-		else value=line.mid(a+1,b-a-1);
-	}
+        QStringList vals;
+        resolveCommandOptions(line,column,vals);
+        value="";
+        if(!vals.isEmpty()){
+            value=vals.takeFirst();
+            if(value.startsWith('[')){
+                if(!vals.isEmpty()){
+                    value=vals.takeFirst();
+                }
+            }
+            if(value.startsWith('{'))
+                value.remove(0,1);
+            if(value.endsWith('}'))
+                value.chop(1);
+        }
 	switch (temp) {
 	case 0: return Unknown;
 	case 1: return Command;
