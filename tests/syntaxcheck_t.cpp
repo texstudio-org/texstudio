@@ -143,6 +143,11 @@ void SyntaxCheckTest::checktabular_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\\\hline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 4
 		<< "no error";
+
+        QTest::newRow("endhead")
+                << "\\begin{tabular}{ll}\na&b\\endhead\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+                << 2 << 2
+                << "no error";
 }
 void SyntaxCheckTest::checktabular(){
 	QFETCH(QString, text);
