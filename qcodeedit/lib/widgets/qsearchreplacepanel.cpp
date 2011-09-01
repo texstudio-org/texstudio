@@ -418,7 +418,12 @@ void QSearchReplacePanel::display(int mode, bool replace)
 					// copy content to cFind
 					cFind->setEditText(editor()->cursor().selectedText());
 				}
-			}
+                        }else{
+                            // use word under cursor if no selection is present (qt creator behavior)
+                            QDocumentCursor m_cursor=editor()->cursor();
+                            m_cursor.select(QDocumentCursor::WordUnderCursor);
+                            cFind->setEditText(m_cursor.selectedText());
+                        }
 			if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
 				m_search->setOption(QDocumentSearch::HighlightAll, true);
 		}
@@ -477,7 +482,6 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 	if (last == str) 
 		return;
         if (incremental && (last.startsWith(str) || str.startsWith(last))){
-                history.removeAll(str); //avoid dublets
 		history.last() = str;
         }else {
                 history.removeAll(str); //avoid dublets
