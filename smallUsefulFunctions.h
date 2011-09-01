@@ -91,7 +91,9 @@ QString latexToPlainWord(const QString& word);
 //extracts the section name after \section is removed (brackets removal)
 QString extractSectionName(const QString& word,bool precut=false);
 //closing bracket (opening and closing bracket considered correctly)
-int findClosingBracket(const QString& word,int &start);
+int findClosingBracket(const QString& word,int &start,QChar oc='{',QChar cc='}');
+//opening bracket (opening and closing bracket considered correctly), start at "start"
+int findOpeningBracket(const QString& word,int start,QChar oc='{',QChar cc='}');
 //replaces character with corresponding LaTeX commands
 QString textToLatex(const QString& text);
 // replaces \texorpdfstring{tex}{pdfString} with pdfString
@@ -144,7 +146,7 @@ public:
 
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
 	// realizes whether col is in a \command or in a parameter {}
-	static int findContext(QString &line, int column);
+        static int findContext(QString &line, int &column);
 	
 	//position of the % starting a comment (takes care of multiple backslashes before comment character ..)
 	static int commentStart(const QString& text);
@@ -152,7 +154,7 @@ public:
 	// remove comment from text, take care of multiple backslashes before comment character ...
 	static QString cutComment(const QString& text);
 
-	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
+        static ContextType findContext(const QString &line, int column, QString &command, QString& value);
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 
 	static QSet<QString> refCommands;
