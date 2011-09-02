@@ -483,6 +483,8 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 		return;
         if (incremental && (last.startsWith(str) || str.startsWith(last))){
 		history.last() = str;
+                history.removeAll(str); //avoid dublets
+                history.append(str);
         }else {
                 history.removeAll(str); //avoid dublets
                 history.append(str);
@@ -649,17 +651,18 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 			/*
 			case QEvent::FocusIn :
 				cFind->grabKeyboard();
-				break;
+                                break;*/
 
 			case QEvent::FocusOut :
-				cFind->releaseKeyboard();
+                                e->setAccepted(true);
+                                return true;
+                                //cFind->releaseKeyboard();
 				break;
-				*/
+
 
 			case QEvent::KeyPress :
 
 				kc = static_cast<QKeyEvent*>(e)->key();
-
 				if ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) )
 				{
 					//on_cFind_returnPressed();
