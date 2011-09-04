@@ -691,6 +691,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "pasteColumn",tr("paste column","table"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
 	newManagedAction(submenu, "addHLine",tr("add \\hline","table"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("remove \\hline","table"), SLOT(remHLineCB()));
+        newManagedAction(submenu, "insertTableTemplate",tr("insert table template","table"), SLOT(insertTableTemplate()));
 
 	//wizards
 
@@ -1406,6 +1407,104 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->nextPlaceHolder();
 		edit->editor->ensureCursorVisibleSurrounding();
 	}
+}
+
+void Texmaker::insertTableTemplate() {
+    QEditor *m_edit=currentEditor();
+    if(!m_edit)
+        return;
+    QDocumentCursor c=m_edit->cursor();
+    if(!LatexTables::inTableEnv(c))
+        return;
+    // select Template
+    QString f_real;
+    if(!templateSelectorDialog) {
+        templateSelectorDialog=new templateselector(this,tr("Templates"));
+        QAction *act=new QAction(tr("Edit"),this);
+        connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
+        templateSelectorDialog->ui.listWidget->addAction(act);
+        act=new QAction(tr("Remove"),this);
+        connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
+        templateSelectorDialog->ui.listWidget->addAction(act);
+    }
+    QStringList templates=findResourceFiles("templates/","tabletemplate_*.js");
+    int len=templates.size();
+    templates << userTemplatesList;
+    templates.replaceInStrings(QRegExp("(^|^.*/)(tabletemplate_)?"),"");
+    templates.replaceInStrings(QRegExp(".js$"),"");
+    templateSelectorDialog->ui.listWidget->clear();
+    templateSelectorDialog->ui.listWidget->insertItems(0,templates);
+
+    if(templateSelectorDialog->exec()){
+        if(templateSelectorDialog->ui.listWidget->currentRow()<len){
+            f_real="templates/tabletemplate_"+templateSelectorDialog->ui.listWidget->currentItem()->text()+".js";
+            f_real=findResourceFile(f_real);
+        }else {
+            f_real=userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len);
+        }
+        QFile file(f_real);
+        if (!file.open(QIODevice::ReadOnly)) {
+            QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+            return;
+        }
+        QString tableDef=LatexTables::getSimplifiedDef(c);
+        QString tableText=LatexTables::getTableText(c);
+        //remove table
+        c.removeSelectedText();
+        m_edit->setCursor(c);
+        // split table text into line/column list
+        QStringList values;
+        QList<int> starts;
+        tableText.remove("\n");
+        tableText.remove("\\hline");
+        if(tableText.startsWith("\\begin")){
+            LatexParser::resolveCommandOptions(tableText,0,values,&starts);
+            QString env=values.takeFirst();
+            env.remove(0,1);
+            env.remove(env.length()-1,1);
+            if(LatexTables::tabularNames.contains(env)){
+                if(!values.isEmpty()){
+                    int i=starts.at(1);
+                    i+=values.first().length();
+                    tableText.remove(0,i);
+                }
+            }
+            if(LatexTables::tabularNamesWithOneOption.contains(env)){
+                if(values.size()>1){
+                    int i=starts.at(2);
+                    i+=values.at(1).length();
+                    tableText.remove(0,i);
+                }
+            }
+            tableText.remove(QRegExp("\\\\end\\{"+env+"\\}$"));
+        }
+        tableText.replace("\\endhead","\\\\");
+        QStringList lines=tableText.split("\\\\");
+        qDebug()<<lines;
+        QList<QStringList> tableContent;
+        foreach(QString line,lines){
+            line=line.simplified();
+            if(line.isEmpty())
+                continue;
+            QStringList elems=line.split(QRegExp("&"));
+            QList<QString>::iterator i;
+            for(i=elems.begin();i!=elems.end();i++){
+                QString elem=*i;
+                *i=elem.simplified();
+            }
+
+            // handle \& correctly
+            for(int i=elems.size()-1;i>=0;i--){
+                if(elems.at(i).endsWith("\\")){
+                    QString add=elems.at(i)+elems.at(i+1);
+                    elems.replace(i,add);
+                    elems.removeAt(i+1);
+                }
+            }
+            tableContent<<elems;
+        }
+        LatexTables::generateTableFromTemplate(m_edit,f_real,tableDef,tableContent);
+    }
 }
 
 
@@ -4983,7 +5082,7 @@ bool Texmaker::generateMirror(bool setCur){
 	QString line=cursor.line().text();
 	QString command, value;
 	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
-	if(result==LatexParser::Command || result==LatexParser::Environment){
+        if(result==LatexParser::Environment){
 		if ((command=="\\begin" || command=="\\end")&& !value.isEmpty()){
 			//int l=cursor.lineNumber();
 			int c=cursor.columnNumber();

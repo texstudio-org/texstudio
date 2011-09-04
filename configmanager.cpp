@@ -147,7 +147,6 @@ void ManagedProperty::writeToObject(QObject* w) const{
 bool ManagedProperty::readFromObject(const QObject* w){
 	Q_ASSERT(storage);
 	if (!storage) return false;
-
 	const QCheckBox* checkBox = qobject_cast<const QCheckBox*>(w);
 	if (checkBox) {
 		Q_ASSERT(type == PT_BOOL);

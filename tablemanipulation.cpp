@@ -2,6 +2,7 @@
 #include "qdocumentline.h"
 #include "smallUsefulFunctions.h"
 #include "tablemanipulation.h"
+#include "scriptengine.h"
 
 QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular";
 QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx";
@@ -634,10 +635,10 @@ QStringList LatexTables::splitColDef(QString def){
 			curl++;
 		if(ch.isLetter() && !inAt && !inDef && curl==0){
 			if((i+1<def.length()) && def.at(i+1)=='{'){
-				appendDef=true;
-			}else{
-				result << col;
-				col.clear();
+                                appendDef=true;
+                        }else{
+                                result << col;
+                                col.clear();
 			}
 		}
 
@@ -649,4 +650,63 @@ QStringList LatexTables::splitColDef(QString def){
 
 
 	return result;
+}
+
+void LatexTables::executeScript(QString script, QEditor *m_editor){
+    scriptengine eng;
+    eng.setEditor(m_editor);
+    eng.setScript(script);
+    eng.run();
+}
+
+void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table){
+    //read in js template which generates the tabular code
+    QFile file(templateFileName);
+    if(!file.open(QIODevice::ReadOnly| QIODevice::Text))
+        return;
+    QTextStream stream(&file);
+    QString templateText;
+    templateText = stream.readAll();
+    //tabular column definition
+    QString templateDef="var def=\""+def+"\"\n";
+    //tabular content as js array
+    QString tableDef="var tab=[\n";
+    for(int i=0;i<table.size();i++){
+        QStringList lst=table.at(i);
+        tableDef+="[\""+lst.join("\",\"")+"\"]";
+        if(i<table.size()-1)
+            tableDef+=",\n";
+    }
+    tableDef+="]\n";
+    //join js parts
+    templateText.prepend(tableDef);
+    templateText.prepend(templateDef);
+    //generate tabular in editor
+    executeScript(templateText,m_editor);
+}
+
+QString LatexTables::getSimplifiedDef(QDocumentCursor &cur){
+    QString def=getDef(cur);
+    QStringList l_defs=splitColDef(def);
+    def=l_defs.join("");
+    def.remove('|');
+    return def;
+}
+
+QString LatexTables::getTableText(QDocumentCursor &cur){
+        int result=findNextToken(cur,QStringList(),false,true);
+        if(result!=-2) return QString();
+        QString line=cur.line().text();
+        int i=line.indexOf("\\begin");
+        if(i>=0)
+            cur.setColumnNumber(i);
+        result=findNextToken(cur,QStringList(),true,false);
+        if(result!=-2) return QString();
+        line=cur.line().text();
+        QRegExp rx("\\\\end\\{.*\\}");
+        i=rx.indexIn(line);
+        if(i>=0)
+            cur.setColumnNumber(i+rx.cap(0).length(),QDocumentCursor::KeepAnchor);
+        QString res=cur.selectedText();
+        return res;
 }
