@@ -412,6 +412,7 @@ protected slots:
 	void pasteColumnCB();
 	void addHLineCB();
 	void remHLineCB();
+        void insertTableTemplate();
 
 	void latexModelViewMode();
 

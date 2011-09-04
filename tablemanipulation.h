@@ -2,6 +2,7 @@
 #define TABLEMANIPULATION_H
 
 #include "qdocument.h"
+class QEditor;
 
 class LatexTables{
 public:
@@ -12,6 +13,7 @@ public:
     static int findNextToken(QDocumentCursor &cur,QStringList tokens,bool keepAnchor=false,bool backwards=false);
     static int getColumn(QDocumentCursor &cur);
     static QString getDef(QDocumentCursor &cur);
+    static QString getSimplifiedDef(QDocumentCursor &cur);
     static int getNumberOfColumns(QDocumentCursor &cur);
     static int getNumberOfColumns(QStringList values);
     static bool inTableEnv(QDocumentCursor &cur);
@@ -19,6 +21,9 @@ public:
     static int incNumOfColsInMultiColumn(const QString &str,int add);
     static void addHLine(QDocumentCursor &c,const int numberOfLines=-1,const bool remove=false);
     static QStringList splitColDef(QString def);
+    static void executeScript(QString script,QEditor *m_editor);
+    static void generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table);
+    static QString getTableText(QDocumentCursor &cur);
 
     static QStringList tabularNames;
     static QStringList tabularNamesWithOneOption;
