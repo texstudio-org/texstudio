@@ -456,6 +456,7 @@ protected:
 	LatexStyleParser *latexStyleParser;
 
 	int remainingReRunCount;
+	bool lastReRunWasBibTeX;
 	QString rerunCommand;
 	RunCommandFlags rerunFlags;
 	

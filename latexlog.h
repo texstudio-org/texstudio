@@ -26,10 +26,11 @@ public:
 
 	void parseLogDocument(QTextDocument* doc, QString baseFileName, QString overrideFileName);
 
-	bool found(LogType lt);
-	int markID(LogType lt);
-	int logLineNumberToLogEntryNumber(int logLine); //returns the last entry with has a logline number <= logLine, or -1 if none exist
-	bool existsReRunWarning();
+	bool found(LogType lt) const;
+	int markID(LogType lt) const;
+	int logLineNumberToLogEntryNumber(int logLine) const; //returns the last entry with has a logline number <= logLine, or -1 if none exist
+	bool existsReRunWarning() const;
+	QStringList getMissingCitations() const;
 };
 
 #endif
