@@ -109,15 +109,15 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName, Q
 	reset(); //show changes
 }
 
-bool LatexLogModel::found(LogType lt) {
+bool LatexLogModel::found(LogType lt) const {
 	Q_ASSERT_X(lt>0&&lt<4, "found logtype", "unbound array index");
 	return foundType[lt];
 }
-int LatexLogModel::markID(LogType lt) {
+int LatexLogModel::markID(LogType lt) const {
 	Q_ASSERT_X(lt>0&&lt<4, "markID logtype", "unbound array index");
 	return markIDs[lt];
 }
-int LatexLogModel::logLineNumberToLogEntryNumber(int logLine){
+int LatexLogModel::logLineNumberToLogEntryNumber(int logLine) const {
 	int res=-1;
 	for (int i=0; i<log.count();i++)
 		if (log.at(i).logline<=logLine) 
@@ -126,7 +126,7 @@ int LatexLogModel::logLineNumberToLogEntryNumber(int logLine){
 	return res;
 }
 
-bool LatexLogModel::existsReRunWarning(){
+bool LatexLogModel::existsReRunWarning() const{
 	if (!found(LT_WARNING)) return false;
 	static QRegExp rReRun ("(No file.*\\.(aux|toc))|"
 				  "( Rerun )");
@@ -136,5 +136,14 @@ bool LatexLogModel::existsReRunWarning(){
 	}
 	return false;
 }
-
+QStringList LatexLogModel::getMissingCitations() const{
+	QStringList sl;
+	static QRegExp rCitation ("Citation +[`'\"]([^`'\"]+)[`'\"] +.*undefined");
+	foreach (const LatexLogEntry& l, log) {
+		if (l.type != LT_WARNING) continue;
+		if (rCitation.indexIn(l.message) >= 0)
+			sl.append(rCitation.cap(1));
+	}
+	return sl;
+}
 

@@ -3223,12 +3223,15 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 	if (configManager.rerunLatex > 0 && (flags & RCF_VIEW_LOG)) {
 		if (!(flags & RCF_IS_RERUN_CALL)) {
 			remainingReRunCount = configManager.rerunLatex;
+			lastReRunWasBibTeX = false;
 			rerunCommand = commandline;
 			rerunFlags = flags | RCF_IS_RERUN_CALL;
 		} else
 			remainingReRunCount--;
-	} else
+	} else {
 		remainingReRunCount = 0;
+		lastReRunWasBibTeX = false;
+	}
 
 
 	QList<ProcessX*> procs = buildManager.newProcesses(commandline,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
@@ -3611,8 +3614,32 @@ void Texmaker::ViewLog(bool noTabChange) {
 
 void Texmaker::ViewLogOrReRun(){
 	ViewLog();
-	if (NoLatexErrors() && remainingReRunCount > 0 && outputView->getLogModel()->existsReRunWarning())
-		runCommand(rerunCommand, rerunFlags);
+	if (NoLatexErrors() && remainingReRunCount > 0) {
+		if (outputView->getLogModel()->existsReRunWarning() || lastReRunWasBibTeX) {
+			lastReRunWasBibTeX = false;
+			runCommand(rerunCommand, rerunFlags);
+		} else if (configManager.runLaTeXBibTeXLaTeX) {
+			//run bibtex if citation is unknown to bibtex but contained in an included bib file
+			QStringList missingCitations = outputView->getLogModel()->getMissingCitations();
+			bool runBibTeX = false;
+			foreach (const QString & s,missingCitations) {
+				for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
+					if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])) continue;
+					BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
+					for (int i=0; i<bibTex.ids.count();i++)
+						if (bibTex.ids[i] == s) {
+							runBibTeX = true;
+							break;
+						}
+					if (runBibTeX) break;
+				}
+			}
+			if (runBibTeX){
+				lastReRunWasBibTeX = true;
+				runCommand(buildManager.getLatexCommand(BuildManager::CMD_BIBTEX), RunCommandFlags(RCF_VIEW_LOG) | RCF_IS_RERUN_CALL);
+			}
+		}
+	}
 }
 
 ////////////////////////// ERRORS /////////////////////////////
@@ -4237,19 +4264,19 @@ void Texmaker::updateCompleter() {
 
 	if (configManager.parseBibTeX)
 		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
-		if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
-			qDebug("BibTex-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
-			continue; //wtf?s
-		}
-		BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
+			if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
+				qDebug("BibTex-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
+				continue; //wtf?s
+			}
+			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
 
-		//automatic use of cite commands
-		foreach(const QString& citeCommand, LatexParser::citeCommands){
-			QString temp=citeCommand+"{%1}";
-			for (int i=0; i<bibTex.ids.count();i++)
-				words.insert(temp.arg(bibTex.ids[i]));
+			//automatic use of cite commands
+			foreach(const QString& citeCommand, LatexParser::citeCommands){
+				QString temp=citeCommand+"{%1}";
+				for (int i=0; i<bibTex.ids.count();i++)
+					words.insert(temp.arg(bibTex.ids[i]));
+			}
 		}
-	}
 
 	completionBaseCommandsUpdated=false;
 
