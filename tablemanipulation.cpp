@@ -673,6 +673,12 @@ void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFi
     QString tableDef="var tab=[\n";
     for(int i=0;i<table.size();i++){
         QStringList lst=table.at(i);
+        QStringList::iterator it;
+        for(it=lst.begin();it!=lst.end();it++){
+            QString str=*it;
+            str.replace("\"","\\\"");
+            *it=str;
+        }
         tableDef+="[\""+lst.join("\",\"")+"\"]";
         if(i<table.size()-1)
             tableDef+=",\n";

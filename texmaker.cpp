@@ -1480,7 +1480,6 @@ void Texmaker::insertTableTemplate() {
         }
         tableText.replace("\\endhead","\\\\");
         QStringList lines=tableText.split("\\\\");
-        qDebug()<<lines;
         QList<QStringList> tableContent;
         foreach(QString line,lines){
             line=line.simplified();
