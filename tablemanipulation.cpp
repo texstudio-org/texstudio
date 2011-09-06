@@ -676,6 +676,7 @@ void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFi
         QStringList::iterator it;
         for(it=lst.begin();it!=lst.end();it++){
             QString str=*it;
+            str.replace("\\","\\\\");
             str.replace("\"","\\\"");
             *it=str;
         }
