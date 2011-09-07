@@ -273,6 +273,7 @@
 \newtheorem{envname}[numberedlike]{caption}
 \newtheorem{envname}{caption}
 \newtheorem{envname}{caption}[within]
+\newtheorem*{envname}{caption}
 \nocite{keylist}
 \nocorr#*
 \nocorrlist{charlist}#*
