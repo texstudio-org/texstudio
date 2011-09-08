@@ -529,7 +529,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				continue;
 			}
 			//// newtheorem ////
-			if (cmd=="\\newtheorem") {
+                        if (cmd=="\\newtheorem" || cmd=="\\newtheorem*") {
 				completerNeedsUpdate=true;
 				QStringList lst;
 				lst << "\\begin{"+name+"}" << "\\end{"+name+"}";
