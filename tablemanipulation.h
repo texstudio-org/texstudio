@@ -22,7 +22,7 @@ public:
     static void addHLine(QDocumentCursor &c,const int numberOfLines=-1,const bool remove=false);
     static QStringList splitColDef(QString def);
     static void executeScript(QString script,QEditor *m_editor);
-    static void generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table);
+    static void generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table,QString env);
     static QString getTableText(QDocumentCursor &cur);
 
     static QStringList tabularNames;

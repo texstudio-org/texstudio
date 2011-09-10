@@ -145,7 +145,7 @@ private:
 	QStringList struct_level;
 	QStringList labelitem;
 
-	QStringList userTemplatesList;
+        QStringList userTemplatesList;
 
 	int spellcheckErrorFormat;
 	SpellerUtility *mainSpeller;

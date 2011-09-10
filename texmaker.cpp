@@ -691,7 +691,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "pasteColumn",tr("paste column","table"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
 	newManagedAction(submenu, "addHLine",tr("add \\hline","table"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("remove \\hline","table"), SLOT(remHLineCB()));
-        newManagedAction(submenu, "insertTableTemplate",tr("insert table template","table"), SLOT(insertTableTemplate()));
+        newManagedAction(submenu, "insertTableTemplate",tr("remodel table after template","table"), SLOT(insertTableTemplate()));
 
 	//wizards
 
@@ -1429,7 +1429,6 @@ void Texmaker::insertTableTemplate() {
     }
     QStringList templates=findResourceFiles("templates/","tabletemplate_*.js");
     int len=templates.size();
-    templates << userTemplatesList;
     templates.replaceInStrings(QRegExp("(^|^.*/)(tabletemplate_)?"),"");
     templates.replaceInStrings(QRegExp(".js$"),"");
     templateSelectorDialog->ui.listWidget->clear();
@@ -1439,8 +1438,6 @@ void Texmaker::insertTableTemplate() {
         if(templateSelectorDialog->ui.listWidget->currentRow()<len){
             f_real="templates/tabletemplate_"+templateSelectorDialog->ui.listWidget->currentItem()->text()+".js";
             f_real=findResourceFile(f_real);
-        }else {
-            f_real=userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len);
         }
         QFile file(f_real);
         if (!file.open(QIODevice::ReadOnly)) {
@@ -1455,11 +1452,12 @@ void Texmaker::insertTableTemplate() {
         // split table text into line/column list
         QStringList values;
         QList<int> starts;
+        QString env;
         tableText.remove("\n");
         tableText.remove("\\hline");
         if(tableText.startsWith("\\begin")){
             LatexParser::resolveCommandOptions(tableText,0,values,&starts);
-            QString env=values.takeFirst();
+            env=values.takeFirst();
             env.remove(0,1);
             env.remove(env.length()-1,1);
             if(LatexTables::tabularNames.contains(env)){
@@ -1502,7 +1500,7 @@ void Texmaker::insertTableTemplate() {
             }
             tableContent<<elems;
         }
-        LatexTables::generateTableFromTemplate(m_edit,f_real,tableDef,tableContent);
+        LatexTables::generateTableFromTemplate(m_edit,f_real,tableDef,tableContent,env);
     }
 }
 
