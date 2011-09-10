@@ -32,6 +32,7 @@
 
 #include "configmanagerinterface.h"
 
+#include "QCompleter"
 /*!
 	\ingroup widgets
 	@{
@@ -94,6 +95,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cFind = new QComboBox(this);
 	cFind->setEditable(true);
+	cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
+	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cFind->setObjectName(("cFind"));
 	QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
 	sizePolicy4.setHorizontalStretch(2);
@@ -225,6 +228,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cReplace = new QComboBox(this);
 	cReplace->setEditable(true);
+	cReplace->completer()->setCompletionMode(QCompleter::PopupCompletion);
+	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cReplace->setObjectName(("cReplace"));
 	cReplace->setEnabled(true);
 	QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Fixed);
@@ -481,17 +486,13 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 	QString last = history.last();
 	if (last == str) 
 		return;
-        if (incremental && (last.startsWith(str) || str.startsWith(last))){
-		history.last() = str;
-                history.removeAll(str); //avoid dublets
-                history.append(str);
-        }else {
-                history.removeAll(str); //avoid dublets
-                history.append(str);
-        }
-        ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
+	if (incremental && (last.startsWith(str) || str.startsWith(last)))
+		history.removeLast();
+	history.removeAll(str); //avoid dublets
+	history.append(str);
+	ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
 }
-
+	
 void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll, bool countOnly)
 {
 	Q_ASSERT(!(replace && countOnly));
@@ -654,11 +655,11 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
                                 break;*/
 
 			case QEvent::FocusOut :
-                                e->setAccepted(true);
-                                return true;
-                                //cFind->releaseKeyboard();
-				break;
-
+				e->setAccepted(true);
+				return true;
+				//cFind->releaseKeyboard();
+				//break;
+			
 
 			case QEvent::KeyPress :
 
