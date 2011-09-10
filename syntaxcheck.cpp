@@ -116,10 +116,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 	if(containsEnv("tabular",activeEnv)){
 		count=excessCols;
 		int end=line.indexOf("\\\\");
-                int end2=line.indexOf("\\endhead");
-                if(end2>-1 && (end2<end || end<0))
-                    end=end2;
-		int pos=-1;
+                int pos=-1;
 		int wrongPos=-1;
 		int res=-1;
 		int lastEnd=-1;
@@ -166,10 +163,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 				newRanges.append(elem);
 			}
 			lastEnd=end;
-                        end2=line.indexOf("\\endhead",end+2);
 			end=line.indexOf("\\\\",end+2);
-                        if(end2>-1 && (end2<end|| end<0))
-                            end=end2;
 			count=0;
 			pos=lastEnd;
 		}
