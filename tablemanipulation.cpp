@@ -659,7 +659,7 @@ void LatexTables::executeScript(QString script, QEditor *m_editor){
     eng.run();
 }
 
-void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table){
+void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table,QString env){
     //read in js template which generates the tabular code
     QFile file(templateFileName);
     if(!file.open(QIODevice::ReadOnly| QIODevice::Text))
@@ -667,6 +667,8 @@ void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFi
     QTextStream stream(&file);
     QString templateText;
     templateText = stream.readAll();
+    //env
+    QString envDef="var env=\""+env+"\"\n";
     //tabular column definition
     QString templateDef="var def=\""+def+"\"\n";
     //tabular content as js array
@@ -687,6 +689,7 @@ void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFi
     tableDef+="]\n";
     //join js parts
     templateText.prepend(tableDef);
+    templateText.prepend(envDef);
     templateText.prepend(templateDef);
     //generate tabular in editor
     executeScript(templateText,m_editor);
