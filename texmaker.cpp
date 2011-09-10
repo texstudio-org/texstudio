@@ -5253,7 +5253,7 @@ void Texmaker::loadProfile(){
 	if(QFileInfo(fname).isReadable()){
 		SaveSettings();
 		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
-		QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");
+                QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
 		if(profile && config){
 			QStringList keys = profile->allKeys();
 			foreach(QString key,keys){
