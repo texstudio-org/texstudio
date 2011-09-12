@@ -18,10 +18,10 @@
 \begin{array}[pos]{cols}#m
 \begin{center}
 \begin{description}\item
-\begin{displaymath}
+\begin{displaymath}#\math
 \begin{document}
 \begin{enumerate}\item
-\begin{equation}
+\begin{equation}#\math
 \begin{figure}
 \begin{figure}[placement]
 \begin{figure*}
@@ -55,8 +55,8 @@
 \begin{table}[placement]
 \begin{tabular}{cols}
 \begin{tabular}[pos]{cols}
-\begin{tabular*}{width}[pos]{cols}
-\begin{tabular*}{width}{cols}
+\begin{tabular*}{width}[pos]{cols}#\tabular
+\begin{tabular*}{width}{cols}#\tabular
 \begin{thebibliography}{widestlabel}
 \begin{theindex}
 \begin{theorem}
