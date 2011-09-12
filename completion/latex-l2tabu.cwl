@@ -2,8 +2,8 @@
 # commands that shall not be used for reasons documented in l2tabu.pdf
 # dani/2006-02-18
 \begin{appendix}
-\begin{eqnarray}
-\begin{eqnarray*}
+\begin{eqnarray}#\math,array
+\begin{eqnarray*}#\math,array
 \begin{fussypar}
 \begin{sloppypar}
 \end{appendix}

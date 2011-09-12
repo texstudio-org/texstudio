@@ -1232,6 +1232,12 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 							env=valid.mid(1).split(',');
 							valid="e";
 						}
+                                                if(valid.contains("\\")){
+                                                        int i=valid.indexOf("\\");
+                                                        QString zw=valid.mid(i+1);
+                                                        env=zw.split(',');
+                                                        valid=valid.left(i);
+                                                }
 
 					}
 					// parse for spell checkable commands
@@ -1292,6 +1298,17 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 								cmds->possibleCommands[elem] << line.simplified();
 						}
 					}
+                                        if(!valid.contains('e') && !env.isEmpty()){ // set env alias
+                                                if(res>-1){
+                                                        if(rxCom.cap(1)=="\\begin"){
+                                                            QString envName=rxCom.cap(3);
+                                                            if(!envName.isEmpty()){
+                                                                foreach(QString elem,env)
+                                                                    cmds->environmentAliases.insert(rxCom.cap(3),elem);
+                                                            }
+                                                        }
+                                                }
+                                        }
 					// normal parsing for completer
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
