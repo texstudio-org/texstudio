@@ -243,8 +243,14 @@ QSize PDFDockListWidget::sizeHint() const
 	return QSize(200, 300);
 }
 
+PDFOverviewModel::PDFOverviewModel(QObject *parent)
+    :QAbstractListModel(parent) {
+    document=0;
+    cache.clear();
+}
+
 int PDFOverviewModel::rowCount ( const QModelIndex & parent ) const{
-	if (!document) return 0;
+	if (!document||!document->popplerDoc()) return 0;
 	if (parent.isValid()) return 0;
 	if(!document->widget()) return 0;
 	return document->widget()->realNumPages();
