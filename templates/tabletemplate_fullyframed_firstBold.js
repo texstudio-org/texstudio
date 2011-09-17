@@ -26,4 +26,4 @@ for(var i=0;i<tab.length;i++){
 	}
 	println("\\\\ \\hline")
 }
-println("\\end{tabularx}")
+println("\\end{"+env+"}")
