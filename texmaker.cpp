@@ -65,43 +65,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	latexStyleParser=0;
 
 	ReadSettings();
-	// set basic set of environemnt aliases (for math and tab)
-        //LatexParser::environmentAliases.insert("equation","math");
-        //LatexParser::environmentAliases.insert("equation*","math");
-        //LatexParser::environmentAliases.insert("displaymath","math");
-        //LatexParser::environmentAliases.insert("eqnarray","math");
-        //LatexParser::environmentAliases.insert("eqnarray*","math");
-        //LatexParser::environmentAliases.insert("align","math");
-        //LatexParser::environmentAliases.insert("align*","math");
-        //LatexParser::environmentAliases.insert("flalign","math");
-        //LatexParser::environmentAliases.insert("flalign*","math");
-        //LatexParser::environmentAliases.insert("alignat","math");
-        //LatexParser::environmentAliases.insert("alignat*","math");
-        //LatexParser::environmentAliases.insert("gather","math");
-        //LatexParser::environmentAliases.insert("gather*","math");
-        //LatexParser::environmentAliases.insert("multline","math");
-        //LatexParser::environmentAliases.insert("multline*","math");
-        //LatexParser::environmentAliases.insert("longtable","tabular");
-        //LatexParser::environmentAliases.insert("tabularx","tabular");
-        //LatexParser::environmentAliases.insert("tabular*","tabular");
-        //LatexParser::environmentAliases.insert("supertabular","tabular");
-        //LatexParser::environmentAliases.insert("cases","array");
-        //LatexParser::environmentAliases.insert("matrix","array");
-        //LatexParser::environmentAliases.insert("bmatrix","array");
-        //LatexParser::environmentAliases.insert("pmatrix","array");
-        //LatexParser::environmentAliases.insert("vmatrix","array");
-        //LatexParser::environmentAliases.insert("Bmatrix","array");
-        //LatexParser::environmentAliases.insert("Vmatrix","array");
-        //LatexParser::environmentAliases.insert("smallmatrix","array");
-        //LatexParser::environmentAliases.insert("eqnarray","array");
-        //LatexParser::environmentAliases.insert("eqnarray*","array");
-        //LatexParser::environmentAliases.insert("align","array");
-        //LatexParser::environmentAliases.insert("align*","array");
-        //LatexParser::environmentAliases.insert("flalign","array");
-        //LatexParser::environmentAliases.insert("flalign*","array");
-        //LatexParser::environmentAliases.insert("alignat","array");
-        //LatexParser::environmentAliases.insert("alignat*","array");
-        //LatexParser::environmentAliases.insert("split","array");
 
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -136,7 +99,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
 
-	// custom evironments
+        // custom evironments<
 	if(!configManager.customEnvironments.isEmpty()){
 		QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
 
@@ -3811,11 +3774,21 @@ void Texmaker::GeneralOptions() {
 			QDomDocument doc;
 			doc.setContent(&f);
 
-			QMap<QString, QVariant>::const_iterator i;
-			for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+                        {
+                            QMap<QString, QVariant>::const_iterator i;
+                            for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
 				QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
 				addEnvironmentToDom(doc,i.key(),mode);
-			}
+                            }
+                        }
+                        //detected math envs
+                        {
+                            QMap<QString, QString>::const_iterator i;
+                            for (i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
+                                QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
+                                addEnvironmentToDom(doc,i.key(),envMode);
+                            }
+                        }
 			QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
 			m_languages->addLanguage(m_lang);
 
@@ -4285,6 +4258,8 @@ void Texmaker::updateCompleter() {
 		if (!f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
 		else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
 	}
+
+        updateHighlighting();
 
 	mCompleterNeedsUpdate=false;
 }
@@ -5476,11 +5451,6 @@ void Texmaker::packageParserFinished(){
 	latexStyleParser=0;
 }
 
-
-
-
-
-
 QString Texmaker::clipboardText(const QClipboard::Mode& mode) const{
 	return QApplication::clipboard()->text(mode);
 }
@@ -5489,4 +5459,59 @@ void Texmaker::setClipboardText(const QString& text, const QClipboard::Mode& mod
 }
 int Texmaker::getVersion() const{
 	return 0x020200;
+}
+
+void Texmaker::updateHighlighting(){
+
+    QStringList envList;
+    envList<<"math"<<"verbatim";
+    bool updateNecessary=false;
+    QMultiHash<QString, QString>::const_iterator it = documents.ltxCommands.environmentAliases.constBegin();
+    while (it != documents.ltxCommands.environmentAliases.constEnd()) {
+        if(envList.contains(it.value())){
+            if(!detectedEnvironmentsForHighlighting.contains(it.key())){
+                detectedEnvironmentsForHighlighting.insert(it.key(),it.value());
+                updateNecessary=true;
+            }
+        }
+        ++it;
+    }
+    if(!updateNecessary)
+        return;
+
+    QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
+    QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+
+    oldLaTeX = m_lang.d;
+    Q_ASSERT(oldLaTeX);
+
+    QFile f(findResourceFile("qxs/tex.qnfa"));
+    QDomDocument doc;
+    doc.setContent(&f);
+
+    for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+        QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+        addEnvironmentToDom(doc,i.key(),mode);
+    }
+    //detected math envs
+    for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
+        QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
+        addEnvironmentToDom(doc,i.key(),envMode);
+    }
+    QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+    m_languages->addLanguage(m_lang);
+
+    newLaTeX = m_lang.d;
+    Q_ASSERT(oldLaTeX != newLaTeX);
+    for (int i=0; i<EditorView->count();i++) {
+        LatexEditorView* edView=qobject_cast<LatexEditorView*>(EditorView->widget(i));
+        if (edView) {
+            QEditor* ed = edView->editor;
+            //if (customEnvironmentChanged) ed->highlight();
+            if (ed->languageDefinition() == oldLaTeX) {
+                ed->setLanguageDefinition(newLaTeX);
+                ed->highlight();
+            }
+        }
+    }
 }
