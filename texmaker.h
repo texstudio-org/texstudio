@@ -416,6 +416,8 @@ protected slots:
 
 	void latexModelViewMode();
 
+        void updateHighlighting();
+
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
@@ -459,6 +461,8 @@ protected:
 	bool lastReRunWasBibTeX;
 	QString rerunCommand;
 	RunCommandFlags rerunFlags;
+
+        QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	
 	
 //script things	

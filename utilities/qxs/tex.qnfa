@@ -89,8 +89,6 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
-		<start parenthesis="mathN1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{math}</start>
-		<stop parenthesis="mathN1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{math}</stop>
 		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</start>
 		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</stop>
 
@@ -99,47 +97,13 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 	
 	<context id="mathmodeDisplay" format="numbers" transparency="true">
-		<start parenthesis="mathD1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{displaymath}</start>
-		<stop parenthesis="mathD1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{displaymath}</stop>
 		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" >\\\[</start>
 		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" >\\\]</stop>
-		<start parenthesis="mathD3:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation}</start>
-		<stop parenthesis="mathD3:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation}</stop>
-		<start parenthesis="mathD4:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{equation\*}</start>
-		<stop parenthesis="mathD4:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{equation\*}</stop>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
-	<context id="mathmodeEqnArray" format="numbers" transparency="true">
-		<start parenthesis="mathEA1:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{eqnarray}</start>
-		<stop parenthesis="mathEA1:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{eqnarray}</stop>
-		<start parenthesis="mathEA2:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{align}</start>
-		<stop parenthesis="mathEA2:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{align}</stop>
-		<start parenthesis="mathEA3:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{eqnarray\*}</start>
-		<stop parenthesis="mathEA3:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{eqnarray\*}</stop>
-		<start parenthesis="mathEA4:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{align\*}</start>
-		<stop parenthesis="mathEA4:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{align\*}</stop>
-		<start parenthesis="mathEA5:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{flalign}</start>
-		<stop parenthesis="mathEA5:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{flalign}</stop>
-		<start parenthesis="mathEA6:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{flalign\*}</start>
-		<stop parenthesis="mathEA6:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{flalign\*}</stop>
-		<start parenthesis="mathEA7:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{alignat}</start>
-		<stop parenthesis="mathEA7:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{alignat}</stop>
-		<start parenthesis="mathEA8:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{alignat\*}</start>
-		<stop parenthesis="mathEA8:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{alignat\*}</stop>
-		<start parenthesis="mathEA9:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{gather}</start>
-		<stop parenthesis="mathEA9:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{gather}</stop>
-		<start parenthesis="mathEA10:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{gather\*}</start>
-		<stop parenthesis="mathEA10:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{gather\*}</stop>
-		<start parenthesis="mathEA11:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{multline}</start>
-		<stop parenthesis="mathEA11:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{multline}</stop>
-		<start parenthesis="mathEA12:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\begin{multline\*}</start>
-		<stop parenthesis="mathEA12:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword">\\end{multline\*}</stop>
 
-		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-        </context>
-        
 	<!-- ========================= PICTURES ====================== -->
 	<foreach loopVar="$env">
 		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e> <e>asy</e>
