@@ -630,9 +630,9 @@ void ConfigDialog::custEnvAddLine(){
 	ui.twHighlighEnvirons->setRowCount(i+1);
 
 	QStringList lst;
-        /*if(environModes)
+	if(environModes)
 		lst=*environModes;
-        else*/
+	else
 		lst << "verbatim" << "math";
 
 	QTableWidgetItem *item=new QTableWidgetItem("");
