@@ -14,17 +14,37 @@
 
 #include "ui_insertgraphics.h"
 
+class InsertGraphicsConfig;
+
+
 class InsertGraphics : public QDialog {
 	Q_OBJECT
 
 public:
-	InsertGraphics(QWidget *parent = 0, QString name="");
-	Ui::InsertGraphics ui;
+	InsertGraphics(QWidget *parent = 0, InsertGraphicsConfig *conf = 0);
 	Q_INVOKABLE QString fileName() const;
-	QString filter,dir;
+	QString getCode() const;
+
+private:
+	InsertGraphicsConfig getConfig() const;
+	void setConfig(const InsertGraphicsConfig &conf);
+	bool parseCode(const QString &code, InsertGraphicsConfig &conf);
+
+	QString generateLabel(QString fname);
+	Ui::InsertGraphics ui;
+	QString filter;
+	QFileInfo texFile;
+	QString graphicsFile;
+	bool autoLabel;
+
+	static QStringList widthUnits;
+	static QStringList heightUnits;
+
+	InsertGraphicsConfig *defaultConfig;
 
 public slots:
-	void setDir(const QString &di);
+	void setTexFile(const QFileInfo &fi);
+	void setCode(const QString &code);
 	void setFilter(const QString &fil);
 
 signals:
@@ -32,8 +52,12 @@ signals:
 
 private slots:
 	void chooseFile();
-	void floatStateChanged(int state);
-
+	void includeOptionChanged();
+        void labelChanged(const QString &label);
+        void updateLabel(const QString &fname);
+        void posMoveItemUp();
+        void posMoveItemDown();
+	void saveDefault();
 };
 
 #endif

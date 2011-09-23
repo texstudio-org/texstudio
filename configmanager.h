@@ -11,6 +11,7 @@ class ConfigDialog;
 class LatexCompleterConfig;
 class LatexEditorViewConfig;
 class WebPublishDialogConfig;
+class InsertGraphicsConfig;
 class PDFDocumentConfig;
 
 struct ManagedToolBar{
@@ -108,8 +109,8 @@ public:
 	bool lastHardWrapSmartScopeSelection;
 	bool lastHardWrapJoinLines;
 
-        QString insertGraphicsOptionText;
-        QString insertGraphicsFloatOption;
+	//insert graphics dialog
+	InsertGraphicsConfig * const insertGraphicsConfig;
 
 	//bool autoReplaceCommands; // moved to static codesnippet
 

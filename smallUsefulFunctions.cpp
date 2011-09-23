@@ -1,5 +1,6 @@
 #include "smallUsefulFunctions.h"
 #include "latexcompleter_config.h"
+#include "qdocumentline.h"
 
 bool txsConfirm(const QString &message){
 	return QMessageBox::question(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
@@ -638,7 +639,6 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 		return true;
 	}
 	return false;
-	
 }
 
 bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart){
@@ -676,10 +676,38 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 		return true;
 	}
 	return false;
-
 }
 
+bool findEnvironmentLines(const QDocument *doc, const QString &env, int line, int &startLine, int &endLine, int scanRange) {
+	QString name, arg;
 
+	startLine = -1;
+	for (int l=line; l>=0; l--) {
+		if (scanRange>0 && line-l > scanRange) break;
+		if (findTokenWithArg(doc->line(l).text(), "\\end{", name, arg) && name == env) {
+			if (l<line) return false;
+		}
+		if (findTokenWithArg(doc->line(l).text(), "\\begin{", name, arg) && name == env) {
+			startLine = l;
+			break;
+		}
+	}
+	if (startLine == -1) return false;
+
+	endLine = -1;
+	for (int l=line; l<doc->lineCount(); l++) {
+		if (scanRange>0 && l-line > scanRange) break;
+		if (findTokenWithArg(doc->line(l).text(), "\\end{", name, arg) && name == env) {
+			endLine = l;
+			break;
+		}
+		if (findTokenWithArg(doc->line(l).text(), "\\begin{", name, arg) && name == env) {
+			if (l>line) return false; //second begin without end
+		}
+	}
+	if (endLine == -1) return false;
+	return true;
+}
 
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){	
 	const QFontMetrics &fm = parent->fontMetrics();
@@ -857,6 +885,14 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 			start=stop+1;
 		} else break;
 	}
+}
+
+QString LatexParser::removeOptionBrackets(const QString &option) {
+	if (option.isNull() || option.length()<2) return option;
+	if ((option.at(0) == '{' && option.at(option.length()-1) == '}') ||
+	    (option.at(0) == '[' && option.at(option.length()-1) == ']'))
+		return option.mid(1, option.length()-2);
+	return option;
 }
 
 int LatexParser::findContext(QString &line,int &column){
