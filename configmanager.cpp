@@ -6,6 +6,7 @@
 #include "latexcompleter_config.h"
 #include "latexeditorview_config.h"
 #include "webpublishdialog_config.h"
+#include "insertgraphics_config.h"
 #include "PDFDocument_config.h"
 #include "smallUsefulFunctions.h"
 #include "codesnippet.h"
@@ -229,6 +230,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	ltxCommands(0),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
+	insertGraphicsConfig(new InsertGraphicsConfig),
 	menuParent(0), menuParentsBar(0), persistentConfig(0) {
 
 	Q_ASSERT(!globalConfigManager);
@@ -348,9 +350,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
 
-        registerOption("Dialogs/InsertGraphic Options", &insertGraphicsOptionText,"width=\\linewidth");
-        registerOption("Dialogs/InsertGraphic FloatOptions", &insertGraphicsFloatOption,"hbtpc_");
-
 	//build commands
 	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
 	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
@@ -421,6 +420,7 @@ ConfigManager::~ConfigManager(){
 	delete editorConfig;
 	delete completerConfig;
 	delete webPublishDialogConfig;
+	delete insertGraphicsConfig;
 	if (persistentConfig) delete persistentConfig;
 }
 
@@ -532,6 +532,8 @@ QSettings* ConfigManager::readSettings() {
 	    config->remove("Editor/Completion Usage");
 	//web publish dialog
 	webPublishDialogConfig->readSettings(*config);
+	//insert graphics dialog
+	insertGraphicsConfig->readSettings(*config);
 
 	//build commands
 	if (!buildManager) {
@@ -692,6 +694,7 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 
 	//web publish dialog
 	webPublishDialogConfig->saveSettings(*config);
+	insertGraphicsConfig->saveSettings(*config);
 	
 	//---------------------build commands----------------
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");

@@ -2809,87 +2809,67 @@ void Texmaker::QuickArray() {
 }
 
 void Texmaker::QuickGraphics(){
-	if (!currentEditorView())	return;
+	if (!currentEditorView()) return;
+
+	InsertGraphics *graphicsDlg = new InsertGraphics(this, configManager.insertGraphicsConfig);
+
+	QEditor *editor = currentEditor();
+
+	int startLine, endLine, cursorLine, cursorCol;
+	editor->getCursorPosition(cursorLine, cursorCol);
+	QDocument* doc=editor->document();
+
+	QDocumentCursor cur = currentEditor()->cursor();
+	QDocumentCursor origCur = cur;
+	origCur.setAutoUpdated(true);
+	cur.beginEditBlock();
+
+	bool hasCode = false;
+	if (findEnvironmentLines(doc, "figure", cursorLine, startLine, endLine, 20)) {
+		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
+		cur.moveTo(endLine+1, 0, QDocumentCursor::KeepAnchor);
+		hasCode = true;
+	} else if (findEnvironmentLines(doc, "figure*", cursorLine, startLine, endLine, 20)) {
+		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
+		cur.moveTo(endLine+1, 0, QDocumentCursor::KeepAnchor);
+		hasCode = true;
+	} else if (findEnvironmentLines(doc, "center", cursorLine, startLine, endLine, 3)) {
+		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
+		cur.moveTo(endLine+1, 0, QDocumentCursor::KeepAnchor);
+		hasCode = true;
+	} else if (currentEditor()->text(cursorLine).contains("\\includegraphics")) {
+		cur.moveTo(cursorLine, 0, QDocumentCursor::MoveAnchor);
+		cur.moveTo(cursorLine+1, 0, QDocumentCursor::KeepAnchor);
+		hasCode = true;
+	}
+
+	if (hasCode) {
+		editor->setCursor(cur);
+		graphicsDlg->setCode(cur.selectedText());
+	}
 
 	QFileInfo docInfo=currentEditorView()->document->getFileInfo();
+	graphicsDlg->setTexFile(docInfo);
 
-	InsertGraphics *graphicsDlg = new InsertGraphics(this,tr("Insert Graphic"));
-        //TODO: remember last used path
-        graphicsDlg->ui.leScale->setText(configManager.insertGraphicsOptionText);
-        QString placement=configManager.insertGraphicsFloatOption;
-        graphicsDlg->ui.cbFloat->setChecked(!placement.startsWith("!"));
-        graphicsDlg->ui.cbHere->setChecked(placement.contains("h"));
-        graphicsDlg->ui.cbBottom->setChecked(placement.contains("b"));
-        graphicsDlg->ui.cbTop->setChecked(placement.contains("t"));
-        graphicsDlg->ui.cbPage->setChecked(placement.contains("p"));
-        graphicsDlg->ui.cbCentering->setChecked(placement.contains("c"));
-        if(placement.contains("_"))
-            graphicsDlg->ui.cbPosition->setCurrentIndex(1);
-        placement.clear();
-	graphicsDlg->setDir(docInfo.absolutePath());
 	if (graphicsDlg->exec()) {
-		QString insert;
-                if(graphicsDlg->ui.cbHere->isChecked()) placement.append("h");
-                if(graphicsDlg->ui.cbBottom->isChecked()) placement.append("b");
-                if(graphicsDlg->ui.cbTop->isChecked()) placement.append("t");
-                if(graphicsDlg->ui.cbPage->isChecked()) placement.append("p");
-		if(graphicsDlg->ui.cbFloat->isChecked()){
-                    insert.append("\\begin{figure}");
-                    if(!placement.isEmpty()){
-                        insert.append("["+placement+"]");
-                    }
-                    insert.append("\n");
-                }else{
-                    placement.prepend("!");
-                }
-		if(graphicsDlg->ui.cbCentering->isChecked()) insert.append("\\centering\n");
-		if(graphicsDlg->ui.cbPosition->currentIndex()==0){
-			if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
-			if(!graphicsDlg->ui.leLabel->text().isEmpty()) insert.append("\\label{"+graphicsDlg->ui.leLabel->text()+"}\n");
-		}
-		insert.append("\\includegraphics");
-		if(!graphicsDlg->ui.leScale->text().isEmpty()) insert.append("["+graphicsDlg->ui.leScale->text()+"]");
-		QString fname=graphicsDlg->ui.lineEdit->text();
-		QFileInfo info(fname);
-		if(info.isAbsolute()){
+		QString code = graphicsDlg->getCode();
+		int lines = code.count("\n");
 
-			QString path=docInfo.absolutePath();
-			QString filepath=info.absolutePath();
-			if(filepath.startsWith(path)){
-				filepath=filepath.mid(path.length()+1);
-				if(!filepath.isEmpty())
-					filepath="./"+filepath+"/";
-				fname=filepath+info.completeBaseName();
-			}
-		}
-		info.setFile(fname);
-		fname=info.path();
-		if(!fname.isEmpty()) fname+="/"+info.completeBaseName();
-#ifdef Q_OS_WIN
-		//restore native separators if original filename contains native separators
-		if(graphicsDlg->ui.lineEdit->text().contains(QDir::separator())){
-			fname=QDir::toNativeSeparators(fname);
-		}
-#endif
-		insert.append("{"+fname+"}\n");
-		// caption below ?
-		if(graphicsDlg->ui.cbPosition->currentIndex()==1){
-			if(!graphicsDlg->ui.leCaption->text().isEmpty()) insert.append("\\caption{"+graphicsDlg->ui.leCaption->text()+"}\n");
-			if(!graphicsDlg->ui.leLabel->text().isEmpty()) insert.append("\\label{"+graphicsDlg->ui.leLabel->text()+"}\n");
-		}
-		if(graphicsDlg->ui.cbFloat->isChecked()){
-			insert.append("\\end{figure}\n");
-		}
-		int lines=insert.count("\n");
-		InsertTag(insert,0,lines);
-                // store some settings for reuse on next call
-                configManager.insertGraphicsOptionText=graphicsDlg->ui.leScale->text();
-                if(graphicsDlg->ui.cbCentering->isChecked())
-                    placement.append("c");
-                if(graphicsDlg->ui.cbPosition->currentIndex()>0)
-                    placement.append("_");
-                configManager.insertGraphicsFloatOption=placement;
+		QDocumentCursor cur = currentEditor()->cursor();
+		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
+		cur.moveTo(endLine+1, 0, QDocumentCursor::KeepAnchor);
+
+		currentEditor()->cursor().replaceSelectedText(code);
+		endLine = startLine+lines-1;
+		cur.moveTo(endLine+1, 0, QDocumentCursor::MoveAnchor);
+		currentEditor()->setCursor(cur);
+	} else {
+		currentEditor()->setCursor(origCur);
 	}
+
+	cur.endEditBlock();
+
+	delete graphicsDlg;
 }
 
 void Texmaker::QuickTabbing() {
