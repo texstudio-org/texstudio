@@ -384,7 +384,7 @@ private slots:
 signals:
 	void documentClosed();
 	void reloaded();
-	void syncSource(const QString& sourceFile, int line, bool activate); //view -> source
+	void syncSource(const QString& sourceFile, int line, bool activate, const QString& guessedWord); //view -> source
 	void syncView(const QString& pdfFile, const QString& externalViewer, int page); //view -> other view
 	void fileDropped(const QUrl& url);
 
