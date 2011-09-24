@@ -27,7 +27,7 @@ const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'+";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
-QSet<QString> LatexParser::refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref" << "\\eqref"  << "\\nameref" << "\\vref" << "\\autoref");
+QSet<QString> LatexParser::refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref" << "\\eqref"  << "\\nameref" << "\\vref" << "\\autoref" << "\\cref" << "\\Cref");
 QSet<QString> LatexParser::labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
 QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
