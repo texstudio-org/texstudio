@@ -4074,7 +4074,7 @@ void Texmaker::newPdfPreviewer(){
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
-	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool)), SLOT(syncFromViewer(const QString &, int, bool)));
+	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool, QString)), SLOT(syncFromViewer(const QString &, int, bool, QString)));
 	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&)), SLOT(runCommand(const QString&)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
 
@@ -4317,10 +4317,22 @@ bool Texmaker::gotoMark(bool backward, int id) {
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }
 
-void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate){
+void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord){
 	if (!FileAlreadyOpen(fileName, true))
 		if (!load(fileName)) return;
 	gotoLine(line);
+	Q_ASSERT(currentEditor());
+	int column = currentEditor()->cursor().line().text().indexOf(guessedWord);
+	if (column == -1) column = currentEditor()->cursor().line().text().indexOf(guessedWord, Qt::CaseInsensitive);
+	if (column == -1) {//search again and allow additional whitespace
+		QString regex; 
+		foreach (const QString & x , guessedWord.split(" ",QString::SkipEmptyParts))
+			if (regex.isEmpty()) regex = QRegExp::escape(x);
+			else regex+="\\s+"+QRegExp::escape(x);
+		if (column == -1) column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseInsensitive);
+	}
+	if (column > -1) 
+		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(),column+guessedWord.length()/2);
 	if (activate) {
 		raise();
 		show();

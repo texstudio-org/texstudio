@@ -2419,8 +2419,18 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 				}
 				if (!found) continue;
 			}
+			
+			QString word;
+			if (document && pageIndex >= 0 && pageIndex < pdfWidget->realNumPages()) {
+				Poppler::Page* pagecontent = document->page(pageIndex);
+				if (pagecontent) {
+					word = pagecontent->text(QRectF(pos,pos).adjusted(-35,-10,35,10));
+					if (word.contains("\n")) word = word.split("\n")[word.split("\n").size()/2];
+				}
+			}
+
 			syncFromSourceBlock = true;
-			emit syncSource(fullName, synctex_node_line(node)-1, activate); //-1 because tmx is 0 based, but synctex seems to be 1 based
+			emit syncSource(fullName, synctex_node_line(node)-1, activate, word); //-1 because tmx is 0 based, but synctex seems to be 1 based
 			syncFromSourceBlock = false;
 			break; // FIXME: currently we just take the first hit
 		}
