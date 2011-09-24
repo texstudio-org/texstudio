@@ -289,6 +289,7 @@ unix {
         utilities/template.png \
         utilities/thesaurus.png \
         utilities/latexhelp.html \
+        utilities/wizard_figure.png \
 	texstudio_fr.qm \
 	texstudio_de.qm \
 	texstudio_it.qm \
