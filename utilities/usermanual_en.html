@@ -1097,12 +1097,14 @@ Follwing classifications are known to tmx:
   <li>T:valid only in tabbing environment</li>
   <li>n:valid only in text environment (i.e. not math env)</li>
   <li>/env1,env2,...:valid only in environment env1 or env2 etc.</li>
+  <li>\env:environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</li>
 </ul>
 
-Simple example:
-# test   <- comment
-\typein{msg}#* <- unusual command which is only shown in completion "all"
-\sqrt{arg}#m   <- only in math mode valid
-\vector(xslope,yslope){length}#*/picture  <- unusual command which is only in the picture environment valid
+Simple example:<br>
+# test   <- comment<br>
+\typein{msg}#* <- unusual command which is only shown in completion "all"<br>
+\sqrt{arg}#m   <- only in math mode valid<br>
+\vector(xslope,yslope){length}#*/picture  <- unusual command which is only in the picture environment valid<br>
+\begin{align}#\math   <- declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!<br>
 </p>
 </body></html>
