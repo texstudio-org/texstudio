@@ -174,10 +174,13 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 			case 'p': plLabel = "Page"; break;
 			default: continue;
 		}
-		QListWidgetItem *item = ui.listPlacement->findItems(plLabel, Qt::MatchCaseSensitive).first();
-		item->setCheckState(Qt::Checked);
-		ui.listPlacement->takeItem(ui.listPlacement->row(item));
-		ui.listPlacement->insertItem(0, item);
+		QList<QListWidgetItem*> lst=ui.listPlacement->findItems(plLabel, Qt::MatchCaseSensitive);
+		if(!lst.isEmpty()){
+		    QListWidgetItem *item = lst.first();
+		    item->setCheckState(Qt::Checked);
+		    ui.listPlacement->takeItem(ui.listPlacement->row(item));
+		    ui.listPlacement->insertItem(0, item);
+		}
 	}
 
 	ui.cbCentering->setChecked(conf.center);
