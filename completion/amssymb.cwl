@@ -17,6 +17,7 @@
 \blacktriangledown
 \blacktriangleleft
 \blacktriangleright
+\Box
 \boxdot
 \boxminus
 \boxplus

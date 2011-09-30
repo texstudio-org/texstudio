@@ -16,6 +16,7 @@
 \tikzifinpicture{arg1}#*
 \tikzaddtikzonlycommandshortcutlet{arg1}#*
 \tikzaddtikzonlycommandshortcutdef{arg1}#*
+\path#*
 \draw#*
 \pattern#*
 \fill#*

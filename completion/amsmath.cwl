@@ -1,5 +1,6 @@
 # mode: amsmath.sty
 # dani/2006-02-19
+\allowdisplaybreaks
 \AmS
 \AmSfont
 \begin{align}#\math,array
