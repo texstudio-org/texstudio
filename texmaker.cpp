@@ -4331,8 +4331,11 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 			else regex+="\\s+"+QRegExp::escape(x);
 		if (column == -1) column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseInsensitive);
 	}
-	if (column > -1) 
+	if (column > -1) {
 		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(),column+guessedWord.length()/2);
+		currentEditor()->ensureCursorVisibleSurrounding();
+	}
+		
 	if (activate) {
 		raise();
 		show();

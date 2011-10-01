@@ -4699,8 +4699,10 @@ void QEditor::ensureCursorVisible(int surrounding)
 	setFlag(EnsureVisible, false);
 }
 
-void QEditor::ensureCursorVisibleSurrounding(){
+void QEditor::ensureCursorVisibleSurrounding(bool showLine){
 	ensureCursorVisible(m_cursorSurroundingLines);
+	if (showLine && m_cursor.line().isHidden())
+		document()->expandParents(m_cursor.lineNumber());
 }
 
 /*!

@@ -751,10 +751,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 
 		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
 		{
-		//	m_cursor.setLineNumber(ln);
-			if(l.isHidden() && !hasOption(Silent))
-				m_editor->document()->expandParents(ln);
-
 			if (!m_regexp.matchedLength()){
 				//empty (e.g. a* regexp)
 				if (backward) m_cursor.setColumnNumber(column-1);
