@@ -1274,22 +1274,7 @@ int QDocument::indexOf(QDocumentLineHandle* h){
 */
 QDocumentCursor QDocument::cursor(int line, int column, int lineTo, int columnTo) const
 {
-	//Q_ASSERT(line >= 0);
-	//Q_ASSERT(lineTo < lineCount() );
-	if ( lineTo == -1 )
-		return QDocumentCursor(const_cast<QDocument*>(this), line, column);
-	else {
-		QDocumentCursor c(const_cast<QDocument*>(this), line, column);
-		if (lineTo != lineCount()) {
-			c.setLineNumber(lineTo, QDocumentCursor::KeepAnchor);
-			if (columnTo != -1) c.setColumnNumber(columnTo, QDocumentCursor::KeepAnchor);
-			else c.setColumnNumber(this->line(lineTo).length(), QDocumentCursor::KeepAnchor);
-		} else {
-			c.setLineNumber(lineCount()-1, QDocumentCursor::KeepAnchor);
-			c.setColumnNumber(this->line(lineCount()-1).length(), QDocumentCursor::KeepAnchor);
-		}
-		return c;
-	}
+	return QDocumentCursor(const_cast<QDocument*>(this), line, column, lineTo, columnTo);
 }
 
 
@@ -3765,6 +3750,21 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
 	//qDebug("Cursor handle created : 0x%x", this);
 }
 
+QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column, int lineTo, int columnTo)
+:	m_flags(ColumnMemory), m_doc(d),
+	#if QT_VERSION >= 0x040400
+	m_ref(0),
+	#endif
+	m_max(0)
+{
+	#if QT_VERSION < 0x040400
+	m_ref.init(0);
+	#endif
+	
+	select(line, column, lineTo, columnTo);
+}
+
+
 QDocumentCursorHandle::~QDocumentCursorHandle()
 {
 	//qDebug("Cursor handle deleted : 0x%x", this);
@@ -4213,7 +4213,7 @@ void QDocumentCursorHandle::setPosition(int pos, int m)
 	*/
 }
 
-bool QDocumentCursorHandle::movePosition(int count, int op, int m)
+bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCursor::MoveMode& m)
 {
 	if ( !m_doc )
 		return false;
@@ -4793,7 +4793,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, int m)
 	return true;
 }
 
-void QDocumentCursorHandle::moveTo(const QDocumentCursor &c, int m)
+void QDocumentCursorHandle::moveTo(const QDocumentCursor &c, const QDocumentCursor::MoveMode& m)
 {
 	if ( !c.isValid() || !m_doc )
 		return;
@@ -4812,21 +4812,22 @@ void QDocumentCursorHandle::moveTo(const QDocumentCursor &c, int m)
 	refreshColumnMemory();
 }
 
-void QDocumentCursorHandle::moveTo(int line, int column, int m)
+void QDocumentCursorHandle::moveTo(int line, int column, const QDocumentCursor::MoveMode& m)
 {
-    if(!(m&QDocumentCursor::KeepAnchor)){
-	m_begLine = line;
-	m_begOffset = column;
-
-	m_endLine = -1;
-	m_endOffset = 0;
-    }else{
-	m_endLine = line;
-	m_endOffset = column;
-    }
+	if(!(m&QDocumentCursor::KeepAnchor)){
+		m_begLine = line;
+		m_begOffset = column;
+		
+		m_endLine = -1;
+		m_endOffset = 0;
+	}else{
+		m_endLine = line;
+		m_endOffset = column;
+	}
 
 	refreshColumnMemory();
 }
+
 
 void QDocumentCursorHandle::insertText(const QString& s, bool keepAnchor)
 {
@@ -5238,6 +5239,26 @@ void QDocumentCursorHandle::setSelectionBoundary(const QDocumentCursor& c)
 
 	m_begLine = c.lineNumber();
 	m_begOffset = c.columnNumber();
+}
+
+void QDocumentCursorHandle::select(int line, int column, int lineTo, int columnTo){
+	if ( lineTo == -1 || !m_doc )
+		moveTo(line,column,QDocumentCursor::MoveAnchor);
+	else {
+		m_endLine = line;
+		m_endOffset = column;
+		
+		if (lineTo < m_doc->lineCount()) {
+			m_begLine = lineTo;
+			if (columnTo != -1) m_begOffset = columnTo;
+			else m_begOffset = m_doc->line(lineTo).length();
+		} else {
+			m_begLine = m_doc->lineCount()-1;
+			m_begOffset = m_doc->line(m_begLine).length();
+		}
+		
+		refreshColumnMemory();
+	}
 }
 
 bool QDocumentCursorHandle::isWithinSelection(const QDocumentCursor& c) const

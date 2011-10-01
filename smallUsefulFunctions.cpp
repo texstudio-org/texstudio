@@ -978,21 +978,21 @@ int LatexParser::findContext(QString &line,int &column){
 LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value){
 	command=line;
 	int temp=findContext(command,column);
-        QStringList vals;
-        resolveCommandOptions(line,column,vals);
-        value="";
-        if(!vals.isEmpty()){
-            value=vals.takeFirst();
-            if(value.startsWith('[')){
-                if(!vals.isEmpty()){
-                    value=vals.takeFirst();
-                }
-            }
-            if(value.startsWith('{'))
-                value.remove(0,1);
-            if(value.endsWith('}'))
-                value.chop(1);
-        }
+	QStringList vals;
+	resolveCommandOptions(line,column,vals);
+	value="";
+	if(!vals.isEmpty()){
+		value=vals.takeFirst();
+		if(value.startsWith('[')){
+			if(!vals.isEmpty()){
+				value=vals.takeFirst();
+			}
+		}
+		if(value.startsWith('{'))
+			value.remove(0,1);
+		if(value.endsWith('}'))
+			value.chop(1);
+	}
 	switch (temp) {
 	case 0: return Unknown;
 	case 1: return Command;

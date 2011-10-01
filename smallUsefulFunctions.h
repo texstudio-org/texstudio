@@ -155,7 +155,7 @@ public:
 	// remove comment from text, take care of multiple backslashes before comment character ...
 	static QString cutComment(const QString& text);
 
-        static ContextType findContext(const QString &line, int column, QString &command, QString& value);
+	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
 

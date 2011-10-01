@@ -114,7 +114,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		void shift(int offset);
 		void setPosition(int pos, int m);
-		bool movePosition(int offset, int op, int m);
+		bool movePosition(int offset, int op, const QDocumentCursor::MoveMode& m);
 		
 		void insertText(const QString& s, bool keepAnchor = false);
 		
@@ -140,6 +140,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		void select(QDocumentCursor::SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);
+		void select(int line, int column, int lineTo = -1, int columnTo = -1);
 		
 		bool isWithinSelection(const QDocumentCursor& c) const;
 		QDocumentCursor intersect(const QDocumentCursor& c) const;
@@ -159,8 +160,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		void beginEditBlock();
 		void endEditBlock();
 		
-		void moveTo(int line, int column, int m=0);
-		void moveTo(const QDocumentCursor &c, int m=0);
+		void moveTo(int line, int column, const QDocumentCursor::MoveMode& m =0);
+		void moveTo(const QDocumentCursor &c, const QDocumentCursor::MoveMode& m );
 		
 		void copy(const QDocumentCursorHandle *c);
 		
@@ -178,6 +179,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		inline void clearFlag(int f) { m_flags &= ~f; }
 	protected:
 		QDocumentCursorHandle(QDocument *d, int line = 0);
+		QDocumentCursorHandle(QDocument *d, int line, int column, int lineTo = -1, int columnTo = -1);
 		virtual ~QDocumentCursorHandle();
 		
 		QDocumentCursorHandle* clone(bool cloneAutoUpdatedFlag) const;

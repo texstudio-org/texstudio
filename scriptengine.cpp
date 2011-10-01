@@ -32,6 +32,7 @@ QScriptValue qScriptValueFromDocumentCursor(QScriptEngine *engine, QDocumentCurs
 	return engine->newQObject(new QDocumentCursor(cursor), QScriptEngine::ScriptOwnership);
 }
 void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qobject) {
+	Q_ASSERT(value.toQObject());
 	qobject = *qobject_cast<QDocumentCursor*>(value.toQObject());
 }
 
