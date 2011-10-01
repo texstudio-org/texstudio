@@ -2402,7 +2402,6 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 	if (!entry) return;
 	if (!entry->document) return;
 
-	Qt::MouseButtons mb=QApplication::mouseButtons();
 	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
 
 	switch (entry->type){
@@ -5076,34 +5075,17 @@ bool Texmaker::generateMirror(bool setCur){
 	QString line=cursor.line().text();
 	QString command, value;
 	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
-        if(result==LatexParser::Environment){
+	if(result==LatexParser::Environment){
 		if ((command=="\\begin" || command=="\\end")&& !value.isEmpty()){
 			//int l=cursor.lineNumber();
-			int c=cursor.columnNumber();
 			if (currentEditor()->currentPlaceHolder()!=-1 &&
 			    currentEditor()->getPlaceHolder(currentEditor()->currentPlaceHolder()).cursor.isWithinSelection(cursor))
 				currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder()); //remove currentplaceholder to prevent nesting
 			//move cursor to env name
-			//currentEditorView()->editor->document()->beginMacro();
-			if(result==LatexParser::Environment){
-				int pos=c;
-				while(pos>-1 && line[pos]!='{'){
-					pos--;
-				}
-				pos++;
-				cursor.movePosition(c-pos,QDocumentCursor::PreviousCharacter);
-				cursor.movePosition(value.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
-				if(cursor.atLineEnd()||cursor.nextChar()!='}')  // closing brace is missing
-					return false;
-				//cursor.select(QDocumentCursor::WordUnderCursor);
-			}else{
-				cursor.movePosition(1,QDocumentCursor::EndOfWord);
-				cursor.movePosition(1,QDocumentCursor::NextWord);
-				//cursor.movePosition(1,QDocumentCursor::NextWord,QDocumentCursor::KeepAnchor);
-				cursor.movePosition(value.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
-				if(cursor.atLineEnd()||cursor.nextChar()!='}')   // closing brace is missing
-					return false;
-			}
+			int pos = line.lastIndexOf(command, cursor.columnNumber()) + command.length() + 1;
+			cursor.selectColumns(pos, pos+value.length());
+			if (cursor.atLineEnd()||cursor.nextChar()!='}'||cursor.selectedText() != value)  // closing brace is missing or wrong env
+				return false;
 			//currentEditorView()->editor->setCursor(cursor);
 			LatexDocument* doc=currentEditorView()->document;
 

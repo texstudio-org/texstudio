@@ -121,12 +121,11 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool clone
 }
 
 
-QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column)
- : QObject(doc),m_handle(new QDocumentCursorHandle(doc, line))
+
+QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column, int lineTo, int columnTo)
+ : QObject(doc),m_handle(new QDocumentCursorHandle(doc, line, column, lineTo, columnTo))
 {
 	m_handle->ref();
-	
-	m_handle->setColumnNumber(column);
 }
 
 /*
@@ -608,6 +607,7 @@ void QDocumentCursor::moveTo(int line, int column, MoveMode m)
 		m_handle->moveTo(line, column,m);
 }
 
+
 /*!
 	\brief Jump to the position of another cursor
 	\param c target cursor
@@ -919,8 +919,17 @@ void QDocumentCursor::select(SelectionType t)
 void QDocumentCursor::setSelectionBoundary(const QDocumentCursor& c)
 {
 	if ( m_handle )
-		m_handle->setSelectionBoundary(c);
-	
+		m_handle->setSelectionBoundary(c);	
+}
+
+void QDocumentCursor::select(int line, int column, int lineTo, int columnTo){
+	if ( m_handle )
+		m_handle->select(line, column, lineTo, columnTo);
+}
+
+void QDocumentCursor::selectColumns(int column, int columnTo){
+	if ( m_handle )
+		m_handle->select(lineNumber(), column, lineNumber(), columnTo);
 }
 
 /*!

@@ -92,7 +92,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		explicit QDocumentCursor(QDocument *doc);
 		QDocumentCursor(const QDocumentCursor& cursor);
 		QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag);
-		QDocumentCursor(QDocument *doc, int line, int column = 0);
+		QDocumentCursor(QDocument *doc, int line, int column = 0, int lineTo = -1, int columnTo = -1);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
 		QDocumentCursor(QDocumentCursorHandle* handle = 0);
 		QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to);
@@ -199,6 +199,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		Q_INVOKABLE void select(SelectionType t);
 		Q_INVOKABLE void setSelectionBoundary(const QDocumentCursor& c);
+		Q_INVOKABLE void select(int line, int column, int lineTo = -1, int columnTo = -1);
+		Q_INVOKABLE void selectColumns(int column, int columnTo = -1);
 		
 		Q_INVOKABLE bool isWithinSelection(const QDocumentCursor& c) const;
 		Q_INVOKABLE QDocumentCursor intersect(const QDocumentCursor& c) const;
