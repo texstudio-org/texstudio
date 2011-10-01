@@ -436,7 +436,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void emitCursorPositionChanged();
 		void ensureCursorVisible(int surrounding = 0);
-		void ensureCursorVisibleSurrounding();
+		void ensureCursorVisibleSurrounding(bool showLine = true);
 		
 		virtual void setContentModified(bool y);
 
