@@ -1326,6 +1326,8 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 		Q_ASSERT(completeId == menuName + "/" + namePrefix + QString::number(i));
 		newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName,  (baseShortCut && i<10)?(QList<QKeySequence>() << baseShortCut + i): QList<QKeySequence>())->setData(i);
 	}
+	if (watchedMenus.contains(menuName))
+		emit watchedMenuChanged(menuName);
 	return menu;
 }
 
