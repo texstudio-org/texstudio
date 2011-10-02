@@ -311,6 +311,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cFind->installEventFilter(this);
 	cReplace->installEventFilter(this);
+	Q_ASSERT(cFind->completer()->popup());
+	cFind->completer()->popup()->installEventFilter(this);
+	cReplace->completer()->popup()->installEventFilter(this);
+	//cFind->lineEdit()->installEventFilter(this);
+	//cReplace->lineEdit()->installEventFilter(this);
 	
 	//cbReplaceAll->setVisible(false);
 
@@ -644,7 +649,8 @@ void QSearchReplacePanel::resizeEvent(QResizeEvent *e){
 
 bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 {
-
+//	if (e->type() == QEvent::KeyPress)
+//		qDebug() << QDateTime::currentDateTime() << "eventfilter:" << o << (o?o->objectName():"..") << " vs. " << cFind->completer()->popup();
 	if ( o == cFind || o == cReplace )
 	{
 		int kc;
@@ -655,12 +661,12 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				cFind->grabKeyboard();
                                 break;*/
 
-			case QEvent::FocusOut :
+		/*	case QEvent::FocusOut :
 				e->setAccepted(true);
 				return true;
 				//cFind->releaseKeyboard();
 				//break;
-			
+			*/
 
 			case QEvent::KeyPress :
 
@@ -693,6 +699,37 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 
 			default:
 				break;
+		}
+	} else if ( o == cFind->completer()->popup() || o == cReplace->completer()->popup() ) {
+		int kc;
+		switch ( e->type() )
+		{
+		case QEvent::KeyPress :
+
+			kc = static_cast<QKeyEvent*>(e)->key();
+			if ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) )
+			{
+				//on_cFind_returnPressed();
+				if (cReplace->hasFocus()) 
+					on_cReplace_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
+				else
+					on_cFind_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
+				return true;
+			} else if ( kc == Qt::Key_Tab || kc == Qt::Key_Backtab ) {
+				qobject_cast<QWidget*>(o)->hide();
+				if ( cbReplace->isChecked() )
+				{
+					if ( cFind->hasFocus() )
+						cReplace->setFocus();
+					else
+						cFind->setFocus();
+				}
+				return true;
+			} else if ( static_cast<QKeyEvent*>(e)->modifiers() & (Qt::ControlModifier | Qt::AltModifier | Qt::MetaModifier)) {
+				qobject_cast<QWidget*>(o)->hide(); //keep shortcuts working with active popup completer
+			}
+			break;
+		default:;
 		}
 	}
 
