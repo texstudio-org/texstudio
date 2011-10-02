@@ -52,6 +52,17 @@ if [ ! -f $QTDIR/bin/qmake ]; then
 echo "Warning, QT path may be invalid"
 fi
 
+QMAKE=qmake
+if readlink -f /usr/bin/qmake  | grep qt3 ; then 
+echo Warning: qmake looks like qt3 qmake, TeXstudio requires qt4
+if [ -f $QTDIR/bin/qmake-qt4 ]; then 
+echo qmake-qt4 exists, using it instead of qmake
+QMAKE=qmake-qt4
+fi
+fi
+
+
+
 #compile
 #pass parameters to qmake
 TXSCOMPILEOPTIONS=$@
@@ -67,7 +78,7 @@ export QTDIR PATH LD_LIBRARY_PATH DYLD_LIBRARY_PATH
 if [ "$SYSTEM" = 1 ] 
 then
   echo "Starting compilation"
-  qmake -unix PREFIX=$PREFIX $TXSCOMPILEOPTIONS texstudio.pro
+  $QMAKE -unix PREFIX=$PREFIX $TXSCOMPILEOPTIONS texstudio.pro
   make
   echo "Compilation done"
   make install
@@ -80,7 +91,7 @@ fi
 if [ "$SYSTEM" = 2 ] 
 then
   echo "Starting compilation"
-  qmake -macx -spec macx-g++ $TXSCOMPILEOPTIONS texstudio.pro
+  $QMAKE -macx -spec macx-g++ $TXSCOMPILEOPTIONS texstudio.pro
   make
   make install
   echo "Compilation and installation done"
