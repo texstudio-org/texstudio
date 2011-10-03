@@ -214,6 +214,15 @@
 	<format id="replacement" >
 		<background>#FFAAAA</background>
 	</format>
-	
+	<format id="diffDelete" >
+		<strikeout>true</strikeout>
+		<background>#FFAAAA</background>
+	</format>
+	<format id="diffAdd" >
+		<background>#AAFFAA</background>
+	</format>
+	<format id="diffReplace" >
+		<background>#AAFFFF</background>
+	</format>
 	
 </QXF>

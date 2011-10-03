@@ -49,6 +49,7 @@
 #include "qdocumentline_p.h"
 
 #include "qnfadefinition.h"
+#include "diff/diff_match_patch.h"
 
 #include <QMessageBox>
 
@@ -474,6 +475,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
 	newManagedAction(svnSubmenu, "lockpdf",tr("Lock &PDF"), SLOT(fileLockPdf()));
 	newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
+        newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -1476,7 +1478,7 @@ void Texmaker::fileOpen() {
 			currentDir=fi.absolutePath();
 		}
 	}
-	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,fileFilters,  &selectedFileFilter);
+        QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,fileFilters,  &selectedFileFilter);
 	foreach (const QString& fn, files)
 		load(fn);
 }
@@ -5492,3 +5494,106 @@ void Texmaker::updateHighlighting(){
         }
     }
 }
+
+void Texmaker::fileDiff(){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+        return;
+
+    QString currentDir=QDir::homePath();
+    if (!configManager.lastDocument.isEmpty()) {
+            QFileInfo fi(configManager.lastDocument);
+            if (fi.exists() && fi.isReadable()) {
+                    currentDir=fi.absolutePath();
+            }
+    }
+    QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
+    if(files.isEmpty())
+        return;
+    QString text=doc->text();
+    // read file for comparison
+    QFile file(files.first());
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QTextStream in(&file);
+    QString line = in.readLine();
+    QString text2;
+    while (!line.isNull()) {
+        if(!text2.isEmpty())
+            text2.append("\n");
+        text2.append(line);
+        line = in.readLine();
+    }
+
+    diff_match_patch dmp;
+    QList<Diff> diffList= dmp.diff_main(text, text2,true);
+    dmp.diff_cleanupSemantic(diffList);
+    int fid_Delete=QDocument::formatFactory()->id("diffDelete");
+    int fid_Insert=QDocument::formatFactory()->id("diffAdd");
+    int fid_Replace=QDocument::formatFactory()->id("diffReplace");
+    int lineNr=0;
+    int col=0;
+
+    for(int i=0;i<diffList.size();++i){
+        const Diff elem=diffList.at(i);
+        if(elem.operation==EQUAL){
+            lineNr+=elem.text.count("\n");
+            col=elem.text.length();
+            if(elem.text.lastIndexOf("\n")>=0)
+               col-=elem.text.lastIndexOf("\n")+1;
+        }
+        if(elem.operation==DELETE){
+            QStringList splitList=elem.text.split("\n");
+            if(splitList.isEmpty())
+                continue;
+            int diff=splitList.first().length();
+            doc->line(lineNr).addOverlay(QFormatRange(col,diff,fid_Delete));
+            col+=diff;
+            splitList.removeFirst();
+            for(int i=0;i<splitList.size();i++){
+                QString ln=splitList.at(i);
+                doc->line(lineNr+i+1).addOverlay(QFormatRange(0,ln.length(),fid_Delete));
+                col=ln.length();
+            }
+            lineNr+=elem.text.count("\n");
+        }
+        if(elem.operation==INSERT){
+            QStringList splitList=elem.text.split("\n");
+            if(splitList.isEmpty())
+                continue;
+            QDocumentCursor cur(doc);
+            if(lineNr+1>doc->lines()){
+                cur.moveTo(lineNr-1,0);
+                cur.movePosition(1,QDocumentCursor::EndOfLine);
+                cur.insertText("\n");
+            }else{
+                cur.moveTo(lineNr,col);
+            }
+            int diff=splitList.first().length();
+            cur.insertText(splitList.first());
+            int lnNr=cur.lineNumber();
+            if(splitList.size()>1)
+                cur.insertText("\n");
+            doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
+            col+=diff;
+            splitList.removeFirst();
+            for(int i=0;i<splitList.size();i++){
+                QString ln=splitList.at(i);
+                cur.insertText(ln);
+                lnNr=cur.lineNumber();
+                if(i+1<splitList.size())
+                    cur.insertText("\n");
+                doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));
+                col=ln.length();
+            }
+            lineNr+=elem.text.count("\n");
+            //lineNr+=elem.text.count("\n");
+            //col=elem.text.length()-elem.text.lastIndexOf("\n");
+        }
+    }
+
+
+}
+
+

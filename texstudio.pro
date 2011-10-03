@@ -107,7 +107,8 @@ HEADERS += texmaker.h \
     PDFDocument_config.h \
     scriptobject.h \
     directoryreader.h \
-    insertgraphics_config.h
+    insertgraphics_config.h \
+    diff/diff_match_patch.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -183,7 +184,8 @@ SOURCES += main.cpp \
     pdfrendermanager.cpp \
     qcodeedit/lib/qformat.cpp \
     scriptobject.cpp \
-    directoryreader.cpp
+    directoryreader.cpp \
+    diff/diff_match_patch.cpp
 RESOURCES += texmaker.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
