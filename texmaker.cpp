@@ -5548,12 +5548,16 @@ void Texmaker::fileDiff(){
             if(splitList.isEmpty())
                 continue;
             int diff=splitList.first().length();
-            doc->line(lineNr).addOverlay(QFormatRange(col,diff,fid_Delete));
+            int fid=fid_Delete;
+            if(i+1<diffList.size() && diffList[i+1].operation==INSERT && (splitList.size()>1 || diffList[i+1].text.count("\n")>0) ){
+                fid=fid_Replace;
+            }
+            doc->line(lineNr).addOverlay(QFormatRange(col,diff,fid));
             col+=diff;
             splitList.removeFirst();
             for(int i=0;i<splitList.size();i++){
                 QString ln=splitList.at(i);
-                doc->line(lineNr+i+1).addOverlay(QFormatRange(0,ln.length(),fid_Delete));
+                doc->line(lineNr+i+1).addOverlay(QFormatRange(0,ln.length(),fid));
                 col=ln.length();
             }
             lineNr+=elem.text.count("\n");
