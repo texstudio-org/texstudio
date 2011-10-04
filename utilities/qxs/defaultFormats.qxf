@@ -222,7 +222,7 @@
 		<background>#AAFFAA</background>
 	</format>
 	<format id="diffReplace" >
-		<background>#AAFFFF</background>
+		<background>#FFFF50</background>
 	</format>
 	
 </QXF>
