@@ -5561,6 +5561,8 @@ void Texmaker::fileDiff(){
                 col=ln.length();
             }
             lineNr+=elem.text.count("\n");
+            if(fid==fid_Replace)
+                i++;
         }
         if(elem.operation==INSERT){
             QStringList splitList=elem.text.split("\n");
