@@ -2464,60 +2464,60 @@ void Texmaker::NormalCompletion() {
 		c.movePosition(1,QDocumentCursor::PreviousCharacter);
 		i++;
 	}
-
-        QString command,value;
-        LatexParser::ContextType ctx=LatexParser::findContext(word, c.columnNumber(), command, value);
-        switch(ctx){
-        case LatexParser::Command:
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
-            break;
-        case LatexParser::Environment:
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
-            break;
-        case LatexParser::Reference:
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
-            break;
-        case LatexParser::Option:
-            if(LatexParser::graphicsIncludeCommands.contains(command)){
-                QString fn=documents.getCompileFileName();
-                QFileInfo fi(fn);
-                completer->setWorkPath(fi.absolutePath());
-                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
-            }
-            break;
-        default:
-            if (i>1) {
-                QString my_text=currentEditorView()->editor->text();
-                int end=0;
-                int k=0; // number of occurences of search word.
-                word=word.mid(col-i,i);
-                //TODO: Boundary needs to specified more exactly
-                //TODO: type in text needs to be excluded, if not already present
-                QSet<QString> words;
-                while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
-                    end=my_text.indexOf(QRegExp("\\b"),i+1);
-                    if (end>i) {
-                        if (word==my_text.mid(i,end-i)) {
-                            k=k+1;
-                            if (k==2) words << my_text.mid(i,end-i);
-                        } else {
-                            if (!words.contains(my_text.mid(i,end-i)))
-                                words << my_text.mid(i,end-i);
-                        }
-                    } else {
-                        if (word==my_text.mid(i,end-i)) {
-                            k=k+1;
-                            if (k==2) words << my_text.mid(i,end-i);
-                        } else {
-                            if (!words.contains(my_text.mid(i,end-i)))
-                                words << my_text.mid(i,my_text.length()-i);
-                        }
-                    }
-                }
-
-                completer->setAdditionalWords(words, true);
-                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
-            }
+	
+	QString command,value;
+	LatexParser::ContextType ctx=LatexParser::findContext(word, c.columnNumber(), command, value);
+	switch(ctx){
+	case LatexParser::Command:
+		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
+		break;
+	case LatexParser::Environment:
+		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
+		break;
+	case LatexParser::Reference:
+		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
+		break;
+	case LatexParser::Option:
+		if(LatexParser::graphicsIncludeCommands.contains(command)){
+			QString fn=documents.getCompileFileName();
+			QFileInfo fi(fn);
+			completer->setWorkPath(fi.absolutePath());
+			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
+			break;
+		} else ; //fall through
+	default:
+		if (i>1) {
+			QString my_text=currentEditorView()->editor->text();
+			int end=0;
+			int k=0; // number of occurences of search word.
+			word=word.mid(col-i,i);
+			//TODO: Boundary needs to specified more exactly
+			//TODO: type in text needs to be excluded, if not already present
+			QSet<QString> words;
+			while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
+				end=my_text.indexOf(QRegExp("\\b"),i+1);
+				if (end>i) {
+					if (word==my_text.mid(i,end-i)) {
+						k=k+1;
+						if (k==2) words << my_text.mid(i,end-i);
+					} else {
+						if (!words.contains(my_text.mid(i,end-i)))
+							words << my_text.mid(i,end-i);
+					}
+				} else {
+					if (word==my_text.mid(i,end-i)) {
+						k=k+1;
+						if (k==2) words << my_text.mid(i,end-i);
+					} else {
+						if (!words.contains(my_text.mid(i,end-i)))
+							words << my_text.mid(i,my_text.length()-i);
+					}
+				}
+			}
+			
+			completer->setAdditionalWords(words, true);
+			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
+		}
 	}
 }
 void Texmaker::InsertEnvironmentCompletion() {
