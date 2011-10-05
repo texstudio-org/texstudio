@@ -1408,14 +1408,16 @@ void PDFWidget::goLast()
 void PDFWidget::goForward(){
 	if (pageHistoryIndex + 1 < pageHistory.size()) {
 		pageHistoryIndex++;
-		goToPageDirect(pageHistory[pageHistoryIndex], true);
+		REQUIRE(document && getScrollArea());
+		getScrollArea()->goToPage(pageHistory[pageHistoryIndex], true);
 	}
 }
 
 void PDFWidget::goBack(){
 	if (pageHistoryIndex > 0) {
 		pageHistoryIndex--;
-		goToPageDirect(pageHistory[pageHistoryIndex], true);
+		REQUIRE(document && getScrollArea());
+		getScrollArea()->goToPage(pageHistory[pageHistoryIndex], true);
 	}
 }
 
