@@ -188,9 +188,9 @@
 \lbrace#m
 \ldots#m
 \left.#m
-\left(#m
+\left(%|\right)#m
 \left)#m
-\left[#m
+\left[%|\right]#m
 \left]#m
 \left\langle#m
 \left\lbrace#m

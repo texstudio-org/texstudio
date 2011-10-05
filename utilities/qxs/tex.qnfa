@@ -65,6 +65,8 @@ environments in smallUsefulFunctions.cpp)
 		</body>
 	</foreach>
 
+	
+
 	<!-- ========================= COMMAND ====================== -->
 
 	<context id="comment/single" format="commentTodo" stayOnLine="true" >
@@ -85,12 +87,50 @@ environments in smallUsefulFunctions.cpp)
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >\$</start>
 		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" >\$</stop>
 
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
 		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</start>
 		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</stop>
+
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 
@@ -99,6 +139,25 @@ environments in smallUsefulFunctions.cpp)
 	<context id="mathmodeDisplay" format="numbers" transparency="true">
 		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" >\\\[</start>
 		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" >\\\]</stop>
+
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
