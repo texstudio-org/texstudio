@@ -401,6 +401,7 @@ protected slots:
 	bool generateMirror(bool setCur=false);
 	void generateBracketInverterMirror();
 	void selectBracket();
+	void findMissingBracket();
 	void cursorHovered();
 	void loadProfile();
 	void saveProfile();
