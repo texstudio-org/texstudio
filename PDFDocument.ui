@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -73,8 +73,10 @@
      <addaction name="actionSinglePageStep"/>
     </widget>
     <addaction name="actionFirst_Page"/>
+    <addaction name="actionBack"/>
     <addaction name="actionPrevious_Page"/>
     <addaction name="actionNext_Page"/>
+    <addaction name="actionForward"/>
     <addaction name="actionLast_Page"/>
     <addaction name="separator"/>
     <addaction name="actionGo_to_Page"/>
@@ -157,8 +159,10 @@
    <addaction name="actionScroll"/>
    <addaction name="separator"/>
    <addaction name="actionFirst_Page"/>
+   <addaction name="actionBack"/>
    <addaction name="actionPrevious_Page"/>
    <addaction name="actionNext_Page"/>
+   <addaction name="actionForward"/>
    <addaction name="actionLast_Page"/>
    <addaction name="separator"/>
    <addaction name="actionActual_Size"/>
@@ -800,6 +804,22 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="text">
+    <string>Back</string>
+   </property>
+   <property name="toolTip">
+    <string>Previously shown page</string>
+   </property>
+  </action>
+  <action name="actionForward">
+   <property name="text">
+    <string>Forward</string>
+   </property>
+   <property name="toolTip">
+    <string>Next shown page</string>
    </property>
   </action>
  </widget>

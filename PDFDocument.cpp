@@ -1224,6 +1224,15 @@ double PDFWidget::totalScaleFactor() const{
     return dpi / 72 * scaleFactor;
 }
 
+int PDFWidget::currentPageHistoryIndex() const{
+	return pageHistoryIndex;
+}
+	                             
+const QList<int> PDFWidget::currentPageHistory() const{
+	return pageHistory;
+}
+
+
 int PDFWidget::getHighlightPage() const{
 	return highlightPage;
 }
@@ -1275,6 +1284,17 @@ void PDFWidget::reloadPage(bool sync)
 	adjustSize();
 	update();
 	updateStatusBar();
+		
+	if (0 <= pageHistoryIndex && pageHistoryIndex < pageHistory.size() && pageHistory[pageHistoryIndex] == realPageIndex ) ;
+	else if (0 <= pageHistoryIndex-1 && pageHistoryIndex-1 < pageHistory.size() && pageHistory[pageHistoryIndex-1] == realPageIndex ) pageHistoryIndex--;
+	else if (0 <= pageHistoryIndex+1 && pageHistoryIndex+1 < pageHistory.size() && pageHistory[pageHistoryIndex+1] == realPageIndex ) pageHistoryIndex++;
+	else {
+		while (pageHistory.size() > pageHistoryIndex + 1) pageHistory.removeLast();
+		pageHistory.append(realPageIndex);
+		if (pageHistory.size() > 50) pageHistory.removeFirst();
+		pageHistoryIndex = pageHistory.size()-1;
+	}
+	
 	emit changedPage(realPageIndex, sync);
 }
 
@@ -1384,6 +1404,21 @@ void PDFWidget::goLast()
 	if (!document) return;
 	getScrollArea()->goToPage(realNumPages() - 1);
 }
+
+void PDFWidget::goForward(){
+	if (pageHistoryIndex + 1 < pageHistory.size()) {
+		pageHistoryIndex++;
+		goToPageDirect(pageHistory[pageHistoryIndex], true);
+	}
+}
+
+void PDFWidget::goBack(){
+	if (pageHistoryIndex > 0) {
+		pageHistoryIndex--;
+		goToPageDirect(pageHistory[pageHistoryIndex], true);
+	}
+}
+
 
 void PDFWidget::upOrPrev()
 {
@@ -1842,8 +1877,10 @@ void PDFDocument::init()
 	setWindowIcon(QIcon(":/images/previewicon.png"));
 	
 	actionFirst_Page->setIcon(getRealIcon("go-first"));
+	actionBack->setIcon(getRealIcon("undo"));
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
+	actionForward->setIcon(getRealIcon("redo"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
@@ -1954,7 +1991,9 @@ void PDFDocument::init()
 	connect(actionFind_again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
 	connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
+	connect(actionBack, SIGNAL(triggered()), pdfWidget, SLOT(goBack()));
 	connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
+	connect(actionForward, SIGNAL(triggered()), pdfWidget, SLOT(goForward()));
 	connect(actionNext_Page, SIGNAL(triggered()), pdfWidget, SLOT(goNext()));
 	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
 	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
@@ -2599,6 +2638,10 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	actionPrevious_Page->setEnabled(pageIndex > 0);
 	actionNext_Page->setEnabled(pageIndex < pdfWidget->realNumPages() - 1);
 	actionLast_Page->setEnabled(pageIndex < pdfWidget->realNumPages() - 1);
+	
+	actionBack->setEnabled(pdfWidget->currentPageHistoryIndex() > 0);
+	actionForward->setEnabled(pdfWidget->currentPageHistoryIndex() < pdfWidget->currentPageHistory().size() - 1);
+	
 	//#endif
 
 
