@@ -144,9 +144,9 @@ private:
 	QString spell_ignored_words;
 	QStringList struct_level;
 	QStringList labelitem;
-
-        QStringList userTemplatesList;
-
+	
+	QStringList userTemplatesList;
+	
 	int spellcheckErrorFormat;
 	SpellerUtility *mainSpeller;
 
@@ -192,6 +192,7 @@ protected slots:
 	void fileExit();
 	void fileOpenRecent();
 	void fileOpenAllRecent();
+	void fileOpenFirstNonOpen();
 	void fileOpenRecentProject();
 	void MarkCurrentFileAsRecent();
 private slots:
@@ -414,11 +415,14 @@ protected slots:
 	void pasteColumnCB();
 	void addHLineCB();
 	void remHLineCB();
-        void insertTableTemplate();
-
+	void insertTableTemplate();
+	
 	void latexModelViewMode();
-
-        void updateHighlighting();
+	void moveDocumentToFront();
+	void moveDocumentToEnd();
+	void moveDocumentToDest(int dest);
+	
+	void updateHighlighting();
 
 private slots:
 	void importPackage(QString name);

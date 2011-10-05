@@ -11,10 +11,14 @@ TmxTabWidget::TmxTabWidget(QWidget *parent) :
 }
 
 void TmxTabWidget::moveTab(int from,int to){
-	Q_UNUSED(to)
+	int cur = currentIndex();
 	QString text=tabText(from);
 	QWidget *wdg=widget(from);
 	removeTab(from);
-	insertTab(0,wdg,text);
-	setCurrentIndex(0);
+	insertTab(to,wdg,text);
+	if (cur == from) setCurrentIndex(to);
+	else if (from < to && cur >= from && cur < to) 
+		setCurrentIndex(cur-1);
+	else if (to > from && cur >= from && cur < to) 
+		setCurrentIndex(cur+1);
 }

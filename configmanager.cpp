@@ -1261,7 +1261,7 @@ void ConfigManager::activateInternalViewer(bool activated){
 
 void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 	QMenu* recentMenu = getManagedMenu("main/file/openrecent");
-	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+2)) {
+	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+3)) {
 		QList<QAction*> actions=recentMenu->actions(); //recentMenu->clear() doesn't seem to delete the actions (why?)
 		for (int i = 0; i< actions.count(); i++)
 			recentMenu->removeAction(actions[i]); //neccessary or it crashes
@@ -1270,6 +1270,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		recentMenu->addSeparator();
 		for (int i = 0; i < maxRecentFiles; ++i)
 			newOrLostOldManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
+		newOrLostOldManagedAction(recentMenu, "firstFile", tr("Open first non-open file"), SLOT(fileOpenFirstNonOpen()));
 		newOrLostOldManagedAction(recentMenu, "allFiles", tr("&* Open all files"), SLOT(fileOpenAllRecent()));
 	}
 
