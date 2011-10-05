@@ -461,10 +461,10 @@
 \renewenvironment{nam}[args]{begdef}{enddef}
 \renewenvironment{nam}{begdef}{enddef}
 \left#m
-\left(#m
-\left[#m
+\left(%|\right)#m
+\left[%|\right]#m
 \left\lbrace#m
-\left|#m
+\left|%|\right|#m
 \left\|#m
 \left/#m
 \left\backslash#m

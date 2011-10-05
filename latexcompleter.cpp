@@ -568,6 +568,16 @@ CompletionWord CompletionListModel::getLastWord(){
 	return mLastWordInList;
 }
 
+
+QString makeSortWord(const QString& normal) {
+	QString res = normal.toLower();
+	res.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
+	res.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
+	res.replace("[","\\");//(first is a space->) !"# follow directly in the ascii table
+	res.replace("*","#");
+	return res;
+}
+
 void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
 	if(mostUsed<0)
 		mostUsed=LatexCompleter::config->preferedCompletionTab;
@@ -586,6 +596,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		checkFirstChar=LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE && word.length()>1;
 	}
 	int cnt=0;
+	QString sortWord = makeSortWord(word);
 	if(!fetchMore)
 		it=qLowerBound(baselist,CompletionWord(word));
 	while(it!=baselist.constEnd()){
@@ -596,7 +607,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 				cnt++;
 			}
 		}else{
-			if(!it->word.startsWith(word,Qt::CaseInsensitive))
+			if(!it->sortWord.startsWith(sortWord))
 				break; // sorted list
 		}
 		++it;
@@ -827,6 +838,7 @@ void LatexCompleter::adjustWidget(){
 	widget->resize(wd,200);
 }
 
+
 void LatexCompleter::updateAbbreviations(){
 	REQUIRE(config);
 	QList<CompletionWord> wordsAbbrev;
@@ -843,11 +855,7 @@ void LatexCompleter::updateAbbreviations(){
 		CompletionWord cw(s);
 		// <!compatibility>
 		cw.word=config->userMacro[i].abbrev;
-		cw.sortWord=cw.word.toLower();
-		cw.sortWord.replace("{","!");//js: still using dirty hack, however order should be ' '{[* abcde...
-		cw.sortWord.replace("}","!");// needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
-		cw.sortWord.replace("[","\"");//(first is a space->) !"# follow directly in the ascii table
-		cw.sortWord.replace("*","#");
+		cw.sortWord = makeSortWord(cw.word);
 		cw.setName(config->userMacro[i].abbrev+tr(" (Usertag)"));
 		wordsAbbrev << cw;
 	}
