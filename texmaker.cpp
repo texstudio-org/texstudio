@@ -166,7 +166,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setupDockWidgets();
 
 	setupMenus();
-	configManager.updateRecentFiles(true);
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
 
@@ -761,6 +760,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(structureTreeView,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
 	connect(structureTreeView,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 
+	configManager.updateRecentFiles(true);
 
 	configManager.modifyManagedShortcuts();
 }
