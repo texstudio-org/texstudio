@@ -1737,6 +1737,14 @@ void Texmaker::fileOpenAllRecent() {
 		load(s);
 }
 
+void Texmaker::fileOpenFirstNonOpen(){
+	foreach (const QString& f, configManager.recentFilesList)
+		if (!getEditorViewFromFileName(f)){
+			load(f);
+			break;
+		}
+}
+
 void Texmaker::fileOpenRecentProject() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action) load(action->data().toString(),true);
@@ -4363,6 +4371,9 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		}else{
 			menu.addAction(tr("Show only current document in this tree"), this, SLOT(latexModelViewMode()));
 		}
+		menu.addSeparator();
+		menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()));
+		menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()));
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 	if (!entry->parent) return;
@@ -5397,6 +5408,23 @@ void Texmaker::findNextWordRepetion(){
 void Texmaker::latexModelViewMode(){
 	bool mode=documents.model->getSingleDocMode();
 	documents.model->setSingleDocMode(!mode);
+}
+
+void Texmaker::moveDocumentToFront(){
+	moveDocumentToDest(0);
+}
+
+void Texmaker::moveDocumentToEnd(){
+	moveDocumentToDest(EditorView->count()-1);
+}
+
+void Texmaker::moveDocumentToDest(int dest){
+	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
+	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
+	int cur = documents.documents.indexOf(entry->document); 
+	if (cur < 0) return;
+	EditorView->moveTab(cur, dest);
+	EditorTabMoved(cur, dest);
 }
 
 void Texmaker::importPackage(QString name){
