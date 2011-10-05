@@ -596,6 +596,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "selectBracketInner", tr("Select (inner)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("maximal", false);
 	newManagedAction(submenu, "selectBracketOuter", tr("Select (outer)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("maximal", true);
 	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select (inverting)"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
+	submenu->addSeparator();
+	newManagedAction(submenu, "findMissingBracket", tr("Find mismatch"), SLOT(findMissingBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_M));
 
 	submenu=newManagedMenu(menu, "complete",tr("Complete"));
 	newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
@@ -5157,6 +5159,13 @@ void Texmaker::selectBracket(){
 		if (to.hasSelection()) to = to.selectionStart();
 	}
 	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
+}
+
+void Texmaker::findMissingBracket(){
+	if (!currentEditor()) return;
+	REQUIRE(currentEditor()->document() && currentEditor()->document()->languageDefinition());
+	QDocumentCursor c = currentEditor()->languageDefinition()->getNextMismatch(currentEditor()->cursor());
+	if (c.isValid()) currentEditor()->setCursor(c);
 }
 
 void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,LatexDocument *doc){

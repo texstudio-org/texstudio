@@ -89,7 +89,8 @@ public:
 	virtual void match(QDocumentCursor& c);
 
 	virtual QList<QList<QDocumentCursor> > getMatches(const QDocumentCursor& c) const;
-
+	virtual QDocumentCursor getNextMismatch(const QDocumentCursor& scope) const;
+	
 	virtual QString indent(const QDocumentCursor& c);
 	virtual bool unindent (const QDocumentCursor& c, const QString& ktxt);
 

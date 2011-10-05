@@ -525,6 +525,30 @@ QList<QList<QDocumentCursor> > QNFADefinition::getMatches(const QDocumentCursor&
 	return res;
 }
 
+QDocumentCursor QNFADefinition::getNextMismatch(const QDocumentCursor& scope) const{
+	QDocumentCursor rscope = scope;
+	QDocument* doc = rscope.document();
+	Q_ASSERT(doc);
+	if (!doc) return QDocumentCursor();
+	if (!rscope.hasSelection()) rscope.movePosition(1, QDocumentCursor::End, QDocumentCursor::KeepAnchor);
+	int begline, begcol, endline, endcol;
+	rscope.boundaries(begline, begcol, endline, endcol);
+	for (int l = begline; l <= endline; l++) {
+		const QVector<QParenthesis> & parens = doc->line(l).parentheses();
+		foreach (const QParenthesis& p, parens) {
+			if (l == begline && p.offset+p.length < begcol ) continue;
+			if (l == endline && p.offset > endcol ) continue;
+			QList<PMatch> pmatches;
+			QDocumentCursor bracketCursor = doc->cursor(l,p.offset,l,p.offset+p.length);
+			getPMatches(bracketCursor, pmatches);
+			if (pmatches.isEmpty()) return bracketCursor;
+			foreach (const PMatch & match,pmatches)
+				if (match.type == PMatch::Invalid || match.type == PMatch::Mismatch)
+					return bracketCursor;
+		}
+	}
+	return QDocumentCursor();
+}
 
 void QNFADefinition::matchOpen(QDocument *d, PMatch& m) const
 {
