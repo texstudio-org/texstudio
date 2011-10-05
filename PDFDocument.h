@@ -143,6 +143,9 @@ public:
 	int getPageOffset() const;
 	double totalScaleFactor() const;
 
+	int currentPageHistoryIndex() const;
+	const QList<int> currentPageHistory() const;
+	
 	QPoint gridPagePosition(int pageIndex) const;
 	QRect gridPageRect(int pageIndex) const;
 	int gridPageIndex(const QPoint& position) const;
@@ -162,6 +165,8 @@ private slots:
 	void goPrev();
 	void goNext();
 	void goLast();
+	void goForward();
+	void goBack();
 	void doPageDialog();
 	
 	void fitWidth(bool checked = true);
@@ -278,6 +283,9 @@ private:
 	static QCursor	*zoomOutCursor;
 
 	mutable QSizeF maxPageSize; //cache pageSize
+
+	QList<int> pageHistory;
+	int pageHistoryIndex;
 };
 
 class PDFSearchResult {
@@ -357,7 +365,6 @@ public slots:
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
 	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true,const QString gs="");
 	void printPDF();
-	
 private slots:
 	void fileOpen();
 	
@@ -446,7 +453,6 @@ private:
 
 	bool wasMaximized;
 	bool syncFromSourceBlock;  //temporary disable sync from source
-
 };
 
 #endif
