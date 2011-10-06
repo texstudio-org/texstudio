@@ -250,9 +250,9 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	setModal(true);
 	ui.setupUi(this);
 
-	ui.contentsWidget->setIconSize(QSize(96, 96));
-	ui.contentsWidget->setViewMode(QListView::IconMode);
-	ui.contentsWidget->setMovement(QListView::Static);
+	ui.contentsWidget->setIconSize(QSize(36, 36));
+	//ui.contentsWidget->setViewMode(QListView::ListMode);
+	//ui.contentsWidget->setMovement(QListView::Static);
 
 	//pageditor
 	QFontDatabase fdb;
@@ -373,7 +373,7 @@ QListWidgetItem * ConfigDialog::createIcon(const QString &caption, const QIcon &
 	button->setIcon(icon);
 	button->setText(caption);
 	button->setToolTip(caption);
-	button->setTextAlignment(Qt::AlignHCenter);
+	//button->setTextAlignment(Qt::AlignVCenter);
 	button->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 	if (advancedOption) {
 		//button->setHidden(true);

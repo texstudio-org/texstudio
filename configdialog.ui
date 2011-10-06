@@ -74,7 +74,7 @@
      <property name="minimumSize">
       <size>
        <width>170</width>
-       <height>390</height>
+       <height>410</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -91,21 +91,15 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>96</width>
-       <height>96</height>
+       <width>36</width>
+       <height>36</height>
       </size>
-     </property>
-     <property name="spacing">
-      <number>12</number>
      </property>
      <property name="gridSize">
       <size>
-       <width>150</width>
-       <height>130</height>
+       <width>0</width>
+       <height>50</height>
       </size>
-     </property>
-     <property name="viewMode">
-      <enum>QListView::IconMode</enum>
      </property>
      <property name="currentRow">
       <number>-1</number>
@@ -137,7 +131,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_2">
       <layout class="QVBoxLayout">
@@ -151,8 +145,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>797</width>
-            <height>597</height>
+            <width>610</width>
+            <height>474</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -995,12 +989,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         </widget>
        </item>
        <item>
-        <layout class="QGridLayout">
+        <layout class="QGridLayout" name="_2">
          <item row="1" column="1">
           <widget class="QListWidget" name="listCustomToolBar"/>
          </item>
          <item row="1" column="2">
-          <layout class="QVBoxLayout">
+          <layout class="QVBoxLayout" name="_3">
            <item>
             <widget class="QPushButton" name="pbToToolbar">
              <property name="text">
@@ -1016,7 +1010,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </widget>
            </item>
            <item>
-            <spacer>
+            <spacer name="spacer">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1399,7 +1393,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="title">
           <string>Special options</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout">
           <item row="7" column="0">
            <widget class="QLabel" name="label_24">
             <property name="text">
