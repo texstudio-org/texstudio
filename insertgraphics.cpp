@@ -46,7 +46,12 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
         setWindowTitle(tr("Insert Graphics","Wizard"));
 
         // adjust listPlacement size
-        int rows = 4;
+	ui.listPlacement->addItem(new QListWidgetItem(tr("Here"), ui.listPlacement, InsertGraphics::PlaceHere));
+	ui.listPlacement->addItem(new QListWidgetItem(tr("Top"), ui.listPlacement, InsertGraphics::PlaceTop));
+	ui.listPlacement->addItem(new QListWidgetItem(tr("Bottom"), ui.listPlacement, InsertGraphics::PlaceBottom));
+	ui.listPlacement->addItem(new QListWidgetItem(tr("Page"), ui.listPlacement, InsertGraphics::PlacePage));
+
+	int rows = ui.listPlacement->count();
         int rowSize = ui.listPlacement->sizeHintForRow(0);
         int height = rows * rowSize;
         int frameWidth = ui.listPlacement->frameWidth();
@@ -98,11 +103,10 @@ InsertGraphicsConfig InsertGraphics::getConfig() const {
 	for(int i=0; i<ui.listPlacement->count(); i++) {
 		QListWidgetItem *item = ui.listPlacement->item(i);
 		if (item->checkState() == Qt::Checked) {
-			// alternatively subclass QListWidgetItem and define a role for the placement char
-			if (item->text() == "Here") conf.placement.append("h");
-			if (item->text() == "Bottom") conf.placement.append("b");
-			if (item->text() == "Top") conf.placement.append("t");
-			if (item->text() == "Page") conf.placement.append("p");
+			if (item->type() == InsertGraphics::PlaceHere) conf.placement.append("h");
+			if (item->type() == InsertGraphics::PlaceBottom) conf.placement.append("b");
+			if (item->type() == InsertGraphics::PlaceTop) conf.placement.append("t");
+			if (item->type() == InsertGraphics::PlacePage) conf.placement.append("p");
 		}
 	}
 
@@ -169,22 +173,29 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 		}
 	}
 
-	for(int i=0; i<ui.listPlacement->count(); i++) {
-		ui.listPlacement->item(i)->setCheckState(Qt::Unchecked);
+	for(int row=0; row<ui.listPlacement->count(); row++) {
+		ui.listPlacement->item(row)->setCheckState(Qt::Unchecked);
 	}
 	for (int i=conf.placement.length()-1; i>=0; i--) {
 		QString plLabel;
+		PlacementType type;
 		switch (conf.placement.at(i).toAscii()) {
-			case 'h': plLabel = "Here"; break;
-			case 't': plLabel = "Top"; break;
-			case 'b': plLabel = "Bottom"; break;
-			case 'p': plLabel = "Page"; break;
+			case 'h': type = InsertGraphics::PlaceHere; break;
+			case 't': type = InsertGraphics::PlaceTop; break;
+			case 'b': type = InsertGraphics::PlaceBottom; break;
+			case 'p': type = InsertGraphics::PlacePage; break;
 			default: continue;
 		}
-		QListWidgetItem *item = ui.listPlacement->findItems(plLabel, Qt::MatchCaseSensitive).first();
-		item->setCheckState(Qt::Checked);
-		ui.listPlacement->takeItem(ui.listPlacement->row(item));
-		ui.listPlacement->insertItem(0, item);
+
+		for (int row=0; row<ui.listPlacement->count(); row++) {
+			QListWidgetItem *item = ui.listPlacement->item(row);
+			if (item->type()==type) {
+				item->setCheckState(Qt::Checked);
+				ui.listPlacement->takeItem(row);
+				ui.listPlacement->insertItem(0, item);
+				break;
+			}
+		}
 	}
 
 	ui.cbCentering->setChecked(conf.center);

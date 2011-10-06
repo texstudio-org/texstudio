@@ -27,6 +27,8 @@ public:
 	static QStringList imageFormats();
 
 private:
+	enum PlacementType {PlaceHere = QListWidgetItem::UserType, PlaceTop, PlaceBottom, PlacePage};
+
 	InsertGraphicsConfig getConfig() const;
 	void setConfig(const InsertGraphicsConfig &conf);
 	bool parseCode(const QString &code, InsertGraphicsConfig &conf);

@@ -310,38 +310,6 @@
           <property name="sortingEnabled">
            <bool>false</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>Here</string>
-           </property>
-           <property name="checkState">
-            <enum>Checked</enum>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Bottom</string>
-           </property>
-           <property name="checkState">
-            <enum>Checked</enum>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Top</string>
-           </property>
-           <property name="checkState">
-            <enum>Checked</enum>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Page</string>
-           </property>
-           <property name="checkState">
-            <enum>Checked</enum>
-           </property>
-          </item>
          </widget>
         </item>
         <item>
