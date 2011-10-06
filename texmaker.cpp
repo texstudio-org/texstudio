@@ -2828,7 +2828,7 @@ void Texmaker::QuickArray() {
 	}
 }
 
-void Texmaker::QuickGraphics(){
+void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	if (!currentEditorView()) return;
 
 	InsertGraphics *graphicsDlg = new InsertGraphics(this, configManager.insertGraphicsConfig);
@@ -2870,21 +2870,17 @@ void Texmaker::QuickGraphics(){
 
 	QFileInfo docInfo=currentEditorView()->document->getFileInfo();
 	graphicsDlg->setTexFile(docInfo);
+	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 
 	if (graphicsDlg->exec()) {
 		QString code = graphicsDlg->getCode();
-		int lines = code.count("\n");
 
-		QDocumentCursor cur = currentEditor()->cursor();
-		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
-		cur.moveTo(endLine+1, 0, QDocumentCursor::KeepAnchor);
-
-		currentEditor()->cursor().replaceSelectedText(code);
-		endLine = startLine+lines-1;
-		cur.moveTo(endLine+1, 0, QDocumentCursor::MoveAnchor);
-		currentEditor()->setCursor(cur);
+		editor->cursor().replaceSelectedText(code);
+		if (editor->cursor().hasSelection()) {
+			editor->setCursor(cur.selectionEnd());
+		}
 	} else {
-		currentEditor()->setCursor(origCur);
+		editor->setCursor(origCur);
 	}
 
 	cur.endEditBlock();
@@ -4136,13 +4132,31 @@ void Texmaker::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void Texmaker::dropEvent(QDropEvent *event) {
-	QRegExp rx("file://(.*)");
+	QRegExp rx("file:///(.*)");
 	QList<QUrl> uris=event->mimeData()->urls();
 	QString uri;
-	for (int i = 0; i < uris.size(); ++i) {
-		uri=uris.at(i).toString();
-		//QMessageBox::information(0,uri,uri,0);
-		if (rx.exactMatch(uri)) load(rx.cap(1));
+
+	QStringList imageFormats = InsertGraphics::imageFormats();
+	QStringList textFormats = QStringList() << "tex" << "bib" << "sty" << "cls" << "mp" << "txt" << "dat";
+
+	for (int i=0; i<uris.length(); i++) {
+		QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
+		if (imageFormats.contains(fi.suffix())) {
+			QPoint p = currentEditor()->mapToContents(currentEditor()->mapToFrame(currentEditor()->mapFrom(this, event->pos())));
+			QDocumentCursor cur = currentEditor()->cursorForPosition(p);
+			cur.beginEditBlock();
+			if (!cur.atLineStart()) {
+				if (!cur.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::MoveAnchor)) {
+					cur.movePosition(1, QDocumentCursor::EndOfBlock, QDocumentCursor::MoveAnchor);
+					cur.insertLine();
+				}
+			}
+			currentEditor()->setCursor(cur);
+			QuickGraphics(uris.at(0).toLocalFile());
+			cur.endEditBlock();
+		} else if (textFormats.contains(fi.suffix())) {
+			load(fi.filePath());
+		}
 	}
 	event->acceptProposedAction();
 	raise();
