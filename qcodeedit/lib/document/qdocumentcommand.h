@@ -70,6 +70,8 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		
 		void setRedoOffset(int off);
 		void setUndoOffset(int off);	
+		
+		virtual QStringList debugRepresentation() const;
 	protected:
 		bool m_state, m_first;
 		QDocument *m_doc;
@@ -112,6 +114,7 @@ class QCE_EXPORT QDocumentInsertCommand : public QDocumentCommand
 		virtual void redo();
 		virtual void undo();
 		
+		virtual QStringList debugRepresentation() const;
 	private:
 		TextCommandData m_data;
 };
@@ -131,6 +134,7 @@ class QCE_EXPORT QDocumentEraseCommand : public QDocumentCommand
 		virtual void redo();
 		virtual void undo();
 		
+		virtual QStringList debugRepresentation() const;
 	private:
 		TextCommandData m_data;
 };
@@ -150,6 +154,7 @@ public:
 	virtual void addCommand(QDocumentCommand *c);
 	virtual void removeCommand(QDocumentCommand *c);
 
+	virtual QStringList debugRepresentation() const;
 private:
 	bool m_weakLocked;
 	QList<QDocumentCommand*> m_commands;
@@ -165,6 +170,8 @@ public:
 
 	virtual void redo();
 	virtual void undo();
+	
+	virtual QStringList debugRepresentation() const;
 private:
 	void init(QTextCodec* newCodec, QDocument::LineEnding newLineEnding);
 	QTextCodec *newCodec, *oldCodec;

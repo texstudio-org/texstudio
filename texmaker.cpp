@@ -492,7 +492,9 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/edit",tr("&Edit"));
 	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo");
 	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo");
-
+#ifndef QT_NO_DEBUG
+	newManagedAction(menu, "debughistory",tr("Debug undo stack"), SLOT(editDebugUndoStack()));
+#endif
 	menu->addSeparator();
 	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy");
 	newManagedEditorAction(menu,"cut",tr("C&ut"), "cut", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut");
@@ -1788,6 +1790,13 @@ void Texmaker::editRedo() {
 			svnUndo(true);
 		}
 	}
+}
+
+void Texmaker::editDebugUndoStack(){
+	if (!currentEditor()) return;
+	QString history = currentEditor()->document()->debugUndoStack();
+	fileNew();
+	currentEditor()->document()->setText(history);
 }
 
 void Texmaker::editCopy() {

@@ -45,6 +45,10 @@ QDocumentCommand::QDocumentCommand(Command c, QDocument *d, QDocumentCommand *p)
 
 }
 
+QStringList QDocumentCommand::debugRepresentation() const {
+	return QStringList() << "UNKNOWN COMMAND";
+}
+
 /*!
 	\brief dtor
 */
@@ -719,6 +723,19 @@ QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
 	m_state = true;
 }
 
+QStringList QDocumentInsertCommand::debugRepresentation() const{
+	QStringList result;
+	result << QString("INSERT COMMAND: %1:%2").arg(m_data.lineNumber).arg(m_data.startOffset).arg(m_data.lineNumber+m_data.handles.size()).arg(m_data.endOffset);
+	result << QString("     Inserted text: \"%1\"").arg(m_data.begin);
+	if (m_data.handles.size()) {
+		result << ("     Inserted lines:");
+		for (int i=0; i < m_data.handles.size(); i++)
+			result << (QString("     %1").arg((intptr_t)(m_data.handles[i]),8,16) + (m_doc->indexOf(m_data.handles[i]) >= 0?"\""+m_data.handles[i]->text()+"\"":"<ERASED>") );
+	}
+	return result;
+}
+
+
 /*!
 	\brief dtor
 */
@@ -854,6 +871,19 @@ void QDocumentEraseCommand::undo()
 	//m_doc->impl()->emitContentsChanged();
 }
 
+QStringList QDocumentEraseCommand::debugRepresentation() const{
+	QStringList result;
+	result << QString("ERASE COMMAND: %1:%2 to %3:%4").arg(m_data.lineNumber).arg(m_data.startOffset).arg(m_data.lineNumber+m_data.handles.size()).arg(m_data.endOffset);
+	result << QString("     Erased text: \"%1\", \"%2\"").arg(m_data.begin).arg(m_data.end);
+	if (m_data.handles.size()) {
+		result << ("     Erased lines:");
+		for (int i=0; i < m_data.handles.size(); i++)
+			result << (QString("     %1").arg((intptr_t)(m_data.handles[i]),8,16) + (m_doc->indexOf(m_data.handles[i]) >= 0?"\""+m_data.handles[i]->text()+"\"":"<ERASED>") );
+	}
+	return result;
+}
+
+
 ///////////////////////////
 /*
 QDocumentReplaceCommand::QDocumentReplaceCommand(const QDocumentLine& l, int, int, const QString&)
@@ -977,6 +1007,16 @@ void QDocumentCommandBlock::removeCommand(QDocumentCommand *c)
 	m_commands.removeAll(c);
 }
 
+QStringList QDocumentCommandBlock::debugRepresentation() const{
+	QStringList result;
+	result << "BLOCK:";
+	for (int i=0;i<m_commands.size();i++) {
+		QStringList child = m_commands[i]->debugRepresentation();
+		foreach (const QString& s, child)
+			result << "    " + s;
+	}
+	return result;
+}
 
 
 QDocumentChangeMetaDataCommand::QDocumentChangeMetaDataCommand(QDocument *d, QTextCodec* newCodec)
@@ -1003,6 +1043,10 @@ void QDocumentChangeMetaDataCommand::init(QTextCodec* newCodec, QDocument::LineE
 	this->newCodec = newCodec;
 	this->oldLineEnding = m_doc->lineEnding();
 	this->newLineEnding = newLineEnding;
+}
+
+QStringList QDocumentChangeMetaDataCommand::debugRepresentation() const{
+	return QStringList() << QString("META DATA CHANGE: Encoding: %1=>%2; Line-Ending: %3=>%4").arg(oldCodec?oldCodec->name().data():"0").arg(newCodec?newCodec->name().data():"0").arg(oldLineEnding).arg(newLineEnding);
 }
 
 /*! @} */

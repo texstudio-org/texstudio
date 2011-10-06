@@ -328,6 +328,18 @@ void QDocument::clearUndo()
 	}
 }
 
+QString QDocument::debugUndoStack() const{
+	if (!m_impl) return QString();
+	const QUndoStack& commands = m_impl->m_commands;
+	
+	QStringList result;
+	
+	result << QString("Current: %1/%2").arg(commands.index()).arg(commands.count());
+	for (int i=0;i<commands.count();i++)
+		result << dynamic_cast<const QDocumentCommand*>(commands.command(i))->debugRepresentation();
+	
+	return result.join("\n");
+}
 
 /*!
 	\return The content of the document
