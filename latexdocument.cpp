@@ -126,9 +126,26 @@ void LatexDocument::clearStructure() {
 		if (!blockList->parent) delete blockList;
 		int row=parent->documents.indexOf(this);
 
-		removeElement(0,row);
-		delete baseStructure;
-		removeElementFinished();
+                if(parent->model->getSingleDocMode()){
+                    if(parent->currentDocument==this){
+                        removeElement(0,0);
+                        delete baseStructure;
+                        removeElementFinished();
+                    }else{
+                        LatexDocument *doc=parent->currentDocument;
+                        parent->currentDocument=this;
+                        parent->updateStructure();
+                        removeElement(0,0);
+                        delete baseStructure;
+                        removeElementFinished();
+                        parent->currentDocument=doc;
+                        parent->updateStructure();
+                    }
+                }else{
+                    removeElement(0,row);
+                    delete baseStructure;
+                    removeElementFinished();
+                }
 	}
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(StructureContent.isEmpty());
