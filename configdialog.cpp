@@ -314,7 +314,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
 	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"), true);
-	createIcon(tr("Custom Toolbar"),QIcon(":/images/configkeys.png"), true);
+	createIcon(tr("Toolbars"),QIcon(":/images/configkeys.png"), true);
 	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
 	createIcon(tr("Adv. Editor"),QIcon(":/images/configeditor.png"), true);
 	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"), true);
@@ -327,7 +327,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(0);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
-	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
+	// riddles are nice, but not when I want to configure something   connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
 
 	// custom toolbars
 	connect(ui.comboBoxToolbars,SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
