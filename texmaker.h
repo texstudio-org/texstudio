@@ -309,7 +309,7 @@ protected slots:
 	void QuickTabbing();
 	void QuickLetter();
 	void QuickDocument();
-	void QuickGraphics();
+	void QuickGraphics(const QString &graphicsFile = QString());
 
 private slots:	
 	void runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags);

@@ -22,8 +22,9 @@ class InsertGraphics : public QDialog {
 
 public:
 	InsertGraphics(QWidget *parent = 0, InsertGraphicsConfig *conf = 0);
-	Q_INVOKABLE QString fileName() const;
+	Q_INVOKABLE QString graphicsFile() const;
 	QString getCode() const;
+	static QStringList imageFormats();
 
 private:
 	InsertGraphicsConfig getConfig() const;
@@ -34,9 +35,9 @@ private:
 	Ui::InsertGraphics ui;
 	QString filter;
 	QFileInfo texFile;
-	QString graphicsFile;
 	bool autoLabel;
 
+	static QStringList m_imageFormats;
 	static QStringList widthUnits;
 	static QStringList heightUnits;
 
@@ -44,8 +45,8 @@ private:
 
 public slots:
 	void setTexFile(const QFileInfo &fi);
+	void setGraphicsFile(const QString &file);
 	void setCode(const QString &code);
-	void setFilter(const QString &fil);
 
 signals:
 	void fileNameChanged(const QString &);

@@ -18,6 +18,7 @@
 
 QStringList InsertGraphics::widthUnits = QStringList() << "\\textwidth" << "cm" << "mm";
 QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm";
+QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "png" << "pdf";
 
 InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 		: QDialog(parent) {
@@ -62,8 +63,17 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	setConfig(*conf);
 }
 
+QStringList InsertGraphics::imageFormats() {
+	return m_imageFormats;
+}
+
+
 void InsertGraphics::setTexFile(const QFileInfo &fi) {
         texFile = fi;
+}
+
+void InsertGraphics::setGraphicsFile(const QString &file) {
+	ui.leFile->setText(file);
 }
 
 void InsertGraphics::setCode(const QString &code) {
@@ -71,10 +81,7 @@ void InsertGraphics::setCode(const QString &code) {
 	if (parseCode(code, conf)) setConfig(conf);
 }
 
-void InsertGraphics::setFilter(const QString &fil) {
-	filter=fil;
-}
-QString InsertGraphics::fileName() const {
+QString InsertGraphics::graphicsFile() const {
 	return ui.leFile->text();
 }
 
@@ -174,13 +181,10 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 			case 'p': plLabel = "Page"; break;
 			default: continue;
 		}
-		QList<QListWidgetItem*> lst=ui.listPlacement->findItems(plLabel, Qt::MatchCaseSensitive);
-		if(!lst.isEmpty()){
-		    QListWidgetItem *item = lst.first();
-		    item->setCheckState(Qt::Checked);
-		    ui.listPlacement->takeItem(ui.listPlacement->row(item));
-		    ui.listPlacement->insertItem(0, item);
-		}
+		QListWidgetItem *item = ui.listPlacement->findItems(plLabel, Qt::MatchCaseSensitive).first();
+		item->setCheckState(Qt::Checked);
+		ui.listPlacement->takeItem(ui.listPlacement->row(item));
+		ui.listPlacement->insertItem(0, item);
 	}
 
 	ui.cbCentering->setChecked(conf.center);
@@ -348,6 +352,11 @@ QString InsertGraphics::getCode() const {
 
 void InsertGraphics::chooseFile() {
 	QString fn;
+	QStringList exts;
+	foreach (const QString &fmt, m_imageFormats) {
+		exts.append("*."+fmt);
+	};
+	QString filter = "Images (" + exts.join(" ")+")";
 	fn =QFileDialog::getOpenFileName(this,tr("Select a File","Wizard"),texFile.absolutePath(),filter);
 	if (!fn.isEmpty()) {
 		ui.leFile->setText(fn);

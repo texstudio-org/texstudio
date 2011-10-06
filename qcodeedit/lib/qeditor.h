@@ -278,6 +278,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 							point.y() + m_margins.top() );
 		}
 
+		inline QPoint mapToFrame(const QPoint &point) const
+		{
+			return QPoint(	point.x() - m_margins.left(),
+							point.y() - m_margins.top() );
+		}
+
 		virtual bool protectedCursor(const QDocumentCursor& c) const;
 
 		static int defaultFlags();
