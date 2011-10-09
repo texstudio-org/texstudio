@@ -464,7 +464,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
 
 	menu->addSeparator();
-	newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
+	actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
@@ -491,8 +491,8 @@ void Texmaker::setupMenus() {
 	QList<QAction*> latexEditorContextMenu;
 
 	menu=newManagedMenu("main/edit",tr("&Edit"));
-	newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo");
-	newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo");
+	actUndo = newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo");
+	actRedo = newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo");
 #ifndef QT_NO_DEBUG
 	newManagedAction(menu, "debughistory",tr("Debug undo stack"), SLOT(editDebugUndoStack()));
 #endif
@@ -889,6 +889,7 @@ void Texmaker::UpdateCaption() {
 	}
 	setWindowTitle(title);
 	//updateStructure();
+	updateUndoRedoStatus();
 	cursorPositionChanged();
 	if (documents.singleMode()) {
 		outputView->resetMessagesAndLog();
@@ -954,10 +955,13 @@ void Texmaker::NewDocumentStatus() {
 		if (!edView) return;
 	}
 	QEditor * ed = edView->editor;
-	if (ed->isContentModified())
+	if (ed->isContentModified()) {
+		actSave->setEnabled(true);
 		EditorView->setTabIcon(index,getRealIcon("modified"));
-	else
+	} else {
+		actSave->setEnabled(false);
 		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
+	}
 	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
 	if (EditorView->tabText(index) != tabText) {
 		EditorView->setTabText(index, tabText);
@@ -986,6 +990,18 @@ void Texmaker::NewDocumentLineEnding(){
 	}
 }
 
+void Texmaker::updateUndoRedoStatus() {
+	if (currentEditor()) {
+		actSave->setEnabled(!currentEditor()->document()->isClean());
+		actUndo->setEnabled(currentEditor()->document()->canUndo());
+		actRedo->setEnabled(currentEditor()->document()->canRedo());
+	} else {
+		actSave->setEnabled(false);
+		actUndo->setEnabled(false);
+		actRedo->setEnabled(false);
+	}
+}
+
 LatexEditorView *Texmaker::currentEditorView() const {
 	return qobject_cast<LatexEditorView *>(EditorView->currentWidget());
 }
@@ -1001,6 +1017,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 
 	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
+	connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
+	connect(edit->editor, SIGNAL(redoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
 	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(NewDocumentStatus()));
 	connect(edit->editor->document(), SIGNAL(lineEndingChanged(int)), this, SLOT(NewDocumentLineEnding()));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
@@ -1784,7 +1802,7 @@ void Texmaker::editRedo() {
 	QVariant zw=currentEditor()->property("undoRevision");
 	int undoRevision=zw.canConvert<int>()?zw.toInt():0;
 
-	if(currentEditor()->document()->canUndo()){
+	if(currentEditor()->document()->canRedo()){
 		currentEditorView()->editor->redo();
 	} else {
 		if(configManager.svnUndo && (undoRevision>0)){
