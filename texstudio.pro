@@ -186,7 +186,8 @@ SOURCES += main.cpp \
     scriptobject.cpp \
     directoryreader.cpp \
     diff/diff_match_patch.cpp
-RESOURCES += texmaker.qrc
+RESOURCES += texstudio.qrc \
+    symbols.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
     insertgraphics.ui \
