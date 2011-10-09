@@ -37,6 +37,7 @@ private:
 	Ui::InsertGraphics ui;
 	QString filter;
 	QFileInfo texFile;
+	QFileInfo masterTexFile;
 	bool autoLabel;
 
 	static QStringList m_imageFormats;
@@ -47,6 +48,7 @@ private:
 
 public slots:
 	void setTexFile(const QFileInfo &fi);
+	void setMasterTexFile(const QFileInfo &fi);
 	void setGraphicsFile(const QString &file);
 	void setCode(const QString &code);
 

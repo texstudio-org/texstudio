@@ -77,6 +77,10 @@ void InsertGraphics::setTexFile(const QFileInfo &fi) {
         texFile = fi;
 }
 
+void InsertGraphics::setMasterTexFile(const QFileInfo &fi) {
+	masterTexFile = fi;
+}
+
 void InsertGraphics::setGraphicsFile(const QString &file) {
 	ui.leFile->setText(file);
 }
@@ -320,14 +324,24 @@ QString InsertGraphics::getCode() const {
 	QString fname=conf.file;
 	QFileInfo info(fname);
 	if(info.isAbsolute()){
-
-		QString path=texFile.absolutePath();
-		QString filepath=info.absolutePath();
-		if(filepath.startsWith(path)){
-			filepath=filepath.mid(path.length()+1);
-			if(!filepath.isEmpty())
-				filepath="./"+filepath+"/";
-			fname=filepath+info.completeBaseName();
+		QString imgpath=info.absolutePath();
+		QFileInfo texFileInfo = masterTexFile.exists() ? masterTexFile : texFile;
+		QString texpath=texFileInfo.absolutePath();
+		if(imgpath.startsWith(texpath)){
+			// make relative with "./"
+			imgpath=imgpath.mid(texpath.length()+1);
+			if(!imgpath.isEmpty())
+				imgpath="./"+imgpath+"/";
+			fname=imgpath+info.completeBaseName();
+		} else {
+			// try make relative with "../"
+			QDir dir = QDir(texFileInfo.absoluteDir());
+			if (dir.cdUp()) {
+				texpath = dir.absolutePath();
+				if(imgpath.startsWith(texpath)){
+					fname="../"+imgpath.mid(texpath.length()+1)+"/"+info.completeBaseName();
+				}
+			}
 		}
 	}
 	info.setFile(fname);
