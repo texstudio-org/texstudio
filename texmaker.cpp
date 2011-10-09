@@ -39,6 +39,7 @@
 #include "latexeditorview_config.h"
 #include "scriptengine.h"
 
+#define QT_NO_DEBUG
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
 #endif
@@ -954,7 +955,7 @@ void Texmaker::NewDocumentStatus() {
 	}
 	QEditor * ed = edView->editor;
 	if (ed->isContentModified())
-		EditorView->setTabIcon(index,QIcon(":/images/modified.png"));
+		EditorView->setTabIcon(index,getRealIcon("modified"));
 	else
 		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
 	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();

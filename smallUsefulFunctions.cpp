@@ -150,10 +150,10 @@ bool modernStyle;
 bool useSystemTheme;
 QString getRealIconFile(const QString& icon){
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
-	if (modernStyle && QFileInfo(":/images/modern/"+icon).exists())
-		return ":/images/modern/"+icon;
-	else if (!modernStyle && QFileInfo(":/images/classic/"+icon).exists())
-		return ":/images/classic/"+icon;
+	if (modernStyle && QFileInfo(":/modern/images/modern/"+icon).exists())
+		return ":/modern/images/modern/"+icon;
+	else if (!modernStyle && QFileInfo(":/classic/images/classic/"+icon).exists())
+		return ":/classic/images/classic/"+icon;
 	else if (QFileInfo(":/images/"+icon).exists())
 		return ":/images/"+icon;
 	return icon;
