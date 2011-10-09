@@ -131,6 +131,7 @@ private:
 	//toolbars
 	//
 	QAction *ToggleAct, *ToggleRememberAct;
+	QAction *actSave, *actUndo, *actRedo;
 
 	QLabel *stat1, *stat2, *stat3;
 	
@@ -269,6 +270,7 @@ protected slots:
 	void NewDocumentLineEnding();
 	void UpdateCaption();
 	void updateMasterDocumentCaption();
+	void updateUndoRedoStatus();
 	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);
 	void EditorTabMoved(int from,int to);
