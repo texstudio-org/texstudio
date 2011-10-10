@@ -20,10 +20,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -41,6 +37,10 @@
     </message>
     <message>
         <source>About TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -323,7 +323,7 @@
     </message>
     <message>
         <source>Custom Toolbar</source>
-        <translation>Панелі інструментів</translation>
+        <translation type="obsolete">Панелі інструментів</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -485,7 +485,7 @@
     </message>
     <message>
         <source>More</source>
-        <translation>Більше</translation>
+        <translation type="obsolete">Більше</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
@@ -1424,6 +1424,34 @@ Which one of the three wise will always tell the truth?</source>
         <source>Configure TeXstudio</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Quick Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict search scope to an existing selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Wrapping:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative tab font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toolbars</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1883,6 +1911,15 @@ Which one of the three wise will always tell the truth?</source>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open first non-open file</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2071,35 +2108,7 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished">Файл</translation>
     </message>
     <message>
-        <source>Scale: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>width=\linewidth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Caption: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Label: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Above</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Below</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Place in figure environment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2127,10 +2136,6 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished">Відміна</translation>
     </message>
     <message>
-        <source>Center figure</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
         <translation type="unfinished"></translation>
@@ -2138,6 +2143,90 @@ Are you sure you want to undo all changes?</source>
     <message>
         <source>Select a File</source>
         <comment>Wizard</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size / Include Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width/Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0.7</source>
+        <translation type="unfinished">0.7</translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span two columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save current settings as default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Insufficient number of arguments to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support environment </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics optins.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support command </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2410,16 +2499,6 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>shortcut key name, do not translate</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2776,14 +2855,6 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ctrl+PgUp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ctrl+PgDown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2917,6 +2988,22 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>&amp;Quit TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously shown page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next shown page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4125,7 +4212,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>Couldn&apos;t find possible extension word</source>
-        <translation>Не вдалося згенерувати</translation>
+        <translation type="obsolete">Не вдалося згенерувати</translation>
     </message>
     <message>
         <source>Random Text Generator</source>
@@ -4175,6 +4262,30 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <source>Third Order Characters</source>
         <translation>Символи третього рівня</translation>
     </message>
+    <message>
+        <source>ignore case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t create file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished generation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RefDialog</name>
@@ -4189,6 +4300,43 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <source>Cancel</source>
         <translation type="obsolete">Відміна</translation>
+    </message>
+</context>
+<context>
+    <name>ScriptObject</name>
+    <message>
+        <source>The current script has requested to enter privileged write mode and call following function:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all calls it will ever make</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, abort the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current script has requested to enter privileged mode and read the following value:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, grant permanent read access to everything</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5924,10 +6072,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Spelling</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>TeX files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6088,10 +6232,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Insert Graphic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6240,6 +6380,51 @@ Are you sure you want to continue?</source>
     <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pdf files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to next difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to previous difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug undo stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remodel table after template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set High&amp;lighting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;front</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6749,6 +6934,10 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
         <source>Tag</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>run script</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -7129,10 +7318,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>scriptengine</name>
-    <message>
-        <source>Script-Message</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>File Chooser</source>
         <translation type="unfinished"></translation>

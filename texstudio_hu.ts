@@ -351,7 +351,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>More</source>
-        <translation>Tovább</translation>
+        <translation type="obsolete">Tovább</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
@@ -699,7 +699,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Custom Toolbar</source>
-        <translation>Egyéni eszköztár</translation>
+        <translation type="obsolete">Egyéni eszköztár</translation>
     </message>
     <message>
         <source>Custom Highlighting</source>
@@ -1084,6 +1084,26 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>Restrict search scope to an existing selection</source>
         <translation>Keresési tartomány megszorítása egy létező kiválasztásra</translation>
+    </message>
+    <message>
+        <source>Quick Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Wrapping:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative tab font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toolbars</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1546,6 +1566,10 @@ Do you want to remove them?</source>
         <translation>Engedélyezte az automatikus cserét, bár előfordulnak felhasználói elemek (?&lt;=\s|^) vagy (?&lt;=\S), melyek ilyenkor megváltozhatnak.
 Szeretné azokat eltávolítani?</translation>
     </message>
+    <message>
+        <source>Open first non-open file</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1731,27 +1755,27 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Scale: </source>
-        <translation>Méret:</translation>
+        <translation type="obsolete">Méret:</translation>
     </message>
     <message>
         <source>width=\linewidth</source>
-        <translation>szélesség=\linewidth</translation>
+        <translation type="obsolete">szélesség=\linewidth</translation>
     </message>
     <message>
         <source>Caption: </source>
-        <translation>Képaláírás:</translation>
+        <translation type="obsolete">Képaláírás:</translation>
     </message>
     <message>
         <source>Label: </source>
-        <translation>Címke:</translation>
+        <translation type="obsolete">Címke:</translation>
     </message>
     <message>
         <source>Above</source>
-        <translation>Felette</translation>
+        <translation type="obsolete">Felette</translation>
     </message>
     <message>
         <source>Below</source>
-        <translation>Alatta</translation>
+        <translation type="obsolete">Alatta</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
@@ -1759,7 +1783,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Placement</source>
-        <translation>Elhelyezkedés</translation>
+        <translation type="obsolete">Elhelyezkedés</translation>
     </message>
     <message>
         <source>Here</source>
@@ -1787,7 +1811,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Center figure</source>
-        <translation>Kép középrehelyezése</translation>
+        <translation type="obsolete">Kép középrehelyezése</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
@@ -1798,6 +1822,90 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Fájl kiválasztása</translation>
+    </message>
+    <message>
+        <source>Size / Include Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width/Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0.7</source>
+        <translation type="unfinished">0.7</translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span two columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save current settings as default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation type="unfinished">Kép beszúrása</translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Insufficient number of arguments to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support environment </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics optins.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support command </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2054,12 +2162,12 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation>Home</translation>
+        <translation type="obsolete">Home</translation>
     </message>
     <message>
         <source>End</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation>End</translation>
+        <translation type="obsolete">End</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2388,11 +2496,11 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Ctrl+PgUp</source>
-        <translation>Ctrl+PgUp</translation>
+        <translation type="obsolete">Ctrl+PgUp</translation>
     </message>
     <message>
         <source>Ctrl+PgDown</source>
-        <translation>Ctrl+PgDown</translation>
+        <translation type="obsolete">Ctrl+PgDown</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -2505,6 +2613,22 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Kilépés aTeXstudio-ból</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously shown page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next shown page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4838,7 +4962,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Spelling</source>
-        <translation>Helyesírás</translation>
+        <translation type="obsolete">Helyesírás</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
@@ -5103,7 +5227,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation>Kép beszúrása</translation>
+        <translation type="obsolete">Kép beszúrása</translation>
     </message>
     <message>
         <source>&amp;Comment</source>
@@ -5261,6 +5385,47 @@ However, you are using a version of TeXstudio that was compiled without the inte
     <message>
         <source>Set High&amp;lighting...</source>
         <translation>K&amp;iemelések beállítása...</translation>
+    </message>
+    <message>
+        <source>Pdf files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to next difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to previous difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug undo stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remodel table after template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;front</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Files (*.tex);;All Files (*)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
