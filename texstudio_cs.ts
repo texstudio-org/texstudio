@@ -351,7 +351,7 @@
     </message>
     <message>
         <source>Custom Toolbar</source>
-        <translation>Uživatelsky stanovený nástrojový panel</translation>
+        <translation type="obsolete">Uživatelsky stanovený nástrojový panel</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -521,7 +521,7 @@
     </message>
     <message>
         <source>More</source>
-        <translation>Více</translation>
+        <translation type="obsolete">Více</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
@@ -1446,6 +1446,34 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
         <source>Configure TeXstudio</source>
         <translation>Nastavit TeXstudio</translation>
     </message>
+    <message>
+        <source>Quick Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict search scope to an existing selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Wrapping:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative tab font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toolbars</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1921,6 +1949,15 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Pro úplné využití vnitřního prohlížeče PDF je potřeba, aby byl zapnut synctex. Má to teď TeXstudio udělat?</translation>
     </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open first non-open file</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2117,27 +2154,27 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Scale: </source>
-        <translation>Změna velikosti: </translation>
+        <translation type="obsolete">Změna velikosti: </translation>
     </message>
     <message>
         <source>width=\linewidth</source>
-        <translation>šířka=\linewidth</translation>
+        <translation type="obsolete">šířka=\linewidth</translation>
     </message>
     <message>
         <source>Caption: </source>
-        <translation>Popisek: </translation>
+        <translation type="obsolete">Popisek: </translation>
     </message>
     <message>
         <source>Label: </source>
-        <translation>Štítek: </translation>
+        <translation type="obsolete">Štítek: </translation>
     </message>
     <message>
         <source>Above</source>
-        <translation>Nad</translation>
+        <translation type="obsolete">Nad</translation>
     </message>
     <message>
         <source>Below</source>
-        <translation>Pod</translation>
+        <translation type="obsolete">Pod</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
@@ -2145,7 +2182,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Placement</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>Here</source>
@@ -2173,7 +2210,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Center figure</source>
-        <translation>Vystředit obrazec</translation>
+        <translation type="obsolete">Vystředit obrazec</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
@@ -2184,6 +2221,90 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Vybrat soubor</translation>
+    </message>
+    <message>
+        <source>Size / Include Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width/Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0.7</source>
+        <translation type="unfinished">0.7</translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span two columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save current settings as default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation type="unfinished">Vložit obrázek</translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Insufficient number of arguments to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support environment </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics optins.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support command </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2473,16 +2594,6 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>About TexMakerX...</source>
         <translation type="obsolete">O programu TexMakerX...</translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2854,14 +2965,6 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
         <translation>Ukazovátko následuje posouvání obrazu</translation>
     </message>
     <message>
-        <source>Ctrl+PgUp</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Ctrl+PgDown</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&amp;Edit</source>
         <translation>&amp;Upravit</translation>
     </message>
@@ -2996,6 +3099,22 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Ukončit TeXstudio</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously shown page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next shown page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4217,7 +4336,7 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     </message>
     <message>
         <source>Couldn&apos;t find possible extension word</source>
-        <translation>Nepodařilo se najít žádné přijatelné rozšiřující slovo</translation>
+        <translation type="obsolete">Nepodařilo se najít žádné přijatelné rozšiřující slovo</translation>
     </message>
     <message>
         <source>Random Text Generator</source>
@@ -4267,6 +4386,30 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
         <source>Third Order Characters</source>
         <translation>Znaky třetího řádu</translation>
     </message>
+    <message>
+        <source>ignore case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t create file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished generation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RefDialog</name>
@@ -4281,6 +4424,43 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     <message>
         <source>Cancel</source>
         <translation type="obsolete">Abbrechen</translation>
+    </message>
+</context>
+<context>
+    <name>ScriptObject</name>
+    <message>
+        <source>The current script has requested to enter privileged write mode and call following function:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all calls it will ever make</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, abort the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current script has requested to enter privileged mode and read the following value:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, grant permanent read access to everything</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5613,7 +5793,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Spelling</source>
-        <translation>Pravopis</translation>
+        <translation type="obsolete">Pravopis</translation>
     </message>
     <message>
         <source>LaTeX</source>
@@ -6112,7 +6292,7 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation>Vložit obrázek</translation>
+        <translation type="obsolete">Vložit obrázek</translation>
     </message>
     <message>
         <source>&amp;Comment</source>
@@ -6275,6 +6455,51 @@ Jste si jistý, že chcete pokračovat?</translation>
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Zavolal jste příkaz k otevření vnitřního prohlížeče PDF.
 Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřního prohlížeče PDF.</translation>
+    </message>
+    <message>
+        <source>Pdf files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to next difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to previous difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug undo stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remodel table after template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set High&amp;lighting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;front</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Files (*.tex);;All Files (*)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6689,6 +6914,10 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
         <source>Tag</source>
         <translation>Značka</translation>
     </message>
+    <message>
+        <source>run script</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -7081,7 +7310,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Script-Message</source>
-        <translation>Zpráva skriptu</translation>
+        <translation type="obsolete">Zpráva skriptu</translation>
     </message>
     <message>
         <source>File Chooser</source>

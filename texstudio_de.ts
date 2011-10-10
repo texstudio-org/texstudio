@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Projektseite: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Projektseite: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -78,6 +78,10 @@
     <message>
         <source>About TeXstudio</source>
         <translation>Über TeXstudio</translation>
+    </message>
+    <message>
+        <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation>Projekt Homepage : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -367,7 +371,7 @@
     </message>
     <message>
         <source>Custom Toolbar</source>
-        <translation>Benutzer Toolbar</translation>
+        <translation type="obsolete">Benutzer Toolbar</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -537,7 +541,7 @@
     </message>
     <message>
         <source>More</source>
-        <translation>Sonstiges</translation>
+        <translation type="obsolete">Sonstiges</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
@@ -1416,7 +1420,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Replace double quotes:</source>
-        <translation>Ersezte Anführungszeichen:</translation>
+        <translation>Ersetze Anführungszeichen:</translation>
     </message>
     <message>
         <source>no replacement</source>
@@ -1481,6 +1485,34 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>Configure TeXstudio</source>
         <translation>TeXstudio konfigurieren</translation>
+    </message>
+    <message>
+        <source>Quick Build Options</source>
+        <translation>Optionen für schnelles Erzeugen</translation>
+    </message>
+    <message>
+        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
+        <translation>Umgekehrte französische Anführungszeichen: &quot;&gt; &quot;&lt;</translation>
+    </message>
+    <message>
+        <source>Restrict search scope to an existing selection</source>
+        <translation>Beschränke Suchbereich auf eine bestehende Markierung</translation>
+    </message>
+    <message>
+        <source>Line Wrapping:</source>
+        <translation>Zeilenumbruch:</translation>
+    </message>
+    <message>
+        <source>Relative tab font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation>Diff</translation>
+    </message>
+    <message>
+        <source>Toolbars</source>
+        <translation>Toolbars</translation>
     </message>
 </context>
 <context>
@@ -1965,6 +1997,15 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TeXstudio nun erledigen?</translation>
     </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open first non-open file</source>
+        <translation>Öffne erstes nicht geladene Datei aus Liste</translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2158,27 +2199,23 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Scale: </source>
-        <translation>Skalierung:</translation>
-    </message>
-    <message>
-        <source>width=\linewidth</source>
-        <translation></translation>
+        <translation type="obsolete">Skalierung:</translation>
     </message>
     <message>
         <source>Caption: </source>
-        <translation>Überschrift</translation>
+        <translation type="obsolete">Überschrift</translation>
     </message>
     <message>
         <source>Label: </source>
-        <translation>Label</translation>
+        <translation type="obsolete">Label</translation>
     </message>
     <message>
         <source>Above</source>
-        <translation>Über</translation>
+        <translation type="obsolete">Über</translation>
     </message>
     <message>
         <source>Below</source>
-        <translation>Unter</translation>
+        <translation type="obsolete">Unter</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
@@ -2186,7 +2223,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Placement</source>
-        <translation>Platzierung</translation>
+        <translation type="obsolete">Platzierung</translation>
     </message>
     <message>
         <source>Here</source>
@@ -2214,7 +2251,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Center figure</source>
-        <translation>Zentriere Bild</translation>
+        <translation type="obsolete">Zentriere Bild</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
@@ -2225,6 +2262,93 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Datei auswählen</translation>
+    </message>
+    <message>
+        <source>Size / Include Options</source>
+        <translation>Größen- / Einfügeoptionen</translation>
+    </message>
+    <message>
+        <source>Width/Height</source>
+        <translation>Breite/Höhe</translation>
+    </message>
+    <message>
+        <source>Width</source>
+        <translation>Breite</translation>
+    </message>
+    <message>
+        <source>0.7</source>
+        <translation>0.7</translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation>Höhe</translation>
+    </message>
+    <message>
+        <source>User defined</source>
+        <translation>Benutzerdefiniert</translation>
+    </message>
+    <message>
+        <source>Center horizontally</source>
+        <translation>Zentriere horizontal</translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation>Überschrift</translation>
+    </message>
+    <message>
+        <source>Above graphic</source>
+        <translation>Über dem Bild</translation>
+    </message>
+    <message>
+        <source>Below graphic</source>
+        <translation>Unter dem Bild</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>Span two columns</source>
+        <translation>Über zwei Spalten ausdehnen</translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation>Position</translation>
+    </message>
+    <message>
+        <source>Save current settings as default.</source>
+        <translation>Speichere aktuelle Einstellungen als Vorgabe.</translation>
+    </message>
+    <message>
+        <source>as default</source>
+        <translation>als Vorgabe</translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation>Grafik einfügen</translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Insufficient number of arguments to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support environment </source>
+        <translation>Konnte Bildereinfügecode nicht interpretieren:
+Der Assistent unterstützt nicht die Umgebung </translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics optins.</source>
+        <translation>Konnte Bildereinfügecode nicht interpretieren:
+Fehlende \includegraphics Optionen.</translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support command </source>
+        <translation>Konnte Bildereinfügecode nicht interpretieren:
+Der Assistent unterstützt nicht das Kommando </translation>
     </message>
 </context>
 <context>
@@ -2520,7 +2644,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Home</source>
         <comment>shortcut key name, do not translate</comment>
-        <translation>Dokumentenanfang</translation>
+        <translation type="obsolete">Dokumentenanfang</translation>
     </message>
     <message>
         <source>Previous Page</source>
@@ -2533,11 +2657,6 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Last Page</source>
         <translation type="obsolete">Letzte Seite</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
     </message>
     <message>
         <source>Go to Page...</source>
@@ -2961,14 +3080,6 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <translation>Cursor folgt dem Scrollen</translation>
     </message>
     <message>
-        <source>Ctrl+PgUp</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Ctrl+PgDown</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&amp;Edit</source>
         <translation>&amp;Bearbeiten</translation>
     </message>
@@ -3115,6 +3226,22 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>&amp;Quit TeXstudio</source>
         <translation>Be&amp;ende TeXstudio</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <source>Previously shown page</source>
+        <translation>Zuvor gezeigte Seite</translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation>Nächste</translation>
+    </message>
+    <message>
+        <source>Next shown page</source>
+        <translation>Nächste gezeigte Seite</translation>
     </message>
 </context>
 <context>
@@ -4384,7 +4511,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     </message>
     <message>
         <source>Couldn&apos;t find possible extension word</source>
-        <translation>Konnte kein mögliches Erweiterungswort finden</translation>
+        <translation type="obsolete">Konnte kein mögliches Erweiterungswort finden</translation>
     </message>
     <message>
         <source>Random Text Generator</source>
@@ -4434,6 +4561,30 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
         <source>Third Order Characters</source>
         <translation>Buchstaben dritter Ordnung</translation>
     </message>
+    <message>
+        <source>ignore case</source>
+        <translation>Ignoriere Groß-/Kleinschreibung</translation>
+    </message>
+    <message>
+        <source>punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation>Speichere als:</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t create file %1</source>
+        <translation>Konnte Datei %1 nicht anlegen</translation>
+    </message>
+    <message>
+        <source>Finished generation</source>
+        <translation>Erzeugung abgeschlossen</translation>
+    </message>
 </context>
 <context>
     <name>RefDialog</name>
@@ -4448,6 +4599,43 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <source>Cancel</source>
         <translation type="obsolete">Abbrechen</translation>
+    </message>
+</context>
+<context>
+    <name>ScriptObject</name>
+    <message>
+        <source>The current script has requested to enter privileged write mode and call following function:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this call</source>
+        <translation>Ja, gestatte diesen Aufruf</translation>
+    </message>
+    <message>
+        <source>Yes, allow all calls it will ever make</source>
+        <translation>Ja, gestatte alle Aufrufe</translation>
+    </message>
+    <message>
+        <source>No, abort the call</source>
+        <translation>Nein, verhindere diesen Programmaufruf</translation>
+    </message>
+    <message>
+        <source>The current script has requested to enter privileged mode and read the following value:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this reading</source>
+        <translation>Ja, gestatte das Lesen</translation>
+    </message>
+    <message>
+        <source>Yes, grant permanent read access to everything</source>
+        <translation>Ja, gestatte immer den Lesezugriff auf alle Dateien</translation>
     </message>
 </context>
 <context>
@@ -5776,7 +5964,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Spelling</source>
-        <translation>Rechtschreibung</translation>
+        <translation type="obsolete">Rechtschreibung</translation>
     </message>
     <message>
         <source>LaTeX</source>
@@ -6311,7 +6499,7 @@ Allerdings wird eine Version von TexMakerX benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation>Grafik einfügen</translation>
+        <translation type="obsolete">Grafik einfügen</translation>
     </message>
     <message>
         <source>&amp;Comment</source>
@@ -6498,6 +6686,51 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
 Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht aktiviert ist.</translation>
+    </message>
+    <message>
+        <source>Pdf files</source>
+        <translation>PDF Dateien</translation>
+    </message>
+    <message>
+        <source>Show difference between two files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to next difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to previous difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug undo stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remodel table after template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set High&amp;lighting...</source>
+        <translation>Setze Herv&amp;orhebung...</translation>
+    </message>
+    <message>
+        <source>Move document to &amp;front</source>
+        <translation>Schiebe Dokument nach &amp;vorne</translation>
+    </message>
+    <message>
+        <source>Move document to &amp;end</source>
+        <translation>Schiebe Dokument zum &amp;Ende</translation>
+    </message>
+    <message>
+        <source>LaTeX Files (*.tex);;All Files (*)</source>
+        <translation>LaTeX Dateien (*.tex);;Alle Dateien (*)</translation>
     </message>
 </context>
 <context>
@@ -6904,6 +7137,10 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
         <source>Tag</source>
         <translation>Makro</translation>
     </message>
+    <message>
+        <source>run script</source>
+        <translation>Führe Script aus</translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
@@ -7287,7 +7524,7 @@ p, li { white-space: pre-wrap; }
     <name>scriptengine</name>
     <message>
         <source>Script-Message</source>
-        <translation>Script-Mitteilung</translation>
+        <translation type="obsolete">Script-Mitteilung</translation>
     </message>
     <message>
         <source>File Chooser</source>

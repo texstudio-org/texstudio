@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Site internet du projet TexMakerX : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Site internet du projet TexMakerX : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -74,6 +74,10 @@
     <message>
         <source>About TeXstudio</source>
         <translation>À propos de TeXstudio</translation>
+    </message>
+    <message>
+        <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -479,7 +483,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>More</source>
-        <translation>Plus d&apos;options</translation>
+        <translation type="obsolete">Plus d&apos;options</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
@@ -571,7 +575,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Custom Toolbar</source>
-        <translation>Barre d&apos;outils personnalisée</translation>
+        <translation type="obsolete">Barre d&apos;outils personnalisée</translation>
     </message>
     <message>
         <source>&lt;</source>
@@ -1303,6 +1307,34 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <source>Configure TeXstudio</source>
         <translation>Configurer TeXstudio</translation>
     </message>
+    <message>
+        <source>Quick Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict search scope to an existing selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Wrapping:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative tab font size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toolbars</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1770,6 +1802,15 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Pour profiter plienement de l&apos;afficheur PDFintégré, synctex doit être activé. TeXstudio doit-il le faire maintenant ?</translation>
     </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open first non-open file</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1967,27 +2008,27 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Scale: </source>
-        <translation>Échelle :</translation>
+        <translation type="obsolete">Échelle :</translation>
     </message>
     <message>
         <source>width=\linewidth</source>
-        <translation>width=\linewidth</translation>
+        <translation type="obsolete">width=\linewidth</translation>
     </message>
     <message>
         <source>Caption: </source>
-        <translation>Légende : </translation>
+        <translation type="obsolete">Légende : </translation>
     </message>
     <message>
         <source>Label: </source>
-        <translation>Étiquette : </translation>
+        <translation type="obsolete">Étiquette : </translation>
     </message>
     <message>
         <source>Above</source>
-        <translation>Au-dessus</translation>
+        <translation type="obsolete">Au-dessus</translation>
     </message>
     <message>
         <source>Below</source>
-        <translation>Au-dessous</translation>
+        <translation type="obsolete">Au-dessous</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
@@ -1995,7 +2036,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Placement</source>
-        <translation>Placement (préférences)</translation>
+        <translation type="obsolete">Placement (préférences)</translation>
     </message>
     <message>
         <source>Here</source>
@@ -2023,7 +2064,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Center figure</source>
-        <translation>Centrer la figure</translation>
+        <translation type="obsolete">Centrer la figure</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
@@ -2034,6 +2075,90 @@ Continuer tout de même ?</translation>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Sélectionner un fichier</translation>
+    </message>
+    <message>
+        <source>Size / Include Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width/Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>0.7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below graphic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span two columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save current settings as default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Graphic</source>
+        <translation type="unfinished">Insérer un graphe</translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Insufficient number of arguments to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support environment </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics optins.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+The wizard does not support command </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2302,16 +2427,6 @@ Continuer tout de même ?</translation>
     <message>
         <source>About TexMakerX...</source>
         <translation type="obsolete">À propos de TexMakerX...</translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation></translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2680,14 +2795,6 @@ Continuer tout de même ?</translation>
         <translation>Le curseur suit le défilement</translation>
     </message>
     <message>
-        <source>Ctrl+PgUp</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Ctrl+PgDown</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
@@ -2798,6 +2905,22 @@ Continuer tout de même ?</translation>
     <message>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Quitter TeXstudio</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previously shown page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next shown page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4065,7 +4188,68 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>Couldn&apos;t find possible extension word</source>
-        <translation>Impossible de trouver une extension de mot</translation>
+        <translation type="obsolete">Impossible de trouver une extension de mot</translation>
+    </message>
+    <message>
+        <source>ignore case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t create file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished generation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ScriptObject</name>
+    <message>
+        <source>The current script has requested to enter privileged write mode and call following function:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all calls it will ever make</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, abort the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current script has requested to enter privileged mode and read the following value:
+%1
+
+Do you trust this script?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow this reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, grant permanent read access to everything</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5201,7 +5385,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Spelling</source>
-        <translation>Orthographe</translation>
+        <translation type="obsolete">Orthographe</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
@@ -5569,7 +5753,7 @@ Cependant, cette version de TexMakerX a été compilée sans le support de cette
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation>Insérer un graphe</translation>
+        <translation type="obsolete">Insérer un graphe</translation>
     </message>
     <message>
         <source>&amp;Comment</source>
@@ -5732,6 +5916,51 @@ TeXstudio n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Vous cherchez à ouvrir la visionneuse pdf interne.
 Cependant, cette version de TeXstudio a été compilée sans le support de cette fonction.</translation>
+    </message>
+    <message>
+        <source>Pdf files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to next difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to previous difference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug undo stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remodel table after template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set High&amp;lighting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;front</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move document to &amp;end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Files (*.tex);;All Files (*)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6078,6 +6307,10 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     <message>
         <source>Tag</source>
         <translation>Balise</translation>
+    </message>
+    <message>
+        <source>run script</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6452,7 +6685,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Script-Message</source>
-        <translation>Message de script</translation>
+        <translation type="obsolete">Message de script</translation>
     </message>
     <message>
         <source>File Chooser</source>
