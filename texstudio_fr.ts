@@ -77,7 +77,7 @@
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Site internet du projet : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -1309,31 +1309,31 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Quick Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options de la compilation rapide</translation>
     </message>
     <message>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverser les guillemets français &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <source>Restrict search scope to an existing selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Limiter la recherche à une sélection existante</translation>
     </message>
     <message>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"></translation>
+        <translation>Retours à la ligne automatiques</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille de caractères des onglets relative</translation>
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished"></translation>
+        <translation>Différences</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils</translation>
     </message>
 </context>
 <context>
@@ -1805,11 +1805,12 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez activé le remplacement automatique des guillemets. Cependant, des balises utilisateur avec des caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
+Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>Open first non-open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le premier fichier non ouvert</translation>
     </message>
 </context>
 <context>
@@ -2078,87 +2079,91 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Size / Include Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options d&apos;inclusion (taille, etc.)</translation>
     </message>
     <message>
         <source>Width/Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Largeur/hauteur</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Largeur</translation>
     </message>
     <message>
         <source>0.7</source>
-        <translation type="unfinished"></translation>
+        <translation>0,7</translation>
     </message>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauteur</translation>
     </message>
     <message>
         <source>User defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Défini par l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Centré horizontallement</translation>
     </message>
     <message>
         <source>Caption</source>
-        <translation type="unfinished"></translation>
+        <translation>Légende</translation>
     </message>
     <message>
         <source>Above graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Au-dessus du grapique</translation>
     </message>
     <message>
         <source>Below graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Au-dessous du grapique</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Label</translation>
     </message>
     <message>
         <source>Span two columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Étendre sur deux colonnes</translation>
     </message>
     <message>
         <source>Position</source>
-        <translation type="unfinished"></translation>
+        <translation>Position</translation>
     </message>
     <message>
         <source>Save current settings as default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Faire des réglages actuels ceux par défaut</translation>
     </message>
     <message>
         <source>as default</source>
-        <translation type="unfinished"></translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation type="unfinished">Insérer un graphe</translation>
+        <translation>Insérer un graphique</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
+nombre d&apos;arguments insuffisant</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
+l&apos;assistant ne supporte pas l&apos;environnement</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics optins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
+options de \includegraphics manquantes</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
+l&apos;assistant ne supporte pas la commande</translation>
     </message>
 </context>
 <context>
@@ -2908,19 +2913,20 @@ The wizard does not support command </source>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrière</translation>
     </message>
     <message>
         <source>Previously shown page</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Page précédemment visitée</translatorcomment>
+        <translation>Page précédemment visitée</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Avant</translation>
     </message>
     <message>
         <source>Next shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Page visitée suivante</translation>
     </message>
 </context>
 <context>
@@ -4192,27 +4198,27 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>ignore case</source>
-        <translation type="unfinished"></translation>
+        <translation>ignorer la casse</translation>
     </message>
     <message>
         <source>punctation</source>
-        <translation type="unfinished"></translation>
+        <translation>ponctuation</translation>
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation type="unfinished"></translation>
+        <translation>Import LaTeX</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer à:</translation>
     </message>
     <message>
         <source>Couldn&apos;t create file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer le fichier %1</translation>
     </message>
     <message>
         <source>Finished generation</source>
-        <translation type="unfinished"></translation>
+        <translation>Génération terminée</translation>
     </message>
 </context>
 <context>
@@ -4222,34 +4228,40 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>Le script en cours demande d&apos;entrer en mode d&apos;écriture privilégiée et appelle la fonction suivante :
+%1
+
+Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Yes, allow this call</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, autoriser l&apos;appel à ce script</translation>
     </message>
     <message>
         <source>Yes, allow all calls it will ever make</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, autoriser tous les appels que ce script va demander</translation>
     </message>
     <message>
         <source>No, abort the call</source>
-        <translation type="unfinished"></translation>
+        <translation>Non, abandonner l&apos;appel à ce script</translation>
     </message>
     <message>
         <source>The current script has requested to enter privileged mode and read the following value:
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>Le script en cours demande d&apos;entrer en mode privilégié et lit la valeur suivante :
+%1
+
+Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Yes, allow this reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, autoriser cette lecture</translation>
     </message>
     <message>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, autoriser de façon permanente l&apos;accès en lecture à tout</translation>
     </message>
 </context>
 <context>
@@ -5919,48 +5931,48 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Pdf files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers Pdf</translation>
     </message>
     <message>
         <source>Show difference between two files</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer la différence entre deux fichiers</translation>
     </message>
     <message>
         <source>Jump to next difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la différence suivante</translation>
     </message>
     <message>
         <source>Jump to previous difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la différence précédente</translation>
     </message>
     <message>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Déboguer la pile des annulations</translation>
     </message>
     <message>
         <source>Find mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver les discordances</translation>
     </message>
     <message>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruire le tableau d&apos;après le modèle</translation>
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le sur&amp;lignage</translation>
     </message>
     <message>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished"></translation>
+        <translation>Placer le document tout au-dessus</translation>
     </message>
     <message>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished"></translation>
+        <translation>Placer le document tout au-dessous</translation>
     </message>
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers LaTeX (*.tex);;Tous les fichiers (*)</translation>
     </message>
 </context>
 <context>
@@ -6310,7 +6322,7 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>run script</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer le script</translation>
     </message>
 </context>
 <context>
