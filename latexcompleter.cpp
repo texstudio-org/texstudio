@@ -941,6 +941,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		    eow.remove("\\");
 		    eow.remove(".");
 		    eow.remove(":");
+                    eow.remove("_");
 		}
 		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
