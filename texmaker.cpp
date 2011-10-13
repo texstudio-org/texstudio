@@ -499,7 +499,8 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy");
 	newManagedEditorAction(menu,"cut",tr("C&ut"), "cut", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut");
-	newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
+	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
+	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
 	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
 
@@ -1827,6 +1828,26 @@ void Texmaker::editCopy() {
 	currentEditorView()->editor->copy();
 }
 
+void Texmaker::editPaste() {
+	if (!currentEditorView()) return;
+
+	const QMimeData *d = QApplication::clipboard()->mimeData();
+	if (d->hasUrls()) {
+		QList<QUrl> uris=d->urls();
+
+		for (int i=0; i<uris.length(); i++) {
+			QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
+			if (InsertGraphics::imageFormats().contains(fi.suffix())) {
+				QuickGraphics(uris.at(i).toLocalFile());
+			} else {
+				currentEditor()->insertText(uris.at(i).toLocalFile()+"\n");
+			}
+		}
+	} else {
+		currentEditorView()->paste();
+	}
+}
+
 void Texmaker::editPasteLatex() {
 	if (!currentEditorView()) return;
 	// manipulate clipboard text
@@ -2862,7 +2883,7 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	QDocumentCursor origCur = cur;
 	origCur.setAutoUpdated(true);
 	cur.beginEditBlock();
-
+	txsInformation(QString("%1,%2").arg(cur.lineNumber()).arg(cur.columnNumber()));
 	bool hasCode = false;
 	if (findEnvironmentLines(doc, "figure", cursorLine, startLine, endLine, 20)) {
 		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
@@ -4159,21 +4180,25 @@ void Texmaker::dropEvent(QDropEvent *event) {
 	QStringList imageFormats = InsertGraphics::imageFormats();
 	QStringList textFormats = QStringList() << "tex" << "bib" << "sty" << "cls" << "mp" << "txt" << "dat";
 
+	bool alreadyMovedCursor = false;
 	for (int i=0; i<uris.length(); i++) {
 		QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
 		if (imageFormats.contains(fi.suffix())) {
-			QPoint p = currentEditor()->mapToContents(currentEditor()->mapToFrame(currentEditor()->mapFrom(this, event->pos())));
-			QDocumentCursor cur = currentEditor()->cursorForPosition(p);
-			cur.beginEditBlock();
-			if (!cur.atLineStart()) {
-				if (!cur.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::MoveAnchor)) {
-					cur.movePosition(1, QDocumentCursor::EndOfBlock, QDocumentCursor::MoveAnchor);
-					cur.insertLine();
+			if (!alreadyMovedCursor) {
+				QPoint p = currentEditor()->mapToContents(currentEditor()->mapToFrame(currentEditor()->mapFrom(this, event->pos())));
+				QDocumentCursor cur = currentEditor()->cursorForPosition(p);
+				cur.beginEditBlock();
+				if (!cur.atLineStart()) {
+					if (!cur.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::MoveAnchor)) {
+						cur.movePosition(1, QDocumentCursor::EndOfBlock, QDocumentCursor::MoveAnchor);
+						cur.insertLine();
+					}
 				}
+				currentEditor()->setCursor(cur);
+				cur.endEditBlock();
+				alreadyMovedCursor = true;
 			}
-			currentEditor()->setCursor(cur);
-			QuickGraphics(uris.at(0).toLocalFile());
-			cur.endEditBlock();
+			QuickGraphics(uris.at(i).toLocalFile());
 		} else if (textFormats.contains(fi.suffix())) {
 			load(fi.filePath());
 		}

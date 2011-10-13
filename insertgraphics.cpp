@@ -16,8 +16,8 @@
 #include "mostQtHeaders.h"
 
 
-QStringList InsertGraphics::widthUnits = QStringList() << "\\textwidth" << "cm" << "mm";
-QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm";
+QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";
+QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm" << "";
 QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "png" << "pdf";
 
 InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
@@ -143,14 +143,15 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 			QString val = opt.mid(sep+1).trimmed();
 			if (tag == "width") {
 				ui.cbWidth->setChecked(true);
+				ui.cbWidthUnit->setCurrentIndex(widthUnits.indexOf(""));
 				foreach (QString unit, widthUnits) {
 					if (val.endsWith(unit)) {
 						val.chop(unit.length());
-						ui.leWidth->setText(val);
 						ui.cbWidthUnit->setCurrentIndex(widthUnits.indexOf(unit));
 						break;
 					}
 				}
+				ui.leWidth->setText(val);
 				continue;
 			}
 			if (tag == "height") {
@@ -274,7 +275,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 			if (args.at(0).at(0) == '[') {
 				conf.includeOptions = LatexParser::removeOptionBrackets(args.at(0));
 				if (args.length()<2) {
-					txsWarning(tr("Could not parse graphics inclusion code:\nMissing \\includegraphics optins."));
+					txsWarning(tr("Could not parse graphics inclusion code:\nMissing \\includegraphics options."));
 					return false;
 				}
 				conf.file = LatexParser::removeOptionBrackets(args.at(1));
@@ -337,9 +338,12 @@ QString InsertGraphics::getCode() const {
 			// try make relative with "../"
 			QDir dir = QDir(texFileInfo.absoluteDir());
 			if (dir.cdUp()) {
-				texpath = dir.absolutePath();
-				if(imgpath.startsWith(texpath)){
-					fname="../"+imgpath.mid(texpath.length()+1)+"/"+info.completeBaseName();
+				QString path = dir.absolutePath();
+				if(imgpath.startsWith(path)){
+					fname="../";
+					if (imgpath.length()>path.length())
+						fname+=imgpath.mid(path.length()+1)+"/";
+					fname+=info.completeBaseName();
 				}
 			}
 		}

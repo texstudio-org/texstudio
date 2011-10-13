@@ -60,8 +60,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="texmaker.qrc">
-         <normaloff>:/images/classic/fileopen.png</normaloff>:/images/classic/fileopen.png</iconset>
+        <iconset resource="texstudio.qrc">
+         <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -82,7 +82,7 @@
       </size>
      </property>
      <property name="title">
-      <string>Size / Include Options</string>
+      <string>Graphics options</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
@@ -320,7 +320,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset resource="texstudio.qrc">
               <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
             </property>
            </widget>
@@ -331,7 +331,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="texmaker.qrc">
+             <iconset resource="texstudio.qrc">
               <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
             </property>
            </widget>
@@ -386,8 +386,8 @@
         <string>as default</string>
        </property>
        <property name="icon">
-        <iconset resource="texmaker.qrc">
-         <normaloff>:/images/classic/filesave.png</normaloff>:/images/classic/filesave.png</iconset>
+        <iconset resource="texstudio.qrc">
+         <normaloff>:/classic/images/classic/filesave.png</normaloff>:/classic/images/classic/filesave.png</iconset>
        </property>
       </widget>
      </item>
@@ -425,9 +425,30 @@
  <tabstops>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
+  <tabstop>leFile</tabstop>
+  <tabstop>fileSelectButton</tabstop>
+  <tabstop>rbWidthHeight</tabstop>
+  <tabstop>cbWidth</tabstop>
+  <tabstop>leWidth</tabstop>
+  <tabstop>cbWidthUnit</tabstop>
+  <tabstop>cbHeight</tabstop>
+  <tabstop>leHeight</tabstop>
+  <tabstop>cbHeightUnit</tabstop>
+  <tabstop>rbUser</tabstop>
+  <tabstop>leScale</tabstop>
+  <tabstop>cbCentering</tabstop>
+  <tabstop>gbFloat</tabstop>
+  <tabstop>cbPosition</tabstop>
+  <tabstop>teCaption</tabstop>
+  <tabstop>leLabel</tabstop>
+  <tabstop>listPlacement</tabstop>
+  <tabstop>upButton</tabstop>
+  <tabstop>downButton</tabstop>
+  <tabstop>cbSpan</tabstop>
+  <tabstop>pbSaveDefault</tabstop>
  </tabstops>
  <resources>
-  <include location="texmaker.qrc"/>
+  <include location="texstudio.qrc"/>
  </resources>
  <connections>
   <connection>

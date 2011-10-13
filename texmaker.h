@@ -221,6 +221,7 @@ protected slots:
 	void editRedo();
 	void editDebugUndoStack();
 	void editCopy();
+	void editPaste();
 	void editSectionCopy();
 	void editSectionCopy(int startingLine, int endLine);
 	void editSectionCut();
