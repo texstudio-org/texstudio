@@ -84,7 +84,7 @@ private:
 
 	QPoint m_point;
 
-        int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,styleHintFormat,verbatimFormat;
+        int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,styleHintFormat,verbatimFormat,deleteFormat,insertFormat,replaceFormat;
 	
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;

@@ -40,6 +40,7 @@
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
 #include "latexstyleparser.h"
+#include "diffoperations.h"
 
 typedef QHash<QString,int> SymbolList;
 
@@ -62,6 +63,10 @@ enum RunCommandFlag{
 	RCF_IS_RERUN_CALL = 64 // call is an automatically rerun (internal)
 		      };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
+
+
+
+
 
 class UserMenuDialog;
 class Texmaker : public QMainWindow {
@@ -214,6 +219,9 @@ private slots:
 	void changeToRevision(QString rev,QString old_rev="");
 	void svnDialogClosed();
         void fileDiff();
+        void removeDiffMarkers();
+        void jumpNextDiff();
+        void jumpPrevDiff();
 protected slots:	
 	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
 
