@@ -5772,11 +5772,93 @@ void Texmaker::fileDiff(){
 }
 
 void Texmaker::jumpNextDiff(){
-    qDebug()<<"jump next";
+    QEditor *m_edit=currentEditor();
+    if(!m_edit)
+        return;
+    QDocumentCursor c=m_edit->cursor();
+    if(c.hasSelection()){
+        int l,col;
+        c.endBoundary(l,col);
+        c.moveTo(l,col);
+    }
+    LatexDocument *doc=documents.currentDocument;
+
+    //search for next diff
+    int lineNr=c.lineNumber();
+    QVariant var=doc->line(lineNr).getCookie(2);
+    if(var.isValid()){
+        DiffList lineData=var.value<DiffList>();
+        for(int j=0;j<lineData.size();j++){
+            DiffOp op=lineData.at(j);
+            if(op.start+op.length>c.columnNumber()){
+                c.moveTo(lineNr,op.start);
+                c.moveTo(lineNr,op.start+op.length,QDocumentCursor::KeepAnchor);
+                m_edit->setCursor(c);
+                return;
+            }
+        }
+    }
+    lineNr++;
+
+
+    for(;lineNr<doc->lineCount();lineNr++) {
+        var=doc->line(lineNr).getCookie(2);
+        if(var.isValid()){
+            break;
+        }
+    }
+    if(var.isValid()){
+        DiffList lineData=var.value<DiffList>();
+        DiffOp op=lineData.first();
+        c.moveTo(lineNr,op.start);
+        c.moveTo(lineNr,op.start+op.length,QDocumentCursor::KeepAnchor);
+        m_edit->setCursor(c);
+    }
 }
 
 void Texmaker::jumpPrevDiff(){
-    qDebug()<<"jump prev";
+    QEditor *m_edit=currentEditor();
+    if(!m_edit)
+        return;
+    QDocumentCursor c=m_edit->cursor();
+    if(c.hasSelection()){
+        int l,col;
+        c.beginBoundary(l,col);
+        c.moveTo(l,col);
+    }
+    LatexDocument *doc=documents.currentDocument;
+
+    //search for next diff
+    int lineNr=c.lineNumber();
+    QVariant var=doc->line(lineNr).getCookie(2);
+    if(var.isValid()){
+        DiffList lineData=var.value<DiffList>();
+        for(int j=lineData.size()-1;j>=0;j--){
+            DiffOp op=lineData.at(j);
+            if(op.start<c.columnNumber()){
+                c.moveTo(lineNr,op.start);
+                c.moveTo(lineNr,op.start+op.length,QDocumentCursor::KeepAnchor);
+                m_edit->setCursor(c);
+                return;
+            }
+        }
+    }
+    lineNr--;
+
+
+    for(;lineNr>=0;lineNr--) {
+        var=doc->line(lineNr).getCookie(2);
+        if(var.isValid()){
+            break;
+        }
+    }
+    if(var.isValid()){
+        DiffList lineData=var.value<DiffList>();
+        DiffOp op=lineData.last();
+        c.moveTo(lineNr,op.start);
+        c.moveTo(lineNr,op.start+op.length,QDocumentCursor::KeepAnchor);
+        m_edit->setCursor(c);
+    }
 }
 
 void Texmaker::removeDiffMarkers(){
