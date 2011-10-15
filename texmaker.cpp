@@ -39,7 +39,6 @@
 #include "latexeditorview_config.h"
 #include "scriptengine.h"
 
-#define QT_NO_DEBUG
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
 #endif
@@ -476,6 +475,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "lockpdf",tr("Lock &PDF"), SLOT(fileLockPdf()));
 	newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
         newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
+        newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
+        newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()));
+        newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()));
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -5634,9 +5636,6 @@ void Texmaker::fileDiff(){
     diff_match_patch dmp;
     QList<Diff> diffList= dmp.diff_main(text, text2,true);
     dmp.diff_cleanupSemantic(diffList);
-    int fid_Delete=QDocument::formatFactory()->id("diffDelete");
-    int fid_Insert=QDocument::formatFactory()->id("diffAdd");
-    int fid_Replace=QDocument::formatFactory()->id("diffReplace");
     int lineNr=0;
     int col=0;
 
@@ -5653,20 +5652,56 @@ void Texmaker::fileDiff(){
             if(splitList.isEmpty())
                 continue;
             int diff=splitList.first().length();
-            int fid=fid_Delete;
+            bool toBeReplaced=false;
             if(i+1<diffList.size() && diffList[i+1].operation==INSERT && (splitList.size()>1 || diffList[i+1].text.count("\n")>0) ){
-                fid=fid_Replace;
+                toBeReplaced=true;
             }
-            doc->line(lineNr).addOverlay(QFormatRange(col,diff,fid));
+            QVariant var=doc->line(lineNr).getCookie(2);
+            DiffList lineData;
+
+            if(var.isValid()){
+                lineData=var.value<DiffList>();
+            }
+
+            //doc->line(lineNr).addOverlay(QFormatRange(col,diff,fid));
+            DiffOp diffOperation;
+            diffOperation.start=col;
+            diffOperation.length=diff;
+            if(toBeReplaced){
+                diffOperation.type=DiffOp::Replace;
+                diffOperation.text=diffList[i+1].text;
+            } else {
+                diffOperation.type=DiffOp::Delete;
+            }
+            lineData.append(diffOperation);
+            doc->line(lineNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
             col+=diff;
             splitList.removeFirst();
-            for(int i=0;i<splitList.size();i++){
-                QString ln=splitList.at(i);
-                doc->line(lineNr+i+1).addOverlay(QFormatRange(0,ln.length(),fid));
+            for(int j=0;j<splitList.size();j++){
+                col=0;
+                QString ln=splitList.at(j);
+                DiffOp diffOperation;
+                diffOperation.start=col;
+                diffOperation.length=ln.length();
+                if(toBeReplaced){
+                    diffOperation.type=DiffOp::Replace;
+                    diffOperation.text="";
+                } else {
+                    diffOperation.type=DiffOp::Delete;
+                }
+
+                var=doc->line(lineNr+j+1).getCookie(2);
+                DiffList lineData;
+
+                if(var.isValid()){
+                    lineData=var.value<DiffList>();
+                }
+                lineData.append(diffOperation);
+                doc->line(lineNr+j+1).setCookie(2,QVariant::fromValue<DiffList>(lineData));
                 col=ln.length();
             }
             lineNr+=elem.text.count("\n");
-            if(fid==fid_Replace)
+            if(toBeReplaced)
                 i++;
         }
         if(elem.operation==INSERT){
@@ -5686,7 +5721,20 @@ void Texmaker::fileDiff(){
             int lnNr=cur.lineNumber();
             if(splitList.size()>1)
                 cur.insertText("\n");
-            doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
+            QVariant var=doc->line(lnNr).getCookie(2);
+            DiffList lineData;
+
+            if(var.isValid()){
+                lineData=var.value<DiffList>();
+            }
+            DiffOp diffOperation;
+            diffOperation.start=col;
+            diffOperation.length=diff;
+            diffOperation.type=DiffOp::Insert;
+            diffOperation.text="";
+            lineData.append(diffOperation);
+            doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
+            //doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
             col+=diff;
             splitList.removeFirst();
             for(int i=0;i<splitList.size();i++){
@@ -5695,16 +5743,80 @@ void Texmaker::fileDiff(){
                 lnNr=cur.lineNumber();
                 if(i+1<splitList.size())
                     cur.insertText("\n");
-                doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));
+                QVariant var=doc->line(lnNr).getCookie(2);
+                DiffList lineData;
+
+                if(var.isValid()){
+                    lineData=var.value<DiffList>();
+                }
+                DiffOp diffOperation;
+                diffOperation.start=0;
+                diffOperation.length=ln.length();
+                diffOperation.type=DiffOp::Insert;
+                diffOperation.text="";
+                lineData.append(diffOperation);
+                doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
+                //doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));
                 col=ln.length();
             }
             lineNr+=elem.text.count("\n");
-            //lineNr+=elem.text.count("\n");
-            //col=elem.text.length()-elem.text.lastIndexOf("\n");
+
+
         }
     }
+    // show changes (by calling LatexEditorView::documentContentChanged)
+    LatexEditorView *edView=currentEditorView();
+    edView->documentContentChanged(0,edView->document->lines());
 
 
 }
 
+void Texmaker::jumpNextDiff(){
+    qDebug()<<"jump next";
+}
 
+void Texmaker::jumpPrevDiff(){
+    qDebug()<<"jump prev";
+}
+
+void Texmaker::removeDiffMarkers(){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+        return;
+
+    QDocumentCursor cur(doc);
+
+    for(int i=0;i<doc->lineCount();i++){
+        QVariant var=doc->line(i).getCookie(2);
+
+        if(var.isValid()){
+            DiffList lineData=var.value<DiffList>();
+            for(int j=0;j<lineData.size();j++){
+                DiffOp op=lineData.at(j);
+                bool removeLine=false;
+
+                switch (op.type){
+                case DiffOp::Delete:
+                    break;
+                case DiffOp::Insert:
+                    cur.moveTo(i,op.start);
+                    removeLine=op.length==doc->line(i).length();
+                    cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                    cur.removeSelectedText();
+                    if(removeLine){
+                        cur.deletePreviousChar();
+                        i--;
+                    }
+                    break;
+                case DiffOp::Replace:
+                    break;
+                }
+            }
+            doc->line(i).removeCookie(2);
+        }
+    }
+
+    LatexEditorView *edView=currentEditorView();
+    edView->documentContentChanged(0,edView->document->lines());
+
+}

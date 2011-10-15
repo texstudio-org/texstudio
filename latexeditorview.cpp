@@ -42,6 +42,7 @@
 #include "latexcompleter_config.h"
 
 #include "scriptengine.h"
+#include "diffoperations.h"
 
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {
@@ -553,6 +554,9 @@ void LatexEditorView::updateSettings(){
 	SynChecker.setErrFormat(syntaxErrorFormat);
 	structureFormat=QDocument::formatFactory()->id("structure");
 	verbatimFormat=QDocument::formatFactory()->id("verbatim");
+        deleteFormat=QDocument::formatFactory()->id("diffDelete");
+        insertFormat=QDocument::formatFactory()->id("diffAdd");
+        replaceFormat=QDocument::formatFactory()->id("diffReplace");
 
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
@@ -702,6 +706,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(syntaxErrorFormat);
 		line.clearOverlays(styleHintFormat);
 		line.clearOverlays(structureFormat);
+                line.clearOverlays(insertFormat);
+                line.clearOverlays(deleteFormat);
+                line.clearOverlays(replaceFormat);
 
 		bool addedOverlaySpellCheckError = false;
 		bool addedOverlayReference = false;
@@ -709,6 +716,27 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		bool addedOverlayEnvironment = false;
 		bool addedOverlayStyleHint = false;
 		bool addedOverlayStructure = false;
+
+                // diff presentation
+                QVariant cookie=line.getCookie(2);
+                if(!cookie.isNull()){
+                    DiffList diffList=cookie.value<DiffList>();
+                    for(int i=0;i<diffList.size();i++){
+                        DiffOp op=diffList.at(i);
+                        switch (op.type){
+                            case DiffOp::Delete:
+                                line.addOverlay(QFormatRange(op.start,op.length,deleteFormat));
+                                break;
+                            case DiffOp::Insert:
+                                line.addOverlay(QFormatRange(op.start,op.length,insertFormat));
+                                break;
+                            case DiffOp::Replace:
+                                line.addOverlay(QFormatRange(op.start,op.length,replaceFormat));
+                                break;
+                        }
+
+                    }
+                }
 
 		// start syntax checking
 		if(config->inlineSyntaxChecking) {
