@@ -2885,7 +2885,6 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	QDocumentCursor origCur = cur;
 	origCur.setAutoUpdated(true);
 	cur.beginEditBlock();
-	txsInformation(QString("%1,%2").arg(cur.lineNumber()).arg(cur.columnNumber()));
 	bool hasCode = false;
 	if (findEnvironmentLines(doc, "figure", cursorLine, startLine, endLine, 20)) {
 		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
