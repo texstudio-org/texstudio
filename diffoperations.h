@@ -5,7 +5,13 @@ struct DiffOp {
     enum DiffType{
         Insert,
         Delete,
-        Replace
+	Replace,
+	Deleted,
+	Inserted,
+	Replaced,
+	NotInserted,
+	NotDeleted,
+	NotReplaced
     };
 
     int start,length;
