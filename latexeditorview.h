@@ -66,7 +66,8 @@ public:
 		return m_point;
 	}
 
-        int syntaxErrorFormat;
+	int syntaxErrorFormat;
+	int deleteFormat,insertFormat,replaceFormat;
 
 	void reCheckSyntax(int linenr=0, int count=-1);
 
@@ -84,7 +85,7 @@ private:
 
 	QPoint m_point;
 
-        int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,styleHintFormat,verbatimFormat,deleteFormat,insertFormat,replaceFormat;
+	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,styleHintFormat,verbatimFormat;
 	
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;
@@ -106,6 +107,7 @@ private:
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
+	void emitChangeDiff();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
@@ -146,6 +148,7 @@ signals:
 	void showPreview(const QDocumentCursor& c);
 	void openFile(const QString& name);
 	void thesaurus(int line,int col);
+	void changeDiff(QPoint pt);
 };
 
 

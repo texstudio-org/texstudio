@@ -182,6 +182,41 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
+                //resolve differences
+                if (edView){
+                        QList<int> fids;
+			fids<<edView->deleteFormat<<edView->insertFormat<<edView->replaceFormat;
+                        foreach(int fid,fids){
+                            if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,fid);
+                            else fr = cursor.line().getOverlayAt(cursor.columnNumber(),fid);
+                            if (fr.length>0 ) {
+                                QVariant var=cursor.line().getCookie(2);
+                                if(var.isValid()){
+                                    DiffList diffList=var.value<DiffList>();
+				    //QString word=cursor.line().text().mid(fr.offset,fr.length);
+				    DiffOp op;
+				    op.start=-1;
+				    foreach(op,diffList){
+					if(op.start<=cursor.columnNumber() && op.start+op.length>=cursor.columnNumber()){
+					    break;
+					}
+					op.start=-1;
+				    }
+				    if(op.start>=0){
+					QAction* act=new QAction(LatexEditorView::tr("use yours"),contextMenu);
+					act->setData(QPoint(cursor.lineNumber(),cursor.columnNumber()));
+					edView->connect(act,SIGNAL(triggered()),edView,SLOT(emitChangeDiff()));
+					contextMenu->addAction(act);
+					act=new QAction(LatexEditorView::tr("use other's"),contextMenu);
+					act->setData(QPoint(-cursor.lineNumber()-1,cursor.columnNumber()));
+					edView->connect(act,SIGNAL(triggered()),edView,SLOT(emitChangeDiff()));
+					contextMenu->addAction(act);
+					break;
+				    }
+                                }
+                            }
+                        }
+                }
 		// add action to thesaurus
 		QAction* act=new QAction(LatexEditorView::tr("Thesaurus..."),contextMenu);
 		act->setData(QPoint(cursor.anchorLineNumber(),cursor.anchorColumnNumber()));
@@ -574,6 +609,12 @@ void LatexEditorView::openExternalFile(){
 		emit openFile(name);
 }
 
+void LatexEditorView::emitChangeDiff(){
+	QAction *act = qobject_cast<QAction*>(sender());
+	QPoint pt=act->data().toPoint();
+	emit changeDiff(pt);
+}
+
 void LatexEditorView::lineMarkClicked(int line) {
 	QDocumentLine l=editor->document()->line(line);
 	if (!l.isValid()) return;
@@ -733,6 +774,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                             case DiffOp::Replace:
                                 line.addOverlay(QFormatRange(op.start,op.length,replaceFormat));
                                 break;
+			    default:
+				;
                         }
 
                     }
@@ -999,10 +1042,32 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	cursor=editor->cursorForPosition(editor->mapToContents(pos));
 	QString line=cursor.line().text();
 	QDocumentLine l=cursor.line();
+
+	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),replaceFormat);
+	if (fr.length>0 && fr.format==replaceFormat) {
+		QVariant var=l.getCookie(2);
+		if(var.isValid()){
+		    DiffList diffList=var.value<DiffList>();
+		    DiffOp op;
+		    op.start=-1;
+		    foreach(op,diffList){
+			if(op.start<=cursor.columnNumber() && op.start+op.length>=cursor.columnNumber()){
+			    break;
+			}
+			op.start=-1;
+		    }
+
+		    if(op.start>=0 && !op.text.isEmpty()){
+			    QString message=op.text;
+			    QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
+			    return;
+		    }
+		}
+	}
 	// check for latex error
 	//syntax checking
 	int f=QDocument::formatFactory()->id("latexSyntaxMistake");
-	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
+	fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
 	if (fr.length>0 && fr.format==f) {
 		StackEnvironment env;
 		getEnv(l.lineNumber(),env);
@@ -1013,6 +1078,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			return;
 		}
 	}
+
 	// do rest
 	QString command, value;
 	QString topic;

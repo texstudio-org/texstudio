@@ -476,8 +476,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
         newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
         newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
-        newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()));
-        newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()));
+	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,":/images/go-next.png");
+	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,":/images/go-previous.png");
 
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
@@ -1052,6 +1052,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 	connect(edit->document,SIGNAL(importPackage(QString)),this,SLOT(importPackage(QString)));
 	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
+	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 
 	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
 	updateOpenDocumentMenu(false);
@@ -5860,7 +5861,7 @@ void Texmaker::jumpPrevDiff(){
     }
 }
 
-void Texmaker::removeDiffMarkers(){
+void Texmaker::removeDiffMarkers(bool theirs){
     LatexDocument *doc=documents.currentDocument;
     if(!doc)
         return;
@@ -5875,23 +5876,47 @@ void Texmaker::removeDiffMarkers(){
             for(int j=0;j<lineData.size();j++){
                 DiffOp op=lineData.at(j);
                 bool removeLine=false;
-
-                switch (op.type){
-                case DiffOp::Delete:
-                    break;
-                case DiffOp::Insert:
-                    cur.moveTo(i,op.start);
-                    removeLine=op.length==doc->line(i).length();
-                    cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-                    cur.removeSelectedText();
-                    if(removeLine){
-                        cur.deletePreviousChar();
-                        i--;
-                    }
-                    break;
-                case DiffOp::Replace:
-                    break;
-                }
+		if(theirs){ //keep theirs
+		    switch (op.type){
+		    case DiffOp::Delete:
+			cur.moveTo(i,op.start);
+			cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			cur.removeSelectedText();
+			break;
+		    case DiffOp::Insert:
+			break;
+		    case DiffOp::Replace:
+			cur.moveTo(i,op.start);
+			cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			cur.insertText(op.text);
+			if(op.text.isEmpty() && cur.line().text().isEmpty()){
+			    cur.deletePreviousChar();
+			    i--;
+			}
+			break;
+		    default:
+			;
+		    }
+		}else{ // keep mine
+		    switch (op.type){
+		    case DiffOp::Delete:
+			break;
+		    case DiffOp::Insert:
+			cur.moveTo(i,op.start);
+			removeLine=op.length==doc->line(i).length();
+			cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			cur.removeSelectedText();
+			if(removeLine){
+			    cur.deletePreviousChar();
+			    i--;
+			}
+			break;
+		    case DiffOp::Replace:
+			break;
+		    default:
+			;
+		    }
+		}
             }
             doc->line(i).removeCookie(2);
         }
@@ -5899,5 +5924,106 @@ void Texmaker::removeDiffMarkers(){
 
     LatexEditorView *edView=currentEditorView();
     edView->documentContentChanged(0,edView->document->lines());
+
+}
+
+void Texmaker::editChangeDiff(QPoint pt){
+    LatexEditorView *edView=currentEditorView();
+    if(!edView)
+	return;
+
+    QDocumentCursor cursor=edView->editor->cursor();
+    bool theirs=(pt.x()<0);
+    int ln=pt.x();
+    if(ln<0)
+	ln=-ln-1;
+    int col=pt.y();
+    cursor.moveTo(ln,col);
+
+    QList<int> fids;
+    fids<<edView->deleteFormat<<edView->insertFormat<<edView->replaceFormat;
+    foreach(int fid,fids){
+	QFormatRange fr;
+	if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,fid);
+	else fr = cursor.line().getOverlayAt(cursor.columnNumber(),fid);
+	if (fr.length>0 ) {
+	    QVariant var=cursor.line().getCookie(2);
+	    if(var.isValid()){
+		DiffList diffList=var.value<DiffList>();
+		//QString word=cursor.line().text().mid(fr.offset,fr.length);
+		DiffOp op;
+
+		QList<DiffOp>::iterator i;
+		for (i = diffList.begin(); i != diffList.end(); ++i){
+		    op=*i;
+		    if(op.start<=cursor.columnNumber() && op.start+op.length>=cursor.columnNumber()){
+			break;
+		    }
+		}
+		if(i!=diffList.end()){
+		    QString txt;
+		    bool removeLine=false;
+		    if(theirs){
+			switch(op.type){
+			case DiffOp::Delete:
+			    cursor.movePosition(1,QDocumentCursor::StartOfLine);
+			    cursor.movePosition(op.start,QDocumentCursor::Right);
+			    cursor.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			    cursor.removeSelectedText();
+			    op.type=DiffOp::Deleted;
+			    *i=op;
+			    break;
+			case DiffOp::Insert:
+			    op.type=DiffOp::Inserted;
+			    *i=op;
+			    break;
+			case DiffOp::Replace:
+			    cursor.movePosition(1,QDocumentCursor::StartOfLine);
+			    cursor.movePosition(op.start,QDocumentCursor::Right);
+			    cursor.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			    txt=cursor.selectedText();
+			    cursor.insertText(op.text);
+			    op.type=DiffOp::Replaced;
+			    op.text=txt;
+			    *i=op;
+			    break;
+			default:
+			    ;
+			} // end theirs
+		    }else{
+			switch(op.type){
+			case DiffOp::Delete:
+			    op.type=DiffOp::NotDeleted;
+			    *i=op;
+			    break;
+			case DiffOp::Insert:
+			    cursor.movePosition(1,QDocumentCursor::StartOfLine);
+			    cursor.movePosition(op.start,QDocumentCursor::Right);
+			    cursor.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			    removeLine=op.length==cursor.line().length();
+			    cursor.removeSelectedText();
+			    op.type=DiffOp::NotInserted;
+			    *i=op;
+			    if(removeLine)
+				cursor.deletePreviousChar();
+			    break;
+			case DiffOp::Replace:
+			    op.type=DiffOp::NotReplaced;
+			    *i=op;
+			    break;
+			default:
+			    ;
+			}
+		    } // end mine
+
+		    cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
+
+		    LatexEditorView *edView=currentEditorView();
+		    edView->documentContentChanged(0,edView->document->lines());
+		    return;
+		}
+	    }
+	}
+    }
 
 }

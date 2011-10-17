@@ -219,7 +219,8 @@ private slots:
 	void changeToRevision(QString rev,QString old_rev="");
 	void svnDialogClosed();
         void fileDiff();
-        void removeDiffMarkers();
+	void removeDiffMarkers(bool theirs=false);
+	void editChangeDiff(QPoint pt);
         void jumpNextDiff();
         void jumpPrevDiff();
 protected slots:	
