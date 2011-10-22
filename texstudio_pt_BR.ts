@@ -50,7 +50,7 @@
         <location filename="aboutdialog.cpp" line="27"/>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <oldsource>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</oldsource>
-        <translation type="unfinished">Site do projeto: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation>Website do projeto: &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="28"/>
@@ -729,17 +729,17 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1328"/>
         <source>No line numbers</source>
-        <translation>Não mostrar o número das linhas</translation>
+        <translation>Não exibir o número das linhas</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1333"/>
         <source>Show line numbers</source>
-        <translation>Mostrar o número das linhas</translation>
+        <translation>Exibir o número das linhas</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1338"/>
         <source>Show important line numbers</source>
-        <translation>Mostrar o número das linhas principais</translation>
+        <translation>Exibir o número das linhas principais</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1346"/>
@@ -844,32 +844,32 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <location filename="configdialog.ui" line="1464"/>
         <source>Show help as tooltip on text in editor</source>
         <oldsource>Show help as tooltip on ext in editor</oldsource>
-        <translation>Mostrar ajuda como dica no editor</translation>
+        <translation>Exibir ajuda como dica</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="740"/>
         <source>Quick Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções de Compilação</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1260"/>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Aspas francesas reversas: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1414"/>
         <source>Restrict search scope to an existing selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Restringir escopo da busaca para uma seleção existente</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1471"/>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation>Mostrar mat autovisualização como dica no editor</translation>
+        <translation>Exibir mat autovisualização como dica</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1553"/>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"></translation>
+        <translation>Quebra de Linhas:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1563"/>
@@ -977,7 +977,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1864"/>
         <source>Relative tab font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho relativo para fonte nas abas:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1905"/>
@@ -1262,7 +1262,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.cpp" line="299"/>
         <source>Diff</source>
-        <translation type="unfinished"></translation>
+        <translation>Diff</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="308"/>
@@ -1306,17 +1306,19 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.cpp" line="317"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Barras de
+Ferramentas</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="319"/>
         <source>Adv. Editor</source>
-        <translation>Editor Av.</translation>
+        <translation>Editor (Avançado)</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="320"/>
         <source>Custom Highlighting</source>
-        <translation>Destaque Personalizado</translation>
+        <translation>Destaque
+Personalizado</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="321"/>
@@ -2005,7 +2007,8 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="configmanager.cpp" line="1094"/>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Você tem habilitada a substituição automática de aspas. Todavia existem etiquetas de usuário (?&lt;=\s|^) e (?&lt;=\S) que irão sobrescrever estas novas aspas.
+Deseja removê-las?</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1256"/>
@@ -2030,7 +2033,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="1274"/>
         <source>Open first non-open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir o primeiro arquivo &apos;não aberto&apos;</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1275"/>
@@ -2294,7 +2297,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="insertgraphics.ui" line="91"/>
         <source>Width/Height</source>
         <oldsource>width=\linewidth</oldsource>
-        <translation type="unfinished">width=\linewidth</translation>
+        <translation>width=\linewidth</translation>
     </message>
     <message>
         <source>Caption: </source>
@@ -2343,7 +2346,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="insertgraphics.cpp" line="25"/>
         <source>Insert Graphic</source>
-        <translation type="unfinished">Inserir Gráfico</translation>
+        <translation>Inserir Gráfico</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="52"/>
@@ -2353,72 +2356,72 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="insertgraphics.ui" line="85"/>
         <source>Size / Include Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho / Opções de Incusão</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="101"/>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Largura</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="111"/>
         <source>0.7</source>
-        <translation type="unfinished">0.7</translation>
+        <translation>0.7</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="128"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Altura</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="151"/>
         <source>User defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Definida pelo usuário</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="179"/>
         <source>Center horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Centralizar horizontalmente</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="212"/>
         <source>Caption</source>
-        <translation type="unfinished"></translation>
+        <translation>Legenda</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="223"/>
         <source>Above graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Acima do gráfico</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="228"/>
         <source>Below graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Abaixo do gráfico</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="259"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Rótulo</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="269"/>
         <source>Span two columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre duas colunas</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="346"/>
         <source>Position</source>
-        <translation type="unfinished"></translation>
+        <translation>Posição</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="383"/>
         <source>Save current settings as default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar ajustes atuais como padrão.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="386"/>
         <source>as default</source>
-        <translation type="unfinished"></translation>
+        <translation>como padrão</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="410"/>
@@ -2440,25 +2443,29 @@ Você deseja desfazer as alterações?</translation>
         <location filename="insertgraphics.cpp" line="246"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível analisar código de inclusão de gráfico:
+Número de argumentos insuficiente</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="263"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível analisar código de inclusão de gráfico:
+O assistente não suporta ambientes</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="277"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics optins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível analisar código de inclusão de gráfico:
+Faltando opções para \includegraphics.</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="287"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível analisar código de inclusão de gráfico:
+O assistente não suporta comandos</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="385"/>
@@ -3244,22 +3251,22 @@ The wizard does not support command </source>
     <message>
         <location filename="PDFDocument.ui" line="811"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Voltar</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="814"/>
         <source>Previously shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Página previamente exibida</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="819"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Avançar</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="822"/>
         <source>Next shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Página exibida posteriormente</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="706"/>
@@ -4953,22 +4960,22 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="randomtextgenerator.ui" line="181"/>
         <source>ignore case</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar Maiúsc/Minúsc</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="201"/>
         <source>punctation</source>
-        <translation type="unfinished"></translation>
+        <translation>pontuação</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="208"/>
         <source>LaTeX input</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada LaTeX</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="218"/>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar para:</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="42"/>
@@ -5002,12 +5009,13 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="randomtextgenerator.cpp" line="118"/>
         <source>Couldn&apos;t create file %1</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Não foi possível criar arquivo %1</translatorcomment>
+        <translation>Couldn&apos;t create file %1</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="211"/>
         <source>Finished generation</source>
-        <translation type="unfinished"></translation>
+        <translation>Geração concluída</translation>
     </message>
     <message>
         <source>Couldn&apos;t find possible extension word</source>
@@ -5022,23 +5030,25 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>O script atual requisitou a entrada no modo privilegiado de escrita e chamou a seguinte função: 
+%1
+Você confia neste script?</translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="160"/>
         <source>Yes, allow this call</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, permitir esta chamada</translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="161"/>
         <source>Yes, allow all calls it will ever make</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, permitir todas as chamadas</translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="161"/>
         <location filename="scriptobject.cpp" line="173"/>
         <source>No, abort the call</source>
-        <translation type="unfinished"></translation>
+        <translation>Não abortar a chamada</translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="172"/>
@@ -5046,17 +5056,20 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>O script atual pediu requisitou a entrada no modo privilegiado para ler o seguinte valor:
+%1
+
+Você confia neste script?</translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="172"/>
         <source>Yes, allow this reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim permitir esta ação de leitura</translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="173"/>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, garantir permanente acesso de leitura</translation>
     </message>
 </context>
 <context>
@@ -5567,7 +5580,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="234"/>
         <source>Pdf files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos PDF</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="339"/>
@@ -5754,17 +5767,17 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="477"/>
         <source>Show difference between two files</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir diferenças entre dois arquivos</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="478"/>
         <source>Jump to next difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para próxima diferença</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="479"/>
         <source>Jump to previous difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para diferença anterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="482"/>
@@ -5804,7 +5817,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="498"/>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar pilha do &apos;desfazer&apos;</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="501"/>
@@ -6285,7 +6298,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="664"/>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar modelo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="668"/>
@@ -6413,7 +6426,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="724"/>
         <source>Set High&amp;lighting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Se&amp;lecionar Destaque...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="727"/>
@@ -6470,7 +6483,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="5591"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos LaTeX (*.tex);;Todos Arquivos (*)</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
@@ -6918,7 +6931,7 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
     <message>
         <location filename="texmaker.cpp" line="603"/>
         <source>Find mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Localizar não-coincidentes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="909"/>
@@ -6960,12 +6973,12 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
     <message>
         <location filename="texmaker.cpp" line="4419"/>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover documento para o &amp;frente</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4420"/>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover docum&amp;ento para o fim</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4426"/>
@@ -7407,7 +7420,7 @@ devem ocorrer somente antes de uma palavra.</translation>
     <message>
         <location filename="usermenudialog.ui" line="330"/>
         <source>run script</source>
-        <translation type="unfinished"></translation>
+        <translation>executar script</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="353"/>
