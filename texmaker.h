@@ -483,6 +483,9 @@ protected:
 
         QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	
+	QDocumentCursor diffSearchBoundaries(QPoint pt,int fid,int direction=0);
+	QString diffCollectText(QDocumentCursor range);
+	void diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type);
 	
 //script things	
 	

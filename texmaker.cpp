@@ -5607,6 +5607,9 @@ void Texmaker::fileDiff(){
     if(!doc)
         return;
 
+    //remove old markers
+    removeDiffMarkers();
+
     QString currentDir=QDir::homePath();
     if (!configManager.lastDocument.isEmpty()) {
             QFileInfo fi(configManager.lastDocument);
@@ -5649,11 +5652,16 @@ void Texmaker::fileDiff(){
         }
         if(elem.operation==DELETE){
             QStringList splitList=elem.text.split("\n");
+	    QStringList splitListInsert;
             if(splitList.isEmpty())
                 continue;
-            int diff=splitList.first().length();
+	    QString lineDelete=splitList.takeFirst();
+	    int diff=lineDelete.length();
             bool toBeReplaced=false;
-            if(i+1<diffList.size() && diffList[i+1].operation==INSERT && (splitList.size()>1 || diffList[i+1].text.count("\n")>0) ){
+	    if(i+1<diffList.size() && diffList[i+1].operation==INSERT){
+		splitListInsert=diffList[i+1].text.split("\n");
+	    }
+	    if( splitListInsert.size()>0 && (splitList.size()>1 || splitListInsert.size()>1) ){
                 toBeReplaced=true;
             }
             QVariant var=doc->line(lineNr).getCookie(2);
@@ -5669,23 +5677,31 @@ void Texmaker::fileDiff(){
             diffOperation.length=diff;
             if(toBeReplaced){
                 diffOperation.type=DiffOp::Replace;
-                diffOperation.text=diffList[i+1].text;
+		diffOperation.text=splitListInsert.takeFirst();
+		if(splitList.isEmpty())
+		    diffOperation.text+="\n"+splitListInsert.join("\n");
             } else {
                 diffOperation.type=DiffOp::Delete;
             }
             lineData.append(diffOperation);
             doc->line(lineNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
             col+=diff;
-            splitList.removeFirst();
-            for(int j=0;j<splitList.size();j++){
+	    int sz=splitList.size();
+	    for(int j=0;j<sz;j++){
                 col=0;
-                QString ln=splitList.at(j);
+		QString ln=splitList.takeFirst();
                 DiffOp diffOperation;
                 diffOperation.start=col;
                 diffOperation.length=ln.length();
                 if(toBeReplaced){
                     diffOperation.type=DiffOp::Replace;
-                    diffOperation.text="";
+		    if(splitListInsert.isEmpty()){
+			diffOperation.text="";
+		    }else{
+			diffOperation.text=splitListInsert.takeFirst();
+			if(splitList.isEmpty() && !splitListInsert.isEmpty())
+			    diffOperation.text+="\n"+splitListInsert.join("\n");
+		    }
                 } else {
                     diffOperation.type=DiffOp::Delete;
                 }
@@ -5947,6 +5963,163 @@ void Texmaker::editChangeDiff(QPoint pt){
 	if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,fid);
 	else fr = cursor.line().getOverlayAt(cursor.columnNumber(),fid);
 	if (fr.length>0 ) {
+	    QDocumentCursor range=diffSearchBoundaries(QPoint(ln,col),fid);
+	    cursor.moveTo(range.lineNumber(),range.columnNumber());
+
+		QVariant var=cursor.line().getCookie(2);
+		if(var.isValid()){
+		    DiffList diffList=var.value<DiffList>();
+		    //QString word=cursor.line().text().mid(fr.offset,fr.length);
+		    DiffOp op;
+
+		    QList<DiffOp>::iterator i;
+		    for (i = diffList.begin(); i != diffList.end(); ++i){
+			op=*i;
+			if(op.start<=cursor.columnNumber() && op.start+op.length>=cursor.columnNumber()){
+			    break;
+			}
+		    }
+		    QStringList splitText;
+		    if(i!=diffList.end()){
+			QString txt;
+			QString altText;
+			if(theirs){
+			    switch(op.type){
+			    case DiffOp::Delete:
+				range.removeSelectedText();
+				diffList.erase(i);
+				break;
+			    case DiffOp::Insert:
+				//op.type=DiffOp::Inserted;
+				//*i=op;
+				diffChangeOpType(range,DiffOp::Inserted);
+				break;
+			    case DiffOp::Replace:
+				altText=diffCollectText(range);
+				txt=range.selectedText();
+				range.removeSelectedText();
+				range.insertText(altText);
+				op.type=DiffOp::Replaced;
+				op.text=txt;
+				splitText=txt.split("\n");
+				op.length=splitText.first().length();
+				*i=op;
+				cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
+				break;
+			    default:
+				;
+			    } // end theirs
+			}else{
+			    switch(op.type){
+			    case DiffOp::Delete:
+				//op.type=DiffOp::NotDeleted;
+				//*i=op;
+				diffChangeOpType(range,DiffOp::NotDeleted);
+				break;
+			    case DiffOp::Insert:
+				range.removeSelectedText();
+				if(range.line().text().isEmpty())
+				    range.eraseLine();
+				//if(removeLine)
+				//    cursor.deletePreviousChar();
+				break;
+			    case DiffOp::Replace:
+				//op.type=DiffOp::NotReplaced;
+				//*i=op;
+				diffChangeOpType(range,DiffOp::NotReplaced);
+				break;
+			    default:
+				;
+			    }
+			} // end mine
+
+		    }
+		}
+	    LatexEditorView *edView=currentEditorView();
+	    edView->documentContentChanged(0,edView->document->lines());
+	    return;
+	} // if fr.length>0
+    }
+
+}
+
+QDocumentCursor Texmaker::diffSearchBoundaries(QPoint pt,int fid,int direction){
+    // direction 0 both, 1 forward, -1 backward
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+	return QDocumentCursor();
+    QDocumentCursor result(doc);
+    QDocumentCursor cursor(doc);
+    int ln=pt.x();
+    int col=pt.y();
+    cursor.moveTo(ln,col);
+    QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),fid);
+    if(fr.length==0)
+	    return QDocumentCursor();
+    QDocumentCursor beginCur(doc);
+    beginCur.moveTo(pt.x(),fr.offset);
+    QDocumentCursor endCur(doc);
+    endCur.moveTo(pt.x(),fr.offset+fr.length);
+    if(fr.length>0 && fr.offset==0 && direction<1){
+	//search backward
+	if(pt.x()>0){
+	    beginCur.movePosition(1,QDocumentCursor::Left);
+	    QDocumentCursor zw=diffSearchBoundaries(QPoint(beginCur.lineNumber(),beginCur.columnNumber()),fid,-1);
+	    if(zw.isValid())
+		beginCur=zw;
+	}
+    }
+    if(fr.length>0 && fr.offset+fr.length==endCur.line().length() && direction>-1){
+	//search backward
+	if(pt.x()+1<doc->lineCount()){
+	    endCur.movePosition(1,QDocumentCursor::Right);
+	    QDocumentCursor zw=diffSearchBoundaries(QPoint(endCur.lineNumber(),endCur.columnNumber()),fid,1);
+	    if(zw.isValid())
+		endCur=zw;
+	}
+    }
+    if(beginCur.isValid())
+	result.moveTo(beginCur.lineNumber(),beginCur.columnNumber());
+    if(endCur.isValid())
+	result.moveTo(endCur.anchorLineNumber(),endCur.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
+    return result;
+}
+
+QString Texmaker::diffCollectText(QDocumentCursor range){
+	QDocumentCursor cursor(range);
+	QString result;
+
+	while(cursor.lineNumber()<=range.anchorLineNumber()){
+	    QVariant var=cursor.line().getCookie(2);
+	    if(var.isValid()){
+		DiffList diffList=var.value<DiffList>();
+		//QString word=cursor.line().text().mid(fr.offset,fr.length);
+		DiffOp op;
+
+		QList<DiffOp>::const_iterator i;
+		for (i = diffList.constBegin(); i != diffList.constEnd(); ++i){
+		    op=*i;
+		    if(op.start<=cursor.columnNumber() && op.start+op.length>=cursor.columnNumber()){
+			break;
+		    }
+		}
+		if(i!=diffList.constEnd()){
+		    if(!result.isEmpty())
+			result+="\n";
+		    result+=op.text;
+		}
+	    }
+	    if(cursor.lineNumber()+1==cursor.document()->lineCount())
+		break;
+	    cursor.movePosition(1,QDocumentCursor::NextLine);
+	}
+	return result;
+}
+
+void Texmaker::diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type){
+	QDocumentCursor cursor(range);
+
+	while(cursor.lineNumber()<=range.anchorLineNumber()){
 	    QVariant var=cursor.line().getCookie(2);
 	    if(var.isValid()){
 		DiffList diffList=var.value<DiffList>();
@@ -5961,69 +6134,13 @@ void Texmaker::editChangeDiff(QPoint pt){
 		    }
 		}
 		if(i!=diffList.end()){
-		    QString txt;
-		    bool removeLine=false;
-		    if(theirs){
-			switch(op.type){
-			case DiffOp::Delete:
-			    cursor.movePosition(1,QDocumentCursor::StartOfLine);
-			    cursor.movePosition(op.start,QDocumentCursor::Right);
-			    cursor.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-			    cursor.removeSelectedText();
-			    op.type=DiffOp::Deleted;
-			    *i=op;
-			    break;
-			case DiffOp::Insert:
-			    op.type=DiffOp::Inserted;
-			    *i=op;
-			    break;
-			case DiffOp::Replace:
-			    cursor.movePosition(1,QDocumentCursor::StartOfLine);
-			    cursor.movePosition(op.start,QDocumentCursor::Right);
-			    cursor.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-			    txt=cursor.selectedText();
-			    cursor.insertText(op.text);
-			    op.type=DiffOp::Replaced;
-			    op.text=txt;
-			    *i=op;
-			    break;
-			default:
-			    ;
-			} // end theirs
-		    }else{
-			switch(op.type){
-			case DiffOp::Delete:
-			    op.type=DiffOp::NotDeleted;
-			    *i=op;
-			    break;
-			case DiffOp::Insert:
-			    cursor.movePosition(1,QDocumentCursor::StartOfLine);
-			    cursor.movePosition(op.start,QDocumentCursor::Right);
-			    cursor.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-			    removeLine=op.length==cursor.line().length();
-			    cursor.removeSelectedText();
-			    op.type=DiffOp::NotInserted;
-			    *i=op;
-			    if(removeLine)
-				cursor.deletePreviousChar();
-			    break;
-			case DiffOp::Replace:
-			    op.type=DiffOp::NotReplaced;
-			    *i=op;
-			    break;
-			default:
-			    ;
-			}
-		    } // end mine
-
-		    cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
-
-		    LatexEditorView *edView=currentEditorView();
-		    edView->documentContentChanged(0,edView->document->lines());
-		    return;
+		    op.type=type;
+		    *i=op;
 		}
+		cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
 	    }
+	    if(cursor.lineNumber()+1==cursor.document()->lineCount())
+		break;
+	    cursor.movePosition(1,QDocumentCursor::NextLine);
 	}
-    }
-
 }
