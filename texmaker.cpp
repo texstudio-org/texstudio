@@ -49,7 +49,6 @@
 #include "qdocumentline_p.h"
 
 #include "qnfadefinition.h"
-#include "diff/diff_match_patch.h"
 
 #include <QMessageBox>
 
@@ -474,8 +473,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "showrevisions",tr("Sh&ow old Revisions"), SLOT(showOldRevisions()));
 	newManagedAction(svnSubmenu, "lockpdf",tr("Lock &PDF"), SLOT(fileLockPdf()));
 	newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
-        newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
-        newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
+	newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
+	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(diffMerge()));
+	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
 	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,":/images/go-next.png");
 	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,":/images/go-previous.png");
 
@@ -5620,7 +5620,14 @@ void Texmaker::fileDiff(){
     QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
     if(files.isEmpty())
         return;
-    QString text=doc->text();
+    //
+    LatexDocument* doc2=diffLoadDocHidden(files.first());
+    diffDocs(doc,doc2);
+    delete doc2; //for now
+    //qDebug() << doc2->lineCount();;
+    //delete doc2;
+    //
+    /*QString text=doc->text();
     // read file for comparison
     QFile file(files.first());
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -5652,56 +5659,65 @@ void Texmaker::fileDiff(){
         }
         if(elem.operation==DELETE){
             QStringList splitList=elem.text.split("\n");
-	    QStringList splitListInsert;
+            QStringList splitListInsert;
             if(splitList.isEmpty())
                 continue;
-	    QString lineDelete=splitList.takeFirst();
-	    int diff=lineDelete.length();
+            QString lineDelete=splitList.takeFirst();
+            int diff=lineDelete.length();
             bool toBeReplaced=false;
-	    if(i+1<diffList.size() && diffList[i+1].operation==INSERT){
-		splitListInsert=diffList[i+1].text.split("\n");
-	    }
-	    if( splitListInsert.size()>0 && (splitList.size()>1 || splitListInsert.size()>1) ){
+            if(i+1<diffList.size() && diffList[i+1].operation==INSERT){
+                splitListInsert=diffList[i+1].text.split("\n");
+            }
+            if( splitListInsert.size()>0 && (splitList.size()>1 || splitListInsert.size()>1) ){
                 toBeReplaced=true;
             }
             QVariant var=doc->line(lineNr).getCookie(2);
             DiffList lineData;
 
+            bool lineModified;
+
             if(var.isValid()){
                 lineData=var.value<DiffList>();
+                if(lineData.isEmpty())
+                    lineModified=doc->isLineModified(doc->line(lineNr));
+                else
+                    lineModified=lineData.first().lineWasModified;
+            } else {
+                lineModified=doc->isLineModified(doc->line(lineNr));
             }
 
             //doc->line(lineNr).addOverlay(QFormatRange(col,diff,fid));
             DiffOp diffOperation;
             diffOperation.start=col;
             diffOperation.length=diff;
+            diffOperation.lineWasModified=lineModified;
             if(toBeReplaced){
                 diffOperation.type=DiffOp::Replace;
-		diffOperation.text=splitListInsert.takeFirst();
-		if(splitList.isEmpty())
-		    diffOperation.text+="\n"+splitListInsert.join("\n");
+                diffOperation.text=splitListInsert.takeFirst();
+                if(splitList.isEmpty())
+                    diffOperation.text+="\n"+splitListInsert.join("\n");
             } else {
                 diffOperation.type=DiffOp::Delete;
             }
             lineData.append(diffOperation);
             doc->line(lineNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
             col+=diff;
-	    int sz=splitList.size();
-	    for(int j=0;j<sz;j++){
+            int sz=splitList.size();
+            for(int j=0;j<sz;j++){
                 col=0;
-		QString ln=splitList.takeFirst();
+                QString ln=splitList.takeFirst();
                 DiffOp diffOperation;
                 diffOperation.start=col;
                 diffOperation.length=ln.length();
                 if(toBeReplaced){
                     diffOperation.type=DiffOp::Replace;
-		    if(splitListInsert.isEmpty()){
-			diffOperation.text="";
-		    }else{
-			diffOperation.text=splitListInsert.takeFirst();
-			if(splitList.isEmpty() && !splitListInsert.isEmpty())
-			    diffOperation.text+="\n"+splitListInsert.join("\n");
-		    }
+                    if(splitListInsert.isEmpty()){
+                        diffOperation.text="";
+                    }else{
+                        diffOperation.text=splitListInsert.takeFirst();
+                        if(splitList.isEmpty() && !splitListInsert.isEmpty())
+                            diffOperation.text+="\n"+splitListInsert.join("\n");
+                    }
                 } else {
                     diffOperation.type=DiffOp::Delete;
                 }
@@ -5711,7 +5727,15 @@ void Texmaker::fileDiff(){
 
                 if(var.isValid()){
                     lineData=var.value<DiffList>();
-                }
+		    if(lineData.isEmpty())
+			lineModified=doc->isLineModified(doc->line(lineNr+j+1));
+		    else
+			lineModified=lineData.first().lineWasModified;
+		} else {
+		    lineModified=doc->isLineModified(doc->line(lineNr+j+1));
+		}
+		diffOperation.lineWasModified=lineModified;
+
                 lineData.append(diffOperation);
                 doc->line(lineNr+j+1).setCookie(2,QVariant::fromValue<DiffList>(lineData));
                 col=ln.length();
@@ -5739,15 +5763,24 @@ void Texmaker::fileDiff(){
                 cur.insertText("\n");
             QVariant var=doc->line(lnNr).getCookie(2);
             DiffList lineData;
+            bool lineModified;
 
             if(var.isValid()){
                 lineData=var.value<DiffList>();
+                if(lineData.isEmpty())
+		    lineModified=doc->isLineModified(doc->line(lnNr));
+                else
+                    lineModified=lineData.first().lineWasModified;
+            } else {
+		lineModified=doc->isLineModified(doc->line(lnNr));
             }
+
             DiffOp diffOperation;
             diffOperation.start=col;
             diffOperation.length=diff;
             diffOperation.type=DiffOp::Insert;
             diffOperation.text="";
+            diffOperation.lineWasModified=lineModified;
             lineData.append(diffOperation);
             doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
             //doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
@@ -5764,12 +5797,19 @@ void Texmaker::fileDiff(){
 
                 if(var.isValid()){
                     lineData=var.value<DiffList>();
+		    if(lineData.isEmpty())
+			lineModified=doc->isLineModified(doc->line(lnNr));
+		    else
+			lineModified=lineData.first().lineWasModified;
+		} else {
+		    lineModified=doc->isLineModified(doc->line(lnNr));
                 }
                 DiffOp diffOperation;
                 diffOperation.start=0;
                 diffOperation.length=ln.length();
                 diffOperation.type=DiffOp::Insert;
                 diffOperation.text="";
+		diffOperation.lineWasModified=lineModified;
                 lineData.append(diffOperation);
                 doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
                 //doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));
@@ -5780,6 +5820,7 @@ void Texmaker::fileDiff(){
 
         }
     }
+    */
     // show changes (by calling LatexEditorView::documentContentChanged)
     LatexEditorView *edView=currentEditorView();
     edView->documentContentChanged(0,edView->document->lines());
@@ -6143,4 +6184,119 @@ void Texmaker::diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type){
 		break;
 	    cursor.movePosition(1,QDocumentCursor::NextLine);
 	}
+}
+
+void Texmaker::diffMerge(){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+        return;
+
+    QDocumentCursor cur(doc);
+    bool theirs;
+
+    for(int i=0;i<doc->lineCount();i++){
+        QVariant var=doc->line(i).getCookie(2);
+
+        if(var.isValid()){
+            DiffList lineData=var.value<DiffList>();
+            for(int j=0;j<lineData.size();j++){
+                DiffOp op=lineData.at(j);
+                if(op.lineWasModified){
+                    //tbd need further considerations !!!!!
+		    // compare to fully undoed version ?
+                    theirs=false;
+                }else{
+                    theirs=true;
+                }
+
+                bool removeLine=false;
+                if(theirs){ //keep theirs
+                    switch (op.type){
+                    case DiffOp::Delete:
+                        cur.moveTo(i,op.start);
+                        cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                        cur.removeSelectedText();
+			if(cur.line().text().isEmpty()){
+			    cur.eraseLine();
+			    i--;
+			}
+                        break;
+                    case DiffOp::Insert:
+                        break;
+                    case DiffOp::Replace:
+                        cur.moveTo(i,op.start);
+                        cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                        cur.insertText(op.text);
+                        if(op.text.isEmpty() && cur.line().text().isEmpty()){
+                            cur.deletePreviousChar();
+                            i--;
+                        }
+                        break;
+                    default:
+                        ;
+                    }
+                }else{ // keep mine
+                    switch (op.type){
+                    case DiffOp::Delete:
+                        break;
+                    case DiffOp::Insert:
+                        cur.moveTo(i,op.start);
+                        removeLine=op.length==doc->line(i).length();
+                        cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+                        cur.removeSelectedText();
+                        if(removeLine){
+                            cur.deletePreviousChar();
+                            i--;
+                        }
+                        break;
+                    case DiffOp::Replace:
+                        break;
+                    default:
+                        ;
+                    }
+                }
+            }
+            doc->line(i).removeCookie(2);
+        }
+    }
+
+    LatexEditorView *edView=currentEditorView();
+    edView->documentContentChanged(0,edView->document->lines());
+}
+
+LatexDocument* Texmaker::diffLoadDocHidden(QString f){
+    QString f_real=f;
+#ifdef Q_WS_WIN
+    QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
+    if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
+#endif
+
+    if (!QFile::exists(f_real)) return 0;
+
+    LatexDocument *doc=new LatexDocument(this);
+    LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+
+    edit->document=doc;
+    edit->document->setEditorView(edit);
+
+    QFile file(f_real);
+    if (!file.open(QIODevice::ReadOnly)) {
+	    QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+	    return 0;
+    }
+    file.close();
+
+    if (edit->editor->fileInfo().suffix()!="tex")
+	    m_languages->setLanguage(edit->editor, f_real);
+
+    //QTime time;
+    //time.start();
+    edit->editor->load(f_real,QDocument::defaultCodec());
+    //qDebug() << "Load time: " << time.elapsed();
+    edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
+
+    edit->document->setEditorView(edit); //update file name (if document didn't exist)
+
+
+    return doc;
 }

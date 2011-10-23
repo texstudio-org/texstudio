@@ -186,7 +186,8 @@ SOURCES += main.cpp \
     qcodeedit/lib/qformat.cpp \
     scriptobject.cpp \
     directoryreader.cpp \
-    diff/diff_match_patch.cpp
+    diff/diff_match_patch.cpp \
+    diffoperations.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
