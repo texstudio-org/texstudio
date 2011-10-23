@@ -223,7 +223,7 @@ private slots:
 	void editChangeDiff(QPoint pt);
         void jumpNextDiff();
         void jumpPrevDiff();
-	void diffMerge();
+	void fileDiffMerge();
 protected slots:	
 	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
 
@@ -270,7 +270,6 @@ protected slots:
 	void symbolAddFavorite();
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
-	LatexDocument* diffLoadDocHidden(QString fn);
 
 private slots:	
 	void ReadSettings();
@@ -484,10 +483,8 @@ protected:
 	RunCommandFlags rerunFlags;
 
         QMap<QString,QString> detectedEnvironmentsForHighlighting;
-	
-	QDocumentCursor diffSearchBoundaries(QPoint pt,int fid,int direction=0);
-	QString diffCollectText(QDocumentCursor range);
-	void diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type);
+
+	LatexDocument* diffLoadDocHidden(QString f);
 	
 //script things	
 	

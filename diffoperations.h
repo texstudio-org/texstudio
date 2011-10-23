@@ -27,7 +27,14 @@ typedef QList<DiffOp> DiffList;
 Q_DECLARE_METATYPE(DiffList);
 
 class LatexDocument;
+class QDocumentCursor;
 
 void diffDocs(LatexDocument *doc,LatexDocument *doc2);
+void diffRemoveMarkers(LatexDocument *doc,bool theirs);
+void diffChange(LatexDocument *doc,int ln,int col,bool theirs);
+QDocumentCursor diffSearchBoundaries(LatexDocument *doc,int ln,int col,int fid,int direction=0);
+QString diffCollectText(QDocumentCursor range);
+void diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type);
+void diffMerge(LatexDocument *doc);
 
 #endif // DIFFOPERATIONS_H
