@@ -112,7 +112,7 @@ private:
 	void createStatusBar();
 	bool FileAlreadyOpen(QString f, bool checkTemporaryNames = false);
 	bool closeAllFilesAsking(); //asks the user and close all files
-	bool canCloseNow(); //asks the user and close all files, and prepares to exit tmx
+	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
 	
 	QFormatFactory *m_formats;
@@ -207,7 +207,7 @@ private slots:
 	void fileCheckinPdf(QString filename="");
 	void fileUpdate(QString filename="");
 	void fileUpdateCWD(QString filename="");
-	void checkin(QString fn,QString text="tmx auto checkin",bool blocking=false);
+	void checkin(QString fn,QString text="txs auto checkin",bool blocking=false);
 	bool svnadd(QString fn,int stage=0);
 	void svncreateRep(QString fn);
 	void svnUndo(bool redo=false);

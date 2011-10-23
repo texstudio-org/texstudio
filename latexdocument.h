@@ -288,7 +288,7 @@ public:
 	bool singleMode();
 
 	//support for included BibTeX-files
-	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by tmx
+	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;

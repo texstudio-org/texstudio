@@ -307,7 +307,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
 	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);
-	registerOption("Editor/Real-Time Spellchecking", &editorConfig->realtimeChecking, true, &pseudoDialog->checkBoxRealTimeCheck); //named for compatibility reasons with older tmx versions
+	registerOption("Editor/Real-Time Spellchecking", &editorConfig->realtimeChecking, true, &pseudoDialog->checkBoxRealTimeCheck); //named for compatibility reasons with older txs versions
 	registerOption("Editor/Check Spelling", &editorConfig->inlineSpellChecking, true, &pseudoDialog->checkBoxInlineSpellCheck);
 	registerOption("Editor/Check Citations", &editorConfig->inlineCitationChecking, true, &pseudoDialog->checkBoxInlineCitationCheck);
 	registerOption("Editor/Check References", &editorConfig->inlineReferenceChecking, true, &pseudoDialog->checkBoxInlineReferenceCheck);
@@ -844,7 +844,7 @@ bool ConfigManager::execConfigDialog() {
 			confDlg->checkboxInternalPDFViewer = new QCheckBox(confDlg);
 			confDlg->checkboxInternalPDFViewer->setObjectName("internal");
 			confDlg->checkboxInternalPDFViewer->setText(tr("Internal viewer"));
-			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER));
+			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER));
 			connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
 			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
 			off++;
@@ -1139,14 +1139,14 @@ bool ConfigManager::execConfigDialog() {
 
 		Q_ASSERT(confDlg->checkboxInternalPDFViewer);
 		QString curPdfViewer = buildManager->getLatexCommand(BuildManager::CMD_VIEWPDF);
-		if (confDlg->checkboxInternalPDFViewer && confDlg->checkboxInternalPDFViewer->isChecked() != curPdfViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+		if (confDlg->checkboxInternalPDFViewer && confDlg->checkboxInternalPDFViewer->isChecked() != curPdfViewer.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
 			//prepend/remove tmx://internal-pdf-viewer
 			if (confDlg->checkboxInternalPDFViewer->isChecked())
-				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , BuildManager::TMX_INTERNAL_PDF_VIEWER + "/" + curPdfViewer);
-			else if (curPdfViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER+"/"))
-				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , curPdfViewer.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length() + 1));
+				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , BuildManager::TXS_INTERNAL_PDF_VIEWER + "/" + curPdfViewer);
+			else if (curPdfViewer.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER+"/"))
+				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , curPdfViewer.mid(BuildManager::TXS_INTERNAL_PDF_VIEWER.length() + 1));
 			else
-				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , curPdfViewer.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length()));
+				buildManager->setLatexCommand(BuildManager::CMD_VIEWPDF , curPdfViewer.mid(BuildManager::TXS_INTERNAL_PDF_VIEWER.length()));
 		}
 
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
@@ -1629,11 +1629,11 @@ void ConfigManager::loadTranslations(QString locale){
 		locale = QString(QLocale::system().name()).left(2);
 		if (locale.length() < 2) locale = "en";
 	}
-	QString tmxTranslationFile=findResourceFile("texstudio_"+locale+".qm");
-	if (tmxTranslationFile == "")
-		tmxTranslationFile=findResourceFile("texmakerx_"+locale+".qm");
-	//if (tmxTranslationFile!="") {
-		appTranslator->load(tmxTranslationFile);
+	QString txsTranslationFile=findResourceFile("texstudio_"+locale+".qm");
+	if (txsTranslationFile == "")
+		txsTranslationFile=findResourceFile("texmakerx_"+locale+".qm");
+	//if (txsTranslationFile!="") {
+		appTranslator->load(txsTranslationFile);
 		basicTranslator->load(findResourceFile("qt_"+locale+".qm"));
 	//}
 }

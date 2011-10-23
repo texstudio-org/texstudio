@@ -10,7 +10,7 @@
 #endif
 
 
-QString BuildManager::TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
+QString BuildManager::TXS_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
 
 BuildManager::BuildManager()
 #ifdef Q_WS_WIN
@@ -597,7 +597,7 @@ void BuildManager::setLatexCommand(LatexCommand cmd, const QString &cmdString){
 	if (cmdString=="<default>") {
 	    commands[cmd]=guessCommandName(cmd);
 	    if(cmd==CMD_VIEWPDF)
-		commands[cmd].prepend(BuildManager::TMX_INTERNAL_PDF_VIEWER+"/");
+		commands[cmd].prepend(BuildManager::TXS_INTERNAL_PDF_VIEWER+"/");
 	}
 	else if (cmdString==tr("<unknown>")) commands[cmd]="";
 	else {
@@ -625,8 +625,8 @@ QString BuildManager::getLatexCommand(LatexCommand cmd){
 QString BuildManager::getLatexCommandForDisplay(LatexCommand cmd){
 	if (commands[cmd] == "") return tr("<unknown>");
         QString res=commands[cmd];
-        if(cmd==CMD_VIEWPDF && res.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER))
-            res=res.mid(BuildManager::TMX_INTERNAL_PDF_VIEWER.length() + 1);
+        if(cmd==CMD_VIEWPDF && res.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER))
+            res=res.mid(BuildManager::TXS_INTERNAL_PDF_VIEWER.length() + 1);
         return res;
 }
 QString BuildManager::getLatexCommandExecutable(LatexCommand cmd){

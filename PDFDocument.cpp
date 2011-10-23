@@ -2474,7 +2474,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 			}
 
 			syncFromSourceBlock = true;
-			emit syncSource(fullName, synctex_node_line(node)-1, activate, word); //-1 because tmx is 0 based, but synctex seems to be 1 based
+			emit syncSource(fullName, synctex_node_line(node)-1, activate, word); //-1 because txs is 0 based, but synctex seems to be 1 based
 			syncFromSourceBlock = false;
 			break; // FIXME: currently we just take the first hit
 		}
