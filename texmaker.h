@@ -223,6 +223,7 @@ private slots:
 	void editChangeDiff(QPoint pt);
         void jumpNextDiff();
         void jumpPrevDiff();
+	void diffMerge();
 protected slots:	
 	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
 
@@ -269,6 +270,7 @@ protected slots:
 	void symbolAddFavorite();
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
+	LatexDocument* diffLoadDocHidden(QString fn);
 
 private slots:	
 	void ReadSettings();
