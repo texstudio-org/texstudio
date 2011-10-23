@@ -482,6 +482,7 @@ PDFWidget::PDFWidget()
 	highlightPage=-1;
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
         docPages=0;
+	pageHistoryIndex=-1;
 }
 
 PDFWidget::~PDFWidget()
@@ -1291,7 +1292,7 @@ void PDFWidget::reloadPage(bool sync)
 	else {
 		while (pageHistory.size() > pageHistoryIndex + 1) pageHistory.removeLast();
 		pageHistory.append(realPageIndex);
-		if (pageHistory.size() > 50) pageHistory.removeFirst();
+		while (pageHistory.size() > 50) pageHistory.removeFirst();
 		pageHistoryIndex = pageHistory.size()-1;
 	}
 	
