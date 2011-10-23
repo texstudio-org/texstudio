@@ -1,5 +1,5 @@
 /*
-	This file contains the dockwidgets at the left/bottom side of tmx
+	This file contains the dockwidgets at the left/bottom side of txs
 */
 #ifndef TOOLWIDGETS_H
 #define TOOLWIDGETS_H

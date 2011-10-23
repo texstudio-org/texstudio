@@ -1603,12 +1603,12 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 
 		if(configManager.autoCheckinAfterSave){
 			if(svnadd(currentEditor()->fileName())){
-				checkin(currentEditor()->fileName(),"tmx auto checkin",configManager.svnKeywordSubstitution);
+				checkin(currentEditor()->fileName(),"txs auto checkin",configManager.svnKeywordSubstitution);
 			} else {
 				//create simple repository
 				svncreateRep(currentEditor()->fileName());
 				svnadd(currentEditor()->fileName());
-				checkin(currentEditor()->fileName(),"tmx auto checkin",configManager.svnKeywordSubstitution);
+				checkin(currentEditor()->fileName(),"txs auto checkin",configManager.svnKeywordSubstitution);
 			}
 			// set SVN Properties if desired
 			if(configManager.svnKeywordSubstitution){
@@ -3182,12 +3182,12 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 	}
 
 	if (!(flags & RCF_IS_RERUN_CALL)) {
-		if (commandline.trimmed().startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
+		if (commandline.trimmed().startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
 #ifndef NO_POPPLER_PREVIEW
 			QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame).first();
 			QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
-			if (externalViewer.startsWith(BuildManager::TMX_INTERNAL_PDF_VIEWER)) {
-				externalViewer.remove(0,BuildManager::TMX_INTERNAL_PDF_VIEWER.length());
+			if (externalViewer.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
+				externalViewer.remove(0,BuildManager::TXS_INTERNAL_PDF_VIEWER.length());
 				if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
 			}
 			externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1).first();
@@ -4954,11 +4954,11 @@ void Texmaker::svncreateRep(QString fn){
 	admin+=" create "+path+"/repo";
 	stat2->setText(QString(" svn create repo "));
 	runCommand(admin, RCF_WAIT_FOR_FINISHED);
-	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"tmx auto generate\"";
+	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"txs auto generate\"";
 	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
-	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"tmx auto generate\"";
+	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"txs auto generate\"";
 	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
-	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"tmx auto generate\"";
+	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"txs auto generate\"";
 	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
 	stat2->setText(QString(" svn checkout repo"));
 	cmd+=" co file:///"+path+"/repo/trunk "+path;
@@ -5064,7 +5064,7 @@ void Texmaker::showOldRevisions(){
 		currentEditor()->save();
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
-		checkin(currentEditor()->fileName(),"tmx auto checkin",true);
+		checkin(currentEditor()->fileName(),"txs auto checkin",true);
 	}
 	UpdateCaption();
 
@@ -5282,16 +5282,16 @@ void Texmaker::cursorHovered(){
 
 void Texmaker::saveProfile(){
 	QString currentDir=configManager.configBaseDir;
-	QString fname = QFileDialog::getSaveFileName(this,tr("Save Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
+	QString fname = QFileDialog::getSaveFileName(this,tr("Save Profile"),currentDir,tr("TXS Profile","filter")+"(*.txsprofile);;"+tr("All files")+" (*)");
 	QFileInfo info(fname);
 	if(info.suffix().isEmpty())
-		fname+=".tmxprofile";
+		fname+=".txsprofile";
 	SaveSettings(fname);
 }
 
 void Texmaker::loadProfile(){
 	QString currentDir=configManager.configBaseDir;
-	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TmX Profile","filter")+"(*.tmxprofile);;"+tr("All files")+" (*)");
+	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TXS Profile","filter")+"(*.txsprofile *.tmxprofile);;"+tr("All files")+" (*)");  //*.tmxprofile for compatibility - may be removed later
 	if(QFileInfo(fname).isReadable()){
 		SaveSettings();
 		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
