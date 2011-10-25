@@ -246,6 +246,8 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 }
 
 
+int ConfigDialog::lastUsedPage = 0;
+
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0) {
 	setModal(true);
 	ui.setupUi(this);
@@ -325,7 +327,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
-	ui.contentsWidget->setCurrentRow(0);
+	ui.contentsWidget->setCurrentRow(lastUsedPage);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
 	// riddles are nice, but not when I want to configure something   connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
 
@@ -386,7 +388,8 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 	if (!current)
 		current = previous;
 
-	ui.pagesWidget->setCurrentIndex(ui.contentsWidget->row(current));
+	lastUsedPage = ui.contentsWidget->row(current);
+	ui.pagesWidget->setCurrentIndex(lastUsedPage);
 }
 
 
@@ -503,11 +506,18 @@ void hideShowAdvancedOptions(QWidget* w, bool on){
 }
 
 void ConfigDialog::advancedOptionsToggled(bool on){
+	QListWidgetItem * currentPage = ui.contentsWidget->currentItem();
+
 	hideShowAdvancedOptions(this,on);
 	ui.contentsWidget->reset();
 	for (int i=0;i<ui.contentsWidget->count();i++)
 		if (ui.contentsWidget->item(i)->data(Qt::UserRole).toBool())
 			ui.contentsWidget->item(i)->setHidden(!on);
+	if (currentPage && !currentPage->isHidden()) {
+		currentPage->setSelected(true);
+	} else {
+		ui.contentsWidget->setCurrentRow(0);
+	}
 }
 
 void ConfigDialog::advancedOptionsClicked(bool on){

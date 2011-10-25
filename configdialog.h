@@ -105,6 +105,8 @@ private slots:
 	void custSyntaxRemoveLine();
 private:
 	bool askRiddle();
+	static int lastUsedPage;
+	static QPoint lastSize;
 };
 
 Q_DECLARE_METATYPE(QAction*);
