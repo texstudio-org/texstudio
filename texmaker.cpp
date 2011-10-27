@@ -184,8 +184,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	show();
 
-	stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
-	stat2->setText(QString(" %1 ").arg(tr("Ready")));
+	statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
+	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	// adapt menu output view visible;
 	outputViewAction->setChecked(outputView->isVisible());
 	connect(outputView, SIGNAL(visibilityChanged(bool)), outputViewAction, SLOT(setChecked(bool)));  //synchronize toggle action and menu action (todo: insert toggle action in menu, but not that easy with the managed menus)
@@ -702,7 +702,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",leftPanel->toggleViewAction());
-	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(viewToggleOutputView()));
+	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(viewToggleOutputView()), 0, ":/images/logpanel.png");
 	outputViewAction->setCheckable(true);
 	newManagedAction(menu, "closesomething",tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
 
@@ -854,12 +854,44 @@ void Texmaker::setupToolBars() {
 
 void Texmaker::createStatusBar() {
 	QStatusBar * status=statusBar();
-	stat1=new QLabel(status);
-	stat2=new QLabel(status);
-	stat3=new QLabel(status);
-	status->addPermanentWidget(stat3,0);
-	status->addPermanentWidget(stat2,0);
-	status->addPermanentWidget(stat1,0);
+
+	QAction *act;
+	QToolButton *tb;
+	act = getManagedAction("main/view/structureview");
+	if (act) {
+		tb = new QToolButton(status);
+		tb->setCheckable(true);
+		tb->setChecked(act->isChecked());
+		tb->setIcon(act->icon());
+		tb->setToolTip(act->toolTip());
+		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
+		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
+		status->addPermanentWidget(tb, 0);
+	}
+
+	act = getManagedAction("main/view/outputview");
+	if (act) {
+		tb = new QToolButton(status);
+		tb->setCheckable(true);
+		tb->setChecked(act->isChecked());
+		tb->setIcon(act->icon());
+		tb->setToolTip(act->toolTip());
+		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
+		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
+		status->addPermanentWidget(tb, 0);
+
+	}
+
+	// spacer eating up all the space between "left" and "right" permanent widgets. Could be used for status text in the future
+	QLabel* dummy = new QLabel(status);
+	status->addPermanentWidget(dummy, 1);
+
+	statusLabelMode=new QLabel(status);
+	statusLabelProcess=new QLabel(status);
+	statusLabelEncoding=new QLabel(status);
+	status->addPermanentWidget(statusLabelEncoding,0);
+	status->addPermanentWidget(statusLabelProcess,0);
+	status->addPermanentWidget(statusLabelMode,0);
 	//statCursor=new QLabel( status );
 	for (int i=1; i<=3; i++) {
 		QPushButton* pb=new QPushButton(QIcon(QString(":/images/bookmark%1.png").arg(i)),"",status);
@@ -905,11 +937,11 @@ void Texmaker::UpdateCaption() {
 void Texmaker::updateMasterDocumentCaption(){
 	if (documents.singleMode()){
 		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
-		stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
+		statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	} else {
 		QString shortName = documents.masterDocument->getFileInfo().fileName();
 		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
-		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
+		statusLabelMode->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
 	}	
 }
 
@@ -970,8 +1002,8 @@ void Texmaker::NewDocumentStatus() {
 		EditorView->setTabText(index, tabText);
 		updateOpenDocumentMenu(true);
 	}
-	if (currentEditorView()->editor->getFileCodec()) stat3->setText(currentEditorView()->editor->getFileCodec()->name());
-	else stat3->setText("unknown");
+	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
+	else statusLabelEncoding->setText("unknown");
 }
 
 void Texmaker::NewDocumentLineEnding(){
@@ -1614,7 +1646,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 			if(configManager.svnKeywordSubstitution){
 				QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 				cmd+=" propset svn:keywords \"Date Author HeadURL Revision\" \""+currentEditor()->fileName()+"\"";
-				stat2->setText(QString(" svn propset svn:keywords "));
+				statusLabelProcess->setText(QString(" svn propset svn:keywords "));
 				runCommand(cmd, 0);
 			}
 		}
@@ -3286,12 +3318,12 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 void Texmaker::RunPreCompileCommand() {
 	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
 	if (!buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) {
-		stat2->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
+		statusLabelProcess->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
 		runCommand(BuildManager::CMD_USER_PRECOMPILE, RCF_WAIT_FOR_FINISHED);
 	}
 	if (documents.bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
 		ERRPROCESS=false;
-		stat2->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
+		statusLabelProcess->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
 		runCommand(BuildManager::CMD_LATEX, RCF_WAIT_FOR_FINISHED);
 		if (ERRPROCESS && !LogExists()) {
 			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
@@ -3299,10 +3331,10 @@ void Texmaker::RunPreCompileCommand() {
 		}
 		if (NoLatexErrors()) {
 			ERRPROCESS=false;
-			stat2->setText(QString(" %1 ").arg(tr("BibTeX")));
+			statusLabelProcess->setText(QString(" %1 ").arg(tr("BibTeX")));
 			runCommand(BuildManager::CMD_BIBTEX,RCF_WAIT_FOR_FINISHED);
 			if (!ERRPROCESS) {
-				stat2->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
+				statusLabelProcess->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
 				runCommand(BuildManager::CMD_LATEX,RCF_WAIT_FOR_FINISHED);
 			}
 		}
@@ -3333,7 +3365,7 @@ void Texmaker::SlotEndProcess(int err) {
 	ProcessX* procX = qobject_cast<ProcessX*> (sender());
 	FINPROCESS=true;
 	if (err) ERRPROCESS=true;
-	stat2->setText(QString(" %1 ").arg(tr("Ready")));
+	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	if(!procX) return;
 	QString *buffer=procX->getBuffer();
 	if(buffer){
@@ -3361,7 +3393,7 @@ void Texmaker::QuickBuild() {
 	}
 
 	RunPreCompileCommand();
-	stat2->setText(QString(" %1 ").arg(tr("Quick Build")));
+	statusLabelProcess->setText(QString(" %1 ").arg(tr("Quick Build")));
 	ERRPROCESS=false;
 
 	QList<BuildManager::LatexCommand> cmddList;
@@ -3371,7 +3403,7 @@ void Texmaker::QuickBuild() {
 	if (!cmddList.isEmpty()) {
 		for (int i=0; i < cmddList.size() - 1; i++) { //skip last command
 			BuildManager::LatexCommand cmd = cmddList[i];
-			stat2->setText(QString(" %1 ").arg(BuildManager::commandDisplayName(cmd)));
+			statusLabelProcess->setText(QString(" %1 ").arg(BuildManager::commandDisplayName(cmd)));
 			runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 			if (cmd == BuildManager::CMD_LATEX || cmd == BuildManager::CMD_PDFLATEX) {
 				if (ERRPROCESS && !LogExists()) {
@@ -3428,7 +3460,7 @@ void Texmaker::commandFromAction(){
 		RunPreCompileCommand();
 	QString status=act->text();
 	status.remove(QChar('&'));
-	stat2->setText(QString(" %1 ").arg(status));
+	statusLabelProcess->setText(QString(" %1 ").arg(status));
 	runCommand(cmd, 0);
 }
 
@@ -3455,7 +3487,7 @@ void Texmaker::CleanAll() {
 	int query =QMessageBox::warning(this, TEXSTUDIO, tr("Delete the output files generated by LaTeX?")+QString("\n(%1)").arg(extensionStr),tr("Delete Files"), tr("Cancel"));
 	if (query==0) {
 		//fileSave();
-		stat2->setText(QString(" %1 ").arg(tr("Clean")));
+		statusLabelProcess->setText(QString(" %1 ").arg(tr("Clean")));
 		foreach(const QString& finame,finames){
 			QFileInfo fi(finame);
 			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
@@ -3463,7 +3495,7 @@ void Texmaker::CleanAll() {
 			foreach(const QString& ext, extension)
 				QFile::remove(basename+ext);
 		}
-		stat2->setText(QString(" %1 ").arg(tr("Ready")));
+		statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	}
 }
 
@@ -4157,11 +4189,11 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 	if (documents.singleMode()){
 		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
 		outputView->resetMessagesAndLog();
-		stat1->setText(QString(" %1 ").arg(tr("Normal Mode")));
+		statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	} else {
 		QString shortName = documents.masterDocument->getFileInfo().fileName();
 		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
-		stat1->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
+		statusLabelMode->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
 		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
 		int pos=EditorView->currentIndex();
 		EditorView->moveTab(pos,0);
@@ -4890,7 +4922,7 @@ void Texmaker::fileUpdate(QString filename){
 	if(fn.isEmpty()) return;
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" up  \""+fn+"\"";
-	stat2->setText(QString(" svn update "));
+	statusLabelProcess->setText(QString(" svn update "));
 	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 }
 
@@ -4901,14 +4933,14 @@ void Texmaker::fileUpdateCWD(QString filename){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	fn=QFileInfo(fn).path();
 	cmd+=" up  \""+fn+"\"";
-	stat2->setText(QString(" svn update "));
+	statusLabelProcess->setText(QString(" svn update "));
 	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" ci -m \""+text+"\" \""+fn+("\"");
-	stat2->setText(QString(" svn check in "));
+	statusLabelProcess->setText(QString(" svn check in "));
 	runCommand(cmd, (blocking?RCF_WAIT_FOR_FINISHED:RunCommandFlags()));
 	LatexEditorView *edView=getEditorViewFromFileName(fn);
 	if(edView)
@@ -4934,7 +4966,7 @@ bool Texmaker::svnadd(QString fn,int stage){
 	}
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" add \""+fn+("\"");
-	stat2->setText(QString(" svn add "));
+	statusLabelProcess->setText(QString(" svn add "));
 	runCommand(cmd, 0);
 	return true;
 }
@@ -4942,7 +4974,7 @@ bool Texmaker::svnadd(QString fn,int stage){
 void Texmaker::svnLock(QString fn){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" lock \""+fn+("\"");
-	stat2->setText(QString(" svn lock "));
+	statusLabelProcess->setText(QString(" svn lock "));
 	runCommand(cmd, 0);
 }
 
@@ -4952,7 +4984,7 @@ void Texmaker::svncreateRep(QString fn){
 	QString admin=buildManager.getLatexCommand(BuildManager::CMD_SVNADMIN);
 	QString path=QFileInfo(fn).absolutePath();
 	admin+=" create "+path+"/repo";
-	stat2->setText(QString(" svn create repo "));
+	statusLabelProcess->setText(QString(" svn create repo "));
 	runCommand(admin, RCF_WAIT_FOR_FINISHED);
 	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"txs auto generate\"";
 	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
@@ -4960,7 +4992,7 @@ void Texmaker::svncreateRep(QString fn){
 	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
 	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"txs auto generate\"";
 	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
-	stat2->setText(QString(" svn checkout repo"));
+	statusLabelProcess->setText(QString(" svn checkout repo"));
 	cmd+=" co file:///"+path+"/repo/trunk "+path;
 	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 }
@@ -5093,7 +5125,7 @@ void Texmaker::svnDialogClosed(){
 SVNSTATUS Texmaker::svnStatus(QString filename){
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	cmd+=" st \""+filename+("\"");
-	stat2->setText(QString(" svn status "));
+	statusLabelProcess->setText(QString(" svn status "));
 	QString buffer;
 	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
 	if(buffer.isEmpty()) return CheckedIn;

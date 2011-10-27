@@ -138,7 +138,7 @@ private:
 	QAction *ToggleAct, *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 
-	QLabel *stat1, *stat2, *stat3;
+	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelEncoding;
 	
 	QToolButton *combo1,*combo2,*combo3,*comboSpell;
 	int comboSpellHeight; // necessaryfor mac

@@ -294,8 +294,10 @@
         <file>completion/pifont.cwl</file>
         <file>completion/theorem.cwl</file>
         <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
+        <file>images/logpanel.png</file>
+        <file>images/sidebar.png</file>
     </qresource>
-    <qresource prefix="classic">
+    <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
         <file>images/classic/fileopen.png</file>
         <file>images/classic/filesave.png</file>
