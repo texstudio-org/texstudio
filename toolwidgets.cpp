@@ -469,6 +469,7 @@ QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
 CustomWidgetList::CustomWidgetList(QWidget* p): 
 	QDockWidget(p), toolbox(0), frame(0),stack(0), toolbar(0)
 {
+	toggleViewAction()->setIcon(QIcon(":/images/sidebar.png"));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this,SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
 }
