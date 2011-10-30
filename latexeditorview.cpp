@@ -182,6 +182,13 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
+		if( (result==LatexParser::Command || result==LatexParser::Option) && command=="\\usepackage"){
+			QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
+			act->setData(value);
+			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
+			contextMenu->addAction(act);
+		}
+
                 //resolve differences
                 if (edView){
                         QList<int> fids;
@@ -607,6 +614,29 @@ void LatexEditorView::openExternalFile(){
 	QString name=act->data().toString();
 	if(!name.isEmpty())
 		emit openFile(name);
+}
+
+void LatexEditorView::openPackageDocumentation(){
+	QAction *act = qobject_cast<QAction*>(sender());
+	QString packageName = act->data().toString();
+	if (!packageName.isEmpty()) {
+		QStringList args;
+		args << "--view" << packageName;
+		QProcess proc(this);
+		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
+		proc.start("texdoc", args);
+		if (!proc.waitForFinished(2000)) {
+			txsWarning("texdoc took too long to open the package documentation");
+			return;
+		}
+	}
+}
+
+void LatexEditorView::openPackageDocumentationError() {
+	QProcess *proc = qobject_cast<QProcess*>(sender());
+	if (proc) {
+		txsWarning(proc->readAllStandardError());
+	}
 }
 
 void LatexEditorView::emitChangeDiff(){
