@@ -107,6 +107,8 @@ private:
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
+	void openPackageDocumentation();
+	void openPackageDocumentationError();
 	void emitChangeDiff();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
