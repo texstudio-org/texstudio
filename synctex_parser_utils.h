@@ -5,7 +5,7 @@ This file is part of the SyncTeX package.
 
 Latest Revision: Tue Jun 14 08:23:30 UTC 2011
 
-Version: 1.16
+Version: 1.17
 
 See synctex_parser_readme.txt for more details
 
@@ -61,9 +61,14 @@ authorization from the copyright holder.
 extern "C" {
 #endif
 
+#define FALSE 0
+#define TRUE !FALSE
+
 #	if _WIN32
+#       define SYNCTEX_CASE_SENSITIVE_PATH FALSE
 #		define SYNCTEX_IS_PATH_SEPARATOR(c) ('/' == c || '\\' == c)
 #	else
+#       define SYNCTEX_CASE_SENSITIVE_PATH TRUE
 #		define SYNCTEX_IS_PATH_SEPARATOR(c) ('/' == c)
 #	endif
     
@@ -71,6 +76,12 @@ extern "C" {
 #		define SYNCTEX_IS_DOT(c) ('.' == c)
 #	else
 #		define SYNCTEX_IS_DOT(c) ('.' == c)
+#	endif
+    
+#	if SYNCTEX_CASE_SENSITIVE_PATH
+#		define SYNCTEX_ARE_PATH_CHARACTERS_EQUAL(left,right) (left != right)
+#	else
+#		define SYNCTEX_ARE_PATH_CHARACTERS_EQUAL(left,right) (toupper(left) != toupper(right))
 #	endif
     
 /*  This custom malloc functions initializes to 0 the newly allocated memory.
@@ -99,6 +110,9 @@ synctex_bool_t _synctex_path_is_absolute(const char * name);
 
 /*	Description forthcoming...*/
 const char * _synctex_last_path_component(const char * name);
+
+/*	Description forthcoming...*/
+const char * _synctex_base_name(const char *path);
 
 /*	If the core of the last path component of src is not already enclosed with double quotes ('"')
  *  and contains a space character (' '), then a new buffer is created, the src is copied and quotes are added.
@@ -132,7 +146,7 @@ int _synctex_get_name(const char * output, const char * build_directory, char **
 /*  returns the correct mode required by fopen and gzopen from the given io_mode */
 const char * _synctex_get_io_mode_name(synctex_io_mode_t io_mode);
 
-const char * synctex_ignore_leading_dot_slash(const char * name);
+synctex_bool_t synctex_ignore_leading_dot_slash_in_path(const char ** name);
     
 #ifdef __cplusplus
 }

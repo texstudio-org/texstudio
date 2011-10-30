@@ -3,7 +3,13 @@
 
 #include "diff/diff_match_patch.h"
 
-struct DiffOp {
+class QDocumentLineHandle;
+
+class DiffOp {
+
+public:
+    DiffOp();
+
     enum DiffType{
         Insert,
         Delete,
@@ -20,6 +26,7 @@ struct DiffOp {
     DiffType type;
     QString text;
     bool lineWasModified;
+    QDocumentLineHandle *dlh;
 };
 
 typedef QList<DiffOp> DiffList;
@@ -29,7 +36,7 @@ Q_DECLARE_METATYPE(DiffList);
 class LatexDocument;
 class QDocumentCursor;
 
-void diffDocs(LatexDocument *doc,LatexDocument *doc2);
+void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines=false);
 void diffRemoveMarkers(LatexDocument *doc,bool theirs);
 void diffChange(LatexDocument *doc,int ln,int col,bool theirs);
 QDocumentCursor diffSearchBoundaries(LatexDocument *doc,int ln,int col,int fid,int direction=0);

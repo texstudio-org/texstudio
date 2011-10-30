@@ -5,7 +5,7 @@ This file is part of the SyncTeX package.
 
 Latest Revision: Tue Jun 14 08:23:30 UTC 2011
 
-Version: 1.16
+Version: 1.17
 
 See synctex_parser_readme.txt for more details
 
@@ -236,6 +236,7 @@ synctex_node_t synctex_node_sheet(synctex_node_t node);
 synctex_node_t synctex_node_child(synctex_node_t node);
 synctex_node_t synctex_node_sibling(synctex_node_t node);
 synctex_node_t synctex_node_next(synctex_node_t node);
+synctex_node_t synctex_sheet(synctex_scanner_t scanner,int page);
 synctex_node_t synctex_sheet_content(synctex_scanner_t scanner,int page);
 
 /*  These are the types of the synctex nodes */
@@ -264,6 +265,11 @@ const char * synctex_node_isa(synctex_node_t node);
 void synctex_node_log(synctex_node_t node);
 void synctex_node_display(synctex_node_t node);
 
+/*  Given a node, access to the location in the synctex file where it is defined.
+ */
+typedef unsigned int synctex_charindex_t;
+synctex_charindex_t synctex_node_charindex(synctex_node_t node);
+
 /*  Given a node, access to its tag, line and column.
  *  The line and column numbers are 1 based.
  *  The latter is not yet fully supported in TeX, the default implementation returns 0 which means the whole line.
@@ -273,6 +279,14 @@ void synctex_node_display(synctex_node_t node);
 int synctex_node_tag(synctex_node_t node);
 int synctex_node_line(synctex_node_t node);
 int synctex_node_column(synctex_node_t node);
+
+/*  In order to enhance forward synchronization,
+ *  non void horizontal boxes have supplemental cached information.
+ *  The mean line is the average of the line numbers of the included nodes.
+ *  The child count is the number of chidren.
+ */
+int synctex_node_mean_line(synctex_node_t node);
+int synctex_node_child_count(synctex_node_t node);
 
 /*  This is the page where the node appears.
  *  This is a 1 based index as given by TeX.

@@ -126,7 +126,35 @@ This concerns the synctex command line tool and 3rd party developers.
 TeX and friends are not concerned by these changes.
 - Better forward search (thanks Jose Alliste)
 - Support for LuaTeX convention of './' file prefixing now for everyone, not only for Windows
-
+1.17: Fri Oct 14 08:15:16 UTC 2011
+This concerns the synctex command line tool and 3rd party developers.
+TeX and friends are not concerned by these changes.
+- synctex_parser.c: cosmetic changes to enhance code readability 
+- Better forward synchronization.
+  The problem occurs for example with LaTeX \item command.
+  The fact is that this command creates nodes at parse time but these nodes are used only
+  after the text material of the \item is displayed on the page. The consequence is that sometimes,
+  forward synchronization spots an irrelevant point from the point of view of the editing process.
+  This was due to some very basic filtering policy, where a somehow arbitrary choice was made when
+  many different possibilities where offered for synchronisation.
+  Now, forward synchronization prefers nodes inside an hbox with as many acceptable spots as possible.
+  This is achieved with the notion of mean line and node weight.
+- Adding support for the new file naming convention with './'
+    + function synctex_ignore_leading_dot_slash_in_path replaces synctex_ignore_leading_dot_slash
+    + function _synctex_is_equivalent_file_name is more permissive
+  Previously, the function synctex_scanner_get_tag would give an answer only when
+  the given file name was EXACTLY one of the file names listed in the synctex file.
+  The we added some changes accepting for example 'foo.tex' instead of './foo.tex'.
+  Now we have an even looser policy for dealing with file names.
+  If the given file name does not match exactly one the file names of the synctex file,
+  then we try to match the base names. If there is only one match of the base names,
+  then it is taken as a match for the whole names.
+  The base name is defined as following:
+      ./foo => foo
+      /my///.////foo => foo
+      /foo => /foo
+      /my//.foo => /my//.foo
+      
 Acknowledgments:
 ----------------
 The author received useful remarks from the pdfTeX developers, especially Hahn The Thanh,
