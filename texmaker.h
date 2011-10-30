@@ -219,11 +219,13 @@ private slots:
 	void changeToRevision(QString rev,QString old_rev="");
 	void svnDialogClosed();
         void fileDiff();
+	void fileDiff3();
 	void removeDiffMarkers(bool theirs=false);
 	void editChangeDiff(QPoint pt);
         void jumpNextDiff();
         void jumpPrevDiff();
 	void fileDiffMerge();
+	void declareConflictResolved();
 protected slots:	
 	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
 

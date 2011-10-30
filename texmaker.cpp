@@ -474,8 +474,10 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "lockpdf",tr("Lock &PDF"), SLOT(fileLockPdf()));
 	newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
 	newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
+	newManagedAction(svnSubmenu, "diff3files",tr("Show difference between two files in relation to base file"), SLOT(fileDiff3()));
 	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(fileDiffMerge()));
 	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
+	newManagedAction(svnSubmenu, "declareresolved",tr("Declare Conflict Resolved"), SLOT(declareConflictResolved()));
 	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,":/images/go-next.png");
 	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,":/images/go-previous.png");
 
@@ -5760,6 +5762,8 @@ void Texmaker::removeDiffMarkers(bool theirs){
         return;
 
     diffRemoveMarkers(doc,theirs);
+    QList<QObject *>lst=doc->children();
+    qDeleteAll(lst);
 
     LatexEditorView *edView=currentEditorView();
     edView->documentContentChanged(0,edView->document->lines());
@@ -5828,4 +5832,54 @@ LatexDocument* Texmaker::diffLoadDocHidden(QString f){
 
 
     return doc;
+}
+
+void Texmaker::fileDiff3(){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+	return;
+
+    //remove old markers
+    removeDiffMarkers();
+
+    QString currentDir=QDir::homePath();
+    if (!configManager.lastDocument.isEmpty()) {
+	    QFileInfo fi(configManager.lastDocument);
+	    if (fi.exists() && fi.isReadable()) {
+		    currentDir=fi.absolutePath();
+	    }
+    }
+    QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Compare File"),currentDir,tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
+    if(files.isEmpty())
+	return;
+    QStringList basefiles = QFileDialog::getOpenFileNames(this,tr("Open Base File"),currentDir,tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
+    if(basefiles.isEmpty())
+	return;
+
+    //
+    LatexDocument* doc2=diffLoadDocHidden(files.first());
+    doc2->setObjectName("diffObejct");
+    doc2->setParent(doc);
+    LatexDocument* docBase=diffLoadDocHidden(basefiles.first());
+    docBase->setObjectName("baseObejct");
+    docBase->setParent(doc);
+    diffDocs(doc2,docBase,true);
+    diffDocs(doc,doc2);
+
+    // show changes (by calling LatexEditorView::documentContentChanged)
+    LatexEditorView *edView=currentEditorView();
+    edView->documentContentChanged(0,edView->document->lines());
+}
+
+void Texmaker::declareConflictResolved(){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+	return;
+
+    QString fn=doc->getFileName();
+    QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+    cmd+=" resolve --accept working \""+fn+("\"");
+    statusLabelProcess->setText(QString(" svn resolve conflict "));
+    runCommand(cmd, RCF_WAIT_FOR_FINISHED);
+    checkin(fn,"txs: commit after resolve");
 }

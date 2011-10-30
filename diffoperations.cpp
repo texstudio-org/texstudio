@@ -1,7 +1,12 @@
 #include "diffoperations.h"
 #include "latexdocument.h"
 
-void diffDocs(LatexDocument *doc,LatexDocument *doc2){
+DiffOp::DiffOp(){
+    dlh=0;
+    lineWasModified=false;
+}
+
+void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 
     QString text=doc->text();
     QString text2=doc2->text();
@@ -9,12 +14,14 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
     QList<Diff> diffList= dmp.diff_main(text, text2,true);
     dmp.diff_cleanupSemantic(diffList);
     int lineNr=0;
+    int lineNr2=0;
     int col=0;
 
     for(int i=0;i<diffList.size();++i){
 	const Diff elem=diffList.at(i);
 	if(elem.operation==EQUAL){
 	    lineNr+=elem.text.count("\n");
+	    lineNr2+=elem.text.count("\n");
 	    col=elem.text.length();
 	    if(elem.text.lastIndexOf("\n")>=0)
 		col-=elem.text.lastIndexOf("\n")+1;
@@ -56,8 +63,12 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
 	    if(toBeReplaced){
 		diffOperation.type=DiffOp::Replace;
 		diffOperation.text=splitListInsert.takeFirst();
-		if(splitList.isEmpty())
+		diffOperation.dlh=doc2->line(lineNr2).handle();
+		qDebug()<<doc->line(lineNr).text()<<" <-> "<< diffOperation.dlh->text();
+		if(splitList.isEmpty()){
 		    diffOperation.text+="\n"+splitListInsert.join("\n");
+		    lineNr2+=splitListInsert.size();
+		}
 	    } else {
 		diffOperation.type=DiffOp::Delete;
 	    }
@@ -72,13 +83,18 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
 		diffOperation.start=col;
 		diffOperation.length=ln.length();
 		if(toBeReplaced){
+		    lineNr2++;
 		    diffOperation.type=DiffOp::Replace;
 		    if(splitListInsert.isEmpty()){
 			diffOperation.text="";
 		    }else{
 			diffOperation.text=splitListInsert.takeFirst();
-			if(splitList.isEmpty() && !splitListInsert.isEmpty())
+			diffOperation.dlh=doc2->line(lineNr2).handle();
+			qDebug()<<doc->line(lineNr+j+1).text()<<" <-> "<< diffOperation.dlh->text();
+			if(splitList.isEmpty() && !splitListInsert.isEmpty()){
 			    diffOperation.text+="\n"+splitListInsert.join("\n");
+			    lineNr2+=splitListInsert.size();
+			}
 		    }
 		} else {
 		    diffOperation.type=DiffOp::Delete;
@@ -112,6 +128,8 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
 		continue;
 	    QDocumentCursor cur(doc);
 	    if(lineNr+1>doc->lines()){
+		if(dontAddLines)
+		    continue;
 		cur.moveTo(lineNr-1,0);
 		cur.movePosition(1,QDocumentCursor::EndOfLine);
 		cur.insertText("\n");
@@ -121,7 +139,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
 	    int diff=splitList.first().length();
 	    cur.insertText(splitList.first());
 	    int lnNr=cur.lineNumber();
-	    if(splitList.size()>1)
+	    if(splitList.size()>1 &&!dontAddLines)
 		cur.insertText("\n");
 	    QVariant var=doc->line(lnNr).getCookie(2);
 	    DiffList lineData;
@@ -143,12 +161,17 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
 	    diffOperation.type=DiffOp::Insert;
 	    diffOperation.text="";
 	    diffOperation.lineWasModified=lineModified;
+	    diffOperation.dlh=doc2->line(lineNr2).handle();
+	    qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
 	    lineData.append(diffOperation);
 	    doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
 	    //doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
 	    col+=diff;
 	    splitList.removeFirst();
+	    if(dontAddLines)
+		continue;
 	    for(int i=0;i<splitList.size();i++){
+		lineNr2++;
 		QString ln=splitList.at(i);
 		cur.insertText(ln);
 		lnNr=cur.lineNumber();
@@ -172,6 +195,8 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2){
 		diffOperation.type=DiffOp::Insert;
 		diffOperation.text="";
 		diffOperation.lineWasModified=lineModified;
+		diffOperation.dlh=doc2->line(lineNr2).handle();
+		qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
 		lineData.append(diffOperation);
 		doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
 		//doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));
@@ -436,8 +461,11 @@ void diffMerge(LatexDocument *doc){
     if(!doc)
 	return;
 
+    //LatexDocument *doc2=doc->findChild("diffObejct");
+    enum Version {mine,their,conflict};
+    Version whose;
+
     QDocumentCursor cur(doc);
-    bool theirs;
 
     for(int i=0;i<doc->lineCount();i++){
 	QVariant var=doc->line(i).getCookie(2);
@@ -447,15 +475,19 @@ void diffMerge(LatexDocument *doc){
 	    for(int j=0;j<lineData.size();j++){
 		DiffOp op=lineData.at(j);
 		if(op.lineWasModified){
-		    //tbd need further considerations !!!!!
-		    // compare to fully undoed version ?
-		    theirs=false;
+		    whose=mine;
+		    if(op.dlh!=0){
+			QVariant var=op.dlh->getCookie(2);
+			if(var.isValid()){
+			    whose=conflict;
+			}
+		    }
 		}else{
-		    theirs=true;
+		    whose=their;
 		}
 
 		bool removeLine=false;
-		if(theirs){ //keep theirs
+		if(whose==their){ //keep theirs
 		    switch (op.type){
 		    case DiffOp::Delete:
 			cur.moveTo(i,op.start);
@@ -480,7 +512,8 @@ void diffMerge(LatexDocument *doc){
 		    default:
 			;
 		    }
-		}else{ // keep mine
+		}
+		if(whose==mine){ // keep mine
 		    switch (op.type){
 		    case DiffOp::Delete:
 			break;
