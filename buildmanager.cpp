@@ -311,15 +311,19 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			return "\""+livePath+fileName+"\" "+options; //found
 #endif
 #ifdef Q_WS_MACX
-		// comments from texmaker: /usr/local/teTeX/bin/i386-apple-darwin-current
-		// /usr/local/teTeX/bin/powerpc-apple-darwin-current
-		// /usr/texbin MACTEX/TEXLIVE2007
-		if (QFileInfo("/usr/bin/texbin/"+fileName).exists())
-			return "/usr/bin/texbin/"+fileName+options;
-		if (QFileInfo("/usr/local/bin/"+fileName).exists())
-			return "/usr/local/bin/"+fileName+options;
-		if (QFileInfo("/usr/texbin/"+fileName).exists())
-			return "/usr/texbin/"+fileName+options;
+		QStringList paths;
+		paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/";
+		paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
+		
+		for (int i=2012; i>=2007; i--) {
+			//paths << QString("/usr/texbin MACTEX/TEXLIVE%i").arg(i); from texmaker comment
+			paths << QString("/usr/local/texlive/%i/bin/x86_64-darwin/").arg(i);
+			paths << QString("/usr/local/texlive/%i/bin/i386-darwin/").arg(i);
+			paths << QString("/usr/local/texlive/%i/bin/powerpc-darwin/").arg(i);
+		}
+		foreach (const QString& p, paths)
+			if (QFileInfo(p+fileName).exists())
+				return p+fileName+options;
 #endif
 	}
 	return "";
