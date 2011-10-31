@@ -929,7 +929,7 @@ void Texmaker::UpdateCaption() {
 	updateUndoRedoStatus();
 	cursorPositionChanged();
 	if (documents.singleMode()) {
-		outputView->resetMessagesAndLog();
+		//outputView->resetMessagesAndLog();
 		if(currentEditorView()) completerNeedsUpdate();
 	}
 	QString finame=getCurrentFileName();
