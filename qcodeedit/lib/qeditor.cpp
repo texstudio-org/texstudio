@@ -1135,6 +1135,7 @@ void QEditor::fileChanged(const QString& file)
 	
 	//qDebug("conflict!");
 	m_saveState = Conflict;
+	emit fileInConflict();
 }
 
 /*!

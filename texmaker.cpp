@@ -1068,6 +1068,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
+	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 
 	edit->setBibTeXIds(&documents.allBibTeXIds);
@@ -4923,9 +4924,11 @@ void Texmaker::fileUpdate(QString filename){
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if(fn.isEmpty()) return;
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	cmd+=" up  \""+fn+"\"";
+	cmd+=" up --non-interactive \""+fn+"\"";
 	statusLabelProcess->setText(QString(" svn update "));
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
+	QString buffer;
+	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
+	outputView->insertMessageLine(buffer);
 }
 
 void Texmaker::fileUpdateCWD(QString filename){
@@ -4934,9 +4937,11 @@ void Texmaker::fileUpdateCWD(QString filename){
 	if(fn.isEmpty()) return;
 	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
 	fn=QFileInfo(fn).path();
-	cmd+=" up  \""+fn+"\"";
+	cmd+=" up --non-interactive  \""+fn+"\"";
 	statusLabelProcess->setText(QString(" svn update "));
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
+	QString buffer;
+	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
+	outputView->insertMessageLine(buffer);
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
@@ -5882,4 +5887,35 @@ void Texmaker::declareConflictResolved(){
     statusLabelProcess->setText(QString(" svn resolve conflict "));
     runCommand(cmd, RCF_WAIT_FOR_FINISHED);
     checkin(fn,"txs: commit after resolve");
+}
+
+void Texmaker::fileInConflict(){
+    QEditor *mEditor = qobject_cast<QEditor *>(sender());
+    int ret = QMessageBox::warning(this,
+				   tr("Conflict!"),
+				   tr(
+				       "%1\nhas been modified by another application.\n"
+				       "Press \"OK\" to show differences\n"
+				       "Press \"Cancel\"to do nothing.\n"
+				       ).arg(mEditor->fileName()),
+				   QMessageBox::Ok
+				   |
+				   QMessageBox::Cancel
+				   );
+    if(ret==QMessageBox::Ok){
+	//remove old markers
+	removeDiffMarkers();
+
+	LatexDocument* doc2=diffLoadDocHidden(mEditor->fileName());
+	LatexDocument* doc=qobject_cast<LatexDocument*>(mEditor->document());
+	doc2->setObjectName("diffObejct");
+	doc2->setParent(doc);
+	diffDocs(doc,doc2);
+	//delete doc2;
+
+	// show changes (by calling LatexEditorView::documentContentChanged)
+	LatexEditorView *edView=doc->getEditorView();
+	if(edView)
+	    edView->documentContentChanged(0,edView->document->lines());
+    }
 }

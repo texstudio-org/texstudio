@@ -425,6 +425,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void hovered(QPoint pos);
 
 		void fileReloaded();
+		void fileInConflict();
 		void fileAutoReloading(QString fname);
 		void needUpdatedCompleter();
 
