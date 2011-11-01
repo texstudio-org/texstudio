@@ -182,9 +182,28 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
+		//package help
 		if( (result==LatexParser::Command || result==LatexParser::Option) && command=="\\usepackage"){
 			QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
-			act->setData(value);
+			QString packageName;
+			if (value.contains(',')) {
+				// multiple packages included in one \usepackage command
+				QStringList packages;
+				foreach (QString pkg, value.split(',')) {
+					packages.append(pkg.simplified());
+				}
+				QDocumentCursor wordCursor = cursor;
+				wordCursor.select(QDocumentCursor::WordUnderCursor);
+				if (packages.contains(wordCursor.selectedText())) {
+					packageName = wordCursor.selectedText();
+				} else {
+					packageName = packages.first();
+				}
+			} else {
+				packageName = value;
+			}
+			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
+			act->setData(packageName);
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
 			contextMenu->addAction(act);
 		}
