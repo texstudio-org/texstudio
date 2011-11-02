@@ -5912,6 +5912,8 @@ void Texmaker::fileInConflict(){
 	removeDiffMarkers();
 
 	LatexDocument* doc2=diffLoadDocHidden(mEditor->fileName());
+	if(!doc2)
+	    return;
 	LatexDocument* doc=qobject_cast<LatexDocument*>(mEditor->document());
 	doc2->setObjectName("diffObejct");
 	doc2->setParent(doc);
