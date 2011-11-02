@@ -305,6 +305,7 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 			    case DiffOp::Delete:
 				range.removeSelectedText();
 				diffList.erase(i);
+				cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
 				break;
 			    case DiffOp::Insert:
 				//op.type=DiffOp::Inserted;
@@ -335,6 +336,8 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 				break;
 			    case DiffOp::Insert:
 				range.removeSelectedText();
+				diffList.erase(i);
+				cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
 				if(range.line().text().isEmpty())
 				    range.eraseLine();
 				//if(removeLine)
