@@ -3329,7 +3329,10 @@ void Texmaker::RunPreCompileCommand() {
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
 		runCommand(BuildManager::CMD_LATEX, RCF_WAIT_FOR_FINISHED);
 		if (ERRPROCESS && !LogExists()) {
-			QMessageBox::warning(this,tr("Error"),tr("Could not start LaTeX."));
+			if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
+				txsWarning(tr("You cannot compile the document in a non writable directory."));
+			else
+				txsWarning(tr("Could not start LaTeX."));
 			return;
 		}
 		if (NoLatexErrors()) {
@@ -3410,7 +3413,10 @@ void Texmaker::QuickBuild() {
 			runCommand(cmd, RCF_WAIT_FOR_FINISHED);
 			if (cmd == BuildManager::CMD_LATEX || cmd == BuildManager::CMD_PDFLATEX) {
 				if (ERRPROCESS && !LogExists()) {
-					QMessageBox::warning(this,tr("Error"),tr("Could not start %1.").arg(BuildManager::commandDisplayName(cmd)));
+					if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
+						txsWarning(tr("You cannot compile the document in a non writable directory."));
+					else
+						txsWarning(tr("Could not start %1.").arg(BuildManager::commandDisplayName(cmd)));
 					return;
 				}
 				if (!NoLatexErrors()) return;
@@ -3641,9 +3647,8 @@ void Texmaker::ViewLog(bool noTabChange) {
 			if (!gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"))) //jump to next error
 				gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !")); //prev error
 
-	} else {
-		QMessageBox::warning(this,tr("Error"),tr("Log File not found !"));
-	}
+	} else if (!fic.exists()) txsWarning(tr("Log File not found !"));
+	else txsWarning(tr("Log File is not readable!"));	
 }
 
 void Texmaker::ViewLogOrReRun(){
