@@ -300,9 +300,17 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 		    if(i!=diffList.end()){
 			QString txt;
 			QString altText;
+			int ln2;
+			QDocumentCursor range2(doc);
 			if(theirs){
 			    switch(op.type){
 			    case DiffOp::Delete:
+				range.beginBoundary(ln2,col);
+				range.endBoundary(ln,col);
+				if(ln2-ln==0){
+				    range2=diffSearchBoundaries(doc,ln,col,edView->insertFormat);
+				    diffChangeOpType(range2,DiffOp::Inserted);
+				}
 				range.removeSelectedText();
 				diffList.erase(i);
 				cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
@@ -310,7 +318,15 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 			    case DiffOp::Insert:
 				//op.type=DiffOp::Inserted;
 				//*i=op;
+				range.endBoundary(ln,col);
+				range.beginBoundary(ln2,col);
+
 				diffChangeOpType(range,DiffOp::Inserted);
+				if((ln2-ln==0)&&(col>0)){
+				    range2=diffSearchBoundaries(doc,ln2,col-1,edView->deleteFormat);
+				    range2.removeSelectedText();
+				    diffChangeOpType(range2,DiffOp::Deleted);
+				}
 				break;
 			    case DiffOp::Replace:
 				altText=diffCollectText(range);
@@ -332,9 +348,21 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 			    case DiffOp::Delete:
 				//op.type=DiffOp::NotDeleted;
 				//*i=op;
+				range.beginBoundary(ln2,col);
+				range.endBoundary(ln,col);
+				if(ln2-ln==0){
+				    range2=diffSearchBoundaries(doc,ln,col,edView->insertFormat);
+				    range2.removeSelectedText();
+				}
 				diffChangeOpType(range,DiffOp::NotDeleted);
 				break;
 			    case DiffOp::Insert:
+				range.endBoundary(ln,col);
+				range.beginBoundary(ln2,col);
+				if((ln2-ln==0)&&(col>0)){
+				    range2=diffSearchBoundaries(doc,ln2,col-1,edView->deleteFormat);
+				    diffChangeOpType(range2,DiffOp::NotDeleted);
+				}
 				range.removeSelectedText();
 				diffList.erase(i);
 				cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));

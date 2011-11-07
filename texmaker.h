@@ -220,6 +220,7 @@ private slots:
 	void svnDialogClosed();
         void fileDiff();
 	void fileDiff3();
+	void checkSVNConflicted(bool substituteContents=true);
 	void removeDiffMarkers(bool theirs=false);
 	void editChangeDiff(QPoint pt);
         void jumpNextDiff();
@@ -488,6 +489,7 @@ protected:
         QMap<QString,QString> detectedEnvironmentsForHighlighting;
 
 	LatexDocument* diffLoadDocHidden(QString f);
+	void showDiff3(const QString file1,const QString file2);
 	
 //script things	
 	
