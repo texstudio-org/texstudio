@@ -475,6 +475,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "checkinpdf",tr("Check in P&DF"), SLOT(fileCheckinPdf()));
 	newManagedAction(svnSubmenu, "difffiles",tr("Show difference between two files"), SLOT(fileDiff()));
 	newManagedAction(svnSubmenu, "diff3files",tr("Show difference between two files in relation to base file"), SLOT(fileDiff3()));
+	newManagedAction(svnSubmenu, "checksvnconflict",tr("Check SVN Conflict"), SLOT(checkSVNConflicted()));
 	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(fileDiffMerge()));
 	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
 	newManagedAction(svnSubmenu, "declareresolved",tr("Declare Conflict Resolved"), SLOT(declareConflictResolved()));
@@ -5865,12 +5866,18 @@ void Texmaker::fileDiff3(){
     QStringList basefiles = QFileDialog::getOpenFileNames(this,tr("Open Base File"),currentDir,tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
     if(basefiles.isEmpty())
 	return;
+    showDiff3(files.first(),basefiles.first());
+}
 
-    //
-    LatexDocument* doc2=diffLoadDocHidden(files.first());
+void Texmaker::showDiff3(const QString file1,const QString file2){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+	return;
+
+    LatexDocument* doc2=diffLoadDocHidden(file1);
     doc2->setObjectName("diffObejct");
     doc2->setParent(doc);
-    LatexDocument* docBase=diffLoadDocHidden(basefiles.first());
+    LatexDocument* docBase=diffLoadDocHidden(file2);
     docBase->setObjectName("baseObejct");
     docBase->setParent(doc);
     diffDocs(doc2,docBase,true);
@@ -5924,5 +5931,38 @@ void Texmaker::fileInConflict(){
 	LatexEditorView *edView=doc->getEditorView();
 	if(edView)
 	    edView->documentContentChanged(0,edView->document->lines());
+    }
+}
+
+void Texmaker::checkSVNConflicted(bool substituteContents){
+    LatexDocument *doc=documents.currentDocument;
+    if(!doc)
+	return;
+
+    QString fn=doc->getFileName();
+    QFileInfo qf(fn+".mine");
+    if(qf.exists()){
+	SVNSTATUS status=svnStatus(fn);
+	if(status==InConflict){
+	    QString path=qf.absolutePath();
+	    QDir dir(path);
+	    dir.setSorting(QDir::Name);
+	    qf.setFile(fn);
+	    QString filter=qf.fileName()+".r*";
+	    QFileInfoList list = dir.entryInfoList(QStringList(filter));
+	    QStringList lst;
+	    foreach(QFileInfo elem,list){
+		lst<<elem.absoluteFilePath();
+	    }
+	    if(lst.count()!=2)
+		return;
+	    if(substituteContents){
+		QTextCodec *codec=doc->codec();
+		doc->load(fn+".mine",codec);
+	    }
+	    QString baseFile=lst.takeFirst();
+	    QString compFile=lst.takeFirst();
+	    showDiff3(compFile,baseFile);
+	}
     }
 }
