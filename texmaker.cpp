@@ -1203,6 +1203,9 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 
 	configureNewEditorViewEnd(edit,asProject);
 
+        //check for svn conflict
+        checkSVNConflicted();
+
 	MarkCurrentFileAsRecent();
 
 	documents.updateMasterSlaveRelations(doc);
@@ -5918,51 +5921,69 @@ void Texmaker::fileInConflict(){
 	//remove old markers
 	removeDiffMarkers();
 
-	LatexDocument* doc2=diffLoadDocHidden(mEditor->fileName());
-	if(!doc2)
-	    return;
-	LatexDocument* doc=qobject_cast<LatexDocument*>(mEditor->document());
-	doc2->setObjectName("diffObejct");
-	doc2->setParent(doc);
-	diffDocs(doc,doc2);
-	//delete doc2;
+        if(!checkSVNConflicted(false)){
 
-	// show changes (by calling LatexEditorView::documentContentChanged)
-	LatexEditorView *edView=doc->getEditorView();
-	if(edView)
-	    edView->documentContentChanged(0,edView->document->lines());
+            LatexDocument* doc2=diffLoadDocHidden(mEditor->fileName());
+            if(!doc2)
+                return;
+            LatexDocument* doc=qobject_cast<LatexDocument*>(mEditor->document());
+            doc2->setObjectName("diffObejct");
+            doc2->setParent(doc);
+            diffDocs(doc,doc2);
+            //delete doc2;
+
+            // show changes (by calling LatexEditorView::documentContentChanged)
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView)
+                edView->documentContentChanged(0,edView->document->lines());
+        }
     }
 }
 
-void Texmaker::checkSVNConflicted(bool substituteContents){
+bool Texmaker::checkSVNConflicted(bool substituteContents){
     LatexDocument *doc=documents.currentDocument;
     if(!doc)
-	return;
+        return false;
 
     QString fn=doc->getFileName();
     QFileInfo qf(fn+".mine");
     if(qf.exists()){
 	SVNSTATUS status=svnStatus(fn);
 	if(status==InConflict){
-	    QString path=qf.absolutePath();
-	    QDir dir(path);
-	    dir.setSorting(QDir::Name);
-	    qf.setFile(fn);
-	    QString filter=qf.fileName()+".r*";
-	    QFileInfoList list = dir.entryInfoList(QStringList(filter));
-	    QStringList lst;
-	    foreach(QFileInfo elem,list){
-		lst<<elem.absoluteFilePath();
-	    }
-	    if(lst.count()!=2)
-		return;
-	    if(substituteContents){
-		QTextCodec *codec=doc->codec();
-		doc->load(fn+".mine",codec);
-	    }
-	    QString baseFile=lst.takeFirst();
-	    QString compFile=lst.takeFirst();
-	    showDiff3(compFile,baseFile);
+            int ret = QMessageBox::warning(this,
+                                           tr("SVN Conflict!"),
+                                           tr(
+                                               "%1is conflicted with repository.\n"
+                                               "Press \"OK\" to show differences instead of the generated source by subversion\n"
+                                               "Press \"Cancel\"to do nothing.\n"
+                                               ).arg(doc->getFileName()),
+                                           QMessageBox::Ok
+                                           |
+                                           QMessageBox::Cancel
+                                           );
+            if(ret==QMessageBox::Ok){
+                QString path=qf.absolutePath();
+                QDir dir(path);
+                dir.setSorting(QDir::Name);
+                qf.setFile(fn);
+                QString filter=qf.fileName()+".r*";
+                QFileInfoList list = dir.entryInfoList(QStringList(filter));
+                QStringList lst;
+                foreach(QFileInfo elem,list){
+                    lst<<elem.absoluteFilePath();
+                }
+                if(lst.count()!=2)
+                    return false;
+                if(substituteContents){
+                    QTextCodec *codec=doc->codec();
+                    doc->load(fn+".mine",codec);
+                }
+                QString baseFile=lst.takeFirst();
+                QString compFile=lst.takeFirst();
+                showDiff3(compFile,baseFile);
+                return true;
+            }
 	}
     }
+    return false;
 }

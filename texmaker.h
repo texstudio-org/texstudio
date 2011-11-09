@@ -220,7 +220,7 @@ private slots:
 	void svnDialogClosed();
         void fileDiff();
 	void fileDiff3();
-	void checkSVNConflicted(bool substituteContents=true);
+        bool checkSVNConflicted(bool substituteContents=true);
 	void removeDiffMarkers(bool theirs=false);
 	void editChangeDiff(QPoint pt);
         void jumpNextDiff();
