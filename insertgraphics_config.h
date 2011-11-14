@@ -2,7 +2,7 @@
 #define INSERTGRAPHICS_CONFIG_H
 
 //having the configuration in a single file allows to change it,
-//without having a relationship between completer and configmanager
+//without having a relationship between insertgraphics and configmanager
 //so modifying one doesn't lead to a recompilation of the other
 
 #include <QSettings>

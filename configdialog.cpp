@@ -13,6 +13,7 @@
 
 #include "qdocument.h"
 
+#include "spellerutility.h"
 #include "latexeditorview_config.h"
 #include "smallUsefulFunctions.h"
 #include "buildmanager.h"
@@ -267,15 +268,14 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	}
 
 
-	ui.comboBoxDictionaryFileName->setCompleter(0);
 	ui.comboBoxThesaurusFileName->setCompleter(0);
 
-	connect(ui.pushButtonAspell, SIGNAL(clicked()), this, SLOT(browseAspell()));
+	connect(ui.pushButtonDictDir, SIGNAL(clicked()), this, SLOT(browseDictDir()));
+	connect(ui.leDictDir, SIGNAL(textChanged(QString)), this, SLOT(dictDirChanged(QString)));
+
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
-	connect(ui.comboBoxDictionaryFileName, SIGNAL(editTextChanged(QString)), this, SLOT(lineEditAspellChanged(QString)));
-	connect(ui.comboBoxDictionaryFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
+
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
-	connect(ui.comboBoxDictionaryFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
@@ -394,26 +394,25 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 
 
 //pageditor
-void ConfigDialog::browseAspell() {
-	QString path=ui.comboBoxDictionaryFileName->currentText();
+void ConfigDialog::browseDictDir() {
+	QString path=ui.leDictDir->text();
 	if (path.isEmpty()) path=QDir::homePath();
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse dictionary"),path,"Dictionary (*.dic)",0,QFileDialog::DontResolveSymlinks);
+	QString location = QFileDialog::getExistingDirectory(this, tr("Select dictionary directory"), path);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
-		//	location="\""+location+"\"";
-		ui.comboBoxDictionaryFileName->setEditText(location);
+		ui.leDictDir->setText(location);
 	}
 }
-void ConfigDialog::lineEditAspellChanged(const QString &newText) {
-	if (QFile(newText).exists()) {
-		ui.comboBoxDictionaryFileName->setStyleSheet(QString());
-		ui.labelGetDic->setText(tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
-	} else {
-		ui.comboBoxDictionaryFileName->setStyleSheet(QString("QComboBox {background: red}"));
-		ui.labelGetDic->setText("<font color=\"red\">"+tr("(Dictionary doesn't exists)")+"</font><br>"+tr("Get dictionary at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
+void ConfigDialog::dictDirChanged(const QString &newText) {
+	QString lang = ui.comboBoxSpellcheckLang->currentText();
+	ui.comboBoxSpellcheckLang->clear();
+	ui.comboBoxSpellcheckLang->addItems(SpellerManager::dictNamesForDir(newText));
+	// keep selected language if possible
+	int index = ui.comboBoxSpellcheckLang->findText(lang);
+	if (index >=0) {
+		ui.comboBoxSpellcheckLang->setCurrentIndex(index);
 	}
 }
-
 
 //sets the items of a combobox to the filenames and sub-directory names in the directory which name
 //is the current text of the combobox
@@ -550,9 +549,6 @@ void ConfigDialog::actionsChanged(int actionClass){
 		ui.treePossibleToolbarActions->addTopLevelItem(twi);
 		twi=new QTreeWidgetItem(QStringList() << "tags/brackets/right");
 		twi->setData(0,Qt::UserRole,"tags/brackets/right");
-		ui.treePossibleToolbarActions->addTopLevelItem(twi);
-		twi=new QTreeWidgetItem(QStringList() << "list/dictionaries");
-		twi->setData(0,Qt::UserRole,"list/dictionaries");
 		ui.treePossibleToolbarActions->addTopLevelItem(twi);
 		return;
 	}

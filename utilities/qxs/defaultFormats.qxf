@@ -16,6 +16,15 @@
     <format id="line:bookmark7"></format>
     <format id="line:bookmark8"></format>
     <format id="line:bookmark9"></format>
+    <format id="magicComment" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#555580</foreground>
+    </format>
     <format id="commentTodo" >
         <bold>false</bold>
         <italic>false</italic>

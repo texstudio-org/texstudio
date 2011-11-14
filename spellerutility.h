@@ -17,10 +17,7 @@
 class SpellerUtility: public QObject {
 	Q_OBJECT
 public:
-	SpellerUtility();
-	~SpellerUtility();
-	bool loadDictionary(QString dic,QString ignoreFilePrefix);
-	void unload();
+	friend class SpellerManager;
 	void addToIgnoreList(QString toIgnore);
 	void removeFromIgnoreList(QString toIgnore);
 	QStringListModel* ignoreListModel();
@@ -28,10 +25,20 @@ public:
 	bool check(QString word);
 	QStringList suggest(QString word);
 
-	int spellcheckErrorFormat;
+	QString name() {return mName;}
+	QString getCurrentDic() {return currentDic;}
+
+	static int spellcheckErrorFormat;
 signals:
+	void aboutToDelete();
 	void reloadDictionary();
 private:
+	SpellerUtility(QString name);
+	~SpellerUtility();
+	bool loadDictionary(QString dic, QString ignoreFilePrefix);
+	void unload();
+
+	QString mName;
 	QString currentDic, ignoreListFileName, spell_encoding;
 	Hunspell * pChecker;
 	QTextCodec *spellCodec;
@@ -41,5 +48,35 @@ private:
 	QStringList ignoredWordList;
 	QStringListModel ignoredWordsModel;
 };
+
+class SpellerManager: public QObject {
+	Q_OBJECT
+public:
+	SpellerManager();
+	~SpellerManager();
+	void setIgnoreFilePrefix(const QString &ignoreFilePrefix);
+	QString dictPath();
+	void setDictPath(const QString &dictPath);
+	QStringList availableDicts();
+	static QStringList dictNamesForDir(const QString &dir);
+
+	bool hasSpeller(const QString &name);
+	SpellerUtility *getSpeller(const QString &name);
+
+	QString defaultSpellerName();
+	bool setDefaultSpeller(const QString &name);
+	void unloadAll();
+
+signals:
+	void dictPathChanged();
+private:
+	QString m_dictPath;
+	QString ignoreFilePrefix;
+	QHash<QString, SpellerUtility *> dicts;
+	QHash<QString, QString> dictFiles;
+	SpellerUtility *emptySpeller;
+	QString mDefaultSpellerName;
+};
+
 
 #endif

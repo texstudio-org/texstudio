@@ -139,9 +139,9 @@ private:
 	QAction *actSave, *actUndo, *actRedo;
 
 	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelEncoding;
-	
-	QToolButton *combo1,*combo2,*combo3,*comboSpell;
-	int comboSpellHeight; // necessaryfor mac
+	QToolButton *statusTbLanguage;
+
+	QToolButton *combo1,*combo2,*combo;
 
 	//settings
 	ConfigManager configManager;
@@ -153,8 +153,7 @@ private:
 	
 	QStringList userTemplatesList;
 	
-	int spellcheckErrorFormat;
-	SpellerUtility *mainSpeller;
+	SpellerManager spellerManager;
 
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
@@ -318,7 +317,9 @@ protected slots:
 	void InsertRef();
 	void InsertPageRef();
 
-	void SpellingLanguageChanged();
+	void UpdateAvailableLanguages();
+	void EditorSpellerChanged(const QString &name);
+	void ChangeEditorSpeller();
 
 	void QuickTabular();
 	void QuickArray();

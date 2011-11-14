@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>601</width>
-            <height>456</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -426,15 +426,15 @@
               <string>Dictionaries</string>
              </property>
              <layout class="QGridLayout">
-              <item row="0" column="0">
-               <widget class="QLabel" name="labelASpellCommand">
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_13">
                 <property name="text">
-                 <string>Spelling dictionary</string>
+                 <string>Thesaurus Database</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="5">
-               <widget class="QPushButton" name="pushButtonAspell">
+              <item row="3" column="5">
+               <widget class="QPushButton" name="btSelectThesaurusFileName">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -445,25 +445,99 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 <iconset resource="texstudio.qrc">
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" colspan="2">
-               <widget class="QLabel" name="labelGetDic">
+              <item row="3" column="1" colspan="4">
+               <widget class="QComboBox" name="comboBoxThesaurusFileName">
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+                <property name="dirFilter" stdset="0">
+                 <string>*.dat</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
+                <property name="text">
+                 <string>Inline spell checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
+                <property name="text">
+                 <string>Inline citation checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="4">
+               <widget class="QLineEdit" name="leDictDir"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_42">
+                <property name="text">
+                 <string>Spelling dictionary directory</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="comboBoxSpellcheckLang"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_43">
+                <property name="text">
+                 <string>Default language</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QPushButton" name="pushButtonDictDir">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>TextLabel</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="texstudio.qrc">
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
-              <item row="1" column="3" colspan="3">
+              <item row="4" column="3" colspan="2">
+               <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
+                <property name="text">
+                 <string>Inline syntax checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+                <property name="text">
+                 <string>Inline reference checking</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4">
                <widget class="QCheckBox" name="checkBoxRealTimeCheck">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -479,87 +553,16 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_13">
-                <property name="text">
-                 <string>Thesaurus Database</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="5">
-               <widget class="QPushButton" name="btSelectThesaurusFileName">
+              <item row="1" column="2" colspan="2">
+               <widget class="QLabel" name="labelGetDic">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" colspan="4">
-               <widget class="QComboBox" name="comboBoxDictionaryFileName">
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-                <property name="dirFilter" stdset="0">
-                 <string>*.dic</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1" colspan="4">
-               <widget class="QComboBox" name="comboBoxThesaurusFileName">
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-                <property name="dirFilter" stdset="0">
-                 <string>*.dat</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
-                <property name="text">
-                 <string>Inline spell checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
-                <property name="text">
-                 <string>Inline citation checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2">
-               <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
-                <property name="text">
-                 <string>Inline reference checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="3" colspan="2">
-               <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
-                <property name="text">
-                 <string>Inline syntax checking</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
+                 <string>TextLabel</string>
                 </property>
                </widget>
               </item>
@@ -2337,8 +2340,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>spinBoxMaxRecentProjects</tabstop>
   <tabstop>checkBoxParseBibTeX</tabstop>
   <tabstop>checkBoxParseMaster</tabstop>
-  <tabstop>pushButtonAspell</tabstop>
-  <tabstop>checkBoxRealTimeCheck</tabstop>
   <tabstop>btSelectThesaurusFileName</tabstop>
   <tabstop>lineEditExecuteBeforeCompiling</tabstop>
   <tabstop>pushButtonExecuteBeforeCompiling</tabstop>
@@ -2357,7 +2358,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>cancelButton</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texstudio.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>

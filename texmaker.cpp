@@ -61,7 +61,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	svndlg=0;
 	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
-	comboSpellHeight=0;
 	latexStyleParser=0;
 
 	ReadSettings();
@@ -83,13 +82,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 	importCwlAliases();
 
-	mainSpeller=new SpellerUtility();;
-	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
-
-	LatexEditorView::setSpeller(mainSpeller);
-
 	QDocument::setFormatFactory(m_formats);
-	mainSpeller->spellcheckErrorFormat=m_formats->id("spellingMistake");
+	SpellerUtility::spellcheckErrorFormat = m_formats->id("spellingMistake");
 
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newFileEncoding);
@@ -814,15 +808,6 @@ void Texmaker::setupToolBars() {
 				QToolButton* combo=createComboToolButton(mtb.toolbar,list,0,this,SLOT(insertXmlTagFromToolButtonAction()));
 				combo->setProperty("tagsID", actionName);
 				mtb.toolbar->addWidget(combo);
-			} else if (actionName == "list/dictionaries"){
-				QStringList list;
-				QDir fic=QFileInfo(configManager.spell_dic).absoluteDir();
-				if (fic.exists() && fic.isReadable())
-					list << fic.entryList(QStringList("*.dic"),QDir::Files,QDir::Name);
-
-				comboSpell=createComboToolButton(mtb.toolbar,list,0, this,SLOT(SpellingLanguageChanged()),QFileInfo(configManager.spell_dic).fileName());
-				mtb.toolbar->addWidget(comboSpell);
-				addAction(mtb.toolbar->toggleViewAction());
 			} else {
 				QObject *obj=configManager.menuParent->findChild<QObject*>(actionName);
 				QAction *act=qobject_cast<QAction*>(obj);
@@ -854,9 +839,21 @@ void Texmaker::setupToolBars() {
 	}
 }
 
+void Texmaker::UpdateAvailableLanguages() {
+	foreach (QAction *act, statusTbLanguage->actions()) {
+		statusTbLanguage->removeAction(act);
+		delete act;
+	}
+	foreach (QString s, spellerManager.availableDicts()) {
+		QAction *act = new QAction(s, statusTbLanguage);
+		connect(act, SIGNAL(triggered()), this, SLOT(ChangeEditorSpeller()));
+		statusTbLanguage->addAction(act);
+	}
+}
 
 void Texmaker::createStatusBar() {
 	QStatusBar * status=statusBar();
+	status->setContextMenuPolicy(Qt::PreventContextMenu);
 
 	QAction *act;
 	QToolButton *tb;
@@ -865,29 +862,40 @@ void Texmaker::createStatusBar() {
 		tb = new QToolButton(status);
 		tb->setCheckable(true);
 		tb->setChecked(act->isChecked());
+		tb->setAutoRaise(true);
 		tb->setIcon(act->icon());
 		tb->setToolTip(act->toolTip());
 		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
 		status->addPermanentWidget(tb, 0);
 	}
-
 	act = getManagedAction("main/view/outputview");
 	if (act) {
 		tb = new QToolButton(status);
 		tb->setCheckable(true);
 		tb->setChecked(act->isChecked());
+		tb->setAutoRaise(true);
 		tb->setIcon(act->icon());
 		tb->setToolTip(act->toolTip());
 		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
 		status->addPermanentWidget(tb, 0);
-
 	}
 
-	// spacer eating up all the space between "left" and "right" permanent widgets. Could be used for status text in the future
-	QLabel* dummy = new QLabel(status);
-	status->addPermanentWidget(dummy, 1);
+	// spacer eating up all the space between "left" and "right" permanent widgets.
+	QLabel* messageArea = new QLabel(status);
+	connect(status, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
+	status->addPermanentWidget(messageArea, 1);
+
+	statusTbLanguage = new QToolButton(status);
+	statusTbLanguage->setToolTip(tr("Language"));
+	statusTbLanguage->setPopupMode(QToolButton::InstantPopup);
+	statusTbLanguage->setAutoRaise(true);
+	statusTbLanguage->setMinimumWidth(status->fontMetrics().width("OOOOOO"));
+	connect(&spellerManager, SIGNAL(dictPathChanged()), this, SLOT(UpdateAvailableLanguages()));
+	UpdateAvailableLanguages();
+	statusTbLanguage->setText(spellerManager.defaultSpellerName());
+	status->addPermanentWidget(statusTbLanguage,0);
 
 	statusLabelMode=new QLabel(status);
 	statusLabelProcess=new QLabel(status);
@@ -895,7 +903,6 @@ void Texmaker::createStatusBar() {
 	status->addPermanentWidget(statusLabelEncoding,0);
 	status->addPermanentWidget(statusLabelProcess,0);
 	status->addPermanentWidget(statusLabelMode,0);
-	//statCursor=new QLabel( status );
 	for (int i=1; i<=3; i++) {
 		QPushButton* pb=new QPushButton(QIcon(QString(":/images/bookmark%1.png").arg(i)),"",status);
 		pb->setToolTip(tr("Click to jump to the bookmark"));
@@ -953,6 +960,10 @@ void Texmaker::editorTabChanged(int index){
 	if (index < 0) return; //happens if no tab is open
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
+	if (currentEditorView()) {
+		QString spellerName = currentEditorView()->getSpeller()->name();
+		statusTbLanguage->setText(spellerName);
+	}
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
@@ -1071,6 +1082,11 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
+
+	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
+	edit->setSpellerManager(&spellerManager);
+	edit->setSpeller(spellerManager.defaultSpellerName());
+
 
 	edit->setBibTeXIds(&documents.allBibTeXIds);
 }
@@ -1779,10 +1795,7 @@ bool Texmaker::canCloseNow(){
 	bool accept = closeAllFilesAsking();
 	if (accept){
 		if (userMacroDialog) delete userMacroDialog;
-		if (mainSpeller) {
-			delete mainSpeller; //this saves the ignore list
-			mainSpeller=0;
-		}
+		spellerManager.unloadAll();  //this saves the ignore list
 	}
 	return accept;
 }
@@ -2034,7 +2047,7 @@ void Texmaker::editSpell() {
 		txsWarning(tr("No document open"));
 		return;
 	}
-	if (!spellDlg) spellDlg=new SpellerDialog(this,mainSpeller);
+	if (!spellDlg) spellDlg=new SpellerDialog(this, currentEditorView()->getSpeller());
 	spellDlg->setEditorView(currentEditorView());
 	spellDlg->startSpelling();
 }
@@ -2097,7 +2110,7 @@ void Texmaker::editInsertUnicode(){
 	connect(uid, SIGNAL(destroyed()), currentEditor(), SLOT(setFocus()));
 	connect(currentEditor(), SIGNAL(cursorPositionChanged()), uid, SLOT(close()));
 	connect(currentEditor(), SIGNAL(visibleLinesChanged()), uid, SLOT(close()));
-	connect(currentEditor()->document(), SIGNAL(contentsChanged()), uid, SLOT(close()));
+	connect(currentEditor()->document(), SIGNAL(()), uid, SLOT(close()));
 
 	uid->move(currentEditor()->mapTo(uid->parentWidget(), offset));
 	this->unicodeInsertionDialog = uid;
@@ -2305,6 +2318,10 @@ void Texmaker::ReadSettings() {
 			i++;
 		}
 	}
+
+	spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
+	spellerManager.setDictPath(configManager.spellDictDir);
+	spellerManager.setDefaultSpeller(configManager.spellLanguage);
 
 	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
@@ -2519,6 +2536,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		break;
 
 	case StructureEntry::SE_SECTION:
+	case StructureEntry::SE_MAGICCOMMENT:
 	case StructureEntry::SE_TODO:
 	case StructureEntry::SE_LABEL:{
 			int lineNr=-1;
@@ -3178,16 +3196,17 @@ void Texmaker::InsertPageRef() {
 	outputView->setMessage("\\pageref{key}");
 }
 
-void Texmaker::SpellingLanguageChanged() {
+void Texmaker::EditorSpellerChanged(const QString &name) {
+	statusTbLanguage->setText(name);
+}
+
+void Texmaker::ChangeEditorSpeller() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	if (!currentEditorView()) return;
-	QString text=action->text();
-	comboSpell->setDefaultAction(action);
+	QString name=action->text();
 
-	QString baseName=QFileInfo(configManager.spell_dic).absolutePath();
-	configManager.spell_dic=baseName+"/"+text;
-	mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
+	currentEditorView()->setSpeller(name);
 }
 
 ///////////////TOOLS////////////////////
@@ -3796,8 +3815,10 @@ void Texmaker::GeneralOptions() {
 	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
 	QStringList loadFiles=configManager.completerConfig->getLoadedFiles();
 	if (configManager.execConfigDialog()) {
-		mainSpeller->loadDictionary(configManager.spell_dic,configManager.configFileNameBase);
-		// refresh quick language selection combobox
+		spellerManager.setDictPath(configManager.spellDictDir);
+		spellerManager.setDefaultSpeller(configManager.spellLanguage);
+
+
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 

@@ -243,7 +243,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	    << "main/tools/quickbuild" << "main/tools/latex" << "main/tools/viewdvi" << "main/tools/dvi2ps" << "main/tools/viewps" << "main/tools/pdflatex" << "main/tools/viewpdf"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
 			<< "tags/brackets/left" << "separator" << "tags/brackets/right"));
-	managedToolBars.append(ManagedToolBar("Spelling", QStringList() << "list/dictionaries"));
 	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
 					      "main/latex/fontsizes" << "separator" <<
 					      "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright"
@@ -287,7 +286,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
 
-	registerOption("Spell/Dic", &spell_dic, "<dic not found>", &pseudoDialog->comboBoxDictionaryFileName); //don't translate it
+	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
+	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 
 	//user macros
@@ -495,6 +495,7 @@ QSettings* ConfigManager::readSettings() {
 	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
 
 	//----------------------------dictionaries-------------------------
+
 	if (spell_dic=="<dic not found>" || ((importTexmakerSettings  || importTexMakerXSettings)  && !QFileInfo(spell_dic).exists())) {
 		QStringList temp;
 		QStringList fallBackPaths;
@@ -903,7 +904,7 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
 	QIcon fileOpenIcon = getRealIcon("fileopen");
-	confDlg->ui.pushButtonAspell->setIcon(fileOpenIcon);
+	confDlg->ui.pushButtonDictDir->setIcon(fileOpenIcon);
 	confDlg->ui.btSelectThesaurusFileName->setIcon(fileOpenIcon);
 	confDlg->ui.pushButtonExecuteBeforeCompiling->setIcon(fileOpenIcon);
 
