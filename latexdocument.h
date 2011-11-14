@@ -14,10 +14,12 @@ class QDocumentCursor;
 struct QDocumentSelection;
 
 struct StructureEntry{
-	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_INCLUDE,SE_LABEL,SE_BLOCK=SE_LABEL};
+	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_MAGICCOMMENT,SE_INCLUDE,SE_LABEL,SE_BLOCK=SE_LABEL};
 	Type type;
 	QString title;
+	QString tooltip; // optional because most tooltips are automatically generated.
 	int level; //only used for section types
+	bool valid; //currently only used for magic comments
 	int lineNumber;
 	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
@@ -156,6 +158,10 @@ public:
 	bool containsPackage(const QString& name);
 	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
 
+	QLocale spellingLanguage() {
+		return mSpellingLanguage;
+	}
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
@@ -165,6 +171,7 @@ private:
 
 	LatexDocument* masterDocument;
 
+	StructureEntry* magicCommentList;
 	StructureEntry* labelList;
 	StructureEntry* todoList;
 	StructureEntry* bibTeXList;
@@ -178,6 +185,8 @@ private:
 
 	QSet<QString> mCompleterWords; // local list of completer words
 
+	QLocale mSpellingLanguage; // default/not specified: QLocale::c()
+
 	QDocumentLineHandle *mAppendixLine;
 
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
@@ -188,6 +197,8 @@ private:
 	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
 
 	void removeAndDeleteElement(StructureEntry* se, int row);
+
+	void parseMagicComment(StructureEntry* se, const QString &comment);
 
 #ifndef QT_NO_DEBUG
 public:
@@ -215,13 +226,14 @@ signals:
 	void updateBibTeXFiles();
 	void toBeChanged();
 	void importPackage(QString name);
+	void spellingLanguageChanged(const QLocale &lang);
 };
 
 class LatexDocumentsModel: public QAbstractItemModel{
 	Q_OBJECT
 private:
 	LatexDocuments& documents;
-	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude;
+	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude, iconWarning;
 	QVector<QIcon> iconSection;
 	QModelIndex mHighlightIndex;
 	bool m_singleMode;

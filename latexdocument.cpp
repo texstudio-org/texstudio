@@ -14,11 +14,13 @@ FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
+	magicCommentList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	labelList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	todoList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	bibTeXList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 	blockList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 
+	magicCommentList->title=tr("MAGIC_COMMENTS");
 	labelList->title=tr("LABELS");
 	todoList->title=tr("TODO");
 	bibTeXList->title=tr("BIBTEX");
@@ -28,8 +30,10 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	mMentionedBibTeXFiles.clear();
 	masterDocument=0;
 	this->parent=0;
+	mSpellingLanguage=QLocale::c();
 }
 LatexDocument::~LatexDocument(){
+	if (!magicCommentList->parent) delete magicCommentList;
 	if (!labelList->parent) delete labelList;
 	if (!todoList->parent) delete todoList;
 	if (!bibTeXList->parent) delete bibTeXList;
@@ -120,6 +124,7 @@ void LatexDocument::clearStructure() {
 	if(baseStructure){
 		emit structureUpdated(this,0);
 
+		if (!magicCommentList->parent) delete magicCommentList;
 		if (!labelList->parent) delete labelList;
 		if (!todoList->parent) delete todoList;
 		if (!bibTeXList->parent) delete bibTeXList;
@@ -159,6 +164,8 @@ void LatexDocument::initStructure(){
 
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=fileName;
+	magicCommentList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
+	magicCommentList->title=tr("MAGIC_COMMENTS");
 	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	labelList->title=tr("LABELS");
 	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
@@ -215,7 +222,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	int linenr = indexOf(dlh);
 	if (linenr==-1) linenr=lines();
 
-	QList<StructureEntry*> categories=QList<StructureEntry*>() << labelList << todoList << blockList << bibTeXList;
+	QList<StructureEntry*> categories=QList<StructureEntry*>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
 	foreach (StructureEntry* sec, categories) {
 		int l=0;
 		QMutableListIterator<StructureEntry*> iter(sec->children);
@@ -287,6 +294,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	bool bibTeXFilesNeedsUpdate=false;
 
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
+
+	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfMagicComments;
+	QMutableListIterator<StructureEntry*> iter_magicComment(magicCommentList->children);
+	findStructureEntryBefore(iter_magicComment,MapOfMagicComments,linenr,count);
 
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfLabels;
 	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
@@ -393,6 +404,29 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			newTodo->parent=todoList;
 			if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
 			iter_todo.insert(newTodo);
+		}
+		//// magic comment
+		s=curLine;
+		l=s.indexOf("% !TeX");
+		if (l>=0) {
+			s=s.mid(l+6,s.length());
+			bool reuse=false;
+			StructureEntry *newMagicComment;
+			if(MapOfMagicComments.contains(dlh)){
+				newMagicComment=MapOfMagicComments.value(dlh);
+				newMagicComment->type=StructureEntry::SE_MAGICCOMMENT;
+				MapOfMagicComments.remove(dlh,newMagicComment);
+				reuse=true;
+			}else{
+				newMagicComment=new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
+			}
+			parseMagicComment(newMagicComment, s);
+			newMagicComment->title=s;
+			newMagicComment->lineNumber=i;
+			newMagicComment->lineHandle=line(i).handle();
+			newMagicComment->parent=magicCommentList;
+			if(!reuse) emit addElement(magicCommentList,magicCommentList->children.size()); //todo: why here but not in label?
+			iter_magicComment.insert(newMagicComment);
 		}
 		////Ref
 		//for reference counting (can be placed in command options as well ...
@@ -715,10 +749,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	foreach(se,toBeDeleted.keys())
 		removeAndDeleteElement(se, toBeDeleted[se]);
 
-	bibTeXList->parent = labelList->parent = todoList->parent = blockList->parent = 0;
+	bibTeXList->parent = magicCommentList->parent = labelList->parent = todoList->parent = blockList->parent = 0;
 
 	int tempPos = -1;
 	tempPos = baseStructure->children.indexOf(bibTeXList);
+	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
+	tempPos = baseStructure->children.indexOf(magicCommentList);
 	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
 	tempPos = baseStructure->children.indexOf(labelList);
 	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
@@ -731,6 +767,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
 	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
 	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
+	if (!magicCommentList->children.isEmpty()) baseStructure->insert(0, magicCommentList);
 
 	//update appendix change
 	if(oldLine!=mAppendixLine){
@@ -758,6 +795,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		delete se;
 
 	foreach(se,MapOfLabels.values())
+		delete se;
+
+	foreach(se,MapOfMagicComments.values())
 		delete se;
 
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
@@ -1073,7 +1113,8 @@ StructureEntry* StructureEntryIterator::next(){
 }
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),m_singleMode(false){
+	iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
+	iconWarning(getRealIcon("warning")), m_singleMode(false){
 	mHighlightIndex=QModelIndex();
 	iconSection.resize(LatexParser::structureCommands.count());
 	for (int i=0;i<LatexParser::structureCommands.count();i++)
@@ -1104,6 +1145,9 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		return QVariant(result);
 	case Qt::ToolTipRole:
 		//qDebug("data %x",entry);
+		if (!entry->tooltip.isNull()) {
+			return QVariant(entry->tooltip);
+		}
 		if (entry->lineNumber>-1)
 			return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
 		else
@@ -1112,6 +1156,11 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		switch (entry->type){
 		case StructureEntry::SE_BIBTEX: return iconBibTeX;
 		case StructureEntry::SE_INCLUDE: return iconInclude;
+		case StructureEntry::SE_MAGICCOMMENT:
+			if (entry->valid)
+				return QVariant();
+			else
+				return iconWarning;
 		case StructureEntry::SE_SECTION:
 			if (entry->level>=0 && entry->level<iconSection.count())
 				return iconSection[entry->level];
@@ -1713,6 +1762,47 @@ void LatexDocument::removeAndDeleteElement(StructureEntry* se, int row){
 	//qDebug() << se->title;
 	delete se;
 	emit removeElementFinished();
+}
+
+void LatexDocument::parseMagicComment(StructureEntry* se, const QString &comment) {
+	se->tooltip = QString();
+	se->valid = false;
+
+	int sep = comment.indexOf("=");
+	if (sep < 0) {
+		se->tooltip = tr("Invalid magic comment format. Use:\n% !TeX [var] = [val]");
+		return;
+	}
+	QString type = comment.left(sep).trimmed();
+	QString val = comment.mid(sep+1).trimmed();
+
+	if (type == "spellcheck") {
+		val.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
+		mSpellingLanguage = QLocale(val);
+		if (mSpellingLanguage.language() == QLocale::C) {
+			se->tooltip = tr("Invalid language format");
+			return;
+		}
+		emit spellingLanguageChanged(mSpellingLanguage);
+
+		se->valid = true;
+	/* TODO: set master document
+	} else if (type == "texroot") {
+		se->valid = true;
+	*/
+	} else if (type == "encoding") {
+		QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
+		if (!codec) {
+			se->tooltip = tr("Invalid codec");
+			return;
+		}
+		setCodec(codec);
+		se->valid = true;
+	} else {
+		se->tooltip = tr("Unknown magic comment");
+		return;
+	}
+	se->valid = true;
 }
 
 

@@ -27,6 +27,7 @@ class QGotoLinePanel;
 class QStatusPanel;
 class LatexCompleter;
 class SpellerUtility;
+class SpellerManager;
 class DefaultInputBinding;
 class LatexEditorViewConfig;
 class LatexEditorView : public QWidget  {
@@ -49,7 +50,10 @@ public:
 		
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
-	static void setSpeller(SpellerUtility* mainSpeller);
+	void setSpellerManager(SpellerManager* manager);
+	void setSpeller(const QString &name);
+	SpellerUtility *getSpeller();
+
 	static void setCompleter(LatexCompleter* newCompleter);
 	static LatexCompleter* getCompleter();
 	void setBibTeXIds(QSet<QString>* newIds);
@@ -91,7 +95,8 @@ private:
 	friend class SyntaxCheckTest;
 	static int bookMarkId(int bookmarkNumber);
 
-	static SpellerUtility* speller;
+	SpellerManager* spellerManager;
+	SpellerUtility* speller;
 	static LatexCompleter* completer;
 	QSet<QString>* bibTeXIds;
 	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
@@ -114,6 +119,8 @@ private slots:
 	void lineMarkToolTip(int line, int mark);
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
 	void triggeredThesaurus();
+	void reloadSpeller();
+	void changeSpellingLanguage(const QLocale &loc);
 public slots:
 	void cleanBib();
 
@@ -133,7 +140,6 @@ public slots:
 	void spellCheckingReplace();
 	void spellCheckingAlwaysIgnore();
 	void spellCheckingListSuggestions();
-	void dictionaryReloaded();
 	void mouseHovered(QPoint pos);
 	bool closeSomething();
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
@@ -151,6 +157,7 @@ signals:
 	void openFile(const QString& name);
 	void thesaurus(int line,int col);
 	void changeDiff(QPoint pt);
+	void spellerChanged(const QString &name);
 };
 
 

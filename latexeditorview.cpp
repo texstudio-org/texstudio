@@ -130,10 +130,11 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
 		QFormatRange fr;
 		//spell checking
-		if (edView && LatexEditorView::speller){
-			if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,LatexEditorView::speller->spellcheckErrorFormat);
-			else fr = cursor.line().getOverlayAt(cursor.columnNumber(),LatexEditorView::speller->spellcheckErrorFormat);
-			if (fr.length>0 && fr.format==LatexEditorView::speller->spellcheckErrorFormat) {
+
+		if (edView && edView->speller){
+			if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2, SpellerUtility::spellcheckErrorFormat);
+			else fr = cursor.line().getOverlayAt(cursor.columnNumber(), SpellerUtility::spellcheckErrorFormat);
+			if (fr.length>0 && fr.format==SpellerUtility::spellcheckErrorFormat) {
 				QString word=cursor.line().text().mid(fr.offset,fr.length);
 				if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word
 				    || editor->cursor().selectedText()==lastSpellCheckedWord) {
@@ -264,13 +265,12 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 
 
 //----------------------------------LatexEditorView-----------------------------------
-SpellerUtility* LatexEditorView::speller=0;
 LatexCompleter* LatexEditorView::completer=0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig), speller(0) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -308,7 +308,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 
-	connect(LatexEditorView::speller,SIGNAL(reloadDictionary()),this,SLOT(dictionaryReloaded()));
+	connect(doc, SIGNAL(spellingLanguageChanged(QLocale)), this, SLOT(changeSpellingLanguage(QLocale)));
 
 	//editor->setFlag(QEditor::CursorJumpPastWrap,false);
 	editor->disableAccentHack(config->hackDisableAccentWorkaround);
@@ -537,9 +537,39 @@ void LatexEditorView::setBaseActions(QList<QAction *> baseActions) {
 	if (!defaultInputBinding) return;
 	defaultInputBinding->baseActions=baseActions;
 }
-void LatexEditorView::setSpeller(SpellerUtility* speller) {
-	LatexEditorView::speller=speller;
+void LatexEditorView::setSpellerManager(SpellerManager* manager) {
+	spellerManager = manager;
 }
+void LatexEditorView::setSpeller(const QString &name) {
+	if (!spellerManager) return;
+
+	SpellerUtility* su;
+	if (spellerManager->hasSpeller(name)) {
+		su = spellerManager->getSpeller(name);
+	} else {
+		su = spellerManager->getSpeller(spellerManager->defaultSpellerName());
+	}
+	if (su == speller) return;
+	if (speller) {
+		disconnect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
+	}
+	speller = su;
+	connect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
+	emit spellerChanged(name);
+	// force new highlighting
+	documentContentChanged(0,editor->document()->lines());
+}
+void LatexEditorView::reloadSpeller() {
+	SpellerUtility *su = qobject_cast<SpellerUtility *>(sender());
+	if (!su) return;
+
+	setSpeller(su->name());
+}
+
+SpellerUtility* LatexEditorView::getSpeller() {
+	return speller;
+}
+
 void LatexEditorView::setCompleter(LatexCompleter* newCompleter) {
 	LatexEditorView::completer=newCompleter;
 }
@@ -730,7 +760,7 @@ void LatexEditorView::clearOverlays(){
 		if (!line.isValid()) continue;
 
 		//remove all overlays used for latex things, in descending frequency
-		line.clearOverlays(speller->spellcheckErrorFormat);
+		line.clearOverlays(SpellerUtility::spellcheckErrorFormat);
 		line.clearOverlays(referencePresentFormat);
 		line.clearOverlays(citationPresentFormat);
 		line.clearOverlays(referenceMissingFormat);
@@ -786,7 +816,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		if (!line.isValid()) continue;
 
 		//remove all overlays used for latex things, in descending frequency
-		line.clearOverlays(speller->spellcheckErrorFormat);
+		line.clearOverlays(SpellerUtility::spellcheckErrorFormat);
 		line.clearOverlays(referencePresentFormat);
 		line.clearOverlays(citationPresentFormat);
 		line.clearOverlays(referenceMissingFormat);
@@ -954,9 +984,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					previousTextWordIndex=start;
 				} else previousTextWord.clear();
 			} else previousTextWord.clear();
-			if (status==NW_TEXT && word.length()>=3 && !speller->check(word) && config->inlineSpellChecking) {
+			if (status==NW_TEXT && word.length()>=3 && speller && !speller->check(word) && config->inlineSpellChecking) {
 				if(word.endsWith('.')) start--;
-				line.addOverlay(QFormatRange(wordstart,start-wordstart,speller->spellcheckErrorFormat));
+				line.addOverlay(QFormatRange(wordstart,start-wordstart,SpellerUtility::spellcheckErrorFormat));
 				addedOverlaySpellCheckError = true;
 			}
 		}// while
@@ -966,7 +996,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		if (!editor->document()->getFixedPitch() && editor->flag(QEditor::LineWrap)) {
 			bool updateWrapping = false;
 			QFormatScheme* ff = QDocument::formatFactory();
-			updateWrapping |= addedOverlaySpellCheckError && ff->format(speller->spellcheckErrorFormat).widthChanging();
+			updateWrapping |= addedOverlaySpellCheckError && ff->format(SpellerUtility::spellcheckErrorFormat).widthChanging();
 			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
 			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
 			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();
@@ -1015,7 +1045,7 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 		speller->addToIgnoreList(newToIgnore);
 		//documentContentChanged(editor->cursor().lineNumber(),1);
 		for (int i=0; i<editor->document()->lines(); i++) {
-			QList<QFormatRange> li=editor->document()->line(i).getOverlays(LatexEditorView::speller->spellcheckErrorFormat);
+			QList<QFormatRange> li=editor->document()->line(i).getOverlays(SpellerUtility::spellcheckErrorFormat);
 			QString curLineText=editor->document()->line(i).text();
 			for (int j=0; j<li.size(); j++)
 				if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore){
@@ -1036,7 +1066,7 @@ void LatexEditorView::spellCheckingListSuggestions() {
 	}
 	QAction* before=0;
 	if (!contextMenu->actions().isEmpty()) before=contextMenu->actions()[0];
-	QStringList suggestions= LatexEditorView::speller->suggest(defaultInputBinding->lastSpellCheckedWord);
+	QStringList suggestions= speller->suggest(defaultInputBinding->lastSpellCheckedWord);
 	if (!suggestions.empty()) {
 		QFont correctionFont;
 		correctionFont.setBold(true);
@@ -1051,10 +1081,6 @@ void LatexEditorView::spellCheckingListSuggestions() {
 		//    contextMenu->close();
 		contextMenu->show();
 	}
-}
-void LatexEditorView::dictionaryReloaded() {
-	//   QMessageBox::information(0,"trig","",0);
-	documentContentChanged(0,editor->document()->lines());
 }
 
 void LatexEditorView::closeCompleter(){
@@ -1496,6 +1522,12 @@ void LatexEditorView::triggeredThesaurus(){
 	QAction *act = qobject_cast<QAction*>(sender());
 	QPoint pt=act->data().toPoint();
 	emit thesaurus(pt.x(),pt.y());
+}
+
+void LatexEditorView::changeSpellingLanguage(const QLocale &loc) {
+	if (spellerManager->hasSpeller(loc.name())) {
+		setSpeller(loc.name());
+	}
 }
 
 QString BracketInvertAffector::affect(const QKeyEvent *, const QString& base, int, int) const{

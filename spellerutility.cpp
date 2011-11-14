@@ -12,7 +12,9 @@
 #include "spellerutility.h"
 #include "smallUsefulFunctions.h"
 
-SpellerUtility::SpellerUtility(): spellcheckErrorFormat(-1), currentDic(""), pChecker(0), spellCodec(0) {
+int SpellerUtility::spellcheckErrorFormat = -1;
+
+SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(0), spellCodec(0) {
 	checkCache.reserve(1020);
 }
 bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
@@ -119,6 +121,7 @@ QStringListModel* SpellerUtility::ignoreListModel() {
 }
 
 SpellerUtility::~SpellerUtility() {
+	emit aboutToDelete();
 	unload();
 }
 bool SpellerUtility::check(QString word) {
@@ -151,3 +154,98 @@ QStringList SpellerUtility::suggest(QString word) {
 	return suggestion;
 }
 
+
+
+SpellerManager::SpellerManager() {
+	emptySpeller = new SpellerUtility("<none>");
+	mDefaultSpellerName = emptySpeller->name();
+}
+
+SpellerManager::~SpellerManager() {
+	unloadAll();
+	if (emptySpeller) {
+		delete emptySpeller;
+		emptySpeller = 0;
+	}
+}
+
+void SpellerManager::setIgnoreFilePrefix(const QString &prefix) {
+	ignoreFilePrefix = prefix;
+}
+
+void SpellerManager::setDictPath(const QString &dictPath) {
+	if (dictPath == m_dictPath) return;
+	m_dictPath = dictPath;
+
+	QList<SpellerUtility *> oldDicts = dicts.values();
+
+	dicts.clear();
+	dictFiles.clear();
+	QDir dir(dictPath);
+	foreach (QFileInfo fi, dir.entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
+		dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
+	}
+
+	// delete after new dict files are identified so a user can reload the new dict in response to a aboutToDelete signal
+	foreach (SpellerUtility *su, oldDicts) {
+		delete su;
+	}
+
+	emit dictPathChanged();
+}
+
+QStringList SpellerManager::availableDicts() {
+	if (dictFiles.keys().isEmpty())
+		return QStringList() << emptySpeller->name();
+	return QStringList(dictFiles.keys());
+}
+
+QStringList SpellerManager::dictNamesForDir(const QString &dir) {
+	QStringList dictNames;
+
+	foreach (QFileInfo fi, QDir(dir).entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
+		dictNames << fi.baseName();
+	}
+	if (dictNames.isEmpty())
+		return QStringList() << "<none>";
+	return dictNames;
+}
+
+bool SpellerManager::hasSpeller(const QString &name) {
+	if (name==emptySpeller->name()) return true;
+	return dictFiles.contains(name);
+}
+
+SpellerUtility *SpellerManager::getSpeller(const QString &name) {
+	if (!dictFiles.contains(name)) return emptySpeller;
+
+	SpellerUtility *su = dicts.value(name, 0);
+	if (!su) {
+		su = new SpellerUtility(name);
+		if (!su->loadDictionary(dictFiles.value(name), ignoreFilePrefix)) {
+			delete su;
+			return emptySpeller;
+		}
+		dicts.insert(name, su);
+	}
+	return su;
+}
+
+QString SpellerManager::defaultSpellerName() {
+	return mDefaultSpellerName;
+}
+
+bool SpellerManager::setDefaultSpeller(const QString &name) {
+	if (dictFiles.contains(name)) {
+		mDefaultSpellerName = name;
+		return true;
+	}
+	return false;
+}
+
+void SpellerManager::unloadAll() {
+	foreach(SpellerUtility *su, dicts.values()) {
+		delete su;
+	}
+	dicts.clear();
+}

@@ -147,6 +147,8 @@ public:
 	void updateUserToolMenu(bool alwaysRecreateMenuItems=false);
 	
 	//dictionaries
+	QString spellDictDir;
+	QString spellLanguage;
 	QString spell_dic, thesaurus_database;
 
 	// custom highlighting

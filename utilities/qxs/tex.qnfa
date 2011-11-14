@@ -75,6 +75,11 @@ environments in smallUsefulFunctions.cpp)
 		<stop exclusive="false">\n</stop>
 	</context>
 
+	<context id="comment/single" format="magicComment" stayOnLine="true" >
+		<start>% !TeX</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	
 	<context id="comment/single" format="comment" stayOnLine="true" >
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
