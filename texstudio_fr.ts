@@ -1321,11 +1321,11 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Line Wrapping:</source>
-        <translation>Retours à la ligne automatiques</translation>
+        <translation>Retours à la ligne automatiques :</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation>Taille de caractères des onglets relative</translation>
+        <translation>Taille de caractères des onglets relative :</translation>
     </message>
     <message>
         <source>Diff</source>
@@ -2131,7 +2131,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Save current settings as default.</source>
-        <translation>Faire des réglages actuels ceux par défaut</translation>
+        <translation>Faire des réglages actuels ceux par défaut.</translation>
     </message>
     <message>
         <source>as default</source>
@@ -2157,7 +2157,7 @@ l&apos;assistant ne supporte pas l&apos;environnement</translation>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics optins.</source>
         <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
-options de \includegraphics manquantes</translation>
+options de \includegraphics manquantes.</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
@@ -2881,7 +2881,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <source>&amp;About TeXstudio...</source>
-        <translation>À &amp;propos de TeXstudio</translation>
+        <translation>À &amp;propos de TeXstudio...</translation>
     </message>
     <message>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
@@ -2897,7 +2897,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation>&amp;Imprimer</translation>
+        <translation>&amp;Imprimer...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
@@ -3616,7 +3616,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
 Perhaps it is read-only or opened in another program?</source>
         <translation>Je n&apos;ai pas réussi à obtenir les droits d&apos;écriture sur le fichier %1.
 
-Peut-être n&apos;est-il accessible qu&apos;en lecture ou bien est-il déjà ouvert par un autre programme.</translation>
+Peut-être n&apos;est-il accessible qu&apos;en lecture ou bien est-il déjà ouvert par un autre programme ?</translation>
     </message>
     <message>
         <source>Writing the document to file %1 failed after the old content was deleted.
@@ -5960,7 +5960,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
-        <translation>Activer le sur&amp;lignage</translation>
+        <translation>Activer le sur&amp;lignage...</translation>
     </message>
     <message>
         <source>Move document to &amp;front</source>
