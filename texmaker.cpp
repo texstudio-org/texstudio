@@ -1154,6 +1154,12 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		PDFDocument::documentList().first()->setFocus();
 		return 0;
 	}
+	if (f_real.endsWith(".log",Qt::CaseInsensitive) &&
+	    txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
+		outputView->loadLogFile(f,documents.getTemporaryCompileFileName(),"");
+		DisplayLatexError();
+		return 0;
+	}
 	
 	raise();
 
