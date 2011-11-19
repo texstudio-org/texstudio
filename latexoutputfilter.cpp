@@ -276,6 +276,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 {
 	//KILE_DEBUG() << "==LatexOutputFilter::updateFileStackHeuristic()================";
 	static QString strPartialFileName;
+	static bool quotedFileName = false;
 	bool expectFileName = (dwCookie == FileNameHeuristic);
 	int index = 0;
 
@@ -290,21 +291,31 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 	for(int i = 0; i < strLine.length(); ++i) {
 		/*
 		We're expecting a filename. If a filename really ends at this position one of the following must be true:
-			1) Next character is a space (indicating the end of a filename (yes, there can't spaces in the
+			1) Next character is a space, the file before the space exists and no " was read
+			historical notes: Next character is a space (indicating the end of a filename (yes, there can't spaces in the
 			path, this is a TeX limitation).
 		comment by tbraun: there is a workround \include{{"file name"}} according to http://groups.google.com/group/comp.text.tex/browse_thread/thread/af873534f0644e4f/cd7e0cdb61a8b837?lnk=st&q=include+space+tex#cd7e0cdb61a8b837,
 		but this is currently not supported by kile.
+		
 			2) We're at the end of the line, the filename is probably continued on the next line.
 			3) The TeX was closed already, signalled by the ')'.
 		*/
 
 		bool isLastChar = (i+1 == strLine.length());
-		bool nextIsTerminator = isLastChar ? false : (strLine[i+1].isSpace() || strLine[i+1] == ')');
+		bool nextIsTerminator = isLastChar 
+		                          ? false 
+		                          : ( (strLine[i+1].isSpace() 
+		                                && !quotedFileName 
+		                                && fileExists(strPartialFileName + strLine.mid(index, i-index + 1))) 
+		                             || strLine[i+1] == ')');
 		
 		if(expectFileName && (isLastChar || nextIsTerminator)) {
 			//KILE_DEBUG() << "Update the partial filename " << strPartialFileName << endl;
 			strPartialFileName =  strPartialFileName + strLine.mid(index, i-index + 1);
 
+			if (strPartialFileName.startsWith('"')) strPartialFileName.remove(0,1), quotedFileName = true;
+			if (strPartialFileName.endsWith('"')) strPartialFileName.remove(strPartialFileName.length()-1,1);
+			
 			if(strPartialFileName.isEmpty()){ // nothing left to do here
 			  continue;
 			}
@@ -334,6 +345,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 				dwCookie = Start;
 				strPartialFileName.clear();
 				expectFileName = false;
+				quotedFileName = false;
 			}
 		}
 		//TeX is opening a file
@@ -341,6 +353,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 			//we need to extract the filename
 			expectFileName = true;
 			strPartialFileName.clear();
+			quotedFileName = false;
 			dwCookie = Start;
 
 			//this is were the filename is supposed to start
