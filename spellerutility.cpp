@@ -215,8 +215,13 @@ bool SpellerManager::hasSpeller(const QString &name) {
 	if (name==emptySpeller->name()) return true;
 	return dictFiles.contains(name);
 }
-
-SpellerUtility *SpellerManager::getSpeller(const QString &name) {
+/*!
+    If the language has not been used yet, a SpellerUtility for the language is loaded. Otherwise
+    the existing SpellerUtility is returned. Possible names are the dictionary file names without ".dic"
+    ending and "<default>" for the default speller
+*/
+SpellerUtility *SpellerManager::getSpeller(QString name) {
+	if (name == "<default>") name = mDefaultSpellerName;
 	if (!dictFiles.contains(name)) return emptySpeller;
 
 	SpellerUtility *su = dicts.value(name, 0);
@@ -238,6 +243,7 @@ QString SpellerManager::defaultSpellerName() {
 bool SpellerManager::setDefaultSpeller(const QString &name) {
 	if (dictFiles.contains(name)) {
 		mDefaultSpellerName = name;
+		emit defaultSpellerChanged();
 		return true;
 	}
 	return false;
@@ -249,3 +255,13 @@ void SpellerManager::unloadAll() {
 	}
 	dicts.clear();
 }
+
+QString SpellerManager::prettyName(const QString &name) {
+	QLocale loc(name);
+	if (loc == QLocale::c()) {
+		return name;
+	} else {
+		return QString("%1 - %2 (%3)").arg(name).arg(QLocale::languageToString(loc.language())).arg(QLocale::countryToString(loc.country()));
+	}
+}
+

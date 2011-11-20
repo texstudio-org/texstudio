@@ -39,6 +39,7 @@
 #include "latexeditorview_config.h"
 #include "scriptengine.h"
 
+#define QT_NO_DEBUG
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
 #endif
@@ -840,14 +841,33 @@ void Texmaker::setupToolBars() {
 }
 
 void Texmaker::UpdateAvailableLanguages() {
-	foreach (QAction *act, statusTbLanguage->actions()) {
-		statusTbLanguage->removeAction(act);
-		delete act;
-	}
+	if (spellLanguageActions) delete spellLanguageActions;
+
+	spellLanguageActions = new QActionGroup(statusTbLanguage);
+	spellLanguageActions->setExclusive(true);
+
 	foreach (QString s, spellerManager.availableDicts()) {
-		QAction *act = new QAction(s, statusTbLanguage);
+		QAction *act = new QAction(spellLanguageActions);
+		act->setText(spellerManager.prettyName(s));
+		act->setData(QVariant(s));
+		act->setCheckable(true);
 		connect(act, SIGNAL(triggered()), this, SLOT(ChangeEditorSpeller()));
-		statusTbLanguage->addAction(act);
+	}
+
+	QAction *act = new QAction(spellLanguageActions);
+	act->setSeparator(true);
+	act = new QAction(spellLanguageActions);
+	act->setText(tr("Default")+QString(": %1").arg(spellerManager.prettyName(spellerManager.defaultSpellerName())));
+	act->setData(QVariant("<default>"));
+	connect(act, SIGNAL(triggered()), this, SLOT(ChangeEditorSpeller()));
+	act->setCheckable(true);
+	act->setChecked(true);
+	statusTbLanguage->addActions(spellLanguageActions->actions());
+
+	if (currentEditorView()) {
+		EditorSpellerChanged(currentEditorView()->getSpeller());
+	} else {
+		EditorSpellerChanged("<default>");
 	}
 }
 
@@ -893,6 +913,7 @@ void Texmaker::createStatusBar() {
 	statusTbLanguage->setAutoRaise(true);
 	statusTbLanguage->setMinimumWidth(status->fontMetrics().width("OOOOOO"));
 	connect(&spellerManager, SIGNAL(dictPathChanged()), this, SLOT(UpdateAvailableLanguages()));
+	connect(&spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(UpdateAvailableLanguages()));
 	UpdateAvailableLanguages();
 	statusTbLanguage->setText(spellerManager.defaultSpellerName());
 	status->addPermanentWidget(statusTbLanguage,0);
@@ -961,8 +982,7 @@ void Texmaker::editorTabChanged(int index){
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
 	if (currentEditorView()) {
-		QString spellerName = currentEditorView()->getSpeller()->name();
-		statusTbLanguage->setText(spellerName);
+		EditorSpellerChanged(currentEditorView()->getSpeller());
 	}
 }
 
@@ -1085,8 +1105,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
 	edit->setSpellerManager(&spellerManager);
-	edit->setSpeller(spellerManager.defaultSpellerName());
-
+	edit->setSpeller("<default>");
 
 	edit->setBibTeXIds(&documents.allBibTeXIds);
 }
@@ -2053,7 +2072,7 @@ void Texmaker::editSpell() {
 		txsWarning(tr("No document open"));
 		return;
 	}
-	if (!spellDlg) spellDlg=new SpellerDialog(this, currentEditorView()->getSpeller());
+	if (!spellDlg) spellDlg=new SpellerDialog(this, spellerManager.getSpeller(currentEditorView()->getSpeller()));
 	spellDlg->setEditorView(currentEditorView());
 	spellDlg->startSpelling();
 }
@@ -3203,16 +3222,24 @@ void Texmaker::InsertPageRef() {
 }
 
 void Texmaker::EditorSpellerChanged(const QString &name) {
-	statusTbLanguage->setText(name);
+	foreach (QAction *act, statusTbLanguage->actions()) {
+		if (act->data().toString() == name) {
+			act->setChecked(true);
+		}
+	}
+	if (name == "<default>") {
+		statusTbLanguage->setText(spellerManager.defaultSpellerName());
+	} else {
+		statusTbLanguage->setText(name);
+	}
 }
 
 void Texmaker::ChangeEditorSpeller() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	if (!currentEditorView()) return;
-	QString name=action->text();
 
-	currentEditorView()->setSpeller(name);
+	currentEditorView()->setSpeller(action->data().toString());
 }
 
 ///////////////TOOLS////////////////////

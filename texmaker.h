@@ -140,6 +140,7 @@ private:
 
 	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelEncoding;
 	QToolButton *statusTbLanguage;
+	QActionGroup *spellLanguageActions;
 
 	QToolButton *combo1,*combo2,*combo;
 

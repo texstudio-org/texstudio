@@ -270,7 +270,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent), bibTeXIds(0),curChangePos(-1),lastSetBookmark(0), config(aconfig), speller(0) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),speller(0),bibTeXIds(0),curChangePos(-1),lastSetBookmark(0),config(aconfig) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -539,15 +539,19 @@ void LatexEditorView::setBaseActions(QList<QAction *> baseActions) {
 }
 void LatexEditorView::setSpellerManager(SpellerManager* manager) {
 	spellerManager = manager;
+	connect(spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(reloadSpeller()));
 }
 void LatexEditorView::setSpeller(const QString &name) {
 	if (!spellerManager) return;
+
+	useDefaultSpeller = (name == "<default>");
 
 	SpellerUtility* su;
 	if (spellerManager->hasSpeller(name)) {
 		su = spellerManager->getSpeller(name);
 	} else {
 		su = spellerManager->getSpeller(spellerManager->defaultSpellerName());
+		useDefaultSpeller = true;
 	}
 	if (su == speller) return;
 	if (speller) {
@@ -560,14 +564,18 @@ void LatexEditorView::setSpeller(const QString &name) {
 	documentContentChanged(0,editor->document()->lines());
 }
 void LatexEditorView::reloadSpeller() {
+	if (useDefaultSpeller) {
+		setSpeller("<default>");
+		return;
+	}
+
 	SpellerUtility *su = qobject_cast<SpellerUtility *>(sender());
 	if (!su) return;
-
 	setSpeller(su->name());
 }
-
-SpellerUtility* LatexEditorView::getSpeller() {
-	return speller;
+QString LatexEditorView::getSpeller() {
+	if (useDefaultSpeller) return QString("<default>");
+	return speller->name();
 }
 
 void LatexEditorView::setCompleter(LatexCompleter* newCompleter) {

@@ -52,7 +52,7 @@ public:
 	static void setBaseActions(QList<QAction *> baseActions);
 	void setSpellerManager(SpellerManager* manager);
 	void setSpeller(const QString &name);
-	SpellerUtility *getSpeller();
+	QString getSpeller();
 
 	static void setCompleter(LatexCompleter* newCompleter);
 	static LatexCompleter* getCompleter();
@@ -97,6 +97,7 @@ private:
 
 	SpellerManager* spellerManager;
 	SpellerUtility* speller;
+	bool useDefaultSpeller;
 	static LatexCompleter* completer;
 	QSet<QString>* bibTeXIds;
 	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
