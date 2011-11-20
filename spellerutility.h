@@ -61,14 +61,16 @@ public:
 	static QStringList dictNamesForDir(const QString &dir);
 
 	bool hasSpeller(const QString &name);
-	SpellerUtility *getSpeller(const QString &name);
+	SpellerUtility *getSpeller(QString name);
 
 	QString defaultSpellerName();
 	bool setDefaultSpeller(const QString &name);
 	void unloadAll();
 
+	static QString prettyName(const QString &name);
 signals:
 	void dictPathChanged();
+	void defaultSpellerChanged();
 private:
 	QString m_dictPath;
 	QString ignoreFilePrefix;
