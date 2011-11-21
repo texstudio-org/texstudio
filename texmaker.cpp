@@ -39,7 +39,6 @@
 #include "latexeditorview_config.h"
 #include "scriptengine.h"
 
-#define QT_NO_DEBUG
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
 #endif
@@ -56,6 +55,7 @@
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 
+	spellLanguageActions=0;
 	MapForSymbols=0;
 	currentLine=-1;
 	previewEquation=false;
