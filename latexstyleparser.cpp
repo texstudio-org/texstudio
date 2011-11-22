@@ -113,12 +113,12 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    continue;
 		}
 		if(rxRequire.indexIn(line)>-1){
-		    int cnt=rxRequire.captureCount();
-		    for(int i=1;i<=cnt;i++){
-			QString name=rxRequire.cap(i);
+		    QStringList matches = rxRequire.capturedTexts();
+		    for(int i=1;i<matches.size();i++){
+			QString name = matches[i];
 			if(name.endsWith(","))
 			    name.chop(1);
-			results << "#include:"+name;
+			results << "#include:" + name;
 		    }
 		    continue;
 		}

@@ -19,7 +19,7 @@
                     <string>MP</string>
                 </array>
                 <key>CFBundleTypeIconFile</key>
-                <string>texmaker.icns</string>
+                <string>texstudio.icns</string>
                 <key>CFBundleTypeName</key>
                 <string>TeX Document</string>
                 <key>CFBundleTypeRole</key>
@@ -29,7 +29,7 @@
             </dict>
         </array>
 	<key>CFBundleIconFile</key>
-	<string>texmaker.icns</string>
+	<string>texstudio.icns</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>

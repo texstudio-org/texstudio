@@ -500,6 +500,9 @@ QSettings* ConfigManager::readSettings() {
 		QStringList temp;
 		QStringList fallBackPaths;
 #ifndef Q_WS_WIN
+#ifndef PREFIX
+#define PREFIX
+#endif
 		fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
 		              << "/usr/share/hunspell" << "/usr/share/myspell" ;
 #endif
