@@ -1165,6 +1165,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
 #endif
 	
+#ifndef NO_POPPLER_PREVIEW
 	if (f_real.endsWith(".pdf",Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
@@ -1173,6 +1174,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		PDFDocument::documentList().first()->setFocus();
 		return 0;
 	}
+#endif
+
 	if (f_real.endsWith(".log",Qt::CaseInsensitive) &&
 	    txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
 		outputView->loadLogFile(f,documents.getTemporaryCompileFileName(),"");
@@ -1294,7 +1297,12 @@ void Texmaker::needUpdatedCompleter(){
 #include "QMetaMethod"
 void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QList<QVariant>& args){
 	REQUIRE(act);
+#if QT_VERSION >= 0x040600
 	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()),Qt::UniqueConnection);
+#else
+	disconnect(act, SIGNAL(triggered()), this, SLOT(relayToEditorSlot()));
+	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()));
+#endif
 	QByteArray signature = createMethodSignature(methodName, args);
 	if (!args.isEmpty())
 		act->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
@@ -2629,7 +2637,7 @@ void Texmaker::NormalCompletion() {
 			completer->setWorkPath(fi.absolutePath());
 			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
 			break;
-		} else ; //fall through
+		} else {}; //fall through
 	default:
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
@@ -3977,8 +3985,11 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
 	QStringList filesToLoad;
 	bool activateMasterMode = false;
-	int line=-1, page=-1;
+	int line=-1;
+#ifndef NO_POPPLER_PREVIEW
+	int page=-1;
 	bool pdfViewerOnly = false;
+#endif
 	for (int i = 0; i < args.size(); ++i) {
 		if (args[i]=="") continue;
 		if (args[i][0] != '-')  filesToLoad << args[i];

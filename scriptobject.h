@@ -32,8 +32,8 @@ class ScriptObject : public QObject
 {
 	Q_OBJECT
 
-	Q_PROPERTY(SubScriptObject* script READ getScript DESIGNABLE false STORED false CONSTANT FINAL)
-	Q_PROPERTY(Texmaker* app READ getApp DESIGNABLE false STORED false CONSTANT FINAL)
+	Q_PROPERTY(SubScriptObject* script READ getScript DESIGNABLE false STORED false)
+	Q_PROPERTY(Texmaker* app READ getApp DESIGNABLE false STORED false)
 public:
 	explicit ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app);
 

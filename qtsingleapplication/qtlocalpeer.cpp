@@ -48,7 +48,9 @@
 #include "qtlocalpeer.h"
 #include <QtCore/QCoreApplication>
 #include <QtCore/QTime>
+#if QT_VERSION >= 0x040600
 #include <QtCore/QProcessEnvironment>
+#endif
 
 #if defined(Q_OS_WIN)
 #include <QtCore/QLibrary>
