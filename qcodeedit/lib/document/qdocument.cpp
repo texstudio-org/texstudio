@@ -560,7 +560,7 @@ QTextCodec* guessEncoding(const QByteArray& data){
 			if (good > 10*bad) guess = QTextCodec::codecForName("UTF-8");
 			else {
 				guess = QTextCodec::codecForName("ISO-8859-1");
-				if (bad <= size / 1000) sure = 0;
+				if (bad == 0) sure = 0;
 			}
 		}
 	}
