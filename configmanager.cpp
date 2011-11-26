@@ -288,6 +288,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
+	registerOption("Spell/Dic", &spell_dic, "<dic not found>", 0);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 
 	//user macros
@@ -496,21 +497,32 @@ QSettings* ConfigManager::readSettings() {
 
 	//----------------------------dictionaries-------------------------
 
-	if (spell_dic=="<dic not found>" || ((importTexmakerSettings  || importTexMakerXSettings)  && !QFileInfo(spell_dic).exists())) {
-		QStringList temp;
-		QStringList fallBackPaths;
+	if (spellDictDir.isEmpty() || ((importTexmakerSettings  || importTexMakerXSettings)  && !QFileInfo(QDir(spellDictDir), spellLanguage+".dic").exists())) {
+		// non-exeistent or invalid settings for dictionary
+		// try restore from old format where there was only one dictionary - spell_dic can be removed later when users have migrated to the new version
+		QString dic = spell_dic;
+		if (!QFileInfo(dic).exists()) {
+			// fallback to defaults
+			QStringList temp;
+			QStringList fallBackPaths;
 #ifndef Q_WS_WIN
 #ifndef PREFIX
 #define PREFIX
 #endif
-		fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
-		              << "/usr/share/hunspell" << "/usr/share/myspell" ;
+			fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
+				      << "/usr/share/hunspell" << "/usr/share/myspell" ;
 #endif
-		spell_dic=findResourceFile(QString(QLocale::system().name())+".dic", true, temp, fallBackPaths);
-		if (spell_dic=="") spell_dic=findResourceFile("en_US.dic", true, temp, fallBackPaths);
-		if (spell_dic=="") spell_dic=findResourceFile("en_GB.dic", true, temp, fallBackPaths);
-		if (spell_dic=="") spell_dic=findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
-		if (spell_dic=="") spell_dic=findResourceFile("de_DE.dic", true, temp, fallBackPaths);
+			dic=findResourceFile(QString(QLocale::system().name())+".dic", true, temp, fallBackPaths);
+			if (dic=="") spell_dic=findResourceFile("en_US.dic", true, temp, fallBackPaths);
+			if (dic=="") spell_dic=findResourceFile("en_GB.dic", true, temp, fallBackPaths);
+			if (dic=="") spell_dic=findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
+			if (dic=="") spell_dic=findResourceFile("de_DE.dic", true, temp, fallBackPaths);
+		}
+		QFileInfo fi(dic);
+		if (fi.exists()) {
+			spellDictDir = fi.absolutePath();
+			spellLanguage = fi.baseName();
+		}
 	}
 
 	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
