@@ -455,6 +455,32 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		editor()->setFocus();
 }
 
+void QSearchReplacePanel::closeSomething(bool closeTogether){
+	qDebug() << "popup"<< QApplication::activePopupWidget();
+	foreach (QObject* o, cFind->children()) {
+		qDebug()<<"child"<<o;
+		if (qobject_cast<QWidget*>(o)) qDebug() << "   "<<(qobject_cast<QWidget*>(o))->hasFocus()<<(qobject_cast<QWidget*>(o))->isVisible();
+		foreach (QObject* p, o->children()) {
+			qDebug()<<"child child  "<<p;
+			if (qobject_cast<QWidget*>(p)) 
+				qDebug() << "   "<<(qobject_cast<QWidget*>(p))->hasFocus()
+				<<(qobject_cast<QWidget*>(p))->isVisible();
+			foreach (QObject* q, p->children()) {
+				qDebug()<<"child child child    "<<q;
+				if (qobject_cast<QWidget*>(q)) qDebug() << "   "<<(qobject_cast<QWidget*>(q))->hasFocus()<<(qobject_cast<QWidget*>(q))->isVisible();
+			}
+		}
+	}
+	if (cFind->completer()->popup()->isVisible() && cFind->completer()->popup()->hasFocus())
+		cFind->setFocus();
+	else if (cReplace->completer()->popup()->hasFocus())
+		cReplace->setFocus();
+	else if (isReplaceModeActive() & !closeTogether)
+		display(1,false);
+	else
+		display(0,false);	
+}
+
 void QSearchReplacePanel::findNext(){
 	findReplace(m_lastDirection);
 }
@@ -671,7 +697,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 			case QEvent::KeyPress :
 
 				kc = static_cast<QKeyEvent*>(e)->key();
-				if ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) )
+				if ( ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) ) )
 				{
 					//on_cFind_returnPressed();
 					if (cReplace->hasFocus()) 
