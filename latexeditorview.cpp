@@ -1293,10 +1293,7 @@ bool LatexEditorView::closeSomething(){
 		return true;
 	}
 	if (searchReplacePanel->isVisible()) {
-		if (searchReplacePanel->isReplaceModeActive() & !config->closeSearchAndReplace)
-			searchReplacePanel->display(1,false);
-		else
-			searchReplacePanel->display(0,false);
+		searchReplacePanel->closeSomething(config->closeSearchAndReplace);
 		return true;
 	}
 	return false;
