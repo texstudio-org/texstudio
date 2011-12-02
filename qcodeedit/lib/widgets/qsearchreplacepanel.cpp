@@ -473,7 +473,7 @@ void QSearchReplacePanel::closeSomething(bool closeTogether){
 	}
 	if (cFind->completer()->popup()->isVisible() && cFind->completer()->popup()->hasFocus())
 		cFind->setFocus();
-	else if (cReplace->completer()->popup()->hasFocus())
+	else if (cReplace->completer()->popup()->isVisible() && cReplace->completer()->popup()->hasFocus())
 		cReplace->setFocus();
 	else if (isReplaceModeActive() & !closeTogether)
 		display(1,false);
