@@ -862,6 +862,13 @@ void Texmaker::UpdateAvailableLanguages() {
 	connect(act, SIGNAL(triggered()), this, SLOT(ChangeEditorSpeller()));
 	act->setCheckable(true);
 	act->setChecked(true);
+
+	act = new QAction(spellLanguageActions);
+	act->setSeparator(true);
+	act = new QAction(spellLanguageActions);
+	act->setText(tr("Insert language as TeX comment"));
+	connect(act, SIGNAL(triggered()), this, SLOT(InsertSpellcheckMagicComment()));
+
 	statusTbLanguage->addActions(spellLanguageActions->actions());
 
 	if (currentEditorView()) {
@@ -1165,7 +1172,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
 #endif
 	
-#ifndef NO_POPPLER_PREVIEW
+
+#ifndef NO_POPPLER_PREVIEW
 	if (f_real.endsWith(".pdf",Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
@@ -3251,6 +3259,16 @@ void Texmaker::ChangeEditorSpeller() {
 	currentEditorView()->setSpeller(action->data().toString());
 }
 
+void Texmaker::InsertSpellcheckMagicComment() {
+	if (currentEditorView()) {
+		QString name = currentEditorView()->getSpeller();
+		if (name=="<default>") {
+			name = spellerManager.defaultSpellerName();
+		}
+		currentEditorView()->document->updateMagicComment("spellcheck", name, true);
+	}
+}
+
 ///////////////TOOLS////////////////////
 void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags){
 	switch (cmd){
@@ -3985,7 +4003,8 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
 	QStringList filesToLoad;
 	bool activateMasterMode = false;
-	int line=-1;
+
+	int line=-1;
 #ifndef NO_POPPLER_PREVIEW
 	int page=-1;
 	bool pdfViewerOnly = false;

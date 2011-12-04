@@ -161,6 +161,9 @@ public:
 	QLocale spellingLanguage() {
 		return mSpellingLanguage;
 	}
+	QString getMagicComment(const QString& name);
+	QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
+	void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
 
 private:
 	QString fileName; //absolute
@@ -198,7 +201,8 @@ private:
 
 	void removeAndDeleteElement(StructureEntry* se, int row);
 
-	void parseMagicComment(StructureEntry* se, const QString &comment);
+	bool splitMagicComment(const QString &comment, QString &name, QString &val);
+	void parseMagicComment(const QString &name, const QString &val, StructureEntry* se);
 
 #ifndef QT_NO_DEBUG
 public:
