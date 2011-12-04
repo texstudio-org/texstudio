@@ -420,7 +420,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}else{
 				newMagicComment=new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
 			}
-			parseMagicComment(newMagicComment, s);
+			QString name;
+			QString val;
+			splitMagicComment(s, name, val);
+
+			parseMagicComment(name, val, newMagicComment);
 			newMagicComment->title=s;
 			newMagicComment->lineNumber=i;
 			newMagicComment->lineHandle=line(i).handle();
@@ -1764,21 +1768,32 @@ void LatexDocument::removeAndDeleteElement(StructureEntry* se, int row){
 	emit removeElementFinished();
 }
 
-void LatexDocument::parseMagicComment(StructureEntry* se, const QString &comment) {
-	se->tooltip = QString();
-	se->valid = false;
+/*!
+  Splits a [name] = [val] string into \a name and \a val removing extra spaces.
 
+  \return true if splitting successful, false otherwise (in that case name and val are empty)
+ */
+bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QString &val) {
 	int sep = comment.indexOf("=");
-	if (sep < 0) {
-		se->tooltip = tr("Invalid magic comment format. Use:\n% !TeX [var] = [val]");
-		return;
-	}
-	QString type = comment.left(sep).trimmed();
-	QString val = comment.mid(sep+1).trimmed();
+	if (sep < 0) return false;
+	name = comment.left(sep).trimmed();
+	val = comment.mid(sep+1).trimmed();
+	return true;
+}
 
-	if (type == "spellcheck") {
-		val.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
-		mSpellingLanguage = QLocale(val);
+/*!
+  Formats the StructureEntry and modifies the document according to the MagicComment contents
+  */
+void LatexDocument::parseMagicComment(const QString &name, const QString &val, StructureEntry* se) {
+	if (name.isEmpty()) {
+		se->tooltip = QString();
+		se->valid = false;
+	}
+
+	if (name == "spellcheck") {
+		QString lang=val;
+		lang.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
+		mSpellingLanguage = QLocale(lang);
 		if (mSpellingLanguage.language() == QLocale::C) {
 			se->tooltip = tr("Invalid language format");
 			return;
@@ -1790,7 +1805,7 @@ void LatexDocument::parseMagicComment(StructureEntry* se, const QString &comment
 	} else if (type == "texroot") {
 		se->valid = true;
 	*/
-	} else if (type == "encoding") {
+	} else if (name == "encoding") {
 		QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
 		if (!codec) {
 			se->tooltip = tr("Invalid codec");
@@ -2000,6 +2015,57 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 				edView->updateLtxCommands();
 				edView->reCheckSyntax();
 			}
+		}
+	}
+}
+
+QString LatexDocument::getMagicComment(const QString& name) {
+	QString seName;
+	QString val;
+	StructureEntryIterator iter(magicCommentList);
+	while (iter.hasNext()) {
+		StructureEntry *se = iter.next();
+		splitMagicComment(se->title, seName, val);
+		if (seName==name)
+			return val;
+	}
+	return QString();
+}
+
+QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& name) {
+	QString seName;
+	QString val;
+
+	if(!magicCommentList) return NULL;
+
+	StructureEntryIterator iter(magicCommentList);
+	while (iter.hasNext()) {
+		StructureEntry *se = iter.next();
+		splitMagicComment(se->title, seName, val);
+		if (seName==name)
+			return se->lineHandle;
+	}
+	return NULL;
+}
+
+/*!
+  replaces the value of the magic comment
+ */
+void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting) {
+	QString line(QString("\% !TeX %1 = %2").arg(name).arg(val));
+
+	QDocumentLineHandle* dlh = getMagicCommentLineHandle(name);
+	if(dlh) {
+		QDocumentCursor cur(this, dlh->line());
+		cur.select(QDocumentCursor::LineUnderCursor);
+		cur.replaceSelectedText(line);
+	} else {
+		if (createIfNonExisting) {
+			QDocumentCursor cur(this);
+			cur.beginEditBlock();
+			cur.insertText(line);
+			cur.insertLine();
+			cur.endEditBlock();
 		}
 	}
 }

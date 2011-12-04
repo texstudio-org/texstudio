@@ -321,6 +321,7 @@ protected slots:
 	void UpdateAvailableLanguages();
 	void EditorSpellerChanged(const QString &name);
 	void ChangeEditorSpeller();
+	void InsertSpellcheckMagicComment();
 
 	void QuickTabular();
 	void QuickArray();

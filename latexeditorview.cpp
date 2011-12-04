@@ -270,7 +270,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),speller(0),bibTeXIds(0),curChangePos(-1),lastSetBookmark(0),config(aconfig) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),lastSetBookmark(0),config(aconfig) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -560,6 +560,11 @@ void LatexEditorView::setSpeller(const QString &name) {
 	speller = su;
 	connect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
 	emit spellerChanged(name);
+
+	if (document) {
+		document->updateMagicComment("spellcheck", speller->name());
+	}
+
 	// force new highlighting
 	documentContentChanged(0,editor->document()->lines());
 }
