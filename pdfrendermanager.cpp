@@ -88,6 +88,10 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 	}
 	
 	queueAdministration->documentData = f.readAll();
+	if (!queueAdministration->documentData.endsWith("%%EOF\n")) {
+		errorType = 2;
+		return 0;
+	}
 	document = Poppler::Document::loadFromData(queueAdministration->documentData);
 	if (!document) {
 		errorType = 2;
