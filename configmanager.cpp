@@ -906,10 +906,16 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->buildManager = buildManager;
 	for (int i=1;i<=BuildManager::getQuickBuildCommandCount()+1;i++){
 		QRadioButton* rb = new QRadioButton(BuildManager::getQuickBuildCommandText(i),confDlg);
+		if (i == BuildManager::getQuickBuildCommandCount()+1) { //user command
+			connect(rb, SIGNAL(toggled(bool)), confDlg->ui.lineEditUserquick, SLOT(setEnabled(bool)));
+			connect(rb, SIGNAL(toggled(bool)), confDlg->ui.pushButtonQuickBuildWizard, SLOT(setEnabled(bool)));
+			confDlg->ui.lineEditUserquick->setEnabled(i == buildManager->quickmode);
+			confDlg->ui.pushButtonQuickBuildWizard->setEnabled(i == buildManager->quickmode);
+		}
 		if (i == buildManager->quickmode) rb->setChecked(true);
 		rb->setProperty("quickBuildMode", i);
 		confDlg->ui.quickbuildLayout->addWidget(rb);
-	}
+	}	
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
 	
