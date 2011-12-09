@@ -42,6 +42,8 @@ class-beamer
 latex-document
 latex-mathsymbols
 amsthm
+amsmath
+asmsymb
 enumerate
 multimedia
 hyperref
