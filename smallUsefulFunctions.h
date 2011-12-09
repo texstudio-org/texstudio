@@ -133,6 +133,8 @@ bool hasAtLeastQt(int major, int minor);
 QString getRelativeBaseNameToPath(const QString & file,QString basepath);
 QString getPathfromFilename(const QString &compFile);
 
+QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
+
 enum {
 	MIB_LATIN1 = 4,
 	MIB_UTF8 = 106,

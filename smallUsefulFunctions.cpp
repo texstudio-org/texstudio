@@ -1152,6 +1152,49 @@ int lineEnd(const QByteArray& data, int index){
 	return data.size();
 }
 
+QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
+	const char* str = data.data();
+	int size = data.size();
+	QTextCodec* guess = 0;
+	int sure = 1;
+	if (size>0) {
+		char prev=str[0];
+		int good=0;int bad=0;
+		int utf16le=0, utf16be = 0;
+		for (int i=1;i<size;i++) {
+			char cur = str[i];
+			if ((cur & 0xC0) == 0x80) {
+				if ((prev & 0xC0) == 0xC0) good++;
+				else if ((prev & 0x80) == 0x00) bad++;
+			} else {
+				if ((prev & 0xC0) == 0xC0) bad++;
+				//if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
+				if (prev==0) {
+					if ((i & 1) == 1) utf16be++;
+					else utf16le++;
+				}
+			}
+			prev=cur;
+		}
+		// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
+		if (utf16le > utf16be) {
+			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) guess = QTextCodec::codecForName("UTF-16LE");
+		} else {
+			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) guess = QTextCodec::codecForName("UTF-16BE");
+		}
+		if (!guess){
+			if (good > 10*bad) guess = QTextCodec::codecForName("UTF-8");
+			else {
+				guess = QTextCodec::codecForName("ISO-8859-1");
+				if (bad == 0) sure = 0;
+			}
+		}
+	}
+	if (outSure) *outSure = sure;
+	return guess;
+}
+
+
 void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure){
 	if (guess && (guess->mibEnum() == MIB_UTF16LE || guess->mibEnum() == MIB_UTF16BE)) {
 		sure = 100;
