@@ -208,7 +208,7 @@ environments in smallUsefulFunctions.cpp)
 	<!-- ========================= GENERAL COMMANDS ====================== -->
 
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
-	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z]+</sequence>
+	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z@]+</sequence>
 	
 </QNFA>
 
