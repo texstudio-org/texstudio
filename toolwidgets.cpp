@@ -244,21 +244,55 @@ void OutputViewWidget::clickedSearchResult(const QModelIndex& index){
 LatexLogModel* OutputViewWidget::getLogModel(){
 	return logModel;
 }
+
+//copied and modified from qbytearray.cpp
+//should be an optimization for qtextstream, but doesn't really improve anything
+QByteArray simplifyLineConserving(const QByteArray& ba)
+{
+	if (ba.size() == 0)
+		return QByteArray();
+	QByteArray result(ba.size(), Qt::Uninitialized);
+	const char *from = ba.constData();
+	const char *fromend = from + ba.size();
+	int outc=0;
+	char *to = result.data();
+	for (;;) {
+		while (from!=fromend && isspace(uchar(*from)))
+			from++;
+		while (from!=fromend && !isspace(uchar(*from)))
+			to[outc++] = *from++;
+		if (from!=fromend) {
+			if (uchar(*from) == '\n' || uchar(*from) == '\r') to[outc++] = '\n';
+			else to[outc++] = ' ';
+		} else
+			break;
+	}
+	if (outc > 0 && to[outc-1] == ' ')
+		outc--;
+	result.resize(outc);
+	return result;
+}
+
 void OutputViewWidget::loadLogFile(const QString &logname, const QString & compiledFileName, const QString & overrideFileName){
 	OutputLogTextEdit->clear();
 	QFile f(logname);
 	if (f.open(QIODevice::ReadOnly)) {
-		QTextStream t(&f);
-		QString line;
-//		OutputTextEdit->setPlainText( t.readAll() );
-		while (!t.atEnd()) {
-			line=t.readLine();
-			line=line.simplified();
-			if (!line.isEmpty()) OutputLogTextEdit->append(line);
-		}
-		f.close();
 
+		if (f.size() > 2*1024*1024 && 
+		    !txsConfirmWarning(tr("The logfile is very large (> %1 MB) are you sure you want to load it?").arg(f.size() / 1024 / 1024))) 
+			return;
+		
+		QByteArray fullLog = simplifyLineConserving(f.readAll());
+		f.close();
+		
+		int sure;
+		QTextCodec * codec = guessEncodingBasic(fullLog, &sure);
+		if (!sure) codec = QTextCodec::codecForLocale();
+		
+		OutputTextEdit->setPlainText(codec->toUnicode(fullLog));
+		
 		logModel->parseLogDocument(OutputLogTextEdit->document(), compiledFileName, overrideFileName);
+
 		logpresent=true;		
 		//update table size
 		OutputTable->resizeColumnsToContents();
