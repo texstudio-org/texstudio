@@ -12,6 +12,7 @@
 #ifndef NO_POPPLER_PREVIEW
 
 #include "pdfrendermanager.h"
+#include "smallUsefulFunctions.h"
 
 const int kMaxPageZoom=1000000;
 const qreal kMaxDpiForFullPage=500.0;
@@ -88,7 +89,8 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 	}
 	
 	queueAdministration->documentData = f.readAll();
-	if (!queueAdministration->documentData.endsWith("%%EOF\n")) {
+	if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
+	    !txsConfirmWarning(tr("%1 does not look like a valid PDF document.\nDo you want to open it anyways? It could cause a crash.").arg(fileName))) {
 		errorType = 2;
 		return 0;
 	}
