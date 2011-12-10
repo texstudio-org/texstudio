@@ -81,7 +81,7 @@ public:
 	int interfaceFontSize;
 	bool tabbedLogView;
 	bool newLeftPanelLayout;
-	bool configShowAdvancedOptions;
+	bool configShowAdvancedOptions, configRiddled;
 	bool centralVisible;
 	bool showLineNumbersInStructure;
 	int indentationInStructure;

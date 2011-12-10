@@ -382,6 +382,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
 
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
+	registerOption("Interface/Config Riddled", &configRiddled, false);	
 	registerOption("LogView/Tabbed", &tabbedLogView, true, &pseudoDialog->checkBoxTabbedLogView);
 	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
 
@@ -766,6 +767,7 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 
 bool ConfigManager::execConfigDialog() {
 	ConfigDialog *confDlg = new ConfigDialog(qobject_cast<QWidget*>(parent()));
+	confDlg->riddled = configRiddled;
 	//----------managed properties--------------------
 	foreach (const ManagedProperty& mp, managedProperties)
 		if (mp.widgetOffset)
@@ -1061,7 +1063,7 @@ bool ConfigManager::execConfigDialog() {
 	
 	//EXECUTE IT
 	bool executed = confDlg->exec();
-	
+	configRiddled = confDlg->riddled;
 	
 	//handle changes
 	if (executed) {
