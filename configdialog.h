@@ -78,6 +78,8 @@ public:
 	QStringList * environModes;
 
 	BuildManager * buildManager;
+
+	bool riddled;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:

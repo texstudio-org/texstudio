@@ -249,7 +249,7 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 
 int ConfigDialog::lastUsedPage = 0;
 
-ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0) {
+ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0), riddled(false) {
 	setModal(true);
 	ui.setupUi(this);
 
@@ -329,7 +329,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(lastUsedPage);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
-	// riddles are nice, but not when I want to configure something   connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
+	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
 
 	// custom toolbars
 	connect(ui.comboBoxToolbars,SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
@@ -514,6 +514,7 @@ void ConfigDialog::advancedOptionsToggled(bool on){
 			ui.contentsWidget->item(i)->setHidden(!on);
 	if (currentPage && !currentPage->isHidden()) {
 		currentPage->setSelected(true);
+		ui.contentsWidget->setCurrentItem(currentPage); 
 	} else {
 		ui.contentsWidget->setCurrentRow(0);
 	}
@@ -522,6 +523,7 @@ void ConfigDialog::advancedOptionsToggled(bool on){
 void ConfigDialog::advancedOptionsClicked(bool on){
 	if (on) {
 		if (!askRiddle()) ui.checkBoxShowAdvancedOptions->setChecked(false);
+		else riddled = true;
 	}
 }
 
@@ -704,7 +706,7 @@ bool ConfigDialog::askRiddle(){
 			"You ask the first: \"Are you lying?\", and he answers: \"No\".\n"
 			"You ask the second: \"Is the first one lying?\", and he answers: \"No\".\n"
 			"You ask the last: \"Is the second one lying?\", and he answers: \"No\".\n\n"
-			"Which one of the three wise will always tell the truth?"));
+	              "Which one of the three wise will always tell the truth?"), QLineEdit::Normal, riddled?"3":"");
 	if (solution.isEmpty()) return false;
 	bool a1 = solution.contains("1") || solution.contains(tr("first"),Qt::CaseInsensitive) || solution.contains(tr("one"),Qt::CaseInsensitive);
 	bool a2 = solution.contains("2") || solution.contains(tr("second"),Qt::CaseInsensitive) || solution.contains(tr("two"),Qt::CaseInsensitive);
