@@ -1514,7 +1514,7 @@ void PDFWidget::pageDownOrNext()
 	else {
 		if (realPageIndex < realNumPages() - 1) {
 			goNext();
-			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
+			scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
 		}
 	}
 	//shortcutPageDown->setAutoRepeat(scrollBar->value() < scrollBar->maximum());
