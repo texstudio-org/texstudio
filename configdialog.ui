@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>862</width>
+            <height>639</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -490,7 +490,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="1" column="1" colspan="3">
                <widget class="QComboBox" name="comboBoxSpellcheckLang"/>
               </item>
               <item row="1" column="0">
@@ -553,7 +553,7 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="2" colspan="2">
+              <item row="2" column="1" colspan="5">
                <widget class="QLabel" name="labelGetDic">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
