@@ -232,23 +232,25 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 						}
 						activeEnv.push(tp);
 					}else{
-						Environment tp=activeEnv.top();
-						if(tp.name==env){
-							activeEnv.pop();
-							if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
-								// stop excesscols from being handed on
-								excessCols=0;
-								// correct length of col error if it exists
-								if(!newRanges.isEmpty()){
-								    Error &elem=newRanges.last();
-								    if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
-									elem.range.second=wordstart-elem.range.first;
-								    }
-								}
-								// get new cols
-								cols=containsEnv("tabular",activeEnv);
-							}
-						}
+                                                if(!activeEnv.isEmpty()){
+                                                    Environment tp=activeEnv.top();
+                                                    if(tp.name==env){
+                                                        activeEnv.pop();
+                                                        if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
+                                                            // stop excesscols from being handed on
+                                                            excessCols=0;
+                                                            // correct length of col error if it exists
+                                                            if(!newRanges.isEmpty()){
+                                                                Error &elem=newRanges.last();
+                                                                if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
+                                                                    elem.range.second=wordstart-elem.range.first;
+                                                                }
+                                                            }
+                                                            // get new cols
+                                                            cols=containsEnv("tabular",activeEnv);
+                                                        }
+                                                    }
+                                                }
 					}
 					// add env-name for syntax checking to "word"
 					word+=options.first();
