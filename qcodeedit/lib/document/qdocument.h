@@ -264,7 +264,7 @@ class QCE_EXPORT QDocument : public QObject
 		void addMatch(int groupId, int line, int pos, int len, int format);
 		
 		static QFont font();
-		static void setFont(const QFont& f);
+		static void setFont(const QFont& f, bool forceUpdate = false);
 		//static const QFontMetrics fontMetrics() const;
 		static int getLineSpacing();
 		

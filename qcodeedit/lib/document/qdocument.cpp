@@ -985,9 +985,9 @@ QFont QDocument::font()
 	\note this limitation is historic and may disappear
 	in future versions
 */
-void QDocument::setFont(const QFont& f)
+void QDocument::setFont(const QFont& f, bool forceUpdate)
 {
-	QDocumentPrivate::setFont(f);
+	QDocumentPrivate::setFont(f, forceUpdate);
 	//emit contentsChanged();
 }
 
@@ -5490,6 +5490,7 @@ void QDocumentCursorHandle::intersectBoundaries(QDocumentCursorHandle *h, int& l
 		cend = ccmax;
 	}
 }
+
 
 /*!
   Creates a new cursor whose selection is the largest region which is contained in the selection of both
