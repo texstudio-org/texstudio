@@ -3919,7 +3919,7 @@ void Texmaker::GeneralOptions() {
 				}
 			}
 			if (m_formats->modified)
-				QDocument::setFont(QDocument::font());
+				QDocument::setFont(QDocument::font(), true);
 			UpdateCaption();
 		}
 		//custom toolbar
