@@ -20,10 +20,6 @@
         <translation>Köszönet az alábbiaknak: </translation>
     </message>
     <message>
-        <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="obsolete">A project honlapja: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
-    </message>
-    <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>Az eredeti Texmaker honlapja: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
@@ -279,10 +275,6 @@
         <translation>Szótárak</translation>
     </message>
     <message>
-        <source>Spelling dictionary</source>
-        <translation>Helyesírási szótár</translation>
-    </message>
-    <message>
         <source>TextLabel</source>
         <translation>Szövegcímke</translation>
     </message>
@@ -305,10 +297,6 @@
     <message>
         <source>Inline reference checking</source>
         <translation>Azonnali referencia ellenőrzés</translation>
-    </message>
-    <message>
-        <source>*.dic</source>
-        <translation>*.dic</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -348,10 +336,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Quick Build Command</source>
         <translation>Gyors fordítás parancsa</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation type="obsolete">Tovább</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
@@ -698,10 +682,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Gyors fordítás</translation>
     </message>
     <message>
-        <source>Custom Toolbar</source>
-        <translation type="obsolete">Egyéni eszköztár</translation>
-    </message>
-    <message>
         <source>Custom Highlighting</source>
         <translation>Egyéni kiemelés</translation>
     </message>
@@ -712,18 +692,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>SVN</source>
         <translation>SVN</translation>
-    </message>
-    <message>
-        <source>Browse dictionary</source>
-        <translation>Szótár megadása</translation>
-    </message>
-    <message>
-        <source>Get dictionary at: %1</source>
-        <translation>Szótár beszerzése: %1</translation>
-    </message>
-    <message>
-        <source>(Dictionary doesn&apos;t exists)</source>
-        <translation>(A szótár nem létezik)</translation>
     </message>
     <message>
         <source>Browse thesaurus database</source>
@@ -1087,23 +1055,36 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>Quick Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyorsfordítási opciók</translation>
     </message>
     <message>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortörés:</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation>Relatív tab betűméret:</translation>
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished"></translation>
+        <translation>Különbség</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztár</translation>
+    </message>
+    <message>
+        <source>Spelling dictionary directory</source>
+        <translation>Szótár könyvtár</translation>
+    </message>
+    <message>
+        <source>Default language</source>
+        <translation>Más nyelv</translation>
+    </message>
+    <message>
+        <source>Select dictionary directory</source>
+        <translation>Szótár könyvtár választása</translation>
     </message>
 </context>
 <context>
@@ -1568,7 +1549,7 @@ Szeretné azokat eltávolítani?</translation>
     </message>
     <message>
         <source>Open first non-open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyitja az első nem nyitott fájlt</translation>
     </message>
 </context>
 <context>
@@ -1754,36 +1735,8 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Fájl</translation>
     </message>
     <message>
-        <source>Scale: </source>
-        <translation type="obsolete">Méret:</translation>
-    </message>
-    <message>
-        <source>width=\linewidth</source>
-        <translation type="obsolete">szélesség=\linewidth</translation>
-    </message>
-    <message>
-        <source>Caption: </source>
-        <translation type="obsolete">Képaláírás:</translation>
-    </message>
-    <message>
-        <source>Label: </source>
-        <translation type="obsolete">Címke:</translation>
-    </message>
-    <message>
-        <source>Above</source>
-        <translation type="obsolete">Felette</translation>
-    </message>
-    <message>
-        <source>Below</source>
-        <translation type="obsolete">Alatta</translation>
-    </message>
-    <message>
         <source>Place in figure environment</source>
         <translation>Elhelyezés az ábra környezetben</translation>
-    </message>
-    <message>
-        <source>Placement</source>
-        <translation type="obsolete">Elhelyezkedés</translation>
     </message>
     <message>
         <source>Here</source>
@@ -1810,10 +1763,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <source>Center figure</source>
-        <translation type="obsolete">Kép középrehelyezése</translation>
-    </message>
-    <message>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
         <translation>Kép beillesztése</translation>
@@ -1824,88 +1773,88 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <source>Size / Include Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Width/Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Szélesség/Magasság</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Szélesség</translation>
     </message>
     <message>
         <source>0.7</source>
-        <translation type="unfinished">0.7</translation>
+        <translation>0.7</translation>
     </message>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Magasság</translation>
     </message>
     <message>
         <source>User defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználó által definiált</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Vízszintesen középre helyezett</translation>
     </message>
     <message>
         <source>Caption</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejezet</translation>
     </message>
     <message>
         <source>Above graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kép felett</translation>
     </message>
     <message>
         <source>Below graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kép alatt</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Címke</translation>
     </message>
     <message>
         <source>Span two columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kétoszlopos</translation>
     </message>
     <message>
         <source>Position</source>
-        <translation type="unfinished"></translation>
+        <translation>Helyzet</translation>
     </message>
     <message>
         <source>Save current settings as default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenlegi állapot alapértelmezettkénti mentése</translation>
     </message>
     <message>
         <source>as default</source>
-        <translation type="unfinished"></translation>
+        <translation>alapértelmezett</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation type="unfinished">Kép beszúrása</translation>
+        <translation>Kép beszúrása</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"></translation>
+        <translation>Értelmezhetetlen grafikus kód: az argumentumok száma nem megfelelő</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not parse graphics inclusion code:
-Missing \includegraphics optins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Értelmezhetetlen grafikus kód: varázsló által nem támogatott környezet</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"></translation>
+        <translation>Értelmezhetetlen grafikus kód: varázsló által nem támogatott parancs</translation>
+    </message>
+    <message>
+        <source>Graphics options</source>
+        <translation>Grafikus opciók</translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics options.</source>
+        <translation>Értelmezhetetlen grafikus kód: hiányzó \includegraphics opciók</translation>
     </message>
 </context>
 <context>
@@ -1962,6 +1911,26 @@ The wizard does not support command </source>
     <message>
         <source>BLOCKS</source>
         <translation>BLOKKOK</translation>
+    </message>
+    <message>
+        <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
+        <translation>Ismeretlen hiba. Újra kellene indítani a TeXstudio-t</translation>
+    </message>
+    <message>
+        <source>MAGIC_COMMENTS</source>
+        <translation>MÁGIKUS_MEGJEGYZÉSEK</translation>
+    </message>
+    <message>
+        <source>Invalid language format</source>
+        <translation>Nem létező nyelvi formátum</translation>
+    </message>
+    <message>
+        <source>Invalid codec</source>
+        <translation>Nem létező kodek</translation>
+    </message>
+    <message>
+        <source>Unknown magic comment</source>
+        <translation>Ismeretlen mágikus megjegyzés</translation>
     </message>
 </context>
 <context>
@@ -2024,6 +1993,18 @@ The wizard does not support command </source>
     <message>
         <source>Thesaurus...</source>
         <translation>Teza&amp;urusz...</translation>
+    </message>
+    <message>
+        <source>Open package documentation</source>
+        <translation>Csomag dokumentáció megnyitása</translation>
+    </message>
+    <message>
+        <source>use yours</source>
+        <translation>saját használata</translation>
+    </message>
+    <message>
+        <source>use other&apos;s</source>
+        <translation>másét használni</translation>
     </message>
 </context>
 <context>
@@ -2118,6 +2099,10 @@ The wizard does not support command </source>
         <source>search results</source>
         <translation>Keresési eredmények</translation>
     </message>
+    <message>
+        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
+        <translation>A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
+    </message>
 </context>
 <context>
     <name>PDFBaseSearchDock</name>
@@ -2158,16 +2143,6 @@ The wizard does not support command </source>
     <message>
         <source>Toolbar</source>
         <translation>Eszköztár</translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="obsolete">Home</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>shortcut key name, do not translate</comment>
-        <translation type="obsolete">End</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2495,14 +2470,6 @@ The wizard does not support command </source>
         <translation>A kurzor követi a görgetést</translation>
     </message>
     <message>
-        <source>Ctrl+PgUp</source>
-        <translation type="obsolete">Ctrl+PgUp</translation>
-    </message>
-    <message>
-        <source>Ctrl+PgDown</source>
-        <translation type="obsolete">Ctrl+PgDown</translation>
-    </message>
-    <message>
         <source>&amp;Edit</source>
         <translation>&amp;Szerkesztés</translation>
     </message>
@@ -2616,19 +2583,33 @@ The wizard does not support command </source>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Vissza</translation>
     </message>
     <message>
         <source>Previously shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Előző mutatott lap</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Előre</translation>
     </message>
     <message>
         <source>Next shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Következő mutatott lap</translation>
+    </message>
+    <message>
+        <source>%1 does not look like a valid PDF document.
+Do you want to open it anyways? It could cause a crash.</source>
+        <translation>A(z) &quot;%1&quot; PDF fájl nem tűnik igazi PDF dokumentumnak. 
+Mindenképpen meg akarja nyitni? Programösszeomlást okozhat</translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
+        <translation>A(z) &quot;%1&quot; PDF fájl nem teljes. Próbálja újra 2 másodperc múlva</translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete.</source>
+        <translation>A(z) &quot;%1&quot; PDF fájl nem teljes</translation>
     </message>
 </context>
 <context>
@@ -3557,6 +3538,10 @@ Akarja menteni ezeket?</translation>
         <source>commentTodo</source>
         <translation>megjegyzésTodo</translation>
     </message>
+    <message>
+        <source>magicComment</source>
+        <translation>mágikusMegjegyzés</translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -3864,16 +3849,13 @@ Néhány példa:
         <translation>Véletlen szöveg létrehozása...</translation>
     </message>
     <message>
-        <source>Couldn&apos;t find possible extension word</source>
-        <translation type="obsolete">Nem található lehetséges kiegészítőszó</translation>
-    </message>
-    <message>
         <source>ignore case</source>
         <translation>Eset mellőzése</translation>
     </message>
     <message>
         <source>punctation</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>??</translatorcomment>
+        <translation>pontozás</translation>
     </message>
     <message>
         <source>LaTeX input</source>
@@ -4872,11 +4854,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Mentse a fájlt mester módba váltás előtt!</translation>
     </message>
     <message>
-        <source>TmX Profile</source>
-        <comment>filter</comment>
-        <translation>TmX profil</translation>
-    </message>
-    <message>
         <source>Load Profile</source>
         <translation>Profil betöltése</translation>
     </message>
@@ -4959,10 +4936,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>Central</source>
         <translation>Központi</translation>
-    </message>
-    <message>
-        <source>Spelling</source>
-        <translation type="obsolete">Helyesírás</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
@@ -5226,10 +5199,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>SVN &amp;frissítés...</translation>
     </message>
     <message>
-        <source>Insert Graphic</source>
-        <translation type="obsolete">Kép beszúrása</translation>
-    </message>
-    <message>
         <source>&amp;Comment</source>
         <translation>Meg&amp;jegyzés</translation>
     </message>
@@ -5388,44 +5357,128 @@ However, you are using a version of TeXstudio that was compiled without the inte
     </message>
     <message>
         <source>Pdf files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pdf fájlok</translation>
     </message>
     <message>
         <source>Show difference between two files</source>
-        <translation type="unfinished"></translation>
+        <translation>Megmutatja a különbséget két fájl között</translation>
     </message>
     <message>
         <source>Jump to next difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás a következő különbségre</translation>
     </message>
     <message>
         <source>Jump to previous difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás az előző különbségre</translation>
     </message>
     <message>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibakeresés visszavonása</translation>
     </message>
     <message>
         <source>Find mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Különbségek keresése</translation>
     </message>
     <message>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Újramodellezi a táblázatot sablon után</translation>
     </message>
     <message>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentum mozgatása előre</translation>
     </message>
     <message>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentum mozgatása hátra</translation>
     </message>
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX fájlok (*.tex);;Minden fájl (*)</translation>
+    </message>
+    <message>
+        <source>Show difference between two files in relation to base file</source>
+        <translation>Megmutatja a különbséget az alapfájllal kapcsolatban lévő két fájl között</translation>
+    </message>
+    <message>
+        <source>Check SVN Conflict</source>
+        <translation>SVN ütközés ellenőrzése</translation>
+    </message>
+    <message>
+        <source>Try to merge differences</source>
+        <translation>Megpróbálja kiküszöbölni a különbségeket</translation>
+    </message>
+    <message>
+        <source>Remove Difference-Markers</source>
+        <translation>Különbségjelek eltávolítása</translation>
+    </message>
+    <message>
+        <source>Declare Conflict Resolved</source>
+        <translation>Ütközés feloldva</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Alapértelmezett</translation>
+    </message>
+    <message>
+        <source>Insert language as TeX comment</source>
+        <translation>Nyelv beszúrása TeX megjegyzésként</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Nyelv</translation>
+    </message>
+    <message>
+        <source>You cannot compile the document in a non writable directory.</source>
+        <translation>A dokumentum nem fordítható írásvédett könyvtárban</translation>
+    </message>
+    <message>
+        <source>Log File is not readable!</source>
+        <translation>A log fájl nem olvasható!</translation>
+    </message>
+    <message>
+        <source>TXS Profile</source>
+        <comment>filter</comment>
+        <translation>TXL profil</translation>
+    </message>
+    <message>
+        <source>Open Compare File</source>
+        <translation>Ellenőrző fájl megnyitása</translation>
+    </message>
+    <message>
+        <source>Open Base File</source>
+        <translation>Alapfájl megnyitása</translation>
+    </message>
+    <message>
+        <source>Conflict!</source>
+        <translation>Ütközés!</translation>
+    </message>
+    <message>
+        <source>%1
+has been modified by another application.
+Press &quot;OK&quot; to show differences
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation>%1
+módosításra került egy másik alkalmazás által.
+Kattintson az &quot;OK&quot; gombra a különbségek megjelenítéséhez.
+Ha nem kíváncsi az eltérésekre, nyomja meg a &quot;Mégsem&quot; gombot.
+</translation>
+    </message>
+    <message>
+        <source>SVN Conflict!</source>
+        <translation>SVN ütközés!</translation>
+    </message>
+    <message>
+        <source>%1is conflicted with repository.
+Press &quot;OK&quot; to show differences instead of the generated source by subversion
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation>%1
+ütközik a tárolóval.
+Kattintson az &quot;OK&quot; gombra a különbségek megjelenítéséhez. Ekkor a subversion
+nem hozza létre a kódot
+Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
 </context>
 <context>
@@ -6099,10 +6152,6 @@ The html files are located in the %1 directory.</source>
 </context>
 <context>
     <name>scriptengine</name>
-    <message>
-        <source>Script-Message</source>
-        <translation type="obsolete">Parancsfájl üzenet</translation>
-    </message>
     <message>
         <source>File Chooser</source>
         <translation>Fájl kiválasztó</translation>
