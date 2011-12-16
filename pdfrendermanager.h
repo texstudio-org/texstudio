@@ -75,7 +75,7 @@ public:
 	explicit PDFRenderManager(QObject *parent);
 	~PDFRenderManager();
 	QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true,bool priority=false,Poppler::Page::Rotation rotate=Poppler::Page::Rotate0);
-	Poppler::Document* loadDocument(const QString& fileName, int &errorType);
+	Poppler::Document* loadDocument(const QString& fileName, int &errorType, bool foreceLoad=false);
 	void setDocument(const QByteArray& data,Poppler::Document *docPointer);
 	void stopRendering();
 	void fillCache(int pg=-1);

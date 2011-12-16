@@ -80,7 +80,7 @@ void PDFRenderManager::stopRendering(){
 	cachedNumPages = 0;
 }
 
-Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &errorType){
+Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &errorType, bool foreceLoad){
 	renderedPages.clear();
 	QFile f(fileName);
 	if (!f.open(QFile::ReadOnly)) {
@@ -90,8 +90,8 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 	
 	queueAdministration->documentData = f.readAll();
 	if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
-	    !txsConfirmWarning(tr("%1 does not look like a valid PDF document.\nDo you want to open it anyways? It could cause a crash.").arg(fileName))) {
-		errorType = 2;
+	    !foreceLoad) {
+		errorType = 4;
 		return 0;
 	}
 	document = Poppler::Document::loadFromData(queueAdministration->documentData);

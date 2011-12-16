@@ -415,6 +415,8 @@ private:
 	int scaleToZoomSliderPos(qreal scale);
 
 	QString curFile;
+	qint64 curFileSize;
+	QDateTime curFileLastModified;
 	QString externalViewerCmdLine;
 	QString gsCommand;
 
