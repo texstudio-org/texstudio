@@ -1831,7 +1831,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-	: renderManager(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false)
+	: renderManager(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false),curFileSize(0)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -2233,16 +2233,35 @@ void PDFDocument::reload(bool fillCache)
 	
 	renderManager = new PDFRenderManager(this);
 	int errorType;
+	QFileInfo fi(curFile);
+	QDateTime lastModified=fi.lastModified();
+	qint64 filesize=fi.size();
 	document = renderManager->loadDocument(curFile, errorType);
+	bool popupDialog=false;
+	if( errorType==4 && curFileSize==filesize && curFileLastModified==lastModified){
+	    popupDialog=txsConfirmWarning(tr("%1 does not look like a valid PDF document.\nDo you want to open it anyways? It could cause a crash.").arg(curFile));
+	    if(popupDialog)
+		document = renderManager->loadDocument(curFile, errorType,true);
+	    else
+		errorType=5;
+	}
+
+	curFileSize=filesize; // store size and modification time to check whether reloaded file has been changed meanwhile
+	curFileLastModified=lastModified;
+
 	if (!document) {
 		switch (errorType) {
 		case 1: statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFile)); break;
 		case 2: statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
 		case 3: statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;			
+		case 4: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete. Trying again in 2 seconds.").arg(curFile)); break;
+		case 5: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete.").arg(curFile)); break;
 		}
 		delete renderManager;
 		renderManager = 0;
 		pdfWidget->hide();
+		if(errorType==4)
+		    reloadWhenIdle();
 	} else {
 		if (reloadTimer) reloadTimer->stop();
 							
