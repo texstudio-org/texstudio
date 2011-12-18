@@ -289,7 +289,7 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 		QTextCodec * codec = guessEncodingBasic(fullLog, &sure);
 		if (!sure) codec = QTextCodec::codecForLocale();
 		
-		OutputTextEdit->setPlainText(codec->toUnicode(fullLog));
+		OutputLogTextEdit->setPlainText(codec->toUnicode(fullLog));
 		
 		logModel->parseLogDocument(OutputLogTextEdit->document(), compiledFileName, overrideFileName);
 
