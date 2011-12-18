@@ -19,6 +19,7 @@ protected:
     void run();
 
     QStringList readPackage(QString fn);
+    QStringList readPackageTexDef(QString fn);
     QString kpsewhich(QString name);
 
 signals:
@@ -35,6 +36,9 @@ private:
 
     QString baseDir;
     QString kpseWhichCmd;
+    QString texdefDir;
+
+    bool texdefMode;
 
 };
 

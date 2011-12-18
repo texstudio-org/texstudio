@@ -7,6 +7,12 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     stopped=false;
     kpseWhichCmd=kpsecmd;
     mFiles.clear();
+    //check if texdef is present
+    texdefDir=kpsecmd.left(kpsecmd.length()-9);
+    QProcess myProc(0);
+    myProc.start(texdefDir+"texdef");
+    myProc.waitForFinished();
+    texdefMode=(myProc.exitCode()==1);
 }
 
 void LatexStyleParser::stop(){
@@ -22,11 +28,14 @@ void LatexStyleParser::run(){
 		mFilesLock.lock();
 		QString fn=mFiles.dequeue();
 		mFilesLock.unlock();
-		fn=kpsewhich(fn); // find file
-		if(fn.isEmpty())
+		QString fullName=kpsewhich(fn); // find file
+		if(fullName.isEmpty())
 		    continue;
 		QStringList results;
-		results=readPackage(fn); // parse package(s)
+		if(texdefMode)
+		    results=readPackageTexDef(fn); // parse package(s) by texdef
+		else
+		    results=readPackage(fullName); // parse package(s)
 		// write results
 		if(!results.isEmpty()){
 		    QFileInfo info(fn);
@@ -142,4 +151,46 @@ QString LatexStyleParser::kpsewhich(QString name){
 	    fn.clear();
     }
     return fn;
+}
+
+QStringList LatexStyleParser::readPackageTexDef(QString fn){
+    if(!fn.endsWith(".sty"))
+	return QStringList();
+
+    QString fname=fn.left(fn.length()-4);
+    QProcess myProc(0);
+    //add exec search path
+    if(!texdefDir.isEmpty()){
+	QStringList env = QProcess::systemEnvironment();
+	if(env.contains("SHELL=/bin/bash")){
+	    env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1:"+texdefDir);
+	    myProc.setEnvironment(env);
+	}
+    }
+    QStringList args;
+    QString result;
+    args<<"-t"<<"latex" << "-l" << "-p" <<fname;
+    myProc.start(texdefDir+"texdef",args);
+    args.clear();
+    myProc.waitForFinished();
+    if(myProc.exitCode()!=0)
+    	return QStringList();
+
+    result=myProc.readAllStandardOutput();
+    QStringList lines=result.split('\n');
+
+    bool incl=false;
+    for(int i=0;i<lines.length();i++){
+	if(lines.at(i).startsWith("Defined")){
+	    QString name=lines.at(i);
+	    name=name.mid(17);
+	    name=name.left(name.length()-2);
+	    incl=(name==fn);
+	    if(!incl)
+		args<<"#include:"+name;
+	}
+	if(incl && lines.at(i).startsWith("\\"))
+	    args<<lines.at(i)+"#S";
+    }
+    return args;
 }
