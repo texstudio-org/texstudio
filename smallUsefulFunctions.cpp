@@ -1279,6 +1279,7 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config) {
 	QStringList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+        QStringList addFiles;
 	foreach(const QString file, newFiles) {
 		QStringList addPaths;
 		if(config)
@@ -1294,6 +1295,14 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 			keywords << "text" << "title";
 			while (!tagsfile.atEnd()) {
 				line = tagsfile.readLine().trimmed();
+                                if(line.startsWith("#include:")){
+                                    //include additional cwl file
+                                    QString fn=line.mid(9);
+                                    if(!fn.isEmpty()){
+                                        if(!newFiles.contains(fn+".cwl") && !addFiles.contains(fn+".cwl"))
+                                            addFiles<<fn+".cwl";
+                                    }
+                                }
 				if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
 					//hints for commands usage (e.g. in mathmode only) are separated by #
 					int sep=line.indexOf('#');
@@ -1455,6 +1464,9 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 			}
 		}
 	}
+        if(!addFiles.isEmpty()){
+            words.append(loadCwlFiles(addFiles,cmds,config)); //risky for circular inclusion
+        }
 	QApplication::restoreOverrideCursor();
 	return words;
 }
