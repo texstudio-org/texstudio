@@ -5635,7 +5635,7 @@ void Texmaker::importPackage(QString name){
 		QString cmd_latex=buildManager.getLatexCommand(BuildManager::CMD_LATEX);
 		QString baseDir;
 		if(!QFileInfo(cmd_latex).isRelative())
-			baseDir=QFileInfo(cmd_latex).absolutePath();
+			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
 		latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir,baseDir+"kpsewhich");
 		connect(latexStyleParser,SIGNAL(scanCompleted(QString)),this,SLOT(packageScanCompleted(QString)));
 		connect(latexStyleParser,SIGNAL(finished()),this,SLOT(packageParserFinished()));

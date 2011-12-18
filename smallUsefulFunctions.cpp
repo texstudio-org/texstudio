@@ -1300,6 +1300,7 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 					QString valid;
 					QStringList env;
 					bool uncommon=false;
+					bool hideFromCompletion=false;
 					if(sep>-1){
 						valid=line.mid(sep+1);
 						line=line.left(sep);
@@ -1317,6 +1318,10 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
                                                         env=zw.split(',');
                                                         valid=valid.left(i);
                                                 }
+						if(valid.contains('S')){
+						    hideFromCompletion=true;
+						    valid.remove('S');
+						}
 
 					}
 					// parse for spell checkable commands
@@ -1389,6 +1394,8 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
                                                 }
                                         }
 					// normal parsing for completer
+					if(hideFromCompletion)
+					    continue; // command for spell checking only (auto parser)
 					if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
 					if (!line.contains("%")){
 						//add placeholders to brackets like () to (%<..%>)
