@@ -32,11 +32,22 @@ void LatexStyleParser::run(){
 		QString fullName=kpsewhich(fn); // find file
 		if(fullName.isEmpty())
 		    continue;
+
 		QStringList results;
 		if(texdefMode)
 		    results=readPackageTexDef(fn); // parse package(s) by texdef
 		else
 		    results=readPackage(fullName); // parse package(s)
+
+                // if included styles call for additional generation, do it.
+                QStringList included=results.filter(QRegExp("#include:.+"));
+                foreach(QString elem,included){
+                    QString fn=findResourceFile("completion/"+elem,false,QStringList(baseDir));
+                    if(fn.isEmpty()){
+                        addFile(elem);
+                    }
+                }
+
 		// write results
 		if(!results.isEmpty()){
 		    QFileInfo info(fn);
