@@ -13,6 +13,7 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     myProc.start(texdefDir+"texdef");
     myProc.waitForFinished();
     texdefMode=(myProc.exitCode()==1);
+    texdefMode=false;
 }
 
 void LatexStyleParser::stop(){
@@ -70,6 +71,8 @@ QStringList LatexStyleParser::readPackage(QString fn){
 	    QString line;
 	    QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
 	    QRegExp rxCom("\\\\(newcommand|providecommad)\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
+	    QRegExp rxCom2("\\\\(newcommand|providecommad)\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
+	    QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 	    QRegExp rxInput("^\\\\input\\s*\\{?([\\w._]+)");
 	    QRegExp rxRequire("^\\\\RequirePackage\\s*\\{(\\w+,?)+\\}");
 	    QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
@@ -104,6 +107,35 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    name.append("#*");
 		    if(!results.contains(name))
 			results << name;
+		    continue;
+		}
+		if(rxCom2.indexIn(line)>-1){
+		    QString name=rxCom2.cap(2);
+		    if(name.contains("@"))
+			continue;
+		    QString optionStr=rxCom2.cap(3);
+		    //qDebug()<< name << ":"<< optionStr;
+		    options=optionStr.toInt(); //returns 0 if conversion fails
+		    for (int j=0; j<options; j++) {
+			name.append(QString("{arg%1}").arg(j+1));
+		    }
+		    name.append("#*");
+		    if(!results.contains(name))
+			results << name;
+		    continue;
+		}
+		if(rxEnv.indexIn(line)>-1){
+		    QString name=rxEnv.cap(1);
+		    if(name.contains("@"))
+			continue;
+		    QString optionStr=rxEnv.cap(2);
+		    //qDebug()<< name << ":"<< optionStr;
+		    QString zw="\\begin{"+name+"}#*";
+		    if(!results.contains(zw))
+			results << zw;
+		    zw="\\end{"+name+"}#*";
+		    if(!results.contains(zw))
+			results << zw;
 		    continue;
 		}
 		if(rxInput.indexIn(line)>-1){
@@ -192,5 +224,19 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
 	if(incl && lines.at(i).startsWith("\\"))
 	    args<<lines.at(i)+"#S";
     }
+    // replace tex env def by latex commands
+    QStringList zw=args.filter(QRegExp("\\\\end.+"));
+    foreach(QString elem,zw){
+	QString begin=elem;
+	begin.remove(1,3);
+	int i=args.indexOf(begin);
+	if(i!=-1){
+	    QString env=begin.mid(1,begin.length()-3);
+	    args.replace(i,"\\begin{"+env+"}");
+	    i=args.indexOf(elem);
+	    args.replace(i,"\\end{"+env+"}");
+	}
+    }
+
     return args;
 }
