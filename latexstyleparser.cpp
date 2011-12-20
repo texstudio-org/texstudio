@@ -70,8 +70,8 @@ QStringList LatexStyleParser::readPackage(QString fn){
 	    QTextStream stream(&data);
 	    QString line;
 	    QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
-	    QRegExp rxCom("\\\\(newcommand|providecommad)\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
-	    QRegExp rxCom2("\\\\(newcommand|providecommad)\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
+	    QRegExp rxCom("\\\\(newcommand|providecommand)\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
+	    QRegExp rxCom2("\\\\(newcommand|providecommand)\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
 	    QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 	    QRegExp rxInput("^\\\\input\\s*\\{?([\\w._]+)");
 	    QRegExp rxRequire("^\\\\RequirePackage\\s*\\{(\\w+,?)+\\}");
