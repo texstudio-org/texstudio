@@ -452,7 +452,8 @@ void QSearchReplacePanel::display(int mode, bool replace)
 				m_cursor.select(QDocumentCursor::WordUnderCursor);
 				if (!m_cursor.selectedText().isEmpty())
 					cFind->setEditText(m_cursor.selectedText());
-			}
+			} else if ( cbHasFocus(cFind) && replace && visible)
+				focusFindEdit = false;
 			if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
 				m_search->setOption(QDocumentSearch::HighlightAll, true);
 		}
