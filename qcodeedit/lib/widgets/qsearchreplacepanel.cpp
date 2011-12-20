@@ -45,7 +45,25 @@
 
 QCE_AUTO_REGISTER(QSearchReplacePanel)
 
+bool cbHasFocus(const QComboBox* cb) {
+	if (cb->hasFocus()) return true;
+	if (cb->lineEdit() && cb->lineEdit()->hasFocus()) return true;
+	//test for popupped combobox
+	foreach (QObject* o, cb->children()) {
+		QWidget* w = qobject_cast<QWidget*>(o);
+		if (!w) continue;
+		if (w->isVisible() && w->hasFocus()) return true;
+		foreach (QObject* p, o->children()) {
+			QWidget* x = qobject_cast<QWidget*>(p);
+			if (!x) continue;
+			if (x->isVisible() && x->hasFocus()) return true;
+		}
+	}
+	return false;
+}
+
 QStringList findHistory, replaceHistory;
+
 /*!
 	\brief Constructor
 */
@@ -419,16 +437,16 @@ void QSearchReplacePanel::display(int mode, bool replace)
 						if(cbSelection->isChecked()) on_cbSelection_toggled(true);
 						else cbSelection->setChecked(true);
 					}
-				} if ( (cFind->hasFocus() || cReplace->hasFocus()) && visible) {
+				} if ( (cbHasFocus(cFind) || cbHasFocus(cReplace)) && visible) {
 					//don't copy selection to cFind, if the panel is in use
-					if ( cFind->hasFocus() && replace )
+					if ( cbHasFocus(cFind) && replace )
 						focusFindEdit = false; //switch to replace edit, if the cursor is in the find edit (sideeffect: ctrl+r toggles active edit)
 				} else {
 					// single line selection
 					// copy content to cFind
 					cFind->setEditText(editor()->cursor().selectedText());
 				}
-			} else if (useLineForSearch && !replace && !((cFind->hasFocus() || cReplace->hasFocus()) && visible)) {
+			} else if (useLineForSearch && !replace && !((cbHasFocus(cFind) || cbHasFocus(cReplace)) && visible)) {
 				// use word under cursor if no selection is present (qt creator behavior)
 				QDocumentCursor m_cursor=editor()->cursor();
 				m_cursor.select(QDocumentCursor::WordUnderCursor);
@@ -456,7 +474,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 }
 
 void QSearchReplacePanel::closeSomething(bool closeTogether){
-	qDebug() << "popup"<< QApplication::activePopupWidget();
+	/*qDebug() << "popup"<< QApplication::activePopupWidget();
 	foreach (QObject* o, cFind->children()) {
 		qDebug()<<"child"<<o;
 		if (qobject_cast<QWidget*>(o)) qDebug() << "   "<<(qobject_cast<QWidget*>(o))->hasFocus()<<(qobject_cast<QWidget*>(o))->isVisible();
@@ -470,7 +488,7 @@ void QSearchReplacePanel::closeSomething(bool closeTogether){
 				if (qobject_cast<QWidget*>(q)) qDebug() << "   "<<(qobject_cast<QWidget*>(q))->hasFocus()<<(qobject_cast<QWidget*>(q))->isVisible();
 			}
 		}
-	}
+	}*/
 	if (cFind->completer()->popup()->isVisible() && cFind->completer()->popup()->hasFocus())
 		cFind->setFocus();
 	else if (cReplace->completer()->popup()->isVisible() && cReplace->completer()->popup()->hasFocus())
@@ -559,7 +577,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	}
 	rememberLastSearch(findHistory,cFind->currentText(),m_search->options() & QDocumentSearch::Silent);
 	rememberLastSearch(replaceHistory,cReplace->currentText(),m_search->options() & QDocumentSearch::Silent);
-	if (isVisible() && !cFind->hasFocus() && !cReplace->hasFocus() ) {
+	if (isVisible() && !cbHasFocus(cFind) && !cbHasFocus(cReplace) ) {
 		if (replace) cReplace->setFocus();
 		else cFind->setFocus();
 	}
@@ -700,7 +718,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				if ( ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) ) )
 				{
 					//on_cFind_returnPressed();
-					if (cReplace->hasFocus()) 
+					if (cbHasFocus(cReplace)) 
 						on_cReplace_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
 					else
 						on_cFind_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
@@ -714,7 +732,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				} else if ( kc == Qt::Key_Tab || kc == Qt::Key_Backtab ) {
 					if ( cbReplace->isChecked() )
 					{
-						if ( cFind->hasFocus() )
+						if ( cbHasFocus(cFind) )
 							cReplace->setFocus();
 						else
 							cFind->setFocus();
@@ -736,7 +754,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 			if ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) )
 			{
 				//on_cFind_returnPressed();
-				if (cReplace->hasFocus()) 
+				if (cbHasFocus(cReplace)) 
 					on_cReplace_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
 				else
 					on_cFind_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
@@ -745,7 +763,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				qobject_cast<QWidget*>(o)->hide();
 				if ( cbReplace->isChecked() )
 				{
-					if ( cFind->hasFocus() )
+					if ( cbHasFocus(cFind) )
 						cReplace->setFocus();
 					else
 						cFind->setFocus();
