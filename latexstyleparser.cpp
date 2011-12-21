@@ -39,14 +39,16 @@ void LatexStyleParser::run(){
 		else
 		    results=readPackage(fullName); // parse package(s)
 
-                // if included styles call for additional generation, do it.
-                QStringList included=results.filter(QRegExp("#include:.+"));
-                foreach(QString elem,included){
-                    QString fn=findResourceFile("completion/"+elem,false,QStringList(baseDir));
-                    if(fn.isEmpty()){
-                        addFile(elem);
-                    }
-                }
+        // if included styles call for additional generation, do it.
+        QStringList included=results.filter(QRegExp("#include:.+"));
+        foreach(QString elem,included){
+            elem=elem.mid(9);
+            QString fn=findResourceFile("completion/"+elem+".cwl",false,QStringList(baseDir));
+            if(fn.isEmpty()){
+                elem=kpsewhich(elem+".sty");
+                addFile(elem);
+            }
+        }
 
 		// write results
 		if(!results.isEmpty()){
@@ -100,7 +102,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    for (int j=0; j<options; j++) {
 			name.append(QString("{arg%1}").arg(j+1));
 		    }
-		    name.append("#*");
+            name.append("#S");
 		    if(!results.contains(name))
 			results << name;
 		    continue;
@@ -115,7 +117,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    for (int j=0; j<options; j++) {
 			name.append(QString("{arg%1}").arg(j+1));
 		    }
-		    name.append("#*");
+            name.append("#S");
 		    if(!results.contains(name))
 			results << name;
 		    continue;
@@ -130,7 +132,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    for (int j=0; j<options; j++) {
 			name.append(QString("{arg%1}").arg(j+1));
 		    }
-		    name.append("#*");
+            name.append("#S");
 		    if(!results.contains(name))
 			results << name;
 		    continue;
@@ -141,10 +143,10 @@ QStringList LatexStyleParser::readPackage(QString fn){
 			continue;
 		    QString optionStr=rxEnv.cap(2);
 		    //qDebug()<< name << ":"<< optionStr;
-		    QString zw="\\begin{"+name+"}#*";
+            QString zw="\\begin{"+name+"}#S";
 		    if(!results.contains(zw))
 			results << zw;
-		    zw="\\end{"+name+"}#*";
+            zw="\\end{"+name+"}#S";
 		    if(!results.contains(zw))
 			results << zw;
 		    continue;
@@ -159,7 +161,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
 		    QString name="\\"+rxDecMathSym.cap(1);
 		    if(name.contains("@"))
 			continue;
-		    name.append("#*m");
+            name.append("#Sm");
 		    if(!results.contains(name))
 			results << name;
 		    continue;
