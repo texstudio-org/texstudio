@@ -188,7 +188,16 @@ public:
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 };
 
+struct LatexPackage{
+    QString packageName;
+    QStringList requiredPackages;
+    QStringList commands;
+};
+
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config=0);
+LatexPackage loadCwlFile(const QString fileName,LatexParser *cmds,LatexCompleterConfig *config=0);
 void importCwlAliases();
+
+
 
 #endif

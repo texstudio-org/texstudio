@@ -97,7 +97,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
             if(inReq){
                 int col=line.indexOf('}');
                 if(col>-1){
-                    QString zw=line.left(col-1);
+                    QString zw=line.left(col);
                     foreach(QString elem,zw.split(',')){
                         QString package=elem.remove(' ');
                         if(!package.isEmpty())
