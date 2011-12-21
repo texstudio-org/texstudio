@@ -497,6 +497,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
 			//update offset
 			//TODO: int offset=totalLength-curLine.length();
+                        //store optional arguments []
+
 			//copy remainder to curLine for next round
 			curLine=remainder;
 			//// newcommand ////
