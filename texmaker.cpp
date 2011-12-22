@@ -4627,11 +4627,12 @@ void Texmaker::editPasteRef() {
 	QString name=action->text();
 	if (name==tr("Insert")) {
 		currentEditor()->insertText(entry->title);
+		currentEditorView()->setFocus();
 	} else {
 		name.remove(0,name.indexOf("\\"));
 		name.chop(name.length()-name.indexOf("{"));
 		currentEditor()->insertText(name+"{"+entry->title+"}");
-	}
+		currentEditorView()->setFocus();	}
 }
 
 void Texmaker::previewLatex(){
