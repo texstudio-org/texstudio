@@ -1515,7 +1515,7 @@ void importCwlAliases(){
 	}
 }
 
-LatexPackage loadCwlFile(const QString fileName,LatexParser *cmds,LatexCompleterConfig *config) {
+LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
     QStringList words;
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
     LatexPackage package;
@@ -1575,59 +1575,59 @@ LatexPackage loadCwlFile(const QString fileName,LatexParser *cmds,LatexCompleter
                 // parse for spell checkable commands
                 int res=rxCom.indexIn(line);
                 if(keywords.contains(rxCom.cap(3))){
-                    cmds->optionCommands << rxCom.cap(1);
+                    package.optionCommands << rxCom.cap(1);
                 }
                 rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
                 if(keywords.contains(rxCom2.cap(2))){
-                    cmds->optionCommands << rxCom2.cap(1);
+                    package.optionCommands << rxCom2.cap(1);
                 }
                 // normal commands for syntax checking
                 // will be extended to distinguish between normal and math commands
                 if(valid.isEmpty() || valid.contains('n')){
                     if(res>-1){
                         if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                            cmds->possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+                            package.possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
                         } else {
-                            cmds->possibleCommands["normal"] << rxCom.cap(1);
+                            package.possibleCommands["normal"] << rxCom.cap(1);
                         }
                     } else {
-                        cmds->possibleCommands["normal"] << line.simplified();
+                        package.possibleCommands["normal"] << line.simplified();
                     }
                 }
                 if(valid.isEmpty() || valid.contains('m')){ // math commands
                     if(res>-1){
                         if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                            cmds->possibleCommands["math"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+                            package.possibleCommands["math"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
                         } else {
-                            cmds->possibleCommands["math"] << rxCom.cap(1);
+                            package.possibleCommands["math"] << rxCom.cap(1);
                         }
                     } else {
-                        cmds->possibleCommands["math"] << line.simplified();
+                        package.possibleCommands["math"] << line.simplified();
                     }
                 }
                 if(valid.contains('t')){ // tabular commands
                     if(res>-1){
                         if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                            cmds->possibleCommands["tabular"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                            cmds->possibleCommands["array"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+                            package.possibleCommands["tabular"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+                            package.possibleCommands["array"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
                         } else {
-                            cmds->possibleCommands["tabular"] << rxCom.cap(1);
-                            cmds->possibleCommands["array"] << rxCom.cap(1);
+                            package.possibleCommands["tabular"] << rxCom.cap(1);
+                            package.possibleCommands["array"] << rxCom.cap(1);
                         }
                     } else {
-                        cmds->possibleCommands["tabular"] << line.simplified();
-                        cmds->possibleCommands["array"] << line.simplified();
+                        package.possibleCommands["tabular"] << line.simplified();
+                        package.possibleCommands["array"] << line.simplified();
                     }
                 }
                 if(valid.contains('T')){ // tabbing support
                     if(res==-1){
-                        cmds->possibleCommands["tabbing"] << line.simplified();
+                        package.possibleCommands["tabbing"] << line.simplified();
                     }
                 }
                 if(valid.contains('e') && !env.isEmpty()){ // tabbing support
                     if(res==-1){
                         foreach(QString elem,env)
-                            cmds->possibleCommands[elem] << line.simplified();
+                            package.possibleCommands[elem] << line.simplified();
                     }
                 }
                 if(!valid.contains('e') && !env.isEmpty()){ // set env alias
@@ -1636,7 +1636,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexParser *cmds,LatexCompleter
                             QString envName=rxCom.cap(3);
                             if(!envName.isEmpty()){
                                 foreach(QString elem,env)
-                                    cmds->environmentAliases.insert(rxCom.cap(3),elem);
+                                    package.environmentAliases.insert(rxCom.cap(3),elem);
                             }
                         }
                     }
@@ -1701,8 +1701,23 @@ LatexPackage loadCwlFile(const QString fileName,LatexParser *cmds,LatexCompleter
                 }
             }
         }
+    }else{
+        package.packageName="<notFound>";
     }
 
     QApplication::restoreOverrideCursor();
+    package.completionWords=words;
     return package;
+}
+
+LatexPackage::LatexPackage(){
+    completionWords.clear();
+    packageName.clear();
+}
+
+void LatexPackage::unite(LatexPackage &add){
+    completionWords.append(add.completionWords);
+    possibleCommands.unite(add.possibleCommands);
+    optionCommands.unite(add.optionCommands);
+    environmentAliases.unite(add.environmentAliases);
 }

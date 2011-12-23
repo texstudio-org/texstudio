@@ -1237,15 +1237,9 @@ bool LatexCompleter::close(){
 	} else return false;
 }
 
-
-
-
-
-
-
-
 Macro::Macro():triggerLookBehind(false){
 }
+
 Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger){
 	name = nname;
 	tag = ntag;
@@ -1261,7 +1255,7 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	}
 	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)
 
-};
+}
 
 
 void LatexCompleterConfig::setFiles(const QStringList &newFiles) {
