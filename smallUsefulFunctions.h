@@ -188,14 +188,20 @@ public:
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 };
 
-struct LatexPackage{
+class LatexPackage{
+public:
+    LatexPackage();
     QString packageName;
     QStringList requiredPackages;
-    QStringList commands;
+    QStringList completionWords;
+    QHash<QString,QSet<QString> > possibleCommands;
+    QSet<QString> optionCommands;
+    QMultiHash<QString,QString> environmentAliases;
+    void unite(LatexPackage &add);
 };
 
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config=0);
-LatexPackage loadCwlFile(const QString fileName,LatexParser *cmds,LatexCompleterConfig *config=0);
+LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
 void importCwlAliases();
 
 

@@ -279,8 +279,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		emit updateCompleter();
 
 	if(!removedUsepackages.isEmpty() || updateSyntaxCheck){
-		QStringList addedUsepackages;
-		updateCompletionFiles(addedUsepackages,removedUsepackages,updateSyntaxCheck);
+        QStringList files=mUsepackageList.values();
+        updateCompletionFiles(files,updateSyntaxCheck);
 	}
 }
 
@@ -808,7 +808,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
 		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
-		updateCompletionFiles(addedUsepackages,removedUsepackages,forceUpdate);
+        QStringList files=mUsepackageList.values();
+        updateCompletionFiles(files,forceUpdate);
 	}
 
 	if (bibTeXFilesNeedsUpdate)
@@ -2019,6 +2020,57 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 			}
 		}
 	}
+}
+
+void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
+    // remove
+    LatexEditorView *edView=getEditorView();
+    LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
+    bool update=forceUpdate;
+
+    //recheck syntax of ALL documents ...
+    LatexPackage pck;
+    QStringList loadedFiles;
+    for(int i=0;i<files.count();i++){
+        if(!files.at(i).endsWith(".cwl"))
+            files[i]=files[i]+".cwl";
+    }
+    files.append(completerConfig->getLoadedFiles());
+    gatherCompletionFiles(files,loadedFiles,pck);
+    update=true;
+
+    completerConfig->words=pck.completionWords;
+    ltxCommands.optionCommands=pck.optionCommands;
+    ltxCommands.possibleCommands=pck.possibleCommands;
+    ltxCommands.environmentAliases=pck.environmentAliases;
+
+    if(update){
+        foreach(LatexDocument* elem,getListOfDocs()){
+            LatexEditorView *edView=elem->getEditorView();
+            if(edView){
+                edView->updateLtxCommands();
+                edView->reCheckSyntax();
+            }
+        }
+    }
+}
+
+void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
+    LatexPackage zw;
+    LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
+    foreach(QString elem,files){
+        if(loadedFiles.contains(elem))
+            continue;
+        zw=loadCwlFile(elem,completerConfig);
+        if(zw.packageName=="<notFound>"){
+            emit importPackage(elem);
+        } else {
+        pck.unite(zw);
+        loadedFiles.append(elem);
+        if(!zw.requiredPackages.isEmpty())
+            gatherCompletionFiles(zw.requiredPackages,loadedFiles,pck);
+        }
+    }
 }
 
 QString LatexDocument::getMagicComment(const QString& name) {

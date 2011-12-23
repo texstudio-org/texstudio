@@ -542,8 +542,16 @@ QSettings* ConfigManager::readSettings() {
 	}
 
 	//completion
-	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
-	completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
+    QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
+    //completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
+    foreach(QString cwlFile,cwlFiles){
+        LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
+        completerConfig->words.append(pck.completionWords);
+        ltxCommands->optionCommands.unite(pck.optionCommands);
+        ltxCommands->possibleCommands.unite(pck.possibleCommands);
+        ltxCommands->environmentAliases.unite(pck.environmentAliases);
+    }
+
 	completerConfig->setFiles(cwlFiles);
 	// remove old solution from .ini
 	if(config->contains("Editor/Completion Usage"))
@@ -1142,7 +1150,14 @@ bool ConfigManager::execConfigDialog() {
 			if (elem->checkState()==Qt::Checked) newFiles.append(elem->text());
 		}
 		ltxCommands->clear();
-		completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
+        //completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
+        foreach(QString cwlFile,newFiles){
+            LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
+            completerConfig->words.append(pck.completionWords);
+            ltxCommands->optionCommands.unite(pck.optionCommands);
+            ltxCommands->possibleCommands.unite(pck.possibleCommands);
+            ltxCommands->environmentAliases.unite(pck.environmentAliases);
+        }
 		completerConfig->setFiles(newFiles);
 
 		//preview
