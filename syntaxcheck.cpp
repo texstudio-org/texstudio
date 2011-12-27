@@ -287,14 +287,14 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 					}
 				}
 			}
-                        if(LatexParser::mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
+            if(LatexParser::mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
 				Environment env;
 				env.name="math";
 				env.id=1; // to be changed
 				activeEnv.push(env);
 				continue;
 			}
-                        if(LatexParser::mathStopCommands.contains(word)&&!activeEnv.isEmpty()&&activeEnv.top().name=="math"){
+            if(LatexParser::mathStopCommands.contains(word)&&!activeEnv.isEmpty()&&activeEnv.top().name=="math"){
 				activeEnv.pop();
 				continue;
 			}

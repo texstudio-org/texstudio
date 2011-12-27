@@ -146,6 +146,7 @@ enum {
 class LatexParser{
 public:
 	LatexParser();
+    void init();
 
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
 	// realizes whether col is in a \command or in a parameter {}
