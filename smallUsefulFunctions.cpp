@@ -47,12 +47,16 @@ QMultiHash<QString,QString> LatexParser::environmentAliases;
 
 
 LatexParser::LatexParser(){
-	possibleCommands.clear();
-	possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-	possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
-	possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
+    init();
+}
+
+void LatexParser::init(){
+    possibleCommands.clear();
+    possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
+    possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
+    possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
+    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
+    possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
 }
 
 QString getCommonEOW() {
@@ -1481,7 +1485,7 @@ void LatexParser::append(LatexParser elem){
 }
 
 void LatexParser::clear(){
-	possibleCommands.clear();
+    init();
 }
 
 void LatexParser::substract(LatexParser elem){
@@ -1717,7 +1721,13 @@ LatexPackage::LatexPackage(){
 
 void LatexPackage::unite(LatexPackage &add){
     completionWords.append(add.completionWords);
-    possibleCommands.unite(add.possibleCommands);
     optionCommands.unite(add.optionCommands);
     environmentAliases.unite(add.environmentAliases);
+    //possibleCommands.unite(add.possibleCommands);
+    foreach(QString elem,add.possibleCommands.keys()){
+        QSet<QString> set2=add.possibleCommands[elem];
+        QSet<QString> set=possibleCommands[elem];
+        set.unite(set2);
+        possibleCommands[elem]=set;
+    }
 }

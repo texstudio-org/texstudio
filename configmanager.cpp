@@ -548,8 +548,14 @@ QSettings* ConfigManager::readSettings() {
         LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
         completerConfig->words.append(pck.completionWords);
         ltxCommands->optionCommands.unite(pck.optionCommands);
-        ltxCommands->possibleCommands.unite(pck.possibleCommands);
         ltxCommands->environmentAliases.unite(pck.environmentAliases);
+        //ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
+        foreach(QString elem,pck.possibleCommands.keys()){
+            QSet<QString> set2=pck.possibleCommands[elem];
+            QSet<QString> set=ltxCommands->possibleCommands[elem];
+            set.unite(set2);
+            ltxCommands->possibleCommands[elem]=set;
+        }
     }
 
 	completerConfig->setFiles(cwlFiles);
@@ -1155,8 +1161,15 @@ bool ConfigManager::execConfigDialog() {
             LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
             completerConfig->words.append(pck.completionWords);
             ltxCommands->optionCommands.unite(pck.optionCommands);
-            ltxCommands->possibleCommands.unite(pck.possibleCommands);
             ltxCommands->environmentAliases.unite(pck.environmentAliases);
+
+            //ltxCommands->possibleCommands.unite(pck.possibleCommands); qt bug
+            foreach(QString elem,pck.possibleCommands.keys()){
+                QSet<QString> set2=pck.possibleCommands[elem];
+                QSet<QString> set=ltxCommands->possibleCommands[elem];
+                set.unite(set2);
+                ltxCommands->possibleCommands[elem]=set;
+            }
         }
 		completerConfig->setFiles(newFiles);
 
