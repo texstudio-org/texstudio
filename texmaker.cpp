@@ -4309,7 +4309,6 @@ void Texmaker::dropEvent(QDropEvent *event) {
 	QString uri;
 
 	QStringList imageFormats = InsertGraphics::imageFormats();
-	QStringList textFormats = QStringList() << "tex" << "bib" << "sty" << "cls" << "mp" << "txt" << "dat";
 
 	bool alreadyMovedCursor = false;
 	for (int i=0; i<uris.length(); i++) {
@@ -4330,9 +4329,8 @@ void Texmaker::dropEvent(QDropEvent *event) {
 				alreadyMovedCursor = true;
 			}
 			QuickGraphics(uris.at(i).toLocalFile());
-		} else if (textFormats.contains(fi.suffix())) {
+		} else
 			load(fi.filePath());
-		}
 	}
 	event->acceptProposedAction();
 	raise();
