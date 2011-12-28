@@ -1256,7 +1256,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	configureNewEditorViewEnd(edit,asProject);
 
         //check for svn conflict
-        checkSVNConflicted();
+	checkSVNConflicted();
 
 	MarkCurrentFileAsRecent();
 
@@ -1265,6 +1265,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	edit->updateLtxCommands();
 	updateStructure(true);
 	ShowStructure();
+
 
 
 
@@ -1284,6 +1285,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		QApplication::setActiveWindow(this);
 		activateWindow();
 		setFocus();
+		edit->editor->setFocus();
 	}
 	//raise();
 	//#ifdef Q_WS_WIN
