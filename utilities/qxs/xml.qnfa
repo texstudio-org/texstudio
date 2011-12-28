@@ -5,8 +5,8 @@
 		<stop parenthesis="xmlcomment:close" indent="1" fold="1">--&gt;</stop>
 	</context>
 	
-	<context id="cdata" format="comment" >
-		<start parenthesis="xmlcdata:open" indent="1" fold="1">&lt;\[CDATA\[</start>
+	<context id="cdata" format="verbatim" >
+		<start parenthesis="xmlcdata:open" indent="1" fold="1">&lt;!\[CDATA\[</start>
 		<stop parenthesis="xmlcdata:close" indent="1" fold="1">\]\]&gt;</stop>
 	</context>
 	
