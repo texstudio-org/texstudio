@@ -181,7 +181,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 }
 
 #ifdef Q_WS_WIN
-typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, char*, char*, char*, DWORD*);
+typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, const char*, const char*, char*, DWORD*);
 QString W32_FileAssociation(QString ext) {
 	if (ext=="") return "";
 	if (ext[0]!=QChar('.')) ext='.'+ext;

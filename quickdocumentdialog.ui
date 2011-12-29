@@ -265,7 +265,7 @@
          <property name="title">
           <string>Page</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="_3">
           <item row="0" column="0" rowspan="2">
            <widget class="QCheckBox" name="checkBoxGeometryPageWidth">
             <property name="text">
