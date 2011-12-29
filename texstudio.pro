@@ -516,7 +516,7 @@ OTHER_FILES += universalinputdialog.*
 
 exists(./.svn/entries){
   win32: {
-    QMAKE_PRE_LINK += \"$${PWD}/svn_revision.bat\" $${QMAKE_CXX} $${OUT_PWD}
+    QMAKE_PRE_LINK += \"$${PWD}/svn_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += svn_revision.o
   } else: {
     svn_revision.target = svn_revision.cpp
