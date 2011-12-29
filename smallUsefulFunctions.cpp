@@ -1528,8 +1528,9 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
     if(config)
         addPaths<<config->importedCwlBaseDir;
     QString fn=findResourceFile("completion/"+fileName,false,addPaths);
+
     QFile tagsfile(fn);
-    if (tagsfile.open(QFile::ReadOnly)) {
+    if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
         QString line;
         QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
         QRegExp rxCom2("^(\\\\\\w+)\\[(.+)\\]");
@@ -1706,7 +1707,8 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             }
         }
     }else{
-        package.packageName="<notFound>";
+	qDebug() << "Completion file not found:" << fileName;
+	package.packageName="<notFound>";
     }
 
     QApplication::restoreOverrideCursor();

@@ -36,10 +36,10 @@ void LatexEditorViewBenchmark::documentChange_data(){
 			<< "\\ref{ab} \\ref{cd}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 	QTest::newRow("no spellcheck in command")
-			<< "\\usepackage{abcdsdfsdfds} \\usepackage{abcdsdfsdfds}\nhallo welt\nabcdefg"
+			<< "\\usepackage{graphicx} \\usepackage{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 	QTest::newRow("spellcheck in command")
-			<< "\\textbf{abcdsdfsdfds} \\textbf{abcdsdfsdfds}\nhallo welt\nabcdefg"
+			<< "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 #endif
 }
@@ -79,10 +79,10 @@ void LatexEditorViewBenchmark::linePaint_data(){
 			<< "\\ref{ab} \\ref{cd}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 	QTest::newRow("no spellcheck in command")
-			<< "\\usepackage{abcdsdfsdfds} \\usepackage{abcdsdfsdfds}\nhallo welt\nabcdefg"
+			<< "\\usepackage{graphicx} \\usepackage{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 	QTest::newRow("spellcheck in command")
-			<< "\\textbf{abcdsdfsdfds} \\textbf{abcdsdfsdfds}\nhallo welt\nabcdefg"
+			<< "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 #endif
 }
@@ -154,10 +154,10 @@ void LatexEditorViewBenchmark::paintEvent_data(){
 			<< "\\ref{ab} \\ref{cd}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 	QTest::newRow("no spellcheck in command")
-			<< "\\usepackage{abcdsdfsdfds} \\usepackage{abcdsdfsdfds}\nhallo welt\nabcdefg"
+			<< "\\usepackage{graphicx} \\usepackage{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 	QTest::newRow("spellcheck in command")
-			<< "\\textbf{abcdsdfsdfds} \\textbf{abcdsdfsdfds}\nhallo welt\nabcdefg"
+			<< "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
 #endif
 }
