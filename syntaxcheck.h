@@ -16,19 +16,19 @@ class Environment{
 public:
 	QString name;
 	int id;
+    int excessCol;
 
 	bool operator ==(const Environment& env){
-		return (name==env.name)&&(id==env.id);
+        return (name==env.name)&&(id==env.id)&&(excessCol==env.excessCol);
 	}
 	bool operator !=(const Environment& env){
-		return (name!=env.name)||(id!=env.id);
+        return (name!=env.name)||(id!=env.id)||(excessCol!=env.excessCol);
 	}
-
 };
 
 typedef QStack<Environment> StackEnvironment;
 
-Q_DECLARE_METATYPE(StackEnvironment);
+Q_DECLARE_METATYPE(StackEnvironment)
 
 class SyntaxCheck : public QThread
 {
@@ -55,7 +55,6 @@ public:
 		int ticket;
 		bool clearOverlay;
 		QDocumentLineHandle *dlh;
-		int excessCols;
 	};
 
 	struct Error {
@@ -67,7 +66,7 @@ public:
 
 	explicit SyntaxCheck(QObject *parent = 0);
 
-	void putLine(QDocumentLineHandle *dlh, StackEnvironment previous,bool clearOverlay=false, int excessCols=0);
+    void putLine(QDocumentLineHandle *dlh, StackEnvironment previous,bool clearOverlay=false);
 	void stop();
 	void setErrFormat(int errFormat);
 	QString getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous);
@@ -75,15 +74,16 @@ public:
 	void setLtxCommands(LatexParser cmds);
 	void waitForQueueProcess();
 	static int containsEnv(const QString& name,const StackEnvironment& envs,const int id=-1);
+    static int topEnv(const QString& name,const StackEnvironment& envs,const int id=-1);
 	bool checkCommand(const QString &cmd,const StackEnvironment &envs);
 	static bool equalEnvStack(StackEnvironment env1,StackEnvironment env2);
 	bool queuedLines();
 
 signals:
-	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols, int ticket);
+    void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay, int ticket);
 protected:
 	void run();
-	void checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv,int &excessCols);
+    void checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv);
 
 private:
 	QQueue<SyntaxLine> mLines;

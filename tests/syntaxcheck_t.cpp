@@ -19,7 +19,7 @@ void SyntaxCheckTest::checktabular_data(){
 	QTest::addColumn<QString>("expectedMessage");
 	
 	//-------------cursor without selection--------------
-	QTest::newRow("all okay")
+    QTest::newRow("all okay")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "no error";
@@ -79,12 +79,12 @@ void SyntaxCheckTest::checktabular_data(){
 		<< 1 << 27
 		<< "no error";
 
-	QTest::newRow("too many cols, 3 cols, multicolumn")
+    QTest::newRow("too many cols, 3 cols, multicolumn v1")
 		<< "\\begin{tabular}{lll}\n\\multicolumn{2}{c}{Hallo}&b2&b3\\\\c&d&e&f\\\\\n\\end{tabular}\n"
-		<< 1 << 30
+        << 1 << 31
 		<< "more cols in tabular than specified";
 
-	QTest::newRow("too little cols, 3 cols, multicolumn")
+    QTest::newRow("too little cols, 3 cols, multicolumn v2")
 		<< "\\begin{tabular}{lll}\n\\multicolumn{2}{c}{Hallo}\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 1 << 26
 		<< "cols in tabular missing";
@@ -97,7 +97,7 @@ void SyntaxCheckTest::checktabular_data(){
 	QTest::newRow("no error 3 cols")
 		<< "\\begin{tabular}{lll}\n&&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
-		<< "no error";
+        << "no error";
 
 	QTest::newRow("no error 3 cols,multiple lines")
 		<< "\\begin{tabular}{lll}\na&\n&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
@@ -155,8 +155,8 @@ void SyntaxCheckTest::checktabular(){
 
 	edView->editor->setText(text);
 	do{
-	edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-	QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+        edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
 	}while(edView->SynChecker.queuedLines());
 	StackEnvironment env;
 	edView->getEnv(row,env);

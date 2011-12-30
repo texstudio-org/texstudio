@@ -1707,7 +1707,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             }
         }
     }else{
-	qDebug() << "Completion file not found:" << fileName;
+    //qDebug() << "Completion file not found:" << fileName;
 	package.packageName="<notFound>";
     }
 

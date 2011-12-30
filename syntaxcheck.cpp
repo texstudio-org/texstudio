@@ -17,7 +17,7 @@ void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QDocumentLineHandle* dlh,StackEnvironment previous,bool clearOverlay,int excessCols){
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh,StackEnvironment previous,bool clearOverlay){
 	REQUIRE(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
@@ -27,7 +27,6 @@ void SyntaxCheck::putLine(QDocumentLineHandle* dlh,StackEnvironment previous,boo
 	newLine.dlh=dlh;
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
-	newLine.excessCols = excessCols;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
 	mLinesLock.unlock();
@@ -64,8 +63,7 @@ void SyntaxCheck::run(){
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
 
-		int excessCols=newLine.excessCols;
-		checkLine(line,newRanges,activeEnv,excessCols);
+        checkLine(line,newRanges,activeEnv);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		//if(newRanges.isEmpty()) continue;
@@ -74,24 +72,20 @@ void SyntaxCheck::run(){
 			foreach(const Error& elem,newRanges)
 				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
 
-			int oldCookie=newLine.dlh->getCookie(0).toInt();
-			bool cookieChanged=(oldCookie!=excessCols);
 			// active envs
 			QVariant oldEnvVar=newLine.dlh->getCookie(1);
 			StackEnvironment oldEnv;
 			if(oldEnvVar.isValid())
 				oldEnv=oldEnvVar.value<StackEnvironment>();
-			if(!equalEnvStack(oldEnv,activeEnv))
-				cookieChanged=true;
+            bool cookieChanged=!equalEnvStack(oldEnv,activeEnv);
 			//if excessCols has changed the subsequent lines need to be rechecked.
 			if(cookieChanged){
-				newLine.dlh->setCookie(0,excessCols);
 				QVariant env;
 				env.setValue(activeEnv);
 				newLine.dlh->setCookie(1,env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
 				//qDebug() << newLine.dlh->text() << ":" << activeEnv.size();
-				emit checkNextLine(newLine.dlh,true,excessCols,newLine.ticket);
+                emit checkNextLine(newLine.dlh,true,newLine.ticket);
 			}
 		}
 		newLine.dlh->unlock();
@@ -101,7 +95,7 @@ void SyntaxCheck::run(){
 }
 
 
-void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv,int &excessCols){
+void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv){
 	// do syntax check on that line
 	QMutexLocker locker(&mLtxCommandLock);
 	QString word;
@@ -110,103 +104,6 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 	int wordstart;
 	int status;
 	bool inStructure=false;
-	// do additional checks (not limited to commands)
-	// check tabular compliance (columns)
-	int count=0;
-	if(containsEnv("tabular",activeEnv)){
-		count=excessCols;
-		int end=line.indexOf("\\\\");
-                int pos=-1;
-		int wrongPos=-1;
-		int res=-1;
-		int lastEnd=-1;
-		while(end>=0){
-			QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
-			rxMultiColumn.setMinimal(true);
-			bool mc_found=false;
-			do{
-				res=rxMultiColumn.indexIn(line,pos+1);
-				do{
-					wrongPos=line.indexOf("\\&",pos+1);
-					pos=line.indexOf("&",pos+1);
-				} while(wrongPos>-1 && wrongPos+1==pos);
-				if(res>-1 && (res<pos || pos<0) ){
-					// multicoulmn before &
-					bool ok;
-					int c=rxMultiColumn.cap(1).toInt(&ok);
-					if(ok){
-						count+=c-2;
-					}
-					mc_found=true;
-					if(pos<0){
-						count+=2;
-						break;
-					}
-					pos=res+1;
-				}else{
-					mc_found=false;
-				}
-				count++;
-			} while(pos>=0 && count<cols && pos<end);
-			if((pos>=0 && pos<end &&!mc_found)||(count>cols)){
-				if(mc_found)
-					pos=res-1;
-				Error elem;
-				elem.range=QPair<int,int>(pos,end-pos);
-				elem.type=ERR_tooManyCols;
-				newRanges.append(elem);
-			}
-			if((pos==-1 || pos>end) && count<cols){
-				Error elem;
-				elem.range=QPair<int,int>(end,2);
-				elem.type=ERR_tooLittleCols;
-				newRanges.append(elem);
-			}
-			lastEnd=end;
-			end=line.indexOf("\\\\",end+2);
-			count=0;
-			pos=lastEnd;
-		}
-		pos=lastEnd;
-		// check for columns beyond last newline
-		QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
-		rxMultiColumn.setMinimal(true);
-		bool mc_found=false;
-		end=line.length();
-		int lastPos=0;
-		do{
-			int res=rxMultiColumn.indexIn(line,pos+1);
-			//pos=line.indexOf(QRegExp("[^\\\\]&"),pos+1);
-			//pos=line.indexOf(QRegExp("([^\\\\]|^)&"),pos+1);
-			do{
-				wrongPos=line.indexOf("\\&",pos+1);
-				pos=line.indexOf("&",pos+1);
-			} while(wrongPos>-1 && wrongPos+1==pos);
-			if(res>-1 && (res<pos || pos<0) ){
-				// multicoulmn before &
-				bool ok;
-				int c=rxMultiColumn.cap(1).toInt(&ok);
-				if(ok){
-					count+=c-1;
-				}
-				pos=res+rxMultiColumn.cap().length()-1;
-				mc_found=true;
-			}else{
-				mc_found=false;
-			}
-			count++;
-			if(count>cols && (res>-1 || lastPos>-1)){
-				if(mc_found)
-					lastPos=res-1;
-				Error elem;
-				elem.range=QPair<int,int>(lastPos,end-lastPos);
-				elem.type=ERR_tooManyCols;
-				newRanges.append(elem);
-			}
-			lastPos=pos;
-		} while(pos>=0);
-		excessCols=count-1;
-	}// tabular checking
 	// check command-words
 	while ((status=nextWord(line,start,word,wordstart,true,true,&inStructure))){
 		if(status==NW_COMMAND){
@@ -224,6 +121,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 						Environment tp;
 						tp.name=env;
 						tp.id=1; //needs correction
+                        tp.excessCol=0;
 						if(env=="tabular" || LatexParser::environmentAliases.values(env).contains("tabular")){
 							// tabular env opened
 							// get cols !!!!
@@ -231,30 +129,28 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 							tp.id=cols;
 						}
 						activeEnv.push(tp);
-					}else{
-                                                if(!activeEnv.isEmpty()){
-                                                    Environment tp=activeEnv.top();
-                                                    if(tp.name==env){
-                                                        activeEnv.pop();
-                                                        if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
-                                                            // stop excesscols from being handed on
-                                                            excessCols=0;
-                                                            // correct length of col error if it exists
-                                                            if(!newRanges.isEmpty()){
-                                                                Error &elem=newRanges.last();
-                                                                if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
-                                                                    elem.range.second=wordstart-elem.range.first;
-                                                                }
-                                                            }
-                                                            // get new cols
-                                                            cols=containsEnv("tabular",activeEnv);
-                                                        }
-                                                    }
-                                                }
-					}
-					// add env-name for syntax checking to "word"
-					word+=options.first();
-				}
+                    }else{
+                        if(!activeEnv.isEmpty()){
+                            Environment tp=activeEnv.top();
+                            if(tp.name==env){
+                                activeEnv.pop();
+                                if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
+                                    // correct length of col error if it exists
+                                    if(!newRanges.isEmpty()){
+                                        Error &elem=newRanges.last();
+                                        if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
+                                            elem.range.second=wordstart-elem.range.first;
+                                        }
+                                    }
+                                    // get new cols
+                                    cols=containsEnv("tabular",activeEnv);
+                                }
+                            }
+                        }
+                    }
+                    // add env-name for syntax checking to "word"
+                    word+=options.first();
+                }
 			}
 			if(LatexParser::definitionCommands.contains(word)){ // don't check in command definition
 				QStringList options;
@@ -301,6 +197,57 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 			if(ltxCommands.possibleCommands["user"].contains(word)||LatexParser::customCommands.contains(word))
 				continue;
 
+            //tabular checking
+            if(topEnv("tabular",activeEnv)!=0){
+                if(word=="&"){
+                    activeEnv.top().excessCol++;
+                    if(activeEnv.top().excessCol>=activeEnv.top().id){
+                        Error elem;
+                        elem.range=QPair<int,int>(wordstart,word.length());
+                        elem.type=ERR_tooManyCols;
+                        newRanges.append(elem);
+                    }
+                    continue;
+                }
+                if(word=="\\\\"){
+                    if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
+                        Error elem;
+                        elem.range=QPair<int,int>(wordstart,word.length());
+                        elem.type=ERR_tooLittleCols;
+                        newRanges.append(elem);
+                    }
+                    if(activeEnv.top().excessCol>=(activeEnv.top().id)){
+                        Error elem;
+                        elem.range=QPair<int,int>(wordstart,word.length());
+                        elem.type=ERR_tooManyCols;
+                        newRanges.append(elem);
+                    }
+                    activeEnv.top().excessCol=0;
+                    continue;
+                }
+                if(word=="\\multicolumn"){
+                    QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
+                    rxMultiColumn.setMinimal(true);
+                    int res=rxMultiColumn.indexIn(line,wordstart);
+                    if(res>-1){
+                        // multicoulmn before &
+                        bool ok;
+                        int c=rxMultiColumn.cap(1).toInt(&ok);
+                        if(ok){
+                            activeEnv.top().excessCol+=c-1;
+                        }
+                    }
+                    if(activeEnv.top().excessCol>=activeEnv.top().id){
+                        Error elem;
+                        elem.range=QPair<int,int>(wordstart,word.length());
+                        elem.type=ERR_tooManyCols;
+                        newRanges.append(elem);
+                    }
+                    continue;
+                }
+
+            }
+
 			if(!checkCommand(word,activeEnv)){
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
@@ -333,16 +280,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	QStack<Environment> activeEnv=previous;
 	line=LatexParser::cutComment(line);
 	Ranges newRanges;
-	int excessCols=0;
-	dlh->lockForRead();
-	QDocumentLineHandle *prev=dlh->previous();
-	dlh->unlock();
-	if(prev){
-		prev->lockForRead();
-		excessCols=prev->getCookie(0).toInt();
-		prev->unlock();
-	}
-	checkLine(line,newRanges,activeEnv,excessCols);
+    checkLine(line,newRanges,activeEnv);
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(const Error& elem,newRanges){
@@ -370,6 +308,25 @@ void SyntaxCheck::waitForQueueProcess(){
 
 bool SyntaxCheck::queuedLines(){
 	return mLinesAvailable.available()>0;
+}
+
+int SyntaxCheck::topEnv(const QString& name,const StackEnvironment& envs,const int id){
+    if(envs.isEmpty())
+        return 0;
+
+    Environment env=envs.top();
+    if(env.name==name){
+        if(id<0 || env.id==id)
+            return env.id;
+    }
+    if(id<0 && LatexParser::environmentAliases.contains(env.name)){
+        QStringList altEnvs=LatexParser::environmentAliases.values(env.name);
+        foreach(QString altEnv,altEnvs){
+            if(altEnv==name)
+                return env.id;
+        }
+    }
+    return 0;
 }
 
 int SyntaxCheck::containsEnv(const QString& name,const StackEnvironment& envs,const int id){
