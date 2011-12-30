@@ -42,7 +42,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
-		<< new SmallUsefulFunctionsTest()
+        << new SmallUsefulFunctionsTest()
 		<< new BuildManagerTest()
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentLineTest()
@@ -55,7 +55,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new ScriptEngineTest(editor)
 		<< new LatexEditorViewBenchmark(edView)
 		<< new StructureViewTest(editor,edView->document)
-		<< new TableManipulationTest(editor)
+        << new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView);
 	bool allPassed=true;
 	if (level!=TL_ALL)

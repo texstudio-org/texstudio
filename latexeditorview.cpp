@@ -329,7 +329,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	SynChecker.start();
 
-	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int,int)), Qt::QueuedConnection);
+    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int)), Qt::QueuedConnection);
 }
 
 LatexEditorView::~LatexEditorView() {
@@ -751,7 +751,7 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (error>=0)
 		emit showMarkTooltipForLogMessage(error);
 }
-void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket){
+void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket){
 	Q_ASSERT_X(dlh!=0,"checkNextLine","empty dlh used in checkNextLine");
 	if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
 		StackEnvironment env;
@@ -762,7 +762,7 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 		if (index == -1) return; //deleted
 		REQUIRE(dlh->document() == document);
 		if (index + 1 >= document->lines()) return;
-		SynChecker.putLine(document->line(index+1).handle(), env, clearOverlay, excessCols);
+        SynChecker.putLine(document->line(index+1).handle(), env, clearOverlay);
 	}
 	dlh->deref();
 }
@@ -885,11 +885,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						text[i]=QChar(' ');
 					}
 				}
-				QDocumentLineHandle *previous=line.handle()->previous();
-				int excessCols=0;
-				if(previous)
-					excessCols=previous->getCookie(0).toInt();
-				SynChecker.putLine(line.handle(),env,false,excessCols);
+                SynChecker.putLine(line.handle(),env,false);
 			}
 		}
 
@@ -1112,11 +1108,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 		Q_ASSERT(line.isValid());
 		StackEnvironment env;
 		getEnv(i,env);
-		QDocumentLineHandle *previous=line.handle()->previous();
-		int excessCols=0;
-		if(previous)
-			excessCols=previous->getCookie(0).toInt();
-		SynChecker.putLine(line.handle(),env,true,excessCols);
+        SynChecker.putLine(line.handle(),env,true);
 		prev = line;
 		line = editor->document()->line(i+1);
 	}

@@ -118,7 +118,7 @@ private slots:
 	void emitChangeDiff();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
-	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int excessCols,int ticket);
+    void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket);
 	void triggeredThesaurus();
 	void reloadSpeller();
 	void changeSpellingLanguage(const QLocale &loc);
