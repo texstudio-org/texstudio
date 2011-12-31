@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="XML" extensions="xml;qnfa;qxm;qxf;ui" defaultLineMark="" >
+<QNFA language="XML" extensions="xml;qnfa;qxm;qxf;ui;htm;html" defaultLineMark="" >
 	<context id="comment" format="comment" >
 		<start parenthesis="xmlcomment:open" indent="1" fold="1">&lt;!--</start>
 		<stop parenthesis="xmlcomment:close" indent="1" fold="1">--&gt;</stop>
@@ -14,7 +14,7 @@
 		<start parenthesis="xmlpreproc:open" indent="1" fold="1">&lt;\?xml</start>
 		<stop parenthesis="xmlpreproc:close" indent="1" fold="1">\?&gt;</stop>
 	</context>
-	
+
 	<context id="doctype" format="text" >
 		<start>&lt;!DOCTYPE</start>
 		<stop>&gt;</stop>
@@ -23,11 +23,11 @@
 	<sequence id="entity" format="numbers">&amp;$w+;</sequence>
 	
 	<context id="tag/start" >
-		<start format="keyword" parenthesis="xmltag:open@nomatch" indent="1" fold="1" >&lt;[$w:]+</start>
-		<start format="keyword" parenthesis="xmltag:close@nomatch" indent="1" fold="1" >&lt;/[$w:]+</start>
+		<start format="keyword" parenthesis="xmltag:open@nomatch" indent="1" fold="1" >&lt;[_:A-Za-z][-._:A-Za-z0-9]*</start>
+		<start format="keyword" parenthesis="xmltag:close@nomatch" indent="1" fold="1" >&lt;/[_:A-Za-z][-._:A-Za-z0-9]*</start>
 		<stop format="keyword" >&gt;</stop>
 		
-		<word format="extra-keyword">[$w:]+=</word>
+		<word format="extra-keyword">[_:A-Za-z][-._:A-Za-z0-9]*+=</word>
 		
 		<context id="data/string" format="text" stayOnLine="true" >
 			<start>&quot;</start>
