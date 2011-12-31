@@ -247,6 +247,9 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
                 }
 
             }
+            // ignore commands containing @
+            if(word.contains('@'))
+                continue;
 
 			if(!checkCommand(word,activeEnv)){
 				Error elem;
