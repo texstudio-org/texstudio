@@ -23,7 +23,7 @@ void txsCritical(const QString &message){
 #include <CoreFoundation/CFBundle.h>
 #endif
 
-const QString CommonEOW="~!@#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'+";
+const QString CommonEOW="~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'+";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
@@ -421,8 +421,8 @@ int nextToken(const QString &line,int &index,bool abbreviation,bool inOption,boo
 		else doubleQuoteChar=false;
 		if (inCmd) {
 			if (detectMath && inMath){
-                            if(cur=='$') i++; //detect $$
-                            break;
+                if(cur=='$') i++; //detect $$
+                break;
 			}
 			if (CommonEOW.indexOf(cur)>=0) {
 				if (i-start==1) i++;
