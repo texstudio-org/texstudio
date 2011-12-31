@@ -1332,7 +1332,9 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		REQUIRE(act);
 		if (i<recentProjectList.count()) {
 			act->setVisible(true);
-			act->setText(tr("Master Document: ")+(i<=13?QString("&%1 ").arg((char)('M'+i)):"")+ recentProjectList.at(i));
+			QString temp = recentProjectList.at(i);
+			temp.replace("&", "&&");
+			act->setText(tr("Master Document: ")+(i<=13?QString("&%1 ").arg((char)('M'+i)):"")+ temp);
 			act->setData(recentProjectList.at(i));
 		} else act->setVisible(false);
 	}
@@ -1349,7 +1351,9 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 			else if (i+1 <= 35+7) schar = i+1 + ':' - 36;
 			else if (i+1 <= 42+5) schar = i+1 + '[' - 43;
 			else if (i+1 <= 47+4) schar = i+1 + '{' - 48;
-			act->setText((schar?QString("&%1 ").arg(schar):"")+recentFilesList.at(i));
+			QString temp = recentFilesList.at(i);
+			temp.replace("&","&&");
+			act->setText((schar?QString("&%1 ").arg(schar):"")+temp);
 			act->setData(recentFilesList.at(i));
 		} else act->setVisible(false);
 	}

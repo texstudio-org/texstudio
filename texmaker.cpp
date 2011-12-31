@@ -1039,6 +1039,7 @@ void Texmaker::NewDocumentStatus() {
 		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
 	}
 	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
+	tabText.replace("&", "&&");
 	if (EditorView->tabText(index) != tabText) {
 		EditorView->setTabText(index, tabText);
 		updateOpenDocumentMenu(true);
@@ -1718,7 +1719,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 			}
 		}
 
-		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name());
+		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name().replace("&","&&"));
 		updateOpenDocumentMenu(true);
 		if (currentEditor()->fileInfo().suffix()!="tex")
 			m_languages->setLanguage(currentEditor(), fn);
@@ -4177,14 +4178,14 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 	if (localChange) {
 		QString id = "doc"+QString::number(EditorView->currentIndex());
 		QMenu* menu = configManager.getManagedMenu("main/view/documents");
-		configManager.newManagedAction(menu, id, ed->fileName().isEmpty() ? tr("untitled") : ed->name(), SLOT(gotoOpenDocument()));
+		configManager.newManagedAction(menu, id, ed->fileName().isEmpty() ? tr("untitled") : ed->name().replace("&","&&"), SLOT(gotoOpenDocument()));
 		return;
 	}
 	QStringList sl;
 	for (int i=0; i<EditorView->count(); i++){
 		ed = qobject_cast<LatexEditorView*>(EditorView->widget(i))->editor;
 		REQUIRE(ed);
-		sl << (ed->fileName().isEmpty() ? tr("untitled") : ed->name());
+		sl << (ed->fileName().isEmpty() ? tr("untitled") : ed->name().replace("&", "&&"));
 	}
 	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
 }
