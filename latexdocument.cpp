@@ -808,8 +808,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
 		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
-        QStringList files=mUsepackageList.values();
-        updateCompletionFiles(files,forceUpdate);
+	    QStringList files=mUsepackageList.values();
+	    updateCompletionFiles(files,forceUpdate);
 	}
 
 	if (bibTeXFilesNeedsUpdate)
@@ -2043,6 +2043,14 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
     ltxCommands.optionCommands=pck.optionCommands;
     ltxCommands.possibleCommands=pck.possibleCommands;
     ltxCommands.environmentAliases=pck.environmentAliases;
+
+    // user commands
+    QStringList commands=mUserCommandList.values();
+    foreach(QString elem,commands){
+	    int i=elem.indexOf("{");
+	    if(i>=0) elem=elem.left(i);
+	    ltxCommands.possibleCommands["user"].insert(elem);
+    }
 
     if(update){
         foreach(LatexDocument* elem,getListOfDocs()){
