@@ -71,7 +71,7 @@ enum NextWordFlag {
 	NW_REFERENCE=5,
 	NW_LABEL=6,
 	NW_CITATION=7
-	     };
+};
 //Returns the next word (giving meaning to the nextToken tokens)
 //line: line to be examined
 //index: start index as input and returns the first character after the found word
@@ -140,28 +140,28 @@ enum {
 	MIB_UTF8 = 106,
 	MIB_UTF16BE = 1013,
 	MIB_UTF16LE = 1014
-
-		};
+	
+};
 
 class LatexParser{
 public:
 	LatexParser();
-    void init();
-
+	void init();
+	
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
 	// realizes whether col is in a \command or in a parameter {}
-        static int findContext(QString &line, int &column);
+	static int findContext(QString &line, int &column);
 	
 	//position of the % starting a comment (takes care of multiple backslashes before comment character ..)
 	static int commentStart(const QString& text);
-
+	
 	// remove comment from text, take care of multiple backslashes before comment character ...
 	static QString cutComment(const QString& text);
-
+	
 	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
-
+	
 	static QSet<QString> refCommands;
 	static QSet<QString> labelCommands;
 	static QSet<QString> citeCommands;
@@ -181,7 +181,7 @@ public:
 	static QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
 	QHash<QString,QSet<QString> > possibleCommands;
-
+	
 	void append(LatexParser elem);
 	void substract(LatexParser elem);
 	void clear();
@@ -191,14 +191,14 @@ public:
 
 class LatexPackage{
 public:
-    LatexPackage();
-    QString packageName;
-    QStringList requiredPackages;
-    QStringList completionWords;
-    QHash<QString,QSet<QString> > possibleCommands;
-    QSet<QString> optionCommands;
-    QMultiHash<QString,QString> environmentAliases;
-    void unite(LatexPackage &add);
+	LatexPackage();
+	QString packageName;
+	QStringList requiredPackages;
+	QStringList completionWords;
+	QHash<QString,QSet<QString> > possibleCommands;
+	QSet<QString> optionCommands;
+	QMultiHash<QString,QString> environmentAliases;
+	void unite(LatexPackage &add);
 };
 
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config=0);

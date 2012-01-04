@@ -26,12 +26,12 @@ struct StructureEntry{
 	StructureEntry* parent;
 	LatexDocument* document;
 	bool appendix;
-
+	
 	StructureEntry(LatexDocument* doc, Type newType);
 	~StructureEntry();
 	void add(StructureEntry* child);
 	void insert(int pos, StructureEntry* child);
-
+	
 	int getRealLineNumber();
 };
 
@@ -62,9 +62,9 @@ class LatexDocument: public QDocument
 public:
 	LatexDocument(QObject *parent=0);
 	~LatexDocument();
-
+	
 	enum CookieType{
-	    CK_COLS=0
+		CK_COLS=0
 	};
 	void setFileName(const QString& fileName);
 	void setEditorView(LatexEditorView* edView);
@@ -72,52 +72,52 @@ public:
 	QString getFileName() const;
 	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
-
-//	References containedLabels,containedReferences;
+	
+	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
 	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
-
-//	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
-//	QSet<QString> allBibTeXIds;
-
+	
+	//	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
+	//	QSet<QString> allBibTeXIds;
+	
 	QStringList labelItem()const {
-	    QList<ReferencePair> lst=mLabelItem.values();
-	    QStringList result;
-	    foreach(const ReferencePair& elem,lst){
-		result << elem.name;
-	    }
-
-	    return result;
+		QList<ReferencePair> lst=mLabelItem.values();
+		QStringList result;
+		foreach(const ReferencePair& elem,lst){
+			result << elem.name;
+		}
+		
+		return result;
 	}
 	QStringList labelItemAt(QDocumentLineHandle *dlh){
-	    QList<ReferencePair> lst=mLabelItem.values(dlh);
-	    QStringList result;
-	    foreach(const ReferencePair& elem,lst){
-		result << elem.name;
-	    }
-	    return result;
+		QList<ReferencePair> lst=mLabelItem.values(dlh);
+		QStringList result;
+		foreach(const ReferencePair& elem,lst){
+			result << elem.name;
+		}
+		return result;
 	}
 	QStringList refItem() const{
-	    QList<ReferencePair> lst=mRefItem.values();
-	    QStringList result;
-	    foreach(const ReferencePair& elem,lst){
-		result << elem.name;
-	    }
-	    return result;
+		QList<ReferencePair> lst=mRefItem.values();
+		QStringList result;
+		foreach(const ReferencePair& elem,lst){
+			result << elem.name;
+		}
+		return result;
 	}
 	QStringList refItemAt(QDocumentLineHandle *dlh){
-	    QList<ReferencePair> lst=mRefItem.values(dlh);
-	    QStringList result;
-	    foreach(const ReferencePair& elem,lst){
-		result << elem.name;
-	    }
-	    return result;
+		QList<ReferencePair> lst=mRefItem.values(dlh);
+		QStringList result;
+		foreach(const ReferencePair& elem,lst){
+			result << elem.name;
+		}
+		return result;
 	}
 	const QSet<QString> userCommandList() const{
-	    return mUserCommandList.values().toSet();
+		return mUserCommandList.values().toSet();
 	}
 	const QSet<QString> additionalCommandsList() const{
-	    return mCompleterWords;
+		return mCompleterWords;
 	}
 	void updateRefsLabels(const QString& ref);
 	void recheckRefsLabels();
@@ -125,101 +125,101 @@ public:
 	int countRefs(const QString& name);
 	QMultiHash<QDocumentLineHandle*,int> getLabels(QString name);
 	QMultiHash<QDocumentLineHandle*,int> getRefs(QString name);
-
+	
 	//void includeDocument(LatexDocument* includedDocument);
-
+	
 	//QString getAbsoluteFilePath(const QString& relativePath); //returns the absolute file path for an included file
-
+	
 	StructureEntry* baseStructure;
-
+	
 	QDocumentSelection sectionSelection(StructureEntry* section);
 	void clearAppendix(){
-	    mAppendixLine=0;
+		mAppendixLine=0;
 	}
 	StructureEntry * findSectionForLine(int currentLine);
-
+	
 	LatexDocuments *parent;
-
+	
 	void setTemporaryFileName(const QString& fileName);
 	QString getTemporaryFileName();
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension);
-
+	
 	void setMasterDocument(LatexDocument* doc);
 	LatexDocument* getMasterDocument() const{
-	    return masterDocument;
+		return masterDocument;
 	}
 	LatexDocument* getTopMasterDocument(QSet<LatexDocument*> *visitedDocs=0);
-
+	
 	QStringList includedFiles();
 	QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
-
+	
 	LatexParser ltxCommands;
-
+	
 	bool containsPackage(const QString& name);
 	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
-    void updateCompletionFiles(QStringList &files,bool forceUpdate);
-
+	void updateCompletionFiles(QStringList &files,bool forceUpdate);
+	
 	QLocale spellingLanguage() {
 		return mSpellingLanguage;
 	}
 	QString getMagicComment(const QString& name);
 	QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
 	void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
-
+	
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
 	QFileInfo fileInfo;
-
+	
 	LatexEditorView* edView;
-
+	
 	LatexDocument* masterDocument;
-
+	
 	StructureEntry* magicCommentList;
 	StructureEntry* labelList;
 	StructureEntry* todoList;
 	StructureEntry* bibTeXList;
 	StructureEntry* blockList;
-
+	
 	QMultiHash<QDocumentLineHandle*,ReferencePair> mLabelItem;
 	QMultiHash<QDocumentLineHandle*,ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
-
+	
 	QSet<QString> mCompleterWords; // local list of completer words
-
+	
 	QLocale mSpellingLanguage; // default/not specified: QLocale::c()
-
+	
 	QDocumentLineHandle *mAppendixLine;
-
+	
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
 	bool fileExits(QString fname);
 	QString findFileName(QString fname);
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl=0,bool front=true,bool back=true);
-
+	
 	void removeAndDeleteElement(StructureEntry* se, int row);
-
+	
 	bool splitMagicComment(const QString &comment, QString &name, QString &val);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry* se);
-
-    void gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck);
-
+	
+	void gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck);
+	
 #ifndef QT_NO_DEBUG
 public:
 	QSet<StructureEntry*> StructureContent;
 	void checkForLeak();
 #endif
-
+	
 public slots:
 	void updateStructure();
 	void patchStructure(int linenr, int count);
 	void patchStructureRemoval(QDocumentLineHandle* dlh);
 	void clearStructure();
 	void initStructure();
-
+	
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);
 	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
@@ -244,7 +244,7 @@ private:
 	QVector<QIcon> iconSection;
 	QModelIndex mHighlightIndex;
 	bool m_singleMode;
-
+	
 public:
 	LatexDocumentsModel(LatexDocuments& docs);
 	Qt::ItemFlags flags ( const QModelIndex & index ) const;
@@ -255,11 +255,11 @@ public:
 	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
 	QModelIndex index ( StructureEntry* entry ) const;
 	QModelIndex parent ( const QModelIndex & index ) const;
-
+	
 	static StructureEntry* indexToStructureEntry(const QModelIndex & index );
 	QModelIndex highlightedEntry();
 	void setHighlightedEntry(StructureEntry* entry);
-
+	
 	void resetAll();
 	void resetHighlight();
 	void setSingleDocMode(bool singleMode);
@@ -272,7 +272,7 @@ private slots:
 	void addElement(StructureEntry *se,int row);
 	void addElementFinished();
 	void updateElement(StructureEntry *se);
-
+	
 	friend class LatexDocuments;
 };
 
@@ -284,40 +284,40 @@ public:
 	LatexDocument* masterDocument;
 	LatexDocument* currentDocument;
 	QList<LatexDocument*> documents;
-
+	
 	LatexDocuments();
 	~LatexDocuments();
 	void addDocument(LatexDocument* document);
 	void deleteDocument(LatexDocument* document);
 	void setMasterDocument(LatexDocument* document);
-
+	
 	LatexDocument *getMasterDocumentForDoc(LatexDocument *doc=0); // no argument means current doc ...
-
+	
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
 	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
 	QString getTemporaryCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
 	QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
-
+	
 	LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false);
 	LatexDocument* findDocument(const QDocument *qDoc);
 	LatexDocument* findDocumentFromName(const QString& fileName);
-
+	
 	void settingsRead();
-
+	
 	bool singleMode();
-
+	
 	//support for included BibTeX-files
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
-
-
+	
+	
 	void updateStructure();
 	void updateLayout();
 	void updateMasterSlaveRelations(LatexDocument *doc);
-
+	
 	LatexParser ltxCommands;
 	bool showLineNumbersInStructure;
 	int indentationInStructure;

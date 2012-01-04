@@ -61,7 +61,7 @@ enum RunCommandFlag{
 	RCF_CHANGE_PDF = 16,
 	RCF_NO_DOCUMENT = 32, // don't check if document is saved as it is not used
 	RCF_IS_RERUN_CALL = 64 // call is an automatically rerun (internal)
-		      };
+};
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
 
@@ -71,21 +71,21 @@ Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 class UserMenuDialog;
 class Texmaker : public QMainWindow {
 	Q_OBJECT
-
+	
 public:
 	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~Texmaker();
-
+	
 	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
-
+	
 public slots:
 	LatexEditorView* load(const QString &f , bool asProject = false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
-
+	
 private:
 	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
 	inline QMenu* newManagedMenu(const QString &id,const QString &text);
@@ -97,12 +97,12 @@ private:
 	inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	inline QAction* getManagedAction(QString id);
 	QAction* insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
-
+	
 	SymbolGridWidget* addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);
 	void addTagList(const QString& id, const QString& iconName, const QString& text, const QString& tagFile);
-
+	
 	QVariantMap *MapForSymbols;
-
+	
 private slots:
 	void updateToolBarMenu(const QString& menuName);
 private:
@@ -118,9 +118,9 @@ private:
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
 	LatexCompleter* completer;
-
+	
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
-
+	
 	//gui
 	TmxTabWidget *EditorView;
 	QToolBar* centralToolBar;
@@ -130,20 +130,20 @@ private:
 	
 	QTreeView *structureTreeView;
 	LatexDocuments documents;
-
+	
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
-
+	
 	//toolbars
 	//
 	QAction *ToggleAct, *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
-
+	
 	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelEncoding;
 	QToolButton *statusTbLanguage;
 	QActionGroup *spellLanguageActions;
-
+	
 	QToolButton *combo1,*combo2,*combo;
-
+	
 	//settings
 	ConfigManager configManager;
 	BuildManager buildManager;
@@ -155,15 +155,15 @@ private:
 	QStringList userTemplatesList;
 	
 	SpellerManager spellerManager;
-
+	
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
 	templateselector *templateSelectorDialog;
-
+	
 	//tools
 	bool FINPROCESS, ERRPROCESS, KILLPROCESS, PROCESSRUNNING;
-
+	
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
 	QStringList symbolFavorites;
@@ -175,12 +175,12 @@ private:
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
 	
 	QAction* outputViewAction, *fullscreenModeAction;
-
+	
 	void linkToEditorSlot(QAction* act, const char* slot, const QList<QVariant>& args);
 private slots:
 	void relayToEditorSlot();
 	void relayToOwnSlot();
-
+	
 protected slots:
 	void fileNew(QString fileName="");
 	void fileNewFromTemplate();
@@ -218,18 +218,18 @@ private slots:
 	QStringList svnLog();
 	void changeToRevision(QString rev,QString old_rev="");
 	void svnDialogClosed();
-        void fileDiff();
+	void fileDiff();
 	void fileDiff3();
-        bool checkSVNConflicted(bool substituteContents=true);
+	bool checkSVNConflicted(bool substituteContents=true);
 	void removeDiffMarkers(bool theirs=false);
 	void editChangeDiff(QPoint pt);
-        void jumpNextDiff();
-        void jumpPrevDiff();
+	void jumpNextDiff();
+	void jumpPrevDiff();
 	void fileDiffMerge();
 	void declareConflictResolved();
 protected slots:	
 	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
-
+	
 	void editUndo();
 	void editRedo();
 	void editDebugUndoStack();
@@ -261,10 +261,10 @@ protected slots:
 	void editInsertRefToNextLabel(bool backward=false);
 	void editInsertRefToPrevLabel();
 	void editFindGlobal();
-
+	
 	void findWordRepetions();
 	void findNextWordRepetion();
-
+	
 	void StructureContextMenu(const QPoint& point);
 	void structureContextMenuCloseDocument();
 	void structureContextMenuSwitchMasterDocument();
@@ -273,11 +273,11 @@ protected slots:
 	void symbolAddFavorite();
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
-
+	
 private slots:	
 	void ReadSettings();
 	void SaveSettings(const QString& configName="");
-
+	
 protected slots:	
 	void showMarkTooltipForLogMessage(int error);
 	void NewDocumentStatus();
@@ -288,7 +288,7 @@ protected slots:
 	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);
 	void EditorTabMoved(int from,int to);
-
+	
 	void updateStructure(bool initial=false);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
@@ -306,7 +306,7 @@ protected slots:
 	void InsertFromAction();
 	void InsertBib();
 	void InsertStruct();
-
+	
 	void InsertBibEntryFromAction();
 	void InsertBibEntry(const QString& id="");
 	
@@ -314,22 +314,22 @@ protected slots:
 	void insertUserTag();
 	void EditUserMenu();
 	void userMacroDialogAccepted();
-
+	
 	void InsertRef();
 	void InsertPageRef();
-
+	
 	void UpdateAvailableLanguages();
 	void EditorSpellerChanged(const QString &name);
 	void ChangeEditorSpeller();
 	void InsertSpellcheckMagicComment();
-
+	
 	void QuickTabular();
 	void QuickArray();
 	void QuickTabbing();
 	void QuickLetter();
 	void QuickDocument();
 	void QuickGraphics(const QString &graphicsFile = QString());
-
+	
 private slots:	
 	void runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags);
 	void runCommand(const QString& commandline, RunCommandFlags flags = 0, QString *buffer = 0); //default flags == 0 is necessary for pdf viewer
@@ -345,7 +345,7 @@ protected slots:
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	void UserTool();
 	void EditUserTool();
-
+	
 	void WebPublish();
 	void WebPublishSource();
 	void AnalyseText();
@@ -364,10 +364,10 @@ protected slots:
 	void LatexHelp();
 	void UserManualHelp();
 	void HelpAbout();
-
+	
 	void GeneralOptions();
 	void ToggleMode();
-
+	
 	void gotoNextDocument();
 	void gotoPrevDocument();
 	void gotoOpenDocument();
@@ -380,19 +380,19 @@ protected slots:
 	
 	void viewCollapseBlock();
 	void viewExpandBlock();
-
+	
 	void newPdfPreviewer();
-
+	
 	void masterDocumentChanged(LatexDocument * doc);
-
+	
 	void SetMostUsedSymbols(QTableWidgetItem* item);
-
+	
 	void updateCompleter();
 	void completerNeedsUpdate();
 	void needUpdatedCompleter();
-
+	
 	void tabChanged(int i);
-
+	
 	void gotoLine(int line);  //0 based
 	void gotoLocation(int line, const QString &fileName);  //0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
@@ -407,19 +407,19 @@ protected slots:
 	void showPreview(const QDocumentCursor& c);
 	void showPreview(const QDocumentCursor& c, bool addToList);
 	void showPreviewQueue();
-
+	
 	void templateRemove();
 	void templateEdit();
-
+	
 	void fileReloaded();
 	void fileInConflict();
 	void fileAutoReloading(QString fname);
-
+	
 	void jumpToSearch(QString filename,int lineNumber);
-
+	
 	void cursorPositionChanged();
 	//	void treeWidgetChanged();
-
+	
 	bool generateMirror(bool setCur=false);
 	void generateBracketInverterMirror();
 	void selectBracket();
@@ -427,7 +427,7 @@ protected slots:
 	void cursorHovered();
 	void loadProfile();
 	void saveProfile();
-
+	
 	void addRowCB();
 	void addColumnCB();
 	void removeColumnCB();
@@ -444,7 +444,7 @@ protected slots:
 	void moveDocumentToDest(int dest);
 	
 	void updateHighlighting();
-
+	
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
@@ -454,47 +454,47 @@ protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
-
+	
 	Qt::MouseButtons mb;
-
+	
 	bool mCompleterNeedsUpdate;
-
+	
 	bool previewEquation;
 	int currentLine;
 	QBrush oldBackground;
 	bool mDontScrollToItem;
-
+	
 	QByteArray stateFullScreen;
-
+	
 	QDialog *svndlg;
 	UserMenuDialog *userMacroDialog;
 	QComboBox *cmbLog;
-
+	
 	QStringList m_columnCutBuffer;
-
+	
 	QTimer autosaveTimer;
-
+	
 	bool completionBaseCommandsUpdated;
-
+	
 	QSet<int> previewQueue;
 	LatexEditorView* previewQueueOwner;
-
+	
 	QString fileFilters;
 	QString selectedFileFilter;
-
+	
 	LatexStyleParser *latexStyleParser;
-
+	
 	int remainingReRunCount;
 	bool lastReRunWasBibTeX;
 	QString rerunCommand;
 	RunCommandFlags rerunFlags;
-
-        QMap<QString,QString> detectedEnvironmentsForHighlighting;
-
+	
+	QMap<QString,QString> detectedEnvironmentsForHighlighting;
+	
 	LatexDocument* diffLoadDocHidden(QString f);
 	void showDiff3(const QString file1,const QString file2);
 	
-//script things	
+	//script things	
 	
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
