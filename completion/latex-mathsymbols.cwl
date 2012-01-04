@@ -111,6 +111,7 @@
 \hookleftarrow#m
 \hookrightarrow#m
 \Im#m
+\iff#m
 \imath#m
 \in#m
 \inf#m
