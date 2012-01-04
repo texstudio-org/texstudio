@@ -271,6 +271,7 @@
 \author{author names}
 \institute[short institute]{institute}
 \institute{institute}
+\inst{parameter's institute}
 \date[short date]{date}
 \date{date}
 \titlegraphic{text}
