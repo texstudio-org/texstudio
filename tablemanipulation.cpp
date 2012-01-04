@@ -149,7 +149,7 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 				}else{
 					cur.insertText(pasteBuffer.takeFirst()+"&");
 				}
-
+				
 			}
 		}
 		if(result<=0){
@@ -170,8 +170,8 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 		QRegExp rxHL("^(\\s*\\\\hline\\s*)");
 		int pos_hline=rxHL.indexIn(text);
 		if(pos_hline>-1){
-		    int l=rxHL.cap().length();
-		    cur.movePosition(l,QDocumentCursor::Right);
+			int l=rxHL.cap().length();
+			cur.movePosition(l,QDocumentCursor::Right);
 		}
 		if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
 		line=cur.line().text();
@@ -185,7 +185,7 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 	//preparations for search
 	QStringList nTokens;
 	nTokens << "\\\\" << "\\&" << "&";
-
+	
 	cur.moveTo(lineNumber,0);
 	QString def=getDef(cur);
 	//int result=findNextToken(cur,QStringList(),false,true); // move to \begin{...}
@@ -331,10 +331,10 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 			QString help;
 			foreach(const QChar& elem,line)
 				help.prepend(elem);
-
+			
 			line=help;
 		}
-
+		
 		if(line.contains("\\end{")&&!backwards) {
 			nextToken=-2;
 			break;
@@ -343,7 +343,7 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 			nextToken=-2;
 			break;
 		}
-
+		
 		pos=-1;
 		for(int i=0;i<tokens.count();i++){
 			QString elem=tokens.at(i);
@@ -384,12 +384,12 @@ int LatexTables::getColumn(QDocumentCursor &cur){
 		QString zw=c.selectedText();
 		if(zw.contains(QRegExp("^\\s*$"))) return -1;
 	}
-
+	
 	c.clearSelection();
-
+	
 	tokens << "\\&" << "&";
 	int col=0;
-
+	
 	do{
 		result=findNextToken(c,tokens);
 		if(c.lineNumber()>cur.lineNumber()|| (c.lineNumber()==cur.lineNumber() && c.columnNumber()>cur.columnNumber())) break;
@@ -635,88 +635,88 @@ QStringList LatexTables::splitColDef(QString def){
 			curl++;
 		if(ch.isLetter() && !inAt && !inDef && curl==0){
 			if((i+1<def.length()) && def.at(i+1)=='{'){
-                                appendDef=true;
-                        }else{
-                                result << col;
-                                col.clear();
+				appendDef=true;
+			}else{
+				result << col;
+				col.clear();
 			}
 		}
-
-
-
+		
+		
+		
 	}
 	if(!result.isEmpty())
 		result.last().append(col);
-
-
+	
+	
 	return result;
 }
 
 void LatexTables::executeScript(QString script, QEditor *m_editor){
-    scriptengine eng;
-    eng.setEditor(m_editor);
-    eng.setScript(script);
-    eng.run();
+	scriptengine eng;
+	eng.setEditor(m_editor);
+	eng.setScript(script);
+	eng.run();
 }
 
 void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table,QString env){
-    //read in js template which generates the tabular code
-    QFile file(templateFileName);
-    if(!file.open(QIODevice::ReadOnly| QIODevice::Text))
-        return;
-    QTextStream stream(&file);
-    QString templateText;
-    templateText = stream.readAll();
-    //env
-    QString envDef="var env=\""+env+"\"\n";
-    //tabular column definition
-    QString templateDef="var def=\""+def+"\"\n";
-    //tabular content as js array
-    QString tableDef="var tab=[\n";
-    for(int i=0;i<table.size();i++){
-        QStringList lst=table.at(i);
-        QStringList::iterator it;
-        for(it=lst.begin();it!=lst.end();it++){
-            QString str=*it;
-            str.replace("\\","\\\\");
-            str.replace("\"","\\\"");
-            *it=str;
-        }
-        tableDef+="[\""+lst.join("\",\"")+"\"]";
-        if(i<table.size()-1)
-            tableDef+=",\n";
-    }
-    tableDef+="]\n";
-    //join js parts
-    templateText.prepend(tableDef);
-    templateText.prepend(envDef);
-    templateText.prepend(templateDef);
-    //generate tabular in editor
-    executeScript(templateText,m_editor);
+	//read in js template which generates the tabular code
+	QFile file(templateFileName);
+	if(!file.open(QIODevice::ReadOnly| QIODevice::Text))
+		return;
+	QTextStream stream(&file);
+	QString templateText;
+	templateText = stream.readAll();
+	//env
+	QString envDef="var env=\""+env+"\"\n";
+	//tabular column definition
+	QString templateDef="var def=\""+def+"\"\n";
+	//tabular content as js array
+	QString tableDef="var tab=[\n";
+	for(int i=0;i<table.size();i++){
+		QStringList lst=table.at(i);
+		QStringList::iterator it;
+		for(it=lst.begin();it!=lst.end();it++){
+			QString str=*it;
+			str.replace("\\","\\\\");
+			str.replace("\"","\\\"");
+			*it=str;
+		}
+		tableDef+="[\""+lst.join("\",\"")+"\"]";
+		if(i<table.size()-1)
+			tableDef+=",\n";
+	}
+	tableDef+="]\n";
+	//join js parts
+	templateText.prepend(tableDef);
+	templateText.prepend(envDef);
+	templateText.prepend(templateDef);
+	//generate tabular in editor
+	executeScript(templateText,m_editor);
 }
 
 QString LatexTables::getSimplifiedDef(QDocumentCursor &cur){
-    QString def=getDef(cur);
-    QStringList l_defs=splitColDef(def);
-    def=l_defs.join("");
-    def.remove('|');
-    return def;
+	QString def=getDef(cur);
+	QStringList l_defs=splitColDef(def);
+	def=l_defs.join("");
+	def.remove('|');
+	return def;
 }
 
 QString LatexTables::getTableText(QDocumentCursor &cur){
-        int result=findNextToken(cur,QStringList(),false,true);
-        if(result!=-2) return QString();
-        QString line=cur.line().text();
-        int i=line.indexOf("\\begin");
-        if(i>=0)
-            cur.setColumnNumber(i);
-        result=findNextToken(cur,QStringList(),true,false);
-        if(result!=-2) return QString();
-        line=cur.line().text();
-        QRegExp rx("\\\\end\\{.*\\}");
-        i=rx.indexIn(line);
-        if(i>=0)
-            cur.setColumnNumber(i+rx.cap(0).length(),QDocumentCursor::KeepAnchor);
-        QString res=cur.selectedText();
-        return res;
+	int result=findNextToken(cur,QStringList(),false,true);
+	if(result!=-2) return QString();
+	QString line=cur.line().text();
+	int i=line.indexOf("\\begin");
+	if(i>=0)
+		cur.setColumnNumber(i);
+	result=findNextToken(cur,QStringList(),true,false);
+	if(result!=-2) return QString();
+	line=cur.line().text();
+	QRegExp rx("\\\\end\\{.*\\}");
+	i=rx.indexIn(line);
+	if(i>=0)
+		cur.setColumnNumber(i+rx.cap(0).length(),QDocumentCursor::KeepAnchor);
+	QString res=cur.selectedText();
+	return res;
 }

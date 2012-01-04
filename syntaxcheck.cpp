@@ -3,7 +3,7 @@
 #include "tablemanipulation.h"
 
 SyntaxCheck::SyntaxCheck(QObject *parent) :
-		QThread(parent), syntaxErrorFormat(-1)
+       QThread(parent), syntaxErrorFormat(-1)
 {
 	mLinesLock.lock();
 	stopped=false;
@@ -62,8 +62,8 @@ void SyntaxCheck::run(){
 		StackEnvironment activeEnv=newLine.prevEnv;
 		line=LatexParser::cutComment(line);
 		Ranges newRanges;
-
-        checkLine(line,newRanges,activeEnv);
+		
+		checkLine(line,newRanges,activeEnv);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		//if(newRanges.isEmpty()) continue;
@@ -71,13 +71,13 @@ void SyntaxCheck::run(){
 		if(newLine.ticket==newLine.dlh->getCurrentTicket()){ // discard results if text has been changed meanwhile
 			foreach(const Error& elem,newRanges)
 				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
-
+			
 			// active envs
 			QVariant oldEnvVar=newLine.dlh->getCookie(1);
 			StackEnvironment oldEnv;
 			if(oldEnvVar.isValid())
 				oldEnv=oldEnvVar.value<StackEnvironment>();
-            bool cookieChanged=!equalEnvStack(oldEnv,activeEnv);
+			bool cookieChanged=!equalEnvStack(oldEnv,activeEnv);
 			//if excessCols has changed the subsequent lines need to be rechecked.
 			if(cookieChanged){
 				QVariant env;
@@ -85,11 +85,11 @@ void SyntaxCheck::run(){
 				newLine.dlh->setCookie(1,env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
 				//qDebug() << newLine.dlh->text() << ":" << activeEnv.size();
-                emit checkNextLine(newLine.dlh,true,newLine.ticket);
+				emit checkNextLine(newLine.dlh,true,newLine.ticket);
 			}
 		}
 		newLine.dlh->unlock();
-
+		
 		newLine.dlh->deref(); //if deleted, delete now
 	}
 }
@@ -121,7 +121,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 						Environment tp;
 						tp.name=env;
 						tp.id=1; //needs correction
-                        tp.excessCol=0;
+						tp.excessCol=0;
 						if(env=="tabular" || LatexParser::environmentAliases.values(env).contains("tabular")){
 							// tabular env opened
 							// get cols !!!!
@@ -129,28 +129,28 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 							tp.id=cols;
 						}
 						activeEnv.push(tp);
-                    }else{
-                        if(!activeEnv.isEmpty()){
-                            Environment tp=activeEnv.top();
-                            if(tp.name==env){
-                                activeEnv.pop();
-                                if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
-                                    // correct length of col error if it exists
-                                    if(!newRanges.isEmpty()){
-                                        Error &elem=newRanges.last();
-                                        if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
-                                            elem.range.second=wordstart-elem.range.first;
-                                        }
-                                    }
-                                    // get new cols
-                                    cols=containsEnv("tabular",activeEnv);
-                                }
-                            }
-                        }
-                    }
-                    // add env-name for syntax checking to "word"
-                    word+=options.first();
-                }
+					}else{
+						if(!activeEnv.isEmpty()){
+							Environment tp=activeEnv.top();
+							if(tp.name==env){
+								activeEnv.pop();
+								if(tp.name=="tabular" || LatexParser::environmentAliases.values(tp.name).contains("tabular")){
+									// correct length of col error if it exists
+									if(!newRanges.isEmpty()){
+										Error &elem=newRanges.last();
+										if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
+											elem.range.second=wordstart-elem.range.first;
+										}
+									}
+									// get new cols
+									cols=containsEnv("tabular",activeEnv);
+								}
+							}
+						}
+					}
+					// add env-name for syntax checking to "word"
+					word+=options.first();
+				}
 			}
 			if(LatexParser::definitionCommands.contains(word)){ // don't check in command definition
 				QStringList options;
@@ -183,79 +183,79 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 					}
 				}
 			}
-            if(LatexParser::mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
+			if(LatexParser::mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
 				Environment env;
 				env.name="math";
 				env.id=1; // to be changed
 				activeEnv.push(env);
 				continue;
 			}
-            if(LatexParser::mathStopCommands.contains(word)&&!activeEnv.isEmpty()&&activeEnv.top().name=="math"){
+			if(LatexParser::mathStopCommands.contains(word)&&!activeEnv.isEmpty()&&activeEnv.top().name=="math"){
 				activeEnv.pop();
 				continue;
 			}
 			if(ltxCommands.possibleCommands["user"].contains(word)||LatexParser::customCommands.contains(word))
 				continue;
-
-            //tabular checking
-            if(topEnv("tabular",activeEnv)!=0){
-                if(word=="&"){
-                    activeEnv.top().excessCol++;
-                    if(activeEnv.top().excessCol>=activeEnv.top().id){
-                        Error elem;
-                        elem.range=QPair<int,int>(wordstart,word.length());
-                        elem.type=ERR_tooManyCols;
-                        newRanges.append(elem);
-                    }
-                    continue;
-                }
-                if(word=="\\\\"){
-                    if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
-                        Error elem;
-                        elem.range=QPair<int,int>(wordstart,word.length());
-                        elem.type=ERR_tooLittleCols;
-                        newRanges.append(elem);
-                    }
-                    if(activeEnv.top().excessCol>=(activeEnv.top().id)){
-                        Error elem;
-                        elem.range=QPair<int,int>(wordstart,word.length());
-                        elem.type=ERR_tooManyCols;
-                        newRanges.append(elem);
-                    }
-                    activeEnv.top().excessCol=0;
-                    continue;
-                }
-                if(word=="\\multicolumn"){
-                    QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
-                    rxMultiColumn.setMinimal(true);
-                    int res=rxMultiColumn.indexIn(line,wordstart);
-                    if(res>-1){
-                        // multicoulmn before &
-                        bool ok;
-                        int c=rxMultiColumn.cap(1).toInt(&ok);
-                        if(ok){
-                            activeEnv.top().excessCol+=c-1;
-                        }
-                    }
-                    if(activeEnv.top().excessCol>=activeEnv.top().id){
-                        Error elem;
-                        elem.range=QPair<int,int>(wordstart,word.length());
-                        elem.type=ERR_tooManyCols;
-                        newRanges.append(elem);
-                    }
-                    continue;
-                }
-
-            }
-            // ignore commands containing @
-            if(word.contains('@'))
-                continue;
-
+			
+			//tabular checking
+			if(topEnv("tabular",activeEnv)!=0){
+				if(word=="&"){
+					activeEnv.top().excessCol++;
+					if(activeEnv.top().excessCol>=activeEnv.top().id){
+						Error elem;
+						elem.range=QPair<int,int>(wordstart,word.length());
+						elem.type=ERR_tooManyCols;
+						newRanges.append(elem);
+					}
+					continue;
+				}
+				if(word=="\\\\"){
+					if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
+						Error elem;
+						elem.range=QPair<int,int>(wordstart,word.length());
+						elem.type=ERR_tooLittleCols;
+						newRanges.append(elem);
+					}
+					if(activeEnv.top().excessCol>=(activeEnv.top().id)){
+						Error elem;
+						elem.range=QPair<int,int>(wordstart,word.length());
+						elem.type=ERR_tooManyCols;
+						newRanges.append(elem);
+					}
+					activeEnv.top().excessCol=0;
+					continue;
+				}
+				if(word=="\\multicolumn"){
+					QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
+					rxMultiColumn.setMinimal(true);
+					int res=rxMultiColumn.indexIn(line,wordstart);
+					if(res>-1){
+						// multicoulmn before &
+						bool ok;
+						int c=rxMultiColumn.cap(1).toInt(&ok);
+						if(ok){
+							activeEnv.top().excessCol+=c-1;
+						}
+					}
+					if(activeEnv.top().excessCol>=activeEnv.top().id){
+						Error elem;
+						elem.range=QPair<int,int>(wordstart,word.length());
+						elem.type=ERR_tooManyCols;
+						newRanges.append(elem);
+					}
+					continue;
+				}
+				
+			}
+			// ignore commands containing @
+			if(word.contains('@'))
+				continue;
+			
 			if(!checkCommand(word,activeEnv)){
 				Error elem;
 				elem.range=QPair<int,int>(wordstart,word.length());
 				elem.type=ERR_unrecognizedCommand;
-
+				
 				if(ltxCommands.possibleCommands["math"].contains(word))
 					elem.type=ERR_MathCommandOutsideMath;
 				if(ltxCommands.possibleCommands["tabular"].contains(word))
@@ -265,10 +265,10 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 				newRanges.append(elem);
 			}
 		}
-
+		
 	}
-
-
+	
+	
 }
 
 QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous){
@@ -283,7 +283,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	QStack<Environment> activeEnv=previous;
 	line=LatexParser::cutComment(line);
 	Ranges newRanges;
-    checkLine(line,newRanges,activeEnv);
+	checkLine(line,newRanges,activeEnv);
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(const Error& elem,newRanges){
@@ -292,10 +292,10 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 		result=elem.type;
 	}
 	// now generate Error message
-
+	
 	QStringList messages;
 	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
-			<< tr("\\\\ missing");
+	         << tr("\\\\ missing");
 	return messages.value(int(result),tr("unknown"));
 }
 void SyntaxCheck::setLtxCommands(LatexParser cmds){
@@ -314,22 +314,22 @@ bool SyntaxCheck::queuedLines(){
 }
 
 int SyntaxCheck::topEnv(const QString& name,const StackEnvironment& envs,const int id){
-    if(envs.isEmpty())
-        return 0;
-
-    Environment env=envs.top();
-    if(env.name==name){
-        if(id<0 || env.id==id)
-            return env.id;
-    }
-    if(id<0 && LatexParser::environmentAliases.contains(env.name)){
-        QStringList altEnvs=LatexParser::environmentAliases.values(env.name);
-        foreach(QString altEnv,altEnvs){
-            if(altEnv==name)
-                return env.id;
-        }
-    }
-    return 0;
+	if(envs.isEmpty())
+		return 0;
+	
+	Environment env=envs.top();
+	if(env.name==name){
+		if(id<0 || env.id==id)
+			return env.id;
+	}
+	if(id<0 && LatexParser::environmentAliases.contains(env.name)){
+		QStringList altEnvs=LatexParser::environmentAliases.values(env.name);
+		foreach(QString altEnv,altEnvs){
+			if(altEnv==name)
+				return env.id;
+		}
+	}
+	return 0;
 }
 
 int SyntaxCheck::containsEnv(const QString& name,const StackEnvironment& envs,const int id){
