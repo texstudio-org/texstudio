@@ -739,7 +739,7 @@ QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(QObject *p): QObject(p),maxWordLen(0),forcedRef(false),forcedGraphic(false) {
+LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false) {
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -1101,7 +1101,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	QString id=helpIndices.value(cmd,"");
 	if (id=="") return;
 	QString topic;
-	if(LatexParser::refCommands.contains(cmd)){
+	if(latexParser.refCommands.contains(cmd)){
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
 		value.remove(0,i+1);

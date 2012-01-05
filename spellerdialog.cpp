@@ -77,7 +77,7 @@ void SpellerDialog::startSpelling() {
 		QString tempWord;
 		//jump from word to word until an valid index is reached
 		while (nextIndex<startIndex)
-			if (!nextTextWord(curLine,nextIndex,tempWord,wordStartIndex)) break;
+			if (!LatexParser::getInstance().nextTextWord(curLine,nextIndex,tempWord,wordStartIndex)) break;
 		startIndex=wordStartIndex;
 	}
 	curLine=startLine;
@@ -143,7 +143,7 @@ void SpellerDialog::SpellingNextWord() {
 	if (!editor || !m_speller) return;
 	for (; curLine<=endLine; curLine++) {
 		int wordStartIndex;
-		while (nextTextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {
+		while (LatexParser::getInstance().nextTextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {
 			if (curLine==endLine && curIndex>endIndex)
 				break; //not in checked range
 			if (m_speller->check(curWord)) continue;

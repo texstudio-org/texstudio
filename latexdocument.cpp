@@ -236,9 +236,10 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 			} else l++;
 		}
 	}
-	
-	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
-	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
+
+	LatexParser& latexParser = LatexParser::getInstance();	
+	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
+	QVector<QList<StructureEntry*> > remainingChildren(latexParser.structureCommands.count());
 	QMap<StructureEntry*,int> toBeDeleted;
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
@@ -314,8 +315,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
 	findStructureEntryBefore(iter_bibTeX,MapOfBibtex,linenr,count);
 	
-	QVector<StructureEntry*> parent_level(LatexParser::structureCommands.count());
-	QVector<QList<StructureEntry*> > remainingChildren(LatexParser::structureCommands.count());
+	LatexParser& latexParser = LatexParser::getInstance();
+	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
+	QVector<QList<StructureEntry*> > remainingChildren(latexParser.structureCommands.count());
 	QMap<StructureEntry*,int> toBeDeleted;
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
@@ -434,7 +436,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		////Ref
 		//for reference counting (can be placed in command options as well ...
-		foreach(QString cmd,LatexParser::refCommands){
+		foreach(QString cmd,latexParser.refCommands){
 			QString name;
 			cmd.append('{');
 			int start=0;
@@ -450,7 +452,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		//// label ////
 		//TODO: Use label from dynamical reference checker
-		foreach(QString cmd,LatexParser::labelCommands){
+		foreach(QString cmd,latexParser.labelCommands){
 			QString name;
 			cmd.append('{');
 			int start=0;
@@ -503,7 +505,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			curLine=remainder;
 			//// newcommand ////
 			//TODO: handle optional arguments
-			if (LatexParser::definitionCommands.contains(cmd)) {
+			if (latexParser.definitionCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*\\[(\\d+)\\](\\[.+\\])?");
 				int options=0;
@@ -600,13 +602,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				continue;
 			}
 			///usepackage
-			if (LatexParser::usepackageCommands.contains(cmd)) {
+			if (latexParser.usepackageCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
 				QStringList packagesHelper=name.split(",");
 				QStringList packages;
 				foreach(const QString& elem,packagesHelper)
-					if(LatexParser::packageAliases.contains(elem))
-						packages << LatexParser::packageAliases.values(elem);
+					if(latexParser.packageAliases.contains(elem))
+						packages << latexParser.packageAliases.values(elem);
 					else
 						packages << elem;
 				
@@ -670,7 +672,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// include,input ////
 			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
 			
-			if (LatexParser::includeCommands.contains(cmd)) {
+			if (latexParser.includeCommands.contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				baseStructure->add(newInclude);
 				newInclude->title=name;
@@ -689,7 +691,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// all sections ////
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
-			int header=LatexParser::structureCommands.indexOf(cmd);
+			int header=latexParser.structureCommands.indexOf(cmd);
 			if (header>-1) {
 				StructureEntry *newSection;
 				StructureEntry* parent=header == 0 ? baseStructure : parent_level[header];
@@ -1123,9 +1125,9 @@ LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
        iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
        iconWarning(getRealIcon("warning")), m_singleMode(false){
 	mHighlightIndex=QModelIndex();
-	iconSection.resize(LatexParser::structureCommands.count());
-	for (int i=0;i<LatexParser::structureCommands.count();i++)
-		iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
+	iconSection.resize(LatexParser::getInstance().structureCommands.count());
+	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
+		iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -1258,12 +1260,12 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
-	if(entry->level>LatexParser::structureCommands.count() || entry->level<0){
+	if(entry->level>LatexParser::getInstance().structureCommands.count() || entry->level<0){
 		qDebug("Structure broken! %p",entry);
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
-	if(entry->parent->level>LatexParser::structureCommands.count() || entry->parent->level<0){
+	if(entry->parent->level>LatexParser::getInstance().structureCommands.count() || entry->parent->level<0){
 		qDebug("Structure broken! %p",entry);
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
@@ -1601,9 +1603,9 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 	return 0;
 }
 void LatexDocuments::settingsRead(){
-	model->iconSection.resize(LatexParser::structureCommands.count());
-	for (int i=0;i<LatexParser::structureCommands.count();i++)
-		model->iconSection[i]=QIcon(":/images/"+LatexParser::structureCommands[i].mid(1)+".png");
+	model->iconSection.resize(LatexParser::getInstance().structureCommands.count());
+	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
+		model->iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
 }
 bool LatexDocuments::singleMode(){
 	return !masterDocument;

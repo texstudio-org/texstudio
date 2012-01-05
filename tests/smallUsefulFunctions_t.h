@@ -15,11 +15,11 @@ class TestToken: public QString{
 	static const QRegExp ignoredTextRegExp;
 	static const QRegExp specialCharTextRegExp;
 	void guessType(){
-		if (simpleTextRegExp.exactMatch(*this)) type=NW_TEXT;
-		else if (commandRegExp.exactMatch(*this)) type=NW_COMMAND;
+		if (simpleTextRegExp.exactMatch(*this)) type=LatexParser::NW_TEXT;
+		else if (commandRegExp.exactMatch(*this)) type=LatexParser::NW_COMMAND;
 		else if (ignoredTextRegExp.exactMatch(*this)) type=NW_IGNORED_TOKEN;
-		else if (*this=="%") type=NW_COMMENT;
-		else if (specialCharTextRegExp.exactMatch(*this)) type=NW_TEXT;
+		else if (*this=="%") type=LatexParser::NW_COMMENT;
+		else if (specialCharTextRegExp.exactMatch(*this)) type=LatexParser::NW_TEXT;
 		else QVERIFY2(false, QString("invalid test data: \"%1\"").arg(*this).toLatin1().constData());
 	}
 public:
@@ -51,7 +51,7 @@ Q_DECLARE_METATYPE(QList<TestToken>);
 class SmallUsefulFunctionsTest: public QObject{
 	Q_OBJECT
 	TestToken env(const QString& str){
-		return TestToken(str, NW_ENVIRONMENT);
+		return TestToken(str, LatexParser::NW_ENVIRONMENT);
 	}
 	TestToken option(const QString& str){
 		return TestToken(str, NW_OPTION);
@@ -65,7 +65,7 @@ class SmallUsefulFunctionsTest: public QObject{
 			tokens[i].position=curpos;
 			str+=tokens[i];
 			curpos+=tokens[i].size();
-			if (tokens[i].type==NW_COMMENT && i<firstComment) firstComment=i;
+			if (tokens[i].type==LatexParser::NW_COMMENT && i<firstComment) firstComment=i;
 		}
 		//remove all tokens which don't belong to the current test
 		switch (filter){
@@ -77,23 +77,23 @@ class SmallUsefulFunctionsTest: public QObject{
 			case FILTER_NEXTWORD_WITH_COMMANDS:
 				for (int i=tokens.size()-1;i>=0;i--)
 					if (tokens[i].type==NW_IGNORED_TOKEN)	tokens.removeAt(i);
-					else if (tokens[i].type==NW_ENVIRONMENT || tokens[i].type==NW_OPTION)
-						tokens[i].type=NW_TEXT;//nextWord in command mode don't distinguish between text, environments and options
+					else if (tokens[i].type==LatexParser::NW_ENVIRONMENT || tokens[i].type==NW_OPTION)
+						tokens[i].type=LatexParser::NW_TEXT;//nextWord in command mode don't distinguish between text, environments and options
 					//else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT)
 						//tokens[i].replace("\\%","%"); //unescape escaped characters
 				break;
 			case FILTER_NEXTWORD:
 				for (int i=tokens.size()-1;i>=0;i--) 
-					if (tokens[i].type==NW_COMMAND || tokens[i].type==NW_OPTION || tokens[i].type==NW_IGNORED_TOKEN) 
+					if (tokens[i].type==LatexParser::NW_COMMAND || tokens[i].type==NW_OPTION || tokens[i].type==NW_IGNORED_TOKEN) 
 						tokens.removeAt(i);//remove tokens not returned by nextWord in text mode
-					//else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT)
+					//else if (tokens[i].contains("\\") && tokens[i].type==LatexParser::NW_TEXT)
 						//tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			case FILTER_NEXTTEXTWORD:
 				for (int i=tokens.size()-1;i>=0;i--)
-					if (tokens[i].type!=NW_TEXT || i>=firstComment)  
+					if (tokens[i].type!=LatexParser::NW_TEXT || i>=firstComment)  
 						tokens.removeAt(i);//remove all except text before comment start
-					//else if (tokens[i].contains("\\") && tokens[i].type==NW_TEXT)
+					//else if (tokens[i].contains("\\") && tokens[i].type==LatexParser::NW_TEXT)
 						//tokens[i].replace("\\",""); //unescape escaped characters
 				break;
 			default:
@@ -121,7 +121,7 @@ class SmallUsefulFunctionsTest: public QObject{
 		addRow("escaped characters", filter, QList<TestToken>() << "hallo" << TestToken("\\%",NW_IGNORED_TOKEN) << "abc");
 		addRow("escaped characters", filter, QList<TestToken>() << "1234" << TestToken("\\%\\&\\_",NW_IGNORED_TOKEN)  << "567890");
 		addRow("special characters", filter,
-			   QList<TestToken>() << "lösbar" << " " << TestToken("l\"osbar","lösbar",NW_TEXT) << " " << TestToken("l\\\"osbar","lösbar",NW_TEXT) << " " << TestToken("l\\\"{o}sbar","lösbar",NW_TEXT) << " " << "örtlich" <<" " <<TestToken("\"ortlich","örtlich",NW_TEXT)<<" " <<TestToken("\\\"ortlich","örtlich",NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich","örtlich",NW_TEXT) );
+			   QList<TestToken>() << "lösbar" << " " << TestToken("l\"osbar","lösbar",LatexParser::NW_TEXT) << " " << TestToken("l\\\"osbar","lösbar",LatexParser::NW_TEXT) << " " << TestToken("l\\\"{o}sbar","lösbar",LatexParser::NW_TEXT) << " " << "örtlich" <<" " <<TestToken("\"ortlich","örtlich",LatexParser::NW_TEXT)<<" " <<TestToken("\\\"ortlich","örtlich",LatexParser::NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich","örtlich",LatexParser::NW_TEXT) );
 	}
 	void nextWord_complex_test(bool commands){
 		//get data
@@ -130,7 +130,8 @@ class SmallUsefulFunctionsTest: public QObject{
 		int index=0;int startIndex=0;
 		int pos=0; int type;
 		QString token;
-		while ((type=nextWord(str, index, token, startIndex, commands))!=NW_NOTHING) {
+		LatexParser &lp = LatexParser::getInstance();
+		while ((type=lp.nextWord(str, index, token, startIndex, commands))!=LatexParser::NW_NOTHING) {
 			if (pos>=tokens.size()) {
 				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 			} else {
@@ -152,7 +153,9 @@ private slots:
 		//check
 		int index=0;int startIndex=0;
 		int pos=0;
-		while ((startIndex = nextToken(str,index)) != -1) {
+		LatexParser &lp = LatexParser::getInstance();
+		
+		while ((startIndex = lp.nextToken(str,index)) != -1) {
 			QString token=str.mid(startIndex,index-startIndex);
 			if (pos>=tokens.size()) {
 				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
@@ -181,7 +184,8 @@ private slots:
 		int index=0;int startIndex=0;
 		int pos=0;
 		QString token;
-		while (nextTextWord(str, index, token, startIndex)) {
+		LatexParser& lp = LatexParser::getInstance();
+		while (lp.nextTextWord(str, index, token, startIndex)) {
 			if (pos>=tokens.size()) QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 			else {
 				QVERIFY2(tokens[pos]==token, QString("Invalid token: %1 at %2, expected %3").arg(token).arg(startIndex).arg(tokens[pos]).toLatin1().constData());
@@ -205,38 +209,38 @@ private slots:
 		QTest::addColumn<int>("wordStartIndex");
 		
 		QTest::newRow("reference") << "bummerang\\ref{  xyz  }abcdef" << 9 << false << false
-		                           << (int)NW_REFERENCE << 21 << "  xyz  " << 14;
+		                           << (int)LatexParser::NW_REFERENCE << 21 << "  xyz  " << 14;
 		QTest::newRow("unknown")   << "bummerang\\adxas{  x:y:z  }abcdef" << 9 << false << false
-		                           << (int)NW_TEXT << 32 << "abcdef" << 26;
+		                           << (int)LatexParser::NW_TEXT << 32 << "abcdef" << 26;
 		QTest::newRow("label")     << "bummerang\\label{  x:y:z  }abcdef" << 9 << false << false
-		                           << (int)NW_LABEL << 25 << "  x:y:z  " << 16;
+		                           << (int)LatexParser::NW_LABEL << 25 << "  x:y:z  " << 16;
 		QTest::newRow("citation0") << "012345\\cite{aaaHallob}abcdef" << 6 << false << false
-		                           << (int)NW_CITATION << 21 << "aaaHallob" << 12;
+		                           << (int)LatexParser::NW_CITATION << 21 << "aaaHallob" << 12;
 		QTest::newRow("citation1") << "012345\\cite{   Hallo   }abcdef" << 6 << false << false
-		                           << (int)NW_CITATION << 23 << "   Hallo   " << 12;
+		                           << (int)LatexParser::NW_CITATION << 23 << "   Hallo   " << 12;
 		QTest::newRow("citation2") << "012345\\textcite{ Hallo:Welt! }abcdef" <<6  << false << false
-		                           << (int)NW_CITATION << 29 << " Hallo:Welt! " << 16;
+		                           << (int)LatexParser::NW_CITATION << 29 << " Hallo:Welt! " << 16;
 		QTest::newRow("citation3") << "012345\\cite[aasasadaa]{Hallo:Welt!,miau!}abcdef" << 6 << false << false
-		                           << (int)NW_CITATION << 40 << "Hallo:Welt!,miau!" << 23;
-		QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)NW_TEXT << 7 << "TEST" << 3;
-		QTest::newRow("abbrev.")   << "+++TEST.---" << 0 << false << true << (int)NW_TEXT << 8 << "TEST." << 3;
-		QTest::newRow("in cmd.")   << "\\section{text}" << 0 << false << false << (int)NW_TEXT << 13 << "text" << 9;
-		QTest::newRow("' chars")   << " can't " << 0 << false << false << (int)NW_TEXT << 6 << "can't" << 1;
-		QTest::newRow("' char2")   << " 'abc def' " << 0 << false << false << (int)NW_TEXT << 5 << "abc" << 2;
-		QTest::newRow("' char3")   << " 'abc def' " << 5 << false << false << (int)NW_TEXT << 9 << "def" << 6;
-		QTest::newRow("sepchars")  << " ha\\-llo " << 0 << false << false << (int)NW_TEXT << 8 << "hallo" << 1;
-		QTest::newRow("sepchar2")  << " la\"-tex " << 0 << false << false << (int)NW_TEXT << 8 << "latex" << 1;
-		QTest::newRow("sepchar3")  << "!ab\"\"xyz!" << 0 << false << false << (int)NW_TEXT << 8 << "abxyz" << 1;
-		QTest::newRow("sepchar4")  << "?oz\"|di?" << 0 << false << false << (int)NW_TEXT << 7 << "ozdi" << 1;
-		QTest::newRow("sepchar5")  << "?oz\"adi?" << 0 << false << false << (int)NW_TEXT << 7 << QString("oz%1di").arg(QChar(0xE4)) << 1;
-		QTest::newRow("sepchar6")  << "?oz\\\"{a}di?" << 0 << false << false << (int)NW_TEXT << 10 << QString("oz%1di").arg(QChar(0xE4)) << 1;
-		QTest::newRow("sepchar7")  << "?oz\\\"adi?" << 0 << false << false << (int)NW_TEXT << 8 << QString("oz%1di").arg(QChar(0xE4)) << 1;
-		QTest::newRow("sepchar8")  << "?oz\"\"adi?" << 0 << false << false << (int)NW_TEXT << 8 << "ozadi" << 1;
-		QTest::newRow("sepchar8")  << "?oz\"yxdi?" << 0 << false << false << (int)NW_TEXT << 8 << "ozyxdi" << 1;
-		QTest::newRow("sepchar8")  << "?oz\"y?" << 0 << false << false << (int)NW_TEXT << 5 << "ozy" << 1;
-		QTest::newRow("word end")  << "?no\"<di?" << 0 << false << false << (int)NW_TEXT << 3 << "no" << 1;
-		QTest::newRow("word end")  << "?yi''di?" << 0 << false << false << (int)NW_TEXT << 3 << "yi" << 1;
-		QTest::newRow("umlauts")  << "\"a\"o\"u\"A\"O\"U\\\"{a}\\\"{o}\\\"{u}\\\"{A}\\\"{O}\\\"{U}" << 0 << false << false << (int)NW_TEXT << 42 << (QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))+QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))) << 0; //unicode to be independent from c++ character encoding
+		                           << (int)LatexParser::NW_CITATION << 40 << "Hallo:Welt!,miau!" << 23;
+		QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)LatexParser::NW_TEXT << 7 << "TEST" << 3;
+		QTest::newRow("abbrev.")   << "+++TEST.---" << 0 << false << true << (int)LatexParser::NW_TEXT << 8 << "TEST." << 3;
+		QTest::newRow("in cmd.")   << "\\section{text}" << 0 << false << false << (int)LatexParser::NW_TEXT << 13 << "text" << 9;
+		QTest::newRow("' chars")   << " can't " << 0 << false << false << (int)LatexParser::NW_TEXT << 6 << "can't" << 1;
+		QTest::newRow("' char2")   << " 'abc def' " << 0 << false << false << (int)LatexParser::NW_TEXT << 5 << "abc" << 2;
+		QTest::newRow("' char3")   << " 'abc def' " << 5 << false << false << (int)LatexParser::NW_TEXT << 9 << "def" << 6;
+		QTest::newRow("sepchars")  << " ha\\-llo " << 0 << false << false << (int)LatexParser::NW_TEXT << 8 << "hallo" << 1;
+		QTest::newRow("sepchar2")  << " la\"-tex " << 0 << false << false << (int)LatexParser::NW_TEXT << 8 << "latex" << 1;
+		QTest::newRow("sepchar3")  << "!ab\"\"xyz!" << 0 << false << false << (int)LatexParser::NW_TEXT << 8 << "abxyz" << 1;
+		QTest::newRow("sepchar4")  << "?oz\"|di?" << 0 << false << false << (int)LatexParser::NW_TEXT << 7 << "ozdi" << 1;
+		QTest::newRow("sepchar5")  << "?oz\"adi?" << 0 << false << false << (int)LatexParser::NW_TEXT << 7 << QString("oz%1di").arg(QChar(0xE4)) << 1;
+		QTest::newRow("sepchar6")  << "?oz\\\"{a}di?" << 0 << false << false << (int)LatexParser::NW_TEXT << 10 << QString("oz%1di").arg(QChar(0xE4)) << 1;
+		QTest::newRow("sepchar7")  << "?oz\\\"adi?" << 0 << false << false << (int)LatexParser::NW_TEXT << 8 << QString("oz%1di").arg(QChar(0xE4)) << 1;
+		QTest::newRow("sepchar8")  << "?oz\"\"adi?" << 0 << false << false << (int)LatexParser::NW_TEXT << 8 << "ozadi" << 1;
+		QTest::newRow("sepchar8")  << "?oz\"yxdi?" << 0 << false << false << (int)LatexParser::NW_TEXT << 8 << "ozyxdi" << 1;
+		QTest::newRow("sepchar8")  << "?oz\"y?" << 0 << false << false << (int)LatexParser::NW_TEXT << 5 << "ozy" << 1;
+		QTest::newRow("word end")  << "?no\"<di?" << 0 << false << false << (int)LatexParser::NW_TEXT << 3 << "no" << 1;
+		QTest::newRow("word end")  << "?yi''di?" << 0 << false << false << (int)LatexParser::NW_TEXT << 3 << "yi" << 1;
+		QTest::newRow("umlauts")  << "\"a\"o\"u\"A\"O\"U\\\"{a}\\\"{o}\\\"{u}\\\"{A}\\\"{O}\\\"{U}" << 0 << false << false << (int)LatexParser::NW_TEXT << 42 << (QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))+QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))) << 0; //unicode to be independent from c++ character encoding
 	}
 	void nextWord_simple(){
 		QFETCH(QString, line);
@@ -251,7 +255,7 @@ private slots:
 		
 		QString row;
 		int wsi;
-		int rs=(int)(nextWord(line,inIndex,row,wsi,commands,abbreviations));
+		int rs=(int)(LatexParser::getInstance().nextWord(line,inIndex,row,wsi,commands,abbreviations));
 
 		QEQUAL(row,outWord);
 		QEQUAL(rs, result);
@@ -293,7 +297,7 @@ private slots:
 		QFETCH(QString, in);
 		QFETCH(int, pos);
 		QFETCH(int, out);
-		int res=LatexParser::findContext(in,pos);
+		int res=LatexParser::getInstance().findContext(in,pos);
 		QEQUAL(res,out);
 	}
 	void test_findContext2_data(){
@@ -321,7 +325,7 @@ private slots:
 		QFETCH(QString, value);
 		QString cmd;
 		QString val;
-		LatexParser::ContextType res=LatexParser::findContext(in,pos,cmd,val);
+		LatexParser::ContextType res=LatexParser::getInstance().findContext(in,pos,cmd,val);
 		QEQUAL((int)res,out);
 		QEQUAL(cmd,command);
 		QEQUAL(val,value);

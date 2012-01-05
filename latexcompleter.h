@@ -34,7 +34,7 @@ public:
 	enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
 
-	LatexCompleter(QObject *p = 0);
+	LatexCompleter(const LatexParser& latexParser, QObject *p = 0);
 	virtual ~LatexCompleter();
 
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
@@ -73,6 +73,7 @@ private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
 	static LatexCompleterConfig* config;
+	const LatexParser& latexParser;
 	int maxWordLen;
 	QListView * list;
 	CompletionListModel* listModel;
@@ -102,7 +103,7 @@ private slots:
 	void editorDestroyed();
 	void changeView(int pos);
 	void listClicked(QModelIndex index);
-        void directoryLoaded(QString dn,QSet<QString> content);
+	void directoryLoaded(QString dn,QSet<QString> content);
 };
 
 #endif

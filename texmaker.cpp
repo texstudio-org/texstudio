@@ -51,7 +51,7 @@
 #include "qnfadefinition.h"
 
 #include <QMessageBox>
-
+Q_DECLARE_METATYPE(LatexParser);
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
        : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 	
@@ -81,7 +81,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	outputView=0;
 	templateSelectorDialog=0;
 	
-	importCwlAliases();
+	qRegisterMetaType<LatexParser>();
+	latexParser.importCwlAliases();
 	
 	QDocument::setFormatFactory(m_formats);
 	SpellerUtility::spellcheckErrorFormat = m_formats->id("spellingMistake");
@@ -189,7 +190,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	installEventFilter(this);
 	
 	
-	completer=new LatexCompleter(this);
+	completer=new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
@@ -1981,7 +1982,7 @@ void Texmaker::editEraseWordCmdEnv(){
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
 	QString line=cursor.line().text();
 	QString command, value;
-	switch(LatexParser::findContext(line, cursor.columnNumber(), command, value)){
+	switch (latexParser.findContext(line, cursor.columnNumber(), command, value)){
 	
 	case LatexParser::Command:
 		if (command=="\\begin" || command=="\\end"){
@@ -2064,7 +2065,7 @@ void Texmaker::editGotoDefinition(){
 	if (!currentEditorView())	return;
 	QDocumentCursor c=currentEditor()->cursor();
 	QString command, value;
-	switch (LatexParser::findContext(c.line().text(), c.columnNumber(), command, value)) {
+	switch (latexParser.findContext(c.line().text(), c.columnNumber(), command, value)) {
 	case LatexParser::Reference:
 		currentEditorView()->gotoToLabel(value);
 		break;
@@ -2313,7 +2314,6 @@ void Texmaker::ReadSettings() {
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
 	configManager.registerOption("User/Templates",&userTemplatesList);
-	configManager.ltxCommands=&(documents.ltxCommands);
 	
 	configManager.buildManager=&buildManager;
 	scriptengine::buildManager=&buildManager;
@@ -2351,15 +2351,15 @@ void Texmaker::ReadSettings() {
 		}
 	}
 	
-	LatexParser::structureCommands.clear();
+	latexParser.structureCommands.clear();
 	if(config->value("Structure/Structure Level 1","").toString()==""){
-		LatexParser::structureCommands << "\\part" << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection";
+		latexParser.structureCommands << "\\part" << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection";
 	}else{
 		int i=0;
 		QString elem;
 		while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
 			if (!elem.startsWith("\\")) elem=elem.prepend("\\");
-			LatexParser::structureCommands << elem;
+			latexParser.structureCommands << elem;
 			i++;
 		}
 	}
@@ -2630,7 +2630,7 @@ void Texmaker::NormalCompletion() {
 	}
 	
 	QString command,value;
-	LatexParser::ContextType ctx=LatexParser::findContext(word, c.columnNumber(), command, value);
+	LatexParser::ContextType ctx=latexParser.findContext(word, c.columnNumber(), command, value);
 	switch(ctx){
 	case LatexParser::Command:
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
@@ -2642,7 +2642,7 @@ void Texmaker::NormalCompletion() {
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
 	case LatexParser::Option:
-		if(LatexParser::graphicsIncludeCommands.contains(command)){
+		if(latexParser.graphicsIncludeCommands.contains(command)){
 			QString fn=documents.getCompileFileName();
 			QFileInfo fi(fn);
 			completer->setWorkPath(fi.absolutePath());
@@ -4407,7 +4407,7 @@ void Texmaker::updateCompleter() {
 		foreach(const LatexDocument* doc,docs){
 			words.unite(doc->userCommandList());
 			words.unite(doc->additionalCommandsList());
-			foreach(const QString& refCommand, LatexParser::refCommands){
+			foreach(const QString& refCommand, latexParser.refCommands){
 				QString temp=refCommand+"{%1}";
 				for (int i=0; i<doc->labelItem().count(); ++i)
 					words.insert(temp.arg(doc->labelItem().at(i)));
@@ -4415,13 +4415,13 @@ void Texmaker::updateCompleter() {
 		}
 	}
 	
-	//add cite commands from the cwls to LatexParser::citeCommands
+	//add cite commands from the cwls to latexParser.citeCommands
 	LatexCompleterConfig *conf=configManager.completerConfig;
 	QStringList citeCommands=conf->words;
 	citeCommands<<words.toList();
 	citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
 	foreach(QString elem,citeCommands)
-		LatexParser::citeCommands.insert(elem.remove("{%<keylist%>}"));
+		latexParser.citeCommands.insert(elem.remove("{%<keylist%>}"));
 	
 	if (configManager.parseBibTeX)
 		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
@@ -4432,7 +4432,7 @@ void Texmaker::updateCompleter() {
 			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
 			
 			//automatic use of cite commands
-			foreach(const QString& citeCommand, LatexParser::citeCommands){
+			foreach(const QString& citeCommand, latexParser.citeCommands){
 				QString temp=citeCommand+"{%1}";
 				for (int i=0; i<bibTex.ids.count();i++)
 					words.insert(temp.arg(bibTex.ids[i]));
@@ -5294,7 +5294,7 @@ bool Texmaker::generateMirror(bool setCur){
 	QDocumentCursor oldCursor = cursor;
 	QString line=cursor.line().text();
 	QString command, value;
-	LatexParser::ContextType result=LatexParser::findContext(line, cursor.columnNumber(), command, value);
+	LatexParser::ContextType result=latexParser.findContext(line, cursor.columnNumber(), command, value);
 	if(result==LatexParser::Environment){
 		if ((command=="\\begin" || command=="\\end")&& !value.isEmpty()){
 			//int l=cursor.lineNumber();
@@ -5687,8 +5687,8 @@ void Texmaker::updateHighlighting(){
 	QStringList envList;
 	envList<<"math"<<"verbatim";
 	bool updateNecessary=false;
-	QMultiHash<QString, QString>::const_iterator it = documents.ltxCommands.environmentAliases.constBegin();
-	while (it != documents.ltxCommands.environmentAliases.constEnd()) {
+	QMultiHash<QString, QString>::const_iterator it = latexParser.environmentAliases.constBegin();
+	while (it != latexParser.environmentAliases.constEnd()) {
 		if(envList.contains(it.value())){
 			if(!detectedEnvironmentsForHighlighting.contains(it.key())){
 				detectedEnvironmentsForHighlighting.insert(it.key(),it.value());

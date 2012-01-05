@@ -227,15 +227,15 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 	while (pos<code.length()) {
 		args.clear();
 		argStarts.clear();
-		int nw = nextWord(code, pos, word, wordStart, true);
-		if (nw == NW_COMMENT) {
+		int nw = LatexParser::getInstance().nextWord(code, pos, word, wordStart, true);
+		if (nw == LatexParser::NW_COMMENT) {
 			if (!containsComment) txsWarning("Graphics inclusion wizard does not support comments. They will be removed if you edit the code with the wizard.");
 			containsComment = true;
 			pos = code.indexOf("\n", pos);
 			continue;
-		} else if (nw != NW_COMMAND) {
+		} else if (nw != LatexParser::NW_COMMAND) 
 			continue;
-		}
+		
 
 		if (word=="\\centering") {
 			conf.center = true;

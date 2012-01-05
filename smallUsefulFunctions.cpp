@@ -27,30 +27,32 @@ const QString CommonEOW="~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'+";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
-QSet<QString> LatexParser::refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref" << "\\eqref"  << "\\nameref" << "\\vref" << "\\autoref" << "\\cref" << "\\Cref");
-QSet<QString> LatexParser::labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
-QSet<QString> LatexParser::citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
-QSet<QString> LatexParser::environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-QSet<QString> LatexParser::definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
-QSet<QString> LatexParser::optionCommands; // = QSet<QString>::fromList(QStringList() << LatexParser::refCommands.toList() << LatexParser::labelCommands.toList() << "\\includegraphics" << "\\usepackage" << "\\documentclass" << "\\include" << "\\input" << "\\hspace" << "\\vspace");
-QSet<QString> LatexParser::mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
-QSet<QString> LatexParser::mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
-QSet<QString> LatexParser::tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
-QSet<QString> LatexParser::fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
-QSet<QString> LatexParser::includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
-QSet<QString> LatexParser::graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
-QSet<QString> LatexParser::usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
-QSet<QString> LatexParser::customCommands;
-QMultiHash<QString,QString> LatexParser::packageAliases;
-QStringList LatexParser::structureCommands = QStringList(); //see texmaker.cpp
-QMultiHash<QString,QString> LatexParser::environmentAliases;
-
+LatexParser* LatexParserInstance = 0;
 
 LatexParser::LatexParser(){
+	if (!LatexParserInstance) LatexParserInstance = this;
 	init();
 }
 
+LatexParser& LatexParser::getInstance(){
+	Q_ASSERT(LatexParserInstance);
+	return *LatexParserInstance;
+}
+
 void LatexParser::init(){
+	refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref" << "\\eqref"  << "\\nameref" << "\\vref" << "\\autoref" << "\\cref" << "\\Cref");
+	labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
+	citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
+	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
+	definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
+	mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
+	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
+	tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
+	fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
+	includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
+	graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
+	usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
+
 	possibleCommands.clear();
 	possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
 	possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
@@ -58,6 +60,196 @@ void LatexParser::init(){
 	possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
 	possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
 }
+
+int LatexParser::nextToken(const QString &line,int &index,bool abbreviation,bool inOption,bool detectMath) {
+	bool inWord=false;
+	bool inCmd=false;
+	bool inMath=false;
+	//bool reparse=false;
+	bool singleQuoteChar=false;
+	bool doubleQuoteChar=false;
+	bool ignoreBrace=false;
+	bool ignoreClosingBrace=false;
+	int start=-1;
+	int i=index;
+	for (i=(i>0?i:0); i<line.size(); i++) {
+		QChar cur = line.at(i);
+		if(ignoreBrace && cur=='{'){
+			ignoreBrace=false;
+			ignoreClosingBrace=true;
+			continue;
+		} else ignoreBrace=false;
+		if(ignoreClosingBrace && cur=='}'){
+			ignoreClosingBrace=false;
+			continue;
+		}
+		if(doubleQuoteChar && cur=='\'') break; // check for words staring with "' (german quotation mark)
+		else doubleQuoteChar=false;
+		if (inCmd) {
+			if (detectMath && inMath){
+				if(cur=='$') i++; //detect $$
+				break;
+			}
+			if (CommonEOW.indexOf(cur)>=0) {
+				if (i-start==1) i++;
+				break;
+			}
+		} else if (inWord) {
+			if (cur=='\\') {
+				if (i+1>=line.size()) break;
+				const QChar& c = line.at(i+1);
+				if (c=='-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
+				else if (CharacterAlteringChars.contains(c)) {
+					ignoreBrace=true;
+					i++;//ignore word separation marker
+				} else break;
+			} else if (cur=='"') {  //ignore " like in "-, "", "| "a
+				if (i+1<line.size()){
+					QChar nextChar=line.at(i+1);
+					if(nextChar=='-' || nextChar=='"' || nextChar=='|')  i++; 
+					else if(!nextChar.isLetterOrNumber()) break;
+				}
+				else break;
+			} else if (cur=='\'') {
+				if (singleQuoteChar) break;	 //no word's with two '' => output
+				else singleQuoteChar=true;   //but accept one
+			} else if (cur=='.' && abbreviation) {
+				i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
+				break;
+			} else if (CommonEOW.indexOf(cur)>=0 && !inOption) {
+				break;
+			} else if(cur=='}' || cur==']') break;
+			
+		} else if (cur=='\\') {
+			if (i+1>=line.size()) break;
+			const QChar& nextc = line.at(i+1);
+			if (CharacterAlteringChars.contains(nextc))  {
+				inWord=true;
+				start=i;
+				ignoreBrace=true;
+				i++;
+			} else if (EscapedChars.contains(nextc)) {
+				i++;
+				Q_ASSERT(start==-1);
+			} else {
+				start=i;
+				inCmd=true;
+			}
+		} else if (cur=='{' || cur=='}' || cur=='%' || cur=='[' || cur==']') {
+			index=i+1;
+			return i;
+		} else if (detectMath && cur=='$'){
+			start=i;
+			inCmd=true;
+			inMath=true;
+		} else if (detectMath && (cur=='_' || cur=='^' || cur=='&')){
+			start=i;
+			i++;
+			break;
+		} else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
+			start=i;
+			inWord=true;
+			doubleQuoteChar= ( cur == '"');
+		}
+	}
+	if (singleQuoteChar && i-1<line.size() && i > 0 && line.at(i-1)=='\'')
+		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
+	index=i;
+	return start;
+}
+
+
+LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations,bool *inStructure) const{
+	int reference=-1;
+	QString lastCommand="";
+	bool inOption=false;
+	bool inEnv=false;
+	bool inReferenz=false;
+	while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,!inReferenz))!=-1) {
+		outWord=line.mid(wordStartIndex,index-wordStartIndex);
+		if (outWord.length()==0) return NW_NOTHING; //should never happen
+		switch (outWord.at(0).toAscii()) {
+		case '%':
+			return NW_COMMENT; //return comment start
+		case '[':
+			if(!lastCommand.isEmpty()) inOption=true;
+			if(inStructure && structureCommands.contains(lastCommand)) *inStructure=true;
+			break;
+		case ']':
+			inOption=false;
+			break;
+		case '{':
+			if (reference!=-1)
+				reference=wordStartIndex+1;
+			if(!lastCommand.isEmpty()) inOption=true;
+			if(environmentCommands.contains(lastCommand)) inEnv=true;
+			if(inStructure && structureCommands.contains(lastCommand)) *inStructure=true;
+			break; //ignore
+		case '}':
+			if (reference!=-1) {
+				NextWordFlag result = NW_NOTHING;
+				if (refCommands.contains(lastCommand)) result = NW_REFERENCE;
+				else if (labelCommands.contains(lastCommand)) result = NW_LABEL;
+				else if (citeCommands.contains(lastCommand)) result = NW_CITATION;
+				if (result != NW_NOTHING) {
+					wordStartIndex=reference;
+					--index;
+					outWord=line.mid(reference,index-reference);
+					return result;
+				}
+			}
+			lastCommand="";
+			inOption=false;
+			inEnv=false;
+			if(inStructure) *inStructure=false;
+			break;//command doesn't matter anymore
+		case '$': case '^': case '&':
+			return NW_COMMAND;
+		case '_':
+			if(!inOption){
+				return NW_COMMAND;
+			}
+			break;
+		case '\\':
+			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
+				if (returnCommands) return NW_COMMAND;
+				if (refCommands.contains(outWord)||labelCommands.contains(outWord)||citeCommands.contains(outWord)){
+					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+					lastCommand=outWord;
+					inReferenz=true;
+				}
+				if (optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
+					lastCommand=outWord;
+				}
+				break;
+			} else {;} //first character is escaped, fall through to default case
+		default:
+			//if (reference==-1) {
+			if(!inOption && !lastCommand.isEmpty()){
+				inOption=false;
+				lastCommand="";
+			}
+			if (outWord.contains("\\")||outWord.contains("\""))
+				outWord=latexToPlainWord(outWord); //remove special chars
+			if (environmentCommands.contains(lastCommand))
+				return NW_ENVIRONMENT;
+			if (optionCommands.contains(lastCommand)||lastCommand.isEmpty())
+				return NW_TEXT;
+			//}
+		}
+	}
+	return NW_NOTHING;
+}
+
+bool LatexParser::nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex) const{
+	NextWordFlag flag;
+	//flag can be nothing, text, comment, environment
+	//text/comment returns false, text returns true, environment is ignored
+	while ((flag=nextWord(line,index,outWord,wordStartIndex,false))==NW_ENVIRONMENT)
+		;
+	return flag==NW_TEXT;
+}
+
 
 QString getCommonEOW() {
 	return CommonEOW;
@@ -395,194 +587,8 @@ bool localAwareLessThan(const QString &s1, const QString &s2) {
 }
 
 
-int nextToken(const QString &line,int &index,bool abbreviation,bool inOption,bool detectMath) {
-	bool inWord=false;
-	bool inCmd=false;
-	bool inMath=false;
-	//bool reparse=false;
-	bool singleQuoteChar=false;
-	bool doubleQuoteChar=false;
-	bool ignoreBrace=false;
-	bool ignoreClosingBrace=false;
-	int start=-1;
-	int i=index;
-	for (i=(i>0?i:0); i<line.size(); i++) {
-		QChar cur = line.at(i);
-		if(ignoreBrace && cur=='{'){
-			ignoreBrace=false;
-			ignoreClosingBrace=true;
-			continue;
-		} else ignoreBrace=false;
-		if(ignoreClosingBrace && cur=='}'){
-			ignoreClosingBrace=false;
-			continue;
-		}
-		if(doubleQuoteChar && cur=='\'') break; // check for words staring with "' (german quotation mark)
-		else doubleQuoteChar=false;
-		if (inCmd) {
-			if (detectMath && inMath){
-				if(cur=='$') i++; //detect $$
-				break;
-			}
-			if (CommonEOW.indexOf(cur)>=0) {
-				if (i-start==1) i++;
-				break;
-			}
-		} else if (inWord) {
-			if (cur=='\\') {
-				if (i+1>=line.size()) break;
-				const QChar& c = line.at(i+1);
-				if (c=='-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
-				else if (CharacterAlteringChars.contains(c)) {
-					ignoreBrace=true;
-					i++;//ignore word separation marker
-				} else break;
-			} else if (cur=='"') {  //ignore " like in "-, "", "| "a
-				if (i+1<line.size()){
-					QChar nextChar=line.at(i+1);
-					if(nextChar=='-' || nextChar=='"' || nextChar=='|')  i++; 
-					else if(!nextChar.isLetterOrNumber()) break;
-				}
-				else break;
-			} else if (cur=='\'') {
-				if (singleQuoteChar) break;	 //no word's with two '' => output
-				else singleQuoteChar=true;   //but accept one
-			} else if (cur=='.' && abbreviation) {
-				i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
-				break;
-			} else if (CommonEOW.indexOf(cur)>=0 && !inOption) {
-				break;
-			} else if(cur=='}' || cur==']') break;
-			
-		} else if (cur=='\\') {
-			if (i+1>=line.size()) break;
-			const QChar& nextc = line.at(i+1);
-			if (CharacterAlteringChars.contains(nextc))  {
-				inWord=true;
-				start=i;
-				ignoreBrace=true;
-				i++;
-			} else if (EscapedChars.contains(nextc)) {
-				i++;
-				Q_ASSERT(start==-1);
-			} else {
-				start=i;
-				inCmd=true;
-			}
-		} else if (cur=='{' || cur=='}' || cur=='%' || cur=='[' || cur==']') {
-			index=i+1;
-			return i;
-		} else if (detectMath && cur=='$'){
-			start=i;
-			inCmd=true;
-			inMath=true;
-		} else if (detectMath && (cur=='_' || cur=='^' || cur=='&')){
-			start=i;
-			i++;
-			break;
-		} else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
-			start=i;
-			inWord=true;
-			doubleQuoteChar= ( cur == '"');
-		}
-	}
-	if (singleQuoteChar && i-1<line.size() && i > 0 && line.at(i-1)=='\'')
-		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
-	index=i;
-	return start;
-}
 
 
-NextWordFlag nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations,bool *inStructure) {
-	int reference=-1;
-	QString lastCommand="";
-	bool inOption=false;
-	bool inEnv=false;
-	bool inReferenz=false;
-	while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,!inReferenz))!=-1) {
-		outWord=line.mid(wordStartIndex,index-wordStartIndex);
-		if (outWord.length()==0) return NW_NOTHING; //should never happen
-		switch (outWord.at(0).toAscii()) {
-		case '%':
-			return NW_COMMENT; //return comment start
-		case '[':
-			if(!lastCommand.isEmpty()) inOption=true;
-			if(inStructure && LatexParser::structureCommands.contains(lastCommand)) *inStructure=true;
-			break;
-		case ']':
-			inOption=false;
-			break;
-		case '{':
-			if (reference!=-1)
-				reference=wordStartIndex+1;
-			if(!lastCommand.isEmpty()) inOption=true;
-			if(LatexParser::environmentCommands.contains(lastCommand)) inEnv=true;
-			if(inStructure && LatexParser::structureCommands.contains(lastCommand)) *inStructure=true;
-			break; //ignore
-		case '}':
-			if (reference!=-1) {
-				NextWordFlag result = NW_NOTHING;
-				if (LatexParser::refCommands.contains(lastCommand)) result = NW_REFERENCE;
-				else if (LatexParser::labelCommands.contains(lastCommand)) result = NW_LABEL;
-				else if (LatexParser::citeCommands.contains(lastCommand)) result = NW_CITATION;
-				if (result != NW_NOTHING) {
-					wordStartIndex=reference;
-					--index;
-					outWord=line.mid(reference,index-reference);
-					return result;
-				}
-			}
-			lastCommand="";
-			inOption=false;
-			inEnv=false;
-			if(inStructure) *inStructure=false;
-			break;//command doesn't matter anymore
-		case '$': case '^': case '&':
-			return NW_COMMAND;
-		case '_':
-			if(!inOption){
-				return NW_COMMAND;
-			}
-			break;
-		case '\\':
-			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
-				if (returnCommands) return NW_COMMAND;
-				if (LatexParser::refCommands.contains(outWord)||LatexParser::labelCommands.contains(outWord)||LatexParser::citeCommands.contains(outWord)){
-					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
-					lastCommand=outWord;
-					inReferenz=true;
-				}
-				if (LatexParser::optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
-					lastCommand=outWord;
-				}
-				break;
-			} else {;} //first character is escaped, fall through to default case
-		default:
-			//if (reference==-1) {
-			if(!inOption && !lastCommand.isEmpty()){
-				inOption=false;
-				lastCommand="";
-			}
-			if (outWord.contains("\\")||outWord.contains("\""))
-				outWord=latexToPlainWord(outWord); //remove special chars
-			if (LatexParser::environmentCommands.contains(lastCommand))
-				return NW_ENVIRONMENT;
-			if (LatexParser::optionCommands.contains(lastCommand)||lastCommand.isEmpty())
-				return NW_TEXT;
-			//}
-		}
-	}
-	return NW_NOTHING;
-}
-
-bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex) {
-	NextWordFlag flag;
-	//flag can be nothing, text, comment, environment
-	//text/comment returns false, text returns true, environment is ignored
-	while ((flag=nextWord(line,index,outWord,wordStartIndex,false))==NW_ENVIRONMENT)
-		;
-	return flag==NW_TEXT;
-}
 
 QString findToken(const QString &line,const QString &token){
 	int tagStart=line.indexOf(token);
@@ -899,7 +905,7 @@ QString LatexParser::removeOptionBrackets(const QString &option) {
 	return option;
 }
 
-int LatexParser::findContext(QString &line,int &column){
+int LatexParser::findContext(QString &line,int &column) const{
 	if(line.isEmpty())
 		return 0;
 	QString eow="\\[]{} ";
@@ -979,7 +985,7 @@ int LatexParser::findContext(QString &line,int &column){
 	return 0;
 }
 
-LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value){
+LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value) const{
 	command=line;
 	int temp=findContext(command,column);
 	QStringList vals;
@@ -1001,13 +1007,13 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	case 0: return Unknown;
 	case 1: return Command;
 	case 2:
-		if (LatexParser::environmentCommands.contains(command))
+		if (environmentCommands.contains(command))
 			return Environment;
-		else if (LatexParser::labelCommands.contains(command))
+		else if (labelCommands.contains(command))
 			return Label;
-		else if (LatexParser::refCommands.contains(command))
+		else if (refCommands.contains(command))
 			return Reference;
-		else if (LatexParser::citeCommands.contains(command))
+		else if (citeCommands.contains(command))
 			return Citation;
 		else return Option;
 	default: return Unknown;
@@ -1474,9 +1480,9 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 	return words;
 }
 
-void LatexParser::append(LatexParser elem){
-	QHash<QString, QSet<QString> >::iterator i = elem.possibleCommands.begin();
-	while (i != elem.possibleCommands.end()) {
+void LatexParser::append(const LatexParser& elem){
+	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
+	while (i != elem.possibleCommands.constEnd()) {
 		QString key=i.key();
 		QSet<QString> set=i.value();
 		possibleCommands[key].unite(set);
@@ -1488,9 +1494,9 @@ void LatexParser::clear(){
 	init();
 }
 
-void LatexParser::substract(LatexParser elem){
-	QHash<QString, QSet<QString> >::iterator i = elem.possibleCommands.begin();
-	while (i != elem.possibleCommands.end()) {
+void LatexParser::substract(const LatexParser& elem){
+	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
+	while (i != elem.possibleCommands.constEnd()) {
 		QString key=i.key();
 		QSet<QString> set=i.value();
 		possibleCommands[key].subtract(set);
@@ -1498,7 +1504,7 @@ void LatexParser::substract(LatexParser elem){
 	}
 }
 
-void importCwlAliases(){
+void LatexParser::importCwlAliases(){
 	QString fn=findResourceFile("completion/cwlAliases.dat");
 	QFile tagsfile(fn);
 	if (tagsfile.open(QFile::ReadOnly)) {
@@ -1512,12 +1518,12 @@ void importCwlAliases(){
 				alias=line.left(line.length()-1);
 				continue;
 			}
-			if(!alias.isEmpty()){
-				LatexParser::packageAliases.insertMulti(alias,line);
-			}
+			if(!alias.isEmpty())
+				packageAliases.insertMulti(alias,line);
 		}
 	}
 }
+
 
 LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	QStringList words;
@@ -1733,3 +1739,5 @@ void LatexPackage::unite(LatexPackage &add){
 		possibleCommands[elem]=set;
 	}
 }
+
+
