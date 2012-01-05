@@ -243,8 +243,8 @@ void TextAnalysisDialog::needCount() {
 				if (lastWords[curType].size()>=lastMinSentenceLength) {
 					curWord="";
 					curWord.reserve(sentenceLengths[curType]);
-					foreach(QString s, lastWords[curType])
-					curWord+=s+" ";
+					foreach(const QString& s, lastWords[curType])
+						curWord+=s+" ";
 					curWord.truncate(curWord.size()-1);
 					maps[curType][0][curWord]=maps[curType][0][curWord]+1;
 					if (inSelection) maps[curType][1][curWord]=maps[curType][1][curWord]+1;

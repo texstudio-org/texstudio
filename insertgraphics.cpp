@@ -135,7 +135,7 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 	ui.cbHeightUnit->setCurrentIndex(0);
 	ui.rbUser->setChecked(false);
 	QStringList inclOpts = conf.includeOptions.split(QChar(','));
-	foreach (QString opt, inclOpts) {
+	foreach (const QString& opt, inclOpts) {
 		int sep = opt.indexOf('=');
 		if (sep >= 0) {
 			// option style: tag=val
@@ -144,7 +144,7 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 			if (tag == "width") {
 				ui.cbWidth->setChecked(true);
 				ui.cbWidthUnit->setCurrentIndex(widthUnits.indexOf(""));
-				foreach (QString unit, widthUnits) {
+				foreach (const QString& unit, widthUnits) {
 					if (val.endsWith(unit)) {
 						val.chop(unit.length());
 						ui.cbWidthUnit->setCurrentIndex(widthUnits.indexOf(unit));
@@ -156,7 +156,7 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 			}
 			if (tag == "height") {
 				ui.cbHeight->setChecked(true);
-				foreach (QString unit, heightUnits) {
+				foreach (const QString& unit, heightUnits) {
 					if (val.endsWith(unit)) {
 						val.chop(unit.length());
 						ui.leHeight->setText(val);

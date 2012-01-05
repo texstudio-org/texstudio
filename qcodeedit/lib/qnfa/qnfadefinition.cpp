@@ -217,7 +217,7 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	parser.fillContext(nd->m_root, root, true);
 
 	memset(nd->m_openingParenthesisEnd, 0, sizeof(nd->m_openingParenthesisEnd));
-	foreach (QString s, tempOpening.keys()) {
+	foreach (const QString& s, tempOpening.keys()) {
 		Q_ASSERT(!s.isEmpty());
 		if (!nd->m_openingParenthesisList.contains(s)){
 			nd->m_openingParenthesisList.append(s);

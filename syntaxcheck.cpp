@@ -342,7 +342,7 @@ int SyntaxCheck::topEnv(const QString& name,const StackEnvironment& envs,const i
 	}
 	if(id<0 && ltxCommands->environmentAliases.contains(env.name)){
 		QStringList altEnvs=ltxCommands->environmentAliases.values(env.name);
-		foreach(QString altEnv,altEnvs){
+		foreach(const QString& altEnv,altEnvs){
 			if(altEnv==name)
 				return env.id;
 		}
@@ -359,7 +359,7 @@ int SyntaxCheck::containsEnv(const LatexParser& parser, const QString& name,cons
 		}
 		if(id<0 && parser.environmentAliases.contains(env.name)){
 			QStringList altEnvs=parser.environmentAliases.values(env.name);
-			foreach(QString altEnv,altEnvs){
+			foreach(const QString& altEnv,altEnvs){
 				if(altEnv==name)
 					return env.id;
 			}
@@ -375,7 +375,7 @@ bool SyntaxCheck::checkCommand(const QString &cmd,const StackEnvironment &envs){
 			return true;
 		if(ltxCommands->environmentAliases.contains(env.name)){
 			QStringList altEnvs=ltxCommands->environmentAliases.values(env.name);
-			foreach(QString altEnv,altEnvs){
+			foreach(const QString& altEnv,altEnvs){
 				if(ltxCommands->possibleCommands.contains(altEnv) && ltxCommands->possibleCommands.value(altEnv).contains(cmd))
 					return true;
 			}

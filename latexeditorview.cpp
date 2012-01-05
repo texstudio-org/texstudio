@@ -190,7 +190,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			if (value.contains(',')) {
 				// multiple packages included in one \usepackage command
 				QStringList packages;
-				foreach (QString pkg, value.split(',')) {
+				foreach (const QString& pkg, value.split(',')) {
 					packages.append(pkg.simplified());
 				}
 				QDocumentCursor wordCursor = cursor;
