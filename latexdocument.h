@@ -318,7 +318,6 @@ public:
 	void updateLayout();
 	void updateMasterSlaveRelations(LatexDocument *doc);
 	
-	LatexParser ltxCommands;
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
 signals:

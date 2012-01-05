@@ -129,6 +129,7 @@ private:
 	QString hiddenLeftPanelWidgets;
 	
 	QTreeView *structureTreeView;
+	LatexParser latexParser;
 	LatexDocuments documents;
 	
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
@@ -482,6 +483,7 @@ protected:
 	QString fileFilters;
 	QString selectedFileFilter;
 	
+	
 	LatexStyleParser *latexStyleParser;
 	
 	int remainingReRunCount;
@@ -494,7 +496,7 @@ protected:
 	LatexDocument* diffLoadDocHidden(QString f);
 	void showDiff3(const QString file1,const QString file2);
 	
-	//script things	
+	
 	
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);

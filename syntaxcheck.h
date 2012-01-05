@@ -71,14 +71,13 @@ public:
 	void setErrFormat(int errFormat);
 	QString getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous);
 	int verbatimFormat;
-	void setLtxCommands(LatexParser cmds);
 	void waitForQueueProcess();
-	static int containsEnv(const QString& name,const StackEnvironment& envs,const int id=-1);
-	static int topEnv(const QString& name,const StackEnvironment& envs,const int id=-1);
+	static int containsEnv(const LatexParser& parser, const QString& name,const StackEnvironment& envs,const int id=-1);
+	int topEnv(const QString& name,const StackEnvironment& envs,const int id=-1);
 	bool checkCommand(const QString &cmd,const StackEnvironment &envs);
 	static bool equalEnvStack(StackEnvironment env1,StackEnvironment env2);
 	bool queuedLines();
-	
+	void setLtxCommands(const LatexParser& cmds);
 signals:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay, int ticket);
 protected:
@@ -89,10 +88,13 @@ private:
 	QQueue<SyntaxLine> mLines;
 	QSemaphore mLinesAvailable;
 	QMutex mLinesLock;
-	QMutex mLtxCommandLock;
 	bool stopped;
 	int syntaxErrorFormat;
-	LatexParser ltxCommands;
+	LatexParser *ltxCommands;
+
+	LatexParser newLtxCommands;
+	bool newLtxCommandsAvailable;
+	QMutex mLtxCommandLock;
 };
 
 #endif // SYNTAXCHECK_H

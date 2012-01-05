@@ -179,7 +179,8 @@ void TextAnalysisDialog::needCount() {
 		QString curWord;
 		int state;
 		int lastIndex=0;
-		while ((state=nextWord(line,nextIndex,curWord,wordStartIndex,true))!=NW_NOTHING) {
+		LatexParser& lp = LatexParser::getInstance();
+		while ((state=lp.nextWord(line,nextIndex,curWord,wordStartIndex,true))!=LatexParser::NW_NOTHING) {
 			bool inSelection;
 			if (selectionStartLine!=selectionEndLine)
 				inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
@@ -197,7 +198,7 @@ void TextAnalysisDialog::needCount() {
 							break;
 						}
 				curType=2;
-			} else if (state == NW_COMMENT) {
+			} else if (state == LatexParser::NW_COMMENT) {
 				//comment is only % character
 				curType=2;
 				if (!commentReached) {
@@ -214,9 +215,9 @@ void TextAnalysisDialog::needCount() {
 								break;
 							}
 				}
-			} else if (state==NW_COMMAND) {
+			} else if (state==LatexParser::NW_COMMAND) {
 				curType=1;
-			} else if (state==NW_TEXT) {
+			} else if (state==LatexParser::NW_TEXT) {
 				curType=0;
 				if (!lineCountedAsText) {
 					textLines++;

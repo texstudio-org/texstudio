@@ -54,39 +54,6 @@ QString ensureTrailingDirSeparator(const QString& dirPath);
 int x11desktop_env();
 
 
-//searches the next token in the line line after/at the index index
-//there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
-//index returns the index of the first character after the word
-//detectMath==true: return $ $$ _ as commands
-//return: start index of the token (or -1 if last)
-int nextToken(const QString &line,int &index,bool abbreviation=false,bool inOption=false,bool detectMath=false);
-
-
-enum NextWordFlag {
-	NW_NOTHING=0,
-	NW_TEXT=1,
-	NW_COMMAND=2,
-	NW_COMMENT=3,
-	NW_ENVIRONMENT=4, //environment name, e.g. in \begin or \newenvironment
-	NW_REFERENCE=5,
-	NW_LABEL=6,
-	NW_CITATION=7
-};
-//Returns the next word (giving meaning to the nextToken tokens)
-//line: line to be examined
-//index: start index as input and returns the first character after the found word
-//outWord: found word (length can differ from index - wordStartIndex for text words)
-//wordStartIndex: start of the word
-//returnCommands: if this is true it returns \commands (NW_COMMAND), "normal" "text"  NW_TEXT and % (NW_COMMENT)  [or NW_NOTHING at the end]
-//                "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names
-//                          (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
-//returns the type of outWord
-NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands,bool abbreviations=false,bool *inStructure=0);
-
-//searches the next text words and ignores command options, environments or comments
-//returns false if none is found
-bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex);
-
 //removes special latex characters
 QString latexToPlainWord(const QString& word);
 //extracts the section name after \section is removed (brackets removal)
@@ -147,10 +114,44 @@ class LatexParser{
 public:
 	LatexParser();
 	void init();
+
+	//searches the next token in the line line after/at the index index
+	//there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
+	//index returns the index of the first character after the word
+	//detectMath==true: return $ $$ _ as commands
+	//return: start index of the token (or -1 if last)
+	static int nextToken(const QString &line,int &index,bool abbreviation=false,bool inOption=false,bool detectMath=false);
+	
+	
+	enum NextWordFlag {
+		NW_NOTHING=0,
+		NW_TEXT=1,
+		NW_COMMAND=2,
+		NW_COMMENT=3,
+		NW_ENVIRONMENT=4, //environment name, e.g. in \begin or \newenvironment
+		NW_REFERENCE=5,
+		NW_LABEL=6,
+		NW_CITATION=7
+	};
+	
+	//Returns the next word (giving meaning to the nextToken tokens)
+	//line: line to be examined
+	//index: start index as input and returns the first character after the found word
+	//outWord: found word (length can differ from index - wordStartIndex for text words)
+	//wordStartIndex: start of the word
+	//returnCommands: if this is true it returns \commands (NW_COMMAND), "normal" "text"  NW_TEXT and % (NW_COMMENT)  [or NW_NOTHING at the end]
+	//                "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names
+	//                          (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
+	//returns the type of outWord
+	NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands,bool abbreviations=false,bool *inStructure=0) const;
+	
+	//searches the next text words and ignores command options, environments or comments
+	//returns false if none is found
+	bool nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex) const;
 	
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option};
 	// realizes whether col is in a \command or in a parameter {}
-	static int findContext(QString &line, int &column);
+	int findContext(QString &line, int &column) const;
 	
 	//position of the % starting a comment (takes care of multiple backslashes before comment character ..)
 	static int commentStart(const QString& text);
@@ -158,35 +159,38 @@ public:
 	// remove comment from text, take care of multiple backslashes before comment character ...
 	static QString cutComment(const QString& text);
 	
-	static ContextType findContext(const QString &line, int column, QString &command, QString& value);
+	ContextType findContext(const QString &line, int column, QString &command, QString& value) const;
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
 	
-	static QSet<QString> refCommands;
-	static QSet<QString> labelCommands;
-	static QSet<QString> citeCommands;
-	static QSet<QString> environmentCommands;
-	static QSet<QString> definitionCommands;
-	static QSet<QString> optionCommands;
-	static QSet<QString> mathStartCommands;
-	static QSet<QString> mathStopCommands;
-	static QSet<QString> tabularEnvirons;
-	static QSet<QString> fileCommands;
-	static QSet<QString> includeCommands;
-	static QSet<QString> usepackageCommands;
-	static QSet<QString> customCommands;
-	static QSet<QString> graphicsIncludeCommands;
-	static QStringList structureCommands;
-	static QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
-	static QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
+	QSet<QString> refCommands;
+	QSet<QString> labelCommands;
+	QSet<QString> citeCommands;
+	QSet<QString> environmentCommands;
+	QSet<QString> definitionCommands;
+	QSet<QString> optionCommands;
+	QSet<QString> mathStartCommands;
+	QSet<QString> mathStopCommands;
+	QSet<QString> tabularEnvirons;
+	QSet<QString> fileCommands;
+	QSet<QString> includeCommands;
+	QSet<QString> usepackageCommands;
+	QSet<QString> customCommands;
+	QSet<QString> graphicsIncludeCommands;
+	QStringList structureCommands;
+	QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
+	QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
 	QHash<QString,QSet<QString> > possibleCommands;
 	
-	void append(LatexParser elem);
-	void substract(LatexParser elem);
+	void append(const LatexParser& elem);
+	void substract(const LatexParser& elem);
+	void importCwlAliases();
 	void clear();
 	static QTextCodec* QTextCodecForLatexName(QString str);
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
+	
+	static LatexParser& getInstance();
 };
 
 class LatexPackage{
@@ -203,7 +207,7 @@ public:
 
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config=0);
 LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
-void importCwlAliases();
+
 
 
 

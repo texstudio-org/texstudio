@@ -96,9 +96,6 @@ public:
 	//completion
 	LatexCompleterConfig * const completerConfig;
 
-	//LatexParser (commands for syntax check)
-	LatexParser *ltxCommands;
-
 	//webpublish dialog
 	WebPublishDialogConfig * const webPublishDialogConfig;
 	//pdf preview
