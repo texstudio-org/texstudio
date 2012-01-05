@@ -30,8 +30,10 @@ const QString CharacterAlteringChars="\"";
 LatexParser* LatexParserInstance = 0;
 
 LatexParser::LatexParser(){
-	if (!LatexParserInstance) LatexParserInstance = this;
-	init();
+	if (!LatexParserInstance) {
+		LatexParserInstance = this;
+		init();
+	}
 }
 
 LatexParser& LatexParser::getInstance(){
