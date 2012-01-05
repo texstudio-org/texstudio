@@ -550,7 +550,7 @@ QSettings* ConfigManager::readSettings() {
 		latexParser.optionCommands.unite(pck.optionCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
-		foreach(QString elem,pck.possibleCommands.keys()){
+		foreach(const QString& elem,pck.possibleCommands.keys()){
 			QSet<QString> set2=pck.possibleCommands[elem];
 			QSet<QString> set=latexParser.possibleCommands[elem];
 			set.unite(set2);
@@ -1159,14 +1159,14 @@ bool ConfigManager::execConfigDialog() {
 		latexParser.clear();
 		latexParser.init();
 		//completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
-		foreach(QString cwlFile,newFiles){
+		foreach(const QString& cwlFile,newFiles){
 			LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
 			completerConfig->words.append(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
 			
 			//ltxCommands->possibleCommands.unite(pck.possibleCommands); qt bug
-			foreach(QString elem,pck.possibleCommands.keys()){
+			foreach(const QString& elem,pck.possibleCommands.keys()){
 				QSet<QString> set2=pck.possibleCommands[elem];
 				QSet<QString> set=latexParser.possibleCommands[elem];
 				set.unite(set2);

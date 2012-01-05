@@ -2068,7 +2068,7 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
 void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
 	LatexPackage zw;
 	LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
-	foreach(QString elem,files){
+	foreach(const QString& elem,files){
 		if(loadedFiles.contains(elem))
 			continue;
 		zw=loadCwlFile(elem,completerConfig);

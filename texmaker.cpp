@@ -847,7 +847,7 @@ void Texmaker::UpdateAvailableLanguages() {
 	spellLanguageActions = new QActionGroup(statusTbLanguage);
 	spellLanguageActions->setExclusive(true);
 	
-	foreach (QString s, spellerManager.availableDicts()) {
+	foreach (const QString& s, spellerManager.availableDicts()) {
 		QAction *act = new QAction(spellLanguageActions);
 		act->setText(spellerManager.prettyName(s));
 		act->setData(QVariant(s));
@@ -5433,7 +5433,7 @@ void Texmaker::loadProfile(){
 		QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
 		if(profile && config){
 			QStringList keys = profile->allKeys();
-			foreach(QString key,keys){
+			foreach(const QString& key,keys){
 				config->setValue(key,profile->value(key));
 			}
 		}

@@ -1399,7 +1399,7 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 					}
 					if(valid.contains('e') && !env.isEmpty()){ // tabbing support
 						if(res==-1){
-							foreach(QString elem,env)
+							foreach(const QString& elem,env)
 								cmds->possibleCommands[elem] << line.simplified();
 						}
 					}
@@ -1408,7 +1408,7 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 							if(rxCom.cap(1)=="\\begin"){
 								QString envName=rxCom.cap(3);
 								if(!envName.isEmpty()){
-									foreach(QString elem,env)
+									foreach(const QString& elem,env)
 										cmds->environmentAliases.insert(rxCom.cap(3),elem);
 								}
 							}
@@ -1639,7 +1639,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 				}
 				if(valid.contains('e') && !env.isEmpty()){ // tabbing support
 					if(res==-1){
-						foreach(QString elem,env)
+						foreach(const QString& elem,env)
 							package.possibleCommands[elem] << line.simplified();
 					}
 				}
@@ -1648,7 +1648,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 						if(rxCom.cap(1)=="\\begin"){
 							QString envName=rxCom.cap(3);
 							if(!envName.isEmpty()){
-								foreach(QString elem,env)
+								foreach(const QString& elem,env)
 									package.environmentAliases.insert(rxCom.cap(3),elem);
 							}
 						}
@@ -1734,7 +1734,7 @@ void LatexPackage::unite(LatexPackage &add){
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
 	//possibleCommands.unite(add.possibleCommands);
-	foreach(QString elem,add.possibleCommands.keys()){
+	foreach(const QString& elem,add.possibleCommands.keys()){
 		QSet<QString> set2=add.possibleCommands[elem];
 		QSet<QString> set=possibleCommands[elem];
 		set.unite(set2);
