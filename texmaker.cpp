@@ -5392,9 +5392,11 @@ void Texmaker::findMissingBracket(){
 }
 
 void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,LatexDocument *doc){
-	if(!doc)
+	if (!doc) {
+		if (!currentEditor()) return;
 		doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
-	if(!doc) return;
+	}
+	if (!doc) return;
 	QStringList curPaths;
 	if(documents.masterDocument)
 		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
