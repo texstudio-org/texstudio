@@ -1770,6 +1770,7 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
+repeatAfterFileSavingFailed:
 	if (currentEditorView()->editor->isContentModified()) {
 		switch (QMessageBox::warning(this, TEXSTUDIO,
 		                             tr("The document contains unsaved work. "
@@ -1779,6 +1780,8 @@ void Texmaker::fileClose() {
 		                             2)) {
 		case 0:
 			fileSave();
+			if (currentEditorView()->editor->isContentModified()) 
+				goto repeatAfterFileSavingFailed;
 			documents.deleteDocument(currentEditorView()->document);
 			break;
 		case 1:
@@ -1807,6 +1810,7 @@ void Texmaker::fileExit() {
 
 bool Texmaker::closeAllFilesAsking(){
 	while (currentEditorView()) {
+repeatAfterFileSavingFailed:
 		if (currentEditorView()->editor->isContentModified()) {
 			switch (QMessageBox::warning(this, TEXSTUDIO,
 			                             tr("The document contains unsaved work. "
@@ -1816,6 +1820,8 @@ bool Texmaker::closeAllFilesAsking(){
 			                             2)) {
 			case 0:
 				fileSave();
+				if (currentEditorView()->editor->isContentModified())
+					goto repeatAfterFileSavingFailed;
 				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 1:
