@@ -79,40 +79,11 @@ public:
 	
 	//	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	//	QSet<QString> allBibTeXIds;
-	
-	QStringList labelItem()const {
-		QList<ReferencePair> lst=mLabelItem.values();
-		QStringList result;
-		foreach(const ReferencePair& elem,lst){
-			result << elem.name;
-		}
-		
-		return result;
-	}
-	QStringList labelItemAt(QDocumentLineHandle *dlh){
-		QList<ReferencePair> lst=mLabelItem.values(dlh);
-		QStringList result;
-		foreach(const ReferencePair& elem,lst){
-			result << elem.name;
-		}
-		return result;
-	}
-	QStringList refItem() const{
-		QList<ReferencePair> lst=mRefItem.values();
-		QStringList result;
-		foreach(const ReferencePair& elem,lst){
-			result << elem.name;
-		}
-		return result;
-	}
-	QStringList refItemAt(QDocumentLineHandle *dlh){
-		QList<ReferencePair> lst=mRefItem.values(dlh);
-		QStringList result;
-		foreach(const ReferencePair& elem,lst){
-			result << elem.name;
-		}
-		return result;
-	}
+private:	
+	static QStringList someItems(const QMultiHash<QDocumentLineHandle*,ReferencePair>& list);
+public:
+	QStringList labelItems() const;
+	QStringList refItems() const;
 	const QSet<QString> userCommandList() const{
 		return mUserCommandList.values().toSet();
 	}
@@ -123,8 +94,8 @@ public:
 	void recheckRefsLabels();
 	int countLabels(const QString& name);
 	int countRefs(const QString& name);
-	QMultiHash<QDocumentLineHandle*,int> getLabels(QString name);
-	QMultiHash<QDocumentLineHandle*,int> getRefs(QString name);
+	QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
+	QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
 	
 	//void includeDocument(LatexDocument* includedDocument);
 	

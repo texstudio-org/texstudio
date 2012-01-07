@@ -3217,7 +3217,7 @@ void Texmaker::InsertRef() {
 		if (documents.singleMode()) docs << edView->document;
 		else docs << documents.documents;
 		foreach(const LatexDocument* doc,docs)
-			labels << doc->labelItem();
+			labels << doc->labelItems();
 	} else return;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
@@ -3237,7 +3237,7 @@ void Texmaker::InsertPageRef() {
 		if (documents.singleMode()) docs << edView->document;
 		else docs << documents.documents;
 		foreach(const LatexDocument* doc,docs)
-			labels << doc->labelItem();
+			labels << doc->labelItems();
 	} else return;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
@@ -4416,8 +4416,8 @@ void Texmaker::updateCompleter() {
 			words.unite(doc->additionalCommandsList());
 			foreach(const QString& refCommand, latexParser.refCommands){
 				QString temp=refCommand+"{%1}";
-				for (int i=0; i<doc->labelItem().count(); ++i)
-					words.insert(temp.arg(doc->labelItem().at(i)));
+				foreach (const QString& l, doc->labelItems())
+					words.insert(temp.arg(l));
 			}
 		}
 	}
