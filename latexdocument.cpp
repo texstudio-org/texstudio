@@ -894,7 +894,7 @@ QString LatexDocument::getTemporaryFileName(){
 int LatexDocument::countLabels(const QString& name){
 	int result=0;
 	foreach(const LatexDocument *elem,getListOfDocs()){
-		QStringList items=elem->labelItem();
+		QStringList items=elem->labelItems();
 		result+=items.count(name);
 	}
 	return result;
@@ -903,13 +903,13 @@ int LatexDocument::countLabels(const QString& name){
 int LatexDocument::countRefs(const QString& name){
 	int result=0;
 	foreach(const LatexDocument *elem,getListOfDocs()){
-		QStringList items=elem->refItem();
+		QStringList items=elem->refItems();
 		result+=items.count(name);
 	}
 	return result;
 }
 
-QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
+QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(const QString& name){
 	QHash<QDocumentLineHandle*,int> result;
 	foreach(const LatexDocument *elem,getListOfDocs()){
 		QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
@@ -923,7 +923,7 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(QString name){
 	return result;
 }
 
-QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(QString name){
+QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(const QString& name){
 	QHash<QDocumentLineHandle*,int> result;
 	foreach(const LatexDocument *elem,getListOfDocs()){
 		QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
@@ -1008,6 +1008,24 @@ void LatexDocument::recheckRefsLabels(){
 			else dlh->addOverlay(QFormatRange(rp.start,rp.name.length(),referenceMissingFormat));
 		}
 	}
+}
+
+QStringList LatexDocument::someItems(const QMultiHash<QDocumentLineHandle*,ReferencePair>& list){
+	QList<ReferencePair> lst=list.values();
+	QStringList result;
+	foreach(const ReferencePair& elem,lst){
+		result << elem.name;
+	}
+	
+	return result;
+}
+
+QStringList LatexDocument::labelItems() const{
+	return someItems(mLabelItem);
+}
+
+QStringList LatexDocument::refItems() const{
+	return someItems(mRefItem);
 }
 
 void LatexDocument::updateRefsLabels(const QString& ref){
