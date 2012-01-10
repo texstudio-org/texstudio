@@ -48,7 +48,7 @@ private:
 
 struct FileNamePair{
 	QString relative, absolute;
-	FileNamePair(const QString& rel);
+	FileNamePair(const QString& rel, const QString& abs);
 };
 
 struct ReferencePair{
@@ -76,6 +76,7 @@ public:
 	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
 	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
+	QSet<QString> lastCompiledBibTeXFiles;
 	
 	//	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	//	QSet<QString> allBibTeXIds;
@@ -112,14 +113,15 @@ public:
 	LatexDocuments *parent;
 	
 	void setTemporaryFileName(const QString& fileName);
-	QString getTemporaryFileName();
-	QString getAbsoluteFilePath(const QString & relName, const QString &extension);
+	QString getTemporaryFileName() const;
+	QString getAbsoluteFilePath(const QString & relName, const QString &extension) const;
 	
 	void setMasterDocument(LatexDocument* doc);
 	LatexDocument* getMasterDocument() const{
 		return masterDocument;
 	}
-	LatexDocument* getTopMasterDocument(QSet<LatexDocument*> *visitedDocs=0);
+	const LatexDocument* getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs=0) const; 
+	LatexDocument* getTopMasterDocument(); 
 	
 	QStringList includedFiles();
 	QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
@@ -130,7 +132,7 @@ public:
 	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
 	void updateCompletionFiles(QStringList &files,bool forceUpdate);
 	
-	QLocale spellingLanguage() {
+	QLocale spellingLanguage() const {
 		return mSpellingLanguage;
 	}
 	QString getMagicComment(const QString& name);
@@ -262,7 +264,7 @@ public:
 	void deleteDocument(LatexDocument* document);
 	void setMasterDocument(LatexDocument* document);
 	
-	LatexDocument *getMasterDocumentForDoc(LatexDocument *doc=0); // no argument means current doc ...
+	const LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
 	
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
 	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
