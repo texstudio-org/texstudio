@@ -1964,7 +1964,7 @@ const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocumen
 			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
 			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator itend = d->mentionedBibTeXFiles().constEnd();
 			for (; it != itend; ++it) {
-				qDebug() << it.value().absolute << " <> "<<result->getFileName();
+				//qDebug() << it.value().absolute << " <> "<<result->getFileName();
 				if (it.value().absolute == result->getFileName()){
 					result = d->getTopMasterDocument(visitedDocs);
 					break;
