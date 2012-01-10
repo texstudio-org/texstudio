@@ -25,7 +25,7 @@ public:
 	virtual QString name() const {
 		return "TXS::CompleterInputBinding";
 	}
-
+	
 	virtual bool mousePressEvent(QMouseEvent* mouse, QEditor *editor) {
 		// remove unused argument warnings
 		(void) mouse;
@@ -34,22 +34,22 @@ public:
 		resetBinding();
 		return false;
 	}
-
+	
 	QString getCurWord() {
 		//QMessageBox::information(0,curLine.text().mid(curStart,editor->cursor().columnNumber()-curStart),"",0);
 		return curLine.text().mid(curStart,editor->cursor().columnNumber()-curStart);
 	}
-
+	
 	// check if current cursor/placeholder is mirrored
 	bool isMirrored(){
-	    if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
-	    {
-		    PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
-		    return ph.mirrors.count()>0;
-	    }
-	    return false;
+		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
+		{
+			PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
+			return ph.mirrors.count()>0;
+		}
+		return false;
 	}
-
+	
 	void insertText(const QString& text){
 		maxWritten += text.length();
 		//editor->cursor().insertText(text);
@@ -58,13 +58,13 @@ public:
 		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
 		{
 			PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
-
+			
 			QString baseText = ph.cursor.selectedText();
-
+			
 			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
 			{
 				//QString s = ph.affector ?  ph.affector->affect(text, baseText, m_curPlaceHolder, phm) : baseText;
-
+				
 				ph.mirrors[phm].replaceSelectedText(baseText);
 			}
 		}
@@ -82,7 +82,7 @@ public:
 			completer->adjustWidget();
 		}
 	}
-
+	
 	bool insertCompletedWord() {
 		if (completer->list->isVisible() && maxWritten>=curStart && completer->list->currentIndex().isValid()) {
 			QDocumentCursor cursor=editor->cursor();
@@ -100,17 +100,17 @@ public:
 					cursor.deleteChar();
 			}
 			if(isMirrored() && (cw.lines.first().startsWith("\\begin")||cw.lines.first().startsWith("\\end"))){
-			    QString text=cw.lines.first();
-			    int i=cursor.columnNumber()-curStart;
-			    text.remove(0,i);
-			    text.remove('}');
-			    while(!cursor.atLineEnd() && cursor.nextChar()!='}'){
-				cursor.deleteChar();
-			    }
-			    insertText(text);
-			    return true;
+				QString text=cw.lines.first();
+				int i=cursor.columnNumber()-curStart;
+				text.remove(0,i);
+				text.remove('}');
+				while(!cursor.atLineEnd() && cursor.nextChar()!='}'){
+					cursor.deleteChar();
+				}
+				insertText(text);
+				return true;
 			}
-                        for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
+			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
 			if (!autoOverridenText.isEmpty()){
 				cursor.insertText(autoOverridenText);
@@ -122,26 +122,26 @@ public:
 			//  cursor.setColumnNumber(curStart);
 			cw.insertAt(editor,&cursor,LatexCompleter::config && LatexCompleter::config->usePlaceholders,true);
 			editor->document()->endMacro();
-
+			
 			return true;
 		}
 		return false;
 	}
-
+	
 	void removeRightWordPart() {
 		QDocumentCursor cursor=editor->cursor();
 		for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 		maxWritten=cursor.columnNumber();
 		editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)  TODO: remove this line (it cause \ to disable placeholders which other keys don't disable)
 	}
-
+	
 	//selects an index in the completion suggestion list
 	void select(const QModelIndex &ind) {
 		if (!completer || !completer->list) return;
 		completer->list->setCurrentIndex(ind);
 		completer->selectionChanged(ind);
 	}
-
+	
 	//moves the selection index to the next/previous delta-th entry in the suggestion list
 	bool selectDelta(const int delta){
 		if (!completer || !completer->list || !completer->list->isVisible()) {
@@ -162,9 +162,9 @@ public:
 		if (my_curWord.isEmpty()) return false;
 		if (!completer) return false;
 		/*if (!completer->list->isVisible()) {
-			resetBinding();
-			return false;
-		}*/
+   resetBinding();
+   return false;
+  }*/
 		// get list of most recent choices
 		const QList<CompletionWord> &words=completer->listModel->getWords();
 		// filter list for longest common characters
@@ -172,13 +172,13 @@ public:
 			QString myResult=words.first().word;
 			int my_start=my_curWord.length();
 			my_curWord=completer->listModel->getLastWord().word;
-
+			
 			for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
 				if (myResult[j]!=my_curWord[j]) {
 					myResult=myResult.left(j);
 				}
 			}
-
+			
 			removeRightWordPart();
 			editor->insertText(myResult.right(myResult.length()-my_start));
 			maxWritten+=myResult.length()-my_start;
@@ -208,7 +208,7 @@ public:
 			editor->resizeAutoOverridenPlaceholder(c, autoOverridenText.size());
 		}
 	}
-
+	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		Q_ASSERT (completer && completer->listModel);
 		if (!completer || !completer->listModel) return false;
@@ -299,7 +299,7 @@ public:
 				resetBinding();
 				return false;
 			}
-
+			
 			QChar written=event->text().at(0);
 			if (written=='\\') {
 				if (getCurWord()=="\\") {
@@ -353,7 +353,7 @@ public:
 						if (eowchars==1) break;
 					}
 				}
-
+				
 				if (!newWord.isEmpty() && newWord.length()!=curWord.length()) {
 					QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1); //choose text until written eow character
 					insertText(insertion);
@@ -378,13 +378,13 @@ public:
 			select(completer->list->model()->index(0,0,QModelIndex()));
 		return handled;
 	}
-
+	
 	void cursorPositionChanged(QEditor* edit) {
 		if (edit!=editor) return; //should never happen
 		QDocumentCursor c=editor->cursor();
 		if (c.line()!=curLine || c.columnNumber()<curStart) resetBinding();
 	}
-
+	
 	void setMostUsed(int mu,bool quiet=false){
 		showMostUsed=mu;
 		if(quiet)
@@ -393,11 +393,11 @@ public:
 		if (!completer->list->currentIndex().isValid())
 			select(completer->list->model()->index(0,0,QModelIndex()));
 	}
-
+	
 	int getMostUsed(){
 		return showMostUsed;
 	}
-
+	
 	void resetBinding() {
 		showMostUsed=false;
 		QString curWord = getCurWord();
@@ -410,15 +410,15 @@ public:
 		if (completer) {
 			completer->widget->hide();
 			completer->disconnect(editor,SIGNAL(cursorPositionChanged()),completer,SLOT(cursorPositionChanged()));
-
+			
 		}
 		active=false;
 		curLine=QDocumentLine(); //prevent crash if the editor is destroyed
 		if(completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())){
-		    completer->complete(editor,LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
+			completer->complete(editor,LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
 		}
 	}
-
+	
 	void bindTo(QEditor * edit, LatexCompleter* caller, bool forced, int start) {
 		if (active) resetBinding();
 		active=true;
@@ -437,12 +437,12 @@ public:
 			select(completer->list->model()->index(0,0,QModelIndex()));
 		}
 	}
-
-
+	
+	
 	bool isActive() {
 		return active;
 	}
-
+	
 	QString autoOverridenText;
 private:
 	bool active;
@@ -462,7 +462,7 @@ class CompletionItemDelegate: public QItemDelegate {
 public:
 	CompletionItemDelegate(QObject* parent = 0): QItemDelegate(parent) {
 	}
-
+	
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const {
 		QVariant v=index.model()->data(index);
 		if (!v.isValid() || !v.canConvert<CompletionWord>()) return;
@@ -518,16 +518,16 @@ LatexCompleterConfig* CompletionListModel::config=0;
 int CompletionListModel::rowCount(const QModelIndex &parent) const {
 	// remove unused argument warning
 	(void) parent;
-
+	
 	return words.count();
 }
 QVariant CompletionListModel::data(const QModelIndex &index, int role)const{
 	if (!index.isValid())
 		return QVariant();
-
+	
 	if (index.row() >= words.count())
 		return QVariant();
-
+	
 	if (role == Qt::DisplayRole) {
 		QVariant temp;
 		temp.setValue(words.at(index.row()));
@@ -536,12 +536,12 @@ QVariant CompletionListModel::data(const QModelIndex &index, int role)const{
 		return QVariant();
 }
 QVariant CompletionListModel::headerData(int section, Qt::Orientation orientation,
-					      int role) const {
+                                         int role) const {
 	// remove unused argument warnings
 	(void) role;
 	(void) orientation;
 	(void) section;
-
+	
 	return QVariant();
 }
 bool CompletionListModel::isNextCharPossible(const QChar &c){
@@ -549,7 +549,7 @@ bool CompletionListModel::isNextCharPossible(const QChar &c){
 	//	return true;  -> leads to faulty behaviour (\b{ is supposed to be within list ...)
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 	if (LatexCompleter::config && 
-	    LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
+	              LatexCompleter::config->caseSensitive==LatexCompleterConfig::CCS_CASE_SENSITIVE)
 		cs=Qt::CaseSensitive;
 	QString extension=curWord+c;
 	foreach (const CompletionWord & cw, words)
@@ -601,7 +601,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		it=qLowerBound(baselist,CompletionWord(word));
 	while(it!=baselist.constEnd()){
 		if (it->word.startsWith(word,cs) &&
-		    (!checkFirstChar || it->word[1] == word[1]) ){
+		              (!checkFirstChar || it->word[1] == word[1]) ){
 			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
 				words.append(*it);
 				cnt++;
@@ -637,22 +637,22 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 			mLastWordInList=*(--it2);
 		}
 	}
-
+	
 	if(!fetchMore)
 		reset();
 }
 void CompletionListModel::incUsage(const QModelIndex &index){
 	if (!index.isValid())
 		return ;
-
+	
 	if (index.row() >= words.size())
 		return ;
-
+	
 	int j=index.row();
 	CompletionWord curWord=words.at(j);
 	if(curWord.usageCount<-1)
 		return; // don't count text words
-
+	
 	for (int i=0; i<wordsCommands.count(); i++) {
 		if(wordsCommands[i].word==curWord.word){
 			wordsCommands[i].usageCount++;
@@ -703,7 +703,7 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool norma
 		foreach(const QChar& c, str) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
-
+	
 	if (normalTextList) wordsText=newWordList;
 	else wordsCommands=newWordList;
 	baselist=wordsCommands;
@@ -718,7 +718,7 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bo
 		foreach(const QChar& c, cw.word) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
-
+	
 	if (normalTextList) wordsText=newWordList;
 	else wordsCommands=newWordList;
 	baselist=wordsCommands;
@@ -754,7 +754,7 @@ LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObj
 	list->setAutoFillBackground(true);
 	editor=0;
 	workingDir="/";
-        dirReader=0;
+	dirReader=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
 	QVBoxLayout *layout = new QVBoxLayout;
@@ -783,10 +783,10 @@ LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObj
 }
 
 LatexCompleter::~LatexCompleter() {
-    if(dirReader){
-        dirReader->quit();
-	dirReader->wait();
-    }
+	if(dirReader){
+		dirReader->quit();
+		dirReader->wait();
+	}
 	//delete list;
 }
 
@@ -875,12 +875,12 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	QDocumentCursor c=editor->cursor();
 	if (!c.isValid()) return;
 	/*int phId=editor->currentPlaceHolder();
-	if(phId>-1 && phId<editor->placeHolderCount()){
-		PlaceHolder ph=editor->getPlaceHolder(phId);
-		if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
-			editor->removePlaceHolder(phId);
-		}
-	}*/
+ if(phId>-1 && phId<editor->placeHolderCount()){
+  PlaceHolder ph=editor->getPlaceHolder(phId);
+  if(ph.cursor.isWithinSelection(c) && !ph.mirrors.isEmpty()){
+   editor->removePlaceHolder(phId);
+  }
+ }*/
 	if (c.hasSelection()) {
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
 		editor->setCursor(c);
@@ -889,11 +889,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	bool above=false;
 	if (!editor->getPositionBelowCursor(offset, widget->width(), widget->height(),above))
 		return;
-
+	
 	//disable auto close char while completer is open
 	editorAutoCloseChars=editor->flag(QEditor::AutoCloseChars);
 	editor->setFlag(QEditor::AutoCloseChars,false);
-
+	
 	//list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	QTabBar * tbOn = above?tbAbove:tbBelow;
 	QTabBar * tbOff = above?tbBelow:tbAbove;
@@ -903,26 +903,26 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	tbOff->hide();
 	tbOn->setCurrentIndex(config->preferedCompletionTab);
 	connect(tbOn,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
-
+	
 	completerInputBinding->setMostUsed(config->preferedCompletionTab,true);
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
 	if(forcedGraphic){
-             if(!dirReader){
-                dirReader=new directoryReader(this);
-                connect(dirReader,SIGNAL(directoryLoaded(QString,QSet<QString>)),this,SLOT(directoryLoaded(QString,QSet<QString>)));
-                connect(this,SIGNAL(setDirectoryForCompletion(QString)),dirReader,SLOT(readDirectory(QString)));
-                dirReader->start();
-            }
-	    QSet<QString> files;
-	    listModel->setBaseWords(files,true);
-	    listModel->baselist=listModel->wordsText;
+		if(!dirReader){
+			dirReader=new directoryReader(this);
+			connect(dirReader,SIGNAL(directoryLoaded(QString,QSet<QString>)),this,SLOT(directoryLoaded(QString,QSet<QString>)));
+			connect(this,SIGNAL(setDirectoryForCompletion(QString)),dirReader,SLOT(readDirectory(QString)));
+			dirReader->start();
+		}
+		QSet<QString> files;
+		listModel->setBaseWords(files,true);
+		listModel->baselist=listModel->wordsText;
 	}else{
-	    if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
-	    else listModel->baselist=listModel->wordsCommands;
-	    listModel->baselist << listModel->wordsAbbrev;
-	    QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
-	    std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
+		if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
+		else listModel->baselist=listModel->wordsCommands;
+		listModel->baselist << listModel->wordsAbbrev;
+		QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
+		std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
 	}
 	//qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
@@ -932,17 +932,17 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
 		if (flags & CF_NORMAL_TEXT) eow+="{";
 		if (flags & CF_FORCE_GRAPHIC) {
-		    eow+="{";
-		    eow.remove("/");
-		    eow.remove("\\");
-		    eow.remove(".");
-		    eow.remove(":");
-                    eow.remove("_");
+			eow+="{";
+			eow.remove("/");
+			eow.remove("\\");
+			eow.remove(".");
+			eow.remove(":");
+			eow.remove("_");
 		}
 		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
-		    if ((lineText.at(i)==QChar('\\'))&&!(flags & CF_FORCE_GRAPHIC)) {
+			if ((lineText.at(i)==QChar('\\'))&&!(flags & CF_FORCE_GRAPHIC)) {
 				start=i;
 				break;
 			} else if (eow.contains(lineText.at(i))) {
@@ -951,28 +951,28 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				break;
 			}
 		}
-                QString path;
-                if(flags & CF_FORCE_GRAPHIC){
-                    QString fn=lineText.mid(start,c.columnNumber()-start);
-                    int lastIndex=fn.lastIndexOf(QDir::separator());
-                    if(lastIndex>=0)
-                        start=start+lastIndex+1;
-                    if(fn.isEmpty())
-                        fn=workingDir+QDir::separator();
-                    QDir oldCurrent=QDir::current();
-                    QDir::setCurrent(workingDir);
-                    QFileInfo fi(fn);
-                    path=fi.absolutePath();
-                    QDir::setCurrent(oldCurrent.dirName()); //restore old current path
-                }
+		QString path;
+		if(flags & CF_FORCE_GRAPHIC){
+			QString fn=lineText.mid(start,c.columnNumber()-start);
+			int lastIndex=fn.lastIndexOf(QDir::separator());
+			if(lastIndex>=0)
+				start=start+lastIndex+1;
+			if(fn.isEmpty())
+				fn=workingDir+QDir::separator();
+			QDir oldCurrent=QDir::current();
+			QDir::setCurrent(workingDir);
+			QFileInfo fi(fn);
+			path=fi.absolutePath();
+			QDir::setCurrent(oldCurrent.dirName()); //restore old current path
+		}
 		completerInputBinding->bindTo(editor,this,true,start);
 		adjustWidget();
-
-                if((flags & CF_FORCE_GRAPHIC) && !path.isEmpty()){
-                    emit setDirectoryForCompletion(path);
-                }
+		
+		if((flags & CF_FORCE_GRAPHIC) && !path.isEmpty()){
+			emit setDirectoryForCompletion(path);
+		}
 	} else completerInputBinding->bindTo(editor,this,false,c.columnNumber()-1);
-
+	
 	if(completerInputBinding->getMostUsed()==1 && countWords()==0){ // if prefered list is empty, take next more extensive one
 		setTab(0);
 		adjustWidget();
@@ -984,20 +984,20 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	
 	if (completerInputBinding->getMostUsed() == config->preferedCompletionTab)
 		completerInputBinding->setMostUsed(config->preferedCompletionTab,false);		
-
+	
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
 	connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
 	
 	completerInputBinding->autoOverridenText = (flags & CF_OVERRIDEN_BACKSLASH)?"\\":"";
-
+	
 	if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
 }
 
 void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
-    listModel->setBaseWords(content,true);
-    listModel->baselist=listModel->wordsText;
-    //setTab(2);
-    completerInputBinding->setMostUsed(2);
+	listModel->setBaseWords(content,true);
+	listModel->baselist=listModel->wordsText;
+	//setTab(2);
+	completerInputBinding->setMostUsed(2);
 }
 
 void LatexCompleter::parseHelpfile(QString text) {
@@ -1036,7 +1036,7 @@ void LatexCompleter::setConfig(LatexCompleterConfig* config){
 	Q_ASSERT(config);
 	this->config=config;
 	listModel->setConfig(config);
-
+	
 	QString stSht=QString("QTabBar::tab { font-size: %1pt; margin: 2pt;}").arg(QApplication::font().pointSize() * config->tabRelFontSizePercent / 100);
 	tbAbove->setStyleSheet(stSht);
 	tbBelow->setStyleSheet(stSht);
@@ -1070,8 +1070,8 @@ void LatexCompleter::filterList(QString word,int showMostUsed) {
 bool LatexCompleter::acceptChar(QChar c,int pos) {
 	//always accept alpha numerical characters
 	if (((c>=QChar('a')) && (c<=QChar('z'))) ||
-	    ((c>=QChar('A')) && (c<=QChar('Z'))) ||
-	    ((c>=QChar('0')) && (c<=QChar('9')))) return true;
+	              ((c>=QChar('A')) && (c<=QChar('Z'))) ||
+	              ((c>=QChar('0')) && (c<=QChar('9')))) return true;
 	if (pos<=1) return false;
 	if (!listModel->getAcceptedChars().contains(c))
 		return false; //if no word contains the character don't accept it
@@ -1176,14 +1176,14 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	lLabel.ensurePolished();
 	lLabel.setText(topic);
 	lLabel.adjustSize();
-
-
+	
+	
 	int textWidthInPixels = lLabel.width()+10; // +10 good guess
-
+	
 	if(lineY>tt.y()){
 		tt.setY(lineY-lLabel.height()-lineHeight-5);
 	}
-
+	
 	if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
 	else {
 		//list->mapToGlobal
@@ -1246,14 +1246,14 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	trigger = ntrigger;
 	triggerLookBehind = false;
 	if (ntrigger.isEmpty()) return;
-
+	
 	QString realtrigger = ntrigger;
 	if (realtrigger.startsWith("(?<=")) {
 		triggerLookBehind = true;
 		realtrigger.remove(1,3); //qregexp doesn't support look behind, but we can emulate it by removing the first capture
 	}
 	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)
-
+	
 }
 
 
