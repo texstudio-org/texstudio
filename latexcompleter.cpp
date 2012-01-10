@@ -895,19 +895,15 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	editor->setFlag(QEditor::AutoCloseChars,false);
 
 	//list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
-	disconnect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
-	disconnect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
-	if(above){
-		tbAbove->show();
-		tbBelow->hide();
-		tbAbove->setCurrentIndex(config->preferedCompletionTab);
-		connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
-	}else{
-		tbAbove->hide();
-		tbBelow->show();
-		tbBelow->setCurrentIndex(config->preferedCompletionTab);
-		connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
-	}
+	QTabBar * tbOn = above?tbAbove:tbBelow;
+	QTabBar * tbOff = above?tbBelow:tbAbove;
+	disconnect(tbOn,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	disconnect(tbOff,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+	tbOn->show();
+	tbOff->hide();
+	tbOn->setCurrentIndex(config->preferedCompletionTab);
+	connect(tbOn,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
+
 	completerInputBinding->setMostUsed(config->preferedCompletionTab,true);
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
