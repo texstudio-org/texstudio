@@ -394,7 +394,7 @@ public:
 			select(completer->list->model()->index(0,0,QModelIndex()));
 	}
 
-	bool getMostUsed(){
+	int getMostUsed(){
 		return showMostUsed;
 	}
 
@@ -985,6 +985,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		setTab(2);
 		adjustWidget();
 	}
+	
+	if (completerInputBinding->getMostUsed() == config->preferedCompletionTab)
+		completerInputBinding->setMostUsed(config->preferedCompletionTab,false);		
 
 	//line.document()->cursor(0,0).insertText(QString::number(offset.x())+":"+QString::number(offset.y()));
 	connect(editor,SIGNAL(cursorPositionChanged()),this,SLOT(cursorPositionChanged()));
