@@ -9,7 +9,8 @@
 #include "latexcompleter_config.h"
 #include "smallUsefulFunctions.h"
 
-FileNamePair::FileNamePair(const QString& rel):relative(rel){};
+//FileNamePair::FileNamePair(const QString& rel):relative(rel){};
+FileNamePair::FileNamePair(const QString& rel, const QString& abs):relative(rel),absolute(abs){};
 
 LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0)
 {
@@ -626,7 +627,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				foreach(const QString& elem,bibs){ //latex doesn't seem to allow any spaces in file names
-					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem));					
+					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem,getAbsoluteFilePath(elem,"bib")));					
 					if (oldBibs.removeAll(elem) == 0)
 						bibTeXFilesNeedsUpdate = true;
 				}
@@ -887,7 +888,7 @@ void LatexDocument::setTemporaryFileName(const QString& fileName){
 	temporaryFileName=fileName;
 }
 
-QString LatexDocument::getTemporaryFileName(){
+QString LatexDocument::getTemporaryFileName() const{
 	return temporaryFileName;
 }
 
@@ -1521,19 +1522,10 @@ QString LatexDocuments::getCompileFileName(){
 		return masterDocument->getFileName();
 	if (!currentDocument)
 		return "";
-	LatexDocument* masterDoc=currentDocument->getTopMasterDocument();
+	const LatexDocument* masterDoc=currentDocument->getTopMasterDocument();
 	QString curDocFile = currentDocument->getFileName();
 	if(masterDoc)
 		curDocFile=masterDoc->getFileName();
-	
-	if (curDocFile.endsWith(".bib"))
-		foreach (const LatexDocument* d, documents) {
-			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
-			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator itend = d->mentionedBibTeXFiles().constEnd();
-			for (; it != itend; ++it)
-				if (it.value().absolute == curDocFile)
-					return d->getFileName();
-		}
 	return curDocFile;
 }
 QString LatexDocuments::getTemporaryCompileFileName(){
@@ -1957,19 +1949,36 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 	doc->recheckRefsLabels();
 }
 
-LatexDocument* LatexDocument::getTopMasterDocument(QSet<LatexDocument*> *visitedDocs){
-	LatexDocument *result=this;
+const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs) const {
+	const LatexDocument *result=this;
 	bool deleteVisitedDocs=false;
 	if(!visitedDocs){
-		visitedDocs=new QSet<LatexDocument*>();
+		visitedDocs=new QSet<const LatexDocument*>();
 		deleteVisitedDocs=true;
 	}
 	visitedDocs->insert(this);
 	if(masterDocument && !visitedDocs->contains(masterDocument))
 		result=masterDocument->getTopMasterDocument(visitedDocs);
+	if (result->getFileName().endsWith("bib"))
+		foreach (const LatexDocument* d, parent->documents) {
+			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
+			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator itend = d->mentionedBibTeXFiles().constEnd();
+			for (; it != itend; ++it) {
+				qDebug() << it.value().absolute << " <> "<<result->getFileName();
+				if (it.value().absolute == result->getFileName()){
+					result = d->getTopMasterDocument(visitedDocs);
+					break;
+				}
+			}
+			if (result == d) break;
+		}	
 	if(deleteVisitedDocs)
 		delete visitedDocs;
 	return result;
+}
+
+LatexDocument* LatexDocument::getTopMasterDocument(){
+	return const_cast<LatexDocument*>(getTopMasterDocument(0));
 }
 
 QStringList LatexDocument::includedFiles(){
@@ -2156,7 +2165,7 @@ bool LatexDocument::containsPackage(const QString& name){
 	return mUsepackageList.keys(name).count()>0;
 }
 
-LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc){ // doc==0 means current document
+const LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document
 	if(masterDocument)
 		return masterDocument;
 	LatexDocument *current=currentDocument;
@@ -2167,14 +2176,14 @@ LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc){ // d
 	return current->getTopMasterDocument();
 }
 
-QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension){
+QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension) const {
 	QString s=relName;
 	QString ext = extension;
 	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
 	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
 	QFileInfo fi(s);
 	if (!fi.isRelative()) return s;
-	LatexDocument *masterDoc=getTopMasterDocument();
+	const LatexDocument *masterDoc=getTopMasterDocument();
 	QString compileFileName=masterDoc->getFileName();
 	if (compileFileName.isEmpty()) return s; //what else can we do?
 	QString compilePath=QFileInfo(compileFileName).absolutePath();

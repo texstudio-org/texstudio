@@ -1277,6 +1277,12 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (outputView->logPresent()) DisplayLatexError(); //show marks
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
+	LatexDocument* master = edit->document->getTopMasterDocument();
+	if (master) foreach (const FileNamePair& fnp, edit->document->mentionedBibTeXFiles().values()) {
+		Q_ASSERT(!fnp.absolute.isEmpty());
+		master->lastCompiledBibTeXFiles.insert(fnp.absolute);
+	}
+	
 	
 #ifndef Q_WS_MACX
 	if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
@@ -3417,7 +3423,32 @@ void Texmaker::RunPreCompileCommand() {
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
 		runCommand(BuildManager::CMD_USER_PRECOMPILE, RCF_WAIT_FOR_FINISHED);
 	}
-	if (documents.bibTeXFilesModified && configManager.runLaTeXBibTeXLaTeX) {
+	
+	if (configManager.runLaTeXBibTeXLaTeX) {
+		LatexDocument* master = currentEditorView()->document->getTopMasterDocument();
+		REQUIRE(master);
+		QList<LatexDocument*> docs = master->getListOfDocs();
+		QSet<QString> bibFiles;
+		foreach (const LatexDocument* doc, docs)
+			foreach (const FileNamePair& bf, doc->mentionedBibTeXFiles()) 
+				bibFiles.insert(bf.absolute);
+		if (bibFiles == master->lastCompiledBibTeXFiles) {
+			QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
+			if (bbl.exists()) {
+				bool bibFilesChanged = false;
+				QDateTime bblChanged = bbl.lastModified();
+				foreach (const QString& bf, bibFiles){
+					//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblChanged;
+					
+					if (QFileInfo(bf).exists() && QFileInfo(bf).lastModified() > bblChanged) {
+						bibFilesChanged = true;
+						break;
+					}
+				}
+				if (!bibFilesChanged) return;
+			}
+		} else master->lastCompiledBibTeXFiles = bibFiles;
+		
 		ERRPROCESS=false;
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
 		runCommand(BuildManager::CMD_LATEX, RCF_WAIT_FOR_FINISHED);
@@ -3437,7 +3468,6 @@ void Texmaker::RunPreCompileCommand() {
 				runCommand(BuildManager::CMD_LATEX,RCF_WAIT_FOR_FINISHED);
 			}
 		}
-		documents.bibTeXFilesModified = false;
 	}
 }
 
@@ -4765,7 +4795,7 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	if (originalText=="") return;
 	// get document definitions
 	//preliminary code ...
-	LatexDocument *doc=documents.getMasterDocumentForDoc();
+	const LatexDocument *doc=documents.getMasterDocumentForDoc();
 	LatexEditorView* edView=(doc && doc->getEditorView())?doc->getEditorView():currentEditorView();
 	if (!edView) return;
 	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
