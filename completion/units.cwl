@@ -5,8 +5,8 @@
 
 \unit[value]{dimension}
 \unit{dimension}
-\unitfrac[value]{numerator}{denominator}
-\unitfrac{numerator}{denominator}
-\nicefrac[fontcmd]{numerator}{denominator}
-\nicefrac{numerator}{denominator}
+\unitfrac[value]{num}{den}
+\unitfrac{num}{den}
+\nicefrac[fontcmd]{num}{den}
+\nicefrac{num}{den}
 

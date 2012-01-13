@@ -39,14 +39,14 @@
 \binom{above}{below}#m
 \boldsymbol{argument}#m
 \boxed{argument}
-\cfrac[align]{numerator}{denominator}#m
-\cfrac{numerator}{denominator}#m
+\cfrac[align]{num}{den}#m
+\cfrac{num}{den}#m
 \dbinom{above}{below}#m
 \ddddot{text}
 \dddot{text}
 \DeclareMathOperator{command}{text}#n
 \DeclareMathOperator*{command}{text}#n
-\dfrac{numerator}{denominator}#m
+\dfrac{num}{den}#m
 \displaybreak
 \displaybreak[value]
 \dotsb#m
@@ -119,7 +119,7 @@
 \tag*{label}
 \tbinom{above}{below}
 \text{word or phrase}
-\tfrac{numerator}{denominator}
+\tfrac{num}{den}
 \thickspace
 \thinspace
 \underleftarrow{argument}
