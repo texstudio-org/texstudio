@@ -156,7 +156,9 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 void scriptengine::run(){
 	if(m_editor){
 		ScriptObject globalObject(m_script,buildManager,app);
-		engine->setGlobalObject(engine->newQObject(&globalObject));
+		QScriptValue globalValue = engine->newQObject(&globalObject);
+		globalValue.setPrototype(engine->globalObject());
+		engine->setGlobalObject(globalValue);
 		
 		QScriptValue editorValue = engine->newQObject(m_editor);
 		editorValue.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
