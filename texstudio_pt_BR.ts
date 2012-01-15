@@ -270,12 +270,12 @@
         <location filename="additionaltranslations.cpp" line="7"/>
         <source>num</source>
         <oldsource>nom</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>num</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="9"/>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation>den</translation>
     </message>
 </context>
 <context>
@@ -863,12 +863,12 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="489"/>
         <source>Spelling dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Dicionário ortográfico</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="499"/>
         <source>Default language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma padrão</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="743"/>
@@ -883,7 +883,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1417"/>
         <source>Restrict search scope to an existing selection</source>
-        <translation>Restringir escopo da busaca para uma seleção existente</translation>
+        <translation>Restringir escopo da busca para uma seleção existente</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1474"/>
@@ -1286,7 +1286,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.cpp" line="301"/>
         <source>Diff</source>
-        <translation>Diff</translation>
+        <translation>Diferenças</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="310"/>
@@ -1326,7 +1326,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.cpp" line="400"/>
         <source>Select dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar diretório para dicionário</translation>
     </message>
     <message>
         <source>Custom Toolbar</source>
@@ -1768,7 +1768,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>huge</source>
-        <translation type="unfinished"></translation>
+        <translation>huge</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
@@ -2387,13 +2387,14 @@ Você deseja desfazer as alterações?</translation>
         <location filename="insertgraphics.cpp" line="278"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao analisar código de inclusão de gráficos:
+Faltando opções para \includegraphics.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="85"/>
         <source>Graphics options</source>
         <oldsource>Size / Include Options</oldsource>
-        <translation type="unfinished">Tamanho / Opções de Incusão</translation>
+        <translation>Opções para gráficos</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="101"/>
@@ -2566,7 +2567,7 @@ O assistente não suporta comandos</translation>
         <location filename="latexdocument.cpp" line="24"/>
         <location filename="latexdocument.cpp" line="169"/>
         <source>MAGIC_COMMENTS</source>
-        <translation type="unfinished"></translation>
+        <translation>Comentários Mágicos</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="25"/>
@@ -2595,22 +2596,22 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexdocument.cpp" line="1813"/>
         <source>Invalid language format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato de idioma inválido</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1826"/>
         <source>Invalid codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Codec inválido</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1832"/>
         <source>Unknown magic comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Comentário mágico desconhecido</translation>
     </message>
     <message>
         <location filename="diffoperations.cpp" line="23"/>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro desconhecido. Falha em potencial. É aconselhável reiniciar o TeXstudio </translation>
     </message>
 </context>
 <context>
@@ -2653,17 +2654,17 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="188"/>
         <source>Open package documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir documentação do pacote</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="233"/>
         <source>use yours</source>
-        <translation type="unfinished"></translation>
+        <translation>usar os seus</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="237"/>
         <source>use other&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>usar de outros</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="248"/>
@@ -2798,7 +2799,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="toolwidgets.cpp" line="282"/>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo de log é muito grande (&gt;%1 MB). Você realmente deseja carregá-lo?</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="379"/>
@@ -3420,7 +3421,8 @@ O assistente não suporta comandos</translation>
         <location filename="PDFDocument.cpp" line="2242"/>
         <source>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 não parece um arquivo PDF válido.
+Deseja realmente abrí-lo? Isto pode ocasionar uma falha no aplicativo.</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2254"/>
@@ -3430,12 +3432,12 @@ Do you want to open it anyways? It could cause a crash.</source>
     <message>
         <location filename="PDFDocument.cpp" line="2257"/>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo PDF &quot;%1&quot; está incompleto. Tente novamente em 2 segundos.</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2258"/>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo PDF &quot;%1&quot; está incompleto.</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2481"/>
@@ -4428,7 +4430,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>magicComment</source>
-        <translation type="unfinished"></translation>
+        <translation>Comentário Mágico</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="237"/>
@@ -4463,12 +4465,12 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="249"/>
         <source>sweave</source>
-        <translation type="unfinished"></translation>
+        <translation>sweave</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="251"/>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>picture</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="253"/>
@@ -4573,17 +4575,17 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="293"/>
         <source>diffDelete</source>
-        <translation type="unfinished"></translation>
+        <translation>remoção</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="295"/>
         <source>diffAdd</source>
-        <translation type="unfinished"></translation>
+        <translation>adição</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="297"/>
         <source>diffReplace</source>
-        <translation type="unfinished"></translation>
+        <translation>substituição</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="299"/>
@@ -5671,7 +5673,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="additionaltranslations.cpp" line="315"/>
         <source>Diff</source>
-        <translation type="unfinished">Diff</translation>
+        <translation>Diferenças</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="317"/>
@@ -5713,7 +5715,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="229"/>
         <source>Sweave files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos sweave</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="230"/>
@@ -5910,27 +5912,27 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="474"/>
         <source>Show difference between two files in relation to base file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir diferença entre dois arquivos em relação ao arquivo base</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="475"/>
         <source>Check SVN Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar conflito SVN</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="476"/>
         <source>Try to merge differences</source>
-        <translation type="unfinished"></translation>
+        <translation>Tentar mesclar diferenças</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="477"/>
         <source>Remove Difference-Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover marcadores de diferenças</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="478"/>
         <source>Declare Conflict Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>Declarar conflito resolvido</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="479"/>
@@ -6646,35 +6648,35 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="862"/>
         <source>Default</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="871"/>
         <source>Insert language as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir idioma como comentário TeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="920"/>
         <source>Language</source>
-        <translation type="unfinished">Idioma</translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3457"/>
         <location filename="texmaker.cpp" line="3540"/>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você não pode compilar o documento em um diretório sem permissão de escrita.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3774"/>
         <source>Log File is not readable!</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de log não legível!</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5463"/>
         <location filename="texmaker.cpp" line="5472"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>TXS perfil</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5798"/>
@@ -6686,17 +6688,17 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="5996"/>
         <source>Open Compare File</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arrquivo a comparar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5999"/>
         <source>Open Base File</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir arquivo base</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6040"/>
         <source>Conflict!</source>
-        <translation type="unfinished">Conflito!</translation>
+        <translation>Conflito!</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6041"/>
@@ -6705,12 +6707,15 @@ has been modified by another application.
 Press &quot;OK&quot; to show differences
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+foi modificado por outro aplicativo.
+Pressione &quot;OK&quot; para exibir diferenças
+Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6084"/>
         <source>SVN Conflict!</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflito SVN!</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6085"/>
@@ -6718,7 +6723,9 @@ Press &quot;Cancel&quot;to do nothing.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1 está em conflito com o repositório.
+Pressione &quot;OK&quot; para exibir as diferenças ao invés de fonte gerada por svn
+Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <source>About TexMakerX...</source>
