@@ -296,11 +296,11 @@
     <name>CodeSnippet_PlaceHolder</name>
     <message>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation>dénominateur</translation>
     </message>
     <message>
         <source>num</source>
-        <translation type="unfinished"></translation>
+        <translation>numérateur</translation>
     </message>
 </context>
 <context>
@@ -1287,7 +1287,7 @@ You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No
 
 Which one of the three wise will always tell the truth?</source>
         <translation>Vous arrivez sur une île magique où vous rencontrez trois amis étranges et sages.
-L&apos;;un d&apos;eux dit toujours la vérité, un autre ment toujours et le troisième est sourd, si bien qu&apos;il répond au hasard et ne peut pas mentir (!).
+L&apos;un d&apos;eux dit toujours la vérité, un autre ment toujours et le troisième est sourd, si bien qu&apos;il répond au hasard et ne peut pas mentir (!).
 Vous demandez au premier : « Mentez-vous ? » et il répond : « Non ».
 Vous demandez au second : « Le premier ment-il ? » et il répond : « Non ».
 Vous demandez au dernier : « Le second ment-il ? » et il répond : « Non ».
@@ -1348,15 +1348,15 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Spelling dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire du dictionnaire</translation>
     </message>
     <message>
         <source>Default language</source>
-        <translation type="unfinished"></translation>
+        <translation>Langue par défaut</translation>
     </message>
     <message>
         <source>Select dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélection du répertoire du dictionnaire</translation>
     </message>
 </context>
 <context>
@@ -1837,7 +1837,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>huge</source>
-        <translation type="unfinished"></translation>
+        <translation>énorme</translation>
     </message>
 </context>
 <context>
@@ -2194,12 +2194,13 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <source>Graphics options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options de graphiques</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;analyser le code de l&apos;inclusion de graphique :
+Options de \includegraphics manquantes</translation>
     </message>
 </context>
 <context>
@@ -2259,23 +2260,25 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur inconnue. Crash potentiel. Il vous est conseillé de relancer TeXstudio</translation>
     </message>
     <message>
         <source>MAGIC_COMMENTS</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>À préciser...</translatorcomment>
+        <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
         <source>Invalid language format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de langage non valide</translation>
     </message>
     <message>
         <source>Invalid codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Codec non valide</translation>
     </message>
     <message>
         <source>Unknown magic comment</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>À préciser : qu&apos;est-ce qu&apos;un « commentaire magique » ?</translatorcomment>
+        <translation>Commentaire magique inconnu</translation>
     </message>
 </context>
 <context>
@@ -2349,15 +2352,15 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Open package documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir la documentation du package</translation>
     </message>
     <message>
         <source>use yours</source>
-        <translation type="unfinished"></translation>
+        <translation>utiliser le vôtre</translation>
     </message>
     <message>
         <source>use other&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>utiliser l&apos;autre</translation>
     </message>
 </context>
 <context>
@@ -2454,7 +2457,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"></translation>
+        <translation>The fichier de log est très grand (&gt; %1 MB) : êtes-vous sûr de vouloir le visualiser ?</translation>
     </message>
 </context>
 <context>
@@ -3003,15 +3006,16 @@ Missing \includegraphics options.</source>
     <message>
         <source>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 semble ne pas être un document PDF valide.
+Êtes-vous sûr de vouloir néanmoins l&apos;ouvrir ? Cela peut provoquer un crash.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier PDF %1 est incomplet. Nouvel essai dans 2 secondes.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier PDF %1 est incomplet.</translation>
     </message>
 </context>
 <context>
@@ -3969,27 +3973,27 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>magicComment</source>
-        <translation type="unfinished"></translation>
+        <translation>magicComment</translation>
     </message>
     <message>
         <source>sweave</source>
-        <translation type="unfinished"></translation>
+        <translation>sweave</translation>
     </message>
     <message>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>image</translation>
     </message>
     <message>
         <source>diffDelete</source>
-        <translation type="unfinished"></translation>
+        <translation>diffDelete</translation>
     </message>
     <message>
         <source>diffAdd</source>
-        <translation type="unfinished"></translation>
+        <translation>diffAdd</translation>
     </message>
     <message>
         <source>diffReplace</source>
-        <translation type="unfinished"></translation>
+        <translation>diffReplace</translation>
     </message>
 </context>
 <context>
@@ -6085,68 +6089,68 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished">Différences</translation>
+        <translation>Différences</translation>
     </message>
     <message>
         <source>Sweave files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers sweave</translation>
     </message>
     <message>
         <source>Show difference between two files in relation to base file</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer la différence entre deux fichiers relativement au fichier de base</translation>
     </message>
     <message>
         <source>Check SVN Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Contrôler les conflits SVN</translation>
     </message>
     <message>
         <source>Try to merge differences</source>
-        <translation type="unfinished"></translation>
+        <translation>Tenter de fusionner les différences</translation>
     </message>
     <message>
         <source>Remove Difference-Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les balises de différences</translation>
     </message>
     <message>
         <source>Declare Conflict Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>Déclarer le conflit comme résolu</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished">Défaut</translation>
+        <translation>Défaut</translation>
     </message>
     <message>
         <source>Insert language as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer le langage comme un commentaire TeX</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Langue</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>La compilation du document est impossible car il se trouve dans un répertoire où vous n&apos;avez pas le droit d&apos;écrire.</translation>
     </message>
     <message>
         <source>Log File is not readable!</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier de log n&apos;est pas lisible !</translation>
     </message>
     <message>
         <source>TXS Profile</source>
         <comment>filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Profil TXS</translation>
     </message>
     <message>
         <source>Open Compare File</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le fichier de comparaison</translation>
     </message>
     <message>
         <source>Open Base File</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le fichier de base</translation>
     </message>
     <message>
         <source>Conflict!</source>
-        <translation type="unfinished">Conflit !</translation>
+        <translation>Conflit !</translation>
     </message>
     <message>
         <source>%1
@@ -6154,18 +6158,23 @@ has been modified by another application.
 Press &quot;OK&quot; to show differences
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Le document %1 
+a été modifié par un autre programme.
+Cliquer sur « OK » pour afficher les différences.
+Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>SVN Conflict!</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflit SVN !</translation>
     </message>
     <message>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1 est en conflit avec le dépôt.
+Cliquer sur « OK » pour afficher les différences plutôt que la source générée par Subversion.
+Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
 </context>
 <context>
