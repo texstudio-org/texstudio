@@ -11,7 +11,24 @@ int CodeSnippetPlaceHolder::offsetEnd(){
 	return offset + length;
 }
 
+
+inline void translatePlaceholder(const QString& content, QString& curLine, CodeSnippetPlaceHolder& ph){
+	for (int i=0;i<content.length();i++) 
+		if (!content[i].toAscii()){ //don't translate non ascii placeholders
+			curLine+=content;
+			ph.length+=content.length();
+			return;
+		}
+			
+	QString trans = QApplication::translate("CodeSnippet_PlaceHolder", content.toAscii().constData());
+	curLine += trans;
+	ph.length = trans.length();
+	return;
+}
+
+
 void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, CodeSnippetPlaceHolder& ph){
+	QString tmpPlaceHolderContent;
 	ph.offset = curLine.length();
 	ph.length = 0;
 	ph.id = -1;
@@ -21,17 +38,17 @@ void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, C
 			i++;
 			switch (snippet.at(i).toAscii()){
 				case'|': ph.flags |= CodeSnippetPlaceHolder::AutoSelect; break;
-				case '>': return;
-				case '%': curLine+='%'; ph.length++; break;
+				case '>': translatePlaceholder(tmpPlaceHolderContent, curLine, ph); return;
+				case '%': tmpPlaceHolderContent+='%'; ph.length++; break;
 				case ':': goto secondLevelBreak;
-				default: curLine+="%"; curLine+=snippet.at(i); ph.length++;
+				default: tmpPlaceHolderContent+="%"; tmpPlaceHolderContent+=snippet.at(i); ph.length++;
 			}
-		} else {
-			curLine += snippet.at(i);
-			ph.length++;
-		}
+		} else tmpPlaceHolderContent += snippet.at(i);
 	}
+	
+	
 	secondLevelBreak:
+	translatePlaceholder(tmpPlaceHolderContent, curLine, ph);
 	if (i>=snippet.length()) return;
 	if (snippet.at(i)!=':') return;
 

@@ -324,6 +324,17 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet_PlaceHolder</name>
+    <message>
+        <source>den</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>num</source>
+        <translation>nominator</translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Do you really want to delete this row?</source>
@@ -331,7 +342,7 @@
     </message>
     <message>
         <source>Get dictionary at: %1</source>
-        <translation>Wörterbuch herunterladen: %1</translation>
+        <translation type="obsolete">Wörterbuch herunterladen: %1</translation>
     </message>
     <message>
         <source>Command</source>
@@ -387,11 +398,11 @@
     </message>
     <message>
         <source>Browse dictionary</source>
-        <translation>Wähle Wörterbuch</translation>
+        <translation type="obsolete">Wähle Wörterbuch</translation>
     </message>
     <message>
         <source>(Dictionary doesn&apos;t exists)</source>
-        <translation>(Wörterbuch existiert nicht)</translation>
+        <translation type="obsolete">(Wörterbuch existiert nicht)</translation>
     </message>
     <message>
         <source>Browse thesaurus database</source>
@@ -833,7 +844,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>*.dic</source>
-        <translation>*.dic</translation>
+        <translation type="obsolete">*.dic</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -924,7 +935,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Spelling dictionary</source>
-        <translation>Wörterbuch</translation>
+        <translation type="obsolete">Wörterbuch</translation>
     </message>
     <message>
         <source>Shortcuts</source>
@@ -1514,6 +1525,18 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <source>Toolbars</source>
         <translation>Toolbars</translation>
     </message>
+    <message>
+        <source>Spelling dictionary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select dictionary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2006,6 +2029,10 @@ Do you want to remove them?</source>
         <source>Open first non-open file</source>
         <translation>Öffne erstes nicht geladene Datei aus Liste</translation>
     </message>
+    <message>
+        <source>huge</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2265,7 +2292,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Size / Include Options</source>
-        <translation>Größen- / Einfügeoptionen</translation>
+        <translation type="obsolete">Größen- / Einfügeoptionen</translation>
     </message>
     <message>
         <source>Width/Height</source>
@@ -2341,7 +2368,7 @@ Der Assistent unterstützt nicht die Umgebung </translation>
     <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics optins.</source>
-        <translation>Konnte Bildereinfügecode nicht interpretieren:
+        <translation type="obsolete">Konnte Bildereinfügecode nicht interpretieren:
 Fehlende \includegraphics Optionen.</translation>
     </message>
     <message>
@@ -2349,6 +2376,15 @@ Fehlende \includegraphics Optionen.</translation>
 The wizard does not support command </source>
         <translation>Konnte Bildereinfügecode nicht interpretieren:
 Der Assistent unterstützt nicht das Kommando </translation>
+    </message>
+    <message>
+        <source>Graphics options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics options.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2404,6 +2440,26 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <source>BLOCKS</source>
         <translation>BLOCKS</translation>
+    </message>
+    <message>
+        <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAGIC_COMMENTS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid language format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown magic comment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2470,6 +2526,18 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <source>Thesaurus...</source>
         <translation>Thesaurus...</translation>
+    </message>
+    <message>
+        <source>Open package documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>use yours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>use other&apos;s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2571,6 +2639,10 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <source>search results</source>
         <translation>Suchergebnisse</translation>
+    </message>
+    <message>
+        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3242,6 +3314,19 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <source>Next shown page</source>
         <translation>Nächste gezeigte Seite</translation>
+    </message>
+    <message>
+        <source>%1 does not look like a valid PDF document.
+Do you want to open it anyways? It could cause a crash.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4241,6 +4326,30 @@ Wollen Sie es speichern?</translation>
     <message>
         <source>commentTodo</source>
         <translation>KommentarTodo</translation>
+    </message>
+    <message>
+        <source>magicComment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sweave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffDelete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffAdd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffReplace</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5934,11 +6043,6 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
         <translation>Aktuelle Datei zur &apos;&amp;Masterdatei&apos; erklären</translation>
     </message>
     <message>
-        <source>TmX Profile</source>
-        <comment>filter</comment>
-        <translation></translation>
-    </message>
-    <message>
         <source>Load Profile</source>
         <translation>Lade Profil</translation>
     </message>
@@ -6731,6 +6835,90 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX Dateien (*.tex);;Alle Dateien (*)</translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished">Diff</translation>
+    </message>
+    <message>
+        <source>Sweave files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files in relation to base file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check SVN Conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to merge differences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Difference-Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Declare Conflict Resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished">Standard</translation>
+    </message>
+    <message>
+        <source>Insert language as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Sprache</translation>
+    </message>
+    <message>
+        <source>You cannot compile the document in a non writable directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File is not readable!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TXS Profile</source>
+        <comment>filter</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Compare File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Base File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conflict!</source>
+        <translation type="unfinished">Konflikt!</translation>
+    </message>
+    <message>
+        <source>%1
+has been modified by another application.
+Press &quot;OK&quot; to show differences
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN Conflict!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1is conflicted with repository.
+Press &quot;OK&quot; to show differences instead of the generated source by subversion
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

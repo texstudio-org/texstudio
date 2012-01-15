@@ -293,6 +293,17 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet_PlaceHolder</name>
+    <message>
+        <source>den</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>num</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>Configure TexMakerX</source>
@@ -376,7 +387,7 @@
     </message>
     <message>
         <source>Spelling dictionary</source>
-        <translation>Dictionnaire</translation>
+        <translation type="obsolete">Dictionnaire</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -404,7 +415,7 @@
     </message>
     <message>
         <source>*.dic</source>
-        <translation>*.dic</translation>
+        <translation type="obsolete">*.dic</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -891,15 +902,15 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Browse dictionary</source>
-        <translation>Localiser dictionnaire</translation>
+        <translation type="obsolete">Localiser dictionnaire</translation>
     </message>
     <message>
         <source>Get dictionary at: %1</source>
-        <translation>Téléchargement du dictionnaire: %1</translation>
+        <translation type="obsolete">Téléchargement du dictionnaire: %1</translation>
     </message>
     <message>
         <source>(Dictionary doesn&apos;t exists)</source>
-        <translation>(dictionnaire introuvable)</translation>
+        <translation type="obsolete">(dictionnaire introuvable)</translation>
     </message>
     <message>
         <source>Browse thesaurus database</source>
@@ -1334,6 +1345,18 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     <message>
         <source>Toolbars</source>
         <translation>Barre d&apos;outils</translation>
+    </message>
+    <message>
+        <source>Spelling dictionary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select dictionary directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1812,6 +1835,10 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
         <source>Open first non-open file</source>
         <translation>Ouvrir le premier fichier non ouvert</translation>
     </message>
+    <message>
+        <source>huge</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2079,7 +2106,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Size / Include Options</source>
-        <translation>Options d&apos;inclusion (taille, etc.)</translation>
+        <translation type="obsolete">Options d&apos;inclusion (taille, etc.)</translation>
     </message>
     <message>
         <source>Width/Height</source>
@@ -2156,7 +2183,7 @@ l&apos;assistant ne supporte pas l&apos;environnement</translation>
     <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics optins.</source>
-        <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
+        <translation type="obsolete">Impossible d&apos;analyser le code d&apos;inclusion du graphique :
 options de \includegraphics manquantes.</translation>
     </message>
     <message>
@@ -2164,6 +2191,15 @@ options de \includegraphics manquantes.</translation>
 The wizard does not support command </source>
         <translation>Impossible d&apos;analyser le code d&apos;inclusion du graphique :
 l&apos;assistant ne supporte pas la commande</translation>
+    </message>
+    <message>
+        <source>Graphics options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Missing \includegraphics options.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2220,6 +2256,26 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <source>BLOCKS</source>
         <translation>BLOCS</translation>
+    </message>
+    <message>
+        <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAGIC_COMMENTS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid language format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown magic comment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2290,6 +2346,18 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <source>Thesaurus...</source>
         <translation>Thésaurus...</translation>
+    </message>
+    <message>
+        <source>Open package documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>use yours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>use other&apos;s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2383,6 +2451,10 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <source>search results</source>
         <translation>résultats de recherche</translation>
+    </message>
+    <message>
+        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2927,6 +2999,19 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <source>Next shown page</source>
         <translation>Page visitée suivante</translation>
+    </message>
+    <message>
+        <source>%1 does not look like a valid PDF document.
+Do you want to open it anyways? It could cause a crash.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3881,6 +3966,30 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <source>commentTodo</source>
         <translation>Commentaire À FAIRE</translation>
+    </message>
+    <message>
+        <source>magicComment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sweave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffDelete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffAdd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffReplace</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5329,7 +5438,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     <message>
         <source>TmX Profile</source>
         <comment>filter</comment>
-        <translation>Profile TmX</translation>
+        <translation type="obsolete">Profile TmX</translation>
     </message>
     <message>
         <source>Load Profile</source>
@@ -5973,6 +6082,90 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Fichiers LaTeX (*.tex);;Tous les fichiers (*)</translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished">Différences</translation>
+    </message>
+    <message>
+        <source>Sweave files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files in relation to base file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check SVN Conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to merge differences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Difference-Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Declare Conflict Resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished">Défaut</translation>
+    </message>
+    <message>
+        <source>Insert language as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Langue</translation>
+    </message>
+    <message>
+        <source>You cannot compile the document in a non writable directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File is not readable!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TXS Profile</source>
+        <comment>filter</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Compare File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Base File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conflict!</source>
+        <translation type="unfinished">Conflit !</translation>
+    </message>
+    <message>
+        <source>%1
+has been modified by another application.
+Press &quot;OK&quot; to show differences
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN Conflict!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1is conflicted with repository.
+Press &quot;OK&quot; to show differences instead of the generated source by subversion
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

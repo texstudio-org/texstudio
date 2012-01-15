@@ -4128,6 +4128,10 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			translations << "#undef UNDEFINED";
 			translations << "#ifdef UNDEFINED";
 			translations << "static const char* translations[] = {";
+			
+			translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"num\"), ";
+			translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"den\"), ";
+			
 			QRegExp commandOnly("\\\\['`^\"~=.^]?[a-zA-Z]*(\\{\\})* *"); //latex command
 			//copy menu item text
 			QFile xmlFile(":/uiconfig.xml");
