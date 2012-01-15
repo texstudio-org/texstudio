@@ -197,6 +197,17 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet_PlaceHolder</name>
+    <message>
+        <source>den</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>num</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>OK</source>
@@ -1550,6 +1561,10 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <source>Open first non-open file</source>
         <translation>Megnyitja az első nem nyitott fájlt</translation>
+    </message>
+    <message>
+        <source>huge</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3542,6 +3557,26 @@ Akarja menteni ezeket?</translation>
         <source>magicComment</source>
         <translation>mágikusMegjegyzés</translation>
     </message>
+    <message>
+        <source>sweave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffDelete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffAdd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffReplace</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -5479,6 +5514,14 @@ Press &quot;Cancel&quot;to do nothing.
 Kattintson az &quot;OK&quot; gombra a különbségek megjelenítéséhez. Ekkor a subversion
 nem hozza létre a kódot
 Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished">Különbség</translation>
+    </message>
+    <message>
+        <source>Sweave files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

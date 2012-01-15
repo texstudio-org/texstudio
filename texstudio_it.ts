@@ -265,6 +265,17 @@
     </message>
 </context>
 <context>
+    <name>CodeSnippet_PlaceHolder</name>
+    <message>
+        <source>den</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>num</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <source>TexMakerX</source>
@@ -288,7 +299,7 @@
     </message>
     <message>
         <source>Get dictionary at: %1</source>
-        <translation>Scarica il dizionario da: %1</translation>
+        <translation type="obsolete">Scarica il dizionario da: %1</translation>
     </message>
     <message>
         <source>Command</source>
@@ -348,11 +359,11 @@
     </message>
     <message>
         <source>Browse dictionary</source>
-        <translation>Sfoglia Dizionario</translation>
+        <translation type="obsolete">Sfoglia Dizionario</translation>
     </message>
     <message>
         <source>(Dictionary doesn&apos;t exists)</source>
-        <translation>(Il dizionario non esiste)</translation>
+        <translation type="obsolete">(Il dizionario non esiste)</translation>
     </message>
     <message>
         <source>Browse thesaurus database</source>
@@ -436,7 +447,7 @@
     </message>
     <message>
         <source>Spelling dictionary</source>
-        <translation>Correttore Ortografico</translation>
+        <translation type="obsolete">Correttore Ortografico</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -625,10 +636,6 @@
     <message>
         <source>Inline reference checking</source>
         <translation type="unfinished">controllo riferimenti in linea</translation>
-    </message>
-    <message>
-        <source>*.dic</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -1272,6 +1279,18 @@ Which one of the three wise will always tell the truth?</source>
         <source>Toolbars</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Spelling dictionary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select dictionary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1748,6 +1767,10 @@ Do you want to remove them?</source>
         <source>Open first non-open file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>huge</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -1974,10 +1997,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Size / Include Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Width/Height</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2049,12 +2068,16 @@ The wizard does not support environment </source>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
-Missing \includegraphics optins.</source>
+The wizard does not support command </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Graphics options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
-The wizard does not support command </source>
+Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2110,6 +2133,26 @@ The wizard does not support command </source>
     </message>
     <message>
         <source>BLOCKS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MAGIC_COMMENTS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid language format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown magic comment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2179,6 +2222,18 @@ The wizard does not support command </source>
     <message>
         <source>Thesaurus...</source>
         <translation type="unfinished">Dizionario Sinonimi...</translation>
+    </message>
+    <message>
+        <source>Open package documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>use yours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>use other&apos;s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2271,6 +2326,10 @@ The wizard does not support command </source>
     </message>
     <message>
         <source>search results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2829,6 +2888,19 @@ The wizard does not support command </source>
     </message>
     <message>
         <source>Next shown page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 does not look like a valid PDF document.
+Do you want to open it anyways? It could cause a crash.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF file &quot;%1&quot; is incomplete.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3778,6 +3850,30 @@ Vuoi salvarli?</translation>
     </message>
     <message>
         <source>commentTodo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>magicComment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sweave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffDelete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffAdd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>diffReplace</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5051,11 +5147,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Definisci il documento corrente come &apos;Documento &amp;Master&apos;</translation>
     </message>
     <message>
-        <source>TmX Profile</source>
-        <comment>filter</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Load Profile</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5873,6 +5964,90 @@ However, you are using a version of TeXstudio that was compiled without the inte
     </message>
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sweave files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show difference between two files in relation to base file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check SVN Conflict</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to merge differences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Difference-Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Declare Conflict Resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished">Default</translation>
+    </message>
+    <message>
+        <source>Insert language as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Lingua</translation>
+    </message>
+    <message>
+        <source>You cannot compile the document in a non writable directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File is not readable!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TXS Profile</source>
+        <comment>filter</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Compare File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Base File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conflict!</source>
+        <translation type="unfinished">Conflitto!</translation>
+    </message>
+    <message>
+        <source>%1
+has been modified by another application.
+Press &quot;OK&quot; to show differences
+Press &quot;Cancel&quot;to do nothing.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SVN Conflict!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1is conflicted with repository.
+Press &quot;OK&quot; to show differences instead of the generated source by subversion
+Press &quot;Cancel&quot;to do nothing.
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
