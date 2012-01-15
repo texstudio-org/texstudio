@@ -1277,6 +1277,16 @@ QModelIndex LatexDocumentsModel::index ( StructureEntry* entry ) const{
 QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!index.isValid()) return QModelIndex();
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
+#ifndef QT_NO_DEBUG
+	const LatexDocument* found = 0;
+	foreach (const LatexDocument* ld, documents.documents)
+		if (ld->StructureContent.contains(const_cast<StructureEntry*>(entry))) {
+			found = ld;
+			break;
+		}
+	Q_ASSERT(found);
+	Q_ASSERT(entry->document == found);
+#endif
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
 	if(entry->level>LatexParser::getInstance().structureCommands.count() || entry->level<0){
