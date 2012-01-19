@@ -132,7 +132,7 @@ bool LatexLogModel::existsReRunWarning() const{
 				  "( Rerun )");
 	foreach (const LatexLogEntry& l, log) {
 		if (l.type != LT_WARNING || l.oldline != 0) continue;
-		if (l.message.contains(rReRun)) return true;
+		if (l.message.contains(rReRun) && !l.message.contains("No file \\jobname .aux")) return true;
 	}
 	return false;
 }
