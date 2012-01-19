@@ -71,7 +71,7 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 		QString label;
 		QStringList args,pkgs;
 
-		label = tr("Command: ") + img.text("Command");
+		label = tr("Command: ") + "<b>" + img.text("Command") + "</b>";
 
 		QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
 
@@ -88,9 +88,9 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 		if( pkgs.count() > 0 )
 		{
 			if(pkgs.count() == 1)
-				label += "\n" + tr("Package: ");
+				label += "<br>" + tr("Package: ");
 			else
-				label += "\n" + tr("Packages: ");
+				label += "<br>" + tr("Packages: ");
 
 			for( int j = 0; j < pkgs.count() ; j++ )
 			{
