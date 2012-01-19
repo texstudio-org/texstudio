@@ -244,7 +244,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	QMap<StructureEntry*,int> toBeDeleted;
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
-	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1);
+	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,1,0,true,true);
 	
 	// append structure remainder ...
 	for(int i=parent_level.size()-1;i>=0;i--){
@@ -258,6 +258,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		}
 	}
 	// purge unconnected elements
+	//foreach(se,toBeDeleted.keys()) Q_ASSERT(!toBeDeleted.contains(se->parent));
+	
+
 	foreach(se,toBeDeleted.keys()){
 		emit removeElement(se,toBeDeleted.value(se));
 		delete se;
@@ -322,7 +325,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QMap<StructureEntry*,int> toBeDeleted;
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfElements;
 	StructureEntry* se=baseStructure;
-	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count);
+	splitStructure(se,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,0,true,true);
 	bool sectionAdded=false;
 	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	bool updateSyntaxCheck=false;
@@ -1692,7 +1695,12 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 	if(goBack && iter.hasPrevious()) iter.previous();
 }
 
-void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl,bool front,bool back){
+void LatexDocument::splitStructure(StructureEntry* se,
+                                   QVector<StructureEntry*> &parent_level,
+                                   QVector<QList<StructureEntry*> > &remainingChildren,
+                                   QMap<StructureEntry*,int> &toBeDeleted,
+                                   QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,
+                                   int linenr,int count,int lvl,bool front,bool back){
 	if (!se) return;
 	
 	if(front){
@@ -1703,15 +1711,13 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	
 	if(se->children.empty()) return;
 	
-	StructureEntry* parent=se;
-	
 	if(lvl>=parent_level.size()) return;
 	
 	int countChildren=se->children.size();
 	
 	// determine range of structure entry which encompass the to be updated region
-	int start=-1;
-	int end=-1;
+	int start=-1; //exclusive
+	int end=-1;   //exclusive
 	for(int l=0;l<se->children.size();l++){
 		StructureEntry *elem=se->children.at(l);
 		//TODO: remove line()/indexOf() call, it is too slow
@@ -1730,7 +1736,7 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 		StructureEntry *elem=se->children.at(start);
 		if(elem->type==StructureEntry::SE_SECTION){
 			for(;lvl<elem->level;++lvl){
-				parent_level[lvl+1]=parent;
+				parent_level[lvl+1]=se;
 			}
 		}
 	}
@@ -1743,15 +1749,10 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	if(end>0) {
 		next=se->children.value(end-1,0);// needs changing
 		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-		parent=se->children.value(start,parent_level[lvl]);
-		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[lvl];
 	}
 	if(end<0){
 		next=se->children.value(se->children.size()-1,0);// needs changing
 		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-		parent=next;
-		if(!parent) parent=parent_level[lvl];
-		if(parent->type!=StructureEntry::SE_SECTION) parent=parent_level[lvl];
 	}
 	
 	// add elements which are deleted later to a list
@@ -1776,9 +1777,10 @@ void LatexDocument::splitStructure(StructureEntry* se,QVector<StructureEntry*> &
 	// take a look a children
 	bool newFront=start>-1;
 	if(newFront && (end-start==1 || start==countChildren-1))
-		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1);
+		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,true,true);
 	else{
-		if(newFront && (se->children[start]->type==StructureEntry::SE_SECTION)) splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
+		if(newFront && (se->children[start]->type==StructureEntry::SE_SECTION)) 
+			splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
 		int next_level= next ? next->level+1 : lvl;
 		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,next_level,false,true);
 	}
