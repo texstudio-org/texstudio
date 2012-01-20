@@ -1744,6 +1744,7 @@ void LatexDocument::splitStructure(StructureEntry* se,
 	// store remainder of children
 	if(back && (end>-1))
 		remainingChildren[se->children.at(end)->level]<<se->children.mid(end);
+	
 	// get StructureEntry to look deeper in
 	StructureEntry *next=0;
 	if(end>0) {
@@ -1756,23 +1757,17 @@ void LatexDocument::splitStructure(StructureEntry* se,
 	}
 	
 	// add elements which are deleted later to a list
-	if(end-1>start) {
-		toBeDeleted.insert(se->children[end-1],end-1);
-		MapOfElements.insert(se->children[end-1]->lineHandle,se->children[end-1]);
-	}
-	//delete elements which are completely embedded in the to be updated region
+	// (completely embedded in the to be updated region)
 	int tmp_end=end;
-	if(tmp_end<0) tmp_end=se->children.size()+1;
-	for(int l=start+1;l<tmp_end-1;l++) {
+	if(tmp_end<0) tmp_end=se->children.size();
+	for(int l=start+1;l<tmp_end;l++) {
 		toBeDeleted.insert(se->children[l],l);
 		MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
-		//delete se->children[l];
 	}
-	
-	int tmp=se->children.size();
-	for(int l=start+1;l<tmp;l++) {
-		se->children.removeAt(start+1);
-	}
+
+	//remove all children (undeleted children saved in remainingChildren)	
+	for(int l=se->children.size()-1; l > start; l--) 
+		se->children.removeAt(l);
 	
 	// take a look a children
 	bool newFront=start>-1;
