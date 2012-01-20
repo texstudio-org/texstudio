@@ -1713,11 +1713,9 @@ void LatexDocument::splitStructure(StructureEntry* se,
 	
 	if(lvl>=parent_level.size()) return;
 	
-	int countChildren=se->children.size();
-	
 	// determine range of structure entry which encompass the to be updated region
-	int start=-1; //exclusive
-	int end=-1;   //exclusive
+	int start=-1; //exclusive, i.e. last before updated region (children may be in it)
+	int end=-1;   //exclusive, i.e. first after updated region (children not in it)
 	for(int l=0;l<se->children.size();l++){
 		StructureEntry *elem=se->children.at(l);
 		//TODO: remove line()/indexOf() call, it is too slow
@@ -1746,21 +1744,14 @@ void LatexDocument::splitStructure(StructureEntry* se,
 		remainingChildren[se->children.at(end)->level]<<se->children.mid(end);
 	
 	// get StructureEntry to look deeper in
+	if (end < 0) end = se->children.size();
 	StructureEntry *next=0;
-	if(end>0) {
-		next=se->children.value(end-1,0);// needs changing
-		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-	}
-	if(end<0){
-		next=se->children.value(se->children.size()-1,0);// needs changing
-		if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-	}
+	if(end>0) next=se->children.value(end-1,0);// needs changing
+	if(next && next->type!=StructureEntry::SE_SECTION) next=0;
 	
 	// add elements which are deleted later to a list
 	// (completely embedded in the to be updated region)
-	int tmp_end=end;
-	if(tmp_end<0) tmp_end=se->children.size();
-	for(int l=start+1;l<tmp_end;l++) {
+	for(int l=start+1;l<end;l++) {
 		toBeDeleted.insert(se->children[l],l);
 		MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
 	}
@@ -1771,15 +1762,11 @@ void LatexDocument::splitStructure(StructureEntry* se,
 		se->children.removeAt(l);
 	}
 	
-	if (!next) return;
-	
 	// take a look a children
-	bool newFront=start>-1;
-	if(newFront && (end-start==1 || start==countChildren-1))
-		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,true,true);
-	else{
-		if(newFront && (se->children[start]->type==StructureEntry::SE_SECTION)) 
-			splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,newFront,false);
+	if(start > -1 && (se->children[start]->type==StructureEntry::SE_SECTION)) 
+		splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,true,next == se->children[start]);
+
+	if(start < 0 || start + 1 < end){
 		int next_level= next ? next->level+1 : lvl;
 		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,next_level,false,true);
 	}
