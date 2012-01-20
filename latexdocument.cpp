@@ -258,7 +258,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		}
 	}
 	// purge unconnected elements
-	//foreach(se,toBeDeleted.keys()) Q_ASSERT(!toBeDeleted.contains(se->parent));
+	foreach(se,toBeDeleted.keys()) Q_ASSERT(!toBeDeleted.contains(se->parent));
 	
 
 	foreach(se,toBeDeleted.keys()){
@@ -1766,8 +1766,12 @@ void LatexDocument::splitStructure(StructureEntry* se,
 	}
 
 	//remove all children (undeleted children saved in remainingChildren)	
-	for(int l=se->children.size()-1; l > start; l--) 
+	for(int l=se->children.size()-1; l > start; l--) {
+		se->children[l]->parent = 0;
 		se->children.removeAt(l);
+	}
+	
+	if (!next) return;
 	
 	// take a look a children
 	bool newFront=start>-1;
