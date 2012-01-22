@@ -162,6 +162,31 @@ void StructureViewTest::script_data(){
 			<< "editor.setText(\"123\\\\chapter{abc}...\\\\section{def},,,\\\\chapter{xyz}\")"
 			<< "Root: LVL:0 IND:0##Section:abc LVL:1 IND:1##Section:def LVL:2 IND:2##Section:xyz LVL:1 IND:1";
 
+	QTest::newRow("Structure/include")
+	              << "editor.setText(''); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\include{incl}\\n'); cursor.insertText('\\\\section{s}\\n');cursor.insertText('\\\\subsection{ss}\\n');"
+			<< "Root: LVL:0 IND:0##Section:c LVL:1 IND:1##Include:incl LVL:0 IND:1##Section:s LVL:2 IND:1##Section:ss LVL:3 IND:2";
+
+	QTest::newRow("Structure/include 2")
+	              << "editor.setText(''); cursor.moveTo(0,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\section{s}\\n');cursor.insertText('\\\\subsection{ss}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\include{incl}\\n'); "
+			<< "Root: LVL:0 IND:0##Section:c LVL:1 IND:1##Include:incl LVL:0 IND:1##Section:s LVL:2 IND:1##Section:ss LVL:3 IND:2";
+
+	QTest::newRow("Structure/include 3")
+	              << "editor.setText(''); cursor.moveTo(0,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\section{s}\\n');cursor.insertText('\\\\subsection{ss}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\include{incl}'); cursor.insertText('\\n');"
+			<< "Root: LVL:0 IND:0##Section:c LVL:1 IND:1##Include:incl LVL:0 IND:1##Section:s LVL:2 IND:1##Section:ss LVL:3 IND:2";
+	
+	QTest::newRow("Structure/include 4")
+	              << "editor.setText(''); cursor.moveTo(0,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\subsection{ss}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\include{incl}\\n\\\\section{s}\\n');"
+			<< "Root: LVL:0 IND:0##Section:c LVL:1 IND:1##Include:incl LVL:0 IND:1##Section:s LVL:2 IND:1##Section:ss LVL:3 IND:2";
+
+	QTest::newRow("Move section")
+	              << "editor.setText(''); cursor.moveTo(0,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\section{s}\\n');  cursor.insertText('\\\\subsection{ss}\\n');  cursor.moveTo(1,0); cursor.insertLine();"
+	              << "Root: LVL:0 IND:0##Section:c LVL:1 IND:1##Section:s LVL:2 IND:2##Section:ss LVL:3 IND:3";
+	
+	QTest::newRow("Delete empty line")
+	              << "editor.setText(''); cursor.moveTo(0,0); editor.insertText('\\\\section{s}\\n\\n\\\\subsection{ss}'); cursor.moveTo(1,0); cursor.deletePreviousChar();"
+	              << "Root: LVL:0 IND:0##Section:s LVL:2 IND:1##Section:ss LVL:3 IND:2";
+	
+	
 }
 
 void StructureViewTest::script(){

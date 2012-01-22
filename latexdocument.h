@@ -18,8 +18,8 @@ struct StructureEntry{
 	Type type;
 	QString title;
 	QString tooltip; // optional because most tooltips are automatically generated.
-	int level; //only used for section types
-	bool valid; //currently only used for magic comments
+	int level; //only used for section types!
+	bool valid; //currently only used for includes and magic comments
 	int lineNumber;
 	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
@@ -33,6 +33,8 @@ struct StructureEntry{
 	void insert(int pos, StructureEntry* child);
 	
 	int getRealLineNumber();
+	int parentRow;
+	int getRealParentRow();
 };
 
 //iterator for fast traversal of a structure entry tree
@@ -171,7 +173,15 @@ private:
 	bool fileExits(QString fname);
 	QString findFileName(QString fname);
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
-	void splitStructure(StructureEntry* se,QVector<StructureEntry*> &parent_level,QVector<QList<StructureEntry*> > &remainingChildren,QMap<StructureEntry*,int> &toBeDeleted,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count,int lvl,bool front,bool back);
+	void mergeStructure(StructureEntry* se, QVector<StructureEntry*> &parent_level, QList<StructureEntry*>& flatStructure, const int linenr, const int count);
+	
+	void removeWithSignal(StructureEntry* se);
+	void addWithSignal(StructureEntry* parent, StructureEntry* se);
+	void insertWithSignal(StructureEntry* parent, int pos, StructureEntry* se);
+	void moveWithSignal(StructureEntry* se, StructureEntry* parent, int pos);
+	
+	void updateParentVector(QVector<StructureEntry*> &parent_level, StructureEntry* se);
+	StructureEntry* moveToAppropiatePositionWithSignal(const QVector<StructureEntry*> &parent_level, StructureEntry* se);
 	
 	void removeAndDeleteElement(StructureEntry* se, int row);
 	
