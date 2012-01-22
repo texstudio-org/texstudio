@@ -175,15 +175,13 @@ private:
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void mergeStructure(StructureEntry* se, QVector<StructureEntry*> &parent_level, QList<StructureEntry*>& flatStructure, const int linenr, const int count);
 	
-	void removeWithSignal(StructureEntry* se);
-	void addWithSignal(StructureEntry* parent, StructureEntry* se);
-	void insertWithSignal(StructureEntry* parent, int pos, StructureEntry* se);
-	void moveWithSignal(StructureEntry* se, StructureEntry* parent, int pos);
+	void removeElementWithSignal(StructureEntry* se);
+	void addElementWithSignal(StructureEntry* parent, StructureEntry* se);
+	void insertElementWithSignal(StructureEntry* parent, int pos, StructureEntry* se);
+	void moveElementWithSignal(StructureEntry* se, StructureEntry* parent, int pos);
 	
 	void updateParentVector(QVector<StructureEntry*> &parent_level, StructureEntry* se);
 	StructureEntry* moveToAppropiatePositionWithSignal(const QVector<StructureEntry*> &parent_level, StructureEntry* se);
-	
-	void removeAndDeleteElement(StructureEntry* se, int row);
 	
 	bool splitMagicComment(const QString &comment, QString &name, QString &val);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry* se);
