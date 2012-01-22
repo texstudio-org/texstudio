@@ -134,21 +134,21 @@ void LatexDocument::clearStructure() {
 		
 		if(parent->model->getSingleDocMode()){
 			if(parent->currentDocument==this){
-				removeElement(0,0);
+				removeElement(baseStructure,0);
 				delete baseStructure;
 				removeElementFinished();
 			}else{
 				LatexDocument *doc=parent->currentDocument;
 				parent->currentDocument=this;
 				parent->updateStructure();
-				removeElement(0,0);
+				removeElement(baseStructure,0);
 				delete baseStructure;
 				removeElementFinished();
 				parent->currentDocument=doc;
 				parent->updateStructure();
 			}
 		}else{
-			removeElement(0,row);
+			removeElement(baseStructure,row);
 			delete baseStructure;
 			removeElementFinished();
 		}
@@ -1279,48 +1279,24 @@ void LatexDocumentsModel::structureUpdated(LatexDocument* document,StructureEntr
 void LatexDocumentsModel::structureLost(LatexDocument* document){
 	Q_UNUSED(document);
 	resetAll();
-	/* after structure update, a reset is imperative !
- if (document) emit layoutChanged();
- else {
-  //Q_ASSERT(false); //branch shouldn't be reachable?
-  resetAll();
- }*/
 }
 
 void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
-	
-	/*foreach(QModelIndex ind,persistentIndexList()){
-  qDebug("%x %d %d",ind.internalPointer(),ind.row(),ind.column());
-  StructureEntry *entry=(StructureEntry*) ind.internalPointer();
-  qDebug()<<entry->title;
- }*/
-	
-	if(!se){ // remove from root (documents)
-		beginRemoveRows(QModelIndex(),row,row);
-	}else{
-		StructureEntry *par_se=se->parent;
-		
-		if(row<0)
-			row=se->getRealParentRow();
-		
-		//removeRow(row,index(par_se));
-		beginRemoveRows(index(par_se),row,row);
+	REQUIRE(se);
+	if (!se->parent) 
+		beginRemoveRows(QModelIndex(),row,row); // remove from root (documents)
+	else {
+		if(row<0) row=se->getRealParentRow();
+		else Q_ASSERT(row < se->parent->children.size()), Q_ASSERT(se->parent->children[row] == se);
+		beginRemoveRows(index(se->parent),row,row);
 	}
 }
 
 void LatexDocumentsModel::removeElementFinished(){
 	endRemoveRows();
-	/*
- foreach(QModelIndex ind,persistentIndexList()){
-  qDebug("%x %d %d",ind.internalPointer(),ind.row(),ind.column());
-  StructureEntry *entry=(StructureEntry*) ind.internalPointer();
-  qDebug()<<entry->title;
- }
- */
 }
 
-void LatexDocumentsModel::addElement(StructureEntry *se,int row){
-	//insertRow(row,index(se));
+void LatexDocumentsModel::addElement(StructureEntry *se, int row){
 	beginInsertRows(index(se),row,row);
 }
 
@@ -1402,13 +1378,13 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 			elem->recheckRefsLabels();
 		}
 		int row=documents.indexOf(document);
+		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
 		if(model->getSingleDocMode()){
 			row=0;
 		}
 		if(row>=0 ){//&& !model->getSingleDocMode()){
 			model->resetHighlight();
-			model->removeElement(0,row); //remove from root
-			//model->removeElement(document->baseStructure,row);
+			model->removeElement(document->baseStructure,row); //remove from root
 		}
 		documents.removeAll(document);
 		if (document==currentDocument){
