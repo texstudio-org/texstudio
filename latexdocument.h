@@ -20,8 +20,6 @@ struct StructureEntry{
 	QString tooltip; // optional because most tooltips are automatically generated.
 	int level; //only used for section types!
 	bool valid; //currently only used for includes and magic comments
-	int lineNumber;
-	QDocumentLineHandle* lineHandle;
 	QList<StructureEntry*> children;
 	StructureEntry* parent;
 	LatexDocument* document;
@@ -31,11 +29,16 @@ struct StructureEntry{
 	~StructureEntry();
 	void add(StructureEntry* child);
 	void insert(int pos, StructureEntry* child);
-	
-	int getRealLineNumber();
-	int getRealParentRow();
+
+	void setLine(QDocumentLineHandle* handle, int lineNr = -1);
+	QDocumentLineHandle* getLineHandle() const;
+	int getCachedLineNumber() const;
+	int getRealLineNumber() const;
+	int getRealParentRow() const;
 private:
-	int parentRow;
+	mutable int parentRow;
+	QDocumentLineHandle* lineHandle;
+	mutable int lineNumber;
 };
 
 //iterator for fast traversal of a structure entry tree

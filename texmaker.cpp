@@ -2601,7 +2601,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
 		LatexEditorView* edView=entry->document->getEditorView();
 		if (!entry->document->getEditorView()){
-			lineNr=entry->lineNumber;
+			lineNr=entry->getRealLineNumber();
 			edView=load(entry->document->getFileName());
 			if (!edView) return;
 			//entry is now invalid
