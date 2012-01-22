@@ -33,8 +33,9 @@ struct StructureEntry{
 	void insert(int pos, StructureEntry* child);
 	
 	int getRealLineNumber();
-	int parentRow;
 	int getRealParentRow();
+private:
+	int parentRow;
 };
 
 //iterator for fast traversal of a structure entry tree

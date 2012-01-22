@@ -93,7 +93,7 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	do {
 		parent=section->parent;
 		if (parent) {
-			index=parent->children.indexOf(section);
+			index=section->getRealParentRow();
 			section=parent;
 		} else index=-1;
 	} while ((index>=0)&&(index>=parent->children.count()-1)&&(parent->type==StructureEntry::SE_SECTION));
@@ -1036,7 +1036,7 @@ StructureEntryIterator::StructureEntryIterator(StructureEntry* entry){
 	if (!entry) return;
 	while (entry->parent){
 		entryHierarchy.prepend(entry);
-		indexHierarchy.prepend(entry->parent->children.indexOf(entry));
+		indexHierarchy.prepend(entry->getRealParentRow());
 		entry=entry->parent;
 	}
 	entryHierarchy.prepend(entry);
@@ -1195,7 +1195,7 @@ QModelIndex LatexDocumentsModel::index ( StructureEntry* entry ) const{
 		if (row<0) return QModelIndex();
 		return createIndex(row, 0, entry);
 	} else if (entry->parent!=0 && entry->type!=StructureEntry::SE_DOCUMENT_ROOT) {
-		int row=entry->parent->children.indexOf(entry);
+		int row=entry->getRealParentRow();
 		if (row<0) return QModelIndex(); //shouldn't happen
 		return createIndex(row, 0, entry);
 	} else return QModelIndex(); //shouldn't happen
@@ -1226,7 +1226,7 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 		return QModelIndex();
 	}
 	if (entry->parent->parent)
-		return createIndex(entry->parent->parent->children.indexOf(entry->parent), 0, entry->parent);
+		return createIndex(entry->parent->getRealParentRow(), 0, entry->parent);
 	else {
 		if(m_singleMode)
 			return createIndex(0, 0, entry->parent);
@@ -1300,9 +1300,9 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	}else{
 		StructureEntry *par_se=se->parent;
 		
-		if(row<0){
-			row=par_se->children.indexOf(se);
-		}
+		if(row<0)
+			row=se->getRealParentRow();
+		
 		//removeRow(row,index(par_se));
 		beginRemoveRows(index(par_se),row,row);
 	}
