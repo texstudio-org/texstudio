@@ -9,6 +9,7 @@
 #include <QSemaphore>
 #include <QMutex>
 #include <QQueue>
+#include <QImage>
 
 class PDFQueue;
 
