@@ -45,7 +45,7 @@ public:
 	
 
 	LatexLogModel* getLogModel();
-	void loadLogFile(const QString &logname, const QString & compiledFileName, const QString & overrideFileMName);
+    void loadLogFile(const QString &logname, const QString & compiledFileName);
 	bool logPresent();
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)

@@ -273,7 +273,7 @@ QByteArray simplifyLineConserving(const QByteArray& ba)
 	return result;
 }
 
-void OutputViewWidget::loadLogFile(const QString &logname, const QString & compiledFileName, const QString & overrideFileName){
+void OutputViewWidget::loadLogFile(const QString &logname, const QString & compiledFileName){
 	OutputLogTextEdit->clear();
 	QFile f(logname);
 	if (f.open(QIODevice::ReadOnly)) {
@@ -291,7 +291,7 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 		
 		OutputLogTextEdit->setPlainText(codec->toUnicode(fullLog));
 		
-		logModel->parseLogDocument(OutputLogTextEdit->document(), compiledFileName, overrideFileName);
+        logModel->parseLogDocument(OutputLogTextEdit->document(), compiledFileName);
 
 		logpresent=true;		
 		//update table size
