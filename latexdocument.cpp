@@ -685,25 +685,15 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
 	mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
 	
-	bibTeXList->parent = magicCommentList->parent = labelList->parent = todoList->parent = blockList->parent = 0;
-	
-	int tempPos = -1;
-	tempPos = baseStructure->children.indexOf(bibTeXList);
-	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
-	tempPos = baseStructure->children.indexOf(magicCommentList);
-	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
-	tempPos = baseStructure->children.indexOf(labelList);
-	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
-	tempPos = baseStructure->children.indexOf(todoList);
-	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
-	tempPos = baseStructure->children.indexOf(blockList);
-	if (tempPos != -1) baseStructure->children.removeAt(tempPos);
-	
-	if (!bibTeXList->children.isEmpty()) baseStructure->insert(0, bibTeXList);
-	if (!todoList->children.isEmpty()) baseStructure->insert(0, todoList);
-	if (!labelList->children.isEmpty()) baseStructure->insert(0, labelList);
-	if (!blockList->children.isEmpty()) baseStructure->insert(0, blockList);
-	if (!magicCommentList->children.isEmpty()) baseStructure->insert(0, magicCommentList);
+	const QList<StructureEntry*> categories=
+	              QList<StructureEntry*>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
+		
+	for (int i=categories.size()-1;i>=0;i--) {
+		StructureEntry *cat = categories[i];
+		if (cat->children.isEmpty() == (cat->parent == 0)) continue;
+		if (cat->children.isEmpty()) removeElementWithSignal(cat);
+		else insertElementWithSignal(baseStructure, 0, cat);
+	}
 	
 	//update appendix change
 	if(oldLine!=mAppendixLine){
@@ -1637,6 +1627,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 	if (se_line < linenr || se == baseStructure) {
 		updateParentVector(parent_level, se);
 		//before updated region, but children might still be in it
+		
 		//if (!se->children.isEmpty() && se->children.last()->getRealLineNumber() >= linenr) {
 		int start = -1;
 		for (int i=0;i<se->children.size();i++){
@@ -1661,8 +1652,8 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 				QList<StructureEntry*> oldChildren = se->children;
 				int oldrow = se->getRealParentRow();
 				for (int i=se->children.size()-1;i>=0;i--)
-					moveWithSignal(se->children[i], se->parent, oldrow);
-				removeWithSignal(se);
+					moveElementWithSignal(se->children[i], se->parent, oldrow);
+				removeElementWithSignal(se);
 				delete se;
 				for (int i=1;i<parent_level.size();i++)
 					if (parent_level[i] == se) 
@@ -1673,32 +1664,33 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 			}
 		}
 		
-			while (!flatStructure.isEmpty() && se->getRealLineNumber() >= flatStructure.first()->getRealLineNumber() ) {
-				if (se->getRealLineNumber() == flatStructure.first()->getRealLineNumber()) {
-					flatStructure.first()->parent = se->parent;
-					flatStructure.first()->children = se->children;
-					*se = *flatStructure.first();
-					flatStructure.first()->children.clear();
-					delete flatStructure.takeFirst();
-					emit updateElement(se);
-					updateParentVector(parent_level, se);
-					moveToAppropiatePositionWithSignal(parent_level, se);
-				//	qDebug()<<"a"<<se->children.size() << ":"<<se->title<<" von "<<linenr<<count;
-					QList<StructureEntry*> oldChildren = se->children;
-					foreach (StructureEntry* next, oldChildren) 
-						mergeStructure(next, parent_level, flatStructure, linenr, count);
-					break;
-				}
-			//	qDebug() << "b";
-				StructureEntry* n = flatStructure.takeFirst();
-				moveToAppropiatePositionWithSignal(parent_level, n);
-				updateParentVector(parent_level, n);
+		//within or after
+		while (!flatStructure.isEmpty() && se->getRealLineNumber() >= flatStructure.first()->getRealLineNumber() ) {
+			if (se->getRealLineNumber() == flatStructure.first()->getRealLineNumber()) {
+				flatStructure.first()->parent = se->parent;
+				flatStructure.first()->children = se->children;
+				*se = *flatStructure.first();
+				flatStructure.first()->children.clear();
+				delete flatStructure.takeFirst();
+				emit updateElement(se);
 				updateParentVector(parent_level, se);
+				moveToAppropiatePositionWithSignal(parent_level, se);
+			//	qDebug()<<"a"<<se->children.size() << ":"<<se->title<<" von "<<linenr<<count;
 				QList<StructureEntry*> oldChildren = se->children;
-				foreach (StructureEntry* c, oldChildren){
-					moveToAppropiatePositionWithSignal(parent_level, c);
-					updateParentVector(parent_level, c);
-				}
+				foreach (StructureEntry* next, oldChildren) 
+					mergeStructure(next, parent_level, flatStructure, linenr, count);
+				break;
+			}
+		//	qDebug() << "b";
+			StructureEntry* n = flatStructure.takeFirst();
+			moveToAppropiatePositionWithSignal(parent_level, n);
+			updateParentVector(parent_level, n);
+			updateParentVector(parent_level, se);
+			QList<StructureEntry*> oldChildren = se->children;
+			foreach (StructureEntry* c, oldChildren){
+				moveToAppropiatePositionWithSignal(parent_level, c);
+				updateParentVector(parent_level, c);
+			}
 		}
 		moveToAppropiatePositionWithSignal(parent_level, se);
 	}
@@ -1706,7 +1698,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 	if (se == baseStructure && !flatStructure.isEmpty()) {
 		foreach (StructureEntry* s, flatStructure){
 			//qDebug() << "insert backup";
-			addWithSignal(parent_level[s->level], s);
+			addElementWithSignal(parent_level[s->level], s);
 			updateParentVector(parent_level, s);
 		}
 		flatStructure.clear();
@@ -1716,115 +1708,32 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 	return;
 }
 
-void LatexDocument::removeWithSignal(StructureEntry* se){
-	emit removeElement(se, se->getRealParentRow());
-	se->parent->children.removeAt(se->getRealParentRow());
+void LatexDocument::removeElementWithSignal(StructureEntry* se){
+	int parentRow = se->getRealParentRow();
+	REQUIRE(parentRow >= 0);
+	emit removeElement(se, parentRow);
+	se->parent->children.removeAt(parentRow);
+	se->parent = 0;
 	emit removeElementFinished();
 }
 
-/*void LatexDocument::splitStructure(StructureEntry* se,
-                                   QVector<StructureEntry*> &parent_level,
-                                   QVector<QList<StructureEntry*> > &remainingChildren,
-                                   QMap<StructureEntry*,int> &toBeDeleted,
-                                   QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,
-                                   int linenr,int count,int lvl,bool front,bool back){
-	if (!se) return;
-	
-	if(front){
-		for(int k=lvl;k<parent_level.size();k++){
-			parent_level[k]=se;
-		}
-	}
-	
-	if(se->children.empty()) return;
-	
-	if(lvl>=parent_level.size()) return;
-	
-	// determine range of structure entry which encompass the to be updated region
-	int start=-1; //exclusive, i.e. last before updated region (children may be in it)
-	int end=-1;   //exclusive, i.e. first after updated region (children not in it)
-	for(int l=0;l<se->children.size();l++){
-		StructureEntry *elem=se->children.at(l);
-		//TODO: remove line()/indexOf() call, it is too slow
-		int realline = elem->lineHandle?indexOf(elem->lineHandle):-1;
-		if(realline<linenr) {
-			start=l;
-			continue;
-		}
-		if(realline>=linenr+count){
-			end=l;
-			break;
-		}
-	}
-	
-	if(start>-1){
-		StructureEntry *elem=se->children.at(start);
-		if(elem->type==StructureEntry::SE_SECTION){
-			for(;lvl<elem->level;++lvl){
-				parent_level[lvl+1]=se;
-			}
-		}
-	}
-	
-	// store remainder of children
-	if(back && (end>-1))
-		remainingChildren[se->children.at(end)->level]<<se->children.mid(end);
-	
-	// get StructureEntry to look deeper in
-	if (end < 0) end = se->children.size();
-	StructureEntry *next=0;
-	if(end>0) next=se->children.value(end-1,0);// needs changing
-	if(next && next->type!=StructureEntry::SE_SECTION) next=0;
-	
-	// add elements which are deleted later to a list
-	// (completely embedded in the to be updated region)
-	for(int l=start+1;l<end;l++) {
-		toBeDeleted.insert(se->children[l],l);
-		MapOfElements.insert(se->children[l]->lineHandle,se->children[l]);
-	}
-
-	//remove all children (undeleted children saved in remainingChildren)	
-	for(int l=se->children.size()-1; l > start; l--) {
-		se->children[l]->parent = 0;
-		se->children.removeAt(l);
-	}
-	
-	// take a look a children
-	if(start > -1 && (se->children[start]->type==StructureEntry::SE_SECTION)) 
-		splitStructure(se->children[start],parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,lvl+1,true,next == se->children[start]);
-
-	if(start < 0 || start + 1 < end){
-		int next_level= next ? next->level+1 : lvl;
-		splitStructure(next,parent_level,remainingChildren,toBeDeleted,MapOfElements,linenr,count,next_level,false,true);
-	}
-	
-}
-*/
-void LatexDocument::removeAndDeleteElement(StructureEntry* se, int row){
-	emit removeElement(se,row);
-	//qDebug("Structure deleted! %p %d",se,toBeDeleted[se]);
-	//qDebug() << se->title;
-	delete se;
-	emit removeElementFinished();
-}
-
-void LatexDocument::addWithSignal(StructureEntry* parent, StructureEntry* se){
+void LatexDocument::addElementWithSignal(StructureEntry* parent, StructureEntry* se){
 	emit addElement(parent, parent->children.size());
 	parent->children.append(se);
 	se->parent = parent;
 	emit addElementFinished();
 }
 
-void LatexDocument::insertWithSignal(StructureEntry* parent, int pos, StructureEntry* se){
+void LatexDocument::insertElementWithSignal(StructureEntry* parent, int pos, StructureEntry* se){
 	emit addElement(parent, pos);
 	parent->children.insert(pos, se);
 	se->parent = parent;
 	emit addElementFinished();
 }
 
-void LatexDocument::moveWithSignal(StructureEntry* se, StructureEntry* parent, int pos){
-	removeWithSignal(se);
-	insertWithSignal(parent, pos, se);
+void LatexDocument::moveElementWithSignal(StructureEntry* se, StructureEntry* parent, int pos){
+	removeElementWithSignal(se);
+	insertElementWithSignal(parent, pos, se);
 }
 
 
@@ -1845,15 +1754,15 @@ StructureEntry* LatexDocument::moveToAppropiatePositionWithSignal(const QVector<
 	int newPos = newParent->children.size();
 	if (newParent->children.size() > 0 && 
 	    newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber()) 
-		for (int i=0;i<newParent->children.size();i++)
+		for (int i=0;i<newParent->children.size();i++) //TODO: binary search
 			if (newParent->children[i]->getRealLineNumber() > se->getRealLineNumber()) {
 				newPos = i;
 				break;
 			}
 	
 	//qDebug() << "auto insert at " << newPos;
-	if (se->parent) moveWithSignal(se, newParent, newPos);
-	else insertWithSignal(newParent, newPos, se);
+	if (se->parent) moveElementWithSignal(se, newParent, newPos);
+	else insertElementWithSignal(newParent, newPos, se);
 	return newParent;
 }
 
