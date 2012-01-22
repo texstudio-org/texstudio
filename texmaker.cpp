@@ -1189,7 +1189,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	
 	if (f_real.endsWith(".log",Qt::CaseInsensitive) &&
 	              txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-		outputView->loadLogFile(f,documents.getTemporaryCompileFileName(),"");
+        outputView->loadLogFile(f,documents.getTemporaryCompileFileName());
 		DisplayLatexError();
 		return 0;
 	}
@@ -3760,10 +3760,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) {
 		//OutputLogTextEdit->insertLine("LOG FILE :");
-		QString overrideFileName=""; //workaround, see parseLogDocument for reason
-		if (configManager.ignoreLogFileNames==2 ||
-		              (configManager.ignoreLogFileNames==1 && documents.singleMode())) overrideFileName=getCurrentFileName();
-		outputView->loadLogFile(logname,documents.getTemporaryCompileFileName(),overrideFileName);
+        outputView->loadLogFile(logname,documents.getTemporaryCompileFileName());
 		//display errors in editor
 		DisplayLatexError();
 		if (outputView->getLogModel()->found(LT_ERROR))

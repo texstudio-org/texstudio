@@ -267,7 +267,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//files
 	registerOption("Files/New File Encoding", &newFileEncodingName, "utf-8", &pseudoDialog->comboBoxEncoding); //check
 	registerOption("Files/Auto Detect Encoding Of Loaded Files", &autodetectLoadedFile, true, &pseudoDialog->checkBoxAutoDetectOnLoad);
-	registerOption("Files/Ignore Log File Names", &ignoreLogFileNames, 0, &pseudoDialog->comboBoxIgnoreLogFileNames);
 	//recent files
 	registerOption("Files/Max Recent Files", &maxRecentFiles, 5, &pseudoDialog->spinBoxMaxRecentFiles);
 	registerOption("Files/Max Recent Projects", &maxRecentProjects, 3, &pseudoDialog->spinBoxMaxRecentProjects);

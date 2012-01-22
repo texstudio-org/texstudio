@@ -54,7 +54,6 @@ public:
 	static QTextCodec* newFileEncoding;
 	QString newFileEncodingName;
 	bool autodetectLoadedFile;
-	int ignoreLogFileNames; //0: never, 1: in single mode, 2: always | see LatexLog::parseDocument for reason
 
 	QHash<int, int> editorKeys;
 	QSet<int> editorAvailableOperations;
