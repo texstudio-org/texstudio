@@ -1233,8 +1233,8 @@ QDocumentLine QDocument::line(QDocumentConstIterator iterator) const
 }
 
 /*! \return Line number of an handle */
-int QDocument::indexOf(QDocumentLineHandle* h){
-	return m_impl->indexOf(h);
+int QDocument::indexOf(QDocumentLineHandle* h, int hint){
+	return m_impl->indexOf(h, hint);
 }
 
 /*!
@@ -6847,10 +6847,26 @@ QDocumentLineHandle* QDocumentPrivate::at(int line) const
 {
 	return ((line >= 0) && (line < m_lines.count())) ? m_lines.at(line) : 0;
 }
+template <typename T> inline int hintedIndexOf (const QVector<T>& list, const T& elem, int hint) {
+	if (hint < 2) return list.indexOf(elem);
+	int backward = hint, forward = hint + 1;
+	for (;backward >= 0 && forward < list.size();
+	     backward--, forward++) {
+		if (list[backward] == elem) return backward;
+		if (list[forward] == elem) return forward;
+	}
+	if (backward >= list.size()) backward = list.size() - 1;
+	for (;backward >= 0; backward--)
+		if (list[backward] == elem) return backward;
+	if (forward < 0) forward = 0;
+	for (;forward < list.size(); forward++)
+		if (list[forward] == elem) return forward;
+	return -1;
+}
 
-int QDocumentPrivate::indexOf(const QDocumentLineHandle *l) const
+int QDocumentPrivate::indexOf(const QDocumentLineHandle *l, int hint) const
 {
-	return m_lines.indexOf(const_cast<QDocumentLineHandle*>(l));
+	return hintedIndexOf<QDocumentLineHandle*>(m_lines, const_cast<QDocumentLineHandle *>(l), hint);
 }
 
 QDocumentIterator QDocumentPrivate::index(const QDocumentLineHandle *l)

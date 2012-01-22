@@ -75,7 +75,7 @@ class QCE_EXPORT QDocumentPrivate
 		int position(const QDocumentLineHandle *l) const;
 		
 		QDocumentLineHandle* at(int line) const;
-		int indexOf(const QDocumentLineHandle *l) const;
+		int indexOf(const QDocumentLineHandle *l, int hint = -1) const;
 		
 		QDocumentIterator index(const QDocumentLineHandle *l);
 		QDocumentConstIterator index(const QDocumentLineHandle *l) const;

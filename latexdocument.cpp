@@ -1012,23 +1012,30 @@ void StructureEntry::insert(int pos, StructureEntry* child){
 	child->parent=this;
 }
 int StructureEntry::getRealLineNumber(){
-	if (document->line(lineNumber).handle() == lineHandle)
-		return lineNumber; //return cached line number if it is still correct
-	if (lineHandle) {
-		int nr = document->indexOf(lineHandle);
-		if (nr>=0) {
-			lineNumber=nr; //correct cached line number if necessary
-			return nr;
-		}
-	}
+	lineNumber = document->indexOf(lineHandle, lineNumber);
 	return lineNumber;
+}
+
+template <typename T> inline int hintedIndexOf (const QList<T>& list, const T& elem, int hint) {
+	if (hint < 2) return list.indexOf(elem);
+	int backward = hint, forward = hint + 1;
+	for (;backward >= 0 && forward < list.size();
+	     backward--, forward++) {
+		if (list[backward] == elem) return backward;
+		if (list[forward] == elem) return forward;
+	}
+	if (backward >= list.size()) backward = list.size() - 1;
+	for (;backward >= 0; backward--)
+		if (list[backward] == elem) return backward;
+	if (forward < 0) forward = 0;
+	for (;forward < list.size(); forward++)
+		if (list[forward] == elem) return forward;
+	return -1;
 }
 
 int StructureEntry::getRealParentRow(){
 	REQUIRE_RET(parent, -1);
-	if (parentRow >= 0 && parentRow < parent->children.size() && parent->children[parentRow] == this)
-		return parentRow;
-	parentRow = parent->children.indexOf(this);
+	parentRow = hintedIndexOf(parent->children, this, parentRow);
 	return parentRow;
 }
 
