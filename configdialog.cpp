@@ -311,18 +311,18 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.shortcutTree->setColumnWidth(0,200);
 	
 	//create icons
-	createIcon(tr("General"),QIcon(":/images/configgeneral.png"));
-	createIcon(tr("Commands"),QIcon(":/images/configtools.png"));
-	createIcon(tr("Quick Build"),QIcon(":/images/configquick.png"));
-	createIcon(tr("Shortcuts"),QIcon(":/images/configkeys.png"));
-	createIcon(tr("Latex Menus"),QIcon(":/images/configkeys.png"), true);
-	createIcon(tr("Toolbars"),QIcon(":/images/configkeys.png"), true);
-	createIcon(tr("Editor"),QIcon(":/images/configeditor.png"));
-	createIcon(tr("Adv. Editor"),QIcon(":/images/configeditor.png"), true);
-	createIcon(tr("Custom Highlighting"),QIcon(":/images/configeditor.png"), true);
-	createIcon(tr("Completion"),QIcon(":/images/configcompletion.png"));
-	createIcon(tr("Preview"),QIcon(":/images/configeditor.png"));
-	createIcon(tr("SVN"),QIcon(":/images/configtools.png"));
+    createIcon(tr("General"),QIcon(":/images/config_general.png"));
+    createIcon(tr("Commands"),QIcon(":/images/config_commands.png"));
+    createIcon(tr("Quick Build"),QIcon(":/images/config_quickbuild.png"));
+    createIcon(tr("Shortcuts"),QIcon(":/images/config_shortcut.png"));
+    createIcon(tr("Latex Menus"),QIcon(":/images/config_latexmenus.png"), true);
+    createIcon(tr("Toolbars"),QIcon(":/images/config_toolbars.png"), true);
+    createIcon(tr("Editor"),QIcon(":/images/config_editor.png"));
+    createIcon(tr("Adv. Editor"),QIcon(":/images/config_advancededitor.png"), true);
+    createIcon(tr("Custom Highlighting"),QIcon(":/images/config_highlighting.png"), true);
+    createIcon(tr("Completion"),QIcon(":/images/config_completion.png"));
+    createIcon(tr("Preview"),QIcon(":/images/config_preview.png"));
+    createIcon(tr("SVN"),QIcon(":/images/config_svn.png"));
 
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
