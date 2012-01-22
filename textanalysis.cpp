@@ -105,7 +105,7 @@ void TextAnalysisDialog::setEditor(QEditor* aeditor) {
 void TextAnalysisDialog::interpretStructureTree(StructureEntry *entry) {
 	if (!entry) return;
 	if (entry->level==1) {
-		chapters.append(QPair<QString,int> (entry->title,entry->lineNumber));
+		chapters.append(QPair<QString,int> (entry->title,entry->getCachedLineNumber()));
 		ui.comboBox->addItem(entry->title);
 	} else for (int i=0; i<entry->children.count(); i++)
 			interpretStructureTree(entry->children.at(i));

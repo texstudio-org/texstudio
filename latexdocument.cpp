@@ -46,7 +46,7 @@ void LatexDocument::setFileName(const QString& fileName){
 	//clear all references to old editor
 	if (this->edView){
 		StructureEntryIterator iter(baseStructure);
-		while (iter.hasNext()) iter.next()->lineHandle=0;
+		while (iter.hasNext()) iter.next()->setLine(0);
 	}
 	
 	this->fileName=fileName;
@@ -229,7 +229,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		QMutableListIterator<StructureEntry*> iter(sec->children);
 		while (iter.hasNext()){
 			StructureEntry* se=iter.next();
-			if(dlh==se->lineHandle) {
+			if(dlh==se->getLineHandle()) {
 				emit removeElement(se,l);
 				iter.remove();
 				emit removeElementFinished();
@@ -378,8 +378,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
 			}
 			newTodo->title=s;
-			newTodo->lineNumber=i;
-			newTodo->lineHandle=line(i).handle();
+			newTodo->setLine(line(i).handle(), i);
 			newTodo->parent=todoList;
 			if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
 			iter_todo.insert(newTodo);
@@ -405,8 +404,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			
 			parseMagicComment(name, val, newMagicComment);
 			newMagicComment->title=s;
-			newMagicComment->lineNumber=i;
-			newMagicComment->lineHandle=line(i).handle();
+			newMagicComment->setLine(line(i).handle(), i);
 			newMagicComment->parent=magicCommentList;
 			if(!reuse) emit addElement(magicCommentList,magicCommentList->children.size()); //todo: why here but not in label?
 			iter_magicComment.insert(newMagicComment);
@@ -450,8 +448,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 						newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
 					}
 					newLabel->title=name;
-					newLabel->lineNumber=i;
-					newLabel->lineHandle=line(i).handle();
+					newLabel->setLine(line(i).handle(), i);
 					newLabel->parent=labelList;
 					iter_label.insert(newLabel);
 				}
@@ -618,8 +615,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 						newFile=new StructureEntry(this, StructureEntry::SE_BIBTEX);
 					}
 					newFile->title=bibFile;
-					newFile->lineNumber=i;
-					newFile->lineHandle=line(i).handle();
+					newFile->setLine(line(i).handle(), i);
 					newFile->parent=bibTeXList;
 					iter_bibTeX.insert(newFile);
 				}
@@ -639,8 +635,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
 				}
 				newBlock->title=s;
-				newBlock->lineNumber=i;
-				newBlock->lineHandle=line(i).handle();
+				newBlock->setLine(line(i).handle(), i);
 				newBlock->parent=blockList;
 				iter_block.insert(newBlock);
 				continue;
@@ -652,12 +647,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.includeCommands.contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->title=name;
-				newInclude->lineNumber=i;
 				QString fname=findFileName(name);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
 				if(dc)	dc->setMasterDocument(this);
 				newInclude->valid = dc; 
-				newInclude->lineHandle=line(i).handle();
+				newInclude->setLine(line(i).handle(), i);
 				flatStructure << newInclude;
 				continue;
 			}
@@ -671,8 +665,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				else newSection->appendix=false;
 				newSection->title=parseTexOrPDFString(name);
 				newSection->level=header;
-				newSection->lineNumber=i;
-				newSection->lineHandle=line(i).handle();
+				newSection->setLine(line(i).handle(), i);
 				flatStructure << newSection;
 			}
 		}// for each command
@@ -985,7 +978,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
  
 }
 */
-StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), lineNumber(-1), lineHandle(0), parent(0), document(doc),appendix(false){
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), parent(0), document(doc),appendix(false), parentRow(-1), lineHandle(0), lineNumber(-1){
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
 	document->StructureContent.insert(this);
@@ -1011,13 +1004,25 @@ void StructureEntry::insert(int pos, StructureEntry* child){
 	children.insert(pos,child);
 	child->parent=this;
 }
-int StructureEntry::getRealLineNumber(){
+void StructureEntry::setLine(QDocumentLineHandle* handle, int lineNr){
+	lineHandle = handle;
+	lineNumber = lineNr;
+}
+
+QDocumentLineHandle* StructureEntry::getLineHandle() const{
+	return lineHandle;
+}
+
+int StructureEntry::getCachedLineNumber() const{
+	return lineNumber;
+}
+int StructureEntry::getRealLineNumber() const{
 	lineNumber = document->indexOf(lineHandle, lineNumber);
 	return lineNumber;
 }
 
-template <typename T> inline int hintedIndexOf (const QList<T>& list, const T& elem, int hint) {
-	if (hint < 2) return list.indexOf(elem);
+template <typename T> inline int hintedIndexOf (const QList<T*>& list, const T* elem, int hint) {
+	if (hint < 2) return list.indexOf(const_cast<T*>(elem));
 	int backward = hint, forward = hint + 1;
 	for (;backward >= 0 && forward < list.size();
 	     backward--, forward++) {
@@ -1033,9 +1038,9 @@ template <typename T> inline int hintedIndexOf (const QList<T>& list, const T& e
 	return -1;
 }
 
-int StructureEntry::getRealParentRow(){
+int StructureEntry::getRealParentRow() const{
 	REQUIRE_RET(parent, -1);
-	parentRow = hintedIndexOf(parent->children, this, parentRow);
+	parentRow = hintedIndexOf<StructureEntry>(parent->children, this, parentRow);
 	return parentRow;
 }
 
@@ -1098,7 +1103,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			return QVariant(title);
 		}
 		//show full title in other cases
-		if(documents.showLineNumbersInStructure && entry->lineNumber>-1){
+		if(documents.showLineNumbersInStructure && entry->getCachedLineNumber()>-1){
 			result=entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1));
 		}else{
 			result=entry->title;
@@ -1109,7 +1114,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		if (!entry->tooltip.isNull()) {
 			return QVariant(entry->tooltip);
 		}
-		if (entry->lineNumber>-1)
+		if (entry->getCachedLineNumber()>-1)
 			return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
 		else
 			return QVariant();
@@ -1582,14 +1587,13 @@ void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry
 	int l=0;
 	while(iter.hasNext()){
 		StructureEntry* se=iter.next();
-		QDocumentLineHandle* dlh=se->lineHandle;
-		int realline = indexOf(dlh);
+		int realline = se->getRealLineNumber();
 		Q_ASSERT(realline >= 0);
 		if(realline>=linenr && (realline<linenr+count) ){
 			emit removeElement(se,l);
 			iter.remove();
 			emit removeElementFinished();
-			MapOfElements.insert(se->lineHandle,se);
+			MapOfElements.insert(se->getLineHandle(),se);
 			l--;
 		}
 		if(realline>=linenr+count) {
@@ -1729,6 +1733,16 @@ void LatexDocument::updateParentVector(QVector<StructureEntry*> &parent_level, S
 			parent_level[j] = se;
 }
 
+class LessThanRealLineNumber
+{
+public:
+    inline bool operator()(const StructureEntry * const se1, const StructureEntry * const se2) const
+    {
+        return (se1->getRealLineNumber() < se2->getRealLineNumber());
+    }
+};
+
+
 StructureEntry* LatexDocument::moveToAppropiatePositionWithSignal(const QVector<StructureEntry*> &parent_level, StructureEntry* se){
 	REQUIRE_RET(se, 0);
 	StructureEntry* newParent = parent_level[se->level];
@@ -1737,11 +1751,8 @@ StructureEntry* LatexDocument::moveToAppropiatePositionWithSignal(const QVector<
 	int newPos = newParent->children.size();
 	if (newParent->children.size() > 0 && 
 	    newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber()) 
-		for (int i=0;i<newParent->children.size();i++) //TODO: binary search
-			if (newParent->children[i]->getRealLineNumber() > se->getRealLineNumber()) {
-				newPos = i;
-				break;
-			}
+		newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, LessThanRealLineNumber()) - newParent->children.begin();		
+	
 	
 	//qDebug() << "auto insert at " << newPos;
 	if (se->parent) moveElementWithSignal(se, newParent, newPos);
@@ -1824,8 +1835,8 @@ void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,boo
 	bool first=false;
 	for(int i=0;i<se->children.size();i++){
 		StructureEntry *elem=se->children[i];
-		if(endLine>=0 && elem->lineHandle && indexOf(elem->lineHandle)>endLine) break;
-		if(elem->type==StructureEntry::SE_SECTION && indexOf(elem->lineHandle)>startLine){
+		if(endLine>=0 && elem->getLineHandle() && elem->getRealLineNumber()>endLine) break;
+		if(elem->type==StructureEntry::SE_SECTION && elem->getRealLineNumber()>startLine){
 			if(!first && i>0) setAppendix(se->children[i-1],startLine,endLine,state);
 			elem->appendix=state;
 			emit updateElement(elem);
@@ -2100,7 +2111,7 @@ QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& nam
 		StructureEntry *se = iter.next();
 		splitMagicComment(se->title, seName, val);
 		if (seName==name)
-			return se->lineHandle;
+			return se->getLineHandle();
 	}
 	return NULL;
 }
