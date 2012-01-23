@@ -9,10 +9,11 @@ class QDocumentSearch;
 class QDocumentSearchTest: public QObject{
 	Q_OBJECT
 	public:
-		QDocumentSearchTest(QEditor* editor);
+		QDocumentSearchTest(QEditor* editor, bool all);
 	private:
 		QDocumentSearch *ds;
 		QEditor *ed;
+		bool all;
 	private slots:
 		void initTestCase();
 		void next_sameText_data();

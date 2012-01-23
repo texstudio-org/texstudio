@@ -7,7 +7,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-QDocumentSearchTest::QDocumentSearchTest(QEditor* editor): QObject(0), 	ed(editor){
+QDocumentSearchTest::QDocumentSearchTest(QEditor* editor, bool all): QObject(0), ed(editor), all(all){
 	ed->setFlag(QEditor::HardLineWrap, false);
 }
 void QDocumentSearchTest::initTestCase(){
@@ -55,6 +55,10 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< (QList<CM>() 
 			<< SN(0,7,9) << SP(0, 5, 3) << SN(0, 7, 9) 
 			<< SN(1, 6, 8) << SN (3, 0, 2) << SN(0, 0,2));
+	if (!all) {
+		qDebug("skipped tests");
+		return;
+	}
 	QTest::newRow("forward-backward-case sensitive")
 		<< "aaAaaAaaA\naAaAa\naaaaaaaa" 
 		<< "aa" << (int)QDocumentSearch::CaseSensitive

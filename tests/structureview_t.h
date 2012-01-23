@@ -9,11 +9,12 @@ class QEditor;
 class StructureViewTest: public QObject{
 	Q_OBJECT
 	public:
-		StructureViewTest(QEditor* editor,LatexDocument *doc);
+		StructureViewTest(QEditor* editor,LatexDocument *doc, bool all);
 		QStringList unrollStructure(StructureEntry *baseStructure);
 	private:
 		QEditor *ed;
 		LatexDocument *document;
+		bool all;
 	private slots:
 		void script_data();
 		void script();

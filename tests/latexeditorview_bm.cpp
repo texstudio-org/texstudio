@@ -11,7 +11,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-LatexEditorViewBenchmark::LatexEditorViewBenchmark(LatexEditorView* view): edView(view){}
+LatexEditorViewBenchmark::LatexEditorViewBenchmark(LatexEditorView* view, bool all): edView(view), all(all){}
 
 void LatexEditorViewBenchmark::documentChange_data(){
 #if QT_VERSION >= 0x040500	
@@ -19,10 +19,16 @@ void LatexEditorViewBenchmark::documentChange_data(){
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
 	
+	
 	//-------------cursor without selection--------------
 	QTest::newRow("one line update")
 		<< "abcdefg\nhallo welt\nabcdefg"
 		<< 0 << 1;
+
+	if (!all) {
+		qDebug() << "skipped benchmark data";
+		return;
+	}
 	QTest::newRow("multi line update")
 		<< "abcdefga\nabcdefg\nabcdefg\nxyz\nc"
 		<< 0 << 3;
@@ -49,6 +55,11 @@ void LatexEditorViewBenchmark::documentChange(){
 	QFETCH(int, start);
 	QFETCH(int, count);
 	
+	if (!all) {
+		qDebug() << "skipped benchmark";
+		return;
+	}
+
 	edView->editor->setText(text);
 	QBENCHMARK {
 		edView->documentContentChanged(start,count);
@@ -66,6 +77,12 @@ void LatexEditorViewBenchmark::linePaint_data(){
 	QTest::newRow("one line update")
 		<< "abcdefg\nhallo welt\nabcdefg"
 		<< 0 << 1;
+
+	if (!all) {
+		qDebug() << "skipped benchmark data"; 
+		return;
+	}
+
 	QTest::newRow("correct german")
 		<< "Haus\nAuto\nKind\nxyz\nc"
 		<< 0 << 3;
@@ -91,8 +108,13 @@ void LatexEditorViewBenchmark::linePaint(){
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
-        Q_UNUSED(start);
-        Q_UNUSED(count);
+	Q_UNUSED(start);
+	Q_UNUSED(count);
+
+	if (!all) {
+		qDebug() << "skipped benchmark";
+		return;
+	}
 
 	edView->editor->setText(text);
 	LatexDocument *doc=edView->document;
@@ -141,6 +163,12 @@ void LatexEditorViewBenchmark::paintEvent_data(){
 	QTest::newRow("one line update")
 		<< "abcdefg\nhallo welt\nabcdefg"
 		<< 0 << 1;
+
+	if (!all) {
+		qDebug() << "skipped benchmark data";
+		return;
+	}
+
 	QTest::newRow("correct german")
 		<< "Haus\nAuto\nKind\nxyz\nc"
 		<< 0 << 3;
@@ -166,9 +194,14 @@ void LatexEditorViewBenchmark::paintEvent(){
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
-        Q_UNUSED(start);
-        Q_UNUSED(count);
+	Q_UNUSED(start);
+	Q_UNUSED(count);
 
+	if (!all) {
+		qDebug() << "skipped benchmark";
+		return;
+	}
+	
 	edView->editor->setText(text);
 	edView->editor->setCursorPosition(0,0);
 	QBENCHMARK {
