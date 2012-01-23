@@ -35,7 +35,7 @@ QString TestManager::performTest(QObject* obj){
 	delete obj;
 	int time = timing.elapsed();
 	totalTestTime += time;
-	QString testTime = QString("\nTime: %1 ms\n" ).arg(time);
+	QString testTime = QString("Time: %1 ms\n\n" ).arg(time);
 	QFile f("tempResult.txt");
 	if (!f.open(QIODevice::ReadOnly)) 
 		return "\n\n!!!!!!!!!!! Couldn't find test result !!!!!!!!!!!! \n\n";
@@ -53,15 +53,15 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentLineTest()
 		<< new QDocumentCursorTest()
-		<< new QDocumentSearchTest(editor)
+		<< new QDocumentSearchTest(editor,level==TL_ALL)
 		<< new QSearchReplacePanelTest(codeedit,level==TL_ALL)
 		<< new QEditorTest(editor,level==TL_ALL)
 		<< new LatexEditorViewTest(edView)
 		<< new LatexCompleterTest(edView)
 		<< new ScriptEngineTest(editor)
-		<< new LatexEditorViewBenchmark(edView)
-		<< new StructureViewTest(editor,edView->document)
-        << new TableManipulationTest(editor)
+		<< new LatexEditorViewBenchmark(edView,level==TL_ALL)
+		<< new StructureViewTest(editor,edView->document,level==TL_ALL)
+		<< new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView);
 	bool allPassed=true;
 	if (level!=TL_ALL)

@@ -8,9 +8,10 @@ class LatexEditorView;
 class LatexEditorViewBenchmark: public QObject{
 	Q_OBJECT
 	public:
-		LatexEditorViewBenchmark(LatexEditorView* view);
+		LatexEditorViewBenchmark(LatexEditorView* view, bool all);
 	private:
 		LatexEditorView *edView;
+		bool all;
 	private slots:
 		void documentChange_data();
 		void documentChange();

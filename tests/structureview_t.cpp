@@ -9,7 +9,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-StructureViewTest::StructureViewTest(QEditor* editor,LatexDocument *doc): ed(editor),document(doc){}
+StructureViewTest::StructureViewTest(QEditor* editor,LatexDocument *doc, bool all): ed(editor),document(doc), all(all){}
 
 void StructureViewTest::script_data(){
 	QTest::addColumn<QString>("script");
@@ -20,6 +20,7 @@ void StructureViewTest::script_data(){
 		<< "editor.setText(\"Hallo\")"
 		<<"Root: LVL:0 IND:0" ;
 
+	
 	QTest::newRow("add Label")
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\"\\n \\\\label{test}\\n\")"
 		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2"
@@ -192,7 +193,7 @@ void StructureViewTest::script_data(){
 void StructureViewTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, expectedStructure);
-
+	
 	scriptengine eng(0);
 	eng.setEditor(ed);
 	eng.setScript(script);
@@ -253,6 +254,11 @@ void StructureViewTest::benchmark_data(){
 		<< "abcdefg\nhallo welt\nabcdefg"
 		<< 0 << 1;
 
+	if (!all) {
+		qDebug("skipped benchmark data");
+		return;
+	}
+
 	QTest::newRow("labels1")
 		<< "\\label{a}\nhallo welt\n\\label{b}\nabcdefg\n\\label{c}"
 		<< 0 << 1;
@@ -281,6 +287,11 @@ void StructureViewTest::benchmark(){
 	QFETCH(int, start);
 	QFETCH(int, count);
 
+	if (!all) {
+		qDebug() << "skipped benchmark";
+		return;
+	}
+	
 	ed->setText(text);
 	QBENCHMARK {
 		document->patchStructure(start,count);
