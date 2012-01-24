@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="it">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -507,19 +507,19 @@
     </message>
     <message>
         <source>Assume that every error is in the current document:</source>
-        <translation>Assumi che ogni errore sia nel documento corrente:</translation>
+        <translation type="obsolete">Assumi che ogni errore sia nel documento corrente:</translation>
     </message>
     <message>
         <source>Never (only use the file names in the log)</source>
-        <translation>Mai (usa solo nomi file nel log)</translation>
+        <translation type="obsolete">Mai (usa solo nomi file nel log)</translation>
     </message>
     <message>
         <source>Only when there is no master document</source>
-        <translation>Solo quando manca il documento master</translation>
+        <translation type="obsolete">Solo quando manca il documento master</translation>
     </message>
     <message>
         <source>Always (ignore file names in the log)</source>
-        <translation>Sempre (ignora il nome file nel log)</translation>
+        <translation type="obsolete">Sempre (ignora il nome file nel log)</translation>
     </message>
     <message>
         <source>1</source>
@@ -539,15 +539,15 @@
     </message>
     <message>
         <source>Editor Font Family</source>
-        <translation>Famiglia Font</translation>
+        <translation type="obsolete">Famiglia Font</translation>
     </message>
     <message>
         <source>Editor Font Size</source>
-        <translation>Dimensione Font</translation>
+        <translation type="obsolete">Dimensione Font</translation>
     </message>
     <message>
         <source>Editor Font Encoding</source>
-        <translation>Codifica Font</translation>
+        <translation type="obsolete">Codifica Font</translation>
     </message>
     <message>
         <source>Show State Panel</source>
@@ -1290,6 +1290,14 @@ Which one of the three wise will always tell the truth?</source>
     <message>
         <source>Select dictionary directory</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation>Famiglia Font</translation>
+    </message>
+    <message>
+        <source>Default Font Encoding</source>
+        <translation>Codifica Font</translation>
     </message>
 </context>
 <context>
