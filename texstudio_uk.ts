@@ -504,19 +504,19 @@
     </message>
     <message>
         <source>Assume that every error is in the current document:</source>
-        <translation>Вважати, що усі помилки містяться в головному документі:</translation>
+        <translation type="obsolete">Вважати, що усі помилки містяться в головному документі:</translation>
     </message>
     <message>
         <source>Never (only use the file names in the log)</source>
-        <translation>Ніколи (використовувати лише імена файлів у Log файлі)</translation>
+        <translation type="obsolete">Ніколи (використовувати лише імена файлів у Log файлі)</translation>
     </message>
     <message>
         <source>Only when there is no master document</source>
-        <translation>Лише коли не вказано головний документ</translation>
+        <translation type="obsolete">Лише коли не вказано головний документ</translation>
     </message>
     <message>
         <source>Always (ignore file names in the log)</source>
-        <translation>Завжди (ігнорувати імена файлів у Log файлі)</translation>
+        <translation type="obsolete">Завжди (ігнорувати імена файлів у Log файлі)</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -556,15 +556,15 @@
     </message>
     <message>
         <source>Editor Font Family</source>
-        <translation>Тип шрифта редактора</translation>
+        <translation type="obsolete">Тип шрифта редактора</translation>
     </message>
     <message>
         <source>Editor Font Size</source>
-        <translation>Розмір шрифта</translation>
+        <translation type="obsolete">Розмір шрифта</translation>
     </message>
     <message>
         <source>Editor Font Encoding</source>
-        <translation>Кодування</translation>
+        <translation type="obsolete">Кодування</translation>
     </message>
     <message>
         <source>ignore indentation</source>
@@ -1473,6 +1473,14 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Select dictionary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation type="unfinished">Schriftart</translation>
+    </message>
+    <message>
+        <source>Default Font Encoding</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

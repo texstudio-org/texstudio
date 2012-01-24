@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>419</width>
+            <height>455</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1042,7 +1042,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="0" column="0">
            <widget class="QLabel" name="labelFamily">
             <property name="text">
-             <string>Editor Font Family</string>
+             <string>Font Family</string>
             </property>
            </widget>
           </item>
@@ -1058,8 +1058,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelEncoding">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>Editor Default Font Encoding</string>
+             <string>Default Font Encoding</string>
             </property>
            </widget>
           </item>
@@ -1111,7 +1117,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="0">
            <widget class="QLabel" name="labelSize">
             <property name="text">
-             <string>Editor Font Size</string>
+             <string>Font Size</string>
             </property>
            </widget>
           </item>

@@ -540,19 +540,19 @@
     </message>
     <message>
         <source>Assume that every error is in the current document:</source>
-        <translation>Předpokládejme, že všechny chyby jsou v současném dokumentu:</translation>
+        <translation type="obsolete">Předpokládejme, že všechny chyby jsou v současném dokumentu:</translation>
     </message>
     <message>
         <source>Never (only use the file names in the log)</source>
-        <translation>Nikdy (používat pouze názvy souborů v zápisu)</translation>
+        <translation type="obsolete">Nikdy (používat pouze názvy souborů v zápisu)</translation>
     </message>
     <message>
         <source>Only when there is no master document</source>
-        <translation>Pouze když neexistuje žádný hlavní dokument</translation>
+        <translation type="obsolete">Pouze když neexistuje žádný hlavní dokument</translation>
     </message>
     <message>
         <source>Always (ignore file names in the log)</source>
-        <translation>Vždy (nevšímat si názvů souborů v zápisu)</translation>
+        <translation type="obsolete">Vždy (nevšímat si názvů souborů v zápisu)</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -596,7 +596,7 @@
     </message>
     <message>
         <source>Editor Font Family</source>
-        <translation>Editor: rodina písma</translation>
+        <translation type="obsolete">Editor: rodina písma</translation>
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
@@ -656,11 +656,11 @@
     </message>
     <message>
         <source>Editor Font Size</source>
-        <translation>Editor: Velikost písma</translation>
+        <translation type="obsolete">Editor: Velikost písma</translation>
     </message>
     <message>
         <source>Editor Font Encoding</source>
-        <translation>Editor: Kódování písma</translation>
+        <translation type="obsolete">Editor: Kódování písma</translation>
     </message>
     <message>
         <source>ignore indentation</source>
@@ -1496,6 +1496,14 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     <message>
         <source>Select dictionary directory</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation>Rodina písma</translation>
+    </message>
+    <message>
+        <source>Default Font Encoding</source>
+        <translation type="unfinished">Kódování písma</translation>
     </message>
 </context>
 <context>

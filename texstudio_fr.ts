@@ -502,19 +502,19 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Assume that every error is in the current document:</source>
-        <translation>Supposer que toutes les erreurs sont dans le document courant :</translation>
+        <translation type="obsolete">Supposer que toutes les erreurs sont dans le document courant :</translation>
     </message>
     <message>
         <source>Never (only use the file names in the log)</source>
-        <translation>Jamais (utiliser les noms de fichier dans le log)</translation>
+        <translation type="obsolete">Jamais (utiliser les noms de fichier dans le log)</translation>
     </message>
     <message>
         <source>Only when there is no master document</source>
-        <translation>Seulement si aucun document maître n&apos;est défini</translation>
+        <translation type="obsolete">Seulement si aucun document maître n&apos;est défini</translation>
     </message>
     <message>
         <source>Always (ignore file names in the log)</source>
-        <translation>Toujours (ignorer noms de fichier du log)</translation>
+        <translation type="obsolete">Toujours (ignorer noms de fichier du log)</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -602,7 +602,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Editor Font Family</source>
-        <translation>Famille de police de l&apos;éditeur</translation>
+        <translation type="obsolete">Famille de police de l&apos;éditeur</translation>
     </message>
     <message>
         <source>Word Wrap</source>
@@ -666,7 +666,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Editor Font Size</source>
-        <translation>Taille de police de l&apos;éditeur</translation>
+        <translation type="obsolete">Taille de police de l&apos;éditeur</translation>
     </message>
     <message>
         <source>Folding</source>
@@ -674,7 +674,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Editor Font Encoding</source>
-        <translation>Codage d&apos;entrée des caractères</translation>
+        <translation type="obsolete">Codage d&apos;entrée des caractères</translation>
     </message>
     <message>
         <source>No line numbers</source>
@@ -1357,6 +1357,14 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     <message>
         <source>Select dictionary directory</source>
         <translation>Sélection du répertoire du dictionnaire</translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Font Encoding</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

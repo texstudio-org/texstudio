@@ -354,19 +354,19 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Assume that every error is in the current document:</source>
-        <translation>Feltételezze, hogy minden hiba a jelenlegi dokumentumban van:</translation>
+        <translation type="obsolete">Feltételezze, hogy minden hiba a jelenlegi dokumentumban van:</translation>
     </message>
     <message>
         <source>Never (only use the file names in the log)</source>
-        <translation>Soha (csak a naplóban lévő fájlnevek használata)</translation>
+        <translation type="obsolete">Soha (csak a naplóban lévő fájlnevek használata)</translation>
     </message>
     <message>
         <source>Only when there is no master document</source>
-        <translation>Csak ha nincs mesterdokumentum</translation>
+        <translation type="obsolete">Csak ha nincs mesterdokumentum</translation>
     </message>
     <message>
         <source>Always (ignore file names in the log)</source>
-        <translation>Mindig (a naplóban lévő fájlnevek mellőzése)</translation>
+        <translation type="obsolete">Mindig (a naplóban lévő fájlnevek mellőzése)</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -414,11 +414,11 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Editor Font Family</source>
-        <translation>Szerkesztő betűcsalád</translation>
+        <translation type="obsolete">Szerkesztő betűcsalád</translation>
     </message>
     <message>
         <source>Editor Font Size</source>
-        <translation>Szerkesztő betűmérete</translation>
+        <translation type="obsolete">Szerkesztő betűmérete</translation>
     </message>
     <message>
         <source>Folding</source>
@@ -426,7 +426,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Editor Font Encoding</source>
-        <translation>Szerkesztő karakterkódolása</translation>
+        <translation type="obsolete">Szerkesztő karakterkódolása</translation>
     </message>
     <message>
         <source>No line numbers</source>
@@ -1096,6 +1096,14 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>Select dictionary directory</source>
         <translation>Szótár könyvtár választása</translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation>Betűcsalád</translation>
+    </message>
+    <message>
+        <source>Default Font Encoding</source>
+        <translation>Karakterkódolása</translation>
     </message>
 </context>
 <context>

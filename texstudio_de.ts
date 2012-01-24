@@ -315,19 +315,19 @@
     </message>
     <message>
         <source>Assume that every error is in the current document:</source>
-        <translation>Nehme an, dass alle Fehler im aktuellen Dokument sind:</translation>
+        <translation type="obsolete">Nehme an, dass alle Fehler im aktuellen Dokument sind:</translation>
     </message>
     <message>
         <source>Never (only use the file names in the log)</source>
-        <translation>Niemals (nutze nur die Dateinamen im Log)</translation>
+        <translation type="obsolete">Niemals (nutze nur die Dateinamen im Log)</translation>
     </message>
     <message>
         <source>Only when there is no master document</source>
-        <translation>Nur wenn kein Masterdokument vorhanden ist</translation>
+        <translation type="obsolete">Nur wenn kein Masterdokument vorhanden ist</translation>
     </message>
     <message>
         <source>Always (ignore file names in the log)</source>
-        <translation>Immer (ignoriere die Dateinamen im Log)</translation>
+        <translation type="obsolete">Immer (ignoriere die Dateinamen im Log)</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -367,7 +367,7 @@
     </message>
     <message>
         <source>Editor Font Family</source>
-        <translation>Editor: Schriftart</translation>
+        <translation type="obsolete">Editor: Schriftart</translation>
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
@@ -427,11 +427,11 @@
     </message>
     <message>
         <source>Editor Font Size</source>
-        <translation>Editor: Schriftgröße</translation>
+        <translation type="obsolete">Editor: Schriftgröße</translation>
     </message>
     <message>
         <source>Editor Font Encoding</source>
-        <translation>Editor: Schriftkodierung</translation>
+        <translation type="obsolete">Editor: Schriftkodierung</translation>
     </message>
     <message>
         <source>Use single line selection as Search Word</source>
@@ -1095,6 +1095,14 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>Select dictionary directory</source>
         <translation>Wörterbuch-Verzeichnis auswählen</translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation>Schriftgröße</translation>
+    </message>
+    <message>
+        <source>Default Font Encoding</source>
+        <translation>Standard Kodierung</translation>
     </message>
 </context>
 <context>
