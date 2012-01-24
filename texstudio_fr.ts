@@ -1360,11 +1360,11 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation type="unfinished"></translation>
+        <translation>Famille de fonte</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Codage d&apos;entrée par défaut</translation>
     </message>
 </context>
 <context>
