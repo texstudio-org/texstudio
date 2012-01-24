@@ -108,15 +108,15 @@
     </message>
     <message>
         <source>Center</source>
-        <translation>Centrer</translation>
+        <translation>Centré</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation>Aligner à gauche</translation>
+        <translation>Aligné à gauche</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>Aligner à droite</translation>
+        <translation>Aligné à droite</translation>
     </message>
     <message>
         <source>Quick Array</source>
@@ -151,7 +151,7 @@
     </message>
     <message>
         <source>insert empty, optional fields</source>
-        <translation>insérer champs optionnels même vides</translation>
+        <translation>Insérer les champs optionnels même vides</translation>
     </message>
     <message>
         <source>Article in Journal</source>
@@ -435,7 +435,7 @@
     </message>
     <message>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation>&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt;: nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier courant au lieu du document maître)</translation>
+        <translation>&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;, &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt; : nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier courant au lieu du document maître)</translation>
     </message>
     <message>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
@@ -1845,7 +1845,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>huge</source>
-        <translation>énorme</translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1947,7 +1947,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>Select Encoding for</source>
-        <translation>Choisir codage pour</translation>
+        <translation>Sélectionner le codage pour</translation>
     </message>
     <message>
         <source>If the new and old encodings are incompatible, some characters may be destroyed.
@@ -2146,11 +2146,11 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Above graphic</source>
-        <translation>Au-dessus du grapique</translation>
+        <translation>Au-dessus du graphique</translation>
     </message>
     <message>
         <source>Below graphic</source>
-        <translation>Au-dessous du grapique</translation>
+        <translation>Au-dessous du graphique</translation>
     </message>
     <message>
         <source>Label</source>
@@ -2445,27 +2445,27 @@ Options de \includegraphics manquantes</translation>
     <name>OutputViewWidget</name>
     <message>
         <source>messages</source>
-        <translation>messages</translation>
+        <translation>Messages</translation>
     </message>
     <message>
         <source>log file</source>
-        <translation>fichier log</translation>
+        <translation>Fichier log</translation>
     </message>
     <message>
         <source>errors</source>
-        <translation>erreurs</translation>
+        <translation>Erreurs</translation>
     </message>
     <message>
         <source>preview</source>
-        <translation>prévisualisation</translation>
+        <translation>Prévisualisation</translation>
     </message>
     <message>
         <source>search results</source>
-        <translation>résultats de recherche</translation>
+        <translation>Résultats de la recherche</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation>The fichier de log est très grand (&gt; %1 MB) : êtes-vous sûr de vouloir le visualiser ?</translation>
+        <translation>Le fichier de log est très grand (&gt; %1 MB) : êtes-vous sûr de vouloir le visualiser ?</translation>
     </message>
 </context>
 <context>
@@ -4170,7 +4170,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>Geometry</source>
-        <translation>Géométrie</translation>
+        <translation>Géométrie de la page</translation>
     </message>
     <message>
         <source>Page</source>
@@ -4506,11 +4506,11 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>delete row</source>
-        <translation>supprimer ligne</translation>
+        <translation>Supprimer une ligne</translation>
     </message>
     <message>
         <source>add row</source>
-        <translation>ajouter ligne</translation>
+        <translation>Ajouter une ligne</translation>
     </message>
     <message>
         <source>Sorry, you clicked in the wrong column.
@@ -4695,15 +4695,15 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Center</source>
-        <translation>Centrer</translation>
+        <translation>Centré</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation>Aligner à gauche</translation>
+        <translation>Aligné à gauche</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>Aligner à droite</translation>
+        <translation>Aligné à droite</translation>
     </message>
     <message>
         <source>Quick Tabular</source>
@@ -4711,7 +4711,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>add a margin with the horizontal line</source>
-        <translation>ajouter une marge à la ligne horizontale</translation>
+        <translation>Ajouter une marge à la ligne horizontale</translation>
     </message>
 </context>
 <context>
@@ -5802,11 +5802,11 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
-        <translation>Trouver &amp;Suivant</translation>
+        <translation>Trouver le &amp;suivant</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
-        <translation>Trouver &amp;Précédent</translation>
+        <translation>Trouver le &amp;précédent</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
@@ -5833,42 +5833,42 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation>ajouter ligne</translation>
+        <translation>Ajouter ligne</translation>
     </message>
     <message>
         <source>add column</source>
         <comment>table</comment>
-        <translation>ajouter colonne</translation>
+        <translation>Ajouter colonne</translation>
     </message>
     <message>
         <source>remove row</source>
         <comment>table</comment>
-        <translation>supprimer ligne</translation>
+        <translation>Supprimer ligne</translation>
     </message>
     <message>
         <source>remove column</source>
         <comment>table</comment>
-        <translation>supprimer colonne</translation>
+        <translation>Supprimer colonne</translation>
     </message>
     <message>
         <source>cut column</source>
         <comment>table</comment>
-        <translation>couper colonne</translation>
+        <translation>Couper colonne</translation>
     </message>
     <message>
         <source>paste column</source>
         <comment>table</comment>
-        <translation>coller colonne</translation>
+        <translation>Coller colonne</translation>
     </message>
     <message>
         <source>add \hline</source>
         <comment>table</comment>
-        <translation>ajouter \hline</translation>
+        <translation>Ajouter \hline</translation>
     </message>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
-        <translation>supprimer \hline</translation>
+        <translation>Supprimer \hline</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -6342,7 +6342,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Min&amp;max words per phrase:</source>
-        <translation>&amp;Minimum et maximum de mots par phrase :</translation>
+        <translation>Minimum et maximum de mots par phrase :</translation>
     </message>
     <message>
         <source>None (.*)</source>
@@ -6390,11 +6390,11 @@ Sinon la ponctuation est ignorée.</translation>
     <name>ThesaurusDialog</name>
     <message>
         <source>replace</source>
-        <translation>remplacer</translation>
+        <translation>Remplacer</translation>
     </message>
     <message>
         <source>lookup</source>
-        <translation>chercher</translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <source>starts with ...</source>
@@ -6402,7 +6402,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>contains ...</source>
-        <translation>contient...</translation>
+        <translation>Contient...</translation>
     </message>
     <message>
         <source>cancel</source>
@@ -6586,7 +6586,7 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Menu Item</source>
-        <translation>Élément</translation>
+        <translation>Entrée de menu</translation>
     </message>
     <message>
         <source>Command (% : filename without extension)</source>
