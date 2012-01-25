@@ -4,14 +4,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About Texmaker</source>
-        <translation type="obsolete">Про Texmaker</translation>
-    </message>
-    <message>
-        <source>About TexMakerX</source>
-        <translation type="obsolete">Про TexMakerX</translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -42,21 +34,6 @@
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AddOptionDialog</name>
-    <message>
-        <source>New</source>
-        <translation type="obsolete">Новий</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Відміна</translation>
     </message>
 </context>
 <context>
@@ -91,78 +68,22 @@
     </message>
     <message>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">По центру</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">По лівому краю</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">По правому краю</translation>
     </message>
 </context>
 <context>
     <name>BibTeXDialog</name>
     <message>
-        <source>Article in Journal</source>
-        <translation type="obsolete">Стаття у журналі</translation>
-    </message>
-    <message>
-        <source>Article in Conference Proceedings</source>
-        <translation type="obsolete">Стаття у збірнику матеріалів конференції</translation>
-    </message>
-    <message>
-        <source>Article in a Collection</source>
-        <translation type="obsolete">Стаття у збірнику</translation>
-    </message>
-    <message>
-        <source>Chapter or Pages in a Book</source>
-        <translation type="obsolete">Розділ або сторінки у книзі</translation>
-    </message>
-    <message>
-        <source>Conference Proceedings</source>
-        <translation type="obsolete">Матеріали конференції</translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="obsolete">Книга</translation>
-    </message>
-    <message>
-        <source>Booklet</source>
-        <translation type="obsolete">Буклет</translation>
-    </message>
-    <message>
-        <source>PhD. Thesis</source>
-        <translation type="obsolete">Докторська дисертація</translation>
-    </message>
-    <message>
-        <source>Master&apos;s Thesis</source>
-        <translation type="obsolete">Дипломна (магістерська) робота</translation>
-    </message>
-    <message>
-        <source>Technical Report</source>
-        <translation type="obsolete">Технічний звіт</translation>
-    </message>
-    <message>
-        <source>Technical Manual</source>
-        <translation type="obsolete">Технічний опис</translation>
-    </message>
-    <message>
-        <source>Unpublished</source>
-        <translation type="obsolete">Неопубліковано</translation>
-    </message>
-    <message>
-        <source>Miscellaneous</source>
-        <translation type="obsolete">Різне</translation>
-    </message>
-    <message>
         <source>&lt;new file&gt;</source>
         <translation>&lt;новий файл&gt;</translation>
-    </message>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">Dialog</translation>
     </message>
     <message>
         <source>New BibTeX Entry</source>
@@ -293,10 +214,6 @@
         <translation>Чи Ви дійсно хочете вилучити цей рядок?</translation>
     </message>
     <message>
-        <source>Get dictionary at: %1</source>
-        <translation type="obsolete">Отримати словник: %1</translation>
-    </message>
-    <message>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
@@ -333,10 +250,6 @@
         <translation>Меню Latex</translation>
     </message>
     <message>
-        <source>Custom Toolbar</source>
-        <translation type="obsolete">Панелі інструментів</translation>
-    </message>
-    <message>
         <source>Editor</source>
         <translation>Редактор</translation>
     </message>
@@ -347,14 +260,6 @@
     <message>
         <source>SVN</source>
         <translation>Управління версіями SVN</translation>
-    </message>
-    <message>
-        <source>Browse dictionary</source>
-        <translation type="obsolete">Вибрати словник</translation>
-    </message>
-    <message>
-        <source>(Dictionary doesn&apos;t exists)</source>
-        <translation type="obsolete">(Словник не існує)</translation>
     </message>
     <message>
         <source>Browse thesaurus database</source>
@@ -377,26 +282,12 @@
         <translation>Зображення (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
-    </message>
-    <message>
         <source>The shortcut you entered is invalid.</source>
         <translation>Введена комбінація клавіш невірна.</translation>
     </message>
     <message>
-        <source>The shortcut you entered is the same as the one of this command: 
-</source>
-        <translation type="obsolete">Введена комбінація клавіш використовується для однієї із команд:
-</translation>
-    </message>
-    <message>
         <source>Should I delete this other shortcut?</source>
         <translation>Ви хочете знищити цю комбінацію клавш?</translation>
-    </message>
-    <message>
-        <source>Configure TexMakerX</source>
-        <translation type="obsolete">Налаштування Texmaker</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -415,116 +306,16 @@
         <translation>Команди (% - ім&apos;я файла без розширення;   @ - номер рядка;   ? - розширені опції імені файла)</translation>
     </message>
     <message>
-        <source>Dvi Viewer</source>
-        <translation type="obsolete">Перегляд Dvi</translation>
-    </message>
-    <message>
-        <source>PS Viewer</source>
-        <translation type="obsolete">Перегляд PS</translation>
-    </message>
-    <message>
-        <source>ghostscript</source>
-        <translation type="obsolete">ghostscript</translation>
-    </message>
-    <message>
-        <source>Bibtex</source>
-        <translation type="obsolete">Bibtex</translation>
-    </message>
-    <message>
-        <source>Dvipdfm</source>
-        <translation type="obsolete">Dvipdfm</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX</source>
-        <translation type="obsolete">PdfLatex</translation>
-    </message>
-    <message>
-        <source>Makeindex</source>
-        <translation type="obsolete">Makeindex</translation>
-    </message>
-    <message>
-        <source>ps2pdf</source>
-        <translation type="obsolete">ps2pdf</translation>
-    </message>
-    <message>
-        <source>Pdf Viewer</source>
-        <translation type="obsolete">Перегляд Pdf</translation>
-    </message>
-    <message>
-        <source>metapost</source>
-        <translation type="obsolete">metapost</translation>
-    </message>
-    <message>
-        <source>LaTeX</source>
-        <translation type="obsolete">LaTeX</translation>
-    </message>
-    <message>
-        <source>dvips</source>
-        <translation type="obsolete">dvips</translation>
-    </message>
-    <message>
         <source>Quick Build Command</source>
         <translation>Команда швидкої збірки</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvips + View PS</source>
-        <translation type="obsolete">LaTeX + dvips + перегляд PS</translation>
-    </message>
-    <message>
-        <source>LaTeX + View DVI</source>
-        <translation type="obsolete">LaTeX + перегляд DVI</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + View PDF</source>
-        <translation type="obsolete">PdfLaTeX + перегляд PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvipdfm + View PDF</source>
-        <translation type="obsolete">LaTeX + dvipdfm + перегляд PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation type="obsolete">LaTeX + dvips + ps2pdf + перегляд PDF</translation>
-    </message>
-    <message>
-        <source>User : (% : filename without extension)</source>
-        <translation type="obsolete">Команда користувача: (%: ім&apos;я файла без розширення)</translation>
-    </message>
-    <message>
-        <source>(the commands must be separated by &apos;|&apos;)</source>
-        <translation type="obsolete">(команди повинні бути розділені символом &apos;|&apos;)</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation type="obsolete">Більше</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
         <translation>Виконати перед компіляцією:</translation>
     </message>
     <message>
-        <source>Assume that every error is in the current document:</source>
-        <translation type="obsolete">Вважати, що усі помилки містяться в головному документі:</translation>
-    </message>
-    <message>
-        <source>Never (only use the file names in the log)</source>
-        <translation type="obsolete">Ніколи (використовувати лише імена файлів у Log файлі)</translation>
-    </message>
-    <message>
-        <source>Only when there is no master document</source>
-        <translation type="obsolete">Лише коли не вказано головний документ</translation>
-    </message>
-    <message>
-        <source>Always (ignore file names in the log)</source>
-        <translation type="obsolete">Завжди (ігнорувати імена файлів у Log файлі)</translation>
-    </message>
-    <message>
         <source>Show log after compiling if there are errors</source>
         <translation>Показувати Log файл після компіляції, якщо є помилки</translation>
-    </message>
-    <message>
-        <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="obsolete">Виконати &quot;latex bibtex latex&quot; перед компіляцією, якщо bib-файли були змінені</translation>
     </message>
     <message>
         <source>1</source>
@@ -555,48 +346,12 @@
         <translation>&gt;</translation>
     </message>
     <message>
-        <source>Editor Font Family</source>
-        <translation type="obsolete">Тип шрифта редактора</translation>
-    </message>
-    <message>
-        <source>Editor Font Size</source>
-        <translation type="obsolete">Розмір шрифта</translation>
-    </message>
-    <message>
-        <source>Editor Font Encoding</source>
-        <translation type="obsolete">Кодування</translation>
-    </message>
-    <message>
-        <source>ignore indentation</source>
-        <translation type="obsolete">ігнорувати відступи</translation>
-    </message>
-    <message>
-        <source>keep indentation</source>
-        <translation type="obsolete">зберігати відступи</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically</source>
-        <translation type="obsolete">розставляти і прибирати відступи автоматично</translation>
-    </message>
-    <message>
-        <source>keep indentation with spaces only</source>
-        <translation type="obsolete">зберігати відступи лише з пробілів</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically with spaces only</source>
-        <translation type="obsolete">розставляти і прибирати відступи автоматично лише з пробілів</translation>
-    </message>
-    <message>
         <source>Use single line selection as Search Word</source>
         <translation>При пошуку слова використовувати один рядок</translation>
     </message>
     <message>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>можна вибирати тільки між utf-16/utf-8 та ISO 8859-1!</translation>
-    </message>
-    <message>
-        <source>Use Tab for Move To Placeholder</source>
-        <translation type="obsolete">Використовувати Tab для переміщення до заповнювача</translation>
     </message>
     <message>
         <source>Show Whitespace</source>
@@ -631,36 +386,8 @@
         <translation>Глибина пошуку SVN каталогів: </translation>
     </message>
     <message>
-        <source>show advanced options</source>
-        <translation type="obsolete">Розширені налаштування</translation>
-    </message>
-    <message>
-        <source>Word Wrap</source>
-        <translation type="obsolete">Перенесення рядків</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: filename without extension &lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: line number &lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; followed by &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: extended filename&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absolute path, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: basefile name without extension,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: extension&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: enclose with &quot;..&quot;, (space): ends placeholder and add a space, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: ends placeholder &lt;br /&gt;      examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;            ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br /&gt;
- %%, @@ or ?? become: %, @ or ?
- &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Besondere Zeichen:&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: Dateiname ohne Endung&lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: Zeilennummer&lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; gefolgt von &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,--&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: erweiterter Dateiname&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absoluter Pfad, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: Datename ohne Endung/Pfad,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: Endung&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: umgibt den Namen mit &quot;..&quot;, (Leerzeichen): beendet Namen und fügt ein Leerzeichen hinzu, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: beendet Dateinamen &lt;br /&gt;      Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben von &quot;, ?e) nur die Endung (ohne Punkt), &lt;br /&gt;  ?m&quot; (Dateiname ohne Endung, indentisch zu %) ?me (Dateiname mit Endung wie beispiel.tex)&lt;br /&gt;
- %%, @@ or ?? wird zu: %, @ oder ?
- &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Show Modify Time</source>
         <translation>Показувати час модифікації</translation>
-    </message>
-    <message>
-        <source>preview with dvipng</source>
-        <translation type="obsolete">Перегляд з dvipng</translation>
     </message>
     <message>
         <source>Color Scheme</source>
@@ -679,32 +406,8 @@ p, li { white-space: pre-wrap; }
         <translation>Структура/Символи у вигляді вкладок</translation>
     </message>
     <message>
-        <source>ignore most system colors</source>
-        <translation type="obsolete">Використовувати власні набори кольорів</translation>
-    </message>
-    <message>
         <source>Always show structure of master document</source>
         <translation>Завжди показувати структуру головного документа</translation>
-    </message>
-    <message>
-        <source>inline checking</source>
-        <translation type="obsolete">вбудований контроль</translation>
-    </message>
-    <message>
-        <source>inline spell checking</source>
-        <translation type="obsolete">перевіряти правопис при введенні</translation>
-    </message>
-    <message>
-        <source>inline citation checking</source>
-        <translation type="obsolete">перевіряти цитати</translation>
-    </message>
-    <message>
-        <source>inline reference checking</source>
-        <translation type="obsolete">перевіряти посилання</translation>
-    </message>
-    <message>
-        <source>*.dic</source>
-        <translation type="obsolete">*.dic</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -738,28 +441,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>%%, @@ або ?? перетворяться в %, @ або ?</translation>
     </message>
     <message>
-        <source>preview with dvipng --follow (parallel)</source>
-        <translation type="obsolete">Перегляд з dvipng --follow (parallel)</translation>
-    </message>
-    <message>
-        <source>preview with dvips/ghostscript</source>
-        <translation type="obsolete">Перегляд з dvips/ghostscript</translation>
-    </message>
-    <message>
-        <source>close search and replace panel together</source>
-        <translation type="obsolete">закривати панелі пошуку та заміни одночасно</translation>
-    </message>
-    <message>
         <source>Add line</source>
         <translation>Додати рядок</translation>
     </message>
     <message>
         <source>Remove line</source>
         <translation>Вилучити рядок</translation>
-    </message>
-    <message>
-        <source>Completion Enabled</source>
-        <translation type="obsolete">Застосувати завершення</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -786,28 +473,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Використовувати файли завершення:</translation>
     </message>
     <message>
-        <source>Spelling dictionary</source>
-        <translation type="obsolete">Словник перевірки правопису</translation>
-    </message>
-    <message>
         <source>Shortcuts</source>
         <translation>Комбінації клавіш</translation>
-    </message>
-    <message>
-        <source>Action</source>
-        <translation type="obsolete">Дія</translation>
-    </message>
-    <message>
-        <source>Shortcut</source>
-        <translation type="obsolete">Комбінація клавіш</translation>
-    </message>
-    <message>
-        <source>auto detect encoding of loaded files</source>
-        <translation type="obsolete">автовизначення кодування завантажених файлів</translation>
-    </message>
-    <message>
-        <source>Change  style:</source>
-        <translation type="obsolete">Змінити стиль:</translation>
     </message>
     <message>
         <source>Completion</source>
@@ -818,64 +485,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Згортання коду</translation>
     </message>
     <message>
-        <source>real time checking</source>
-        <translation type="obsolete">перевірка в реальному часі</translation>
-    </message>
-    <message>
-        <source>Text color:</source>
-        <translation type="obsolete">Колір тексту:</translation>
-    </message>
-    <message>
-        <source>Decoration color:</source>
-        <translation type="obsolete">Колір оздоблення:</translation>
-    </message>
-    <message>
-        <source>bold</source>
-        <translation type="obsolete">жирний</translation>
-    </message>
-    <message>
-        <source>underline</source>
-        <translation type="obsolete">підкреслений</translation>
-    </message>
-    <message>
-        <source>italic</source>
-        <translation type="obsolete">курсив</translation>
-    </message>
-    <message>
-        <source>overline</source>
-        <translation type="obsolete">überstreichen</translation>
-    </message>
-    <message>
-        <source>strikeout</source>
-        <translation type="obsolete">durchstreichen</translation>
-    </message>
-    <message>
-        <source>wave underline</source>
-        <translation type="obsolete">Wellen-unterstreichen</translation>
-    </message>
-    <message>
         <source>Show State Panel</source>
         <translation>Показувати панель стану</translation>
     </message>
     <message>
         <source>Show Line Change State</source>
         <translation>Позначати змінені рядки</translation>
-    </message>
-    <message>
-        <source>show preview as tool tip if panel is hidden</source>
-        <translation type="obsolete">показувати попередній перегляд у вигляді підказки, якщо панель схована</translation>
-    </message>
-    <message>
-        <source>always show preview in preview panel</source>
-        <translation type="obsolete">завжди показувати попередній перегляд у панелі</translation>
-    </message>
-    <message>
-        <source>always show preview as tool tip</source>
-        <translation type="obsolete">завжди показувати попередній перегляд у вигляді підказки</translation>
-    </message>
-    <message>
-        <source>always show both</source>
-        <translation type="obsolete">завжди показувати обидва</translation>
     </message>
     <message>
         <source>No line numbers</source>
@@ -938,40 +553,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Максимальна кількість головних документів</translation>
     </message>
     <message>
-        <source>Thesaurus</source>
-        <translation type="obsolete">Тезаурус</translation>
-    </message>
-    <message>
         <source>Thesaurus Database</source>
         <translation>База Тезауруса</translation>
     </message>
     <message>
-        <source>Autoindent</source>
-        <translation type="obsolete">Автовідступ</translation>
-    </message>
-    <message>
         <source>The shortcut you entered is the same as the one of this command:</source>
         <translation>Введена комбінація клавіш використовується для однієї із команд:</translation>
-    </message>
-    <message>
-        <source>Special Key Replacement</source>
-        <translation type="obsolete">Заміна спеціальних клавіш</translation>
-    </message>
-    <message>
-        <source>New column meaning:</source>
-        <translation type="obsolete">Вмістиме нового стовпця:</translation>
-    </message>
-    <message>
-        <source>Key to replace</source>
-        <translation type="obsolete">Клавіша для заміни</translation>
-    </message>
-    <message>
-        <source>Text to insert before word</source>
-        <translation type="obsolete">Текст для вставки перед словом</translation>
-    </message>
-    <message>
-        <source>Text to insert after word</source>
-        <translation type="obsolete">Текст для вставки після слова</translation>
     </message>
     <message>
         <source>Show advanced options</source>
@@ -1547,10 +1134,6 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished">&amp;Math</translation>
     </message>
     <message>
-        <source>&amp;User</source>
-        <translation type="obsolete">&amp;Користувач</translation>
-    </message>
-    <message>
         <source>AMS packages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2092,13 +1675,6 @@ Are you sure you want to undo all changes?</source>
     </message>
 </context>
 <context>
-    <name>FileFormat</name>
-    <message>
-        <source>Binary</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -2107,10 +1683,6 @@ Are you sure you want to undo all changes?</source>
     <message>
         <source>Scheme :</source>
         <translation>Схема:</translation>
-    </message>
-    <message>
-        <source>Identifier</source>
-        <translation type="obsolete">Назва формату</translation>
     </message>
 </context>
 <context>
@@ -2185,7 +1757,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <source>Select a File</source>
         <comment>Wizard</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибрати файл</translation>
     </message>
     <message>
         <source>Width/Height</source>
@@ -2350,14 +1922,6 @@ Missing \includegraphics options.</source>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <source>Line</source>
-        <translation type="obsolete">Рядок</translation>
-    </message>
-    <message>
-        <source>Zeile</source>
-        <translation type="obsolete">Рядок</translation>
-    </message>
-    <message>
         <source>untitled</source>
         <translation type="unfinished">без назви</translation>
     </message>
@@ -2432,14 +1996,6 @@ Missing \includegraphics options.</source>
 </context>
 <context>
     <name>LatexLogModel</name>
-    <message>
-        <source>Warning: </source>
-        <translation type="obsolete">Попередження:</translation>
-    </message>
-    <message>
-        <source>Error: </source>
-        <translation type="obsolete">Помилка:</translation>
-    </message>
     <message>
         <source>Click to jump to the line</source>
         <translation>Клацніть, щоб перейти до рядка</translation>
@@ -2568,10 +2124,6 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>File</source>
-        <translation type="obsolete">Файл</translation>
-    </message>
-    <message>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2624,48 +2176,24 @@ Missing \includegraphics options.</source>
         <translation type="unfinished">Відкрити недавні файли</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="obsolete">Закрити</translation>
-    </message>
-    <message>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation type="obsolete">Відмінити останню дію</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Redo</source>
-        <translation type="obsolete">Повторити відмінену дію</translation>
-    </message>
-    <message>
         <source>Ctrl+Shift+Z</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Вирізати</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation type="obsolete">Копіювати</translation>
-    </message>
-    <message>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Вставити</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -2787,10 +2315,6 @@ Missing \includegraphics options.</source>
     <message>
         <source>%1[*] - %2</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
@@ -2965,48 +2489,24 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>11</source>
-        <translation type="obsolete">11</translation>
-    </message>
-    <message>
         <source>2x1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>21</source>
-        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>12</source>
-        <translation type="obsolete">12</translation>
-    </message>
-    <message>
         <source>2x2</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>22</source>
-        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>23</source>
-        <translation type="obsolete">23</translation>
-    </message>
-    <message>
         <source>3x3</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>33</source>
-        <translation type="obsolete">33</translation>
     </message>
     <message>
         <source>Custom...</source>
@@ -3248,29 +2748,6 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
 </context>
 <context>
-    <name>PdfViewer</name>
-    <message>
-        <source>&amp;File</source>
-        <translation type="obsolete">&amp;Файл</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">Вийти</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Знайти</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Помилка</translation>
-    </message>
-    <message>
-        <source>File not found</source>
-        <translation type="obsolete">Файл не знайдено</translation>
-    </message>
-</context>
-<context>
     <name>PreviewWidget</name>
     <message>
         <source>left-align image</source>
@@ -3328,7 +2805,7 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
     <message>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибрати файл</translation>
     </message>
 </context>
 <context>
@@ -3375,12 +2852,6 @@ Restart from the beginning ?</source>
     <message>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Чи Ви хочете продовжити заміни від початку?</translation>
-    </message>
-    <message>
-        <source>End of scope reached with no match.
-Restart from the begining ?</source>
-        <translation type="obsolete">Ende des Suchbereichs erreicht.
-Soll die Suche vom Anfang des Bereichs neugestartet werden?</translation>
     </message>
     <message>
         <source>Replacing Finished</source>
@@ -4326,10 +3797,6 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>Створення випадкового тексту...</translation>
     </message>
     <message>
-        <source>Couldn&apos;t find possible extension word</source>
-        <translation type="obsolete">Не вдалося згенерувати</translation>
-    </message>
-    <message>
         <source>Random Text Generator</source>
         <translation>Генератор випадкового тексту</translation>
     </message>
@@ -4403,21 +3870,6 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
 </context>
 <context>
-    <name>RefDialog</name>
-    <message>
-        <source>Labels</source>
-        <translation type="obsolete">Мітки</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Відміна</translation>
-    </message>
-</context>
-<context>
     <name>ScriptObject</name>
     <message>
         <source>The current script has requested to enter privileged write mode and call following function:
@@ -4457,20 +3909,8 @@ Do you trust this script?</source>
 <context>
     <name>SearchReplace</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Форма</translation>
-    </message>
-    <message>
-        <source>all</source>
-        <translation type="obsolete">все</translation>
-    </message>
-    <message>
         <source>Close search/replace panel</source>
         <translation type="unfinished">Закрити панель пошуку/заміни</translation>
-    </message>
-    <message>
-        <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation type="obsolete">Обновити засоби пошуку (спроба виправити хибну поведінку пошуку)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -4521,14 +3961,6 @@ Do you trust this script?</source>
         <translation type="unfinished">Текст заміни</translation>
     </message>
     <message>
-        <source>replace</source>
-        <translation type="obsolete">Ersetze</translation>
-    </message>
-    <message>
-        <source>replace all</source>
-        <translation type="obsolete">Alles ersetzen</translation>
-    </message>
-    <message>
         <source>Prompt on replace</source>
         <translation type="unfinished">Запит при заміні</translation>
     </message>
@@ -4570,10 +4002,6 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <source>&lt;default&gt;</source>
-        <translation type="obsolete">&lt;за замовчуванням&gt;</translation>
-    </message>
-    <message>
         <source>&lt;none&gt;</source>
         <translation>&lt;нема&gt;</translation>
     </message>
@@ -4608,14 +4036,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>No more misspelled words</source>
         <translation>Немає більше слів з помилками</translation>
-    </message>
-    <message>
-        <source>Show Ignore List \/</source>
-        <translation type="obsolete">Показати список пропущених слів \/</translation>
-    </message>
-    <message>
-        <source>Hide Ignore List /\</source>
-        <translation type="obsolete">Сховати список пропущених слів /\</translation>
     </message>
     <message>
         <source>Check Spelling</source>
@@ -4783,15 +4203,15 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">По центру</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">По лівому краю</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">По правому краю</translation>
     </message>
     <message>
         <source>add a margin with the horizontal line</source>
@@ -4860,10 +4280,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Стрілки</translation>
     </message>
     <message>
-        <source>Miscellaneous symbols</source>
-        <translation type="obsolete">Verschiedenes</translation>
-    </message>
-    <message>
         <source>Delimiters</source>
         <translation>Розділювачі</translation>
     </message>
@@ -4900,40 +4316,8 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <source>New</source>
-        <translation type="obsolete">Новий</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="obsolete">Відкрити</translation>
-    </message>
-    <message>
-        <source>Open Recent</source>
-        <translation type="obsolete">Відкрити недавні файли</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Зберегти</translation>
-    </message>
-    <message>
         <source>Save As</source>
         <translation>Зберегти як</translation>
-    </message>
-    <message>
-        <source>Save All</source>
-        <translation type="obsolete">Зберегти усі</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Закрити</translation>
-    </message>
-    <message>
-        <source>Close All</source>
-        <translation type="obsolete">Закрити усі</translation>
-    </message>
-    <message>
-        <source>Print</source>
-        <translation type="obsolete">Друкувати</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -4944,120 +4328,12 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Р&amp;едагування</translation>
     </message>
     <message>
-        <source>Undo</source>
-        <translation type="obsolete">Відмінити останню дію</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="obsolete">Повторити відмінену дію</translation>
-    </message>
-    <message>
         <source>Copy</source>
         <translation>Копіювати</translation>
     </message>
     <message>
         <source>Cut</source>
         <translation>Вирізати</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Вставити</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Вибрати все</translation>
-    </message>
-    <message>
-        <source>Paste as Latex</source>
-        <translation type="obsolete">Вставити як Latex</translation>
-    </message>
-    <message>
-        <source>Convert to Latex</source>
-        <translation type="obsolete">Перетворити у Latex</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation type="obsolete">Закоментувати</translation>
-    </message>
-    <message>
-        <source>Uncomment</source>
-        <translation type="obsolete">Розкоментувати</translation>
-    </message>
-    <message>
-        <source>Indent</source>
-        <translation type="obsolete">Відступ</translation>
-    </message>
-    <message>
-        <source>Unindent</source>
-        <translation type="obsolete">Зняти відступ</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Знайти</translation>
-    </message>
-    <message>
-        <source>FindNext</source>
-        <translation type="obsolete">Weitersuchen</translation>
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="obsolete">Замінити</translation>
-    </message>
-    <message>
-        <source>Goto Line</source>
-        <translation type="obsolete">Перейти до рядка</translation>
-    </message>
-    <message>
-        <source>Jump to last change</source>
-        <translation type="obsolete">Gehe zur letzten Änderung</translation>
-    </message>
-    <message>
-        <source>Jump forward</source>
-        <translation type="obsolete">Gehe zur nächsten Änderung</translation>
-    </message>
-    <message>
-        <source>Bookmark 0</source>
-        <translation type="obsolete">Закладка 0</translation>
-    </message>
-    <message>
-        <source>Bookmark 1</source>
-        <translation type="obsolete">Закладка 1</translation>
-    </message>
-    <message>
-        <source>Bookmark 2</source>
-        <translation type="obsolete">Закладка 2</translation>
-    </message>
-    <message>
-        <source>Bookmark 3</source>
-        <translation type="obsolete">Закладка 3</translation>
-    </message>
-    <message>
-        <source>Bookmark 4</source>
-        <translation type="obsolete">Закладка 4</translation>
-    </message>
-    <message>
-        <source>Bookmark 5</source>
-        <translation type="obsolete">Закладка 5</translation>
-    </message>
-    <message>
-        <source>Bookmark 6</source>
-        <translation type="obsolete">Закладка 6</translation>
-    </message>
-    <message>
-        <source>Bookmark 7</source>
-        <translation type="obsolete">Закладка 7</translation>
-    </message>
-    <message>
-        <source>Bookmark 8</source>
-        <translation type="obsolete">Закладка 8</translation>
-    </message>
-    <message>
-        <source>Bookmark 9</source>
-        <translation type="obsolete">Закладка 9</translation>
-    </message>
-    <message>
-        <source>Check Spelling</source>
-        <translation type="obsolete">Перевірка правопису</translation>
     </message>
     <message>
         <source>Refresh Structure</source>
@@ -5072,40 +4348,12 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Швидка збірка</translation>
     </message>
     <message>
-        <source>View Dvi</source>
-        <translation type="obsolete">Перегляд Dvi</translation>
-    </message>
-    <message>
-        <source>View PS</source>
-        <translation type="obsolete">Перегляд PS</translation>
-    </message>
-    <message>
-        <source>View PDF</source>
-        <translation type="obsolete">Перегляд PDF</translation>
-    </message>
-    <message>
-        <source>View Log</source>
-        <translation type="obsolete">Перегляд Log файла</translation>
-    </message>
-    <message>
         <source>Clean</source>
         <translation>Знищити допоміжні файли</translation>
     </message>
     <message>
-        <source>Convert to Html</source>
-        <translation type="obsolete">Перетворити в HTML</translation>
-    </message>
-    <message>
-        <source>BibTeX insert dialog</source>
-        <translation type="obsolete">Вставити новий пункт BibTeX</translation>
-    </message>
-    <message>
         <source>Fullscreen Mode</source>
         <translation>Повноекранний режим</translation>
-    </message>
-    <message>
-        <source>Automatically restore session at next start</source>
-        <translation type="obsolete">Автоматично обновлювати сесію при наступному старті програми</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
@@ -5132,108 +4380,16 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Неможливо запустити LaTeX.</translation>
     </message>
     <message>
-        <source>Could not start PdfLaTeX.</source>
-        <translation type="obsolete">Неможливо запустити PdfLaTeX.</translation>
-    </message>
-    <message>
         <source>Text Analysis</source>
         <translation>Аналіз тексту</translation>
-    </message>
-    <message>
-        <source>Previous LaTeX Error</source>
-        <translation type="obsolete">Vorheriger LaTeX Fehler</translation>
-    </message>
-    <message>
-        <source>Next LaTeX Error</source>
-        <translation type="obsolete">Nächster LaTeX Fehler</translation>
     </message>
     <message>
         <source>&amp;LaTeX</source>
         <translation type="unfinished">&amp;Latex</translation>
     </message>
     <message>
-        <source>&amp;Sectioning</source>
-        <translation type="obsolete">A&amp;ufteilung</translation>
-    </message>
-    <message>
-        <source>&amp;Environment</source>
-        <translation type="obsolete">&amp;Umgebungen</translation>
-    </message>
-    <message>
-        <source>&amp;List Environment</source>
-        <translation type="obsolete">&amp;Listen</translation>
-    </message>
-    <message>
-        <source>Font St&amp;yles</source>
-        <translation type="obsolete">Schriftart</translation>
-    </message>
-    <message>
-        <source>&amp;Tabular Environment</source>
-        <translation type="obsolete">&amp;Tabellen</translation>
-    </message>
-    <message>
-        <source>S&amp;pacing</source>
-        <translation type="obsolete">A&amp;bstand</translation>
-    </message>
-    <message>
-        <source>International &amp;Accents</source>
-        <translation type="obsolete">&amp;Akzente</translation>
-    </message>
-    <message>
-        <source>&amp;Math</source>
-        <translation type="obsolete">&amp;Math</translation>
-    </message>
-    <message>
-        <source>Inline math mode $...$</source>
-        <translation type="obsolete">Mathematikmodus im Text $ ... $</translation>
-    </message>
-    <message>
-        <source>Display math mode \[...\]</source>
-        <translation type="obsolete">Abgesetzer Mathematikmodus \[ ... \]</translation>
-    </message>
-    <message>
-        <source>Numbered equations \begin{equation}</source>
-        <translation type="obsolete">Nummerierte Gleichungen \begin{equation}</translation>
-    </message>
-    <message>
-        <source>Math &amp;Functions</source>
-        <translation type="obsolete">Mathematische &amp;Funktionen</translation>
-    </message>
-    <message>
-        <source>Math Font St&amp;yles</source>
-        <translation type="obsolete">&amp;Schriftart im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>Math &amp;Accents</source>
-        <translation type="obsolete">&amp;Akzente im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>Math S&amp;paces</source>
-        <translation type="obsolete">A&amp;bstände im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>&amp;Wizard</source>
-        <translation type="obsolete">&amp;Assistenten</translation>
-    </message>
-    <message>
         <source>Quick Start</source>
         <translation>Майстер створення документа</translation>
-    </message>
-    <message>
-        <source>Quick Letter</source>
-        <translation type="obsolete">Майстер створення листа</translation>
-    </message>
-    <message>
-        <source>Quick Tabular</source>
-        <translation type="obsolete">Майстер створення таблиці</translation>
-    </message>
-    <message>
-        <source>Quick Tabbing</source>
-        <translation type="obsolete">Майстер створення табулятора</translation>
-    </message>
-    <message>
-        <source>Quick Array</source>
-        <translation type="obsolete">Майстер створення масиву</translation>
     </message>
     <message>
         <source>&amp;Bibliography</source>
@@ -5260,10 +4416,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Редагувати к&amp;оманди користувача</translation>
     </message>
     <message>
-        <source>Edit User &amp;Key Replacements...</source>
-        <translation type="obsolete">Tastenersetzungen ändern</translation>
-    </message>
-    <message>
         <source>&amp;View</source>
         <translation>&amp;Вигляд</translation>
     </message>
@@ -5280,64 +4432,12 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>&amp;Параметри</translation>
     </message>
     <message>
-        <source>Configure TexMakerX</source>
-        <translation type="obsolete">Конфігурація TexMakerX</translation>
-    </message>
-    <message>
-        <source>Change Interface Font</source>
-        <translation type="obsolete">Interfaceschrift ändern</translation>
-    </message>
-    <message>
-        <source>Change Interface Type</source>
-        <translation type="obsolete">Interfaceart ändern</translation>
-    </message>
-    <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Оголосити поточний документ як Головний документ&apos;</translation>
     </message>
     <message>
         <source>&amp;Help</source>
         <translation>&amp;Допомога</translation>
-    </message>
-    <message>
-        <source>LaTeX Reference</source>
-        <translation type="obsolete">Довідник команд LaTeX</translation>
-    </message>
-    <message>
-        <source>User Manual</source>
-        <translation type="obsolete">Довідник користувача</translation>
-    </message>
-    <message>
-        <source>About TexMakerX</source>
-        <translation type="obsolete">Про TexMakerX</translation>
-    </message>
-    <message>
-        <source>Bold</source>
-        <translation type="obsolete">fett</translation>
-    </message>
-    <message>
-        <source>Italic</source>
-        <translation type="obsolete">kursiv</translation>
-    </message>
-    <message>
-        <source>Underline</source>
-        <translation type="obsolete">unterstreichen</translation>
-    </message>
-    <message>
-        <source>Left</source>
-        <translation type="obsolete">Linksbündig</translation>
-    </message>
-    <message>
-        <source>Center</source>
-        <translation type="obsolete">Zentriert</translation>
-    </message>
-    <message>
-        <source>Right</source>
-        <translation type="obsolete">Rechtsbündig</translation>
-    </message>
-    <message>
-        <source>New line</source>
-        <translation type="obsolete">Neue Zeile</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
@@ -5356,10 +4456,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Відкрити файли</translation>
     </message>
     <message>
-        <source>The file could not be saved. Please check if you have write permission.</source>
-        <translation type="obsolete">Die Datei konnte nicht abgespeichert werden. Bitte überprüfe, ob Sie die nötzigen Schreibrechte haben.</translation>
-    </message>
-    <message>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
         <translation>Документ був змінений. Чи потрібно зберегти його перед закриванням?</translation>
     </message>
@@ -5376,61 +4472,16 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Відміна</translation>
     </message>
     <message>
-        <source>The document contains unsaved work. Do you want to save it before exiting?</source>
-        <translation type="obsolete">Документ був змінений. Чи потрібно зберегти його перед виходом?</translation>
-    </message>
-    <message>
-        <source>line</source>
-        <translation type="obsolete">Řádek</translation>
-    </message>
-    <message>
-        <source>Select an image File</source>
-        <translation type="obsolete">Wähle eine Bilddatei</translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="obsolete">Wähle eine Datei</translation>
-    </message>
-    <message>
         <source>Can&apos;t detect the file name</source>
         <translation>Неможливо знайти ім&apos;я файла</translation>
-    </message>
-    <message>
-        <source>Could not start the command.</source>
-        <translation type="obsolete">Programm konnte nicht gestartet werden.</translation>
-    </message>
-    <message>
-        <source>View Dvi file</source>
-        <translation type="obsolete">Zeige Dvi-Datei</translation>
-    </message>
-    <message>
-        <source>View PS file</source>
-        <translation type="obsolete">Zeige PS-Datei</translation>
-    </message>
-    <message>
-        <source>View Pdf file</source>
-        <translation type="obsolete">Zeige Pdf-Datei</translation>
-    </message>
-    <message>
-        <source>Delete the output files generated by LaTeX ?
-(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)</source>
-        <translation type="obsolete">Sollen die Ausgabedateien von LaTeX gelöscht werden?(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)</translation>
     </message>
     <message>
         <source>Delete Files</source>
         <translation>Знищити файли</translation>
     </message>
     <message>
-        <source>Edit &amp;Key Replacements</source>
-        <translation type="obsolete">Tastenersetzungen ändern</translation>
-    </message>
-    <message>
         <source>Log File not found !</source>
         <translation>Log файл не знайдено!</translation>
-    </message>
-    <message>
-        <source>Click to jump to the line</source>
-        <translation type="obsolete">Klicken um zur Zeile zu springen</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -5445,36 +4496,12 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Звичайний режим (поточний головний документ:</translation>
     </message>
     <message>
-        <source>Master Document :</source>
-        <translation type="obsolete">Masterdokument</translation>
-    </message>
-    <message>
-        <source>Select interface style</source>
-        <translation type="obsolete">Wähle Interfaceart:</translation>
-    </message>
-    <message>
-        <source>Please restart TexMakerX to apply the changes</source>
-        <translation type="obsolete">Bitte starte TexMakerX neu, um die Änderung anzuzeigen</translation>
-    </message>
-    <message>
         <source>Toggle Bookmark</source>
         <translation>Встановити закладку</translation>
     </message>
     <message>
         <source>Goto Bookmark</source>
         <translation>Перейти до закладки</translation>
-    </message>
-    <message>
-        <source>Remember &apos;Master Document&apos; setting</source>
-        <translation type="obsolete">Speichere &apos;Masterdatei&apos;-Einstellungen</translation>
-    </message>
-    <message>
-        <source>could not start the command:</source>
-        <translation type="obsolete">неможливо запустити команду:</translation>
-    </message>
-    <message>
-        <source>Process started</source>
-        <translation type="obsolete">Процес розпочався</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -5489,20 +4516,8 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Не виявлено поганих блоків!</translation>
     </message>
     <message>
-        <source>Menus</source>
-        <translation type="obsolete">Menüs</translation>
-    </message>
-    <message>
         <source>Master Document</source>
         <translation>Головний документ</translation>
-    </message>
-    <message>
-        <source>Find Next</source>
-        <translation type="obsolete">Знайти далі</translation>
-    </message>
-    <message>
-        <source>Structure (experimental)</source>
-        <translation type="obsolete">Stavba (pokusné)</translation>
     </message>
     <message>
         <source>Operator symbols</source>
@@ -5545,44 +4560,8 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Команди Asymptote</translation>
     </message>
     <message>
-        <source>New from template</source>
-        <translation type="obsolete">Новий з шаблону</translation>
-    </message>
-    <message>
         <source>Restore previous session</source>
         <translation>Обновити попередню сесію</translation>
-    </message>
-    <message>
-        <source>Make Template</source>
-        <translation type="obsolete">Створити шаблон</translation>
-    </message>
-    <message>
-        <source>Check in</source>
-        <translation type="obsolete">Зареєструвати</translation>
-    </message>
-    <message>
-        <source>Show old Revisions</source>
-        <translation type="obsolete">Показати попередні версії</translation>
-    </message>
-    <message>
-        <source>Erase Line</source>
-        <translation type="obsolete">Вилучити рядок</translation>
-    </message>
-    <message>
-        <source>Preview Selection/Parantheses</source>
-        <translation type="obsolete">Попередній перегляд виділеного (оточеного дужками)</translation>
-    </message>
-    <message>
-        <source>Hard Line Break</source>
-        <translation type="obsolete">Жорсткий розрив рядка</translation>
-    </message>
-    <message>
-        <source>Repeat Hard Line Break</source>
-        <translation type="obsolete">Повторити жорсткий розрив рядка</translation>
-    </message>
-    <message>
-        <source>Find Dialog</source>
-        <translation type="obsolete">Діалог пошуку</translation>
     </message>
     <message>
         <source>Go to</source>
@@ -5677,64 +4656,12 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Old Mac (CR)</translation>
     </message>
     <message>
-        <source>Setup Encoding</source>
-        <translation type="obsolete">Встановити кодування</translation>
-    </message>
-    <message>
-        <source>Thesaurus</source>
-        <translation type="obsolete">Тезаурус</translation>
-    </message>
-    <message>
         <source>Remove Placeholders</source>
         <translation>Вилучити заповнювачі</translation>
     </message>
     <message>
-        <source>LaTeX</source>
-        <translation type="obsolete">LaTeX</translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;PS</source>
-        <translation type="obsolete">Dvi-&gt;PS</translation>
-    </message>
-    <message>
-        <source>PDFLaTeX</source>
-        <translation type="obsolete">PDFLaTeX</translation>
-    </message>
-    <message>
-        <source>PS-&gt;PDF</source>
-        <translation type="obsolete">PS-&gt;PDF</translation>
-    </message>
-    <message>
-        <source>DVI-&gt;PDF</source>
-        <translation type="obsolete">DVI-&gt;PDF</translation>
-    </message>
-    <message>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
-    </message>
-    <message>
-        <source>MakeIndex</source>
-        <translation type="obsolete">MakeIndex</translation>
-    </message>
-    <message>
-        <source>Clear Markers</source>
-        <translation type="obsolete">Почистити помітки</translation>
-    </message>
-    <message>
-        <source>MetaPost</source>
-        <translation type="obsolete">MetaPost</translation>
-    </message>
-    <message>
-        <source>Analyse Text</source>
-        <translation type="obsolete">Аналізувати текст</translation>
-    </message>
-    <message>
-        <source>Generate Random Text</source>
-        <translation type="obsolete">Створити випадковий текст</translation>
-    </message>
-    <message>
-        <source>&amp;Latex</source>
-        <translation type="obsolete">&amp;Latex</translation>
     </message>
     <message>
         <source>Insert \ref to next label</source>
@@ -5763,58 +4690,6 @@ You have to save a document before you can compile it.</source>
         <translation>Увага: діалог автоматично закриється, якщо текст змінений вручну!</translation>
     </message>
     <message>
-        <source>Article in Journal</source>
-        <translation type="obsolete">Journalartikel</translation>
-    </message>
-    <message>
-        <source>Article in Conference Proceedings</source>
-        <translation type="obsolete">Artikel in einem Tagungsband einer Konferenz</translation>
-    </message>
-    <message>
-        <source>Article in a collection</source>
-        <translation type="obsolete">Artikel in einer Sammlung</translation>
-    </message>
-    <message>
-        <source>Chapter or Pages in a Book</source>
-        <translation type="obsolete">Kapitel oder Seiten eines Buches</translation>
-    </message>
-    <message>
-        <source>Conference Proceedings</source>
-        <translation type="obsolete">Tagungsband</translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="obsolete">Buch</translation>
-    </message>
-    <message>
-        <source>Booklet</source>
-        <translation type="obsolete">Heft</translation>
-    </message>
-    <message>
-        <source>PhD. Thesis</source>
-        <translation type="obsolete">Doktorarbeit</translation>
-    </message>
-    <message>
-        <source>Master&apos;s Thesis</source>
-        <translation type="obsolete">Masterarbeit</translation>
-    </message>
-    <message>
-        <source>Technical Report</source>
-        <translation type="obsolete">Technischer Bericht</translation>
-    </message>
-    <message>
-        <source>Technical Manual</source>
-        <translation type="obsolete">Technisches Handbuch</translation>
-    </message>
-    <message>
-        <source>Unpublished</source>
-        <translation type="obsolete">Unveröffentlicht</translation>
-    </message>
-    <message>
-        <source>Miscellaneous</source>
-        <translation type="obsolete">Sonstiges</translation>
-    </message>
-    <message>
         <source>Close Something</source>
         <translation>Закрити щось</translation>
     </message>
@@ -5837,10 +4712,6 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>Expand</source>
         <translation>Розгорнути</translation>
-    </message>
-    <message>
-        <source>Remember session when closing</source>
-        <translation type="obsolete">Geöffnete Dateien wiederherstellen</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -5875,14 +4746,6 @@ You have to save a document before you can compile it.</source>
         <translation>У Вас нема дозволу для вилучення цього файла.</translation>
     </message>
     <message>
-        <source>You cannot remove built-in templates.</source>
-        <translation type="obsolete">Sie können integrierte Templates nicht entfernen.</translation>
-    </message>
-    <message>
-        <source>You cannot edit built-in templates.</source>
-        <translation type="obsolete">Sie können integrierte Templates nicht editieren.</translation>
-    </message>
-    <message>
         <source>Templates</source>
         <translation>Шаблони</translation>
     </message>
@@ -5911,10 +4774,6 @@ You have to save a document before you can compile it.</source>
         <translation>Щоб переглянути log файл, потрібно зберегти і скомпілювати файл</translation>
     </message>
     <message>
-        <source>You must save the file before switching to master mode.</source>
-        <translation type="obsolete">Щоб перейти у головний режим, потрібно зберегти файл.</translation>
-    </message>
-    <message>
         <source>Insert</source>
         <translation>Вставити</translation>
     </message>
@@ -5937,18 +4796,6 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>Remove all favorites</source>
         <translation>Видалити все найнеобхідніше</translation>
-    </message>
-    <message>
-        <source>remove</source>
-        <translation type="obsolete">видалити</translation>
-    </message>
-    <message>
-        <source>remove all</source>
-        <translation type="obsolete">entferne alle</translation>
-    </message>
-    <message>
-        <source>Master Document: </source>
-        <translation type="obsolete">Masterdokument:</translation>
     </message>
     <message>
         <source>No document open</source>
@@ -6063,10 +4910,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Co&amp;mment</source>
-        <translation type="obsolete">Закоментувати</translation>
-    </message>
-    <message>
         <source>&amp;Uncomment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6157,10 +5000,6 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>Thesaurus...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="obsolete">Zeile entfernen</translation>
     </message>
     <message>
         <source>Quick &amp;Start...</source>
@@ -6324,7 +5163,7 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">додати рядок</translation>
     </message>
     <message>
         <source>add column</source>
@@ -6649,6 +5488,24 @@ Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Find word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <comment>Format name of language definition file binary.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX Macro</source>
+        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New highlighting:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6657,149 +5514,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Аналіз тексту</translation>
     </message>
     <message>
-        <source>options</source>
-        <translation type="obsolete">Параметри</translation>
-    </message>
-    <message>
-        <source>normal text</source>
-        <translation type="obsolete">Normaler Text</translation>
-    </message>
-    <message>
-        <source>comments</source>
-        <translation type="obsolete">Kommentare</translation>
-    </message>
-    <message>
-        <source>commands</source>
-        <translation type="obsolete">Befehle</translation>
-    </message>
-    <message>
-        <source>ignore small words:</source>
-        <translation type="obsolete">kurze Worte ignorieren:</translation>
-    </message>
-    <message>
-        <source>source:</source>
-        <translation type="obsolete">Джерело</translation>
-    </message>
-    <message>
-        <source>whole document</source>
-        <translation type="obsolete">весь документ</translation>
-    </message>
-    <message>
-        <source>selection</source>
-        <translation type="obsolete">виділене</translation>
-    </message>
-    <message>
-        <source>actions</source>
-        <translation type="obsolete">Дія</translation>
-    </message>
-    <message>
-        <source>count</source>
-        <translation type="obsolete">Порахувати</translation>
-    </message>
-    <message>
-        <source>close</source>
-        <translation type="obsolete">Закрити</translation>
-    </message>
-    <message>
-        <source>info</source>
-        <translation type="obsolete">Інформація</translation>
-    </message>
-    <message>
-        <source>total lines</source>
-        <translation type="obsolete">Всього рядків</translation>
-    </message>
-    <message>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <source>text lines</source>
-        <translation type="obsolete">Текстових рядків</translation>
-    </message>
-    <message>
-        <source>total words</source>
-        <translation type="obsolete">Zahl der Wörter</translation>
-    </message>
-    <message>
-        <source>comment lines</source>
-        <translation type="obsolete">Рядків з коментарями</translation>
-    </message>
-    <message>
-        <source>different words</source>
-        <translation type="obsolete">Unterschiedliche Worte</translation>
-    </message>
-    <message>
-        <source>characters in words</source>
-        <translation type="obsolete">Zeichen in Wörtern</translation>
-    </message>
-    <message>
-        <source>word/phrase</source>
-        <translation type="obsolete">Слово/Фраза</translation>
-    </message>
-    <message>
-        <source>count</source>
-        <comment>count as noun</comment>
-        <translation type="obsolete">Кількість</translation>
-    </message>
-    <message>
-        <source>count relative</source>
-        <translation type="obsolete">Відносна кількість</translation>
-    </message>
-    <message>
-        <source>search selection in the document</source>
-        <translation type="obsolete">Знайти виділене у документі</translation>
-    </message>
-    <message>
-        <source>total shown phrases</source>
-        <translation type="obsolete">Всього фраз</translation>
-    </message>
-    <message>
-        <source>different phrases</source>
-        <translation type="obsolete">Різних фраз</translation>
-    </message>
-    <message>
-        <source>characters in phrases</source>
-        <translation type="obsolete">Символів у фразах</translation>
-    </message>
-    <message>
-        <source>analyse normal text</source>
-        <translation type="obsolete">Аналіз звичайного тексту</translation>
-    </message>
-    <message>
-        <source>analyse comments</source>
-        <translation type="obsolete">Аналіз коментарів</translation>
-    </message>
-    <message>
         <source>If this is enabled, \commands are counted.</source>
         <translation>Якщо вибрана ця опція, то будуть враховуватись команди \commands.</translation>
-    </message>
-    <message>
-        <source>analyse commands</source>
-        <translation type="obsolete">Аналіз команд</translation>
-    </message>
-    <message>
-        <source>show all phrases</source>
-        <translation type="obsolete">Показати усі фрази</translation>
-    </message>
-    <message>
-        <source>minimum phrase length:</source>
-        <translation type="obsolete">мінімальна довжина фрази:</translation>
-    </message>
-    <message>
-        <source>minimum word length (one):</source>
-        <translation type="obsolete">мінімальна довжина слова (одного):</translation>
-    </message>
-    <message>
-        <source>minimum word length (all):</source>
-        <translation type="obsolete">мінімальна довжина слова (всіх):</translation>
-    </message>
-    <message>
-        <source>fully ignore shorter words:</source>
-        <translation type="obsolete">ігнорувати коротші слова:</translation>
-    </message>
-    <message>
-        <source>minimum occurence count:</source>
-        <translation type="obsolete">мінімальна кількість входжень:</translation>
     </message>
     <message>
         <source>Only phrase are shown which appears at least so many times in the document.</source>
@@ -6834,18 +5554,6 @@ If not, end characters are ignored.</source>
     <message>
         <source>.;:?!</source>
         <translation>.;:?!</translation>
-    </message>
-    <message>
-        <source>respect phrase end chars:</source>
-        <translation type="obsolete">Враховувати символи завершення фрази:</translation>
-    </message>
-    <message>
-        <source>maximum words per phrase:</source>
-        <translation type="obsolete">максимальне число слів у фразі:</translation>
-    </message>
-    <message>
-        <source>min&amp;max words per phrase:</source>
-        <translation type="obsolete">мінімальне і максимальне число слів у фразі:</translation>
     </message>
     <message>
         <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
@@ -7030,49 +5738,6 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <source>&lt;all&gt;</source>
         <translation>&lt;все&gt;</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Помилка</translation>
-    </message>
-    <message>
-        <source>You do not have read permission to this file.</source>
-        <translation type="obsolete">У Вас нема дозволу для читання цього файла.</translation>
-    </message>
-</context>
-<context>
-    <name>UserKeyReplaceDialog</name>
-    <message>
-        <source>Key replacements</source>
-        <translation type="obsolete">Tastenersetzungen</translation>
-    </message>
-    <message>
-        <source>Key</source>
-        <translation type="obsolete">Taste</translation>
-    </message>
-    <message>
-        <source>Replacement before word</source>
-        <translation type="obsolete">Ersetzung, vor einem Wort</translation>
-    </message>
-    <message>
-        <source>Replacement after word</source>
-        <translation type="obsolete">Ersetzung, nach einem Wort</translation>
-    </message>
-    <message>
-        <source>add row</source>
-        <translation type="obsolete">Zeile hinzufügen</translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="obsolete">Zeile entfernen</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Відміна</translation>
-    </message>
 </context>
 <context>
     <name>UserMenuDialog</name>
@@ -7087,10 +5752,6 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <source>Cancel</source>
         <translation>Відміна</translation>
-    </message>
-    <message>
-        <source>Menu Item</source>
-        <translation type="obsolete">Пункт меню</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -7276,18 +5937,6 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
     <message>
         <source>Convert to Html</source>
         <translation>Перетворити в HTML</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Конвертер LaTeX у HTML&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>LaTeX options</source>
@@ -7478,29 +6127,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>X11FontDialog</name>
-    <message>
-        <source>Select a Font</source>
-        <translation type="obsolete">Wähle eine Schrift</translation>
-    </message>
-    <message>
-        <source>Font Family</source>
-        <translation type="obsolete">Schriftart</translation>
-    </message>
-    <message>
-        <source>Font Size</source>
-        <translation type="obsolete">Schriftgröße</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Відміна</translation>
     </message>
 </context>
 <context>

@@ -4,15 +4,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About Texmaker</source>
-        <translation type="obsolete">Informazionu su Texmaker</translation>
-    </message>
-    <message>
-        <source>About TexMakerX</source>
-        <translation type="obsolete">Informazioni su TexMakerX
-</translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -43,21 +34,6 @@
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AddOptionDialog</name>
-    <message>
-        <source>New</source>
-        <translation type="obsolete">Nuovo</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Annulla</translation>
     </message>
 </context>
 <context>
@@ -105,50 +81,6 @@
 </context>
 <context>
     <name>BibTeXDialog</name>
-    <message>
-        <source>Article in Journal</source>
-        <translation type="obsolete">Articolo di giornale</translation>
-    </message>
-    <message>
-        <source>Article in Conference Proceedings</source>
-        <translation type="obsolete">Articolo in una Conferenza in corso</translation>
-    </message>
-    <message>
-        <source>Chapter or Pages in a Book</source>
-        <translation type="obsolete">Capitolo o Pagine in un libro</translation>
-    </message>
-    <message>
-        <source>Conference Proceedings</source>
-        <translation type="obsolete">Conference Proceedings</translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="obsolete">Libro</translation>
-    </message>
-    <message>
-        <source>PhD. Thesis</source>
-        <translation type="obsolete">Tesi di Dottorato</translation>
-    </message>
-    <message>
-        <source>Master&apos;s Thesis</source>
-        <translation type="obsolete">Tesi</translation>
-    </message>
-    <message>
-        <source>Technical Report</source>
-        <translation type="obsolete">Report Scientifico</translation>
-    </message>
-    <message>
-        <source>Technical Manual</source>
-        <translation type="obsolete">Manuale Tecnico</translation>
-    </message>
-    <message>
-        <source>Unpublished</source>
-        <translation type="obsolete">Non pubblicato</translation>
-    </message>
-    <message>
-        <source>Miscellaneous</source>
-        <translation type="obsolete">Altro</translation>
-    </message>
     <message>
         <source>&lt;new file&gt;</source>
         <translation>&lt;nuovo file&gt;</translation>
@@ -278,10 +210,6 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
-    </message>
-    <message>
         <source>The shortcut you entered is invalid.</source>
         <translation>La combinazione di tasti inserita non è valida.</translation>
     </message>
@@ -296,10 +224,6 @@
     <message>
         <source>Do you really want to delete this row?</source>
         <translation>Vuoi veramente eliminare questa riga?</translation>
-    </message>
-    <message>
-        <source>Get dictionary at: %1</source>
-        <translation type="obsolete">Scarica il dizionario da: %1</translation>
     </message>
     <message>
         <source>Command</source>
@@ -358,14 +282,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Browse dictionary</source>
-        <translation type="obsolete">Sfoglia Dizionario</translation>
-    </message>
-    <message>
-        <source>(Dictionary doesn&apos;t exists)</source>
-        <translation type="obsolete">(Il dizionario non esiste)</translation>
-    </message>
-    <message>
         <source>Browse thesaurus database</source>
         <translation>Sfoglia il database dei sinonimi</translation>
     </message>
@@ -379,15 +295,11 @@
     </message>
     <message>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleziona File</translation>
     </message>
     <message>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configure TexMakerX</source>
-        <translation type="obsolete">Configura Texmaker</translation>
     </message>
     <message>
         <source>OK</source>
@@ -422,10 +334,6 @@
         <translation>Lingua</translation>
     </message>
     <message>
-        <source>Display Modify Time</source>
-        <translation type="obsolete">Visualizzata modifica ora</translation>
-    </message>
-    <message>
         <source>Files</source>
         <translation>Files</translation>
     </message>
@@ -446,16 +354,8 @@
         <translation>Dizionari</translation>
     </message>
     <message>
-        <source>Spelling dictionary</source>
-        <translation type="obsolete">Correttore Ortografico</translation>
-    </message>
-    <message>
         <source>TextLabel</source>
         <translation>Glossario</translation>
-    </message>
-    <message>
-        <source>real time checking</source>
-        <translation type="obsolete">controllo ortografico mentre scrivi</translation>
     </message>
     <message>
         <source>Thesaurus Database</source>
@@ -470,56 +370,8 @@
         <translation>Comando Compilazione Veloce</translation>
     </message>
     <message>
-        <source>LaTeX + dvips + View PS</source>
-        <translation type="obsolete">LaTeX + dvips + Visualizza PS</translation>
-    </message>
-    <message>
-        <source>LaTeX + View DVI</source>
-        <translation type="obsolete">LaTeX + Visualizza DVI</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + View PDF</source>
-        <translation type="obsolete">PdfLaTeX + Visualizza PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvipdfm + View PDF</source>
-        <translation type="obsolete">LaTeX + dvipdfm + Visualizza PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation type="obsolete">LaTeX + dvips + ps2pdf + Visualizza PDF</translation>
-    </message>
-    <message>
-        <source>User : (% : filename without extension)</source>
-        <translation type="obsolete">Utente : (nome file senza estensione)</translation>
-    </message>
-    <message>
-        <source>(the commands must be separated by &apos;|&apos;)</source>
-        <translation type="obsolete">(il comando deve essere separato da &apos;|&apos;)</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation type="obsolete">Espandi</translation>
-    </message>
-    <message>
         <source>Execute before compiling:</source>
         <translation>Esegui prima di compilare:</translation>
-    </message>
-    <message>
-        <source>Assume that every error is in the current document:</source>
-        <translation type="obsolete">Assumi che ogni errore sia nel documento corrente:</translation>
-    </message>
-    <message>
-        <source>Never (only use the file names in the log)</source>
-        <translation type="obsolete">Mai (usa solo nomi file nel log)</translation>
-    </message>
-    <message>
-        <source>Only when there is no master document</source>
-        <translation type="obsolete">Solo quando manca il documento master</translation>
-    </message>
-    <message>
-        <source>Always (ignore file names in the log)</source>
-        <translation type="obsolete">Sempre (ignora il nome file nel log)</translation>
     </message>
     <message>
         <source>1</source>
@@ -538,18 +390,6 @@
         <translation>4</translation>
     </message>
     <message>
-        <source>Editor Font Family</source>
-        <translation type="obsolete">Famiglia Font</translation>
-    </message>
-    <message>
-        <source>Editor Font Size</source>
-        <translation type="obsolete">Dimensione Font</translation>
-    </message>
-    <message>
-        <source>Editor Font Encoding</source>
-        <translation type="obsolete">Codifica Font</translation>
-    </message>
-    <message>
         <source>Show State Panel</source>
         <translation>Mostra pannello stato</translation>
     </message>
@@ -562,36 +402,8 @@
         <translation>Formati</translation>
     </message>
     <message>
-        <source>auto detect encoding of loaded files</source>
-        <translation type="obsolete">Rileva automaticamente codifica file</translation>
-    </message>
-    <message>
-        <source>Autoindent</source>
-        <translation type="obsolete">Autoindenta</translation>
-    </message>
-    <message>
-        <source>Word Wrap</source>
-        <translation type="obsolete">A capo automatico</translation>
-    </message>
-    <message>
         <source>Folding</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>show preview as tool tip if panel is hidden</source>
-        <translation type="obsolete">mostra l&apos;anteprima come aiuto contestuale se il pannello non è visibile</translation>
-    </message>
-    <message>
-        <source>always show preview in preview panel</source>
-        <translation type="obsolete">Mostra l&apos;anteprima nel pannello &quot;anteprima&quot;</translation>
-    </message>
-    <message>
-        <source>always show preview as tool tip</source>
-        <translation type="obsolete">Mostra sempre antemprima come tool tip</translation>
-    </message>
-    <message>
-        <source>always show both</source>
-        <translation type="obsolete">Mostra sempre entrambi</translation>
     </message>
     <message>
         <source>No line numbers</source>
@@ -688,30 +500,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <message>
         <source>Show important line numbers</source>
         <translation>Mostra numeri linee importanti</translation>
-    </message>
-    <message>
-        <source>preview with dvipng</source>
-        <translation type="obsolete">anteprima con dvipng</translation>
-    </message>
-    <message>
-        <source>preview with dvips/ghostscript</source>
-        <translation type="obsolete">anteprima con dvips/ghostscript</translation>
-    </message>
-    <message>
-        <source>close search and replace panel together</source>
-        <translation type="obsolete">chiudi pannello trova e sostituisci</translation>
-    </message>
-    <message>
-        <source>ignore indentation</source>
-        <translation type="obsolete">ignora indentazione</translation>
-    </message>
-    <message>
-        <source>keep indentation</source>
-        <translation type="obsolete">mantieni indentazione</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically</source>
-        <translation type="obsolete">indenta e deindenta automaticamente</translation>
     </message>
     <message>
         <source>Show Modify Time</source>
@@ -822,10 +610,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Completion Enabled</source>
-        <translation type="obsolete">Completamento abilitato</translation>
-    </message>
-    <message>
         <source>Case Sensitive</source>
         <translation></translation>
     </message>
@@ -880,22 +664,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <message>
         <source>Show advanced options</source>
         <translation type="unfinished">mostra opzioni avanzate</translation>
-    </message>
-    <message>
-        <source>New column meaning:</source>
-        <translation type="obsolete">Sgnificato nuova colonna:</translation>
-    </message>
-    <message>
-        <source>Key to replace</source>
-        <translation type="obsolete">Carattere da sostituire</translation>
-    </message>
-    <message>
-        <source>Text to insert before word</source>
-        <translation type="obsolete">Testo da inserire prima della parola</translation>
-    </message>
-    <message>
-        <source>Text to insert after word</source>
-        <translation type="obsolete">Testo da interire dopo la parola</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -1302,14 +1070,6 @@ Which one of the three wise will always tell the truth?</source>
 </context>
 <context>
     <name>ConfigManager</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">File</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Edita</translation>
-    </message>
     <message>
         <source>default</source>
         <translation>Default</translation>
@@ -1739,10 +1499,6 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;User</source>
-        <translation type="obsolete">&amp;Utente</translation>
-    </message>
-    <message>
         <source>Internal viewer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1916,13 +1672,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
 </context>
 <context>
-    <name>FileFormat</name>
-    <message>
-        <source>Binary</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -1931,10 +1680,6 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     <message>
         <source>Scheme :</source>
         <translation>Schema:</translation>
-    </message>
-    <message>
-        <source>Identifier</source>
-        <translation type="obsolete">Identificatore</translation>
     </message>
 </context>
 <context>
@@ -2009,7 +1754,7 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     <message>
         <source>Select a File</source>
         <comment>Wizard</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleziona File</translation>
     </message>
     <message>
         <source>Width/Height</source>
@@ -2173,10 +1918,6 @@ Missing \includegraphics options.</source>
 </context>
 <context>
     <name>LatexDocumentsModel</name>
-    <message>
-        <source>Line</source>
-        <translation type="obsolete">Linea</translation>
-    </message>
     <message>
         <source>untitled</source>
         <translation type="unfinished">senza titolo</translation>
@@ -2382,24 +2123,12 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>File</source>
-        <translation type="obsolete">File</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Edita</translation>
-    </message>
-    <message>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Toolbar</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About TexMakerX...</source>
-        <translation type="obsolete">Informazioni su TexMakerX...</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2450,40 +2179,20 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Undo</source>
-        <translation type="obsolete">Annulla</translation>
-    </message>
-    <message>
         <source>Ctrl+Z</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="obsolete">Ripeti</translation>
     </message>
     <message>
         <source>Ctrl+Shift+Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cut</source>
-        <translation type="obsolete">Taglia</translation>
-    </message>
-    <message>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation type="obsolete">Copia</translation>
-    </message>
-    <message>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Incolla</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -2533,10 +2242,6 @@ Missing \includegraphics options.</source>
     <message>
         <source>Select Image</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User Manual...</source>
-        <translation type="obsolete">Manuale Utente...</translation>
     </message>
     <message>
         <source>Email to the mailing list</source>
@@ -2609,10 +2314,6 @@ Missing \includegraphics options.</source>
     <message>
         <source>%1[*] - %2</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
@@ -2787,48 +2488,24 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>11</source>
-        <translation type="obsolete">11</translation>
-    </message>
-    <message>
         <source>2x1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>21</source>
-        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>12</source>
-        <translation type="obsolete">12</translation>
-    </message>
-    <message>
         <source>2x2</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>22</source>
-        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>23</source>
-        <translation type="obsolete">23</translation>
-    </message>
-    <message>
         <source>3x3</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>33</source>
-        <translation type="obsolete">33</translation>
     </message>
     <message>
         <source>Custom...</source>
@@ -3070,29 +2747,6 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
 </context>
 <context>
-    <name>PdfViewer</name>
-    <message>
-        <source>&amp;File</source>
-        <translation type="obsolete">&amp;File</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">Esci</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Trova</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Errore</translation>
-    </message>
-    <message>
-        <source>File not found</source>
-        <translation type="obsolete">File non trovato</translation>
-    </message>
-</context>
-<context>
     <name>PreviewWidget</name>
     <message>
         <source>left-align image</source>
@@ -3150,7 +2804,7 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
     <message>
         <source>Select a File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleziona File</translation>
     </message>
 </context>
 <context>
@@ -3205,12 +2859,6 @@ Ricominciare dall&apos;inizio?</translation>
     <message>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Vuoi continuare a sostituire dall&apos;inizio?</translation>
-    </message>
-    <message>
-        <source>End of scope reached with no match.
-Restart from the begining ?</source>
-        <translation type="obsolete">Fine raggiunta senza match
-Ricominciare dall&apos;inizio ?</translation>
     </message>
 </context>
 <context>
@@ -4145,10 +3793,6 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>Genero testo random...</translation>
     </message>
     <message>
-        <source>Couldn&apos;t find possible extension word</source>
-        <translation type="obsolete">Non ho trovato possibili estensioni...</translation>
-    </message>
-    <message>
         <source>Random Text Generator</source>
         <translation>Generatore testo Random</translation>
     </message>
@@ -4222,21 +3866,6 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
 </context>
 <context>
-    <name>RefDialog</name>
-    <message>
-        <source>Labels</source>
-        <translation type="obsolete">Etichette</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Annulla</translation>
-    </message>
-</context>
-<context>
     <name>ScriptObject</name>
     <message>
         <source>The current script has requested to enter privileged write mode and call following function:
@@ -4276,20 +3905,8 @@ Do you trust this script?</source>
 <context>
     <name>SearchReplace</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Forma</translation>
-    </message>
-    <message>
-        <source>all</source>
-        <translation type="obsolete">tutti</translation>
-    </message>
-    <message>
         <source>Close search/replace panel</source>
         <translation type="unfinished">Chiudi il pannello trova/sostituisci</translation>
-    </message>
-    <message>
-        <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation type="obsolete">Aggiorna la ricerca sottolineando il contesto (tentativo di correggere il comportamento della ricerca)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -4326,14 +3943,6 @@ Do you trust this script?</source>
     <message>
         <source>Replacement text</source>
         <translation type="unfinished">Sostituisci testo</translation>
-    </message>
-    <message>
-        <source>replace</source>
-        <translation type="obsolete">sostituisci</translation>
-    </message>
-    <message>
-        <source>replace all</source>
-        <translation type="obsolete">sostituisci tutto</translation>
     </message>
     <message>
         <source>Prompt on replace</source>
@@ -4389,10 +3998,6 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <source>&lt;default&gt;</source>
-        <translation type="obsolete">&lt;default&gt;</translation>
-    </message>
-    <message>
         <source>&lt;none&gt;</source>
         <translation>&lt;none&gt;</translation>
     </message>
@@ -4427,14 +4032,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>No more misspelled words</source>
         <translation>Non ci sono più parole sbagliate</translation>
-    </message>
-    <message>
-        <source>Show Ignore List \/</source>
-        <translation type="obsolete">Mostra la lista delle parole ignorate \/</translation>
-    </message>
-    <message>
-        <source>Hide Ignore List /\</source>
-        <translation type="obsolete">NAscondi lista parole ignorate /\</translation>
     </message>
     <message>
         <source>Check Spelling</source>
@@ -4691,10 +4288,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Simboli Frecce</translation>
     </message>
     <message>
-        <source>Miscellaneous symbols</source>
-        <translation type="obsolete">Simboli Vari</translation>
-    </message>
-    <message>
         <source>Delimiters</source>
         <translation>Delimitatori</translation>
     </message>
@@ -4759,28 +4352,8 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <source>New</source>
-        <translation type="obsolete">Nuovo</translation>
-    </message>
-    <message>
-        <source>New from template</source>
-        <translation type="obsolete">Nuovo da template</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="obsolete">Apri</translation>
-    </message>
-    <message>
-        <source>Open Recent</source>
-        <translation type="obsolete">Apri Recente</translation>
-    </message>
-    <message>
         <source>Restore previous session</source>
         <translation>Ripristina sessione precedente</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Salva</translation>
     </message>
     <message>
         <source>Save As</source>
@@ -4789,14 +4362,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>Save &amp;As...</source>
         <translation>Salva con Nome...</translation>
-    </message>
-    <message>
-        <source>Make Template</source>
-        <translation type="obsolete">Crea Template</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Chiudi</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -4815,14 +4380,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>&amp;Modifica</translation>
     </message>
     <message>
-        <source>Undo</source>
-        <translation type="obsolete">Annulla</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="obsolete">Ripeti</translation>
-    </message>
-    <message>
         <source>Copy</source>
         <translation>Copia</translation>
     </message>
@@ -4831,48 +4388,12 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>Taglia</translation>
     </message>
     <message>
-        <source>Paste</source>
-        <translation type="obsolete">Incolla</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Seleziona Tutto</translation>
-    </message>
-    <message>
-        <source>Erase Line</source>
-        <translation type="obsolete">Elimina Linea</translation>
-    </message>
-    <message>
-        <source>Paste as Latex</source>
-        <translation type="obsolete">Incolla come Latex</translation>
-    </message>
-    <message>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Incolla dopo</translation>
     </message>
     <message>
-        <source>Preview Selection/Parantheses</source>
-        <translation type="obsolete">Visualizza la Selezione/Parentesi</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation type="obsolete">Commenta</translation>
-    </message>
-    <message>
-        <source>Co&amp;mment</source>
-        <translation type="obsolete">Commenta</translation>
-    </message>
-    <message>
-        <source>In&amp;dent</source>
-        <translation type="obsolete">Indent</translation>
-    </message>
-    <message>
         <source>Hard Line &amp;Break...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Trova</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -4881,10 +4402,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="obsolete">Sostituisci</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -4965,10 +4482,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>&amp;Uncomment</source>
         <translation>Decommenta</translation>
-    </message>
-    <message>
-        <source>Unind&amp;ent</source>
-        <translation type="obsolete">Unident</translation>
     </message>
     <message>
         <source>R&amp;epeat Hard Line Break</source>
@@ -5215,16 +4728,8 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>LaTeX</source>
-        <translation type="obsolete">LaTeX</translation>
-    </message>
-    <message>
         <source>All files</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View Dvi</source>
-        <translation type="obsolete">Visualizza Dvi</translation>
     </message>
     <message>
         <source>&amp;View Dvi</source>
@@ -5243,40 +4748,16 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>PDFLaTeX</translation>
     </message>
     <message>
-        <source>PS-&gt;PDF</source>
-        <translation type="obsolete">PS-&gt;PDF</translation>
-    </message>
-    <message>
         <source>P&amp;S-&gt;PDF</source>
         <translation>PS-&gt;PDF</translation>
-    </message>
-    <message>
-        <source>View Log</source>
-        <translation type="obsolete">Vedi Log</translation>
     </message>
     <message>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <source>MakeIndex</source>
-        <translation type="obsolete">Crea Indice</translation>
-    </message>
-    <message>
         <source>Clean</source>
         <translation>Pulisci</translation>
-    </message>
-    <message>
-        <source>Convert to Html</source>
-        <translation type="obsolete">Converti in Html</translation>
-    </message>
-    <message>
-        <source>Analyse Text</source>
-        <translation type="obsolete">Analizza Testo</translation>
-    </message>
-    <message>
-        <source>Generate Random Text</source>
-        <translation type="obsolete">Genera testo Random</translation>
     </message>
     <message>
         <source>Insert \ref to next label</source>
@@ -5297,10 +4778,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>Quick &amp;Start...</source>
         <translation>Avvio Veloce...</translation>
-    </message>
-    <message>
-        <source>Quick Tabular</source>
-        <translation type="obsolete">Tabella Veloce</translation>
     </message>
     <message>
         <source>Quick &amp;Tabular...</source>
@@ -5408,56 +4885,12 @@ You have to save a document before you can compile it.</source>
         <translation>Rimuovi tutti i favoriti</translation>
     </message>
     <message>
-        <source>remove</source>
-        <translation type="obsolete">rimuovi</translation>
-    </message>
-    <message>
         <source>commit comment:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Article in Journal</source>
-        <translation type="obsolete">Articolo di giornale</translation>
-    </message>
-    <message>
-        <source>Article in Conference Proceedings</source>
-        <translation type="obsolete">Articolo in una Conferenza in corso</translation>
-    </message>
-    <message>
-        <source>Chapter or Pages in a Book</source>
-        <translation type="obsolete">Capitoli e Pagine in un libro</translation>
-    </message>
-    <message>
-        <source>Conference Proceedings</source>
-        <translation type="obsolete">Convference Proceedings</translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="obsolete">Libro</translation>
-    </message>
-    <message>
-        <source>PhD. Thesis</source>
-        <translation type="obsolete">Tesi di Dottorato</translation>
-    </message>
-    <message>
-        <source>Master&apos;s Thesis</source>
-        <translation type="obsolete">Tesi</translation>
-    </message>
-    <message>
-        <source>Technical Report</source>
-        <translation type="obsolete">Report Scientifico</translation>
-    </message>
-    <message>
-        <source>Unpublished</source>
-        <translation type="obsolete">Non pubblicato</translation>
-    </message>
-    <message>
-        <source>Miscellaneous</source>
-        <translation type="obsolete">Altro</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -5520,16 +4953,8 @@ You have to save a document before you can compile it.</source>
         <translation>&amp;Opzioni</translation>
     </message>
     <message>
-        <source>&amp;Configure TexMakerX...</source>
-        <translation type="obsolete">Configura TexMakerX...</translation>
-    </message>
-    <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Definisci il documento corrente come &apos;Documento Master&apos;</translation>
-    </message>
-    <message>
-        <source>Remember session when closing</source>
-        <translation type="obsolete">Ricorda la sessione quando chiudi</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -5542,10 +4967,6 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>User Manual...</source>
         <translation>Manuale Utente...</translation>
-    </message>
-    <message>
-        <source>About TexMakerX...</source>
-        <translation type="obsolete">Informazioni su TexMakerX...</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -5580,10 +5001,6 @@ You have to save a document before you can compile it.</source>
         <translation></translation>
     </message>
     <message>
-        <source>Open File</source>
-        <translation type="obsolete">Apri File</translation>
-    </message>
-    <message>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
         <translation>Il documento contiene lavoro non salvato. Vuoi salvarlo prima di chiudere?</translation>
     </message>
@@ -5600,20 +5017,8 @@ You have to save a document before you can compile it.</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <source>The document contains unsaved work. Do you want to save it before exiting?</source>
-        <translation type="obsolete">Il documento contiene lavoro non salvato. Vuoi salvarlo prima di chiudere?</translation>
-    </message>
-    <message>
         <source>No document open</source>
         <translation>Nessun documento aperto</translation>
-    </message>
-    <message>
-        <source>Select an image File</source>
-        <translation type="obsolete">Seleziona un file Immagine</translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="obsolete">Seleziona un File</translation>
     </message>
     <message>
         <source>&lt;current file&gt;</source>
@@ -5622,18 +5027,6 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>Can&apos;t detect the file name</source>
         <translation>Impossibile individuare il nome file</translation>
-    </message>
-    <message>
-        <source>could not start the command:</source>
-        <translation type="obsolete">impossibile eseguire il comando:</translation>
-    </message>
-    <message>
-        <source>Process started</source>
-        <translation type="obsolete">Processo avviato</translation>
-    </message>
-    <message>
-        <source>Could not start the command.</source>
-        <translation type="obsolete">Impossibile eseguire il comando.</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -5711,10 +5104,6 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>Join lines before wrapping</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>add row</source>
-        <translation type="obsolete">aggiungi riga</translation>
     </message>
     <message>
         <source>Table</source>
@@ -6094,6 +5483,24 @@ Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Find word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <comment>Format name of language definition file binary.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX Macro</source>
+        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New highlighting:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6322,25 +5729,6 @@ If not, end characters are ignored.</source>
         <source>&lt;all&gt;</source>
         <translation>&lt;tutti&gt;</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Errore</translation>
-    </message>
-    <message>
-        <source>You do not have read permission to this file.</source>
-        <translation type="obsolete">Non hai i permessi di lettura su questo file.</translation>
-    </message>
-</context>
-<context>
-    <name>Toolbar</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">File</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Edita</translation>
-    </message>
 </context>
 <context>
     <name>UserMenuDialog</name>
@@ -6355,10 +5743,6 @@ If not, end characters are ignored.</source>
     <message>
         <source>Cancel</source>
         <translation>Annulla</translation>
-    </message>
-    <message>
-        <source>Menu Item</source>
-        <translation type="obsolete">Voce Menu</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
