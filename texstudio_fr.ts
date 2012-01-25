@@ -1984,6 +1984,13 @@ Continuer tout de même ?</translation>
     </message>
 </context>
 <context>
+    <name>FileFormat</name>
+    <message>
+        <source>Binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -4555,7 +4562,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Show Ignore List \/</source>
-        <translation>Afficher la liste des mots ignorés \/</translation>
+        <translation type="obsolete">Afficher la liste des mots ignorés \/</translation>
     </message>
     <message>
         <source>Add/Remove</source>
@@ -4575,7 +4582,15 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Hide Ignore List /\</source>
-        <translation>Cacher la liste de mots ignorés /\</translation>
+        <translation type="obsolete">Cacher la liste de mots ignorés /\</translation>
+    </message>
+    <message>
+        <source>Show Ignore List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Ignore List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4712,6 +4727,26 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     <message>
         <source>add a margin with the horizontal line</source>
         <translation>Ajouter une marge à la ligne horizontale</translation>
+    </message>
+    <message>
+        <source>fixed width - left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - center - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - right - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation type="unfinished">aucun</translation>
+    </message>
+    <message>
+        <source>@{text}</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

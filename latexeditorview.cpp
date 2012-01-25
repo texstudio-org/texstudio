@@ -823,7 +823,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-	if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La-)TeX") return; // no online checking in other files than tex
+    if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
 	Q_ASSERT(speller);
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);

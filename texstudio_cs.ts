@@ -2129,6 +2129,13 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
 </context>
 <context>
+    <name>FileFormat</name>
+    <message>
+        <source>Binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -4729,11 +4736,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Show Ignore List \/</source>
-        <translation>Ukázat seznam s přehlíženými slovy \/</translation>
+        <translation type="obsolete">Ukázat seznam s přehlíženými slovy \/</translation>
     </message>
     <message>
         <source>Hide Ignore List /\</source>
-        <translation>Skrýt seznam s přehlíženými slovy /\</translation>
+        <translation type="obsolete">Skrýt seznam s přehlíženými slovy /\</translation>
     </message>
     <message>
         <source>Check Spelling</source>
@@ -4770,6 +4777,14 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>Add/Remove</source>
         <translation>Přidat/Odstranit</translation>
+    </message>
+    <message>
+        <source>Show Ignore List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Ignore List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4906,6 +4921,26 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>add a margin with the horizontal line</source>
         <translation>Přidat okraj s vodorovnou čarou</translation>
+    </message>
+    <message>
+        <source>fixed width - left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - center - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - right - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation type="unfinished">Žádný</translation>
+    </message>
+    <message>
+        <source>@{text}</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

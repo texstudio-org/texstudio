@@ -1709,6 +1709,13 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
+    <name>FileFormat</name>
+    <message>
+        <source>Binary</source>
+        <translation>Binär</translation>
+    </message>
+</context>
+<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -3679,7 +3686,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <name>QStatusPanel</name>
     <message>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
-        <translation type="unfinished">Zeile: %1 Sichtbare Spalte: %2 Textspalte: %3</translation>
+        <translation>Zeile: %1 Sichtbare Spalte: %2 Textspalte: %3</translation>
     </message>
     <message>
         <source>(%1 min %2 s ago)</source>
@@ -4085,11 +4092,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Show Ignore List \/</source>
-        <translation>Zeige die ignorierten Wörter</translation>
+        <translation type="obsolete">Zeige die ignorierten Wörter</translation>
     </message>
     <message>
         <source>Hide Ignore List /\</source>
-        <translation>Verberge die ignorierten Wörter</translation>
+        <translation type="obsolete">Verberge die ignorierten Wörter</translation>
     </message>
     <message>
         <source>Check Spelling</source>
@@ -4126,6 +4133,14 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <source>Add/Remove</source>
         <translation>Hinzufügen/Löschen</translation>
+    </message>
+    <message>
+        <source>Show Ignore List</source>
+        <translation>Ignorierte Wörter anzeigen</translation>
+    </message>
+    <message>
+        <source>Hide Ignore List</source>
+        <translation>Ignorierte Wörter ausblenden</translation>
     </message>
 </context>
 <context>
@@ -4262,6 +4277,26 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <source>add a margin with the horizontal line</source>
         <translation>Füge einen Rand mit der horizontalen Linie hinzu</translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation>keiner</translation>
+    </message>
+    <message>
+        <source>@{text}</source>
+        <translation>@{Text}</translation>
+    </message>
+    <message>
+        <source>fixed width - left</source>
+        <translation>Feste Breite - linksbündig</translation>
+    </message>
+    <message>
+        <source>fixed width - center - package tabularx</source>
+        <translation>Feste Breite - zentriert - Paket: tabularx</translation>
+    </message>
+    <message>
+        <source>fixed width - right - package tabularx</source>
+        <translation>Feste Breite - rechtsbündig - Paket: tabularx</translation>
     </message>
 </context>
 <context>
@@ -5406,7 +5441,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Undo-Stack debuggen</translation>
     </message>
     <message>
         <source>Find mismatch</source>
@@ -5435,7 +5470,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished">Diff</translation>
+        <translation>Diff</translation>
     </message>
     <message>
         <source>Sweave files</source>

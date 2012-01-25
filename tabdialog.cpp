@@ -31,14 +31,14 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.comboAlignment->addItem(tr("Center"));
 	ui.comboAlignment->addItem(tr("Left"));
 	ui.comboAlignment->addItem(tr("Right"));
-	ui.comboAlignment->addItem("p{} (fixed width - left)");
-	ui.comboAlignment->addItem("p{} (fixed width - center - package tabularx)");
-	ui.comboAlignment->addItem("p{} (fixed width - right - package tabularx)");
+    ui.comboAlignment->addItem("p{} ("+tr("fixed width - left")+")");
+    ui.comboAlignment->addItem("p{} ("+tr("fixed width - center - package tabularx")+")");
+    ui.comboAlignment->addItem("p{} ("+tr("fixed width - right - package tabularx")+")");
 
 	ui.comboSeparator->insertItem(0,"|");
 	ui.comboSeparator->insertItem(1,"||");
-	ui.comboSeparator->insertItem(2,"none");
-	ui.comboSeparator->insertItem(3, "@{text}");
+    ui.comboSeparator->insertItem(2,tr("none"));
+    ui.comboSeparator->insertItem(3, tr("@{text}"));
 	setWindowTitle(tr("Quick Tabular"));
 }
 

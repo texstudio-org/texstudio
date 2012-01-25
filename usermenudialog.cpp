@@ -203,7 +203,7 @@ void UserMenuDialog::change(const QModelIndex& modelIndex,const QModelIndex&) {
 		if (languages){
 			if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
 			else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
-			else languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
+            else languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
 		}
 	}
 	if (names.value(index,"") != ui.itemEdit->text())
@@ -267,7 +267,7 @@ void UserMenuDialog::slotMoveDown(){
 
 void UserMenuDialog::changeTypeToNormal(){
 	QString cur = codeedit->editor()->text();
-	if (languages) languages->setLanguage(codeedit->editor(), "(La-)TeX Macro");
+    if (languages) languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
 	if (cur.startsWith("%SCRIPT\n")) codeedit->editor()->setText(cur.mid(8));
 	else if (cur.startsWith("%")) codeedit->editor()->setText(cur.mid(1));
 }

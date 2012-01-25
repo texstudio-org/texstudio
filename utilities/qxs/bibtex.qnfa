@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="BibTex" extensions="bib" defaultLineMark="">
+<QNFA language="BibTeX" extensions="bib" defaultLineMark="">
 <!--	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
 	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>-->
 
