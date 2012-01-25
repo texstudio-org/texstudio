@@ -540,7 +540,7 @@ QString BuildManager::commandDisplayName(LatexCommand cmd){
 		case CMD_DVIPNG: return "DviPng";
 		case CMD_PS2PDF: return "Ps2Pdf";
 		case CMD_MAKEINDEX: return "Makeindex";
-		case CMD_BIBTEX: return "Bibtex";
+        case CMD_BIBTEX: return "BibTeX";
 		case CMD_PDFLATEX: return "PdfLaTeX";
 		case CMD_DVIPDF: return "DviPdf";
 		case CMD_METAPOST: return "Metapost";

@@ -4,28 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About Texmaker</source>
-        <translation type="obsolete">O Texmakeru</translation>
-    </message>
-    <message>
-        <source>About TexMakerX</source>
-        <translation type="obsolete">O programu TexMakerX</translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <source>TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;html conversion: </source>
-        <translation type="obsolete">TexMakerX: Benito van der Zander, Jan Sundermeyer, Daniel Braun&lt;br&gt;QCodeEdit: Luc Bruant &lt;br&gt;převod html: </translation>
-    </message>
-    <message>
         <source>Thanks to </source>
         <translation>Poděkování: </translation>
-    </message>
-    <message>
-        <source>Project home site : &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="obsolete">Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texmakerx.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -44,47 +28,12 @@
         <translation>Autorské právo (c) (původní TexMaker) 2004-2010 Pascal Brachet&lt;br&gt;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;TexMakerX 2.0 (SVN </source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN </translation>
-    </message>
-    <message>
-        <source>TexMakerX contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.&lt;br&gt;TexMakerX uses the pdf viewer of TeXworks.&lt;br&gt; TexMakerX uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)&lt;br&gt;</source>
-        <translation type="obsolete">TexMakerX obsahuje kód z programů Hunspell (GPL), QtCreator (GPL, autorské právo (C) Nokia), KILE (GPL) a SyncTeX (od Jeromeho Laurense).&lt;br&gt;TexMakerX používá prohlížeč PDF TeXworks.&lt;br&gt; TexMakerX používá třídu DSingleApplication (Autor: Dima Fedorov Levit - autorské právo (C) BioImage Informatics - povolení: GPL)&lt;br&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;TexMakerX 2.1 (SVN %1)&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?}</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;TexMakerX 2.2 (SVN %1)&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;TexMakerX 2.0 (SVN %1)&lt;/b&gt; {2.1 ?} {1)?} {2.2 ?} {1)?}</translation>
-    </message>
-    <message>
         <source>About TeXstudio</source>
         <translation>O TeXstudio</translation>
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>AddOptionDialog</name>
-    <message>
-        <source>New</source>
-        <translation type="obsolete">Neu</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -133,64 +82,8 @@
 <context>
     <name>BibTeXDialog</name>
     <message>
-        <source>Article in Journal</source>
-        <translation type="obsolete">Článek v časopise</translation>
-    </message>
-    <message>
-        <source>Article in Conference Proceedings</source>
-        <translation type="obsolete">Článek ve sborníku ze zasedání</translation>
-    </message>
-    <message>
-        <source>Article in a Collection</source>
-        <translation type="obsolete">Článek ve sbírce</translation>
-    </message>
-    <message>
-        <source>Chapter or Pages in a Book</source>
-        <translation type="obsolete">Kapitola nebo strany v knize</translation>
-    </message>
-    <message>
-        <source>Conference Proceedings</source>
-        <translation type="obsolete">Sborník ze zasedání</translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="obsolete">Kniha</translation>
-    </message>
-    <message>
-        <source>Booklet</source>
-        <translation type="obsolete">Knížečka</translation>
-    </message>
-    <message>
-        <source>PhD. Thesis</source>
-        <translation type="obsolete">Doktorská práce</translation>
-    </message>
-    <message>
-        <source>Master&apos;s Thesis</source>
-        <translation type="obsolete">Diplomová práce (magisterská)</translation>
-    </message>
-    <message>
-        <source>Technical Report</source>
-        <translation type="obsolete">Technická zpráva</translation>
-    </message>
-    <message>
-        <source>Technical Manual</source>
-        <translation type="obsolete">Technická příručka</translation>
-    </message>
-    <message>
-        <source>Unpublished</source>
-        <translation type="obsolete">Nezveřejněný</translation>
-    </message>
-    <message>
-        <source>Miscellaneous</source>
-        <translation type="obsolete">Různé</translation>
-    </message>
-    <message>
         <source>&lt;new file&gt;</source>
         <translation>&lt;nový soubor&gt;</translation>
-    </message>
-    <message>
-        <source>Dialog</source>
-        <translation type="obsolete">Dialog</translation>
     </message>
     <message>
         <source>New BibTeX Entry</source>
@@ -321,10 +214,6 @@
         <translation>Opravdu chcete smazat tento řádek?</translation>
     </message>
     <message>
-        <source>Get dictionary at: %1</source>
-        <translation type="obsolete">Získat slovník: %1</translation>
-    </message>
-    <message>
         <source>Command</source>
         <translation>Příkaz</translation>
     </message>
@@ -361,10 +250,6 @@
         <translation>Latexové nabídky</translation>
     </message>
     <message>
-        <source>Custom Toolbar</source>
-        <translation type="obsolete">Uživatelsky stanovený nástrojový panel</translation>
-    </message>
-    <message>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -375,14 +260,6 @@
     <message>
         <source>SVN</source>
         <translation>SVN</translation>
-    </message>
-    <message>
-        <source>Browse dictionary</source>
-        <translation type="obsolete">Procházet slovník</translation>
-    </message>
-    <message>
-        <source>(Dictionary doesn&apos;t exists)</source>
-        <translation type="obsolete">(Slovník neexistuje)</translation>
     </message>
     <message>
         <source>Browse thesaurus database</source>
@@ -405,26 +282,12 @@
         <translation>Obrázky (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
-    </message>
-    <message>
         <source>The shortcut you entered is invalid.</source>
         <translation>Zadaná klávesová zkratka je neplatná.</translation>
     </message>
     <message>
-        <source>The shortcut you entered is the same as the one of this command: 
-</source>
-        <translation type="obsolete">Das eingegebene Tastaturkürzel ist dasselbe wie bei:
-</translation>
-    </message>
-    <message>
         <source>Should I delete this other shortcut?</source>
         <translation>Má se tato jiná klávesová zkratka smazat?</translation>
-    </message>
-    <message>
-        <source>Configure TexMakerX</source>
-        <translation type="obsolete">Nastavit Texmaker</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -443,124 +306,16 @@
         <translation>Příkazy (%: název souboru bez přípony - @ : číslo řádku - ?: rozšířené volby pro název souboru)</translation>
     </message>
     <message>
-        <source>Dvi Viewer</source>
-        <translation type="obsolete">Dvi Betrachter</translation>
-    </message>
-    <message>
-        <source>PS Viewer</source>
-        <translation type="obsolete">PS Betrachter</translation>
-    </message>
-    <message>
-        <source>ghostscript</source>
-        <translation type="obsolete">ghostscript</translation>
-    </message>
-    <message>
-        <source>Bibtex</source>
-        <translation type="obsolete">Bibtex</translation>
-    </message>
-    <message>
-        <source>Dvipdfm</source>
-        <translation type="obsolete">Dvipdfm</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX</source>
-        <translation type="obsolete">PdfLatex</translation>
-    </message>
-    <message>
-        <source>Makeindex</source>
-        <translation type="obsolete">Makeindex</translation>
-    </message>
-    <message>
-        <source>ps2pdf</source>
-        <translation type="obsolete">ps2pdf</translation>
-    </message>
-    <message>
-        <source>Pdf Viewer</source>
-        <translation type="obsolete">Pdf Betrachter</translation>
-    </message>
-    <message>
-        <source>metapost</source>
-        <translation type="obsolete">metapost</translation>
-    </message>
-    <message>
-        <source>LaTeX</source>
-        <translation type="obsolete">LaTeX</translation>
-    </message>
-    <message>
-        <source>dvips</source>
-        <translation type="obsolete">dvips</translation>
-    </message>
-    <message>
         <source>Quick Build Command</source>
         <translation>Příkaz pro rychlý překlad</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvips + View PS</source>
-        <translation type="obsolete">LaTeX + dvips + Zobrazit PS</translation>
-    </message>
-    <message>
-        <source>LaTeX + View DVI</source>
-        <translation type="obsolete">LaTeX + Zobrazit DVI</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + View PDF</source>
-        <translation type="obsolete">PdfLaTeX + Zobrazit PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvipdfm + View PDF</source>
-        <translation type="obsolete">LaTeX + dvipdfm + Zobrazit PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + dvips + ps2pdf + View PDF</source>
-        <translation type="obsolete">LaTeX + dvips + ps2pdf + Zobrazit PDF</translation>
-    </message>
-    <message>
-        <source>LaTeX + Asymptote + LaTeX + View DVI</source>
-        <translation type="obsolete">LaTeX + Asymptote + LaTeX + Zobrazit DVI</translation>
-    </message>
-    <message>
-        <source>PdfLaTeX + Asymptote + PdfLaTeX + View PDF</source>
-        <translation type="obsolete">PdfLaTeX + Asymptote + PdfLaTeX + Zobrazit PDF</translation>
-    </message>
-    <message>
-        <source>User : (% : filename without extension)</source>
-        <translation type="obsolete">Uživatel: (%: název souboru bez přípony)</translation>
-    </message>
-    <message>
-        <source>(the commands must be separated by &apos;|&apos;)</source>
-        <translation type="obsolete">(Příkazy musí být odděleny &apos;|&apos;)</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation type="obsolete">Více</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
         <translation>Spustit před sestavením (zavoláním Latexu):</translation>
     </message>
     <message>
-        <source>Assume that every error is in the current document:</source>
-        <translation type="obsolete">Předpokládejme, že všechny chyby jsou v současném dokumentu:</translation>
-    </message>
-    <message>
-        <source>Never (only use the file names in the log)</source>
-        <translation type="obsolete">Nikdy (používat pouze názvy souborů v zápisu)</translation>
-    </message>
-    <message>
-        <source>Only when there is no master document</source>
-        <translation type="obsolete">Pouze když neexistuje žádný hlavní dokument</translation>
-    </message>
-    <message>
-        <source>Always (ignore file names in the log)</source>
-        <translation type="obsolete">Vždy (nevšímat si názvů souborů v zápisu)</translation>
-    </message>
-    <message>
         <source>Show log after compiling if there are errors</source>
         <translation>Ukázat po sestavení zápis, pokud se vyskytnou chyby</translation>
-    </message>
-    <message>
-        <source>run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="obsolete">Spustit &quot;latex bibtex latex&quot; před sestavením, pokud byly soubory bib změněny</translation>
     </message>
     <message>
         <source>1</source>
@@ -593,10 +348,6 @@
     <message>
         <source>&gt;</source>
         <translation>&gt;</translation>
-    </message>
-    <message>
-        <source>Editor Font Family</source>
-        <translation type="obsolete">Editor: rodina písma</translation>
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
@@ -655,44 +406,12 @@
         <translation>Automaticky převzít kódování nahraných souborů</translation>
     </message>
     <message>
-        <source>Editor Font Size</source>
-        <translation type="obsolete">Editor: Velikost písma</translation>
-    </message>
-    <message>
-        <source>Editor Font Encoding</source>
-        <translation type="obsolete">Editor: Kódování písma</translation>
-    </message>
-    <message>
-        <source>ignore indentation</source>
-        <translation type="obsolete">Nikdy neodsadit automaticky</translation>
-    </message>
-    <message>
-        <source>keep indentation</source>
-        <translation type="obsolete">Převzít odsazení předchozího řádku</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically</source>
-        <translation type="obsolete">Odsadit a zrušit odsazení automaticky</translation>
-    </message>
-    <message>
-        <source>keep indentation with spaces only</source>
-        <translation type="obsolete">Převzít odsazení předchozího řádku (použít pouze mezery)</translation>
-    </message>
-    <message>
-        <source>indent and unindent automatically with spaces only</source>
-        <translation type="obsolete">Odsadit a zrušit odsazení automaticky (použít pouze mezery)</translation>
-    </message>
-    <message>
         <source>Use single line selection as Search Word</source>
         <translation>Jako hledané slovo použít jednořádkový výběr</translation>
     </message>
     <message>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>Lze rozhodovat pouze mezi utf16/utf-8 a ISO 8859-1!</translation>
-    </message>
-    <message>
-        <source>Use Tab for Move To Placeholder</source>
-        <translation type="obsolete">Použít tabulátor pro posunutí se na zástupný znak</translation>
     </message>
     <message>
         <source>Show Whitespace</source>
@@ -747,32 +466,8 @@
         <translation>Spustit &quot;latex bibtex latex&quot; před sestavením, pokud byly soubory bib změněny</translation>
     </message>
     <message>
-        <source>Word Wrap</source>
-        <translation type="obsolete">Zalamování řádků</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: filename without extension &lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: line number &lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; followed by &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: extended filename&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absolute path, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: basefile name without extension,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: extension&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: enclose with &quot;..&quot;, (space): ends placeholder and add a space, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: ends placeholder &lt;br /&gt;      examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;            ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)&lt;br /&gt;
- %%, @@ or ?? become: %, @ or ?
- &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Besondere Zeichen:&lt;/span&gt;: &lt;span style=&quot; font-weight:600;&quot;&gt;%&lt;/span&gt;: Dateiname ohne Endung&lt;span style=&quot; font-weight:600;&quot;&gt;@&lt;/span&gt;: Zeilennummer&lt;br /&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;?&lt;/span&gt; gefolgt von &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;,&lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;,--&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;,&lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;, ,&lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: erweiterter Dateiname&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;a&lt;/span&gt;: absoluter Pfad, &lt;!--&lt;span style=&quot; font-style:italic;&quot;&gt;r&lt;/span&gt;: relative path, --&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;m&lt;/span&gt;: Datename ohne Endung/Pfad,&lt;span style=&quot; font-style:italic;&quot;&gt;e&lt;/span&gt;: Endung&lt;br /&gt;      &lt;span style=&quot; font-style:italic;&quot;&gt;&quot;&lt;/span&gt;: umgibt den Namen mit &quot;..&quot;, (Leerzeichen): beendet Namen und fügt ein Leerzeichen hinzu, &lt;span style=&quot; font-style:italic;&quot;&gt;)&lt;/span&gt;: beendet Dateinamen &lt;br /&gt;      Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben von &quot;, ?e) nur die Endung (ohne Punkt), &lt;br /&gt;  ?m&quot; (Dateiname ohne Endung, indentisch zu %) ?me (Dateiname mit Endung wie beispiel.tex)&lt;br /&gt;
- %%, @@ or ?? wird zu: %, @ oder ?
- &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>Show Modify Time</source>
         <translation>Ukázat čas poslední změny</translation>
-    </message>
-    <message>
-        <source>preview with dvipng</source>
-        <translation type="obsolete">Náhled s dvipng</translation>
     </message>
     <message>
         <source>Color Scheme</source>
@@ -815,10 +510,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ověřit odkazy</translation>
     </message>
     <message>
-        <source>*.dic</source>
-        <translation type="obsolete">*.dic</translation>
-    </message>
-    <message>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
@@ -850,18 +541,6 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation>%%, @@ nebo ?? stane se: %, @ nebo ?</translation>
     </message>
     <message>
-        <source>preview with dvipng --follow (parallel)</source>
-        <translation type="obsolete">Náhled s dvipng --follow (parallel)</translation>
-    </message>
-    <message>
-        <source>preview with dvips/ghostscript</source>
-        <translation type="obsolete">Náhled s dvips/ghostscript</translation>
-    </message>
-    <message>
-        <source>close search and replace panel together</source>
-        <translation type="obsolete">Zavřít společně panel pro hledání a nahrazování</translation>
-    </message>
-    <message>
         <source>Tab space:</source>
         <translation>Prostor zarážky:</translation>
     </message>
@@ -876,10 +555,6 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     <message>
         <source>Remove line</source>
         <translation>Odstranit řádek</translation>
-    </message>
-    <message>
-        <source>Completion Enabled</source>
-        <translation type="obsolete">Zapnout doplnění</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -906,28 +581,8 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation>Použít následující seznamy slov:</translation>
     </message>
     <message>
-        <source>Spelling dictionary</source>
-        <translation type="obsolete">Slovník pro pravopis</translation>
-    </message>
-    <message>
         <source>Shortcuts</source>
         <translation>Zkratky</translation>
-    </message>
-    <message>
-        <source>Action</source>
-        <translation type="obsolete">Aktion</translation>
-    </message>
-    <message>
-        <source>Shortcut</source>
-        <translation type="obsolete">Tastaturkürzel</translation>
-    </message>
-    <message>
-        <source>auto detect encoding of loaded files</source>
-        <translation type="obsolete">Automaticky převzít kódování nahraných souborů</translation>
-    </message>
-    <message>
-        <source>Change  style:</source>
-        <translation type="obsolete">Ausgewählter Style:</translation>
     </message>
     <message>
         <source>Completion</source>
@@ -938,64 +593,12 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation>Skládání kódu</translation>
     </message>
     <message>
-        <source>real time checking</source>
-        <translation type="obsolete">interaktives Überprüfen</translation>
-    </message>
-    <message>
-        <source>Text color:</source>
-        <translation type="obsolete">Schriftfarbe:</translation>
-    </message>
-    <message>
-        <source>Decoration color:</source>
-        <translation type="obsolete">Linienfarbe:</translation>
-    </message>
-    <message>
-        <source>bold</source>
-        <translation type="obsolete">fett</translation>
-    </message>
-    <message>
-        <source>underline</source>
-        <translation type="obsolete">unterstreichen</translation>
-    </message>
-    <message>
-        <source>italic</source>
-        <translation type="obsolete">kursiv</translation>
-    </message>
-    <message>
-        <source>overline</source>
-        <translation type="obsolete">überstreichen</translation>
-    </message>
-    <message>
-        <source>strikeout</source>
-        <translation type="obsolete">durchstreichen</translation>
-    </message>
-    <message>
-        <source>wave underline</source>
-        <translation type="obsolete">Wellen-unterstreichen</translation>
-    </message>
-    <message>
         <source>Show State Panel</source>
         <translation>Ukázat stavový panel</translation>
     </message>
     <message>
         <source>Show Line Change State</source>
         <translation>Ukázat řádkový stav</translation>
-    </message>
-    <message>
-        <source>show preview as tool tip if panel is hidden</source>
-        <translation type="obsolete">Ukázat náhled jako radu k nástroji, pokud je panel neviditelný</translation>
-    </message>
-    <message>
-        <source>always show preview in preview panel</source>
-        <translation type="obsolete">Ukázat náhled pouze v náhledovém panelu</translation>
-    </message>
-    <message>
-        <source>always show preview as tool tip</source>
-        <translation type="obsolete">Ukázat náhled vždy jako radu k nástroji</translation>
-    </message>
-    <message>
-        <source>always show both</source>
-        <translation type="obsolete">Ukázat vždy obojí</translation>
     </message>
     <message>
         <source>No line numbers</source>
@@ -1058,44 +661,12 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
         <translation>Největší počet naposledy otevřených hlavních dokumentů</translation>
     </message>
     <message>
-        <source>Thesaurus</source>
-        <translation type="obsolete">Thesaurus</translation>
-    </message>
-    <message>
         <source>Thesaurus Database</source>
         <translation>Slovníková databáze</translation>
     </message>
     <message>
-        <source>Autoindent</source>
-        <translation type="obsolete">Automatisches Einrücken</translation>
-    </message>
-    <message>
         <source>The shortcut you entered is the same as the one of this command:</source>
         <translation>Zadaná klávesová zkratka je tatáž jako ta pro tento příkaz:</translation>
-    </message>
-    <message>
-        <source>Special Key Replacement</source>
-        <translation type="obsolete">Nahrazení zvláštních kláves</translation>
-    </message>
-    <message>
-        <source>New column meaning:</source>
-        <translation type="obsolete">Nový význam sloupce:</translation>
-    </message>
-    <message>
-        <source>Key to replace</source>
-        <translation type="obsolete">Klávesa k nahrazení</translation>
-    </message>
-    <message>
-        <source>Text to insert before word</source>
-        <translation type="obsolete">Nahrazující text k vložení před slovo</translation>
-    </message>
-    <message>
-        <source>Text to insert after word</source>
-        <translation type="obsolete">Nahrazující text k vložení za slovo</translation>
-    </message>
-    <message>
-        <source>Hard Line Wrap</source>
-        <translation type="obsolete">Tvrdé zalomení řádků</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -1508,14 +1079,6 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
 </context>
 <context>
     <name>ConfigManager</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">Soubor</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Upravit</translation>
-    </message>
     <message>
         <source>default</source>
         <translation>Výchozí</translation>
@@ -1945,20 +1508,8 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
         <translation></translation>
     </message>
     <message>
-        <source>&amp;User</source>
-        <translation type="obsolete">&amp;Uživatel</translation>
-    </message>
-    <message>
-        <source>Open all files</source>
-        <translation type="obsolete">Otevřít všechny soubory</translation>
-    </message>
-    <message>
         <source>Internal viewer</source>
         <translation>Vnitřní prohlížeč</translation>
-    </message>
-    <message>
-        <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TexMakerX do it now?</source>
-        <translation type="obsolete">Pro plné používání vnitřního prohlížeče PDF musí být zapnut synctex. Má to teď TexMakerX udělat?</translation>
     </message>
     <message>
         <source>&amp;* Open all files</source>
@@ -2129,13 +1680,6 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
 </context>
 <context>
-    <name>FileFormat</name>
-    <message>
-        <source>Binary</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -2144,10 +1688,6 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Scheme :</source>
         <translation>Znázornění:</translation>
-    </message>
-    <message>
-        <source>Identifier</source>
-        <translation type="obsolete">Označení formátu</translation>
     </message>
 </context>
 <context>
@@ -2183,48 +1723,12 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 <context>
     <name>InsertGraphics</name>
     <message>
-        <source>Insert Graphics</source>
-        <translation type="obsolete">Vložit obrázek</translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="obsolete">Vybrat soubor</translation>
-    </message>
-    <message>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <source>Scale: </source>
-        <translation type="obsolete">Změna velikosti: </translation>
-    </message>
-    <message>
-        <source>width=\linewidth</source>
-        <translation type="obsolete">šířka=\linewidth</translation>
-    </message>
-    <message>
-        <source>Caption: </source>
-        <translation type="obsolete">Popisek: </translation>
-    </message>
-    <message>
-        <source>Label: </source>
-        <translation type="obsolete">Štítek: </translation>
-    </message>
-    <message>
-        <source>Above</source>
-        <translation type="obsolete">Nad</translation>
-    </message>
-    <message>
-        <source>Below</source>
-        <translation type="obsolete">Pod</translation>
-    </message>
-    <message>
         <source>Place in figure environment</source>
         <translation>Umístit obraz do prostředí</translation>
-    </message>
-    <message>
-        <source>Placement</source>
-        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>Here</source>
@@ -2249,10 +1753,6 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Cancel</source>
         <translation>Zrušit</translation>
-    </message>
-    <message>
-        <source>Center figure</source>
-        <translation type="obsolete">Vystředit obrazec</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
@@ -2427,14 +1927,6 @@ Missing \includegraphics options.</source>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <source>Line</source>
-        <translation type="obsolete">Řádek</translation>
-    </message>
-    <message>
-        <source>Zeile</source>
-        <translation type="obsolete">Řádek</translation>
-    </message>
-    <message>
         <source>untitled</source>
         <translation>Bez názvu</translation>
     </message>
@@ -2518,14 +2010,6 @@ Missing \includegraphics options.</source>
 </context>
 <context>
     <name>LatexLogModel</name>
-    <message>
-        <source>Warning: </source>
-        <translation type="obsolete">Warnung:</translation>
-    </message>
-    <message>
-        <source>Error: </source>
-        <translation type="obsolete">Fehler:</translation>
-    </message>
     <message>
         <source>Click to jump to the line</source>
         <translation>Klepněte pro skok na řádek</translation>
@@ -2654,24 +2138,12 @@ Missing \includegraphics options.</source>
         <translation>Nepojmenované.pdf[*]</translation>
     </message>
     <message>
-        <source>File</source>
-        <translation type="obsolete">Soubor</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Upravit</translation>
-    </message>
-    <message>
         <source>Show</source>
         <translation>Ukázat</translation>
     </message>
     <message>
         <source>Toolbar</source>
         <translation>Panel s nástroji</translation>
-    </message>
-    <message>
-        <source>About TexMakerX...</source>
-        <translation type="obsolete">O programu TexMakerX...</translation>
     </message>
     <message>
         <source>Ctrl+J</source>
@@ -2718,48 +2190,24 @@ Missing \includegraphics options.</source>
         <translation>Naposledy otevřený</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="obsolete">Zavřít</translation>
-    </message>
-    <message>
         <source>Ctrl+W</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation type="obsolete">Zpět</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <source>Redo</source>
-        <translation type="obsolete">Znovu</translation>
-    </message>
-    <message>
         <source>Ctrl+Shift+Z</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Vyjmout</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
         <translation></translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation type="obsolete">Kopírovat</translation>
-    </message>
-    <message>
         <source>Ctrl+C</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Vložit</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -2809,10 +2257,6 @@ Missing \includegraphics options.</source>
     <message>
         <source>Select Image</source>
         <translation>Vyberte obrázek</translation>
-    </message>
-    <message>
-        <source>User Manual...</source>
-        <translation type="obsolete">Uživatelská příručka...</translation>
     </message>
     <message>
         <source>Email to the mailing list</source>
@@ -2887,10 +2331,6 @@ Missing \includegraphics options.</source>
         <translation></translation>
     </message>
     <message>
-        <source>TexMakerX</source>
-        <translation type="obsolete">TexMakerX</translation>
-    </message>
-    <message>
         <source>page %1 of %2</source>
         <translation>Strana %1 z %2</translation>
     </message>
@@ -2917,10 +2357,6 @@ Missing \includegraphics options.</source>
     <message>
         <source>&amp;Window</source>
         <translation>&amp;Okno</translation>
-    </message>
-    <message>
-        <source>&amp;About TexMakerX...</source>
-        <translation type="obsolete">&amp;O programu TexMakerX...</translation>
     </message>
     <message>
         <source>&amp;First Page</source>
@@ -2995,10 +2431,6 @@ Missing \includegraphics options.</source>
         <translation>Vnější prohlížeč</translation>
     </message>
     <message>
-        <source>&amp;Configure TexMakerX</source>
-        <translation type="obsolete">&amp;Nastavit TexMakerX</translation>
-    </message>
-    <message>
         <source>Stac&amp;k</source>
         <translation>Klást &amp;přes sebe</translation>
     </message>
@@ -3021,10 +2453,6 @@ Missing \includegraphics options.</source>
     <message>
         <source>&amp;Side by Side</source>
         <translation>&amp;Vedle sebe</translation>
-    </message>
-    <message>
-        <source>&amp;Quit TexMakerX</source>
-        <translation type="obsolete">&amp;Ukončit TexMakerX</translation>
     </message>
     <message>
         <source>&amp;Close something</source>
@@ -3075,48 +2503,24 @@ Missing \includegraphics options.</source>
         <translation>1x1</translation>
     </message>
     <message>
-        <source>11</source>
-        <translation type="obsolete">11</translation>
-    </message>
-    <message>
         <source>2x1</source>
         <translation>2x1</translation>
-    </message>
-    <message>
-        <source>21</source>
-        <translation type="obsolete">21</translation>
     </message>
     <message>
         <source>1x2</source>
         <translation>1x2</translation>
     </message>
     <message>
-        <source>12</source>
-        <translation type="obsolete">12</translation>
-    </message>
-    <message>
         <source>2x2</source>
         <translation>2x2</translation>
-    </message>
-    <message>
-        <source>22</source>
-        <translation type="obsolete">22</translation>
     </message>
     <message>
         <source>2x3</source>
         <translation>2x3</translation>
     </message>
     <message>
-        <source>23</source>
-        <translation type="obsolete">23</translation>
-    </message>
-    <message>
         <source>3x3</source>
         <translation>3x3</translation>
-    </message>
-    <message>
-        <source>33</source>
-        <translation type="obsolete">33</translation>
     </message>
     <message>
         <source>Custom...</source>
@@ -3358,29 +2762,6 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
 </context>
 <context>
-    <name>PdfViewer</name>
-    <message>
-        <source>&amp;File</source>
-        <translation type="obsolete">&amp;Soubor</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">Ukončit</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Najít</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Chyba</translation>
-    </message>
-    <message>
-        <source>File not found</source>
-        <translation type="obsolete">Soubor nebyl nalezen</translation>
-    </message>
-</context>
-<context>
     <name>PreviewWidget</name>
     <message>
         <source>left-align image</source>
@@ -3485,12 +2866,6 @@ Spustit hledání znovu od začátku oblasti?</translation>
     <message>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Chcete, aby nahrazování pokračovalo od začátku?</translation>
-    </message>
-    <message>
-        <source>End of scope reached with no match.
-Restart from the begining ?</source>
-        <translation type="obsolete">Ende des Suchbereichs erreicht.
-Soll die Suche vom Anfang des Bereichs neugestartet werden?</translation>
     </message>
     <message>
         <source>Replacing Finished</source>
@@ -4218,10 +3593,6 @@ Chcete, aby byly uloženy?</translation>
         <translation>Obsah...</translation>
     </message>
     <message>
-        <source>environment-name</source>
-        <translation type="obsolete">Název prostředí</translation>
-    </message>
-    <message>
         <source>*environment-name*</source>
         <translation>*Název prostředí*</translation>
     </message>
@@ -4450,10 +3821,6 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
         <translation>Vytváří se náhodný text...</translation>
     </message>
     <message>
-        <source>Couldn&apos;t find possible extension word</source>
-        <translation type="obsolete">Nepodařilo se najít žádné přijatelné rozšiřující slovo</translation>
-    </message>
-    <message>
         <source>Random Text Generator</source>
         <translation>Tvůrce náhodného textu</translation>
     </message>
@@ -4527,21 +3894,6 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     </message>
 </context>
 <context>
-    <name>RefDialog</name>
-    <message>
-        <source>Labels</source>
-        <translation type="obsolete">Markierungen</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-</context>
-<context>
     <name>ScriptObject</name>
     <message>
         <source>The current script has requested to enter privileged write mode and call following function:
@@ -4581,20 +3933,8 @@ Do you trust this script?</source>
 <context>
     <name>SearchReplace</name>
     <message>
-        <source>Form</source>
-        <translation type="obsolete">Formulář</translation>
-    </message>
-    <message>
-        <source>all</source>
-        <translation type="obsolete">Vše</translation>
-    </message>
-    <message>
         <source>Close search/replace panel</source>
         <translation>Zavřít panel hledání/nahrazení</translation>
-    </message>
-    <message>
-        <source>Refresh search underlying context (as an attempt to correct search behavior)</source>
-        <translation type="obsolete">Obnovit zásobník hledání (kvůli opravě chybného chování při hledání)</translation>
     </message>
     <message>
         <source> Find :</source>
@@ -4645,14 +3985,6 @@ Do you trust this script?</source>
         <translation>Text nahrazení</translation>
     </message>
     <message>
-        <source>replace</source>
-        <translation type="obsolete">Ersetze</translation>
-    </message>
-    <message>
-        <source>replace all</source>
-        <translation type="obsolete">Alles ersetzen</translation>
-    </message>
-    <message>
         <source>Prompt on replace</source>
         <translation>Ptát se při nahrazení</translation>
     </message>
@@ -4694,10 +4026,6 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <source>&lt;default&gt;</source>
-        <translation type="obsolete">&lt;Výchozí&gt;</translation>
-    </message>
-    <message>
         <source>&lt;none&gt;</source>
         <translation>&lt;Žádný&gt;</translation>
     </message>
@@ -4733,14 +4061,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>No more misspelled words</source>
         <translation>Žádná další slova s chybným pravopisem</translation>
-    </message>
-    <message>
-        <source>Show Ignore List \/</source>
-        <translation type="obsolete">Ukázat seznam s přehlíženými slovy \/</translation>
-    </message>
-    <message>
-        <source>Hide Ignore List /\</source>
-        <translation type="obsolete">Skrýt seznam s přehlíženými slovy /\</translation>
     </message>
     <message>
         <source>Check Spelling</source>
@@ -4985,10 +4305,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Šipky</translation>
     </message>
     <message>
-        <source>Miscellaneous symbols</source>
-        <translation type="obsolete">Verschiedenes</translation>
-    </message>
-    <message>
         <source>Delimiters</source>
         <translation>Oddělovací znaky</translation>
     </message>
@@ -5025,32 +4341,12 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <source>New</source>
-        <translation type="obsolete">Nový</translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="obsolete">Otevřít</translation>
-    </message>
-    <message>
-        <source>Open Recent</source>
-        <translation type="obsolete">Naposledy otevřený</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Uložit</translation>
-    </message>
-    <message>
         <source>Save As</source>
         <translation>Uložit jako</translation>
     </message>
     <message>
         <source>Save &amp;As...</source>
         <translation>Uložit &amp;jako...</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Zavřít</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -5069,14 +4365,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>&amp;Úpravy</translation>
     </message>
     <message>
-        <source>Undo</source>
-        <translation type="obsolete">Zpět</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="obsolete">Znovu</translation>
-    </message>
-    <message>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
@@ -5085,100 +4373,8 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <source>Paste</source>
-        <translation type="obsolete">Vložit</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Vybrat vše</translation>
-    </message>
-    <message>
-        <source>Paste as Latex</source>
-        <translation type="obsolete">Vložit jako Latex</translation>
-    </message>
-    <message>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Vloži&amp;t jako LaTeX</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation type="obsolete">Opatřit poznámkou</translation>
-    </message>
-    <message>
-        <source>Co&amp;mment</source>
-        <translation type="obsolete">Opatřit &amp;poznámkou</translation>
-    </message>
-    <message>
-        <source>Indent</source>
-        <translation type="obsolete">Odsadit</translation>
-    </message>
-    <message>
-        <source>In&amp;dent</source>
-        <translation type="obsolete">Odsadit</translation>
-    </message>
-    <message>
-        <source>Find</source>
-        <translation type="obsolete">Najít</translation>
-    </message>
-    <message>
-        <source>FindNext</source>
-        <translation type="obsolete">Weitersuchen</translation>
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="obsolete">Nahradit</translation>
-    </message>
-    <message>
-        <source>Goto Line</source>
-        <translation type="obsolete">Gehe zu Zeile</translation>
-    </message>
-    <message>
-        <source>Jump to last change</source>
-        <translation type="obsolete">Gehe zur letzten Änderung</translation>
-    </message>
-    <message>
-        <source>Jump forward</source>
-        <translation type="obsolete">Gehe zur nächsten Änderung</translation>
-    </message>
-    <message>
-        <source>Bookmark 0</source>
-        <translation type="obsolete">Lesezeichen 0</translation>
-    </message>
-    <message>
-        <source>Bookmark 1</source>
-        <translation type="obsolete">Lesezeichen 1</translation>
-    </message>
-    <message>
-        <source>Bookmark 2</source>
-        <translation type="obsolete">Lesezeichen 2</translation>
-    </message>
-    <message>
-        <source>Bookmark 3</source>
-        <translation type="obsolete">Lesezeichen 3</translation>
-    </message>
-    <message>
-        <source>Bookmark 4</source>
-        <translation type="obsolete">Lesezeichen 4</translation>
-    </message>
-    <message>
-        <source>Bookmark 5</source>
-        <translation type="obsolete">Lesezeichen 5</translation>
-    </message>
-    <message>
-        <source>Bookmark 6</source>
-        <translation type="obsolete">Lesezeichen 6</translation>
-    </message>
-    <message>
-        <source>Bookmark 7</source>
-        <translation type="obsolete">Lesezeichen 7</translation>
-    </message>
-    <message>
-        <source>Bookmark 8</source>
-        <translation type="obsolete">Lesezeichen 8</translation>
-    </message>
-    <message>
-        <source>Bookmark 9</source>
-        <translation type="obsolete">Lesezeichen 9</translation>
     </message>
     <message>
         <source>Check Spelling...</source>
@@ -5197,10 +4393,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Rychlý překlad</translation>
     </message>
     <message>
-        <source>View Dvi</source>
-        <translation type="obsolete">Zobrazit Dvi</translation>
-    </message>
-    <message>
         <source>&amp;Dvi-&gt;PS</source>
         <translation>&amp;Dvi-&gt;PS</translation>
     </message>
@@ -5209,20 +4401,8 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <source>View Log</source>
-        <translation type="obsolete">Zobrazit zápis</translation>
-    </message>
-    <message>
         <source>Clean</source>
         <translation>Uklidit</translation>
-    </message>
-    <message>
-        <source>Convert to Html</source>
-        <translation type="obsolete">Převést na HTML</translation>
-    </message>
-    <message>
-        <source>BibTeX insert dialog</source>
-        <translation type="obsolete">Dialog pro nový záznam BibTeX</translation>
     </message>
     <message>
         <source>Fullscreen Mode</source>
@@ -5257,88 +4437,12 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Nepodařilo se spustit LaTeX.</translation>
     </message>
     <message>
-        <source>Could not start PdfLaTeX.</source>
-        <translation type="obsolete">Nepodařilo se spustit PdfLaTeX.</translation>
-    </message>
-    <message>
         <source>Text Analysis</source>
         <translation>Rozbor textu</translation>
     </message>
     <message>
-        <source>Previous LaTeX Error</source>
-        <translation type="obsolete">Vorheriger LaTeX Fehler</translation>
-    </message>
-    <message>
-        <source>Next LaTeX Error</source>
-        <translation type="obsolete">Nächster LaTeX Fehler</translation>
-    </message>
-    <message>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
-    </message>
-    <message>
-        <source>&amp;Sectioning</source>
-        <translation type="obsolete">A&amp;ufteilung</translation>
-    </message>
-    <message>
-        <source>&amp;Environment</source>
-        <translation type="obsolete">&amp;Umgebungen</translation>
-    </message>
-    <message>
-        <source>&amp;List Environment</source>
-        <translation type="obsolete">&amp;Listen</translation>
-    </message>
-    <message>
-        <source>Font St&amp;yles</source>
-        <translation type="obsolete">Schriftart</translation>
-    </message>
-    <message>
-        <source>&amp;Tabular Environment</source>
-        <translation type="obsolete">&amp;Tabellen</translation>
-    </message>
-    <message>
-        <source>S&amp;pacing</source>
-        <translation type="obsolete">A&amp;bstand</translation>
-    </message>
-    <message>
-        <source>International &amp;Accents</source>
-        <translation type="obsolete">&amp;Akzente</translation>
-    </message>
-    <message>
-        <source>&amp;Math</source>
-        <translation type="obsolete">&amp;Math</translation>
-    </message>
-    <message>
-        <source>Inline math mode $...$</source>
-        <translation type="obsolete">Mathematikmodus im Text $ ... $</translation>
-    </message>
-    <message>
-        <source>Display math mode \[...\]</source>
-        <translation type="obsolete">Abgesetzer Mathematikmodus \[ ... \]</translation>
-    </message>
-    <message>
-        <source>Numbered equations \begin{equation}</source>
-        <translation type="obsolete">Nummerierte Gleichungen \begin{equation}</translation>
-    </message>
-    <message>
-        <source>Math &amp;Functions</source>
-        <translation type="obsolete">Mathematische &amp;Funktionen</translation>
-    </message>
-    <message>
-        <source>Math Font St&amp;yles</source>
-        <translation type="obsolete">&amp;Schriftart im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>Math &amp;Accents</source>
-        <translation type="obsolete">&amp;Akzente im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>Math S&amp;paces</source>
-        <translation type="obsolete">A&amp;bstände im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>&amp;Wizard</source>
-        <translation type="obsolete">&amp;Assistenten</translation>
     </message>
     <message>
         <source>Quick Start</source>
@@ -5347,10 +4451,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>Quick &amp;Start...</source>
         <translation>Pomocník pro &amp;nový dokument...</translation>
-    </message>
-    <message>
-        <source>Quick Tabular</source>
-        <translation type="obsolete">Pomocník s tabulkami</translation>
     </message>
     <message>
         <source>Quick &amp;Tabular...</source>
@@ -5385,10 +4485,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Upravit uživatelské &amp;příkazy</translation>
     </message>
     <message>
-        <source>Edit User &amp;Key Replacements...</source>
-        <translation type="obsolete">Tastenersetzungen ändern</translation>
-    </message>
-    <message>
         <source>&amp;View</source>
         <translation>&amp;Pohled</translation>
     </message>
@@ -5403,18 +4499,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>&amp;Options</source>
         <translation>&amp;Volby</translation>
-    </message>
-    <message>
-        <source>&amp;Configure TexMakerX...</source>
-        <translation type="obsolete">&amp;Nastavit TexMakerX...</translation>
-    </message>
-    <message>
-        <source>Change Interface Font</source>
-        <translation type="obsolete">Interfaceschrift ändern</translation>
-    </message>
-    <message>
-        <source>Change Interface Type</source>
-        <translation type="obsolete">Interfaceart ändern</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
@@ -5433,38 +4517,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Uživatelská příručka...</translation>
     </message>
     <message>
-        <source>About TexMakerX...</source>
-        <translation type="obsolete">O programu TexMakerX...</translation>
-    </message>
-    <message>
-        <source>Bold</source>
-        <translation type="obsolete">fett</translation>
-    </message>
-    <message>
-        <source>Italic</source>
-        <translation type="obsolete">kursiv</translation>
-    </message>
-    <message>
-        <source>Underline</source>
-        <translation type="obsolete">unterstreichen</translation>
-    </message>
-    <message>
-        <source>Left</source>
-        <translation type="obsolete">Linksbündig</translation>
-    </message>
-    <message>
-        <source>Center</source>
-        <translation type="obsolete">Zentriert</translation>
-    </message>
-    <message>
-        <source>Right</source>
-        <translation type="obsolete">Rechtsbündig</translation>
-    </message>
-    <message>
-        <source>New line</source>
-        <translation type="obsolete">Neue Zeile</translation>
-    </message>
-    <message>
         <source>Click to jump to the bookmark</source>
         <translation>Klepněte kvůli skoku na záložku</translation>
     </message>
@@ -5479,10 +4531,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>Open Files</source>
         <translation>Otevřít soubory</translation>
-    </message>
-    <message>
-        <source>The file could not be saved. Please check if you have write permission.</source>
-        <translation type="obsolete">Die Datei konnte nicht abgespeichert werden. Bitte überprüfe, ob Sie die nötzigen Schreibrechte haben.</translation>
     </message>
     <message>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
@@ -5501,61 +4549,16 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Zrušit</translation>
     </message>
     <message>
-        <source>The document contains unsaved work. Do you want to save it before exiting?</source>
-        <translation type="obsolete">Dokument byl změněn, a tak obsahuje neuloženou práci. Chcete jej před ukončením programu uložit?</translation>
-    </message>
-    <message>
-        <source>line</source>
-        <translation type="obsolete">Řádek</translation>
-    </message>
-    <message>
-        <source>Select an image File</source>
-        <translation type="obsolete">Wähle eine Bilddatei</translation>
-    </message>
-    <message>
-        <source>Select a File</source>
-        <translation type="obsolete">Wähle eine Datei</translation>
-    </message>
-    <message>
         <source>Can&apos;t detect the file name</source>
         <translation>Nelze zjistit název souboru</translation>
-    </message>
-    <message>
-        <source>Could not start the command.</source>
-        <translation type="obsolete">Programm konnte nicht gestartet werden.</translation>
-    </message>
-    <message>
-        <source>View Dvi file</source>
-        <translation type="obsolete">Zeige Dvi-Datei</translation>
-    </message>
-    <message>
-        <source>View PS file</source>
-        <translation type="obsolete">Zeige PS-Datei</translation>
-    </message>
-    <message>
-        <source>View Pdf file</source>
-        <translation type="obsolete">Zeige Pdf-Datei</translation>
-    </message>
-    <message>
-        <source>Delete the output files generated by LaTeX ?
-(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)</source>
-        <translation type="obsolete">Sollen die Ausgabedateien von LaTeX gelöscht werden?(.log,.aux,.dvi,.lof,.lot,.bit,.idx,.glo,.bbl,.ilg,.toc,.ind)</translation>
     </message>
     <message>
         <source>Delete Files</source>
         <translation>Smazat soubory</translation>
     </message>
     <message>
-        <source>Edit &amp;Key Replacements</source>
-        <translation type="obsolete">Tastenersetzungen ändern</translation>
-    </message>
-    <message>
         <source>Log File not found !</source>
         <translation>Soubor se zápisem nebyl nalezen!</translation>
-    </message>
-    <message>
-        <source>Click to jump to the line</source>
-        <translation type="obsolete">Klicken um zur Zeile zu springen</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -5570,36 +4573,12 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Obvyklý režim (nynější hlavní soubor:</translation>
     </message>
     <message>
-        <source>Master Document :</source>
-        <translation type="obsolete">Masterdokument</translation>
-    </message>
-    <message>
-        <source>Select interface style</source>
-        <translation type="obsolete">Wähle Interfaceart:</translation>
-    </message>
-    <message>
-        <source>Please restart TexMakerX to apply the changes</source>
-        <translation type="obsolete">Bitte starte TexMakerX neu, um die Änderung anzuzeigen</translation>
-    </message>
-    <message>
         <source>Toggle Bookmark</source>
         <translation>Přepnout záložku</translation>
     </message>
     <message>
         <source>Goto Bookmark</source>
         <translation>Jít na záložku</translation>
-    </message>
-    <message>
-        <source>Remember &apos;Master Document&apos; setting</source>
-        <translation type="obsolete">Speichere &apos;Masterdatei&apos;-Einstellungen</translation>
-    </message>
-    <message>
-        <source>could not start the command:</source>
-        <translation type="obsolete">Nepodařilo se spustit příkaz:</translation>
-    </message>
-    <message>
-        <source>Process started</source>
-        <translation type="obsolete">Postup spuštěn</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -5614,20 +4593,12 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Nenalezena žádná špatná políčka!</translation>
     </message>
     <message>
-        <source>Menus</source>
-        <translation type="obsolete">Menüs</translation>
-    </message>
-    <message>
         <source>Master Document</source>
         <translation>Hlavní dokument</translation>
     </message>
     <message>
         <source>&amp;Find</source>
         <translation>Najít</translation>
-    </message>
-    <message>
-        <source>Structure (experimental)</source>
-        <translation type="obsolete">Stavba (pokusné)</translation>
     </message>
     <message>
         <source>Operator symbols</source>
@@ -5670,36 +4641,8 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Příkazy Asymptote</translation>
     </message>
     <message>
-        <source>New from template</source>
-        <translation type="obsolete">Nový z předlohy</translation>
-    </message>
-    <message>
         <source>Restore previous session</source>
         <translation>Obnovit předchozí sezení</translation>
-    </message>
-    <message>
-        <source>Make Template</source>
-        <translation type="obsolete">Vytvořit předlohu</translation>
-    </message>
-    <message>
-        <source>Check in</source>
-        <translation type="obsolete">Zapsat se</translation>
-    </message>
-    <message>
-        <source>Show old Revisions</source>
-        <translation type="obsolete">Ukázat staré revize</translation>
-    </message>
-    <message>
-        <source>Erase Line</source>
-        <translation type="obsolete">Vymazat řádek</translation>
-    </message>
-    <message>
-        <source>Preview Selection/Parantheses</source>
-        <translation type="obsolete">Náhled na výběr/závorky</translation>
-    </message>
-    <message>
-        <source>Hard Line Break</source>
-        <translation type="obsolete">Tvrdé zalomení řádků</translation>
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
@@ -5712,10 +4655,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>Find &amp;Next</source>
         <translation>Najít další</translation>
-    </message>
-    <message>
-        <source>Find D&amp;ialog...</source>
-        <translation type="obsolete">Dialog hledání...</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
@@ -5906,11 +4845,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>Prohlásit současný dokument za &apos;&amp;Hlavní dokument&apos;</translation>
     </message>
     <message>
-        <source>TmX Profile</source>
-        <comment>filter</comment>
-        <translation type="obsolete">Profil TmX</translation>
-    </message>
-    <message>
         <source>Load Profile</source>
         <translation>Nahrát profil</translation>
     </message>
@@ -5933,14 +4867,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>Format</source>
         <translation>Formát</translation>
-    </message>
-    <message>
-        <source>Spelling</source>
-        <translation type="obsolete">Pravopis</translation>
-    </message>
-    <message>
-        <source>LaTeX</source>
-        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>All files</source>
@@ -6031,16 +4957,8 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation>&amp;Zrušit poznámku</translation>
     </message>
     <message>
-        <source>Unind&amp;ent</source>
-        <translation type="obsolete">Zrušit odsazení</translation>
-    </message>
-    <message>
         <source>Vie&amp;w PS</source>
         <translation>Zobraz&amp;it PS</translation>
-    </message>
-    <message>
-        <source>PS-&gt;PDF</source>
-        <translation type="obsolete">PS-&gt;PDF</translation>
     </message>
     <message>
         <source>P&amp;S-&gt;PDF</source>
@@ -6049,26 +4967,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
-    </message>
-    <message>
-        <source>MakeIndex</source>
-        <translation type="obsolete">MakeIndex</translation>
-    </message>
-    <message>
-        <source>Clear Markers</source>
-        <translation type="obsolete">Smazat značky</translation>
-    </message>
-    <message>
-        <source>MetaPost</source>
-        <translation type="obsolete">MetaPost</translation>
-    </message>
-    <message>
-        <source>Analyse Text</source>
-        <translation type="obsolete">Rozebrat text</translation>
-    </message>
-    <message>
-        <source>Generate Random Text</source>
-        <translation type="obsolete">Vytvořit náhodný text</translation>
     </message>
     <message>
         <source>Insert \ref to next label</source>
@@ -6081,14 +4979,6 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <message>
         <source>&amp;Wizards</source>
         <translation>&amp;Průvodci</translation>
-    </message>
-    <message>
-        <source>Process exited with error(s)</source>
-        <translation type="obsolete">Proces ukončen s chybou(ami)</translation>
-    </message>
-    <message>
-        <source>Process exited normally</source>
-        <translation type="obsolete">Proces ukončen jako obvykle</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name.
@@ -6117,58 +5007,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <translation>Pozor: dialog je automaticky zavřen, je-li text ručně upravován!</translation>
     </message>
     <message>
-        <source>Article in Journal</source>
-        <translation type="obsolete">Journalartikel</translation>
-    </message>
-    <message>
-        <source>Article in Conference Proceedings</source>
-        <translation type="obsolete">Artikel in einem Tagungsband einer Konferenz</translation>
-    </message>
-    <message>
-        <source>Article in a collection</source>
-        <translation type="obsolete">Artikel in einer Sammlung</translation>
-    </message>
-    <message>
-        <source>Chapter or Pages in a Book</source>
-        <translation type="obsolete">Kapitel oder Seiten eines Buches</translation>
-    </message>
-    <message>
-        <source>Conference Proceedings</source>
-        <translation type="obsolete">Tagungsband</translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="obsolete">Buch</translation>
-    </message>
-    <message>
-        <source>Booklet</source>
-        <translation type="obsolete">Heft</translation>
-    </message>
-    <message>
-        <source>PhD. Thesis</source>
-        <translation type="obsolete">Doktorarbeit</translation>
-    </message>
-    <message>
-        <source>Master&apos;s Thesis</source>
-        <translation type="obsolete">Masterarbeit</translation>
-    </message>
-    <message>
-        <source>Technical Report</source>
-        <translation type="obsolete">Technischer Bericht</translation>
-    </message>
-    <message>
-        <source>Technical Manual</source>
-        <translation type="obsolete">Technisches Handbuch</translation>
-    </message>
-    <message>
-        <source>Unpublished</source>
-        <translation type="obsolete">Unveröffentlicht</translation>
-    </message>
-    <message>
-        <source>Miscellaneous</source>
-        <translation type="obsolete">Sonstiges</translation>
-    </message>
-    <message>
         <source>Close Something</source>
         <translation>Zavřít něco</translation>
     </message>
@@ -6191,10 +5029,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>Expand</source>
         <translation>Rozbalit</translation>
-    </message>
-    <message>
-        <source>Remember session when closing</source>
-        <translation type="obsolete">Geöffnete Dateien wiederherstellen</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -6229,14 +5063,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <translation>Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
     </message>
     <message>
-        <source>You cannot remove built-in templates.</source>
-        <translation type="obsolete">Sie können integrierte Templates nicht entfernen.</translation>
-    </message>
-    <message>
-        <source>You cannot edit built-in templates.</source>
-        <translation type="obsolete">Sie können integrierte Templates nicht editieren.</translation>
-    </message>
-    <message>
         <source>Templates</source>
         <translation>Předlohy</translation>
     </message>
@@ -6265,10 +5091,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <translation>Soubor musí být uložen a sestaven, dříve než si budete moci prohlédnout zápis</translation>
     </message>
     <message>
-        <source>You must save the file before switching to master mode.</source>
-        <translation type="obsolete">Soubor musí být uložen, dříve než bude lze přepnout do hlavního režimu.</translation>
-    </message>
-    <message>
         <source>Insert</source>
         <translation>Vložit</translation>
     </message>
@@ -6293,18 +5115,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <translation>Odstranit všechny nejoblíbenější</translation>
     </message>
     <message>
-        <source>remove</source>
-        <translation type="obsolete">Odstranit</translation>
-    </message>
-    <message>
-        <source>remove all</source>
-        <translation type="obsolete">entferne alle</translation>
-    </message>
-    <message>
-        <source>Master Document: </source>
-        <translation type="obsolete">Masterdokument:</translation>
-    </message>
-    <message>
         <source>No document open</source>
         <translation>Neotevřen žádný dokument</translation>
     </message>
@@ -6324,10 +5134,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>Join lines before wrapping</source>
         <translation>Spojit řádky před zalomením</translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="obsolete">Zeile entfernen</translation>
     </message>
     <message>
         <source>Table</source>
@@ -6428,16 +5234,6 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <translation>O&amp;bnova SVN...</translation>
     </message>
     <message>
-        <source>You have called the command to open the internal pdf viewer.
-However, you are using a version of TexMakerX that was compiled without the internal pdf viewer.</source>
-        <translation type="obsolete">Zavolal jste příkaz k otevření vnitřního prohlížeče PDF.
-Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřního prohlížeče PDF.</translation>
-    </message>
-    <message>
-        <source>Insert Graphic</source>
-        <translation type="obsolete">Vložit obrázek</translation>
-    </message>
-    <message>
         <source>&amp;Comment</source>
         <translation>&amp;Poznámka</translation>
     </message>
@@ -6472,14 +5268,6 @@ Používáte ovšem verzi programu TexMakerX, která byla sestavena bez vnitřn�
     <message>
         <source>Open Documents</source>
         <translation>Otevřít dokumenty</translation>
-    </message>
-    <message>
-        <source>You are trying to save the file under the name %1, but a file with this name is already open.
-TexMakerX does not support multiple instances of the same file.
-Are you sure you want to continue?</source>
-        <translation type="obsolete">Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
-TexMakerX nepodporuje více případů téhož souboru.
-Jste si jistý, že chcete pokračovat?</translation>
     </message>
     <message>
         <source>Plaintext files</source>
@@ -6728,6 +5516,24 @@ Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Find word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <comment>Format name of language definition file binary.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX Macro</source>
+        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New highlighting:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6738,22 +5544,6 @@ Press &quot;Cancel&quot;to do nothing.
     <message>
         <source>Options</source>
         <translation>Volby</translation>
-    </message>
-    <message>
-        <source>normal text</source>
-        <translation type="obsolete">Normaler Text</translation>
-    </message>
-    <message>
-        <source>comments</source>
-        <translation type="obsolete">Kommentare</translation>
-    </message>
-    <message>
-        <source>commands</source>
-        <translation type="obsolete">Befehle</translation>
-    </message>
-    <message>
-        <source>ignore small words:</source>
-        <translation type="obsolete">kurze Worte ignorieren:</translation>
     </message>
     <message>
         <source>Source:</source>
@@ -6797,20 +5587,8 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Řádky s textem</translation>
     </message>
     <message>
-        <source>total words</source>
-        <translation type="obsolete">Zahl der Wörter</translation>
-    </message>
-    <message>
         <source>Comment lines</source>
         <translation>Řádky s poznámkami</translation>
-    </message>
-    <message>
-        <source>different words</source>
-        <translation type="obsolete">Unterschiedliche Worte</translation>
-    </message>
-    <message>
-        <source>characters in words</source>
-        <translation type="obsolete">Zeichen in Wörtern</translation>
     </message>
     <message>
         <source>Word/Phrase</source>
@@ -6988,64 +5766,6 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <source>&lt;all&gt;</source>
         <translation>&lt;Vše&gt;</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Chyba</translation>
-    </message>
-    <message>
-        <source>You do not have read permission to this file.</source>
-        <translation type="obsolete">Nemáte dostatečná oprávnění pro čtení tohoto souboru.</translation>
-    </message>
-</context>
-<context>
-    <name>Toolbar</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">Soubor</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">Upravit</translation>
-    </message>
-    <message>
-        <source>Math</source>
-        <translation type="obsolete">Matematika</translation>
-    </message>
-</context>
-<context>
-    <name>UserKeyReplaceDialog</name>
-    <message>
-        <source>Key replacements</source>
-        <translation type="obsolete">Tastenersetzungen</translation>
-    </message>
-    <message>
-        <source>Key</source>
-        <translation type="obsolete">Taste</translation>
-    </message>
-    <message>
-        <source>Replacement before word</source>
-        <translation type="obsolete">Ersetzung, vor einem Wort</translation>
-    </message>
-    <message>
-        <source>Replacement after word</source>
-        <translation type="obsolete">Ersetzung, nach einem Wort</translation>
-    </message>
-    <message>
-        <source>add row</source>
-        <translation type="obsolete">Zeile hinzufügen</translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <translation type="obsolete">Zeile entfernen</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
 </context>
 <context>
     <name>UserMenuDialog</name>
@@ -7060,10 +5780,6 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     <message>
         <source>Cancel</source>
         <translation>Zrušit</translation>
-    </message>
-    <message>
-        <source>Menu Item</source>
-        <translation type="obsolete">Položka v nabídce</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -7088,10 +5804,6 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     <message>
         <source>Type</source>
         <translation>Typ</translation>
-    </message>
-    <message>
-        <source>Menu %1</source>
-        <translation type="obsolete">Nabídka %1</translation>
     </message>
     <message>
         <source>-</source>
@@ -7293,14 +6005,6 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
         <translation>Převést na HTML</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;Nástroj pro převod z LaTeXu na Html&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Bitstream Vera Sans&apos;; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <source>LaTeX options</source>
         <translation>Volby pro LaTeX</translation>
     </message>
@@ -7468,29 +6172,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>X11FontDialog</name>
-    <message>
-        <source>Select a Font</source>
-        <translation type="obsolete">Wähle eine Schrift</translation>
-    </message>
-    <message>
-        <source>Font Family</source>
-        <translation type="obsolete">Schriftart</translation>
-    </message>
-    <message>
-        <source>Font Size</source>
-        <translation type="obsolete">Schriftgröße</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-</context>
-<context>
     <name>findGlobalDialog</name>
     <message>
         <source>Dialog</source>
@@ -7527,18 +6208,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>scriptengine</name>
-    <message>
-        <source>no arguments to alert</source>
-        <translation type="obsolete">žádné argumenty k upozornění</translation>
-    </message>
-    <message>
-        <source>too much arguments to alert</source>
-        <translation type="obsolete">příliš mnoho argumentů k upozornění</translation>
-    </message>
-    <message>
-        <source>Script-Message</source>
-        <translation type="obsolete">Zpráva skriptu</translation>
-    </message>
     <message>
         <source>File Chooser</source>
         <translation>Volič souboru</translation>

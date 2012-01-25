@@ -4280,10 +4280,16 @@ void Texmaker::setFullScreenMode() {
 
 void Texmaker::viewSetHighlighting(){
 	if (!currentEditor()) return;
-	QString lang = QInputDialog::getItem(this, TEXSTUDIO, "New highlighting: ", 
-	                                     m_languages->languages(), m_languages->languages().indexOf(currentEditor()->document()->languageDefinition()?currentEditor()->document()->languageDefinition()->language():""));
+    QStringList localizedLanguages;
+    foreach (const QString &s, m_languages->languages()) {
+        localizedLanguages.append(tr(qPrintable(s)));
+    }
+    QString lang = QInputDialog::getItem(this, TEXSTUDIO, tr("New highlighting:"),
+                                         localizedLanguages,
+                                         m_languages->languages().indexOf(currentEditor()->document()->languageDefinition()?currentEditor()->document()->languageDefinition()->language():""),
+                                         false);
 	if (lang.isEmpty()) return;
-	m_languages->setLanguageFromName(currentEditor(), lang);
+    m_languages->setLanguageFromName(currentEditor(), m_languages->languages().at(localizedLanguages.indexOf(lang)));
 }
 
 void Texmaker::viewCollapseBlock() {
@@ -5594,11 +5600,12 @@ void Texmaker::remHLineCB(){
 void Texmaker::findWordRepetions(){
 	if (!currentEditorView()) return;
 	if(configManager.editorConfig && !configManager.editorConfig->inlineSpellChecking){
-		QMessageBox::information(this,tr("Problem"),tr("Finding word repetitions only works with activated online spell checking !"),QMessageBox::Ok);
+        QMessageBox::information(this,tr("Problem"),tr("Finding word repetitions only works with activated online spell checking !"),QMessageBox::Ok);
 		return;
 	}
 	QDialog *dlg=new QDialog(this);
 	dlg->setAttribute(Qt::WA_DeleteOnClose,true);
+    dlg->setWindowTitle(tr("Find word repetitions"));
 	QGridLayout *layout = new QGridLayout;
 	layout->setColumnStretch(1, 1);
 	layout->setColumnStretch(0, 1);

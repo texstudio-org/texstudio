@@ -298,7 +298,9 @@ QT_TRANSLATE_NOOP("QFormatConfig", "diffReplace"),
 
 QT_TRANSLATE_NOOP("QFormatConfig", "normal"),
 
-QT_TRANSLATE_NOOP("FileFormat", "Binary"),
+QT_TRANSLATE_NOOP3("Texmaker", "Binary", "Format name of language definition file binary.qnfa"),
+
+QT_TRANSLATE_NOOP3("Texmaker", "(La)TeX Macro", "Format name of language definition file tmxmacro.qnfa"),
 
 QT_TRANSLATE_NOOP("Texmaker","Custom"),
 

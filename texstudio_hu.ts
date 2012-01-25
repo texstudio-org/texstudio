@@ -353,22 +353,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Fordítás előtt végrehajtandó:</translation>
     </message>
     <message>
-        <source>Assume that every error is in the current document:</source>
-        <translation type="obsolete">Feltételezze, hogy minden hiba a jelenlegi dokumentumban van:</translation>
-    </message>
-    <message>
-        <source>Never (only use the file names in the log)</source>
-        <translation type="obsolete">Soha (csak a naplóban lévő fájlnevek használata)</translation>
-    </message>
-    <message>
-        <source>Only when there is no master document</source>
-        <translation type="obsolete">Csak ha nincs mesterdokumentum</translation>
-    </message>
-    <message>
-        <source>Always (ignore file names in the log)</source>
-        <translation type="obsolete">Mindig (a naplóban lévő fájlnevek mellőzése)</translation>
-    </message>
-    <message>
         <source>Show log after compiling if there are errors</source>
         <translation>Napló mutatása hibák esetén</translation>
     </message>
@@ -413,20 +397,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Szerkesztő</translation>
     </message>
     <message>
-        <source>Editor Font Family</source>
-        <translation type="obsolete">Szerkesztő betűcsalád</translation>
-    </message>
-    <message>
-        <source>Editor Font Size</source>
-        <translation type="obsolete">Szerkesztő betűmérete</translation>
-    </message>
-    <message>
         <source>Folding</source>
         <translation>Ö&amp;sszezárás</translation>
-    </message>
-    <message>
-        <source>Editor Font Encoding</source>
-        <translation type="obsolete">Szerkesztő karakterkódolása</translation>
     </message>
     <message>
         <source>No line numbers</source>
@@ -1708,13 +1680,6 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <source>Select a File</source>
         <translation>Fájl kiválasztása</translation>
-    </message>
-</context>
-<context>
-    <name>FileFormat</name>
-    <message>
-        <source>Binary</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4118,10 +4083,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Bezárás</translation>
     </message>
     <message>
-        <source>Show Ignore List \/</source>
-        <translation type="obsolete">Mellőzési lista megjelenítése \/</translation>
-    </message>
-    <message>
         <source>Add/Remove</source>
         <translation>Hozzáadás/Eltávolítás</translation>
     </message>
@@ -4136,10 +4097,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>No more misspelled words</source>
         <translation>Nincs több elírt szó</translation>
-    </message>
-    <message>
-        <source>Hide Ignore List /\</source>
-        <translation type="obsolete">Mellőzési lista elrejtése /\</translation>
     </message>
     <message>
         <source>Show Ignore List</source>
@@ -5564,6 +5521,24 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
     <message>
         <source>Sweave files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <comment>Format name of language definition file binary.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX Macro</source>
+        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New highlighting:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
