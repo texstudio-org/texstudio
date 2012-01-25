@@ -125,7 +125,11 @@
    <item row="5" column="2">
     <widget class="QPushButton" name="pushButtonIgnoreList">
      <property name="text">
-      <string>Show Ignore List \/</string>
+      <string>Show Ignore List</string>
+     </property>
+     <property name="icon">
+      <iconset resource="texstudio.qrc">
+       <normaloff>:/images/down-arrow-circle-silver.png</normaloff>:/images/down-arrow-circle-silver.png</iconset>
      </property>
     </widget>
    </item>
@@ -187,7 +191,9 @@
   <tabstop>lineEditNew</tabstop>
   <tabstop>listWidget</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="texstudio.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>okButton</sender>

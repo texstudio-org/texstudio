@@ -302,6 +302,8 @@
         <file>images/config_shortcut.png</file>
         <file>images/config_svn.png</file>
         <file>images/config_toolbars.png</file>
+        <file>images/down-arrow-circle-silver.png</file>
+        <file>images/up-arrow-circle-silver.png</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>

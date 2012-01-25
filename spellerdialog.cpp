@@ -189,11 +189,13 @@ void SpellerDialog::SpellingNextWord() {
 void SpellerDialog::toggleIgnoreList() {
 	if (ui.ignoreListFrame->isVisible()) {
 		ui.ignoreListFrame->hide();
-		ui.pushButtonIgnoreList->setText(tr("Show Ignore List \\/"));
+        ui.pushButtonIgnoreList->setText(tr("Show Ignore List"));
+        ui.pushButtonIgnoreList->setIcon(QIcon(":/images/down-arrow-circle-silver.png"));
 		resize(size().width(),height()-ui.ignoreListFrame->height());
 	} else {
 		resize(size().width(),height()+ui.ignoreListFrame->height());
-		ui.pushButtonIgnoreList->setText(tr("Hide Ignore List /\\"));
+        ui.pushButtonIgnoreList->setText(tr("Hide Ignore List"));
+        ui.pushButtonIgnoreList->setIcon(QIcon(":/images/up-arrow-circle-silver.png"));
 		if (m_speller && !ui.ignoreListView->model())
 			ui.ignoreListView->setModel(m_speller->ignoreListModel());
 		ui.ignoreListFrame->show();

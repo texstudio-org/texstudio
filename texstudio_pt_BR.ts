@@ -2265,6 +2265,14 @@ Você deseja desfazer as alterações?</translation>
     </message>
 </context>
 <context>
+    <name>FileFormat</name>
+    <message>
+        <location filename="additionaltranslations.cpp" line="301"/>
+        <source>Binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FormatConfig</name>
     <message>
         <location filename="qcodeedit/lib/widgets/formatconfig.ui" line="20"/>
@@ -5403,11 +5411,12 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="spellerdialog.ui" line="128"/>
         <location filename="spellerdialog.cpp" line="192"/>
-        <source>Show Ignore List \/</source>
-        <translation>Mostrar Lista de Ignorados</translation>
+        <source>Show Ignore List</source>
+        <oldsource>Show Ignore List \/</oldsource>
+        <translation type="unfinished">Mostrar Lista de Ignorados</translation>
     </message>
     <message>
-        <location filename="spellerdialog.ui" line="163"/>
+        <location filename="spellerdialog.ui" line="167"/>
         <source>Add/Remove</source>
         <translation>Adicionar/Remover</translation>
     </message>
@@ -5427,9 +5436,13 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>Sem mais palavras com erros ortográficos</translation>
     </message>
     <message>
-        <location filename="spellerdialog.cpp" line="196"/>
+        <location filename="spellerdialog.cpp" line="197"/>
+        <source>Hide Ignore List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hide Ignore List /\</source>
-        <translation>Ocultar Lista de Ignorados</translation>
+        <translation type="obsolete">Ocultar Lista de Ignorados</translation>
     </message>
 </context>
 <context>
@@ -5594,6 +5607,31 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>Direita</translation>
     </message>
     <message>
+        <location filename="tabdialog.cpp" line="34"/>
+        <source>fixed width - left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="35"/>
+        <source>fixed width - center - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="36"/>
+        <source>fixed width - right - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="40"/>
+        <source>none</source>
+        <translation type="unfinished">nenhum</translation>
+    </message>
+    <message>
+        <location filename="tabdialog.cpp" line="41"/>
+        <source>@{text}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="tabdialog.cpp" line="42"/>
         <source>Quick Tabular</source>
         <translation>Assistente Tabular</translation>
@@ -5635,49 +5673,49 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="301"/>
+        <location filename="additionaltranslations.cpp" line="303"/>
         <source>Custom</source>
         <translation>Personalizada</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="303"/>
+        <location filename="additionaltranslations.cpp" line="305"/>
         <source>File</source>
         <translation>Arquivo</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="305"/>
+        <location filename="additionaltranslations.cpp" line="307"/>
         <location filename="texmaker.cpp" line="1449"/>
         <location filename="texmaker.cpp" line="1522"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="307"/>
+        <location filename="additionaltranslations.cpp" line="309"/>
         <source>Tools</source>
         <translation>Ferramentas</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="309"/>
+        <location filename="additionaltranslations.cpp" line="311"/>
         <source>Math</source>
         <translation>Mat</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="311"/>
+        <location filename="additionaltranslations.cpp" line="313"/>
         <source>Format</source>
         <translation>Formatar</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="313"/>
+        <location filename="additionaltranslations.cpp" line="315"/>
         <source>Table</source>
         <translation>Tabelas</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="315"/>
+        <location filename="additionaltranslations.cpp" line="317"/>
         <source>Diff</source>
         <translation>Diferenças</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="317"/>
+        <location filename="additionaltranslations.cpp" line="319"/>
         <location filename="texmaker.cpp" line="133"/>
         <source>Central</source>
         <translation>Central</translation>
@@ -5947,6 +5985,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="483"/>
+        <location filename="texmaker.cpp" line="5609"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>
@@ -6680,29 +6719,29 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>TXS perfil</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5795"/>
-        <location filename="texmaker.cpp" line="5993"/>
-        <location filename="texmaker.cpp" line="5996"/>
+        <location filename="texmaker.cpp" line="5799"/>
+        <location filename="texmaker.cpp" line="5997"/>
+        <location filename="texmaker.cpp" line="6000"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Arquivos LaTeX (*.tex);;Todos Arquivos (*)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5993"/>
+        <location filename="texmaker.cpp" line="5997"/>
         <source>Open Compare File</source>
         <translation>Abrir arrquivo a comparar</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="5996"/>
+        <location filename="texmaker.cpp" line="6000"/>
         <source>Open Base File</source>
         <translation>Abrir arquivo base</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6037"/>
+        <location filename="texmaker.cpp" line="6041"/>
         <source>Conflict!</source>
         <translation>Conflito!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6038"/>
+        <location filename="texmaker.cpp" line="6042"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -6714,12 +6753,12 @@ Pressione &quot;OK&quot; para exibir diferenças
 Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6081"/>
+        <location filename="texmaker.cpp" line="6085"/>
         <source>SVN Conflict!</source>
         <translation>Conflito SVN!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6082"/>
+        <location filename="texmaker.cpp" line="6086"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -6803,7 +6842,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location filename="texmaker.cpp" line="3891"/>
         <location filename="texmaker.cpp" line="3893"/>
         <location filename="texmaker.cpp" line="4185"/>
-        <location filename="texmaker.cpp" line="5958"/>
+        <location filename="texmaker.cpp" line="5962"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -6811,7 +6850,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location filename="texmaker.cpp" line="1243"/>
         <location filename="texmaker.cpp" line="1473"/>
         <location filename="texmaker.cpp" line="1543"/>
-        <location filename="texmaker.cpp" line="5958"/>
+        <location filename="texmaker.cpp" line="5962"/>
         <source>You do not have read permission to this file.</source>
         <translation>Você não tem permissão par ler este arquivo.</translation>
     </message>
@@ -6925,7 +6964,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1615"/>
-        <location filename="texmaker.cpp" line="5795"/>
+        <location filename="texmaker.cpp" line="5799"/>
         <source>Open Files</source>
         <translation>Abrir Arquivos</translation>
     </message>

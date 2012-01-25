@@ -1711,6 +1711,13 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
 </context>
 <context>
+    <name>FileFormat</name>
+    <message>
+        <source>Binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -4112,7 +4119,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Show Ignore List \/</source>
-        <translation>Mellőzési lista megjelenítése \/</translation>
+        <translation type="obsolete">Mellőzési lista megjelenítése \/</translation>
     </message>
     <message>
         <source>Add/Remove</source>
@@ -4132,7 +4139,15 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Hide Ignore List /\</source>
-        <translation>Mellőzési lista elrejtése /\</translation>
+        <translation type="obsolete">Mellőzési lista elrejtése /\</translation>
+    </message>
+    <message>
+        <source>Show Ignore List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Ignore List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4269,6 +4284,26 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>Quick Tabular</source>
         <translation>Gyors táblázat</translation>
+    </message>
+    <message>
+        <source>fixed width - left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - center - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - right - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation type="unfinished">nincs</translation>
+    </message>
+    <message>
+        <source>@{text}</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

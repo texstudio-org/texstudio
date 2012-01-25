@@ -1916,6 +1916,13 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
 </context>
 <context>
+    <name>FileFormat</name>
+    <message>
+        <source>Binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FormatConfig</name>
     <message>
         <source>Form</source>
@@ -2213,6 +2220,7 @@ Missing \includegraphics options.</source>
         
         
         </numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -4422,11 +4430,11 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Show Ignore List \/</source>
-        <translation>Mostra la lista delle parole ignorate \/</translation>
+        <translation type="obsolete">Mostra la lista delle parole ignorate \/</translation>
     </message>
     <message>
         <source>Hide Ignore List /\</source>
-        <translation>NAscondi lista parole ignorate /\</translation>
+        <translation type="obsolete">NAscondi lista parole ignorate /\</translation>
     </message>
     <message>
         <source>Check Spelling</source>
@@ -4463,6 +4471,14 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>Add/Remove</source>
         <translation>Aggiungi/Rimuovi</translation>
+    </message>
+    <message>
+        <source>Show Ignore List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Ignore List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4598,6 +4614,26 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>add a margin with the horizontal line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - center - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fixed width - right - package tabularx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>@{text}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -97,7 +97,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	// custom evironments<
 	if(!configManager.customEnvironments.isEmpty()){
-		QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+        QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 		
 		QFile f(findResourceFile("qxs/tex.qnfa"));
 		QDomDocument doc;
@@ -3966,7 +3966,7 @@ void Texmaker::GeneralOptions() {
 		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
 		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
 		if (customEnvironmentChanged){
-			QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+            QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 			
 			oldLaTeX = m_lang.d;
 			Q_ASSERT(oldLaTeX);
@@ -4464,7 +4464,7 @@ void Texmaker::updateCompleter() {
 	if (configManager.parseBibTeX)
 		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
 			if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
-				qDebug("BibTex-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
+                qDebug("BibTeX-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
 				continue; //wtf?s
 			}
 			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
@@ -5602,15 +5602,19 @@ void Texmaker::findWordRepetions(){
 	QGridLayout *layout = new QGridLayout;
 	layout->setColumnStretch(1, 1);
 	layout->setColumnStretch(0, 1);
-	QPushButton *but= new QPushButton(tr("&Find next"), dlg);
-	but->setObjectName("next");
-	QPushButton *but2= new QPushButton(tr("&Find previous"), dlg);
-	but2->setObjectName("prev");
-	layout->addWidget(but,0,0);
-	layout->addWidget(but2,0,1);
+    QPushButton *btNext= new QPushButton(tr("&Find next"), dlg);
+    btNext->setObjectName("next");
+    QPushButton *btPrev= new QPushButton(tr("&Find previous"), dlg);
+    btPrev->setObjectName("prev");
+    QPushButton *btClose= new QPushButton(tr("&Close"), dlg);
+    btClose->setObjectName("close");
+    layout->addWidget(btNext,0,0);
+    layout->addWidget(btPrev,0,1);
+    layout->addWidget(btClose,0,2);
 	dlg->setLayout(layout);
-	connect(but,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
-	connect(but2,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
+    connect(btNext,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
+    connect(btPrev,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
+    connect(btClose,SIGNAL(clicked()),dlg,SLOT(close()));
 	dlg->setModal(false);
 	dlg->show();
 	dlg->raise();
@@ -5741,7 +5745,7 @@ void Texmaker::updateHighlighting(){
 		return;
 	
 	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
-	QLanguageFactory::LangData m_lang=m_languages->languageData("(La-)TeX");
+    QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 	
 	oldLaTeX = m_lang.d;
 	Q_ASSERT(oldLaTeX);

@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="(La-)TeX Macro"  extensions="incredibleComplicatedFileExtensionNoOneIsGoingToUse_TODO_DONTuseEMPTYextensionSTRINGasDEFAULTlang" defaultLineMark="">
+<QNFA language="(La)TeX Macro"  extensions="incredibleComplicatedFileExtensionNoOneIsGoingToUse_TODO_DONTuseEMPTYextensionSTRINGasDEFAULTlang" defaultLineMark="">
 	<sequence id="specialchars" format="escapeseq" >%[()n|]</sequence> <!-- problem: \% is highlighted wrong -->
 	<context id="placeholder" format="numbers" stayOnLine="true">
           <start parenthesis="placeholder:open" format="escapeseq">%&lt;</start>
