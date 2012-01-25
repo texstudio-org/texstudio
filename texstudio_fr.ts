@@ -4110,11 +4110,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Show Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la liste des mots ignorés</translation>
     </message>
     <message>
         <source>Hide Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Cacher la liste des mots ignorés</translation>
     </message>
 </context>
 <context>
@@ -4254,23 +4254,23 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>fixed width - left</source>
-        <translation type="unfinished"></translation>
+        <translation>largeur fixée, à gauche</translation>
     </message>
     <message>
         <source>fixed width - center - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>largeur fixée, centré - package tabularx</translation>
     </message>
     <message>
         <source>fixed width - right - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>largeur fixée, à droite - package tabularx</translation>
     </message>
     <message>
         <source>none</source>
-        <translation type="unfinished">aucun</translation>
+        <translation>aucun</translation>
     </message>
     <message>
         <source>@{text}</source>
-        <translation type="unfinished"></translation>
+        <translation>@{texte}</translation>
     </message>
 </context>
 <context>
@@ -5163,7 +5163,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Find word repetitions...</source>
-        <translation>Trouver les répétitions de mots...</translation>
+        <translation>Chercher les répétitions de mots...</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
@@ -5183,7 +5183,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Finding word repetitions only works with activated online spell checking !</source>
-        <translation>La recherche de répétitions fonctionne seulement avec la vérification orthographique activée!</translation>
+        <translation>La recherche de répétitions fonctionne seulement avec la vérification orthographique activée !</translation>
     </message>
     <message>
         <source>Save all current settings</source>
@@ -5533,21 +5533,21 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher les répétitions de mots</translation>
     </message>
     <message>
         <source>Binary</source>
         <comment>Format name of language definition file binary.qnfa</comment>
-        <translation type="unfinished"></translation>
+        <translation>Binaire</translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition file tmxmacro.qnfa</comment>
-        <translation type="unfinished"></translation>
+        <translation>Macros (La)TeX</translation>
     </message>
     <message>
         <source>New highlighting:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau surlignement</translation>
     </message>
 </context>
 <context>
