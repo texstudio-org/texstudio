@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>419</width>
-            <height>455</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -445,7 +445,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -492,7 +492,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -944,16 +944,37 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <item row="1" column="2">
           <layout class="QVBoxLayout" name="_3">
            <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QPushButton" name="pbToToolbar">
              <property name="text">
-              <string>&lt;</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="texstudio.qrc">
+               <normaloff>:/images/left.png</normaloff>:/images/left.png</iconset>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pbFromToolbar">
              <property name="text">
-              <string>&gt;</string>
+              <string notr="true"/>
+             </property>
+             <property name="icon">
+              <iconset resource="texstudio.qrc">
+               <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
              </property>
             </widget>
            </item>
