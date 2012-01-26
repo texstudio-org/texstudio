@@ -224,7 +224,7 @@ void CodeSnippetTest::insert_data(){
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "\t \tIn\\begin{indentMe}\n\t \t    TextTextText\n\t \t\\end{indentMe}Out"
 		<< CP(1,19);*/
-	QString tempIndentation = (spaceIndent.size() > 2)?"":spaceIndent;
+	QString tempIndentation = (spaceIndent.size() > 2)?"":spaceIndent; //adjust for up-rounding of indentation level (3 up => 2*2 but (1*3|4|5))
 	QTest::newRow("automatical indent with spaces, spaces prepended")
 		<< "   InOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceTabs) << (int)(QEditor::AutoIndent|QEditor::ReplaceTabs|QEditor::WeakIndent) << 0 << 5
