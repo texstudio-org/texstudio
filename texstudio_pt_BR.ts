@@ -580,7 +580,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <location filename="configdialog.ui" line="1045"/>
         <source>Font Family</source>
         <oldsource>Editor Font Family</oldsource>
-        <translation type="unfinished">Fonte</translation>
+        <translation>Fonte</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1082"/>
@@ -1065,7 +1065,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1068"/>
         <source>Default Font Encoding</source>
-        <translation type="unfinished">Codificação</translation>
+        <translation>Codificação Padrão</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2072"/>
@@ -5205,7 +5205,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.cpp" line="192"/>
         <source>Show Ignore List</source>
         <oldsource>Show Ignore List \/</oldsource>
-        <translation type="unfinished">Mostrar Lista de Ignorados</translation>
+        <translation>Mostrar Lista de Ignorados</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="167"/>
@@ -5230,7 +5230,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="spellerdialog.cpp" line="197"/>
         <source>Hide Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocultar Lista de Ignorados</translation>
     </message>
 </context>
 <context>
@@ -5397,27 +5397,27 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="tabdialog.cpp" line="34"/>
         <source>fixed width - left</source>
-        <translation type="unfinished"></translation>
+        <translation>lagura fixa - à esquerda</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="35"/>
         <source>fixed width - center - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>largura fixa - centralizado - pacote tabularx</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="36"/>
         <source>fixed width - right - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>largura fixa - à direita - pacote tabularx</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="40"/>
         <source>none</source>
-        <translation type="unfinished">nenhum</translation>
+        <translation>nenhum</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="41"/>
         <source>@{text}</source>
-        <translation type="unfinished"></translation>
+        <translation>@{texto}</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="42"/>
@@ -5464,13 +5464,13 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="additionaltranslations.cpp" line="301"/>
         <source>Binary</source>
         <comment>Format name of language definition file binary.qnfa</comment>
-        <translation type="unfinished"></translation>
+        <translation>Binário</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="303"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition file tmxmacro.qnfa</comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX Macro</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="305"/>
@@ -6502,7 +6502,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="4287"/>
         <source>New highlighting:</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Destaque:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5466"/>
@@ -6514,7 +6514,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="5608"/>
         <source>Find word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Localizar repetições de palavras</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5806"/>
