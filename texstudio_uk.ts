@@ -339,11 +339,11 @@
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Use single line selection as Search Word</source>
@@ -3669,7 +3669,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Document Class</source>
@@ -5493,17 +5493,37 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>New highlighting:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished">BibTeX</translation>
+    </message>
+    <message>
         <source>Binary</source>
-        <comment>Format name of language definition file binary.qnfa</comment>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QtScript</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX</source>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
-        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New highlighting:</source>
+        <source>XML</source>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5778,12 +5798,8 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <translation type="unfinished">Тип</translation>
     </message>
     <message>
-        <source>-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Name</source>
@@ -5818,7 +5834,23 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>run script</source>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Видалити</translation>
+    </message>
+    <message>
+        <source>Run script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5889,11 +5921,7 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>

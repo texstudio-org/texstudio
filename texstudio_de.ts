@@ -343,11 +343,11 @@
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
@@ -1534,7 +1534,8 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Benuter-Makros mit einem Trigger (?&lt;=\s|^) oder (?&lt;=\S)
+Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfernt werden?</translation>
     </message>
     <message>
         <source>Open first non-open file</source>
@@ -1542,7 +1543,7 @@ Do you want to remove them?</source>
     </message>
     <message>
         <source>huge</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1914,7 +1915,7 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>MAGIC_COMMENTS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Invalid language format</source>
@@ -1996,11 +1997,11 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>use yours</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigene benutzen</translation>
     </message>
     <message>
         <source>use other&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>Andere benutzen</translation>
     </message>
 </context>
 <context>
@@ -3307,7 +3308,7 @@ Die Datei könnte zerstört sein!</translation>
     </message>
     <message>
         <source>verbatim</source>
-        <translation>verbatim</translation>
+        <translation></translation>
     </message>
     <message>
         <source>braceMatch</source>
@@ -3533,11 +3534,11 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>magicComment</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>sweave</source>
-        <translation type="unfinished"></translation>
+        <translation>Sweave</translation>
     </message>
     <message>
         <source>picture</source>
@@ -3545,15 +3546,15 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>diffDelete</source>
-        <translation type="unfinished"></translation>
+        <translation>diff (Löschen)</translation>
     </message>
     <message>
         <source>diffAdd</source>
-        <translation type="unfinished"></translation>
+        <translation>diff (Hinzufügen)</translation>
     </message>
     <message>
         <source>diffReplace</source>
-        <translation type="unfinished"></translation>
+        <translation>diff (Ersetzen)</translation>
     </message>
 </context>
 <context>
@@ -3690,7 +3691,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Document Class</source>
@@ -3867,7 +3868,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     </message>
     <message>
         <source>punctation</source>
-        <translation type="unfinished"></translation>
+        <translation>Interpunktion</translation>
     </message>
     <message>
         <source>LaTeX input</source>
@@ -3893,7 +3894,10 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>Das aktuelle Skript erfordert erhöhte Schreibrechte und möchte folgende Funktion ausführen:
+%1
+
+Vertrauen Sie diesem Skript?</translation>
     </message>
     <message>
         <source>Yes, allow this call</source>
@@ -3912,7 +3916,10 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>Das aktuelle Skript erfordert erhöhte Leserechte für folgenden Wert:
+%1
+
+Vertrauen Sie diesem Skript?</translation>
     </message>
     <message>
         <source>Yes, allow this reading</source>
@@ -5402,12 +5409,12 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Find mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Klammerfehler finden</translation>
     </message>
     <message>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle nach Vorlage umformen</translation>
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
@@ -5435,23 +5442,23 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Show difference between two files in relation to base file</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Unterschiede zwischen zwei Dateien (relativ zur Ausgangsdatei)</translation>
     </message>
     <message>
         <source>Check SVN Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN Konflikt prüfen</translation>
     </message>
     <message>
         <source>Try to merge differences</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterschiede zusammenführen</translation>
     </message>
     <message>
         <source>Remove Difference-Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterschied-Markierungen entfernen</translation>
     </message>
     <message>
         <source>Declare Conflict Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt als gelöst markieren</translation>
     </message>
     <message>
         <source>Default</source>
@@ -5480,15 +5487,15 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Open Compare File</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergleichsdatei öffnen</translation>
     </message>
     <message>
         <source>Open Base File</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgangsdatei öffnen</translation>
     </message>
     <message>
         <source>Conflict!</source>
-        <translation type="unfinished">Konflikt!</translation>
+        <translation>Konflikt!</translation>
     </message>
     <message>
         <source>%1
@@ -5496,18 +5503,23 @@ has been modified by another application.
 Press &quot;OK&quot; to show differences
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+wurde durch eine andere Anwendung verändert.
+Drücken Sie &quot;Ok&quot; um die Unterschiede anzuzeigen.
+Drücken Sie &quot;Abbrechen&quot; um nichts zu tun.</translation>
     </message>
     <message>
         <source>SVN Conflict!</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN-Konflikt!</translation>
     </message>
     <message>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Es besteht ein Konflikt zwischen dem Projektarchiv und %1.
+Drücken Sie &quot;Ok&quot; um die Unterschiede anzuzeigen anstatt des von subversion erzeugen Quelltexts
+Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
@@ -5516,16 +5528,46 @@ Press &quot;Cancel&quot;to do nothing.
     <message>
         <source>Binary</source>
         <comment>Format name of language definition file binary.qnfa</comment>
-        <translation>Binär</translation>
+        <translation type="obsolete">Binär</translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition file tmxmacro.qnfa</comment>
-        <translation>(La)TeX Makro</translation>
+        <translation type="obsolete">(La)TeX Makro</translation>
     </message>
     <message>
         <source>New highlighting:</source>
-        <translation type="unfinished">Neue Hervorhebung:</translation>
+        <translation>Neue Hervorhebung:</translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <comment>Format name of language definition </comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <comment>Format name of language definition </comment>
+        <translation>Binär</translation>
+    </message>
+    <message>
+        <source>QtScript</source>
+        <comment>Format name of language definition </comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>(La)TeX</source>
+        <comment>Format name of language definition </comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>(La)TeX Macro</source>
+        <comment>Format name of language definition </comment>
+        <translation>(La)TeX Makro</translation>
+    </message>
+    <message>
+        <source>XML</source>
+        <comment>Format name of language definition </comment>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -5791,12 +5833,8 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <translation>Art</translation>
     </message>
     <message>
-        <source>-</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Name</source>
@@ -5836,7 +5874,27 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
     </message>
     <message>
         <source>run script</source>
-        <translation>Führe Script aus</translation>
+        <translation type="obsolete">Führe Script aus</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Run script</source>
+        <translation>Skript ausführen</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>Hoch</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Runter</translation>
     </message>
 </context>
 <context>
@@ -5906,11 +5964,7 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation></translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
