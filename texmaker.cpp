@@ -4156,9 +4156,11 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			translations << "QT_TRANSLATE_NOOP(\"QFormatConfig\", \"normal\"),";
 			for (int i=0;i<configManager.managedToolBars.size();i++)
 				translations << "QT_TRANSLATE_NOOP(\"Texmaker\",\""+configManager.managedToolBars[i].name+"\"),";
+			
+			foreach (const QString &s, m_languages->languages()) 
+				translations << "QT_TRANSLATE_NOOP(\"Texmaker\", \""+s+"\", \"Format name of language definition \"), ";
+			
 			translations << "\"\"};";
-			
-			
 			translations << "#endif\n\n";
 			
 			
