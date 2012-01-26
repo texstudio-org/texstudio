@@ -417,14 +417,6 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
         <translation>personnalisation de la barre d&apos;outils</translation>
     </message>
     <message>
-        <source>&lt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
@@ -3692,10 +3684,6 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
         <translation>Auteur</translation>
     </message>
     <message>
-        <source>+</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Document Class</source>
         <translation>Classe de document</translation>
     </message>
@@ -5538,16 +5526,46 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <source>Binary</source>
         <comment>Format name of language definition file binary.qnfa</comment>
-        <translation>Binaire</translation>
+        <translation type="obsolete">Binaire</translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition file tmxmacro.qnfa</comment>
-        <translation>Macros (La)TeX</translation>
+        <translation type="obsolete">Macros (La)TeX</translation>
     </message>
     <message>
         <source>New highlighting:</source>
         <translation>Nouveau surlignement</translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished">Binaire</translation>
+    </message>
+    <message>
+        <source>QtScript</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX Macro</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished">Macros (La)TeX</translation>
+    </message>
+    <message>
+        <source>XML</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5822,11 +5840,11 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="obsolete">-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Name</source>
@@ -5870,7 +5888,27 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>run script</source>
-        <translation>Lancer le script</translation>
+        <translation type="obsolete">Lancer le script</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Ajouter</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message>
+        <source>Run script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">Haut</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">Bas</translation>
     </message>
 </context>
 <context>
@@ -5940,11 +5978,11 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="obsolete">-</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>

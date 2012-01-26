@@ -386,11 +386,11 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -3684,7 +3684,7 @@ Néhány példa:
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Document Class</source>
@@ -5528,17 +5528,37 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>New highlighting:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished">BibTeX</translation>
+    </message>
+    <message>
         <source>Binary</source>
-        <comment>Format name of language definition file binary.qnfa</comment>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QtScript</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX</source>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
-        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New highlighting:</source>
+        <source>XML</source>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5814,11 +5834,11 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="obsolete">-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Name</source>
@@ -5861,7 +5881,27 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>run script</source>
-        <translation>parancsfájl futtatása</translation>
+        <translation type="obsolete">parancsfájl futtatása</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Hozzáadás</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Eltávolítás</translation>
+    </message>
+    <message>
+        <source>Run script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">Fel</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">Le</translation>
     </message>
 </context>
 <context>
@@ -5931,11 +5971,11 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="obsolete">-</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>

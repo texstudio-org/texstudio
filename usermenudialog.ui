@@ -110,7 +110,7 @@
             </size>
            </property>
            <property name="text">
-            <string notr="true">Up</string>
+            <string>Up</string>
            </property>
            <property name="icon">
             <iconset resource="texstudio.qrc">
@@ -133,7 +133,7 @@
             </size>
            </property>
            <property name="text">
-            <string notr="true">Down</string>
+            <string>Down</string>
            </property>
            <property name="icon">
             <iconset resource="texstudio.qrc">
