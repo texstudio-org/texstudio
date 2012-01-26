@@ -99,7 +99,6 @@
         <file>images/errorprev.png</file>
         <file>images/exit.png</file>
         <file>images/fileclose.png</file>
-        <file>images/previous.png</file>
         <file>images/goto.png</file>
         <file>images/grave.png</file>
         <file>images/hat.png</file>
@@ -306,6 +305,8 @@
         <file>images/up-arrow-circle-silver.png</file>
         <file>images/list-add.png</file>
         <file>images/list-remove.png</file>
+        <file>images/left.png</file>
+        <file>images/right.png</file>
     </qresource>
     <qresource prefix="/modern">
         <file>images/modern/filenew.png</file>
