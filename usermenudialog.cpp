@@ -124,6 +124,9 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	setWindowTitle(name);
 	ui.setupUi(this);
 
+    ui.splitter->setStretchFactor(0, 4);
+    ui.splitter->setStretchFactor(1, 6);
+
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
 	
 	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotRunScript()));
@@ -167,7 +170,8 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	searchReplacePanel->display(0,false);
 	Q_UNUSED(searchReplacePanelAction)
 
-	ui.tagEdit->layout()->addWidget(codeedit->editor());
+    ui.tagEdit->layout()->setMargin(0);
+    ui.tagEdit->layout()->addWidget(codeedit->editor());
 
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));

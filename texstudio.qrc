@@ -304,39 +304,8 @@
         <file>images/config_toolbars.png</file>
         <file>images/down-arrow-circle-silver.png</file>
         <file>images/up-arrow-circle-silver.png</file>
-    </qresource>
-    <qresource prefix="/classic">
-        <file>images/classic/filenew.png</file>
-        <file>images/classic/fileopen.png</file>
-        <file>images/classic/filesave.png</file>
-        <file>images/classic/modified.png</file>
-        <file>images/classic/editcopy.png</file>
-        <file>images/classic/editcut.png</file>
-        <file>images/classic/editpaste.png</file>
-        <file>images/classic/redo.png</file>
-        <file>images/classic/undo.png</file>
-        <file>images/classic/math-accent.png</file>
-        <file>images/classic/hi16-action-math5.png</file>
-        <file>images/classic/hi16-action-math10.png</file>
-        <file>images/classic/hi16-action-math1.png</file>
-        <file>images/classic/text_bold.png</file>
-        <file>images/classic/text_italic.png</file>
-        <file>images/classic/text_under.png</file>
-        <file>images/classic/format-justify-center.png</file>
-        <file>images/classic/format-justify-left.png</file>
-        <file>images/classic/format-justify-right.png</file>
-        <file>images/classic/dfrac.png</file>
-        <file>images/classic/indice.png</file>
-        <file>images/classic/math1.png</file>
-        <file>images/classic/math2.png</file>
-        <file>images/classic/math3.png</file>
-        <file>images/classic/math4.png</file>
-        <file>images/classic/math5.png</file>
-        <file>images/classic/mathmode.png</file>
-        <file>images/classic/newline.png</file>
-        <file>images/classic/puissance.png</file>
-        <file>images/classic/racine.png</file>
-        <file>images/classic/smallfrac.png</file>
+        <file>images/list-add.png</file>
+        <file>images/list-remove.png</file>
     </qresource>
     <qresource prefix="/modern">
         <file>images/modern/filenew.png</file>
