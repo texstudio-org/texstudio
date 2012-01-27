@@ -5540,32 +5540,32 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>BibTeX</translation>
     </message>
     <message>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">Binaire</translation>
+        <translation>Binaire</translation>
     </message>
     <message>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>QtScript</translation>
     </message>
     <message>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX</translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">Macros (La)TeX</translation>
+        <translation>Macros (La)TeX</translation>
     </message>
     <message>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>XML</translation>
     </message>
 </context>
 <context>
@@ -5892,23 +5892,23 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Ajouter</translation>
+        <translation>Ajouter</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <source>Run script</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer le script</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished">Haut</translation>
+        <translation>Haut</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished">Bas</translation>
+        <translation>Bas</translation>
     </message>
 </context>
 <context>

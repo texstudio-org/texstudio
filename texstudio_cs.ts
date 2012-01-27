@@ -343,11 +343,11 @@
     </message>
     <message>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="obsolete">&lt;</translation>
     </message>
     <message>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
@@ -3697,7 +3697,7 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Document Class</source>
@@ -5521,17 +5521,37 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>New highlighting:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished">BibTeX</translation>
+    </message>
+    <message>
         <source>Binary</source>
-        <comment>Format name of language definition file binary.qnfa</comment>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QtScript</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(La)TeX</source>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
-        <comment>Format name of language definition file tmxmacro.qnfa</comment>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New highlighting:</source>
+        <source>XML</source>
+        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5807,11 +5827,11 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="obsolete">-</translation>
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Name</source>
@@ -5854,7 +5874,23 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
         <translation>Značka</translation>
     </message>
     <message>
-        <source>run script</source>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">Nahoru</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">Dolů</translation>
+    </message>
+    <message>
+        <source>Run script</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5925,11 +5961,11 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     </message>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="obsolete">-</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
