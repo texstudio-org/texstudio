@@ -1619,7 +1619,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 		int start = -1;
 		for (int i=0;i<se->children.size();i++){
 			StructureEntry* c = se->children[i];
-			if (c->type != StructureEntry::SE_SECTION && se->type != StructureEntry::SE_INCLUDE) continue;
+			if (c->type != StructureEntry::SE_SECTION && c->type != StructureEntry::SE_INCLUDE) continue;
 			if (c->getRealLineNumber() < linenr) 
 				updateParentVector(parent_level, c);
 			start = i;
