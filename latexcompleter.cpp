@@ -187,6 +187,7 @@ public:
 				select(completer->list->model()->index(0,0,QModelIndex()));
 			return true;
 		} else {
+            if(showMostUsed==1) return false;
 			insertCompletedWord();
 			resetBinding();
 			return true;
