@@ -99,6 +99,7 @@ private:
 
 	QMap<int,RecInfo> lstForThumbs;
 	PDFQueue *queueAdministration;
+    bool mFillCacheMode;
 };
 
 #endif // PDFRENDERMANAGER_H

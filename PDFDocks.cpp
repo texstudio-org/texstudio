@@ -261,11 +261,10 @@ QVariant PDFOverviewModel::data ( const QModelIndex & index, int role) const{
 	switch (role){
 	case Qt::DisplayRole: return QString::number(index.row()+1); 
 	case Qt::DecorationRole: 
-		while (index.row() >= cache.size()) cache << QPixmap();
+        while (index.row() >= cache.size()) cache << QPixmap();
 		if (cache[index.row()].isNull()) {
 			const QObject* o = this; //TODO: get rid of const_cast
-			qDebug() << index.row();
-			cache[index.row()] = document->renderManager->renderToImage(index.row(),const_cast<QObject*>(o),"updateImage",-1,-1,-1,-1,-1,-1,false).scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+            cache[index.row()] = document->renderManager->renderToImage(index.row(),const_cast<QObject*>(o),"updateImage",-1,-1,-1,-1,-1,-1,false).scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
 		}
 		return cache[index.row()];
 	case Qt::BackgroundColorRole:
@@ -275,11 +274,12 @@ QVariant PDFOverviewModel::data ( const QModelIndex & index, int role) const{
 }
 
 void PDFOverviewModel::setDocument(PDFDocument* doc){
+    beginResetModel();
 	document = doc;
 	if (!doc) return;
 	if (!doc->widget() || !doc->popplerDoc()) document = 0;
 	cache.clear();
-	reset();
+    endResetModel();
 }
 
 void PDFOverviewModel::updateImage(const QPixmap& pm, int page){
@@ -828,7 +828,7 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 {
 	setObjectName("outline");
 	setWindowTitle(getTitle());
-	list = new PDFDockListView(this);
+    list = new PDFDockListView(this);
 	list->setViewMode(QListView::IconMode);
 	list->setIconSize(QSize(128, 128));
 	list->setMovement(QListView::Static);
@@ -870,14 +870,16 @@ void PDFOverviewDock::followTocSelection()
 	if(dontFollow) return;
 	
 	QModelIndex mi = list->currentIndex();
-	if (mi.isValid()) 
-		document->goToPage(mi.row());
+    if (mi.isValid()) {
+        document->goToPage(mi.row());
+    }
 }
 
 void PDFOverviewDock::pageChanged(int page)
 {
-	dontFollow=true;
+    dontFollow=true;
 	list->setCurrentIndex(list->model()->index(page,0));
+    list->scrollTo(list->currentIndex());
 	dontFollow=false;
 }
 

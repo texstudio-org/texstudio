@@ -65,6 +65,7 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 	currentTicket=0;
 	queueAdministration->stopped=false;
 	renderedPages.setMaxCost(kMaxCachedPages);
+    mFillCacheMode=true;
 }
 
 PDFRenderManager::~PDFRenderManager(){
@@ -128,7 +129,8 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 		if(!queueAdministration->renderQueues[i]->isRunning())
 			queueAdministration->renderQueues[i]->start();
 	}
-	
+    mFillCacheMode=true;
+
 	return document;
 }
 
@@ -198,11 +200,17 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 		}
 	}
 	if(xres<0){
-		scale=1.0; //don't render thumbnails
-		enqueueCmd=false;
-		if(img.isNull())
-			lstForThumbs.insert(pageNr,info);
-	}
+        if(mFillCacheMode){
+        scale=1.0; //don't render thumbnails
+        enqueueCmd=false;
+        if(img.isNull())
+            lstForThumbs.insert(pageNr,info);
+        }else{
+            info.xres=20;
+            xres=20.0;
+            yres=20.0;
+        }
+    }
 	if(img.isNull()){
 		// generate deafult empty, to be rendered image
 		if(w<0 || h<0){
@@ -315,6 +323,7 @@ void PDFRenderManager::fillCache(int pg){
 			renderToImage(j,0,"");
 		i--;
 	}
+    mFillCacheMode=false;
 }
 
 bool PDFRenderManager::checkDuplicate(int &,RecInfo &info){
