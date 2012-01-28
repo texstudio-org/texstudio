@@ -3329,7 +3329,7 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 				newPdfPreviewer();
 				Q_ASSERT(!PDFDocument::documentList().isEmpty());
 			}
-			foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+            foreach (PDFDocument* viewer, PDFDocument::documentList()) {
 				viewer->loadFile(pdfFile,externalViewer);
 				int pg=viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
 				viewer->fillRenderCache(pg);
