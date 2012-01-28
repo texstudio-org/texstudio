@@ -24,25 +24,34 @@ const QRegExp TestToken::ignoredTextRegExp ("[$\t *!{}.\\][]+");
 const QRegExp TestToken::specialCharTextRegExp ("[A-Z'\"\\\\\\{\\}a-z0-9ö]+");
 
 int totalTestTime;
+char* tempResult;
 
 QString TestManager::performTest(QObject* obj){
 	char* argv[3];
 	argv[0]=(char*)"texstudio";
 	argv[1]=(char*)"-o";
-	argv[2]=(char*)"tempResult.txt";
+	argv[2]=tempResult;
 	QTime timing; timing.start();
 	QTest::qExec(obj,3,argv);
 	delete obj;
 	int time = timing.elapsed();
 	totalTestTime += time;
 	QString testTime = QString("Time: %1 ms\n\n" ).arg(time);
-	QFile f("tempResult.txt");
+	QFile f(QFile::decodeName(tempResult));
 	if (!f.open(QIODevice::ReadOnly)) 
 		return "\n\n!!!!!!!!!!! Couldn't find test result !!!!!!!!!!!! \n\n";
 	return f.readAll()+testTime;
 }
 
 QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit* codeedit, QEditor* editor){
+	QTemporaryFile tf;
+	tf.setAutoRemove(false);
+	tf.open();
+	QByteArray tfn = QFile::encodeName(tf.fileName());
+	tf.close();
+	tempResult = tfn.data();
+	
+	
 	//codeedit, editor are passed as extra parameters and not extracted from edView, so we don't have
 	//to include latexeditorview.h here
 	totalTestTime = 0;
@@ -76,6 +85,9 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	
 	if (!allPassed) 
 		tr="THERE SEEMS TO BE FAILED TESTS! \n\n\n\n\n\n\n"+tr;
+	
+	QFile(QFile::decodeName(tempResult)).remove();
+	
 	return tr;
 }
 #endif
