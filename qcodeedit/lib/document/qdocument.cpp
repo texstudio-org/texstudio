@@ -3407,19 +3407,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				int currentSpaceWidth = d->textWidth(newFont, " ");
 				for ( int i = r.position; i < max; ++i )
 				{
-					/* cursor drawing done one hierarchy up
-					while ( cidx < cursor.count() )
-					{
-						if ( cursor.at(cidx) == i )
-						{
-							p->drawLine(xpos, ypos, xpos, ypos + QDocumentPrivate::m_lineSpacing);
-
-							++cidx;
-						} else {
-							break;
-						}
-					} */
-
 					if ( i == r.position + r.length )
 						break;
 
@@ -3430,15 +3417,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						int toff = ts - (column % ts);
 						column += toff;
 						int xoff = toff * currentSpaceWidth;
-						/*
-						if ( r.format & FORMAT_SELECTION )
-						{
-							p->fillRect(xpos, ypos,
-										xoff, QDocumentPrivate::m_lineSpacing,
-										pal.highlight());
 
-						}
-						*/
+						
 						if ( showTabs )
 						{
 							p->translate(xpos - m_spaceSignOffset, ypos + QDocumentPrivate::m_ascent);
@@ -3449,15 +3429,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						xpos += xoff;
 					} else {
 						++column;
-						/*
-						if ( r.format & FORMAT_SELECTION )
-						{
-							p->fillRect(xpos, ypos,
-										QDocumentPrivate::m_spaceWidth, QDocumentPrivate::m_lineSpacing,
-										pal.highlight());
 
-						}
-						*/
 						if (
 								(
 									leading
@@ -3481,43 +3453,9 @@ void QDocumentLineHandle::draw(	QPainter *p,
 					}
 				}
 
-				/*
-				if ( leading )
-				{
-					//indent = xpos;
-					leading = false;
-				}
-				*/
 
 			} else {
 				p->drawText(xpos, baseline, rng);
-				/*cursor drawibng done one hierarchy up
-				while ( cidx < cursor.count() )
-				{
-					const int xcoff = cursor.at(cidx) - r.position;
-
-					if ( xcoff < 0 )
-					{
-						++cidx;
-						continue;
-					}
-
-					if ( xcoff < (rngIdx == ranges.count() ? r.length + 1 : r.length) )
-					{
-						int xcpos = xpos;
-
-						if ( xcoff )
-							xcpos += d->textWidth(newFont, rng.left(xcoff));
-
-						//qDebug("drawing cursor %i (col %i, x=%i)", cidx, cursor.at(cidx), xcpos);
-
-						p->drawLine(xcpos, ypos, xcpos, ypos + QDocumentPrivate::m_lineSpacing);
-
-						++cidx;
-					} else {
-						break;
-					}
-				}*/
 
 				xpos += rwidth;
 			}
