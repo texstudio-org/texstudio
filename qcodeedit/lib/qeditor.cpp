@@ -1888,12 +1888,13 @@ void QEditor::addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c){
 */
 void QEditor::removePlaceHolder(int id)
 {
-	if ( id<0 || id>=m_placeHolders.count() ) 
-		return;
 	if ( id == m_curPlaceHolder){
 		clearCursorMirrors();
 		m_curPlaceHolder = -1;
 	}
+
+	if ( id<0 || id>=m_placeHolders.count() ) 
+		return;
 	
 	PlaceHolder& ph = m_placeHolders[id];
 	
@@ -1974,7 +1975,9 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	
 	if (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft) {
 		if (i > m_curPlaceHolder) i--;
-		removePlaceHolder(m_curPlaceHolder);
+		int toRemove = m_curPlaceHolder;
+		m_curPlaceHolder = -1; //prevent endless recursion, if cursor mirrors exist
+		removePlaceHolder(toRemove);
 	}
 	
 	m_curPlaceHolder = -1; 
