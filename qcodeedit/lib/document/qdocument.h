@@ -153,7 +153,8 @@ class QCE_EXPORT QDocument : public QObject
 		enum WorkAroundFlag
 		{
 			DisableFixedPitchMode	= 0x01,
-			DisableWidthCache		= 0x02
+			DisableWidthCache		= 0x02,
+			DisableLineCache            = 0x04
 		};
 
 		Q_DECLARE_FLAGS(WorkAroundMode, WorkAroundFlag)
