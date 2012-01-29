@@ -5516,37 +5516,37 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="additionaltranslations.cpp" line="331"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">BibTeX</translation>
+        <translation>BibTeX</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="333"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">Binário</translation>
+        <translation>Binário</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="335"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>QtScript</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="337"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="339"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">(La)TeX Macro</translation>
+        <translation>(La)TeX Macro</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="341"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>XML</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1411"/>
@@ -7431,22 +7431,22 @@ Se não, caracteres finalizadores serão ignorados.</translation>
     <message>
         <location filename="usermenudialog.ui" line="60"/>
         <source>Add</source>
-        <translation type="unfinished">Adiconar</translation>
+        <translation>Adiconar</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="77"/>
         <source>Remove</source>
-        <translation type="unfinished">Remover</translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="113"/>
         <source>Up</source>
-        <translation type="unfinished">Acima</translation>
+        <translation>Acima</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="136"/>
         <source>Down</source>
-        <translation type="unfinished">Abaixo</translation>
+        <translation>Abaixo</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="153"/>
@@ -7490,7 +7490,7 @@ devem ocorrer somente antes de uma palavra.</translation>
     <message>
         <location filename="usermenudialog.ui" line="348"/>
         <source>Run script</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar script</translation>
     </message>
     <message>
         <source>run script</source>
