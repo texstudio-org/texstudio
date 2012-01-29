@@ -274,12 +274,12 @@ QVariant PDFOverviewModel::data ( const QModelIndex & index, int role) const{
 }
 
 void PDFOverviewModel::setDocument(PDFDocument* doc){
-    beginResetModel();
+	beginResetModel();
 	document = doc;
-	if (!doc) return;
+	if (!doc) { endResetModel(); return; }
 	if (!doc->widget() || !doc->popplerDoc()) document = 0;
 	cache.clear();
-    endResetModel();
+	endResetModel();
 }
 
 void PDFOverviewModel::updateImage(const QPixmap& pm, int page){
