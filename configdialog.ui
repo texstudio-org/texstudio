@@ -1560,35 +1560,67 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="title">
           <string>Hacks/Workarounds</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHackDisableFixedPitch">
             <property name="text">
              <string>Disable fixed pitch mode</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
             <property name="text">
              <string>Disable cache of character width</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="2" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
             <property name="text">
              <string>Disable work-around on accent typing (mac os x only)</string>
             </property>
            </widget>
           </item>
-          <item>
+          <item row="3" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
             <property name="toolTip">
              <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
             </property>
             <property name="text">
              <string>Disable cache of rendered lines</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBoxHackRenderMode">
+            <item>
+             <property name="text">
+              <string>qce (recommended)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>qt</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>single letter</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Render mode:</string>
             </property>
            </widget>
           </item>
