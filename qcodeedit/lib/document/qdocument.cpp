@@ -6087,14 +6087,19 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			p->drawPixmap((cxt.width - pm.width())/2, m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2, pm);
 		}
 
-		if(!currentLine&&!h->hasFlag(QDocumentLine::LayoutDirty)&&h->hasFlag(QDocumentLine::FormatsApplied)&&m_LineCache.contains(h)){
+		bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
+		
+		if(   useLineCache
+		   && !h->hasFlag(QDocumentLine::LayoutDirty) 
+		   &&  h->hasFlag(QDocumentLine::FormatsApplied)
+		   &&  m_LineCache.contains(h)){
 			QPixmap *px=m_LineCache.object(h);
 			p->drawPixmap(m_oldLineCacheOffset,0,*px);
 		} else {
 			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
 			QPixmap *px = 0;
 			QPainter *pr = 0;
-			if (!currentLine) {
+			if (useLineCache) {
 				px = new QPixmap(lineCacheWidth,ht);
 				//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
 				px->fill(fullSel ? selbg.color() : bg.color());
@@ -6103,16 +6108,16 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				pr = p;
 			}
 			pr->setFont(p->font());
-			if (!currentLine) {
+			if (useLineCache) {
 				pr->translate(-cxt.xoffset,0);
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
 			} else if (fullSel){
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
-				pr->fillRect(m_leftMargin, 0, lineCacheWidth, ht, fullSel ? selbg : bg);
+				pr->fillRect(m_leftMargin, 0, qMax(m_width,lineCacheWidth), ht, fullSel ? selbg : bg);
 			} else
 				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
 			h->draw(pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,0,ht);
-			if (!currentLine) {
+			if (useLineCache) {
 				p->drawPixmap(cxt.xoffset,0,*px);
 				delete pr;
 				m_LineCache.insert(h,px);

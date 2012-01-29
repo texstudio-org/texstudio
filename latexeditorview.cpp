@@ -665,6 +665,7 @@ void LatexEditorView::updateSettings(){
 	
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
+	QDocument::setWorkAround(QDocument::DisableLineCache, config->hackDisableLineCache);
 }
 
 void LatexEditorView::requestCitation(){

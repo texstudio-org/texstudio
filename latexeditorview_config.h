@@ -26,7 +26,7 @@ public:
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
 	bool mouseWheelZoom;
-	bool hackDisableFixedPitch, hackDisableWidthCache,hackDisableAccentWorkaround;
+	bool hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache,hackDisableAccentWorkaround;
 	int wordwrap; // 0 off, 1 soft wrap, 2 soft wrap fixed line width, 3 hard wrap fixed line width
 	bool toolTipPreview;
 	bool toolTipHelp;

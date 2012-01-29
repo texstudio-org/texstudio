@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -445,7 +445,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
+                 <iconset resource="texstudio.qrc">
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -492,7 +492,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
+                 <iconset resource="texstudio.qrc">
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -1579,6 +1579,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
             <property name="text">
              <string>Disable work-around on accent typing (mac os x only)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
+            <property name="toolTip">
+             <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
+            </property>
+            <property name="text">
+             <string>Disable cache of rendered lines</string>
             </property>
            </widget>
           </item>
