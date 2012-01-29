@@ -70,6 +70,8 @@ private:
 	QMap<QChar, int> slowMap;
 };
 
+typedef QMap<QChar, QPixmap> CharacterCache;
+
 Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
 
@@ -154,7 +156,8 @@ class QCE_EXPORT QDocument : public QObject
 		{
 			DisableFixedPitchMode	= 0x01,
 			DisableWidthCache		= 0x02,
-			DisableLineCache            = 0x04
+			DisableLineCache            = 0x04,
+			ForceSingleCharacterDrawing = 0x08
 		};
 
 		Q_DECLARE_FLAGS(WorkAroundMode, WorkAroundFlag)

@@ -666,6 +666,10 @@ void LatexEditorView::updateSettings(){
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
 	QDocument::setWorkAround(QDocument::DisableLineCache, config->hackDisableLineCache);
+	if (config->hackRenderingMode == 0)
+		QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, false);
+	else
+		QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, true);
 }
 
 void LatexEditorView::requestCitation(){

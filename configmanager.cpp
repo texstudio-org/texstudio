@@ -334,6 +334,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Hack Disable Width Cache", &editorConfig->hackDisableWidthCache, false, &pseudoDialog->checkBoxHackDisableWidthCache);
 	registerOption("Editor/Hack Disable Line Cache", &editorConfig->hackDisableLineCache, false, &pseudoDialog->checkBoxHackDisableLineCache);
 	registerOption("Editor/Hack Disable Accent Workaround", &editorConfig->hackDisableAccentWorkaround, false, &pseudoDialog->checkBoxHackDisableAccentWorkaround);
+	registerOption("Editor/Hack Render Mode", &editorConfig->hackRenderingMode, 0, &pseudoDialog->comboBoxHackRenderMode);
 	
 	//completion
 	registerOption("Editor/Completion", &completerConfig->enabled, true, &pseudoDialog->checkBoxCompletion);

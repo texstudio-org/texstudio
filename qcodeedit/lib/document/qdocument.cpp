@@ -3455,9 +3455,12 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 
 			} else {
-				p->drawText(xpos, baseline, rng);
-
-				xpos += rwidth;
+				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing )
+					d->drawText(*p, newFont, xpos, ypos, rng); //ypos instead of baseline
+				else {
+					p->drawText(xpos, baseline, rng);
+					xpos += rwidth;
+				}
 			}
 
 			//qDebug("underline pos : %i", p->fontMetrics().underlinePos());
@@ -5598,6 +5601,7 @@ QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
 QFont* QDocumentPrivate::m_font = 0;// = QApplication::font();
 QFormatScheme* QDocumentPrivate::m_formatScheme = 0;// = QApplication::font();
 QMap<int,WCache*> QDocumentPrivate::m_fmtWidthCache;
+QMap<int,CharacterCache*> QDocumentPrivate::m_fmtCharacterCache;
 QVector<QFont> QDocumentPrivate::m_fonts;
 QList<QFontMetrics> QDocumentPrivate::m_fontMetrics;
 
@@ -6444,6 +6448,8 @@ void QDocumentPrivate::setHeight()
 void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 {
 	qDeleteAll(m_fmtWidthCache);
+	qDeleteAll(m_fmtCharacterCache);
+	m_fmtCharacterCache.clear();
 	m_fmtWidthCache.clear(); //there was a comment saying this was necessary here
 
 	if ( !m_font )
@@ -6576,6 +6582,50 @@ int QDocumentPrivate::getRenderRangeWidth(int &columnDelta, int curColumn, const
 		return textWidth(newFont, subText);
 	}
 }
+
+void QDocumentPrivate::drawText(QPainter& p, int fid, int& xpos, int ypos, const QString& text){
+	CharacterCache *cache;
+	if(m_fmtCharacterCache.contains(fid))
+		cache=m_fmtCharacterCache.value(fid);
+	else{
+		cache=new CharacterCache;
+		m_fmtCharacterCache.insert(fid,cache);
+	}
+	p.setBackgroundMode(Qt::OpaqueMode);
+	
+	QChar lastSurrogate;
+	foreach (const QChar& c, text){
+		const QChar::Category cat = c.category();
+		int char_id;
+		if (cat == QChar::Other_Surrogate) {
+			if (c.isHighSurrogate()) {
+				lastSurrogate = c;
+				continue;
+			} else 
+				char_id = QChar::surrogateToUcs4(lastSurrogate, c);
+		} else char_id = c.unicode();
+		if (cache->contains(char_id))  {
+			const QPixmap& px = cache->value(char_id);
+			p.drawPixmap(xpos, ypos, px);
+			xpos += px.width();
+		} else {
+			int cw;
+			if (cat == QChar::Other_Surrogate) 
+				cw = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
+			else 
+				cw = textWidth(fid, c);
+			QPixmap pm(cw,m_lineSpacing);
+			pm.fill(QColor::fromRgb(255,255,255,0)); //transparent background (opaque background would be twice as fast, but then we need much more pixmaps)
+			QPainter pmp(&pm);
+			tunePainter(&pmp, fid);
+			pmp.drawText(0, m_ascent, cat == QChar::Other_Surrogate?(QString(lastSurrogate)+c):c);
+			p.drawPixmap(xpos, ypos, pm);
+			cache->insert(char_id, pm);
+			xpos += cw;
+		}
+	}
+}
+
 
 void QDocumentPrivate::updateFormatCache()
 {
