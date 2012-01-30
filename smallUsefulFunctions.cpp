@@ -725,9 +725,15 @@ bool findEnvironmentLines(const QDocument *doc, const QString &env, int line, in
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){	
 	const QFontMetrics &fm = parent->fontMetrics();
 	if (height == -1) height = 0;
-	else if (height == 0) height =parent->height()-2;		
+	else if (height == 0) {
+		if (parent->property("innerButtonHeight").isValid()) height =parent->property("innerButtonHeight").toInt();
+		else {
+			height = parent->height() - 2;
+			parent->setProperty("innerButtonHeight", height);
+		}
+	}
 	
-	if (combo==0)
+	if (combo==0) 
 		combo=new QToolButton(parent);
 	if (height != 0)
 		combo->setMinimumHeight(height);
