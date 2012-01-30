@@ -2880,11 +2880,22 @@ QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 
 		if ( i >= m_cache.count() )
 			break;
-
+	
 		fid = m_cache[i];
 
+		int fmts[FORMAT_MAX_COUNT];
+		QFormat formats[FORMAT_MAX_COUNT];
+		int newFont;
+		m_doc->impl()->m_formatScheme->extractFormats(fid, fmts, formats, newFont);
+		
 		r.start = i;
-		r.format = m_doc->formatScheme()->format(fid).toTextCharFormat();
+		r.format = m_doc->formatScheme()->format(newFont).toTextCharFormat();
+		if (formats[0].foreground.isValid()) { if (newFont != 0) { r.format.setForeground(formats[0].foreground); } }
+		else if (formats[1].foreground.isValid()) { if (newFont != 1) { r.format.setForeground(formats[1].foreground); } }
+		else if (formats[2].foreground.isValid()) { if (newFont != 2) { r.format.setForeground(formats[2].foreground); } }
+		if (formats[0].background.isValid()) { if (newFont != 0) { r.format.setBackground(formats[0].background); } }
+		else if (formats[1].background.isValid()) { if (newFont != 1) { r.format.setBackground(formats[1].background); } }
+		else if (formats[2].background.isValid()) { if (newFont != 2) { r.format.setBackground(formats[2].background); } }
 
 		while ( (i < m_cache.count()) && (m_cache[i] == fid) )
 			++i;
@@ -2920,7 +2931,7 @@ void QDocumentLineHandle::applyOverlays() const
 void QDocumentLineHandle::layout() const
 {
 	//needs locking at caller !
-	bool needLayout = false;
+	bool needLayout = m_doc->impl()->m_workArounds & QDocument::ForceQTextLayout;
 	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
 		<< QChar::DirR
 		<< QChar::DirAL
@@ -3237,11 +3248,6 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 		m_layout->draw(p, off, selections);
 
-		/* cursor drawing is done one hierarchy up
-		for ( int i = 0; i < cursor.count(); ++i )
-			m_layout->drawCursor(p, off, cursor[i]);
-		*/
-
 		//m_layout->clearAdditionalFormats();
 	} else if ( m_text.isEmpty() ) {
 		// enforce selection drawing on empty lines
@@ -3503,9 +3509,15 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 
 			} else {
-				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing )
-					d->drawText(*p, fmts[0], currentSelected ? ht :(formats[0].foreground.isValid()?formats[0].foreground:pal.text().color()), currentSelected, xpos, ypos, rng); //ypos instead of baseline
-				else {
+				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing ) {
+					QColor color;
+					if (currentSelected) color = ht;
+					else if (newFont == fmts[0]) color = formats[0].foreground;
+					else if (newFont == fmts[1]) color = formats[1].foreground;
+					else if (newFont == fmts[2]) color = formats[2].foreground;
+					if (!color.isValid()) color = pal.text().color();
+					d->drawText(*p, newFont, color, currentSelected, xpos, ypos, rng); //ypos instead of baseline
+				} else {
 					p->drawText(xpos, baseline, rng);
 					xpos += rwidth;
 				}

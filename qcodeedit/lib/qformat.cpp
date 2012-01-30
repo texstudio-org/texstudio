@@ -25,8 +25,9 @@ QTextCharFormat QFormat::toTextCharFormat() const
 	if ( !fontFamily.isEmpty() )
 		f.setFontFamily(fontFamily);
 
-	if ( pointSize )
+	/*if ( pointSize ) {
 		f.setFontPointSize(pointSize);
+	}*/
 
 	return f;
 }
