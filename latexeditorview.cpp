@@ -1544,7 +1544,13 @@ void LatexEditorViewConfig::settingsChanged(){
 	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
 	
 	QFont f(fontFamily, fontSize);
+#if QT_VERSION >= 0x040700
 	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+#else
+	const QFont::StyleStrategy ForceIntegerMetrics = (QFont::StyleStrategy)0x0400;
+	f.setStyleHint(QFont::Courier, (hasAtLeastQt(4,7) ? ForceIntegerMetrics : QFont::PreferQuality));
+	
+#endif
 	f.setKerning(false);
 	
 	QFontMetrics fm(f);
