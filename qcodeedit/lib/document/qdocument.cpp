@@ -3504,7 +3504,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			} else {
 				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing )
-					d->drawText(*p, newFont, currentSelected ? ht :(formats[0].foreground.isValid()?formats[0].foreground:pal.text().color()), currentSelected, xpos, ypos, rng); //ypos instead of baseline
+					d->drawText(*p, fmts[0], currentSelected ? ht :(formats[0].foreground.isValid()?formats[0].foreground:pal.text().color()), currentSelected, xpos, ypos, rng); //ypos instead of baseline
 				else {
 					p->drawText(xpos, baseline, rng);
 					xpos += rwidth;
