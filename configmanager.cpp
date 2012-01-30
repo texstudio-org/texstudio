@@ -330,6 +330,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	registerOption("Editor/Mouse Wheel Zoom", &editorConfig->mouseWheelZoom, true, &pseudoDialog->checkBoxMouseWheelZoom);
 	
+	registerOption("Editor/Hack Auto Choose", &editorConfig->hackAutoChoose, true, &pseudoDialog->checkBoxHackAutoRendering);
 	registerOption("Editor/Hack Disable Fixed Pitch", &editorConfig->hackDisableFixedPitch, false, &pseudoDialog->checkBoxHackDisableFixedPitch);
 	registerOption("Editor/Hack Disable Width Cache", &editorConfig->hackDisableWidthCache, false, &pseudoDialog->checkBoxHackDisableWidthCache);
 	registerOption("Editor/Hack Disable Line Cache", &editorConfig->hackDisableLineCache, false, &pseudoDialog->checkBoxHackDisableLineCache);

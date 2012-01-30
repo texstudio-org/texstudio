@@ -1538,6 +1538,45 @@ void LatexEditorView::changeSpellingLanguage(const QLocale &loc) {
 	}
 }
 
+
+void LatexEditorViewConfig::settingsChanged(){
+	if (!hackAutoChoose) { lastFontFamily = ""; return; }
+	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
+	
+	QFont f(fontFamily, fontSize);
+	QFontMetrics fm(f);
+	
+	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
+	int letterWidth = fm.width('a');
+	
+	static QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
+	
+	foreach (const QChar& c, lettersToCheck) {
+		QString testString;
+		int currentWidth = fm.width(c);
+		if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
+		for (int i=1;i<10;i++) {
+			testString += c;
+			int stringWidth = fm.width(testString);
+			if (stringWidth % i != 0) sameLettersHaveDifferentWidth = true;
+			if (currentWidth != stringWidth / i) sameLettersHaveDifferentWidth = true;
+		}
+		if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
+	}
+	
+	if (!QFontInfo(f).fixedPitch()) hackDisableFixedPitch = false; //won't be enabled anyways
+	else hackDisableFixedPitch = lettersHaveDifferentWidth;
+	hackDisableWidthCache = sameLettersHaveDifferentWidth;
+	hackDisableLineCache = false;
+	hackRenderingMode = 0; //always use qce, best tested
+	
+	lastFontFamily = fontFamily;
+	lastFontSize = fontSize;
+	
+}
+
+
+
 QString BracketInvertAffector::affect(const QKeyEvent *, const QString& base, int, int) const{
 	static const QString& brackets = "<>()[]{}";
 	QString after;
@@ -1567,3 +1606,6 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 	if (!inverterSingleton) inverterSingleton = new BracketInvertAffector();
 	return inverterSingleton;
 }
+
+
+

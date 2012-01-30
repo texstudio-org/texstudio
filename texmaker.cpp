@@ -2435,6 +2435,8 @@ void Texmaker::ReadSettings() {
 	}
 	
 	documents.settingsRead();
+	
+	configManager.editorConfig->settingsChanged();
 }
 
 void Texmaker::SaveSettings(const QString& configName) {
@@ -3912,6 +3914,8 @@ void Texmaker::GeneralOptions() {
 	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
 	QStringList loadFiles=configManager.completerConfig->getLoadedFiles();
 	if (configManager.execConfigDialog()) {
+		configManager.editorConfig->settingsChanged();
+		
 		spellerManager.setDictPath(configManager.spellDictDir);
 		spellerManager.setDefaultSpeller(configManager.spellLanguage);
 		
