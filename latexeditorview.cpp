@@ -1544,6 +1544,9 @@ void LatexEditorViewConfig::settingsChanged(){
 	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
 	
 	QFont f(fontFamily, fontSize);
+	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+	f.setKerning(false);
+	
 	QFontMetrics fm(f);
 	
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
