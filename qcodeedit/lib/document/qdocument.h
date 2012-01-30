@@ -59,18 +59,27 @@ class QDocumentCursorHandle;
 typedef QVector<QDocumentLineHandle*>::iterator QDocumentIterator;
 typedef QVector<QDocumentLineHandle*>::const_iterator QDocumentConstIterator;
 
-class WCache{
+template<typename T> class FastCache{
 public:
-	WCache();
-	void insert(const QChar& c, int width);
-	bool contains(const QChar& c) const;
-	int value(const QChar& c) const;
+	FastCache();
+	void insert(const int c, const T& width);
+	bool contains(const int c) const;
+	T value(const int c) const;
+	inline void insert(const QChar& c, const T& width);
+	inline bool contains(const QChar& c) const;
+	inline T value(const QChar& c) const;
 private:
-	int fastMap[512];
-	QMap<QChar, int> slowMap;
+	T fastMap[512];
+	QMap<int, T> slowMap;
 };
 
-typedef QMap<QChar, QPixmap> CharacterCache;
+template<typename T> class CacheCache {
+public:
+	FastCache<T> * getCache(int format);
+	void clear();
+private:
+	QMap<int, FastCache<T>* > caches;
+};
 
 Q_DECLARE_METATYPE(QDocumentIterator)
 Q_DECLARE_METATYPE(QDocumentConstIterator)
