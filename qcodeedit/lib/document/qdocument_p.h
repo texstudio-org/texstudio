@@ -195,9 +195,10 @@ class QCE_EXPORT QDocumentPrivate
 		void setFormatScheme(QFormatScheme *f);
 		void tunePainter(QPainter *p, int fid);
 
+		int textWidthSingleLetterFallback(int fid, const QString& text);
 		int textWidth(int fid, const QString& text);
 		int getRenderRangeWidth(int &columnDelta, int curColumn, const RenderRange& r, const int newFont, const QString& text);
-		void drawText(QPainter& p, int fid, int& xpos, int baseline, const QString& text);
+		void drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, int& xpos, int baseline, const QString& text);
 		
 	private:
 		QDocument *m_doc;
@@ -254,7 +255,7 @@ class QCE_EXPORT QDocumentPrivate
 		static QVector<QFont> m_fonts;
 		static QList<QFontMetrics> m_fontMetrics;
 		static CacheCache<int> m_fmtWidthCache;
-		static CacheCache<QPixmap> m_fmtCharacterCache;
+		static CacheCache<QPixmap> m_fmtCharacterCache[2];
 
 		static QFormatScheme *m_formatScheme;
 		QLanguageDefinition *m_language;
