@@ -253,8 +253,8 @@ class QCE_EXPORT QDocumentPrivate
 				
 		static QVector<QFont> m_fonts;
 		static QList<QFontMetrics> m_fontMetrics;
-		static QMap<int,WCache*> m_fmtWidthCache;
-		static QMap<int,CharacterCache*> m_fmtCharacterCache;
+		static CacheCache<int> m_fmtWidthCache;
+		static CacheCache<QPixmap> m_fmtCharacterCache;
 
 		static QFormatScheme *m_formatScheme;
 		QLanguageDefinition *m_language;

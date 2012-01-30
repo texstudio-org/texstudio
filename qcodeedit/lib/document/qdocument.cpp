@@ -104,24 +104,56 @@ struct RenderRange
 	int wrap;
 };
 
-WCache::WCache(){
-	memset(fastMap, -1, sizeof(fastMap));
+template<typename T> struct CacheMeta { 
+	static inline bool exists(const T&); 
+	static inline void clearArray(T*, int size); 
+};
+
+template<> bool CacheMeta<int>::exists(const int& v) { return v >= 0; }
+template<> bool CacheMeta<QPixmap>::exists(const QPixmap& v) { return !v.isNull(); }
+
+template<> void CacheMeta<int>::clearArray(int* block, int size){ memset(block, -1, size);}
+template<> void CacheMeta<QPixmap>::clearArray(QPixmap*, int){ }
+
+template<typename T>
+FastCache<T>::FastCache(){
+	CacheMeta<T>::clearArray(fastMap, sizeof(fastMap));
 }
 
-void WCache::insert(const QChar& c, int width){
-	if (c.unicode() > 0 && c.unicode() < 512) fastMap[c.unicode()] = width;
+template<typename T>
+void FastCache<T>::insert(const int c, const T& width){
+	if (c > 0 && c < 512) fastMap[c] = width;
 	else slowMap.insert(c, width);
 }
 
-bool WCache::contains(const QChar& c) const{
-	if (c.unicode() > 0 && c.unicode() < 512) return fastMap[c.unicode()] >= 0;
+template<typename T>
+bool FastCache<T>::contains(const int c) const{
+	if (c > 0 && c < 512) return CacheMeta<T>::exists(fastMap[c]);
 	return slowMap.contains(c);
 }
-int WCache::value(const QChar& c) const{
-	if (c.unicode() > 0 && c.unicode() < 512) return fastMap[c.unicode()];
+template<typename T>
+T FastCache<T>::value(const int c) const{
+	if (c > 0 && c < 512) return fastMap[c];
 	return slowMap.value(c);
 }
 
+template<typename T> inline void FastCache<T>::insert(const QChar& c, const T& width){return insert(c.unicode(), width); }
+template<typename T> inline bool FastCache<T>::contains(const QChar& c) const{ return contains(c.unicode()); }
+template<typename T> inline T FastCache<T>::value(const QChar& c) const{ return value(c.unicode()); }
+
+template<typename T> FastCache<T> * CacheCache<T>::getCache(int format){
+	typename QMap<int, FastCache<T>* >::iterator it = caches.find(format);
+	if (it != caches.end())
+		return *it;
+	FastCache<T> *cache=new FastCache<T>();
+	caches.insert(format, cache);
+	return cache;
+}
+
+template<typename T> void CacheCache<T>::clear(){
+	qDeleteAll(caches);
+	caches.clear();
+}
 
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
@@ -5600,8 +5632,8 @@ QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
 
 QFont* QDocumentPrivate::m_font = 0;// = QApplication::font();
 QFormatScheme* QDocumentPrivate::m_formatScheme = 0;// = QApplication::font();
-QMap<int,WCache*> QDocumentPrivate::m_fmtWidthCache;
-QMap<int,CharacterCache*> QDocumentPrivate::m_fmtCharacterCache;
+CacheCache<int> QDocumentPrivate::m_fmtWidthCache;
+CacheCache<QPixmap> QDocumentPrivate::m_fmtCharacterCache;
 QVector<QFont> QDocumentPrivate::m_fonts;
 QList<QFontMetrics> QDocumentPrivate::m_fontMetrics;
 
@@ -6447,8 +6479,6 @@ void QDocumentPrivate::setHeight()
 
 void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 {
-	qDeleteAll(m_fmtWidthCache);
-	qDeleteAll(m_fmtCharacterCache);
 	m_fmtCharacterCache.clear();
 	m_fmtWidthCache.clear(); //there was a comment saying this was necessary here
 
@@ -6552,19 +6582,13 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 
 	int rwidth=0;
 
-	WCache *wCache;
-	if(m_fmtWidthCache.contains(fid)){
-		wCache=m_fmtWidthCache.value(fid);
-	}else{
-		wCache=new WCache;
-		m_fmtWidthCache.insert(fid,wCache);
-	}
+	FastCache<int> *cache = m_fmtWidthCache.getCache(fid);
 	foreach(const QChar& c, text){
-		if(wCache->contains(c)){
-			rwidth+=wCache->value(c);
+		if(cache->contains(c)){
+			rwidth+=cache->value(c);
 		}else {
 			int cwidth = m_fontMetrics[fid].width(c);
-			wCache->insert(c,cwidth);
+			cache->insert(c,cwidth);
 			rwidth+=cwidth;
 		}
 	}
@@ -6584,13 +6608,7 @@ int QDocumentPrivate::getRenderRangeWidth(int &columnDelta, int curColumn, const
 }
 
 void QDocumentPrivate::drawText(QPainter& p, int fid, int& xpos, int ypos, const QString& text){
-	CharacterCache *cache;
-	if(m_fmtCharacterCache.contains(fid))
-		cache=m_fmtCharacterCache.value(fid);
-	else{
-		cache=new CharacterCache;
-		m_fmtCharacterCache.insert(fid,cache);
-	}
+	FastCache<QPixmap> *cache = m_fmtCharacterCache.getCache(fid);
 	p.setBackgroundMode(Qt::OpaqueMode);
 	
 	QChar lastSurrogate;
