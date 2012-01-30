@@ -32,8 +32,12 @@ void QDocumentLineTest::initTestCase(){
 	savedSpaceWidth = QDocumentPrivate::m_spaceWidth;
 	savedLeftMargin = QDocumentPrivate::m_leftMargin;
 
+	savedWorkAroundFPM = doc->hasWorkAround(QDocument::DisableFixedPitchMode);
+	savedWorkAroundFSCD = doc->hasWorkAround(QDocument::ForceSingleCharacterDrawing);
+	
 	doc->impl()->setHardLineWrap(false);
 	doc->setWorkAround(QDocument::DisableFixedPitchMode, false);
+	doc->setWorkAround(QDocument::ForceSingleCharacterDrawing, false);
 	QDocumentPrivate::m_fixedPitch = true;
 	QDocumentPrivate::m_leftMargin = 0;
 	QDocumentPrivate::m_spaceWidth = 5;
@@ -43,6 +47,8 @@ void QDocumentLineTest::cleanupTestCase(){
 	QDocumentPrivate::m_fixedPitch = savedFixedPitch;
 	QDocumentPrivate::m_spaceWidth = savedSpaceWidth;
 	QDocumentPrivate::m_leftMargin = savedLeftMargin;
+	doc->setWorkAround(QDocument::DisableFixedPitchMode, savedWorkAroundFPM);
+	doc->setWorkAround(QDocument::ForceSingleCharacterDrawing, savedWorkAroundFSCD);
 }
 
 typedef QPair<int, int> IntPair;

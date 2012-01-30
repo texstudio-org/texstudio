@@ -18,6 +18,7 @@ private:
 
 	bool savedFixedPitch;
 	int savedSpaceWidth, savedLeftMargin;
+	bool savedWorkAroundFPM, savedWorkAroundFSCD;
 private slots:
 	void initTestCase();
 	void cleanupTestCase();
