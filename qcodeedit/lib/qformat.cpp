@@ -27,7 +27,7 @@ QTextCharFormat QFormat::toTextCharFormat() const
 
 	/*if ( pointSize ) {
 		f.setFontPointSize(pointSize);
-	}*/
+	}*/ //QTextLayout doesn't really seem to support smaller fonts in a line with only larger font height (although mixed fonts in the same line are ok)
 
 	return f;
 }

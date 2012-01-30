@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>542</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1561,20 +1561,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <string>Hacks/Workarounds</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxHackDisableFixedPitch">
-            <property name="text">
-             <string>Disable fixed pitch mode</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
-            <property name="text">
-             <string>Disable cache of character width</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
             <property name="text">
@@ -1582,17 +1568,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
-            <property name="toolTip">
-             <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
-            </property>
-            <property name="text">
-             <string>Disable cache of rendered lines</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
+          <item row="8" column="1">
            <widget class="QComboBox" name="comboBoxHackRenderMode">
             <item>
              <property name="text">
@@ -1611,7 +1587,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_11">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -1621,6 +1597,37 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <property name="text">
              <string>Render mode:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxHackAutoRendering">
+            <property name="text">
+             <string>Try to automatically choose best display options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
+            <property name="toolTip">
+             <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
+            </property>
+            <property name="text">
+             <string>Disable cache of rendered lines</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
+            <property name="text">
+             <string>Disable cache of character width</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxHackDisableFixedPitch">
+            <property name="text">
+             <string>Disable fixed pitch mode</string>
             </property>
            </widget>
           </item>
@@ -2405,8 +2412,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1014</x>
-     <y>663</y>
+     <x>1043</x>
+     <y>661</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -2422,7 +2429,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <hints>
     <hint type="sourcelabel">
      <x>1105</x>
-     <y>663</y>
+     <y>661</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -2438,11 +2445,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <hints>
     <hint type="sourcelabel">
      <x>326</x>
-     <y>38</y>
+     <y>12</y>
     </hint>
     <hint type="destinationlabel">
-     <x>326</x>
-     <y>38</y>
+     <x>319</x>
+     <y>16</y>
     </hint>
    </hints>
   </connection>
@@ -2453,12 +2460,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1036</x>
-     <y>528</y>
+     <x>253</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
-     <x>425</x>
-     <y>603</y>
+     <x>269</x>
+     <y>23</y>
     </hint>
    </hints>
   </connection>
@@ -2469,12 +2476,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1036</x>
-     <y>528</y>
+     <x>253</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
-     <x>607</x>
-     <y>603</y>
+     <x>285</x>
+     <y>23</y>
     </hint>
    </hints>
   </connection>
@@ -2485,12 +2492,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1036</x>
-     <y>528</y>
+     <x>253</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
-     <x>805</x>
-     <y>603</y>
+     <x>301</x>
+     <y>23</y>
     </hint>
    </hints>
   </connection>
@@ -2501,12 +2508,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>326</x>
-     <y>38</y>
+     <x>554</x>
+     <y>53</y>
     </hint>
     <hint type="destinationlabel">
-     <x>326</x>
-     <y>38</y>
+     <x>887</x>
+     <y>53</y>
     </hint>
    </hints>
   </connection>
@@ -2517,12 +2524,76 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1036</x>
-     <y>528</y>
+     <x>253</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1036</x>
-     <y>603</y>
+     <x>317</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackDisableFixedPitch</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>392</x>
+     <y>491</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>413</x>
+     <y>518</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackDisableWidthCache</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>510</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>443</x>
+     <y>549</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackDisableLineCache</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>532</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>571</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxHackRenderMode</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>490</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>565</x>
+     <y>599</y>
     </hint>
    </hints>
   </connection>
