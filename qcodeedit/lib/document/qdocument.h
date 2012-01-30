@@ -62,12 +62,14 @@ typedef QVector<QDocumentLineHandle*>::const_iterator QDocumentConstIterator;
 template<typename T> class FastCache{
 public:
 	FastCache();
-	void insert(const int c, const T& width);
+	T* insert(const int c, const T& width);
 	bool contains(const int c) const;
 	T value(const int c) const;
-	inline void insert(const QChar& c, const T& width);
+	bool valueIfThere(const int c, const T*& value) const;
+	inline T* insert(const QChar& c, const T& width);
 	inline bool contains(const QChar& c) const;
 	inline T value(const QChar& c) const;
+	inline bool valueIfThere(const QChar& c, const T*& value) const;
 private:
 	T fastMap[512];
 	QMap<int, T> slowMap;

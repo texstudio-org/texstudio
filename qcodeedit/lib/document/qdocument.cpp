@@ -121,9 +121,9 @@ FastCache<T>::FastCache(){
 }
 
 template<typename T>
-void FastCache<T>::insert(const int c, const T& width){
-	if (c > 0 && c < 512) fastMap[c] = width;
-	else slowMap.insert(c, width);
+T* FastCache<T>::insert(const int c, const T& width){
+	if (c > 0 && c < 512) {fastMap[c] = width; return &fastMap[c]; }
+	else { typename QMap<int, T>::iterator it = slowMap.insert(c, width); return &(*it);} 
 }
 
 template<typename T>
@@ -137,9 +137,25 @@ T FastCache<T>::value(const int c) const{
 	return slowMap.value(c);
 }
 
-template<typename T> inline void FastCache<T>::insert(const QChar& c, const T& width){return insert(c.unicode(), width); }
+template<typename T>
+bool FastCache<T>::valueIfThere(const int c, const T*& value) const{
+	if (c > 0 && c < 512) {
+		if (CacheMeta<T>::exists(fastMap[c])) { value  = &fastMap[c]; return true; }
+	} else {
+		typename QMap<int, T>::const_iterator it = slowMap.find(c);
+		if (it != slowMap.end()) {
+			value = &(*it);
+			return true;
+		}
+	}
+	return false;
+}
+
+
+template<typename T> inline T* FastCache<T>::insert(const QChar& c, const T& width){return insert(c.unicode(), width); }
 template<typename T> inline bool FastCache<T>::contains(const QChar& c) const{ return contains(c.unicode()); }
 template<typename T> inline T FastCache<T>::value(const QChar& c) const{ return value(c.unicode()); }
+template<typename T> inline bool FastCache<T>::valueIfThere(const QChar& c, const T*& value) const{ return valueIfThere(c.unicode(),value); }
 
 template<typename T> FastCache<T> * CacheCache<T>::getCache(int format){
 	typename QMap<int, FastCache<T>* >::iterator it = caches.find(format);
@@ -152,7 +168,7 @@ template<typename T> FastCache<T> * CacheCache<T>::getCache(int format){
 
 template<typename T> void CacheCache<T>::clear(){
 	qDeleteAll(caches);
-	caches.clear();
+	caches.clear();//there was a comment saying this was necessary here
 }
 
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
@@ -3395,8 +3411,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 			const int baseline = ypos + QDocumentPrivate::m_ascent;
 
 
-
-			if ( fullSel || (fmt & FORMAT_SELECTION) )
+			const bool currentSelected = (fullSel || (fmt & FORMAT_SELECTION));
+			if ( currentSelected )
 			{
 				p->setPen(ht);
 
@@ -3408,7 +3424,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				if ( formats[0].foreground.isValid() ) p->setPen(formats[0].foreground);
 				else if ( formats[1].foreground.isValid() ) p->setPen(formats[1].foreground);
 				else if ( formats[2].foreground.isValid() ) p->setPen(formats[2].foreground);
-				else p->setBrush(pal.text());
+				else p->setPen(pal.text().color());
 
 				if ( formats[0].background.isValid() )
 				{
@@ -3488,7 +3504,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			} else {
 				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing )
-					d->drawText(*p, newFont, xpos, ypos, rng); //ypos instead of baseline
+					d->drawText(*p, newFont, currentSelected ? ht :(formats[0].foreground.isValid()?formats[0].foreground:pal.text().color()), currentSelected, xpos, ypos, rng); //ypos instead of baseline
 				else {
 					p->drawText(xpos, baseline, rng);
 					xpos += rwidth;
@@ -5633,7 +5649,7 @@ QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
 QFont* QDocumentPrivate::m_font = 0;// = QApplication::font();
 QFormatScheme* QDocumentPrivate::m_formatScheme = 0;// = QApplication::font();
 CacheCache<int> QDocumentPrivate::m_fmtWidthCache;
-CacheCache<QPixmap> QDocumentPrivate::m_fmtCharacterCache;
+CacheCache<QPixmap> QDocumentPrivate::m_fmtCharacterCache[2];
 QVector<QFont> QDocumentPrivate::m_fonts;
 QList<QFontMetrics> QDocumentPrivate::m_fontMetrics;
 
@@ -6479,8 +6495,9 @@ void QDocumentPrivate::setHeight()
 
 void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 {
-	m_fmtCharacterCache.clear();
-	m_fmtWidthCache.clear(); //there was a comment saying this was necessary here
+	m_fmtCharacterCache[0].clear();
+	m_fmtCharacterCache[1].clear();
+	m_fmtWidthCache.clear(); 
 
 	if ( !m_font )
 	{
@@ -6545,9 +6562,13 @@ void QDocumentPrivate::tunePainter(QPainter *p, int fid)
 	}
 }
 
+
 int QDocumentPrivate::textWidth(int fid, const QString& text){
 	if ( fid < 0 || fid >= m_fonts.size() || text.isEmpty()) return 0;
 
+	if (m_workArounds & QDocument::ForceSingleCharacterDrawing ) 
+		return textWidthSingleLetterFallback(fid, text);
+	
 	/*
 	  There are three different ways to calculate the width:
 	  1. String length * Character Width           if fixedPitch && no surrogates && no asian characters
@@ -6584,13 +6605,10 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 
 	FastCache<int> *cache = m_fmtWidthCache.getCache(fid);
 	foreach(const QChar& c, text){
-		if(cache->contains(c)){
-			rwidth+=cache->value(c);
-		}else {
-			int cwidth = m_fontMetrics[fid].width(c);
-			cache->insert(c,cwidth);
-			rwidth+=cwidth;
-		}
+		const int *cwidth;
+		if (!cache->valueIfThere(c, cwidth))
+			cwidth = cache->insert(c,m_fontMetrics[fid].width(c));
+		rwidth+=*cwidth;
 	}
 	return rwidth;
 }
@@ -6607,8 +6625,36 @@ int QDocumentPrivate::getRenderRangeWidth(int &columnDelta, int curColumn, const
 	}
 }
 
-void QDocumentPrivate::drawText(QPainter& p, int fid, int& xpos, int ypos, const QString& text){
-	FastCache<QPixmap> *cache = m_fmtCharacterCache.getCache(fid);
+int QDocumentPrivate::textWidthSingleLetterFallback(int fid, const QString& text){
+	FastCache<int> *cache = m_fmtWidthCache.getCache(fid);
+	QChar lastSurrogate;
+	int rwidth = 0;
+	foreach (const QChar& c, text){
+		const QChar::Category cat = c.category();
+		int char_id;
+		if (cat == QChar::Other_Surrogate) {
+			if (c.isHighSurrogate()) {
+				lastSurrogate = c;
+				continue;
+			} else 
+				char_id = QChar::surrogateToUcs4(lastSurrogate, c);
+		} else char_id = c.unicode();
+		
+		const int *cwidth;
+		if (!cache->valueIfThere(char_id, cwidth)) {
+			int nwidth;
+			if (cat == QChar::Other_Surrogate) nwidth = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
+			else nwidth = m_fontMetrics[fid].width(c);
+			cwidth = cache->insert(char_id, nwidth);
+		}
+		rwidth+=*cwidth;
+	}
+	return rwidth;
+}
+
+
+void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, int& xpos, int ypos, const QString& text){
+	FastCache<QPixmap> *cache = m_fmtCharacterCache[selected?1:0].getCache(fid);
 	p.setBackgroundMode(Qt::OpaqueMode);
 	
 	QChar lastSurrogate;
@@ -6622,25 +6668,21 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, int& xpos, int ypos, const
 			} else 
 				char_id = QChar::surrogateToUcs4(lastSurrogate, c);
 		} else char_id = c.unicode();
-		if (cache->contains(char_id))  {
-			const QPixmap& px = cache->value(char_id);
-			p.drawPixmap(xpos, ypos, px);
-			xpos += px.width();
-		} else {
+		const QPixmap* px;
+		if (!cache->valueIfThere(char_id, px)){
 			int cw;
-			if (cat == QChar::Other_Surrogate) 
-				cw = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
-			else 
-				cw = textWidth(fid, c);
+			if (cat == QChar::Other_Surrogate) cw = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
+			else cw = m_fontMetrics[fid].width(c);
 			QPixmap pm(cw,m_lineSpacing);
 			pm.fill(QColor::fromRgb(255,255,255,0)); //transparent background (opaque background would be twice as fast, but then we need much more pixmaps)
 			QPainter pmp(&pm);
+			pmp.setPen(baseColor);
 			tunePainter(&pmp, fid);
 			pmp.drawText(0, m_ascent, cat == QChar::Other_Surrogate?(QString(lastSurrogate)+c):c);
-			p.drawPixmap(xpos, ypos, pm);
-			cache->insert(char_id, pm);
-			xpos += cw;
+			px = cache->insert(char_id, pm);
 		}
+		p.drawPixmap(xpos, ypos, *px);
+		xpos += px->width();
 	}
 }
 
