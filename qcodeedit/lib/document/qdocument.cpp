@@ -6519,8 +6519,8 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 	
 	QFont modifiedF = f;
 	// set the styling so that if the font is not found Courier one will be used
-	modifiedF.setStyleHint(QFont::Courier, QFont::PreferQuality);
-	//disable kerning because words are drawn at once, but there width is calculated character
+	modifiedF.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+	//disable kerning because words are drawn at once, but their width is calculated character
 	//by character (in functions which calculate the cursor position)
 	modifiedF.setKerning(false);
 	
