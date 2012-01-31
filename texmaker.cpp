@@ -4457,29 +4457,45 @@ void Texmaker::updateCompleter() {
 	
 	LatexEditorView* edView=currentEditorView();
 	
+	QList<LatexDocument*> docs;
 	if(edView && edView->document){
 		// determine from which docs data needs to be collected
-		QList<LatexDocument*> docs=edView->document->getListOfDocs();
+		docs=edView->document->getListOfDocs();
 		// collect user commands and references
 		foreach(const LatexDocument* doc,docs){
 			words.unite(doc->userCommandList());
 			words.unite(doc->additionalCommandsList());
-			foreach(const QString& refCommand, latexParser.refCommands){
-				QString temp=refCommand+"{%1}";
-				foreach (const QString& l, doc->labelItems())
-					words.insert(temp.arg(l));
-			}
 		}
 	}
 	
-	//add cite commands from the cwls to latexParser.citeCommands
-	LatexCompleterConfig *conf=configManager.completerConfig;
-	QStringList citeCommands=conf->words;
-	citeCommands<<words.toList();
-	citeCommands=citeCommands.filter(QRegExp("^\\\\[Cc]ite.*"));
-	foreach(QString elem,citeCommands)
-		latexParser.citeCommands.insert(elem.remove("{%<keylist%>}"));
-	
+	//add cite/ref commands from the cwls to latexParser.citeCommands
+	static QRegExp citeCommandCheck(QRegExp("^\\\\([Cc]ite.*|.*\\{(%<)?(keylist|bibid)(%>)?\\}.*)")); 
+	static QRegExp refCommandCheck(QRegExp("^\\\\.*\\{(%<)?labelid(%>)?\\}.*")); 
+	foreach (const QString& cmd, words) 
+		if (citeCommandCheck.exactMatch(cmd)) { //todo: get rid of duplication
+			int lastBracket = cmd.lastIndexOf('{');
+			latexParser.citeCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+		} else if (refCommandCheck.exactMatch(cmd)){
+			int lastBracket = cmd.lastIndexOf('{');
+			latexParser.refCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+		}
+	foreach (const QString& cmd, configManager.completerConfig->words) 
+		if (citeCommandCheck.exactMatch(cmd)) {
+			int lastBracket = cmd.lastIndexOf('{');
+			latexParser.citeCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+		} else if (refCommandCheck.exactMatch(cmd)){
+			int lastBracket = cmd.lastIndexOf('{');
+			latexParser.refCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+		}
+
+	// collect user commands and references
+	foreach(const LatexDocument* doc,docs){
+		foreach(const QString& refCommand, latexParser.refCommands){
+			QString temp=refCommand+"{%1}";
+			foreach (const QString& l, doc->labelItems())
+				words.insert(temp.arg(l));
+		}
+	}
 	if (configManager.parseBibTeX)
 		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
 			if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
