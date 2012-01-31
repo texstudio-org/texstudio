@@ -100,7 +100,28 @@ void QDocumentLineTest::updateWrap(){
 			frontiers << (i - frontiers.size());
 	foreach(const int p, frontiers) fExp += QString("<%1:%2>").arg(p).arg(p*5);
 	foreach(const IntPair& p, doc->line(0).handle()->m_frontiers) fGot += QString("<%1:%2>").arg(p.first).arg(p.second);
+		
 	QEQUAL(fGot, fExp);
+
+	
+	//-------test hard line wrap----
+	QList<QDocumentLineHandle*> handles;
+	for (int i=0;i<doc->lines();i++)
+		handles << doc->line(i).handle();
+	doc->applyHardLineWrap(handles);
+	
+	QStringList hlw = line.split('|');
+	QString indent; 
+	for (int i=0;i<hlw.first().length();i++) 
+		if (hlw.first()[i].isSpace()) indent += hlw.first()[i];
+		else break;
+	if (indent == hlw.first()) indent = "";
+	for (int i=1;i<hlw.size();i++)
+		hlw[i] = indent + hlw[i];
+	hlw << "" << "" << "";
+	
+	QEQUAL(doc->text(), hlw.join("\n"));
+	
 }
 
 #endif

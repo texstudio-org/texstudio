@@ -814,6 +814,8 @@ void QEditor::setWrapLineWidth(int l){
 	m_doc->setWidthConstraint(m_LineWidth);
 }
 
+
+
 /*!
 	\return The whole text being edited
 */
@@ -905,45 +907,7 @@ void QEditor::save()
 	// insert hard line breaks on modified lines (if desired)
 	if(flag(HardLineWrap)){
 		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
-		QDocumentCursor cur(m_doc);
-
-		while (!handles.isEmpty()) {
-			QList<QDocumentLineHandle*> newhandles;
-			foreach ( QDocumentLineHandle* dlh,handles )
-			{
-				int lineNr = document()->indexOf(dlh);
-				if (lineNr < 0) continue;
-	
-				QList<int> lineBreaks = dlh->getBreaks();
-				
-				QString line=dlh->text();
-				//todo: support other languages except latex (either search the comment starting with document()->languageDefinition()->singleLineComment() in the highlighting info, or modify singleLineComment to return a regex matching the comment start
-				QList<int> commentStarts;
-				QString temp = line;
-				int commentStart;
-				while ((commentStart=LatexParser::commentStart(temp)) >= 0 ) {
-					temp = temp.mid(commentStart+1);
-					commentStarts << commentStart + (commentStarts.isEmpty()?0:commentStarts.last());
-				}
-				
-				
-				if(!lineBreaks.isEmpty()){
-					while(!lineBreaks.isEmpty()){
-						int last = lineBreaks.takeLast();
-						cur.moveTo(lineNr, last);
-						cur.insertText("\n");
-						while (!commentStarts.isEmpty() && last <= commentStarts.last()) 
-							commentStarts.removeLast();
-						if(!commentStarts.isEmpty()) {
-							cur.insertText(QString(commentStarts.size(), '%'));
-							newhandles << cur.line().handle();
-						}
-					}
-				}
-			}
-			handles = newhandles;
-		}
-		cur.endEditBlock();
+		m_doc->applyHardLineWrap(handles);
 	}
 
 	//remove all watches (on old and new file name (setfilename above could have create one!) )

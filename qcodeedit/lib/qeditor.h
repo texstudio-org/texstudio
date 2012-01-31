@@ -354,6 +354,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void save(const QString& filename);
 		bool saveCopy(const QString& filename);
 
+		
 		virtual void print();
 		
 		virtual void retranslate();

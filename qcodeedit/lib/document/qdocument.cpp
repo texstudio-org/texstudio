@@ -212,6 +212,54 @@ void QDocument::setForceLineWrapCalculation(bool v){
 	if (m_impl) m_impl->setForceLineWrapCalculation(v);
 }
 
+void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles){
+	if (in_handles.isEmpty()) return;
+
+	QList<QDocumentLineHandle*> handles = in_handles;
+	
+	QDocumentCursor cur(this);
+	cur.beginEditBlock();		
+	while (!handles.isEmpty()) {
+		QList<QDocumentLineHandle*> newhandles;
+		foreach ( QDocumentLineHandle* dlh,handles )
+		{
+			int lineNr = this->indexOf(dlh);
+			if (lineNr < 0) continue;
+
+			QList<int> lineBreaks = dlh->getBreaks();
+			if (lineBreaks.isEmpty()) continue;
+			
+			QString line=dlh->text();
+			QString indent = line.left(qMax(0, dlh->nextNonSpaceChar(0)));
+			if (indent.size() >= lineBreaks.first()) indent = "";
+
+			//todo: support other languages except latex (either search the comment starting with document()->languageDefinition()->singleLineComment() in the highlighting info, or modify singleLineComment to return a regex matching the comment start
+			QList<int> commentStarts;
+			QString temp = line;
+			int commentStart;
+			while ((commentStart=LatexParser::commentStart(temp)) >= 0 ) {
+				temp = temp.mid(commentStart+1);
+				commentStarts << commentStart + (commentStarts.isEmpty()?0:commentStarts.last());
+			}
+			
+			
+			while(!lineBreaks.isEmpty()){
+				int last = lineBreaks.takeLast();
+				cur.moveTo(lineNr, last);
+				cur.insertText("\n" + indent);
+				while (!commentStarts.isEmpty() && last <= commentStarts.last()) 
+					commentStarts.removeLast();
+				if(!commentStarts.isEmpty()) {
+					cur.insertText(QString(commentStarts.size(), '%'));
+					newhandles << cur.line().handle();
+				}
+			}
+		}
+		handles = newhandles;
+	}
+	cur.endEditBlock();
+}
+
 int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
 {
 	if ( tabStop == 1 )
