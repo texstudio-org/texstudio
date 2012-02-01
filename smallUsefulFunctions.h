@@ -16,7 +16,7 @@
 //#inlcude "latexcompleter_config.h"
 
 #define TEXSTUDIO "TeXstudio"
-#define TXSVERSION "2.2"
+#define TXSVERSION "2.3"
 
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
