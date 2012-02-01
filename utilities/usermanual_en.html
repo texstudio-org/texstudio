@@ -8,6 +8,7 @@ a:link { color: #004faf; text-decoration: none }
 a:visited { color: #672967; text-decoration: none }
 body { background: #ffffff; color: black; }
 .command { font-family: monospace; }
+.scripting_help th {padding-top: 4em}
 --></style>
 </head>
 <body>
@@ -22,6 +23,7 @@ body { background: #ffffff; color: black; }
 	<li><a href="#SECTIONNEW20">0.4 Version 1.9.9a -> Version 2.0</a></li>
 	<li><a href="#SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</a></li>
 	<li><a href="#SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></li>
+	<li><a href="#SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</a></li>
 	</ul>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a></li>
 	<ul>
@@ -212,6 +214,18 @@ changed functionality:</P>
 	<li><p>saving/loading profiles working
 	<li><p>more environments are syntax highlighted</p></li>
 	<li><p>as always, bug fixes and small improvements</p></li>
+</ul>
+<h2><a name="SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</a></h2>
+<ul>
+<li><p>list of commands accepting \ref/\cite-references can be changed</p></li>
+<li><p>remember search history</p></li>
+<li><p>support for different dictionaries per document</p></li>
+<li><p>find-invalid-bracket feature</p></li>
+<li><p>almost word level inverse pdf search</p></li>
+<li><p>complete file names in graphic including macros</p></li>
+<li><p>improved BibTeX auto calling</p></li>
+<li><p>more methods available for scripting </p></li>
+<li><p>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
 </ul>
 <h1><a name="SECTION0">1. Configuring TeXstudio</a></h1>
 Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under macosx).
@@ -490,18 +504,57 @@ For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)",
 Instead of using code snippets, you can also make use of javascript.
 To do so, put "%SCRIPT" in the first line. The following code will be interpreted as javascript.
 The language is based on <a href="http://doc.trolltech.com/4.5/ecmascript.html">ECMAScript</a>.
-To access the document, to objects are introduced:
+To access the document these objects are introduced:
 <ul>
-<li>"editor" allows some top level operations like save/load.
-<li>"cursor" gives access to cursor operations like moving, inserting and deleting texts.
-<li>"fileChooser" gives access to the filechooser dialog, a very simple file selection dialog
+<li>"editor" allows some top level operations like searching/save/load. in the current document</li>
+<li>"cursor" gives access to cursor operations like moving, inserting and deleting texts.</li>
+<li>"fileChooser" gives access to the filechooser dialog, a very simple file selection dialog</li>
+<li>"app" to access application wide things like the clipboard or the menus</li>
 </ul>
 The following table gives an overview on the possible commands.
-<table border="1">
+<table border="1" class="scripting_help">
   <tr>
-    <td> <b>command</b> </td>
-    <td> <b>description</b> </td>
+    <td> <b>Command</b> </td>
+    <td> <b>Description</b> </td>
   </tr>
+  <tr>
+  <th colspan=2>Global scope</th>
+  </tr>
+  <tr>
+  	<td> alert(str), information(str), warning(str) or critical(str) </td>
+	<td> shows str in a messagebox with a certain icon</td>
+  </tr>
+  <tr>
+  	<td> confirm(str) or confirmWarning(str)</td>
+	<td> shows str as a yes/no question in a messagebox </td>
+  </tr>
+  <tr>
+  	<td> debug(str) </td>
+	<td> prints str to stdout </td>
+  </tr>
+  <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
+  <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
+  <tr><td> system(cmd) </td>	<td> Calls cmd and returns a ProcessX object which has this methodes: 
+    <ul>
+    <li>waitForFinished: Wait until the process is finished</li>
+    <li>readAllStandardOutputStr: Returns the stdout</li>
+    <li>readAllStandardErrorStr: Returns the stderr</li>
+    <li>exitCode: The exit code</li>
+    <li>exitStatus: The qt exit status</li>
+    <li>terminate or kill: Stops the process</li>
+    
+    </ul>  </td></tr>
+  <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
+  <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
+  <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
+  <tr><td> setGlobal(name, value) </td>	<td> Sets a global configuration variable. (can change the values of the ini file, requires write privileges) </td></tr>
+  <tr><td> getGlobal(name) </td>	<td> Reads a global configuration variable. (can read all values of the ini file, requires read privileges) </td></tr>
+  <tr><td> hasGlobal(name) </td>	<td> Checks if a global configuration variable exists. (requires read privileges) </td></tr>
+  
+  <tr><td> hasReadPrivileges() </td>	<td> Checks if the script has read privileges </td></tr>
+  <tr><td> hasWritePrivileges() </td>	<td> Checks if the script has write privileges </td></tr>
+  
+  <tr><th colspan=2>Editor object</th></tr>
   <tr>
   	<td> editor.search(searchFor, [options], [scope], [callback]) </td>
 	<td> Searchs something in the editor. 
@@ -630,7 +683,9 @@ The following table gives an overview on the possible commands.
     <td> return text of <i>line</i>
   </tr>
 
-  <tr> <td colspan="2"><hr></td> </tr>
+
+  <th colspan=2>Document object</th>
+  </tr>
 <tr><td>editor.document().lineCount() </td><td>   Returns the number of lines     </td></tr>
 <tr><td>editor.document().visualLineCount() </td><td>    Returns the number of visual lines (counting wrapped lines)    </td></tr>
 <tr><td>editor.document().cursor(line, [column = 0], [lineTo = -1], [columnTo = length of lineTo]) </td><td>  Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.   </td></tr>
@@ -646,7 +701,9 @@ The following table gives an overview on the possible commands.
   </tr>
 
 
-  <tr> <td colspan="2"><hr></td> </tr>
+  <tr>
+  <th colspan=2>Cursor object</th>
+  </tr>
 
   <tr>
     <td> cursor.atEnd()
@@ -783,7 +840,14 @@ The following table gives an overview on the possible commands.
     <td> cursor.endEditBlock();
     <td> ends an edit block
   </tr>
-  <tr> <td colspan="2"><hr></td> </tr>
+  <tr><th colspan=2>App object</th></tr>
+  <tr><td>app.getVersion</td><td>Current version (0xMMmm00)</td>
+  <tr><td>app.clipboard</td><td>Property to read/write to the clipboard</td>
+  <tr><td>app.getCurrentFileName()</td><td>File name of currently edited file</td>
+  <tr><td>app.getAbsoluteFilePath(rel, ext = "")</td><td>Converts a relative filename to an absolute one</td>
+  <tr><td>app.load(file)</td><td>Loads an file </td>
+  <tr><td>app.fileOpen/Save/Close/.../editUndo/.../QuickBuild/... </td><td>All menu commands (i.e. all slots in the texmaker.h file)</td>
+  <tr><th colspan=2>FileChooser object</th></tr>
   <tr>
 	<td> fileChooser.exec()
 	<td> show dialog and wait until it is closed again
@@ -800,23 +864,18 @@ The following table gives an overview on the possible commands.
 	<td> fileChooser.fileName()
 	<td> return selected filename (after exec)
   </tr>  
-  <tr> <td colspan="2"><hr></td> </tr>
-  <tr>
-  	<td> alert(str) </td>
-	<td> shows str in a messagebox </td>
-  </tr>
-  <tr>
-  	<td> debug(str) </td>
-	<td> prints str to stdout </td>
-  </tr>
+  
 </table> 
 <br><br>
 Some examples:
 <ul>
+<li>Copy current file name to clipboard: <pre>
+%SCRIPT
+app.clipboard = editor.fileName();</pre>
+</li>
 <li>Execution of editor text: <pre>
 %SCRIPT
 eval(editor.text());</pre>
-You can use this to easier write and test scripts
 </li>
 <li>Calculator:<pre>
 %SCRIPT

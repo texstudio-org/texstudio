@@ -1,4 +1,16 @@
-(look also at the usermanual)
+(you may also want to check the usermanual)
+
+TexMakerX 2.2 -> TeXstudio 2.3  SVN 2459
+-----------------------------------------
+- list of commands accepting \ref/\cite-references can be changed
+- remember search history
+- support for different dictionaries per document
+- find-invalid-bracket feature
+- almost word level inverse pdf search
+- complete file names in graphic including macros
+- improved BibTeX auto calling
+- more methods available for scripting 
+- several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements
 
 TexMakerX 2.1 -> TeXstudio 2.2  SVN 2143
 -----------------------------------------
