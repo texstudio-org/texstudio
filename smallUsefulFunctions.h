@@ -17,6 +17,7 @@
 
 #define TEXSTUDIO "TeXstudio"
 #define TXSVERSION "2.3"
+#define TXSVERSION_NUMERIC 0x020300
 
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
