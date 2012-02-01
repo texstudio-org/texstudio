@@ -490,6 +490,9 @@ QSettings* ConfigManager::readSettings() {
 	
 	config->beginGroup("texmaker");
 	
+	if ((importTexmakerSettings || importTexMakerXSettings) && config->value("Tools/IntegratedPdfViewer", false).toBool())
+		config->setValue(BuildManager::cmdToConfigString(BuildManager::CMD_VIEWPDF), "<default>");
+	
 	//----------managed properties--------------------
 	for (int i=0;i<managedProperties.size();i++)
 		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
