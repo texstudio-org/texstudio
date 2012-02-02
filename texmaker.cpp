@@ -4607,8 +4607,9 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 	gotoLine(line);
 	Q_ASSERT(currentEditor());
 	
-	int column = currentEditor()->cursor().line().text().indexOf(guessedWord);
-	if (column == -1) column = currentEditor()->cursor().line().text().indexOf(guessedWord, Qt::CaseInsensitive);
+	QString checkLine =currentEditor()->cursor().line().text();
+	int column = checkLine.indexOf(guessedWord);
+	if (column == -1) column = checkLine.indexOf(guessedWord, Qt::CaseInsensitive);
 	QString changedWord = guessedWord;
 	if (column == -1) {//search again and ignore useless characters
 		QString regex; 
@@ -4618,16 +4619,39 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		foreach (const QString& x, changedWord.split('\1', QString::SkipEmptyParts))
 			if (regex.isEmpty()) regex += QRegExp::escape(x);
 			else regex += ".{0,2}" + QRegExp::escape(x);
-		column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseSensitive);
-		if (column == -1) column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseInsensitive);
+		//qDebug() << changedWord << regex;
+		column = checkLine.indexOf(QRegExp(regex), Qt::CaseSensitive);
+		if (column == -1) column = checkLine.indexOf(QRegExp(regex), Qt::CaseInsensitive);
 	}
 	if (column == -1) {//search again and allow additional whitespace
 		QString regex; 
 		foreach (const QString & x , changedWord.split(" ",QString::SkipEmptyParts))
 			if (regex.isEmpty()) regex = QRegExp::escape(x);
 			else regex+="\\s+"+QRegExp::escape(x);
-		column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseSensitive);
-		if (column == -1) column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseInsensitive);
+		column = checkLine.indexOf(QRegExp(regex), Qt::CaseSensitive);
+		if (column == -1) column = checkLine.indexOf(QRegExp(regex), Qt::CaseInsensitive);
+	}
+	if (column == -1) {
+		int bestMatch = -1, bestScore = 0;
+		for (int i=0;i<checkLine.size()-guessedWord.size();i++) {
+			int score = 0;
+			for (int c = i, s = 0; c < checkLine.size() && s < guessedWord.size(); c++, s++) {
+				QChar C = checkLine[c], S = guessedWord[s];
+				if (C == S) score += 5; //perfect match
+				else if (C.toLower() == S.toLower()) score += 2; //ok match
+				else if (C.isSpace()) s--; //skip spaces
+				else if (S.isSpace()) c--; //skip spaces
+				else if (S.category() == QChar::Other_Control || S.category() == QChar::Other_Format) {
+					for (s++; s < guessedWord.size() && (guessedWord[s].category() == QChar::Other_Control||guessedWord[s].category() == QChar::Other_Format);s++); //skip nonsense
+					if (s >= guessedWord.size()) continue;
+					if (guessedWord[s] == C) { score += 5; continue; }
+					if (c+1 < checkLine.size() && guessedWord[s] == checkLine[c+1]) { score += 5; c++; continue; }
+					//also skip next character after that nonsense
+				}
+			}
+			if (score > bestScore) bestScore = score, bestMatch = i;
+		}
+		if (bestScore > guessedWord.size()*5 / 3) column = bestMatch; //accept if 0.33 similarity
 	}
 	if (column > -1) {
 		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(),column+guessedWord.length()/2);
