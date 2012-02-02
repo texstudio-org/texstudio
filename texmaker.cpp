@@ -5759,7 +5759,7 @@ void Texmaker::setClipboardText(const QString& text, const QClipboard::Mode& mod
 	QApplication::clipboard()->setText(text, mode);
 }
 int Texmaker::getVersion() const{
-	return 0x020200;
+	return TXSVERSION_NUMERIC;
 }
 
 void Texmaker::updateHighlighting(){

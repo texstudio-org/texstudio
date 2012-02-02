@@ -23,6 +23,7 @@ void ScriptObject::critical(const QString& message){ txsCritical(message); }
 void ScriptObject::warning(const QString& message){ txsWarning(message); }
 bool ScriptObject::confirm(const QString& message){ return txsConfirm(message); }
 bool ScriptObject::confirmWarning(const QString& message){ return txsConfirmWarning(message); }
+void ScriptObject::debug(const QString& message){ qDebug() << message; }
 
 ProcessX* ScriptObject::system(const QString& commandline){
 	if (!buildManager || !needWritePrivileges("system",commandline))

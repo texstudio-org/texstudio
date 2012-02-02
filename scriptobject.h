@@ -47,6 +47,7 @@ public slots:
 	void warning(const QString& message);
 	bool confirm(const QString& message);
 	bool confirmWarning(const QString& message);
+	void debug(const QString& message);
 	
 	bool hasReadPrivileges();
 	bool hasWritePrivileges();
