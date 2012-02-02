@@ -4606,13 +4606,27 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		if (!load(fileName)) return;
 	gotoLine(line);
 	Q_ASSERT(currentEditor());
+	
 	int column = currentEditor()->cursor().line().text().indexOf(guessedWord);
 	if (column == -1) column = currentEditor()->cursor().line().text().indexOf(guessedWord, Qt::CaseInsensitive);
+	QString changedWord = guessedWord;
+	if (column == -1) {//search again and ignore useless characters
+		QString regex; 
+		for (int i=0;i<changedWord.size();i++)
+			if (changedWord[i].category() == QChar::Other_Control || changedWord[i].category() == QChar::Other_Format) 
+				changedWord[i] = '\1';
+		foreach (const QString& x, changedWord.split('\1', QString::SkipEmptyParts))
+			if (regex.isEmpty()) regex += QRegExp::escape(x);
+			else regex += ".{0,2}" + QRegExp::escape(x);
+		column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseSensitive);
+		if (column == -1) column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseInsensitive);
+	}
 	if (column == -1) {//search again and allow additional whitespace
 		QString regex; 
-		foreach (const QString & x , guessedWord.split(" ",QString::SkipEmptyParts))
+		foreach (const QString & x , changedWord.split(" ",QString::SkipEmptyParts))
 			if (regex.isEmpty()) regex = QRegExp::escape(x);
 			else regex+="\\s+"+QRegExp::escape(x);
+		column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseSensitive);
 		if (column == -1) column = currentEditor()->cursor().line().text().indexOf(QRegExp(regex), Qt::CaseInsensitive);
 	}
 	if (column > -1) {
