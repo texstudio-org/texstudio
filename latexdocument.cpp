@@ -1666,7 +1666,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 				QList<StructureEntry*> oldChildren = se->children;
 				foreach (StructureEntry* next, oldChildren) 
 					mergeStructure(next, parent_level, flatStructure, linenr, count);
-				break;
+				return;
 			}
 		//	qDebug() << "b";
 			StructureEntry* n = flatStructure.takeFirst();
@@ -1679,7 +1679,9 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 				updateParentVector(parent_level, c);
 			}
 		}
-		moveToAppropiatePositionWithSignal(parent_level, se);
+		if (!moveToAppropiatePositionWithSignal(parent_level, se))
+			updateParentVector(parent_level, se);
+		
 	}
 	
 	if (se == baseStructure && !flatStructure.isEmpty()) {
