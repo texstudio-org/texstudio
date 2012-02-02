@@ -187,6 +187,11 @@ void StructureViewTest::script_data(){
 	              << "editor.setText(''); cursor.moveTo(0,0); editor.insertText('\\\\section{s}\\n\\n\\\\subsection{ss}'); cursor.moveTo(1,0); cursor.deletePreviousChar();"
 	              << "Root: LVL:0 IND:0##Section:s LVL:2 IND:1##Section:ss LVL:3 IND:2";
 	
+	QTest::newRow("Section before chapter,include,section")
+	              << "editor.setText(''); cursor.moveTo(0,0); editor.insertText('\\n\\n\\\\chapter{title}\\\\include{file}\\\\section{s}'); cursor.moveTo(0,0); cursor.insertText('\\\\section{s}');"
+	              << "Root: LVL:0 IND:0##Section:s LVL:2 IND:1##Section:title LVL:1 IND:1##Include:file LVL:0 IND:1##Section:s LVL:2 IND:1";
+	
+	
 	
 }
 
