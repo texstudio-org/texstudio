@@ -186,7 +186,7 @@ private:
 	void moveElementWithSignal(StructureEntry* se, StructureEntry* parent, int pos);
 	
 	void updateParentVector(QVector<StructureEntry*> &parent_level, StructureEntry* se);
-	StructureEntry* moveToAppropiatePositionWithSignal(const QVector<StructureEntry*> &parent_level, StructureEntry* se);
+	StructureEntry* moveToAppropiatePositionWithSignal(QVector<StructureEntry*> &parent_level, StructureEntry* se);
 	
 	bool splitMagicComment(const QString &comment, QString &name, QString &val);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry* se);
