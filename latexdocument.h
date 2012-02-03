@@ -30,6 +30,7 @@ struct StructureEntry{
 	void add(StructureEntry* child);
 	void insert(int pos, StructureEntry* child);
 
+	int columnNumber; //position of the entry in the line, only used for correct sorting of structure update (TODO: use a local variable for it)
 	void setLine(QDocumentLineHandle* handle, int lineNr = -1);
 	QDocumentLineHandle* getLineHandle() const;
 	int getCachedLineNumber() const;

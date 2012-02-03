@@ -191,7 +191,14 @@ void StructureViewTest::script_data(){
 	              << "editor.setText(''); cursor.moveTo(0,0); editor.insertText('\\n\\n\\\\chapter{title}\\\\include{file}\\\\section{s}'); cursor.moveTo(0,0); cursor.insertText('\\\\section{s}');"
 	              << "Root: LVL:0 IND:0##Section:s LVL:2 IND:1##Section:title LVL:1 IND:1##Include:file LVL:0 IND:1##Section:s LVL:2 IND:1";
 	
+	QTest::newRow("chapter/section/include/section")
+	              << "editor.setText('\\\\chapter{title}\\\\section{s1}\\\\section{s2}\\\\section{s3}\\\\section{s4}\\\\include{in}\\\\section{end}'); cursor.moveTo(0,2); cursor.deleteChar();"
+	              << "Root: LVL:0 IND:0##Section:s1 LVL:2 IND:1##Section:s2 LVL:2 IND:1##Section:s3 LVL:2 IND:1##Section:s4 LVL:2 IND:1##Include:in LVL:0 IND:1##Section:end LVL:2 IND:1";
 	
+	QTest::newRow("inserting several before")
+	              << "editor.setText('\\\\chapter{Yc}\\\\section{Ys1}\\\\section{Ys2}\\\\section{Ys3}\\\\chapter{Yc2}\\\\section{Ys4}\\\\section{Ys5}\\n\\\\chapter{Zc}\\\\section{Zs1}\\\\section{Zs2}'); cursor.moveTo(0,0); cursor.insertText('\\n');"
+			<< "Root: LVL:0 IND:0##Section:Yc LVL:1 IND:1##Section:Ys1 LVL:2 IND:2##Section:Ys2 LVL:2 IND:2##Section:Ys3 LVL:2 IND:2##Section:Yc2 LVL:1 IND:1##Section:Ys4 LVL:2 IND:2##Section:Ys5 LVL:2 IND:2##Section:Zc LVL:1 IND:1##Section:Zs1 LVL:2 IND:2##Section:Zs2 LVL:2 IND:2";
+
 	
 }
 

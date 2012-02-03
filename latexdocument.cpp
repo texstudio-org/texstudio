@@ -469,14 +469,14 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
 			curLine.replace(0,1,' ');
 		}
-		//int totalLength=curLine.length();
+		int totalLength=curLine.length();
 		while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
 			//update offset
-			//TODO: int offset=totalLength-curLine.length();
 			//store optional arguments []
 			
 			//copy remainder to curLine for next round
 			curLine=remainder;
+			int offset=totalLength-curLine.length(); //TODO?? (line was commented out, with todo before)
 			//// newcommand ////
 			//TODO: handle optional arguments
 			if (latexParser.definitionCommands.contains(cmd)) {
@@ -652,6 +652,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				if(dc)	dc->setMasterDocument(this);
 				newInclude->valid = dc; 
 				newInclude->setLine(line(i).handle(), i);
+				newInclude->columnNumber = offset;
 				flatStructure << newInclude;
 				continue;
 			}
@@ -666,6 +667,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newSection->title=parseTexOrPDFString(name);
 				newSection->level=header;
 				newSection->setLine(line(i).handle(), i);
+				newSection->columnNumber = offset;
 				flatStructure << newSection;
 			}
 		}// for each command
@@ -1018,6 +1020,7 @@ int StructureEntry::getCachedLineNumber() const{
 }
 int StructureEntry::getRealLineNumber() const{
 	lineNumber = document->indexOf(lineHandle, lineNumber);
+	Q_ASSERT(lineNumber == -1 || document->line(lineNumber).handle() == lineHandle);
 	return lineNumber;
 }
 
@@ -1672,12 +1675,12 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 			StructureEntry* n = flatStructure.takeFirst();
 			moveToAppropiatePositionWithSignal(parent_level, n);
 			updateParentVector(parent_level, n);
-			updateParentVector(parent_level, se);
-			QList<StructureEntry*> oldChildren = se->children;
-			foreach (StructureEntry* c, oldChildren){
-				moveToAppropiatePositionWithSignal(parent_level, c);
-				updateParentVector(parent_level, c);
-			}
+		}
+		updateParentVector(parent_level, se);
+		QList<StructureEntry*> oldChildren = se->children;
+		foreach (StructureEntry* c, oldChildren){
+			moveToAppropiatePositionWithSignal(parent_level, c);
+			updateParentVector(parent_level, c);
 		}
 		if (!moveToAppropiatePositionWithSignal(parent_level, se))
 			updateParentVector(parent_level, se);
@@ -1738,10 +1741,14 @@ void LatexDocument::updateParentVector(QVector<StructureEntry*> &parent_level, S
 class LessThanRealLineNumber
 {
 public:
-    inline bool operator()(const StructureEntry * const se1, const StructureEntry * const se2) const
-    {
-        return (se1->getRealLineNumber() < se2->getRealLineNumber());
-    }
+	inline bool operator()(const StructureEntry * const se1, const StructureEntry * const se2) const
+	{
+		int l1 = se1->getRealLineNumber();
+		int l2 = se2->getRealLineNumber();
+		if (l1 < l2) return true;
+		if (l1 == l2 && (se1->columnNumber < se2->columnNumber)) return true;
+		return false;
+	}
 };
 
 
