@@ -129,6 +129,7 @@ private:
 	QString hiddenLeftPanelWidgets;
 	
 	QTreeView *structureTreeView;
+    QListWidget *bookmarksWidget;
 	LatexParser latexParser;
 	LatexDocuments documents;
 	
@@ -293,7 +294,14 @@ protected slots:
 	void updateStructure(bool initial=false);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
+    void clickedOnBookmark(QListWidgetItem *item);
 	void editRemovePlaceHolders();
+    void toggleBookmark();
+    void moveBookmarkUp();
+    void moveBookmarkDown();
+    void removeBookmark();
+    void removeAllBookmarks();
+    void lineWithBookmarkRemoved(int lineNr);
 	
 	void NormalCompletion();
 	void InsertEnvironmentCompletion();
@@ -495,6 +503,8 @@ protected:
 	
 	LatexDocument* diffLoadDocHidden(QString f);
 	void showDiff3(const QString file1,const QString file2);
+
+    void restoreBookmarks(LatexEditorView *edView);
 	
 	
 	
