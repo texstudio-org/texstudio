@@ -437,17 +437,36 @@ void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
 		editor->setFocus();
 	}
 }
-void LatexEditorView::toggleBookmark(int bookmarkNumber) {
+
+void LatexEditorView::removeBookmark(int lineNr,int bookmarkNumber){
+    int rmid=bookMarkId(bookmarkNumber);
+    if(document->line(lineNr).hasMark(rmid))
+        document->line(lineNr).removeMark(rmid);
+}
+void LatexEditorView::addBookmark(int lineNr,int bookmarkNumber){
+    int rmid=bookMarkId(bookmarkNumber);
+    if (bookmarkNumber>=0)
+        document->line(document->findNextMark(rmid)).removeMark(rmid);
+    if(!document->line(lineNr).hasMark(rmid))
+        document->line(lineNr).addMark(rmid);
+}
+bool LatexEditorView::hasBookmark(int lineNr,int bookmarkNumber){
+    int rmid=bookMarkId(bookmarkNumber);
+    return document->line(lineNr).hasMark(rmid);
+}
+
+bool LatexEditorView::toggleBookmark(int bookmarkNumber) {
 	int rmid=bookMarkId(bookmarkNumber);
 	if (editor->cursor().line().hasMark(rmid)) {
 		editor->cursor().line().removeMark(rmid);
-		return;
+        return false;
 	}
 	if (bookmarkNumber>=0) editor->document()->line(editor->document()->findNextMark(rmid)).removeMark(rmid);
 	for (int i=-1; i<10; i++) editor->cursor().line().removeMark(bookMarkId(i));
 	editor->cursor().line().addMark(rmid);
 	editor->ensureCursorVisible();
 	if (bookmarkNumber>=1 && bookmarkNumber<=3) lastSetBookmark=bookmarkNumber;
+    return true;
 }
 
 bool LatexEditorView::gotoToLabel(const QString& label){

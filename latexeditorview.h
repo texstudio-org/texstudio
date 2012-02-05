@@ -76,6 +76,9 @@ public:
 	void reCheckSyntax(int linenr=0, int count=-1);
 
 	void closeCompleter();
+    void removeBookmark(int lineNr,int bookmarkNumber);
+    void addBookmark(int lineNr,int bookmarkNumber);
+    bool hasBookmark(int lineNr,int bookmarkNumber);
 
 	QList<QDocumentCursor> autoPreviewCursor;
 private:
@@ -129,7 +132,7 @@ public slots:
 	void jumpChangePositionForward();
 
 	void jumpToBookmark(int bookmarkNumber);
-	void toggleBookmark(int bookmarkNumber);
+    bool toggleBookmark(int bookmarkNumber);
 
 	void foldEverything(bool unFold);
 	void foldLevel(bool unFold, int level);

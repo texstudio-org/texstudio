@@ -128,6 +128,7 @@ public:
 	int maxRecentFiles, maxRecentProjects;
 	bool sessionRestore;
 	QStringList sessionFilesToRestore;
+    QList<QVariant> bookmarkList;
 	QList<QVariant> sessionCurRowsToRestore,sessionCurColsToRestore,sessionFirstLinesToRestore;
 	QString sessionMaster;
 	QString sessionCurrent;
