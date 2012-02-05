@@ -10,7 +10,7 @@ TexMakerX 2.2 -> TeXstudio 2.3  SVN 2459
 - complete file names in graphic including macros
 - improved BibTeX auto calling
 - more methods available for scripting 
-- several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements
+- several bug fixes (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements
 
 TexMakerX 2.1 -> TeXstudio 2.2  SVN 2143
 -----------------------------------------

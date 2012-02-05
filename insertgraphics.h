@@ -14,6 +14,8 @@
 
 #include "ui_insertgraphics.h"
 
+#include "QFileInfo"
+
 class InsertGraphicsConfig;
 
 
