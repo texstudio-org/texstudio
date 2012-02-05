@@ -1553,22 +1553,31 @@ void LatexEditorViewConfig::settingsChanged(){
 #endif
 	f.setKerning(false);
 	
-	QFontMetrics fm(f);
+	QList<QFontMetrics> fms;
+	for (int b = 0; b<2;b++) for (int i = 0; i<2;i++) {
+		QFont ft(f);
+		ft.setBold(b);
+		ft.setItalic(i);
+		fms << QFontMetrics(ft);
+	}
 	
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
-	int letterWidth = fm.width('a');
+	int letterWidth = fms.first().width('a');
 	
 	static QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
 	
 	foreach (const QChar& c, lettersToCheck) {
-		QString testString;
-		int currentWidth = fm.width(c);
-		if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
-		for (int i=1;i<10;i++) {
-			testString += c;
-			int stringWidth = fm.width(testString);
-			if (stringWidth % i != 0) sameLettersHaveDifferentWidth = true;
-			if (currentWidth != stringWidth / i) sameLettersHaveDifferentWidth = true;
+		foreach (const QFontMetrics& fm, fms) {
+			int currentWidth = fm.width(c);
+			if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
+			QString testString;
+			for (int i=1;i<10;i++) {
+				testString += c;
+				int stringWidth = fm.width(testString);
+				if (stringWidth % i != 0) sameLettersHaveDifferentWidth = true;
+				if (currentWidth != stringWidth / i) sameLettersHaveDifferentWidth = true;
+			}
+			if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
 		}
 		if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
 	}
