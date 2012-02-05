@@ -1674,7 +1674,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 			}
 		}
 		
-		//se not replaced => next flatStructure.first() is after se => update se and update children 
+		//se not replaced or deleted => se is after everything the region => keep children
 		moveToAppropiatePositionWithSignal(parent_level, se);
 		QList<StructureEntry*> oldChildren = se->children;
 		foreach (StructureEntry* c, oldChildren)
