@@ -173,17 +173,9 @@ template<typename T> void CacheCache<T>::clear(){
 
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
-static int m_spaceSignOffset = 2;
-
 static int PICTURE_COOKIE = 42;
 static int PICTURE_BORDER = 2;
 
-
-static QPoint m_spaceSign[] = {
-	QPoint(2, -1),
-	QPoint(2, 0),
-	QPoint(3, 0)
-};
 
 inline static bool isWord(QChar c)
 { return c.isLetterOrNumber(); } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
@@ -805,7 +797,7 @@ QColor QDocument::getBackground() const{
 
 QColor QDocument::getForeground() const{
 	if (m_impl && m_impl->m_formatScheme) {
-	    if (m_impl->m_formatScheme->format("normal").foreground.isValid())
+		if (m_impl->m_formatScheme->format("normal").foreground.isValid())
 			return m_impl->m_formatScheme->format("normal").foreground;
 	}
 	return QColor();
@@ -854,7 +846,7 @@ void QDocument::addChunk(const QString& txt)
 	while ( idx < m_leftOver.length() )
 	{
 		if ( m_leftOver.at(idx) == '\r') {
-            m_impl->m_lines << new QDocumentLineHandle(
+			m_impl->m_lines << new QDocumentLineHandle(
                                     m_leftOver.mid(last, idx - last),
                                     this
                                 );
@@ -862,10 +854,10 @@ void QDocument::addChunk(const QString& txt)
 		    if (idx < m_leftOver.length() && m_leftOver.at(idx) == '\n') {
                 ++(m_impl->_dos);
                 ++idx;
-		    } else ++(m_impl->_mac);
+			} else ++(m_impl->_mac);
 			last = idx;
 		} else if ( m_leftOver.at(idx) == '\n') {
-            ++(m_impl->_nix);
+			++(m_impl->_nix);
 
             m_impl->m_lines << new QDocumentLineHandle(
 										m_leftOver.mid(last, idx - last),
@@ -1010,7 +1002,7 @@ void QDocument::setLineEndingDirect(LineEnding le)
 		case Conservative :
 
 			switch (originalLineEnding()) {
-			    case Windows: les = "\r\n"; break;
+				case Windows: les = "\r\n"; break;
 			    case Mac: les = "\r"; break;
 			    default: les = "\n";
 			}
@@ -3523,9 +3515,12 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						
 						if ( showTabs )
 						{
-							p->translate(xpos - m_spaceSignOffset, ypos + QDocumentPrivate::m_ascent);
-							p->drawPoints(m_spaceSign, sizeof(m_spaceSign) / sizeof(QPoint));
-							p->translate(m_spaceSignOffset - xpos,-ypos - QDocumentPrivate::m_ascent);
+							// draw tab marker
+							p->translate(xpos, ypos + QDocumentPrivate::m_lineHeight/2);
+							p->drawLine(QPoint(2,0),QPoint(xoff-2,0));
+							p->drawLine(QPoint(xoff-3,-1),QPoint(xoff-3,1));
+							if (QDocumentPrivate::m_lineHeight > 12) p->drawLine(QPoint(xoff-4,-2),QPoint(xoff-4,2));
+							p->translate(-xpos,-ypos - QDocumentPrivate::m_lineHeight/2);
 						}
 
 						xpos += xoff;
@@ -3546,9 +3541,8 @@ void QDocumentLineHandle::draw(	QPainter *p,
 								)
 							)
 						{
-							p->translate(xpos - m_spaceSignOffset, ypos + QDocumentPrivate::m_ascent);
-							p->drawPoints(m_spaceSign, sizeof(m_spaceSign) / sizeof(QPoint));
-							p->translate(m_spaceSignOffset - xpos,-ypos - QDocumentPrivate::m_ascent);
+							// draw space marker
+							p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
 						}
 
 						xpos += currentSpaceWidth;
