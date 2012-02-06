@@ -1199,7 +1199,9 @@ bool Texmaker::FileAlreadyOpen(QString f, bool checkTemporaryNames) {
 }
 ///////////////////FILE//////////////////////////////////////
 void Texmaker::restoreBookmarks(LatexEditorView *edView){
-    LatexDocument *doc=qobject_cast<LatexDocument*>(edView->editor->document());
+    LatexDocument *doc=edView->document;
+    if(!doc)
+        return;
     // go trough bookmarks
     for(int i=0;i<bookmarksWidget->count();i++){
         QListWidgetItem *item=bookmarksWidget->item(i);
@@ -1210,6 +1212,15 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
         edView->addBookmark(lineNr,-1);
         QDocumentLineHandle *dlh=doc->line(lineNr).handle();
         item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
+        item->text()=dlh->text();
+        QString text;
+        for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
+            QString ln=doc->line(i).text().trimmed();
+            if(ln.length()>40)
+                ln=ln.left(40)+"...";
+            text+=ln+"\n";
+        }
+        item->setToolTip(text);
     }
 }
 
@@ -2751,6 +2762,17 @@ void Texmaker::toggleBookmark(){
         item->setData(Qt::UserRole,documents.currentDocument->getFileName());
         item->setData(Qt::UserRole+1,c.lineNumber());
         item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
+        int lineNr=c.lineNumber();
+        lineNr = lineNr>1 ? lineNr-2 : 0;
+        text.clear();
+        LatexDocument *doc=currentEditorView()->document;
+        for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
+            QString ln=doc->line(i).text().trimmed();
+            if(ln.length()>40)
+                ln=ln.left(40)+"...";
+            text+=ln+"\n";
+        }
+        item->setToolTip(text);
     }else{
         QString text=documents.currentDocument->getFileInfo().fileName();
         QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
