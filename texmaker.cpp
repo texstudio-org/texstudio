@@ -1164,6 +1164,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 	connect(edit->document,SIGNAL(importPackage(QString)),this,SLOT(importPackage(QString)));
     connect(edit->document, SIGNAL(bookmarkRemoved(int)),this,SLOT(lineWithBookmarkRemoved(int)));
+    connect(edit->document, SIGNAL(bookmarkLineUpdated(int)),this,SLOT(updateLineWithBookmark(int)));
 	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 	
@@ -2734,6 +2735,50 @@ void Texmaker::lineWithBookmarkRemoved(int lineNr){
              return;
          }
      }
+}
+
+void Texmaker::updateLineWithBookmark(int lineNr){
+     LatexDocument *doc=qobject_cast<LatexDocument*> (sender());
+     if(!doc)
+         return;
+     QString text=doc->getFileInfo().fileName();
+     QDocumentLineHandle *dlh=doc->line(lineNr).handle();
+     QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
+     foreach(QListWidgetItem *item,lst){
+         QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
+         if(dlh_item==dlh){
+             QString text=doc->getFileInfo().fileName();
+             text+="\n"+dlh->text().trimmed();
+             item->setText(text);
+             lineNr = lineNr>1 ? lineNr-2 : 0;
+             text.clear();
+             LatexDocument *doc=currentEditorView()->document;
+             for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
+                 QString ln=doc->line(i).text().trimmed();
+                 if(ln.length()>40)
+                     ln=ln.left(40)+"...";
+                 text+=ln+"\n";
+             }
+             item->setToolTip(text);
+             return;
+         }
+     }
+     // no bookmark found, add one
+     text=doc->getFileInfo().fileName();
+     text+="\n"+dlh->text().trimmed();
+     QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
+     item->setData(Qt::UserRole,documents.currentDocument->getFileName());
+     item->setData(Qt::UserRole+1,lineNr);
+     item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
+     lineNr = lineNr>1 ? lineNr-2 : 0;
+     text.clear();
+     for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
+         QString ln=doc->line(i).text().trimmed();
+         if(ln.length()>40)
+             ln=ln.left(40)+"...";
+         text+=ln+"\n";
+     }
+     item->setToolTip(text);
 }
 
 void Texmaker::updateBookmarks(LatexEditorView *edView){

@@ -318,6 +318,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
+        //update bookmarks
+        if(edView && edView->hasBookmark(i,-1)){
+            emit bookmarkLineUpdated(i);
+        }
+
 		QString curLine = line(i).text(); //TODO: use this instead of s
 		QVector<int> fmts=line(i).getFormats();
 		

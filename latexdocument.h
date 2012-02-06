@@ -221,6 +221,7 @@ signals:
 	void importPackage(QString name);
 	void spellingLanguageChanged(const QLocale &lang);
     void bookmarkRemoved(int linenr);
+    void bookmarkLineUpdated(int lineNr);
 };
 
 class LatexDocumentsModel: public QAbstractItemModel{
