@@ -1820,6 +1820,8 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
+    updateBookmarks(currentEditorView());
+
 repeatAfterFileSavingFailed:
 	if (currentEditorView()->editor->isContentModified()) {
 		switch (QMessageBox::warning(this, TEXSTUDIO,
@@ -2721,6 +2723,20 @@ void Texmaker::lineWithBookmarkRemoved(int lineNr){
              return;
          }
      }
+}
+
+void Texmaker::updateBookmarks(LatexEditorView *edView){
+    if(!edView)
+        return;
+    LatexDocument *doc=edView->document;
+    QString text=doc->getFileInfo().fileName();
+    QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
+    foreach(QListWidgetItem *item,lst){
+        QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
+        int lineNr=doc->indexOf(dlh);
+        item->setData(Qt::UserRole+1,lineNr);
+        item->setData(Qt::UserRole+2,0);
+    }
 }
 
 void Texmaker::toggleBookmark(){
