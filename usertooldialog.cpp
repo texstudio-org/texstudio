@@ -17,66 +17,93 @@ UserToolDialog::UserToolDialog(QWidget *parent, QString name, BuildManager* bm) 
 	setModal(true);
 	ui.setupUi(this);
 
-	previous_index=0;
+	connect(ui.commandList, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(change(QListWidgetItem*,QListWidgetItem*)));
 
-	connect(ui.comboBox, SIGNAL(activated(int)), SLOT(change(int)));
+	connect(ui.itemEdit, SIGNAL(textChanged(QString)), SLOT(itemTextChanged(QString)));
+	connect(ui.toolEdit, SIGNAL(textChanged(QString)), SLOT(commandChanged(QString)));
 
 	connect(ui.pushButtonWizard, SIGNAL(clicked()), SLOT(openWizard()));
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), SLOT(slotRemove()));
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
+	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
+	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
 }
 
 UserToolDialog::~UserToolDialog() {
 }
 
 void UserToolDialog::init() {
-	for (int i=0;i<Tool.size();i++)
-		ui.comboBox->insertItem(i, tr("Command %1").arg(i+1));
-	ui.toolEdit->setText(Tool.value(0,""));
-	ui.itemEdit->setText(Name.value(0,""));
-	ui.comboBox->setCurrentIndex(0);
+	for (int i=0;i<Tool.size();i++) {
+		QListWidgetItem *item = new QListWidgetItem(Name.at(i));
+		item->setData(UserToolDialog::CommandRole, Tool.at(i));
+		ui.commandList->addItem(item);
+	}
+	ui.commandList->setCurrentRow(0);
 }
 
-void UserToolDialog::change(int index) {
-	while (Tool.size() <= previous_index) Tool << "";
-	while (Name.size() <= previous_index) Name << "";
-	if (previous_index >= 0) {
-		Tool[previous_index]=ui.toolEdit->text();
-		Name[previous_index]=ui.itemEdit->text();
+void UserToolDialog::change(QListWidgetItem *current, QListWidgetItem *previous) {
+	ui.toolEdit->setEnabled(current);
+	ui.itemEdit->setEnabled(current);
+	if (!current) {
+		ui.toolEdit->setText("");
+		ui.itemEdit->setText("");
+		return;
 	}
-	ui.toolEdit->setText(Tool.value(index,""));
-	ui.itemEdit->setText(Name.value(index,""));
-	previous_index=index;
+
+	ui.toolEdit->setText(current->data(UserToolDialog::CommandRole).toString());
+	ui.itemEdit->setText(current->data(Qt::DisplayRole).toString());
+}
+
+void UserToolDialog::itemTextChanged(const QString &text) {
+	QListWidgetItem *item = ui.commandList->currentItem();
+	if (!item) return;
+	item->setData(Qt::DisplayRole, text);
+}
+
+void UserToolDialog::commandChanged(const QString &command) {
+	QListWidgetItem *item = ui.commandList->currentItem();
+	if (!item) return;
+	item->setData(UserToolDialog::CommandRole, command);
 }
 
 void UserToolDialog::slotOk() {
-	while (Tool.size() <= previous_index) Tool << "";
-	while (Name.size() <= previous_index) Name << "";
-	if (previous_index >= 0) {
-		Tool[previous_index]=ui.toolEdit->text();
-		Name[previous_index]=ui.itemEdit->text();
+	Tool.clear();
+	Name.clear();
+	for (int i=0; i<ui.commandList->count(); i++) {
+		Tool << ui.commandList->item(i)->data(UserToolDialog::CommandRole).toString();
+		Name << ui.commandList->item(i)->data(Qt::DisplayRole).toString();
 	}
 	accept();
 }
-void UserToolDialog::slotAdd(){
-	Tool << "";
-	Name << "";
-	ui.comboBox->addItem(tr("Command %1").arg(ui.comboBox->count()+1));
+
+void UserToolDialog::slotAdd() {
+	ui.commandList->addItem(tr("User Command"));
 }
 
-void UserToolDialog::slotRemove(){
-	if (!txsConfirm(tr("Do you really want to delete the current command?"))) 
-		return;
-	Name.removeAt(ui.comboBox->currentIndex());
-	Tool.removeAt(ui.comboBox->currentIndex());
-	previous_index = -1;
-	ui.comboBox->removeItem(ui.comboBox->currentIndex());
-	change(ui.comboBox->currentIndex());
+void UserToolDialog::slotRemove() {
+	QListWidgetItem *item = ui.commandList->takeItem(ui.commandList->currentRow());
+	if (item) delete item;
 }
 
-void UserToolDialog::openWizard(){
+void UserToolDialog::slotMoveUp() {
+	int row = ui.commandList->currentRow();
+	if (row <= 0) return;
+	QListWidgetItem *item = ui.commandList->takeItem(row);
+	ui.commandList->insertItem(row-1, item);
+	ui.commandList->setCurrentItem(item);
+}
+
+void UserToolDialog::slotMoveDown() {
+	int row = ui.commandList->currentRow();
+	if (row < 0 || row >= ui.commandList->count()-1) return;
+	QListWidgetItem *item = ui.commandList->takeItem(row);
+	ui.commandList->insertItem(row+1, item);
+	ui.commandList->setCurrentItem(item);
+}
+
+void UserToolDialog::openWizard() {
 	if (!buildManager) return;
 	ui.toolEdit->setText(buildManager->editCommandList(ui.toolEdit->text()));
 }

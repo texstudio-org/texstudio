@@ -27,16 +27,22 @@ public:
 	QStringList Name,Tool;
 	BuildManager* buildManager;
 private:
-	int previous_index;
+	enum ToolRoles{
+		CommandRole = Qt::UserRole + 1,
+	};
 
 public slots:
 	void init();
 
 private slots:
-	void change(int index);
+	void change(QListWidgetItem *current, QListWidgetItem *previous);
+	void itemTextChanged(const QString &text);
+	void commandChanged(const QString &command);
 	void slotOk();
 	void slotAdd();
 	void slotRemove();
+	void slotMoveUp();
+	void slotMoveDown();
 	void openWizard();
 };
 
