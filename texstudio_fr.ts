@@ -4876,7 +4876,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>User Manual...</source>
-        <translation>Manuel de TexMakerX...</translation>
+        <translation>Manuel de TeXstudio...</translation>
     </message>
     <message>
         <source>Paste before</source>
