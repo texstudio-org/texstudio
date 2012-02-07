@@ -4777,8 +4777,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				offset = x;
 			} else {
-				qDebug("failed to find SOW : %i + %i != %i",
-						x, wordStart.matchedLength(), offset);
+				//qDebug("failed to find SOW : %i + %i != %i", x, wordStart.matchedLength(), offset);
 
 				return false;
 			}
@@ -4796,7 +4795,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				offset += wordEnd.matchedLength();
 			} else {
-				qDebug("failed to find EOW");
+				//qDebug("failed to find EOW");
 				return false;
 			}
 
