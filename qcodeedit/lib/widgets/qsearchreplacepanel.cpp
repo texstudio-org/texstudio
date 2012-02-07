@@ -470,7 +470,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		}
 		//show();
 	}else closeEvent(0);
-
+		
 	setVisible(visible);
 
 	if ( !visible )
@@ -657,6 +657,10 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 	
 	if ( m_search )
 	{
+		if (isVisible() && editor() && m_search->lastReplacedPosition().isValid()) {
+			editor()->setCursor(m_search->lastReplacedPosition());
+			editor()->ensureCursorVisibleSurrounding();
+		}
 		//m_search->highlightSelection(false);
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
 		//reset search scope

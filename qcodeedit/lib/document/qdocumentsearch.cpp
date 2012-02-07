@@ -339,6 +339,8 @@ void QDocumentSearch::clearMatches()
 }
 
 void QDocumentSearch::clearReplacements(){
+	m_lastReplacedPosition = QDocumentCursor();
+	
 	QDocument* doc= currentDocument();
 	if ( !doc )
 		return;
@@ -402,6 +404,9 @@ QString QDocumentSearch::searchText() const
 */
 void QDocumentSearch::setSearchText(const QString& f)
 {
+	if (m_string == f) 
+		return;
+	
 	m_string = f;
 	
 	if (hasOption(HighlightAll) && !m_string.isEmpty()) {
@@ -429,7 +434,8 @@ void QDocumentSearch::setOption(Option opt, bool on)
 	if ( ((m_option & opt) != 0) == on)
 		return; //no change, option already set
 
-	clearReplacements();
+	if (opt != QDocumentSearch::Replace) //don't clear replacement markers if toggling replace (important to jump back to last replacement if the panel is closed)
+		clearReplacements();
 
 	if ( on )
 		m_option |= opt;
@@ -488,8 +494,13 @@ QString QDocumentSearch::replaceText() const
 void QDocumentSearch::setReplaceText(const QString& r)
 {
 	m_replace = r;
+	m_lastReplacedPosition = QDocumentCursor();
 	//if (m_option & QDocumentSearch::HighlightAll)
 	//	clearMatches();
+}
+
+QDocumentCursor QDocumentSearch::lastReplacedPosition() const{
+	return m_lastReplacedPosition;
 }
 
 /*!
@@ -510,6 +521,7 @@ QDocumentCursor QDocumentSearch::cursor() const
 void QDocumentSearch::setCursor(const QDocumentCursor& c)
 {
 	m_cursor = c;
+	m_lastReplacedPosition = QDocumentCursor();
 }
 
 /*!
@@ -988,6 +1000,8 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 		}
 	}
 
+	m_lastReplacedPosition = m_cursor;
+	
 	//make sure that the cursor if  the correct side of the selection is used
 	//(otherwise the cursor could be moved out of the searched scope by a long 
 	//replacement text)
