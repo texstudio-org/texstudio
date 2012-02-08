@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Quick Array</source>
-        <translation>Pomocník s uspořádáním</translation>
+        <translation>Pomocník pro uspořádání</translation>
     </message>
     <message>
         <source>Num of Columns</source>
@@ -200,11 +200,11 @@
     <name>CodeSnippet_PlaceHolder</name>
     <message>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>num</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -558,7 +558,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Case Sensitive</source>
-        <translation>Rozlišující velká a malá písmena</translation>
+        <translation>Rozlišovat velká a malá písmena</translation>
     </message>
     <message>
         <source>In first character</source>
@@ -1030,43 +1030,43 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Quick Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Volby pro rychlý překlad</translation>
     </message>
     <message>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrátit francouzské uvozovky: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <source>Restrict search scope to an existing selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit oblast hledání na stávající výběr</translation>
     </message>
     <message>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zalamování řádků:</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměrná velikost písma karty:</translation>
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozdíly</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástrojové pruhy</translation>
     </message>
     <message>
         <source>Spelling dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresář pro slovník pro pravopis</translation>
     </message>
     <message>
         <source>Default language</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí jazyk</translation>
     </message>
     <message>
         <source>Select dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat adresář pro slovník</translation>
     </message>
     <message>
         <source>Font Family</source>
@@ -1074,7 +1074,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
-        <translation type="unfinished">Kódování písma</translation>
+        <translation>Výchozí kódování písma</translation>
     </message>
 </context>
 <context>
@@ -1101,7 +1101,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Recent &apos;Master Document&apos; %1</source>
-        <translation>Poslední &apos;Hlavní dokument&apos; %1</translation>
+        <translation>Poslední Hlavní dokument %1</translation>
     </message>
     <message>
         <source>Recent File %1</source>
@@ -1145,35 +1145,35 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>&amp;Sectioning</source>
-        <translation>&amp;Členění</translation>
+        <translation>&amp;Rozčlenění</translation>
     </message>
     <message>
         <source>part</source>
-        <translation></translation>
+        <translation>part - Část</translation>
     </message>
     <message>
         <source>chapter</source>
-        <translation></translation>
+        <translation>chapter - Kapitola</translation>
     </message>
     <message>
         <source>section</source>
-        <translation></translation>
+        <translation>section - Oddíl</translation>
     </message>
     <message>
         <source>subsection</source>
-        <translation></translation>
+        <translation>subsection - Pododdíl</translation>
     </message>
     <message>
         <source>subsubsection</source>
-        <translation></translation>
+        <translation>subsubsection - Podpododdíl</translation>
     </message>
     <message>
         <source>paragraph</source>
-        <translation></translation>
+        <translation>paragraph - Odstavec</translation>
     </message>
     <message>
         <source>subparagraph</source>
-        <translation></translation>
+        <translation>subparagraph - Pododstavec</translation>
     </message>
     <message>
         <source>part*</source>
@@ -1273,7 +1273,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Font St&amp;yles</source>
-        <translation>&amp;Druh písma</translation>
+        <translation>Dr&amp;uhy písma</translation>
     </message>
     <message>
         <source>\emph - Emphasis  [selection]</source>
@@ -1309,11 +1309,11 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Font Sizes</source>
-        <translation>Velikost písma</translation>
+        <translation>Velikosti písem</translation>
     </message>
     <message>
         <source>tiny</source>
-        <translation>maličké</translation>
+        <translation>drobné</translation>
     </message>
     <message>
         <source>scriptsize</source>
@@ -1389,27 +1389,27 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>label</source>
-        <translation></translation>
+        <translation>label - Štítek</translation>
     </message>
     <message>
         <source>ref</source>
-        <translation></translation>
+        <translation>ref - Odkaz</translation>
     </message>
     <message>
         <source>pageref</source>
-        <translation></translation>
+        <translation>pageref - Odkaz na stranu</translation>
     </message>
     <message>
         <source>index</source>
-        <translation></translation>
+        <translation>index - Rejstřík</translation>
     </message>
     <message>
         <source>cite</source>
-        <translation></translation>
+        <translation>cite - Citace</translation>
     </message>
     <message>
         <source>footnote</source>
-        <translation></translation>
+        <translation>footnote - Poznámka</translation>
     </message>
     <message>
         <source>&amp;Math</source>
@@ -1421,7 +1421,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Display math mode \[...\]</source>
-        <translation>Zvýrazněný matematický režim \[ ... \]</translation>
+        <translation>Zobrazit matematický režim \[ ... \]</translation>
     </message>
     <message>
         <source>Numbered equations \begin{equation}</source>
@@ -1493,7 +1493,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Math S&amp;paces</source>
-        <translation>&amp;Mezery v matematickém režimu</translation>
+        <translation>Matematické &amp;mezery</translation>
     </message>
     <message>
         <source>medium</source>
@@ -1534,15 +1534,16 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolil jste automatické nahrazování uvozovek. Nicméně tu jsou uživatelské značky se spouštěcím řetězcem (?&lt;=\s|^) or (?&lt;=\S), které nahradí nové nahrazení uvozovek.
+Chcete je odstranit?</translation>
     </message>
     <message>
         <source>Open first non-open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít první neotevřený soubor</translation>
     </message>
     <message>
         <source>huge</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrovské</translation>
     </message>
 </context>
 <context>
@@ -1766,87 +1767,91 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Width/Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Šířka/Výška</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Šířka</translation>
     </message>
     <message>
         <source>0.7</source>
-        <translation type="unfinished">0.7</translation>
+        <translation>0.7</translation>
     </message>
     <message>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Výška</translation>
     </message>
     <message>
         <source>User defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Stanoveno uživatelem</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarovnat vodorovně na střed</translation>
     </message>
     <message>
         <source>Caption</source>
-        <translation type="unfinished"></translation>
+        <translation>Popisek</translation>
     </message>
     <message>
         <source>Above graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Nad obrázkem</translation>
     </message>
     <message>
         <source>Below graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Pod obrázkem</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Štítek</translation>
     </message>
     <message>
         <source>Span two columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Zahrnovat dva sloupce</translation>
     </message>
     <message>
         <source>Position</source>
-        <translation type="unfinished"></translation>
+        <translation>Poloha</translation>
     </message>
     <message>
         <source>Save current settings as default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit současná nastavení jako výchozí.</translation>
     </message>
     <message>
         <source>as default</source>
-        <translation type="unfinished"></translation>
+        <translation>jako výchozí</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
-        <translation type="unfinished">Vložit obrázek</translation>
+        <translation>Vložit obrázek</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se zpracovat kód začlenění obrázku:
+Nedostatečný počet argumentů </translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se zpracovat kód začlenění obrázku:
+Průvodce nepodporuje prostředí </translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se zpracovat kód začlenění obrázku:
+Průvodce nepodporuje příkaz </translation>
     </message>
     <message>
         <source>Graphics options</source>
-        <translation type="unfinished"></translation>
+        <translation>Volby pro obrázky</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se zpracovat kód začlenění obrázku:
+Chybí volby \includegraphics.</translation>
     </message>
 </context>
 <context>
@@ -1893,7 +1898,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>TODO</source>
-        <translation>TODO</translation>
+        <translation>KUDĚLÁNÍ</translation>
     </message>
     <message>
         <source>BIBTEX</source>
@@ -1905,23 +1910,23 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá chyba. Možný pád. Radí se vám, abyste TeXstudio spustil znovu</translation>
     </message>
     <message>
         <source>MAGIC_COMMENTS</source>
-        <translation type="unfinished"></translation>
+        <translation>KOUZELNÉ_POZNÁMKY</translation>
     </message>
     <message>
         <source>Invalid language format</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný formát jazyka</translation>
     </message>
     <message>
         <source>Invalid codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný kodek</translation>
     </message>
     <message>
         <source>Unknown magic comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá kouzelná poznámka</translation>
     </message>
 </context>
 <context>
@@ -1939,7 +1944,7 @@ Missing \includegraphics options.</source>
     <name>LatexEditorView</name>
     <message>
         <source>always ignore</source>
-        <translation>Nikdy si nevšímat</translation>
+        <translation>Vždy přehlížet</translation>
     </message>
     <message>
         <source>New BibTeX Entry %1</source>
@@ -1961,18 +1966,9 @@ Missing \includegraphics options.</source>
     <message numerus="yes">
         <source>%n reference(s) to this label</source>
         <translation>
-            <numerusform>%n odkazy k tomuto štítku
-        
-        
-        </numerusform>
-            <numerusform>Jeden odkaz k tomuto štítku
-        
-        
-        </numerusform>
-            <numerusform>%n odkazů k tomuto štítku
-        
-        
-        </numerusform>
+            <numerusform>%n odkaz k tomuto štítku</numerusform>
+            <numerusform>%n odkazy k tomuto štítku</numerusform>
+            <numerusform>%n odkazů k tomuto štítku</numerusform>
         </translation>
     </message>
     <message>
@@ -1997,15 +1993,15 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Open package documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít dokumentaci k balíčku</translation>
     </message>
     <message>
         <source>use yours</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít vaši</translation>
     </message>
     <message>
         <source>use other&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít jinou</translation>
     </message>
 </context>
 <context>
@@ -2067,7 +2063,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Paper Size</source>
-        <translation>Formát papíru</translation>
+        <translation>Velikost papíru</translation>
     </message>
     <message>
         <source>OK</source>
@@ -2090,7 +2086,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>errors</source>
-        <translation>Chyba</translation>
+        <translation>Chyby</translation>
     </message>
     <message>
         <source>preview</source>
@@ -2102,7 +2098,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
     </message>
 </context>
 <context>
@@ -2396,7 +2392,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Fit to Wi&amp;dth</source>
-        <translation>Umístit do šířky</translation>
+        <translation>Umístit do šíř&amp;ky</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -2584,32 +2580,33 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpět</translation>
     </message>
     <message>
         <source>Previously shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Předtím zobrazená strana</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Vpřed</translation>
     </message>
     <message>
         <source>Next shown page</source>
-        <translation type="unfinished"></translation>
+        <translation>Další zobrazená strana</translation>
     </message>
     <message>
         <source>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 nevypadá jako platný dokument PDF.
+Přesto jej chcete otevřít? Může způsobit pád.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor PDF &quot;%1&quot; není úplný. Nový pokus za 2 sekundy.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor PDF &quot;%1&quot; není úplný.</translation>
     </message>
 </context>
 <context>
@@ -3520,7 +3517,7 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>size</source>
-        <translation>Velikost:</translation>
+        <translation>Velikost</translation>
     </message>
     <message>
         <source>prio</source>
@@ -3540,27 +3537,27 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>magicComment</source>
-        <translation type="unfinished"></translation>
+        <translation>KouzelnáPoznámka</translation>
     </message>
     <message>
         <source>sweave</source>
-        <translation type="unfinished"></translation>
+        <translation>Sweave</translation>
     </message>
     <message>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek</translation>
     </message>
     <message>
         <source>diffDelete</source>
-        <translation type="unfinished"></translation>
+        <translation>RozdílSmazat</translation>
     </message>
     <message>
         <source>diffAdd</source>
-        <translation type="unfinished"></translation>
+        <translation>RozdílPřidat</translation>
     </message>
     <message>
         <source>diffReplace</source>
-        <translation type="unfinished"></translation>
+        <translation>RozdílNahradit</translation>
     </message>
 </context>
 <context>
@@ -3717,7 +3714,7 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     </message>
     <message>
         <source>Paper Size</source>
-        <translation>Formát papíru</translation>
+        <translation>Velikost papíru</translation>
     </message>
     <message>
         <source>Other Options</source>
@@ -3870,27 +3867,27 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     </message>
     <message>
         <source>ignore case</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevšímat si velikosti písmen</translation>
     </message>
     <message>
         <source>punctation</source>
-        <translation type="unfinished"></translation>
+        <translation>Tečkování</translation>
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeXový vstup</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit do:</translation>
     </message>
     <message>
         <source>Couldn&apos;t create file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se vytvořit soubor %1</translation>
     </message>
     <message>
         <source>Finished generation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoření dokončeno</translation>
     </message>
 </context>
 <context>
@@ -3900,34 +3897,40 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nynější skript požádal o vstup do přednostního režimu zápisu a o zavolání následující funkce:
+%1
+
+Důvěřujete tomuto skriptu?</translation>
     </message>
     <message>
         <source>Yes, allow this call</source>
-        <translation type="unfinished"></translation>
+        <translation>Ano, povolit toto volání</translation>
     </message>
     <message>
         <source>Yes, allow all calls it will ever make</source>
-        <translation type="unfinished"></translation>
+        <translation>Ano, povolit všechna volání, která kdy bude požadovat</translation>
     </message>
     <message>
         <source>No, abort the call</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne, zrušit volání</translation>
     </message>
     <message>
         <source>The current script has requested to enter privileged mode and read the following value:
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nynější skript požádal o vstup do přednostního režimu zápisu a o přečtení následující hodnoty:
+%1
+
+Důvěřujete tomuto skriptu?</translation>
     </message>
     <message>
         <source>Yes, allow this reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Ano, povolit toto čtení</translation>
     </message>
     <message>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"></translation>
+        <translation>Ano, povolit stálý přístup ke čtení pro všechno</translation>
     </message>
 </context>
 <context>
@@ -3954,7 +3957,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Words</source>
-        <translation>Celé slovo</translation>
+        <translation>Slova</translation>
     </message>
     <message>
         <source>Cursor</source>
@@ -3974,7 +3977,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Case</source>
-        <translation>Psaní velkých/malých písmen</translation>
+        <translation>Písmovka</translation>
     </message>
     <message>
         <source>Replace :</source>
@@ -4084,7 +4087,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Always ignore</source>
-        <translation>Nikdy si nevšímat</translation>
+        <translation>Vždy přehlížet</translation>
     </message>
     <message>
         <source>Suggested words :</source>
@@ -4100,11 +4103,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Show Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat seznam přehlíženého</translation>
     </message>
     <message>
         <source>Hide Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt seznam přehlíženého</translation>
     </message>
 </context>
 <context>
@@ -4208,7 +4211,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Quick Tabular</source>
-        <translation>Pomocník s tabulkami</translation>
+        <translation>Pomocník pro tabulky</translation>
     </message>
     <message>
         <source>Horizontal Separator</source>
@@ -4244,30 +4247,30 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>fixed width - left</source>
-        <translation type="unfinished"></translation>
+        <translation>pevná šířka - vlevo</translation>
     </message>
     <message>
         <source>fixed width - center - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>pevná šířka - střed - balíček tabularx</translation>
     </message>
     <message>
         <source>fixed width - right - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>pevná šířka - vpravo - balíček tabularx</translation>
     </message>
     <message>
         <source>none</source>
-        <translation type="unfinished">Žádný</translation>
+        <translation>Žádný</translation>
     </message>
     <message>
         <source>@{text}</source>
-        <translation type="unfinished"></translation>
+        <translation>@{text}</translation>
     </message>
 </context>
 <context>
     <name>TabbingDialog</name>
     <message>
         <source>Quick Tabbing</source>
-        <translation>Pomocník se zarážkami</translation>
+        <translation>Pomocník pro zarážky</translation>
     </message>
     <message>
         <source>OK</source>
@@ -4279,7 +4282,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Spacing</source>
-        <translation>Rozložení</translation>
+        <translation>Rozestupy</translation>
     </message>
     <message>
         <source>Num of Rows</source>
@@ -4350,7 +4353,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>Zavřít</translation>
+        <translation>&amp;Zavřít</translation>
     </message>
     <message>
         <source>Print...</source>
@@ -4454,11 +4457,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Quick &amp;Tabular...</source>
-        <translation>Pomocník s &amp;tabulkami...</translation>
+        <translation>Pomocník pro &amp;tabulky...</translation>
     </message>
     <message>
         <source>Quick T&amp;abbing...</source>
-        <translation>Pomocník se &amp;zarážkami...</translation>
+        <translation>Pomocník pro &amp;zarážky...</translation>
     </message>
     <message>
         <source>&amp;Bibliography</source>
@@ -4502,7 +4505,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
-        <translation>Prohlásit současný dokument za &apos;Hlavní dokument&apos;</translation>
+        <translation>Prohlásit současný dokument za Hlavní dokument</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -4598,7 +4601,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;Find</source>
-        <translation>Najít</translation>
+        <translation>&amp;Najít</translation>
     </message>
     <message>
         <source>Operator symbols</source>
@@ -4626,7 +4629,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Favorites</source>
-        <translation>Nejoblíbenější</translation>
+        <translation>Oblíbené</translation>
     </message>
     <message>
         <source>Left/Right Brackets</source>
@@ -4646,15 +4649,15 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
-        <translation>Tvrdé zalomení řádků...</translation>
+        <translation>Tvrdé &amp;zalomení řádků...</translation>
     </message>
     <message>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation>Opakovat tvrdé zalomení řádků</translation>
+        <translation>&amp;Opakovat tvrdé zalomení řádků</translation>
     </message>
     <message>
         <source>Find &amp;Next</source>
-        <translation>Najít další</translation>
+        <translation>Najít &amp;další</translation>
     </message>
     <message>
         <source>&amp;Replace</source>
@@ -4818,15 +4821,15 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Quick &amp;Letter...</source>
-        <translation>Pomocník s &amp;dopisem...</translation>
+        <translation>Pomocník pro &amp;dopis...</translation>
     </message>
     <message>
         <source>Quick &amp;Array...</source>
-        <translation>Pomocník s &amp;uspořádáním...</translation>
+        <translation>Pomocník pro &amp;uspořádání...</translation>
     </message>
     <message>
         <source>Insert &amp;Graphic...</source>
-        <translation>Vložit &amp;vyobrazení...</translation>
+        <translation>Vložit &amp;obrázek...</translation>
     </message>
     <message>
         <source>&amp;Clean</source>
@@ -4842,7 +4845,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation>Prohlásit současný dokument za &apos;&amp;Hlavní dokument&apos;</translation>
+        <translation>Prohlásit současný dokument za &amp;Hlavní dokument</translation>
     </message>
     <message>
         <source>Load Profile</source>
@@ -4878,7 +4881,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>Nový</translation>
+        <translation>&amp;Nový</translation>
     </message>
     <message>
         <source>New from &amp;template...</source>
@@ -4890,11 +4893,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>Uložit</translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
         <source>Save A&amp;ll</source>
-        <translation>Uložit vše</translation>
+        <translation>Uložit &amp;vše</translation>
     </message>
     <message>
         <source>&amp;Make Template...</source>
@@ -4910,7 +4913,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Clos&amp;e All</source>
-        <translation>Zavřít vše</translation>
+        <translation>Z&amp;avřít vše</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
@@ -5299,7 +5302,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Select (inverting)</source>
-        <translation>Vybrat (převracející)</translation>
+        <translation>Vybrat (obracející)</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
@@ -5389,113 +5392,113 @@ Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Pdf files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory PDF</translation>
     </message>
     <message>
         <source>Show difference between two files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat rozdíly mezi dvěma soubory</translation>
     </message>
     <message>
         <source>Jump to next difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Skočit na další rozdíl</translation>
     </message>
     <message>
         <source>Jump to previous difference</source>
-        <translation type="unfinished"></translation>
+        <translation>Skočit na předchozí rozdíl</translation>
     </message>
     <message>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladit zásobník kroků zpět</translation>
     </message>
     <message>
         <source>Find mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Najít nesoulad</translation>
     </message>
     <message>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Předělat tabulku podle předlohy</translation>
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit &amp;zvýrazňování...</translation>
     </message>
     <message>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished"></translation>
+        <translation>Přesunout dokument na z&amp;ačátek</translation>
     </message>
     <message>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished"></translation>
+        <translation>Přesunout dokument na k&amp;onec</translation>
     </message>
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory LaTeX (*.tex);;Všechny soubory (*.*)</translation>
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozdíly</translation>
     </message>
     <message>
         <source>Sweave files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sweave soubory</translation>
     </message>
     <message>
         <source>Show difference between two files in relation to base file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat rozdíly mezi dvěma soubory vzhledem k základnímu souboru</translation>
     </message>
     <message>
         <source>Check SVN Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřit střet v SVN</translation>
     </message>
     <message>
         <source>Try to merge differences</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkusit sloučit rozdíly</translation>
     </message>
     <message>
         <source>Remove Difference-Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit rozdílové značky</translation>
     </message>
     <message>
         <source>Declare Conflict Resolved</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohlásit střet za vyřešený</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished">Výchozí</translation>
+        <translation>Výchozí</translation>
     </message>
     <message>
         <source>Insert language as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit jazyk jako poznámku TeXu</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Jazyk</translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument nemůžete sestavit v nezapisovatelném adresáři.</translation>
     </message>
     <message>
         <source>Log File is not readable!</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor se zápisem není čitelný!</translation>
     </message>
     <message>
         <source>TXS Profile</source>
         <comment>filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>Profil TXS</translation>
     </message>
     <message>
         <source>Open Compare File</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít porovnávaný soubor</translation>
     </message>
     <message>
         <source>Open Base File</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít základní soubor</translation>
     </message>
     <message>
         <source>Conflict!</source>
-        <translation type="unfinished">Rozpor!</translation>
+        <translation>Rozpor!</translation>
     </message>
     <message>
         <source>%1
@@ -5503,56 +5506,61 @@ has been modified by another application.
 Press &quot;OK&quot; to show differences
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+byl změněn jiným programem.
+Stiskněte OK pro ukázání rozdílů
+Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>SVN Conflict!</source>
-        <translation type="unfinished"></translation>
+        <translation>Střet v SVN!</translation>
     </message>
     <message>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>%1 se střetává se skladištěm.
+Stiskněte OK pro ukázání rozdílů místo subversion vytvořeného zdroje
+Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Najít opakování slov</translation>
     </message>
     <message>
         <source>New highlighting:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové zvýrazňování:</translation>
     </message>
     <message>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">BibTeX</translation>
+        <translation>BibTeX</translation>
     </message>
     <message>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Dvojkový</translation>
     </message>
     <message>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>QtScript</translation>
     </message>
     <message>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX</translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX makro</translation>
     </message>
     <message>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>XML</translation>
     </message>
 </context>
 <context>
@@ -5875,23 +5883,23 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Přidat</translation>
+        <translation>Přidat</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Odstranit</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished">Nahoru</translation>
+        <translation>Nahoru</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished">Dolů</translation>
+        <translation>Dolů</translation>
     </message>
     <message>
         <source>Run script</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit skript</translation>
     </message>
 </context>
 <context>
@@ -6018,7 +6026,7 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
     </message>
     <message>
         <source>could not start the command</source>
-        <translation>Nepodařilo se spustit příkaz.</translation>
+        <translation>Nepodařilo se spustit příkaz</translation>
     </message>
     <message>
         <source>Input file not found.</source>
@@ -6030,7 +6038,7 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
     </message>
     <message>
         <source>a process has failed</source>
-        <translation>proces nahlásil chybu</translation>
+        <translation>Proces nahlásil chybu</translation>
     </message>
     <message>
         <source>Open File</source>
@@ -6058,7 +6066,7 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
     </message>
     <message>
         <source>Tocdepth :</source>
-        <translation>Toc hloubka:</translation>
+        <translation>Hloubka obsahu:</translation>
     </message>
     <message>
         <source>Latex code for the title of the table of contents</source>
@@ -6066,11 +6074,11 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
     </message>
     <message>
         <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
-        <translation>Číslo PS strany odpovídající prvnímu číslu řádku rejstříkovanému v souboru toc</translation>
+        <translation>Číslo PS strany odpovídající prvnímu číslu řádku rejstříkovanému v souboru s obsahem (TOC)</translation>
     </message>
     <message>
         <source>Set the value of the LaTeX tocdepth counter</source>
-        <translation>Nastavit hodnotu počítadla LaTeXové toc hloubky</translation>
+        <translation>Nastavit hodnotu počítadla LaTeXové hloubky obsahu (TOC)</translation>
     </message>
     <message>
         <source>Number of compilations :</source>
@@ -6098,7 +6106,7 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
     </message>
     <message>
         <source>Navigation mode</source>
-        <translation>Režim navedení</translation>
+        <translation>Naváděcí režim</translation>
     </message>
     <message>
         <source>Alignment :</source>
@@ -6158,7 +6166,7 @@ Soubory HTML se nacházejí v adresáři %1.</translation>
     </message>
     <message>
         <source>not found</source>
-        <translation>nenalezeno</translation>
+        <translation>Nenalezeno</translation>
     </message>
     <message>
         <source>Compiling input file. Please wait...</source>
@@ -6215,31 +6223,31 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Scope:</source>
-        <translation>Suche in:</translation>
+        <translation>Hledat v:</translation>
     </message>
     <message>
         <source>current document</source>
-        <translation>aktuellem Dokument</translation>
+        <translation>nynější dokument</translation>
     </message>
     <message>
         <source>open documents</source>
-        <translation>allen offenen Dokumenten</translation>
+        <translation>všechny otevřené dokumenty</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation>Suche nach:</translation>
+        <translation>Hledat:</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
-        <translation>Rozlišující velká a malá písmena</translation>
+        <translation>Rozlišovat velká a malá písmena</translation>
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation>Regulärer Ausdruck</translation>
+        <translation>Regulární výraz</translation>
     </message>
     <message>
         <source>Complete Words only</source>
-        <translation>nur ganze Worte</translation>
+        <translation>Pouze celá slova</translation>
     </message>
 </context>
 <context>
