@@ -41,12 +41,14 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
 			for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
 				addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
 		}
+		if (a || c || s)
+			addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+Qt::Key_Tab).toString(QKeySequence::NativeText));
 	}
 	setEditable(true);
 }
 
 void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
-	if ( (e->modifiers()!=0 && e->key() != Qt::Key_Alt && e->key() != Qt::Key_Shift && e->key() != Qt::Key_Control && e->key() != Qt::Key_AltGr && e->key() != Qt::Key_Meta && e->key() != 0 && e->key() != Qt::Key_Super_L && e->key() != Qt::Key_Super_R)
+	if ( (e->modifiers()!=0 && e->text() != "+" && e->key() != Qt::Key_Alt && e->key() != Qt::Key_Shift && e->key() != Qt::Key_Control && e->key() != Qt::Key_AltGr && e->key() != Qt::Key_Meta && e->key() != 0 && e->key() != Qt::Key_Super_L && e->key() != Qt::Key_Super_R)
 		|| (e->key() >= Qt::Key_F1 &&  e->key() <= Qt::Key_F35)) {
 		QString newShortCut = QKeySequence(e->modifiers() | e->key()).toString(QKeySequence::NativeText);
 		int index = findText(newShortCut);
