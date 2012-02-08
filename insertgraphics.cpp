@@ -227,7 +227,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 	while (pos<code.length()) {
 		args.clear();
 		argStarts.clear();
-		int nw = LatexParser::getInstance().nextWord(code, pos, word, wordStart, true);
+		int nw = LatexParser::getInstance().nextWord(code, pos, word, wordStart, true,  0);
 		if (nw == LatexParser::NW_COMMENT) {
 			if (!containsComment) txsWarning("Graphics inclusion wizard does not support comments. They will be removed if you edit the code with the wizard.");
 			containsComment = true;

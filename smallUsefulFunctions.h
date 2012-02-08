@@ -116,12 +116,14 @@ public:
 	LatexParser();
 	void init();
 
-	//searches the next token in the line line after/at the index index
+	/** searches the next token in the line line after/at the index index
 	//there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
-	//index returns the index of the first character after the word
-	//detectMath==true: return $ $$ _ as commands
-	//return: start index of the token (or -1 if last)
-	static int nextToken(const QString &line,int &index,bool abbreviation=false,bool inOption=false,bool detectMath=false);
+	 \param index returns the index of the first character after the word
+	 \param inOption Don't stop at eow characters
+	 \param detectMath If true, returns $ $$ _ ^ & as commands
+	 \returns start index of the token (or -1 if last)
+	*/
+	static int nextToken(const QString &line,int &index, bool inOption,bool detectMath);
 	
 	
 	enum NextWordFlag {
@@ -144,7 +146,7 @@ public:
 	//                "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names
 	//                          (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
 	//returns the type of outWord
-	NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands,bool abbreviations=false,bool *inStructure=0) const;
+	NextWordFlag nextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex, bool returnCommands, QString* lastCommand) const;
 	
 	//searches the next text words and ignores command options, environments or comments
 	//returns false if none is found

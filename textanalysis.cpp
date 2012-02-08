@@ -180,7 +180,8 @@ void TextAnalysisDialog::needCount() {
 		int state;
 		int lastIndex=0;
 		LatexParser& lp = LatexParser::getInstance();
-		while ((state=lp.nextWord(line,nextIndex,curWord,wordStartIndex,true))!=LatexParser::NW_NOTHING) {
+		while ((state=lp.nextWord(line,nextIndex,curWord,wordStartIndex,true,0))!=LatexParser::NW_NOTHING) {
+			if (curWord.endsWith('.')) curWord.chop(1);
 			bool inSelection;
 			if (selectionStartLine!=selectionEndLine)
 				inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
