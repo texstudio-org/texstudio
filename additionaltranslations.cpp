@@ -168,6 +168,7 @@
 QT_TRANSLATE_NOOP("Texmaker", "QtScript", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "(La)TeX", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "(La)TeX Macro", "Format name of language definition "), 
+QT_TRANSLATE_NOOP("Texmaker", "Plain text", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "XML", "Format name of language definition "), 
 ""};
 #endif
