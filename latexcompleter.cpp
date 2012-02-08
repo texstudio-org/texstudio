@@ -1038,9 +1038,10 @@ void LatexCompleter::setConfig(LatexCompleterConfig* config){
 	this->config=config;
 	listModel->setConfig(config);
 	
-	QString stSht=QString("QTabBar::tab { font-size: %1pt; margin: 2pt;}").arg(QApplication::font().pointSize() * config->tabRelFontSizePercent / 100);
-	tbAbove->setStyleSheet(stSht);
-	tbBelow->setStyleSheet(stSht);
+	QFont f(QApplication::font());
+	f.setPointSize( f.pointSize() * config->tabRelFontSizePercent / 100);
+	tbAbove->setFont(f);
+	tbBelow->setFont(f);
 }
 LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;
