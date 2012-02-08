@@ -1212,6 +1212,8 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
         int lineNr=item->data(Qt::UserRole+1).toInt();
         edView->addBookmark(lineNr,-1);
         QDocumentLineHandle *dlh=doc->line(lineNr).handle();
+	if(!dlh)
+	    continue;
         item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
         item->text()=dlh->text();
         QString text;
