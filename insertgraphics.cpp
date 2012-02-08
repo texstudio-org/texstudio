@@ -459,7 +459,7 @@ void InsertGraphics::saveDefault() {
 void InsertGraphicsConfig::readSettings(QSettings& settings){
 	settings.beginGroup("InsertGraphics");
 
-	includeOptions = settings.value("/includeOption", "width=\\textwidth").toString();
+    includeOptions = settings.value("/includeOption", "width=0.7\\linewidth").toString();
 	center = settings.value("/center", true).toBool();
 	useFigure = settings.value("/useFigure", true).toBool();
 	captionBelow = settings.value("/captionBelow", true).toBool();
