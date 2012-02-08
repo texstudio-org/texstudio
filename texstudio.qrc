@@ -308,6 +308,7 @@
         <file>images/left.png</file>
         <file>images/right.png</file>
         <file>images/bookmarks.png</file>
+        <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
