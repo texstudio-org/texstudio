@@ -14,12 +14,18 @@
 #include "smallUsefulFunctions.h"
 extern const char* TEXSTUDIO_SVN_VERSION;
 
+#ifdef QT_NO_DEBUG
+#define COMPILED_DEBUG_OR_RELEASE "R"
+#else
+#define COMPILED_DEBUG_OR_RELEASE "D"
+#endif
+
 AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
 	ui.textBrowser->setHtml(QString("<b>%1 %2</b> (SVN %3)").arg(TEXSTUDIO).arg(TXSVERSION).arg(TEXSTUDIO_SVN_VERSION?TEXSTUDIO_SVN_VERSION:"??") + "<br>" +
-				tr("Using Qt Version %1, compiled with Qt %2").arg(qVersion()).arg(QT_VERSION_STR) + "<br>" +
+				tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion()).arg(QT_VERSION_STR).arg(COMPILED_DEBUG_OR_RELEASE) + "<br>" +
 				tr("Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet<br>")+
 				tr(TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun<br>QCodeEdit: Luc Bruant <br>html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+
 	                        tr(TEXSTUDIO " contains code from the Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens) program.<br>TeXstudio uses the pdf viewer of TeXworks.<br> TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL)<br>")+
