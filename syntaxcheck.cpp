@@ -113,14 +113,14 @@ void SyntaxCheck::run(){
 
 void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv){
 	// do syntax check on that line
-	QString word;
 	int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
-	int start=0;
-	int wordstart;
+	LatexReader lr(*ltxCommands, line);
 	int status;
 	// check command-words
-	while ((status=ltxCommands->nextWord(line,start,word,wordstart,true,0))){
-		if(status==LatexParser::NW_COMMAND){
+	while ((status=lr.nextWord(true))){
+		const QString &word = lr.word;
+		const int &wordstart = lr.wordStartIndex;
+		if(status==LatexReader::NW_COMMAND){
 			if(word=="\\begin"||word=="\\end"){
 				QStringList options;
 				ltxCommands->resolveCommandOptions(line,wordstart,options);
@@ -163,7 +163,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 						}
 					}
 					// add env-name for syntax checking to "word"
-					word+=options.first();
+					lr.word+=options.first();
 				}
 			}
 			if(ltxCommands->definitionCommands.contains(word)){ // don't check in command definition
@@ -175,7 +175,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 					if(option.startsWith("[")){
 						continue;
 					}
-					start=starts.at(i)+option.length();
+					lr.index=starts.at(i)+option.length();
 					break;
 				}
 			}
@@ -185,13 +185,13 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 				if(options.size()>0){
 					QString first=options.takeFirst();
 					if(!first.startsWith("[")){  //handling of includegraphics should be improved !!!
-						start+=first.length();
+						lr.index+=first.length();
 					}else{
 						if(!options.isEmpty()){
 							QString second=options.first();
 							if(second.startsWith("{")){
 								second.fill(' ');
-								line.replace(start+first.length(),second.length(),second);
+								line.replace(lr.index+first.length(),second.length(),second);
 							}
 						}
 					}

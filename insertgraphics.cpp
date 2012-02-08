@@ -216,39 +216,37 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 	bool includeParsed = false;
 	bool containsComment = false;
 
-	QString word;
-	int pos = 0;
-	int wordStart;
 	QStringList args;
 	QList<int> argStarts;
 
 	conf.center = false;
 
-	while (pos<code.length()) {
+	LatexReader lr(code);
+	while (lr.index < code.length()) {
 		args.clear();
 		argStarts.clear();
-		int nw = LatexParser::getInstance().nextWord(code, pos, word, wordStart, true,  0);
-		if (nw == LatexParser::NW_COMMENT) {
+		int nw = lr.nextWord(true);
+		if (nw == LatexReader::NW_COMMENT) {
 			if (!containsComment) txsWarning("Graphics inclusion wizard does not support comments. They will be removed if you edit the code with the wizard.");
 			containsComment = true;
-			pos = code.indexOf("\n", pos);
+			lr.index = code.indexOf("\n", lr.index);
 			continue;
-		} else if (nw != LatexParser::NW_COMMAND) 
+		} else if (nw != LatexReader::NW_COMMAND) 
 			continue;
 		
 
-		if (word=="\\centering") {
+		if (lr.word=="\\centering") {
 			conf.center = true;
-			pos = wordStart + word.length();
+			lr.index = lr.wordStartIndex + lr.word.length();
 			continue;
 		}
-		LatexParser::resolveCommandOptions(code, pos, args, &argStarts);
+		LatexParser::resolveCommandOptions(code, lr.index, args, &argStarts);
 		if (args.length() == 0) {
-			txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ")+word);
+			txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ")+lr.word);
 			return false;
 		}
-		pos = argStarts.last() + args.last().length();
-		if (word =="\\begin") {
+		lr.index = argStarts.last() + args.last().length();
+		if (lr.word =="\\begin") {
 			if (args.at(0)=="{figure}") {
 				conf.useFigure = true;
 				conf.spanTwoCols = false;
@@ -264,14 +262,14 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 				txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support environment ")+args.at(0));
 				return false;
 			}
-		} else if (word=="\\end") {
+		} else if (lr.word=="\\end") {
 			;
-		} else if (word=="\\caption") {
+		} else if (lr.word=="\\caption") {
 			conf.caption = LatexParser::removeOptionBrackets(args.at(0));
 			conf.captionBelow = includeParsed;
-		} else if (word=="\\label") {
+		} else if (lr.word=="\\label") {
 			conf.label = LatexParser::removeOptionBrackets(args.at(0));
-		} else if (word=="\\includegraphics") {
+		} else if (lr.word=="\\includegraphics") {
 			if (args.at(0).at(0) == '[') {
 				conf.includeOptions = LatexParser::removeOptionBrackets(args.at(0));
 				if (args.length()<2) {
@@ -285,7 +283,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 			}
 			includeParsed = true;
 		} else {
-			txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ")+word);
+			txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ")+lr.word);
 			return false;
 		}
 	}

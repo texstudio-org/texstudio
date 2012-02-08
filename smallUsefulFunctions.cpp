@@ -63,7 +63,7 @@ void LatexParser::init(){
 	possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
 }
 
-int LatexParser::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
+int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
 	bool inWord=false;
 	bool inCmd=false;
 	//bool reparse=false;
@@ -158,94 +158,7 @@ int LatexParser::nextToken(const QString &line,int &index, bool inOption,bool de
 }
 
 
-LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands, QString* returnLastCommand) const{
-	int reference=-1;
-	QString lastCommandX;
-	QString &lastCommand = returnLastCommand?*returnLastCommand:lastCommandX;
-	bool inOption=false;
-	bool inEnv=false;
-	bool inReferenz=false;
-	while ((wordStartIndex = nextToken(line, index,inEnv,!inReferenz))!=-1) {
-		outWord=line.mid(wordStartIndex,index-wordStartIndex);
-		if (outWord.length()==0) return NW_NOTHING; //should never happen
-		switch (outWord.at(0).toAscii()) {
-		case '%':
-			return NW_COMMENT; //return comment start
-		case '[':
-			if(!lastCommand.isEmpty()) inOption=true;
-			break;
-		case ']':
-			inOption=false;
-			break;
-		case '{':
-			if (reference!=-1)
-				reference=wordStartIndex+1;
-			if(!lastCommand.isEmpty()) inOption=true;
-			if(environmentCommands.contains(lastCommand)) inEnv=true;
-			break; //ignore
-		case '}':
-			if (reference!=-1) {
-				NextWordFlag result = NW_NOTHING;
-				if (refCommands.contains(lastCommand)) result = NW_REFERENCE;
-				else if (labelCommands.contains(lastCommand)) result = NW_LABEL;
-				else if (citeCommands.contains(lastCommand)) result = NW_CITATION;
-				if (result != NW_NOTHING) {
-					wordStartIndex=reference;
-					--index;
-					outWord=line.mid(reference,index-reference);
-					return result;
-				}
-			}
-			lastCommand="";
-			inOption=false;
-			inEnv=false;
-			break;//command doesn't matter anymore
-		case '$': case '^': case '&':
-			return NW_COMMAND;
-		case '_':
-			if(!inOption){
-				return NW_COMMAND;
-			}
-			break;
-		case '\\':
-			if (outWord.length()==1 || !(EscapedChars.contains(outWord.at(1)) || CharacterAlteringChars.contains(outWord.at(1)))) {
-				if (returnCommands) return NW_COMMAND;
-				if (refCommands.contains(outWord)||labelCommands.contains(outWord)||citeCommands.contains(outWord)){
-					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
-					lastCommand=outWord;
-					inReferenz=true;
-				}
-				if (optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
-					lastCommand=outWord;
-				}
-				break;
-			} else {;} //first character is escaped, fall through to default case
-		default:
-			//if (reference==-1) {
-			if(!inOption && !lastCommand.isEmpty()){
-				inOption=false;
-				lastCommand="";
-			}
-			if (outWord.contains("\\")||outWord.contains("\""))
-				outWord=latexToPlainWord(outWord); //remove special chars			
-			if (environmentCommands.contains(lastCommand))
-				return NW_ENVIRONMENT;
-			if (optionCommands.contains(lastCommand)||lastCommand.isEmpty())
-				return NW_TEXT;
-			//}
-		}
-	}
-	return NW_NOTHING;
-}
 
-bool LatexParser::nextTextWord(const QString & line, int &index, QString &outWord, int &wordStartIndex) const{
-	NextWordFlag flag;
-	//flag can be nothing, text, comment, environment
-	//text/comment returns false, text returns true, environment is ignored
-	while ((flag=nextWord(line,index,outWord,wordStartIndex,false, 0))==NW_ENVIRONMENT)
-		;
-	return flag==NW_TEXT;
-}
 
 
 QString getCommonEOW() {
@@ -1535,6 +1448,106 @@ void LatexParser::importCwlAliases(){
 	}
 }
 
+LatexReader::LatexReader():lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);}
+LatexReader::LatexReader(const QString& line): lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);setLine(line);}
+LatexReader::LatexReader(const LatexParser& lp, const QString& line):lp(&lp){Q_ASSERT(this->lp);setLine(line);}
+
+
+LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
+	int reference=-1;
+	bool inOption=false;
+	bool inEnv=false;
+	bool inReferenz=false;
+	while ((wordStartIndex = nextToken(line, index,inEnv,!inReferenz))!=-1) {
+		word=line.mid(wordStartIndex,index-wordStartIndex);
+		if (word.length()==0) return NW_NOTHING; //should never happen
+		switch (word.at(0).toAscii()) {
+		case '%':
+			return NW_COMMENT; //return comment start
+		case '[':
+			if(!lastCommand.isEmpty()) inOption=true;
+			break;
+		case ']':
+			inOption=false;
+			break;
+		case '{':
+			if (reference!=-1)
+				reference=wordStartIndex+1;
+			if(!lastCommand.isEmpty()) inOption=true;
+			if(lp->environmentCommands.contains(lastCommand)) inEnv=true;
+			break; //ignore
+		case '}':
+			if (reference!=-1) {
+				NextWordFlag result = NW_NOTHING;
+				if (lp->refCommands.contains(lastCommand)) result = NW_REFERENCE;
+				else if (lp->labelCommands.contains(lastCommand)) result = NW_LABEL;
+				else if (lp->citeCommands.contains(lastCommand)) result = NW_CITATION;
+				if (result != NW_NOTHING) {
+					wordStartIndex=reference;
+					--index;
+					word=line.mid(reference,index-reference);
+					return result;
+				}
+			}
+			lastCommand="";
+			inOption=false;
+			inEnv=false;
+			break;//command doesn't matter anymore
+		case '$': case '^': case '&':
+			return NW_COMMAND;
+		case '_':
+			if(!inOption){
+				return NW_COMMAND;
+			}
+			break;
+		case '\\':
+			if (word.length()==1 || !(EscapedChars.contains(word.at(1)) || CharacterAlteringChars.contains(word.at(1)))) {
+				if (returnCommands) return NW_COMMAND;
+				if (lp->refCommands.contains(word)||lp->labelCommands.contains(word)||lp->citeCommands.contains(word)){
+					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+					lastCommand=word;
+					inReferenz=true;
+				}
+				if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
+					lastCommand=word;
+				}
+				break;
+			} else {;} //first character is escaped, fall through to default case
+		default:
+			//if (reference==-1) {
+			if(!inOption && !lastCommand.isEmpty()){
+				inOption=false;
+				lastCommand="";
+			}
+			if (word.contains("\\")||word.contains("\""))
+				word=latexToPlainWord(word); //remove special chars			
+			if (lp->environmentCommands.contains(lastCommand))
+				return NW_ENVIRONMENT;
+			if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty())
+				return NW_TEXT;
+			//}
+		}
+	}
+	return NW_NOTHING;
+}
+
+bool LatexReader::nextTextWord(){
+	NextWordFlag flag;
+	//flag can be nothing, text, comment, environment
+	//text/comment returns false, text returns true, environment is ignored
+	while ((flag=nextWord(false))==NW_ENVIRONMENT)
+		;
+	return flag==NW_TEXT;
+}
+
+const QString& LatexReader::getLine() const{
+	return line;
+}
+void LatexReader::setLine(const QString& line){
+	this->line = line;
+	this->index = 0;
+	this->wordStartIndex = 0;
+}
 
 LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	QStringList words;

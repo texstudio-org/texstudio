@@ -71,18 +71,15 @@ void SpellerDialog::startSpelling() {
 		editor->getCursorPosition(startLine,startIndex);
 		endLine=editor->document()->lines()-1;
 		endIndex=editor->text(endLine).length();
-		QString curLine=editor->document()->line(startLine).text();
-		int nextIndex=0;
-		int wordStartIndex=0;
-		QString tempWord;
+		latexReader.setLine(editor->document()->line(startLine).text());
 		//jump from word to word until an valid index is reached
-		while (nextIndex<startIndex)
-			if (!LatexParser::getInstance().nextTextWord(curLine,nextIndex,tempWord,wordStartIndex)) break;
-		startIndex=wordStartIndex;
+		while (latexReader.index<startIndex)
+			if (!latexReader.nextTextWord()) break;
+		startIndex=latexReader.wordStartIndex;
 	}
 	curLine=startLine;
-	curIndex=startIndex;
-	curWord="";
+	latexReader.index=startIndex;
+	latexReader.word = "";
 	show();
 	SpellingNextWord();
 }
@@ -133,8 +130,9 @@ void SpellerDialog::slotReplace() {
 	if (!editor) return;
 	if (editor->cursor().hasSelection()) {
 		QString selectedword=editor->cursor().selectedText();
-		curWord=ui.lineEditNew->text();
-		editor->insertText(curWord);
+		latexReader.index += ui.lineEditNew->text().size() - latexReader.word.size();
+		latexReader.word=ui.lineEditNew->text();
+		editor->insertText(latexReader.word);
 	}
 	SpellingNextWord();
 }
@@ -142,15 +140,15 @@ void SpellerDialog::slotReplace() {
 void SpellerDialog::SpellingNextWord() {
 	if (!editor || !m_speller) return;
 	for (; curLine<=endLine; curLine++) {
-		int wordStartIndex;
-		while (LatexParser::getInstance().nextTextWord(editor->text(curLine),curIndex,curWord,wordStartIndex)) {
-			if (curLine==endLine && curIndex>endIndex)
+		latexReader.line = editor->text(curLine);
+		while (latexReader.nextTextWord()) {
+			if (curLine==endLine && latexReader.index>endIndex)
 				break; //not in checked range
-			if (m_speller->check(curWord)) continue;
-			QStringList suggWords=m_speller->suggest(curWord);
+			if (m_speller->check(latexReader.word)) continue;
+			QStringList suggWords=m_speller->suggest(latexReader.word);
 
-			QDocumentCursor wordSelection(editor->document(),curLine,wordStartIndex);
-			wordSelection.movePosition(curIndex-wordStartIndex,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			QDocumentCursor wordSelection(editor->document(),curLine,latexReader.wordStartIndex);
+			wordSelection.movePosition(latexReader.index-latexReader.wordStartIndex,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 			editor->setCursor(wordSelection);
 
 			ui.listWidget->setEnabled(true);
@@ -159,7 +157,7 @@ void SpellerDialog::SpellingNextWord() {
 			ui.pushButtonAlwaysIgnore->setEnabled(true);
 			ui.pushButtonReplace->setEnabled(true);
 			ui.lineEditOriginal->setEnabled(true);
-			ui.lineEditOriginal->setText(curWord);
+			ui.lineEditOriginal->setText(latexReader.word);
 			ui.listWidget->clear();
 			ui.lineEditNew->clear();
 			ui.labelMessage->setText("");
@@ -169,8 +167,8 @@ void SpellerDialog::SpellingNextWord() {
 			}
 			return;
 		}
-		curIndex=0;
-		curWord="";
+		latexReader.index = 0;
+		latexReader.word = "";
 	}
 
 	//no word found
