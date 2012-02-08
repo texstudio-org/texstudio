@@ -24,6 +24,7 @@ void txsCritical(const QString &message){
 #endif
 
 const QString CommonEOW="~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'+";
+const QString Punctation="!():\"?,.;-";
 const QString EscapedChars="%&_";
 const QString CharacterAlteringChars="\"";
 
@@ -149,6 +150,11 @@ int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool de
 			start=i;
 			inWord=true;
 			doubleQuoteChar= ( cur == '"');
+		} else if (Punctation.contains(cur)){
+			start=i;
+			i++;
+			while (i < line.length() && line.at(i) == '-') i++; //convert LaTeX --- to a single -
+			break;
 		}
 	}
 	if (singleQuoteChar && i-1<line.size() && i > 0 && line.at(i-1)=='\'')
@@ -1519,12 +1525,17 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 				inOption=false;
 				lastCommand="";
 			}
-			if (word.contains("\\")||word.contains("\""))
+			if (word.length() > 2 && (word.contains("\\")||word.contains("\"")));
 				word=latexToPlainWord(word); //remove special chars			
 			if (lp->environmentCommands.contains(lastCommand))
 				return NW_ENVIRONMENT;
-			if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty())
+			if (lastCommand.isEmpty() || lp->optionCommands.contains(lastCommand)){
+				if (word.length() && Punctation.contains(word[0])) {
+					if (word.length() > 1) word = word[0];
+					return NW_PUNCTATION;		
+				}
 				return NW_TEXT;
+			}
 			//}
 		}
 	}
@@ -1532,11 +1543,11 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 }
 
 bool LatexReader::nextTextWord(){
-	NextWordFlag flag;
+	NextWordFlag flag = NW_PUNCTATION;
 	//flag can be nothing, text, comment, environment
 	//text/comment returns false, text returns true, environment is ignored
-	while ((flag=nextWord(false))==NW_ENVIRONMENT)
-		;
+	while (flag == NW_ENVIRONMENT || flag == NW_PUNCTATION) 
+		flag = nextWord(false);
 	return flag==NW_TEXT;
 }
 

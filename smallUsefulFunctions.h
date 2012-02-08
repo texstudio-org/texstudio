@@ -183,7 +183,8 @@ struct LatexReader{
 		NW_ENVIRONMENT=4, //environment name, e.g. in \begin or \newenvironment
 		NW_REFERENCE=5,
 		NW_LABEL=6,
-		NW_CITATION=7
+		NW_CITATION=7,
+		NW_PUNCTATION=8 
 	};
 	
 	//Returns the next word (giving meaning to the nextToken tokens)
