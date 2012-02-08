@@ -56,8 +56,8 @@ void RandomTextGenerator::generateText(){
 			static const QString Punctation = ".,:;!?";
 			
 			if (ui->latexInput->isChecked()) {
-				LatexParser& lp = LatexParser::getInstance();
-				while (lp.nextTextWord(line,index,outWord,wordStartIndex)) {
+				LatexReader lr(line);
+				while (lr.nextTextWord()) {
 					if (upcase) outWord=outWord.toUpper();
 					if (punctation) {
 						for (int i=lastIndex; i<wordStartIndex;i++)

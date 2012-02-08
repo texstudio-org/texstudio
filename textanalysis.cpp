@@ -179,9 +179,9 @@ void TextAnalysisDialog::needCount() {
 		QString curWord;
 		int state;
 		int lastIndex=0;
-		LatexParser& lp = LatexParser::getInstance();
-		while ((state=lp.nextWord(line,nextIndex,curWord,wordStartIndex,true,0))!=LatexParser::NW_NOTHING) {
-			if (curWord.endsWith('.')) curWord.chop(1);
+		LatexReader lr(line);
+		while ((state=lr.nextWord(true))!=LatexReader::NW_NOTHING) {
+			if (lr.word.endsWith('.')) lr.word.chop(1);
 			bool inSelection;
 			if (selectionStartLine!=selectionEndLine)
 				inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
@@ -189,7 +189,7 @@ void TextAnalysisDialog::needCount() {
 				            ((l==selectionEndLine) && (wordStartIndex<=selectionEndIndex));
 			else
 				inSelection=(l==selectionStartLine) && (nextIndex>selectionStartIndex) && (wordStartIndex<=selectionEndIndex);
-			curWord=curWord.toLower();
+			QString curWord=lr.word.toLower();
 			int curType=-1;
 			if (commentReached) {
 				if (respectSentenceEnd) for (int i=lastIndex; i<wordStartIndex; i++)
@@ -199,7 +199,7 @@ void TextAnalysisDialog::needCount() {
 							break;
 						}
 				curType=2;
-			} else if (state == LatexParser::NW_COMMENT) {
+			} else if (state == LatexReader::NW_COMMENT) {
 				//comment is only % character
 				curType=2;
 				if (!commentReached) {
@@ -216,9 +216,9 @@ void TextAnalysisDialog::needCount() {
 								break;
 							}
 				}
-			} else if (state==LatexParser::NW_COMMAND) {
+			} else if (state==LatexReader::NW_COMMAND) {
 				curType=1;
-			} else if (state==LatexParser::NW_TEXT) {
+			} else if (state==LatexReader::NW_TEXT) {
 				curType=0;
 				if (!lineCountedAsText) {
 					textLines++;

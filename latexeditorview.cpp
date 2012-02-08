@@ -917,77 +917,72 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		if (line.length()<=3) continue;
 		//if (!config->realtimespellchecking) continue;
 		
-		QString lineText = line.text();
 		
-		QString word;
-		int start=0;
-		int wordstart;
+		QString lineText = line.text();
 		int status;
-		bool inStructure=false;
 		QString previousTextWord;
 		int previousTextWordIndex=-1;
 		const LatexParser& lp = LatexParser::getInstance();
-		QString lastCommand;
-		while ((status=lp.nextWord(lineText,start,word,wordstart,false, &lastCommand))){
+		LatexReader lr(LatexParser::getInstance(), lineText);
+		while ((status=lr.nextWord(false))){
 			// hack to color the environment given in \begin{environment}...
-			if (lp.structureCommands.contains(lastCommand)){
-				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
-				//QString secName=extractSectionName(lineText.mid(wordstart),true);
-				//line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));
+			if (lp.structureCommands.contains(lr.lastCommand)){
+				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
+				//QString secName=extractSectionName(lineText.mid(lr.lr.wordStartIndex),true);
+				//line.addOverlay(QFormatRange(lr.wordStartIndex,secName.length(),structureFormat));
 				QStringList result;
 				QList<int> starts;
-				LatexParser::resolveCommandOptions(lineText,wordstart-1,result,&starts);
+				LatexParser::resolveCommandOptions(lineText,lr.wordStartIndex-1,result,&starts);
 				for(int j=0;j<starts.count() && j<2;j++){
 					QString text=result.at(j);
 					line.addOverlay(QFormatRange(starts.at(j)+1,text.length()-2,structureFormat));
 					if(text.startsWith("{")) break;
 				}
-				inStructure=false;
 				addedOverlayStructure = true;
 			}
-			if (status==LatexParser::NW_ENVIRONMENT) {
-				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
-				line.addOverlay(QFormatRange(wordstart,start-wordstart,environmentFormat));
+			if (status==LatexReader::NW_ENVIRONMENT) {
+				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
+				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,environmentFormat));
 				QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
 				rx.setMinimal(true);
-				int l=rx.indexIn(lineText,start);
-				if (l==start+1) start=start+rx.cap(0).length();
+				int l=rx.indexIn(lineText,lr.index);
+				if (l==lr.index+1) lr.index=lr.index+rx.cap(0).length();
 				addedOverlayEnvironment = true;
 			}
-			if (status==LatexParser::NW_REFERENCE && config->inlineReferenceChecking) {
-				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
-				QString ref=word;//lineText.mid(wordstart,start-wordstart);
+			if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
+				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
+				QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 				/*
     containedReferences->insert(ref,dlh);
     int cnt=containedLabels->count(ref);
     */
 				int cnt=document->countLabels(ref);
 				if(cnt>1) {
-					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
-				}else if (cnt==1) line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
-				else line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMissingFormat));
+					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
+				}else if (cnt==1) line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referencePresentFormat));
+				else line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMissingFormat));
 				addedOverlayReference = true;
 			}
-			if (status==LatexParser::NW_LABEL && config->inlineReferenceChecking) {
-				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
-				QString ref=word;//lineText.mid(wordstart,start-wordstart);
+			if (status==LatexReader::NW_LABEL && config->inlineReferenceChecking) {
+				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
+				QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 				/*
     containedLabels->insert(ref,dlh);
     int cnt=containedLabels->count(ref);
     */
 				int cnt=document->countLabels(ref);
 				if(cnt>1) {
-					line.addOverlay(QFormatRange(wordstart,start-wordstart,referenceMultipleFormat));
-				}else line.addOverlay(QFormatRange(wordstart,start-wordstart,referencePresentFormat));
+					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
+				}else line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referencePresentFormat));
 				// look for corresponding reeferences and adapt format respectively
 				//containedLabels->updateByKeys(QStringList(ref),containedReferences);
 				document->updateRefsLabels(ref);
 				addedOverlayReference = true;
 			}
-			if (status==LatexParser::NW_CITATION && config->inlineCitationChecking) {
+			if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
 				if (bibTeXIds) {
-					QStringList citations=word.split(",");
-					int pos=wordstart;
+					QStringList citations=lr.word.split(",");
+					int pos=lr.wordStartIndex;
 					foreach ( const QString &cit, citations) {
 						QString rcit =  cit;
 						//trim left (left spaces are ignored by \cite, right space not)
@@ -1006,22 +1001,22 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}
 				addedOverlayCitation = true;
 			}
-			if (status==LatexParser::NW_COMMENT) break;
-			if (status==LatexParser::NW_TEXT && config->inlineSpellChecking){
-				if(!previousTextWord.isEmpty() && previousTextWord==word){
-					if(!lineText.mid(previousTextWordIndex,wordstart-previousTextWordIndex).contains(QRegExp("\\S"))){
-						line.addOverlay(QFormatRange(wordstart,start-wordstart,styleHintFormat));
+			if (status==LatexReader::NW_COMMENT) break;
+			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking){
+				if(!previousTextWord.isEmpty() && previousTextWord==lr.word){
+					if(!lineText.mid(previousTextWordIndex,lr.wordStartIndex-previousTextWordIndex).contains(QRegExp("\\S"))){
+						line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,styleHintFormat));
 						addedOverlayStyleHint = true;
 					}
 				}
-				if(!word.isEmpty() && !word.at(0).isNumber()){
-					previousTextWord=word;
-					previousTextWordIndex=start;
+				if(!lr.word.isEmpty() && !lr.word.at(0).isNumber()){
+					previousTextWord=lr.word;
+					previousTextWordIndex=lr.index;
 				} else previousTextWord.clear();
 			} else previousTextWord.clear();
-			if (status==LatexParser::NW_TEXT && word.length()>=3 && speller && !speller->check(word) && config->inlineSpellChecking) {
-				if(word.endsWith('.')) start--;
-				line.addOverlay(QFormatRange(wordstart,start-wordstart,SpellerUtility::spellcheckErrorFormat));
+			if (status==LatexReader::NW_TEXT && lr.word.length()>=3 && speller && !speller->check(lr.word) && config->inlineSpellChecking) {
+				if(lr.word.endsWith('.')) lr.index--;
+				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,SpellerUtility::spellcheckErrorFormat));
 				addedOverlaySpellCheckError = true;
 			}
 		}// while

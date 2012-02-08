@@ -32,8 +32,8 @@ private :
 	SpellerUtility *m_speller;
 	QEditor *editor;
 	LatexEditorView *editorView;
-	int startLine,startIndex,curLine,curIndex, endLine,endIndex;
-	QString curWord;
+	LatexReader latexReader;
+	int startLine,startIndex,curLine, endLine,endIndex;
 	bool ignoreListChanged;
 protected:
 	void closeEvent(QCloseEvent*);
