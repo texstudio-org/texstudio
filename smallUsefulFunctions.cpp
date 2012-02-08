@@ -63,10 +63,9 @@ void LatexParser::init(){
 	possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
 }
 
-int LatexParser::nextToken(const QString &line,int &index,bool abbreviation,bool inOption,bool detectMath) {
+int LatexParser::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
 	bool inWord=false;
 	bool inCmd=false;
-	bool inMath=false;
 	//bool reparse=false;
 	bool singleQuoteChar=false;
 	bool doubleQuoteChar=false;
@@ -88,10 +87,6 @@ int LatexParser::nextToken(const QString &line,int &index,bool abbreviation,bool
 		if(doubleQuoteChar && cur=='\'') break; // check for words staring with "' (german quotation mark)
 		else doubleQuoteChar=false;
 		if (inCmd) {
-			if (detectMath && inMath){
-				if(cur=='$') i++; //detect $$
-				break;
-			}
 			if (CommonEOW.indexOf(cur)>=0) {
 				if (i-start==1) i++;
 				break;
@@ -115,7 +110,7 @@ int LatexParser::nextToken(const QString &line,int &index,bool abbreviation,bool
 			} else if (cur=='\'') {
 				if (singleQuoteChar) break;	 //no word's with two '' => output
 				else singleQuoteChar=true;   //but accept one
-			} else if (cur=='.' && abbreviation) {
+			} else if (cur=='.') {
 				i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
 				break;
 			} else if (CommonEOW.indexOf(cur)>=0 && !inOption) {
@@ -142,8 +137,10 @@ int LatexParser::nextToken(const QString &line,int &index,bool abbreviation,bool
 			return i;
 		} else if (detectMath && cur=='$'){
 			start=i;
-			inCmd=true;
-			inMath=true;
+			i++;
+			if (i < line.size() && line[i] == '$') 
+				i++; //detect $$
+			break;
 		} else if (detectMath && (cur=='_' || cur=='^' || cur=='&')){
 			start=i;
 			i++;
@@ -161,13 +158,14 @@ int LatexParser::nextToken(const QString &line,int &index,bool abbreviation,bool
 }
 
 
-LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands,bool abbreviations,bool *inStructure) const{
+LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,QString &outWord,int &wordStartIndex, bool returnCommands, QString* returnLastCommand) const{
 	int reference=-1;
-	QString lastCommand="";
+	QString lastCommandX;
+	QString &lastCommand = returnLastCommand?*returnLastCommand:lastCommandX;
 	bool inOption=false;
 	bool inEnv=false;
 	bool inReferenz=false;
-	while ((wordStartIndex = nextToken(line, index,abbreviations,inEnv,!inReferenz))!=-1) {
+	while ((wordStartIndex = nextToken(line, index,inEnv,!inReferenz))!=-1) {
 		outWord=line.mid(wordStartIndex,index-wordStartIndex);
 		if (outWord.length()==0) return NW_NOTHING; //should never happen
 		switch (outWord.at(0).toAscii()) {
@@ -175,7 +173,6 @@ LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,Q
 			return NW_COMMENT; //return comment start
 		case '[':
 			if(!lastCommand.isEmpty()) inOption=true;
-			if(inStructure && structureCommands.contains(lastCommand)) *inStructure=true;
 			break;
 		case ']':
 			inOption=false;
@@ -185,7 +182,6 @@ LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,Q
 				reference=wordStartIndex+1;
 			if(!lastCommand.isEmpty()) inOption=true;
 			if(environmentCommands.contains(lastCommand)) inEnv=true;
-			if(inStructure && structureCommands.contains(lastCommand)) *inStructure=true;
 			break; //ignore
 		case '}':
 			if (reference!=-1) {
@@ -203,7 +199,6 @@ LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,Q
 			lastCommand="";
 			inOption=false;
 			inEnv=false;
-			if(inStructure) *inStructure=false;
 			break;//command doesn't matter anymore
 		case '$': case '^': case '&':
 			return NW_COMMAND;
@@ -232,7 +227,7 @@ LatexParser::NextWordFlag LatexParser::nextWord(const QString &line,int &index,Q
 				lastCommand="";
 			}
 			if (outWord.contains("\\")||outWord.contains("\""))
-				outWord=latexToPlainWord(outWord); //remove special chars
+				outWord=latexToPlainWord(outWord); //remove special chars			
 			if (environmentCommands.contains(lastCommand))
 				return NW_ENVIRONMENT;
 			if (optionCommands.contains(lastCommand)||lastCommand.isEmpty())
@@ -247,7 +242,7 @@ bool LatexParser::nextTextWord(const QString & line, int &index, QString &outWor
 	NextWordFlag flag;
 	//flag can be nothing, text, comment, environment
 	//text/comment returns false, text returns true, environment is ignored
-	while ((flag=nextWord(line,index,outWord,wordStartIndex,false))==NW_ENVIRONMENT)
+	while ((flag=nextWord(line,index,outWord,wordStartIndex,false, 0))==NW_ENVIRONMENT)
 		;
 	return flag==NW_TEXT;
 }

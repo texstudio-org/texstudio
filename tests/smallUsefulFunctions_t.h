@@ -108,7 +108,9 @@ class SmallUsefulFunctionsTest: public QObject{
 		addRow("simple whitespace", filter,
 			QList<TestToken>() << "abcde" << "    " << "fghik" << "\t" << "Mice");
 		addRow("simple eow", filter,
-		       QList<TestToken>() << "abcde" << TestToken(".;:;", NW_IGNORED_TOKEN) << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) << "axy" << TestToken("---", NW_IGNORED_TOKEN));
+		       QList<TestToken>() << "abcde" << TestToken(";:;", NW_IGNORED_TOKEN) << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) << "axy" << TestToken("---", NW_IGNORED_TOKEN));
+		addRow("simple eow", filter,
+		       QList<TestToken>() << "abcde." << TestToken(";:;", NW_IGNORED_TOKEN) << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) << "axy" << TestToken("---", NW_IGNORED_TOKEN));
 		addRow("environment+comment",filter,
 			QList<TestToken>() << "Test1234" << "\\begin" << "{" << env("environment") << "}" << "{" << "add" << "}" << "XYZ" << "!!!" << "\\command" << "%"     << "comment" << "\\COMMENT");
 		addRow("some environments", filter,
@@ -116,7 +118,9 @@ class SmallUsefulFunctionsTest: public QObject{
 		addRow("misc", filter, //was only for nextWord, other test will of course not ignore \\ignoreMe 
 			QList<TestToken>() << "hallo" << " " << "welt" << "\\section" << "{" << "text" << "}" << "     " << "\\begin" << "{" << env("I'mXnotXthere") << "}" << " *" << "g"  << "* " << "%"     << " " << "more" << " " << "\\comment");
 		addRow("command as option", filter,
-			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << "." << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
+			QList<TestToken>() << "\\includegraphics" << "[" << option("ab.") << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
+		addRow("command as option", filter,
+			QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << TestToken(":", NW_IGNORED_TOKEN) << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
 		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%",NW_IGNORED_TOKEN) << "!!!" << "stillNoComment" << "\\\\" << TestToken("\\%","%",NW_IGNORED_TOKEN) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
 		addRow("escaped characters", filter, QList<TestToken>() << "hallo" << TestToken("\\%",NW_IGNORED_TOKEN) << "abc");
 		addRow("escaped characters", filter, QList<TestToken>() << "1234" << TestToken("\\%\\&\\_",NW_IGNORED_TOKEN)  << "567890");
@@ -131,7 +135,7 @@ class SmallUsefulFunctionsTest: public QObject{
 		int pos=0; int type;
 		QString token;
 		LatexParser &lp = LatexParser::getInstance();
-		while ((type=lp.nextWord(str, index, token, startIndex, commands))!=LatexParser::NW_NOTHING) {
+		while ((type=lp.nextWord(str, index, token, startIndex, commands, 0))!=LatexParser::NW_NOTHING) {
 			if (pos>=tokens.size()) {
 				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
 			} else {
@@ -155,7 +159,7 @@ private slots:
 		int pos=0;
 		LatexParser &lp = LatexParser::getInstance();
 		
-		while ((startIndex = lp.nextToken(str,index)) != -1) {
+		while ((startIndex = lp.nextToken(str,index,false,false)) != -1) {
 			QString token=str.mid(startIndex,index-startIndex);
 			if (pos>=tokens.size()) {
 				QFAIL(QString("Found additional token: %1 at %2").arg(token).arg(startIndex).toLatin1().constData());
@@ -222,7 +226,7 @@ private slots:
 		                           << (int)LatexParser::NW_CITATION << 29 << " Hallo:Welt! " << 16;
 		QTest::newRow("citation3") << "012345\\cite[aasasadaa]{Hallo:Welt!,miau!}abcdef" << 6 << false << false
 		                           << (int)LatexParser::NW_CITATION << 40 << "Hallo:Welt!,miau!" << 23;
-		QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)LatexParser::NW_TEXT << 7 << "TEST" << 3;
+		//QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)LatexParser::NW_TEXT << 7 << "TEST" << 3;
 		QTest::newRow("abbrev.")   << "+++TEST.---" << 0 << false << true << (int)LatexParser::NW_TEXT << 8 << "TEST." << 3;
 		QTest::newRow("in cmd.")   << "\\section{text}" << 0 << false << false << (int)LatexParser::NW_TEXT << 13 << "text" << 9;
 		QTest::newRow("' chars")   << " can't " << 0 << false << false << (int)LatexParser::NW_TEXT << 6 << "can't" << 1;
@@ -246,7 +250,6 @@ private slots:
 		QFETCH(QString, line);
 		QFETCH(int, inIndex);
 		QFETCH(bool, commands);
-		QFETCH(bool, abbreviations);
 
 		QFETCH(int, result);
 		QFETCH(int, outIndex);
@@ -255,7 +258,7 @@ private slots:
 		
 		QString row;
 		int wsi;
-		int rs=(int)(LatexParser::getInstance().nextWord(line,inIndex,row,wsi,commands,abbreviations));
+		int rs=(int)(LatexParser::getInstance().nextWord(line,inIndex,row,wsi,commands,0));
 
 		QEQUAL(row,outWord);
 		QEQUAL(rs, result);

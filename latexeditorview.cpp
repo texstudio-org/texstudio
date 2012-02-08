@@ -927,9 +927,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QString previousTextWord;
 		int previousTextWordIndex=-1;
 		const LatexParser& lp = LatexParser::getInstance();
-		while ((status=lp.nextWord(lineText,start,word,wordstart,false,true,&inStructure))){
+		QString lastCommand;
+		while ((status=lp.nextWord(lineText,start,word,wordstart,false, &lastCommand))){
 			// hack to color the environment given in \begin{environment}...
-			if (inStructure){
+			if (lp.structureCommands.contains(lastCommand)){
 				if(line.getFormatAt(wordstart)==verbatimFormat) continue;
 				//QString secName=extractSectionName(lineText.mid(wordstart),true);
 				//line.addOverlay(QFormatRange(wordstart,secName.length(),structureFormat));

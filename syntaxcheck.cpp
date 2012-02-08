@@ -118,9 +118,8 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 	int start=0;
 	int wordstart;
 	int status;
-	bool inStructure=false;
 	// check command-words
-	while ((status=ltxCommands->nextWord(line,start,word,wordstart,true,true,&inStructure))){
+	while ((status=ltxCommands->nextWord(line,start,word,wordstart,true,0))){
 		if(status==LatexParser::NW_COMMAND){
 			if(word=="\\begin"||word=="\\end"){
 				QStringList options;
