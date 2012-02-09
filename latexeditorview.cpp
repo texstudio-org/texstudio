@@ -395,6 +395,19 @@ void LatexEditorView::insertMacro(QString macro){
 	} else CodeSnippet(macro).insert(editor);
 }
 
+void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle, int lineNr, const QList<GrammarError>& errors){
+	if (doc != this->document) return;
+	lineNr = document->indexOf(const_cast<QDocumentLineHandle*>(static_cast<const QDocumentLineHandle*>(lineHandle)), lineNr);
+	if (lineNr < 0) return; //line already deleted
+
+	QDocumentLine line = document->line(lineNr);
+	line.clearOverlays(styleHintFormat);
+	foreach (const GrammarError& error, errors) {
+		line.addOverlay(QFormatRange(error.offset,error.length,styleHintFormat));	
+	}
+}
+
+
 void LatexEditorView::viewActivated(){
 	if (!LatexEditorView::completer) return;
 }
@@ -846,7 +859,22 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-    if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
+	if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
+	
+	QList<LineInfo> changedLines;
+	int lookBehind = qMin(linenr, 3);
+	LIST_RESERVE(changedLines, linenr+count+lookBehind+1);
+	for (int i=linenr - lookBehind; i<=linenr+count; i++) {
+		QDocumentLine line = editor->document()->line(i);
+		if (!line.isValid()) break;
+		LineInfo temp; 
+		temp.line = line.handle();
+		temp.lineNr = i;
+		temp.text = line.text();
+		changedLines << temp;
+	}
+	emit linesChanged(document, changedLines, linenr - lookBehind, lookBehind);
+	
 	Q_ASSERT(speller);
 	for (int i=linenr; i<linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);

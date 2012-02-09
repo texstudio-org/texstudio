@@ -38,6 +38,7 @@
 #include "insertgraphics.h"
 #include "latexeditorview_config.h"
 #include "scriptengine.h"
+#include "grammarcheck.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -51,7 +52,7 @@
 #include "qnfadefinition.h"
 
 #include <QMessageBox>
-Q_DECLARE_METATYPE(LatexParser);
+
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
        : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
 	
@@ -77,7 +78,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	leftPanel=0;
 	structureTreeView=0;
-    bookmarksWidget=0;
+	bookmarksWidget=0;
 	
 	outputView=0;
 	templateSelectorDialog=0;
@@ -87,6 +88,14 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	QDocument::setFormatFactory(m_formats);
 	SpellerUtility::spellcheckErrorFormat = m_formats->id("spellingMistake");
+	
+	qRegisterMetaType<QList<LineInfo> >();
+	qRegisterMetaType<QList<GrammarError> >();
+	qRegisterMetaType<LatexParser>();
+	grammarCheck = new GrammarCheck();
+	grammarCheck->moveToThread(&grammarCheckThread);
+	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser));
+	grammarCheckThread.start();
 	
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newFileEncoding);
@@ -249,6 +258,8 @@ Texmaker::~Texmaker(){
 		latexStyleParser->stop();
 		latexStyleParser->wait();
 	}
+	grammarCheckThread.quit();
+	grammarCheckThread.wait(100);
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -1143,6 +1154,9 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
+	
+	connect(edit, SIGNAL(linesChanged(const void*,QList<LineInfo>,int,int)), grammarCheck, SLOT(check(const void*,QList<LineInfo>,int,int)));
+	connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), edit, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
 	
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
 	edit->setSpellerManager(&spellerManager);
@@ -4782,6 +4796,8 @@ void Texmaker::updateCompleter() {
 		else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
 	}
 	
+	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser));	
+		
 	updateHighlighting();
 	
 	mCompleterNeedsUpdate=false;

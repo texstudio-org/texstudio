@@ -1544,8 +1544,8 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 
 bool LatexReader::nextTextWord(){
 	NextWordFlag flag = NW_PUNCTATION;
-	//flag can be nothing, text, comment, environment
-	//text/comment returns false, text returns true, environment is ignored
+	//flag can be nothing, text, comment, environment/punctation
+	//text/comment returns false, text returns true, environment/punctation is ignored
 	while (flag == NW_ENVIRONMENT || flag == NW_PUNCTATION) 
 		flag = nextWord(false);
 	return flag==NW_TEXT;

@@ -69,6 +69,7 @@ Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
 
 class UserMenuDialog;
+class GrammarCheck;
 class Texmaker : public QMainWindow {
 	Q_OBJECT
 	
@@ -157,6 +158,8 @@ private:
 	QStringList userTemplatesList;
 	
 	SpellerManager spellerManager;
+	QThread grammarCheckThread;
+	GrammarCheck *grammarCheck;
 	
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
@@ -505,8 +508,8 @@ protected:
 	
 	LatexDocument* diffLoadDocHidden(QString f);
 	void showDiff3(const QString file1,const QString file2);
-
-    void restoreBookmarks(LatexEditorView *edView);
+	
+	void restoreBookmarks(LatexEditorView *edView);
 	
 	
 	
@@ -520,3 +523,4 @@ public:
 Q_DECLARE_METATYPE(Texmaker*)
 
 #endif
+
