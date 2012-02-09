@@ -859,7 +859,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	// checking
 	if (!QDocument::formatFactory()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-	if (editor->languageDefinition() && editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
+	if(!editor->languageDefinition())
+	    return;
+	if ( editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
 	
 	QList<LineInfo> changedLines;
 	int lookBehind = qMin(linenr, 3);
@@ -1148,6 +1150,10 @@ void LatexEditorView::closeCompleter(){
 void LatexEditorView::reCheckSyntax(int linenr, int count){
 	// expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
 	if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
+	if(!editor->languageDefinition())
+	    return;
+	if (editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
+
 	if(linenr<0 || linenr>=editor->document()->lineCount()) linenr=0;
 	QDocumentLine line=editor->document()->line(linenr);
 	QDocumentLine prev;
