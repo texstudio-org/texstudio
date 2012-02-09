@@ -51,7 +51,7 @@ void LatexParser::init(){
 	mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
 	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
 	tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
-	fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics");
+    fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\bibliographystyle" << "\bibliography");
 	includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
 	graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
 	usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
