@@ -863,7 +863,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	
 	QList<LineInfo> changedLines;
 	int lookBehind = qMin(linenr, 3);
-	LIST_RESERVE(changedLines, linenr+count+lookBehind+1);
+	//LIST_RESERVE(changedLines, linenr+count+lookBehind+1); //reserve was introduced in qt 4.7
 	for (int i=linenr - lookBehind; i<=linenr+count; i++) {
 		QDocumentLine line = editor->document()->line(i);
 		if (!line.isValid()) break;
