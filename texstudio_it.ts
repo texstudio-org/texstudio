@@ -20,10 +20,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33,6 +29,10 @@
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1058,6 +1058,34 @@ Which one of the three wise will always tell the truth?</source>
     <message>
         <source>Default Font Encoding</source>
         <translation>Codifica Font</translation>
+    </message>
+    <message>
+        <source>qce (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>single letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to automatically choose best display options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5513,6 +5541,31 @@ Press &quot;Cancel&quot;to do nothing.
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Plain text</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5895,19 +5948,27 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
         <translation>Comando (% : nome file senza estensione)</translation>
     </message>
     <message>
-        <source>Command %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>+</source>
         <translation type="obsolete">+</translation>
     </message>
     <message>
-        <source>Do you really want to delete the current command?</source>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Rimuovi</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Command</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

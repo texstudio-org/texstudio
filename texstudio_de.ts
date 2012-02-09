@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation>Nutze Qt-Version %1, kompiliert mit QT %2</translation>
+        <translation type="obsolete">Nutze Qt-Version %1, kompiliert mit QT %2</translation>
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
@@ -34,6 +34,10 @@
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>Projekt Homepage : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
+        <translation type="unfinished">Nutze Qt-Version %1, kompiliert mit QT %2 %3 {1,?}</translation>
     </message>
 </context>
 <context>
@@ -1075,6 +1079,34 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     <message>
         <source>Default Font Encoding</source>
         <translation>Standard Kodierung</translation>
+    </message>
+    <message>
+        <source>qce (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>single letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to automatically choose best display options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5569,6 +5601,31 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
         <comment>Format name of language definition </comment>
         <translation></translation>
     </message>
+    <message>
+        <source>Plain text</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5956,11 +6013,11 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
     </message>
     <message>
         <source>Command %1</source>
-        <translation>Befehl %1</translation>
+        <translation type="obsolete">Befehl %1</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>+</source>
@@ -5968,7 +6025,27 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation>Soll diese Zeile wirklich gelöscht werden?</translation>
+        <translation type="obsolete">Soll diese Zeile wirklich gelöscht werden?</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">Hoch</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">Runter</translation>
+    </message>
+    <message>
+        <source>User Command</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

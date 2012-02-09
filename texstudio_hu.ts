@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation>Használt Qt verzió: %1, fordítva a Qt %2 verzióval</translation>
+        <translation type="obsolete">Használt Qt verzió: %1, fordítva a Qt %2 verzióval</translation>
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
@@ -34,6 +34,10 @@
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>A project honlapja: &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
+        <translation type="unfinished">Használt Qt verzió: %1, fordítva a Qt %2 %3 verzióval {1,?}</translation>
     </message>
 </context>
 <context>
@@ -1076,6 +1080,34 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>Default Font Encoding</source>
         <translation>Karakterkódolása</translation>
+    </message>
+    <message>
+        <source>qce (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>single letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to automatically choose best display options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5561,6 +5593,31 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Plain text</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5963,11 +6020,11 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>Command %1</source>
-        <translation>%1. parancs</translation>
+        <translation type="obsolete">%1. parancs</translation>
     </message>
     <message>
         <source>+</source>
@@ -5979,7 +6036,27 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation>Tényleg törli az aktuális parancsot?</translation>
+        <translation type="obsolete">Tényleg törli az aktuális parancsot?</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Hozzáadás</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Eltávolítás</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">Fel</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">Le</translation>
+    </message>
+    <message>
+        <source>User Command</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
