@@ -92,9 +92,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	qRegisterMetaType<QList<LineInfo> >();
 	qRegisterMetaType<QList<GrammarError> >();
 	qRegisterMetaType<LatexParser>();
+	qRegisterMetaType<GrammarCheckerConfig>();
 	grammarCheck = new GrammarCheck();
 	grammarCheck->moveToThread(&grammarCheckThread);
-	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser));
+	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 	grammarCheckThread.start();
 	
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
@@ -259,7 +260,7 @@ Texmaker::~Texmaker(){
 		latexStyleParser->wait();
 	}
 	grammarCheckThread.quit();
-	grammarCheckThread.wait(100);
+	grammarCheckThread.wait();
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
@@ -1155,7 +1156,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 	
-	connect(edit, SIGNAL(linesChanged(const void*,QList<LineInfo>,int,int)), grammarCheck, SLOT(check(const void*,QList<LineInfo>,int,int)));
+	connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int,int)));
 	connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), edit, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
 	
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
@@ -4803,7 +4804,8 @@ void Texmaker::updateCompleter() {
 		else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
 	}
 	
-	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser));	
+	
+	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 		
 	updateHighlighting();
 	

@@ -7,6 +7,7 @@
 #include "latexeditorview_config.h"
 #include "webpublishdialog_config.h"
 #include "insertgraphics_config.h"
+#include "grammarcheck_config.h"
 #include "PDFDocument_config.h"
 #include "smallUsefulFunctions.h"
 #include "codesnippet.h"
@@ -230,6 +231,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
        webPublishDialogConfig (new WebPublishDialogConfig),
        pdfDocumentConfig(new PDFDocumentConfig),
        insertGraphicsConfig(new InsertGraphicsConfig),
+       grammarCheckerConfig(new GrammarCheckerConfig),
        menuParent(0), menuParentsBar(0), persistentConfig(0) {
 	
 	Q_ASSERT(!globalConfigManager);
@@ -312,6 +314,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Check Citations", &editorConfig->inlineCitationChecking, true, &pseudoDialog->checkBoxInlineCitationCheck);
 	registerOption("Editor/Check References", &editorConfig->inlineReferenceChecking, true, &pseudoDialog->checkBoxInlineReferenceCheck);
 	registerOption("Editor/Check Syntax", &editorConfig->inlineSyntaxChecking, true, &pseudoDialog->checkBoxInlineSyntaxCheck);
+	registerOption("Editor/Check Grammar", &editorConfig->inlineGrammarChecking, true, &pseudoDialog->checkBoxInlineGrammarCheck);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, true, &pseudoDialog->checkBoxShowWhitespace);
 	registerOption("Editor/TabStop", &editorConfig->tabStop, 4 , &pseudoDialog->sbTabSpace);
 	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true , &pseudoDialog->checkBoxToolTipHelp2);
@@ -348,6 +351,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
 	registerOption("Editor/Completion Prefered Tab", (int*)&completerConfig->preferedCompletionTab, 0,&pseudoDialog->comboBoxPreferedTab);
 	registerOption("Editor/Completion Tab Relative Font Size Percent", &completerConfig->tabRelFontSizePercent, 100,&pseudoDialog->spinBoxTabRelFontSize);
+	
+	//grammar
+	registerOption("Grammar/Long Repetition Check", &grammarCheckerConfig->longRangeRepetitionCheck, true);
+	registerOption("Grammar/Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionDelta, 3);
+	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/");
 	
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);

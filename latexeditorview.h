@@ -144,6 +144,7 @@ public slots:
 	void lineDeleted(QDocumentLineHandle* l);
 	void spellCheckingReplace();
 	void spellCheckingAlwaysIgnore();
+	void addListToContextMenu(const QStringList& list, bool italic, const char* action);
 	void spellCheckingListSuggestions();
 	void mouseHovered(QPoint pos);
 	bool closeSomething();
@@ -166,7 +167,7 @@ signals:
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	
-	void linesChanged(const void * doc, const QList<LineInfo>& lines, int firstLineNr, int linesToSkipDelta);
+	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr, int linesToSkipDelta);
 };
 
 

@@ -132,8 +132,28 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		//spell checking
 		
 		if (edView && edView->speller){
-			if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2, SpellerUtility::spellcheckErrorFormat);
-			else fr = cursor.line().getOverlayAt(cursor.columnNumber(), SpellerUtility::spellcheckErrorFormat);
+			int pos;
+			if (cursor.hasSelection()) pos = (cursor.columnNumber()+cursor.anchorColumnNumber()) / 2;
+			else pos = cursor.columnNumber();
+
+			fr = cursor.line().getOverlayAt(pos, edView->styleHintFormat);
+			if (fr.length>0 && fr.format==edView->styleHintFormat) {
+				QVariant var=cursor.line().getCookie(43);
+				if (var.isValid()){
+					QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
+					wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+					editor->setCursor(wordSelection);
+
+					const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
+					for (int i=0;i<errors.size();i++)
+						if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
+							edView->addListToContextMenu(errors[i].corrections, true, SLOT(spellCheckingReplace()));
+							break;
+						}
+				}
+			}
+
+			fr = cursor.line().getOverlayAt(pos, SpellerUtility::spellcheckErrorFormat);
 			if (fr.length>0 && fr.format==SpellerUtility::spellcheckErrorFormat) {
 				QString word=cursor.line().text().mid(fr.offset,fr.length);
 				if (!(editor->cursor().hasSelection() && editor->cursor().selectedText().length()>0) || editor->cursor().selectedText()==word
@@ -401,10 +421,12 @@ void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle
 	if (lineNr < 0) return; //line already deleted
 
 	QDocumentLine line = document->line(lineNr);
+
 	line.clearOverlays(styleHintFormat);
 	foreach (const GrammarError& error, errors) {
 		line.addOverlay(QFormatRange(error.offset,error.length,styleHintFormat));	
 	}
+	line.setCookie(43, QVariant::fromValue<QList<GrammarError> >(errors));
 }
 
 
@@ -863,19 +885,36 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	    return;
 	if ( editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
 	
-	QList<LineInfo> changedLines;
-	int lookBehind = qMin(linenr, 3);
-	//LIST_RESERVE(changedLines, linenr+count+lookBehind+1); //reserve was introduced in qt 4.7
-	for (int i=linenr - lookBehind; i<=linenr+count; i++) {
-		QDocumentLine line = editor->document()->line(i);
-		if (!line.isValid()) break;
-		LineInfo temp; 
-		temp.line = line.handle();
-		temp.lineNr = i;
-		temp.text = line.text();
-		changedLines << temp;
+	if (config->inlineGrammarChecking) {
+		QList<LineInfo> changedLines;
+		int lookBehind = 0;
+		for (;linenr - lookBehind >= 0; lookBehind++) 
+			if (editor->document()->line(linenr - lookBehind).firstChar() == -1) break;
+		if (lookBehind > 0) lookBehind--;
+		if (lookBehind > linenr) lookBehind = linenr;
+		
+		LIST_RESERVE(changedLines, linenr+count+lookBehind+1); 
+		int truefirst = linenr - lookBehind;
+		for (int i=linenr - lookBehind; i<editor->document()->lineCount(); i++) {
+			QDocumentLine line = editor->document()->line(i);
+			if (!line.isValid()) break;
+			LineInfo temp; 
+			temp.line = line.handle();
+			temp.lineNr = i;
+			temp.text = line.text();
+			changedLines << temp;
+			if (line.firstChar() == -1) {
+				emit linesChanged(speller->name(), document, changedLines, truefirst, lookBehind);
+				truefirst += changedLines.size();
+				changedLines.clear();
+				lookBehind = 0;
+				if (i >= linenr+count) break;
+			}		
+		}
+		if (!changedLines.isEmpty())
+			emit linesChanged(speller->name(), document, changedLines, truefirst, lookBehind);
+		
 	}
-	emit linesChanged(document, changedLines, linenr - lookBehind, lookBehind);
 	
 	Q_ASSERT(speller);
 	for (int i=linenr; i<linenr+count; i++) {
@@ -1095,7 +1134,8 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 void LatexEditorView::spellCheckingReplace() {
 	QAction* action = qobject_cast<QAction*>(QObject::sender());
 	if (editor && action) {
-		editor->insertText(action->text());
+		if (action->text().isEmpty()) editor->cursor().removeSelectedText();
+		else editor->insertText(action->text());
 		editor->setCursor(editor->cursor()); //to remove selection range
 	}
 }
@@ -1116,6 +1156,23 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 		editor->viewport()->update();
 	}
 }
+void LatexEditorView::addListToContextMenu(const QStringList& list, bool italic, const char* action){
+	if (list.isEmpty()) return;
+	QMenu* contextMenu = defaultInputBinding->contextMenu;
+	if (!contextMenu) return;
+	QAction* before=0;
+	if (!contextMenu->actions().isEmpty()) before=contextMenu->actions()[0];
+	
+	QFont correctionFont;
+	correctionFont.setBold(true);
+	correctionFont.setItalic(italic);
+	for (int i=0; i<list.size(); i++) {
+		QAction* aReplacement=new QAction(list[i],contextMenu);
+		aReplacement->setFont(correctionFont);
+		connect(aReplacement,SIGNAL(triggered()),this,action);
+		contextMenu->insertAction(before,aReplacement);
+	}
+}
 void LatexEditorView::spellCheckingListSuggestions() {
 	QMenu* contextMenu = defaultInputBinding->contextMenu;
 	if (!contextMenu) return;
@@ -1124,19 +1181,8 @@ void LatexEditorView::spellCheckingListSuggestions() {
 		contextMenu->removeAction(contextMenu->actions()[0]);
 		repopup=true;
 	}
-	QAction* before=0;
-	if (!contextMenu->actions().isEmpty()) before=contextMenu->actions()[0];
 	QStringList suggestions= speller->suggest(defaultInputBinding->lastSpellCheckedWord);
-	if (!suggestions.empty()) {
-		QFont correctionFont;
-		correctionFont.setBold(true);
-		for (int i=0; i<suggestions.size(); i++) {
-			QAction* aReplacement=new QAction(suggestions[i],contextMenu);
-			aReplacement->setFont(correctionFont);
-			connect(aReplacement,SIGNAL(triggered()),this,SLOT(spellCheckingReplace()));
-			contextMenu->insertAction(before,aReplacement);
-		}
-	}
+	addListToContextMenu(suggestions,false, SLOT(spellCheckingReplace()));
 	if (repopup) {
 		//    contextMenu->close();
 		contextMenu->show();
@@ -1197,6 +1243,19 @@ void LatexEditorView::mouseHovered(QPoint pos){
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
 				return;
 			}
+		}
+	}
+	fr = cursor.line().getOverlayAt(cursor.columnNumber(),styleHintFormat);
+	if (fr.length>0 && fr.format==styleHintFormat) {
+		QVariant var=l.getCookie(43);
+		if (var.isValid()){
+			const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
+			for (int i=0;i<errors.size();i++)
+				if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
+					QString message=errors[i].message;
+					QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
+					return;
+				}
 		}
 	}
 	// check for latex error
