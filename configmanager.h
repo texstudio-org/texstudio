@@ -13,6 +13,7 @@ class LatexEditorViewConfig;
 class WebPublishDialogConfig;
 class InsertGraphicsConfig;
 class PDFDocumentConfig;
+class GrammarCheckerConfig;
 
 struct ManagedToolBar{
 	QString name;
@@ -107,6 +108,9 @@ public:
 
 	//insert graphics dialog
 	InsertGraphicsConfig * const insertGraphicsConfig;
+	
+	//Grammar check
+	GrammarCheckerConfig * const grammarCheckerConfig;
 
 	//bool autoReplaceCommands; // moved to static codesnippet
 

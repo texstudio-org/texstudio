@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>542</width>
-            <height>531</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1067,7 +1067,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="4">
+          <item row="1" column="1" colspan="6">
            <widget class="QSpinBox" name="spinBoxSize">
             <property name="minimum">
              <number>1</number>
@@ -1090,10 +1090,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2">
+          <item row="2" column="1" colspan="3">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="5" column="1" colspan="4">
+          <item row="5" column="1" colspan="6">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -1125,7 +1125,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="2" column="3" colspan="2">
+          <item row="2" column="4" colspan="3">
            <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
             <property name="toolTip">
              <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
@@ -1142,14 +1142,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2">
+          <item row="3" column="1" colspan="6">
            <widget class="QCheckBox" name="checkBoxFolding">
             <property name="text">
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="4">
+          <item row="0" column="1" colspan="6">
            <widget class="QComboBox" name="comboBoxFont">
             <property name="editable">
              <bool>true</bool>
@@ -1170,7 +1170,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="6" column="1" colspan="2">
+          <item row="6" column="1" colspan="6">
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
@@ -1213,7 +1213,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Inline checking</string>
+             <string>Inline checking:</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -1223,7 +1223,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="7" column="1">
            <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
             <property name="text">
-             <string>Inline spell checking</string>
+             <string>Spelling</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1231,19 +1231,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="7" column="2">
-           <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
+           <widget class="QCheckBox" name="checkBoxInlineGrammarCheck">
             <property name="text">
-             <string>Inline citation checking</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
+             <string>Grammar</string>
             </property>
            </widget>
           </item>
           <item row="7" column="3">
-           <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+           <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
             <property name="text">
-             <string>Inline reference checking</string>
+             <string>Citations</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1251,9 +1248,19 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="7" column="4">
+           <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+            <property name="text">
+             <string>References</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="5">
            <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
             <property name="text">
-             <string>Inline syntax checking</string>
+             <string>Syntax</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2460,12 +2467,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>253</x>
-     <y>23</y>
+     <x>389</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
-     <x>269</x>
-     <y>23</y>
+     <x>507</x>
+     <y>240</y>
     </hint>
    </hints>
   </connection>
@@ -2476,12 +2483,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>253</x>
-     <y>23</y>
+     <x>389</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
-     <x>285</x>
-     <y>23</y>
+     <x>743</x>
+     <y>240</y>
     </hint>
    </hints>
   </connection>
@@ -2492,12 +2499,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>253</x>
-     <y>23</y>
+     <x>389</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>23</y>
+     <x>861</x>
+     <y>240</y>
     </hint>
    </hints>
   </connection>
@@ -2524,12 +2531,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>253</x>
-     <y>23</y>
+     <x>389</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
-     <x>317</x>
-     <y>23</y>
+     <x>979</x>
+     <y>240</y>
     </hint>
    </hints>
   </connection>
@@ -2594,6 +2601,22 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <hint type="destinationlabel">
      <x>565</x>
      <y>599</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineGrammarCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>223</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>548</x>
+     <y>231</y>
     </hint>
    </hints>
   </connection>
