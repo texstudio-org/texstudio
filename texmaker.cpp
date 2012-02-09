@@ -4575,7 +4575,14 @@ void Texmaker::viewSetHighlighting(){
                                          m_languages->languages().indexOf(currentEditor()->document()->languageDefinition()?currentEditor()->document()->languageDefinition()->language():""),
                                          false);
 	if (lang.isEmpty()) return;
+    currentEditorView()->clearOverlays();
     m_languages->setLanguageFromName(currentEditor(), m_languages->languages().at(localizedLanguages.indexOf(lang)));
+    if(currentEditor()->languageDefinition())
+        return;
+    if (currentEditor()->languageDefinition()->language()=="(La)TeX"){
+        //recheck syntax
+        currentEditorView()->reCheckSyntax();
+    }
 }
 
 void Texmaker::viewCollapseBlock() {
