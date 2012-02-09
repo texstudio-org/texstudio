@@ -27,7 +27,7 @@ void GrammarCheck::init(LatexParser lp, GrammarCheckerConfig config){
 
 void GrammarCheck::check(const QString& language, const void * doc, QList<LineInfo> inlines, int firstLineNr, int linesToSkipDelta){
 	ticket++;
-	int currentTicket = ticket;
+	uint currentTicket = ticket;
 	for (int i=0;i<inlines.size();i++)
 		tickets[inlines[i].line] = ticket;
 	
@@ -77,7 +77,8 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 	//real grammar check
 	QString lang = language;
 	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));
-	QList<GrammarError> backendErrors = backend->check(lang, words.join(""));
+	QList<GrammarError> backendErrors;
+	if (!words.isEmpty()) backendErrors = backend->check(lang, words.join(""));
 	//qDebug() << words.join("");
 	//backendErrors << GrammarError(0,3,GET_UNKNOWN);
 	
@@ -187,9 +188,9 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 	QByteArray post;
 	post.reserve(text.length()+50);
 	post.append("language="+language+"&text=");
-	post.append(QUrl::toPercentEncoding(text + " ", QByteArray(), QByteArray(" ")));
+	post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
 	post.append("\n");
-	//qDebug() << post;
+	qDebug() << text;
 	nam->post(req, post);
 	while (!replied.value(currentTicket, false)) QCoreApplication::processEvents(); //if there are pending texts to check, they will be called first, causing an reentry in this function
 	
@@ -204,14 +205,20 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 		if (lterrors.at(i).nodeType() != QDomNode::ElementNode) continue;
 		if (lterrors.at(i).nodeName() != "error") continue;
 		QDomNamedNodeMap atts = lterrors.at(i).attributes();
+		QString context = atts.namedItem("context").nodeValue();
+		int contextoffset = atts.namedItem("contextoffset").nodeValue().toInt();
+		if (context.endsWith("..")) context.chop(3);
+		if (context.startsWith("..")) context = context.mid(3), contextoffset -= 3;
 		int from = atts.namedItem("fromx").nodeValue().toInt();
-		int to = atts.namedItem("tox").nodeValue().toInt();
-		while (from < text.size() && text[from].isSpace()) from++;
-		while (to - 1 > from && to < text.size() && EOW.contains(text[to-1]) ) to--;
-		
-		results << GrammarError(from, qMax(1,to-from), GET_BACKEND, atts.namedItem("msg").nodeValue(), atts.namedItem("replacements").nodeValue().split("#"));
+		int realfrom = text.indexOf(context, qMax(from-5-context.length(),0)); //don't trust from
+		qDebug() << realfrom << context;
+		if (realfrom == -1) realfrom = from;
+		else  realfrom += contextoffset;
+		int len = atts.namedItem("errorlength").nodeValue().toInt();
+		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue(), atts.namedItem("replacements").nodeValue().split("#"));
+		qDebug() << realfrom << len;
 	}
-	//qDebug() << replied.value(currentTicket);
+	qDebug() << reply.value(currentTicket);
 	
 	replied.remove(currentTicket);
 	reply.remove(currentTicket);

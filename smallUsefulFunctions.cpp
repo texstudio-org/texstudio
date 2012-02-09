@@ -1525,8 +1525,10 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 				inOption=false;
 				lastCommand="";
 			}
-			if (word.length() > 2 && (word.contains("\\")||word.contains("\"")));
+			if (word.contains("\\")||word.contains("\"")){
 				word=latexToPlainWord(word); //remove special chars			
+				if (word.isEmpty()) continue;
+			}
 			if (lp->environmentCommands.contains(lastCommand))
 				return NW_ENVIRONMENT;
 			if (lastCommand.isEmpty() || lp->optionCommands.contains(lastCommand)){
