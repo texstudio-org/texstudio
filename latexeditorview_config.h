@@ -16,7 +16,7 @@ public:
 	int showlinemultiples;
 	int cursorSurroundLines;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
-	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking;
+	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking;
 	QString fontFamily;
 	int fontSize;
 	int lineWidth;

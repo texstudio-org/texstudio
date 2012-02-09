@@ -14,6 +14,7 @@
 #include "mostQtHeaders.h"
 #include "qdocument.h"
 #include "syntaxcheck.h"
+#include "grammarcheck.h"
 
 class QDocumentLineHandle;
 
@@ -74,12 +75,12 @@ public:
 	int deleteFormat,insertFormat,replaceFormat;
 
 	void reCheckSyntax(int linenr=0, int count=-1);
-
+	
 	void closeCompleter();
-    void removeBookmark(int lineNr,int bookmarkNumber);
-    void addBookmark(int lineNr,int bookmarkNumber);
-    bool hasBookmark(int lineNr,int bookmarkNumber);
-
+	void removeBookmark(int lineNr,int bookmarkNumber);
+	void addBookmark(int lineNr,int bookmarkNumber);
+	bool hasBookmark(int lineNr,int bookmarkNumber);
+	
 	QList<QDocumentCursor> autoPreviewCursor;
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
@@ -132,7 +133,7 @@ public slots:
 	void jumpChangePositionForward();
 
 	void jumpToBookmark(int bookmarkNumber);
-    bool toggleBookmark(int bookmarkNumber);
+	bool toggleBookmark(int bookmarkNumber);
 
 	void foldEverything(bool unFold);
 	void foldLevel(bool unFold, int level);
@@ -152,6 +153,8 @@ public slots:
 	void updateLtxCommands();
 	void paste();
 	void insertMacro(QString macro);
+	
+	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);
@@ -162,6 +165,8 @@ signals:
 	void thesaurus(int line,int col);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
+	
+	void linesChanged(const void * doc, const QList<LineInfo>& lines, int firstLineNr, int linesToSkipDelta);
 };
 
 

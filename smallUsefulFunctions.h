@@ -161,6 +161,8 @@ public:
 	static LatexParser& getInstance();
 };
 
+Q_DECLARE_METATYPE(LatexParser)
+
 struct LatexReader{
 	LatexReader();
 	LatexReader(const QString& line);
@@ -231,6 +233,6 @@ QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexComp
 LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
 
 
-
+#define LIST_RESERVE(list, count) list.reserve(count);
 
 #endif

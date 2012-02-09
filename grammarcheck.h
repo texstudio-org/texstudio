@@ -3,11 +3,12 @@
 
 #include <QObject>
 #include <QVariant>
-class LatexParser;
+
+#include "smallUsefulFunctions.h"
 
 struct LineInfo{
-	const void* doc;
 	const void* line;
+	int lineNr;
 	QString text;
 };
 
@@ -17,6 +18,8 @@ struct GrammarError{
 	int offset;
 	int length;
 	GrammarErrorType error;
+	GrammarError();
+	GrammarError(int offset, int length, const GrammarErrorType& error);
 };
 
 struct LineResult{
@@ -29,6 +32,8 @@ struct LineResult{
 Q_DECLARE_METATYPE(LineInfo)
 Q_DECLARE_METATYPE(GrammarError)
 Q_DECLARE_METATYPE(GrammarErrorType)
+Q_DECLARE_METATYPE(QList<LineInfo>)
+Q_DECLARE_METATYPE(QList<GrammarError>)
 
 class GrammarCheck : public QObject
 {
@@ -39,8 +44,8 @@ public:
 signals:
 	void checked(const void* doc, const void* line, int lineNr, QList<GrammarError> errors);
 public slots:
-	void init();
-	void check(QList<LineInfo> lines, int firstLineNr, int linesToSkipDelta);
+	void init(LatexParser lp);
+	void check(const void* doc, QList<LineInfo> lines, int firstLineNr, int linesToSkipDelta);
 private:
 	LatexParser* latexParser;
 };
