@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation>Používá Qt verze %1, sestaven Qt %2</translation>
+        <translation type="obsolete">Používá Qt verze %1, sestaven Qt %2</translation>
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
@@ -34,6 +34,10 @@
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
+        <translation type="unfinished">Používá Qt verze %1, sestaven Qt %2 %3 {1,?}</translation>
     </message>
 </context>
 <context>
@@ -1075,6 +1079,34 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     <message>
         <source>Default Font Encoding</source>
         <translation>Výchozí kódování písma</translation>
+    </message>
+    <message>
+        <source>qce (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>single letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try to automatically choose best display options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5562,6 +5594,31 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
     </message>
+    <message>
+        <source>Plain text</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>move down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5961,11 +6018,11 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     </message>
     <message>
         <source>Command %1</source>
-        <translation>Příkaz %1</translation>
+        <translation type="obsolete">Příkaz %1</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>+</source>
@@ -5977,7 +6034,27 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation>Opravdu chcete smazat nynější příkaz?</translation>
+        <translation type="obsolete">Opravdu chcete smazat nynější příkaz?</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished">Nahoru</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished">Dolů</translation>
+    </message>
+    <message>
+        <source>User Command</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

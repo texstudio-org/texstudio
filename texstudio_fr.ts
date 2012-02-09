@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation>Utilise Qt version %1, compilé avec Qt %2</translation>
+        <translation type="obsolete">Utilise Qt version %1, compilé avec Qt %2</translation>
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
@@ -34,6 +34,10 @@
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>Site internet du projet : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
+        <translation>Utilise Qt version %1, compilé avec Qt %2 %3 {1,?}</translation>
     </message>
 </context>
 <context>
@@ -840,7 +844,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation>Désactiver l&apos;astuce pour les caractères accentués (seulement pour MacOs X)</translation>
+        <translation>Désactiver l&apos;astuce pour les caractères accentués (seulement pour Mac OS X)</translation>
     </message>
     <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
@@ -1069,6 +1073,34 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     <message>
         <source>Default Font Encoding</source>
         <translation>Codage d&apos;entrée par défaut</translation>
+    </message>
+    <message>
+        <source>qce (recommended)</source>
+        <translation>qce (recommandé)</translation>
+    </message>
+    <message>
+        <source>qt</source>
+        <translation>qt</translation>
+    </message>
+    <message>
+        <source>single letter</source>
+        <translation>lettre unique</translation>
+    </message>
+    <message>
+        <source>Render mode:</source>
+        <translation>Mode de rendu</translation>
+    </message>
+    <message>
+        <source>Try to automatically choose best display options</source>
+        <translation>Essayer de choisir automatiquement les meilleures options d&apos;affichage</translation>
+    </message>
+    <message>
+        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
+        <translation>Si le cache des lignes rendues est activé, les lignes rendues sont enregistrées dans un cache si bien qu&apos;elles n&apos;ont plus à être à nouveau rendue. Conduit à une amélioreation de la vitesse (notammment sur Mac) au prix d&apos;un usage plus élevé de la mémoire.</translation>
+    </message>
+    <message>
+        <source>Disable cache of rendered lines</source>
+        <translation>Désactive le cache des lignes rendues</translation>
     </message>
 </context>
 <context>
@@ -1600,7 +1632,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>Old Mac</source>
-        <translation></translation>
+        <translation>Mac antérieur</translation>
     </message>
     <message>
         <source>Remove trailing spaces</source>
@@ -2972,7 +3004,7 @@ Reprendre du début ?</translation>
     </message>
     <message>
         <source>Old Mac</source>
-        <translation></translation>
+        <translation>Mac antérieur</translation>
     </message>
     <message>
         <source>Conflict!</source>
@@ -5567,6 +5599,31 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
     </message>
+    <message>
+        <source>Plain text</source>
+        <comment>Format name of language definition </comment>
+        <translation>Texte ordinaire</translation>
+    </message>
+    <message>
+        <source>Bookmarks</source>
+        <translation>Signets</translation>
+    </message>
+    <message>
+        <source>move up</source>
+        <translation>déplace vers le haut</translation>
+    </message>
+    <message>
+        <source>move down</source>
+        <translation>déplace vers le bas</translation>
+    </message>
+    <message>
+        <source>remove</source>
+        <translation>supprime</translation>
+    </message>
+    <message>
+        <source>remove all</source>
+        <translation>supprime tout</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -5733,7 +5790,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>No Numbers (.*[^0-9].*)</source>
-        <translation>Pas de numéros (.*[^0-9].*)</translation>
+        <translation>Pas de nombres (.*[^0-9].*)</translation>
     </message>
     <message>
         <source>No Digits ([^0-9]*)</source>
@@ -5970,11 +6027,11 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Command %1</source>
-        <translation>Commande %1</translation>
+        <translation type="obsolete">Commande %1</translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
         <source>+</source>
@@ -5986,7 +6043,27 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Do you really want to delete the current command?</source>
-        <translation>Voulez-vous réellement supprimer la commande en cours ?</translation>
+        <translation type="obsolete">Voulez-vous réellement supprimer la commande en cours ?</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Ajouter</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation>Haut</translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation>Bas</translation>
+    </message>
+    <message>
+        <source>User Command</source>
+        <translation>Compilations utilisateur</translation>
     </message>
 </context>
 <context>
