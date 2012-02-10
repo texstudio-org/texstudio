@@ -60,7 +60,7 @@ private:
 	GrammarCheckerConfig config;
 	GrammarCheckBackend* backend;
 	uint ticket;
-	QHash<const void *, int> tickets;
+	QHash<const void *, uint> tickets;
 };
 
 class GrammarCheckBackend : public QObject{

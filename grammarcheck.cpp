@@ -40,15 +40,62 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 		int type;
 		while ((type = lr.nextWord(false))) {
 			if (type == LatexReader::NW_ENVIRONMENT) continue;
+
+			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) break;
+			
+			if (latexParser->structureCommands.contains(lr.lastCommand)) {
+				//don't check captions
+				QStringList temp; QList<int> starts;
+				LatexParser::resolveCommandOptions(lr.line,lr.wordStartIndex-1,temp,&starts);
+				for(int j=0;j<starts.count() && j<2;j++){
+					lr.index = starts.at(j) + temp.at(j).length()-1;
+					if(temp.at(j).startsWith("{")) break;
+				}
+				words << ".";
+				lengths << 1;
+				lines << l;
+				continue;
+			}
+			
+			
 			if (type == LatexReader::NW_TEXT) words << " "+lr.word;
-			else if (type == LatexReader::NW_PUNCTATION) words << lr.word;
-			else break;
+			else /*if (type == LatexReader::NW_PUNCTATION) */{
+				if (lr.word == "-" && !words.isEmpty()) {
+					//- can either mean a word-separator or a sentence -- separator
+					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
+					if (lr.wordStartIndex == indices.last() + lengths.last()) {
+						words.last() += '-';
+						lengths.last()++;
+						
+						int tempIndex = lr.index;
+						int type = lr.nextWord(false);
+						if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) break;
+						if (tempIndex != lr.wordStartIndex) {
+							lr.index = tempIndex;
+							continue;
+						}
+						words.last() += lr.word;
+						lengths.last() = lr.index - indices.last();
+						continue;
+					}
+				}
+				words << lr.word;
+			}
+			
 			indices << lr.wordStartIndex;
 			lengths << lr.index - lr.wordStartIndex;
 			lines << l;
+			
 		}
 	}
 	
+	
+	while (!words.isEmpty() && words.first().length() == 1 && words.first() != QChar('"')) {
+		words.removeFirst();
+		indices.removeFirst();
+		lengths.removeFirst();
+		lines.removeFirst();
+	}
 
 	QVector<QList<GrammarError> > errors;
 	errors.resize(inlines.size());
