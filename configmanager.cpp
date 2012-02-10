@@ -356,6 +356,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Grammar/Long Repetition Check", &grammarCheckerConfig->longRangeRepetitionCheck, true);
 	registerOption("Grammar/Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionDelta, 3);
 	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/");
+	registerOption("Grammar/Word Lists Dir", &grammarCheckerConfig->wordlistsDir, "");
 	
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
@@ -537,6 +538,11 @@ QSettings* ConfigManager::readSettings() {
 			spellDictDir = fi.absolutePath();
 			spellLanguage = fi.baseName();
 		}
+	}
+	if (grammarCheckerConfig->wordlistsDir.isEmpty()) {
+		QString sw = findResourceFile("de.stopWords", true, QStringList(), QStringList() << spellDictDir);
+		if (sw=="") sw = findResourceFile("en.stopWords", true, QStringList(), QStringList() << spellDictDir);
+		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QFileInfo(sw).absolutePath();
 	}
 	
 	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {

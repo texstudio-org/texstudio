@@ -9,6 +9,8 @@ public:
 	bool longRangeRepetitionCheck;
 	int maxRepetitionDelta;
 	
+	QString wordlistsDir;
+	
 	QString languageToolURL;
 };
 

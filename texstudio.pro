@@ -329,6 +329,9 @@ unix {
         utilities/fr_FR.dic \
         utilities/de_DE.aff \
         utilities/de_DE.dic \
+        utilities/de.stopWords \
+        utilities/en.stopWords \
+        utilities/fr.stopWords \
         utilities/th_en_US_v2.dat \
         utilities/th_fr_FR_v2.dat \
         utilities/th_de_DE_v2.dat \
