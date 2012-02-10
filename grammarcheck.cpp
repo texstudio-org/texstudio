@@ -56,7 +56,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 	REQUIRE(latexParser);
 	//gather words
 	QStringList words;
-	QList<int> indices, lengths, lines;
+	QList<int> indices, endindices, lines;
 	for (int l = 0; l < inlines.size(); l++, firstLineNr++) {
 		LatexReader lr(*latexParser, inlines[l].text);
 		int type;
@@ -75,7 +75,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 				}
 				words << ".";
 				indices << lr.wordStartIndex;
-				lengths << 1;
+				endindices << 1;
 				lines << l;
 				continue;
 			}
@@ -86,9 +86,9 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 				if (lr.word == "-" && !words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
 					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
-					if (lr.wordStartIndex == indices.last() + lengths.last()) {
+					if (lr.wordStartIndex == endindices.last()) {
 						words.last() += '-';
-						lengths.last()++;
+						endindices.last()++;
 						
 						int tempIndex = lr.index;
 						int type = lr.nextWord(false);
@@ -98,7 +98,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 							continue;
 						}
 						words.last() += lr.word;
-						lengths.last() = lr.index - indices.last();
+						endindices.last() = lr.index;
 						continue;
 					}
 				}
@@ -108,7 +108,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 			}
 			
 			indices << lr.wordStartIndex;
-			lengths << lr.index - lr.wordStartIndex;
+			endindices << lr.index;
 			lines << l;
 			
 		}
@@ -118,7 +118,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 	while (!words.isEmpty() && words.first().length() == 1 && words.first() != QChar('"')) {
 		words.removeFirst();
 		indices.removeFirst();
-		lengths.removeFirst();
+		endindices.removeFirst();
 		lines.removeFirst();
 	}
 
@@ -144,7 +144,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 			if (ld.stopWords.contains(normalized)) {
 				if (checkLastWord) {
 					if (prevSW == normalized) 
-						errors[lines[w]] << GrammarError(indices[w], lengths[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
+						errors[lines[w]] << GrammarError(indices[w], endindices[w]-indices[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
 					prevSW = normalized;
 				}
 				continue;
@@ -152,7 +152,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 			if (realCheck) {
 				int lastSeen = repeatedWordCheck.value(normalized, -1);
 				if (lastSeen > -1 && totalWords - lastSeen <= MAX_REP_DELTA) 
-					errors[lines[w]] << GrammarError(indices[w], lengths[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
+					errors[lines[w]] << GrammarError(indices[w], endindices[w]-indices[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
 			}
 			repeatedWordCheck.insert(normalized, totalWords);
 		}
@@ -189,14 +189,15 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 			int offsetEnd = backendErrors[err].offset + backendErrors[err].length;
 			int tempOffset = curOffset;
 			for (int w = curWord; w < words.size(); w++) {
-				if (tempOffset + words[curWord].length() >=  offsetEnd) {
+				tempOffset += words[w].length();
+				if (tempOffset >=  offsetEnd) {
 					if (lines[curWord] == lines[w]) {
-						int trueOffsetEnd = indices[w] + qMax(0, offsetEnd - tempOffset);
-						if (words[w].startsWith(' ')) trueOffsetEnd--;
-						trueLength = trueOffsetEnd - trueIndex;
+						int trueOffsetEnd = endindices[w] - qMax(0, tempOffset - offsetEnd);
+						if (words[curWord].startsWith(' ')) trueOffsetEnd--;
+						trueLength = trueOffsetEnd - trueIndex + 1;
 					}
 					break;
-				} else tempOffset += words[curWord].length();
+				} 
 			}
 			if (trueLength == -1)
 				trueLength = inlines[lines[curWord]].text.length() - trueIndex;
@@ -288,7 +289,7 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
 	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
 	p->start(javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer");
-	qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
+	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
 	p->waitForStarted();
 	
 	connectionAvailability = 0;
@@ -311,7 +312,7 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 	nam->post(req, post);
 	while (replied.value(currentTicket, -1) == -1) QCoreApplication::processEvents(); //if there are pending texts to check, they will be called first, causing an reentry in this function
 	
-	if (connectionAvailability == -1) {
+	if (replied.value(currentTicket, -1) == 0) {
 		tryToStart();
 		if (connectionAvailability == -1) return QList<GrammarError>();
 		return check(language, text);
@@ -339,7 +340,9 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 		if (realfrom == -1) { realfrom = from; } // qDebug() << "discard => " << from; }
 		else  realfrom += contextoffset;
 		int len = atts.namedItem("errorlength").nodeValue().toInt();
-		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue(), atts.namedItem("replacements").nodeValue().split("#"));
+		QStringList cors = atts.namedItem("replacements").nodeValue().split("#");
+		if (cors.size() == 1 && cors.first() == "") cors.clear();
+		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue(), cors);
 		qDebug() << realfrom << len;
 	}
 	qDebug() << reply.value(currentTicket);
