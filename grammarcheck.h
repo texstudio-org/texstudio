@@ -101,7 +101,7 @@ private:
 	
 	QString ltPath, javaPath;
 	QSet<QString> ignoredRules;
-	qint64 startTime;
+	uint startTime;
 	void tryToStart();
 	
 };
