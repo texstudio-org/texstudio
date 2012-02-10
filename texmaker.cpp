@@ -259,6 +259,7 @@ Texmaker::~Texmaker(){
 		latexStyleParser->stop();
 		latexStyleParser->wait();
 	}
+	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
 	grammarCheckThread.wait();
 }
