@@ -503,15 +503,15 @@
     </message>
     <message>
         <source>Inline spell checking</source>
-        <translation>Ověřit správné psaní</translation>
+        <translation type="obsolete">Ověřit správné psaní</translation>
     </message>
     <message>
         <source>Inline citation checking</source>
-        <translation>Ověřit citace</translation>
+        <translation type="obsolete">Ověřit citace</translation>
     </message>
     <message>
         <source>Inline reference checking</source>
-        <translation>Ověřit odkazy</translation>
+        <translation type="obsolete">Ověřit odkazy</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -682,7 +682,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Inline syntax checking</source>
-        <translation>Ověřit skladbu LaTeXu</translation>
+        <translation type="obsolete">Ověřit skladbu LaTeXu</translation>
     </message>
     <message>
         <source>Wizard</source>
@@ -1106,6 +1106,30 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline checking:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>References</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1754,6 +1778,13 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
 </context>
 <context>
+    <name>GrammarCheck</name>
+    <message>
+        <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InsertGraphics</name>
     <message>
         <source>File</source>
@@ -2131,6 +2162,22 @@ Chybí volby \includegraphics.</translation>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
         <translation>Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Kopírovat</translation>
+    </message>
+    <message>
+        <source>&amp;Copy all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copy all with line numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show in log</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
