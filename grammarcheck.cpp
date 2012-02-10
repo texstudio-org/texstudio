@@ -243,7 +243,7 @@ GrammarCheckBackend::GrammarCheckBackend(QObject* parent):QObject(parent){}
 #include "QtNetwork/QNetworkRequest"
 
 
-GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false){
+GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false),triedToStart(false){
 	
 }
 
@@ -257,11 +257,41 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
 		connect(nam,SIGNAL(finished(QNetworkReply*)),SLOT(finished(QNetworkReply*)));
 	}
 	server = config.languageToolURL;
+	ltPath = config.languageToolAutorun ? config.languageToolPath : "";
+	if (!ltPath.endsWith("jar")) ltPath += "/LanguageTool.jar";
+	javaPath = config.languageToolJavaPath;
+	
+	ignoredRules.clear();
+	foreach (const QString& r, config.languageToolIgnoredRules.split(","))
+		ignoredRules << r.trimmed();
 	connectionAvailability = 0;
+	triedToStart = false;
 }
 
 bool GrammarCheckLanguageToolSOAP::isAvailable(){
 	return connectionAvailability >= 0;
+}
+
+void GrammarCheckLanguageToolSOAP::tryToStart(){
+	if (triedToStart) {
+		if (QDateTime::currentMSecsSinceEpoch() - startTime < 60*1000 ) {
+			connectionAvailability = 0;
+			sleep(1);
+		}
+		return;
+	}
+	triedToStart = true;
+	startTime = 0;
+	if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
+	QProcess *p = new QProcess();
+	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
+	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
+	p->start(javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer");
+	qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
+	p->waitForStarted();
+	
+	connectionAvailability = 0;
+	startTime = QDateTime::currentMSecsSinceEpoch();
 }
 
 QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language, const QString& text){
@@ -280,6 +310,12 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 	nam->post(req, post);
 	while (replied.value(currentTicket, -1) == -1) QCoreApplication::processEvents(); //if there are pending texts to check, they will be called first, causing an reentry in this function
 	
+	if (connectionAvailability == -1) {
+		tryToStart();
+		if (connectionAvailability == -1) return QList<GrammarError>();
+		return check(language, text);
+	}
+	
 	QString EOW = getCommonEOW();
 	
 	QDomDocument dd;
@@ -291,6 +327,7 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 		if (lterrors.at(i).nodeType() != QDomNode::ElementNode) continue;
 		if (lterrors.at(i).nodeName() != "error") continue;
 		QDomNamedNodeMap atts = lterrors.at(i).attributes();
+		if (ignoredRules.contains(atts.namedItem("ruleId").nodeValue())) continue;
 		QString context = atts.namedItem("context").nodeValue();
 		int contextoffset = atts.namedItem("contextoffset").nodeValue().toInt();
 		if (context.endsWith("..")) context.chop(3);
