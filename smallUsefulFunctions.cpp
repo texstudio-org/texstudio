@@ -85,8 +85,10 @@ int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool de
 			ignoreClosingBrace=false;
 			continue;
 		}
-		if(doubleQuoteChar && cur=='\'') break; // check for words staring with "' (german quotation mark)
-		else doubleQuoteChar=false;
+		if(doubleQuoteChar)
+			//if (cur == '\'') break; // check for words starting with "' (german quotation mark)
+			if (CommonEOW.contains(cur)) break; // check for all quotation marks
+		doubleQuoteChar=false;
 		if (inCmd) {
 			if (CommonEOW.indexOf(cur)>=0) {
 				if (i-start==1) i++;
@@ -1525,7 +1527,9 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 				inOption=false;
 				lastCommand="";
 			}
-			if (word.contains("\\")||word.contains("\"")){
+			//if (word.length() == 2 && word[0] == '"' && CommonEOW.contains(word[1]))
+			//	return NW_PUNCTATION; //some quotation mark
+			if (word.length() > 1 && (word.contains('\\')||word.contains('"'))){
 				word=latexToPlainWord(word); //remove special chars			
 				if (word.isEmpty()) continue;
 			}
