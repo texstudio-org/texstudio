@@ -151,16 +151,16 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 		table->horizontalHeader()->setStretchLastSection(true);
 		table->setMinimumHeight(5*(fm.lineSpacing()+4));
 
-		QAction * act = new QAction("&Copy",table);
+        QAction * act = new QAction(tr("&Copy"),table);
 		connect(act, SIGNAL(triggered()), SLOT(copyMessage()));
 		table->addAction(act);
-		act = new QAction("&Copy all",table);
+        act = new QAction(tr("&Copy all"),table);
 		connect(act, SIGNAL(triggered()), SLOT(copyAllMessages()));
 		table->addAction(act);
-		act = new QAction("&Copy all with line numbers",table);
+        act = new QAction(tr("&Copy all with line numbers"),table);
 		connect(act, SIGNAL(triggered()), SLOT(copyAllMessagesWithLineNumbers()));
 		table->addAction(act);
-		act = new QAction("&Show in log",table);
+        act = new QAction(tr("&Show in log"),table);
 		connect(act, SIGNAL(triggered()), SLOT(showMessageInLog()));;
 		table->addAction(act);
 
