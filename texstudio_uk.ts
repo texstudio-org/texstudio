@@ -573,18 +573,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Inline spell checking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Inline citation checking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Inline reference checking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>(The commands must be separated by &apos;|&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -674,10 +662,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Use system theme icons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Inline syntax checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1096,6 +1080,30 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline checking:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>References</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1744,6 +1752,13 @@ Are you sure you want to undo all changes?</source>
     </message>
 </context>
 <context>
+    <name>GrammarCheck</name>
+    <message>
+        <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InsertGraphics</name>
     <message>
         <source>File</source>
@@ -2116,6 +2131,22 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">Копіювати</translation>
+    </message>
+    <message>
+        <source>&amp;Copy all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copy all with line numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show in log</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

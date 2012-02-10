@@ -303,15 +303,15 @@
     </message>
     <message>
         <source>Inline spell checking</source>
-        <translation>Vérifier l&apos;orthographe à la volée</translation>
+        <translation type="obsolete">Vérifier l&apos;orthographe à la volée</translation>
     </message>
     <message>
         <source>Inline citation checking</source>
-        <translation>Vérifier les citations à la volée</translation>
+        <translation type="obsolete">Vérifier les citations à la volée</translation>
     </message>
     <message>
         <source>Inline reference checking</source>
-        <translation>Vérifier les références à la volée</translation>
+        <translation type="obsolete">Vérifier les références à la volée</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -674,7 +674,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Inline syntax checking</source>
-        <translation>Correction orthographique automatique</translation>
+        <translation type="obsolete">Correction orthographique automatique</translation>
     </message>
     <message>
         <source>Wizard</source>
@@ -1101,6 +1101,30 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     <message>
         <source>Disable cache of rendered lines</source>
         <translation>Désactive le cache des lignes rendues</translation>
+    </message>
+    <message>
+        <source>Inline checking:</source>
+        <translation>Vérification en ligne :</translation>
+    </message>
+    <message>
+        <source>Spelling</source>
+        <translation>Correction orthographique</translation>
+    </message>
+    <message>
+        <source>Grammar</source>
+        <translation>Grammaire</translation>
+    </message>
+    <message>
+        <source>Citations</source>
+        <translation>Citations</translation>
+    </message>
+    <message>
+        <source>References</source>
+        <translation>Références</translation>
+    </message>
+    <message>
+        <source>Syntax</source>
+        <translation>Syntaxe</translation>
     </message>
 </context>
 <context>
@@ -1749,6 +1773,13 @@ Continuer tout de même ?</translation>
     </message>
 </context>
 <context>
+    <name>GrammarCheck</name>
+    <message>
+        <source>Word repetition</source>
+        <translation>Répétition de mots</translation>
+    </message>
+</context>
+<context>
     <name>InsertGraphics</name>
     <message>
         <source>File</source>
@@ -2128,6 +2159,22 @@ Options de \includegraphics manquantes</translation>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
         <translation>Le fichier de log est très grand (&gt; %1 MB) : êtes-vous sûr de vouloir le visualiser ?</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation>&amp;Copier</translation>
+    </message>
+    <message>
+        <source>&amp;Copy all</source>
+        <translation>Copier &amp;tout</translation>
+    </message>
+    <message>
+        <source>&amp;Copy all with line numbers</source>
+        <translation>Copier tout avec les numéros de &amp;ligne</translation>
+    </message>
+    <message>
+        <source>&amp;Show in log</source>
+        <translation>&amp;Montrer dans le log</translation>
     </message>
 </context>
 <context>

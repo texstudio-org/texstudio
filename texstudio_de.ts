@@ -503,15 +503,15 @@
     </message>
     <message>
         <source>Inline spell checking</source>
-        <translation>Rechtschreibung prüfen</translation>
+        <translation type="obsolete">Rechtschreibung prüfen</translation>
     </message>
     <message>
         <source>Inline citation checking</source>
-        <translation>Zitate prüfen</translation>
+        <translation type="obsolete">Zitate prüfen</translation>
     </message>
     <message>
         <source>Inline reference checking</source>
-        <translation>Referenzen prüfen</translation>
+        <translation type="obsolete">Referenzen prüfen</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -682,7 +682,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Inline syntax checking</source>
-        <translation>LaTeX-Syntaxprüfung</translation>
+        <translation type="obsolete">LaTeX-Syntaxprüfung</translation>
     </message>
     <message>
         <source>Wizard</source>
@@ -1106,6 +1106,30 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline checking:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>References</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1755,6 +1779,13 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
 </context>
 <context>
+    <name>GrammarCheck</name>
+    <message>
+        <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InsertGraphics</name>
     <message>
         <source>File</source>
@@ -2131,6 +2162,22 @@ Fehlende Parameter für \includegraphics.</translation>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
         <translation>Die Logdatei ist sehr groß (&gt; %1 MB). Sind Sie sicher, dass sie diese laden wollen?</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Kopieren</translation>
+    </message>
+    <message>
+        <source>&amp;Copy all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copy all with line numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show in log</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
