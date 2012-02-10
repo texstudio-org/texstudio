@@ -275,7 +275,7 @@ bool GrammarCheckLanguageToolSOAP::isAvailable(){
 
 void GrammarCheckLanguageToolSOAP::tryToStart(){
 	if (triedToStart) {
-		if (QDateTime::currentMSecsSinceEpoch() - startTime < 60*1000 ) {
+		if (QDateTime::currentDateTime().toTime_t() - startTime < 60*1000 ) {
 			connectionAvailability = 0;
 			sleep(1);
 		}
@@ -292,7 +292,7 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 	p->waitForStarted();
 	
 	connectionAvailability = 0;
-	startTime = QDateTime::currentMSecsSinceEpoch();
+	startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
 }
 
 QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language, const QString& text){
