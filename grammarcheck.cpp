@@ -74,6 +74,7 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 					if(temp.at(j).startsWith("{")) break;
 				}
 				words << ".";
+				indices << lr.wordStartIndex;
 				lengths << 1;
 				lines << l;
 				continue;
