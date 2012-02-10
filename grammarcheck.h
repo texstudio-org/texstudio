@@ -43,6 +43,10 @@ Q_DECLARE_METATYPE(GrammarErrorType)
 Q_DECLARE_METATYPE(QList<LineInfo>)
 Q_DECLARE_METATYPE(QList<GrammarError>)
 
+struct LanguageGrammarData{
+	QSet<QString> stopWords;
+};
+
 class GrammarCheckBackend;
 class GrammarCheck : public QObject
 {
@@ -61,6 +65,7 @@ private:
 	GrammarCheckBackend* backend;
 	uint ticket;
 	QHash<const void *, uint> tickets;
+	QMap<QString, LanguageGrammarData> languages;
 };
 
 class GrammarCheckBackend : public QObject{
@@ -68,6 +73,7 @@ class GrammarCheckBackend : public QObject{
 public:
 	GrammarCheckBackend(QObject* parent);
 	virtual void init(const GrammarCheckerConfig& config) = 0;
+	virtual bool isAvailable() = 0;
 	virtual QList<GrammarError> check(const QString& language, const QString& text) = 0;
 };
 
@@ -79,15 +85,18 @@ public:
 	GrammarCheckLanguageToolSOAP(QObject* parent = 0);
 	~GrammarCheckLanguageToolSOAP();
 	virtual void init(const GrammarCheckerConfig& config);
+	virtual bool isAvailable();
 	virtual QList<GrammarError> check(const QString& language, const QString& text);
 public slots:
 	void finished(QNetworkReply* reply);
 private:
-	QMap<int, bool> replied;
+	QMap<int, int> replied;
 	QMap<int, QByteArray> reply;
 	int ticket;
 	QNetworkAccessManager *nam;
 	QUrl server;
+	
+	int connectionAvailability; //-1: broken, 0: don't know, 1: worked at least once
 };
 
 #endif // GRAMMARCHECK_H

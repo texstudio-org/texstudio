@@ -24,12 +24,34 @@ void GrammarCheck::init(LatexParser lp, GrammarCheckerConfig config){
 }
 
 
+QSet<QString> readWordList(const QString& file){
+	QFile f(file);
+	if (!f.open(QFile::ReadOnly)) return QSet<QString>();
+	QSet<QString> res;
+	foreach (const QByteArray& ba, f.readAll().split('\n')){
+		QByteArray bas = ba.simplified();
+		if (bas.startsWith('#')) continue;
+		res << " " + QString::fromUtf8(bas);
+	}
+	return res;
+}
 
 void GrammarCheck::check(const QString& language, const void * doc, QList<LineInfo> inlines, int firstLineNr, int linesToSkipDelta){
 	ticket++;
 	uint currentTicket = ticket;
 	for (int i=0;i<inlines.size();i++)
 		tickets[inlines[i].line] = ticket;
+	
+	QString lang = language;
+	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));
+	QMap<QString,LanguageGrammarData>::const_iterator it = languages.constFind(lang);
+	if (it == languages.constEnd()) { 
+		LanguageGrammarData lgd;
+		lgd.stopWords = readWordList(config.wordlistsDir+"/"+lang+".stopWords");
+		languages.insert(lang, lgd);
+		it = languages.constFind(lang);
+	}
+	const LanguageGrammarData& ld = *it;
 	
 	REQUIRE(latexParser);
 	//gather words
@@ -102,8 +124,12 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 	QVector<QList<GrammarError> > errors;
 	errors.resize(inlines.size());
 	
+	bool backendAvailable = backend->isAvailable();
+	
 	if (config.longRangeRepetitionCheck) {
 		const int MAX_REP_DELTA = config.maxRepetitionDelta;
+		bool checkLastWord = !backendAvailable;
+		QString prevSW;
 		//check repetition	
 		QHash<QString, int> repeatedWordCheck;
 		int totalWords = 0;
@@ -114,6 +140,14 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 			//check words
 			bool realCheck = lines[w] >= linesToSkipDelta;
 			QString normalized = words[w].toLower();
+			if (ld.stopWords.contains(normalized)) {
+				if (checkLastWord) {
+					if (prevSW == normalized) 
+						errors[lines[w]] << GrammarError(indices[w], lengths[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
+					prevSW = normalized;
+				}
+				continue;
+			} else prevSW.clear();
 			if (realCheck) {
 				int lastSeen = repeatedWordCheck.value(normalized, -1);
 				if (lastSeen > -1 && totalWords - lastSeen <= MAX_REP_DELTA) 
@@ -124,10 +158,8 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 	}
 
 	//real grammar check
-	QString lang = language;
-	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));
 	QList<GrammarError> backendErrors;
-	if (!words.isEmpty()) backendErrors = backend->check(lang, words.join(""));
+	if (!words.isEmpty() && backendAvailable) backendErrors = backend->check(lang, words.join(""));
 	//qDebug() << words.join("");
 	//backendErrors << GrammarError(0,3,GET_UNKNOWN);
 	
@@ -211,7 +243,7 @@ GrammarCheckBackend::GrammarCheckBackend(QObject* parent):QObject(parent){}
 #include "QtNetwork/QNetworkRequest"
 
 
-GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0){
+GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false){
 	
 }
 
@@ -225,6 +257,11 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
 		connect(nam,SIGNAL(finished(QNetworkReply*)),SLOT(finished(QNetworkReply*)));
 	}
 	server = config.languageToolURL;
+	connectionAvailability = 0;
+}
+
+bool GrammarCheckLanguageToolSOAP::isAvailable(){
+	return connectionAvailability >= 0;
 }
 
 QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language, const QString& text){
@@ -241,7 +278,7 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 	post.append("\n");
 	qDebug() << text;
 	nam->post(req, post);
-	while (!replied.value(currentTicket, false)) QCoreApplication::processEvents(); //if there are pending texts to check, they will be called first, causing an reentry in this function
+	while (replied.value(currentTicket, -1) == -1) QCoreApplication::processEvents(); //if there are pending texts to check, they will be called first, causing an reentry in this function
 	
 	QString EOW = getCommonEOW();
 	
@@ -278,6 +315,11 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* reply){
 	int ct = reply->request().attribute(QNetworkRequest::User).toInt();
 	this->reply.insert(ct, reply->readAll());
-	this->replied.insert(ct, true);
+	int status = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+	this->replied.insert(ct, status);
+	if (!connectionAvailability) {
+		if (status == 0) connectionAvailability = -1;
+		else connectionAvailability = 1;
+	}
 	reply->deleteLater();
 }
