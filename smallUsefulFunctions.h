@@ -232,7 +232,10 @@ public:
 QStringList loadCwlFiles(const QStringList &newFiles,LatexParser *cmds,LatexCompleterConfig *config=0);
 LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
 
-
+#if QT_VERSION >= 0x040700
 #define LIST_RESERVE(list, count) list.reserve(count);
+#else
+#define LIST_RESERVE(list, count)
+#endif
 
 #endif
