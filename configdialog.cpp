@@ -294,6 +294,10 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 
 	connect(ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
 
+	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
+	connect(ui.pushButtonGrammarLTPath, SIGNAL(clicked()), this, SLOT(browseGrammarLTPath()));
+	connect(ui.pushButtonGrammarLTJava, SIGNAL(clicked()), this, SLOT(browseGrammarLTJavaPath()));
+	
 
 	fmConfig=new QFormatConfig(ui.formatConfigBox);
 	fmConfig->addCategory(tr("Basic highlighting")) << "normal" <<"background" <<"comment" <<"commentTodo" <<"keyword" <<"extra-keyword" <<"math-keyword"  <<"numbers" <<"text" <<"environment" <<"structure" <<"escapeseq"  << "verbatim" << "picture" << "sweave";
@@ -313,19 +317,20 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.shortcutTree->setColumnWidth(0,200);
 	
 	//create icons
-    createIcon(tr("General"),QIcon(":/images/config_general.png"));
-    createIcon(tr("Commands"),QIcon(":/images/config_commands.png"));
-    createIcon(tr("Quick Build"),QIcon(":/images/config_quickbuild.png"));
-    createIcon(tr("Shortcuts"),QIcon(":/images/config_shortcut.png"));
-    createIcon(tr("Latex Menus"),QIcon(":/images/config_latexmenus.png"), true);
-    createIcon(tr("Toolbars"),QIcon(":/images/config_toolbars.png"), true);
-    createIcon(tr("Editor"),QIcon(":/images/config_editor.png"));
-    createIcon(tr("Adv. Editor"),QIcon(":/images/config_advancededitor.png"), true);
-    createIcon(tr("Custom Highlighting"),QIcon(":/images/config_highlighting.png"), true);
-    createIcon(tr("Completion"),QIcon(":/images/config_completion.png"));
-    createIcon(tr("Preview"),QIcon(":/images/config_preview.png"));
-    createIcon(tr("SVN"),QIcon(":/images/config_svn.png"));
-
+	createIcon(tr("General"),QIcon(":/images/config_general.png"));
+	createIcon(tr("Commands"),QIcon(":/images/config_commands.png"));
+	createIcon(tr("Quick Build"),QIcon(":/images/config_quickbuild.png"));
+	createIcon(tr("Shortcuts"),QIcon(":/images/config_shortcut.png"));
+	createIcon(tr("Latex Menus"),QIcon(":/images/config_latexmenus.png"), true);
+	createIcon(tr("Toolbars"),QIcon(":/images/config_toolbars.png"), true);
+	createIcon(tr("Editor"),QIcon(":/images/config_editor.png"));
+	createIcon(tr("Adv. Editor"),QIcon(":/images/config_advancededitor.png"), true);
+	createIcon(tr("Custom Highlighting"),QIcon(":/images/config_highlighting.png"), true);
+	createIcon(tr("Completion"),QIcon(":/images/config_completion.png"));
+	createIcon(tr("Grammar"),QIcon(":/images/config_editor.png"));
+	createIcon(tr("Preview"),QIcon(":/images/config_preview.png"));
+	createIcon(tr("SVN"),QIcon(":/images/config_svn.png"));
+	
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
 	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem*)));
@@ -395,27 +400,6 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 }
 
 
-//pageditor
-void ConfigDialog::browseDictDir() {
-	QString path=ui.leDictDir->text();
-	if (path.isEmpty()) path=QDir::homePath();
-	QString location = QFileDialog::getExistingDirectory(this, tr("Select dictionary directory"), path);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		ui.leDictDir->setText(location);
-	}
-}
-void ConfigDialog::dictDirChanged(const QString &newText) {
-	QString lang = ui.comboBoxSpellcheckLang->currentText();
-	ui.comboBoxSpellcheckLang->clear();
-	ui.comboBoxSpellcheckLang->addItems(SpellerManager::dictNamesForDir(newText));
-	// keep selected language if possible
-	int index = ui.comboBoxSpellcheckLang->findText(lang);
-	if (index >=0) {
-		ui.comboBoxSpellcheckLang->setCurrentIndex(index);
-	}
-}
-
 //sets the items of a combobox to the filenames and sub-directory names in the directory which name
 //is the current text of the combobox
 void ConfigDialog::comboBoxWithPathEdited(const QString& newText){
@@ -466,30 +450,57 @@ void ConfigDialog::comboBoxWithPathHighlighted(const QString& newText){
 }
 
 
-void ConfigDialog::browseThesaurus() {
-	QString path=ui.comboBoxThesaurusFileName->currentText();
-	if (path.isEmpty()) path=QDir::homePath();
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse thesaurus database"),path,"Database (*.dat)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		//	location="\""+location+"\"";
-		ui.comboBoxThesaurusFileName->setEditText(location);
+bool ConfigDialog::browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath){
+	QLineEdit* le = qobject_cast<QLineEdit*>(w);
+	QComboBox* cb = qobject_cast<QComboBox*>(w);
+	REQUIRE_RET(le || cb, false);
+	QString path = le?le->text():cb->currentText();
+	if (path.startsWith('"')) path.remove(0,1);
+	if (path.endsWith('"')) path.chop(1);
+	if (path.isEmpty()) path = startPath;
+	if (extension == "/") path = QFileDialog::getExistingDirectory(this, title, path);
+	else path = QFileDialog::getOpenFileName(this,title,path,extension,0,QFileDialog::DontResolveSymlinks);
+	if (!path.isEmpty()) {
+		path.replace(QString("\\"),QString("/"));
+		if (le) le->setText(path);
+		if (cb) cb->setEditText(path);
+		return true;
 	}
+	return false;
+}
+
+void ConfigDialog::browseThesaurus() {
+	browse(ui.comboBoxThesaurusFileName,tr("Browse thesaurus database"),"Database (*.dat)");
 }
 
 void ConfigDialog::browsePrecompiling() {
-	QString path=ui.lineEditExecuteBeforeCompiling->text();
-	if (path.startsWith('"')) path.remove(0,1);
-	if (path.endsWith('"')) path.chop(1);
-	if (path.isEmpty()) path=QDir::rootPath();
-	QString location=QFileDialog::getOpenFileName(this,tr("Browse program"),path,"Program (*)",0,QFileDialog::DontResolveSymlinks);
-	if (!location.isEmpty()) {
-		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\"";
-		ui.lineEditExecuteBeforeCompiling->setText(location);
-	}
+	if (!browse(ui.lineEditExecuteBeforeCompiling,tr("Browse program"),"Program (*)",QDir::rootPath())) return;
+	ui.lineEditExecuteBeforeCompiling->setText("\""+ui.lineEditExecuteBeforeCompiling->text()+"\"");
 }
 
+void ConfigDialog::browseGrammarWordListsDir(){
+	browse(ui.lineEditGrammarWordlists, tr("Select the grammar word lists dir"), "/");
+}
+void ConfigDialog::browseGrammarLTPath(){
+	browse(ui.lineEditGrammarLTPath, tr("Select the LanguageTool jar"), "Java-Program (*.jar)");
+}
+void ConfigDialog::browseGrammarLTJavaPath(){
+	browse(ui.lineEditGrammarLTJava, tr("Select java"), "Java (*)");
+}
+
+void ConfigDialog::browseDictDir() {
+	browse(ui.leDictDir, tr("Select dictionary directory"), "/");
+}
+void ConfigDialog::dictDirChanged(const QString &newText) {
+	QString lang = ui.comboBoxSpellcheckLang->currentText();
+	ui.comboBoxSpellcheckLang->clear();
+	ui.comboBoxSpellcheckLang->addItems(SpellerManager::dictNamesForDir(newText));
+	// keep selected language if possible
+	int index = ui.comboBoxSpellcheckLang->findText(lang);
+	if (index >=0) {
+		ui.comboBoxSpellcheckLang->setCurrentIndex(index);
+	}
+}
 
 void ConfigDialog::quickBuildWizard(){
 	REQUIRE(buildManager);

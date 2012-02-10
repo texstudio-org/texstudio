@@ -87,7 +87,7 @@ public:
 	virtual void init(const GrammarCheckerConfig& config);
 	virtual bool isAvailable();
 	virtual QList<GrammarError> check(const QString& language, const QString& text);
-public slots:
+private slots:
 	void finished(QNetworkReply* reply);
 private:
 	QMap<int, int> replied;
@@ -97,6 +97,13 @@ private:
 	QUrl server;
 	
 	int connectionAvailability; //-1: broken, 0: don't know, 1: worked at least once
+	bool triedToStart;
+	
+	QString ltPath, javaPath;
+	QSet<QString> ignoredRules;
+	qint64 startTime;
+	void tryToStart();
+	
 };
 
 #endif // GRAMMARCHECK_H

@@ -11,7 +11,11 @@ public:
 	
 	QString wordlistsDir;
 	
+	//LanguageTool	
 	QString languageToolURL;
+	bool languageToolAutorun;
+	QString languageToolPath, languageToolJavaPath;
+	QString languageToolIgnoredRules;
 };
 
 Q_DECLARE_METATYPE(GrammarCheckerConfig)

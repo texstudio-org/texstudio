@@ -86,10 +86,14 @@ private slots:
 	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon, bool advancedOption=false);
 	void comboBoxWithPathEdited(const QString& newText);
 	void comboBoxWithPathHighlighted(const QString& newText);
-	void browseDictDir();
-	void dictDirChanged(const QString& newText);
+	bool browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath = QDir::homePath());
 	void browseThesaurus();
 	void browsePrecompiling();
+	void browseGrammarLTPath();
+	void browseGrammarLTJavaPath();
+	void browseGrammarWordListsDir();
+	void browseDictDir();
+	void dictDirChanged(const QString& newText);
 	void quickBuildWizard();
 	void advancedOptionsToggled(bool on);
 	void advancedOptionsClicked(bool on);

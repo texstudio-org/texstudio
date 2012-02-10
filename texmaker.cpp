@@ -4193,6 +4193,8 @@ void Texmaker::GeneralOptions() {
 		spellerManager.setDictPath(configManager.spellDictDir);
 		spellerManager.setDefaultSpeller(configManager.spellLanguage);
 		
+		GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
+		
 		
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
@@ -4244,7 +4246,7 @@ void Texmaker::GeneralOptions() {
 		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
 		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
 		if (customEnvironmentChanged){
-            QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
+			QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 			
 			oldLaTeX = m_lang.d;
 			Q_ASSERT(oldLaTeX);
