@@ -22,6 +22,8 @@
 
 #include "qdocument_p.h"
 
+#include "stdint.h"
+
 /*!
 	\ingroup document
 	@{
