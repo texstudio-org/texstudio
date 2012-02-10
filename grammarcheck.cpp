@@ -79,6 +79,8 @@ void GrammarCheck::check(const QString& language, const void * doc, QList<LineIn
 						continue;
 					}
 				}
+				if (lr.word == "\"") 
+					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the LT position calculation
 				words << lr.word;
 			}
 			
@@ -259,7 +261,7 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 		int from = atts.namedItem("fromx").nodeValue().toInt();
 		int realfrom = text.indexOf(context, qMax(from-5-context.length(),0)); //don't trust from
 		qDebug() << realfrom << context;
-		if (realfrom == -1) realfrom = from;
+		if (realfrom == -1) { realfrom = from; } // qDebug() << "discard => " << from; }
 		else  realfrom += contextoffset;
 		int len = atts.namedItem("errorlength").nodeValue().toInt();
 		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue(), atts.namedItem("replacements").nodeValue().split("#"));
