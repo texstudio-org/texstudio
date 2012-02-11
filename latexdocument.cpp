@@ -2190,3 +2190,10 @@ QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QStrin
 		compilePath+=QDir::separator();
 	return  compilePath+s;
 }
+
+void LatexDocuments::lineGrammarChecked(const void* doc,const void* line,int lineNr, const QList<GrammarError>& errors){
+	int d = documents.indexOf(static_cast<LatexDocument*>(const_cast<void*>(doc)));
+	if (d == -1) return;
+	if (!documents[d]->getEditorView()) return;
+	documents[d]->getEditorView()->lineGrammarChecked(doc,line,lineNr,errors);
+}

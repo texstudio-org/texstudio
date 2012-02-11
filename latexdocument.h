@@ -312,7 +312,8 @@ signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:
 	void bibTeXFilesNeedUpdate();
-private:
+public slots:
+	void lineGrammarChecked(const void* doc,const void* line,int lineNr, const QList<GrammarError>& errors);
 };
 
 #endif // LATEXDOCUMENT_H

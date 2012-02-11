@@ -16,7 +16,7 @@ GrammarCheck::~GrammarCheck(){
 	if (latexParser) delete latexParser;
 }
 
-void GrammarCheck::init(LatexParser lp, GrammarCheckerConfig config){
+void GrammarCheck::init(const LatexParser& lp, const GrammarCheckerConfig& config){
 	*latexParser = lp;
 	this->config = config;
 	if (!backend) {
@@ -55,7 +55,7 @@ struct CheckRequest{
 	QList<int> indices, endindices, lines;
 };
 
-void GrammarCheck::check(const QString& language, const void * doc, QList<LineInfo> inlines, int firstLineNr, int linesToSkipDelta){
+void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr, int linesToSkipDelta){
 	if (inlines.isEmpty()) return;
 	
 	ticket++;

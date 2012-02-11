@@ -96,6 +96,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	grammarCheck = new GrammarCheck();
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
+	connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
 	grammarCheckThread.start();
 	
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
@@ -1158,7 +1159,6 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 	
 	connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int,int)));
-	connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), edit, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
 	
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
 	edit->setSpellerManager(&spellerManager);
