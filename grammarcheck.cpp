@@ -101,8 +101,9 @@ void GrammarCheck::process(){
 			TicketHash::iterator it = tickets.find(cr.inlines[i].line);
 			Q_ASSERT(it != tickets.end());
 			if (it == tickets.end()) continue;
-			it.value().second--;
 			if (it.value().first != cr.ticket) {
+				it.value().second--;
+				Q_ASSERT(it.value().second >= 0);
 				cr.linesToSkip << i;
 				if (it.value().second <= 0) tickets.erase(it);
 			}
@@ -200,21 +201,21 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	
 	CheckRequest &cr = requests[reqId];
 	
-	if (cr.ticket != ticket) {
-		//processing an old request
-		for (int i=0;i<cr.inlines.size();i++){
-			if (cr.linesToSkip.contains(i)) continue;
-			TicketHash::iterator it = tickets.find(cr.inlines[i].line);
-			if (it == tickets.end()) continue;
-			it.value().second--;
-			if (it.value().first != cr.ticket) 
-				cr.linesToSkip << i;
-			if (it.value().second <= 0) tickets.erase(it);
-		}
-		if (cr.linesToSkip.size() == cr.inlines.size()) {
-			requests.removeAt(reqId);
-			return;
-		}
+
+	for (int i=0;i<cr.inlines.size();i++){
+		if (cr.linesToSkip.contains(i)) continue;
+		TicketHash::iterator it = tickets.find(cr.inlines[i].line);
+		Q_ASSERT(it != tickets.end());
+		if (it == tickets.end()) continue;
+		it.value().second--;
+		Q_ASSERT(it.value().second >= 0);
+		if (it.value().first != cr.ticket) 
+			cr.linesToSkip << i;
+		if (it.value().second <= 0) tickets.erase(it);
+	}
+	if (cr.linesToSkip.size() == cr.inlines.size()) {
+		requests.removeAt(reqId);
+		return;
 	}
 
 	QMap<QString,LanguageGrammarData>::const_iterator it = languages.constFind(cr.language);
@@ -464,7 +465,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 		if (cors.size() == 1 && cors.first() == "") cors.clear();
 		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue()+ " ("+id+")", cors);
 		
-		qDebug() << realfrom << len;
+		//qDebug() << realfrom << len;
 	}
 	
 	emit checked(ticket, results);
