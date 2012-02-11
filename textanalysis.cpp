@@ -173,10 +173,7 @@ void TextAnalysisDialog::needCount() {
 		}
 		QString line=document->line(l).text();
 		bool commentReached=false;
-		int nextIndex=0;
-		int wordStartIndex;
 		bool lineCountedAsText=false;
-		QString curWord;
 		int state;
 		int lastIndex=0;
 		LatexReader lr(line);
@@ -185,14 +182,14 @@ void TextAnalysisDialog::needCount() {
 			bool inSelection;
 			if (selectionStartLine!=selectionEndLine)
 				inSelection=((l<selectionEndLine) && (l>selectionStartLine)) ||
-				            ((l==selectionStartLine) && (nextIndex>selectionStartIndex)) ||
-				            ((l==selectionEndLine) && (wordStartIndex<=selectionEndIndex));
+				            ((l==selectionStartLine) && (lr.index>selectionStartIndex)) ||
+				            ((l==selectionEndLine) && (lr.wordStartIndex<=selectionEndIndex));
 			else
-				inSelection=(l==selectionStartLine) && (nextIndex>selectionStartIndex) && (wordStartIndex<=selectionEndIndex);
+				inSelection=(l==selectionStartLine) && (lr.index>selectionStartIndex) && (lr.wordStartIndex<=selectionEndIndex);
 			QString curWord=lr.word.toLower();
 			int curType=-1;
 			if (commentReached) {
-				if (respectSentenceEnd) for (int i=lastIndex; i<wordStartIndex; i++)
+				if (respectSentenceEnd) for (int i=lastIndex; i<lr.wordStartIndex; i++)
 						if (lastEndCharacters.contains(line.at(i))) {
 							sentenceLengths[2]=0;
 							lastWords[2].clear();
@@ -206,7 +203,7 @@ void TextAnalysisDialog::needCount() {
 					commentReached=true;
 					commentLines++;
 					//find sentence end characters which belong to the words before the comment start
-					if (respectSentenceEnd) for (int i=lastIndex; i<wordStartIndex; i++)
+					if (respectSentenceEnd) for (int i=lastIndex; i<lr.wordStartIndex; i++)
 							if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\%'))) {
 								lastIndex=i;
 								break;
@@ -226,13 +223,13 @@ void TextAnalysisDialog::needCount() {
 				}
 			}
 			if (respectSentenceEnd && !commentReached)
-				for (int i=lastIndex; i<wordStartIndex; i++)
+				for (int i=lastIndex; i<lr.wordStartIndex; i++)
 					if (lastEndCharacters.contains(line.at(i))) {
 						sentenceLengths[0]=0;
 						lastWords[0].clear();
 						break;
 					}
-			lastIndex=nextIndex;
+			lastIndex = lr.index;
 			if (curType!=-1 && curWord.size()>=minimumWordLength) {
 				//if (lastSentenceLength>1) {
 				lastWords[curType].append(curWord);
