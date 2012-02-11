@@ -59,8 +59,8 @@ public:
 signals:
 	void checked(const void* doc, const void* line, int lineNr, QList<GrammarError> errors);
 public slots:
-	void init(LatexParser lp, GrammarCheckerConfig config);
-	void check(const QString& language, const void* doc, QList<LineInfo> lines, int firstLineNr, int linesToSkipDelta);
+	void init(const LatexParser& lp, const GrammarCheckerConfig& config);
+	void check(const QString& language, const void* doc, const QList<LineInfo>& lines, int firstLineNr, int linesToSkipDelta);
 private slots:
 	void process();
 	void backendChecked(uint ticket, const QList<GrammarError>& errors, bool directCall = false);	
