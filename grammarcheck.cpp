@@ -34,7 +34,7 @@ QSet<QString> readWordList(const QString& file){
 	foreach (const QByteArray& ba, f.readAll().split('\n')){
 		QByteArray bas = ba.simplified();
 		if (bas.startsWith('#')) continue;
-		res << " " + QString::fromUtf8(bas);
+		res << QString::fromUtf8(bas);
 	}
 	return res;
 }
@@ -77,6 +77,9 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
 	QTimer::singleShot(50, this, SLOT(process()));
 }
+
+const QString uselessPunctation = "!:?,.;-"; //useful: \"(
+const QString noSpacePunctation = "!:?,.;)"; //useful: \"(-
 
 void GrammarCheck::process(){
 	REQUIRE(latexParser);
@@ -142,7 +145,7 @@ void GrammarCheck::process(){
 			}
 			
 			
-			if (type == LatexReader::NW_TEXT) words << " "+lr.word;
+			if (type == LatexReader::NW_TEXT) words << lr.word;
 			else /*if (type == LatexReader::NW_PUNCTATION) */{
 				if (lr.word == "-" && !words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
@@ -162,9 +165,8 @@ void GrammarCheck::process(){
 						endindices.last() = lr.index;
 						continue;
 					}
-				}
-				if (lr.word == "\"") 
-					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the LT position calculation
+				} else if (lr.word == "\"") 
+					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
 				words << lr.word;
 			}
 			
@@ -176,7 +178,7 @@ void GrammarCheck::process(){
 	}
 	
 	
-	while (!words.isEmpty() && words.first().length() == 1 && words.first() != QChar('"')) {
+	while (!words.isEmpty() && words.first().length() == 1 && uselessPunctation.contains(words.first()[0])) {
 		words.removeFirst();
 		indices.removeFirst();
 		endindices.removeFirst();
@@ -189,8 +191,22 @@ void GrammarCheck::process(){
 	cr.lines = lines;
 
 	bool backendAvailable = backend->isAvailable();
-	if (!words.isEmpty() && backendAvailable) backend->check(cr.ticket,cr.language, words.join("")); 
-	else backendChecked(cr.ticket, QList<GrammarError>(), true);
+	if (words.isEmpty() || !backendAvailable) backendChecked(cr.ticket, QList<GrammarError>(), true);
+	else {
+		QString joined;
+		int expectedLength = 0; foreach (const QString& s, words) expectedLength += s.length();
+		joined.reserve(expectedLength+words.length());
+		for (int i=0;;) {
+			joined += words[i];
+			i++;
+			if (i>=words.length()) break;
+			if (words[i].length() == 1 && noSpacePunctation.contains(words[i][0])) continue;
+			if (words[i-1].length() == 1 && (words[i-1] == "(" || words[i-1] == "\"")) continue;
+			joined += " ";
+		}
+		backend->check(cr.ticket,cr.language, joined); 
+		
+	}
 }
 	
 void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& backendErrors, bool directCall){
@@ -269,26 +285,33 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	
 	//map indices to latex lines and indices
 	int curWord = 0, curOffset = 0; int err = 0;
-	while (err < backendErrors.size() && curWord < words.size()) {
+	while (err < backendErrors.size()) {
 		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
 			curOffset += words[curWord].length();
 			curWord++;
+			if (curWord >= words.size()) break;
+			if (words[curWord].length() == 1 || noSpacePunctation.contains(words[curWord][0])) continue;
+			if (words[curWord-1].length() == 1 && (words[curWord-1] == "(" || words[curWord-1] == "\"")) continue;
+			curOffset++; //space
 		} else { //if (backendErrors[err].offset >= curOffset) {
 			int trueIndex = cr.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
-			if (words[curWord].startsWith(' ')) trueIndex--;
 			int trueLength = -1;
 			int offsetEnd = backendErrors[err].offset + backendErrors[err].length;
 			int tempOffset = curOffset;
-			for (int w = curWord; w < words.size(); w++) {
+			for (int w = curWord; ; ) {
 				tempOffset += words[w].length();
 				if (tempOffset >=  offsetEnd) {
 					if (cr.lines[curWord] == cr.lines[w]) {
 						int trueOffsetEnd = cr.endindices[w] - qMax(0, tempOffset - offsetEnd);
-						if (cr.words[curWord].startsWith(' ')) trueOffsetEnd--;
-						trueLength = trueOffsetEnd - trueIndex + 1;
+						trueLength = trueOffsetEnd - trueIndex;
 					}
 					break;
 				} 
+				w++;
+				if (w >= words.size()) break;
+				if (words[w].length() == 1 || noSpacePunctation.contains(words[w][0])) continue;
+				if (words[w-1].length() == 1 && (words[w-1] == "(" || words[w-1] == "\"")) continue;
+				tempOffset++; //space
 			}
 			if (trueLength == -1)
 				trueLength = cr.inlines[cr.lines[curWord]].text.length() - trueIndex;
