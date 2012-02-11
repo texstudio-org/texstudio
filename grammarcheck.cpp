@@ -1,6 +1,6 @@
 #include "grammarcheck.h"
 #include "smallUsefulFunctions.h"
-
+#include "QThread"
 GrammarError::GrammarError(){}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error, const QString& message):offset(offset),length(length), error(error), message(message){}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error, const QString& message, const QStringList& corrections):offset(offset),length(length), error(error), message(message), corrections(corrections){}
@@ -274,11 +274,20 @@ bool GrammarCheckLanguageToolSOAP::isAvailable(){
 	return connectionAvailability >= 0;
 }
 
+class ThreadBreaker : public QThread
+{
+public:
+    static void sleep(int s)
+    {
+        QThread::sleep(s);
+    }
+};
+ 
 void GrammarCheckLanguageToolSOAP::tryToStart(){
 	if (triedToStart) {
 		if (QDateTime::currentDateTime().toTime_t() - startTime < 60*1000 ) {
 			connectionAvailability = 0;
-			sleep(1);
+			ThreadBreaker::sleep(1);
 		}
 		return;
 	}
@@ -329,7 +338,8 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 		if (lterrors.at(i).nodeType() != QDomNode::ElementNode) continue;
 		if (lterrors.at(i).nodeName() != "error") continue;
 		QDomNamedNodeMap atts = lterrors.at(i).attributes();
-		if (ignoredRules.contains(atts.namedItem("ruleId").nodeValue())) continue;
+		QString id = atts.namedItem("ruleId").nodeValue();
+		if (ignoredRules.contains(id)) continue;
 		QString context = atts.namedItem("context").nodeValue();
 		int contextoffset = atts.namedItem("contextoffset").nodeValue().toInt();
 		if (context.endsWith("..")) context.chop(3);
@@ -342,7 +352,7 @@ QList<GrammarError> GrammarCheckLanguageToolSOAP::check(const QString& language,
 		int len = atts.namedItem("errorlength").nodeValue().toInt();
 		QStringList cors = atts.namedItem("replacements").nodeValue().split("#");
 		if (cors.size() == 1 && cors.first() == "") cors.clear();
-		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue(), cors);
+		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue()+ " ("+id+")", cors);
 		qDebug() << realfrom << len;
 	}
 	qDebug() << reply.value(currentTicket);
