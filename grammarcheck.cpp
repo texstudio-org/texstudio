@@ -79,7 +79,13 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 }
 
 const QString uselessPunctation = "!:?,.;-"; //useful: \"(
-const QString noSpacePunctation = "!:?,.;)"; //useful: \"(-
+const QString noSpacePunctation = "!:?,.;)"; 
+
+#define CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words) i++; \
+  if (i >= (words).length()) break; \
+  if ((words)[i].length() == 1 && noSpacePunctation.contains((words)[i][0])) continue; \
+  if ((words)[i-1].length() == 1 && ((words)[i-1] == "(" || (words)[i-1] == "\"")) continue; \
+
 
 void GrammarCheck::process(){
 	REQUIRE(latexParser);
@@ -198,10 +204,7 @@ void GrammarCheck::process(){
 		joined.reserve(expectedLength+words.length());
 		for (int i=0;;) {
 			joined += words[i];
-			i++;
-			if (i>=words.length()) break;
-			if (words[i].length() == 1 && noSpacePunctation.contains(words[i][0])) continue;
-			if (words[i-1].length() == 1 && (words[i-1] == "(" || words[i-1] == "\"")) continue;
+			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i,words);
 			joined += " ";
 		}
 		backend->check(cr.ticket,cr.language, joined); 
@@ -288,10 +291,7 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	while (err < backendErrors.size()) {
 		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
 			curOffset += words[curWord].length();
-			curWord++;
-			if (curWord >= words.size()) break;
-			if (words[curWord].length() == 1 || noSpacePunctation.contains(words[curWord][0])) continue;
-			if (words[curWord-1].length() == 1 && (words[curWord-1] == "(" || words[curWord-1] == "\"")) continue;
+			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(curWord,words);
 			curOffset++; //space
 		} else { //if (backendErrors[err].offset >= curOffset) {
 			int trueIndex = cr.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
@@ -307,10 +307,7 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 					}
 					break;
 				} 
-				w++;
-				if (w >= words.size()) break;
-				if (words[w].length() == 1 || noSpacePunctation.contains(words[w][0])) continue;
-				if (words[w-1].length() == 1 && (words[w-1] == "(" || words[w-1] == "\"")) continue;
+				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(w,words);
 				tempOffset++; //space
 			}
 			if (trueLength == -1)
