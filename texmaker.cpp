@@ -378,6 +378,14 @@ void Texmaker::setupDockWidgets(){
 	} else leftPanel->setWidgetText(structureTreeView,tr("Structure"));
     if(!bookmarksWidget){
         bookmarksWidget=new QListWidget(this);
+        bookmarksWidget->setAlternatingRowColors(true);
+        bookmarksWidget->setStyleSheet(
+                    "QListWidget::item {"
+                        "padding: 4px;"
+                        "border-bottom: 1px solid palette(dark); }"
+                    "QListWidget::item:selected {"
+                        "color: palette(highlighted-text);"
+                        "background-color: palette(highlight); }");
         connect(bookmarksWidget, SIGNAL(itemPressed(QListWidgetItem*)), SLOT(clickedOnBookmark(QListWidgetItem *))); //single click
         leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), ":/images/bookmarks.png");
         // read bookmarks
