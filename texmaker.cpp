@@ -2501,6 +2501,17 @@ void Texmaker::ReadSettings() {
 	
 	config->beginGroup("formats");
 	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+	if (config->contains("data/styleHint/bold")) {
+		//rename data/styleHint/* => data/wordRepetition/*
+		config->beginGroup("data");
+		config->beginGroup("styleHint");
+		QStringList temp = config->childKeys();
+		config->endGroup();
+		foreach (const QString& s, temp) config->setValue("wordRepetition/"+s, config->value("styleHint/"+s));
+		config->remove("styleHint");
+		config->endGroup();
+	}
+	
 	m_formats->load(*config,true); //load customized formats
 	config->endGroup();
 	

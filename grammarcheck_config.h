@@ -8,6 +8,7 @@ class GrammarCheckerConfig
 public:
 	bool longRangeRepetitionCheck;
 	int maxRepetitionDelta;
+	bool badWordCheck;
 	
 	QString wordlistsDir;
 	
@@ -16,6 +17,8 @@ public:
 	bool languageToolAutorun;
 	QString languageToolPath, languageToolJavaPath;
 	QString languageToolIgnoredRules;
+	
+	QString specialIds1, specialIds2, specialIds3, specialIds4; 
 };
 
 Q_DECLARE_METATYPE(GrammarCheckerConfig)

@@ -136,23 +136,25 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			if (cursor.hasSelection()) pos = (cursor.columnNumber()+cursor.anchorColumnNumber()) / 2;
 			else pos = cursor.columnNumber();
 
-			fr = cursor.line().getOverlayAt(pos, edView->styleHintFormat);
-			if (fr.length>0 && fr.format==edView->styleHintFormat) {
-				QVariant var=cursor.line().getCookie(43);
-				if (var.isValid()){
-					QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
-					wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-					editor->setCursor(wordSelection);
-
-					const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
-					for (int i=0;i<errors.size();i++)
-						if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
-							edView->addListToContextMenu(errors[i].corrections, true, SLOT(spellCheckingReplace()));
-							break;
-						}
+			foreach (const int f, edView->grammarFormats){
+				fr = cursor.line().getOverlayAt(pos, f); 
+				if (fr.length>0 && fr.format==f) {
+					QVariant var=cursor.line().getCookie(43);
+					if (var.isValid()){
+						QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
+						wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						editor->setCursor(wordSelection);
+	
+						const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
+						for (int i=0;i<errors.size();i++)
+							if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
+								edView->addListToContextMenu(errors[i].corrections, true, SLOT(spellCheckingReplace()));
+								break;
+							}
+					}
 				}
 			}
-
+			
 			fr = cursor.line().getOverlayAt(pos, SpellerUtility::spellcheckErrorFormat);
 			if (fr.length>0 && fr.format==SpellerUtility::spellcheckErrorFormat) {
 				QString word=cursor.line().text().mid(fr.offset,fr.length);
@@ -180,7 +182,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			}
 		}
 		//citation checking
-		int f=QDocument::formatFactory()->id("citationMissing");
+		int f=edView->citationMissingFormat;
 		if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,f);
 		else fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
 		if (fr.length>0 && fr.format==f) {
@@ -422,9 +424,14 @@ void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle
 
 	QDocumentLine line = document->line(lineNr);
 
-	line.clearOverlays(styleHintFormat);
+	foreach (const int f, grammarFormats)
+		line.clearOverlays(f); 
 	foreach (const GrammarError& error, errors) {
-		line.addOverlay(QFormatRange(error.offset,error.length,styleHintFormat));	
+		int f;
+		qDebug() << error.error;
+		if (error.error == GET_UNKNOWN) f = grammarMistakeFormat;
+		else f = grammarFormats[(int)(error.error) - 1];
+		line.addOverlay(QFormatRange(error.offset,error.length,f));	
 	}
 	line.setCookie(43, QVariant::fromValue<QList<GrammarError> >(errors));
 }
@@ -671,6 +678,12 @@ int LatexEditorView::bookMarkId(int bookmarkNumber) {
 void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 	lineMarkPanel->setToolTipForTouchedMark(tooltip);
 }
+
+int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
+           LatexEditorView::verbatimFormat, LatexEditorView::wordRepetitionFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format;
+QList<int> LatexEditorView::grammarFormats;
+
+
 void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
 	editor->setFont(QFont(config->fontFamily, config->fontSize));
@@ -701,21 +714,40 @@ void LatexEditorView::updateSettings(){
 	searchReplacePanel->setSearchOnlyInSelection(config->searchOnlyInSelection);
 	QDocument::setShowSpaces(config->showWhitespace?(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs):QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
+
+	static bool formatsLoaded = false;
+	if (!formatsLoaded) {
+#define F(n) &n##Format, #n, 
+		const void * formats[] = {F(environment)
+		                          F(referenceMultiple) F(referencePresent) F(referenceMissing)
+		                          F(citationPresent) F(citationMissing)
+		                          &syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
+		                          F(structure)
+		                          F(verbatim)
+		                          &deleteFormat, "diffDelete",
+		                          &insertFormat, "diffAdd",
+		                          &replaceFormat, "diffReplace",
+		                          F(wordRepetition) F(badWord) 
+		                          F(grammarMistake)
+		                          F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
+		                         0, 0
+		                        };
+#undef F
+		const void ** temp = formats;
+		while (*temp) {
+			int * c = (static_cast<int*>(const_cast<void*>(*temp)));
+			*c = QDocument::formatFactory()->id(QString(static_cast<const char*>(*(temp+1))));
+			Q_ASSERT(c != 0);
+			temp+=2;
+		}
+		//int f=QDocument::formatFactory()->id("citationMissing");
+		formatsLoaded = true;
+		grammarFormats << wordRepetitionFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
+	}	
 	
-	environmentFormat=QDocument::formatFactory()->id("environment");
-	referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
-	referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
-	referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
-	citationPresentFormat=QDocument::formatFactory()->id("citationPresent");
-	citationMissingFormat=QDocument::formatFactory()->id("citationMissing");
-	styleHintFormat=QDocument::formatFactory()->id("styleHint");
-	syntaxErrorFormat=QDocument::formatFactory()->id("latexSyntaxMistake");
+	
+	
 	SynChecker.setErrFormat(syntaxErrorFormat);
-	structureFormat=QDocument::formatFactory()->id("structure");
-	verbatimFormat=QDocument::formatFactory()->id("verbatim");
-	deleteFormat=QDocument::formatFactory()->id("diffDelete");
-	insertFormat=QDocument::formatFactory()->id("diffAdd");
-	replaceFormat=QDocument::formatFactory()->id("diffReplace");
 	
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
@@ -840,8 +872,9 @@ void LatexEditorView::clearOverlays(){
 		line.clearOverlays(citationMissingFormat);
 		line.clearOverlays(environmentFormat);
 		line.clearOverlays(syntaxErrorFormat);
-		line.clearOverlays(styleHintFormat);
 		line.clearOverlays(structureFormat);
+		foreach (const int f, grammarFormats)
+			line.clearOverlays(f);
 	}
 }
 
@@ -930,7 +963,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(citationMissingFormat);
 		line.clearOverlays(environmentFormat);
 		line.clearOverlays(syntaxErrorFormat);
-		line.clearOverlays(styleHintFormat);
+		line.clearOverlays(wordRepetitionFormat);
 		line.clearOverlays(structureFormat);
 		line.clearOverlays(insertFormat);
 		line.clearOverlays(deleteFormat);
@@ -1074,7 +1107,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking){
 				if(!previousTextWord.isEmpty() && previousTextWord==lr.word){
 					if(!lineText.mid(previousTextWordIndex,lr.wordStartIndex-previousTextWordIndex).contains(QRegExp("\\S"))){
-						line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,styleHintFormat));
+						line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,wordRepetitionFormat));
 						addedOverlayStyleHint = true;
 					}
 				}
@@ -1099,7 +1132,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
 			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
 			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();
-			updateWrapping |= addedOverlayStyleHint && ff->format(styleHintFormat).widthChanging();
+			updateWrapping |= addedOverlayStyleHint && ff->format(wordRepetitionFormat).widthChanging();
 			updateWrapping |= addedOverlayStructure && ff->format(structureFormat).widthChanging();
 			if (updateWrapping)
 				line.handle()->updateWrapAndNotifyDocument(i);
@@ -1245,24 +1278,25 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			}
 		}
 	}
-	fr = cursor.line().getOverlayAt(cursor.columnNumber(),styleHintFormat);
-	if (fr.length>0 && fr.format==styleHintFormat) {
-		QVariant var=l.getCookie(43);
-		if (var.isValid()){
-			const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
-			for (int i=0;i<errors.size();i++)
-				if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
-					QString message=errors[i].message;
-					QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
-					return;
-				}
+	foreach (const int f, grammarFormats){
+		fr = cursor.line().getOverlayAt(cursor.columnNumber(), f); 
+		if (fr.length>0 && fr.format==f) {
+			QVariant var=l.getCookie(43);
+			if (var.isValid()){
+				const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
+				for (int i=0;i<errors.size();i++)
+					if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
+						QString message=errors[i].message;
+						QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
+						return;
+					}
+			}
 		}
 	}
 	// check for latex error
 	//syntax checking
-	int f=QDocument::formatFactory()->id("latexSyntaxMistake");
-	fr = cursor.line().getOverlayAt(cursor.columnNumber(),f);
-	if (fr.length>0 && fr.format==f) {
+	fr = cursor.line().getOverlayAt(cursor.columnNumber(),syntaxErrorFormat);
+	if (fr.length>0 && fr.format==syntaxErrorFormat) {
 		StackEnvironment env;
 		getEnv(l.lineNumber(),env);
 		QString text=l.text();

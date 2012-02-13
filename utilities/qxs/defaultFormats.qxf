@@ -136,14 +136,35 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#ff0088</foreground>
     </format>
-    <format id="styleHint" >
-        <waveUnderline>true</waveUnderline>
-        <linescolor>#008000</linescolor>
-    </format>
     <format id="spellingMistake" >
         <waveUnderline>true</waveUnderline>
         <linescolor>#FF0000</linescolor>
     </format>
+    <format id="wordRepetition" >
+        <waveUnderline>true</waveUnderline>
+        <linescolor>#008000</linescolor>
+    </format>
+    <format id="badWord" >
+        <strikeout>true</strikeout>
+        <linescolor>#D600A4</linescolor>
+    </format>
+    <format id="grammarMistake" >
+        <waveUnderline>true</waveUnderline>
+        <linescolor>#000080</linescolor>
+    </format>
+    <format id="grammarMistakeSpecial1" >
+        <background>#00FFA0</background>
+    </format>
+    <format id="grammarMistakeSpecial2" >
+        <background>#00C0FF</background>
+    </format>
+    <format id="grammarMistakeSpecial3" >
+        <background>#00FF00</background>
+    </format>
+    <format id="grammarMistakeSpecial4" >
+        <background>#C8FF61</background>
+    </format>
+    
     <format id="latexSyntaxMistake" >
         <background>#FFA000</background>
     </format>

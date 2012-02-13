@@ -241,6 +241,7 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	if (it == languages.constEnd()) { 
 		LanguageGrammarData lgd;
 		lgd.stopWords = readWordList(config.wordlistsDir+"/"+cr.language+".stopWords");
+		lgd.badWords = readWordList(config.wordlistsDir+"/"+cr.language+".badWords");
 		languages.insert(cr.language, lgd);
 		it = languages.constFind(cr.language);
 	}
@@ -281,6 +282,15 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 			}
 			repeatedWordCheck.insert(normalized, totalWords);
 		}
+	}
+	if (config.badWordCheck) {
+		for (int w=0 ;w < words.size(); w++){
+			if (ld.badWords.contains(words[w]))
+				errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_BAD_WORD, tr("Bad word"), QStringList() << "");
+			else if (words[w].length() > 1 && words[w].endsWith('.') && ld.badWords.contains(words[w].left(words[w].length()-1)))
+				errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w]-1, GET_BAD_WORD, tr("Bad word"), QStringList() << "");
+		}
+
 	}
 
 	
@@ -380,6 +390,16 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
 	connectionAvailability = 0;
 	if (config.languageToolURL.isEmpty()) connectionAvailability = -1;
 	triedToStart = false;
+	
+	
+	specialRules.clear();
+	QList<const QString*> sr = QList<const QString*>() << &config.specialIds1 << &config.specialIds2 << &config.specialIds3 << &config.specialIds4;
+	foreach (const QString* s, sr) {
+		QSet<QString> temp;
+		foreach (const QString& r, s->split(","))
+			temp << r.trimmed();
+		specialRules << temp;
+	}
 }
 
 bool GrammarCheckLanguageToolSOAP::isAvailable(){
@@ -484,8 +504,11 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 		int len = atts.namedItem("errorlength").nodeValue().toInt();
 		QStringList cors = atts.namedItem("replacements").nodeValue().split("#");
 		if (cors.size() == 1 && cors.first() == "") cors.clear();
-		results << GrammarError(realfrom, len, GET_BACKEND, atts.namedItem("msg").nodeValue()+ " ("+id+")", cors);
 		
+		int type = GET_BACKEND;
+		for (int j=0;j<specialRules.size();j++)
+			if (specialRules[j].contains(id)) { type += j+1; break; }
+		results << GrammarError(realfrom, len, (GrammarErrorType)type, atts.namedItem("msg").nodeValue()+ " ("+id+")", cors);
 		//qDebug() << realfrom << len;
 	}
 	

@@ -354,6 +354,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	//grammar
 	registerOption("Grammar/Long Repetition Check", &grammarCheckerConfig->longRangeRepetitionCheck, true, &pseudoDialog->checkBoxGrammarRepetitionCheck);
+	registerOption("Grammar/Bad Word Check", &grammarCheckerConfig->badWordCheck, true, &pseudoDialog->checkBoxGrammarBadWordCheck);
 	registerOption("Grammar/Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionDelta, 3, &pseudoDialog->spinBoxGrammarRepetitionDistance);
 	registerOption("Grammar/Word Lists Dir", &grammarCheckerConfig->wordlistsDir, "", &pseudoDialog->lineEditGrammarWordlists);
 	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/",&pseudoDialog->lineEditGrammarLTUrl);
@@ -361,7 +362,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Grammar/Language Tool Java Path", &grammarCheckerConfig->languageToolJavaPath, "", &pseudoDialog->lineEditGrammarLTJava);
 	registerOption("Grammar/Language Tool Autorun", &grammarCheckerConfig->languageToolAutorun, true, &pseudoDialog->checkBoxGrammarLTAutorun);
 	registerOption("Grammar/Language Tool Ignored Rules", &grammarCheckerConfig->languageToolIgnoredRules, "", &pseudoDialog->lineEditGrammarLTIgnoredRules);
-	
+#define TEMP(ID) registerOption("Grammar/Special Rules" #ID, &grammarCheckerConfig->specialIds##ID, "", &pseudoDialog->lineEditGrammarSpecialRules##ID)
+	TEMP(1); TEMP(2); TEMP(3); TEMP(4); 
+#undef TEMP
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
