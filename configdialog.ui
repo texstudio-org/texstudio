@@ -101,7 +101,7 @@
      <property name="gridSize">
       <size>
        <width>0</width>
-       <height>50</height>
+       <height>44</height>
       </size>
      </property>
      <property name="currentRow">
@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>542</width>
-            <height>531</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1052,6 +1052,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="title">
           <string>Formats</string>
          </property>
+         <zorder>groupBox_3</zorder>
+         <zorder>groupBox_3</zorder>
+         <zorder>groupBox_3</zorder>
+         <zorder>groupBox_3</zorder>
         </widget>
        </item>
        <item row="1" column="0">
@@ -1204,6 +1208,62 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
+          <item row="7" column="1">
+           <widget class="QGroupBox" name="groupBoxInlineChecking">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
+               <property name="text">
+                <string>Spelling</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineGrammarCheck">
+               <property name="text">
+                <string>Grammar</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
+               <property name="text">
+                <string>Citations</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+               <property name="text">
+                <string>References</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
+               <property name="text">
+                <string>Syntax</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+            <zorder>checkBoxInlineSpellCheck</zorder>
+            <zorder>checkBoxInlineSpellCheck</zorder>
+            <zorder>checkBoxInlineGrammarCheck</zorder>
+            <zorder>checkBoxInlineCitationCheck</zorder>
+            <zorder>checkBoxInlineReferenceCheck</zorder>
+            <zorder>checkBoxInlineSyntaxCheck</zorder>
+           </widget>
+          </item>
           <item row="7" column="0">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
@@ -1216,53 +1276,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string>Inline checking:</string>
             </property>
             <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
-            <property name="text">
-             <string>Spelling</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="2">
-           <widget class="QCheckBox" name="checkBoxInlineGrammarCheck">
-            <property name="text">
-             <string>Grammar</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="3">
-           <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
-            <property name="text">
-             <string>Citations</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="4">
-           <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
-            <property name="text">
-             <string>References</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="5">
-           <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
-            <property name="text">
-             <string>Syntax</string>
-            </property>
-            <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
            </widget>
