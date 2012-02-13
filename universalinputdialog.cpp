@@ -52,10 +52,10 @@ void UniversalInputDialog::myAccept(){
 
 void UniversalInputDialog::addWidget(QWidget* widget, const QString& description, void* storage){
 	widget->setProperty("storage", QVariant::fromValue((void*)storage));
-	widget->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Preferred);
-	QLabel *descWidget = new QLabel(description, this);
+    widget->setSizePolicy(QSizePolicy::MinimumExpanding, widget->sizePolicy().verticalPolicy());
+    QLabel *descWidget = new QLabel(description, this);
 	descWidget->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Preferred);
-	widget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Preferred);
+
 	if (description.length()<32){
 		gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0, 0);
 		gridLayout->addWidget(widget, gridLayout->rowCount()-1, 1, 0);

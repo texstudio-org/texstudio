@@ -116,6 +116,7 @@
   <menu id="references" text="Cross References">
     <insert id="label" text="label" insert="\label{%&lt;key%>}" info="\label{key}"/>
     <action id="ref" text="ref" slot="1InsertRef()"/> 
+    <action id="eqref" text="eqref" slot="1InsertEqRef()"/> 
     <action id="pageref" text="pageref" slot="1InsertPageRef()"/> 
     <insert id="index" text="index" insert="\index{%&lt;key%>}"/>
     <insert id="cite" text="cite" insert="\cite{%&lt;key%>}"  info="This command generates an in-text citation to the reference associated with the ref entry in the bib file"/>
