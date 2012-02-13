@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>542</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -2021,6 +2021,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="1" rowspan="2">
            <widget class="QLineEdit" name="lineEditGrammarWordlists"/>
           </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxGrammarBadWordCheck">
+            <property name="text">
+             <string>Check for bad words</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -2108,6 +2115,46 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="icon">
              <iconset resource="texstudio.qrc">
               <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules1"/>
+          </item>
+          <item row="7" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules2"/>
+          </item>
+          <item row="9" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules4"/>
+          </item>
+          <item row="8" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules3"/>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_50">
+            <property name="text">
+             <string>Special rules 2:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_51">
+            <property name="text">
+             <string>Special rules 1:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_52">
+            <property name="text">
+             <string>Special rules 3:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_53">
+            <property name="text">
+             <string>Special rules 4:</string>
             </property>
            </widget>
           </item>

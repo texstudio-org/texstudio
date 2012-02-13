@@ -93,7 +93,9 @@ private:
 
 	QPoint m_point;
 
-	int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,styleHintFormat,verbatimFormat;
+	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
+	           verbatimFormat, wordRepetitionFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format;
+	static QList<int> grammarFormats;
 	
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;

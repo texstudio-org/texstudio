@@ -7,8 +7,9 @@
 #include <QVariant>
 
 #include "smallUsefulFunctions.h"
-
+//TODO: move this away
 #include "grammarcheck_config.h"
+
 
 struct LineInfo{
 	const void* line;
@@ -16,7 +17,7 @@ struct LineInfo{
 	QString text;
 };
 
-enum GrammarErrorType { GET_UNKNOWN, GET_WORD_REPETITION, GET_BACKEND};
+enum GrammarErrorType { GET_UNKNOWN = 0, GET_WORD_REPETITION, GET_BAD_WORD, GET_BACKEND, GET_BACKEND_SPECIAL1, GET_BACKEND_SPECIAL2, GET_BACKEND_SPECIAL3, GET_BACKEND_SPECIAL4};
 
 struct GrammarError{
 	int offset;
@@ -45,6 +46,7 @@ Q_DECLARE_METATYPE(QList<GrammarError>)
 
 struct LanguageGrammarData{
 	QSet<QString> stopWords;
+	QSet<QString> badWords;
 };
 
 class GrammarCheckBackend;
@@ -107,6 +109,7 @@ private:
 	
 	QString ltPath, javaPath;
 	QSet<QString> ignoredRules;
+	QList<QSet<QString> >  specialRules;
 	uint startTime;
 	void tryToStart();
 	
