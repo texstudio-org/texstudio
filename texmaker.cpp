@@ -551,7 +551,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
-	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
+    newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
+    newManagedAction(menu,"eraseEndLine",tr("Erase until E&nd of Line"), SLOT(editEraseEndLine()), (QList<QKeySequence>()<< Qt::AltModifier+Qt::Key_K));
 	
 	latexEditorContextMenu = menu->actions();
 	
@@ -2073,6 +2074,12 @@ void Texmaker::editEraseLine() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	c.eraseLine();
+}
+void Texmaker::editEraseEndLine() {
+    if (!currentEditorView()) return;
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
+    c.removeSelectedText();
 }
 void Texmaker::editEraseWordCmdEnv(){
 	if (!currentEditorView()) return;
