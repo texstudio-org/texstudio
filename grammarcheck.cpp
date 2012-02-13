@@ -378,6 +378,7 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
 	foreach (const QString& r, config.languageToolIgnoredRules.split(","))
 		ignoredRules << r.trimmed();
 	connectionAvailability = 0;
+	if (config.languageToolURL.isEmpty()) connectionAvailability = -1;
 	triedToStart = false;
 }
 
