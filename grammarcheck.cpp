@@ -67,7 +67,7 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 		}
 	}
 	
-	qDebug()<<"CHECK:"<<inlines.first().text;
+	//qDebug()<<"CHECK:"<<inlines.first().text;
 	
 	QString lang = language;
 	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));		
@@ -455,7 +455,7 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, const QString& language, c
 	post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
 	post.append("\n");
 	
-	qDebug() << text;
+	//qDebug() << text;
 
 	req.setAttribute(AttributeTicket, ticket);
 	req.setAttribute(AttributeLanguage, language);
@@ -470,7 +470,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 	QByteArray reply = nreply->readAll();
 	int status = nreply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
-	qDebug() << reply;
+	//qDebug() << reply;
 	
 	if (status == 0) {
 		//no response
