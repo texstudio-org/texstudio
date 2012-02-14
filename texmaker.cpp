@@ -148,7 +148,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	centralToolBar->setMovable(false);
 	centralToolBar->setIconSize(QSize(16,16));
 	
-	EditorView=new TmxTabWidget(centralFrame);
+	EditorView=new TxsTabWidget(centralFrame);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
 	connect(EditorView, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));

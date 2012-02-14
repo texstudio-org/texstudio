@@ -6,7 +6,7 @@
         <file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
         <file alias="qxs/qtscript.qnfa">utilities/qxs/qtscript.qnfa</file>
         <file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
-        <file alias="qxs/tmxmacro.qnfa">utilities/qxs/tmxmacro.qnfa</file>
+        <file alias="qxs/txsmacro.qnfa">utilities/qxs/txsmacro.qnfa</file>
         <file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
         <file alias="closeall.png">images/qcodeedit/closeall.png</file>
         <file alias="down.png">images/qcodeedit/down.png</file>
@@ -237,7 +237,7 @@
         <file>completion/svn-multi.cwl</file>
         <file>completion/tabularx.cwl</file>
         <file>completion/tex.cwl</file>
-        <file>completion/texmakerx.cwl</file>
+        <file>completion/texstudio.cwl</file>
         <file>completion/textcomp.cwl</file>
         <file>completion/tikz.cwl</file>
         <file>completion/tocbibind.cwl</file>

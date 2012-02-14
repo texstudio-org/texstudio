@@ -870,11 +870,11 @@ void WebPublishDialogConfig::readSettings(QSettings& settings){
 	QString kdesession= ::getenv("KDE_FULL_SESSION");
 	if (!kdesession.isEmpty()) browser=settings.value("/browser","konqueror").toString();
 	else browser=settings.value("/browser","firefox").toString();
-	//programdir=PREFIX"/share/texmakerx";
+    //programdir=PREFIX"/share/texstudio";
 #endif
 #ifdef Q_WS_MACX
 	browser=settings.value("/browser","open").toString();
-	//programdir="/Applications/texmakerx.app/Contents/Resources";
+    //programdir="/Applications/texstudio.app/Contents/Resources";
 #endif
 #ifdef Q_WS_WIN
 	browser=settings.value("/browser","\"C:/Program Files/Internet Explorer/IEXPLORE.EXE\"").toString();

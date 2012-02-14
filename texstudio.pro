@@ -87,7 +87,7 @@ HEADERS += texmaker.h \
     hunspell/replist.hxx \
     scriptengine.h \
     insertgraphics.h \
-    tmxtabwidget.h \
+    txstabwidget.h \
     configmanagerinterface.h \
     qcodeedit/lib/qformat.h \
     mostQtHeaders.h \
@@ -173,7 +173,7 @@ SOURCES += main.cpp \
     universalinputdialog.cpp \
     scriptengine.cpp \
     insertgraphics.cpp \
-    tmxtabwidget.cpp \
+    txstabwidget.cpp \
     additionaltranslations.cpp \
     tablemanipulation.cpp \
     syntaxcheck.cpp \

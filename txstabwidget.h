@@ -1,14 +1,14 @@
-#ifndef TMXTABWIDGET_H
-#define TMXTABWIDGET_H
+#ifndef TXSTABWIDGET_H
+#define TXSTABWIDGET_H
 
 #include <QTabWidget>
 #include <QTabBar>
 
-class TmxTabWidget : public QTabWidget
+class TxsTabWidget : public QTabWidget
 {
 Q_OBJECT
 public:
-    explicit TmxTabWidget(QWidget *parent = 0);
+    explicit TxsTabWidget(QWidget *parent = 0);
     void moveTab(int from,int to);
 
 signals:
