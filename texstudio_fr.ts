@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>Inline checking</source>
-        <translation>Vérification à la volée</translation>
+        <translation type="obsolete">Vérification à la volée</translation>
     </message>
     <message>
         <source>Thesaurus Database</source>
@@ -1126,6 +1126,86 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <source>Syntax</source>
         <translation>Syntaxe</translation>
     </message>
+    <message>
+        <source>Internal</source>
+        <translation>Interne</translation>
+    </message>
+    <message>
+        <source>Check for word repetitions</source>
+        <translation>Vérifier la répétition de mots</translation>
+    </message>
+    <message>
+        <source>Words between repetitions:</source>
+        <translation>Nombre de mots entre les réptitions</translation>
+    </message>
+    <message>
+        <source>Wordlist directory:</source>
+        <translation>Répertoire de la liste de mots</translation>
+    </message>
+    <message>
+        <source>LanguageTool</source>
+        <translation>LanguageTool</translation>
+    </message>
+    <message>
+        <source>Serverurl: </source>
+        <translation>URL du serveur :</translation>
+    </message>
+    <message>
+        <source>Start LanguageTool if not running</source>
+        <translation>Lancer LanguageTool s&apos;il ne l&apos;est pas</translation>
+    </message>
+    <message>
+        <source>LT path:</source>
+        <translation>Chemin LT :</translation>
+    </message>
+    <message>
+        <source>Ignored rules:</source>
+        <translation>Règles ignorées :</translation>
+    </message>
+    <message>
+        <source>Java:</source>
+        <translation>Java :</translation>
+    </message>
+    <message>
+        <source>Select the grammar word lists dir</source>
+        <translation>Sélectionner le dossier des listes de mots</translation>
+    </message>
+    <message>
+        <source>Select the LanguageTool jar</source>
+        <translation>Selectionner LanguageTool jar</translation>
+    </message>
+    <message>
+        <source>Select java</source>
+        <translation>Sélectionner java</translation>
+    </message>
+    <message>
+        <source>Check for bad words</source>
+        <translation>Vérifier les mots incorrects</translation>
+    </message>
+    <message>
+        <source>Special rules 2:</source>
+        <translation>Règles spéciales 2 :</translation>
+    </message>
+    <message>
+        <source>Special rules 1:</source>
+        <translation>Règles spéciales 1 :</translation>
+    </message>
+    <message>
+        <source>Special rules 3:</source>
+        <translation>Règles spéciales 3 :</translation>
+    </message>
+    <message>
+        <source>Special rules 4:</source>
+        <translation>Règles spéciales 4 :</translation>
+    </message>
+    <message>
+        <source>LaTeX checking</source>
+        <translation>Vérification LaTeX</translation>
+    </message>
+    <message>
+        <source>Language checking</source>
+        <translation>Vérification de la langue</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1777,6 +1857,10 @@ Continuer tout de même ?</translation>
     <message>
         <source>Word repetition</source>
         <translation>Répétition de mots</translation>
+    </message>
+    <message>
+        <source>Bad word</source>
+        <translation>Mot incorrect</translation>
     </message>
 </context>
 <context>
@@ -5670,6 +5754,30 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <source>remove all</source>
         <translation>supprime tout</translation>
+    </message>
+    <message>
+        <source>Erase until E&amp;nd of Line</source>
+        <translation>Supprimer jusqu&apos;à la &amp;fin de la ligne</translation>
+    </message>
+    <message>
+        <source>Grammar errors</source>
+        <translation>Erreurs grammaticales</translation>
+    </message>
+    <message>
+        <source>Word repetition</source>
+        <translation>Répétition de mots</translation>
+    </message>
+    <message>
+        <source>Bad words</source>
+        <translation>Mots incorrects</translation>
+    </message>
+    <message>
+        <source>Grammer mistake</source>
+        <translation>Erreur grammaticale</translation>
+    </message>
+    <message>
+        <source>Grammer mistake special %1</source>
+        <translation>Erreur grammaticale spéciale %1</translation>
     </message>
 </context>
 <context>

@@ -569,10 +569,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Inline checking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>(The commands must be separated by &apos;|&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1104,6 +1100,86 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Syntax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Words between repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wordlist directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LanguageTool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Serverurl: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start LanguageTool if not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LT path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored rules:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the grammar word lists dir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the LanguageTool jar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for bad words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 2:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 1:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 3:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 4:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX checking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language checking</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1755,6 +1831,10 @@ Are you sure you want to undo all changes?</source>
     <name>GrammarCheck</name>
     <message>
         <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad word</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5608,6 +5688,30 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Erase until E&amp;nd of Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer mistake special %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
