@@ -71,8 +71,8 @@ public:
 		return m_point;
 	}
 
-	int syntaxErrorFormat;
-	int deleteFormat,insertFormat,replaceFormat;
+	static int syntaxErrorFormat;
+	static int deleteFormat,insertFormat,replaceFormat;
 
 	void reCheckSyntax(int linenr=0, int count=-1);
 	

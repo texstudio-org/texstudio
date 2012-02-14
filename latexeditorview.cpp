@@ -343,8 +343,6 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	
 	setFocusProxy(editor);
 	
-	environmentFormat=0;
-	structureFormat=0;
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	updateSettings();
@@ -699,6 +697,9 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
            LatexEditorView::verbatimFormat, LatexEditorView::wordRepetitionFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format;
+int LatexEditorView::syntaxErrorFormat;
+int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
+
 QList<int> LatexEditorView::grammarFormats;
 QVector<bool> LatexEditorView::grammarFormatsDisabled;
 
