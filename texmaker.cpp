@@ -766,6 +766,19 @@ void Texmaker::setupMenus() {
 	for (int i=1; i<=4; i++)
 		newManagedEditorAction(submenu, QString::number(i), tr("Level %1").arg(i), "foldLevel", 0, "", QList<QVariant>() << true << i);
 	
+	submenu=newManagedMenu(menu, "grammar", tr("Grammar errors"));
+	newManagedEditorAction(submenu, "0", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
+	//newManagedEditorAction(submenu, "1", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
+	newManagedEditorAction(submenu, "2", tr("Bad words"), "toggleGrammar", 0, "", QList<QVariant>() << 2);
+	newManagedEditorAction(submenu, "3", tr("Grammer mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
+	for (int i=4;i<8;i++)
+		newManagedEditorAction(submenu, QString("%1").arg(i), tr("Grammer mistake special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
+	for (int i=0;i<submenu->actions().size();i++)
+		if (!submenu->actions()[i]->isCheckable()){
+			submenu->actions()[i]->setCheckable(true);
+			submenu->actions()[i]->setChecked(true);
+		}
+	
 	menu->addSeparator();
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
 	fullscreenModeAction->setCheckable(true);

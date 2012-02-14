@@ -417,11 +417,7 @@ void LatexEditorView::insertMacro(QString macro){
 	} else CodeSnippet(macro).insert(editor);
 }
 
-void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle, int lineNr, const QList<GrammarError>& errors){
-	if (doc != this->document) return;
-	lineNr = document->indexOf(const_cast<QDocumentLineHandle*>(static_cast<const QDocumentLineHandle*>(lineHandle)), lineNr);
-	if (lineNr < 0) return; //line already deleted
-
+void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors){
 	QDocumentLine line = document->line(lineNr);
 
 	foreach (const int f, grammarFormats)
@@ -430,12 +426,35 @@ void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle
 		int f;
 		qDebug() << error.error;
 		if (error.error == GET_UNKNOWN) f = grammarMistakeFormat;
-		else f = grammarFormats[(int)(error.error) - 1];
+		else {
+			int index = (int)(error.error) - 1;
+			REQUIRE(index < grammarFormats.size());
+			if (grammarFormatsDisabled[index]) continue;
+			f = grammarFormats[index];
+		}
 		line.addOverlay(QFormatRange(error.offset,error.length,f));	
 	}
-	line.setCookie(43, QVariant::fromValue<QList<GrammarError> >(errors));
 }
 
+void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle, int lineNr, const QList<GrammarError>& errors){
+	if (doc != this->document) return;
+	lineNr = document->indexOf(const_cast<QDocumentLineHandle*>(static_cast<const QDocumentLineHandle*>(lineHandle)), lineNr);
+	if (lineNr < 0) return; //line already deleted
+	displayLineGrammarErrorsInternal(lineNr, errors);
+	document->line(lineNr).setCookie(43, QVariant::fromValue<QList<GrammarError> >(errors));
+}
+
+void LatexEditorView::toggleGrammar(int type){
+	REQUIRE(type >= 0 && type < grammarFormatsDisabled.size());
+	QAction* a = qobject_cast<QAction*>(sender());
+	bool newValue = ! (a ? a->isChecked() : grammarFormatsDisabled[type]);
+	if (newValue == grammarFormatsDisabled[type]) return;
+	grammarFormatsDisabled[type] = newValue;
+	if (a)	a->setChecked(!grammarFormatsDisabled[type]);
+	for (int i=0;i<document->lineCount();i++) 
+		displayLineGrammarErrorsInternal(i, document->line(i).getCookie(43).value<QList<GrammarError> >());
+	editor->viewport()->update();
+}
 
 void LatexEditorView::viewActivated(){
 	if (!LatexEditorView::completer) return;
@@ -682,7 +701,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
            LatexEditorView::verbatimFormat, LatexEditorView::wordRepetitionFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format;
 QList<int> LatexEditorView::grammarFormats;
-
+QVector<bool> LatexEditorView::grammarFormatsDisabled;
 
 void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
@@ -742,7 +761,9 @@ void LatexEditorView::updateSettings(){
 		}
 		//int f=QDocument::formatFactory()->id("citationMissing");
 		formatsLoaded = true;
-		grammarFormats << wordRepetitionFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
+		grammarFormats << wordRepetitionFormat << wordRepetitionFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
+		grammarFormatsDisabled.resize(grammarFormats.size()+1);
+		grammarFormatsDisabled.fill(false);
 	}	
 	
 	
