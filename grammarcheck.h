@@ -13,7 +13,6 @@
 
 struct LineInfo{
 	const void* line;
-	int lineNr;
 	QString text;
 };
 
@@ -62,7 +61,7 @@ signals:
 	void checked(const void* doc, const void* line, int lineNr, QList<GrammarError> errors);
 public slots:
 	void init(const LatexParser& lp, const GrammarCheckerConfig& config);
-	void check(const QString& language, const void* doc, const QList<LineInfo>& lines, int firstLineNr, int linesToSkipDelta);
+	void check(const QString& language, const void* doc, const QList<LineInfo>& lines, int firstLineNr);
 private slots:
 	void process();
 	void backendChecked(uint ticket, const QList<GrammarError>& errors, bool directCall = false);	

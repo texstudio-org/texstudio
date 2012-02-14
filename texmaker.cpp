@@ -1180,7 +1180,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 	
-	connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int,int)));
+	connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int)));
 	
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
 	edit->setSpellerManager(&spellerManager);

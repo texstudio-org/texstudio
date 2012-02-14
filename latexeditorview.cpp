@@ -424,7 +424,6 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 		line.clearOverlays(f); 
 	foreach (const GrammarError& error, errors) {
 		int f;
-		qDebug() << error.error;
 		if (error.error == GET_UNKNOWN) f = grammarMistakeFormat;
 		else {
 			int index = (int)(error.error) - 1;
@@ -954,19 +953,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (!line.isValid()) break;
 			LineInfo temp; 
 			temp.line = line.handle();
-			temp.lineNr = i;
 			temp.text = line.text();
 			changedLines << temp;
 			if (line.firstChar() == -1) {
-				emit linesChanged(speller->name(), document, changedLines, truefirst, lookBehind);
+				emit linesChanged(speller->name(), document, changedLines, truefirst);
 				truefirst += changedLines.size();
 				changedLines.clear();
-				lookBehind = 0;
 				if (i >= linenr+count) break;
 			}		
 		}
 		if (!changedLines.isEmpty())
-			emit linesChanged(speller->name(), document, changedLines, truefirst, lookBehind);
+			emit linesChanged(speller->name(), document, changedLines, truefirst);
 		
 	}
 	
