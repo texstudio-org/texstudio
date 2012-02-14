@@ -8,6 +8,7 @@ class GrammarCheckerConfig
 public:
 	bool longRangeRepetitionCheck;
 	int maxRepetitionDelta;
+	int maxRepetitionLongRangeDelta, maxRepetitionLongRangeMinWordLength;
 	bool badWordCheck;
 	
 	QString wordlistsDir;

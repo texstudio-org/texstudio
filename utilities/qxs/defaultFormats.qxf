@@ -144,6 +144,10 @@
         <waveUnderline>true</waveUnderline>
         <linescolor>#008000</linescolor>
     </format>
+    <format id="wordRepetitionLongRange" >
+        <waveUnderline>true</waveUnderline>
+        <linescolor>#008000</linescolor>
+    </format>
     <format id="badWord" >
         <strikeout>true</strikeout>
         <linescolor>#D600A4</linescolor>
