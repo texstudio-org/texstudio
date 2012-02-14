@@ -172,7 +172,7 @@ signals:
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	
-	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr, int linesToSkipDelta);
+	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 };
 
 

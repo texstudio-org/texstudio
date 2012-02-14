@@ -45,17 +45,16 @@ struct CheckRequest{
 	void* doc;
 	QList<LineInfo> inlines;
 	int firstLineNr;
-	int linesToSkipDelta;
 	uint ticket;
-	CheckRequest(const QString& language, const void* doc, const QList<LineInfo> inlines, const int firstLineNr, const int linesToSkipDelta, const int ticket):
-	       pending(true), language(language),doc(const_cast<void*>(doc)),inlines(inlines),firstLineNr(firstLineNr),linesToSkipDelta(linesToSkipDelta),ticket(ticket){}
+	CheckRequest(const QString& language, const void* doc, const QList<LineInfo> inlines, const int firstLineNr, const int ticket):
+	       pending(true), language(language),doc(const_cast<void*>(doc)),inlines(inlines),firstLineNr(firstLineNr), ticket(ticket){}
 
 	QList<int> linesToSkip;
 	QStringList words;
 	QList<int> indices, endindices, lines;
 };
 
-void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr, int linesToSkipDelta){
+void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr){
 	if (inlines.isEmpty()) return;
 	
 	ticket++;
@@ -72,7 +71,7 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	
 	QString lang = language;
 	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));		
-	requests << CheckRequest(lang,doc,inlines,firstLineNr,linesToSkipDelta,ticket);
+	requests << CheckRequest(lang,doc,inlines,firstLineNr,ticket);
 
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
 	QTimer::singleShot(50, this, SLOT(process()));
@@ -265,7 +264,7 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 			totalWords++;
 	
 			//check words
-			bool realCheck = cr.lines[w] >= cr.linesToSkipDelta;
+			bool realCheck = true; //cr.lines[w] >= cr.linesToSkipDelta;
 			QString normalized = words[w].toLower();
 			if (ld.stopWords.contains(normalized)) {
 				if (checkLastWord) {
@@ -329,10 +328,10 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	
 
 	//notify
-	for (int l=cr.linesToSkipDelta;l<cr.inlines.size();l++){
+	for (int l=0;l<cr.inlines.size();l++){
 		if (cr.linesToSkip.contains(l)) continue; //too late
 		
-		emit checked(cr.doc, cr.inlines[l].line, cr.inlines[l].lineNr, errors[l]);
+		emit checked(cr.doc, cr.inlines[l].line, cr.firstLineNr+l, errors[l]);
 	}
 	
 	requests.removeAt(reqId);
