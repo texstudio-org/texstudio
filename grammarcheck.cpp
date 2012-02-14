@@ -260,8 +260,8 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 		QHash<QString, int> repeatedWordCheck;
 		int totalWords = 0;
 		for (int w=0 ;w < words.size(); w++){
-			if (words[w].length() == 1 /* && getCommonEOW().contains(words[i][0])*/) continue; //punctation
 			totalWords++;
+			if (words[w].length() == 1  && getCommonEOW().contains(words[w][0])) continue; //punctation
 	
 			//check words
 			bool realCheck = true; //cr.lines[w] >= cr.linesToSkipDelta;
@@ -276,8 +276,13 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 			} else prevSW.clear();
 			if (realCheck) {
 				int lastSeen = repeatedWordCheck.value(normalized, -1);
-				if (lastSeen > -1 && totalWords - lastSeen <= MAX_REP_DELTA) 
-					errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
+				if (lastSeen > -1) {
+					int delta = totalWords - lastSeen;
+					if (delta <= MAX_REP_DELTA) 
+						errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
+					else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength) 
+						errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
+				}
 			}
 			repeatedWordCheck.insert(normalized, totalWords);
 		}

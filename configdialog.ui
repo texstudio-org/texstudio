@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>542</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1242,12 +1242,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               </widget>
              </item>
             </layout>
-            <zorder>checkBoxInlineSpellCheck</zorder>
-            <zorder>checkBoxInlineSpellCheck</zorder>
-            <zorder>checkBoxInlineGrammarCheck</zorder>
-            <zorder>checkBoxInlineCitationCheck</zorder>
-            <zorder>checkBoxInlineReferenceCheck</zorder>
-            <zorder>checkBoxInlineSyntaxCheck</zorder>
            </widget>
           </item>
           <item row="7" column="0">
@@ -2003,7 +1997,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="1" colspan="2">
            <widget class="QSpinBox" name="spinBoxGrammarRepetitionDistance"/>
           </item>
-          <item row="2" column="2" rowspan="2">
+          <item row="4" column="2" rowspan="2">
            <widget class="QPushButton" name="pushButtonGrammarWordlists">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -2020,20 +2014,40 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_48">
             <property name="text">
              <string>Wordlist directory:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" rowspan="2">
+          <item row="4" column="1" rowspan="2">
            <widget class="QLineEdit" name="lineEditGrammarWordlists"/>
           </item>
-          <item row="4" column="0">
+          <item row="6" column="0">
            <widget class="QCheckBox" name="checkBoxGrammarBadWordCheck">
             <property name="text">
              <string>Check for bad words</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetition"/>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetitionMinLength"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_54">
+            <property name="text">
+             <string>Long range repetitions:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_55">
+            <property name="text">
+             <string>Min length of words with long repetition:</string>
             </property>
            </widget>
           </item>

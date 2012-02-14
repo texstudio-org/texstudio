@@ -696,7 +696,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 }
 
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
-           LatexEditorView::verbatimFormat, LatexEditorView::wordRepetitionFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format;
+           LatexEditorView::verbatimFormat, LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format;
 int LatexEditorView::syntaxErrorFormat;
 int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
 
@@ -746,7 +746,7 @@ void LatexEditorView::updateSettings(){
 		                          &deleteFormat, "diffDelete",
 		                          &insertFormat, "diffAdd",
 		                          &replaceFormat, "diffReplace",
-		                          F(wordRepetition) F(badWord) 
+		                          F(wordRepetition) F(wordRepetitionLongRange) F(badWord) 
 		                          F(grammarMistake)
 		                          F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
 		                         0, 0
@@ -761,7 +761,7 @@ void LatexEditorView::updateSettings(){
 		}
 		//int f=QDocument::formatFactory()->id("citationMissing");
 		formatsLoaded = true;
-		grammarFormats << wordRepetitionFormat << wordRepetitionFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
+		grammarFormats << wordRepetitionFormat << wordRepetitionLongRangeFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
 		grammarFormatsDisabled.resize(grammarFormats.size()+1);
 		grammarFormatsDisabled.fill(false);
 	}	

@@ -94,7 +94,7 @@ private:
 	QPoint m_point;
 
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
-	           verbatimFormat, wordRepetitionFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format;
+	           verbatimFormat, wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
 	

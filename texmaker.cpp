@@ -767,8 +767,10 @@ void Texmaker::setupMenus() {
 		newManagedEditorAction(submenu, QString::number(i), tr("Level %1").arg(i), "foldLevel", 0, "", QList<QVariant>() << true << i);
 	
 	submenu=newManagedMenu(menu, "grammar", tr("Grammar errors"));
+	static bool showGrammarType[8] = {false};
+	for (int i=0;i<8;i++) configManager.registerOption(QString("Grammar/Display Error %1").arg(i), &showGrammarType[i], true);
 	newManagedEditorAction(submenu, "0", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
-	//newManagedEditorAction(submenu, "1", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
+	newManagedEditorAction(submenu, "1", tr("Long range word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
 	newManagedEditorAction(submenu, "2", tr("Bad words"), "toggleGrammar", 0, "", QList<QVariant>() << 2);
 	newManagedEditorAction(submenu, "3", tr("Grammer mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
 	for (int i=4;i<8;i++)
@@ -776,7 +778,7 @@ void Texmaker::setupMenus() {
 	for (int i=0;i<submenu->actions().size();i++)
 		if (!submenu->actions()[i]->isCheckable()){
 			submenu->actions()[i]->setCheckable(true);
-			submenu->actions()[i]->setChecked(true);
+			configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], 0);
 		}
 	
 	menu->addSeparator();
