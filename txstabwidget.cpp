@@ -1,7 +1,7 @@
-#include "tmxtabwidget.h"
+#include "txstabwidget.h"
 #include "smallUsefulFunctions.h"
 
-TmxTabWidget::TmxTabWidget(QWidget *parent) :
+TxsTabWidget::TxsTabWidget(QWidget *parent) :
 		QTabWidget(parent)
 {
 	if (hasAtLeastQt(4,5)){
@@ -10,7 +10,7 @@ TmxTabWidget::TmxTabWidget(QWidget *parent) :
 	}
 }
 
-void TmxTabWidget::moveTab(int from,int to){
+void TxsTabWidget::moveTab(int from,int to){
 	int cur = currentIndex();
 	QString text=tabText(from);
 	QWidget *wdg=widget(from);

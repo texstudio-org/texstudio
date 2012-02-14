@@ -31,7 +31,7 @@
 #include "spellerdialog.h"
 #include "textanalysis.h"
 #include "toolwidgets.h"
-#include "tmxtabwidget.h"
+#include "txstabwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
@@ -123,7 +123,7 @@ private:
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 	
 	//gui
-	TmxTabWidget *EditorView;
+	TxsTabWidget *EditorView;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
