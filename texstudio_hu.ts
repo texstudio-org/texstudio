@@ -295,7 +295,7 @@
     </message>
     <message>
         <source>Inline checking</source>
-        <translation>Azonnali ellenőrzés</translation>
+        <translation type="obsolete">Azonnali ellenőrzés</translation>
     </message>
     <message>
         <source>Thesaurus Database</source>
@@ -1133,6 +1133,86 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <source>Syntax</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Internal</source>
+        <translation type="unfinished">Belső</translation>
+    </message>
+    <message>
+        <source>Check for word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Words between repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wordlist directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LanguageTool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Serverurl: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start LanguageTool if not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LT path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored rules:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the grammar word lists dir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the LanguageTool jar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for bad words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 2:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 1:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 3:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 4:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX checking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language checking</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1783,6 +1863,10 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>GrammarCheck</name>
     <message>
         <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad word</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5663,6 +5747,30 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
     <message>
         <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Erase until E&amp;nd of Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer mistake special %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

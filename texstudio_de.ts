@@ -499,7 +499,7 @@
     </message>
     <message>
         <source>Inline checking</source>
-        <translation>interaktives Überprüfen</translation>
+        <translation type="obsolete">interaktives Überprüfen</translation>
     </message>
     <message>
         <source>Inline spell checking</source>
@@ -1130,6 +1130,86 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Syntax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal</source>
+        <translation type="unfinished">Intern</translation>
+    </message>
+    <message>
+        <source>Check for word repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Words between repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wordlist directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LanguageTool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Serverurl: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start LanguageTool if not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LT path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored rules:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the grammar word lists dir</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the LanguageTool jar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for bad words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 2:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 1:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 3:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special rules 4:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX checking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language checking</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1782,6 +1862,10 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <name>GrammarCheck</name>
     <message>
         <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad word</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5671,6 +5755,30 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>remove all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Erase until E&amp;nd of Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer mistake special %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
