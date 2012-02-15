@@ -2094,7 +2094,8 @@ void Texmaker::editEraseEndLine() {
     if (!currentEditorView()) return;
     QDocumentCursor c = currentEditorView()->editor->cursor();
     c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
-    c.removeSelectedText();
+    currentEditorView()->editor->setCursor(c);
+    currentEditorView()->editor->cut();
 }
 void Texmaker::editEraseWordCmdEnv(){
 	if (!currentEditorView()) return;
