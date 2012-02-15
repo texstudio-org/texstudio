@@ -24,7 +24,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	QString dicFile = base+".dic";
 	QString affFile = base+".aff";
 	if (!QFileInfo(dicFile).exists() || !QFileInfo(affFile).exists()) {
-		emit reloadDictionary(); //remove spelling error marks from errors with previous dictionary (because these marks could lead to crashes if not removed)
+		emit dictionaryLoaded(); //remove spelling error marks from errors with previous dictionary (because these marks could lead to crashes if not removed)
 		return false;
 	}
 	currentDic=dic;
@@ -38,7 +38,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	if (spellCodec==0) {
 		unload();
-		emit reloadDictionary();
+		emit dictionaryLoaded();
 		return false;
 	}
 
@@ -51,12 +51,12 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 		ignoreListFileName=ignoreFilePrefix+QFileInfo(dic).baseName()+".ign";
 	if (!isFileRealWritable(ignoreListFileName)) {
 		ignoreListFileName="";
-		emit reloadDictionary();
+		emit dictionaryLoaded();
 		return true;
 	}
 	QFile f(ignoreListFileName);
 	if (!f.open(QFile::ReadOnly)) {
-		emit reloadDictionary();
+		emit dictionaryLoaded();
 		return true;
 	}
 	ignoredWordList=QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n",QString::SkipEmptyParts);
@@ -64,7 +64,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	QByteArray encodedString;
 	QString spell_encoding=QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	foreach(const QString elem,ignoredWordList){
+	foreach(const QString &elem,ignoredWordList){
 		encodedString = codec->fromUnicode(elem);
 		pChecker->add(encodedString.data());
 	}
@@ -72,11 +72,11 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
 	ignoredWords=ignoredWordList.toSet();
-	emit reloadDictionary();
+	emit dictionaryLoaded();
 	return true;
 
 }
-void SpellerUtility::unload() {
+void SpellerUtility::saveIgnoreList() {
 	if (ignoreListFileName!="" && ignoredWords.count()>0) {
 		QFile f(ignoreListFileName);
 		if (f.open(QFile::WriteOnly)) {
@@ -87,6 +87,9 @@ void SpellerUtility::unload() {
 					f.write(utf8->fromUnicode(str+"\n"));
 		}
 	}
+}
+void SpellerUtility::unload() {
+	saveIgnoreList();
 	currentDic="";
 	ignoreListFileName="";
 	if (pChecker!=0) {
@@ -105,6 +108,7 @@ void SpellerUtility::addToIgnoreList(QString toIgnore) {
 	if (!ignoredWordList.contains(word))
 		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
+	saveIgnoreList();
 }
 void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
 	QByteArray encodedString;
@@ -115,6 +119,7 @@ void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
 	ignoredWords.remove(toIgnore);
 	ignoredWordList.removeAll(toIgnore);
 	ignoredWordsModel.setStringList(ignoredWordList);
+	saveIgnoreList();
 }
 QStringListModel* SpellerUtility::ignoreListModel() {
 	return &ignoredWordsModel;
