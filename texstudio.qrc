@@ -146,6 +146,7 @@
         <file>completion/beamerfoils.cwl</file>
         <file>completion/beamerprosper.cwl</file>
         <file>completion/beamerseminar.cwl</file>
+        <file>completion/biblatex.cwl</file>
         <file>completion/beamertexpower.cwl</file>
         <file>completion/bm.cwl</file>
         <file>completion/booktabs.cwl</file>
