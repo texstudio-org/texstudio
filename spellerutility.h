@@ -31,11 +31,12 @@ public:
 	static int spellcheckErrorFormat;
 signals:
 	void aboutToDelete();
-	void reloadDictionary();
+	void dictionaryLoaded();
 private:
 	SpellerUtility(QString name);
 	~SpellerUtility();
 	bool loadDictionary(QString dic, QString ignoreFilePrefix);
+	void saveIgnoreList();
 	void unload();
 
 	QString mName;
@@ -44,8 +45,8 @@ private:
 	QTextCodec *spellCodec;
 	QHash<QString, bool> checkCache;
 	QLinkedList<QString> checkCacheInsertion;
-	QSet<QString> ignoredWords;
 	QStringList ignoredWordList;
+	QSet<QString> ignoredWords;
 	QStringListModel ignoredWordsModel;
 };
 

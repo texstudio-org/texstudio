@@ -20,6 +20,8 @@
 
 #include "qeditor.h"
 
+#include <QStyledItemDelegate>
+
 class SpellerDialog : public QDialog  {
 	Q_OBJECT
 public:
@@ -29,6 +31,7 @@ public:
 	void setEditorView(LatexEditorView *edView);
 	void startSpelling();
 private :
+	QStatusBar *m_statusBar;
 	SpellerUtility *m_speller;
 	QEditor *editor;
 	LatexEditorView *editorView;
@@ -44,9 +47,27 @@ private slots:
 	void slotReplace();
 	void updateItem();
 	void SpellingNextWord();
-	void toggleIgnoreList();
-	void addRemoveIgnoredWord();
-	void ignoreListClicked(const QModelIndex &mod);
+	void toggleIgnoreList(bool forceHide=false);
+    void addIgnoredWord();
+    void removeIgnoredWord();
+	void finishEditIgnoreList();
+};
+
+
+class ValidatedLineEdit : public QLineEdit {
+	Q_OBJECT
+public:
+	explicit ValidatedLineEdit(QWidget *parent=0);
+};
+
+
+class IgnoreListViewDelegate : public QStyledItemDelegate {
+	Q_OBJECT
+public:
+	explicit IgnoreListViewDelegate(QObject *parent = 0);
+	void setModelData(QWidget *editor,
+					  QAbstractItemModel *model,
+					  const QModelIndex &index) const;
 };
 
 
