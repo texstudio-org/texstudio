@@ -213,9 +213,9 @@ void QSearchReplacePanelTest::incrementalsearch(){
 				widget->cFind->lineEdit()->cursorForward(false,search.length());	
 				QTest::keyClick(widget->cFind->lineEdit(),search[search.length()-1].toLatin1());
 			}
-			QDocumentCursor s=ed->cursor().selectionStart();
-			QEQUAL2(s.lineNumber(), cy, search+" "+ed->cursor().selectedText()+"  "+QString::number(loop));
-			QEQUAL2(s.columnNumber(), cx, search+" "+ed->cursor().selectedText());
+			QDocumentCursor c=ed->cursor().selectionStart();
+			QEQUAL2(c.lineNumber(), cy, search+" "+ed->cursor().selectedText()+"  "+QString::number(loop));
+			QEQUAL2(c.columnNumber(), cx, search+" "+ed->cursor().selectedText());
 			QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
 			//searching shouldn't change highlighted selection
 			QCEMULTIEQUAL(getHighlightedSelection(ed), panel->getSearchScope(), ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));			
