@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>542</width>
-            <height>531</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -939,7 +939,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <layout class="QGridLayout" name="_2">
          <item row="1" column="1">
-          <widget class="QListWidget" name="listCustomToolBar"/>
+          <widget class="QListWidget" name="listCustomToolBar">
+           <property name="movement">
+            <enum>QListView::Free</enum>
+           </property>
+          </widget>
          </item>
          <item row="1" column="2">
           <layout class="QVBoxLayout" name="_3">

@@ -251,7 +251,7 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 
 int ConfigDialog::lastUsedPage = 0;
 
-ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0), riddled(false) {
+ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0), riddled(false), oldToolbarIndex(-1) {
 	setModal(true);
 	ui.setupUi(this);
 
@@ -343,7 +343,9 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxToolbars,SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
 	ui.listCustomToolBar->setIconSize(QSize(96, 96));
 	ui.listCustomToolBar->setViewMode(QListView::ListMode);
-	ui.listCustomToolBar->setMovement(QListView::Static);
+	ui.listCustomToolBar->setMovement(QListView::Snap);
+	ui.listCustomToolBar->setDragDropMode(QAbstractItemView::InternalMove);
+	connect(this,SIGNAL(accepted()), SLOT(checkToolbarMoved()));
 	connect(ui.pbToToolbar,SIGNAL(clicked()),this,SLOT(toToolbarClicked()));
 	connect(ui.pbFromToolbar,SIGNAL(clicked()),this,SLOT(fromToolbarClicked()));
 	ui.listCustomToolBar->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -543,6 +545,7 @@ void ConfigDialog::advancedOptionsClicked(bool on){
 
 void ConfigDialog::toolbarChanged(int toolbar){
 	if (toolbar < 0 || toolbar >= customizableToolbars.size()) return;
+	checkToolbarMoved();
 	ui.listCustomToolBar->clear();
 	foreach (const QString& actName, customizableToolbars[toolbar]){
 		QAction* act=menuParent->findChild<QAction*>(actName);
@@ -552,6 +555,7 @@ void ConfigDialog::toolbarChanged(int toolbar){
 		item->setData(Qt::UserRole,actName);
 		ui.listCustomToolBar->addItem(item);
 	}
+	oldToolbarIndex = toolbar;
 }
 
 void ConfigDialog::actionsChanged(int actionClass){
@@ -577,6 +581,7 @@ void ConfigDialog::actionsChanged(int actionClass){
 void ConfigDialog::toToolbarClicked(){
 	if (!ui.treePossibleToolbarActions->currentItem()) return;
 	if (ui.comboBoxToolbars->currentIndex() < 0 || ui.comboBoxToolbars->currentIndex() >= customizableToolbars.size()) return;
+	checkToolbarMoved();
 	QTreeWidgetItem *twi = ui.treePossibleToolbarActions->currentItem();
 	QString actName=twi->data(0,Qt::UserRole).toString();
 	QAction* act=menuParent->findChild<QAction*>(actName);
@@ -591,13 +596,17 @@ void ConfigDialog::toToolbarClicked(){
 void ConfigDialog::fromToolbarClicked(){
 	if(!ui.listCustomToolBar->currentItem()) return;
 	if (ui.comboBoxToolbars->currentIndex() < 0 || ui.comboBoxToolbars->currentIndex() >= customizableToolbars.size()) return;
-	/*QListWidgetItem *item=ui.listCustomToolBar->currentItem();
-    QList<QListWidgetItem *>result=ui.listCustomIcons->findItems(item->text(),Qt::MatchExactly);
-    foreach(QListWidgetItem *elem,result){
-        elem->setHidden(false);
-    }*/
+	checkToolbarMoved();
 	customizableToolbars[ui.comboBoxToolbars->currentIndex()].removeAt(ui.listCustomToolBar->currentRow());
 	delete ui.listCustomToolBar->takeItem(ui.listCustomToolBar->currentRow());
+}
+
+void ConfigDialog::checkToolbarMoved(){
+	if (oldToolbarIndex < 0 || oldToolbarIndex >= customizableToolbars.size()) return;
+	REQUIRE(ui.listCustomToolBar->count() == customizableToolbars[oldToolbarIndex].size());
+	for (int i=0;i<ui.listCustomToolBar->count();i++)	
+		customizableToolbars[oldToolbarIndex][i] = ui.listCustomToolBar->item(i)->data(Qt::UserRole).toString();
+		
 }
 
 void ConfigDialog::customContextMenuRequested(const QPoint &p){

@@ -101,6 +101,7 @@ private slots:
 	void actionsChanged(int actionClass);
 	void toToolbarClicked();
 	void fromToolbarClicked();
+	void checkToolbarMoved();
 	void customContextMenuRequested(const QPoint &p);
 	void loadOtherIcon();
 	void populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy);
@@ -113,6 +114,7 @@ private:
 	bool askRiddle();
 	static int lastUsedPage;
 	static QPoint lastSize;
+	int oldToolbarIndex;
 };
 
 Q_DECLARE_METATYPE(QAction*);
