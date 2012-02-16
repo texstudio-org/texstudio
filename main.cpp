@@ -72,7 +72,27 @@ TexmakerApp::TexmakerApp(int & argc, char ** argv) : QApplication(argc, argv) {
 }
 #endif
 
+#ifndef QT_NO_DEBUG
+#ifdef linux
+#include "signal.h"
+
+void signalHandlerSEGV(int){txs_assert("SIGSEGV","",0);}
+void signalHandlerFPE(int){txs_assert("SIGFPE","",0);}
+
+#endif
+#endif
+
+
 void TexmakerApp::init(QStringList &cmdLine) {
+#ifndef QT_NO_DEBUG
+#ifdef linux
+	struct sigaction sa;
+	memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = &signalHandlerSEGV; sigaction(SIGSEGV, &sa, 0);
+	sa.sa_handler = &signalHandlerFPE; sigaction(SIGFPE, &sa, 0);
+#endif
+#endif
+	
 	QPixmap pixmap(":/images/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
 	splash->show();
