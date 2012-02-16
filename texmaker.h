@@ -462,6 +462,7 @@ protected slots:
 	
 	void updateHighlighting();
 	
+	void toggleGrammar(int type);
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
