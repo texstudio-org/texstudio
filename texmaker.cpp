@@ -131,6 +131,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 		if (m_formats->format("line:"+marks[i].id).background.isValid())
 			marks[i].color = m_formats->format("line:"+marks[i].id).background;
 	
+	LatexEditorView::updateFormatSettings();
+	
 	// TAB WIDGET EDITEUR
 	documents.indentationInStructure=configManager.indentationInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
@@ -769,16 +771,17 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "grammar", tr("Grammar errors"));
 	static bool showGrammarType[8] = {false};
 	for (int i=0;i<8;i++) configManager.registerOption(QString("Grammar/Display Error %1").arg(i), &showGrammarType[i], true);
-	newManagedEditorAction(submenu, "0", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
-	newManagedEditorAction(submenu, "1", tr("Long range word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
-	newManagedEditorAction(submenu, "2", tr("Bad words"), "toggleGrammar", 0, "", QList<QVariant>() << 2);
-	newManagedEditorAction(submenu, "3", tr("Grammer mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
+	newManagedAction(submenu, "0", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
+	newManagedAction(submenu, "1", tr("Long range word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
+	newManagedAction(submenu, "2", tr("Bad words"), "toggleGrammar", 0, "", QList<QVariant>() << 2);
+	newManagedAction(submenu, "3", tr("Grammer mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
 	for (int i=4;i<8;i++)
-		newManagedEditorAction(submenu, QString("%1").arg(i), tr("Grammer mistake special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
+		newManagedAction(submenu, QString("%1").arg(i), tr("Grammer mistake special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
 	for (int i=0;i<submenu->actions().size();i++)
 		if (!submenu->actions()[i]->isCheckable()){
 			submenu->actions()[i]->setCheckable(true);
 			configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], 0);
+			LatexEditorView::setGrammarOverlayDisabled(i,!submenu->actions()[i]->isChecked());
 		}
 	
 	menu->addSeparator();
@@ -6173,6 +6176,16 @@ void Texmaker::updateHighlighting(){
 			}
 		}
 	}
+}
+
+void Texmaker::toggleGrammar(int type){
+	QAction* a = qobject_cast<QAction*>(sender());
+	REQUIRE(a);
+	LatexEditorView::setGrammarOverlayDisabled(type, !a->isChecked());
+	//a->setChecked(!a->isChecked());
+	for (int i=0;i<documents.documents.size();i++) 
+		if (documents.documents[i]->getEditorView())
+			documents.documents[i]->getEditorView()->updateGrammarOverlays();
 }
 
 void Texmaker::fileDiff(){

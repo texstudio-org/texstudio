@@ -66,6 +66,7 @@ public:
 
 	void setLineMarkToolTip(const QString& tooltip);
 	void updateSettings();
+	static void updateFormatSettings();
 
 	QPoint getHoverPosistion(){
 		return m_point;
@@ -160,7 +161,9 @@ public slots:
 	
 	void displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors);
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);
-	void toggleGrammar(int type);
+	void updateGrammarOverlays();
+public:
+	static void setGrammarOverlayDisabled(int type, bool show);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(int logMessage);

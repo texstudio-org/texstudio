@@ -441,13 +441,13 @@ void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle
 	document->line(lineNr).setCookie(43, QVariant::fromValue<QList<GrammarError> >(errors));
 }
 
-void LatexEditorView::toggleGrammar(int type){
+void LatexEditorView::setGrammarOverlayDisabled(int type, bool newValue){
 	REQUIRE(type >= 0 && type < grammarFormatsDisabled.size());
-	QAction* a = qobject_cast<QAction*>(sender());
-	bool newValue = ! (a ? a->isChecked() : grammarFormatsDisabled[type]);
 	if (newValue == grammarFormatsDisabled[type]) return;
 	grammarFormatsDisabled[type] = newValue;
-	if (a)	a->setChecked(!grammarFormatsDisabled[type]);
+}
+
+void LatexEditorView::updateGrammarOverlays(){
 	for (int i=0;i<document->lineCount();i++) 
 		displayLineGrammarErrorsInternal(i, document->line(i).getCookie(43).value<QList<GrammarError> >());
 	editor->viewport()->update();
@@ -734,6 +734,17 @@ void LatexEditorView::updateSettings(){
 	QDocument::setShowSpaces(config->showWhitespace?(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs):QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
 
+	SynChecker.setErrFormat(syntaxErrorFormat);
+	
+	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
+	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
+	QDocument::setWorkAround(QDocument::DisableLineCache, config->hackDisableLineCache);
+
+	QDocument::setWorkAround(QDocument::ForceQTextLayout, config->hackRenderingMode == 1);
+	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
+}
+
+void LatexEditorView::updateFormatSettings(){
 	static bool formatsLoaded = false;
 	if (!formatsLoaded) {
 #define F(n) &n##Format, #n, 
@@ -762,20 +773,9 @@ void LatexEditorView::updateSettings(){
 		//int f=QDocument::formatFactory()->id("citationMissing");
 		formatsLoaded = true;
 		grammarFormats << wordRepetitionFormat << wordRepetitionLongRangeFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
-		grammarFormatsDisabled.resize(grammarFormats.size()+1);
+		grammarFormatsDisabled.resize(9);
 		grammarFormatsDisabled.fill(false);
 	}	
-	
-	
-	
-	SynChecker.setErrFormat(syntaxErrorFormat);
-	
-	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
-	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
-	QDocument::setWorkAround(QDocument::DisableLineCache, config->hackDisableLineCache);
-
-	QDocument::setWorkAround(QDocument::ForceQTextLayout, config->hackRenderingMode == 1);
-	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
 }
 
 void LatexEditorView::requestCitation(){
