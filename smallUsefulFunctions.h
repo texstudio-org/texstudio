@@ -25,6 +25,8 @@ void txsInformation(const QString &message);
 void txsWarning(const QString& message);
 void txsCritical(const QString& message);
 
+void txs_assert(const char *assertion, const char *file, int line);
+
 class LatexCompleterConfig;
 
 #define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
