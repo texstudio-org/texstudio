@@ -1,8 +1,8 @@
 #ifndef SEARCHRESULTMODEL_H
 #define SEARCHRESULTMODEL_H
 
-#include <QAbstractItemModel>
 #include "mostQtHeaders.h"
+#include <QAbstractItemModel>
 #include "qdocumentsearch.h"
 
 class SearchResultModel : public QAbstractItemModel

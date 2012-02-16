@@ -3308,6 +3308,38 @@ void Texmaker::QuickArray() {
 	}
 }
 
+// returns true if line is inside in the specified environment. In that case start and end lines of the environment are supplied
+bool findEnvironmentLines(const QDocument *doc, const QString &env, int line, int &startLine, int &endLine, int scanRange) {
+	QString name, arg;
+	
+	startLine = -1;
+	for (int l=line; l>=0; l--) {
+		if (scanRange>0 && line-l > scanRange) break;
+		if (findTokenWithArg(doc->line(l).text(), "\\end{", name, arg) && name == env) {
+			if (l<line) return false;
+		}
+		if (findTokenWithArg(doc->line(l).text(), "\\begin{", name, arg) && name == env) {
+			startLine = l;
+			break;
+		}
+	}
+	if (startLine == -1) return false;
+	
+	endLine = -1;
+	for (int l=line; l<doc->lineCount(); l++) {
+		if (scanRange>0 && l-line > scanRange) break;
+		if (findTokenWithArg(doc->line(l).text(), "\\end{", name, arg) && name == env) {
+			endLine = l;
+			break;
+		}
+		if (findTokenWithArg(doc->line(l).text(), "\\begin{", name, arg) && name == env) {
+			if (l>line) return false; //second begin without end
+		}
+	}
+	if (endLine == -1) return false;
+	return true;
+}
+
 void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	if (!currentEditorView()) return;
 	

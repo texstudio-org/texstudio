@@ -9,11 +9,11 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "mostQtHeaders.h"
 #include "insertgraphics.h"
 #include "insertgraphics_config.h"
 
 #include "smallUsefulFunctions.h"
-#include "mostQtHeaders.h"
 
 
 QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";
