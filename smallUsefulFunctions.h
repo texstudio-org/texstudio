@@ -11,8 +11,8 @@
 #ifndef SMALLUSEFULFUNCTIONS_H
 #define SMALLUSEFULFUNCTIONS_H
 
-#include "qdocument.h"
 #include "mostQtHeaders.h"
+
 //#inlcude "latexcompleter_config.h"
 
 #define TEXSTUDIO "TeXstudio"
@@ -80,8 +80,6 @@ QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart);
-// returns true if line is inside in the specified environment. In that case start and end lines of the environment are supplied
-bool findEnvironmentLines(const QDocument *doc, const QString &env, int line, int &startLine, int &endLine, int scanRange=0);
 
 // generate multiple times used regexpression
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);
