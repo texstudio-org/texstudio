@@ -18,6 +18,48 @@ void txsCritical(const QString &message){
 	QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 
+
+#define print_backtrace qt_noop
+
+#ifndef QT_NO_DEBUG
+#ifdef linux
+#undef print_backtrace
+#define print_backtrace pbt
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+void pbt(){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
+	char pid_buf[30];
+	sprintf(pid_buf, "%d", getpid());
+	char name_buf[512];
+	name_buf[readlink("/proc/self/exe", name_buf, 511)]=0;
+	int child_pid = fork();
+	if (!child_pid) {           
+		dup2(2,1); // redirect output to stderr
+		fprintf(stdout,"stack trace for %s pid=%s\n",name_buf,pid_buf);
+		execlp("gdb", "gdb", "--batch", "-n", "-ex", "thread", "-ex", "bt", name_buf, pid_buf, NULL);
+		abort(); /* If gdb failed to start */
+	} else {
+		waitpid(child_pid,NULL,0);
+	}
+}	
+#endif
+#endif
+
+#undef qt_assert
+Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line);
+
+void txs_assert(const char *assertion, const char *file, int line){
+	fprintf(stderr,"Assert failure: %s in %s:%i\n",assertion,file,line);
+	fprintf(stderr,"Prepare to print backtrace:\n");
+	print_backtrace();
+	qt_assert(assertion, file, line);
+}
+
+
+
 #ifdef Q_WS_MAC
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
