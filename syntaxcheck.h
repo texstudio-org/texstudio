@@ -82,7 +82,7 @@ signals:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay, int ticket);
 protected:
 	void run();
-	void checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv);
+	void checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv);
 	
 private:
 	QQueue<SyntaxLine> mLines;

@@ -111,7 +111,7 @@ void SyntaxCheck::run(){
 }
 
 
-void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &activeEnv){
+void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv){
 	// do syntax check on that line
 	int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
 	LatexReader lr(*ltxCommands, line);
@@ -191,7 +191,7 @@ void SyntaxCheck::checkLine(QString &line,Ranges &newRanges,StackEnvironment &ac
 							QString second=options.first();
 							if(second.startsWith("{")){
 								second.fill(' ');
-								line.replace(lr.index+first.length(),second.length(),second);
+								lr.line.replace(lr.index+first.length(),second.length(),second);
 							}
 						}
 					}
