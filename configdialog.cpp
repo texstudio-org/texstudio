@@ -60,6 +60,7 @@ void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
 }
 
 void ShortcutComboBox::focusInEvent(QFocusEvent *e) {
+	Q_UNUSED(e);
 	this->lineEdit()->selectAll();
 }
 

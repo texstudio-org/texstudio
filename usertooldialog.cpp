@@ -44,6 +44,7 @@ void UserToolDialog::init() {
 }
 
 void UserToolDialog::change(QListWidgetItem *current, QListWidgetItem *previous) {
+	Q_UNUSED(previous);
 	ui.toolEdit->setEnabled(current);
 	ui.itemEdit->setEnabled(current);
 	if (!current) {
