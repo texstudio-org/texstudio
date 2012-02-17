@@ -59,6 +59,10 @@ void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
 	QComboBox::keyPressEvent(e);
 }
 
+void ShortcutComboBox::focusInEvent(QFocusEvent *e) {
+	this->lineEdit()->selectAll();
+}
+
 
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0) {
 	// remove unused argument warning
@@ -115,6 +119,7 @@ void ShortcutDelegate::setEditorData(QWidget *editor,
 		int pos=box->findText(normalized);
 		if (pos==-1) box->setEditText(value);
 		else box->setCurrentIndex(pos);
+		if (box->lineEdit()) box->lineEdit()->selectAll();
 		return;
 	}
 	//editor key replacement
@@ -155,6 +160,14 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 		if (value=="" || (value.endsWith("+") && !value.endsWith("++"))) { //Alt+wrong=>Alt+
 			txsWarning(ConfigDialog::tr("The shortcut you entered is invalid."));
 			return;
+		}
+		QRegExp rxCharKey("(Shift\\+)?."); // matches all single characters and single characters with shift like "Shift+A", should not match e.g. "F1" or "DEL"
+		if (rxCharKey.exactMatch(value)) {
+			if (!txsConfirmWarning(ConfigDialog::tr("The shortcut you entered is a standard character key.\n"
+													"You will not be able to type this character. Do you wish\n"
+													"to set the key anyway?"))) {
+				return;
+			}
 		}
 
 		/*int r=-1;

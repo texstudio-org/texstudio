@@ -25,6 +25,7 @@ public:
 	ShortcutComboBox(QWidget *parent = 0);
 protected:
 	virtual void keyPressEvent(QKeyEvent *e);
+	virtual void focusInEvent(QFocusEvent *e);
 };
 
 class ShortcutDelegate : public QItemDelegate {
