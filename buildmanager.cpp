@@ -53,7 +53,11 @@ QString BuildManager::cmdToConfigString(LatexCommand cmd){
 }
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
-		str=str+" "; //end character  so str[i++] is always defined
+	if (str.contains("-synctex=1") && mainFile.absoluteFilePath().contains(' ')) {
+		txsWarning("Synctex does not support file names or paths containing spaces.\nSynchronization will not work properly.");
+	}
+
+	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
 		QString add;
