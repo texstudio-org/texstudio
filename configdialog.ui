@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>542</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1986,6 +1986,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxGrammarRepetitionCheck">
+            <property name="toolTip">
+             <string>Words repeated within a paragraph will be highlighted.</string>
+            </property>
             <property name="text">
              <string>Check for word repetitions</string>
             </property>
@@ -1996,12 +1999,86 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Words between repetitions:</string>
             </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="1" column="1" colspan="2">
-           <widget class="QSpinBox" name="spinBoxGrammarRepetitionDistance"/>
+           <widget class="QSpinBox" name="spinBoxGrammarRepetitionDistance">
+            <property name="toolTip">
+             <string>Equal words are marked as repetition if there are no more than this number of words between them.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
-          <item row="4" column="2" rowspan="2">
+          <item row="2" column="1" colspan="2">
+           <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetition">
+            <property name="toolTip">
+             <string>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetitionMinLength">
+            <property name="toolTip">
+             <string>Only words with have this length are checked for long range repetitions.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_54">
+            <property name="text">
+             <string>Long range repetitions:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_55">
+            <property name="text">
+             <string>Min length of words with long repetition:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_48">
+            <property name="text">
+             <string>Wordlist directory:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxGrammarBadWordCheck">
+            <property name="toolTip">
+             <string>Certain informal or weak words will be highlighted.</string>
+            </property>
+            <property name="text">
+             <string>Check for bad words</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="lineEditGrammarWordlists">
+            <property name="toolTip">
+             <string>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
            <widget class="QPushButton" name="pushButtonGrammarWordlists">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -2015,43 +2092,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="icon">
              <iconset resource="texstudio.qrc">
               <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_48">
-            <property name="text">
-             <string>Wordlist directory:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1" rowspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarWordlists"/>
-          </item>
-          <item row="6" column="0">
-           <widget class="QCheckBox" name="checkBoxGrammarBadWordCheck">
-            <property name="text">
-             <string>Check for bad words</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetition"/>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetitionMinLength"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_54">
-            <property name="text">
-             <string>Long range repetitions:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_55">
-            <property name="text">
-             <string>Min length of words with long repetition:</string>
             </property>
            </widget>
           </item>
@@ -2072,7 +2112,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="0" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarLTUrl"/>
+           <widget class="QLineEdit" name="lineEditGrammarLTUrl">
+            <property name="toolTip">
+             <string>Url to connect to LanguageTool. </string>
+            </property>
+           </widget>
           </item>
           <item row="3" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxGrammarLTAutorun">
@@ -2089,7 +2133,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEditGrammarLTPath"/>
+           <widget class="QLineEdit" name="lineEditGrammarLTPath">
+            <property name="toolTip">
+             <string>Path containing the LanguageTool java archive.</string>
+            </property>
+           </widget>
           </item>
           <item row="4" column="2">
            <widget class="QPushButton" name="pushButtonGrammarLTPath">
@@ -2116,7 +2164,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="1" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarLTIgnoredRules"/>
+           <widget class="QLineEdit" name="lineEditGrammarLTIgnoredRules">
+            <property name="toolTip">
+             <string>Comma separated list of LanguageTool rules which will not be highlighted as errors.</string>
+            </property>
+           </widget>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_49">
@@ -2126,7 +2178,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="QLineEdit" name="lineEditGrammarLTJava"/>
+           <widget class="QLineEdit" name="lineEditGrammarLTJava">
+            <property name="toolTip">
+             <string>Java executable, used to start LanguageTool, if it is not running.</string>
+            </property>
+           </widget>
           </item>
           <item row="5" column="2">
            <widget class="QPushButton" name="pushButtonGrammarLTJava">
@@ -2146,21 +2202,52 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </widget>
           </item>
           <item row="6" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarSpecialRules1"/>
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules1">
+            <property name="toolTip">
+             <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="7" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarSpecialRules2"/>
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules2">
+            <property name="toolTip">
+             <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="9" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarSpecialRules4"/>
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules4">
+            <property name="toolTip">
+             <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="8" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEditGrammarSpecialRules3"/>
+           <widget class="QLineEdit" name="lineEditGrammarSpecialRules3">
+            <property name="toolTip">
+             <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="7" column="0">
            <widget class="QLabel" name="label_50">
             <property name="text">
              <string>Special rules 2:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -2169,6 +2256,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Special rules 1:</string>
             </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="8" column="0">
@@ -2176,12 +2266,18 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <property name="text">
              <string>Special rules 3:</string>
             </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="9" column="0">
            <widget class="QLabel" name="label_53">
             <property name="text">
              <string>Special rules 4:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
