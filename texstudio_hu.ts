@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
-        <translation type="unfinished">Használt Qt verzió: %1, fordítva a Qt %2 %3 verzióval {1,?}</translation>
+        <translation>Használt Qt verzió: %1, fordítva a Qt %2 %3 verzióval</translation>
     </message>
 </context>
 <context>
@@ -204,11 +204,11 @@
     <name>CodeSnippet_PlaceHolder</name>
     <message>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation>den</translation>
     </message>
     <message>
         <source>num</source>
-        <translation type="unfinished"></translation>
+        <translation>num</translation>
     </message>
 </context>
 <context>
@@ -1083,135 +1083,194 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>qce (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>qce (ajánlott)</translation>
     </message>
     <message>
         <source>qt</source>
-        <translation type="unfinished"></translation>
+        <translation>qt</translation>
     </message>
     <message>
         <source>single letter</source>
-        <translation type="unfinished"></translation>
+        <translation>egyszerű levél</translation>
     </message>
     <message>
         <source>Render mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rederelési mód:</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikusan megpróbálja a legjobb megjelenítési opciót választani</translation>
     </message>
     <message>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha a rederelt sorok tárolója be van üzemelve, azokat nem kell újrarenderelni. Ez sebességnövekedést eredményez (különösen Mac-en), nagyobb memóriahasználat árán.</translation>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"></translation>
+        <translation>A rederelt sorok tárolójának kiiktatása</translation>
     </message>
     <message>
         <source>Inline checking:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorközi ellenőrzés:</translation>
     </message>
     <message>
         <source>Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation>Betűzés</translation>
     </message>
     <message>
         <source>Grammar</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvtan</translation>
     </message>
     <message>
         <source>Citations</source>
-        <translation type="unfinished"></translation>
+        <translation>Idézetek</translation>
     </message>
     <message>
         <source>References</source>
-        <translation type="unfinished"></translation>
+        <translation>Hivatkozások</translation>
     </message>
     <message>
         <source>Syntax</source>
-        <translation type="unfinished"></translation>
+        <translation>Helyesírás</translation>
     </message>
     <message>
         <source>Internal</source>
-        <translation type="unfinished">Belső</translation>
+        <translation>Belső</translation>
     </message>
     <message>
         <source>Check for word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Szóismétlés ellenőrzése</translation>
     </message>
     <message>
         <source>Words between repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szavak az ismételtek között:</translation>
     </message>
     <message>
         <source>Wordlist directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szószedet könyvtár:</translation>
     </message>
     <message>
         <source>LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation>LanguageTool</translation>
     </message>
     <message>
         <source>Serverurl: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kiszolgáló URL címe:</translation>
     </message>
     <message>
         <source>Start LanguageTool if not running</source>
-        <translation type="unfinished"></translation>
+        <translation>LanguageTool indítása, ha nem fut</translation>
     </message>
     <message>
         <source>LT path:</source>
-        <translation type="unfinished"></translation>
+        <translation>LT útvonal:</translation>
     </message>
     <message>
         <source>Ignored rules:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellőzött szabályok:</translation>
     </message>
     <message>
         <source>Java:</source>
-        <translation type="unfinished"></translation>
+        <translation>Java:</translation>
     </message>
     <message>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"></translation>
+        <translation>A nyelvtani szószedet könyvtárának kiválasztása</translation>
     </message>
     <message>
         <source>Select the LanguageTool jar</source>
-        <translation type="unfinished"></translation>
+        <translation>LanguageTool jar kiválasztása</translation>
     </message>
     <message>
         <source>Select java</source>
-        <translation type="unfinished"></translation>
+        <translation>Java kiválasztása</translation>
     </message>
     <message>
         <source>Check for bad words</source>
-        <translation type="unfinished"></translation>
+        <translation>Rossz szavak keresése</translation>
     </message>
     <message>
         <source>Special rules 2:</source>
-        <translation type="unfinished"></translation>
+        <translation>Különleges szabályok 2:</translation>
     </message>
     <message>
         <source>Special rules 1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Különleges szabályok 1:</translation>
     </message>
     <message>
         <source>Special rules 3:</source>
-        <translation type="unfinished"></translation>
+        <translation>Különleges szabályok 3:</translation>
     </message>
     <message>
         <source>Special rules 4:</source>
-        <translation type="unfinished"></translation>
+        <translation>Különleges szabályok 4:</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX ellenőrzés</translation>
     </message>
     <message>
         <source>Language checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvi ellenőrzés</translation>
+    </message>
+    <message>
+        <source>Words repeated within a paragraph will be highlighted.</source>
+        <translation>Egy bekezdésen belüli ismétlődő szavak ki lesznek emelve.</translation>
+    </message>
+    <message>
+        <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
+        <translation>Azonos szavak ismételtként lesznek megjelölve, ha ennél a számnál nincs több szó köztük.</translation>
+    </message>
+    <message>
+        <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
+        <translation>Azonos távoli szavak távoli ismételtként lesznek megjelölve, ha ennél a számnál nincs több szó köztük.</translation>
+    </message>
+    <message>
+        <source>Only words with have this length are checked for long range repetitions.</source>
+        <translation>A legalább ilyen hosszú szavak lesznek távoli ismételtként megjelölve.</translation>
+    </message>
+    <message>
+        <source>Long range repetitions:</source>
+        <translation>Távoli szóismétlések:</translation>
+    </message>
+    <message>
+        <source>Min length of words with long repetition:</source>
+        <translation>Távoli ismétlődő szavak minimális hossza:</translation>
+    </message>
+    <message>
+        <source>Certain informal or weak words will be highlighted.</source>
+        <translation>Bizonyos informális szavak ki lesznek emelve.</translation>
+    </message>
+    <message>
+        <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
+        <translation>Könyvtár, mely tartalmazza a &quot;rossz&quot;, vagy ismételt szavak listáját.</translation>
+    </message>
+    <message>
+        <source>Url to connect to LanguageTool. </source>
+        <translation>URL a LanguageTool-hoz való csatlakozáshoz.</translation>
+    </message>
+    <message>
+        <source>Path containing the LanguageTool java archive.</source>
+        <translation>LanguageTool java tároló útvonala.</translation>
+    </message>
+    <message>
+        <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
+        <translation>Vesszővel elválasztott LanguageTool szabályok, melyek nem leszenek hibaként kiemelve.</translation>
+    </message>
+    <message>
+        <source>Java executable, used to start LanguageTool, if it is not running.</source>
+        <translation>A LanguageTool indítására használt Java program.</translation>
+    </message>
+    <message>
+        <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
+        <translation>Vesszővel elválasztott LanguageTool szabályok, melyek különleges formátumban ki leszenek emelve.</translation>
+    </message>
+    <message>
+        <source>The shortcut you entered is a standard character key.
+You will not be able to type this character. Do you wish
+to set the key anyway?</source>
+        <translation>Nem tudja majd begépelni ezt a karaktert.
+Biztosan ezt szeretné beállítani?</translation>
     </message>
 </context>
 <context>
@@ -1680,7 +1739,7 @@ Szeretné azokat eltávolítani?</translation>
     </message>
     <message>
         <source>huge</source>
-        <translation type="unfinished"></translation>
+        <translation>hatalmas</translation>
     </message>
 </context>
 <context>
@@ -1863,11 +1922,19 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <name>GrammarCheck</name>
     <message>
         <source>Word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Szóismétlés</translation>
     </message>
     <message>
         <source>Bad word</source>
-        <translation type="unfinished"></translation>
+        <translation>Rossz szó</translation>
+    </message>
+    <message>
+        <source>Word repetition. Distance %1</source>
+        <translation>Szóismétlés. Távolság: %1</translation>
+    </message>
+    <message>
+        <source>Long range word repetition. Distance %1</source>
+        <translation>Távoli szóismétlés. Távolság: %1</translation>
     </message>
 </context>
 <context>
@@ -2247,19 +2314,19 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Másolás</translation>
+        <translation>&amp;Másolás</translation>
     </message>
     <message>
         <source>&amp;Copy all</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Minden másolása</translation>
     </message>
     <message>
         <source>&amp;Copy all with line numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Minden másolása sorszámokkal</translation>
     </message>
     <message>
         <source>&amp;Show in log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Log mutatása</translation>
     </message>
 </context>
 <context>
@@ -3702,23 +3769,23 @@ Akarja menteni ezeket?</translation>
     </message>
     <message>
         <source>sweave</source>
-        <translation type="unfinished"></translation>
+        <translation>sweave</translation>
     </message>
     <message>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>kép</translation>
     </message>
     <message>
         <source>diffDelete</source>
-        <translation type="unfinished"></translation>
+        <translation>Törlés-különbség</translation>
     </message>
     <message>
         <source>diffAdd</source>
-        <translation type="unfinished"></translation>
+        <translation>Hozzáadás-különbség</translation>
     </message>
     <message>
         <source>diffReplace</source>
-        <translation type="unfinished"></translation>
+        <translation>Csere-különbség</translation>
     </message>
 </context>
 <context>
@@ -4219,7 +4286,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Unknown word:</source>
-        <translation>Ismeretlen szó:</translation>
+        <translation type="obsolete">Ismeretlen szó:</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -4227,7 +4294,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Csere erre:</translation>
+        <translation type="obsolete">Csere erre:</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -4239,7 +4306,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Suggested words :</source>
-        <translation>Ajánlott szavak:</translation>
+        <translation type="obsolete">Ajánlott szavak:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -4247,7 +4314,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Add/Remove</source>
-        <translation>Hozzáadás/Eltávolítás</translation>
+        <translation type="obsolete">Hozzáadás/Eltávolítás</translation>
     </message>
     <message>
         <source>Check spelling selection...</source>
@@ -4263,11 +4330,48 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Show Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Megmutatja a mellőzöttek listáját</translation>
     </message>
     <message>
         <source>Hide Ignore List</source>
-        <translation type="unfinished"></translation>
+        <translation>Elrejti a mellőzöttek listáját</translation>
+    </message>
+    <message>
+        <source>Unknown word</source>
+        <translation>Ismeretlen szó</translation>
+    </message>
+    <message>
+        <source>Replace with</source>
+        <translation>Csere erre</translation>
+    </message>
+    <message>
+        <source>Suggested words</source>
+        <translation>Ajánlott szavak</translation>
+    </message>
+    <message>
+        <source>Ignored words</source>
+        <translation>Mellőzött szavak</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Hozzáadás</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Eltávolítás</translation>
+    </message>
+    <message>
+        <source>Hide ignore list</source>
+        <translation>Elrejti a mellőzöttek listáját</translation>
+    </message>
+    <message>
+        <source>dummyStatusBar</source>
+        <translation>látszólagos StatusBar</translation>
+    </message>
+    <message>
+        <source>&lt;new&gt;</source>
+        <comment>Placeholder for new added word in ignore list</comment>
+        <translation>&lt;új&gt;</translation>
     </message>
 </context>
 <context>
@@ -4407,23 +4511,23 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>fixed width - left</source>
-        <translation type="unfinished"></translation>
+        <translation>rögzített szélesség - balra</translation>
     </message>
     <message>
         <source>fixed width - center - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>rögzített szélesség - középre - tabularx csomag</translation>
     </message>
     <message>
         <source>fixed width - right - package tabularx</source>
-        <translation type="unfinished"></translation>
+        <translation>rögzített szélesség - jobbra - tabularx csomag</translation>
     </message>
     <message>
         <source>none</source>
-        <translation type="unfinished">nincs</translation>
+        <translation>nincs</translation>
     </message>
     <message>
         <source>@{text}</source>
-        <translation type="unfinished"></translation>
+        <translation>@{szöveg}</translation>
     </message>
 </context>
 <context>
@@ -5680,98 +5784,102 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
     <message>
         <source>Diff</source>
-        <translation type="unfinished">Különbség</translation>
+        <translation>Különbség</translation>
     </message>
     <message>
         <source>Sweave files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sweave fájlok</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Szóismétlés keresése</translation>
     </message>
     <message>
         <source>New highlighting:</source>
-        <translation type="unfinished"></translation>
+        <translation>Új kiemelések</translation>
     </message>
     <message>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">BibTeX</translation>
+        <translation>BibTeX</translation>
     </message>
     <message>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Bináris</translation>
     </message>
     <message>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>QtScript</translation>
     </message>
     <message>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX</translation>
     </message>
     <message>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>(La)TeX makró</translation>
     </message>
     <message>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>XML</translation>
     </message>
     <message>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Egyszerű szöveg</translation>
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvjelzők</translation>
     </message>
     <message>
         <source>move up</source>
-        <translation type="unfinished"></translation>
+        <translation>felfelé mozgat</translation>
     </message>
     <message>
         <source>move down</source>
-        <translation type="unfinished"></translation>
+        <translation>lefelé mozgat</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation type="unfinished"></translation>
+        <translation>eltávolít</translation>
     </message>
     <message>
         <source>remove all</source>
-        <translation type="unfinished"></translation>
+        <translation>mindent eltávolít</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sor végéig töröl</translation>
     </message>
     <message>
         <source>Grammar errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvtani hibák</translation>
     </message>
     <message>
         <source>Word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Bad words</source>
-        <translation type="unfinished"></translation>
+        <translation>Rossz szavak</translation>
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvtani hiba</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyelvtani hiba %1</translation>
+    </message>
+    <message>
+        <source>Long range word repetition</source>
+        <translation>Távoli szóismétlés</translation>
     </message>
 </context>
 <context>
@@ -6097,23 +6205,23 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Hozzáadás</translation>
+        <translation>Hozzáadás</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Eltávolítás</translation>
+        <translation>Eltávolítás</translation>
     </message>
     <message>
         <source>Run script</source>
-        <translation type="unfinished"></translation>
+        <translation>Parancsfájl futtatása</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished">Fel</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished">Le</translation>
+        <translation>Le</translation>
     </message>
 </context>
 <context>
@@ -6195,23 +6303,23 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Hozzáadás</translation>
+        <translation>Hozzáadás</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Eltávolítás</translation>
+        <translation>Eltávolítás</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished">Fel</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished">Le</translation>
+        <translation>Le</translation>
     </message>
     <message>
         <source>User Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználói parancs</translation>
     </message>
 </context>
 <context>
