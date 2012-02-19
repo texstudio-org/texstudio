@@ -105,6 +105,7 @@ subject</font></b></td>
 <td>
 <ul>
 <li><a name="TOC20" href="#SEC20">\newcommand</a></li>
+<li><a name="TOC20b" href="#SEC20">\newcommand*</a></li>
 <li><a name="TOC21" href="#SEC21">\newenvironment</a></li>
 <li><a name="TOC22" href="#SEC22">\newtheorem</a></li>
 <li><a name="TOC23" href="#SEC23">\newfont</a></li>
@@ -707,6 +708,7 @@ commands</a></li>
 <ul>
 <li><a name="indexn" href="#SEC98">\name</a></li>
 <li><a href="#SEC20">\newcommand</a></li>
+<li><a href="#SEC20b">\newcommand*</a></li>
 <li><a href="#SEC8">\newcounter</a></li>
 <li><a href="#SEC21">\newenvironment</a></li>
 <li><a href="#SEC23">\newfont</a></li>
@@ -1070,6 +1072,7 @@ sectional unit, equation number, ... of the corresponding
 </table>
 <ul>
 <li><a href="#SEC20">\newcommand</a>: Define a new command.</li>
+<li><a href="#SEC20b">\newcommand*</a>: Define a new command.</li>
 <li><a href="#SEC21">\newenvironment</a>: Define a new
 environment.</li>
 <li><a href="#SEC22">\newtheorem</a>: Define a new theorem-like
@@ -1083,12 +1086,46 @@ environment.</li>
  \renewcommand{cmd}[args]{definition}
  \renewcommand{cmd}[args][default]{definition}
 </pre>
-<p>These commands define (or redefine) a command.</p>
+<p>These commands define (or redefine) a command. If the command does
+ not span multiple paragraphes, which is rarely the case, you should 
+ use <a href="#SEC20b">\newcommand*</a> instead.</p>
 <dl>
 <dt><code>cmd</code></dt>
 <dd>A command name beginning with a <code>\</code>. For
 <code>\newcommand</code> it must not be already defined and must
 not begin with <code>\end</code>; for <code>\renewcommand</code> it
+must already be defined.</dd>
+<dt><code>args</code></dt>
+<dd>An integer from 1 to 9 denoting the number of arguments of the
+command being defined. The default is for the command to have no
+arguments.</dd>
+<dt><code>def</code></dt>
+<dd>If this optional parameter is present, it means that the
+command's first argument is optional. The default value of the
+optional argument is <code>def</code>.</dd>
+<dt><code>definition</code></dt>
+<dd>The text to be substituted for every occurrence of
+<code>cmd</code>; a parameter of the form <code>#n</code> in
+<code>cmd</code> is replaced by the text of the nth argument when
+this substitution takes place.</dd>
+</dl>
+<h3><a name="SEC20b" href="#TOC20b">\newcommand*</a></h3>
+<pre>
+ \newcommand*{cmd}[args]{definition}
+ \newcommand*{cmd}[args][default]{definition}
+ \renewcommand*{cmd}[args]{definition}
+ \renewcommand*{cmd}[args][default]{definition}
+</pre>
+<p>These commands define (or redefine) a command. The starred version 
+cannot contain multiple paragraphs (i.e. blank line 
+or \par is not possible in the definition). If your definition does not
+ include these, the starred version should be preferred. Here LaTeX can 
+ provide better error indicators than for the non-starred command.</p>
+<dl>
+<dt><code>cmd</code></dt>
+<dd>A command name beginning with a <code>\</code>. For
+<code>\newcommand*</code> it must not be already defined and must
+not begin with <code>\end</code>; for <code>\renewcommand*</code> it
 must already be defined.</dd>
 <dt><code>args</code></dt>
 <dd>An integer from 1 to 9 denoting the number of arguments of the

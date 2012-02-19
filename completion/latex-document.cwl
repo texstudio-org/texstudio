@@ -449,6 +449,9 @@
 \newcommand{cmd}[args][default]{def}
 \newcommand{cmd}[args]{def}
 \newcommand{cmd}{def}
+\newcommand*{cmd}[args][default]{def}
+\newcommand*{cmd}[args]{def}
+\newcommand*{cmd}{def}
 \providecommand{cmd}[args][default]{def}#*
 \providecommand{cmd}[args]{def}#*
 \providecommand{cmd}{def}#*
@@ -458,6 +461,9 @@
 \renewcommand{cmd}[args][default]{def}
 \renewcommand{cmd}[args]{def}
 \renewcommand{cmd}{def}
+\renewcommand*{cmd}[args][default]{def}
+\renewcommand*{cmd}[args]{def}
+\renewcommand*{cmd}{def}
 \renewenvironment{nam}[args][default]{begdef}{enddef}
 \renewenvironment{nam}[args]{begdef}{enddef}
 \renewenvironment{nam}{begdef}{enddef}
