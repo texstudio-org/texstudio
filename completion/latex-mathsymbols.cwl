@@ -83,8 +83,6 @@
 \dot{a}#m
 \dot{x}#m
 \Downarrow#m
-\Downarrow#m
-\downarrow#m
 \downarrow#m
 \ell#m
 \emptyset#m
