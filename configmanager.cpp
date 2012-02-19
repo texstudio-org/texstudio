@@ -570,7 +570,7 @@ QSettings* ConfigManager::readSettings() {
 	}
 	
 	//completion
-	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texmakerx.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
+	QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "texstudio.cwl" << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
 	//completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
 	LatexParser &latexParser = LatexParser::getInstance();
 	foreach(const QString& cwlFile,cwlFiles){
