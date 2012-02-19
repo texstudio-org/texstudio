@@ -14,6 +14,16 @@ void txsInformation(const QString &message){
 void txsWarning(const QString &message){
 	QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
+void txsWarning(const QString &message, bool &noWarnAgain){
+	QMessageBox msgBox(QMessageBox::Warning, TEXSTUDIO, message, QMessageBox::Ok, QApplication::activeWindow());
+	QCheckBox cbNoWarnAgain(QCoreApplication::translate("Texmaker", "Do not warn again.", "General warning dialog"), &msgBox);
+	cbNoWarnAgain.setChecked(noWarnAgain);
+	cbNoWarnAgain.blockSignals(true); // quick hack to prevent closing the message box
+	msgBox.addButton(&cbNoWarnAgain, QMessageBox::ActionRole);
+	msgBox.exec();
+	noWarnAgain = cbNoWarnAgain.isChecked();
+}
+
 void txsCritical(const QString &message){
 	QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }

@@ -23,6 +23,7 @@ bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
 void txsInformation(const QString &message);
 void txsWarning(const QString& message);
+void txsWarning(const QString &message, bool &noWarnAgain);
 void txsCritical(const QString& message);
 
 void txs_assert(const char *assertion, const char *file, int line);
