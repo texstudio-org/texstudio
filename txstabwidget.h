@@ -18,4 +18,4 @@ public slots:
 
 };
 
-#endif // TMXTABWIDGET_H
+#endif // TXSTABWIDGET_H
