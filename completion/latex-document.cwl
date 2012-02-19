@@ -314,6 +314,7 @@
 \part[short]{title}
 \partname{name}
 \part{title}
+\pdfinfo{info}
 \plus
 \poptabs#T
 \pounds
