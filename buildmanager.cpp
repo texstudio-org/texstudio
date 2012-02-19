@@ -524,7 +524,7 @@ QString BuildManager::defaultCommandOptions(LatexCommand cmd){
 		case CMD_MAKEINDEX: return "%.idx";
 		case CMD_BIBTEX:
 		#ifdef Q_WS_WIN
-			return "%"; //miktex bibtex will stop (appears like crash in tmx) if .aux is attached
+			return "%"; //miktex bibtex will stop (appears like crash in txs) if .aux is attached
 		#else
 			return "%.aux";
 		#endif
@@ -1051,7 +1051,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	    if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo(serviceEXEPath).exists())
             serviceEXEPath = "\"" + serviceEXEPath + "\"";
 		//connecting failed; start the service if necessary
-		QProcess* p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if tmx is closed
+		QProcess* p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if txs is closed
 		p->start(serviceEXEPath);
 		if (p->waitForStarted(5000)) {
 			connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater())); //will free proc after the process has ended
