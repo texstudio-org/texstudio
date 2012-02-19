@@ -191,7 +191,6 @@
         <file>completion/latex-document.cwl</file>
         <file>completion/latex-l2tabu.cwl</file>
         <file>completion/latex-mathsymbols.cwl</file>
-        <file>completion/latex-pdfinfo.cwl</file>
         <file>completion/layout.cwl</file>
         <file>completion/listings.cwl</file>
         <file>completion/logsys.cwl</file>
