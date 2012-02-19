@@ -1145,29 +1145,34 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 </p>
 <h2><a name="CWLDESCRIPTION">4.12 Description of the cwl format</a></h2>
 <p>
-Basically a cwl file is a list of valid commands which contains one command per line.
-If no further information is given, the command is considered valid at any position in a latex document.
-The following characters have special meanings:
+cwl files are used by the completer to propose possible commands and by the syntax checker to check if a command you wrote actually exists. Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
+<p><code>&lt;command&gt;[#classification]</code><br></p>
+<p>If no classification is given, the command is considered valid at any position in a latex document. New lines may be included in a command by <code>%n</code>. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:
 <ul>
   <li># (at start of line):comment</li>
   <li># (later):separator for command classifications</li>
 </ul>
-Follwing classifications are known to TXS:
-<ul>
-  <li>*: unusual command which is used for completion only in with the "all" tab</li>
-  <li>m:valid only in math environment</li>
-  <li>t:valid only in tabular environment (or similar)</li>
-  <li>T:valid only in tabbing environment</li>
-  <li>n:valid only in text environment (i.e. not math env)</li>
-  <li>/env1,env2,...:valid only in environment env1 or env2 etc.</li>
-  <li>\env:environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</li>
-</ul>
-
-Simple example:<br>
-# test   <- comment<br>
-\typein{msg}#* <- unusual command which is only shown in completion "all"<br>
-\sqrt{arg}#m   <- only in math mode valid<br>
-\vector(xslope,yslope){length}#*/picture  <- unusual command which is only in the picture environment valid<br>
-\begin{align}#\math   <- declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!<br>
+</p>
+<p>The follwing classifications are known to TXS:
+<table>
+<tr><th>Classifier</th><th>Meaning</th></tr>
+  <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker can be combined with the other classifications.</td></tr>
+  <tr><td>m</td><td>valid only in math environment</td></tr>
+  <tr><td>t</td><td>valid only in tabular environment (or similar)</td></tr>
+  <tr><td>T</td><td>valid only in tabbing environment</td></tr>
+  <tr><td>n</td><td>valid only in text environment (i.e. not math env)</td></tr>
+  <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
+  <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
+</table>
+</p>
+<p>Examples:<br>
+<table>
+	<tr><th>Line</th><th>Explanation</th></tr>
+	<tr><td># test</td><td>comment</td></tr>
+	<tr><td>\typein{msg}#*</td><td>unusual command which is only shown in completion "all"</td></tr>
+	<tr><td>\sqrt{arg}#m</td><td>only in math mode valid</td></tr>
+	<tr><td>\vector(xslope,yslope){length}#*/picture</td><td>unusual command which is only in the picture environment valid</td></tr>
+	<tr><td>\begin{align}#\math</td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
+</table>
 </p>
 </body></html>
