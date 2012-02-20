@@ -729,8 +729,9 @@ static QString escapeCpp(const QString& s)
 				es += '\n';
 			else if ( c == 'r' )
 				es += '\r';
-			else if ( c == '0' )
-				es += '\0';
+			//else if ( c == '0' )
+			//	es += '\0';
+			else es += '\\', es += c;
 
 		} else {
 			es += s.at(i);

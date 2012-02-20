@@ -229,7 +229,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	//hboxLayout1->addWidget(cbReplaceAll);
 
 	cbEscapeSeq = new QCheckBox(frame);
-	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\, \\0 = ascii 0 "));
+	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\"));
 	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
 
