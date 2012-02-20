@@ -624,19 +624,23 @@ bool QDocumentSearch::end(bool backward,QDocumentLine l) const
 
 	\note The search will start at the first character left/right from the selected text
 */
-int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround)
+int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAround, const QDocumentCursor* overrideScope)
 {
 	if ( m_string.isEmpty() )
 		return 0;
+
+	if ( overrideScope && !overrideScope->isValid() ) overrideScope = 0;
+	
+	const QDocumentCursor& scope = overrideScope ? *overrideScope : m_scope;
 	
 	if ( m_cursor.isNull() )
 	{
-		if ( m_scope.isValid() && m_scope.hasSelection() )
+		if ( scope.isValid() && scope.hasSelection() )
 		{
 			if ( backward )
-				m_cursor = m_scope.selectionEnd();
+				m_cursor = scope.selectionEnd();
 			else
-				m_cursor = m_scope.selectionStart();
+				m_cursor = scope.selectionStart();
 		} else if ( m_editor ) {
 			
 			m_cursor = QDocumentCursor(m_editor->document());
@@ -671,11 +675,11 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 
 	//ensure that the current selection isn't searched
 	if ( m_cursor.hasSelection() ) {
-		if (m_cursor.selectionStart() == m_scope.selectionStart() &&
-			m_cursor.selectionEnd() == m_scope.selectionEnd()) {
+		if (m_cursor.selectionStart() == scope.selectionStart() &&
+			m_cursor.selectionEnd() == scope.selectionEnd()) {
 			//search whole scope
-			if (backward) m_cursor=m_scope.selectionEnd();
-			else m_cursor=m_scope.selectionStart();
+			if (backward) m_cursor=scope.selectionEnd();
+			else m_cursor=scope.selectionStart();
 		} else {
 			if (backward ^ all) //let all search in the selection
 				m_cursor=m_cursor.selectionStart();
@@ -685,19 +689,19 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	}
 	
 	QDocumentSelection boundaries;
-	bool bounded = m_scope.isValid() && m_scope.hasSelection();
+	bool bounded = scope.isValid() && scope.hasSelection();
 	
 	// condition only to avoid debug messages...
 	if ( bounded ) {
-		boundaries = m_scope.selection();
+		boundaries = scope.selection();
 	
 		//moves the cursor in the search scope if it isn't there, but directly in front of the selection (only possible if there actually is a selection)
 		if ( end(backward) ) {
-			if ( !backward && m_cursor < m_scope.selectionStart() ) {
-				m_cursor = m_scope.selectionStart();
+			if ( !backward && m_cursor < scope.selectionStart() ) {
+				m_cursor = scope.selectionStart();
 			} else {
-				if ( backward && m_cursor > m_scope.selectionEnd() )
-					m_cursor = m_scope.selectionEnd();
+				if ( backward && m_cursor > scope.selectionEnd() )
+					m_cursor = scope.selectionEnd();
 			}
 		}
 	}
@@ -892,20 +896,16 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 							);
 			if ( ret == QMessageBox::Yes )
 			{
-				QDocumentCursor oldScope(m_scope, true);
 				QDocumentCursor newScope(backward?firstMatch.selectionEnd():firstMatch.selectionStart());
 				if ( !backward ) newScope.movePosition(0,QDocumentCursor::Start,QDocumentCursor::KeepAnchor);
 				else newScope.movePosition(0,QDocumentCursor::End,QDocumentCursor::KeepAnchor);
-				if (m_scope.isValid() && m_scope.hasSelection()) m_scope = m_scope.intersect(newScope);
-				else m_scope = newScope;
+				if (scope.isValid() && scope.hasSelection()) newScope = scope.intersect(newScope);			
 				m_cursor = QDocumentCursor();
 
 				int result = foundCount;
-				if (m_scope.isValid() && m_scope.hasSelection() )
-					result += next(backward, all, again, false);
+				if (newScope.isValid() && newScope.hasSelection() )
+					result += next(backward, all, again, false, &newScope);
 
-				m_scope = oldScope;
-				m_scope.setAutoUpdated(true);
 				return result;
 			}
 		} else if ( !hasOption(Silent) )
