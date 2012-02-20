@@ -89,8 +89,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void replaceCursorText(QRegExp& m_regexp, bool backward);
 		QList<QPair<QDocumentSelection, QDocumentSelection> > m_newReplacementOverlays;
 		void updateReplacementOverlays();
-		bool end(bool backward) const;
-		bool end(bool backward,QDocumentLine l) const;
 		
 		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true, bool clearSubScope=true);

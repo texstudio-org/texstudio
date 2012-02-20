@@ -563,59 +563,6 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 }
 
 /*!
-	\brief Test whether the end of the search scope has been reached
-*/
-bool QDocumentSearch::end(bool backward) const
-{
-	bool absEnd = backward ? m_cursor.atStart() : m_cursor.atEnd();
-	
-	if ( m_scope.isValid() && m_scope.hasSelection() )
-	{
-		absEnd |= !m_scope.isWithinSelection(m_cursor);
-		/*
-		qDebug(
-				"(%i, %i, %i) %s in {(%i, %i), (%i, %i)}",
-				m_cursor.lineNumber(),
-				m_cursor.anchorColumnNumber(),
-				m_cursor.columnNumber(),
-				absEnd ? "is not" : "is",
-				m_scope.selectionStart().lineNumber(),
-				m_scope.selectionStart().columnNumber(),
-				m_scope.selectionEnd().lineNumber(),
-				m_scope.selectionEnd().columnNumber()
-			);
-		*/
-	}
-	
-	return absEnd;
-}
-
-bool QDocumentSearch::end(bool backward,QDocumentLine l) const
-{
-	bool absEnd = backward ? l.lineNumber()==1 : l.lineNumber()==l.document()->lineCount();
-
-	if ( m_scope.isValid() && m_scope.hasSelection() )
-	{
-		absEnd |= !m_scope.isWithinSelection(m_cursor);
-		/*
-		qDebug(
-				"(%i, %i, %i) %s in {(%i, %i), (%i, %i)}",
-				m_cursor.lineNumber(),
-				m_cursor.anchorColumnNumber(),
-				m_cursor.columnNumber(),
-				absEnd ? "is not" : "is",
-				m_scope.selectionStart().lineNumber(),
-				m_scope.selectionStart().columnNumber(),
-				m_scope.selectionEnd().lineNumber(),
-				m_scope.selectionEnd().columnNumber()
-			);
-		*/
-	}
-
-	return absEnd;
-}
-
-/*!
 	\brief Perform a search
 	\param backward whether to go backward or forward
 	\param all if true, the whole document will be searched first, all matches recorded and available for further navigation
@@ -696,7 +643,9 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		boundaries = scope.selection();
 	
 		//moves the cursor in the search scope if it isn't there, but directly in front of the selection (only possible if there actually is a selection)
-		if ( end(backward) ) {
+		if (   ( backward ? m_cursor.atStart() : m_cursor.atEnd() )                              //absEnd
+		    || ( scope.isValid() && scope.hasSelection() && !scope.isWithinSelection(m_cursor) )
+		   ) {
 			if ( !backward && m_cursor < scope.selectionStart() ) {
 				m_cursor = scope.selectionStart();
 			} else {
@@ -731,7 +680,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	
 	m_cursor.setColumnMemory(false);
 	QDocumentCursor lastSelection;
-	while ( !end(backward) )
+	while ( !( 
+	             ( backward ? m_cursor.atStart() : m_cursor.atEnd() )                              //absEnd
+	          || ( scope.isValid() && scope.hasSelection() && !scope.isWithinSelection(m_cursor) )
+	      ) )
 	{
 		if ( backward && !m_cursor.columnNumber() )
 		{
