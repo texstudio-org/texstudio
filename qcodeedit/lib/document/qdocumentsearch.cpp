@@ -663,6 +663,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	if (hasOption(Replace) && again && !all) 
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
 			replaceCursorText(m_regexp,backward);
+			updateReplacementOverlays();
 			replaceCount++;
 			//foundCount++; we can't set this here, because it has to search the next match
 			//and if (foundCount) is true, it thinks already found something and doesn't restart from scope
@@ -721,7 +722,11 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	
 	int foundCount = 0;
 
+	if (m_editor && all && !hasOption(Prompt)) 
+		m_editor->document()->beginDelayedUpdateBlock();
+	
 	m_cursor.setColumnMemory(false);
+	QDocumentCursor lastSelection;
 	while ( !end(backward) )
 	{
 		if ( backward && !m_cursor.columnNumber() )
@@ -780,8 +785,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				}
 				
 				if ( m_editor && !hasOption(Silent)) {
-					m_editor->setCursor(m_cursor);
-					m_editor->ensureCursorVisibleSurrounding();
+					if (!all || hasOption(Prompt)) {
+						m_editor->setCursor(m_cursor);
+						m_editor->ensureCursorVisibleSurrounding();
+					} else lastSelection = m_cursor;
 				}
 				
 				foundCount++;
@@ -812,6 +819,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 					
 					if ( rep ) {
 						replaceCursorText(m_regexp,backward);
+						if (!all) updateReplacementOverlays();
 						replaceCount++;
 					}
 				} 
@@ -831,6 +839,17 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				m_cursor.setLineNumber(ln+1);
 				m_cursor.setColumnNumber(0);
 			}*/
+	}
+	if ( all && replaceCount )
+		updateReplacementOverlays();
+	if ( m_editor && all ) {
+		if (!hasOption(Prompt)) {
+			m_editor->document()->endDelayedUpdateBlock();
+			if (!hasOption(Silent)){
+				m_editor->setCursor(lastSelection);
+				m_editor->ensureCursorVisibleSurrounding();
+			}
+		}
 	}
 		
 	if ( !foundCount && allowWrapAround)
@@ -937,53 +956,34 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 			replacement.replace(QString("\\") + QString::number(i),
 								m_regexp.cap(i));
 
-	//highlight replacement, save old overlays
-	//old overlays
-	QDocument* d = m_cursor.document();
-	int rid = 0;
-	int shift = 0;
-	QList<QFormatRange> oldOverlaysBefore, oldOverlaysAfter;
-	if (hasOption(HighlightReplacements)) {
-		QFormatScheme *f = d ? d->formatScheme() : QDocument::formatFactory();
-		rid = f ? f->id("replacement") : 0;
-		if (rid) {
-			QDocumentSelection boundaries = m_cursor.selection();
-			shift = -boundaries.end;
-			QDocumentLine startLine = d->line(boundaries.startLine);
-			QDocumentLine endLine = d->line(boundaries.endLine);
-			oldOverlaysBefore = startLine.getOverlays(rid);
-			for (int i=oldOverlaysBefore.size()-1;i>=0;i--)
-				if (oldOverlaysBefore[i].offset + oldOverlaysBefore[i].length > boundaries.start)
-					oldOverlaysBefore.removeAt(i);
-			oldOverlaysAfter = endLine.getOverlays(rid);
-			for (int i=oldOverlaysAfter.size()-1;i>=0;i--)
-				if (oldOverlaysAfter[i].offset < boundaries.end)
-					oldOverlaysAfter.removeAt(i);
-			startLine.clearOverlays(rid);
-			endLine.clearOverlays(rid);
-		}
-	}
-	/*m_replaced=2;
-	int n=replacement.lastIndexOf("\n");
-	QString replacement_lastLine=replacement.mid(n+1);
-	m_replaceDeltaLength=replacement_lastLine.length()-m_cursor.selectedText().length();
-	m_replaceDeltaLines=replacement.count("\n");*/
+	QDocumentSelection old_boundaries = m_cursor.selection();
 	m_cursor.replaceSelectedText(replacement);
+	m_newReplacementOverlays << QPair<QDocumentSelection,QDocumentSelection>(old_boundaries, m_cursor.selection());
 
-	//highlight replacement
-	if (rid) {
-		//restore old
-		QDocumentSelection boundaries = m_cursor.selection();
-		shift += boundaries.end;
+	m_lastReplacedPosition = m_cursor;
+	
+	//make sure that the cursor if  the correct side of the selection is used
+	//(otherwise the cursor could be moved out of the searched scope by a long 
+	//replacement text)
+	if (m_cursor.hasSelection()) {
+		if (backward) m_cursor=m_cursor.selectionStart();
+		else m_cursor=m_cursor.selectionEnd();
+	}
+}
 
+void QDocumentSearch::updateReplacementOverlays(){
+	if (m_newReplacementOverlays.isEmpty()) return;
+	QDocument* d = m_cursor.document();
+	QFormatScheme *f = d ? d->formatScheme() : QDocument::formatFactory();
+	int rid = f ? f->id("replacement") : 0;
+	if (!d || !hasOption(HighlightReplacements) || !rid)  { 
+		m_newReplacementOverlays.clear();
+		return;
+	}
+	for (int i=0;i<m_newReplacementOverlays.size();i++) {
+		const QDocumentSelection& boundaries = m_newReplacementOverlays[i].second;
 		QDocumentLine startLine = d->line(boundaries.startLine);
 		QDocumentLine endLine = d->line(boundaries.endLine);
-		foreach (const QFormatRange& frb, oldOverlaysBefore)
-			startLine.addOverlay(frb);
-		foreach (const QFormatRange& fra, oldOverlaysAfter)
-			endLine.addOverlay(QFormatRange(fra.offset+shift,fra.length,fra.format));
-
-		//add new overlay
 		m_highlightedReplacements.insert(startLine.handle());
 		if (boundaries.startLine == boundaries.endLine)  //single line replacement
 			startLine.addOverlay(QFormatRange(boundaries.start, boundaries.end - boundaries.start, rid));
@@ -999,16 +999,49 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 			}
 		}
 	}
-
-	m_lastReplacedPosition = m_cursor;
-	
-	//make sure that the cursor if  the correct side of the selection is used
-	//(otherwise the cursor could be moved out of the searched scope by a long 
-	//replacement text)
-	if (m_cursor.hasSelection()) {
-		if (backward) m_cursor=m_cursor.selectionStart();
-		else m_cursor=m_cursor.selectionEnd();
+	/*
+	//highlight replacement, save old overlays
+	//old overlays
+	QList<QFormatRange> oldOverlays;
+	int firstLine = m_newReplacementOverlays.first().first.startLine;
+	int endLine = qMin(m_newReplacementOverlays.last().first.endLine, d->lineCount()-1);
+	for (int l = firstLine; l<=endLine; l++) {
+		
 	}
+
+	QDocumentSelection boundaries = m_cursor.selection();
+			shift = -boundaries.end;
+	
+	QDocumentLine startLine = d->line(boundaries.startLine);
+	QDocumentLine endLine = d->line(boundaries.endLine);
+			oldOverlaysBefore = startLine.getOverlays(rid);
+			for (int i=oldOverlaysBefore.size()-1;i>=0;i--)
+				if (oldOverlaysBefore[i].offset + oldOverlaysBefore[i].length > boundaries.start)
+					oldOverlaysBefore.removeAt(i);
+			oldOverlaysAfter = endLine.getOverlays(rid);
+			for (int i=oldOverlaysAfter.size()-1;i>=0;i--)
+				if (oldOverlaysAfter[i].offset < boundaries.end)
+					oldOverlaysAfter.removeAt(i);
+			startLine.clearOverlays(rid);
+			endLine.clearOverlays(rid);
+		}
+	}
+
+	//highlight replacement
+	if (rid) {
+		//restore old
+		QDocumentSelection boundaries = m_cursor.selection();
+		shift += boundaries.end;
+
+		QDocumentLine startLine = d->line(boundaries.startLine);
+		QDocumentLine endLine = d->line(boundaries.endLine);
+		foreach (const QFormatRange& frb, oldOverlaysBefore)
+			startLine.addOverlay(frb);
+		foreach (const QFormatRange& fra, oldOverlaysAfter)
+			endLine.addOverlay(QFormatRange(fra.offset+shift,fra.length,fra.format));
+
+		//add new overlay
+	}*/
 }
 
 void QDocumentSearch::documentContentChanged(int line, int n){

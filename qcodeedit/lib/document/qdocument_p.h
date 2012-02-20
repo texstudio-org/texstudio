@@ -96,6 +96,9 @@ class QCE_EXPORT QDocumentPrivate
 		void endChangeBlock();
 		bool hasChangeBlocks();
 		
+		void beginDelayedUpdateBlock();
+		void endDelayedUpdateBlock();
+		
 		inline int maxMarksPerLine() const
 		{ return m_maxMarksPerLine; }
 		
@@ -207,6 +210,8 @@ class QCE_EXPORT QDocumentPrivate
 		
 		bool m_deleting;
 		QStack<QDocumentCommandBlock*> m_macros;
+		QList<QPair<int, int> > m_delayedUpdates;
+		int m_delayedUpdateBlocks;
 		
 		QMap<int, int> m_hidden;
 		QMap<int, int> m_wrapped;

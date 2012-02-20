@@ -87,6 +87,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void connectToEditor();
 
 		void replaceCursorText(QRegExp& m_regexp, bool backward);
+		QList<QPair<QDocumentSelection, QDocumentSelection> > m_newReplacementOverlays;
+		void updateReplacementOverlays();
 		bool end(bool backward) const;
 		bool end(bool backward,QDocumentLine l) const;
 		
