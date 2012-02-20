@@ -90,7 +90,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QList<QPair<QDocumentSelection, QDocumentSelection> > m_newReplacementOverlays;
 		void updateReplacementOverlays();
 		
-		bool nextMatch(bool backward, bool again=false,  bool allowWrapAround=true);
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true, bool clearSubScope=true);
 		void clearMatches();
 		void clearReplacements();
