@@ -263,9 +263,14 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentConstIterator iterator(int ln) const;
 		QDocumentConstIterator iterator(const QDocumentLine& l) const;
 		
-		void beginMacro();
-		void endMacro();
-		bool hasMacros();
+		Q_INVOKABLE void beginMacro();
+		Q_INVOKABLE void endMacro();
+		Q_INVOKABLE bool hasMacros();
+		
+		//Defer contentChange-signals until the last call of endDelayedUpdateBlock() and then emit all of them.
+		//ATTENTION: This only works if the commands don't change the document line count or all changes occur top-to-bottom. 
+		Q_INVOKABLE void beginDelayedUpdateBlock();
+		Q_INVOKABLE void endDelayedUpdateBlock();
 		
 		QFormatScheme* formatScheme() const;
 		void setFormatScheme(QFormatScheme *f);

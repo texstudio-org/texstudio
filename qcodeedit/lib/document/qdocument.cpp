@@ -1663,6 +1663,18 @@ void QDocument::endMacro()
 
 }
 
+
+void QDocument::beginDelayedUpdateBlock(){
+	if ( m_impl )
+		m_impl->beginDelayedUpdateBlock();
+}
+
+void QDocument::endDelayedUpdateBlock(){
+	if ( m_impl )
+		m_impl->endDelayedUpdateBlock();
+}
+
+
 /*!
 	\brief Is a macro active
 */
@@ -3756,7 +3768,8 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
 //	QDocumentCursorHandle
 /////////////////////////
 QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
- :	m_flags(ColumnMemory), m_doc(d),
+ :	m_flags(0), //no columnmemory, can be slow and is usually not needed
+	m_doc(d),
 	#if QT_VERSION >= 0x040400
 	m_ref(0),
 	#endif
@@ -3771,7 +3784,8 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
 }
 
 QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column, int lineTo, int columnTo)
-:	m_flags(ColumnMemory), m_doc(d),
+:	m_flags(0),  //no columnmemory, can be slow and is usually not needed
+	m_doc(d),
 	#if QT_VERSION >= 0x040400
 	m_ref(0),
 	#endif
@@ -5728,6 +5742,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
  : 	m_doc(d),
 	m_editCursor(0),
 	m_deleting(false),
+	m_delayedUpdateBlocks(0),
 	m_lastGroupId(-1),
 	m_constrained(false),
 	m_hardLineWrap(false),
@@ -7040,6 +7055,22 @@ void QDocumentPrivate::endChangeBlock()
 bool QDocumentPrivate::hasChangeBlocks(){
 	return m_macros.count()!=0;
 }
+
+void QDocumentPrivate::beginDelayedUpdateBlock(){
+	m_delayedUpdateBlocks++;
+}
+
+void QDocumentPrivate::endDelayedUpdateBlock(){
+	m_delayedUpdateBlocks--;
+	if (m_delayedUpdateBlocks <= 0){
+		QList<QPair<int,int> > c = m_delayedUpdates; //make a copy, emitContentsChange can call everything
+		m_delayedUpdates.clear();
+		for (int i=0;i<c.size();i++)
+			emitContentsChange(c[i].first,c[i].second);
+	}
+}
+
+
 /*!
 	\brief Acquire group id
 */
@@ -7572,6 +7603,16 @@ void QDocumentPrivate::emitFormatsChange(int line, int lines)
 
 void QDocumentPrivate::emitContentsChange(int line, int lines)
 {
+	if (m_delayedUpdateBlocks > 0){
+		if (m_delayedUpdates.isEmpty()
+		    || m_delayedUpdates.last().first + m_delayedUpdates.last().second < line)
+			m_delayedUpdates << QPair<int,int>(line,lines); //after
+		else if (m_delayedUpdates.last().first <= line) //intersect
+			m_delayedUpdates.last().second = qMax(m_delayedUpdates.last().second, line + lines - m_delayedUpdates.last().first);
+		else
+			m_delayedUpdates << QPair<int,int>(line,lines); //shouldn't happen (but can easily happen if the api is misused)
+		return;
+	}
 	//for ( int i = line; i < (line + lines); i++ )
 	//	m_lines.at(i)->cache();
 
