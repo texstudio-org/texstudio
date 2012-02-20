@@ -55,6 +55,7 @@
 \bullet#m
 \cap#m
 \cdot#m
+\cdots#m
 \check{a}#m
 \chi#m
 \circ#m
@@ -71,10 +72,12 @@
 \dashv#m
 \ddagger#m
 \ddot{a}#m
+\ddots#m
 \deg#m
 \Delta#m
 \delta#m
 \det#m
+\dfrac{num}{den}#m
 \diamond#m
 \diamondsuit#m
 \dim#m
@@ -93,6 +96,7 @@
 \exp#m
 \flat#m
 \forall#m
+\frac{num}{den}#m
 \frown#m
 \Gamma#m
 \gamma#m
@@ -115,6 +119,8 @@
 \inf#m
 \infty#m
 \int#m
+\int_{min}^{max}#m
+\int\limits_{min}^{max}#m*
 \iota#m
 \jmath#m
 \kappa#m
@@ -137,8 +143,10 @@
 \lg#m
 \lgroup#m
 \lim#m
+\lim\limits_{min}#m
 \liminf#m
 \limsup#m
+\limits#m
 \ll#m
 \lmoustache#m
 \ln#m
@@ -160,6 +168,7 @@
 \nabla#m
 \natural#m
 \nearrow#m
+\ne#m
 \neg#m
 \neq#m
 \ni#m
@@ -175,6 +184,8 @@
 \oplus#m
 \oslash#m
 \otimes#m
+\overbrace{text}#m
+\overline{text}#m
 \parallel#m
 \partial#m
 \perp#m
@@ -188,6 +199,7 @@
 \preceq#m
 \prime#m
 \prod#m
+\prod\limits_{min}^{max}#m
 \propto#m
 \Psi#m
 \psi#m
@@ -242,6 +254,7 @@
 \triangle#m
 \triangleleft#m
 \triangleright#m
+\underbrace{text}#m
 \Uparrow#m
 \uparrow#m
 \Updownarrow#m
