@@ -5881,6 +5881,11 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <source>Long range word repetition</source>
         <translation>Távoli szóismétlés</translation>
     </message>
+    <message>
+        <source>Do not warn again.</source>
+        <comment>General warning dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
