@@ -77,7 +77,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QDocumentCursor scope() const;
 		void setScope(const QDocumentCursor& c);
 		
-		int next(bool backward, bool all = false, bool again=false,  bool allowWrapAround=true);
+		int next(bool backward, bool all = false, bool again=false,  bool allowWrapAround=true, const QDocumentCursor* overrideScope = 0);
 
 		void highlightSelection(const QDocumentCursor& subHighlightScope=QDocumentCursor());
 
