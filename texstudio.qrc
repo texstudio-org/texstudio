@@ -238,7 +238,6 @@
         <file>completion/svn-multi.cwl</file>
         <file>completion/tabularx.cwl</file>
         <file>completion/tex.cwl</file>
-        <file>completion/texstudio.cwl</file>
         <file>completion/textcomp.cwl</file>
         <file>completion/tikz.cwl</file>
         <file>completion/tocbibind.cwl</file>
