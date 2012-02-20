@@ -264,7 +264,7 @@ Texmaker::~Texmaker(){
 	}
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
-	grammarCheckThread.wait();
+	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
 }
 
 QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
