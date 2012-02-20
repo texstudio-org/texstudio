@@ -382,7 +382,7 @@ QString BuildManager::guessCommandName(LatexCommand cmd) {
 #ifdef Q_WS_WIN
 	switch (cmd) {
 	case CMD_VIEWDVI: {
-		const QString yapOptions = " -1 -s @?c:ame \"?am.dvi\"";
+		const QString yapOptions = " -1 -s @?\"c:ame \"?am.dvi\"";
 		QString def=W32_FileAssociation(".dvi");
 		if (!def.isEmpty()) {
 			if (def.contains("yap.exe")) {
