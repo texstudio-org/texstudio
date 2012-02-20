@@ -1182,6 +1182,64 @@ Which one of the three wise will always tell the truth?</source>
         <source>Language checking</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Long range repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min length of words with long repetition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Words repeated within a paragraph will be highlighted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only words with have this length are checked for long range repetitions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Certain informal or weak words will be highlighted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Url to connect to LanguageTool. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path containing the LanguageTool java archive.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java executable, used to start LanguageTool, if it is not running.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The shortcut you entered is a standard character key.
+You will not be able to type this character. Do you wish
+to set the key anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1835,6 +1893,14 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <source>Bad word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word repetition. Distance %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long range word repetition. Distance %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4182,7 +4248,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Unknown word:</source>
-        <translation>Невідоме слово:</translation>
+        <translation type="obsolete">Невідоме слово:</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -4190,7 +4256,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Замінити на:</translation>
+        <translation type="obsolete">Замінити на:</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -4202,7 +4268,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Suggested words :</source>
-        <translation>Запропоновані слова:</translation>
+        <translation type="obsolete">Запропоновані слова:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -4210,7 +4276,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Add/Remove</source>
-        <translation>Додати/Вилучити</translation>
+        <translation type="obsolete">Додати/Вилучити</translation>
     </message>
     <message>
         <source>Show Ignore List</source>
@@ -4218,6 +4284,43 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Hide Ignore List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace with</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggested words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Видалити</translation>
+    </message>
+    <message>
+        <source>Hide ignore list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dummyStatusBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;new&gt;</source>
+        <comment>Placeholder for new added word in ignore list</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5712,6 +5815,15 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <source>Grammer mistake special %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long range word repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not warn again.</source>
+        <comment>General warning dialog</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

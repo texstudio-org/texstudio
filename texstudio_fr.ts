@@ -1206,6 +1206,64 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <source>Language checking</source>
         <translation>Vérification de la langue</translation>
     </message>
+    <message>
+        <source>Long range repetitions:</source>
+        <translation>Longue plage de répétitions :</translation>
+    </message>
+    <message>
+        <source>Min length of words with long repetition:</source>
+        <translation>Longueur minimum des mots en cas de longue répétition</translation>
+    </message>
+    <message>
+        <source>Words repeated within a paragraph will be highlighted.</source>
+        <translation>Les mots répétés au sein d&apos;un même paragraphe vont être surlignés.</translation>
+    </message>
+    <message>
+        <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
+        <translation>Les mots identiques sont considérés comme répétés s&apos;il n&apos;y a pas plus que ce nombre de mots entre eux.</translation>
+    </message>
+    <message>
+        <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
+        <translation>Les mots identiques plus longs sont considérés comme répétés sur de longues plages s&apos;il n&apos;y a pas plus que ce nombre de mots entre eux.</translation>
+    </message>
+    <message>
+        <source>Only words with have this length are checked for long range repetitions.</source>
+        <translation>Seuls les mots de cette longueur sont vérifiés pour les longues plages de répétition.</translation>
+    </message>
+    <message>
+        <source>Certain informal or weak words will be highlighted.</source>
+        <translation>Certain mots informels seront surlignés.</translation>
+    </message>
+    <message>
+        <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
+        <translation>Répertoire contenant les listes de mots « mauvais » ou pouvant être répétés.</translation>
+    </message>
+    <message>
+        <source>Url to connect to LanguageTool. </source>
+        <translation>URL de connexion à LanguageTool. </translation>
+    </message>
+    <message>
+        <source>Path containing the LanguageTool java archive.</source>
+        <translation>Chemin de l&apos;archive java de LanguageTool.</translation>
+    </message>
+    <message>
+        <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
+        <translation>Liste de règles LanguageTool (séparées par des virgules) qui ne seront pas considérées comme des erreurs.</translation>
+    </message>
+    <message>
+        <source>Java executable, used to start LanguageTool, if it is not running.</source>
+        <translation>Exécutable java, utilisé pour démarrer LanguageTool s&apos;il n&apos;est pas lancé.</translation>
+    </message>
+    <message>
+        <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
+        <translation>Liste de règles LanguageTool (séparées par des virgules) qui seront surlignées dans un format spécial.</translation>
+    </message>
+    <message>
+        <source>The shortcut you entered is a standard character key.
+You will not be able to type this character. Do you wish
+to set the key anyway?</source>
+        <translation>Le raccourci que vous avez saisi est une touche de caractère standard. Voulez-vous néanmoins l&apos;utiliser ?</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1861,6 +1919,14 @@ Continuer tout de même ?</translation>
     <message>
         <source>Bad word</source>
         <translation>Mot incorrect</translation>
+    </message>
+    <message>
+        <source>Word repetition. Distance %1</source>
+        <translation>Répétition de mot. Distance %1</translation>
+    </message>
+    <message>
+        <source>Long range word repetition. Distance %1</source>
+        <translation>Longue plage de répétition de mot. Distance %1</translation>
     </message>
 </context>
 <context>
@@ -4217,7 +4283,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Unknown word:</source>
-        <translation>Mot inconnu :</translation>
+        <translation type="obsolete">Mot inconnu :</translation>
     </message>
     <message>
         <source>Replace</source>
@@ -4225,7 +4291,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Remplacer par :</translation>
+        <translation type="obsolete">Remplacer par :</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -4237,7 +4303,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Suggested words :</source>
-        <translation>Mots suggérés :</translation>
+        <translation type="obsolete">Mots suggérés :</translation>
     </message>
     <message>
         <source>Close</source>
@@ -4245,7 +4311,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Add/Remove</source>
-        <translation>Ajouter/Enlever</translation>
+        <translation type="obsolete">Ajouter/Enlever</translation>
     </message>
     <message>
         <source>Check spelling selection...</source>
@@ -4266,6 +4332,43 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     <message>
         <source>Hide Ignore List</source>
         <translation>Cacher la liste des mots ignorés</translation>
+    </message>
+    <message>
+        <source>Unknown word</source>
+        <translation>Mot inconnu</translation>
+    </message>
+    <message>
+        <source>Replace with</source>
+        <translation>Remplacer par</translation>
+    </message>
+    <message>
+        <source>Suggested words</source>
+        <translation>Mots suggérés</translation>
+    </message>
+    <message>
+        <source>Ignored words</source>
+        <translation>Mots ignorés</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Ajouter</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <source>Hide ignore list</source>
+        <translation>Masquer la liste des mots ignorés</translation>
+    </message>
+    <message>
+        <source>dummyStatusBar</source>
+        <translation>BarreDEtatfactice</translation>
+    </message>
+    <message>
+        <source>&lt;new&gt;</source>
+        <comment>Placeholder for new added word in ignore list</comment>
+        <translation>Paramètre fictif pour les nouveaux mots ajoutés à la liste des mots ignorés</translation>
     </message>
 </context>
 <context>
@@ -5778,6 +5881,15 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <source>Grammer mistake special %1</source>
         <translation>Erreur grammaticale spéciale %1</translation>
+    </message>
+    <message>
+        <source>Long range word repetition</source>
+        <translation>Longue plage de répétition de mot</translation>
+    </message>
+    <message>
+        <source>Do not warn again.</source>
+        <comment>General warning dialog</comment>
+        <translation>Ne plus avertir.</translation>
     </message>
 </context>
 <context>
