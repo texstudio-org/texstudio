@@ -66,125 +66,6 @@ QDocumentSearch::Options QDocumentSearch::options() const
 
 
 //equal to next but needs matches
-bool QDocumentSearch::nextMatch(bool backward, bool again,  bool allowWrapAround){
-	Q_UNUSED(backward);Q_UNUSED(again);Q_UNUSED(allowWrapAround);
-#if 0
-	if (!hasOption(HighlightAll))
-		return false;
-	if (!indexedMatchCount()) searchMatches();
-	if (!indexedMatchCount()) {
-		m_cursor = QDocumentCursor();
-		return false;
-	}
-	if (m_cursor.isNull()){
-		m_cursor = QDocumentCursor();
-		return false; //need a starting point, m_cursor should have been set by next
-	}
-	//search the correct index	
-	if (m_index >= 0 && m_index < m_highlight.count() && m_highlight.at(m_index)->isWithinSelection(m_cursor)){
-		//we have a cached match!
-		if ( !backward ) ++m_index;
-		else --m_index;
-	} else if (backward){
-		//todo: binary search
-		m_index = matchLowerBoundUnequal(m_cursor.lineNumber(), m_cursor.columnNumber()+1);
-/*		m_index=-1;
-		for (int i=m_highlight.count()-1; i>=0;--i)
-			if (m_highlight[i]->selectionEnd()<=m_cursor) {
-				m_index=i;
-				break;
-			}*/
-	} else {
-		m_index = matchUpperBoundUnequal(m_cursor.lineNumber(), m_cursor.columnNumber()-1);
-		/*m_index=-1;
-		for (int i=0;i<m_highlight.count(); ++i)
-			if (m_highlight[i]->selectionStart()>=m_cursor) {
-				m_index=i;
-				break;
-			}*/
-	}
-
-	m_cursor = QDocumentCursor(); //don't need the old cursor anymore (and will set the new one later if found)
-	//remove invalid cursors
-
-	if ( m_index >= 0 && m_index < m_highlight.count() ) {
-		//TODO: understand why the selectedText().isEmpty() check is necessary, perhaps a bug in qdocumentcommand? (in the test case xxxxxxxxxxxxxxxx replace the cursor is moved to a not existing column)
-		if (backward) 
-			while (m_index>=0 && (m_highlight[m_index]->isNull() || m_highlight[m_index]->selectedText().isEmpty()))
-				delete m_highlight.takeAt(m_index--);
-		if (!backward)
-			while (m_index<m_highlight.count() && (m_highlight[m_index]->isNull() || m_highlight[m_index]->selectedText().isEmpty()))
-				delete m_highlight.takeAt(m_index);
-	}
-	
-	if ( (m_index < 0 || m_index >= m_highlight.count()) )
-	{
-		if (!allowWrapAround) 
-			return false;
-		
-		int ret = QMessageBox::Yes ;
-		if ( !hasOption(Silent) )
-		{
-			ret=QMessageBox::question(
-							m_editor,
-							tr("Failure"),
-							tr(
-								"End of matches reached.\n"
-								"Restart from the begining ?"
-							),
-							QMessageBox::Yes | QMessageBox::No,
-							QMessageBox::Yes
-						);
-		}
-		
-		if ( ret != QMessageBox::Yes ) 
-			return false;
-		
-		if (backward)  {
-			while (m_highlight.count() && (m_highlight.last()->isNull() || m_highlight.last()->selectedText().isEmpty()))
-				delete m_highlight.takeLast();
-			m_index=m_highlight.count()-1;
-		} else {
-			while (m_highlight.count() && (m_highlight.first()->isNull() || m_highlight.first()->selectedText().isEmpty()))
-				delete m_highlight.takeFirst();
-			m_index=0;
-		}
-		if (!m_highlight.count()) return false;
-	} 	
-
-	//create new cursor
-	//(don't copy cursor, because copying auto updated cursors is currently quite expensive)
-	if ( !backward )
-		m_cursor = m_editor->document()->cursor(m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->anchorColumnNumber(),
-							m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->columnNumber());
-	else
-		m_cursor = m_editor->document()->cursor(m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->columnNumber(),
-							m_highlight.at(m_index)->lineNumber(), m_highlight.at(m_index)->anchorColumnNumber());
-
-	if ( m_editor && !hasOption(Silent) ){
-		m_editor->setCursor(m_cursor);
-		if (m_cursor.line().isHidden()) m_editor->document()->expandParents(m_cursor.lineNumber());
-	}
-
-	if (hasOption(Replace) && !again) //again-replacement should already have been handled by next
-	{
-		QRegExp m_regexp=currentRegExp();
-		if (!m_regexp.exactMatch(m_cursor.selectedText())) 
-			return false; //wtf? anyway this check is necessary to access the submatch \1, \2 in the replace text
-		int ret=QMessageBox::Yes;
-		
-		if ( hasOption(Prompt) )
-			ret = QMessageBox::question(m_editor, tr("Replacement prompt"),
-								tr("Shall it be replaced?"),
-								QMessageBox::Yes | QMessageBox::No,
-								QMessageBox::Yes);
-
-		if (ret==QMessageBox::Yes)
-			replaceCursorText(m_regexp,backward);
-	}
-#endif
-	return true;
-}
 void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bool clearAll, bool clearSelection){
 	if ( !hasOption(HighlightAll) )
 		return;
@@ -271,7 +152,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	while ( !hc.atEnd() && hscope.isWithinSelection(hc))
 	{
 		int ln = hc.lineNumber();
-		//const QDocumentLine &l = hc.line();
+
 		QDocumentLine l = hc.line();
 		//TODO: Why is this needed ?????  It makes absolutely no sense, but if it isn't there, deleting a search text step by step and then adding the characters again, creates artifact overlays
 		l.setFlag(QDocumentLine::FormatsApplied, false);
@@ -301,14 +182,6 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	}
 
 	m_editor->viewport()->update();
-/*	if ( m_highlight.size() > oldHighlightCount)
-	{
-		//qDebug("%i matches in group %i", indexedMatchCount(), up);
-	} else if ( saved.empty() && m_highlight.empty() )
-		clearMatches();
-	if ( !saved.empty() )
-		m_highlight << saved;
-	m_index = -1; //current index became invalid due to (partially) cleaning (TODO?: change to new index)*/
 }
 
 /*!
@@ -332,7 +205,6 @@ void QDocumentSearch::clearMatches()
 	m_highlights.clear();
 	m_searchedScope = QDocumentCursor();
 	//qDebug("clearing matches");
-	//m_cursor = QDocumentCursor();
 
 	clearReplacements();
 	m_editor->viewport()->update();
@@ -495,8 +367,6 @@ void QDocumentSearch::setReplaceText(const QString& r)
 {
 	m_replace = r;
 	m_lastReplacedPosition = QDocumentCursor();
-	//if (m_option & QDocumentSearch::HighlightAll)
-	//	clearMatches();
 }
 
 QDocumentCursor QDocumentSearch::lastReplacedPosition() const{
@@ -559,7 +429,6 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 	highlightSelection();
 	if (hasOption(HighlightAll)) searchMatches();
 	else m_editor->viewport()->update();
-	//clearMatches();
 }
 
 /*!
@@ -601,11 +470,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	}
 
 	QDocumentCursor firstMatch;
-
-	/*if (all && !hasOption(Replace)) {
-		all=false;
-		qWarning("QDocumentSearch:next: all without replace is meaningless");
-	}*/
 
 	QRegExp m_regexp=currentRegExp();
 	
@@ -654,22 +518,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			}
 		}
 	}
-
-	//if (hasOption(HighlightAll) && !all)  //special handling if highlighting is on, but all replace is still handled here
-	//	return nextMatch(backward,again,allowWrapAround);
-	
-	/*qDebug(
-		"searching %s from line %i (column %i)",
-		backward ? "backward" : "forward",
-		m_cursor.lineNumber(),
-		m_cursor.columnNumber()
-	);
-	//*/
 	
 	bool realReplace=hasOption(Replace) && (!again || all);
 	
 	QDocumentCursor::MoveOperation move;
-//	QDocument *d = currentDocument();
 	
 	move = backward ? QDocumentCursor::PreviousBlock : QDocumentCursor::NextBlock;	
 	
@@ -768,7 +620,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 						rep=ret==QMessageBox::Yes;
 						if (ret==QMessageBox::Cancel) {
 							QMessageBox::information(m_editor,tr("Replacing Canceled"),tr("%1 (of %2 found so far) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
-							//rep=all=false;//return false;
 							return foundCount;
 						}
 					}
@@ -786,15 +637,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			}
 		} else 
 			m_cursor.movePosition(1, move, QDocumentCursor::ThroughFolding);
-			/*if(backward) {
-				l=m_editor->document()->line(ln-1);
-				m_cursor.setLineNumber(ln-1);
-				if(l.isValid()) m_cursor.setColumnNumber(l.length());
-			} else {
-				l=m_editor->document()->line(ln+1);
-				m_cursor.setLineNumber(ln+1);
-				m_cursor.setColumnNumber(0);
-			}*/
 	}
 	if ( all && replaceCount )
 		updateReplacementOverlays();
@@ -1020,7 +862,6 @@ void QDocumentSearch::documentContentChanged(int line, int n){
 	c.setColumnNumber(le.length(), QDocumentCursor::KeepAnchor);
 	highlightSelection(c);
 	searchMatches(c,false);
-	//searchMatches();
 }
 
 void QDocumentSearch::visibleLinesChanged(){
@@ -1060,7 +901,6 @@ void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScop
 		m_highlightedScope = m_scope;
 		m_highlightedScope.setAutoUpdated(true);
 	}
-	//m_editor->viewport()->update();
 }
 
 void QDocumentSearch::lineDeleted(QDocumentLineHandle* line){
