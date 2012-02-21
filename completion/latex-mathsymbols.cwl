@@ -199,7 +199,8 @@
 \preceq#m
 \prime#m
 \prod#m
-\prod\limits_{min}^{max}#m
+\prod_{min}^{max}#m
+\prod\limits_{min}^{max}#*m
 \propto#m
 \Psi#m
 \psi#m
@@ -237,6 +238,8 @@
 \succ#m
 \succeq#m
 \sum#m
+\sum_{min}^{max}#m
+\sum\limits_{min}^{max}#*m
 \sup#m
 \supset#m
 \supseteq#m
