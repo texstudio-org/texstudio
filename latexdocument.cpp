@@ -2075,8 +2075,10 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
 	// user commands
 	QStringList commands=mUserCommandList.values();
 	foreach(QString elem,commands){
-		int i=elem.indexOf("{");
-		if(i>=0) elem=elem.left(i);
+        if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
+            int i=elem.indexOf("{");
+            if(i>=0) elem=elem.left(i);
+        }
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
 	
