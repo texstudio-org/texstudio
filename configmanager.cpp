@@ -973,6 +973,11 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.pushButtonDictDir->setIcon(fileOpenIcon);
 	confDlg->ui.btSelectThesaurusFileName->setIcon(fileOpenIcon);
 	confDlg->ui.pushButtonExecuteBeforeCompiling->setIcon(fileOpenIcon);
+
+	// grammar
+	confDlg->ui.pushButtonGrammarWordlists->setIcon(fileOpenIcon);
+	confDlg->ui.pushButtonGrammarLTPath->setIcon(fileOpenIcon);
+	confDlg->ui.pushButtonGrammarLTJava->setIcon(fileOpenIcon);
 	
 	//menu shortcuts
 	QTreeWidgetItem * menuShortcuts=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << QString(tr("Menus")));

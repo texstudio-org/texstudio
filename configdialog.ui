@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>542</width>
-            <height>531</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1969,6 +1969,18 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
        <item>
         <widget class="QListWidget" name="completeListWidget">
+         <property name="flow">
+          <enum>QListView::TopToBottom</enum>
+         </property>
+         <property name="isWrapping" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="resizeMode">
+          <enum>QListView::Adjust</enum>
+         </property>
+         <property name="uniformItemSizes">
+          <bool>false</bool>
+         </property>
          <property name="sortingEnabled">
           <bool>true</bool>
          </property>
