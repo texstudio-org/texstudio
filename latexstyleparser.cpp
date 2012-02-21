@@ -267,7 +267,7 @@ QString LatexStyleParser::kpsewhich(QString name){
 	myProc.waitForFinished();
 	if(myProc.exitCode()==0){
 	    fn=myProc.readAllStandardOutput();
-	    fn=fn.split('\n').first(); // in case more than one results are present
+	    fn=fn.split('\n').first().trimmed(); // in case more than one results are present
 	}else
 	    fn.clear();
     }
