@@ -295,7 +295,7 @@ Following options are available:
 <li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
 <li>Use Placeholders: if the completed commands have options which need to be filled out, "place holder" are put at this positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
 </ul>
-If your favorite package is not yet present for completion (and then as well not for syntax check), you can provide a list of your own by placing a file "packagename.cwl" in the config directory. This directory is placed in ~/.config/benibela under linux and usually "c:\Documents and Settings/User/AppData/Roaming/benibela" under windows. Basically the file contains a list of valid commands. A Description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
+If your favorite package is not yet present for completion (and then as well not for syntax check), you can provide a list of your own by placing a file "packagename.cwl" in the config directory. This directory is placed in ~/.config/texstudio under linux and usually "c:\Documents and Settings/User/AppData/Roaming/texstudio" under windows. Basically the file contains a list of valid commands. A Description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
 </p>
 
 <p><IMG src="configure_completion.png" border="1"></p>
@@ -1147,16 +1147,20 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 <p>
 cwl files are used by the completer to propose possible commands and by the syntax checker to check if a command you wrote actually exists. Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
 <p><code>&lt;command&gt;[#classification]</code><br></p>
-<p>If no classification is given, the command is considered valid at any position in a latex document. New lines may be included in a command by <code>%n</code>. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:
+<p>If no classification is given, the command is considered valid at any position in a latex document. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:
 <ul>
   <li># (at start of line):comment</li>
   <li># (later):separator for command classifications</li>
 </ul>
 </p>
+<h3>4.12.1 Command format</h3>
+<p>The command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. New lines can be included in a command by <code>%n</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>).
+</p>
+<h3>4.12.2 Classification format</h3>
 <p>The follwing classifications are known to TXS:
 <table>
 <tr><th>Classifier</th><th>Meaning</th></tr>
-  <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker can be combined with the other classifications.</td></tr>
+  <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker may be followed by other classifications.</td></tr>
   <tr><td>m</td><td>valid only in math environment</td></tr>
   <tr><td>t</td><td>valid only in tabular environment (or similar)</td></tr>
   <tr><td>T</td><td>valid only in tabbing environment</td></tr>
@@ -1168,11 +1172,11 @@ cwl files are used by the completer to propose possible commands and by the synt
 <p>Examples:<br>
 <table>
 	<tr><th>Line</th><th>Explanation</th></tr>
-	<tr><td># test</td><td>comment</td></tr>
-	<tr><td>\typein{msg}#*</td><td>unusual command which is only shown in completion "all"</td></tr>
-	<tr><td>\sqrt{arg}#m</td><td>only in math mode valid</td></tr>
-	<tr><td>\vector(xslope,yslope){length}#*/picture</td><td>unusual command which is only in the picture environment valid</td></tr>
-	<tr><td>\begin{align}#\math</td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
+	<tr><td><code># test</code></td><td>comment</td></tr>
+	<tr><td><code>\typein{msg}#*</code></td><td>unusual command which is only shown in completion "all"</td></tr>
+	<tr><td><code>\sqrt{arg}#m</code></td><td>only in math mode valid</td></tr>
+	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is only in the picture environment valid</td></tr>
+	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</code></td></tr>
 </table>
 </p>
 </body></html>
