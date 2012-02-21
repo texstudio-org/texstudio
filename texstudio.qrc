@@ -309,6 +309,7 @@
         <file>images/right.png</file>
         <file>images/bookmarks.png</file>
         <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
+        <file>completion/mathtools.cwl</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
