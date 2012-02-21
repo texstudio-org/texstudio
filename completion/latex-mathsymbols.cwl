@@ -120,7 +120,7 @@
 \infty#m
 \int#m
 \int_{min}^{max}#m
-\int\limits_{min}^{max}#m*
+\int\limits_{min}^{max}#*m
 \iota#m
 \jmath#m
 \kappa#m
