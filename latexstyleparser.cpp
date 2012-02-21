@@ -13,7 +13,6 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     myProc.start(texdefDir+"texdef");
     myProc.waitForFinished();
     texdefMode=(myProc.exitCode()==1);
-    texdefMode=false;
 }
 
 void LatexStyleParser::stop(){
@@ -34,10 +33,60 @@ void LatexStyleParser::run(){
 		    continue;
 
 		QStringList results;
-		if(texdefMode)
-		    results=readPackageTexDef(fn); // parse package(s) by texdef
-		else
-		    results=readPackage(fullName); // parse package(s)
+        results=readPackage(fullName); // parse package(s)
+        results.sort();
+
+        if(texdefMode){
+            QStringList appendList;
+            QStringList texdefResults=readPackageTexDef(fn); // parse package(s) by texdef as well for indirectly defined commands
+            texdefResults.sort();
+            // add only additional commands to results
+            if(!results.isEmpty() && !texdefResults.isEmpty()){
+                QStringList::const_iterator texdefIterator;
+                QStringList::const_iterator resultsIterator=results.constBegin();
+                QString result=*resultsIterator;
+                for (texdefIterator = texdefResults.constBegin(); texdefIterator != texdefResults.constEnd(); ++texdefIterator){
+                    QString td=*texdefIterator;
+                    if(td.startsWith('#'))
+                        continue;
+                    int i=td.indexOf("#");
+                    if(i>=0)
+                        td=td.left(i);
+                    while(result<td && resultsIterator!=results.constEnd()){
+                        ++resultsIterator;
+                        if(resultsIterator!=results.constEnd()){
+                            result=*resultsIterator;
+                        }else{
+                            result.clear();
+                        }
+                    }
+                    //compare result/td
+                    bool addCommand=true;
+
+                    if(result.startsWith(td)){
+                        if(result.length()>td.length()){
+                            QChar c=result.at(td.length());
+                            switch(c.toAscii()){
+                            case '#':;
+                            case '{':;
+                            case '[':addCommand=false;
+                            default:
+                                break;
+                            }
+                        }else{
+                            addCommand=false; //exactly equal
+                        }
+                    }
+
+                    if(addCommand){
+                        appendList<<*texdefIterator;
+                        qDebug()<<td;
+                    }
+                }
+            }
+            results<<appendList;
+        }
+
 		
 		// if included styles call for additional generation, do it.
 		QStringList included=results.filter(QRegExp("#include:.+"));
@@ -83,8 +132,8 @@ QStringList LatexStyleParser::readPackage(QString fn){
         QTextStream stream(&data);
         QString line;
         QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
-        QRegExp rxCom("\\\\(newcommand|providecommand)\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
-        QRegExp rxCom2("\\\\(newcommand|providecommand)\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
+        QRegExp rxCom("\\\\(newcommand|providecommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
+        QRegExp rxCom2("\\\\(newcommand|providecommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
         QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
         QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
         QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
@@ -233,11 +282,11 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
     QProcess myProc(0);
     //add exec search path
     if(!texdefDir.isEmpty()){
-	QStringList env = QProcess::systemEnvironment();
-	if(env.contains("SHELL=/bin/bash")){
-	    env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1:"+texdefDir);
-	    myProc.setEnvironment(env);
-	}
+        QStringList env = QProcess::systemEnvironment();
+        if(env.contains("SHELL=/bin/bash")){
+            env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1:"+texdefDir);
+            myProc.setEnvironment(env);
+        }
     }
     QStringList args;
     QString result;
@@ -262,7 +311,13 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
 		args<<"#include:"+name;
 	}
 	if(incl && lines.at(i).startsWith("\\"))
-	    args<<lines.at(i)+"#S";
+        if(lines.at(i).startsWith("\\\\")){
+            QString zw=lines.at(i)+"#S";
+            zw.remove(0,1);
+            //args<<zw;
+        }else{
+            args<<lines.at(i)+"#S";
+        }
     }
     // replace tex env def by latex commands
     QStringList zw=args.filter(QRegExp("\\\\end.+"));
