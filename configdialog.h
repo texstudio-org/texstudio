@@ -65,7 +65,7 @@ public:
 	ConfigDialog(QWidget* parent = 0);
 	~ConfigDialog();
 	Ui::ConfigDialog ui;
-	QCheckBox * checkboxInternalPDFViewer;
+	QRadioButton * checkboxInternalPDFViewer;
 
 	QMap<QString,QFormat> editorFormats;
 	QFormatConfig * fmConfig;

@@ -902,17 +902,22 @@ bool ConfigManager::execConfigDialog() {
 		gl->addWidget(l,(int)cmd,0);
 		int off =  0;
 		if (cmd == BuildManager::CMD_VIEWPDF) {
-			confDlg->checkboxInternalPDFViewer = new QCheckBox(confDlg);
+			QButtonGroup *bgPDFViewer = new QButtonGroup(confDlg);
+			confDlg->checkboxInternalPDFViewer = new QRadioButton(confDlg);
 			confDlg->checkboxInternalPDFViewer->setObjectName("internal");
-			confDlg->checkboxInternalPDFViewer->setText(tr("Internal viewer"));
+			confDlg->checkboxInternalPDFViewer->setText(tr("Internal"));
 			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER));
 			connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
+			QRadioButton *rbExternalPDFViewer = new QRadioButton("External:", confDlg);
+			bgPDFViewer->addButton(confDlg->checkboxInternalPDFViewer);
+			bgPDFViewer->addButton(rbExternalPDFViewer);
 			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
-			off++;
+			gl->addWidget(rbExternalPDFViewer, (int)cmd, 2);
+			off+=2;
 		}
-		gl->addWidget(e,(int)cmd,1+off,1,2-off);
-		gl->addWidget(b,(int)cmd,3);
-		gl->addWidget(bdefault,(int)cmd,4);
+		gl->addWidget(e,(int)cmd,1+off,1,3-off);
+		gl->addWidget(b,(int)cmd,4);
+		gl->addWidget(bdefault,(int)cmd,5);
 		buttonsToCommands.insert(b,cmd);
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
