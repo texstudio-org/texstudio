@@ -159,9 +159,8 @@ void ThesaurusDialog::classChanged(int row)
 	if (!thesaurus || row<0) return;
 	QString lowerWord=searchWrdLe->text().trimmed().toLower();
 	QList<ThesaurusDatabaseType::TinyStringRef> result=thesaurus->thesaurus.values(QStringRef(&lowerWord,0,lowerWord.length()));
-	if (row >= result.size()) return;
+	if (row > result.size()) return;
 	replacelistWidget->clear();
-
 	if(row==0){
 		foreach(ThesaurusDatabaseType::TinyStringRef elem,result){
 			replacelistWidget->addItems(elem.toStringWithBuffer(thesaurus->buffer).split("|"));
