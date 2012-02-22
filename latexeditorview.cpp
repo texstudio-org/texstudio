@@ -1123,19 +1123,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				addedOverlayCitation = true;
 			}
 			if (status==LatexReader::NW_COMMENT) break;
-			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking){
-				if(!previousTextWord.isEmpty() && previousTextWord==lr.word){
-					if(!lineText.mid(previousTextWordIndex,lr.wordStartIndex-previousTextWordIndex).contains(QRegExp("\\S"))){
-						line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,wordRepetitionFormat));
-						addedOverlayStyleHint = true;
-					}
-				}
-				if(!lr.word.isEmpty() && !lr.word.at(0).isNumber()){
-					previousTextWord=lr.word;
-					previousTextWordIndex=lr.index;
-				} else previousTextWord.clear();
-			} else previousTextWord.clear();
-			if (status==LatexReader::NW_TEXT && lr.word.length()>=3 && speller && !speller->check(lr.word) && config->inlineSpellChecking) {
+			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller && !speller->check(lr.word) ) {
 				if(lr.word.endsWith('.')) lr.index--;
 				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,SpellerUtility::spellcheckErrorFormat));
 				addedOverlaySpellCheckError = true;
