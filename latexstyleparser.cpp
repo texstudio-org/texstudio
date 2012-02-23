@@ -137,6 +137,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
         QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
         QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
         QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
+        rxRequire.setMinimal(true);
         QRegExp rxRequireStart("\\\\RequirePackage\\s*\\{(.+)");
         QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
         bool inReq=false;
