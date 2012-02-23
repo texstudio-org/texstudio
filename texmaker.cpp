@@ -2491,6 +2491,7 @@ void Texmaker::ReadSettings() {
 	spellerManager.setDictPath(configManager.spellDictDir);
 	spellerManager.setDefaultSpeller(configManager.spellLanguage);
 	
+	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
 	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 	
 	MapForSymbols= new QVariantMap;
