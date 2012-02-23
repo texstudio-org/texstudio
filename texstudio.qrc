@@ -310,6 +310,9 @@
         <file>images/bookmarks.png</file>
         <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
         <file>completion/mathtools.cwl</file>
+        <file>completion/cases.cwl</file>
+        <file>completion/epstopdf.cwl</file>
+        <file>completion/titlesec.cwl</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
