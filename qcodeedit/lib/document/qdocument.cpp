@@ -332,7 +332,7 @@ QDocument::QDocument(QObject *p)
 	}
 
 
-	setText(QString());
+	setText(QString(),false);
 	setLineEndingDirect(QDocument::Conservative);
 
 	connect(&(m_impl->m_commands)	, SIGNAL( cleanChanged(bool) ),
@@ -364,7 +364,7 @@ QDocument::~QDocument()
 */
 void QDocument::clear()
 {
-	setText(QString());
+	setText(QString(), false);
 }
 
 /*!
@@ -520,11 +520,19 @@ QStringList QDocument::textLines() const{
 /*!
 	\brief Set the content of the document
 */
-void QDocument::setText(const QString& s)
+void QDocument::setText(const QString& s, bool allowUndo)
 {
 	if ( !m_impl )
 		return;
 
+	if (allowUndo) {
+		QDocumentCursor temp(this);
+		temp.movePosition(1, QDocumentCursor::Start);
+		temp.movePosition(1, QDocumentCursor::End, QDocumentCursor::KeepAnchor);
+		temp.replaceSelectedText(s);
+		return;
+	}
+	
 	int last = 0, idx = 0;
 
 	m_impl->m_deleting = true;
@@ -633,7 +641,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 	//if ( !f.open(QFile::Text | QFile::ReadOnly) )
 	if ( !f.open(QFile::ReadOnly) )
 	{
-		setText(QString());
+		setText(QString(), false);
 		return;
 	}
 
@@ -647,7 +655,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		if (codec == 0)
 			codec=guessEncoding(d);
 
-		setText(codec->toUnicode(d));
+		setText(codec->toUnicode(d), false);
 	} else {
 		// load by chunks of 100kb otherwise to avoid huge peaks of memory usage
 		// and driving mad the disk drivers

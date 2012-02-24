@@ -60,7 +60,7 @@ void LatexEditorViewBenchmark::documentChange(){
 		return;
 	}
 
-	edView->editor->setText(text);
+	edView->editor->setText(text, false);
 	QBENCHMARK {
 		edView->documentContentChanged(start,count);
 	}
@@ -116,7 +116,7 @@ void LatexEditorViewBenchmark::linePaint(){
 		return;
 	}
 
-	edView->editor->setText(text);
+	edView->editor->setText(text, false);
 	LatexDocument *doc=edView->document;
 	QDocument::PaintContext cxt;
 	cxt.xoffset = 0;
@@ -202,7 +202,7 @@ void LatexEditorViewBenchmark::paintEvent(){
 		return;
 	}
 	
-	edView->editor->setText(text);
+	edView->editor->setText(text, false);
 	edView->editor->setCursorPosition(0,0);
 	QBENCHMARK {
 		edView->editor->repaint(edView->rect());

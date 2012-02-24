@@ -45,7 +45,7 @@ void TableManipulationTest::addCol(){
 	QFETCH(int, col);
 	QFETCH(QString, newText);
 	
-	ed->setText(text);
+	ed->setText(text, false);
 	LatexTables::addColumn(ed->document(),row,col,0);
 
 	QEQUAL(ed->document()->text(), newText);
@@ -86,7 +86,7 @@ void TableManipulationTest::addRow(){
 	QFETCH(int, col);
 	QFETCH(QString, newText);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	LatexTables::addRow(c,2);
@@ -169,11 +169,11 @@ void TableManipulationTest::remCol(){
 	QFETCH(int, col);
 	QFETCH(QString, newText);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	LatexTables::removeColumn(ed->document(),row,col);
-
-        QEQUAL(ed->document()->text(),newText);
-
+	
+	QEQUAL(ed->document()->text(),newText);
+	
 }
 
 void TableManipulationTest::remRow_data(){
@@ -231,7 +231,7 @@ void TableManipulationTest::remRow(){
 	QFETCH(int, col);
 	QFETCH(QString, newText);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	LatexTables::removeRow(c);
@@ -334,7 +334,7 @@ void TableManipulationTest::getCol(){
 	QFETCH(int, col);
 	QFETCH(int, colFound);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	int nc=LatexTables::getColumn(c);
@@ -412,7 +412,7 @@ void TableManipulationTest::getNumberOfCol(){
 	QFETCH(int, col);
 	QFETCH(int, colFound);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	int nc=LatexTables::getNumberOfColumns(c);
@@ -464,7 +464,7 @@ void TableManipulationTest::findNextToken(){
 	QFETCH(int, newCol);
 
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	QStringList tokens;
@@ -520,7 +520,7 @@ void TableManipulationTest::findNextTokenBackwards(){
 	QFETCH(int, newCol);
 
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	QStringList tokens;
@@ -581,7 +581,7 @@ void TableManipulationTest::addHLine(){
 	QFETCH(bool, remove);
 	QFETCH(QString, newText);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	LatexTables::addHLine(c,numberOfLines,remove);
@@ -706,7 +706,7 @@ void TableManipulationTest::getDef(){
 	QFETCH(int, col);
 	QFETCH(QString, def_soll);
 
-	ed->setText(text);
+	ed->setText(text, false);
 	ed->setCursorPosition(row,col);
 	QDocumentCursor c(ed->cursor());
 	QString def=LatexTables::getDef(c);

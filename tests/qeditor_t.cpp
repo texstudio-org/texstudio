@@ -34,7 +34,7 @@ void QEditorTest::setText_data(){
 void QEditorTest::setText(){
 	Q_ASSERT(editor);
 	QFETCH(QString, text);
-	editor->setText(text);
+	editor->setText(text, false);
 	QString restext = editor->text();
 	QEQUAL(restext,text);
 }
@@ -100,7 +100,7 @@ void QEditorTest::loadSave(){
 	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
 
 	//Save
-	editor->setText(editor->document()->text()+"Save test");
+	editor->setText(editor->document()->text()+"Save test", false);
 	editor->save();
 	tf.open();
 	QString writtenText=outCodec->toUnicode( tf.readAll());
@@ -220,7 +220,7 @@ void QEditorTest::foldedText(){
 	QFETCH(QString, newEditorText);
 	QFETCH(QList<int>, newHiddenLines);
 
-	editor->setText(editorText);
+	editor->setText(editorText, false);
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);
 	for (int i=0;i<editor->document()->lines();i++)
@@ -321,7 +321,7 @@ void QEditorTest::passiveFolding(){
 	QFETCH(QList<int>, foldAtAgain);
 	QFETCH(QList<int>, hiddenLines3);
 
-	editor->setText(editorText);
+	editor->setText(editorText, false);
 
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);
@@ -464,7 +464,7 @@ void QEditorTest::activeFolding(){
 	QFETCH(QString, newEditorText);
 	QFETCH(QList<int>, newHiddenLines);
 
-	editor->setText(editorText);
+	editor->setText(editorText, false);
 
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);
@@ -609,7 +609,7 @@ void QEditorTest::indentation(){
 
 	editor->setFlag(QEditor::WeakIndent,weak);
 
-	editor->setText(baseText);
+	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);
 	editor->insertText(c, insert);
 	QEQUAL(editor->document()->text(), result);
@@ -654,7 +654,7 @@ void QEditorTest::autoClosing(){
 	QFETCH(QString, result);
 
 
-	editor->setText(baseText);
+	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);
 	editor->insertText(c, insert);
 	QEQUAL(editor->document()->text(), result);

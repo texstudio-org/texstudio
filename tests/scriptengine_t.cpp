@@ -11,7 +11,7 @@
 #include <QtTest/QtTest>
 ScriptEngineTest::ScriptEngineTest(QEditor* editor): ed(editor){
 	ed->setCursorPosition(0,0);
-	ed->setText("");
+	ed->document()->clear();
 }
 
 void ScriptEngineTest::script_data(){

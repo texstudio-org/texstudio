@@ -90,7 +90,7 @@ void QDocumentLineTest::updateWrap(){
 	QFETCH(int, width);
 
 	QString temp=line; temp.replace("|","");
-	doc->setText(temp+"\n\n\n");
+	doc->setText(temp+"\n\n\n",false);
 	doc->setWidthConstraint(width);
 
 	QString fExp, fGot;

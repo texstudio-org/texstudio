@@ -153,7 +153,7 @@ void SyntaxCheckTest::checktabular(){
 	
 	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
 
-	edView->editor->setText(text);
+	edView->editor->setText(text, false);
 	do{
         edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
         QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines

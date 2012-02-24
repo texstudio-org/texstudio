@@ -342,7 +342,7 @@ void CodeSnippetTest::insert(){
 			ed->setFlag(QEditor::AutoIndent, indent!=0);
 		}
 		ed->clearPlaceHolders();
-		ed->setText(editorText);
+		ed->setText(editorText, false);
 		QDocumentCursor c = ed->document()->cursor(cy,cx);
 		CodeSnippet(snippetText).insertAt(ed, &c);
 		QEQUAL(ed->document()->text(),newText);
@@ -541,7 +541,7 @@ void CodeSnippetTest::nestedInsert(){
 			(editorAutoIndent==1 && indent!=1)) continue; 
 		ed->clearPlaceHolders();
 		ed->setFlag(QEditor::AutoIndent, indent!=0); //no autoindent
-		ed->setText(editorText);
+		ed->setText(editorText, false);
 		QDocumentCursor c = ed->document()->cursor(cy,cx);
 		ed->setCursor(c);
 		CodeSnippet(insert1).insert(ed);
@@ -641,7 +641,7 @@ void CodeSnippetTest::undoRedo(){
 	QFETCH(QString, expText4);
 
 	//insert text 1
-	ed->setText("");
+	ed->setText("", false);
 	(CodeSnippet (insertText1)).insert(ed);
 	QEQUAL(ed->text(), expText1);
 	expCursor1.compareWithCursor(ed->cursor(), expText1);

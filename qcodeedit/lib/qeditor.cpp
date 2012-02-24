@@ -357,7 +357,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 
 	init();
 
-	setText(s);
+	setText(s, false);
 }
 
 /*!
@@ -379,7 +379,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 
 	init(actions);
 	
-	setText(s);
+	setText(s, false);
 }
 
 /*!
@@ -836,14 +836,15 @@ QString QEditor::text(int line) const
 /*!
 	\brief Set the text of the underlying document and update display
 */
-void QEditor::setText(const QString& s)
+void QEditor::setText(const QString& s, bool allowUndo)
 {
 	clearPlaceHolders();
 
 	if ( m_doc )
-		m_doc->setText(s);
+		m_doc->setText(s, allowUndo);
 
-	setCursor(QDocumentCursor(m_doc));
+	if (!allowUndo || !m_cursor.isValid()) setCursor(QDocumentCursor(m_doc));
+	else setCursor(m_cursor);
 
 	documentWidthChanged(m_doc->width());
 	documentHeightChanged(m_doc->height());
@@ -1133,7 +1134,7 @@ void QEditor::viewWithCodec(QTextCodec* codec){
     if (!m_doc || !codec) return;
     QByteArray dat= m_doc->codec()->fromUnicode(document()->text());
     m_doc->setCodec(codec); //standard encoding in memory, file encoding set when saving
-    document()->setText(m_doc->codec()->toUnicode(dat));
+    document()->setText(m_doc->codec()->toUnicode(dat), false);
 }
 
 /*!

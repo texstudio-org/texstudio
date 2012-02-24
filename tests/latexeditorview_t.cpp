@@ -67,7 +67,7 @@ void LatexEditorViewTest::insertHardLineBreaks(){
 	QFETCH(int, length);
 	QFETCH(QString, newText);
 	
-	edView->editor->setText(text);
+	edView->editor->setText(text, false);
 	if (start==end) 
 		edView->editor->setCursor(edView->editor->document()->cursor(start,0,start,1));
 	else 
@@ -76,7 +76,7 @@ void LatexEditorViewTest::insertHardLineBreaks(){
 	QEQUAL(edView->editor->document()->text(), newText);
 	
 	if (start!=end) { //repeat with different cursor position
-		edView->editor->setText(text);
+		edView->editor->setText(text, false);
 		edView->editor->setCursor(edView->editor->document()->cursor(start,1,end,1));
 		edView->insertHardLineBreaks(length, false, false);
 		QEQUAL(edView->editor->document()->text(), newText);
