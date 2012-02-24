@@ -46,6 +46,7 @@ protected:
 	static void loadDatabase(const QString& fileName);
 	static QString userPath;
 	
+	QSet<QString> duplicatesCheck;
 	void addItems(const QString& className);
 };
 
