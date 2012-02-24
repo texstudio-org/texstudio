@@ -180,7 +180,7 @@ class QCE_EXPORT QDocument : public QObject
 		Q_INVOKABLE QString text(int mode) const;
 		Q_INVOKABLE QString text(bool removeTrailing = false, bool preserveIndent = true) const;
 		Q_INVOKABLE QStringList textLines() const;
-		Q_INVOKABLE void setText(const QString& s);
+		Q_INVOKABLE void setText(const QString& s, bool allowUndo);
 		
 		void load(const QString& file, QTextCodec* codec);
 		void startChunkLoading();

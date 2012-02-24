@@ -203,7 +203,7 @@ void UserMenuDialog::change(const QModelIndex& modelIndex,const QModelIndex&) {
 	int index = modelIndex.row();
 	if (index<0) return;
 	if (codeedit->editor()->text() != tags.value(index,"")) {
-		codeedit->editor()->setText(tags.value(index,""));
+		codeedit->editor()->setText(tags.value(index,""), false);
 		if (languages){
 			if (codeedit->editor()->text(0)=="%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
 			else if (codeedit->editor()->text(0).startsWith("%")) languages->setLanguage(codeedit->editor(), "");
@@ -272,17 +272,17 @@ void UserMenuDialog::slotMoveDown(){
 void UserMenuDialog::changeTypeToNormal(){
 	QString cur = codeedit->editor()->text();
     if (languages) languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
-	if (cur.startsWith("%SCRIPT\n")) codeedit->editor()->setText(cur.mid(8));
-	else if (cur.startsWith("%")) codeedit->editor()->setText(cur.mid(1));
+	if (cur.startsWith("%SCRIPT\n")) codeedit->editor()->setText(cur.mid(8), false);
+	else if (cur.startsWith("%")) codeedit->editor()->setText(cur.mid(1), false);
 }
 void UserMenuDialog::changeTypeToEnvironment(){
 	QString cur = codeedit->editor()->text();
 	if (languages) languages->setLanguage(codeedit->editor(), "");
 	if (cur.startsWith("%SCRIPT")) {
-		codeedit->editor()->setText("%"+cur.mid(8));
+		codeedit->editor()->setText("%"+cur.mid(8), false);
 	} else {
 		if (cur.startsWith("%")) return;
-		codeedit->editor()->setText("%"+cur);
+		codeedit->editor()->setText("%"+cur, false);
 	}
 }
 void UserMenuDialog::changeTypeToScript(){
@@ -290,7 +290,7 @@ void UserMenuDialog::changeTypeToScript(){
 	if (languages) languages->setLanguage(codeedit->editor(), ".qs");
 	if (cur.startsWith("%SCRIPT\n")) return;
 	if (cur.startsWith("%")) cur = cur.mid(1);
-	codeedit->editor()->setText("%SCRIPT\n"+cur);
+	codeedit->editor()->setText("%SCRIPT\n"+cur, false);
 }
 void UserMenuDialog::textChanged(){
 	QString line = codeedit->editor()->text(0);

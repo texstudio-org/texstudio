@@ -304,7 +304,7 @@ void StructureViewTest::benchmark(){
 		return;
 	}
 	
-	ed->setText(text);
+	ed->setText(text, false);
 	QBENCHMARK {
 		document->patchStructure(start,count);
 	}

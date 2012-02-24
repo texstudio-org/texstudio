@@ -266,7 +266,7 @@ void LatexCompleterTest::simple(){
 	config->eowCompletes = eowCompletes;
 
 	edView->editor->setFlag(QEditor::AutoCloseChars, autoParenComplete);
-	edView->editor->setText(text);
+	edView->editor->setText(text, false);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
 	QSet<QString> helper;
 	helper << "\\a{" << "\\b" << "\\begin{align*}\n\n\\end{align*}" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>";

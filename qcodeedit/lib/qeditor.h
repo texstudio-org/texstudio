@@ -366,7 +366,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void load(const QString& file, QTextCodec* codec/*= QTextCodec::codecForLocale()*/);
 		
-		void setText(const QString& s);
+		void setText(const QString& s, bool allowUndo = true);
 		
 		void setDocument(QDocument *d);
 		

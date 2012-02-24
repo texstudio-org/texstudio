@@ -13,7 +13,7 @@ void QDocumentCursorTest::initTestCase(){
 	doc=new QDocument();
 	doc->setText("test: line 1\n"
 	             "test: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ\n"
-				 "test: line 3\n");
+				 "test: line 3\n", false);
 	doc->setLineEnding(QDocument::Unix);
 }
 QDocumentCursor QDocumentCursorTest::str2cur(const QString &s){
