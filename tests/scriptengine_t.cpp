@@ -20,7 +20,7 @@ void ScriptEngineTest::script_data(){
 	
 	//-------------cursor without selection--------------
 	QTest::newRow("Setup Text")
-		<< "editor.setText(\"Hallo\")"
+		<< "editor.setText(\"Hallo\", false)"
 		<< "Hallo";
 
 	QTest::newRow("Insert Text")
@@ -64,7 +64,7 @@ void ScriptEngineTest::script_data(){
 		<< "bello";  // invalid cursors are not executed
 
 	QTest::newRow("Search/Replace Test 1")
-		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"b\"); "
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"b\"); "
 		<< "Hbllo1\nHallo2\nHallo3";
 	QTest::newRow("Search/Replace Test 2")
 		<< "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
@@ -80,7 +80,7 @@ void ScriptEngineTest::script_data(){
 		<< "H1728\nHatto2\nHallo3";
 
 	QTest::newRow("Search/Replace Test 1g")
-		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"g\", \"b\"); "
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", \"b\"); "
 		<< "Hbllo1\nHbllo2\nHbllo3";
 	QTest::newRow("Search/Replace Test 2g")
 		<< "editor.replace(\"ll\", \"g\", \"tt\", editor.document().cursor(1,0,1,6)); "
@@ -101,10 +101,10 @@ void ScriptEngineTest::script_data(){
 		<< "editor.replace(/h/gi, 'test'); "
 		<< "test1738\ntest1729\ntest1730";
 	QTest::newRow("Search/Replace Test function replacing")
-	       << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\"); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+	       << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
 		<< "H>a<llo1\nH>a<llo2\nH>a<llo3";
 	QTest::newRow("Search/Replace Test function replacing 2")
-	       << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\"); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+	       << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
 		<< "H>al<lo1\nH>am<lo2\nH>al<lo3";
 }
 void ScriptEngineTest::script(){
