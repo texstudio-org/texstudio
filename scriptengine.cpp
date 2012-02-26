@@ -5,6 +5,7 @@
 #include "scriptobject.h"
 #include "buildmanager.h"
 #include "texmaker.h"
+
 Q_DECLARE_METATYPE(QDocument*);
 
 BuildManager* scriptengine::buildManager = 0;
@@ -35,12 +36,21 @@ void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qo
 	Q_ASSERT(value.toQObject());
 	qobject = *qobject_cast<QDocumentCursor*>(value.toQObject());
 }
+/**QScriptValue qScriptValueFromKeySequence(QScriptEngine *engine, QKeySequence const &ks)
+{
+	return engine->newVariant(ks);
+}
+void qScriptValueToKeySequence(const QScriptValue &value, QKeySequence &ks) {
+	if (value.isString()) ks = QKeySequence(value.toString());
+	else if (value.isNumber()) ks = QKeySequence(value.toInt32());
+	else if (value.isVariant()) ks = value.toVariant().value<QKeySequence>();
+	else ks = QKeySequence();
+}*/
 
 Q_DECLARE_METATYPE(ProcessX*);
 Q_DECLARE_METATYPE(QAction*);
 Q_DECLARE_METATYPE(QMenu*);
 Q_DECLARE_METATYPE(SubScriptObject*);
-Q_DECLARE_METATYPE(QKeySequence);
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
@@ -52,7 +62,8 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
 	qScriptRegisterQObjectMetaType<QAction*>(engine);
 	qScriptRegisterQObjectMetaType<QMenu*>(engine);
-	qScriptRegisterQObjectMetaType<QKeySequence>(engine);
+//	qScriptRegisterMetaType<QKeySequence>(engine, qScriptValueFromKeySequence, qScriptValueToKeySequence, QScriptValue());
+	//qScriptRegisterQObjectMetaType<QUILoader*>(engine);
 //	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
 	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
 }
