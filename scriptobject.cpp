@@ -4,11 +4,12 @@
 #include "qcryptographichash.h"
 #include "configmanagerinterface.h"
 #include "buildmanager.h"
-
+#include "QtUiTools/QUiLoader"
+#include "QBuffer"
 QStringList privilegedReadScripts, privilegedWriteScripts;
 int readSecurityMode, writeSecurityMode;
 
-ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): script(script), buildManager(buildManager), app(app), backgroundScript(false)
+ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): backgroundScript(false), script(script), buildManager(buildManager), app(app)
 {
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Read Scripts", &privilegedReadScripts);	
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Read Security Mode", &readSecurityMode, 1);	
@@ -90,7 +91,16 @@ void ScriptObject::registerAsBackgroundScript(const QString& name){
 	backgroundScripts.insert(realName, this);
 	backgroundScript = true;
 }
-
+QWidget* ScriptObject::createUI(const QString& path, QWidget* parent){
+	QFile f(path);
+	if (!f.open(QFile::ReadOnly)) return 0;
+	return QUiLoader().load(&f, parent);
+}
+QWidget* ScriptObject::createUIFromString(const QString& str, QWidget* parent){
+	QByteArray ba(str.toLocal8Bit());
+	QBuffer buffer(&ba);
+	return QUiLoader().load(&buffer, parent);
+}
 
 QByteArray SubScriptObject::getScriptHash(){
 	Q_ASSERT(script);

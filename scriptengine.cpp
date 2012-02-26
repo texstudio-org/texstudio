@@ -5,7 +5,6 @@
 #include "scriptobject.h"
 #include "buildmanager.h"
 #include "texmaker.h"
-
 Q_DECLARE_METATYPE(QDocument*);
 
 BuildManager* scriptengine::buildManager = 0;

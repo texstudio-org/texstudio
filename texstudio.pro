@@ -1,11 +1,11 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
-CONFIG += qt precompile_header
+CONFIG += qt precompile_header uitools
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
-    script
+    script  
 !isEmpty(PHONON){
     QT += phonon
     DEFINES += PHONON

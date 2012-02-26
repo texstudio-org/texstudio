@@ -68,6 +68,8 @@ public slots:
 	QVariant getPersistent(const QString& name);
 	
 	void registerAsBackgroundScript(const QString& name = "");
+	QWidget* createUI(const QString& path, QWidget* parent = 0);
+	QWidget* createUIFromString(const QString& path, QWidget* parent = 0);
 private:
 	const QString& script;
 	BuildManager* buildManager;
