@@ -292,6 +292,7 @@ QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QStri
 	}
 	return tmp;
 }
+
 QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile, const QList<QVariant>& args) {
 	QAction* tmp = configManager.newManagedAction(menu,id,text,0,QList<QKeySequence>() << shortCut, iconFile);
 	linkToEditorSlot(tmp, slotName, args);
