@@ -8,6 +8,7 @@
 #include "qeditor.h"
 class BuildManager;
 class Texmaker;
+class ScriptObject;
 class scriptengine : public QObject
 {
 Q_OBJECT
@@ -21,6 +22,7 @@ public:
 	static BuildManager* buildManager;
 	static Texmaker* app;
 	
+	ScriptObject *globalObject;
 protected:
 	QScriptEngine *engine;
 	QPointer<QEditor> m_editor;

@@ -8,7 +8,7 @@
 QStringList privilegedReadScripts, privilegedWriteScripts;
 int readSecurityMode, writeSecurityMode;
 
-ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): script(script), buildManager(buildManager), app(app)
+ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): script(script), buildManager(buildManager), app(app), backgroundScript(false)
 {
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Read Scripts", &privilegedReadScripts);	
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Read Security Mode", &readSecurityMode, 1);	
@@ -78,6 +78,17 @@ void ScriptObject::setPersistent(const QString& name, const QVariant& value){
 QVariant ScriptObject::getPersistent(const QString& name){
 	if (!needReadPrivileges("getPersistent",name)) return QVariant();
 	return ConfigManagerInterface::getInstance()->getOption(name);
+}
+
+
+void ScriptObject::registerAsBackgroundScript(const QString& name){
+	static QMap<QString, QPointer<ScriptObject> > backgroundScripts;
+	
+	QString realName = name.isEmpty() ? getScriptHash() : name;
+	if (!backgroundScripts.value(realName, QPointer<ScriptObject>(0)).isNull()) 
+		delete backgroundScripts.value(realName, QPointer<ScriptObject>(0)).data();
+	backgroundScripts.insert(realName, this);
+	backgroundScript = true;
 }
 
 
