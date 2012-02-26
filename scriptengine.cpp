@@ -37,7 +37,10 @@ void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qo
 }
 
 Q_DECLARE_METATYPE(ProcessX*);
+Q_DECLARE_METATYPE(QAction*);
+Q_DECLARE_METATYPE(QMenu*);
 Q_DECLARE_METATYPE(SubScriptObject*);
+Q_DECLARE_METATYPE(QKeySequence);
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
@@ -47,6 +50,9 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
 	qScriptRegisterQObjectMetaType<SubScriptObject*>(engine);
 	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
+	qScriptRegisterQObjectMetaType<QAction*>(engine);
+	qScriptRegisterQObjectMetaType<QMenu*>(engine);
+	qScriptRegisterQObjectMetaType<QKeySequence>(engine);
 //	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
 	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
 }

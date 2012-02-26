@@ -305,7 +305,11 @@ QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
 	return configManager.newManagedAction(menu,id,act);
 }
-QAction* Texmaker::getManagedAction(QString id) {
+QMenu* Texmaker::getManagedMenu(const QString& id){
+	return configManager.getManagedMenu(id);
+}
+
+QAction* Texmaker::getManagedAction(const QString& id) {
 	return configManager.getManagedAction(id);
 }
 QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
@@ -502,6 +506,7 @@ void Texmaker::setupMenus() {
 	
 	//file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
+	getManagedMenu("main/file");
 	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, "filenew");
 	newManagedAction(menu, "newfromtemplate",tr("New from &template..."), SLOT(fileNewFromTemplate()));
 	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen");

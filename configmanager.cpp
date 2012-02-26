@@ -1575,13 +1575,13 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id, QActi
 	managedMenuShortcuts.insert(act->objectName()+"0",act->shortcut());
 	return act;
 }
-QAction* ConfigManager::getManagedAction(QString id) {
+QAction* ConfigManager::getManagedAction(const QString& id) {
 	QAction* act=0;
 	if (menuParent) act=menuParent->findChild<QAction*>(id);
 	if (act==0) qWarning("Can't find internal action %s",id.toAscii().data());
 	return act;
 }
-QMenu* ConfigManager::getManagedMenu(QString id) {
+QMenu* ConfigManager::getManagedMenu(const QString& id) {
 	QMenu* menu=0;
 	if (menuParent) menu=menuParent->findChild<QMenu*>(id);
 	if (menu==0) qWarning("Can't find internal menu %s",id.toAscii().data());
@@ -1594,7 +1594,7 @@ void ConfigManager::removeManagedMenus(){
  }
  menuParentsBar->clear();*/
 }
-void ConfigManager::triggerManagedAction(QString id){
+void ConfigManager::triggerManagedAction(const QString& id){
 	QAction* act = getManagedAction(id);
 	if (act) act->trigger();
 }
