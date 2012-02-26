@@ -254,7 +254,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	//script things
 	setProperty("applicationName",TEXSTUDIO);
+	QTimer::singleShot(500, this, SLOT(autoRunScripts()));
 }
+
 
 Texmaker::~Texmaker(){
 	delete MapForSymbols;
@@ -1452,6 +1454,13 @@ void Texmaker::relayToOwnSlot(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	REQUIRE(act && act->property("slot").isValid());
 	QMetaObjectInvokeMethod(this, qPrintable(act->property("slot").toString()), act->property("args").value<QList<QVariant> >());
+}
+
+void Texmaker::autoRunScripts(){
+	for(int i=0;i<configManager.completerConfig->userMacro.count();i++)
+		if (configManager.completerConfig->userMacro[i].trigger == "?txs-start")
+			insertUserTag(configManager.completerConfig->userMacro[i].tag);
+		
 }
 
 void Texmaker::fileNew(QString fileName) {
@@ -3531,7 +3540,7 @@ void Texmaker::insertUserTag() {
 }
 
 void Texmaker::insertUserTag(const QString& macro){
-	if (!currentEditorView()) return;
+	//dont'check that, if (!currentEditorView()) return; insertMacro is 0 save
 	currentEditorView()->insertMacro(macro);
 }
 
