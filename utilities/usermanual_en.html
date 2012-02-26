@@ -866,6 +866,8 @@ The following table gives an overview on the possible commands.
     You can use action.triggered.connect(function(){ ... }); to link a function to the returned action (for details see the <a href="http://developer.qt.nokia.com/doc/qt-4.8/scripting.html#signal-to-function-connections">qt signal/slot</a> documentation).
   </td></tr>
   <tr><td>app.getManagedAction([id])</td> <td>Returns an <a href="http://developer.qt.nokia.com/doc/qt-4.8/QAction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/.../menuN/action, with usually one menu, e.g. "main/edit/undo", see texmaker.cpp) </td></tr>
+  <tr><td>app.createUI(file, [parent])</td><td>Loads a certain ui file and creates a QWidget* from it</td></tr>
+  <tr><td>app.createUIFromString(string, [parent])</td><td>Creates a QWidget* described in the string</td></tr>
   <tr><th colspan=2>FileChooser object</th></tr>
   <tr>
 	<td> fileChooser.exec()
@@ -896,11 +898,19 @@ app.clipboard = editor.fileName();</pre>
 %SCRIPT
 eval(editor.text());</pre>
 </li>
-<li>Addition action in the edit menu<pre>
+<li>Additional action in the edit menu<pre>
 %SCRIPT
-registerAsBackgroundScript("test");
-var act = app.newManagedAction(app.getManagedMenu("main/edit"), "script", "scripttest");
-act.triggered.connect(function(){alert("called");});</pre></li>
+var menu = app.getManagedMenu("main/edit");                   //get edit menu
+var act = app.newManagedAction(menu, "script", "scripttest"); //add action
+act.triggered.connect(function(){alert("called");});          //register simple handler
+registerAsBackgroundScript("test");                           //keep handler valid</pre></li>
+<li>Asynchronous dialog:<pre>
+%SCRIPT
+var ui = createUI(" ... path to your ui file ...");  //load dialog
+ui.accepted.connect(function(){alert("x");})         //react to dialog closing
+registerAsBackgroundScript("abc");                   //keep function valid
+ui.show();                                           //show dialog
+</pre> The dialog is described in an ui file which can be created with the Qt Designer. </li>
 <li>Calculator:<pre>
 %SCRIPT
 currentLine=editor.text(cursor.lineNumber()); 

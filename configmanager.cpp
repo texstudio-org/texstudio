@@ -1521,6 +1521,7 @@ QMenu* ConfigManager::newManagedMenu(QMenu* menu, const QString &id,const QStrin
 }
 QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile) {
 	if (!menuParent) qFatal("No menu parent!");
+	REQUIRE_RET(menu, 0);
 	QString menuId = menu->objectName();
 	QString completeId = menu->objectName()+"/"+ id;
 	
