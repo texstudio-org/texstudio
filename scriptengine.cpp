@@ -39,7 +39,7 @@ void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qo
 Q_DECLARE_METATYPE(ProcessX*);
 Q_DECLARE_METATYPE(SubScriptObject*);
 
-scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
+scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
 	engine=new QScriptEngine(this);
 	qScriptRegisterQObjectMetaType<QDocument*>(engine);
@@ -53,6 +53,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),m_editor(0)
 
 scriptengine::~scriptengine(){
 	delete engine;
+	//don't delete globalObject, it has either been destroyed in run, or by another script
 }
 
 void scriptengine::setScript(const QString& script){
@@ -155,8 +156,9 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 
 void scriptengine::run(){
 	if(m_editor){
-		ScriptObject globalObject(m_script,buildManager,app);
-		QScriptValue globalValue = engine->newQObject(&globalObject);
+		if (globalObject) delete globalObject;
+		globalObject = new ScriptObject(m_script,buildManager,app);
+		QScriptValue globalValue = engine->newQObject(globalObject);
 		globalValue.setPrototype(engine->globalObject());
 		engine->setGlobalObject(globalValue);
 		
@@ -183,6 +185,11 @@ void scriptengine::run(){
 			error += "\n"+QString(tr("Backtrace %1")).arg(engine->uncaughtExceptionBacktrace().join(", "));
 			qDebug() << error;
 			QMessageBox::critical(0, tr("Script-Error"), error);
+		}
+		
+		if (!globalObject->backgroundScript) {
+			delete globalObject;
+			globalObject = 0;
 		}
 
 		if (!m_editor) return;

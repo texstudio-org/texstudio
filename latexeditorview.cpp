@@ -403,11 +403,13 @@ void LatexEditorView::paste(){
 void LatexEditorView::insertMacro(QString macro){
 	if (macro.isEmpty()) return;
 	if (macro.left(8)=="%SCRIPT\n"){
-		scriptengine eng;
-		eng.setEditor(editor);
+		scriptengine* eng = new scriptengine();
+		eng->setEditor(editor);
 		macro=macro.remove(0,8);
-		eng.setScript(macro);
-		eng.run();
+		eng->setScript(macro);
+		eng->run();
+		if (!eng->globalObject) delete eng;
+		else connect(reinterpret_cast<QObject*>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));
 	} else if (macro.size() > 1 && macro.left(1)=="%" && macro != "%%") {
 		macro=macro.remove(0,1);
 		CodeSnippet s("\\begin{"+macro+"}");

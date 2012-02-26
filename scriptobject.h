@@ -37,6 +37,8 @@ class ScriptObject : public QObject
 public:
 	explicit ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app);
 
+	bool backgroundScript;
+	
 	QByteArray getScriptHash();
 signals:
 
@@ -64,6 +66,8 @@ public slots:
 	bool hasPersistent(const QString& name);
 	void setPersistent(const QString& name, const QVariant& value);
 	QVariant getPersistent(const QString& name);
+	
+	void registerAsBackgroundScript(const QString& name = "");
 private:
 	const QString& script;
 	BuildManager* buildManager;
