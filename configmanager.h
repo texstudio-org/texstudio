@@ -177,10 +177,10 @@ public:
 	QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
 	QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	QAction* newOrLostOldManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
-	QAction* getManagedAction(QString id);
-	QMenu* getManagedMenu(QString id);
+	QAction* getManagedAction(const QString& id);
+	QMenu* getManagedMenu(const QString& id);
 	void removeManagedMenus();
-	void triggerManagedAction(QString id);
+	void triggerManagedAction(const QString& id);
 	
 	void modifyManagedShortcuts();
 	void loadManagedMenu(QMenu* parent,const QDomElement &f);

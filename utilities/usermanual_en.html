@@ -557,6 +557,8 @@ The following table gives an overview on the possible commands.
   
   <tr><td> hasReadPrivileges() </td>	<td> Checks if the script has read privileges </td></tr>
   <tr><td> hasWritePrivileges() </td>	<td> Checks if the script has write privileges </td></tr>
+  <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>  
+  
   
   <tr><th colspan=2>Editor object</th></tr>
   <tr>
@@ -845,12 +847,25 @@ The following table gives an overview on the possible commands.
     <td> ends an edit block
   </tr>
   <tr><th colspan=2>App object</th></tr>
-  <tr><td>app.getVersion</td><td>Current version (0xMMmm00)</td>
+  <tr><td>app.getVersion()</td><td>Current version (0xMMmm00)</td>
   <tr><td>app.clipboard</td><td>Property to read/write to the clipboard</td>
   <tr><td>app.getCurrentFileName()</td><td>File name of currently edited file</td>
   <tr><td>app.getAbsoluteFilePath(rel, ext = "")</td><td>Converts a relative filename to an absolute one</td>
   <tr><td>app.load(file)</td><td>Loads an file </td>
   <tr><td>app.fileOpen/Save/Close/.../editUndo/.../QuickBuild/... </td><td>All menu commands (i.e. all slots in the texmaker.h file)</td>
+  <tr><td>app.newManagedMenu([parent menu,] id, caption)</td> <td>Creates a new menu and returns it</td></tr>
+  <tr><td>app.getManagedMenu(id)</td> <td>Returns a <a href="http://developer.qt.nokia.com/doc/qt-4.8/QMenu.html">QMenu</a> with a certain id</td></tr>
+  <tr><td>app.newManagedAction(menu, id, caption, [slot, [shortCut, [icon]]])</td> <td>Creates a new action and returns it<br>
+    <ul><li>menu: Parent menu</li>
+    <li>id: Id of the new action (the final, unique id will be <i>menu id/action id</i>)</li>
+    <li>caption: Visible text</li>
+    <li>slot: qt-slot-id if the action should be connected to a slot of app</li>
+    <li>shortCut: default shortcut for the new action</li>
+    <li>icon: icon</li>
+    </ul>
+    You can use action.triggered.connect(function(){ ... }); to link a function to the returned action (for details see the <a href="http://developer.qt.nokia.com/doc/qt-4.8/scripting.html#signal-to-function-connections">qt signal/slot</a> documentation).
+  </td></tr>
+  <tr><td>app.getManagedAction([id])</td> <td>Returns an <a href="http://developer.qt.nokia.com/doc/qt-4.8/QAction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/.../menuN/action, with usually one menu, e.g. "main/edit/undo", see texmaker.cpp) </td></tr>
   <tr><th colspan=2>FileChooser object</th></tr>
   <tr>
 	<td> fileChooser.exec()
@@ -881,6 +896,11 @@ app.clipboard = editor.fileName();</pre>
 %SCRIPT
 eval(editor.text());</pre>
 </li>
+<li>Addition action in the edit menu<pre>
+%SCRIPT
+registerAsBackgroundScript("test");
+var act = app.newManagedAction(app.getManagedMenu("main/edit"), "script", "scripttest");
+act.triggered.connect(function(){alert("called");});</pre></li>
 <li>Calculator:<pre>
 %SCRIPT
 currentLine=editor.text(cursor.lineNumber()); 
