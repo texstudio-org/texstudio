@@ -155,46 +155,48 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 }
 
 void scriptengine::run(){
-	if(m_editor){
-		if (globalObject) delete globalObject;
-		globalObject = new ScriptObject(m_script,buildManager,app);
-		QScriptValue globalValue = engine->newQObject(globalObject);
-		globalValue.setPrototype(engine->globalObject());
-		engine->setGlobalObject(globalValue);
-		
+	if (globalObject) delete globalObject;
+	globalObject = new ScriptObject(m_script,buildManager,app);
+	QScriptValue globalValue = engine->newQObject(globalObject);
+	globalValue.setPrototype(engine->globalObject());
+	engine->setGlobalObject(globalValue);
+	
+	QDocumentCursor c;
+	QScriptValue cursorValue;
+	if (m_editor) {
 		QScriptValue editorValue = engine->newQObject(m_editor);
 		editorValue.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 		editorValue.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 		engine->globalObject().setProperty("editor", editorValue);
 		
-		QDocumentCursor c=m_editor->cursor();
+		c=m_editor->cursor();
 		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor		
-		QScriptValue cursorValue = engine->newQObject(&c);
+		cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);
-		
-		QScriptValue qsMetaObject = engine->newQMetaObject(c.metaObject());
-		engine->globalObject().setProperty("cursorEnums", qsMetaObject);
-
-		FileChooser flchooser(0,scriptengine::tr("File Chooser"));
-		engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
-
-		engine->evaluate(m_script);
-
-		if(engine->hasUncaughtException()){
-			QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(engine->uncaughtExceptionLineNumber()).arg(engine->uncaughtException().toString());
-			error += "\n"+QString(tr("Backtrace %1")).arg(engine->uncaughtExceptionBacktrace().join(", "));
-			qDebug() << error;
-			QMessageBox::critical(0, tr("Script-Error"), error);
-		}
-		
-		if (!globalObject->backgroundScript) {
-			delete globalObject;
-			globalObject = 0;
-		}
-
-		if (!m_editor) return;
-		
-		if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
-		else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
 	}
+	
+	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
+	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+
+	FileChooser flchooser(0,scriptengine::tr("File Chooser"));
+	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
+
+	engine->evaluate(m_script);
+
+	if(engine->hasUncaughtException()){
+		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(engine->uncaughtExceptionLineNumber()).arg(engine->uncaughtException().toString());
+		error += "\n"+QString(tr("Backtrace %1")).arg(engine->uncaughtExceptionBacktrace().join(", "));
+		qDebug() << error;
+		QMessageBox::critical(0, tr("Script-Error"), error);
+	}
+	
+	if (!globalObject->backgroundScript) {
+		delete globalObject;
+		globalObject = 0;
+	}
+
+	if (!m_editor) return;
+	
+	if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
+	else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
 }

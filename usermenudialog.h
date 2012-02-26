@@ -54,6 +54,7 @@ private slots:
 	void nameChanged();
 	void abbrevChanged();
 	void triggerChanged();
+	void showTooltip();
 	void changeTypeToNormal();
 	void changeTypeToEnvironment();
 	void changeTypeToScript();

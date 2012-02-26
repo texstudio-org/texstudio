@@ -185,6 +185,7 @@ private:
 private slots:
 	void relayToEditorSlot();
 	void relayToOwnSlot();
+	void autoRunScripts();
 	
 protected slots:
 	void fileNew(QString fileName="");

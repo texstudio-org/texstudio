@@ -169,14 +169,15 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	QAction* searchReplacePanelAction=codeedit->addPanel(searchReplacePanel, QCodeEdit::South,false);
 	searchReplacePanel->display(0,false);
 	Q_UNUSED(searchReplacePanelAction)
-
-    ui.tagEdit->layout()->setMargin(0);
-    ui.tagEdit->layout()->addWidget(codeedit->editor());
-
+	
+	ui.tagEdit->layout()->setMargin(0);
+	ui.tagEdit->layout()->addWidget(codeedit->editor());
+	
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
 	connect(ui.abbrevEdit, SIGNAL(textEdited(QString)), SLOT(abbrevChanged()));
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
+	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
 
 }
 
@@ -316,4 +317,9 @@ void UserMenuDialog::triggerChanged(){
 	if (!ui.tableView->currentIndex().isValid()) return;
 	int i = ui.tableView->currentIndex().row();
 	model->setData(model->index(i, model->listId(&triggers)), ui.triggerEdit->text());
+}
+void UserMenuDialog::showTooltip(){
+	QWidget* w = qobject_cast<QWidget*>(sender());
+	if (!w) return;
+	txsInformation(w->toolTip());
 }
