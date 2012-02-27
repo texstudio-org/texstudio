@@ -303,21 +303,22 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
 
     bool incl=false;
     for(int i=0;i<lines.length();i++){
-	if(lines.at(i).startsWith("Defined")){
-	    QString name=lines.at(i);
-	    name=name.mid(17);
-	    name=name.left(name.length()-2);
-	    incl=(name==fn);
-	    if(!incl)
-		args<<"#include:"+name;
-	}
-	if(incl && lines.at(i).startsWith("\\"))
-        if(lines.at(i).startsWith("\\\\")){
-            QString zw=lines.at(i)+"#S";
-            zw.remove(0,1);
-            //args<<zw;
-        }else{
-            args<<lines.at(i)+"#S";
+        if(lines.at(i).startsWith("Defined")){
+            QString name=lines.at(i);
+            name=name.mid(17);
+            name=name.left(name.length()-2);
+            incl=(name==fn);
+            if(!incl)
+                args<<"#include:"+name;
+        }
+        if(incl && lines.at(i).startsWith("\\")){
+            if(lines.at(i).startsWith("\\\\")){
+                QString zw=lines.at(i)+"#S";
+                zw.remove(0,1);
+                //args<<zw;
+            }else{
+                args<<lines.at(i)+"#S";
+            }
         }
     }
     // replace tex env def by latex commands

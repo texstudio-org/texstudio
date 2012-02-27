@@ -1028,7 +1028,11 @@ bool ConfigManager::execConfigDialog() {
 #ifdef Q_WS_WIN
 	QSize sz=twi->sizeHint(0);
 	twi->setSizeHint(0,QSize(sz.width(),ht));
+#else
+    Q_UNUSED(twi);
+    Q_UNUSED(ht);
 #endif
+
 	
 	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
 	editorItem->setExpanded(true);

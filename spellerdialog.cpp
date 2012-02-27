@@ -159,9 +159,12 @@ void SpellerDialog::SpellingNextWord() {
 	if (!editor || !m_speller) return;
 	for (; curLine<=endLine; curLine++) {
 		latexReader.line = editor->text(curLine);
-		while (latexReader.nextTextWord()) {
+        LatexReader::NextWordFlag nwf;
+        while ((nwf=latexReader.nextWord(false))!=LatexReader::NW_NOTHING) {
 			if (curLine==endLine && latexReader.index>endIndex)
 				break; //not in checked range
+            if(nwf!=LatexReader::NW_TEXT)
+                continue;
 			if (m_speller->check(latexReader.word)) continue;
 			QStringList suggWords=m_speller->suggest(latexReader.word);
 
