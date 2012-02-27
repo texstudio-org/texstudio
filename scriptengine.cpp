@@ -206,13 +206,13 @@ void scriptengine::run(){
 		QMessageBox::critical(0, tr("Script-Error"), error);
 	}
 	
+	if (m_editor) {
+		if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
+		else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
+	}
+
 	if (!globalObject->backgroundScript) {
 		delete globalObject;
 		globalObject = 0;
 	}
-
-	if (!m_editor) return;
-	
-	if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
-	else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
 }

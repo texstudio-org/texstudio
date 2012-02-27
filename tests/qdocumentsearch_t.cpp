@@ -135,8 +135,8 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(1, 0, 1, "\\n","he\nlo world! hello!") 
 			<< SN(1, 6, 7, "\\\\","he\n\\o world! hello!") 
 			<< SN(1, 12, 13, "\\t","he\n\\o wor\td! hello!") 
-			<< SN(2, 0, 1, "\\r","he\n\\o wor\td! he\nlo!") 
-			<< SN(-1, -1, -1, "\\0",QString("he\n\\o wor\td! he\n*o!").replace(QChar('*'),QChar('\0')))); 
+			<< SN(2, 0, 1, "\\r","he\n\\o wor\td! he\nlo!")) ;
+//			<< SN(-1, -1, -1, "\\0",QString("he\n\\o wor\td! he\n*o!").replace(QChar('*'),QChar('\0')))); 
 	QTest::newRow("touching block replace")
 		<< "xxxxxxxxxxxx"
 		<< "xx" << 0
