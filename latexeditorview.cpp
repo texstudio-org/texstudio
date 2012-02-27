@@ -1046,8 +1046,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		
 		QString lineText = line.text();
 		int status;
-		QString previousTextWord;
-		int previousTextWordIndex=-1;
 		const LatexParser& lp = LatexParser::getInstance();
 		LatexReader lr(LatexParser::getInstance(), lineText);
 		while ((status=lr.nextWord(false))){
