@@ -1,7 +1,24 @@
 #ifndef CONFIGMANAGERINTERFACE_H
 #define CONFIGMANAGERINTERFACE_H
 
-enum PropertyType {PT_VOID = 0, PT_VARIANT, PT_INT, PT_BOOL, PT_STRING, PT_STRINGLIST, PT_DATETIME, PT_DOUBLE, PT_BYTEARRAY, PT_LIST};
+
+#define PROPERTY_TYPE_FOREACH_MACRO(M) \
+	M(QVariant, PT_VARIANT) \
+	M(int, PT_INT) \
+	M(bool, PT_BOOL) \
+	M(QString, PT_STRING) \
+	M(QStringList, PT_STRINGLIST) \
+	M(QDateTime, PT_DATETIME) \
+	M(float, PT_FLOAT) \
+	M(double, PT_DOUBLE) \
+	M(QByteArray, PT_BYTEARRAY) \
+	M(QList<QVariant>, PT_LIST) 
+	
+
+#define ENUMERATE_ID(dummy, ID) , ID
+enum PropertyType {PT_VOID = 0 PROPERTY_TYPE_FOREACH_MACRO(ENUMERATE_ID) };
+#undef ENUMERATE_ID
+
 #include <QString>
 #include <QStringList>
 #include <QDateTime>
@@ -16,6 +33,27 @@ enum LinkOption{
 };
 Q_DECLARE_FLAGS(LinkOptions, LinkOption);
 
+struct ManagedProperty{ 
+	QString name;
+	void* storage;
+	PropertyType type;
+	QVariant def;
+	ptrdiff_t widgetOffset;
+
+	ManagedProperty();
+#define CONSTRUCTOR(TYPE, dummy) \
+	ManagedProperty(TYPE* storage, QVariant def = QVariant(), ptrdiff_t widgetOffset = 0);\
+	ManagedProperty(TYPE* storage, QVariant def = QVariant(), QWidget* widgetOffset = 0);
+PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
+#undef CONSTRUCTOR
+
+	QVariant valueToQVariant() const;
+	void valueFromQVariant(const QVariant v);
+	void writeToObject(QObject* w) const;
+	bool readFromObject(const QObject* w);
+};
+
+
 class ConfigManagerInterface
 {
 public:
@@ -23,15 +61,10 @@ public:
 	//this has to be called before the configmanager reads the settings, and the option (*storage) will
 	//automatically be read/written from the ini file.
 	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def) = 0;
-	virtual void registerOption(const QString& name, QVariant* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, QString* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant()) = 0;
-	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant()) = 0;
+#define VIRTUAL_REGISTER_OPTION(TYPE, dummy) \
+	virtual void registerOption(const QString& name, TYPE* storage, QVariant def=QVariant()) = 0;
+PROPERTY_TYPE_FOREACH_MACRO(VIRTUAL_REGISTER_OPTION)
+#undef VIRTUAL_REGISTER_OPTION
 	//set an option as variant (don't use it in c++, since it is not type-safe)
 	virtual void setOption(const QString& name, const QVariant& value) = 0;
 	//get an option as variant (don't use it in c++, since it is not type-safe)

@@ -21,6 +21,19 @@
 const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
 const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
 
+
+ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
+}
+
+#define CONSTRUCTOR(TYPE, ID) \
+	ManagedProperty::ManagedProperty(TYPE* storage, QVariant def, ptrdiff_t widgetOffset)\
+	: storage(storage), type(ID), def(def), widgetOffset(widgetOffset){}\
+ManagedProperty::ManagedProperty(TYPE* storage, QVariant def, QWidget* widgetOffset)\
+: storage(storage), type(ID), def(def), widgetOffset((ptrdiff_t)widgetOffset){}
+PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
+#undef CONSTRUCTOR
+
+	
 static ConfigManager* globalConfigManager = 0;
 ConfigManagerInterface* ConfigManagerInterface::getInstance(){
 	Q_ASSERT(globalConfigManager);
@@ -32,21 +45,13 @@ Q_DECLARE_METATYPE(ManagedProperty*);
 
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
-ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
-}
 QVariant ManagedProperty::valueToQVariant() const{
 	Q_ASSERT(storage);
 	if (!storage) return QVariant();
 	switch (type){
-	case PT_VARIANT: return *((QVariant*)storage);
-	case PT_INT: return QVariant(*((int*)storage));
-	case PT_BOOL: return QVariant(*((bool*)storage));
-	case PT_STRING: return QVariant(*((QString*)storage));
-	case PT_STRINGLIST: return QVariant(*((QStringList*)storage));
-	case PT_DATETIME: return QVariant(*((QDateTime*)storage));
-	case PT_DOUBLE: return QVariant(*((double*)storage));
-	case PT_BYTEARRAY: return QVariant(*((QByteArray*)storage));
-	case PT_LIST: return QVariant(*((QList<QVariant>*)storage));
+#define CONVERT(TYPE, ID) case ID: return *((TYPE*)storage);
+PROPERTY_TYPE_FOREACH_MACRO(CONVERT)
+#undef CONVERT
 	default:
 		Q_ASSERT(false);
 		return QVariant();
@@ -62,6 +67,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 	case PT_STRING: *((QString*)storage) = v.toString(); break;
 	case PT_STRINGLIST: *((QStringList*)storage) = v.toStringList(); break;
 	case PT_DATETIME: *((QDateTime*)storage) = v.toDateTime(); break;
+	case PT_FLOAT: *((float*)storage) = v.toFloat(); break;
 	case PT_DOUBLE: *((double*)storage) = v.toDouble(); break;
 	case PT_BYTEARRAY: *((QByteArray*)storage) = v.toByteArray(); break;
 	case PT_LIST: *((QList<QVariant>*)storage) = v.toList(); break;
@@ -114,7 +120,8 @@ void ManagedProperty::writeToObject(QObject* w) const{
 		}
 		case PT_STRINGLIST:{
 			QStringList& sl = *(QStringList*)storage;
-			int cp=comboBox->lineEdit()->cursorPosition();
+		
+			int cp=comboBox->lineEdit() ? comboBox->lineEdit()->cursorPosition() : -1000; 
 			while (comboBox->count() > sl.size()) 
 				comboBox->removeItem(comboBox->count()-1);
 			for (int i=0;i<qMin(sl.size(),comboBox->count());i++)
@@ -122,9 +129,12 @@ void ManagedProperty::writeToObject(QObject* w) const{
 					comboBox->setItemText(i,sl[i]);
 			for (int i=comboBox->count();i<sl.size();i++)
 				comboBox->addItem(sl[i]);
-			if (!sl.isEmpty() && comboBox->currentText()!=sl.last() && comboBox->currentIndex()!=sl.size()-1)
-				comboBox->setCurrentIndex(sl.size()-1);
-			comboBox->lineEdit()->setCursorPosition(cp);
+			if (cp != -1000) {
+				//combobox visible (i.e. as used in search panel)
+				if (!sl.isEmpty() && comboBox->currentText()!=sl.last() && comboBox->currentIndex()!=sl.size()-1)
+					comboBox->setCurrentIndex(sl.size()-1);
+				comboBox->lineEdit()->setCursorPosition(cp); 
+			} // else:  combobox invisible (i.e. as used in universal input dialog)
 			return;
 		}
 		default:
@@ -133,8 +143,12 @@ void ManagedProperty::writeToObject(QObject* w) const{
 	}
 	QDoubleSpinBox* doubleSpinBox = qobject_cast<QDoubleSpinBox*>(w);
 	if (doubleSpinBox){
-		Q_ASSERT(type == PT_DOUBLE);
-		doubleSpinBox->setValue(*((double*)storage));
+		switch (type) {
+		case PT_DOUBLE: doubleSpinBox->setValue(*((double*)storage)); break;
+		case PT_FLOAT: doubleSpinBox->setValue(*((float*)storage)); break;
+		default:
+			Q_ASSERT(false);
+		}
 		return;
 	}
 	QAction* action = qobject_cast<QAction*>(w);
@@ -143,25 +157,35 @@ void ManagedProperty::writeToObject(QObject* w) const{
 		action->setChecked(*((bool*)storage));
 		return;
 	}
-	
+	QTextEdit* textEdit = qobject_cast<QTextEdit*>(w);
+	if (textEdit) {
+		switch (type) {
+		case PT_STRING: textEdit->setPlainText(*((QString*)storage)); break;
+		case PT_STRINGLIST: textEdit->setPlainText(((QStringList*)storage)->join("\n")); break;
+		default:
+			Q_ASSERT(false);
+		}
+		return;
+	}
 	Q_ASSERT(false);
 }
 bool ManagedProperty::readFromObject(const QObject* w){
+#define READ_FROM_OBJECT(TYPE, VALUE) {           \
+	TYPE oldvalue = *((TYPE*)storage);         \
+	*((TYPE*)storage) = VALUE;                 \
+	return oldvalue != *((TYPE*)storage);      \
+}	
 	Q_ASSERT(storage);
 	if (!storage) return false;
 	const QCheckBox* checkBox = qobject_cast<const QCheckBox*>(w);
 	if (checkBox) {
 		Q_ASSERT(type == PT_BOOL);
-		bool oldvalue = *((bool*)storage);
-		*((bool*)storage) = checkBox->isChecked();
-		return oldvalue != *((bool*)storage);
+		READ_FROM_OBJECT(bool, checkBox->isChecked())
 	}
 	const QLineEdit* edit = qobject_cast<const QLineEdit*>(w);
 	if (edit){
 		Q_ASSERT(type == PT_STRING);
-		QString oldvalue = *((QString*)storage);
-		*((QString*)storage) = edit->text();
-		return oldvalue == *((QString*)storage);
+		READ_FROM_OBJECT(QString, edit->text())
 	}
 	/*QTextEdit* tedit = qobject_cast<QTextEdit*>(w);
  if (tedit){
@@ -171,28 +195,14 @@ bool ManagedProperty::readFromObject(const QObject* w){
 	const QSpinBox* spinBox = qobject_cast<const QSpinBox*>(w);
 	if (spinBox){
 		Q_ASSERT(type == PT_INT);
-		int oldvalue = *((int*)storage);
-		*((int*)storage) = spinBox->value();
-		return oldvalue != *((int*)storage);
+		READ_FROM_OBJECT(int, spinBox->value())
 	}
 	const QComboBox* comboBox = qobject_cast<const QComboBox*>(w);
 	if (comboBox){
 		switch (type) {
-		case PT_BOOL:{
-			bool oldvalue = *((bool*)storage);
-			*((bool*)storage) = comboBox->currentIndex()!=0;
-			return oldvalue != *((bool*)storage);
-		}
-		case PT_INT:{
-			int oldvalue = *((int*)storage);
-			*((int*)storage) = comboBox->currentIndex();
-			return oldvalue != *((int*)storage);
-		}
-		case PT_STRING:{
-			QString oldvalue = *((QString*)storage);
-			*((QString*)storage) = comboBox->currentText();
-			return oldvalue != *((QString*)storage);
-		}
+		case PT_BOOL:   READ_FROM_OBJECT(bool, comboBox->currentIndex()!=0)
+		case PT_INT:    READ_FROM_OBJECT(int, comboBox->currentIndex())
+		case PT_STRING: READ_FROM_OBJECT(QString, comboBox->currentText())
 		case PT_STRINGLIST:{
 			QString oldvalue = ((QStringList*)storage)->first();
 			*((QStringList*)storage) = QStringList(comboBox->currentText());
@@ -204,24 +214,33 @@ bool ManagedProperty::readFromObject(const QObject* w){
 	}
 	const QDoubleSpinBox* doubleSpinBox = qobject_cast<const QDoubleSpinBox*>(w);
 	if (doubleSpinBox){
-		Q_ASSERT(type == PT_DOUBLE);
-		double oldvalue = *((double*)storage);
-		*((double*)storage) = doubleSpinBox->value();
-		return oldvalue != *((double*)storage);
+		switch (type) {
+		case PT_DOUBLE: READ_FROM_OBJECT(double, doubleSpinBox->value())
+		case PT_FLOAT: READ_FROM_OBJECT(float, doubleSpinBox->value())
+		default:
+			Q_ASSERT(false);
+		}
 	}
 	const QAction* action = qobject_cast<const QAction*>(w);
 	if (action){
 		Q_ASSERT(type == PT_BOOL);
 		Q_ASSERT(action->isCheckable());
-		bool oldvalue = *((bool*)storage);
-		*((bool*)storage) = action->isChecked();
-		return oldvalue != *((bool*)storage);
+		READ_FROM_OBJECT(bool, action->isChecked());
 	}
 	
+	const QTextEdit* textEdit = qobject_cast<const QTextEdit*>(w);
+	if (textEdit){
+		switch (type) {
+		case PT_STRING:     READ_FROM_OBJECT(QString, textEdit->toPlainText())
+		case PT_STRINGLIST: READ_FROM_OBJECT(QStringList, textEdit->toPlainText().split("\n"))
+		default:
+			Q_ASSERT(false);
+		}
+	}
 	Q_ASSERT(false);
 	return false;
 }
-
+#undef READ_FROM_OBJECT
 
 QTextCodec* ConfigManager::newFileEncoding = 0;
 
@@ -1917,64 +1936,22 @@ void ConfigManager::registerOption(const QString& name, void* storage, PropertyT
 		persistentConfig->endGroup();
 	}
 }
-void ConfigManager::registerOption(const QString& name, QVariant* storage, QVariant def,  void* displayWidgetOffset){
-	registerOption(name, storage, PT_VARIANT, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_BOOL, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, int* storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_INT, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, QString* storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_STRING, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, QStringList* storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_STRINGLIST, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, QDateTime *storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_DATETIME, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, double *storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_DOUBLE, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, QByteArray *storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_BYTEARRAY, def, displayWidgetOffset);
-}
-void ConfigManager::registerOption(const QString& name, QList<QVariant> *storage, QVariant def, void* displayWidgetOffset){
-	registerOption(name, storage, PT_LIST, def, displayWidgetOffset);
-}
 
 void ConfigManager::registerOption(const QString& name, void* storage, PropertyType type, QVariant def){
 	registerOption(name, storage, type, def, 0);
 }
-void ConfigManager::registerOption(const QString& name, QVariant* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, bool* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, int* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, QString* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, QStringList* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, QDateTime* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, double* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, QByteArray* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
-void ConfigManager::registerOption(const QString& name, QList<QVariant>* storage, QVariant def){
-	registerOption(name, storage, def, 0);
-}
+
+#define REGISTER_OPTION(TYPE, ID) \
+	void ConfigManager::registerOption(const QString& name, TYPE* storage, QVariant def,  void* displayWidgetOffset){ \
+		registerOption(name, storage, ID, def, displayWidgetOffset); \
+	} \
+	void ConfigManager::registerOption(const QString& name, TYPE* storage, QVariant def){ \
+		registerOption(name, storage, ID, def, 0); \
+	}
+PROPERTY_TYPE_FOREACH_MACRO(REGISTER_OPTION)
+#undef REGISTER_OPTION
+
+
 void ConfigManager::setOption(const QString& name, const QVariant& value){
 	REQUIRE(persistentConfig);
 	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
