@@ -3,6 +3,8 @@
 
 #include "mostQtHeaders.h"
 
+#include "configmanagerinterface.h"
+
 /* This class works almost like QInputDialog, except that it can ask for
    multiple values */
 class UniversalInputDialog : public QDialog
@@ -10,7 +12,8 @@ class UniversalInputDialog : public QDialog
 	Q_OBJECT
 private:
 	QGridLayout* gridLayout;
-	void addWidget(QWidget* widget, const QString& description="", void* storage=0);
+	QList<ManagedProperty> properties;
+	void addWidget(QWidget* widget, const QString& description="", const ManagedProperty& prop = ManagedProperty());
 private slots:
 	void myAccept();
 public:

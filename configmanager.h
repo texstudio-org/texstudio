@@ -23,22 +23,6 @@ struct ManagedToolBar{
 	ManagedToolBar(const QString &newName, const QStringList &defs);
 };
 
-
-struct ManagedProperty{ //TODO: Merge with the universal input dialog
-	QString name;
-	void* storage;
-	PropertyType type;
-	QVariant def;
-	ptrdiff_t widgetOffset;
-
-	ManagedProperty();
-	QVariant valueToQVariant() const;
-	void valueFromQVariant(const QVariant v);
-	void writeToObject(QObject* w) const;
-	bool readFromObject(const QObject* w);
-};
-
-
 class ConfigManager: public QObject, public ConfigManagerInterface {
 	Q_OBJECT
 public:
@@ -210,25 +194,15 @@ public:
 	void loadTranslations(QString locale);
 
 	void registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, QVariant* storage, QVariant def,  void* displayWidgetOffset);
-	void registerOption(const QString& name, bool* storage, QVariant def,  void* displayWidgetOffset);
-	void registerOption(const QString& name, int* storage, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, QString* storage, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, QStringList* storage, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, QDateTime* storage, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, double* storage, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, QByteArray* storage, QVariant def, void* displayWidgetOffset);
-	void registerOption(const QString& name, QList<QVariant>* storage, QVariant def, void* displayWidgetOffset);
 	virtual void registerOption(const QString& name, void* storage, PropertyType type, QVariant def);
-	virtual void registerOption(const QString& name, QVariant* storage, QVariant def);
-	virtual void registerOption(const QString& name, bool* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, int* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, QString* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, QStringList* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, QDateTime* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, double* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, QByteArray* storage, QVariant def=QVariant());
-	virtual void registerOption(const QString& name, QList<QVariant>* storage, QVariant def=QVariant());
+
+#define REGISTER_OPTION(TYPE, dummy) \
+	void registerOption(const QString& name, TYPE* storage, QVariant def,  void* displayWidgetOffset); \
+	virtual void registerOption(const QString& name, TYPE* storage, QVariant def=QVariant());
+PROPERTY_TYPE_FOREACH_MACRO(REGISTER_OPTION)
+#undef REGISTER_OPTION
+	
+	//virtual void registerOption(const QString& name, QVariant* storage, QVariant def);
 	virtual void setOption(const QString& name, const QVariant& value);
 	virtual QVariant getOption(const QString& name) const;
 	virtual bool existsOption(const QString& name) const;
