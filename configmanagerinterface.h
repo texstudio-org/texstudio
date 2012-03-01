@@ -42,8 +42,8 @@ struct ManagedProperty{
 
 	ManagedProperty();
 #define CONSTRUCTOR(TYPE, dummy) \
-	ManagedProperty(TYPE* storage, QVariant def = QVariant(), ptrdiff_t widgetOffset = 0);\
-	ManagedProperty(TYPE* storage, QVariant def = QVariant(), QWidget* widgetOffset = 0);
+	ManagedProperty(TYPE* storage, QVariant def = QVariant(), ptrdiff_t widgetOffset = 0); \
+	static ManagedProperty fromValue(TYPE value);  
 PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 #undef CONSTRUCTOR
 
@@ -51,6 +51,7 @@ PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 	void valueFromQVariant(const QVariant v);
 	void writeToObject(QObject* w) const;
 	bool readFromObject(const QObject* w);
+	void deallocate();
 };
 
 

@@ -10,10 +10,16 @@
 class UniversalInputDialog : public QDialog
 {
 	Q_OBJECT
-private:
+protected:
 	QGridLayout* gridLayout;
 	QList<ManagedProperty> properties;
 	void addWidget(QWidget* widget, const QString& description="", const ManagedProperty& prop = ManagedProperty());
+	QCheckBox* addCheckBox(const ManagedProperty& mp, const QString& description);
+	QComboBox* addComboBox(const ManagedProperty& mp, const QString& description);
+	QSpinBox* addSpinBox(const ManagedProperty& mp, const QString& description);
+	QDoubleSpinBox* addDoubleSpinBox(const ManagedProperty& mp, const QString& description);
+	QLineEdit* addLineEdit(const ManagedProperty& mp, const QString& description);
+	QTextEdit* addTextEdit(const ManagedProperty& mp, const QString& description);
 private slots:
 	void myAccept();
 public:

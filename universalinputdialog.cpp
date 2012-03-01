@@ -8,55 +8,17 @@ UniversalInputDialog::UniversalInputDialog(QWidget* parent): QDialog(parent)
 }
 
 void UniversalInputDialog::myAccept(){
-	/*foreach (QObject* o, children()){
-		QWidget* w = qobject_cast<QWidget*> (o);
-		if (!w) continue;
-		if (w->property("storage").isValid()){
-			void* storage = w->property("storage").value<void*>();
-			if (!storage) continue;
-			//get value of the
-			QCheckBox* checkBox = qobject_cast<QCheckBox*>(w);
-			if (checkBox) {
-				*((bool*)storage) = checkBox->isChecked();
-				continue;
-			}
-			QLineEdit* edit = qobject_cast<QLineEdit*>(w);
-			if (edit){
-				*((QString*)storage) = edit->text();
-				continue;
-			}
-			QTextEdit* tedit = qobject_cast<QTextEdit*>(w);
-			if (tedit){
-				*((QString*)storage) = tedit->toPlainText();
-				continue;
-			}
-			QDoubleSpinBox* doubleSpinBox = qobject_cast<QDoubleSpinBox*>(w);
-			if (doubleSpinBox){
-				*((float*)storage) = doubleSpinBox->value();
-				continue;
-			}
-			QSpinBox* spinBox = qobject_cast<QSpinBox*>(w);
-			if (spinBox){
-				*((int*)storage) = spinBox->value();
-				continue;
-			}
-			QComboBox* comboBox = qobject_cast<QComboBox*>(w);
-			if (comboBox){
-				*((QStringList*)storage) = QStringList(comboBox->currentText());
-				continue;
-			}
-		}
-	}*/
 	for (int i=0;i<properties.size();i++)
 		properties[i].readFromObject((QWidget*)properties[i].widgetOffset);
 	accept();
 }
 
 void UniversalInputDialog::addWidget(QWidget* widget, const QString& description, const ManagedProperty& prop){
-	if (prop.storage) {
-		properties << prop;
-		prop.writeToObject(widget);
-	}
+	Q_ASSERT(prop.storage);
+	properties << prop;
+	properties.last().widgetOffset = (ptrdiff_t)widget;
+	prop.writeToObject(widget);
+
 	widget->setSizePolicy(QSizePolicy::MinimumExpanding, widget->sizePolicy().verticalPolicy());
 	QLabel *descWidget = new QLabel(description, this);
 	descWidget->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Preferred);
@@ -70,41 +32,62 @@ void UniversalInputDialog::addWidget(QWidget* widget, const QString& description
 	}
 }
 
-void UniversalInputDialog::addVariable(bool* var, const QString& description){
-	Q_ASSERT(var);
+QCheckBox* UniversalInputDialog::addCheckBox(const ManagedProperty& mp, const QString& description){
 	QCheckBox* checkBox = new QCheckBox(this);
 	checkBox->setText(description);
-	checkBox->setChecked(*var);
-	properties << ManagedProperty(var, QVariant(), checkBox);
+	properties << mp;
+	mp.writeToObject(checkBox);
+	properties.last().widgetOffset = (ptrdiff_t)checkBox;
 	gridLayout->addWidget(checkBox,gridLayout->rowCount(),1,0);
+	return checkBox;
 }
-void UniversalInputDialog::addVariable(int* var, const QString& description){
-	Q_ASSERT(var);
+QComboBox* UniversalInputDialog::addComboBox(const ManagedProperty& mp, const QString& description){
+	QComboBox* cmb = new QComboBox(this);
+	addWidget(cmb,description,mp);
+	return cmb;
+}
+QSpinBox* UniversalInputDialog::addSpinBox(const ManagedProperty& mp, const QString& description){
 	QSpinBox* spinBox = new QSpinBox(this);
 	spinBox->setMaximum(10000000);
-	addWidget(spinBox,description,ManagedProperty(var, QVariant(), spinBox));
+	addWidget(spinBox,description, mp);
+	return spinBox;
 }
-void UniversalInputDialog::addVariable(QString* var, const QString& description){
-	Q_ASSERT(var);
-	QLineEdit* edit = new QLineEdit(this);
-	addWidget(edit,description,ManagedProperty(var, QVariant(), edit));
-}
-void UniversalInputDialog::addVariable(QStringList* var, const QString& description){
-	Q_ASSERT(var);
-	QComboBox* cmb = new QComboBox(this);
-	addWidget(cmb,description,ManagedProperty(var, QVariant(), cmb));
-}
-void UniversalInputDialog::addTextEdit(QString* var, const QString& description){
-	Q_ASSERT(var);
-	QTextEdit* edit = new QTextEdit(this);
-	addWidget(edit,description,ManagedProperty(var, QVariant(), edit));
-}
-void UniversalInputDialog::addVariable(float* var, const QString& description){
-	Q_ASSERT(var);
+QDoubleSpinBox* UniversalInputDialog::addDoubleSpinBox(const ManagedProperty& mp, const QString& description){
 	QDoubleSpinBox* spinBox = new QDoubleSpinBox(this);
 	spinBox->setMinimum(-10000000);
 	spinBox->setMaximum(10000000);
-	addWidget(spinBox,description,ManagedProperty(var, QVariant(), spinBox));
+	addWidget(spinBox,description,mp);
+	return spinBox;
+}
+QLineEdit* UniversalInputDialog::addLineEdit(const ManagedProperty& mp, const QString& description){
+	QLineEdit* edit = new QLineEdit(this);
+	addWidget(edit,description, mp);
+	return edit;
+}
+QTextEdit* UniversalInputDialog::addTextEdit(const ManagedProperty& mp, const QString& description){
+	QTextEdit* edit = new QTextEdit(this);
+	addWidget(edit,description,mp);
+	return edit;
+}
+
+
+void UniversalInputDialog::addVariable(bool* var, const QString& description){
+	addCheckBox(ManagedProperty(var), description);
+}
+void UniversalInputDialog::addVariable(int* var, const QString& description){
+	addSpinBox(ManagedProperty(var), description);
+}
+void UniversalInputDialog::addVariable(QString* var, const QString& description){
+	addLineEdit(ManagedProperty(var), description);
+}
+void UniversalInputDialog::addVariable(QStringList* var, const QString& description){
+	addComboBox(ManagedProperty(var), description);
+}
+void UniversalInputDialog::addTextEdit(QString* var, const QString& description){
+	addTextEdit(ManagedProperty(var), description);
+}
+void UniversalInputDialog::addVariable(float* var, const QString& description){
+	addDoubleSpinBox(ManagedProperty(var), description);
 }
 
 void UniversalInputDialog::showEvent(QShowEvent* event){

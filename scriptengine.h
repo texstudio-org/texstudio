@@ -29,4 +29,21 @@ protected:
 	QString m_script;
 };
 
+#include "universalinputdialog.h"
+
+class UniversalInputDialogScript: public UniversalInputDialog{
+	Q_OBJECT
+public:
+	UniversalInputDialogScript(QScriptEngine* engine, QWidget* parent=0);
+	~UniversalInputDialogScript();
+public slots:
+	QScriptValue add(const QScriptValue& def, const QScriptValue& description, const QScriptValue& id = QScriptValue());
+	QScriptValue exec();
+	QScriptValue getAll();
+	QScriptValue get(const QScriptValue& id);
+private:
+	QScriptEngine* engine;
+};
+	
+
 #endif // SCRIPTENGINE_H

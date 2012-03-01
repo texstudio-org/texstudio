@@ -27,13 +27,31 @@ ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 
 #define CONSTRUCTOR(TYPE, ID) \
 	ManagedProperty::ManagedProperty(TYPE* storage, QVariant def, ptrdiff_t widgetOffset)\
-	: storage(storage), type(ID), def(def), widgetOffset(widgetOffset){}\
-ManagedProperty::ManagedProperty(TYPE* storage, QVariant def, QWidget* widgetOffset)\
-: storage(storage), type(ID), def(def), widgetOffset((ptrdiff_t)widgetOffset){}
+	: storage(storage), type(ID), def(def), widgetOffset(widgetOffset){} \
+	ManagedProperty ManagedProperty::fromValue(TYPE value) { \
+		ManagedProperty res;    \
+		res.storage = new TYPE; \
+		*((TYPE*)(res.storage)) = value; \
+		res.type = ID;          \
+		res.def = value;        \
+		res.widgetOffset = 0;   \
+		return res;             \
+	}                              
 PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 #undef CONSTRUCTOR
 
-	
+
+void ManagedProperty::deallocate(){ 
+	switch (type) {
+#define CASE(TYPE, ID) case ID: delete ((TYPE*)(storage)); break;
+PROPERTY_TYPE_FOREACH_MACRO(CASE)
+#undef CASE
+	default: Q_ASSERT(false);
+	}
+	storage = 0;
+}
+
+
 static ConfigManager* globalConfigManager = 0;
 ConfigManagerInterface* ConfigManagerInterface::getInstance(){
 	Q_ASSERT(globalConfigManager);
