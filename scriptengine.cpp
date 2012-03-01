@@ -170,6 +170,21 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 	return searchReplaceFunction(context, engine, true);
 }
 
+#define Q_SCRIPT_DECLARE_QMETAOBJECT_WITH_ENGINE(T, _Arg1) \
+	/* Copied from qt's Q_SCRIPT_DECLARE_QMETAOBJECT */ \
+template<> inline QScriptValue qscriptQMetaObjectConstructor<T>(QScriptContext *ctx, QScriptEngine *eng, T *) \
+{ \
+    _Arg1 arg1 = qscriptvalue_cast<_Arg1> (ctx->argument(0)); \
+    T* t = new T(eng, arg1); \
+    if (ctx->isCalledAsConstructor()) \
+        return eng->newQObject(ctx->thisObject(), t, QScriptEngine::AutoOwnership); \
+    QScriptValue o = eng->newQObject(t, QScriptEngine::AutoOwnership); \
+    o.setPrototype(ctx->callee().property(QString::fromLatin1("prototype"))); \
+    return o; \
+}
+
+Q_SCRIPT_DECLARE_QMETAOBJECT_WITH_ENGINE(UniversalInputDialogScript, QWidget*)
+
 void scriptengine::run(){
 	if (globalObject) delete globalObject;
 	globalObject = new ScriptObject(m_script,buildManager,app);
@@ -194,6 +209,9 @@ void scriptengine::run(){
 	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
 
+	QScriptValue uidClass = engine->scriptValueFromQMetaObject<UniversalInputDialogScript>();
+       engine->globalObject().setProperty("UniversalInputDialog", uidClass);
+	
 	FileChooser flchooser(0,scriptengine::tr("File Chooser"));
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
@@ -215,4 +233,72 @@ void scriptengine::run(){
 		delete globalObject;
 		globalObject = 0;
 	}
+}
+
+
+UniversalInputDialogScript::UniversalInputDialogScript(QScriptEngine* engine, QWidget* parent):UniversalInputDialog(parent), engine(engine){
+	
+}
+UniversalInputDialogScript::~UniversalInputDialogScript(){
+	for (int i=0;i<properties.size();i++) properties[i].deallocate();
+}
+
+QScriptValue UniversalInputDialogScript::add(const QScriptValue& def, const QScriptValue& description, const QScriptValue& id){
+	QWidget* w = 0;
+	if (def.isArray()) {
+		QStringList options;
+		QScriptValueIterator it(def);
+		while (it.hasNext()) {
+		    it.next();
+		    if (it.flags() & QScriptValue::SkipInEnumeration)
+			 continue;
+		    if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
+		    else engine->currentContext()->throwError("Invalid default value in array (must be string or number): "+it.value().toString());
+		}
+		w = addComboBox(ManagedProperty::fromValue(options), description.toString());
+	} else if (def.isBool()) {
+		w = addCheckBox(ManagedProperty::fromValue(def.toBool()), description.toString());
+	} else if (def.isNumber()) {
+		w = addDoubleSpinBox(ManagedProperty::fromValue(def.toNumber()), description.toString());
+	} else if (def.isString()) {
+		w = addLineEdit(ManagedProperty::fromValue(def.toString()), description.toString());
+	} else {	
+		
+		engine->currentContext()->throwError(tr("Invalid default value: %1").arg(def.toString()));
+		return QScriptValue();
+	}
+	if (id.isValid()) properties.last().name = id.toString();
+	return engine->newQObject(w);
+}
+
+QScriptValue UniversalInputDialogScript::exec(){
+	if (!UniversalInputDialog::exec()) return QScriptValue();
+	return getAll();
+}
+
+QScriptValue UniversalInputDialogScript::getAll(){
+	QScriptValue res = engine->newArray(properties.size());
+	for (int i=0;i<properties.size();i++) {
+		res.setProperty(i, engine->newVariant(properties[i].valueToQVariant()));
+		if (!properties[i].name.isEmpty())
+			res.setProperty(properties[i].name, engine->newVariant(properties[i].valueToQVariant()));
+	}
+	return res;
+}
+
+QScriptValue UniversalInputDialogScript::get(const QScriptValue& id){
+	if (id.isNumber()) {
+		int i = id.toInt32();
+		if (i < 0 || i > properties.size()) return QScriptValue();
+		return engine->newVariant(properties[i].valueToQVariant());
+	}
+	if (id.isString()) {
+		QString sid = id.toString();
+		foreach (const ManagedProperty& mp, properties)
+			if (mp.name == sid) 
+				return engine->newVariant(mp.valueToQVariant());
+		return QScriptValue();
+	}
+	engine->currentContext()->throwError(tr("Unkown variable %1").arg(id.toString()));
+	return QScriptValue();
 }
