@@ -170,20 +170,27 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 	return searchReplaceFunction(context, engine, true);
 }
 
-#define Q_SCRIPT_DECLARE_QMETAOBJECT_WITH_ENGINE(T, _Arg1) \
-	/* Copied from qt's Q_SCRIPT_DECLARE_QMETAOBJECT */ \
-template<> inline QScriptValue qscriptQMetaObjectConstructor<T>(QScriptContext *ctx, QScriptEngine *eng, T *) \
-{ \
-    _Arg1 arg1 = qscriptvalue_cast<_Arg1> (ctx->argument(0)); \
-    T* t = new T(eng, arg1); \
-    if (ctx->isCalledAsConstructor()) \
-        return eng->newQObject(ctx->thisObject(), t, QScriptEngine::AutoOwnership); \
-    QScriptValue o = eng->newQObject(t, QScriptEngine::AutoOwnership); \
-    o.setPrototype(ctx->callee().property(QString::fromLatin1("prototype"))); \
-    return o; \
+/* partly copied from qt's Q_SCRIPT_DECLARE_QMETAOBJECT */ \
+template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialogScript>(QScriptContext *ctx, QScriptEngine *eng, UniversalInputDialogScript *) 
+{ 
+	UniversalInputDialogScript * t = new UniversalInputDialogScript(eng, 0); 
+	
+	if (ctx->argumentCount()) {
+		if (!ctx->argument(0).isArray() || !(ctx->argument(1).isArray() || ctx->argument(1).isUndefined())) 
+			t->add(ctx->argument(0),ctx->argument(1),ctx->argument(2));
+		else for (int i=0;i<ctx->argumentCount();i++){
+			const QScriptValue& sv = ctx->argument(i);
+			if (!sv.isArray()) { ctx->throwError("Expected array instead of " + sv.toString()); continue; }
+			t->add(sv.property(0), sv.property(1), sv.property(2));
+		}
+	}
+	
+	if (ctx->isCalledAsConstructor()) 
+		return eng->newQObject(ctx->thisObject(), t, QScriptEngine::AutoOwnership); 
+	QScriptValue o = eng->newQObject(t, QScriptEngine::AutoOwnership); 
+	o.setPrototype(ctx->callee().property(QString::fromLatin1("prototype"))); 
+	return o; 
 }
-
-Q_SCRIPT_DECLARE_QMETAOBJECT_WITH_ENGINE(UniversalInputDialogScript, QWidget*)
 
 void scriptengine::run(){
 	if (globalObject) delete globalObject;
