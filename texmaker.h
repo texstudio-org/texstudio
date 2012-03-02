@@ -89,15 +89,15 @@ public slots:
 	
 protected:
 	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
-	Q_INVOKABLE inline QMenu* newManagedMenu(const QString &id,const QString &text);
-	Q_INVOKABLE inline QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
-	Q_INVOKABLE inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
-	Q_INVOKABLE inline QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
-	Q_INVOKABLE inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
-	Q_INVOKABLE inline QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
-	Q_INVOKABLE inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
-	Q_INVOKABLE inline QMenu* getManagedMenu(const QString& id);
-	Q_INVOKABLE inline QAction* getManagedAction(const QString& id);
+	Q_INVOKABLE QMenu* newManagedMenu(const QString &id,const QString &text);
+	Q_INVOKABLE QMenu* newManagedMenu(QMenu* menu, const QString &id,const QString &text);
+	Q_INVOKABLE QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	Q_INVOKABLE QAction* newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	Q_INVOKABLE QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	Q_INVOKABLE QAction* newManagedEditorAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts, const QString & iconFile="", const QList<QVariant>& args = QList<QVariant>());
+	Q_INVOKABLE QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
+	Q_INVOKABLE QMenu* getManagedMenu(const QString& id);
+	Q_INVOKABLE QAction* getManagedAction(const QString& id);
 	Q_INVOKABLE QAction* insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
 	
 	SymbolGridWidget* addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);

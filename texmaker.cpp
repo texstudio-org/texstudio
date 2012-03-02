@@ -303,17 +303,17 @@ QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const
 	linkToEditorSlot(tmp, slotName, args);
 	return tmp;
 }
-QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
+inline QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
 	return configManager.newManagedAction(menu,id,act);
 }
-QMenu* Texmaker::getManagedMenu(const QString& id){
+inline QMenu* Texmaker::getManagedMenu(const QString& id){
 	return configManager.getManagedMenu(id);
 }
 
-QAction* Texmaker::getManagedAction(const QString& id) {
+inline QAction* Texmaker::getManagedAction(const QString& id) {
 	return configManager.getManagedAction(id);
 }
-QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
+inline QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
 	return configManager.newManagedMenu(id,text);
 }
 QAction* Texmaker::insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
