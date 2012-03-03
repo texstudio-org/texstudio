@@ -269,9 +269,6 @@ Texmaker::~Texmaker(){
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
 }
 
-QMenu* Texmaker::newManagedMenu(QMenu* menu, const QString &id,const QString &text){
-	return configManager.newManagedMenu(menu,id,text);
-}
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile, const QList<QVariant>& args) {
 	QAction* tmp = configManager.newManagedAction(menu,id,text,args.isEmpty()?slotName:SLOT(relayToOwnSlot()),QList<QKeySequence>() << shortCut, iconFile);
 	if (!args.isEmpty()) {
@@ -302,19 +299,6 @@ QAction* Texmaker::newManagedEditorAction(QWidget* menu, const QString &id,const
 	QAction* tmp = configManager.newManagedAction(menu,id,text,0,shortCuts, iconFile);
 	linkToEditorSlot(tmp, slotName, args);
 	return tmp;
-}
-inline QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id, QAction* act){
-	return configManager.newManagedAction(menu,id,act);
-}
-inline QMenu* Texmaker::getManagedMenu(const QString& id){
-	return configManager.getManagedMenu(id);
-}
-
-inline QAction* Texmaker::getManagedAction(const QString& id) {
-	return configManager.getManagedAction(id);
-}
-inline QMenu* Texmaker::newManagedMenu(const QString &id,const QString &text){
-	return configManager.newManagedMenu(id,text);
 }
 QAction* Texmaker::insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile){
 	QMenu* menu = before->menu();
