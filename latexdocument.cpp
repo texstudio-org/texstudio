@@ -588,6 +588,20 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				continue;
 			}
+            //// newcounter ////
+            if (cmd=="\\newcounter") {
+                completerNeedsUpdate=true;
+                QStringList lst;
+                lst << "\\the"+name ;
+                foreach(const QString& elem,lst){
+                    mUserCommandList.insert(line(i).handle(),elem);
+                    ltxCommands.possibleCommands["user"].insert(elem);
+                    if(!removedUserCommands.removeAll(elem)){
+                        addedUserCommands << elem;
+                    }
+                }
+                continue;
+            }
 			///usepackage
 			if (latexParser.usepackageCommands.contains(cmd)) {
 				completerNeedsUpdate=true;
