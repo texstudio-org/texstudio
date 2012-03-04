@@ -636,6 +636,8 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 		int i=tagStart;
 		int start=-1;
 		start=line.indexOf("{",i);
+        if(start<0)
+            return false; // no argument found
 		i=start>-1 ? start : 0;
 		int stop=line.indexOf("}",i);
 		i=line.indexOf("{",i+1);
