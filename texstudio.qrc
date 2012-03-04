@@ -313,6 +313,7 @@
         <file>completion/cases.cwl</file>
         <file>completion/epstopdf.cwl</file>
         <file>completion/titlesec.cwl</file>
+        <file>completion/ifpdf.cwl</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
