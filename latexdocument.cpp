@@ -536,7 +536,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				if(rx.indexIn(remainder)>-1){
 					QString name=rx.cap(1);
 					QString optionStr=rx.cap(2);
-					qDebug()<< name << ":"<< optionStr;
+                    //qDebug()<< name << ":"<< optionStr;
 					int options=optionStr.mid(1).toInt(); //returns 0 if conversion fails
 					ltxCommands.possibleCommands["user"].insert(name);
 					addedUserCommands << name;
