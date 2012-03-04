@@ -228,7 +228,8 @@ QStringList LatexStyleParser::readPackage(QString fn){
             if(rxInput.indexIn(line)>-1){
                 QString name=rxInput.cap(1);
                 name=kpsewhich(name);
-                results << readPackage(name);
+                if(name!=fn) // avoid indefinite loops
+                    results << readPackage(name);
                 continue;
             }
             if(rxNewLength.indexIn(line)>-1){
