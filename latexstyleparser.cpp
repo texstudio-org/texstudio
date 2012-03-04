@@ -140,6 +140,8 @@ QStringList LatexStyleParser::readPackage(QString fn){
         rxRequire.setMinimal(true);
         QRegExp rxRequireStart("\\\\RequirePackage\\s*\\{(.+)");
         QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
+        QRegExp rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
+        QRegExp rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
         bool inReq=false;
         while(!stream.atEnd()) {
             line = stream.readLine();
@@ -226,6 +228,22 @@ QStringList LatexStyleParser::readPackage(QString fn){
                 QString name=rxInput.cap(1);
                 name=kpsewhich(name);
                 results << readPackage(name);
+                continue;
+            }
+            if(rxNewLength.indexIn(line)>-1){
+                QString name="\\"+rxNewLength.cap(1);
+                if(name.contains("@"))
+                    continue;
+                if(!results.contains(name))
+                    results << name;
+                continue;
+            }
+            if(rxNewCounter.indexIn(line)>-1){
+                QString name="\\the"+rxNewCounter.cap(1);
+                if(name.contains("@"))
+                    continue;
+                if(!results.contains(name))
+                    results << name;
                 continue;
             }
             if(rxDecMathSym.indexIn(line)>-1){
