@@ -145,6 +145,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
         bool inReq=false;
         while(!stream.atEnd()) {
             line = stream.readLine();
+            line = LatexParser::cutComment(line);
             int options=0;
             if(inReq){
                 int col=line.indexOf('}');
