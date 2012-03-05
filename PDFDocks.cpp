@@ -552,6 +552,7 @@ bool PDFBaseSearchDock::hasFlagCaseSensitive() const{
 }
 void PDFBaseSearchDock::setFocus(){
 	leFind->setFocus();
+	leFind->selectAll();
 }
 
 void PDFBaseSearchDock::resizeEvent(QResizeEvent *e){
