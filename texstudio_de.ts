@@ -1074,7 +1074,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation>Schriftgröße</translation>
+        <translation type="unfinished">Schriftart</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
