@@ -107,6 +107,7 @@
 \exhyphenpenalty#*
 \expandafter#*
 \fam#*
+\fi#*
 \fill#*
 \finalhypendemerits#*
 \firstmark#*
