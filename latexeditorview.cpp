@@ -1111,7 +1111,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						QString rcit =  cit;
 						//trim left (left spaces are ignored by \cite, right space not)
 						for (int j=0; j<cit.length();j++)
-							if (cit[j]!=' '){
+							if (cit[j]!=' ' && cit[j]!='\t' && cit[j]!='\r' && cit[j]!='\n'){
 								if (j!=0) rcit=cit.mid(j);
 								break;
 							}
@@ -1431,9 +1431,33 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
 	case LatexParser::Citation:
-		if (bibTeXIds)
-			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),
-			                   bibTeXIds->contains(value)?tr("citation correct"):tr("citation missing!"));
+		if (bibTeXIds) {
+			QString tooltip(tr("Citation correct"));
+			QStringList bibIDs;
+			foreach (const QString &cit, value.split(',')) {
+				//trim left (left spaces are ignored by \cite, right space not)
+				int j;
+				for (j=0; j<cit.length();j++)
+					if (cit[j]!=' ' && cit[j]!='\t' && cit[j]!='\r' && cit[j]!='\n') break;
+				bibIDs.append(cit.mid(j));
+			}
+			QStringList missingIDs;
+			foreach (const QString &id, bibIDs) {
+				if (!bibTeXIds->contains(id)) {
+					missingIDs.append(id);
+				}
+			}
+			if (!missingIDs.isEmpty()) {
+				tooltip = "<b>" + tr("Citation missing") + ":</b><br>" + missingIDs.join("<br>");
+
+				foreach (const QString &id, missingIDs)
+					if (id.at(id.length()-1).isSpace()) {
+						tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("One ore more ids end with space. Trailing spaces are not ignored by BibTeX."));
+						break;
+					}
+			}
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
+		}
 		break;
 	default:
 		QToolTip::hideText();
@@ -1776,6 +1800,7 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 	if (!inverterSingleton) inverterSingleton = new BracketInvertAffector();
 	return inverterSingleton;
 }
+
 
 
 
