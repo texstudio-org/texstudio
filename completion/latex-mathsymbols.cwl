@@ -70,7 +70,7 @@
 \cup#m
 \dagger#m
 \dashv#m
-\dd#Sm
+\dd#m
 \ddagger#m
 \ddot{a}#m
 \ddots#m

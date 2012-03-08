@@ -632,32 +632,28 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
 	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
 		cmd=token.cap(0);
-		tagStart+=cmd.length();
-		int i=tagStart;
-		int start=-1;
-		start=line.indexOf("{",i);
-        if(start<0)
-            return false; // no argument found
-		i=start>-1 ? start : 0;
-		int stop=line.indexOf("}",i);
-		i=line.indexOf("{",i+1);
-		int startOption=line.indexOf("[",tagStart);
-		//int stopOption=line.indexOf("]",i);
-		int startNonSpace=line.indexOf(QRegExp("\\S"),tagStart);
-		if(startNonSpace>-1 && startNonSpace<start && (startOption<0||startOption>startNonSpace)){
-			remainder=line.mid(tagStart);
-			return true;
-		}
-		while (i>0 && stop>0 && i<stop) {
-			stop=line.indexOf("}",stop+1);
-			i=line.indexOf("{",i+1);
-		}
-		if (stop<0) stop=line.length();
-		outName=line.mid(start+1,stop-start-1);
-		optionStart=start+1;
-		remainder=line.mid(stop+1);
-		return true;
-	}
+        QStringList values;
+        QList<int> starts;
+        LatexParser::resolveCommandOptions(line,tagStart,values,&starts);
+        if(values.size()>0){
+            QString first=values.takeFirst();
+            int start=starts.takeFirst();
+            if(first.startsWith('[')){
+                if(values.size()>0){
+                    first=values.takeFirst();
+                    start=starts.takeFirst();
+                    if(first.startsWith('['))
+                        return false; //two options [..][...]
+                }else{
+                    return false; //no argument after option
+                }
+            }
+            optionStart=start+1;
+            remainder=line.mid(start+first.length());
+            outName=LatexParser::removeOptionBrackets(first);
+            return true;
+        }
+    }
 	return false;
 }
 
