@@ -946,6 +946,7 @@ bool ConfigManager::execConfigDialog() {
 			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER));
 			connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
 			QRadioButton *rbExternalPDFViewer = new QRadioButton("External:", confDlg);
+			rbExternalPDFViewer->setChecked(!confDlg->checkboxInternalPDFViewer->isChecked());
 			bgPDFViewer->addButton(confDlg->checkboxInternalPDFViewer);
 			bgPDFViewer->addButton(rbExternalPDFViewer);
 			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
