@@ -30,7 +30,7 @@ public:
 	PreferedCompletionTab preferedCompletionTab;
 	QStringList words;
 	QMultiMap<uint,QPair<int,int> > usage;
-	
+
 	QList<Macro> userMacro;
 
 	void setFiles(const QStringList & newFiles);

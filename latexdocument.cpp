@@ -2017,17 +2017,20 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 			continue;
 		elem.append(".cwl");
 		if(!filtered.contains(elem)){
-			QString fn=findResourceFile("completion/"+elem,false,QStringList(config->importedCwlBaseDir));
-			if(!fn.isEmpty())
+            if(!elem.isEmpty())
 				filtered << elem;
 		}
 	}
 	if(!filtered.isEmpty()){
 		LatexParser cmds;
-		QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
-		ltxCommands.substract(cmds);
-		foreach(const QString& elem,removedWords)
-			mCompleterWords.remove(elem);
+        //QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
+        foreach(QString elem,filtered){
+            LatexPackage pck=parent->cachedPackages.value(elem);
+            cmds.possibleCommands=pck.possibleCommands;
+            ltxCommands.substract(cmds);
+            foreach(const QString& elem,pck.completionWords)
+                mCompleterWords.remove(elem);
+        }
 		//recheck syntax of ALL documents ...
 		update=true;
 	}
@@ -2036,6 +2039,10 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	foreach(QString elem,added){
 		elem.append(".cwl");
 		if(!filtered.contains(elem)){
+            if(parent->cachedPackages.contains(elem)){
+                filtered << elem;
+                continue;
+            }
 			QString fn=findResourceFile("completion/"+elem,false,QStringList(config->importedCwlBaseDir));
 			if(!fn.isEmpty())
 				filtered << elem;
@@ -2046,10 +2053,24 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	}
 	if(!filtered.isEmpty()){
 		LatexParser cmds;
-		
-		QStringList addedWords=loadCwlFiles(filtered,&cmds,config);
-		ltxCommands.append(cmds);
-		mCompleterWords.unite(addedWords.toSet());
+        foreach(QString elem,filtered){
+            LatexPackage pck;
+            if(parent->cachedPackages.contains(elem)){
+                pck=parent->cachedPackages.value(elem);
+            }else{
+                pck=loadCwlFile(elem,config);
+                if(pck.packageName!="<notFound>"){
+                    parent->cachedPackages.insert(elem,pck); // cache package
+                }else{
+                    LatexPackage zw;
+                    zw.packageName=elem;
+                    parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
+                }
+            }
+            cmds.possibleCommands=pck.possibleCommands;
+            ltxCommands.append(cmds);
+            mCompleterWords.unite(pck.completionWords.toSet());
+        }
 		//recheck syntax of ALL documents ...
 		update=true;
 	}
@@ -2113,7 +2134,18 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 	foreach(const QString& elem,files){
 		if(loadedFiles.contains(elem))
 			continue;
-		zw=loadCwlFile(elem,completerConfig);
+        if(parent->cachedPackages.contains(elem)){
+            zw=parent->cachedPackages.value(elem);
+        }else{
+            zw=loadCwlFile(elem,completerConfig);
+            if(zw.packageName!="<notFound>"){
+                parent->cachedPackages.insert(elem,zw); // cache package
+            }else{
+                LatexPackage zw;
+                zw.packageName=elem;
+                parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
+            }
+        }
 		if(zw.packageName=="<notFound>"){
 			emit importPackage(elem);
 		} else {
