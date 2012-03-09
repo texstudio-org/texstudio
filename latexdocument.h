@@ -308,6 +308,8 @@ public:
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
+
+    QHash<QString,LatexPackage>cachedPackages;
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:

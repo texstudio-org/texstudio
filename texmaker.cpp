@@ -6129,6 +6129,7 @@ void Texmaker::packageScanCompleted(QString name){
 	foreach(LatexDocument *doc,documents.documents){
 		if(doc->containsPackage(name)){
 			QStringList added(name);
+            documents.cachedPackages.remove(name+".cwl");
 			QStringList removed;
 			doc->updateCompletionFiles(added,removed,false);
 		}
