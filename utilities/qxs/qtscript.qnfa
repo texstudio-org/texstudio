@@ -25,7 +25,13 @@
 	</context>
 	
 	<context id="data/regexp" format="text" >
-		<start>/</start>
+		<start>\(/</start>
+		<stop>/</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	<context id="data/regexpb" format="text" >
+		<start>/[^0-9 ]</start>
 		<stop>/</stop>
 		<stop exclusive="false">\n</stop>
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
