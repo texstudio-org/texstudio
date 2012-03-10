@@ -9,7 +9,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-ScriptEngineTest::ScriptEngineTest(QEditor* editor): ed(editor){
+ScriptEngineTest::ScriptEngineTest(QEditor* editor, bool all): ed(editor), all(all){
 	ed->setCursorPosition(0,0);
 	ed->document()->clear();
 }
@@ -42,11 +42,15 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Redo")
 		<< "editor.redo()"
 		<< "Hallo";
-
-	QTest::newRow("Select All/copy/paste")
+	if (all) {
+		QTest::newRow("Select All/copy/paste")
 		<< "editor.selectAll();editor.copy();editor.selectNothing();editor.paste()"
+		<< "HalloHallo";	
+	} else 
+		QTest::newRow("SKIP Select All/copy/paste ")
+		<< "editor.setText(\"HalloHallo\");"
 		<< "HalloHallo";
-
+	
 	QTest::newRow("remove Selection")
 		<< "cursor.movePosition(1,cursorEnums.Start);cursor.movePosition(5,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()"
 		<< "Hallo";
