@@ -551,9 +551,9 @@ The following table gives an overview on the possible commands.
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
   <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
   <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
-  <tr><td> setGlobal(name, value) </td>	<td> Sets a global configuration variable. (can change the values of the ini file, requires write privileges) </td></tr>
-  <tr><td> getGlobal(name) </td>	<td> Reads a global configuration variable. (can read all values of the ini file, requires read privileges) </td></tr>
-  <tr><td> hasGlobal(name) </td>	<td> Checks if a global configuration variable exists. (requires read privileges) </td></tr>
+  <tr><td> setPersistent(name, value) </td>	<td> Sets a global configuration variable. (can change the values of the ini file, requires write privileges) </td></tr>
+  <tr><td> getPersistent(name) </td>	<td> Reads a global configuration variable. (can read all values of the ini file, requires read privileges) </td></tr>
+  <tr><td> hasPersistent(name) </td>	<td> Checks if a global configuration variable exists. (requires read privileges) </td></tr>
   
   <tr><td> hasReadPrivileges() </td>	<td> Checks if the script has read privileges </td></tr>
   <tr><td> hasWritePrivileges() </td>	<td> Checks if the script has write privileges </td></tr>
@@ -868,6 +868,14 @@ The following table gives an overview on the possible commands.
   <tr><td>app.getManagedAction([id])</td> <td>Returns an <a href="http://developer.qt.nokia.com/doc/qt-4.8/QAction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/.../menuN/action, with usually one menu, e.g. "main/edit/undo", see texmaker.cpp) </td></tr>
   <tr><td>app.createUI(file, [parent])</td><td>Loads a certain ui file and creates a QWidget* from it</td></tr>
   <tr><td>app.createUIFromString(string, [parent])</td><td>Creates a QWidget* described in the string</td></tr>
+  <tr><th colspan=2>UniversalInputDialog class</th></tr>
+  <tr><td>new UniversalInputDialog()</td><td>Creates a new dialog</td></tr>
+  <tr><td>dialog.add(defaultValue, [description, [id]])</td><td>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. <br> A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</td></tr>
+  <tr><td>dialog.get(nr/id)</td><td>Returns the current value of the nr-th added variable or the variable with a certain id.</td></tr>
+  <tr><td>dialog.getAll()</td><td>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</td></tr>
+  <tr><td>dialog.exec()</td><td>Displays the dialog. Returns null, if the user cancels it, and the values of getAll(), if he accepts it.</td></tr>
+  <tr><td>dialog.show()</td><td>Displays the dialog asynchronously.</td></tr>
+  <tr><td>UniversalInputDialog([[defaultValue_0, description_0, id_0], [defaultValue_1, description_1, id_1], ...])</td><td>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</td></tr>
   <tr><th colspan=2>FileChooser object</th></tr>
   <tr>
 	<td> fileChooser.exec()
