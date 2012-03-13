@@ -40,7 +40,11 @@ void UserToolDialog::init() {
 		item->setData(UserToolDialog::CommandRole, Tool.at(i));
 		ui.commandList->addItem(item);
 	}
-	ui.commandList->setCurrentRow(0);
+	if (Tool.size() == 0) {
+		change(0,0); // disable controls as a side effect
+	} else {
+		ui.commandList->setCurrentRow(0);
+	}
 }
 
 void UserToolDialog::change(QListWidgetItem *current, QListWidgetItem *previous) {
@@ -80,7 +84,13 @@ void UserToolDialog::slotOk() {
 }
 
 void UserToolDialog::slotAdd() {
-	ui.commandList->addItem(tr("User Command"));
+	QString newName(tr("User Command"));
+	for (int i=0; i<=ui.commandList->count(); i++) {
+		if (i>0) newName = tr("User Command").append(QString(" %1").arg(i));
+		if (ui.commandList->findItems(newName, Qt::MatchExactly).count() == 0) break;
+	}
+	QListWidgetItem *item = new QListWidgetItem(newName, ui.commandList);
+	ui.commandList->setCurrentItem(item);
 }
 
 void UserToolDialog::slotRemove() {

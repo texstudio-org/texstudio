@@ -108,6 +108,7 @@ void UserQuickDialog::actionAddCommand()
 
 
 void UserQuickDialog::setCommandList(const QString& list){
+	if (list.isEmpty()) return;
 	QStringList split = list.split("|");
 	foreach (const QString &s, split){
 		QString c = s.trimmed();
