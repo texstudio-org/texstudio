@@ -314,6 +314,7 @@
         <file>completion/epstopdf.cwl</file>
         <file>completion/titlesec.cwl</file>
         <file>completion/ifpdf.cwl</file>
+        <file>completion/empheq.cwl</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
