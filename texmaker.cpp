@@ -4464,7 +4464,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			if (configManager.debugLastFullTestRun.daysTo(myself.lastModified())>6) allTests=true;
 			if (allTests) configManager.debugLastFullTestRun=myself.lastModified();
 			QString result=TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor);
-			//currentEditorView()->editor->document()->setText(result);
+			m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
 			currentEditorView()->editor->setText(result, false);
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 		}
@@ -4647,8 +4647,8 @@ void Texmaker::viewSetHighlighting(){
                                          m_languages->languages().indexOf(currentEditor()->document()->languageDefinition()?currentEditor()->document()->languageDefinition()->language():""),
                                          false);
 	if (lang.isEmpty()) return;
-    currentEditorView()->clearOverlays();
-    m_languages->setLanguageFromName(currentEditor(), m_languages->languages().at(localizedLanguages.indexOf(lang)));
+	currentEditorView()->clearOverlays();
+	m_languages->setLanguageFromName(currentEditor(), m_languages->languages().at(localizedLanguages.indexOf(lang)));
     if(currentEditor()->languageDefinition())
         return;
     if (currentEditor()->languageDefinition()->language()=="(La)TeX"){
