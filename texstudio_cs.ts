@@ -1703,7 +1703,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Internal viewer</source>
-        <translation>Vnitřní prohlížeč</translation>
+        <translation type="obsolete">Vnitřní prohlížeč</translation>
     </message>
     <message>
         <source>&amp;* Open all files</source>
@@ -1738,6 +1738,10 @@ Chcete je odstranit?</translation>
     <message>
         <source>huge</source>
         <translation>Obrovské</translation>
+    </message>
+    <message>
+        <source>Internal</source>
+        <translation type="unfinished">Vnitřní</translation>
     </message>
 </context>
 <context>
@@ -2186,11 +2190,11 @@ Chybí volby \includegraphics.</translation>
     </message>
     <message>
         <source>citation correct</source>
-        <translation>Správná citace</translation>
+        <translation type="obsolete">Správná citace</translation>
     </message>
     <message>
         <source>citation missing!</source>
-        <translation>Citace chybí!</translation>
+        <translation type="obsolete">Citace chybí!</translation>
     </message>
     <message>
         <source>shift pressed =&gt; suggestions hidden</source>
@@ -2215,6 +2219,22 @@ Chybí volby \includegraphics.</translation>
     <message>
         <source>use other&apos;s</source>
         <translation>Použít jinou</translation>
+    </message>
+    <message>
+        <source>Citation correct</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citation missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3064,7 +3084,7 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
     <message>
         <source>End of matches reached.
 Restart from the begining ?</source>
-        <translation>Nejsou žádné další nálezy.
+        <translation type="obsolete">Nejsou žádné další nálezy.
 Spustit hledání znovu od začátku oblasti?</translation>
     </message>
     <message>
@@ -3876,8 +3896,13 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     <message>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
-        <translation>Povolí v textu nahrazení užití únikových znaků. Jsou to tyto:
+        <translation type="obsolete">Povolí v textu nahrazení užití únikových znaků. Jsou to tyto:
  \n = nový řádek, \r = předstih řádku, \t = zarážka, \\ = \, \0 = ascii 0 </translation>
+    </message>
+    <message>
+        <source>Enables the use of escape characters. These are:
+ \n = new line, \r = carriage return, \t = tab, \\ = \</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6118,6 +6143,33 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <source>&lt;all&gt;</source>
         <translation>&lt;Vše&gt;</translation>
     </message>
+    <message>
+        <source>add own word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove own word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Word:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UniversalInputDialogScript</name>
+    <message>
+        <source>Invalid default value: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unkown variable %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserMenuDialog</name>
@@ -6183,7 +6235,7 @@ if something is written before the remaining part of the trigger.
 Since this trigger is not a plain string, but a regular expression, 
 (?&lt;=\S) can be used to mark replacements which should only occur after a word, 
 and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation>Pokud je tento spouštěcí řetězec napsán v jakémkoli TeXovém dokumentu,
+        <translation type="obsolete">Pokud je tento spouštěcí řetězec napsán v jakémkoli TeXovém dokumentu,
 je nahrazen současnou značkou.
 
 Pokud spouštěč začíná (?&lt;=something), stane se to jen tehdy, když
@@ -6195,7 +6247,7 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     </message>
     <message>
         <source>?</source>
-        <translation>?</translation>
+        <translation type="obsolete">?</translation>
     </message>
     <message>
         <source>Abbrev</source>
@@ -6224,6 +6276,29 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     <message>
         <source>Run script</source>
         <translation>Spustit skript</translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.
+
+
+You can use the special value ?txs-start to start the script at txs start.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Bright&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;?&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

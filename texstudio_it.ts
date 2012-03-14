@@ -1677,10 +1677,6 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Internal viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;* Open all files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1711,6 +1707,10 @@ Do you want to remove them?</source>
     </message>
     <message>
         <source>huge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2163,11 +2163,11 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>citation correct</source>
-        <translation>citazione errata</translation>
+        <translation type="obsolete">citazione errata</translation>
     </message>
     <message>
         <source>citation missing!</source>
-        <translation>citazione mancante!</translation>
+        <translation type="obsolete">citazione mancante!</translation>
     </message>
     <message>
         <source>Open %1</source>
@@ -2187,6 +2187,22 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>use other&apos;s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citation correct</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citation missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3036,7 +3052,7 @@ Do you want to open it anyways? It could cause a crash.</source>
     <message>
         <source>End of matches reached.
 Restart from the begining ?</source>
-        <translation>Fine dei controlli.
+        <translation type="obsolete">Fine dei controlli.
 Ricominciare dall&apos;inizio?</translation>
     </message>
     <message>
@@ -3836,7 +3852,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>Enables the use of escape characters. These are:
- \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
+ \n = new line, \r = carriage return, \t = tab, \\ = \</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6057,6 +6073,33 @@ If not, end characters are ignored.</source>
         <source>&lt;all&gt;</source>
         <translation>&lt;tutti&gt;</translation>
     </message>
+    <message>
+        <source>add own word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove own word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Word:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UniversalInputDialogScript</name>
+    <message>
+        <source>Invalid default value: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unkown variable %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserMenuDialog</name>
@@ -6109,20 +6152,8 @@ If not, end characters are ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If this trigger string is written in any tex document, 
-it is replaced by the current tag.
-
-If the trigger starts with (?&lt;=something), this only happens 
-if something is written before the remaining part of the trigger.
-
-Since this trigger is not a plain string, but a regular expression, 
-(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
-and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>?</source>
-        <translation type="unfinished">?</translation>
+        <translation type="obsolete">?</translation>
     </message>
     <message>
         <source>Abbrev</source>
@@ -6150,6 +6181,29 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.</so
     </message>
     <message>
         <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this trigger string is written in any tex document, 
+it is replaced by the current tag.
+
+If the trigger starts with (?&lt;=something), this only happens 
+if something is written before the remaining part of the trigger.
+
+Since this trigger is not a plain string, but a regular expression, 
+(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
+and (?&lt;=\s|^) to mark replacements which should only occur before a word.
+
+
+You can use the special value ?txs-start to start the script at txs start.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Bright&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;?&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
