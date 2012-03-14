@@ -84,8 +84,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	
 	tr+=QString("\nTotal testing time: %1 ms\n").arg(totalTestTime);
 	
-	if (!allPassed) 
-		tr="THERE SEEMS TO BE FAILED TESTS! \n\n\n\n\n\n\n"+tr;
+	if (!allPassed)
+		tr="*** THERE SEEM TO BE FAILED TESTS! ***\n\n\n\n"+tr;
 	
 	QFile(QFile::decodeName(tempResult)).remove();
 	

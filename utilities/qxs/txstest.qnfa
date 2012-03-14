@@ -1,0 +1,18 @@
+<!DOCTYPE QNFA>
+<QNFA language="TXS Test Results" extensions="incredibleComplicatedFileExtensionNoOneIsGoingToUse_TODO_DONTuseEMPTYextensionSTRINGasDEFAULTlang" defaultLineMark="">
+
+	<context id="rule" format="extra-keyword" >
+		<start parenthesis="string:open">\*\*\*\*\*\*\*\*\* Start</start>
+		<stop parenthesis="string:close">\*\*\*\*\*\*\*\*\*</stop>
+	</context>
+
+	<context id="test/failed" format="text" stayOnLine="true" >
+		<start>FAIL</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+
+	<word id="test/failedmessage" format="text">\*\*\* THERE SEEM TO BE FAILED TESTS! \*\*\*</word>
+	<word id="test/passed" format="numbers">PASS</word>
+	<word id="test/debug" format="math-keyword">QDEBUG</word>
+
+</QNFA>
