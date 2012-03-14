@@ -70,6 +70,15 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#808000</foreground>
     </format>
+    <format id="align-ampersand" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#0055FF</foreground>
+    </format>
     <format id="verbatim" >
         <foreground>#008080</foreground>
     </format>

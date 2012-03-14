@@ -65,7 +65,8 @@ environments in smallUsefulFunctions.cpp)
 		</body>
 	</foreach>
 
-	
+	<word id="keywords/single" format="align-ampersand">&amp;</word>
+		
 
 	<!-- ========================= COMMAND ====================== -->
 
