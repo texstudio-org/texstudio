@@ -187,6 +187,11 @@ class QCE_EXPORT QDocument : public QObject
 		void stopChunkLoading();
 		void addChunk(const QString& txt);
 		
+		QString getFileName() const;
+		QFileInfo getFileInfo() const;
+		QString getName() const;
+		void setFileName_DONOTCALLTHIS(const QString& fileName);
+		
 		LineEnding lineEnding() const;
 		LineEnding originalLineEnding() const;
 		Q_INVOKABLE QString lineEndingString() const;

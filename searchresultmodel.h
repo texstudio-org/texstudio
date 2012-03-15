@@ -3,7 +3,15 @@
 
 #include "mostQtHeaders.h"
 #include <QAbstractItemModel>
-#include "qdocumentsearch.h"
+
+
+class QDocument;
+class QDocumentLineHandle;
+struct SearchInfo{
+	QPointer<QDocument> doc;
+	QList<QDocumentLineHandle *> lines;
+	mutable QList<int> lineNumberHints;
+};
 
 class SearchResultModel : public QAbstractItemModel
 {
@@ -19,19 +27,18 @@ public:
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 	
-	void addSearch(QList<QDocumentLineHandle *> newSearch,QString name="");
-	void removeSearch(QString name);
+	void addSearch(const SearchInfo& search);
+	void removeSearch(const QDocument* doc);
 	void clear();
-	QString getFilename(const QModelIndex &index);
+	QDocument* getDocument(const QModelIndex &index);
 	int getLineNumber(const QModelIndex &index);
 	void setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp);
-	int getNextSearchResultColumn(QString text,int col);
+	int getNextSearchResultColumn(const QString& text,int col);
 private:
 	QList<QPair<int,int> > getSearchResults(const QString &text) const;
-	QString prepareResulText(QString text) const;
+	QString prepareResultText(const QString& text) const;
 	
-	QList< QList<QDocumentLineHandle *> > m_searches;
-	QStringList m_files;
+	QList< SearchInfo > m_searches;
 	QString mExpression;
 	bool mIsWord,mIsCaseSensitive,mIsRegExp;
 };

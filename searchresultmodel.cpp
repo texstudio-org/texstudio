@@ -1,5 +1,6 @@
 #include "searchresultmodel.h"
 #include "qdocument.h"
+#include "qdocumentsearch.h"
 #include "smallUsefulFunctions.h"
 
 SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent)
@@ -11,24 +12,28 @@ SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(paren
 SearchResultModel::~SearchResultModel(){
 }
 
-void SearchResultModel::addSearch(QList<QDocumentLineHandle *>newSearch,QString name){
-	m_searches.append(newSearch);
-	m_files.append(name);
+void SearchResultModel::addSearch(const SearchInfo& search){
+	m_searches.append(search);
+	int lineNumber = 0;
+	m_searches.last().lineNumberHints.clear();
+	for (int i=0;i<search.lines.size();i++){
+		lineNumber = search.doc->indexOf(search.lines[i], lineNumber);
+		m_searches.last().lineNumberHints << lineNumber;
+	}
 	reset();
 }
 
 void SearchResultModel::clear(){
 	m_searches.clear();
-	m_files.clear();
 	mExpression.clear();
 	reset();
 }
 
-void SearchResultModel::removeSearch(QString name){
-	int i=m_files.indexOf(name);
-	m_searches.removeAt(i);
-	m_files.removeAt(i);
-	if(m_files.isEmpty()) mExpression.clear();
+void SearchResultModel::removeSearch(const QDocument* doc){
+	for (int i=m_searches.size()-1;i>=0;i--)
+		if (m_searches[i].doc == doc) 
+			m_searches.removeAt(i);
+	if(m_searches.isEmpty()) mExpression.clear();
 }
 int SearchResultModel::columnCount(const QModelIndex & parent) const {
 	return parent.isValid()?1:1;
@@ -40,8 +45,7 @@ int SearchResultModel::rowCount(const QModelIndex &parent) const {
 	}else{
 		int i=parent.row();
 		if(i<m_searches.size()&&((parent.internalId()&(1<<15))==0)){
-			QList<QDocumentLineHandle *> search=m_searches.at(i);
-			return qMin(search.size(),1000); // maximum search results limited
+			return qMin(m_searches[i].lines.size(),1000); // maximum search results limited
 		} else return 0;
 	}
 }
@@ -70,24 +74,22 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	//if (index.row() >= log.count() || index.row() < 0) return QVariant();
 	if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
 	if (role != Qt::DisplayRole) return QVariant();
-	QList<QDocumentLineHandle *> search;
-	QDocumentLineHandle *c;
 	int i=index.internalId();
+	int searchIndex = (i>>16)-1;
+	if (searchIndex < 0 || searchIndex >= m_searches.size()) return QVariant();
+	const SearchInfo& search = m_searches.at(searchIndex); 
 	if(i&(1<<15)){
-		i=(i>>16)-1;
-		search=m_searches.at(i);
-		c=search.value(index.row(),0);
-		if(c){
-			QDocumentLine ln(c);
-			QString temp=prepareResulText(ln.text());
-			return QString("Line %1: ").arg(ln.lineNumber()+1)+temp;
-		}else{
-			return "";
-		}
+		if (!search.doc) return QVariant();
+		int lineIndex = index.row();
+		if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()) return "";
+		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
+		if(search.lineNumberHints[lineIndex] < 0) return "";
+		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
+		QString temp=prepareResultText(ln.text());
+		return QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+temp;
 	} else {
-		i=(i>>16)-1;
-		search=m_searches.at(i);
-		return index.row()<m_files.size() ? m_files.at(index.row())+QString(" (%1)").arg(search.size()) : "";
+		REQUIRE_RET(index.row() == searchIndex, QVariant());
+		return (search.doc?search.doc->getFileName():tr("File closed")) + QString(" (%1)").arg(search.lines.size());
 	}
 }
 
@@ -99,7 +101,7 @@ void SearchResultModel::setSearchExpression(const QString &exp,const bool isCase
 	mIsRegExp=isRegExp;
 }
 
-QString SearchResultModel::prepareResulText(QString text) const{
+QString SearchResultModel::prepareResultText(const QString& text) const{
 	QString result;
 	QList<QPair<int,int> > placements=getSearchResults(text);
 	int second;
@@ -138,26 +140,24 @@ QList<QPair<int,int> > SearchResultModel::getSearchResults(const QString &text) 
 }
 
 
-QString SearchResultModel::getFilename(const QModelIndex &index){
+QDocument* SearchResultModel::getDocument(const QModelIndex &index){
 	int i=index.internalId();
 	i=(i>>16)-1;
-	return i<m_files.size() ? m_files.at(i) : "";
+	if (i < 0 || i >= m_searches.size()) return 0;
+	if (!m_searches[i].doc) return 0;
+	return m_searches[i].doc;
 }
 int SearchResultModel::getLineNumber(const QModelIndex &index){
 	int i=index.internalId();
-	QList<QDocumentLineHandle*> search;
-	QDocumentLineHandle* c;
-	if(i&(1<<15)){
-		i=(i>>16)-1;
-		search=m_searches.at(i);
-		c=search.value(index.row(),0);
-		if(c){
-			QDocumentLine ln(c);
-			return ln.lineNumber();
-		}else{
-			return -1;
-		}
-	}else return -1;
+	if (!(i&(1<<15))) return -1;
+	int searchIndex = (i>>16)-1;
+	if (searchIndex < 0 || searchIndex >= m_searches.size()) return -1;
+	const SearchInfo& search = m_searches.at(searchIndex); 
+	if (!search.doc) return -1;
+	int lineIndex = index.row();
+	if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()) return -1;
+	search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
+	return search.lineNumberHints[lineIndex];
 }
 
 QVariant SearchResultModel::headerData(int section, Qt::Orientation orientation, int role) const {
@@ -171,7 +171,7 @@ QVariant SearchResultModel::headerData(int section, Qt::Orientation orientation,
 	}
 }
 
-int SearchResultModel::getNextSearchResultColumn(QString text,int col){
+int SearchResultModel::getNextSearchResultColumn(const QString& text,int col){
 	QRegExp m_regexp=generateRegExp(mExpression,mIsCaseSensitive,mIsWord,mIsRegExp);
 	
 	int i=0;

@@ -1,6 +1,7 @@
 #include "toolwidgets.h"
 #include "math.h"
 #include "smallUsefulFunctions.h"
+#include "qdocument.h"
 
 Q_DECLARE_METATYPE(QAction*)
 
@@ -127,11 +128,11 @@ OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logMo
 	OutputTable2= new QTableView(this); // second table view for tab log view
 
 	// Search Results tree
-        SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
+	SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
 	OutputTree= new QTreeView(this);
-        OutputTree->setUniformRowHeights(true);
+	OutputTree->setUniformRowHeights(true);
 	OutputTree->setModel(searchResultModel);
-        OutputTree->setItemDelegate(searchDelegate);
+	OutputTree->setItemDelegate(searchDelegate);
 	connect(OutputTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
 
 	QFontMetrics fm(QApplication::font());
@@ -238,7 +239,9 @@ void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 }
 
 void OutputViewWidget::clickedSearchResult(const QModelIndex& index){
-	emit jumpToSearch(searchResultModel->getFilename(index),searchResultModel->getLineNumber(index));
+	QDocument* doc = searchResultModel->getDocument(index);
+	if (!doc) return;
+	emit jumpToSearch(doc,searchResultModel->getLineNumber(index));
 }
 
 LatexLogModel* OutputViewWidget::getLogModel(){
@@ -420,8 +423,11 @@ void OutputViewWidget::showMessageInLog(){
 }
 
 
-void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> search,QString name){
-	searchResultModel->addSearch(search,name);
+void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument* doc){
+	SearchInfo search;
+	search.doc = doc;
+	search.lines = lines;
+	searchResultModel->addSearch(search);
 }
 void OutputViewWidget::clearSearch(){
 	searchResultModel->clear();
