@@ -71,13 +71,13 @@ public slots:
 	void gotoLogEntry(int logEntryNumber);
 	void setTabbedLogView(bool tabbed);
 	void previewLatex(const QPixmap& pixmap);
-	void addSearch(QList<QDocumentLineHandle *> search,QString name);
+	void addSearch(QList<QDocumentLineHandle *> search, QDocument* doc);
 	void clearSearch();
 signals:
 	void locationActivated(int line, QString fileName); //0-based line, absolute file name
 	void logEntryActivated(int logEntryNumber);
 	void tabChanged(int tab);
-	void jumpToSearch(QString filename,int lineNumber);
+	void jumpToSearch(QDocument* doc,int lineNumber);
 private:
 	PreviewWidget *previewWidget;
 	QTableView *OutputTable, *OutputTable2;

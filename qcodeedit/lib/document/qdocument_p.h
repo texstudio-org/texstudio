@@ -182,7 +182,6 @@ class QCE_EXPORT QDocumentPrivate
 		    m_overwrite=overwrite;
 		}
 
-
 		QList<int> testGetHiddenLines();
 	protected:
 		void updateHidden(int line, int count);
@@ -278,6 +277,8 @@ class QCE_EXPORT QDocumentPrivate
 		QTextCodec *m_codec;
 
 		QDateTime m_lastModified;
+		QString m_fileName, m_name;
+		QFileInfo m_fileInfo; 
 
 		QVector<QDocumentLineHandle*> m_lines;
 

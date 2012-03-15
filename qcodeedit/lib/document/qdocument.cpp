@@ -884,6 +884,22 @@ void QDocument::addChunk(const QString& txt)
 
 }
 
+QString QDocument::getFileName() const{
+	return m_impl?m_impl->m_fileName:"";
+}
+QFileInfo QDocument::getFileInfo() const{
+	return m_impl?m_impl->m_fileInfo:QFileInfo();
+}
+QString QDocument::getName() const{
+	return m_impl?m_impl->m_name:"";
+}
+void QDocument::setFileName_DONOTCALLTHIS(const QString& fileName){
+	if (!m_impl) return;
+	m_impl->m_fileInfo = QFileInfo(fileName);
+	m_impl->m_fileName = m_impl->m_fileInfo.absoluteFilePath();
+	m_impl->m_name = m_impl->m_fileInfo.fileName();
+}
+
 /*!
 	\brief Print the content of the document
 	\param pr printer to use

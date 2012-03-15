@@ -439,7 +439,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
 		connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 		connect(outputView,SIGNAL(tabChanged(int)),this,SLOT(tabChanged(int)));
-		connect(outputView,SIGNAL(jumpToSearch(QString,int)),this,SLOT(jumpToSearch(QString,int)));
+		connect(outputView,SIGNAL(jumpToSearch(QDocument*,int)),this,SLOT(jumpToSearch(QDocument*,int)));
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&, int)),this,SLOT(previewAvailable	(const QString&,const QString&, int)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
@@ -4887,8 +4887,9 @@ void Texmaker::tabChanged(int i) {
 	if (i>0 && i<3 && !outputView->logPresent()) RealViewLog(true);
 }
 
-void Texmaker::jumpToSearch(QString filename,int lineNumber){
-	if(currentEditor()->fileName()==filename && currentEditor()->cursor().lineNumber()==lineNumber)
+void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
+	REQUIRE(qobject_cast<LatexDocument*>(doc));
+	if(currentEditor() && currentEditor()->document()==doc && currentEditor()->cursor().lineNumber()==lineNumber)
 	{
 		QDocumentCursor c=currentEditor()->cursor();
 		int col=c.columnNumber();
@@ -4897,7 +4898,7 @@ void Texmaker::jumpToSearch(QString filename,int lineNumber){
 		currentEditor()->setCursorPosition(lineNumber,col);
 		currentEditor()->ensureCursorVisibleSurrounding();
 	} else {
-		gotoLocation(lineNumber,filename);
+		gotoLocation(lineNumber, doc->getFileName().size()?doc->getFileName():qobject_cast<LatexDocument*>(doc)->getTemporaryFileName());
 		int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
 		currentEditor()->setCursorPosition(lineNumber,col);
 		currentEditor()->ensureCursorVisibleSurrounding();
@@ -5392,7 +5393,8 @@ void Texmaker::editFindGlobal(){
 		outputView->clearSearch();
 		outputView->setSearchExpression(dlg->getSearchWord(),dlg->isCase(),dlg->isWords(),dlg->isRegExp());
 		foreach(QEditor *ed,editors){
-			QDocument *doc=ed->document();
+			LatexDocument *doc=qobject_cast<LatexDocument*>(ed->document());
+			if (!doc) continue;
 			QList<QDocumentLineHandle *> lines;
 			for(int l=0;l<doc->lineCount();l++){
 				l=doc->findLineRegExp(dlg->getSearchWord(),l,dlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,dlg->isWords(),dlg->isRegExp());
@@ -5401,7 +5403,9 @@ void Texmaker::editFindGlobal(){
 			}
 			
 			if(!lines.isEmpty()){ // don't add empty searches
-				outputView->addSearch(lines,ed->fileName());
+				if (ed->fileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
+					doc->setTemporaryFileName(buildManager.createTemporaryFileName());
+				outputView->addSearch(lines, doc);
 				outputView->showSearchResults();
 			}
 		}

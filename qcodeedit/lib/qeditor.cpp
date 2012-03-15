@@ -3692,30 +3692,16 @@ void QEditor::setContentModified(bool y)
 */
 void QEditor::setFileName(const QString& f)
 {
+	REQUIRE(m_doc);
+	
 	QString prev = fileName();
 
 	if ( f == prev )
 		return;
 
-	/*
-	QStringList l = m_watcher->files();
-
-	if ( l.count() )
-		m_watcher->removePaths(l);
-	*/
-
 	watcher()->removeWatch(QString(), this);
 
-	#ifdef _QMDI_
-	qmdiClient::setFileName(f);
-	#else
-	m_fileInfo = QFileInfo(f);
-	m_fileName = m_fileInfo.absoluteFilePath();
-	m_name = m_fileInfo.fileName();
-	#endif
-
-	//if ( fileName().count() )
-	//	m_watcher->addPath(fileName());
+	m_doc->setFileName_DONOTCALLTHIS(f);
 
 	if ( fileName().count() )
 		watcher()->addWatch(fileName(), this);
@@ -3740,13 +3726,13 @@ void QEditor::setTitle(const QString& title)
 	emit titleChanged(title);
 }
 
-#ifndef _QMDI_
 /*!
 	\return The name of the file being edited (without its path)
 */
 QString QEditor::name() const
 {
-	return m_name;
+	REQUIRE_RET(m_doc,"");
+	return m_doc->getName();
 }
 
 /*!
@@ -3754,12 +3740,13 @@ QString QEditor::name() const
 */
 QString QEditor::fileName() const
 {
-	return m_fileName;
+	REQUIRE_RET(m_doc,"");
+	return m_doc->getFileName();
 }
 QFileInfo QEditor::fileInfo() const{
-	return m_fileInfo;
+	REQUIRE_RET(m_doc,QFileInfo());
+	return m_doc->getFileInfo();
 }
-#endif
 
 /*!
 	\brief Prevent tab key press to be considered as widget navigation

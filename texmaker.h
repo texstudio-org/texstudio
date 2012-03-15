@@ -434,7 +434,7 @@ protected slots:
 	void fileInConflict();
 	void fileAutoReloading(QString fname);
 	
-	void jumpToSearch(QString filename,int lineNumber);
+	void jumpToSearch(QDocument* doc,int lineNumber);
 	
 	void cursorPositionChanged();
 	//	void treeWidgetChanged();

@@ -237,14 +237,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		Q_INVOKABLE virtual void scrollToFirstLine(int l);
 
 		void setCursorSurroundingLines(int s);
-		
-		#ifndef _QMDI_
+			
 		Q_INVOKABLE QString name() const;
 		Q_INVOKABLE QString fileName() const;
 		Q_INVOKABLE QFileInfo fileInfo() const;
 		
 		Q_INVOKABLE bool isContentModified() const;
-		#endif
 		
 		Q_INVOKABLE bool isInConflict() const;
 		Q_INVOKABLE QTextCodec* getFileCodec() const;
@@ -553,12 +551,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void init(bool actions = true,QDocument *doc=0);
 		void updateBindingsMenu();
-		
-		#ifndef _QMDI_
-		QString m_name, m_fileName;
-		QFileInfo m_fileInfo; 
-		#endif
-		
+			
 		QMenu *pMenu;
 		QHash<QString, QAction*> m_actions;
 		
