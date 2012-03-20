@@ -279,7 +279,7 @@ public:
 	void deleteDocument(LatexDocument* document);
 	void setMasterDocument(LatexDocument* document);
 	
-	const LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
+    LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
 	
 	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
 	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
