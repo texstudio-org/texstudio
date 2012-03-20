@@ -3669,14 +3669,22 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 				externalViewer.remove(0,BuildManager::TXS_INTERNAL_PDF_VIEWER.length());
 				if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
 			}
-			externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1).first();
+            int ln=0;
+            if(currentEditorView()){
+                ln=currentEditorView()->editor->cursor().lineNumber()+1;
+            }
+            externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),ln).first();
 			if (PDFDocument::documentList().isEmpty()) {
 				newPdfPreviewer();
 				Q_ASSERT(!PDFDocument::documentList().isEmpty());
 			}
             foreach (PDFDocument* viewer, PDFDocument::documentList()) {
 				viewer->loadFile(pdfFile,externalViewer);
-				int pg=viewer->syncFromSource(getCurrentFileName(), currentEditorView()->editor->cursor().lineNumber(), true);
+                int ln=0;
+                if(currentEditorView()){
+                    ln=currentEditorView()->editor->cursor().lineNumber();
+                }
+                int pg=viewer->syncFromSource(getCurrentFileName(), ln , true);
 				viewer->fillRenderCache(pg);
 			}
 #else
@@ -3711,8 +3719,11 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 		lastReRunWasBibTeX = false;
 	}
 	
-	
-	QList<ProcessX*> procs = buildManager.newProcesses(commandline,finame,getCurrentFileName(),currentEditorView()->editor->cursor().lineNumber()+1,flags & RCF_SINGLE_INSTANCE);
+    int ln=0;
+    if(currentEditorView()){
+        ln=currentEditorView()->editor->cursor().lineNumber()+1;
+    }
+    QList<ProcessX*> procs = buildManager.newProcesses(commandline,finame,getCurrentFileName(),ln,flags & RCF_SINGLE_INSTANCE);
 	
 	if (procs.isEmpty()) return; //a singleInstance that is already running
 	
@@ -3770,7 +3781,8 @@ void Texmaker::RunPreCompileCommand() {
 	}
 	
 	if (configManager.runLaTeXBibTeXLaTeX) {
-		LatexDocument* master = currentEditorView()->document->getTopMasterDocument();
+        //LatexDocument* master = currentEditorView()->document->getTopMasterDocument(); //crashes if masterdoc is defined but closed
+        LatexDocument* master = documents.getMasterDocumentForDoc();
 		REQUIRE(master);
 		QList<LatexDocument*> docs = master->getListOfDocs();
 		QSet<QString> bibFiles;

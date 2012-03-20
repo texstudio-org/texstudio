@@ -2212,7 +2212,7 @@ bool LatexDocument::containsPackage(const QString& name){
 	return mUsepackageList.keys(name).count()>0;
 }
 
-const LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document
+LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document
 	if(masterDocument)
 		return masterDocument;
 	LatexDocument *current=currentDocument;
