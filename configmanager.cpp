@@ -881,20 +881,22 @@ bool ConfigManager::execConfigDialog() {
 	lastLanguage = language;
 	QStringList languageFiles=findResourceFiles("translations","texstudio_*.qm") << findResourceFiles("","texstudio_*.qm");
 	languageFiles << findResourceFiles("translations","texmakerx_*.qm") << findResourceFiles("","texmakerx_*.qm");
+	for (int i=languageFiles.count()-1;i>=0;i--){
+		QString temp = languageFiles[i].mid(languageFiles[i].indexOf("_")+1);
+		temp.truncate(temp.indexOf("."));
+		if (languageFiles.contains(temp)) languageFiles.removeAt(i);
+		else languageFiles[i] = temp;
+	}
+	if (!languageFiles.contains("en")) languageFiles.append("en");
 	int langId=-1;
 	for (int i=0;i<languageFiles.count();i++){
-		//_gettext. 
-		QString cur=languageFiles[i].mid(languageFiles[i].indexOf("_")+1);
-		cur.truncate(cur.indexOf("."));
-		confDlg->ui.comboBoxLanguage->addItem(cur);
-		if (cur == language) langId=i;
+		confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]);
+		if (languageFiles[i] == language) langId=i;
 	}
-	confDlg->ui.comboBoxLanguage->addItem("en");
 	confDlg->ui.comboBoxLanguage->addItem(tr("default"));
 	if (language=="") confDlg->ui.comboBoxLanguage->setEditText(tr("default"));
 	else confDlg->ui.comboBoxLanguage->setEditText(language);
 	if (langId!=-1) confDlg->ui.comboBoxLanguage->setCurrentIndex(langId);
-	else if (language=="en") confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-2);
 	else confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-1);
 	
 	QStringList files=findResourceFiles("completion","*.cwl",QStringList(configBaseDir));
@@ -1570,7 +1572,7 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 	QAction *old=menuParent->findChild<QAction*>(completeId);
 	if (old) {
 		old->setText(text);
-		old->setIcon(getRealIcon(iconFile));
+		if (!iconFile.isEmpty()) old->setIcon(getRealIcon(iconFile));
 		if (watchedMenus.contains(menuId))
 			emit watchedMenuChanged(menuId);
 		//don't set shortcut and slot!
