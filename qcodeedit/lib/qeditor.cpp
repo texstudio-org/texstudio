@@ -4249,44 +4249,43 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	}
 }
 
-void QEditor::preInsert(QDocumentCursor& c, const QString& s)
+void QEditor::preInsertUnindent(QDocumentCursor& c, const QString& s, int additionalUnindent)
 {
-	if (
-			flag(AutoIndent)
-		&&
-			!flag(WeakIndent)
-		&&
-			(m_curPlaceHolder == -1)
-		&&
-			c.columnNumber()
-		&&
-			m_definition
-		&&
-			m_definition->unindent(c, s)
-		)
-	{
-		int firstNS = 0;
-		QString txt = c.line().text();
+	if ( !flag(AutoIndent) || flag(WeakIndent) ) return;
+	if ( m_curPlaceHolder != -1 ) return;
+	if ( !c.columnNumber() ) return;
+	
+	int firstNS = 0;
+	QString txt = c.line().text();
 
-		while ( (firstNS < txt.length()) && txt.at(firstNS).isSpace() )
-			++firstNS;
+	while ( (firstNS < txt.length()) && txt.at(firstNS).isSpace() )
+		++firstNS;
 
-		if ( !firstNS )
-			return;
-		
-		const int off = c.columnNumber() - firstNS;
+	if ( !firstNS || firstNS < c.columnNumber() )
+		return;
 
-		if ( off > 0 )
-			c.movePosition(off, QDocumentCursor::PreviousCharacter);
+	if ( m_definition && m_definition->unindent(c, s) ) additionalUnindent++;
+	
+	if ( additionalUnindent <= 0 ) return;
+	
+	
+	const int off = c.columnNumber() - firstNS;
 
-		/*
-			It might be possible to improve that part to have a more natural/smarter unindenting
-			by trying to guess the scheme used by the user...
-		*/
+	if ( off > 0 )
+		c.movePosition(off, QDocumentCursor::PreviousCharacter);
 
+	//TODO: fix unindent with tab/space mix by using c.previousChar() instead of txt.at(firstNS - 1) or calculate firstNS -= off.
+	//      (example: "___|->", _ means space, -> tab, | cursor, write } )
+	
+	/*
+		It might be possible to improve that part to have a more natural/smarter unindenting
+		by trying to guess the scheme used by the user...
+	*/
+	for (;additionalUnindent > 0 && firstNS > 0; additionalUnindent--) {
 		if ( txt.at(firstNS - 1) == '\t' )
 		{
 			c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+			firstNS--;
 		} else {
 			const int ts = m_doc->tabStop();
 			
@@ -4300,12 +4299,11 @@ void QEditor::preInsert(QDocumentCursor& c, const QString& s)
 					c.movePosition(1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
 				} while ( QDocument::screenColumn(txt.constData(), firstNS, ts) % ts );
 		}
-			
-		c.removeSelectedText();
+	}		
+	c.removeSelectedText();
 
-		if ( off > 0 )
-			c.movePosition(off, QDocumentCursor::NextCharacter);
-	}
+	if ( off > 0 )
+		c.movePosition(off, QDocumentCursor::NextCharacter);
 }
 
 /*!
@@ -4384,7 +4382,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	//insert
 	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
-		preInsert(c, lines.first());
+		preInsertUnindent(c, lines.first(), 0);
 		
 		if ( flag(ReplaceTabs) )
 		{
@@ -4394,7 +4392,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		c.insertText(text);
 	} else {
 		
-		preInsert(c, lines.first());
+		preInsertUnindent(c, lines.first(), 0);
 
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
 		QString indent;
@@ -4408,6 +4406,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		foreach ( QString l, lines )
 			{
 
+			int additionalUnindent = 0;
+			
 			if(!flag(WeakIndent)){
 				int n = 0;
 
@@ -4418,8 +4418,12 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
 				if ( m_definition )
 				{
-					// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
-					indent = m_definition->indent(c);
+					// TODO: FIXME ? work on strings to make sure command grouping does not interfere with cursor state... 
+					//             (then the indentCount can be removed and the function should return the unindented indent,
+					//              but still needs to check for an unindent caused by a } at the beginning of the line)
+					int indentCount = 0;
+					indent = m_definition->indent(c, &indentCount);
+					if (indentCount < 0) additionalUnindent = - indentCount;
 
 					if ( flag(ReplaceTabs) )
 						indent.replace("\t", QString(m_doc->tabStop(), ' '));
@@ -4428,7 +4432,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			c.insertLine();
 			c.insertText(indent);
 			
-			preInsert(c, l);
+			preInsertUnindent(c, l, additionalUnindent);
 
 			c.insertText(l);
 		}

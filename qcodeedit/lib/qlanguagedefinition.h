@@ -80,7 +80,7 @@ class QCE_EXPORT QLanguageDefinition
 		virtual QDocumentCursor getNextMismatch(const QDocumentCursor& scope) const = 0;
 		virtual void clearMatches(QDocument *d);
 		
-		virtual QString indent(const QDocumentCursor& c);
+		virtual QString indent(const QDocumentCursor& c, int* indentCount);
 		virtual bool unindent (const QDocumentCursor& c, const QString& ktxt);
 		
 		virtual void expand(QDocument *d, int line);

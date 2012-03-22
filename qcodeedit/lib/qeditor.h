@@ -502,7 +502,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void ensureVisible(const QRect &rect);
 		
 	protected:
-		void preInsert(QDocumentCursor& c, const QString& text);
+		void preInsertUnindent(QDocumentCursor& c, const QString& text, int additionalUnindent);
 
 	public slots:
 		void insertText(QDocumentCursor& c, const QString& text);
