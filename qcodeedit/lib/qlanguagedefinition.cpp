@@ -129,9 +129,10 @@ void QLanguageDefinition::match(QDocumentCursor& c)
 /*!
 	\brief Return the indent to use when inserting a line at a given cursor position
 */
-QString QLanguageDefinition::indent(const QDocumentCursor& c)
+QString QLanguageDefinition::indent(const QDocumentCursor& c, int* indentCount)
 {
 	Q_UNUSED(c)
+	Q_UNUSED(indentCount)
 
 	return QString();
 }

@@ -91,7 +91,7 @@ public:
 	virtual QList<QList<QDocumentCursor> > getMatches(const QDocumentCursor& c) const;
 	virtual QDocumentCursor getNextMismatch(const QDocumentCursor& scope) const;
 	
-	virtual QString indent(const QDocumentCursor& c);
+	virtual QString indent(const QDocumentCursor& c, int* indentCount);
 	virtual bool unindent (const QDocumentCursor& c, const QString& ktxt);
 
 	virtual void expand(QDocument *d, int line);

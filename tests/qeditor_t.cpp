@@ -589,6 +589,25 @@ void QEditorTest::indentation_data(){
 		<< true << 0 << 3
 		<< "\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}"
 		<< "hel\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}lo\nworld\n";
+
+	QTest::newRow("multi unindent with closing brackets after text")
+		<< "hello\nworld\n"
+		<< false << 0 << 5
+		<< "{{\na\nxx}}\nabc"
+		<< "hello{{\n\t\ta\n\t\txx}}\nabc\nworld\n"; //only unindent the next line
+
+	QTest::newRow("multi unindent with closing brackets after text with pre indentation")
+		<< " hello\n world\n"
+		<< false << 0 << 6
+		<< "{{\na\nxx}}\nabc"
+		<< " hello{{\n \t\ta\n \t\txx}}\n abc\n world\n"; 
+
+	QTest::newRow("no immediate unindent with closing bracket after text")
+		<< "\t\thello\n\t\tworld\n"
+		<< false << 0 << 7
+		<< "}}"
+		<< "\t\thello}}\n\t\tworld\n"; //no prapagation yet
+
 	/*
   this is broken:
 	QTest::newRow("trivial 2")

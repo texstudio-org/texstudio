@@ -820,7 +820,7 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m) const
 /*!
 	\brief Return the indent to use when inserting a line at a given cursor position
 */
-QString QNFADefinition::indent(const QDocumentCursor& c)
+QString QNFADefinition::indent(const QDocumentCursor& c, int* indentCount)
 {
 	if ( c.isNull() || c.line().isNull() )
 		return QString();
@@ -839,6 +839,9 @@ QString QNFADefinition::indent(const QDocumentCursor& c)
 	int indent = 0;
 	QString spaces = s.left(pos);
 	
+	int initialUnindent = 0; 
+	int initialUnindentCharacters = spaces.size();
+	
 	foreach ( QParenthesis p, b.parentheses() )
 	{
 		if ( p.offset >= max )
@@ -852,6 +855,14 @@ QString QNFADefinition::indent(const QDocumentCursor& c)
 			++indent;
 		} else if ( p.role & QParenthesis::Close ) {
 			--indent;
+			
+			if (p.offset == initialUnindentCharacters) {
+				initialUnindent++;
+				initialUnindentCharacters += p.length;
+				for (; initialUnindentCharacters < max; initialUnindentCharacters++)
+					if ( !s.at(initialUnindentCharacters).isSpace() ) 
+						break;
+			}
 		}
 	}
 
@@ -860,6 +871,9 @@ QString QNFADefinition::indent(const QDocumentCursor& c)
 	if ( indent > 0 )
 		spaces += QString(indent, '\t');
 
+	if ( indentCount ) 
+		*indentCount = indent + initialUnindent;
+	
 	return spaces;
 }
 
