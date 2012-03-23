@@ -2,8 +2,8 @@
 <QNFA language="TXS Test Results" extensions="incredibleComplicatedFileExtensionNoOneIsGoingToUse_TODO_DONTuseEMPTYextensionSTRINGasDEFAULTlang" defaultLineMark="">
 
 	<context id="rule" format="extra-keyword" >
-		<start parenthesis="string:open">\*\*\*\*\*\*\*\*\* Start</start>
-		<stop parenthesis="string:close">\*\*\*\*\*\*\*\*\*</stop>
+		<start>\*\*\*\*\*\*\*\*\* Start</start>
+		<stop>\*\*\*\*\*\*\*\*\*</stop>
 	</context>
 
 	<context id="test/failed" format="text" stayOnLine="true" >
