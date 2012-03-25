@@ -441,6 +441,7 @@ protected slots:
 	
 	bool generateMirror(bool setCur=false);
 	void generateBracketInverterMirror();
+	void jumpToBracket();
 	void selectBracket();
 	void findMissingBracket();
 	void cursorHovered();

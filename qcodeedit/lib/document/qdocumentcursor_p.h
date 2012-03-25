@@ -155,7 +155,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		bool equal(const QDocumentCursorHandle* c);
 			
 		
-		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal);
+		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal) const;
 
 		void beginEditBlock();
 		void endEditBlock();

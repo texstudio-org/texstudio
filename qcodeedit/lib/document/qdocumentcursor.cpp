@@ -961,7 +961,7 @@ void QDocumentCursor::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& 
 
 
 
-void QDocumentCursor::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal){
+void QDocumentCursor::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal) const{
 	if (m_handle)
 		m_handle->getMatchingPair(from, to, maximal);
 	else

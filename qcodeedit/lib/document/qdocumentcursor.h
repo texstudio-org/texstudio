@@ -206,7 +206,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE QDocumentCursor intersect(const QDocumentCursor& c) const;
 		void intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const;
 
-		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal = true);
+		void getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal = true) const;
 
 		Q_INVOKABLE QChar nextChar() const;
 		Q_INVOKABLE QChar previousChar() const;

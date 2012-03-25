@@ -5633,12 +5633,12 @@ bool QDocumentCursorHandle::equal(const QDocumentCursorHandle* c){
 	return true;
 }
 
-void QDocumentCursorHandle::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal){
+void QDocumentCursorHandle::getMatchingPair(QDocumentCursor& from, QDocumentCursor& to, bool maximal) const {
 	if (!m_doc || !m_doc->languageDefinition()) {
 		from = to = QDocumentCursor();
 		return;
 	}
-	QDocumentCursor orig = hasSelection()?selectionEnd():QDocumentCursor(this);
+	const QDocumentCursor orig = hasSelection()?selectionEnd():QDocumentCursor(const_cast<QDocumentCursorHandle*>(this));
 	QList<QList<QDocumentCursor> > matches = m_doc->languageDefinition()->getMatches(orig);
 	if (matches.isEmpty()) {
 		from = to = QDocumentCursor();
