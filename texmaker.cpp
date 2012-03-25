@@ -3777,6 +3777,9 @@ void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QSt
 
 void Texmaker::RunPreCompileCommand() {
 	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
+	
+	beginCompile();
+	
 	if (!buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) {
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
 		runCommand(BuildManager::CMD_USER_PRECOMPILE, RCF_WAIT_FOR_FINISHED);
@@ -3899,13 +3902,15 @@ void Texmaker::QuickBuild() {
 						txsWarning(tr("You cannot compile the document in a non writable directory."));
 					else
 						txsWarning(tr("Could not start %1.").arg(BuildManager::commandDisplayName(cmd)));
+					endCompile();
 					return;
 				}
-				if (!NoLatexErrors()) return;
+				if (!NoLatexErrors()) { endCompile(); return;}
 			}
-			if (ERRPROCESS) return;
+			if (ERRPROCESS) { endCompile(); return;}
 		}
 		runCommand(cmddList.last(), 0);
+		endCompile();
 		return;
 	}
 	
@@ -3913,6 +3918,7 @@ void Texmaker::QuickBuild() {
 	
 	runCommandList(buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|"),0);
 	ViewLog();
+	endCompile();
 }
 
 void Texmaker::runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags){
@@ -3947,12 +3953,13 @@ void Texmaker::commandFromAction(){
 	}
 	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
 	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
-	if (compileLatex)
+	if (compileLatex) 
 		RunPreCompileCommand();
 	QString status=act->text();
 	status.remove(QChar('&'));
 	statusLabelProcess->setText(QString(" %1 ").arg(status));
 	runCommand(cmd, 0);
+	endCompile();
 }
 
 void Texmaker::CleanAll() {
@@ -4007,9 +4014,12 @@ void Texmaker::UserTool() {
 		}
 	}
 	
+	
+	beginCompile();
 	RunCommandFlags flags;
 	if (configManager.showStdoutOption >= 1) flags |= RCF_SHOW_STDOUT;
 	runCommandList(cmd.split("|"), flags);
+	endCompile();
 }
 
 
@@ -4023,6 +4033,17 @@ void Texmaker::EditUserTool() {
 		configManager.userToolCommand = utDlg.Tool;
 		configManager.updateUserToolMenu();
 	}
+}
+
+void Texmaker::beginCompile(){
+#ifndef NO_POPPLER_PREVIEW
+	PDFDocument::isCompiling = true;
+#endif
+}
+void Texmaker::endCompile(){
+#ifndef NO_POPPLER_PREVIEW
+	PDFDocument::isCompiling = false;
+#endif
 }
 
 void Texmaker::WebPublish() {

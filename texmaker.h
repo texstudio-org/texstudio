@@ -365,6 +365,9 @@ protected slots:
 	void UserTool();
 	void EditUserTool();
 	
+	void beginCompile();
+	void endCompile();
+	
 	void WebPublish();
 	void WebPublishSource();
 	void AnalyseText();
