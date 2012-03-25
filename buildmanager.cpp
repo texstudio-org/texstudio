@@ -767,7 +767,7 @@ void addLaTeXInputPaths(ProcessX* p, const QStringList& paths){
 //2. latex is called and dvipng --follow is called at the same time, and will manage the wait time on its own
 //3. latex is called => dvips converts .dvi to .ps => ghostscript is called and created final png
 //Then ghostscript to convert it to
-void BuildManager::preview(const QString &preamble, const QString &text, int line, const QString& masterFile, QTextCodec *outputCodec){
+void BuildManager::preview(const QString &preamble, const PreviewSource& source, const QString& masterFile, QTextCodec *outputCodec){
 	QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
 
 	//process preamble
@@ -851,12 +851,12 @@ void BuildManager::preview(const QString &preamble, const QString &text, int lin
 	if (outputCodec) out.setCodec(outputCodec);
 	if (preambleFormatFile.isEmpty()) out << preamble_mod;
 	else out << "%&" << preambleFormatFile << "\n";
-	out << "\n\\begin{document}\n" << text << "\n\\end{document}\n";
+	out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
 	// prepare commands/filenames
 	QFileInfo fi(*tf);
 	QString ffn=fi.absoluteFilePath();
 	previewFileNames.append(ffn);
-	previewFileNameToText.insert(ffn,QPair<QString,int>(text, line));
+	previewFileNameToSource.insert(ffn, source);
 	tf->setAutoRemove(false);
 	tf->close();
 	delete tf; // tex file needs to be freed
@@ -989,7 +989,7 @@ void BuildManager::conversionPreviewCompleted(int status){
 	QString processedFile=p2->getFile();
 	QString fn=parseExtendedCommandLine("?am)1.png",processedFile).first();
 	if(QFileInfo(fn).exists())
-		emit previewAvailable(fn,previewFileNameToText[processedFile].first,previewFileNameToText[processedFile].second);
+		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 }
 
 void BuildManager::removePreviewFiles(QString elem){

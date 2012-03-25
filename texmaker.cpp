@@ -441,7 +441,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView,SIGNAL(tabChanged(int)),this,SLOT(tabChanged(int)));
 		connect(outputView,SIGNAL(jumpToSearch(QDocument*,int)),this,SLOT(jumpToSearch(QDocument*,int)));
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
-		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const QString&, int)),this,SLOT(previewAvailable	(const QString&,const QString&, int)));
+		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
 		addAction(outputView->toggleViewAction());
 		QAction* temp = new QAction(this); temp->setSeparator(true);
@@ -5124,36 +5124,18 @@ void Texmaker::previewLatex(){
 	if (c.hasSelection()) {
 		previewc = c; //X o riginalText = c.selectedText();
 	} else {
-		//search matching parantheses
-		//it will just get the ones with the greatest distance to each other
-		//=>problem if multiple matches appear (e.g ()|$...$)
-		//TODO: it doesn't work if the match is in another line
-		QDocumentLine l = c.line();
-		int matchFormat=m_formats->id("braceMatch");
-		QFormatRange first= l.getFirstOverlayBetween(0,l.length(),matchFormat);
-		QFormatRange last=l.getLastOverlayBetween(0,l.length(),matchFormat);
-		//QMessageBox::information(0,originalText,QString("%1 %2:%3 %4 %5").arg(first.offset).arg(first.length).arg(last.offset).arg(last.length).arg(last.format),0);
-		if (first.length==0 || last.length==0) return;
-		//const QVector<QParenthesis>& parens = l.parentheses();
-		//int first=l.length();
-		//int last=-1;
-		/*for (int i=0;i< parens.count();i++)
-   if (parens[i].role & QParenthesis::Match){
-    if (parens[i].offset<first) first=parens[i].offset;
-    else if (parens[i].offset+parens[i].length>last) first=parens[i].offset+parens[i].length;
-   }*/
-		//if (first==l.length() || last==-1) return;
-		//originalText=l.text().mid(first,last-first);
-		previewc = currentEditor()->document()->cursor(c.lineNumber(), first.offset, c.lineNumber(), last.offset+last.length);
-		//XoriginalText=l.text().mid(first.offset,last.offset+last.length-first.offset);
-		//QMessageBox::information(0,originalText,originalText,0);
+		QDocumentCursor orig, to;
+		c.getMatchingPair(orig, to, true);
+		if (!orig.hasSelection() || !to.hasSelection()) return;
+		QDocumentCursor::sort(orig, to);
+		previewc = QDocumentCursor(orig.selectionStart(), to.selectionEnd());
 	}
 	if (!previewc.hasSelection()) return;
 	
 	showPreview(previewc,true);
 	
 }
-void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*/, int line){
+void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& source){
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	              configManager.previewMode == ConfigManager::PM_PANEL||
 	              (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
@@ -5164,7 +5146,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 	              configManager.previewMode == ConfigManager::PM_TOOLTIP||
 	              previewEquation||
 	              (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
-	              (line < 0)) {
+	              (source.fromLine < 0)) {
 		QPoint p;
 		if(previewEquation)
 			p=currentEditorView()->getHoverPosistion();
@@ -5178,13 +5160,19 @@ void Texmaker::previewAvailable(const QString& imageFile, const QString& /*text*
 		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 		
 	}
-	if (configManager.previewMode == ConfigManager::PM_INLINE && line >= 0){
-		if (line >= currentEditor()->document()->lines())
-			line = currentEditor()->document()->lines()-1;
-		currentEditor()->document()->setForceLineWrapCalculation(true);
-		currentEditor()->document()->line(line).setCookie(42, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
-		currentEditor()->document()->adjustWidth(line);
-		
+	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0){
+		QDocument* doc = currentEditor()->document();
+		doc->setForceLineWrapCalculation(true);
+		int toLine = qBound(0, source.toLine, doc->lines() - 1);
+		for (int l = source.fromLine; l <= toLine; l++ ) 
+			if (doc->line(l).getCookie(42).isValid()) {
+				doc->line(l).removeCookie(42);
+				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
+				doc->adjustWidth(l);
+			}	
+		doc->line(toLine).setCookie(42, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
+		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
+		doc->adjustWidth(toLine);
 	}
 	previewEquation=false;
 }
@@ -5204,7 +5192,8 @@ void Texmaker::clearPreview(){
 		edit->document()->line(i).removeCookie(42);
 		edit->document()->adjustWidth(i);
 		for (int j=currentEditorView()->autoPreviewCursor.size()-1;j>=0;j--)
-			if (currentEditorView()->autoPreviewCursor[j].lineNumber() == i)
+			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
+			    currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i)
 				currentEditorView()->autoPreviewCursor.removeAt(j);
 	}
 }
@@ -5219,7 +5208,7 @@ void Texmaker::showPreview(const QString& text){
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	previewEquation=true;
-	buildManager.preview(header.join("\n"), text, -1, documents.getCompileFileName(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1), documents.getCompileFileName(), edView->editor->document()->codec());
 }
 
 void Texmaker::showPreview(const QDocumentCursor& previewc){
@@ -5247,16 +5236,21 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	buildManager.preview(header.join("\n"), originalText, previewc.selectionEnd().lineNumber(),  documents.getCompileFileName(), edView->editor->document()->codec());
+	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber());
+	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
 	
-	if (!addToList || previewc.lineNumber() != previewc.anchorLineNumber())
+	if (!addToList)
 		return;
 	if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
 		QList<QDocumentCursor> & clist = currentEditorView()->autoPreviewCursor;
 		for (int i=clist.size()-1;i>=0;i--)
-			if (clist[i].lineNumber() == previewc.lineNumber() || clist[i].lineNumber() != clist[i].anchorLineNumber())
+			if (clist[i].anchorLineNumber() <= ps.toLine &&
+			    clist[i].lineNumber()   >= ps.fromLine)
 				clist.removeAt(i);
-		QDocumentCursor c = previewc;
+		
+		QDocumentCursor ss = previewc.selectionStart(); 
+		QDocumentCursor se = previewc.selectionEnd();
+		QDocumentCursor c(ss, se);
 		c.setAutoUpdated(true);
 		currentEditorView()->autoPreviewCursor.insert(0,c);
 	}
