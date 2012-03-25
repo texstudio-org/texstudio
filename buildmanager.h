@@ -5,12 +5,19 @@
 
 class ProcessX;
 
+struct PreviewSource{
+	QString text;
+	int fromLine, toLine;
+	PreviewSource(){}
+	PreviewSource(const QString& text, int fromLine, int toLine):
+	       text(text), fromLine(fromLine), toLine(toLine){}
+};
+
 //all the build things in texmaker.cpp are going to be moved to this place, but it doesn't have high priority
 class ConfigManagerInterface;
 class BuildManager: public QObject {
 	Q_OBJECT
 public:
-	
 	BuildManager();
 	~BuildManager();
 	enum LatexCommand {
@@ -65,7 +72,7 @@ public:
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
-	void preview(const QString &preamble, const QString &text, int line, const QString& masterFile, QTextCodec *outputCodec=0);
+	void preview(const QString &preamble, const PreviewSource& source, const QString& masterFile, QTextCodec *outputCodec=0);
 	void clearPreviewPreambleCache();
 
 	QString editCommandList(const QString& list);
@@ -89,12 +96,12 @@ private slots:
 	
 signals:
 	void processNotification(const QString& message);
-	void previewAvailable(const QString& filename, const QString& text, int);
+	void previewAvailable(const QString& filename, const PreviewSource& source);
 private:
 	friend class ProcessX;
 	QStringList previewFileNames;
 	QMap<QString, ProcessX*> runningCommands;
-	QMap<QString, QPair<QString, int> > previewFileNameToText;
+	QMap<QString, PreviewSource> previewFileNameToSource;
 	QHash<LatexCommand, QString> commands;
 	QHash<QString, QString> preambleHash;
 	void removePreviewFiles(QString elemName);

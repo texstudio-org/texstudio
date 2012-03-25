@@ -420,7 +420,7 @@ protected slots:
 	void syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
 	
 	void previewLatex();
-	void previewAvailable(const QString& imageFile, const QString& text, int line);
+	void previewAvailable(const QString& imageFile, const PreviewSource& source);
 	void clearPreview();
 	void showPreview(const QString& text);
 	void showPreview(const QDocumentCursor& c);
