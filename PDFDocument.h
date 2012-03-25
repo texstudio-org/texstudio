@@ -347,6 +347,8 @@ public:
 	bool followCursor() const;
 	PDFRenderManager *renderManager;
 
+	static bool isCompiling;
+	
 protected:
 	virtual void changeEvent(QEvent *event);
 	virtual void closeEvent(QCloseEvent *event);
@@ -373,7 +375,8 @@ private slots:
 	void adjustScaleActions(autoScaleOption);
 	void syncClick(int page, const QPointF& pos, bool activate);
 	void reloadWhenIdle();
-
+	void idleReload();
+	
 	void runExternalViewer();
 
 	void setGrid();

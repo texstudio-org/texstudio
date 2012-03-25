@@ -79,6 +79,7 @@ const int kPresentation = 5; //left-click: next, rclick: prev (for these present
 const int kPDFHighlightDuration = 2000;
 
 static PDFDocumentConfig* globalConfig = 0;
+bool PDFDocument::isCompiling = false;
 
 static const int GridBorder = 5;
 //====================Zoom utils==========================
@@ -2294,10 +2295,15 @@ void PDFDocument::reloadWhenIdle()
 	else {
 		reloadTimer = new QTimer(this);
 		reloadTimer->setSingleShot(true);
-		reloadTimer->setInterval(1500);
-		connect(reloadTimer, SIGNAL(timeout()), this, SLOT(reload()));
+		reloadTimer->setInterval(500);
+		connect(reloadTimer, SIGNAL(timeout()), this, SLOT(idleReload()));
 	}
 	reloadTimer->start();
+}
+
+void PDFDocument::idleReload(){
+	if (isCompiling) reloadWhenIdle();
+	else reload();
 }
 
 void PDFDocument::runExternalViewer(){
