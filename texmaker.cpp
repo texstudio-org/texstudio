@@ -640,6 +640,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
 	
 	submenu = newManagedMenu(menu, "parens", tr("Parenthesis"));
+	newManagedAction(submenu, "jump", tr("Jump to match"), SLOT(jumpToBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_J));
 	newManagedAction(submenu, "selectBracketInner", tr("Select (inner)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("maximal", false);
 	newManagedAction(submenu, "selectBracketOuter", tr("Select (outer)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("maximal", true);
 	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select (inverting)"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
@@ -5836,6 +5837,16 @@ void Texmaker::generateBracketInverterMirror(){
 	ph.affector = BracketInvertAffector::instance();
 	currentEditor()->addPlaceHolder(ph);
 	currentEditor()->setPlaceHolder(currentEditor()->placeHolderCount()-1);
+}
+
+void Texmaker::jumpToBracket(){
+	if (!currentEditor()) return;
+	REQUIRE(sender() && currentEditor()->document() && currentEditor()->document()->languageDefinition());
+	QDocumentCursor orig, to;
+	const QDocumentCursor se = currentEditor()->cursor().selectionEnd();
+	se.getMatchingPair(orig, to, false);
+	if (orig.selectionEnd() == se) currentEditor()->setCursor(to.selectionStart());
+	else currentEditor()->setCursor(to.selectionEnd());
 }
 
 void Texmaker::selectBracket(){
