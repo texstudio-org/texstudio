@@ -1832,7 +1832,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
-	: renderManager(0),curFileSize(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false)
+       : renderManager(0),curFileSize(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false),syncToSourceBlock(false)
 {
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -2570,6 +2570,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 			path.addRect(nodeRect);
 		}
 		if (page > 0) {
+			syncToSourceBlock = true;
 			scrollArea->goToPage(page - 1, false);
 			path.setFillRule(Qt::WindingFill);
 			pdfWidget->setHighlightPath(page-1, path);
@@ -2580,6 +2581,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 				activateWindow();
 				if (isMinimized()) showNormal();
 			}
+			syncToSourceBlock = false;
 			//pdfWidget->repaint();
 			return page-1;
 		}
@@ -2701,6 +2703,7 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 
 	Q_ASSERT(pdfWidget && globalConfig);
 	if (!pdfWidget || !globalConfig) return;
+	sync = sync && !syncToSourceBlock;
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
 	if (actionSynchronize_multiple_views->isChecked() && sync)
