@@ -1619,7 +1619,6 @@ void Texmaker::insertTableTemplate() {
 	if(!LatexTables::inTableEnv(c))
 		return;
 	// select Template
-	QString f_real;
 	if(!templateSelectorDialog) {
 		templateSelectorDialog=new templateselector(this,tr("Templates"));
 		QAction *act=new QAction(tr("Edit"),this);
@@ -1637,10 +1636,11 @@ void Texmaker::insertTableTemplate() {
 	templateSelectorDialog->ui.listWidget->insertItems(0,templates);
 	
 	if(templateSelectorDialog->exec()){
-		if(templateSelectorDialog->ui.listWidget->currentRow()<len){
-			f_real="templates/tabletemplate_"+templateSelectorDialog->ui.listWidget->currentItem()->text()+".js";
-			f_real=findResourceFile(f_real);
-		}
+        QListWidgetItem *currentItem = templateSelectorDialog->ui.listWidget->currentItem();
+        if (currentItem == 0) return;
+
+        QString f_real="templates/tabletemplate_"+currentItem->text()+".js";
+        f_real=findResourceFile(f_real);
 		QFile file(f_real);
 		if (!file.open(QIODevice::ReadOnly)) {
 			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
