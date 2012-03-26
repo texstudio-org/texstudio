@@ -717,6 +717,80 @@ QString LatexTables::getTableText(QDocumentCursor &cur){
 	i=rx.indexIn(line);
 	if(i>=0)
 		cur.setColumnNumber(i+rx.cap(0).length(),QDocumentCursor::KeepAnchor);
-	QString res=cur.selectedText();
-	return res;
+    QString res=cur.selectedText();
+    return res;
 }
+
+void LatexTables::alignTableCols(QDocumentCursor &cur){
+    QString text = getTableText(cur);
+
+    // split off \begin and \end parts
+    int index = text.indexOf("\\begin{")+6;
+    QString tableType;
+    int ocIndex = index;
+    QChar oc = '{';
+    QChar cc = '}';
+    while (true) {
+        index = findClosingBracket(text, index, oc, cc);
+        if (index<0 || index==text.length()-1) return; //non matching braces or missing end getTableText
+        if (tableType.isEmpty()) tableType = text.mid(ocIndex+1, index-ocIndex-1);
+        index++;
+        if (text.at(index) == '{') {
+            oc = '{'; cc = '}';
+        } else if (text.at(index) == '[') {
+            oc = '['; cc = ']';
+        } else {
+            break;
+        }
+    }
+    int cellsStart = index;
+    int cellsEnd = text.indexOf("\\end{"+tableType);
+    QString beginPart = text.left(cellsStart);
+    QString endPart = text.mid(cellsEnd);
+    QStringList lines = text.mid(cellsStart, cellsEnd-cellsStart).split("\\\\");
+
+    // preprocess
+    QList<QStringList > rows;
+    foreach (const QString &line, lines) {
+        rows.append(QStringList());
+        foreach (const QString &cell, line.split('&'))
+            rows.last().append(cell.trimmed());
+    }
+
+    int numCols = 0;
+    foreach (const QList<QString> &row, rows) {
+        if (row.count() > numCols)
+            numCols = row.count();
+    }
+    QList<int> maxColWidths;
+    for (int col=0; col<numCols; col++) {
+        int maxWidth = 0;
+        for (int row=0; row<rows.count(); row++) {
+            if (col >= rows.at(row).count()) continue;
+            if (rows.at(row).at(col).length() > maxWidth) {
+                maxWidth = rows.at(row).at(col).length();
+            }
+        }
+        maxColWidths.append(maxWidth);
+    }
+
+    // align
+    for (int col=0; col<numCols; col++) {
+        for (int row=0; row<rows.count(); row++) {
+            if (col >= rows.at(row).count()) continue;
+            QString cell = rows.at(row).at(col);
+            while (cell.length() < maxColWidths.at(col)) cell.append(' ');
+            QStringList l(rows.at(row));
+            l.replace(col, cell);
+            rows.replace(row, l);
+        }
+    }
+    QStringList alignedLines;
+    foreach (const QStringList &row, rows) {
+        alignedLines.append(row.join(" & "));
+    }
+
+    QString result = beginPart + '\n' + alignedLines.join(" \\\\\n") + '\n' + endPart;
+    cur.replaceSelectedText(result);
+}
+

@@ -460,6 +460,7 @@ protected slots:
 	void addHLineCB();
 	void remHLineCB();
 	void insertTableTemplate();
+    void alignTableCols();
 	
 	void latexModelViewMode();
 	void moveDocumentToFront();

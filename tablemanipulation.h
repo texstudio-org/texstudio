@@ -24,6 +24,7 @@ public:
     static void executeScript(QString script,QEditor *m_editor);
     static void generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table,QString env);
     static QString getTableText(QDocumentCursor &cur);
+    static void alignTableCols(QDocumentCursor &cur);
 
     static QStringList tabularNames;
     static QStringList tabularNamesWithOneOption;
