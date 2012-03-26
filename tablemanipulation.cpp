@@ -727,18 +727,26 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
     // split off \begin and \end parts
     int index = text.indexOf("\\begin{")+6;
     QString tableType;
+    QString alignment;
     int ocIndex = index;
     QChar oc = '{';
     QChar cc = '}';
     while (true) {
         index = findClosingBracket(text, index, oc, cc);
         if (index<0 || index==text.length()-1) return; //non matching braces or missing end getTableText
-        if (tableType.isEmpty()) tableType = text.mid(ocIndex+1, index-ocIndex-1);
+        if (oc == '{' && tableType.isEmpty()) { // first '{'
+            tableType = text.mid(ocIndex+1, index-ocIndex-1);
+        } else if (oc == '{' && alignment.isEmpty()) { // second '{'
+            alignment = text.mid(ocIndex+1, index-ocIndex-1);
+        }
+
         index++;
         if (text.at(index) == '{') {
             oc = '{'; cc = '}';
+            ocIndex = index;
         } else if (text.at(index) == '[') {
             oc = '['; cc = ']';
+            ocIndex = index;
         } else {
             break;
         }
@@ -764,6 +772,7 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
     }
     QList<int> maxColWidths;
     for (int col=0; col<numCols; col++) {
+
         int maxWidth = 0;
         for (int row=0; row<rows.count(); row++) {
             if (col >= rows.at(row).count()) continue;
@@ -774,12 +783,38 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
         maxColWidths.append(maxWidth);
     }
 
+    QString simplifiedAlignment;
+    for (int i=0; i<alignment.length(); i++) {
+        QChar c = alignment.at(i);
+        if (c == 'l' || c == 'c' || c == 'r') simplifiedAlignment.append(c);
+        if (c == 'p') simplifiedAlignment.append('l');
+        if (c == '{') i = findClosingBracket(alignment, i);
+        if (i<0) break; // malformed string
+        // skip other chars
+    }
+    while (simplifiedAlignment.length() < numCols) simplifiedAlignment.append('l'); // fallback
+
     // align
     for (int col=0; col<numCols; col++) {
         for (int row=0; row<rows.count(); row++) {
             if (col >= rows.at(row).count()) continue;
             QString cell = rows.at(row).at(col);
-            while (cell.length() < maxColWidths.at(col)) cell.append(' ');
+            if (simplifiedAlignment.at(col) == 'r') {
+                while (cell.length() < maxColWidths.at(col)) cell.prepend(' ');
+            } else if (simplifiedAlignment.at(col) == 'c') {
+                bool spaceBehind = true;
+                while (cell.length() < maxColWidths.at(col)) {
+                    if (spaceBehind) {
+                        cell.append(' ');
+                     } else {
+                        cell.prepend(' ');
+                    }
+                    spaceBehind = !spaceBehind;
+                }
+            } else {  // 'l'
+                while (cell.length() < maxColWidths.at(col)) cell.append(' ');
+            }
+
             QStringList l(rows.at(row));
             l.replace(col, cell);
             rows.replace(row, l);
