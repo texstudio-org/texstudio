@@ -267,5 +267,20 @@
 	<format id="diffReplace" >
 		<background>#FFFF50</background>
 	</format>
-	
+	<format id="txs-test" >
+		<bold>true</bold>
+		<foreground>#0095ff</foreground>
+	</format>
+	<format id="txs-test-pass" >
+        <foreground>#008000</foreground>
+	</format>
+	<format id="txs-test-fail" >
+		<foreground>#C00000</foreground>
+	</format>
+	<format id="txs-test-skip" >
+        <foreground>#EA8800</foreground>
+	</format>
+	<format id="txs-test-qdebug" >
+        <foreground>#808000</foreground>
+	</format>
 </QXF>
