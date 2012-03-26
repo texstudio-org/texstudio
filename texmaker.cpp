@@ -1629,7 +1629,6 @@ void Texmaker::insertTableTemplate() {
 		templateSelectorDialog->ui.listWidget->addAction(act);
 	}
 	QStringList templates=findResourceFiles("templates/","tabletemplate_*.js");
-	int len=templates.size();
 	templates.replaceInStrings(QRegExp("(^|^.*/)(tabletemplate_)?"),"");
 	templates.replaceInStrings(QRegExp(".js$"),"");
 	templateSelectorDialog->ui.listWidget->clear();
