@@ -458,6 +458,7 @@ private:
 
 	bool wasMaximized;
 	bool syncFromSourceBlock;  //temporary disable sync from source
+	bool syncToSourceBlock;    //temporary disable sync to source (only for continuous scrolling)
 };
 
 #endif
