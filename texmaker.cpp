@@ -707,6 +707,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "addHLine",tr("add \\hline","table"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("remove \\hline","table"), SLOT(remHLineCB()));
 	newManagedAction(submenu, "insertTableTemplate",tr("remodel table after template","table"), SLOT(insertTableTemplate()));
+    newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
 	
 	//wizards
 	
@@ -1702,9 +1703,14 @@ void Texmaker::insertTableTemplate() {
 			tableContent<<elems;
 		}
 		LatexTables::generateTableFromTemplate(m_edit,f_real,tableDef,tableContent,env);
-	}
+    }
 }
 
+void Texmaker::alignTableCols() {
+    if (!currentEditor()) return;
+    QDocumentCursor cur(currentEditor()->cursor());
+    LatexTables::alignTableCols(cur);
+}
 
 void Texmaker::fileOpen() {
 	QString currentDir=QDir::homePath();
@@ -3987,6 +3993,7 @@ void Texmaker::CleanAll() {
 		//fileSave();
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("Clean")));
 		foreach(const QString& finame,finames){
+            qDebug() << finame;
 			QFileInfo fi(finame);
 			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 			QStringList extension=extensionStr.split(",");
