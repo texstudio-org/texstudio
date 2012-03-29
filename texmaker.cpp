@@ -4365,7 +4365,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			bool allTests=args.contains("--execute-all-tests");
 			if (configManager.debugLastFullTestRun.daysTo(myself.lastModified())>6) allTests=true;
 			if (allTests) configManager.debugLastFullTestRun=myself.lastModified();
-			QString result=TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor);
+			QString result=TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor, &buildManager);
 			m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
 			currentEditorView()->editor->setText(result, false);
 			configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();

@@ -70,8 +70,8 @@ private:
 
 struct ExpandingOptions{
 	ExpandingOptions(const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), const int currentLine = 0);
-	const QFileInfo &mainFile;
-	const QFileInfo &currentFile;
+	const QFileInfo mainFile;
+	const QFileInfo currentFile;
 	const int currentLine;
 	int nestingDeep; 
 	bool canceled;
@@ -122,7 +122,7 @@ public:
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	//QList<ProcessX*> newProcesses(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	ProcessX* firstProcessOfDirectExpansion(const QString& command, const QFileInfo& mainfile, const QFileInfo& currentFile = QFileInfo(), int currentLine = 0);
-private:
+
 	ProcessX* newProcessInternal(const QString &fullCommandLine, const QFileInfo& mainFile, bool singleInstance = false);
 public:
 	bool waitForProcess(ProcessX* p);
