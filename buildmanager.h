@@ -107,6 +107,7 @@ public:
 	static QString findFileInPath(QString fileName);
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine=0);
 	ExpandedCommands expandCommandLine(const QString& str, ExpandingOptions& expandingOptions);
+	bool hasCommandLine(const QString& program);
 	
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(QSettings &settings);
@@ -160,8 +161,9 @@ private slots:
 signals:
 	void processNotification(const QString& message);
 	void previewAvailable(const QString& filename, const PreviewSource& source);
+	
+	void commandLineRequested(const QString& cmdId, QString* result);
 	void runInternalCommand(const QString& cmdId, const QFileInfo& mainfile);
-
 		
 	void latexCompiled(LatexCompileResult* rerun);
 	void beginRunningCommands(const QString& commandMain, bool latex, bool pdf);
