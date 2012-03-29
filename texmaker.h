@@ -153,8 +153,6 @@ private:
 	templateselector *templateSelectorDialog;
 	
 	//tools
-	bool FINPROCESS, ERRPROCESS, KILLPROCESS, PROCESSRUNNING;
-	
 	SymbolList symbolScore;
 	usercodelist symbolMostused;
 	QStringList symbolFavorites;
@@ -346,7 +344,7 @@ private slots:
 	void endRunningCommand(const QString& commandMain, bool latex, bool pdf);
 	
 	
-	void runCommand(const QString& commandline, QString* buffer = 0);
+	bool runCommand(const QString& commandline, QString* buffer = 0);
 protected slots:	
 	void processNotification(const QString& message);
 	void QuickBuild();
@@ -494,6 +492,7 @@ protected:
 	QString fileFilters;
 	QString selectedFileFilter;
 	
+	bool runBibliographyIfNecessaryEntered;
 	
 	LatexStyleParser *latexStyleParser;
 		

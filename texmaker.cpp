@@ -54,7 +54,7 @@
 #include <QMessageBox>
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
-       : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), PROCESSRUNNING(false), mDontScrollToItem(false) {
+       : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
 	
 	spellLanguageActions=0;
 	MapForSymbols=0;
@@ -3648,7 +3648,7 @@ void Texmaker::InsertSpellcheckMagicComment() {
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::runCommand(const QString& commandline, QString* buffer) {
+bool Texmaker::runCommand(const QString& commandline, QString* buffer) {
 	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
 	if (documents.getTemporaryCompileFileName()=="") {
 		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
@@ -3657,19 +3657,19 @@ void Texmaker::runCommand(const QString& commandline, QString* buffer) {
 			currentEditorView()->document->setTemporaryFileName(tmpName);
 		} else {
 			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
-			return;
+			return false;
 		}
 	}
 	
 	QString finame=documents.getTemporaryCompileFileName();
 	if (finame == "") {
 		txsWarning(tr("Can't detect the file name"));
-		return;
+		return false;
 	}
 	
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
 	
-	buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer);	
+	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer);	
 }
 
 void Texmaker::runInternalPdfViewer(const QFileInfo& master){
@@ -3723,6 +3723,7 @@ bool Texmaker::checkProgramPermission(const QString& program, const QString& cmd
 
 void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){	
 	if (!configManager.runLaTeXBibTeXLaTeX) return;
+	if (runBibliographyIfNecessaryEntered) return;
 	
 	//LatexDocument* master = currentEditorView()->document->getTopMasterDocument(); //crashes if masterdoc is defined but closed
 	LatexDocument* master = documents.getMasterDocumentForDoc(); //TODO: use mainFile master
@@ -3747,10 +3748,12 @@ void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){
 				}
 			}
 			if (!bibFilesChanged) return;
-		}
+		} else return;
 	} else master->lastCompiledBibTeXFiles = bibFiles;
-	
+
+	runBibliographyIfNecessaryEntered = true;	
 	buildManager.runCommand(BuildManager::CMD_RECOMPILE_BIBLIOGRAPHY, mainFile);
+	runBibliographyIfNecessaryEntered = false;
 }
 
 
@@ -3758,7 +3761,7 @@ void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfil
 	QString cmd = BuildManager::TXS_CMD_PREFIX + cmdid;
 	if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL) 
 		runInternalPdfViewer(mainfile);
-	else if (cmd == BuildManager::CMD_CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY)
+	else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
 	else txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
@@ -3827,7 +3830,7 @@ void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, con
 		if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
 			txsWarning(tr("You cannot compile the document in a non writable directory."));
 		else
-			txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName));
+			txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName + ":\n" + p->getCommandLine()));
 	}	
 }
 
@@ -3848,8 +3851,8 @@ void Texmaker::processNotification(const QString& message){
 }
 
 void Texmaker::QuickBuild() {
-	runCommand(BuildManager::CMD_QUICK);
-	ViewLog();
+	if (runCommand(BuildManager::CMD_QUICK))
+		ViewLog();
 }
 
 void Texmaker::commandFromAction(){
@@ -4000,7 +4003,6 @@ void Texmaker::ViewLog(bool noTabChange) {
 	QString finame=documents.getTemporaryCompileFileName();
 	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
-		ERRPROCESS=true;
 		return;
 	}
 	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");

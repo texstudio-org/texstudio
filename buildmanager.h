@@ -97,7 +97,7 @@ public:
 	static const QString CMD_VIEW_DVI, CMD_VIEW_PS, CMD_VIEW_PDF;
 	static const QString CMD_DVIPNG, CMD_DVIPS, CMD_DVIPDF, CMD_PS2PDF, CMD_GS, CMD_MAKEINDEX, CMD_METAPOST, CMD_ASY, CMD_BIBTEX, CMD_SVN, CMD_SVNADMIN;
 	static const QString CMD_COMPILE, CMD_BIBLIOGRAPHY, CMD_QUICK, CMD_RECOMPILE_BIBLIOGRAPHY;
-	static const QString CMD_VIEW_PDF_INTERNAL, CMD_CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY;
+	static const QString CMD_VIEW_PDF_INTERNAL, CMD_INTERNAL_PRE_COMPILE, CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY;
 	
 	static QString chainCommands(const QString& a);
 	static QString chainCommands(const QString& a, const QString& b);
@@ -114,7 +114,6 @@ public:
 	void saveSettings(QSettings &settings);
 
 	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0);
-	bool runCommand(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0);
 private:
 	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0);
 public:
