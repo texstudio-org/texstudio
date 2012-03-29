@@ -186,7 +186,91 @@
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation type="unfinished">Utente : (nome file senza estensione)</translation>
+        <translation type="obsolete">Utente : (nome file senza estensione)</translation>
+    </message>
+    <message>
+        <source>External Pdf Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quickbuild</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Compiler</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ps Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dvi Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pdf Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;Pdf Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote Dvi Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote Pdf Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre-compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal precompile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recompile bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Command %1 not defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to understand command %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: No command given</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Pdf Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -287,7 +371,7 @@
     </message>
     <message>
         <source>Browse program</source>
-        <translation>Esplora programma</translation>
+        <translation type="obsolete">Esplora programma</translation>
     </message>
     <message>
         <source>Load other icon</source>
@@ -367,11 +451,11 @@
     </message>
     <message>
         <source>Quick Build Command</source>
-        <translation>Comando Compilazione Veloce</translation>
+        <translation type="obsolete">Comando Compilazione Veloce</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
-        <translation>Esegui prima di compilare:</translation>
+        <translation type="obsolete">Esegui prima di compilare:</translation>
     </message>
     <message>
         <source>1</source>
@@ -511,10 +595,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Tab space:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>(The commands must be separated by &apos;|&apos;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -663,10 +743,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Use system theme icons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wizard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1707,10 +1783,6 @@ Do you want to remove them?</source>
     </message>
     <message>
         <source>huge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Internal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4212,6 +4284,10 @@ Do you trust this script?</source>
         <source>Results</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>File closed</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutComboBox</name>
@@ -5019,7 +5095,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>BibTeX</source>
-        <translation>BibTeX</translation>
+        <translation type="obsolete">BibTeX</translation>
     </message>
     <message>
         <source>Clean</source>
@@ -5107,14 +5183,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Labels:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pre-LaTeX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not start LaTeX.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5353,7 +5421,7 @@ You have to save a document before you can compile it.</source>
     <message>
         <source>LaTeX</source>
         <comment>Status</comment>
-        <translation type="unfinished">LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>TeX files</source>
@@ -5845,6 +5913,18 @@ Press &quot;Cancel&quot;to do nothing.
         <comment>General warning dialog</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Jump to match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Align Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown internal command: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6196,14 +6276,6 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Bright&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;?&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
