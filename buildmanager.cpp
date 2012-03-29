@@ -296,6 +296,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 				if (!fullSearch) add = command;
 				else {
 					QDir dir(QFileInfo(mainFile).absoluteDir());
+					if (command.contains("/")) command = command.mid(command.lastIndexOf("/")+1);
 					QStringList commands = QDir(dir).entryList(QStringList() << command.trimmed(), QDir::Files);
 					QString mid;
 					if (absPath) {
