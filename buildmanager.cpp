@@ -212,7 +212,9 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& dis
 }
 QString BuildManager::getCommandLine(const QString& id){
 	if (internalCommandIds.contains(id)) return "txs:///" + id;
-	return commands.value(id).commandLine;
+	QString result = commands.value(id).commandLine;
+	emit commandLineRequested(id, &result);
+	return result;
 }
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
@@ -618,7 +620,11 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 	return res;
 }
 
-
+bool BuildManager::hasCommandLine(const QString& program){
+	for (CommandMapping::const_iterator it = commands.constBegin(), end = commands.constEnd(); it != end; ++it) 
+		if (it.value().commandLine == program) return true;
+	return false;
+}
 
 #ifdef Q_WS_MACX
 QString getCommandLineViewDvi(){ return "open %.dvi > /dev/null"; }

@@ -450,7 +450,7 @@ void Texmaker::setupDockWidgets(){
 		connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), SLOT(endRunningCommand(QString,bool,bool)));
 		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(ViewLogOrReRun(LatexCompileResult*)));
 		connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo)), SLOT(runInternalCommand(QString,QFileInfo)));
-		
+		connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*)), SLOT(commandLineRequested(QString,QString*)));
 		
 		
 		addAction(outputView->toggleViewAction());
@@ -3691,6 +3691,36 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master){
 	
 }
 
+bool Texmaker::checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master){
+	static const QRegExp txsCmd(QRegExp::escape(BuildManager::TXS_CMD_PREFIX) + "([^/ [{]+))");
+	if (txsCmd.exactMatch(program)) return true;
+	static QStringList programWhiteList; configManager.registerOption("Tools/Program Whitelist", &programWhiteList, QStringList() << "latex" << "pdflatex");
+	if (programWhiteList.contains(program)) return true;
+	if (buildManager.hasCommandLine(program)) return true;
+	if (!master) return false;
+	QString id = master->getMagicComment("document-id");
+	if (id.contains("=")) return false;
+	static QStringList individualProgramWhiteList; configManager.registerOption("Tools/Individual Program Whitelist", &individualProgramWhiteList, QStringList());
+	if (!id.isEmpty() && individualProgramWhiteList.contains(id+"="+program)) return true;
+	int t = QMessageBox::question(0, TEXSTUDIO, 
+	                              tr("The document %1 want to override the command %2 with %3.\nDo you trust this document?").arg(master?master->getFileName():"").arg(cmdId).arg(program), 
+	                              tr("Yes, alwas run the overriden command"), 
+	                              tr("Yes, allow all documents to use the overriden command"), 
+	                              tr("No, run the default command"), 0, 2);
+	if (t == 2) return false;
+	if (t == 1) {
+		programWhiteList.append(program);
+		return true;
+	}
+	if (id.isEmpty()) {
+		id = QUuid::createUuid().toString();
+		master->updateMagicComment("document-id", id, true);
+		if (master->getMagicComment("document-id") != id) return false;
+	}
+	individualProgramWhiteList.append(id+"="+program);
+	return true;
+}
+
 void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){	
 	if (!configManager.runLaTeXBibTeXLaTeX) return;
 	
@@ -3731,6 +3761,30 @@ void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfil
 	else if (cmd == BuildManager::CMD_CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
 	else txsWarning(tr("Unknown internal command: %1").arg(cmd));
+}
+
+void Texmaker::commandLineRequested(const QString& cmdId, QString* result){
+	LatexDocument* master = documents.getMasterDocumentForDoc();
+	REQUIRE(master);
+	QString magic = master->getMagicComment("TXS-program:"+cmdId);
+	if (!magic.isEmpty()) {
+		if (!checkProgramPermission(magic, cmdId, master)) return;
+		*result = magic;
+		return;
+	}
+	if (cmdId != "quick" && cmdId != "compile" && cmdId != "view") return;
+	QString program = master->getMagicComment("program");
+	if (program.isEmpty()) program = master->getMagicComment("TS-program");
+	if (program.isEmpty()) return;
+	if (program == "pdflatex") {
+		if (cmdId == "quick") *result = BuildManager::chainCommands(BuildManager::CMD_PDFLATEX, BuildManager::CMD_VIEW_PDF);
+		else if (cmdId == "compile") *result = BuildManager::CMD_PDFLATEX;
+		else if (cmdId == "view") *result = BuildManager::CMD_VIEW_PDF;
+	} else if (program == "latex"){
+		if (cmdId == "quick") *result = BuildManager::chainCommands(BuildManager::CMD_LATEX, BuildManager::CMD_VIEW_DVI);
+		else if (cmdId == "compile") *result = BuildManager::CMD_LATEX;
+		else if (cmdId == "view") *result = BuildManager::CMD_VIEW_DVI;
+	} if (cmdId == "quick" && checkProgramPermission(program, cmdId, master)) *result = program;
 }
 
 void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf){

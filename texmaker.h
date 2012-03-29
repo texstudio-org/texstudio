@@ -334,10 +334,12 @@ protected slots:
 	void QuickDocument();
 	void QuickGraphics(const QString &graphicsFile = QString());
 	
+	bool checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master);
 	void runInternalPdfViewer(const QFileInfo& master);
 	void runBibliographyIfNecessary(const QFileInfo& cmd);
 private slots:	
 	void runInternalCommand(const QString& cmd, const QFileInfo& master);
+	void commandLineRequested(const QString& cmdId, QString* result);
 	void beginRunningCommand(const QString& commandMain, bool latex, bool pdf);
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
