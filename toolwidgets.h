@@ -43,13 +43,12 @@ class OutputViewWidget: public QDockWidget{
 public:
 	OutputViewWidget(QWidget * parent = 0);
 	
-
+	
 	LatexLogModel* getLogModel();
-    void loadLogFile(const QString &logname, const QString & compiledFileName);
+	void loadLogFile(const QString &logname, const QString & compiledFileName);
 	bool logPresent();
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
-	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
 	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
@@ -73,6 +72,7 @@ public slots:
 	void previewLatex(const QPixmap& pixmap);
 	void addSearch(QList<QDocumentLineHandle *> search, QDocument* doc);
 	void clearSearch();
+	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 signals:
 	void locationActivated(int line, QString fileName); //0-based line, absolute file name
 	void logEntryActivated(int logEntryNumber);

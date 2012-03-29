@@ -443,6 +443,16 @@ void Texmaker::setupDockWidgets(){
 		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
+		
+		connect(&buildManager, SIGNAL(beginRunningCommands(QString,bool,bool)), SLOT(beginRunningCommand(QString,bool,bool)));
+		connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
+		connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
+		connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), SLOT(endRunningCommand(QString,bool,bool)));
+		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(ViewLogOrReRun(LatexCompileResult*)));
+		connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo)), SLOT(runInternalCommand(QString,QFileInfo)));
+		
+		
+		
 		addAction(outputView->toggleViewAction());
 		QAction* temp = new QAction(this); temp->setSeparator(true);
 		addAction(temp);
@@ -663,11 +673,11 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	newManagedAction(menu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), Qt::Key_F2, ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
-	newManagedAction(menu, "viewdvi",tr("&View Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEWDVI);
+	newManagedAction(menu, "viewdvi",tr("&View Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
 	newManagedAction(menu, "dvi2ps",tr("&Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
-	newManagedAction(menu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEWPS);
+	newManagedAction(menu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
 	newManagedAction(menu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), Qt::Key_F6, ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
-	newManagedAction(menu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEWPDF);
+	newManagedAction(menu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
 	newManagedAction(menu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
 	newManagedAction(menu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
 	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
@@ -1827,8 +1837,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 			}
 			// set SVN Properties if desired
 			if(configManager.svnKeywordSubstitution){
-				QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-				cmd+=" propset svn:keywords \"Date Author HeadURL Revision\" \""+currentEditor()->fileName()+"\"";
+				QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \""+currentEditor()->fileName()+"\"";
 				statusLabelProcess->setText(QString(" svn propset svn:keywords "));
 				runCommand(cmd, 0);
 			}
@@ -2445,6 +2454,7 @@ void Texmaker::ReadSettings() {
 	configManager.registerOption("User/Templates",&userTemplatesList);
 	
 	configManager.buildManager=&buildManager;
+	buildManager.autoRerunLatex = &configManager.autoRerunLatex;
 	scriptengine::buildManager=&buildManager;
 	scriptengine::app=this;	
 	QSettings *config=configManager.readSettings();
@@ -3638,333 +3648,168 @@ void Texmaker::InsertSpellcheckMagicComment() {
 }
 
 ///////////////TOOLS////////////////////
-void Texmaker::runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags){
-	switch (cmd){
-	case BuildManager::CMD_LATEX:
-		flags = flags | RCF_VIEW_LOG;
-		break;
-	case BuildManager::CMD_PDFLATEX:
-		flags = flags | RCF_VIEW_LOG | RCF_CHANGE_PDF;
-		break;
-	default:
-		break;
-	}
-	bool startViewer = cmd==BuildManager::CMD_VIEWDVI || cmd==BuildManager::CMD_VIEWPS || cmd==BuildManager::CMD_VIEWPDF;
-	if (startViewer && configManager.singleViewerInstance)
-		flags |= RCF_SINGLE_INSTANCE;
-	runCommand(buildManager.getLatexCommand(cmd),flags);
-}
-void Texmaker::runCommand(const QString& commandline, RunCommandFlags flags, QString *buffer) {
-	QString finame=documents.getTemporaryCompileFileName();
-	if (finame=="" && !(flags&RCF_NO_DOCUMENT)) {
-		QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name"));
-		return;
-	}
-	
-	if (commandline.trimmed().isEmpty()) {
-		ERRPROCESS=true;
-		outputView->insertMessageLine("Error : no command given \n");
-		return;
-	}
-	
-	if (!(flags & RCF_IS_RERUN_CALL)) {
-		if (commandline.trimmed().startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
-#ifndef NO_POPPLER_PREVIEW
-			QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", finame).first();
-			QString externalViewer = buildManager.getLatexCommand(BuildManager::CMD_VIEWPDF);
-			if (externalViewer.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
-				externalViewer.remove(0,BuildManager::TXS_INTERNAL_PDF_VIEWER.length());
-				if (externalViewer.startsWith('/')) externalViewer.remove(0,1);
-			}
-            int ln=0;
-            if(currentEditorView()){
-                ln=currentEditorView()->editor->cursor().lineNumber()+1;
-            }
-            externalViewer = BuildManager::parseExtendedCommandLine(externalViewer, finame, getCurrentFileName(),ln).first();
-			if (PDFDocument::documentList().isEmpty()) {
-				newPdfPreviewer();
-				Q_ASSERT(!PDFDocument::documentList().isEmpty());
-			}
-            foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-				viewer->loadFile(pdfFile,externalViewer);
-                int ln=0;
-                if(currentEditorView()){
-                    ln=currentEditorView()->editor->cursor().lineNumber();
-                }
-                int pg=viewer->syncFromSource(getCurrentFileName(), ln , true);
-				viewer->fillRenderCache(pg);
-			}
-#else
-			txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
-#endif
+void Texmaker::runCommand(const QString& commandline, QString* buffer) {
+	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+	if (documents.getTemporaryCompileFileName()=="") {
+		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
+			QString tmpName = buildManager.createTemporaryFileName();
+			currentEditor()->saveCopy(tmpName);
+			currentEditorView()->document->setTemporaryFileName(tmpName);
+		} else {
+			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
 			return;
 		}
+	}
+	
+	QString finame=documents.getTemporaryCompileFileName();
+	if (finame == "") {
+		txsWarning(tr("Can't detect the file name"));
+		return;
+	}
+	
+	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
+	
+	buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer);	
+}
+
+void Texmaker::runInternalPdfViewer(const QFileInfo& master){
+#ifndef NO_POPPLER_PREVIEW
+	if (PDFDocument::documentList().isEmpty()) {
+		newPdfPreviewer();
+		Q_ASSERT(!PDFDocument::documentList().isEmpty());
+	}
+	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
+	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber()+1:0;
+	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+		viewer->loadFile(pdfFile);
+		int pg = viewer->syncFromSource(getCurrentFileName(), ln , true);
+		viewer->fillRenderCache(pg);
+	}
+#else
+	txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
+#endif
+	
+}
+
+void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){	
+	if (!configManager.runLaTeXBibTeXLaTeX) return;
+	
+	//LatexDocument* master = currentEditorView()->document->getTopMasterDocument(); //crashes if masterdoc is defined but closed
+	LatexDocument* master = documents.getMasterDocumentForDoc(); //TODO: use mainFile master
+	REQUIRE(master);
+	
+	QList<LatexDocument*> docs = master->getListOfDocs();
+	QSet<QString> bibFiles;
+	foreach (const LatexDocument* doc, docs)
+		foreach (const FileNamePair& bf, doc->mentionedBibTeXFiles()) 
+			bibFiles.insert(bf.absolute);
+	if (bibFiles == master->lastCompiledBibTeXFiles) {
+		QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
+		if (bbl.exists()) {
+			bool bibFilesChanged = false;
+			QDateTime bblChanged = bbl.lastModified();
+			foreach (const QString& bf, bibFiles){
+				//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblChanged;
+				
+				if (QFileInfo(bf).exists() && QFileInfo(bf).lastModified() > bblChanged) {
+					bibFilesChanged = true;
+					break;
+				}
+			}
+			if (!bibFilesChanged) return;
+		}
+	} else master->lastCompiledBibTeXFiles = bibFiles;
+	
+	buildManager.runCommand(BuildManager::CMD_RECOMPILE_BIBLIOGRAPHY, mainFile);
+}
+
+
+void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfile){
+	QString cmd = BuildManager::TXS_CMD_PREFIX + cmdid;
+	if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL) 
+		runInternalPdfViewer(mainfile);
+	else if (cmd == BuildManager::CMD_CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY)
+		runBibliographyIfNecessary(mainfile);
+	else txsWarning(tr("Unknown internal command: %1").arg(cmd));
+}
+
+void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf){
+	if (pdf) {
+		#ifndef NO_POPPLER_PREVIEW
+		PDFDocument::isCompiling = true;
+		#endif
 		
-		// check for locking of pdf
-		if((flags & RCF_CHANGE_PDF) && configManager.autoCheckinAfterSave){
-			QFileInfo fi(finame);
-			QString basename=fi.baseName();
-			QString path=fi.path();
-			fi.setFile(path+"/"+basename+".pdf");
+		if (configManager.autoCheckinAfterSave) {
+			QFileInfo fi(documents.getTemporaryCompileFileName());
+			fi.setFile(fi.path()+"/"+fi.baseName()+".pdf");
 			if(fi.exists() && !fi.isWritable()){
 				//pdf not writeable, needs locking ?
 				svnLock(fi.filePath());
 			}
 		}
 	}
+	if (latex)
+		outputView->resetMessagesAndLog();//log to old (whenever latex is called)		
+	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
+}
+
+void Texmaker::beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags){
+	if (commandMain != subCommand)
+		statusLabelProcess->setText(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName).arg(buildManager.getCommandInfo(subCommand).displayName));
+	if (flags & RCF_LATEX_COMPILER) 
+		ClearMarkers();
+	outputView->resetMessages();
 	
-	if (configManager.rerunLatex > 0 && (flags & RCF_VIEW_LOG)) {
-		if (!(flags & RCF_IS_RERUN_CALL)) {
-			remainingReRunCount = configManager.rerunLatex;
-			lastReRunWasBibTeX = false;
-			rerunCommand = commandline;
-			rerunFlags = flags | RCF_IS_RERUN_CALL;
-		} else
-			remainingReRunCount--;
-	} else {
-		remainingReRunCount = 0;
-		lastReRunWasBibTeX = false;
-	}
-	
-    int ln=0;
-    if(currentEditorView()){
-        ln=currentEditorView()->editor->cursor().lineNumber()+1;
-    }
-    QList<ProcessX*> procs = buildManager.newProcesses(commandline,finame,getCurrentFileName(),ln,flags & RCF_SINGLE_INSTANCE);
-	
-	if (procs.isEmpty()) return; //a singleInstance that is already running
-	
-	foreach (ProcessX* procX, procs) {
-		procX->setBuffer(buffer);
-		
-		connect(procX, SIGNAL(readyReadStandardError()),this, SLOT(readFromStderr()));
-		if (procX->showStdout())
-			procX->setShowStdout((configManager.showStdoutOption == 2) || (RCF_SHOW_STDOUT & flags));
-		if (procX->showStdout() || buffer)
-			connect(procX, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStdoutput()));
-		connect(procX, SIGNAL(finished(int)),this, SLOT(SlotEndProcess(int)));
-		
-		if (flags & RCF_VIEW_LOG) ClearMarkers();
-		outputView->resetMessages();
-		
-		if (flags & RCF_VIEW_LOG && configManager.showLogAfterCompiling)
-			connect(procX,SIGNAL(finished(int)),this,SLOT(ViewLogOrReRun()));
-		
-		//OutputTextEdit->insertLine(commandline+"\n");
-		FINPROCESS = false;
-		procX->startCommand();
-		if (!procX->waitForStarted(1000)) {
-			ERRPROCESS=true;
-			return;
-		}
-		
-		if (flags & RCF_WAIT_FOR_FINISHED || procX != procs.last()) {
-			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-			QTime time;
-			time.start();
-			KILLPROCESS=false;
-			PROCESSRUNNING=true;
-			while (!FINPROCESS) {
-				qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
-				if (time.elapsed()>2000)
-					qApp->instance()->processEvents(QEventLoop::AllEvents);
-				if (KILLPROCESS) {
-					procX->kill();
-					FINPROCESS=ERRPROCESS=true;
-					break;
-				}
-			}
-			PROCESSRUNNING=false;
-			QApplication::restoreOverrideCursor();
-		}
+	connect(p, SIGNAL(standardErrorRead(QString)), outputView, SLOT(insertMessageLine(QString)));
+	if (p->showStdout()) {
+		p->setShowStdout((configManager.showStdoutOption == 2) || ((RCF_SHOW_STDOUT & flags) && configManager.showStdoutOption == 1));
+		connect(p, SIGNAL(standardOutputRead(QString)), outputView, SLOT(insertMessageLine(QString)));
 	}
 }
 
-void Texmaker::RunPreCompileCommand() {
-	outputView->resetMessagesAndLog();//log to old (whenever latex is called)
-	
-	beginCompile();
-	
-	if (!buildManager.getLatexCommand(BuildManager::CMD_USER_PRECOMPILE).isEmpty()) {
-		statusLabelProcess->setText(QString(" %1 ").arg(tr("Pre-LaTeX")));
-		runCommand(BuildManager::CMD_USER_PRECOMPILE, RCF_WAIT_FOR_FINISHED);
-	}
-	
-	if (configManager.runLaTeXBibTeXLaTeX) {
-        //LatexDocument* master = currentEditorView()->document->getTopMasterDocument(); //crashes if masterdoc is defined but closed
-        LatexDocument* master = documents.getMasterDocumentForDoc();
-		REQUIRE(master);
-		QList<LatexDocument*> docs = master->getListOfDocs();
-		QSet<QString> bibFiles;
-		foreach (const LatexDocument* doc, docs)
-			foreach (const FileNamePair& bf, doc->mentionedBibTeXFiles()) 
-				bibFiles.insert(bf.absolute);
-		if (bibFiles == master->lastCompiledBibTeXFiles) {
-			QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
-			if (bbl.exists()) {
-				bool bibFilesChanged = false;
-				QDateTime bblChanged = bbl.lastModified();
-				foreach (const QString& bf, bibFiles){
-					//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblChanged;
-					
-					if (QFileInfo(bf).exists() && QFileInfo(bf).lastModified() > bblChanged) {
-						bibFilesChanged = true;
-						break;
-					}
-				}
-				if (!bibFilesChanged) return;
-			}
-		} else master->lastCompiledBibTeXFiles = bibFiles;
-		
-		ERRPROCESS=false;
-		statusLabelProcess->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
-		runCommand(BuildManager::CMD_LATEX, RCF_WAIT_FOR_FINISHED);
-		if (ERRPROCESS && !LogExists()) {
-			if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
-				txsWarning(tr("You cannot compile the document in a non writable directory."));
-			else
-				txsWarning(tr("Could not start LaTeX."));
-			return;
-		}
-		if (NoLatexErrors()) {
-			ERRPROCESS=false;
-			statusLabelProcess->setText(QString(" %1 ").arg(tr("BibTeX")));
-			runCommand(BuildManager::CMD_BIBTEX,RCF_WAIT_FOR_FINISHED);
-			if (!ERRPROCESS) {
-				statusLabelProcess->setText(QString(" %1 ").arg(tr("LaTeX","Status")));
-				runCommand(BuildManager::CMD_LATEX,RCF_WAIT_FOR_FINISHED);
-			}
-		}
-	}
+
+void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags){
+	if (p->exitCode() && (flags & RCF_LATEX_COMPILER) && !LogExists()) {
+		if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
+			txsWarning(tr("You cannot compile the document in a non writable directory."));
+		else
+			txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName));
+	}	
 }
 
-void Texmaker::readFromStderr() {
-	ProcessX* procX = qobject_cast<ProcessX*> (sender());
-	if (!procX) return;
-	QByteArray result=procX->readAllStandardError();
-	QString t=QString(result).simplified();
-	if (!t.isEmpty()) outputView->insertMessageLine(t+"\n");
-}
-
-void Texmaker::readFromStdoutput() {
-	ProcessX* procX = qobject_cast<ProcessX*> (sender());
-	if (!procX) return;
-	QByteArray result=procX->readAllStandardOutput();
-	QString t=QString(result).trimmed();
-	QString *buffer=procX->getBuffer();
-	if(buffer) buffer->append(t);
-	if (procX->showStdout())
-		outputView->insertMessageLine(t+"\n");
-}
-
-void Texmaker::SlotEndProcess(int err) {
-	ProcessX* procX = qobject_cast<ProcessX*> (sender());
-	FINPROCESS=true;
-	if (err) ERRPROCESS=true;
+void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf){
+	Q_UNUSED(commandMain)
+	Q_UNUSED(latex)
+	Q_UNUSED(pdf)
+#ifndef NO_POPPLER_PREVIEW
+	if (pdf) 
+		PDFDocument::isCompiling = false;
+#endif
 	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
-	if(!procX) return;
-	QString *buffer=procX->getBuffer();
-	if(buffer){
-		QByteArray result=procX->readAllStandardOutput();
-		QString t=QString(result).trimmed();
-		buffer->append(t);
-	}
 }
+
 
 void Texmaker::processNotification(const QString& message){
 	outputView->insertMessageLine(message+"\n");
 }
 
 void Texmaker::QuickBuild() {
-	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
-	if (documents.getTemporaryCompileFileName()=="") {
-		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
-			QString tmpName = buildManager.createTemporaryFileName();
-			currentEditor()->saveCopy(tmpName);
-			currentEditorView()->document->setTemporaryFileName(tmpName);
-		} else {
-			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
-			return;
-		}
-	}
-	
-	RunPreCompileCommand();
-	statusLabelProcess->setText(QString(" %1 ").arg(tr("Quick Build")));
-	ERRPROCESS=false;
-	
-	QList<BuildManager::LatexCommand> cmddList;
-	if (buildManager.quickmode >= 1 && buildManager.quickmode <= BuildManager::getQuickBuildCommandCount())
-		cmddList = BuildManager::getQuickBuildCommands(buildManager.quickmode);
-	
-	if (!cmddList.isEmpty()) {
-		for (int i=0; i < cmddList.size() - 1; i++) { //skip last command
-			BuildManager::LatexCommand cmd = cmddList[i];
-			statusLabelProcess->setText(QString(" %1 ").arg(BuildManager::commandDisplayName(cmd)));
-			runCommand(cmd, RCF_WAIT_FOR_FINISHED);
-			if (cmd == BuildManager::CMD_LATEX || cmd == BuildManager::CMD_PDFLATEX) {
-				if (ERRPROCESS && !LogExists()) {
-					if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
-						txsWarning(tr("You cannot compile the document in a non writable directory."));
-					else
-						txsWarning(tr("Could not start %1.").arg(BuildManager::commandDisplayName(cmd)));
-					endCompile();
-					return;
-				}
-				if (!NoLatexErrors()) { endCompile(); return;}
-			}
-			if (ERRPROCESS) { endCompile(); return;}
-		}
-		runCommand(cmddList.last(), 0);
-		endCompile();
-		return;
-	}
-	
-	REQUIRE(buildManager.quickmode == 8); //user quick mode
-	
-	runCommandList(buildManager.getLatexCommand(BuildManager::CMD_USER_QUICK).split("|"),0);
+	runCommand(BuildManager::CMD_QUICK);
 	ViewLog();
-	endCompile();
-}
-
-void Texmaker::runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags){
-	ERRPROCESS = false;
-	for (int i = 0; i < commandList.size(); ++i) {
-		if (commandList.at(i).trimmed().isEmpty()) continue;
-		
-		bool isLatex = commandList.at(i).contains("latex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_LATEX) || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
-		bool isPdfLatex = commandList.at(i).contains("pdflatex") || commandList.at(i)==buildManager.getLatexCommand(BuildManager::CMD_PDFLATEX);
-		RunCommandFlags flags = additionalFlags;
-		if (isLatex) flags |= RCF_VIEW_LOG;
-		if (isPdfLatex) flags |= RCF_CHANGE_PDF;
-		if (isLatex || i != commandList.size()-1) flags |= RCF_WAIT_FOR_FINISHED;
-		if (!ERRPROCESS) runCommand(commandList.at(i),flags);
-		else break;
-	}
 }
 
 void Texmaker::commandFromAction(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	if (!act) return;
-	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
-	if (documents.getTemporaryCompileFileName()=="") {
-		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
-			QString tmpName = buildManager.createTemporaryFileName();
-			currentEditor()->saveCopy(tmpName);
-			currentEditorView()->document->setTemporaryFileName(tmpName);
-		} else {
-			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
-			return;
-		}
-	}
-	BuildManager::LatexCommand cmd=(BuildManager::LatexCommand) act->data().toInt();
-	bool compileLatex=(cmd==BuildManager::CMD_LATEX || cmd==BuildManager::CMD_PDFLATEX);
-	if (compileLatex) 
-		RunPreCompileCommand();
-	QString status=act->text();
-	status.remove(QChar('&'));
-	statusLabelProcess->setText(QString(" %1 ").arg(status));
-	runCommand(cmd, 0);
-	endCompile();
+	runCommand(act->data().toString());
+}
+
+void Texmaker::UserTool() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	QString cmd=configManager.userToolCommand.value(action->data().toInt(),"");
+	if (cmd.isEmpty()) return;
+	runCommand(cmd+ " > txs:///messages");
 }
 
 void Texmaker::CleanAll() {
@@ -3992,7 +3837,6 @@ void Texmaker::CleanAll() {
 		//fileSave();
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("Clean")));
 		foreach(const QString& finame,finames){
-            qDebug() << finame;
 			QFileInfo fi(finame);
 			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
 			QStringList extension=extensionStr.split(",");
@@ -4002,32 +3846,6 @@ void Texmaker::CleanAll() {
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	}
 }
-
-void Texmaker::UserTool() {
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	QString cmd=configManager.userToolCommand.value(action->data().toInt(),"");
-	if (cmd.isEmpty()) return;
-	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
-	if (documents.getTemporaryCompileFileName()=="") {
-		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
-			QString tmpName = buildManager.createTemporaryFileName();
-			currentEditor()->saveCopy(tmpName);
-			currentEditorView()->document->setTemporaryFileName(tmpName);
-		} else {
-			QMessageBox::warning(this,tr("Error"),tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
-			return;
-		}
-	}
-	
-	
-	beginCompile();
-	RunCommandFlags flags;
-	if (configManager.showStdoutOption >= 1) flags |= RCF_SHOW_STDOUT;
-	runCommandList(cmd.split("|"), flags);
-	endCompile();
-}
-
 
 void Texmaker::EditUserTool() {
 	UserToolDialog utDlg(this,tr("Edit User &Commands"), &buildManager);
@@ -4041,16 +3859,6 @@ void Texmaker::EditUserTool() {
 	}
 }
 
-void Texmaker::beginCompile(){
-#ifndef NO_POPPLER_PREVIEW
-	PDFDocument::isCompiling = true;
-#endif
-}
-void Texmaker::endCompile(){
-#ifndef NO_POPPLER_PREVIEW
-	PDFDocument::isCompiling = false;
-#endif
-}
 
 void Texmaker::WebPublish() {
 	if (!currentEditorView()) {
@@ -4146,7 +3954,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 	QFileInfo fic(logname);
 	if (fic.exists() && fic.isReadable()) {
 		//OutputLogTextEdit->insertLine("LOG FILE :");
-        outputView->loadLogFile(logname,documents.getTemporaryCompileFileName());
+		outputView->loadLogFile(logname,documents.getTemporaryCompileFileName());
 		//display errors in editor
 		DisplayLatexError();
 		if (outputView->getLogModel()->found(LT_ERROR))
@@ -4157,13 +3965,14 @@ void Texmaker::ViewLog(bool noTabChange) {
 	else txsWarning(tr("Log File is not readable!"));	
 }
 
-void Texmaker::ViewLogOrReRun(){
+void Texmaker::ViewLogOrReRun(LatexCompileResult* result){
 	ViewLog();
-	if (NoLatexErrors() && remainingReRunCount > 0) {
-		if (outputView->getLogModel()->existsReRunWarning() || lastReRunWasBibTeX) {
-			lastReRunWasBibTeX = false;
-			runCommand(rerunCommand, rerunFlags);
-		} else if (configManager.runLaTeXBibTeXLaTeX) {
+	REQUIRE(result);
+	if (NoLatexErrors()) {
+		*result = LCR_NORMAL;
+		if (outputView->getLogModel()->existsReRunWarning()) 
+			*result = LCR_RERUN;
+		else if (configManager.runLaTeXBibTeXLaTeX) {
 			//run bibtex if citation is unknown to bibtex but contained in an included bib file
 			QStringList missingCitations = outputView->getLogModel()->getMissingCitations();
 			bool runBibTeX = false;
@@ -4179,12 +3988,10 @@ void Texmaker::ViewLogOrReRun(){
 					if (runBibTeX) break;
 				}
 			}
-			if (runBibTeX){
-				lastReRunWasBibTeX = true;
-				runCommand(buildManager.getLatexCommand(BuildManager::CMD_BIBTEX), RunCommandFlags(RCF_VIEW_LOG) | RCF_IS_RERUN_CALL);
-			}
+			if (runBibTeX)
+				*result = LCR_RERUN_WITH_BIBLIOGRAPHY;
 		}
-	}
+	} else *result = LCR_ERROR;
 }
 
 ////////////////////////// ERRORS /////////////////////////////
@@ -4634,8 +4441,8 @@ void Texmaker::viewToggleOutputView(){
 }
 
 void Texmaker::viewCloseSomething(){
-	if (PROCESSRUNNING) {
-		KILLPROCESS=true;
+	if (buildManager.waitingForProcess()) {
+		buildManager.killCurrentProcess();
 		return;
 	}
 	if (unicodeInsertionDialog) {
@@ -5524,11 +5331,10 @@ void Texmaker::fileUpdate(QString filename){
 	if (!currentEditorView()) return;
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if(fn.isEmpty()) return;
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	cmd+=" up --non-interactive \""+fn+"\"";
+	QString cmd=BuildManager::CMD_SVN + " up --non-interactive \""+fn+"\"";
 	statusLabelProcess->setText(QString(" svn update "));
 	QString buffer;
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
+	runCommand(cmd,&buffer);
 	outputView->insertMessageLine(buffer);
 }
 
@@ -5536,20 +5342,21 @@ void Texmaker::fileUpdateCWD(QString filename){
 	if (!currentEditorView()) return;
 	QString fn=filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if(fn.isEmpty()) return;
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd=BuildManager::CMD_SVN;
 	fn=QFileInfo(fn).path();
 	cmd+=" up --non-interactive  \""+fn+"\"";
 	statusLabelProcess->setText(QString(" svn update "));
 	QString buffer;
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
+	runCommand(cmd, &buffer);
 	outputView->insertMessageLine(buffer);
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" ci -m \""+text+"\" \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn check in "));
-	runCommand(cmd, (blocking?RCF_WAIT_FOR_FINISHED:RunCommandFlags()));
+	//TODO: blocking
+	runCommand(cmd);
 	LatexEditorView *edView=getEditorViewFromFileName(fn);
 	if(edView)
 		edView->editor->setProperty("undoRevision",0);
@@ -5572,7 +5379,7 @@ bool Texmaker::svnadd(QString fn,int stage){
 			return false;
 		}
 	}
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" add \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn add "));
 	runCommand(cmd, 0);
@@ -5580,7 +5387,7 @@ bool Texmaker::svnadd(QString fn,int stage){
 }
 
 void Texmaker::svnLock(QString fn){
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" lock \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn lock "));
 	runCommand(cmd, 0);
@@ -5588,30 +5395,30 @@ void Texmaker::svnLock(QString fn){
 
 
 void Texmaker::svncreateRep(QString fn){
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
-	QString admin=buildManager.getLatexCommand(BuildManager::CMD_SVNADMIN);
+	QString cmd=BuildManager::CMD_SVN;
+	QString admin=BuildManager::CMD_SVNADMIN;
 	QString path=QFileInfo(fn).absolutePath();
 	admin+=" create "+path+"/repo";
 	statusLabelProcess->setText(QString(" svn create repo "));
-	runCommand(admin, RCF_WAIT_FOR_FINISHED);
+	runCommand(admin);
 	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"txs auto generate\"";
-	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
+	runCommand(scmd);
 	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"txs auto generate\"";
-	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
+	runCommand(scmd);
 	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"txs auto generate\"";
-	runCommand(scmd, RCF_WAIT_FOR_FINISHED);
+	runCommand(scmd);
 	statusLabelProcess->setText(QString(" svn checkout repo"));
 	cmd+=" co file:///"+path+"/repo/trunk "+path;
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
+	runCommand(cmd);
 }
 
 void Texmaker::svnUndo(bool redo){
-	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd_svn=BuildManager::CMD_SVN;
 	QString fn=currentEditor()->fileName();
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
-	runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
+	runCommand(cmd, &buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -5731,11 +5538,11 @@ void Texmaker::svnDialogClosed(){
 }
 
 SVNSTATUS Texmaker::svnStatus(QString filename){
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" st \""+filename+("\"");
 	statusLabelProcess->setText(QString(" svn status "));
 	QString buffer;
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED,&buffer);
+	runCommand(cmd, &buffer);
 	if(buffer.isEmpty()) return CheckedIn;
 	if(buffer.startsWith("?")) return Unmanaged;
 	if(buffer.startsWith("M")) return Modified;
@@ -5745,7 +5552,7 @@ SVNSTATUS Texmaker::svnStatus(QString filename){
 }
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
-	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd_svn=BuildManager::CMD_SVN;
 	QString fn="\""+currentEditor()->fileName()+"\"";
 	// get diff
 	QRegExp rx("^[r](\\d+) \\|");
@@ -5767,19 +5574,19 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	} else return;
 	QString cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
 	QString buffer;
-	runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
+	runCommand(cmd, &buffer);
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);
 }
 
 QStringList Texmaker::svnLog(){
-	QString cmd_svn=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd_svn=BuildManager::CMD_SVN;
 	QString fn="\""+currentEditor()->fileName()+"\"";
 	// get revisions of current file
 	QString cmd=cmd_svn+" log "+fn;
 	QString buffer;
-	runCommand(cmd,RCF_WAIT_FOR_FINISHED,&buffer);
+	runCommand(cmd, &buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -6156,7 +5963,7 @@ void Texmaker::moveDocumentToDest(int dest){
 
 void Texmaker::importPackage(QString name){
 	if(!latexStyleParser){
-		QString cmd_latex=buildManager.getLatexCommand(BuildManager::CMD_LATEX);
+		QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
 		QString baseDir;
 		if(!QFileInfo(cmd_latex).isRelative())
 			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
@@ -6517,10 +6324,10 @@ void Texmaker::declareConflictResolved(){
 		return;
 	
 	QString fn=doc->getFileName();
-	QString cmd=buildManager.getLatexCommand(BuildManager::CMD_SVN);
+	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" resolve --accept working \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn resolve conflict "));
-	runCommand(cmd, RCF_WAIT_FOR_FINISHED);
+	runCommand(cmd);
 	checkin(fn,"txs: commit after resolve");
 }
 

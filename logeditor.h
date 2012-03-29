@@ -23,7 +23,7 @@ public:
 	~LogEditor();
 
 public slots:
-	void insertLine(QString l);
+	void insertLine(const QString& l);
 	void setCursorPosition(int parag, int index);
 protected:
 	virtual void mouseDoubleClickEvent(QMouseEvent *e);

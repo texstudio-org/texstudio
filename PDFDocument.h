@@ -365,7 +365,7 @@ public slots:
 	void toggleFullScreen(const bool fullscreen);
 	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
 	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
-	void loadFile(const QString &fileName, const QString& externalViewer, bool alert = true,const QString gs="");
+	void loadFile(const QString &fileName, const QString& externalViewer = "", bool alert = true,const QString gs="");
 	void printPDF();
 private slots:
 	void fileOpen();

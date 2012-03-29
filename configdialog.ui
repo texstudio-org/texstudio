@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -624,64 +624,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <number>0</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Quick Build Command</string>
-         </property>
-         <layout class="QGridLayout">
-          <property name="margin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_2">
-            <property name="verticalSpacing">
-             <number>0</number>
-            </property>
-            <item row="1" column="0">
-             <widget class="QLineEdit" name="lineEditUserquick">
-              <property name="font">
-               <font>
-                <family>AlArabiya</family>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="pushButtonQuickBuildWizard">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Wizard</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>(The commands must be separated by '|')</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="2">
-             <layout class="QVBoxLayout" name="quickbuildLayout"/>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QGroupBox" name="groupBox_4">
          <property name="title">
           <string>Quick Build Options</string>
@@ -690,54 +632,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <bool>true</bool>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Execute before compiling:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2" colspan="2">
-           <widget class="QLineEdit" name="lineEditExecuteBeforeCompiling">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <widget class="QPushButton" name="pushButtonExecuteBeforeCompiling">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="4">
+          <item row="0" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
             <property name="text">
              <string>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" rowspan="2" colspan="3">
+          <item row="1" column="0" rowspan="2" colspan="2">
            <widget class="QCheckBox" name="checkBoxShowLog">
             <property name="text">
              <string>Show log after compiling if there are errors</string>
@@ -747,7 +649,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="3" column="0">
            <widget class="QCheckBox" name="checkBoxSingleInstanceViewer">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -772,7 +674,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_37">
             <property name="text">
              <string>Show stdout</string>
@@ -782,7 +684,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="3">
+          <item row="4" column="1" colspan="3">
            <widget class="QComboBox" name="comboBoxShowStdout">
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -804,14 +706,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_38">
             <property name="text">
              <string>Times to rerun latex if requested:</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="2">
+          <item row="5" column="1">
            <widget class="QSpinBox" name="spinBoxRerunLatex">
             <property name="value">
              <number>5</number>
@@ -2734,8 +2636,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxParseBibTeX</tabstop>
   <tabstop>checkBoxParseMaster</tabstop>
   <tabstop>btSelectThesaurusFileName</tabstop>
-  <tabstop>lineEditExecuteBeforeCompiling</tabstop>
-  <tabstop>pushButtonExecuteBeforeCompiling</tabstop>
   <tabstop>checkBoxShowLog</tabstop>
   <tabstop>shortcutTree</tabstop>
   <tabstop>comboBoxAutoIndent</tabstop>

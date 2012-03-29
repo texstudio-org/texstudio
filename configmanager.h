@@ -45,11 +45,11 @@ public:
 
 	//build
 	BuildManager* buildManager; 
+	int autoRerunLatex;
 	bool singleViewerInstance;
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
 	int showStdoutOption; //never = 0, user commands, always
-	int rerunLatex; //0: never, > 0 count of reruns
 
 
 	bool autoCheckinAfterSave;
@@ -189,8 +189,9 @@ signals:
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName,configBaseDir;
-	QMap<QPushButton*, BuildManager::LatexCommand> buttonsToCommands;
-	QMap<BuildManager::LatexCommand, QLineEdit*> commandsToEdits;
+	QMap<QPushButton*, QString> buttonsToCommands;
+	QMap<QString, QWidget*> commandsToInputs;
+	CommandMapping tempCommands;
 	void loadTranslations(QString locale);
 
 	void registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset);

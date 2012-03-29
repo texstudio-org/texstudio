@@ -38,7 +38,7 @@ private slots:
 	void accept();
 	void init();
 	void convert(const QString &fileName);
-	void RunCommand(const BuildManager::LatexCommand &cmd, const QString& addParams, const QString& file, const bool waitendprocess, const char* stdErrSlot=0);
+	void RunCommand(const QString &cmd, const QString& file, const bool waitendprocess, const char* stdErrSlot=0);
 	void SlotEndProcess(int err);
 	void copyDataFile(QString fileNameWithoutDir, QString to_file);
 	void removeFile(QString file);

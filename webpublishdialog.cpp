@@ -151,8 +151,8 @@ void WebPublishDialog::closeEvent(QCloseEvent* ce) {
 }
 
 //************************************
-void WebPublishDialog::RunCommand(const BuildManager::LatexCommand &cmd, const QString& addParams, const QString& file, const bool waitendprocess, const char* stdErrSlot){
-	ProcessX* proc= buildManager->newProcess(cmd, addParams, file);
+void WebPublishDialog::RunCommand(const QString &cmd, const QString& file, const bool waitendprocess, const char* stdErrSlot){
+	ProcessX* proc= buildManager->firstProcessOfDirectExpansion(cmd, file);
 	this->proc=proc;
 	ui.messagetextEdit->append(tr("  Running this command: ")+proc->getCommandLine());
 	curLog="";
@@ -183,7 +183,7 @@ void WebPublishDialog::SlotEndProcess(int err) {
 }
 
 void WebPublishDialog::bboxProcess() {
-	RunCommand(BuildManager::CMD_GHOSTSCRIPT, "-q -dBATCH -dNOPAUSE -sDEVICE=bbox", workdir+"/page.ps", true, SLOT(readBboxOutput()));
+	RunCommand("txs:///gs/[-q][-dBATCH][-dNOPAUSE][-sDEVICE=bbox]", workdir+"/page.ps", true, SLOT(readBboxOutput()));
 }
 
 void WebPublishDialog::readBboxOutput() {
@@ -210,7 +210,7 @@ void WebPublishDialog::readBboxOutput() {
 
 void WebPublishDialog::imgProcess(const QString& params, const QString& psFile) {
 	procfinished=false;
-	RunCommand(BuildManager::CMD_GHOSTSCRIPT, params, psFile, false, SLOT(readImgOutput())); //don't wait here, proceed until wait loop below
+	RunCommand("txs:///gs/"+params, psFile, false, SLOT(readImgOutput())); //don't wait here, proceed until wait loop below
 	QFile linkf(workdir+"/link.txt");
 	if (!linkf.open(QIODevice::WriteOnly)) {
 		fatalerror(workdir+"/link.txt"+" not found.");
@@ -436,7 +436,7 @@ void WebPublishDialog::ps2gif(QString input,QString output,int id_page,int w,int
 			psf.close();
 			outf.close();
 			if (w!=0) {
-				if (!errprocess) imgProcess(" -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=png16m  -g"+QString::number(gx)+"x"+QString::number(gy)+" -r"+QString::number(resolution)+" -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile=\""+output+QString::number(id_page)+".png\"", workdir+"/tmp.ps");
+				if (!errprocess) imgProcess("[-q][-dSAFER -dBATCH -dNOPAUSE][-sDEVICE=png16m][-g"+QString::number(gx)+"x"+QString::number(gy)+"][-r"+QString::number(resolution)+"][-dTextAlphaBits=4][-dGraphicsAlphaBits=4][-sOutputFile=\""+output+QString::number(id_page)+".png\"]", workdir+"/tmp.ps");
 				if (ttwperr || errprocess) return;
 			} else {
 				copyDataFile("blank.png",htmldir+"/"+output+QString::number(id_page)+".png");
@@ -490,7 +490,7 @@ void WebPublishDialog::writepages(QString mode) {
 				ui.messagetextEdit->append(tr("Compiling input file. Please wait..."));
 				while (counter <= config->compil) {
 					if (!errprocess) 
-						RunCommand(BuildManager::CMD_LATEX, "", workdir+"/"+base+"_"+mode+".tex", true);
+						RunCommand(BuildManager::CMD_LATEX, workdir+"/"+base+"_"+mode+".tex", true);
 						//RunCommand("latex -interaction=nonstopmode "+base+"_"+mode+".tex",true);
 					
 					latexerror(workdir+"/"+base+"_"+mode+".log");
@@ -579,7 +579,7 @@ void WebPublishDialog::writepages(QString mode) {
 					outts << "\\end{document}" ;
 					outf.close();
 					if (!errprocess) 
-						RunCommand(BuildManager::CMD_LATEX, "", workdir+"/"+base+"_"+mode+".tex", true);
+						RunCommand(BuildManager::CMD_LATEX, workdir+"/"+base+"_"+mode+".tex", true);
 					latexerror(workdir+"/"+base+"_"+mode+".log");
 					if (ttwperr  || errprocess) return;
 				}
@@ -587,7 +587,7 @@ void WebPublishDialog::writepages(QString mode) {
 		}
 	}
 	if (!errprocess)
-		RunCommand(BuildManager::CMD_DVIPS,"-q "+config->dviopt+" -h psheader.txt -o", workdir+"/"+base+"_"+mode+".tex", true);
+		RunCommand("txs:///dvips/[-q "+config->dviopt+" -h psheader.txt]", workdir+"/"+base+"_"+mode+".tex", true);
 		//RunCommand("dvips -q "+dviopt+" -h psheader.txt -o "+base+"_"+mode+".ps "+base+"_"+mode+".dvi",true) ;
 	
 	if (ttwperr || errprocess) return;
