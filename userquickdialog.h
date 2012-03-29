@@ -22,13 +22,13 @@
 class UserQuickDialog : public QDialog  {
 	Q_OBJECT
 public:
-	UserQuickDialog(QWidget *parent=0, const QStringList& usualNames=QStringList(""), const QStringList& usualCommands=QStringList(""));
+	UserQuickDialog(QWidget *parent=0, const QStringList& ids = QStringList(), const QStringList& usualNames=QStringList(""), const QStringList& usualCommands=QStringList(""));
 	~UserQuickDialog();
 	Ui::UserQuickDialog ui;
 	void setCommandList(const QString& list);
 	QString getCommandList();
 private:
-	QMap<QString,QString> nameToCommand, commandToName;
+	QMap<QString,QString> idToCommand, commandToId, idToName, nameToId;
 private slots:
 	void addItem(QString name);
 	void actionUp();

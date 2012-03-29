@@ -53,21 +53,6 @@ enum SVNSTATUS {
 	InConflict
 };
 
-enum RunCommandFlag{
-	RCF_SHOW_STDOUT = 1,//low priority, overriden by configmanager always, both overriden by /dev/null redirection
-	RCF_WAIT_FOR_FINISHED = 2,
-	RCF_VIEW_LOG = 4, //show the log (only use if the command changes the log i.e. is latex), also enable reruns
-	RCF_SINGLE_INSTANCE = 8, //single viewer only
-	RCF_CHANGE_PDF = 16,
-	RCF_NO_DOCUMENT = 32, // don't check if document is saved as it is not used
-	RCF_IS_RERUN_CALL = 64 // call is an automatically rerun (internal)
-};
-Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
-
-
-
-
-
 class UserMenuDialog;
 class GrammarCheck;
 class Texmaker : public QMainWindow {
@@ -349,14 +334,17 @@ protected slots:
 	void QuickDocument();
 	void QuickGraphics(const QString &graphicsFile = QString());
 	
+	void runInternalPdfViewer(const QFileInfo& master);
+	void runBibliographyIfNecessary(const QFileInfo& cmd);
 private slots:	
-	void runCommand(BuildManager::LatexCommand cmd, RunCommandFlags flags);
-	void runCommand(const QString& commandline, RunCommandFlags flags = 0, QString *buffer = 0); //default flags == 0 is necessary for pdf viewer
-	void RunPreCompileCommand();
-	void readFromStderr();
-	void readFromStdoutput();
-	void SlotEndProcess(int err);
-	void runCommandList(const QStringList& commandList, const RunCommandFlags& additionalFlags);
+	void runInternalCommand(const QString& cmd, const QFileInfo& master);
+	void beginRunningCommand(const QString& commandMain, bool latex, bool pdf);
+	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
+	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
+	void endRunningCommand(const QString& commandMain, bool latex, bool pdf);
+	
+	
+	void runCommand(const QString& commandline, QString* buffer = 0);
 protected slots:	
 	void processNotification(const QString& message);
 	void QuickBuild();
@@ -364,9 +352,6 @@ protected slots:
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	void UserTool();
 	void EditUserTool();
-	
-	void beginCompile();
-	void endCompile();
 	
 	void WebPublish();
 	void WebPublishSource();
@@ -376,7 +361,7 @@ protected slots:
 	
 	void RealViewLog(bool noTabChange=false);
 	void ViewLog(bool noTabChange=false);
-	void ViewLogOrReRun();
+	void ViewLogOrReRun(LatexCompileResult* result);
 	void DisplayLatexError();
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
 	bool NoLatexErrors();
@@ -509,12 +494,7 @@ protected:
 	
 	
 	LatexStyleParser *latexStyleParser;
-	
-	int remainingReRunCount;
-	bool lastReRunWasBibTeX;
-	QString rerunCommand;
-	RunCommandFlags rerunFlags;
-	
+		
 	QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	
 	LatexDocument* diffLoadDocHidden(QString f);

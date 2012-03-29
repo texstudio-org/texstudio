@@ -15,7 +15,7 @@
 
 #include "userquickdialog.h"
 
-UserQuickDialog::UserQuickDialog(QWidget *parent, const QStringList& usualNames, const QStringList& usualCommands)
+UserQuickDialog::UserQuickDialog(QWidget *parent, const QStringList& ids , const QStringList& usualNames, const QStringList& usualCommands)
 	:QDialog( parent)
 {
 	ui.setupUi(this);
@@ -29,13 +29,16 @@ UserQuickDialog::UserQuickDialog(QWidget *parent, const QStringList& usualNames,
 	ui.listWidget->setAlternatingRowColors(true);
 
 	//ui.commandWidget->setSelectionMode (QAbstractItemView::ExtendedSelection);
-	ui.commandWidget->setViewMode(QListView::ListMode);
-	ui.commandWidget->addItems(usualNames);
-	ui.commandWidget->addItem(tr("User"));
-	nameToCommand.insert(tr("User"), "");
+	int len = usualNames.count();
+	for(int i=0; i<len; i++ ) idToCommand.insert(ids.at(i),usualCommands.at(i));
+	for(int i=0; i<len; i++ ) commandToId.insert(usualCommands.at(i),ids.at(i));
+	for(int i=0; i<len; i++ ) idToName.insert(ids.at(i),usualNames.at(i));
+	for(int i=0; i<len; i++ ) nameToId.insert(usualNames.at(i),ids.at(i));
+	nameToId.insert(tr("User"), "");
 
-	for(int i=0; i<usualNames.count(); i++ ) nameToCommand.insert(usualNames.at(i),usualCommands.at(i));
-	for(int i=0; i<usualNames.count(); i++ ) commandToName.insert(usualCommands.at(i),usualNames.at(i));
+	ui.commandWidget->setViewMode(QListView::ListMode);
+	for (int i=0;i<ids.count();i++) ui.commandWidget->addItem(idToName.value(ids[i]));
+	ui.commandWidget->addItem(tr("User"));
 }
 
 UserQuickDialog::~UserQuickDialog(){
@@ -43,7 +46,7 @@ UserQuickDialog::~UserQuickDialog(){
 
 void UserQuickDialog::addItem(QString name)
 {
-	QString cmd = nameToCommand.value(name,name);
+	QString cmd = idToCommand.value(nameToId.value(name,name),name);
 	ui.listWidget->addItem(name);
 	QListWidgetItem* item = ui.listWidget->item(ui.listWidget->count()-1);
 	if (cmd == "") item->setFlags(item->flags() | Qt::ItemIsEditable);
@@ -112,7 +115,7 @@ void UserQuickDialog::setCommandList(const QString& list){
 	QStringList split = list.split("|");
 	foreach (const QString &s, split){
 		QString c = s.trimmed();
-		QString name = commandToName.value(c,c);
+		QString name = idToName.value(commandToId.value(c,c), c);
 		ui.listWidget->addItem(name);
 		if (name == c || c == "") {
 			QListWidgetItem * item = ui.listWidget->item(ui.listWidget->count()-1);
@@ -124,7 +127,7 @@ void UserQuickDialog::setCommandList(const QString& list){
 QString UserQuickDialog::getCommandList(){
 	QStringList userlist;
 	for (int i=0;i<ui.listWidget->count();i++)
-		userlist << nameToCommand.value(ui.listWidget->item(i)->text(),ui.listWidget->item(i)->text());
+		userlist << nameToId.value(ui.listWidget->item(i)->text(),ui.listWidget->item(i)->text());
 	QString userQuickCommand=userlist.join(" | ");
 	return userQuickCommand;
 }

@@ -18,8 +18,9 @@ LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent) {
 LogEditor::~LogEditor() {
 }
 
-void LogEditor::insertLine(QString l) {
-	append(l);
+void LogEditor::insertLine(const QString& l) {
+	if (l.endsWith("\n")) append(l);
+	else append(l+"\n");
 }
 
 void LogEditor::setCursorPosition(int para, int index) {

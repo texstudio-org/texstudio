@@ -29,7 +29,7 @@ void ScriptObject::debug(const QString& message){ qDebug() << message; }
 ProcessX* ScriptObject::system(const QString& commandline){
 	if (!buildManager || !needWritePrivileges("system",commandline))
 		return 0;
-	ProcessX* p = buildManager->newProcess(commandline,"");
+	ProcessX* p = buildManager->firstProcessOfDirectExpansion(commandline, QFileInfo());
 	if (!p) return 0;
 	p->startCommand();
 	p->waitForStarted();

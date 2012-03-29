@@ -89,7 +89,6 @@ private slots:
 	void comboBoxWithPathHighlighted(const QString& newText);
 	bool browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath = QDir::homePath());
 	void browseThesaurus();
-	void browsePrecompiling();
 	void browseGrammarLTPath();
 	void browseGrammarLTJavaPath();
 	void browseGrammarWordListsDir();

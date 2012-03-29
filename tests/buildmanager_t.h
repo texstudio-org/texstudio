@@ -41,10 +41,7 @@ private slots:
 		QFETCH(int, line);
 		QFETCH(QString, expected);
 		QString real;
-		if (fileName2!="!none") 
-			real=BuildManager::parseExtendedCommandLine(str,file,file2,line).first();
-		else
-			real=BuildManager::parseExtendedCommandLine(str,file,line).first();
+		real=BuildManager::parseExtendedCommandLine(str,file,file2,line).first();
 		QVERIFY2(real==expected, QString("result wrong: got %1 expected %2").arg(real).arg(expected).toLatin1().constData());
 	}
 };

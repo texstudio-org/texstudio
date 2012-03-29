@@ -318,7 +318,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Session/firstLines", &sessionFirstLinesToRestore);
 	registerOption("Files/Session/CurrentFile", &sessionCurrent);
 	registerOption("Files/Session/MasterFile", &sessionMaster);
-    registerOption("Files/Bookmarks", &bookmarkList);
+	registerOption("Files/Bookmarks", &bookmarkList);
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
@@ -413,7 +413,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
 	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
-	registerOption("Tools/Automatic Rerun Times", &rerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
+	registerOption("Tools/Automatic Rerun Times", &autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 	
 	//SVN
 	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
@@ -547,7 +547,7 @@ QSettings* ConfigManager::readSettings() {
 	config->beginGroup("texmaker");
 	
 	if ((importTexmakerSettings || importTexMakerXSettings) && config->value("Tools/IntegratedPdfViewer", false).toBool())
-		config->setValue(BuildManager::cmdToConfigString(BuildManager::CMD_VIEWPDF), "<default>");
+		config->setValue("Tools/Pdf", "<default>");
 	
 	//----------managed properties--------------------
 	for (int i=0;i<managedProperties.size();i++)
@@ -794,6 +794,8 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	webPublishDialogConfig->saveSettings(*config);
 	insertGraphicsConfig->saveSettings(*config);
 	
+	buildManager->saveSettings(*config);
+	
 	//---------------------build commands----------------
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
 	
@@ -924,23 +926,41 @@ bool ConfigManager::execConfigDialog() {
 	scrollAreaCommands->setWidgetResizable(true);
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout* gl=new QGridLayout(scrollAreaWidgetContents);
-	for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd < BuildManager::CMD_USER_QUICK; ++cmd){
+	int row = 0;
+	tempCommands = buildManager->getAllCommands();
+	QStringList simpleMetaOptions; simpleMetaOptions << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
+	foreach (const QString& id, buildManager->getCommandsOrder()){
+		const CommandInfo& cmd = tempCommands.value(id);
 		QLabel *l = new QLabel(confDlg);
-		l->setText(BuildManager::commandDisplayName(cmd));
-		QLineEdit *e = new QLineEdit(confDlg);
-		e->setText(buildManager->getLatexCommandForDisplay(cmd));
+		l->setText(cmd.displayName);
+		QWidget* w;
+		if (cmd.metaSuggestionList.isEmpty()) {
+			w = new QLineEdit(confDlg);
+			static_cast<QLineEdit*>(w)->setText(cmd.getPrettyCommand());
+		} else {
+			w = new QComboBox(confDlg);
+			static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
+			static_cast<QComboBox*>(w)->setEditable(true);
+			static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
+			int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
+			if (index > 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);
+		}
 		QPushButton *b = new QPushButton(confDlg);
 		b->setIcon(getRealIcon("fileopen"));
 		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
 		QPushButton *bdefault = new QPushButton(confDlg);
 		bdefault->setIcon(getRealIcon("undo"));
 		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
-		l->setMinimumHeight(l->sizeHint().height());
-		b->setMinimumHeight(b->sizeHint().height());
-		e->setMinimumHeight(e->sizeHint().height());
-		gl->addWidget(l,(int)cmd,0);
+		bool advanced = (cmd.metaSuggestionList.size() > 0) && simpleMetaOptions.contains(cmd.id);
+		foreach (QWidget* x, QList<QWidget*>() << l << b << w << bdefault) {
+			x->setMinimumHeight(x->sizeHint().height());
+			if (x != w) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+			x->setProperty("advancedOption", advanced);
+		}
+		w->setSizePolicy(QSizePolicy::MinimumExpanding, w->sizePolicy().verticalPolicy());
+		gl->addWidget(l, row,0);
 		int off =  0;
-		if (cmd == BuildManager::CMD_VIEWPDF) {
+		/*if (cmd == BuildManager::CMD_VIEWPDF) {
 			QButtonGroup *bgPDFViewer = new QButtonGroup(confDlg);
 			confDlg->checkboxInternalPDFViewer = new QRadioButton(confDlg);
 			confDlg->checkboxInternalPDFViewer->setObjectName("internal");
@@ -954,13 +974,14 @@ bool ConfigManager::execConfigDialog() {
 			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
 			gl->addWidget(rbExternalPDFViewer, (int)cmd, 2);
 			off+=2;
-		}
-		gl->addWidget(e,(int)cmd,1+off,1,3-off);
-		gl->addWidget(b,(int)cmd,4);
-		gl->addWidget(bdefault,(int)cmd,5);
-		buttonsToCommands.insert(b,cmd);
-		buttonsToCommands.insert(bdefault,cmd);
-		commandsToEdits.insert(cmd,e);
+		}*/
+		gl->addWidget(w,(int)row,1+off,1,3-off);
+		gl->addWidget(b,(int)row,4);
+		gl->addWidget(bdefault,(int)row,5);
+		buttonsToCommands.insert(b,cmd.id);
+		buttonsToCommands.insert(bdefault,cmd.id);
+		commandsToInputs.insert(cmd.id,w);
+		row++;
 	}
 	scrollAreaCommands->setWidget(scrollAreaWidgetContents);
 	verticalLayout->addWidget(scrollAreaCommands);
@@ -968,7 +989,7 @@ bool ConfigManager::execConfigDialog() {
 	
 	//confDlg->ui.groupBoxCommands->setMinimumHeight(confDlg->ui.groupBoxCommands->sizeHint().height());
 	// svn commands
-	QGridLayout* glsvn=new QGridLayout(confDlg->ui.groupBoxSVN);
+/*	QGridLayout* glsvn=new QGridLayout(confDlg->ui.groupBoxSVN);
 	confDlg->ui.groupBoxSVN->setLayout(glsvn);
 	for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
 		QLabel *l = new QLabel(confDlg);
@@ -991,9 +1012,10 @@ bool ConfigManager::execConfigDialog() {
 		buttonsToCommands.insert(b,cmd);
 		buttonsToCommands.insert(bdefault,cmd);
 		commandsToEdits.insert(cmd,e);
-	}
+	}*/
 	//quickbuild/more page	
 	confDlg->buildManager = buildManager;
+	/*
 	for (int i=1;i<=BuildManager::getQuickBuildCommandCount()+1;i++){
 		QRadioButton* rb = new QRadioButton(BuildManager::getQuickBuildCommandText(i),confDlg);
 		if (i == BuildManager::getQuickBuildCommandCount()+1) { //user command
@@ -1008,7 +1030,7 @@ bool ConfigManager::execConfigDialog() {
 	}	
 	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
 	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
-	
+	*/
 	confDlg->ui.checkBoxReplaceBeamer->setChecked(buildManager->previewRemoveBeamer);
 	confDlg->ui.checkBoxPrecompilePreamble->setChecked(buildManager->previewPrecompilePreamble);
 	
@@ -1017,7 +1039,6 @@ bool ConfigManager::execConfigDialog() {
 	QIcon fileOpenIcon = getRealIcon("fileopen");
 	confDlg->ui.pushButtonDictDir->setIcon(fileOpenIcon);
 	confDlg->ui.btSelectThesaurusFileName->setIcon(fileOpenIcon);
-	confDlg->ui.pushButtonExecuteBeforeCompiling->setIcon(fileOpenIcon);
 
 	// grammar
 	confDlg->ui.pushButtonGrammarWordlists->setIcon(fileOpenIcon);
@@ -1263,7 +1284,13 @@ bool ConfigManager::execConfigDialog() {
 		buildManager->dvi2pngMode=(BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();
 		
 		//build things
-		for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd < BuildManager::CMD_USER_QUICK; ++cmd){
+		for (QMap<QString, QWidget *>::iterator it = commandsToInputs.begin(), end = commandsToInputs.end(); it != end; ++it) {
+			if (qobject_cast<QLineEdit*>(it.value())) tempCommands.find(it.key()).value().commandLine = qobject_cast<QLineEdit*>(it.value())->text();
+			else if (qobject_cast<QComboBox*>(it.value())) tempCommands.find(it.key()).value().commandLine = qobject_cast<QComboBox*>(it.value())->currentText();
+			else Q_ASSERT(false);
+		}
+		buildManager->setAllCommands(tempCommands);
+		/*TODO for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd < BuildManager::CMD_USER_QUICK; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
 		}
@@ -1271,10 +1298,10 @@ bool ConfigManager::execConfigDialog() {
 		for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
-		}
+		}*/
 		
 		
-		Q_ASSERT(confDlg->checkboxInternalPDFViewer);
+		/*Q_ASSERT(confDlg->checkboxInternalPDFViewer);
 		QString curPdfViewer = buildManager->getLatexCommand(BuildManager::CMD_VIEWPDF);
 		if (confDlg->checkboxInternalPDFViewer && confDlg->checkboxInternalPDFViewer->isChecked() != curPdfViewer.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
 			//prepend/remove tmx://internal-pdf-viewer
@@ -1288,14 +1315,15 @@ bool ConfigManager::execConfigDialog() {
 		
 		buildManager->setLatexCommand(BuildManager::CMD_USER_PRECOMPILE,confDlg->ui.lineEditExecuteBeforeCompiling->text());
 		buildManager->setLatexCommand(BuildManager::CMD_USER_QUICK,confDlg->ui.lineEditUserquick->text());
-		
-		for (int i=0;i < confDlg->ui.quickbuildLayout->count(); i++) {
+		*/
+		/*for (int i=0;i < confDlg->ui.quickbuildLayout->count(); i++) {
 			QRadioButton *rb = qobject_cast<QRadioButton*>(confDlg->ui.quickbuildLayout->itemAt(i)->widget());
 			if (rb && rb->isChecked()){
 				buildManager->quickmode=rb->property("quickBuildMode").toInt();
 				break;
 			}
 		}
+		*/
 		buildManager->previewRemoveBeamer = confDlg->ui.checkBoxReplaceBeamer->isChecked();
 		buildManager->previewPrecompilePreamble = confDlg->ui.checkBoxPrecompilePreamble->isChecked();
 		
@@ -1387,7 +1415,8 @@ bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){
 
 void ConfigManager::activateInternalViewer(bool activated){
 	if(!activated) return;
-	QLineEdit *le=commandsToEdits.value(BuildManager::CMD_PDFLATEX);
+	QLineEdit *le=qobject_cast<QLineEdit*>(commandsToInputs.value(BuildManager::CMD_PDFLATEX));
+	REQUIRE(le);
 	if(le->text().contains("synctex")) return;
 	if (!txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?")))
 		return;
@@ -1853,10 +1882,13 @@ void ConfigManager::setInterfaceStyle(){
 void ConfigManager::browseCommand(){
 	QPushButton *pb = qobject_cast<QPushButton*> (sender());
 	if (!buttonsToCommands.contains(pb)) return;
-	BuildManager::LatexCommand cmd=buttonsToCommands.value(pb);
-	QLineEdit* ed = commandsToEdits.value(cmd);
-	if (!ed) return;
-	QString path = ed->text();
+	QString cmd = buttonsToCommands.value(pb);
+	QWidget* w = commandsToInputs.value(cmd);
+	REQUIRE(w);
+	QString path;
+	if (qobject_cast<QLineEdit*>(w)) path = qobject_cast<QLineEdit*>(w)->text();
+	else if (qobject_cast<QComboBox*>(w)) path = qobject_cast<QComboBox*>(w)->currentText();
+	else REQUIRE(false);
 	if (path.contains(' ')) path.truncate(path.indexOf(' '));
 	if (!path.contains('/') && !path.contains('\\')) {//no absolute path
 		path=BuildManager::findFileInPath(path);
@@ -1869,17 +1901,21 @@ void ConfigManager::browseCommand(){
 	QString location=QFileDialog::getOpenFileName(0,tr("Browse program"),path,"Program (*)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" "+BuildManager::defaultCommandOptions(cmd);
-		ed->setText(location);
+		location="\""+location+"\" "+ tempCommands.value(cmd).defaultArgs;
+		if (qobject_cast<QLineEdit*>(w)) qobject_cast<QLineEdit*>(w)->setText(location);
+		else if (qobject_cast<QComboBox*>(w)) qobject_cast<QComboBox*>(w)->setEditText(location);
+		else REQUIRE(false);
 	}
 }
 void ConfigManager::undoCommand(){
 	QPushButton *pb = qobject_cast<QPushButton*> (sender());
 	if (!buttonsToCommands.contains(pb)) return;
-	BuildManager::LatexCommand cmd=buttonsToCommands.value(pb);
-	QLineEdit* ed = commandsToEdits.value(cmd);
-	if (!ed) return;
-	ed->setText(BuildManager::guessCommandName(cmd));
+	QString cmd=buttonsToCommands.value(pb);
+	QWidget* w = commandsToInputs.value(cmd);
+	QString reset = tempCommands.value(cmd).guessCommandLine();
+	if (qobject_cast<QLineEdit*>(w)) qobject_cast<QLineEdit*>(w)->setText(reset);
+	else if (qobject_cast<QComboBox*>(w)) qobject_cast<QComboBox*>(w)->setEditText(reset);
+	else REQUIRE(false);
 }
 
 // manipulate latex menus

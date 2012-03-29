@@ -304,10 +304,6 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.pbRemoveSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxRemoveLine()));
 	environModes=0;
 	//pagequick
-	connect(ui.pushButtonQuickBuildWizard, SIGNAL(clicked()), SLOT(quickBuildWizard()));
-
-	connect(ui.pushButtonExecuteBeforeCompiling, SIGNAL(clicked()), this, SLOT(browsePrecompiling()));
-
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
 	connect(ui.pushButtonGrammarLTPath, SIGNAL(clicked()), this, SLOT(browseGrammarLTPath()));
 	connect(ui.pushButtonGrammarLTJava, SIGNAL(clicked()), this, SLOT(browseGrammarLTJavaPath()));
@@ -490,11 +486,6 @@ void ConfigDialog::browseThesaurus() {
 	browse(ui.comboBoxThesaurusFileName,tr("Browse thesaurus database"),"Database (*.dat)");
 }
 
-void ConfigDialog::browsePrecompiling() {
-	if (!browse(ui.lineEditExecuteBeforeCompiling,tr("Browse program"),"Program (*)",QDir::rootPath())) return;
-	ui.lineEditExecuteBeforeCompiling->setText("\""+ui.lineEditExecuteBeforeCompiling->text()+"\"");
-}
-
 void ConfigDialog::browseGrammarWordListsDir(){
 	browse(ui.lineEditGrammarWordlists, tr("Select the grammar word lists dir"), "/");
 }
@@ -521,7 +512,7 @@ void ConfigDialog::dictDirChanged(const QString &newText) {
 
 void ConfigDialog::quickBuildWizard(){
 	REQUIRE(buildManager);
-	ui.lineEditUserquick->setText(buildManager->editCommandList(ui.lineEditUserquick->text()));
+	//todo ui.lineEditUserquick->setText(buildManager->editCommandList(ui.lineEditUserquick->text()));
 }
 
 void hideShowAdvancedOptions(QWidget* w, bool on){
