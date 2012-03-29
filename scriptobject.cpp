@@ -29,7 +29,11 @@ void ScriptObject::debug(const QString& message){ qDebug() << message; }
 ProcessX* ScriptObject::system(const QString& commandline){
 	if (!buildManager || !needWritePrivileges("system",commandline))
 		return 0;
-	ProcessX* p = buildManager->firstProcessOfDirectExpansion(commandline, QFileInfo());
+	ProcessX* p = 0;
+	if (commandline.contains(BuildManager::TXS_CMD_PREFIX) || !commandline.contains("|")) 
+		p = buildManager->firstProcessOfDirectExpansion(commandline, QFileInfo());
+	else
+		p = buildManager->newProcessInternal(commandline, QFileInfo()); //use internal, so people can pass | to sh
 	if (!p) return 0;
 	p->startCommand();
 	p->waitForStarted();

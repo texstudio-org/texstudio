@@ -38,8 +38,6 @@ QString getCommandLineGhostscript();
 CommandInfo::CommandInfo(): guessFunc(0){}
 
 QString CommandInfo::guessCommandLine() const{
-	//todo: remove default options and call defaultCommandOptions instead
-
 	if (guessFunc) {
 		QString temp = (*guessFunc)();
 		if (!temp.isEmpty()) return temp;
@@ -501,7 +499,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 	options.nestingDeep++;
 	if (options.canceled) return ExpandedCommands();
 	if (options.nestingDeep > maxExpandingNestingDeep) {
-		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\"."))){
+		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\".").arg(options.nestingDeep).arg(str))){
 			options.canceled = true;
 			return ExpandedCommands();
 		}
@@ -521,7 +519,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			if (options.override.removeAll)
 				subcmd = CommandInfo::getProgramName(subcmd);
 			if (!options.override.append.isEmpty())
-				subcmd += " " + options.override.append.join(" ");
+				subcmd += " " + options.override.append.join(" "); //todo: simplify spaces???
 			//Regexp matching parameters
 			//Unescaped: .*(-abc(=([^ ]*|"([^"]|\"([^"])*\")*"))?).*
 			//Doesn't support nesting deeper than \"
@@ -534,8 +532,16 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			for (int i=0;i<options.override.replace.size();i++){
 				const QString& rem = options.override.replace[i].first;
 				QRegExp replaceRegex(" (-?" + QRegExp::escape(rem)+parameterMatching+")");
-				if (subcmd.contains(replaceRegex)) subcmd.replace(replaceRegex, " " + rem+options.override.replace[i].second);
-				else subcmd.insert(CommandInfo::getProgramName(subcmd).length(), " " + rem+options.override.replace[i].second);				
+				int pos = replaceRegex.indexIn(subcmd);
+				QString rep = " " + rem+options.override.replace[i].second;
+				if (pos < 0) subcmd.insert(CommandInfo::getProgramName(subcmd).length(), rep);
+				else {
+					subcmd.replace(pos, replaceRegex.matchedLength(), rep);
+					pos += rep.length();
+					int newpos;
+					while ( (newpos = replaceRegex.indexIn(subcmd, pos)) >= 0)
+						subcmd.replace(newpos, replaceRegex.matchedLength(), " ");
+				}
 			}
 			
 			foreach (const QString& c, parseExtendedCommandLine(subcmd, options.mainFile, options.currentFile, options.currentLine)) {
@@ -552,7 +558,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			const QString& slash = re.cap(2);
 			QString modifiers = re.cap(3);
 			QString parameters = re.cap(5);
-			if (slash != "/") modifiers.clear();
+			if (slash != "/" && !modifiers.isEmpty()) { txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.")); modifiers.clear(); }
 			if (options.override.removeAll) parameters.clear(), modifiers.clear();
 			
 			QString cmd = getCommandLine(cmdName);
@@ -592,7 +598,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			}
 			if (removeAllActivated) options.override.removeAll = true;
 			if (!parameters.isEmpty()) options.override.append.prepend(parameters);
-			              //todo modifier
+			              //todo /(masterfile,currentfile) modifier ?
 			
 			//recurse
 			ExpandedCommands ecNew = expandCommandLine(cmd, options);
@@ -1378,7 +1384,7 @@ QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted
 		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
 		if (stdoutRedirection == "/dev/null") stdoutEnabled = false;
 		else stdoutEnabledOverrideOn = true;
-	}
+	} //todo: stderr redirection
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
 	connect(this, SIGNAL(finished(int)), SLOT(onFinished(int)));
 	connect(this, SIGNAL(error(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));

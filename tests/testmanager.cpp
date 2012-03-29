@@ -44,7 +44,7 @@ QString TestManager::performTest(QObject* obj){
 	return f.readAll()+testTime;
 }
 
-QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit* codeedit, QEditor* editor){
+QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit* codeedit, QEditor* editor, BuildManager* buildManager){
 	QTemporaryFile tf;
 	tf.setAutoRemove(false);
 	tf.open();
@@ -59,7 +59,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
         << new SmallUsefulFunctionsTest()
-		<< new BuildManagerTest()
+		<< new BuildManagerTest(buildManager)
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentLineTest()
 		<< new QDocumentCursorTest()
