@@ -26,7 +26,8 @@ CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf)
 CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
-CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
+CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
+CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 #undef CMD_DEFINE
 
 QString searchBaseCommand(const QString &cmd, QString options);
@@ -77,7 +78,7 @@ void CommandInfo::setCommandLine(const QString& cmdString){
 }
 
 QString CommandInfo::getPrettyCommand() const{
-	if (commandLine.isEmpty()) return BuildManager::tr("<unknown>");
+	if (commandLine.isEmpty() && metaSuggestionList.isEmpty()) return BuildManager::tr("<unknown>");
 	else return commandLine;
 }
 
@@ -184,7 +185,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
 
-	internalCommandIds << CMD_VIEW_PDF_INTERNAL.mid(TXS_CMD_PREFIX.length()) << CMD_CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY.mid(TXS_CMD_PREFIX.length());
+	internalCommandIds << CMD_VIEW_PDF_INTERNAL.mid(TXS_CMD_PREFIX.length()) << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY.mid(TXS_CMD_PREFIX.length());
 }
 
 CommandInfo& BuildManager::registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig, const GuessCommandLineFunc guessFunc ){
@@ -563,7 +564,8 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			
 			QString cmd = getCommandLine(cmdName);
 			if (cmd.isEmpty()) { 
-				txsWarning(tr("Command %1 not defined").arg(subcmd)); 
+				if (options.nestingDeep == 1) txsWarning(tr("Command %1 not defined").arg(subcmd)); 
+				else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
 				continue; 
 			}
 			
@@ -847,25 +849,26 @@ void BuildManager::saveSettings(QSettings &settings){
 }
 
 bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString* buffer){
+	if (waitingForProcess()) return false;
 	if (unparsedCommandLine.isEmpty()) { emit processNotification(tr("Error: No command given")); return false; }
 	ExpandingOptions options(mainFile, currentFile, currentLine);
 	ExpandedCommands expansion = expandCommandLine(unparsedCommandLine, options);
 	if (options.canceled) return false;
-	return runCommand(expansion, mainFile, buffer);
-}
+	if (expansion.commands.isEmpty()) return true;
 
-//aspect wrapper for runCommandInternal
-bool BuildManager::runCommand(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer){
-	if (waitingForProcess()) return false;
-	if (expandedCommands.commands.isEmpty()) return true;
 	bool latexCompiled = false, pdfChanged = false;
-	for (int i=0;i<expandedCommands.commands.size();i++){
-		latexCompiled |= expandedCommands.commands[i].flags & RCF_LATEX_COMPILER;
-		pdfChanged |= expandedCommands.commands[i].flags & RCF_CHANGE_PDF;
+	for (int i=0;i<expansion.commands.size();i++){
+		latexCompiled |= expansion.commands[i].flags & RCF_LATEX_COMPILER;
+		pdfChanged |= expansion.commands[i].flags & RCF_CHANGE_PDF;
 	}
-	emit beginRunningCommands(expandedCommands.primaryCommand, latexCompiled, pdfChanged);
-	bool result = runCommandInternal(expandedCommands, mainFile, buffer);
-	emit endRunningCommands(expandedCommands.primaryCommand, latexCompiled, pdfChanged);
+	if (latexCompiled) {
+		ExpandedCommands temp = expandCommandLine(CMD_INTERNAL_PRE_COMPILE, options);
+		for (int i=temp.commands.size()-1;i>=0;i--) expansion.commands.prepend(temp.commands[i]);
+	}
+		
+	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
+	bool result = runCommandInternal(expansion, mainFile, buffer);
+	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
 	return result;
 }
 
@@ -908,7 +911,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 			if (result == LCR_ERROR) return false;
 			if (remainingReRunCount <= 0) return false;
 			if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) { runCommand(CMD_BIBLIOGRAPHY, mainFile, mainFile, 0); remainingReRunCount--;}
-			REQUIRE_RET(result == LCR_RERUN, false);
+			REQUIRE_RET(result == LCR_RERUN || result == LCR_RERUN_WITH_BIBLIOGRAPHY, false);
 			remainingReRunCount--;
 			i--; //rerun
 			qDebug() << "rerun";
@@ -1162,7 +1165,7 @@ CommandInfo BuildManager::getCommandInfo(const QString& id) const{
 QString BuildManager::editCommandList(const QString& list){
 	QStringList ids = commandSortingsOrder, names, commands;
 	ids.insert(ids.indexOf("view-pdf-external"), CMD_VIEW_PDF_INTERNAL);
-	ids << CMD_CONDITIIONALLY_RECOMPILE_BIBLIOGRAPHY;
+	ids << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY;
 	
 	for (int i=0;i<ids.size();i++) {
 		CommandInfo ci = getCommandInfo(ids[i]);
@@ -1189,10 +1192,13 @@ QStringList BuildManager::getCommandsOrder(){
 }
 void BuildManager::setAllCommands(const CommandMapping& cmds){
 	this->commands = cmds;
-
+	for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it)
+		if (it.value().commandLine == tr("<unknown>"))
+			it.value().commandLine = "";	
+	
 	latexCommands.clear(); latexCommands << "latex" << "pdflatex" << "compile";
 	pdfCommands.clear(); pdfCommands << "pdflatex";
-	stdoutCommands.clear(); pdfCommands << "bibtex" << "biber" << "bibtex8" << "bibliography";
+	stdoutCommands.clear(); stdoutCommands << "bibtex" << "biber" << "bibtex8" << "bibliography";
 	viewerCommands.clear(); viewerCommands << "view-pdf" << "view-ps" << "view-dvi" << "view-pdf-internal" << "view-pdf-external" << "view";
 	QList<QStringList*> lists = QList<QStringList*>() << &latexCommands << &pdfCommands << &stdoutCommands << &viewerCommands;
 	foreach (QStringList* sl, lists)
