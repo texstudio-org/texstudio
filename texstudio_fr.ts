@@ -190,7 +190,91 @@
     </message>
     <message>
         <source>User : (% : filename without extension)</source>
-        <translation>Utilisateur : (% : nom de fichier sans extension)</translation>
+        <translation type="obsolete">Utilisateur : (% : nom de fichier sans extension)</translation>
+    </message>
+    <message>
+        <source>External Pdf Viewer</source>
+        <translation>Afficheur Pdf externe</translation>
+    </message>
+    <message>
+        <source>Quickbuild</source>
+        <translation>Compilation rapide</translation>
+    </message>
+    <message>
+        <source>Default Compiler</source>
+        <translation>Compilation par défaut</translation>
+    </message>
+    <message>
+        <source>Default Viewer</source>
+        <translation>Afficheur par défaut</translation>
+    </message>
+    <message>
+        <source>Default Bibliography</source>
+        <translation>Bibliographie par défaut</translation>
+    </message>
+    <message>
+        <source>Ps Chain</source>
+        <translation>Enchaînement Ps</translation>
+    </message>
+    <message>
+        <source>Dvi Chain</source>
+        <translation>Enchaînement Dvi</translation>
+    </message>
+    <message>
+        <source>Pdf Chain</source>
+        <translation>Enchaînement Pdf</translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;Pdf Chain</source>
+        <translation>Enchaînement Dvi-&gt;Pdf</translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
+        <translation>Enchaînement Dvi-&gt;Ps-&gt;Pdf</translation>
+    </message>
+    <message>
+        <source>Asymptote Dvi Chain</source>
+        <translation>Enchaînement Asymptote-&gt;Dvi</translation>
+    </message>
+    <message>
+        <source>Asymptote Pdf Chain</source>
+        <translation>Enchaînement Asymptote-&gt;Pdf</translation>
+    </message>
+    <message>
+        <source>Pre-compile</source>
+        <translation>Pré-compilation</translation>
+    </message>
+    <message>
+        <source>Internal precompile</source>
+        <translation>Pré-compilation interne</translation>
+    </message>
+    <message>
+        <source>Recompile bibliography</source>
+        <translation>Recompilation de la bibliographie</translation>
+    </message>
+    <message>
+        <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
+        <translation>La commande a été développée en %1 niveaux. Voulez-vous continuer le développement « %2 » ?</translation>
+    </message>
+    <message>
+        <source>Command %1 not defined</source>
+        <translation>Commande %1 non définie</translation>
+    </message>
+    <message>
+        <source>Failed to understand command %1</source>
+        <translation>Commande %1 incompréhensible</translation>
+    </message>
+    <message>
+        <source>Error: No command given</source>
+        <translation>Erreur : aucune commande passée</translation>
+    </message>
+    <message>
+        <source>Internal Pdf Viewer</source>
+        <translation>Afficheur Pdf interne</translation>
+    </message>
+    <message>
+        <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
+        <translation>Vous avez utilisé une commande dde:// avec un double slash, ce qui est déconseillé. Veuillez la changer en une commande avec triple slash en ajoutant un slash.</translation>
     </message>
 </context>
 <context>
@@ -350,11 +434,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Quick Build Command</source>
-        <translation>Commande de compilation rapide</translation>
+        <translation type="obsolete">Commande de compilation rapide</translation>
     </message>
     <message>
         <source>Execute before compiling:</source>
-        <translation>Exécuter avant compilation :</translation>
+        <translation type="obsolete">Exécuter avant compilation :</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -386,7 +470,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>(The commands must be separated by &apos;|&apos;)</source>
-        <translation>(les commandes doivent être séparées par « | » -- sans les guillemets)</translation>
+        <translation type="obsolete">(les commandes doivent être séparées par « | » -- sans les guillemets)</translation>
     </message>
     <message>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
@@ -650,7 +734,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Browse program</source>
-        <translation>Localiser le programme</translation>
+        <translation type="obsolete">Localiser le programme</translation>
     </message>
     <message>
         <source>Load other icon</source>
@@ -678,7 +762,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Wizard</source>
-        <translation>Assistant</translation>
+        <translation type="obsolete">Assistant</translation>
     </message>
     <message>
         <source>Basic highlighting</source>
@@ -868,7 +952,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Precompile Preamble</source>
-        <translation>Pré-compiler le préambule</translation>
+        <translation>Précompilation du préambule</translation>
     </message>
     <message>
         <source>Auto preview:</source>
@@ -1735,7 +1819,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>Internal</source>
-        <translation>Interne</translation>
+        <translation type="obsolete">Interne</translation>
     </message>
 </context>
 <context>
@@ -2683,7 +2767,7 @@ Options de \includegraphics manquantes</translation>
     </message>
     <message>
         <source>&amp;Go to Source</source>
-        <translation>&amp;Aller à la Source</translation>
+        <translation>&amp;Aller au fichier source</translation>
     </message>
     <message>
         <source>Full &amp;Screen</source>
@@ -2987,7 +3071,7 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
     <message>
         <source>Jump to Source</source>
-        <translation>Aller à la Source</translation>
+        <translation>Aller au fichier source</translation>
     </message>
     <message>
         <source>Go to Page</source>
@@ -4264,6 +4348,10 @@ Faites-vous confiance à ce script ?</translation>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
+    <message>
+        <source>File closed</source>
+        <translation>Fichier fermé</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutComboBox</name>
@@ -4871,10 +4959,6 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
         <translation>P&amp;S → PDF</translation>
     </message>
     <message>
-        <source>BibTeX</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Clean</source>
         <translation>Nettoyer</translation>
     </message>
@@ -5300,11 +5384,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Pre-LaTeX</source>
-        <translation>avant LaTeX</translation>
+        <translation type="obsolete">avant LaTeX</translation>
     </message>
     <message>
         <source>Could not start LaTeX.</source>
-        <translation>Impossible de lancer LaTeX.</translation>
+        <translation type="obsolete">Impossible de lancer LaTeX.</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name.
@@ -5407,7 +5491,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>LaTeX</source>
         <comment>Status</comment>
-        <translation>LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>TeX files</source>
@@ -5455,7 +5539,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
-        <translation>C&amp;onvertir la source en html...</translation>
+        <translation>C&amp;onvertir le fichier source en html...</translation>
     </message>
     <message>
         <source>Problem</source>
@@ -5917,6 +6001,18 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <comment>General warning dialog</comment>
         <translation>Ne plus avertir.</translation>
     </message>
+    <message>
+        <source>Jump to match</source>
+        <translation>Aller au délimiteur apparié</translation>
+    </message>
+    <message>
+        <source>Align Columns</source>
+        <translation>Aligner les colonnes</translation>
+    </message>
+    <message>
+        <source>Unknown internal command: %1</source>
+        <translation>Commande interne %1 inconnue</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6316,7 +6412,7 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Bright&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;?&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Bright&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
