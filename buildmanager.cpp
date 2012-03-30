@@ -36,7 +36,7 @@ QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
 QString getCommandLineGhostscript();
 
-CommandInfo::CommandInfo(): guessFunc(0){}
+CommandInfo::CommandInfo(): user(false), guessFunc(0){}
 
 QString CommandInfo::guessCommandLine() const{
 	if (guessFunc) {
@@ -188,7 +188,7 @@ void BuildManager::initDefaultCommandNames(){
 	internalCommandIds << CMD_VIEW_PDF_INTERNAL.mid(TXS_CMD_PREFIX.length()) << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY.mid(TXS_CMD_PREFIX.length());
 }
 
-CommandInfo& BuildManager::registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig, const GuessCommandLineFunc guessFunc ){
+CommandInfo& BuildManager::registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig, const GuessCommandLineFunc guessFunc, bool user ){
 	CommandInfo ci;
 	ci.id = id;
 	ci.baseName = basename;
@@ -196,7 +196,8 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& bas
 	ci.defaultArgs = args;
 	ci.deprecatedConfigName = oldConfig;
 	ci.guessFunc = guessFunc;
-	commandSortingsOrder << id;
+	ci.user = user;
+	if (!user) commandSortingsOrder << id;
 	return commands.insert(id, ci).value();
 }
 
@@ -209,9 +210,15 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& dis
 	commandSortingsOrder << id;
 	return commands.insert(id, ci).value();
 }
-QString BuildManager::getCommandLine(const QString& id){
+QString BuildManager::getCommandLine(const QString& id, bool* user){
+	if (user) *user = false;
 	if (internalCommandIds.contains(id)) return "txs:///" + id;
-	QString result = commands.value(id).commandLine;
+	CommandMapping::iterator it = commands.find(id);
+	QString result;
+	if (it != commands.end()) {
+		result = it->commandLine; 
+		if (user) *user = it->user;
+	}
 	emit commandLineRequested(id, &result);
 	return result;
 }
@@ -563,7 +570,8 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			if (slash != "/" && !modifiers.isEmpty()) { txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.")); modifiers.clear(); }
 			if (options.override.removeAll) parameters.clear(), modifiers.clear();
 			
-			QString cmd = getCommandLine(cmdName);
+			bool user;
+			QString cmd = getCommandLine(cmdName, &user);
 			if (cmd.isEmpty()) { 
 				if (options.nestingDeep == 1) txsWarning(tr("Command %1 not defined").arg(subcmd)); 
 				else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
@@ -616,8 +624,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			if (newPart.isEmpty()) continue;
 			
 			for (int i=0; i<newPart.size(); i++)
-				if (newPart[i].parentCommand.isEmpty()) 
+				if (newPart[i].parentCommand.isEmpty()) {
 					newPart[i].parentCommand = cmdName;
+					if (user) newPart[i].flags |= RCF_SHOW_STDOUT;
+				}
 
 			if (splitted.size() == 1)
 				res.primaryCommand = cmdName;
@@ -766,8 +776,18 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ONLY_NAMED);
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
+
+	
+	cmi.registerOption("User/ToolNames", &deprecatedUserToolNames, QStringList());
+	cmi.registerOption("User/Tools", &deprecatedUserToolCommands, QStringList());
+
+	cmi.registerOption("Tools/Display Names", &userToolDisplayNames, QStringList());
+	cmi.registerOption("Tools/User Order", &userToolOrder, QStringList());
 }
 void BuildManager::readSettings(QSettings &settings){
+	for (int i=0, end = qMin(userToolOrder.size(), userToolDisplayNames.size());i<end;++i)
+		registerCommand(userToolOrder[i], "", userToolDisplayNames[i], "", "", 0, true);
+
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
@@ -775,7 +795,7 @@ void BuildManager::readSettings(QSettings &settings){
 		QString cmd = settings.value(id).toString();
 		if (cmd.isEmpty()) continue;
 		CommandMapping::iterator it = commands.find(id);
-		if (it == commands.end()) registerCommand(id, "", id, "").commandLine = cmd;
+		if (it == commands.end()) registerCommand(id, "", id, "", "", 0, true).commandLine = cmd;
 		else it.value().commandLine = cmd;
 	}
 	settings.endGroup();
@@ -830,21 +850,56 @@ void BuildManager::readSettings(QSettings &settings){
 		}
 		deprecatedQuickmode = -2;
 	}
-	
+	//import old
+	for (int i=0;i<qMin(deprecatedUserToolNames.size(),deprecatedUserToolCommands.size());i++)
+		if (!deprecatedUserToolNames[i].endsWith("!!!CONVERTED!!!")){
+			QString cmd = deprecatedUserToolCommands[i];
+			cmd.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
+			CommandInfo & ci = registerCommand(QString("user%1").arg(i), "", deprecatedUserToolNames[i], "", "", 0, true);
+			ci.commandLine = cmd;
+			userToolOrder << ci.id;
+			userToolDisplayNames << ci.displayName;
+			deprecatedUserToolNames[i] = deprecatedUserToolNames[i] + "!!!CONVERTED!!!";
+		}
+	//import very old
+	for (int i=1; i<=5; i++) {
+		QString temp = settings.value(QString("User/Tool%1").arg(i),"").toString();
+		if (!temp.isEmpty()) {
+			temp.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
+			CommandInfo & ci = registerCommand(QString("userold%1").arg(i), "", settings.value(QString("User/ToolName%1").arg(i)).toString(), "", "", 0, true);
+			ci.commandLine  = temp;
+			userToolOrder << ci.id;
+			userToolDisplayNames << ci.displayName;
+			settings.remove(QString("User/Tool%1").arg(i));
+			settings.remove(QString("User/ToolName%1").arg(i));
+		}
+	}			
+
 	if (reinterpret_cast<int&>(dvi2pngMode)<0) {
 		if (isCommandDirectlyDefined(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG; //best/fastest mode
 		else if (isCommandDirectlyDefined(CMD_DVIPS) && isCommandDirectlyDefined(CMD_GS)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
 		else dvi2pngMode = DPM_DVIPNG; //won't work
 	}
 	
-	setAllCommands(commands);	
+	setAllCommands(commands, userToolOrder);	
 }
 
 void BuildManager::saveSettings(QSettings &settings){
+	QStringList order = getCommandsOrder();
+	userToolOrder.clear();
+	userToolDisplayNames.clear();
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
-	for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it)
+	settings.remove("");
+	for (int i=0;i<order.size();i++){
+		CommandMapping::iterator it = commands.find(order[i]);
+		if (it == commands.end()) continue;
 		settings.setValue(it->id, it->commandLine);
+		if (it->user) {
+			userToolDisplayNames << it->displayName;
+			userToolOrder << it->id;
+		}
+	}
 	settings.endGroup();
 	settings.endGroup();
 }
@@ -1163,11 +1218,12 @@ CommandInfo BuildManager::getCommandInfo(const QString& id) const{
 	return *it;
 }
 
-QString BuildManager::editCommandList(const QString& list){
+QString BuildManager::editCommandList(const QString& list, const QString& excludeId){
 	QStringList ids = commandSortingsOrder, names, commands;
+	ids << userToolOrder;
 	ids.insert(ids.indexOf("view-pdf-external"), CMD_VIEW_PDF_INTERNAL);
 	ids << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY;
-	
+	ids.removeAll(excludeId); ids.removeAll(TXS_CMD_PREFIX + excludeId);
 	for (int i=0;i<ids.size();i++) {
 		CommandInfo ci = getCommandInfo(ids[i]);
 		names << (ci.displayName.isEmpty()?ids[i]:ci.displayName);
@@ -1187,12 +1243,15 @@ CommandMapping BuildManager::getAllCommands(){
 }
 QStringList BuildManager::getCommandsOrder(){
 	QStringList order = commandSortingsOrder;
+	order << userToolOrder;
 	foreach (const QString& more, commands.keys())
 		if (!order.contains(more)) order << more;
 	return order;
 }
-void BuildManager::setAllCommands(const CommandMapping& cmds){
+void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList& userOrder){
 	this->commands = cmds;
+	this->userToolOrder = userOrder;
+
 	for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it)
 		if (it.value().commandLine == tr("<unknown>"))
 			it.value().commandLine = "";	

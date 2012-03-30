@@ -165,6 +165,7 @@ private:
 	
 	QAction* outputViewAction, *fullscreenModeAction;
 	
+	void updateUserToolMenu();
 	void linkToEditorSlot(QAction* act, const char* slot, const QList<QVariant>& args);
 private slots:
 	void relayToEditorSlot();
@@ -350,8 +351,6 @@ protected slots:
 	void QuickBuild();
 	void CleanAll();
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
-	void UserTool();
-	void EditUserTool();
 	
 	void WebPublish();
 	void WebPublishSource();
