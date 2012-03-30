@@ -21,6 +21,8 @@
 const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
 const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
 
+const char* PROPERTY_COMMAND_NAME = "commandName";
+const char* PROPERTY_ASSOCIATED_INPUT = "associatedInput";
 
 ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 }
@@ -262,6 +264,18 @@ bool ManagedProperty::readFromObject(const QObject* w){
 
 QTextCodec* ConfigManager::newFileEncoding = 0;
 
+QString getText(QWidget* w){
+	if (qobject_cast<QLineEdit*>(w)) return qobject_cast<QLineEdit*>(w)->text();
+	else if (qobject_cast<QComboBox*>(w)) return qobject_cast<QComboBox*>(w)->currentText();
+	else REQUIRE_RET(false, "");
+}
+void setText(QWidget* w, const QString& t){
+	if (qobject_cast<QLineEdit*>(w)) qobject_cast<QLineEdit*>(w)->setText(t);
+	else if (qobject_cast<QComboBox*>(w)) qobject_cast<QComboBox*>(w)->setEditText(t);
+	else REQUIRE(false);
+}
+
+
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
        buildManager(0),editorConfig(new LatexEditorViewConfig),
        completerConfig (new LatexCompleterConfig),
@@ -328,10 +342,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
 	registerOption("Spell/Dic", &spell_dic, "<dic not found>", 0);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
-	
-	//user macros
-	registerOption("User/ToolNames", &userToolMenuName, QStringList());
-	registerOption("User/Tools", &userToolCommand, QStringList());
 	
 	//editor
 	registerOption("Editor/WordWrapMode", &editorConfig->wordwrap, 1, &pseudoDialog->comboBoxLineWrap);
@@ -693,10 +703,19 @@ QSettings* ConfigManager::readSettings() {
 	
 	
 	//menu shortcuts
+	QMap<QString, QString> aliases = QMap<QString, QString>();
+	aliases.insert("main/user/commands/", "main/tools/user/");
 	int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
 		config->setArrayIndex(i);
-		managedMenuNewShortcuts.append(QPair<QString, QString> (config->value("id").toString(), config->value("key").toString()));
+		QString id = config->value("id").toString();
+		for (QMap<QString, QString>::iterator it = aliases.begin(), end = aliases.end(); it != end; ++it)
+			if (id.startsWith(it.key())) {
+				id.replace(0, it.key().length(), it.value());
+				break;
+			}
+			
+		managedMenuNewShortcuts.append(QPair<QString, QString> (id, config->value("key").toString()));
 	}
 	config->endArray();
 	
@@ -781,6 +800,8 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	config->setValue("IniMode",true);
 	
 	config->beginGroup("texmaker");
+
+	buildManager->saveSettings(*config); //save first, so it can set managed properties
 	
 	//----------managed properties--------------------
 	foreach (const ManagedProperty& mp, managedProperties)
@@ -794,7 +815,6 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	webPublishDialogConfig->saveSettings(*config);
 	insertGraphicsConfig->saveSettings(*config);
 	
-	buildManager->saveSettings(*config);
 	
 	//---------------------build commands----------------
 	config->setValue("Tools/After BibTeX Change",runLaTeXBibTeXLaTeX?"tmx://latex && tmx://bibtex && tmx://latex":"");
@@ -921,116 +941,15 @@ bool ConfigManager::execConfigDialog() {
 	if(20<autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(4);
 	//--build things
 	//normal commands
-	QVBoxLayout *verticalLayout = new QVBoxLayout(confDlg->ui.groupBoxCommands);
-	QScrollArea *scrollAreaCommands = new QScrollArea(confDlg->ui.groupBoxCommands);
-	scrollAreaCommands->setWidgetResizable(true);
-	QWidget *scrollAreaWidgetContents = new QWidget();
-	QGridLayout* gl=new QGridLayout(scrollAreaWidgetContents);
-	int row = 0;
+	pdflatexEdit = 0;
 	tempCommands = buildManager->getAllCommands();
-	QStringList simpleMetaOptions; simpleMetaOptions << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
-	foreach (const QString& id, buildManager->getCommandsOrder()){
-		const CommandInfo& cmd = tempCommands.value(id);
-		QLabel *l = new QLabel(confDlg);
-		l->setText(cmd.displayName);
-		QWidget* w;
-		if (cmd.metaSuggestionList.isEmpty()) {
-			w = new QLineEdit(confDlg);
-			static_cast<QLineEdit*>(w)->setText(cmd.getPrettyCommand());
-		} else {
-			w = new QComboBox(confDlg);
-			static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
-			static_cast<QComboBox*>(w)->setEditable(true);
-			static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
-			int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
-			if (index > 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);
-		}
-		QPushButton *b = new QPushButton(confDlg);
-		b->setIcon(getRealIcon("fileopen"));
-		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
-		QPushButton *bdefault = new QPushButton(confDlg);
-		bdefault->setIcon(getRealIcon("undo"));
-		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
-		bool advanced = (cmd.metaSuggestionList.size() > 0) && simpleMetaOptions.contains(cmd.id);
-		foreach (QWidget* x, QList<QWidget*>() << l << b << w << bdefault) {
-			x->setMinimumHeight(x->sizeHint().height());
-			if (x != w) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-			x->setProperty("advancedOption", advanced);
-		}
-		w->setSizePolicy(QSizePolicy::MinimumExpanding, w->sizePolicy().verticalPolicy());
-		gl->addWidget(l, row,0);
-		int off =  0;
-		/*if (cmd == BuildManager::CMD_VIEWPDF) {
-			QButtonGroup *bgPDFViewer = new QButtonGroup(confDlg);
-			confDlg->checkboxInternalPDFViewer = new QRadioButton(confDlg);
-			confDlg->checkboxInternalPDFViewer->setObjectName("internal");
-			confDlg->checkboxInternalPDFViewer->setText(tr("Internal"));
-			confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER));
-			connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
-			QRadioButton *rbExternalPDFViewer = new QRadioButton("External:", confDlg);
-			rbExternalPDFViewer->setChecked(!confDlg->checkboxInternalPDFViewer->isChecked());
-			bgPDFViewer->addButton(confDlg->checkboxInternalPDFViewer);
-			bgPDFViewer->addButton(rbExternalPDFViewer);
-			gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
-			gl->addWidget(rbExternalPDFViewer, (int)cmd, 2);
-			off+=2;
-		}*/
-		gl->addWidget(w,(int)row,1+off,1,3-off);
-		gl->addWidget(b,(int)row,4);
-		gl->addWidget(bdefault,(int)row,5);
-		buttonsToCommands.insert(b,cmd.id);
-		buttonsToCommands.insert(bdefault,cmd.id);
-		commandsToInputs.insert(cmd.id,w);
-		row++;
-	}
-	scrollAreaCommands->setWidget(scrollAreaWidgetContents);
-	verticalLayout->addWidget(scrollAreaCommands);
+	QStringList tempOrder = buildManager->getCommandsOrder();
+	commandInputs.clear(); userCommandInputs.clear(); userCommandNameInputs.clear();
+	createCommandList(confDlg->ui.groupBoxCommands, tempOrder, false, false);
+	createCommandList(confDlg->ui.groupBoxMetaCommands, tempOrder, false, true);
+	createCommandList(confDlg->ui.groupBoxUserCommands, tempOrder, true, false);
 	
-	
-	//confDlg->ui.groupBoxCommands->setMinimumHeight(confDlg->ui.groupBoxCommands->sizeHint().height());
-	// svn commands
-/*	QGridLayout* glsvn=new QGridLayout(confDlg->ui.groupBoxSVN);
-	confDlg->ui.groupBoxSVN->setLayout(glsvn);
-	for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
-		QLabel *l = new QLabel(confDlg);
-		l->setText(BuildManager::commandDisplayName(cmd));
-		QLineEdit *e = new QLineEdit(confDlg);
-		e->setText(buildManager->getLatexCommandForDisplay(cmd));
-		QPushButton *b = new QPushButton(confDlg);
-		b->setIcon(getRealIcon("fileopen"));
-		connect(b,SIGNAL(clicked()),this,SLOT(browseCommand()));
-		QPushButton *bdefault = new QPushButton(confDlg);
-		bdefault->setIcon(getRealIcon("undo"));
-		connect(bdefault,SIGNAL(clicked()),this,SLOT(undoCommand()));
-		l->setMinimumHeight(l->sizeHint().height());
-		b->setMinimumHeight(b->sizeHint().height());
-		e->setMinimumHeight(e->sizeHint().height());
-		glsvn->addWidget(l,(int)cmd,0);
-		glsvn->addWidget(e,(int)cmd,1);
-		glsvn->addWidget(b,(int)cmd,2);
-		glsvn->addWidget(bdefault,(int)cmd,3);
-		buttonsToCommands.insert(b,cmd);
-		buttonsToCommands.insert(bdefault,cmd);
-		commandsToEdits.insert(cmd,e);
-	}*/
 	//quickbuild/more page	
-	confDlg->buildManager = buildManager;
-	/*
-	for (int i=1;i<=BuildManager::getQuickBuildCommandCount()+1;i++){
-		QRadioButton* rb = new QRadioButton(BuildManager::getQuickBuildCommandText(i),confDlg);
-		if (i == BuildManager::getQuickBuildCommandCount()+1) { //user command
-			connect(rb, SIGNAL(toggled(bool)), confDlg->ui.lineEditUserquick, SLOT(setEnabled(bool)));
-			connect(rb, SIGNAL(toggled(bool)), confDlg->ui.pushButtonQuickBuildWizard, SLOT(setEnabled(bool)));
-			confDlg->ui.lineEditUserquick->setEnabled(i == buildManager->quickmode);
-			confDlg->ui.pushButtonQuickBuildWizard->setEnabled(i == buildManager->quickmode);
-		}
-		if (i == buildManager->quickmode) rb->setChecked(true);
-		rb->setProperty("quickBuildMode", i);
-		confDlg->ui.quickbuildLayout->addWidget(rb);
-	}	
-	confDlg->ui.lineEditExecuteBeforeCompiling->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_PRECOMPILE));
-	confDlg->ui.lineEditUserquick->setText(buildManager->getLatexCommandForDisplay(BuildManager::CMD_USER_QUICK));
-	*/
 	confDlg->ui.checkBoxReplaceBeamer->setChecked(buildManager->previewRemoveBeamer);
 	confDlg->ui.checkBoxPrecompilePreamble->setChecked(buildManager->previewPrecompilePreamble);
 	
@@ -1284,12 +1203,27 @@ bool ConfigManager::execConfigDialog() {
 		buildManager->dvi2pngMode=(BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();
 		
 		//build things
-		for (QMap<QString, QWidget *>::iterator it = commandsToInputs.begin(), end = commandsToInputs.end(); it != end; ++it) {
-			if (qobject_cast<QLineEdit*>(it.value())) tempCommands.find(it.key()).value().commandLine = qobject_cast<QLineEdit*>(it.value())->text();
-			else if (qobject_cast<QComboBox*>(it.value())) tempCommands.find(it.key()).value().commandLine = qobject_cast<QComboBox*>(it.value())->currentText();
-			else Q_ASSERT(false);
+		QStringList userOrder;
+		for (CommandMapping::iterator it = tempCommands.begin(), end = tempCommands.end(); it != end; )
+			if (it.value().user) it = tempCommands.erase(it);
+			else  ++it;
+		for (int i=0;i<commandInputs.size();i++){
+			CommandMapping::iterator it = tempCommands.find(commandInputs[i]->property(PROPERTY_COMMAND_NAME).toString());
+			if (it != tempCommands.end()) it.value().commandLine = getText(commandInputs[i]);
 		}
-		buildManager->setAllCommands(tempCommands);
+		//read user commands (ugly lists, but we can't use maps because they screw up the ordering)
+		for (int i=0;i<userCommandInputs.size();i++){
+			CommandInfo ci;
+			QString combinedName = getText(userCommandNameInputs[i]);
+			int pos = combinedName.indexOf(":");
+			ci.id = pos == -1?combinedName:combinedName.left(pos);
+			ci.displayName = pos == -1?combinedName:combinedName.mid(pos+1);
+			ci.commandLine = getText(userCommandInputs[i]);
+			ci.user = true;
+			tempCommands.insert(ci.id, ci);
+			userOrder << ci.id;
+		}
+		buildManager->setAllCommands(tempCommands, userOrder);
 		/*TODO for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd < BuildManager::CMD_USER_QUICK; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
@@ -1415,7 +1349,7 @@ bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){
 
 void ConfigManager::activateInternalViewer(bool activated){
 	if(!activated) return;
-	QLineEdit *le=qobject_cast<QLineEdit*>(commandsToInputs.value(BuildManager::CMD_PDFLATEX));
+	QLineEdit *le = pdflatexEdit;
 	REQUIRE(le);
 	if(le->text().contains("synctex")) return;
 	if (!txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?")))
@@ -1550,14 +1484,6 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	default:
 		break;
 		
-	}
-}
-
-void ConfigManager::updateUserToolMenu(bool alwaysRecreateMenuItems){
-	QMenu* recreatedMenu = updateListMenu("main/user/commands", userToolMenuName, "cmd", true, SLOT(UserTool()), Qt::SHIFT+Qt::ALT+Qt::Key_F1, alwaysRecreateMenuItems);
-	if (recreatedMenu) {
-		recreatedMenu->addSeparator();
-		newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texmaker", "Edit User &Commands"), SLOT(EditUserTool()));
 	}
 }
 
@@ -1879,16 +1805,143 @@ void ConfigManager::setInterfaceStyle(){
 	QApplication::setPalette(pal);
 }
 
+void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int row){
+	static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
+	QWidget * parent = gl->parentWidget();
+	QWidget *l;
+	if (cmd.user) l = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
+	else l = new QLabel(cmd.displayName, parent);
+	QWidget* w;
+	if (cmd.metaSuggestionList.isEmpty()) {
+		w = new QLineEdit(cmd.getPrettyCommand(), parent);
+		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(w);
+	} else {
+		w = new QComboBox(parent);
+		static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
+		static_cast<QComboBox*>(w)->setEditable(true);
+		static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
+		int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
+		if (index > 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);		
+	}
+	QList<QPushButton*> buttons;
+	if (cmd.user || !cmd.metaSuggestionList.isEmpty()) {
+		buttons << new QPushButton("...", parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(editCommand()));
+	}
+	buttons << new QPushButton(getRealIcon("fileopen"), "", parent);
+	connect(buttons.last(),SIGNAL(clicked()),SLOT(browseCommand()));
+	if (!cmd.user && cmd.metaSuggestionList.isEmpty()) {
+		buttons << new QPushButton(getRealIcon("undo"), "", parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(undoCommand()));
+	}
+	if (cmd.user) {
+		buttons << new QPushButton(getRealIcon("list-remove"), "", parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(removeCommand()));
+		buttons << new QPushButton(getRealIcon("up"), "", parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(moveUpCommand()));
+		if (row == 0) buttons.last()->setEnabled(false);
+		buttons << new QPushButton(getRealIcon("down"), "", parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(moveDownCommand()));
+	}
+	bool advanced = (cmd.metaSuggestionList.size() > 0) && !simpleMetaOptions.contains(cmd.id);
+	QList<QWidget*> temp; temp << l << w; foreach (QWidget* w, buttons) temp << w;
+	foreach (QWidget* x, temp) {
+		x->setMinimumHeight(x->sizeHint().height());
+		if (x != w) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+		advanced |= (cmd.user && buttons.indexOf(static_cast<QPushButton*>(x)) >= 3);
+		x->setProperty("advancedOption", advanced);
+		if (advanced && !configShowAdvancedOptions) x->setVisible(false);
+	}
+	w->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
+	gl->setRowStretch(row, 1);
+	gl->addWidget(l, row,0);
+	int off =  0;
+	/*if (cmd == BuildManager::CMD_VIEWPDF) {
+		QButtonGroup *bgPDFViewer = new QButtonGroup(confDlg);
+		confDlg->checkboxInternalPDFViewer = new QRadioButton(confDlg);
+		confDlg->checkboxInternalPDFViewer->setObjectName("internal");
+		confDlg->checkboxInternalPDFViewer->setText(tr("Internal"));
+		confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER));
+		connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
+		QRadioButton *rbExternalPDFViewer = new QRadioButton("External:", confDlg);
+		rbExternalPDFViewer->setChecked(!confDlg->checkboxInternalPDFViewer->isChecked());
+		bgPDFViewer->addButton(confDlg->checkboxInternalPDFViewer);
+		bgPDFViewer->addButton(rbExternalPDFViewer);
+		gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
+		gl->addWidget(rbExternalPDFViewer, (int)cmd, 2);
+		off+=2;
+	}*/
+	gl->addWidget(w,row,1+off,1,6-off-buttons.size());
+	for (int i = 0; i < buttons.size(); i++){
+		gl->addWidget(buttons[i],row,7-buttons.size()+i, 1, 1);
+		buttons[i]->setProperty(PROPERTY_ASSOCIATED_INPUT, QVariant::fromValue<QWidget*>(w));
+	}
+	w->setProperty(PROPERTY_COMMAND_NAME, cmd.id);
+	
+	if (cmd.user) {
+		userCommandInputs << w;
+		userCommandNameInputs << l;
+	} else commandInputs << w;
+}
+
+void ConfigManager::createCommandList(QGroupBox* box, const QStringList& order, bool user, bool meta){
+	QVBoxLayout *verticalLayout = new QVBoxLayout(box);
+	QScrollArea *scrollAreaCommands = new QScrollArea(box);
+	scrollAreaCommands->setWidgetResizable(true);
+	QWidget *scrollAreaWidgetContents = new QWidget();
+	QGridLayout* gl=new QGridLayout(scrollAreaWidgetContents);
+	int row = 0;
+	foreach (const QString& id, order){
+		const CommandInfo& cmd = tempCommands.value(id);
+		bool isMeta = !cmd.metaSuggestionList.isEmpty();
+		if (user != cmd.user) continue;
+		if (!user && (isMeta != meta)) continue;
+		addCommandRow(gl, cmd, row);
+
+		row++;
+	}
+	if (user){
+		QPushButton* b = new QPushButton(getRealIcon("list-add"), tr("Add"), box);
+		connect(b, SIGNAL(clicked()), SLOT(addCommand()));
+		gl->addWidget(b, row, 0);
+		userGridLayout = gl;
+		setLastRowMoveDownEnable(false);
+	}
+	scrollAreaCommands->setWidget(scrollAreaWidgetContents);
+	verticalLayout->addWidget(scrollAreaCommands);
+}
+
+void ConfigManager::setFirstRowMoveUpEnable(bool enable){
+	REQUIRE(userGridLayout);
+	int rows = userGridLayout->rowCount();
+	for (int i=0; i < rows-1;i++) {
+		QLayoutItem* li = userGridLayout->itemAtPosition(i, 5);
+		if (li && li->widget()) { li->widget()->setEnabled(enable); break; }
+	}
+}
+
+void ConfigManager::setLastRowMoveDownEnable(bool enable){
+	REQUIRE(userGridLayout);
+	int rows = userGridLayout->rowCount();
+	for (int i=rows-2; i >= 0; i--) {
+		QLayoutItem* li = userGridLayout->itemAtPosition(i, 6);
+		if (li && li->widget()) { li->widget()->setEnabled(enable); break; }
+	}
+}
+
 void ConfigManager::browseCommand(){
 	QPushButton *pb = qobject_cast<QPushButton*> (sender());
-	if (!buttonsToCommands.contains(pb)) return;
-	QString cmd = buttonsToCommands.value(pb);
-	QWidget* w = commandsToInputs.value(cmd);
+	REQUIRE(pb);
+	QWidget *w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>();
 	REQUIRE(w);
-	QString path;
-	if (qobject_cast<QLineEdit*>(w)) path = qobject_cast<QLineEdit*>(w)->text();
-	else if (qobject_cast<QComboBox*>(w)) path = qobject_cast<QComboBox*>(w)->currentText();
-	else REQUIRE(false);
+	QString cmd = w->property(PROPERTY_COMMAND_NAME).toString();
+	QString old = getText(w);
+	QString path = old;
+	if (old.contains("|")) {
+		path = old.split("|").last().trimmed();
+		if (path.isEmpty()) path = old.split("|").first().trimmed();
+	}
+	path = path.trimmed();
 	if (path.contains(' ')) path.truncate(path.indexOf(' '));
 	if (!path.contains('/') && !path.contains('\\')) {//no absolute path
 		path=BuildManager::findFileInPath(path);
@@ -1902,21 +1955,93 @@ void ConfigManager::browseCommand(){
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
 		location="\""+location+"\" "+ tempCommands.value(cmd).defaultArgs;
-		if (qobject_cast<QLineEdit*>(w)) qobject_cast<QLineEdit*>(w)->setText(location);
-		else if (qobject_cast<QComboBox*>(w)) qobject_cast<QComboBox*>(w)->setEditText(location);
-		else REQUIRE(false);
+		if (old.contains("|")) setText(w, old + (old.trimmed().endsWith("|")?"":" | ") + location);
+		else setText(w, location);
 	}
 }
 void ConfigManager::undoCommand(){
 	QPushButton *pb = qobject_cast<QPushButton*> (sender());
-	if (!buttonsToCommands.contains(pb)) return;
-	QString cmd=buttonsToCommands.value(pb);
-	QWidget* w = commandsToInputs.value(cmd);
-	QString reset = tempCommands.value(cmd).guessCommandLine();
-	if (qobject_cast<QLineEdit*>(w)) qobject_cast<QLineEdit*>(w)->setText(reset);
-	else if (qobject_cast<QComboBox*>(w)) qobject_cast<QComboBox*>(w)->setEditText(reset);
-	else REQUIRE(false);
+	REQUIRE(pb);
+	QWidget *w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>();
+	REQUIRE(w);
+	QString cmd = w->property(PROPERTY_COMMAND_NAME).toString();
+	setText(w, tempCommands.value(cmd).guessCommandLine());
 }
+
+void ConfigManager::editCommand(){
+	QPushButton *pb = qobject_cast<QPushButton*> (sender());
+	REQUIRE(pb);
+	QWidget *w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>();
+	REQUIRE(w);
+	setText(w, buildManager->editCommandList(getText(w), w->property(PROPERTY_COMMAND_NAME).toString()));
+}
+
+void ConfigManager::addCommand(){
+	QPushButton* self = qobject_cast<QPushButton*>(sender());
+	REQUIRE(self); REQUIRE(userGridLayout);
+	CommandInfo cmd;
+	cmd.id = QString("user%1").arg(userCommandInputs.size());
+	cmd.user = true;
+	int row = userGridLayout->rowCount();
+	setLastRowMoveDownEnable(true);
+	userGridLayout->removeWidget(self);
+	addCommandRow(userGridLayout, cmd, row-1);
+	userGridLayout->addWidget(self, row+1, 0);
+	setLastRowMoveDownEnable(false);
+}
+
+void ConfigManager::removeCommand(){
+	QPushButton* self = qobject_cast<QPushButton*>(sender()); REQUIRE(self); REQUIRE(userGridLayout);
+	QWidget* w = self->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>(); REQUIRE(w);
+	int pos = userCommandInputs.indexOf(w); REQUIRE(pos >= 0);
+	int widgetId = userGridLayout->indexOf(self) - 2; 
+	for (int i=0;i<5;i++) {
+		QLayoutItem* li = userGridLayout->takeAt(widgetId);
+		REQUIRE(li);
+		delete li->widget();
+	}
+	delete userCommandInputs[pos]; //layout item memory leak??
+	delete userCommandNameInputs[pos];
+	userCommandInputs.removeAt(pos);
+	userCommandNameInputs.removeAt(pos);
+	setLastRowMoveDownEnable(false);
+	setFirstRowMoveUpEnable(false);
+}
+
+void ConfigManager::moveUpCommand(){ moveCommand(-1); }
+void ConfigManager::moveDownCommand(){ moveCommand(+1); }
+void ConfigManager::moveCommand(int dir){
+	QPushButton* self = qobject_cast<QPushButton*>(sender()); REQUIRE(self); REQUIRE(userGridLayout);
+	QWidget* w = self->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>(); REQUIRE(w);
+	int pos = userCommandInputs.indexOf(w); REQUIRE(pos >= 0);
+	int rowpos, column, temp;
+	userGridLayout->getItemPosition(userGridLayout->indexOf(self), &rowpos, &column, &temp, &temp ); REQUIRE(rowpos >= 0);
+	int rows = userGridLayout->rowCount();
+	QWidget* w2 = 0, *wsel = 0;
+	for (rowpos+=dir; rowpos >= 0 && rowpos < rows; rowpos+=dir) {
+		QLayoutItem* li = userGridLayout->itemAtPosition(rowpos, 1);
+		QLayoutItem* lis = userGridLayout->itemAtPosition(rowpos, column);
+		if (li && li->widget() && lis && lis->widget()) { 
+			w2 = li->widget();
+			wsel = lis->widget();
+			break;
+		}
+	}
+	if (!w2) return;
+	int pos2 = userCommandInputs.indexOf(w2);  REQUIRE(pos2 >= 0); 
+	REQUIRE(userCommandInputs.size() == userCommandNameInputs.size());
+	QString mixedId = getText(userCommandNameInputs[pos]);
+	setText(userCommandNameInputs[pos], getText(userCommandNameInputs[pos2]));
+	setText(userCommandNameInputs[pos2], mixedId);
+	QString cmd = getText(w);
+	setText(w, getText(w2));
+	setText(w2, cmd);
+	QVariant id = w->property(PROPERTY_COMMAND_NAME);
+	w->setProperty(PROPERTY_COMMAND_NAME, w2->property(PROPERTY_COMMAND_NAME));
+	w2->setProperty(PROPERTY_COMMAND_NAME, id);
+	wsel->setFocus();
+}
+
 
 // manipulate latex menus
 QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {

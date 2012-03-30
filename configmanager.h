@@ -129,7 +129,6 @@ public:
 	void updateRecentFiles(bool alwaysRecreateMenuItems=false);
 	QMenu* updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, bool prefixNumber, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems=false, int additionalEntries = 2);
 	void updateUserMacroMenu(bool alwaysRecreateMenuItems=false);
-	void updateUserToolMenu(bool alwaysRecreateMenuItems=false);
 	
 	//dictionaries
 	QString spellDictDir;
@@ -139,9 +138,6 @@ public:
 	// custom highlighting
 	QStringList enviromentModes;
 	QMap<QString,QVariant> customEnvironments;
-
-	//user macros
-	QStringList userToolMenuName, userToolCommand;
 
 	//debug
 	#ifndef QT_NO_DEBUG
@@ -189,9 +185,10 @@ signals:
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName,configBaseDir;
-	QMap<QPushButton*, QString> buttonsToCommands;
-	QMap<QString, QWidget*> commandsToInputs;
 	CommandMapping tempCommands;
+	QList<QWidget*> commandInputs, userCommandInputs, userCommandNameInputs;
+	QGridLayout* userGridLayout;
+	QLineEdit* pdflatexEdit;
 	void loadTranslations(QString locale);
 
 	void registerOption(const QString& name, void* storage, PropertyType type, QVariant def, void* displayWidgetOffset);
@@ -229,9 +226,21 @@ private:
 	const ManagedProperty* getManagedProperty(const QString& name) const;
 
 	QMap<ManagedProperty*, QPair<LinkOptions, QList<QObject*> > > managedOptionObjects;
+	
+	void addCommandRow(QGridLayout* parent, const CommandInfo& cmd, int row);
+	void createCommandList(QGroupBox* box, const QStringList& order, bool user, bool meta);
+	void setFirstRowMoveUpEnable(bool enable);
+	void setLastRowMoveDownEnable(bool enable);
 private slots:
 	void browseCommand();
 	void undoCommand();
+	void editCommand();
+	void addCommand();
+	void removeCommand();
+	void moveUpCommand();
+	void moveDownCommand();
+	void moveCommand(int dir);
+
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
 	void activateInternalViewer(bool activated);
 

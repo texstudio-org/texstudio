@@ -50,6 +50,7 @@ struct CommandInfo {
 	
 	QString defaultArgs;
 	QString displayName;
+	bool user;
 	
 	QStringList metaSuggestionList;
 	
@@ -63,7 +64,7 @@ private:
 	QString baseName;
 	GuessCommandLineFunc guessFunc;
 	QString deprecatedConfigName;
-	
+		
 	static QString getProgramName(const QString& commandLine);
 	QString getProgramName() const;
 };
@@ -136,15 +137,17 @@ public:
 
 	bool isCommandDirectlyDefined(const QString& id) const;
 	CommandInfo getCommandInfo(const QString& id) const;
-	QString editCommandList(const QString& list);
+	QString editCommandList(const QString& list, const QString& excludeId = "");
 	CommandMapping getAllCommands();
 	QStringList getCommandsOrder();
-	void setAllCommands(const CommandMapping& commands);
+	void setAllCommands(const CommandMapping& commands, const QStringList& userOrder);
 	
 	int *autoRerunLatex; //0: never, > 0 count of reruns
 	int maxExpandingNestingDeep;
 	
 	int deprecatedQuickmode;
+	QStringList deprecatedUserToolCommands, deprecatedUserToolNames;
+	QStringList userToolOrder, userToolDisplayNames;
 	enum Dvi2PngMode { DPM_DVIPNG, DPM_DVIPNG_FOLLOW, DPM_DVIPS_GHOSTSCRIPT};
 	Dvi2PngMode dvi2pngMode;
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
@@ -172,9 +175,9 @@ signals:
 	
 private:
 	void initDefaultCommandNames();
-	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0);
+	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
 	CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "");
-	QString getCommandLine(const QString& id);
+	QString getCommandLine(const QString& id, bool* user);
 	friend class ProcessX;
 	CommandMapping commands;
 	QStringList internalCommandIds, commandSortingsOrder;

@@ -689,6 +689,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
 	newManagedAction(menu, "asymptote",tr("&Asymptote"), SLOT(commandFromAction()))->setData(BuildManager::CMD_ASY);
 	menu->addSeparator();
+	submenu=newManagedMenu(menu, "user",tr("&User", "menu"));
+	updateUserToolMenu();
+	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
@@ -717,7 +720,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "addHLine",tr("add \\hline","table"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("remove \\hline","table"), SLOT(remHLineCB()));
 	newManagedAction(submenu, "insertTableTemplate",tr("remodel table after template","table"), SLOT(insertTableTemplate()));
-    newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
+	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
 	
 	//wizards
 	
@@ -744,10 +747,7 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
 	configManager.updateUserMacroMenu();
-	
-	submenu=newManagedMenu(menu,"commands",tr("User &Commands"));
-	configManager.updateUserToolMenu();
-	
+		
 	//---view---
 	menu=newManagedMenu("main/view",tr("&View"));
 	newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), Qt::ALT+Qt::Key_PageUp);
@@ -1419,6 +1419,24 @@ void Texmaker::needUpdatedCompleter(){
 	if (mCompleterNeedsUpdate)
 		updateCompleter();
 }
+void Texmaker::updateUserToolMenu(){
+	CommandMapping cmds = buildManager.getAllCommands();
+	QStringList order = buildManager.getCommandsOrder();
+	QStringList ids;
+	QStringList displayName;
+	for (int i=0;i<order.size();i++){
+		const CommandInfo &ci = cmds.value(order[i]);
+		if (!ci.user) continue;
+		ids << ci.id;
+		displayName << ci.displayName;
+	}
+	configManager.updateListMenu("main/tools/user", displayName, "cmd", true, SLOT(commandFromAction()), Qt::ALT+Qt::SHIFT+Qt::Key_F1, false, 0);
+	QMenu* m = getManagedMenu("main/tools/user"); REQUIRE(m);
+	QList<QAction *> actions = m->actions();
+	for (int i=0;i<actions.size();i++)
+		actions[i]->setData(BuildManager::TXS_CMD_PREFIX+ids[i]);
+}
+
 #include "QMetaMethod"
 void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QList<QVariant>& args){
 	REQUIRE(act);
@@ -2478,17 +2496,6 @@ void Texmaker::ReadSettings() {
 	tobefullscreen=config->value("MainWindow/FullScreen",false).toBool();
 	
 	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode",false).toBool());
-	
-	//import old
-	for (int i=1; i<=5; i++) {
-		QString temp = config->value(QString("User/Tool%1").arg(i),"").toString();
-		if (!temp.isEmpty()) {
-			configManager.userToolCommand << temp;
-			configManager.userToolMenuName << config->value(QString("User/ToolName%1").arg(i),"").toString();
-			config->remove(QString("User/Tool%1").arg(i));
-			config->remove(QString("User/ToolName%1").arg(i));
-		}
-	}
 	
 	latexParser.structureCommands.clear();
 	if(config->value("Structure/Structure Level 1","").toString()==""){
@@ -3861,14 +3868,6 @@ void Texmaker::commandFromAction(){
 	runCommand(act->data().toString());
 }
 
-void Texmaker::UserTool() {
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-	QString cmd=configManager.userToolCommand.value(action->data().toInt(),"");
-	if (cmd.isEmpty()) return;
-	runCommand(cmd+ " > txs:///messages");
-}
-
 void Texmaker::CleanAll() {
 	//QString finame=documents.getCompileFileName();
 	QStringList finames;
@@ -3903,19 +3902,6 @@ void Texmaker::CleanAll() {
 		statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	}
 }
-
-void Texmaker::EditUserTool() {
-	UserToolDialog utDlg(this,tr("Edit User &Commands"), &buildManager);
-	utDlg.Name = configManager.userToolMenuName;
-	utDlg.Tool = configManager.userToolCommand;
-	utDlg.init();
-	if (utDlg.exec()) {configManager.updateRecentFiles();
-		configManager.userToolMenuName = utDlg.Name;
-		configManager.userToolCommand = utDlg.Tool;
-		configManager.updateUserToolMenu();
-	}
-}
-
 
 void Texmaker::WebPublish() {
 	if (!currentEditorView()) {

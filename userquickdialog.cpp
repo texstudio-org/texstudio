@@ -39,6 +39,8 @@ UserQuickDialog::UserQuickDialog(QWidget *parent, const QStringList& ids , const
 	ui.commandWidget->setViewMode(QListView::ListMode);
 	for (int i=0;i<ids.count();i++) ui.commandWidget->addItem(idToName.value(ids[i]));
 	ui.commandWidget->addItem(tr("User"));
+	
+	for (int i=0;i<ids.count();i++) commandToId.insert(ids[i], ids[i]);
 }
 
 UserQuickDialog::~UserQuickDialog(){
@@ -49,7 +51,7 @@ void UserQuickDialog::addItem(QString name)
 	QString cmd = idToCommand.value(nameToId.value(name,name),name);
 	ui.listWidget->addItem(name);
 	QListWidgetItem* item = ui.listWidget->item(ui.listWidget->count()-1);
-	if (cmd == "") item->setFlags(item->flags() | Qt::ItemIsEditable);
+	if (cmd == "" || name == tr("User")) item->setFlags(item->flags() | Qt::ItemIsEditable);
 	if (ui.listWidget->count()>0)
 	{
 		ui.listWidget->setCurrentItem(item);

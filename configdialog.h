@@ -56,7 +56,6 @@ public slots:
 	void treeWidgetItemClicked(QTreeWidgetItem * item, int column);
 };
 
-class BuildManager;
 class QFormatConfig;
 class ConfigDialog : public QDialog {
 	Q_OBJECT
@@ -78,8 +77,6 @@ public:
 
 	QStringList * environModes;
 
-	BuildManager * buildManager;
-
 	bool riddled;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
@@ -94,7 +91,6 @@ private slots:
 	void browseGrammarWordListsDir();
 	void browseDictDir();
 	void dictDirChanged(const QString& newText);
-	void quickBuildWizard();
 	void advancedOptionsToggled(bool on);
 	void advancedOptionsClicked(bool on);
 	void toolbarChanged(int toolbar);

@@ -16,7 +16,6 @@
 #include "spellerutility.h"
 #include "latexeditorview_config.h"
 #include "smallUsefulFunctions.h"
-#include "buildmanager.h"
 #include "qformatconfig.h"
 
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
@@ -265,7 +264,7 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 
 int ConfigDialog::lastUsedPage = 0;
 
-ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), buildManager(0), riddled(false), oldToolbarIndex(-1) {
+ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), riddled(false), oldToolbarIndex(-1) {
 	setModal(true);
 	ui.setupUi(this);
 
@@ -508,11 +507,6 @@ void ConfigDialog::dictDirChanged(const QString &newText) {
 	if (index >=0) {
 		ui.comboBoxSpellcheckLang->setCurrentIndex(index);
 	}
-}
-
-void ConfigDialog::quickBuildWizard(){
-	REQUIRE(buildManager);
-	//todo ui.lineEditUserquick->setText(buildManager->editCommandList(ui.lineEditUserquick->text()));
 }
 
 void hideShowAdvancedOptions(QWidget* w, bool on){
