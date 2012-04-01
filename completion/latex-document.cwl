@@ -495,6 +495,7 @@
 \renewenvironment{name}[args]{begdef}{enddef}
 \renewenvironment{name}{begdef}{enddef}
 \left#m
+\left(#m
 \left(%|\right)#m
 \left[%|\right]#m
 \left\lbrace#m
