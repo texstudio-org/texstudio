@@ -64,6 +64,7 @@ static int _panels = 0;
 QPanel::QPanel(QWidget *p)
  : QWidget(p), m_defaultVisibility(true), m_shownOnce(false)
 {
+	setAutoFillBackground(true);
 	QEditor *e = qobject_cast<QEditor*>(p);
 	
 	if ( e )

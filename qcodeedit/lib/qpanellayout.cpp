@@ -310,7 +310,7 @@ void QPanelLayout::setGeometry(const QRect &r)
 		{
 			item->setGeometry(QRect(
 									rect.x(),
-									northHeight,
+									rect.y() + northHeight,
 									rect.width(),
 									item->sizeHint().height()
 									)
@@ -351,7 +351,7 @@ void QPanelLayout::setGeometry(const QRect &r)
 		if ( position == West )
 		{
 			item->setGeometry(QRect(rect.x() + westWidth,
-									northHeight,
+									rect.y() + northHeight,
 									item->sizeHint().width(),
 									centerHeight
 									)
@@ -369,7 +369,7 @@ void QPanelLayout::setGeometry(const QRect &r)
 			eastWidth += item->geometry().width() + spacing();
 			
 			item->setGeometry(QRect(rect.x() + rect.width() - eastWidth + spacing(),
-									northHeight,
+									rect.y() + northHeight,
 									item->geometry().width(),
 									item->geometry().height()
 									)
@@ -385,7 +385,7 @@ void QPanelLayout::setGeometry(const QRect &r)
 										centerHeight));
 	*/
 	//qDebug("{%i, %i, %i, %i}", westWidth, northHeight, eastWidth, southHeight);
-	m_parent->setPanelMargins(westWidth, northHeight, eastWidth, southHeight);
+	m_parent->setPanelMargins(westWidth, rect.y()+northHeight, eastWidth, southHeight);
 }
 
 /*!
