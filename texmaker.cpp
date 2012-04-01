@@ -1499,14 +1499,15 @@ void Texmaker::fileNew(QString fileName) {
 		edit->editor->setFileCodec(configManager.newFileEncoding);
 	else
 		edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
+	doc->clearUndo(); // inital file codec setting should not be undoable
 	edit->editor->setFileName(fileName);
-	
+
 	configureNewEditorView(edit);
 	
 	edit->document=doc;
 	edit->document->setEditorView(edit);
 	documents.addDocument(edit->document);
-	
+
 	configureNewEditorViewEnd(edit);
 	edit->updateLtxCommands();
 }
