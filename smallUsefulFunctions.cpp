@@ -8,6 +8,9 @@ bool txsConfirm(const QString &message){
 bool txsConfirmWarning(const QString &message){
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
 }
+QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons){
+	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, buttons, QMessageBox::Yes);
+}
 void txsInformation(const QString &message){
 	QMessageBox::information(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }

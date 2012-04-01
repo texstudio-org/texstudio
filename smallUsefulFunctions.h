@@ -21,6 +21,7 @@
 
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
+QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons);
 void txsInformation(const QString &message);
 void txsWarning(const QString& message);
 void txsWarning(const QString &message, bool &noWarnAgain);
