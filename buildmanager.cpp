@@ -522,8 +522,8 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 		
 		if (!subcmd.startsWith(TXS_CMD_PREFIX))  {
 			bool latex = latexCommands.contains(subcmd), 
-			     pdf = pdfCommands.contains(subcmd), 
-			     stdout = stdoutCommands.contains(subcmd), 
+                 pdf = pdfCommands.contains(subcmd),
+                 stdOut = stdoutCommands.contains(subcmd),
 			     viewer = viewerCommands.contains(subcmd);
 			
 			if (options.override.removeAll)
@@ -559,7 +559,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 				if (latex)  temp.flags |= RCF_LATEX_COMPILER;
 				if (pdf)    temp.flags |= RCF_CHANGE_PDF;
 				if (viewer) temp.flags |= RCF_SINGLE_INSTANCE;
-				if (stdout) temp.flags |= RCF_SHOW_STDOUT;
+                if (stdOut) temp.flags |= RCF_SHOW_STDOUT;
 				
 				res.commands << temp;
 			}
