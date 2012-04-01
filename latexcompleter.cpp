@@ -28,8 +28,8 @@ public:
 	
 	virtual bool mousePressEvent(QMouseEvent* mouse, QEditor *editor) {
 		// remove unused argument warnings
-		(void) mouse;
-		(void) editor;
+		Q_UNUSED(mouse);
+		Q_UNUSED(editor);
 		simpleRestoreAutoOverride();
 		resetBinding();
 		return false;
@@ -517,8 +517,7 @@ public:
 //----------------------------list model------------------------------------
 LatexCompleterConfig* CompletionListModel::config=0;
 int CompletionListModel::rowCount(const QModelIndex &parent) const {
-	// remove unused argument warning
-	(void) parent;
+	Q_UNUSED(parent);
 	
 	return words.count();
 }
@@ -538,10 +537,9 @@ QVariant CompletionListModel::data(const QModelIndex &index, int role)const{
 }
 QVariant CompletionListModel::headerData(int section, Qt::Orientation orientation,
                                          int role) const {
-	// remove unused argument warnings
-	(void) role;
-	(void) orientation;
-	(void) section;
+	Q_UNUSED(role);
+	Q_UNUSED(orientation);
+	Q_UNUSED(section);
 	
 	return QVariant();
 }
