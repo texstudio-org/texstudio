@@ -111,8 +111,7 @@ HEADERS += texmaker.h \
     diff/diff_match_patch.h \
     diffoperations.h \
     grammarcheck.h \
-    grammarcheck_config.h \
-    tests/buildmanager_t.h
+    grammarcheck_config.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
