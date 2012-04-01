@@ -4917,7 +4917,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Don&apos;t Save and Close</source>
-        <translation>Verlassen ohne speichern</translation>
+        <translation type="unfinished">Schließen ohne zu speichern</translation>
     </message>
     <message>
         <source>Cancel</source>
