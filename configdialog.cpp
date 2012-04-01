@@ -65,14 +65,12 @@ void ShortcutComboBox::focusInEvent(QFocusEvent *e) {
 
 
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0) {
-	// remove unused argument warning
-	(void) parent;
+	Q_UNUSED(parent);
 }
 QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                                         const QStyleOptionViewItem & option ,
                                         const QModelIndex & index) const {
-	// remove unused argument warning
-	(void) option;
+	Q_UNUSED(option);
 
 	if (!index.isValid()) return 0;
 	const QAbstractItemModel *model = index.model();

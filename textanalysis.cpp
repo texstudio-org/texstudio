@@ -50,8 +50,7 @@ QVariant TextAnalysisModel::headerData(int section, Qt::Orientation orientation,
 	else return QVariant();
 }
 int TextAnalysisModel::columnCount(const QModelIndex & parent) const {
-	// remove unused argument warning
-	(void) parent;
+	Q_UNUSED(parent);
 
 	return 3;
 }
