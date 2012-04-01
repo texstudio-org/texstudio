@@ -23,9 +23,9 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
 CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex)
-CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf)
+CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
 CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
-CMD_DEFINE(COMPILE, compile) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
+CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
 CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 #undef CMD_DEFINE
@@ -185,7 +185,8 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
 
-	internalCommandIds << CMD_VIEW_PDF_INTERNAL.mid(TXS_CMD_PREFIX.length()) << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY.mid(TXS_CMD_PREFIX.length());
+	internalCommandIds << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
+	for (int i=0;i<internalCommandIds.size();i++) internalCommandIds[i] = internalCommandIds[i].mid(TXS_CMD_PREFIX.length());
 }
 
 CommandInfo& BuildManager::registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig, const GuessCommandLineFunc guessFunc, bool user ){

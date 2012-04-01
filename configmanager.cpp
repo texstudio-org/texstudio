@@ -2047,8 +2047,8 @@ void ConfigManager::moveCommand(int dir){
 QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
 	if (!menu) return 0;
 	QStringList relevantMenus;
-	relevantMenus << tr("Latex") << tr("Math");
-	if(!parent && !relevantMenus.contains(menu->title().replace("&",""))) return 0;
+	relevantMenus << "main/tools" << "main/latex" << "main/math";
+	if(!parent && !relevantMenus.contains(menu->objectName().replace("&",""))) return 0;
 	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
 	if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
 	QList<QAction *> acts=menu->actions();
@@ -2056,7 +2056,7 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 		if (acts[i]->menu()) managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			if(acts[i]->data().isValid()){
-				QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text()
+				QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()).replace("&","")
 				                                         << acts[i]->data().toString());
 				twi->setIcon(0,acts[i]->icon());
 				if (!acts[i]->isSeparator()) {

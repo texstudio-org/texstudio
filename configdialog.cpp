@@ -329,9 +329,9 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	//create icons
 	createIcon(tr("General"),QIcon(":/images/config_general.png"));
 	createIcon(tr("Commands"),QIcon(":/images/config_commands.png"));
-	createIcon(tr("Quick Build"),QIcon(":/images/config_quickbuild.png"));
+	createIcon(tr("Meta Build"),QIcon(":/images/config_quickbuild.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/config_shortcut.png"));
-	createIcon(tr("Latex Menus"),QIcon(":/images/config_latexmenus.png"), true);
+	createIcon(tr("Menus"),QIcon(":/images/config_latexmenus.png"), true);
 	createIcon(tr("Toolbars"),QIcon(":/images/config_toolbars.png"), true);
 	createIcon(tr("Editor"),QIcon(":/images/config_editor.png"));
 	createIcon(tr("Adv. Editor"),QIcon(":/images/config_advancededitor.png"), true);
@@ -549,8 +549,10 @@ void ConfigDialog::toolbarChanged(int toolbar){
 	foreach (const QString& actName, customizableToolbars[toolbar]){
 		QAction* act=menuParent->findChild<QAction*>(actName);
 		QListWidgetItem *item;
-		if (act) item=new QListWidgetItem(act->icon(),act->text().replace("&",""));
-		else item=new QListWidgetItem(actName);
+		if (act) {
+			QIcon i = act->icon().pixmap(20,20);
+			item=new QListWidgetItem(i,act->text().replace("&",""));
+		} else item=new QListWidgetItem(actName);
 		item->setData(Qt::UserRole,actName);
 		ui.listCustomToolBar->addItem(item);
 	}
