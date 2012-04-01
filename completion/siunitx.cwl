@@ -1,10 +1,13 @@
 # siunitx package
 # get it from http://tug.ctan.org/cgi-bin/ctanPackageInformation.py?id=siunitx
 # dsarpe 03.07.2008
+# t_hoffmann 31.03.2012
 
 # Numbers
 \num{number}
 \num[options]{number}
+\numlist[options]{numbers}
+\numrange[options]{numbers}{number2}
 
 # Angles
 \ang{angle}
@@ -15,6 +18,8 @@
 \SI[options]{value}{unit commands}
 \SI{value}[pre-unit]{unit commands}
 \SI[options]{value}[pre-unit]{unit commands}
+\SIlist[options]{values}{unit commands}
+\SIrange[options]{value1}{value2}{unit commands}
 
 # Powers of units
 \Square
