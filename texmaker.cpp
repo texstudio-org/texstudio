@@ -670,7 +670,8 @@ void Texmaker::setupMenus() {
 	
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
-	newManagedAction(menu, "quick",tr("&Quick"), SLOT(commandFromAction()))->setData(BuildManager::CMD_QUICK);
+	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
+	newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()))->setData(BuildManager::CMD_QUICK);
 	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()))->setData(BuildManager::CMD_COMPILE);
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()))->setData(BuildManager::CMD_VIEW);
 	
@@ -711,6 +712,7 @@ void Texmaker::setupMenus() {
 	configManager.loadManagedMenus(":/uiconfig.xml");
 	// add some additional items
 	menu=newManagedMenu("main/latex",tr("&LaTeX"));
+	menu->setProperty("defaultSlot", QByteArray(SLOT(InsertFromAction())));
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
 	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate tables","table"));
@@ -725,6 +727,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "insertTableTemplate",tr("remodel table after template","table"), SLOT(insertTableTemplate()));
 	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
 	
+	menu=newManagedMenu("main/math",tr("&Math"));
+	menu->setProperty("defaultSlot", QByteArray(SLOT(InsertFromAction())));
 	//wizards
 	
 	menu=newManagedMenu("main/wizards",tr("&Wizards"));
@@ -838,15 +842,16 @@ void Texmaker::setupMenus() {
 	newManagedAction(structureTreeView,"IndentSection",tr("Indent Section"), SLOT(editIndentSection()));
 	newManagedAction(structureTreeView,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
 	connect(structureTreeView,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
-
-    bookmarksWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
-    newManagedAction(bookmarksWidget,"moveMarkUp",tr("move up"),SLOT(moveBookmarkUp()));
-    newManagedAction(bookmarksWidget,"moveMarkDown",tr("move down"),SLOT(moveBookmarkDown()));
-    newManagedAction(bookmarksWidget,"removeOneMark",tr("remove"),SLOT(removeBookmark()));
-    newManagedAction(bookmarksWidget,"removeAllMark",tr("remove all"),SLOT(removeAllBookmarks()));
+	
+	bookmarksWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+	newManagedAction(bookmarksWidget,"moveMarkUp",tr("move up"),SLOT(moveBookmarkUp()));
+	newManagedAction(bookmarksWidget,"moveMarkDown",tr("move down"),SLOT(moveBookmarkDown()));
+	newManagedAction(bookmarksWidget,"removeOneMark",tr("remove"),SLOT(removeBookmark()));
+	newManagedAction(bookmarksWidget,"removeAllMark",tr("remove all"),SLOT(removeAllBookmarks()));
 	
 	configManager.updateRecentFiles(true);
 	
+	configManager.modifyMenuContents();
 	configManager.modifyManagedShortcuts();
 }
 

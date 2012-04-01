@@ -162,6 +162,8 @@ public:
 	void removeManagedMenus();
 	void triggerManagedAction(const QString& id);
 	
+	void modifyMenuContents();
+	void modifyMenuContent(QStringList& ids, const QString& id);
 	void modifyManagedShortcuts();
 	void loadManagedMenu(QMenu* parent,const QDomElement &f);
 	void loadManagedMenus(const QString &f);
@@ -242,6 +244,7 @@ private slots:
 	void moveCommand(int dir);
 
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
+	void latexTreeNewItem();
 	void activateInternalViewer(bool activated);
 
 	void managedOptionDialogAccepted();
