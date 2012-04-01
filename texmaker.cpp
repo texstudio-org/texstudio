@@ -668,22 +668,24 @@ void Texmaker::setupMenus() {
 	
 	//tools
 	
+	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
-	newManagedAction(menu, "quickbuild",tr("Quick Build"), SLOT(QuickBuild()), Qt::Key_F1, ":/images/quick.png");
+	newManagedAction(menu, "quick",tr("&Quick"), SLOT(commandFromAction()))->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()))->setData(BuildManager::CMD_COMPILE);
+	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()))->setData(BuildManager::CMD_VIEW);
 	
 	menu->addSeparator();
 	newManagedAction(menu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), Qt::Key_F2, ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
-	newManagedAction(menu, "viewdvi",tr("&View Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
-	newManagedAction(menu, "dvi2ps",tr("&Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
+	newManagedAction(menu, "viewdvi",tr("View &Dvi"), SLOT(commandFromAction()), Qt::Key_F3, ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
+	newManagedAction(menu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
 	newManagedAction(menu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
 	newManagedAction(menu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), Qt::Key_F6, ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
 	newManagedAction(menu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
 	newManagedAction(menu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
 	newManagedAction(menu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
-	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(RealViewLog()), Qt::Key_F10, ":/images/viewlog.png");
-	newManagedAction(menu, "bibtex",tr("&BibTeX"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
+	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), Qt::Key_F10, ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
+	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
 	newManagedAction(menu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_MAKEINDEX);
-	newManagedAction(menu, "clearmarkers",tr("&Clear Markers"), SLOT(ClearMarkers()));
 	
 	menu->addSeparator();
 	newManagedAction(menu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
@@ -693,6 +695,7 @@ void Texmaker::setupMenus() {
 	updateUserToolMenu();
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
+	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
 	newManagedAction(menu, "htmlsourceexport",tr("C&onvert Source to Html..."), SLOT(WebPublishSource()));
@@ -3183,12 +3186,18 @@ void Texmaker::callToolButtonAction(){
 	QString menuID = button->property("menuID").toString();
 	QMenu* menu=configManager.getManagedMenu(menuID);
 	if (!menu) return;
-	
+		
 	int index = button->menu()->actions().indexOf(action);
 	REQUIRE(index >= 0);
 	REQUIRE(index < menu->actions().size());
-	menu->actions()[index]->trigger();
-	
+	QList<QAction *> actions = menu->actions();
+	for (int i=0;i<actions.size();i++) {
+		if (actions[i]->isSeparator()) continue;
+		if (index == 0) {
+			actions[i]->trigger();
+			break;
+		} else index--;
+	}
 }
 
 void Texmaker::InsertFromAction() {
@@ -3770,6 +3779,8 @@ void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfil
 		runInternalPdfViewer(mainfile);
 	else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
+	else if (cmd == BuildManager::CMD_VIEW_LOG)
+		RealViewLog();
 	else txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
@@ -3855,11 +3866,6 @@ void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pd
 
 void Texmaker::processNotification(const QString& message){
 	outputView->insertMessageLine(message+"\n");
-}
-
-void Texmaker::QuickBuild() {
-	if (runCommand(BuildManager::CMD_QUICK))
-		ViewLog();
 }
 
 void Texmaker::commandFromAction(){
