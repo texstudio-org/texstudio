@@ -2238,13 +2238,20 @@ void PDFDocument::reload(bool fillCache)
 	QDateTime lastModified=fi.lastModified();
 	qint64 filesize=fi.size();
 	document = renderManager->loadDocument(curFile, errorType);
-	bool popupDialog=false;
-	if( errorType==4 && curFileSize==filesize && curFileLastModified==lastModified){
-	    popupDialog=txsConfirmWarning(tr("%1 does not look like a valid PDF document.\nDo you want to open it anyways? It could cause a crash.").arg(curFile));
-	    if(popupDialog)
-		document = renderManager->loadDocument(curFile, errorType,true);
-	    else
-		errorType=5;
+	while( errorType==4 && curFileSize==filesize && curFileLastModified==lastModified){
+		QMessageBox::StandardButton button=txsConfirmWarning(
+					tr("%1\ndoes not look like a valid PDF document.\n\nEither the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?").arg(curFile),
+					(QMessageBox::Yes|QMessageBox::No|QMessageBox::Retry));
+		switch (button) {
+			case QMessageBox::Retry:
+				document = renderManager->loadDocument(curFile, errorType);
+				break;
+			case QMessageBox::Ok:
+				document = renderManager->loadDocument(curFile, errorType,true);
+				break;
+			default:
+				errorType=5;
+		}
 	}
 
 	curFileSize=filesize; // store size and modification time to check whether reloaded file has been changed meanwhile
