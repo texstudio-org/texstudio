@@ -217,6 +217,7 @@ private:
 	QSettings* persistentConfig;
 
 	QList<QTreeWidgetItem*> changedItemsList;
+	QHash<QString, QTreeWidgetItem*> manipulatedMenuTree;
 
 	QMap<QString,QVariant> manipulatedMenus;
 
@@ -244,7 +245,8 @@ private slots:
 	void moveCommand(int dir);
 
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
-	void latexTreeNewItem();
+	void latexTreeNewItem(bool menu = false);
+	void latexTreeNewMenuItem();
 	void activateInternalViewer(bool activated);
 
 	void managedOptionDialogAccepted();

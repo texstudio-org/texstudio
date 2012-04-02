@@ -405,8 +405,7 @@ signals:
 	void triggeredQuit();
 	void triggeredPlaceOnLeft();
 	void triggeredConfigure();
-	void triggeredQuickBuild();
-
+	
 	void triggeredClone();
 
 private:
