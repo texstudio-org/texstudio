@@ -717,115 +717,144 @@ QString LatexTables::getTableText(QDocumentCursor &cur){
 	i=rx.indexIn(line);
 	if(i>=0)
 		cur.setColumnNumber(i+rx.cap(0).length(),QDocumentCursor::KeepAnchor);
-    QString res=cur.selectedText();
-    return res;
+	QString res=cur.selectedText();
+	return res;
 }
 
 void LatexTables::alignTableCols(QDocumentCursor &cur){
-    QString text = getTableText(cur);
+	QString text = getTableText(cur);
+	if (!cur.hasSelection()) return;
+	QString indentation = cur.selectionStart().line().indentation();
 
-    // split off \begin and \end parts
-    int index = text.indexOf("\\begin{")+6;
-    QString tableType;
-    QString alignment;
-    int ocIndex = index;
-    QChar oc = '{';
-    QChar cc = '}';
-    while (true) {
-        index = findClosingBracket(text, index, oc, cc);
-        if (index<0 || index==text.length()-1) return; //non matching braces or missing end getTableText
-        if (oc == '{' && tableType.isEmpty()) { // first '{'
-            tableType = text.mid(ocIndex+1, index-ocIndex-1);
-        } else if (oc == '{' && alignment.isEmpty()) { // second '{'
-            alignment = text.mid(ocIndex+1, index-ocIndex-1);
-        }
+	// split off \begin and \end parts
+	int index = text.indexOf("\\begin{")+6;
+	QString tableType;
+	QString alignment;
+	int ocIndex = index;
+	QChar oc = '{';
+	QChar cc = '}';
+	while (true) {
+		index = findClosingBracket(text, index, oc, cc);
+		if (index<0 || index==text.length()-1) return; //non matching braces or missing end getTableText
+		if (oc == '{' && tableType.isEmpty()) { // first '{'
+			tableType = text.mid(ocIndex+1, index-ocIndex-1);
+		} else if (oc == '{' && alignment.isEmpty()) { // second '{'
+			alignment = text.mid(ocIndex+1, index-ocIndex-1);
+		}
 
-        index++;
-        if (text.at(index) == '{') {
-            oc = '{'; cc = '}';
-            ocIndex = index;
-        } else if (text.at(index) == '[') {
-            oc = '['; cc = ']';
-            ocIndex = index;
-        } else {
-            break;
-        }
-    }
-    int cellsStart = index;
-    int cellsEnd = text.indexOf("\\end{"+tableType);
-    QString beginPart = text.left(cellsStart);
-    QString endPart = text.mid(cellsEnd);
-    QStringList lines = text.mid(cellsStart, cellsEnd-cellsStart).split("\\\\");
+		index++;
+		if (text.at(index) == '{') {
+			oc = '{'; cc = '}';
+			ocIndex = index;
+		} else if (text.at(index) == '[') {
+			oc = '['; cc = ']';
+			ocIndex = index;
+		} else {
+			break;
+		}
+	}
+	int cellsStart = index;
+	int cellsEnd = text.indexOf("\\end{"+tableType);
+	QString beginPart = text.left(cellsStart);
+	QString endPart = text.mid(cellsEnd);
+	QStringList lines = text.mid(cellsStart, cellsEnd-cellsStart).split("\\\\");
+	if (!lines.isEmpty()) {
+		bool keepLast = false;
+		foreach (const QChar &c, lines.last()) {
+			if (!c.isSpace()) {
+				keepLast = true;
+			}
+		}
+		if (!keepLast) lines.removeLast();
+	}
 
-    // preprocess
-    QList<QStringList > rows;
-    foreach (const QString &line, lines) {
-        rows.append(QStringList());
-        foreach (const QString &cell, line.split('&'))
-            rows.last().append(cell.trimmed());
-    }
+	// preprocess
+	QList<QStringList > rows;
+	foreach (const QString &line, lines) {
+		rows.append(QStringList());
+		foreach (const QString &cell, line.split('&'))
+			rows.last().append(cell.trimmed());
+	}
 
-    int numCols = 0;
-    foreach (const QList<QString> &row, rows) {
-        if (row.count() > numCols)
-            numCols = row.count();
-    }
-    QList<int> maxColWidths;
-    for (int col=0; col<numCols; col++) {
 
-        int maxWidth = 0;
-        for (int row=0; row<rows.count(); row++) {
-            if (col >= rows.at(row).count()) continue;
-            if (rows.at(row).at(col).length() > maxWidth) {
-                maxWidth = rows.at(row).at(col).length();
-            }
-        }
-        maxColWidths.append(maxWidth);
-    }
 
-    QString simplifiedAlignment;
-    for (int i=0; i<alignment.length(); i++) {
-        QChar c = alignment.at(i);
-        if (c == 'l' || c == 'c' || c == 'r') simplifiedAlignment.append(c);
-        if (c == 'p') simplifiedAlignment.append('l');
-        if (c == '{') i = findClosingBracket(alignment, i);
-        if (i<0) break; // malformed string
-        // skip other chars
-    }
-    while (simplifiedAlignment.length() < numCols) simplifiedAlignment.append('l'); // fallback
+	int numCols = 0;
+	foreach (const QList<QString> &row, rows) {
+		if (row.count() > numCols)
+			numCols = row.count();
+	}
+	QList<int> maxColWidths;
+	for (int col=0; col<numCols; col++) {
 
-    // align
-    for (int col=0; col<numCols; col++) {
-        for (int row=0; row<rows.count(); row++) {
-            if (col >= rows.at(row).count()) continue;
-            QString cell = rows.at(row).at(col);
-            if (simplifiedAlignment.at(col) == 'r') {
-                while (cell.length() < maxColWidths.at(col)) cell.prepend(' ');
-            } else if (simplifiedAlignment.at(col) == 'c') {
-                bool spaceBehind = true;
-                while (cell.length() < maxColWidths.at(col)) {
-                    if (spaceBehind) {
-                        cell.append(' ');
-                     } else {
-                        cell.prepend(' ');
-                    }
-                    spaceBehind = !spaceBehind;
-                }
-            } else {  // 'l'
-                while (cell.length() < maxColWidths.at(col)) cell.append(' ');
-            }
+		int maxWidth = 0;
+		for (int row=0; row<rows.count(); row++) {
+			if (col >= rows.at(row).count()) continue;
+			if (rows.at(row).at(col).length() > maxWidth) {
+				maxWidth = rows.at(row).at(col).length();
+			}
+		}
+		maxColWidths.append(maxWidth);
+	}
 
-            QStringList l(rows.at(row));
-            l.replace(col, cell);
-            rows.replace(row, l);
-        }
-    }
-    QStringList alignedLines;
-    foreach (const QStringList &row, rows) {
-        alignedLines.append(row.join(" & "));
-    }
+	QString simplifiedAlignment;
+	QStringList l_defs=splitColDef(alignment);
+	simplifiedAlignment=l_defs.join("");
+	simplifiedAlignment.remove('|');
 
-    QString result = beginPart + '\n' + alignedLines.join(" \\\\\n") + '\n' + endPart;
-    cur.replaceSelectedText(result);
+/*	QRegExp rx("\\{(\\d*)\\}\\{(.*)\\}");
+	for (int i=0; i<alignment.length(); i++) {
+		QChar c = alignment.at(i);
+		if (c == 'l' || c == 'c' || c == 'r') simplifiedAlignment.append(c);
+		if (c == 'p') simplifiedAlignment.append('l');
+		if (c == '*') {
+			i = alignment.indexOf(rx, i);
+			if (i<0) break;
+			int mult = rx.cap(0).toInt();
+			QString repl = rx.cap(1);
+			for (int j=0; j<mult; j++) simplifiedAlignment.append(repl);
+			i = rx.cap(0).length() + repl.length() + 4;
+		}
+		if (c == '{') i = findClosingBracket(alignment, i);
+		if (i<0) break; // malformed string
+		// skip other chars
+	}
+	*/
+	while (simplifiedAlignment.length() < numCols) simplifiedAlignment.append('l'); // fallback
+
+	// align
+	for (int col=0; col<numCols; col++) {
+		for (int row=0; row<rows.count(); row++) {
+			if (col >= rows.at(row).count()) continue;
+			QString cell = rows.at(row).at(col);
+			if (simplifiedAlignment.at(col) == 'r') {
+				while (cell.length() < maxColWidths.at(col)) cell.prepend(' ');
+			} else if (simplifiedAlignment.at(col) == 'c') {
+				bool spaceBehind = true;
+				while (cell.length() < maxColWidths.at(col)) {
+					if (spaceBehind) {
+						cell.append(' ');
+					 } else {
+						cell.prepend(' ');
+					}
+					spaceBehind = !spaceBehind;
+				}
+			} else {  // 'l'
+				while (cell.length() < maxColWidths.at(col)) cell.append(' ');
+			}
+
+			QStringList l(rows.at(row));
+			l.replace(col, cell);
+			rows.replace(row, l);
+		}
+	}
+
+	QStringList alignedLines;
+	QString contentIndent = indentation + '\t';
+foreach (const QStringList &row, rows) {
+		alignedLines.append(contentIndent + row.join(" & "));
+	}
+
+	QString result = beginPart + '\n' + alignedLines.join(" \\\\\n") + '\n' + indentation + endPart;
+	cur.replaceSelectedText(result);
 }
 
