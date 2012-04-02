@@ -1025,6 +1025,7 @@ bool ConfigManager::execConfigDialog() {
 	//latex menus
 	confDlg->menuParent=menuParent;
 	changedItemsList.clear();
+	manipulatedMenuTree.clear();
 	foreach(QMenu* menu, managedMenus){
 		QTreeWidgetItem *menuLatex=managedLatexMenuToTreeWidget(0,menu);
 		if(menuLatex) {
@@ -1035,6 +1036,9 @@ bool ConfigManager::execConfigDialog() {
 	connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
 	QAction* act = new QAction(tr("insert new menu item (before)"), confDlg->ui.latexTree);
 	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewItem()));
+	confDlg->ui.latexTree->addAction(act);
+	act = new QAction(tr("insert new sub menu (before)"), confDlg->ui.latexTree);
+	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewMenuItem()));
 	confDlg->ui.latexTree->addAction(act);
 	confDlg->ui.latexTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 	
@@ -1619,21 +1623,40 @@ void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
 	
 	
 	QStringList m = i.value().toStringList();
-	qDebug() << id << ": ===> " << m.join(", ");
+	//qDebug() << id << ": ===> " << m.join(", ");
 	QAction * act = menuParent->findChild<QAction*>(id);
 	if (!act && m.value(3, "") != "") {
 		QString before = m.value(3);
 		modifyMenuContent(ids, before);
-		QAction * prevact = menuParent->findChild<QAction*>(before);
-		if (!prevact) {
+		QAction * prevact = 0;
+		if (!before.endsWith('/')) 
+			prevact = menuParent->findChild<QAction*>(before);
+		else {
+			before.chop(1);
 			QMenu* temp = menuParent->findChild<QMenu*>(before);
-			if (!temp) return;
-			prevact = temp->menuAction();
+			if (temp) prevact = temp->menuAction();
 		}
-		QMenu* menu = getManagedMenu(before.left(before.lastIndexOf("/")));
-		REQUIRE(menu);
+		QString menuName = before.left(before.lastIndexOf("/"));
+		QMenu* menu = menuParent->findChild<QMenu*>(menuName);
+		if (!menu) { modifyMenuContent(ids, menuName + "/"); menu = menuParent->findChild<QMenu*>(menuName); }
+		if (!menu) return;
+		
 		Q_ASSERT(!prevact || menu->actions().contains(prevact));
-		act = newManagedAction(menu, id.split("/").last(), m.first(), menu->property("defaultSlot").toByteArray().data());
+		QStringList temp = id.split('/'); 
+		if (temp.size() < 2) return;
+		if (id.endsWith('/')) {
+			QMenu* newMenu = newManagedMenu(menu, temp[temp.size()-2], m.first());
+			act = newMenu->menuAction();
+		} else {
+			QString ownId = temp.takeLast();
+			QByteArray defSlot = menu->property("defaultSlot").toByteArray(); 
+			while (defSlot.isEmpty() && !temp.isEmpty()) {
+				temp.removeLast();
+				QMenu* tempmenu = menuParent->findChild<QMenu*>(temp.join("/"));
+				defSlot = tempmenu->property("defaultSlot").toByteArray();
+			}
+			act = newManagedAction(menu, ownId, m.first(), defSlot.data());
+		}
 		if  (prevact) {
 			menu->removeAction(act);
 			menu->insertAction(prevact, act);
@@ -2080,8 +2103,10 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 	if (!menu) return 0;
 	QStringList relevantMenus;
 	relevantMenus << "main/tools" << "main/latex" << "main/math";
-	if(!parent && !relevantMenus.contains(menu->objectName().replace("&",""))) return 0;
-	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title().replace("&","")));
+	if(!parent && !relevantMenus.contains(menu->objectName())) return 0;
+	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title()));
+	menuitem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+	menuitem->setCheckState(0, menu->menuAction() && menu->menuAction()->isVisible() ? Qt::Checked : Qt::Unchecked);
 	if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
 	QList<QAction *> acts=menu->actions();
 	for (int i=0; i<acts.size(); i++){
@@ -2089,8 +2114,7 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			if(!acts[i]->data().isValid()) continue;
-			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()).replace("&","")
-								      << acts[i]->data().toString());
+			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << acts[i]->data().toString());
 			twi->setIcon(0,acts[i]->icon());
 			if (!acts[i]->isSeparator()) {
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
@@ -2098,37 +2122,56 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 			}
 		}
 		if (!twi) continue;
-		twi->setData(0,Qt::UserRole,acts[i]->menu()?acts[i]->menu()->objectName(): acts[i]->objectName());
-		if (i + 1 < acts.size()) {
-			int j = i+1;
-			for (; j < acts.size() && acts[j]->isSeparator(); j++) ;
-			if (j < acts.size()) twi->setData(0,Qt::UserRole+1,acts[j]->menu() ? acts[j]->menu()->objectName(): acts[j]->objectName());
-		}
+		QString id = acts[i]->menu()?(acts[i]->menu()->objectName() + "/"): acts[i]->objectName();
+		twi->setData(0,Qt::UserRole,id);
+		manipulatedMenuTree.insert(id, twi);
+		
+		int j = i+1;
+		for (; j < acts.size() && acts[j]->isSeparator(); j++) ;
+		if (j < acts.size()) twi->setData(0,Qt::UserRole+1,acts[j]->menu() ? acts[j]->menu()->objectName(): acts[j]->objectName());
+		else twi->setData(0,Qt::UserRole+1, menu->objectName() + "/");
+	}
+	if (acts.isEmpty()) {
+		QTreeWidgetItem* filler=new QTreeWidgetItem(menuitem, QStringList() << QString("temporary menu end") << "");
+		filler->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		filler->setData(0,Qt::UserRole, menu->objectName()+"/!!end");
 	}
 	return menuitem;
 }
 
 void ConfigManager::latexTreeItemChanged(QTreeWidgetItem* item,int ){
-	if(!changedItemsList.contains(item)) changedItemsList.append(item);
+	if((item->flags() & Qt::ItemIsEditable) && !changedItemsList.contains(item)) changedItemsList.append(item);
 }
-void ConfigManager::latexTreeNewItem(){
+void ConfigManager::latexTreeNewItem(bool menu){
 	QAction* a = qobject_cast<QAction*>(sender());
 	REQUIRE(a);
 	QTreeWidget* tw = qobject_cast<QTreeWidget*>(a->parentWidget());
 	REQUIRE(tw);
 	QTreeWidgetItem * old = tw->currentItem();
-	qDebug() << old->data(0, Qt::UserRole) << old->data(0, Qt::DisplayRole);
+	//qDebug() << old->data(0, Qt::UserRole) << old->data(0, Qt::DisplayRole);
 	REQUIRE(old);
 	if (!old->parent()) return;
 	QTreeWidgetItem* twi=new QTreeWidgetItem(QStringList() << QString("new item") << "");
 	twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 	twi->setCheckState(0, Qt::Checked);
 	static int ID = 0;
-	for (ID=0;ID<100000 && getManagedAction(old->data(0,Qt::UserRole).toString()+"_UII"+QString::number(ID));ID++) ;
-	twi->setData(0,Qt::UserRole, old->data(0,Qt::UserRole).toString()+"_UII"+QString::number(ID));
+	QString oldID = old->data(0,Qt::UserRole).toString(), append = (menu?"/":"");
+	if (oldID.endsWith("/")) oldID.chop(1);
+	for (ID=0;ID<100000 && manipulatedMenuTree.contains(oldID+"_UII"+QString::number(ID)+append); ID++) ;
+	QString newId = oldID + "_UII"+QString::number(ID)+append;
+	twi->setData(0,Qt::UserRole, newId);
 	twi->setData(0,Qt::UserRole+1, old->data(0,Qt::UserRole).toString());
 	old->parent()->insertChild(old->parent()->indexOfChild(old), twi);
+	manipulatedMenuTree.insert(newId, twi);
 	changedItemsList.append(twi);
+	if (menu) {
+		QTreeWidgetItem* filler=new QTreeWidgetItem(twi, QStringList() << QString("temporary menu end") << "");
+		filler->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		filler->setData(0,Qt::UserRole, newId + "!!end");
+	}
+}
+void ConfigManager::latexTreeNewMenuItem(){
+	latexTreeNewItem(true);
 }
 
 void ConfigManager::treeWidgetToManagedLatexMenuTo() {
