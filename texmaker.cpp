@@ -671,7 +671,7 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-	newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()))->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()), Qt::Key_F1)->setData(BuildManager::CMD_QUICK);
 	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()))->setData(BuildManager::CMD_COMPILE);
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()))->setData(BuildManager::CMD_VIEW);
 	
