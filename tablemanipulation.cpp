@@ -800,25 +800,6 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	QStringList l_defs=splitColDef(alignment);
 	simplifiedAlignment=l_defs.join("");
 	simplifiedAlignment.remove('|');
-
-/*	QRegExp rx("\\{(\\d*)\\}\\{(.*)\\}");
-	for (int i=0; i<alignment.length(); i++) {
-		QChar c = alignment.at(i);
-		if (c == 'l' || c == 'c' || c == 'r') simplifiedAlignment.append(c);
-		if (c == 'p') simplifiedAlignment.append('l');
-		if (c == '*') {
-			i = alignment.indexOf(rx, i);
-			if (i<0) break;
-			int mult = rx.cap(0).toInt();
-			QString repl = rx.cap(1);
-			for (int j=0; j<mult; j++) simplifiedAlignment.append(repl);
-			i = rx.cap(0).length() + repl.length() + 4;
-		}
-		if (c == '{') i = findClosingBracket(alignment, i);
-		if (i<0) break; // malformed string
-		// skip other chars
-	}
-	*/
 	while (simplifiedAlignment.length() < numCols) simplifiedAlignment.append('l'); // fallback
 
 	// align
