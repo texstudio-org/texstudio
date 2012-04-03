@@ -3726,7 +3726,7 @@ bool Texmaker::checkProgramPermission(const QString& program, const QString& cmd
 	if (!id.isEmpty() && individualProgramWhiteList.contains(id+"="+program)) return true;
 	int t = QMessageBox::question(0, TEXSTUDIO, 
 	                              tr("The document %1 want to override the command %2 with %3.\nDo you trust this document?").arg(master?master->getFileName():"").arg(cmdId).arg(program), 
-	                              tr("Yes, alwas run the overriden command"), 
+                                  tr("Yes, always run the overriden command"),
 	                              tr("Yes, allow all documents to use the overriden command"), 
 	                              tr("No, run the default command"), 0, 2);
 	if (t == 2) return false;
