@@ -67,6 +67,10 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(11)->setText(tr("size")); // don't vary point size as the drwaing engine can't cope with it
 	m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
 
+#ifdef Q_OS_WIN
+	m_table->verticalHeader()->setDefaultSectionSize(21);  // creates too high cells by default. TODO: use default height of a combobox instead of hard coding
+#endif
+
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
 
@@ -255,8 +259,8 @@ void QFormatConfig::apply()
 			if (newSize == basePointSize) fmt.pointSize = 0;
 			else fmt.pointSize = newSize;
 
-			item = m_table->item(i,12);
-			fmt.setPriority(item->text().toInt());
+			QSpinBox* psb= qobject_cast<QSpinBox*>(m_table->cellWidget(i, 12));
+			fmt.setPriority(psb->value());
 
 			m_currentScheme->setFormat(fid, fmt);
 		}
@@ -386,17 +390,23 @@ void QFormatConfig::cancel()
 				QDoubleSpinBox* sb = new QDoubleSpinBox();
 				sb->setMaximum(100000);
 				sb->setMinimum(1);
+				sb->setDecimals(0);
 				sb->setSuffix("%");
+				sb->setAlignment(Qt::AlignRight);
+				sb->setFrame(false);
 				double v = fmt.pointSize?100.0*fmt.pointSize/basePointSize:100;
 				sb->setValue(v);
 				sb->setToolTip(tr("Point size"));
 				m_table->setCellWidget(r, 11, sb);
 
-				item = new QTableWidgetItem;
-				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
-				item->setText(QString::number(fmt.priority));
-				item->setToolTip(tr("Priority"));
-				m_table->setItem(r, 12, item);
+				QSpinBox *psb = new QSpinBox();
+				psb->setMaximum(100);
+				psb->setMinimum(-1);
+				psb->setAlignment(Qt::AlignRight);
+				psb->setFrame(false);
+				psb->setValue(fmt.priority);
+				psb->setToolTip(tr("Priority"));
+				m_table->setCellWidget(r, 12, psb);
 				r++;
 			}
 		}
@@ -515,9 +525,8 @@ QList<int> QFormatConfig::modifiedFormats() const
 				continue;
 			}
 
-
-			item = m_table->item(i, 12);
-			if (item->text().toInt() != fmt.priority){
+			QSpinBox* psb= qobject_cast<QSpinBox*>(m_table->cellWidget(i, 12));
+			if (psb->value() != fmt.priority) {
 				hasModif << i;
 				continue;
 			}
