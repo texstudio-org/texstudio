@@ -5,6 +5,7 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 		QTabWidget(parent)
 {
 	if (hasAtLeastQt(4,5)){
+		setDocumentMode(true);
 		const QTabBar* tb=tabBar();
 		connect(tb,SIGNAL(tabMoved(int,int)),this,SIGNAL(tabMoved(int,int)));
 	}
