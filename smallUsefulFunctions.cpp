@@ -340,8 +340,8 @@ QIcon getRealIcon(const QString& icon){
 
 bool isFileRealWritable(const QString& filename) {
 #ifdef Q_WS_WIN
-#if QT_VERSION == 0x040700
-	//bug in 4.7
+#if QT_VERSION >= 0x040700
+    //bug in 4.7 still present in 4.8.0
 	return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
 	              (!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
 #else
