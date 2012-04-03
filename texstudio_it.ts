@@ -272,6 +272,10 @@
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -339,15 +343,11 @@
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Compilazione Veloce</translation>
+        <translation type="obsolete">Compilazione Veloce</translation>
     </message>
     <message>
         <source>Shortcuts</source>
         <translation>Scorciatoie da Tastiera</translation>
-    </message>
-    <message>
-        <source>Latex Menus</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Editor</source>
@@ -1321,6 +1321,22 @@ You will not be able to type this character. Do you wish
 to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Metacommands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Usercommands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Menus</source>
+        <translation type="unfinished">Menu</translation>
+    </message>
+    <message>
+        <source>Meta Build</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1367,14 +1383,6 @@ to set the key anyway?</source>
     <message>
         <source>Browse program</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Latex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Math</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Latex</source>
@@ -1783,6 +1791,18 @@ Do you want to remove them?</source>
     </message>
     <message>
         <source>huge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>insert new menu item (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>insert new sub menu (before)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2885,16 +2905,18 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 does not look like a valid PDF document.
-Do you want to open it anyways? It could cause a crash.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document.
+
+Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4963,7 +4985,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Compilazione Veloce</translation>
+        <translation type="obsolete">Compilazione Veloce</translation>
     </message>
     <message>
         <source>&amp;LaTeX</source>
@@ -4982,15 +5004,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;BibTeX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;MakeIndex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Clear Markers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5075,11 +5089,11 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>&amp;View Dvi</source>
-        <translation>Visualizza Dvi</translation>
+        <translation type="obsolete">Visualizza Dvi</translation>
     </message>
     <message>
         <source>&amp;Dvi-&gt;PS</source>
-        <translation type="unfinished">DVI-&gt;PS</translation>
+        <translation type="obsolete">DVI-&gt;PS</translation>
     </message>
     <message>
         <source>Vie&amp;w PS</source>
@@ -5240,11 +5254,11 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>User &amp;Commands</source>
-        <translation>&amp;Comandi Utente</translation>
+        <translation type="obsolete">&amp;Comandi Utente</translation>
     </message>
     <message>
         <source>Edit User &amp;Commands</source>
-        <translation>Edit &amp;comandi utente</translation>
+        <translation type="obsolete">Edit &amp;comandi utente</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -5923,6 +5937,52 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <source>Unknown internal command: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document %1 want to override the command %2 with %3.
+Do you trust this document?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, alwas run the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, run the default command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User</source>
+        <comment>menu</comment>
+        <translation type="unfinished">&amp;Utente</translation>
+    </message>
+    <message>
+        <source>&amp;Quick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View &amp;Dvi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;PS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cl&amp;ear Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Math</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
