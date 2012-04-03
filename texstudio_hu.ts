@@ -276,6 +276,10 @@
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -466,7 +470,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Latex Menus</source>
-        <translation>LaTeX menük</translation>
+        <translation type="obsolete">LaTeX menük</translation>
     </message>
     <message>
         <source>Toolbar Customization</source>
@@ -750,7 +754,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Gyors fordítás</translation>
+        <translation type="obsolete">Gyors fordítás</translation>
     </message>
     <message>
         <source>Custom Highlighting</source>
@@ -1356,6 +1360,22 @@ to set the key anyway?</source>
         <translation>Nem tudja majd begépelni ezt a karaktert.
 Biztosan ezt szeretné beállítani?</translation>
     </message>
+    <message>
+        <source>Metacommands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Usercommands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Menus</source>
+        <translation type="unfinished">Menük</translation>
+    </message>
+    <message>
+        <source>Meta Build</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1405,11 +1425,11 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>Latex</source>
-        <translation>LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>Math</source>
-        <translation>Matematika</translation>
+        <translation type="obsolete">Matematika</translation>
     </message>
     <message>
         <source>&amp;Latex</source>
@@ -1828,6 +1848,18 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <source>Internal</source>
         <translation type="obsolete">Belső</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Hozzáadás</translation>
+    </message>
+    <message>
+        <source>insert new menu item (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>insert new sub menu (before)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2929,7 +2961,7 @@ Missing \includegraphics options.</source>
     <message>
         <source>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</source>
-        <translation>A(z) &quot;%1&quot; PDF fájl nem tűnik igazi PDF dokumentumnak. 
+        <translation type="obsolete">A(z) &quot;%1&quot; PDF fájl nem tűnik igazi PDF dokumentumnak. 
 Mindenképpen meg akarja nyitni? Programösszeomlást okozhat</translation>
     </message>
     <message>
@@ -2939,6 +2971,13 @@ Mindenképpen meg akarja nyitni? Programösszeomlást okozhat</translation>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
         <translation>A(z) &quot;%1&quot; PDF fájl nem teljes</translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document.
+
+Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4918,7 +4957,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>&amp;Gyors fordítás</translation>
+        <translation type="obsolete">&amp;Gyors fordítás</translation>
     </message>
     <message>
         <source>BibTeX</source>
@@ -5070,11 +5109,11 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>&amp;View Dvi</source>
-        <translation>&amp;Dvi megjelenítése</translation>
+        <translation type="obsolete">&amp;Dvi megjelenítése</translation>
     </message>
     <message>
         <source>&amp;Dvi-&gt;PS</source>
-        <translation>D&amp;vi-&gt;PS</translation>
+        <translation type="obsolete">D&amp;vi-&gt;PS</translation>
     </message>
     <message>
         <source>Vie&amp;w PS</source>
@@ -5102,7 +5141,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>&amp;BibTeX</source>
-        <translation>&amp;BibTeX</translation>
+        <translation type="obsolete">&amp;BibTeX</translation>
     </message>
     <message>
         <source>&amp;MakeIndex</source>
@@ -5110,7 +5149,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>&amp;Clear Markers</source>
-        <translation>Jelzők &amp;törlése</translation>
+        <translation type="obsolete">Jelzők &amp;törlése</translation>
     </message>
     <message>
         <source>&amp;MetaPost</source>
@@ -5190,11 +5229,11 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>User &amp;Commands</source>
-        <translation>F&amp;elhasználói parancsok</translation>
+        <translation type="obsolete">F&amp;elhasználói parancsok</translation>
     </message>
     <message>
         <source>Edit User &amp;Commands</source>
-        <translation>&amp;Felhasználói parancsok szerkesztése...</translation>
+        <translation type="obsolete">&amp;Felhasználói parancsok szerkesztése...</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -6010,6 +6049,52 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     <message>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document %1 want to override the command %2 with %3.
+Do you trust this document?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, alwas run the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, run the default command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User</source>
+        <comment>menu</comment>
+        <translation type="unfinished">Fel&amp;használó</translation>
+    </message>
+    <message>
+        <source>&amp;Quick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View &amp;Dvi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;PS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cl&amp;ear Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Math</source>
+        <translation type="unfinished">&amp;Matematika</translation>
     </message>
 </context>
 <context>

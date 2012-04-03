@@ -214,31 +214,31 @@
     </message>
     <message>
         <source>Ps Chain</source>
-        <translation>Enchaînement Ps</translation>
+        <translation>Enchaînement PS</translation>
     </message>
     <message>
         <source>Dvi Chain</source>
-        <translation>Enchaînement Dvi</translation>
+        <translation>Enchaînement DVI</translation>
     </message>
     <message>
         <source>Pdf Chain</source>
-        <translation>Enchaînement Pdf</translation>
+        <translation>Enchaînement PDF</translation>
     </message>
     <message>
         <source>Dvi-&gt;Pdf Chain</source>
-        <translation>Enchaînement Dvi-&gt;Pdf</translation>
+        <translation>Enchaînement DVI→ PDF</translation>
     </message>
     <message>
         <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
-        <translation>Enchaînement Dvi-&gt;Ps-&gt;Pdf</translation>
+        <translation>Enchaînement DVI → PS → PDF</translation>
     </message>
     <message>
         <source>Asymptote Dvi Chain</source>
-        <translation>Enchaînement Asymptote-&gt;Dvi</translation>
+        <translation>Enchaînement Asymptote → DVI</translation>
     </message>
     <message>
         <source>Asymptote Pdf Chain</source>
-        <translation>Enchaînement Asymptote-&gt;Pdf</translation>
+        <translation>Enchaînement Asymptote → PDF</translation>
     </message>
     <message>
         <source>Pre-compile</source>
@@ -275,6 +275,10 @@
     <message>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>Vous avez utilisé une commande dde:// avec un double slash, ce qui est déconseillé. Veuillez la changer en une commande avec triple slash en ajoutant un slash.</translation>
+    </message>
+    <message>
+        <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
+        <translation>Vous avez utilisé l&apos;un des modificateurs txs:///command[... ou txs:///command{..., mais ne sont supportés que ceux de la forme txs:///command/[... ou txs:///command/{... avec un slash en suffixe pour garder la syntaxeplus pure.</translation>
     </message>
 </context>
 <context>
@@ -498,7 +502,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Latex Menus</source>
-        <translation>Menus LaTeX</translation>
+        <translation type="obsolete">Menus LaTeX</translation>
     </message>
     <message>
         <source>Toolbar Customization</source>
@@ -714,7 +718,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Compilation rapide</translation>
+        <translation type="obsolete">Compilation rapide</translation>
     </message>
     <message>
         <source>Custom Highlighting</source>
@@ -1348,6 +1352,25 @@ You will not be able to type this character. Do you wish
 to set the key anyway?</source>
         <translation>Le raccourci que vous avez saisi est une touche de caractère standard. Voulez-vous néanmoins l&apos;utiliser ?</translation>
     </message>
+    <message>
+        <source>Metacommands</source>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
+        <translation>Méta-compilations</translation>
+    </message>
+    <message>
+        <source>Usercommands</source>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
+        <translation>Compilations utilisateur</translation>
+    </message>
+    <message>
+        <source>Menus</source>
+        <translation>Menus</translation>
+    </message>
+    <message>
+        <source>Meta Build</source>
+        <translatorcomment>« Construction » n&apos;est pas très heureux, mais je ne vois pas d&apos;autre traduction</translatorcomment>
+        <translation>Méta-constructions</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1397,11 +1420,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Latex</source>
-        <translation>LaTeX</translation>
+        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>Math</source>
-        <translation>Maths</translation>
+        <translation type="obsolete">Maths</translation>
     </message>
     <message>
         <source>&amp;Latex</source>
@@ -1820,6 +1843,18 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <source>Internal</source>
         <translation type="obsolete">Interne</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Ajouter</translation>
+    </message>
+    <message>
+        <source>insert new menu item (before)</source>
+        <translation>insérer une nouvelle entrée de menu (avant)</translation>
+    </message>
+    <message>
+        <source>insert new sub menu (before)</source>
+        <translation>insérer un nouveau sous-menu (avant)</translation>
     </message>
 </context>
 <context>
@@ -2929,7 +2964,7 @@ Options de \includegraphics manquantes</translation>
     <message>
         <source>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</source>
-        <translation>%1 semble ne pas être un document PDF valide.
+        <translation type="obsolete">%1 semble ne pas être un document PDF valide.
 Êtes-vous sûr de vouloir néanmoins l&apos;ouvrir ? Cela peut provoquer un crash.</translation>
     </message>
     <message>
@@ -2939,6 +2974,16 @@ Do you want to open it anyways? It could cause a crash.</source>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
         <translation>Le fichier PDF %1 est incomplet.</translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document.
+
+Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
+        <translation>%1
+semble ne pas être un document PDF valide.
+
+Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous devriez réessayer après que la compilation soit terminée. Ouvrir un document corrompu peut provoquer un arrêt brutal. Voulez-vous néanmoins l&apos;ouvrir ?</translation>
     </message>
 </context>
 <context>
@@ -4936,15 +4981,15 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Compilation rapide</translation>
+        <translation type="obsolete">Compilation rapide</translation>
     </message>
     <message>
         <source>&amp;View Dvi</source>
-        <translation>Afficher &amp;DVI</translation>
+        <translation type="obsolete">Afficher &amp;DVI</translation>
     </message>
     <message>
         <source>&amp;Dvi-&gt;PS</source>
-        <translation>D&amp;VI → PS</translation>
+        <translation type="obsolete">D&amp;VI → PS</translation>
     </message>
     <message>
         <source>Vie&amp;w PS</source>
@@ -5104,7 +5149,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;BibTeX</source>
-        <translation>&amp;BibTeX</translation>
+        <translation type="obsolete">&amp;BibTeX</translation>
     </message>
     <message>
         <source>&amp;MakeIndex</source>
@@ -5112,7 +5157,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;Clear Markers</source>
-        <translation>Effa&amp;cer les marqueurs</translation>
+        <translation type="obsolete">Effa&amp;cer les marqueurs</translation>
     </message>
     <message>
         <source>&amp;MetaPost</source>
@@ -5172,11 +5217,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>User &amp;Commands</source>
-        <translation>&amp;Compilations utilisateur</translation>
+        <translation type="obsolete">&amp;Compilations utilisateur</translation>
     </message>
     <message>
         <source>Edit User &amp;Commands</source>
-        <translation>Éditer &amp;compilations utilisateur</translation>
+        <translation type="obsolete">Éditer &amp;compilations utilisateur</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -6012,6 +6057,53 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <source>Unknown internal command: %1</source>
         <translation>Commande interne %1 inconnue</translation>
+    </message>
+    <message>
+        <source>The document %1 want to override the command %2 with %3.
+Do you trust this document?</source>
+        <translation>Le document %1 veut remplacer la compilation %2 par %3.
+Faites-vous confiance à ce document ?</translation>
+    </message>
+    <message>
+        <source>Yes, alwas run the overriden command</source>
+        <translation>Oui, toujours lancer la compilation de remplacement</translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overriden command</source>
+        <translation>Oui, autoriser tous les documents à utiliser la compilation de remplacement</translation>
+    </message>
+    <message>
+        <source>No, run the default command</source>
+        <translation>No, lancer la compilation par défaut</translation>
+    </message>
+    <message>
+        <source>&amp;User</source>
+        <comment>menu</comment>
+        <translation>&amp;Utilisateur</translation>
+    </message>
+    <message>
+        <source>&amp;Quick</source>
+        <translation>&amp;Rapide</translation>
+    </message>
+    <message>
+        <source>&amp;Compile</source>
+        <translation>&amp;Compilation</translation>
+    </message>
+    <message>
+        <source>View &amp;Dvi</source>
+        <translation>Voir &amp;DVI</translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;PS</source>
+        <translation>DVI → PS</translation>
+    </message>
+    <message>
+        <source>Cl&amp;ear Markers</source>
+        <translation>Nettoyer les marqueurs</translation>
+    </message>
+    <message>
+        <source>&amp;Math</source>
+        <translation>&amp;Maths</translation>
     </message>
 </context>
 <context>

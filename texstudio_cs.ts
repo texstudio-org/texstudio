@@ -276,6 +276,10 @@
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -331,11 +335,11 @@
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Rychlý překlad</translation>
+        <translation type="obsolete">Rychlý překlad</translation>
     </message>
     <message>
         <source>Latex Menus</source>
-        <translation>Latexové nabídky</translation>
+        <translation type="obsolete">Latexové nabídky</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -1354,6 +1358,22 @@ You will not be able to type this character. Do you wish
 to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Metacommands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Usercommands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Menus</source>
+        <translation type="unfinished">Nabídky</translation>
+    </message>
+    <message>
+        <source>Meta Build</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1403,11 +1423,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Latex</source>
-        <translation>Latex</translation>
+        <translation type="obsolete">Latex</translation>
     </message>
     <message>
         <source>Math</source>
-        <translation>Matematika</translation>
+        <translation type="obsolete">Matematika</translation>
     </message>
     <message>
         <source>&amp;Latex</source>
@@ -1826,6 +1846,18 @@ Chcete je odstranit?</translation>
     <message>
         <source>Internal</source>
         <translation type="obsolete">Vnitřní</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
+    </message>
+    <message>
+        <source>insert new menu item (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>insert new sub menu (before)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2930,7 +2962,7 @@ Chybí volby \includegraphics.</translation>
     <message>
         <source>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</source>
-        <translation>%1 nevypadá jako platný dokument PDF.
+        <translation type="obsolete">%1 nevypadá jako platný dokument PDF.
 Přesto jej chcete otevřít? Může způsobit pád.</translation>
     </message>
     <message>
@@ -2940,6 +2972,13 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
         <translation>Soubor PDF &quot;%1&quot; není úplný.</translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document.
+
+Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4772,11 +4811,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Quick Build</source>
-        <translation>Rychlý překlad</translation>
+        <translation type="obsolete">Rychlý překlad</translation>
     </message>
     <message>
         <source>&amp;Dvi-&gt;PS</source>
-        <translation>&amp;Dvi-&gt;PS</translation>
+        <translation type="obsolete">&amp;Dvi-&gt;PS</translation>
     </message>
     <message>
         <source>&amp;PDFLaTeX</source>
@@ -4860,11 +4899,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>User &amp;Commands</source>
-        <translation>&amp;Uživatelské příkazy</translation>
+        <translation type="obsolete">&amp;Uživatelské příkazy</translation>
     </message>
     <message>
         <source>Edit User &amp;Commands</source>
-        <translation>Upravit uživatelské &amp;příkazy</translation>
+        <translation type="obsolete">Upravit uživatelské &amp;příkazy</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -5164,7 +5203,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;BibTeX</source>
-        <translation>&amp;BibTeX</translation>
+        <translation type="obsolete">&amp;BibTeX</translation>
     </message>
     <message>
         <source>&amp;MakeIndex</source>
@@ -5172,7 +5211,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;Clear Markers</source>
-        <translation>&amp;Smazat značky</translation>
+        <translation type="obsolete">&amp;Smazat značky</translation>
     </message>
     <message>
         <source>&amp;MetaPost</source>
@@ -5256,7 +5295,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;View Dvi</source>
-        <translation>&amp;Zobrazit Dvi</translation>
+        <translation type="obsolete">&amp;Zobrazit Dvi</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -6010,6 +6049,52 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     <message>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document %1 want to override the command %2 with %3.
+Do you trust this document?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, alwas run the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, run the default command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User</source>
+        <comment>menu</comment>
+        <translation type="unfinished">&amp;Uživatel</translation>
+    </message>
+    <message>
+        <source>&amp;Quick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View &amp;Dvi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dvi-&gt;PS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cl&amp;ear Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Math</source>
+        <translation type="unfinished">&amp;Matematika</translation>
     </message>
 </context>
 <context>
