@@ -1837,7 +1837,6 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig)
 	Q_ASSERT(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig;
-	gsCommand="mgs.exe";
 
 	init();
 
@@ -2065,7 +2064,7 @@ void PDFDocument::init()
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
 		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()));
 	
-	connect(actionTypeset, SIGNAL(triggered()), SIGNAL(triggeredQuickBuild()));
+	connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
 
 	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
 
@@ -2181,20 +2180,18 @@ void PDFDocument::closeEvent(QCloseEvent *event)
 	deleteLater();
 }
 
-void PDFDocument::syncFromView(const QString& pdfFile, const QString& externalViewer, int page){
+void PDFDocument::syncFromView(const QString& pdfFile, const QFileInfo& masterFile, int page){
 	if (!actionSynchronize_multiple_views->isChecked())
 		return;
-	if (pdfFile != curFile || externalViewerCmdLine != externalViewer)
-		loadFile(pdfFile, externalViewer, false);
+	if (pdfFile != curFile || this->masterFile != masterFile)
+		loadFile(pdfFile, masterFile, false);
 	if (page != widget()->getPageIndex())
 		scrollArea->goToPage(page,false);
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QString& externalViewer, bool alert,const QString gs)
+void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert)
 {
-	externalViewerCmdLine = externalViewer;
-	if(!gs.isEmpty())
-	    gsCommand=gs;
+	this->masterFile = masterFile;
 	setCurrentFile(fileName);
 	reload(false);
 	if (watcher) {
@@ -2314,7 +2311,11 @@ void PDFDocument::idleReload(){
 }
 
 void PDFDocument::runExternalViewer(){
-	emit runCommand(externalViewerCmdLine);
+	emit runCommand("txs:///view-pdf-external", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+}
+
+void PDFDocument::runQuickBuild(){
+	emit runCommand("txs:///quick", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 }
 
 void PDFDocument::setGrid(){
@@ -2539,13 +2540,15 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 
 int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview)
 {
+	lineNo++; //input 0 based, synctex 1 based
+
+	lastSyncSourceFile = sourceFile;
+	lastSyncLineNumber = lineNo;
+
 	if (scanner == NULL || syncFromSourceBlock)
 		return -1;
 
-	lineNo++; //input 0 based, synctex 1 based
-
 	// find the name synctex is using for this source file...
-	const QFileInfo sourceFileInfo(sourceFile);
 	QDir curDir(QFileInfo(curFile).canonicalPath());
 	synctex_node_t node = synctex_scanner_input(scanner);
 	QString name;
@@ -2553,7 +2556,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 	while (node != NULL) {
 		name = QFile::decodeName(synctex_scanner_get_name(scanner, synctex_node_tag(node)));
 		const QFileInfo fi(curDir, name);
-		if (fi == sourceFileInfo) {
+		if (fi == lastSyncSourceFile) {
 			found = true;
 			break;
 		}
@@ -2685,7 +2688,7 @@ void PDFDocument::goToSource()
 void PDFDocument::fileOpen(){
 	QString newFile = QFileDialog::getOpenFileName(this,tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
-	loadFile(newFile, externalViewer().replace(curFile,newFile), false);
+	loadFile(newFile, newFile.replace(".pdf", ".tex"), false);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
@@ -2714,7 +2717,7 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
 	if (actionSynchronize_multiple_views->isChecked() && sync)
-		emit syncView(curFile, externalViewerCmdLine, widget()->getPageIndex());;
+		emit syncView(curFile, masterFile, widget()->getPageIndex());;
 }
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
@@ -2875,7 +2878,7 @@ void PDFDocument::dropEvent(QDropEvent *event)
 		const QList<QUrl> urls = event->mimeData()->urls();
 		foreach (const QUrl& url, urls)
 			if (url.scheme() == "file") {
-			if (url.path().endsWith("pdf")) loadFile(url.toLocalFile(), externalViewerCmdLine);
+				if (url.path().endsWith("pdf")) loadFile(url.toLocalFile(), url.toLocalFile().replace(".pdf", ".tex"));
 			else emit fileDropped(url);
 		}
 		event->acceptProposedAction();
@@ -2967,7 +2970,7 @@ void PDFDocument::printPDF(){
 		}
 		
 		QStringList args;
-		args << gsCommand;
+		args << "txs:///gs";
 		args << "-sDEVICE=mswinpr2";
 		args << QString("-sOutputFile=\"\%printer\%%1\"").arg(printer.printerName().replace(" ","_"));
 		args << "-dBATCH";
@@ -2977,7 +2980,6 @@ void PDFDocument::printPDF(){
 		args << "-sPAPERSIZE="+paper;
 		args << "-dFirstPage="+QString::number(firstPage);
 		args << "-dLastPage="+QString::number(lastPage);
-		args << "\""+fileName()+"\"";
 #else
 		QStringList args;
 		args << "lp";
@@ -3000,15 +3002,14 @@ void PDFDocument::printPDF(){
 			break;
 		}
 		args << "--";
-		args << QString("\"%1\"").arg(fileName());
 #endif
+		args << "\"?am.pdf\"";
 		command=args.join(" ");
 	}
 	else return;
 	
-	for(int i=0;i<printer.numCopies();i++){
-	    if(QProcess::execute(command) != 0) return;
-	}
+	for(int i=0;i<printer.numCopies();i++)
+		emit runCommand(command, masterFile, masterFile, 0);
 }
 
 

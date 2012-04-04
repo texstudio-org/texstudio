@@ -114,6 +114,7 @@ public:
 	void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
 
+public slots:
 	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0);
 private:
 	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0);
@@ -182,7 +183,7 @@ private:
 	CommandMapping commands;
 	QStringList internalCommandIds, commandSortingsOrder;
 	QMap<QString, ProcessX*> runningCommands;
-	ProcessX* processWaitedFor;
+	QPointer<ProcessX> processWaitedFor;
 
 	QStringList latexCommands, pdfCommands, stdoutCommands, viewerCommands;
 	

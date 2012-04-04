@@ -945,6 +945,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		if (singleInstance && runningCommands.contains(cur.command)) continue;
 		bool latexCompiler = cur.flags & RCF_LATEX_COMPILER;
 		bool lastCommandToRun = i == commands.size()-1;
+		bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance);
 		
 		ProcessX* p = newProcessInternal(cur.command, mainFile, singleInstance);
 		REQUIRE_RET(p, false);
@@ -953,14 +954,21 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		
 		emit beginRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 		
+		if (!waitForCommand) connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
+		
 		p->startCommand();
 		if (!p->waitForStarted(1000)) return false;
 		
 		if (latexCompiler || (!lastCommandToRun && !singleInstance) ) 
-			if (!waitForProcess(p)) return false;
+			if (!waitForProcess(p)) {
+				p->deleteLater();
+				return false;
+			}
 		
 		emit endRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 
+		if (waitForCommand) p->deleteLater();
+		
 		if (latexCompiler){
 			LatexCompileResult result = LCR_NORMAL;
 			emit latexCompiled(&result);
@@ -971,8 +979,9 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 			REQUIRE_RET(result == LCR_RERUN || result == LCR_RERUN_WITH_BIBLIOGRAPHY, false);
 			remainingReRunCount--;
 			i--; //rerun
-			qDebug() << "rerun";
+			//qDebug() << "rerun";
 		}
+
 	}
 	return true;
 }
@@ -994,7 +1003,6 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 
 	
 	ProcessX* proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
-	connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
 	if (singleInstance){
 		connect(proc, SIGNAL(finished(int)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
@@ -1030,7 +1038,7 @@ bool BuildManager::waitForProcess(ProcessX* p){
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	QTime time;
 	time.start();
-	while (p->isRunning()){
+	while (p && p->isRunning()){
 		qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
 		if (time.elapsed()>2000)
 			qApp->instance()->processEvents(QEventLoop::AllEvents);
@@ -1139,6 +1147,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 				p->setProperty("preamble", preamble_mod);
 				p->setProperty("preambleFile", preambleFormatFile);
 				connect(p,SIGNAL(finished(int)),this,SLOT(preamblePrecompileCompleted(int)));
+				connect(p,SIGNAL(finished(int)),p,SLOT(deleteLater()));
 				tf->setParent(p); //free file when process is deleted
 				REQUIRE(p);
 				p->startCommand();
@@ -1271,9 +1280,11 @@ void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList&
 
 void BuildManager::singleInstanceCompleted(int status){
 	Q_UNUSED(status);
-	ProcessX* procX = qobject_cast<ProcessX*>(sender());
-	REQUIRE(procX);
-	runningCommands.remove(procX->getCommandLine());
+	QObject* s = sender();
+	REQUIRE(s);
+	for (QMap<QString, ProcessX *>::iterator it = runningCommands.begin(), end = runningCommands.end(); it != end;)
+		if (it.value() == s) it = runningCommands.erase(it);
+		else ++it;
 }
 
 void BuildManager::preamblePrecompileCompleted(int status){
@@ -1538,7 +1549,7 @@ int ProcessX::exitStatus() const{return QProcess::exitStatus();}
 int ProcessX::exitCode() const{return QProcess::exitCode(); }
 QString ProcessX::readAllStandardOutputStr(){return QString::fromLocal8Bit(QProcess::readAllStandardOutput());}
 QString ProcessX::readAllStandardErrorStr(){return QString::fromLocal8Bit(QProcess::readAllStandardError());}
-bool ProcessX::waitForFinished ( int msecs ){return QProcess::waitForFinished(msecs);}
+bool ProcessX::waitForFinished( int msecs ){return QProcess::waitForFinished(msecs);}
 
 bool ProcessX::isRunning() const{
 	return isStarted && !ended;

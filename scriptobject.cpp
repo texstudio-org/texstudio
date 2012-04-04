@@ -35,6 +35,7 @@ ProcessX* ScriptObject::system(const QString& commandline){
 	else
 		p = buildManager->newProcessInternal(commandline, QFileInfo()); //use internal, so people can pass | to sh
 	if (!p) return 0;
+	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
 	p->startCommand();
 	p->waitForStarted();
 	return p;

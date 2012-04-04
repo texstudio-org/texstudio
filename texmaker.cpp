@@ -1295,7 +1295,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (f_real.endsWith(".pdf",Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
-		PDFDocument::documentList().first()->loadFile(f_real,"");
+		PDFDocument::documentList().first()->loadFile(f_real,f_real.replace(".pdf", ".tex"));
 		PDFDocument::documentList().first()->show();
 		PDFDocument::documentList().first()->setFocus();
 		return 0;
@@ -3703,7 +3703,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master){
 	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
 	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber()+1:0;
 	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-		viewer->loadFile(pdfFile);
+		viewer->loadFile(pdfFile, master);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , true);
 		viewer->fillRenderCache(pg);
 	}
@@ -4314,7 +4314,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
 		foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(),"");
+			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(),filesToLoad.first().replace(".pdf", ".tex"));
 			connect(viewer,SIGNAL(destroyed()), SLOT(deleteLater()));
 			viewer->show();
 			viewer->setFocus();
@@ -4575,21 +4575,20 @@ void Texmaker::newPdfPreviewer(){
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
-	connect(pdfviewerWindow, SIGNAL(triggeredQuickBuild()), SLOT(QuickBuild()));
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool, QString)), SLOT(syncFromViewer(const QString &, int, bool, QString)));
-	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&)), SLOT(runCommand(const QString&)));
+	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, const QFileInfo&, const QFileInfo&, int)), &buildManager, SLOT(runCommand(const QString&, const QFileInfo&, const QFileInfo&, int)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
 	
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
 	if (from) {
-		pdfviewerWindow->loadFile(from->fileName(), from->externalViewer(), true,from->getGSCommand());
+		pdfviewerWindow->loadFile(from->fileName(), from->getMasterFile(), true);
 		pdfviewerWindow->goToPage(from->widget()->getPageIndex());
 	}//load file before enabling sync or it will jump to the first page
 	
 	foreach (PDFDocument* doc, PDFDocument::documentList()) {
 		if (doc == pdfviewerWindow) continue;
-		connect(doc, SIGNAL(syncView(QString,QString,int)), pdfviewerWindow, SLOT(syncFromView(QString,QString,int)));
-		connect(pdfviewerWindow, SIGNAL(syncView(QString,QString,int)), doc, SLOT(syncFromView(QString,QString,int)));
+		connect(doc, SIGNAL(syncView(QString,QFileInfo,int)), pdfviewerWindow, SLOT(syncFromView(QString,QFileInfo,int)));
+		connect(pdfviewerWindow, SIGNAL(syncView(QString,QFileInfo, int)), doc, SLOT(syncFromView(QString,QFileInfo,int)));
 	}
 #endif
 }

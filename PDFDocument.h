@@ -321,8 +321,7 @@ public:
 	}
 
 	QString fileName() const { return curFile; }
-	QString externalViewer() const { return externalViewerCmdLine; }
-	QString getGSCommand() const { return gsCommand; }
+	QFileInfo getMasterFile() const { return masterFile; }
 
 	void zoomToRight(QWidget *otherWindow);
 	void showScale(qreal scale);
@@ -364,8 +363,8 @@ public slots:
 	void goToSource();
 	void toggleFullScreen(const bool fullscreen);
 	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
-	void syncFromView(const QString& pdfFile, const QString& externalViewer, int page);
-	void loadFile(const QString &fileName, const QString& externalViewer = "", bool alert = true,const QString gs="");
+	void syncFromView(const QString& pdfFile, const QFileInfo& masterFile, int page);
+	void loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert = true);
 	void printPDF();
 private slots:
 	void fileOpen();
@@ -378,6 +377,7 @@ private slots:
 	void idleReload();
 	
 	void runExternalViewer();
+	void runQuickBuild();
 
 	void setGrid();
 
@@ -395,10 +395,10 @@ signals:
 	void documentClosed();
 	void reloaded();
 	void syncSource(const QString& sourceFile, int line, bool activate, const QString& guessedWord); //view -> source
-	void syncView(const QString& pdfFile, const QString& externalViewer, int page); //view -> other view
+	void syncView(const QString& pdfFile, const QFileInfo& masterFile, int page); //view -> other view
 	void fileDropped(const QUrl& url);
 
-	void runCommand(const QString& command);
+	void runCommand(const QString& command, const QFileInfo& masterFile, const QFileInfo& currentFile, int linenr);
 
 	void triggeredAbout();
 	void triggeredManual();
@@ -419,8 +419,8 @@ private:
 	QString curFile;
 	qint64 curFileSize;
 	QDateTime curFileLastModified;
-	QString externalViewerCmdLine;
-	QString gsCommand;
+	QFileInfo masterFile, lastSyncSourceFile;
+	int lastSyncLineNumber;
 
 	Poppler::Document	*document;
 	
