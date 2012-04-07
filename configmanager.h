@@ -162,17 +162,24 @@ public:
 	void removeManagedMenus();
 	void triggerManagedAction(const QString& id);
 	
-	void modifyMenuContents();
+private:
+	void connectExtendedSlot(QAction* act, const QString& slot);
+	bool modifyMenuContentsFirstCall;
 	void modifyMenuContent(QStringList& ids, const QString& id);
+public:
+	void modifyMenuContents();
 	void modifyManagedShortcuts();
 	void loadManagedMenu(QMenu* parent,const QDomElement &f);
 	void loadManagedMenus(const QString &f);
+	QStringList possibleMenuSlots;
+private:
 	void managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
 	void treeWidgetToManagedMenuTo(QTreeWidgetItem* item);
 
 	QTreeWidgetItem* managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu);
 	void treeWidgetToManagedLatexMenuTo();
-
+	
+public:
 	// custom toolbar
 	QList<ManagedToolBar> managedToolBars;
 	QStringList watchedMenus;  //list of all sub menus mapped on toolbars
@@ -216,7 +223,7 @@ private:
 
 	QSettings* persistentConfig;
 
-	QList<QTreeWidgetItem*> changedItemsList;
+	QList<QTreeWidgetItem*> changedItemsList, superAdvancedItems;
 	QHash<QString, QTreeWidgetItem*> manipulatedMenuTree;
 
 	QMap<QString,QVariant> manipulatedMenus;
@@ -247,6 +254,7 @@ private slots:
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
 	void latexTreeNewItem(bool menu = false);
 	void latexTreeNewMenuItem();
+	void toggleVisibleTreeItems(bool show);
 	void activateInternalViewer(bool activated);
 
 	void managedOptionDialogAccepted();

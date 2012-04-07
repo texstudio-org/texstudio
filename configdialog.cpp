@@ -260,6 +260,51 @@ bool ShortcutDelegate::isBasicEditorKey(const QModelIndex& index) const{
 }
 
 
+
+ComboBoxDelegate::ComboBoxDelegate(QObject *parent): QItemDelegate(parent){
+	activeColumn = 2;
+}
+QWidget *ComboBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option,const QModelIndex &index) const{
+	if (index.column() != activeColumn) 
+		return QItemDelegate::createEditor(parent,option,index);
+	QComboBox *editor = new QComboBox(parent);
+	editor->addItems(defaultItems);
+	editor->setEditable(true);
+	
+	return editor;
+}
+void ComboBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const{
+	if (index.column() != activeColumn) {
+		QItemDelegate::setEditorData(editor, index);
+		return;
+	}
+	QComboBox* cb = qobject_cast<QComboBox*>(editor);
+	REQUIRE(cb);
+	QString s = index.data(Qt::EditRole).toString();
+	if (s.contains('(')) s = s.left(s.indexOf('('));
+	for (int i=0;i<cb->count();i++)
+		if (cb->itemText(i).startsWith(s)) { cb->setCurrentIndex(i); break; }
+	cb->setEditText(index.data(Qt::EditRole).toString());
+}
+void ComboBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const{
+	if (index.column() != activeColumn) {
+		QItemDelegate::setModelData(editor, model, index);
+		return;
+	}
+	QComboBox* cb = qobject_cast<QComboBox*>(editor);
+	REQUIRE(cb);
+	model->setData(index, cb->currentText());
+}
+void ComboBoxDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const{
+	if (index.column() != activeColumn) {
+		QItemDelegate::updateEditorGeometry(editor, option, index);
+		return;
+	}
+	editor->setGeometry(option.rect);
+}
+
+
+
 int ConfigDialog::lastUsedPage = 0;
 
 ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), riddled(false), oldToolbarIndex(-1) {

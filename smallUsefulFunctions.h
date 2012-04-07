@@ -31,8 +31,8 @@ void txs_assert(const char *assertion, const char *file, int line);
 
 class LatexCompleterConfig;
 
-#define REQUIRE(x)  Q_ASSERT((x)); if (!(x)) return;
-#define REQUIRE_RET(x,e)  Q_ASSERT((x)); if (!(x)) return (e);
+#define REQUIRE(x)  do { Q_ASSERT((x)); if (!(x)) return; } while (0)
+#define REQUIRE_RET(x,e) do { Q_ASSERT((x)); if (!(x)) return (e); } while (0)
 
 typedef QString (QObject::*StringToStringCallback)(const QString&) ;
 

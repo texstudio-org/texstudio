@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>543</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -833,21 +833,33 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <bool>true</bool>
          </property>
          <property name="columnCount">
-          <number>2</number>
+          <number>3</number>
          </property>
          <attribute name="headerDefaultSectionSize">
           <number>250</number>
          </attribute>
          <column>
           <property name="text">
-           <string>1</string>
+           <string>Name</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>2</string>
+           <string>Command</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>Slot</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxShowAllMenus">
+         <property name="text">
+          <string>Show all</string>
+         </property>
         </widget>
        </item>
       </layout>

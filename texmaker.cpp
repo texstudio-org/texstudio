@@ -1454,6 +1454,7 @@ void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QLis
 	disconnect(act, SIGNAL(triggered()), this, SLOT(relayToEditorSlot()));
 	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()));
 #endif
+	act->setProperty("primarySlot", QString(SLOT(relayToEditorSlot())));
 	QByteArray signature = createMethodSignature(methodName, args);
 	if (!args.isEmpty())
 		act->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
@@ -4158,6 +4159,15 @@ void Texmaker::GeneralOptions() {
 	bool inlineReferenceChecking=configManager.editorConfig->inlineReferenceChecking;
 	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
 	QStringList loadFiles=configManager.completerConfig->getLoadedFiles();
+	
+	
+	if (configManager.possibleMenuSlots.isEmpty()) {
+		for (int i=0;i<staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).signature());
+		for (int i=0;i<QEditor::staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append("editor:"+QString(QEditor::staticMetaObject.method(i).signature()));
+		for (int i=0;i<LatexEditorView::staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append("editorView:"+QString(LatexEditorView::staticMetaObject.method(i).signature()));
+		configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
+	}
+	
 	if (configManager.execConfigDialog()) {
 		configManager.editorConfig->settingsChanged();
 		
