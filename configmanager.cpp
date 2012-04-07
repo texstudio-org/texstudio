@@ -1742,12 +1742,15 @@ void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
 		} else {
 			QString ownId = temp.takeLast();
 			QByteArray defSlot = menu->property("defaultSlot").toByteArray(); 
-			while (defSlot.isEmpty() && !temp.isEmpty()) {
-				temp.removeLast();
-				QMenu* tempmenu = menuParent->findChild<QMenu*>(temp.join("/"));
-				defSlot = tempmenu->property("defaultSlot").toByteArray();
+			if (m.value(4).isEmpty()) {
+				while (defSlot.isEmpty() && temp.size() >= 2) {
+					temp.removeLast();
+					QMenu* tempmenu = menuParent->findChild<QMenu*>(temp.join("/"));
+					if (!tempmenu) continue;
+					defSlot = tempmenu->property("defaultSlot").toByteArray();
+				}
 			}
-			act = newManagedAction(menu, ownId, m.first(), defSlot.data());
+			act = newManagedAction(menu, ownId, m.first(), defSlot.isEmpty()?0:defSlot.data());
 		}
 		if  (prevact) {
 			menu->removeAction(act);
