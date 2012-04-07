@@ -2332,8 +2332,8 @@ void PDFDocument::setGrid(){
 			globalConfig->gridy=y;
 		}
 	} else {
-		REQUIRE(gs.size()==2)
-				pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
+		REQUIRE(gs.size()==2);
+		pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
 		globalConfig->gridx=gs.at(0).toAscii()-'0';
 		globalConfig->gridy=gs.at(1).toAscii()-'0';
 	}

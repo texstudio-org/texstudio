@@ -283,7 +283,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
        pdfDocumentConfig(new PDFDocumentConfig),
        insertGraphicsConfig(new InsertGraphicsConfig),
        grammarCheckerConfig(new GrammarCheckerConfig),
-       menuParent(0), menuParentsBar(0), persistentConfig(0) {
+       menuParent(0), menuParentsBar(0), modifyMenuContentsFirstCall(true), persistentConfig(0) {
 	
 	Q_ASSERT(!globalConfigManager);
 	globalConfigManager = this;
@@ -1022,10 +1022,11 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work
 	delegate.connect(confDlg->ui.shortcutTree,SIGNAL(itemClicked(QTreeWidgetItem *, int)),&delegate,SLOT(treeWidgetItemClicked(QTreeWidgetItem * , int)));
 	
-	//latex menus
+	//custom menus
 	confDlg->menuParent=menuParent;
 	changedItemsList.clear();
 	manipulatedMenuTree.clear();
+	superAdvancedItems.clear();
 	foreach(QMenu* menu, managedMenus){
 		QTreeWidgetItem *menuLatex=managedLatexMenuToTreeWidget(0,menu);
 		if(menuLatex) {
@@ -1033,6 +1034,8 @@ bool ConfigManager::execConfigDialog() {
 			menuLatex->setExpanded(true);
 		}
 	}
+	connect(confDlg->ui.checkBoxShowAllMenus, SIGNAL(toggled(bool)), SLOT(toggleVisibleTreeItems(bool)));
+	toggleVisibleTreeItems(false);
 	connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
 	QAction* act = new QAction(tr("insert new menu item (before)"), confDlg->ui.latexTree);
 	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewItem()));
@@ -1041,6 +1044,10 @@ bool ConfigManager::execConfigDialog() {
 	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewMenuItem()));
 	confDlg->ui.latexTree->addAction(act);
 	confDlg->ui.latexTree->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+	ComboBoxDelegate * cbd = new ComboBoxDelegate(confDlg->ui.latexTree);
+	cbd->defaultItems = possibleMenuSlots;
+	confDlg->ui.latexTree->setItemDelegate(cbd);
 	
 	// custom toolbars
 	confDlg->customizableToolbars.clear();
@@ -1548,7 +1555,10 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 	
 	act->setObjectName(completeId);
 	act->setShortcuts(shortCuts);
-	if (slotName) connect(act, SIGNAL(triggered()), menuParent, slotName);
+	if (slotName) {
+		connect(act, SIGNAL(triggered()), menuParent, slotName);
+		act->setProperty("primarySlot", QString::fromLocal8Bit(slotName));
+	}
 	menu->addAction(act);
 	for (int i=0; i<shortCuts.size(); i++)
 		managedMenuShortcuts.insert(act->objectName()+QString::number(i),shortCuts[i]);
@@ -1607,9 +1617,89 @@ void ConfigManager::triggerManagedAction(const QString& id){
 	if (act) act->trigger();
 }
 
+QList<QVariant> parseCommandArguments (const QString& str) {
+	QString s = str;
+	QList<QVariant> result;
+	if (str == "()") return result;
+	s.remove(0,1);
+	//                            1/-----2---\  /----3----\  /4-/5/6---------6\5\4--4\ 0
+	static const QRegExp args("^ *((-? *[0-9]+)|(true|false)|(\"(([^\"]*|\\\\\")*)\")) *,?");
+	while (args.indexIn(s) != -1) {
+		if (!args.cap(2).isEmpty()) result << args.cap(2).toInt();
+		else if (!args.cap(3).isEmpty()) result << (args.cap(3) == "true");
+		else if (!args.cap(5).isEmpty()) result << (args.cap(5).replace("\\\"", "\"").replace("\\n", "\n").replace("\\t", "\t").replace("\\\\", "\\"));		
+		s.remove(0, args.matchedLength());
+	}
+	return result;
+}
+
+void ConfigManager::connectExtendedSlot(QAction* act, const QString& slot){
+	static const char * signal = SIGNAL(triggered());
+	if (act->property("primarySlot").isValid()) 
+		disconnect(act, signal, menuParent, act->property("primarySlot").toByteArray().data());
+	
+	if (slot.startsWith('1') || slot.startsWith('2')) {
+		act->setProperty("primarySlot", slot);
+		connect(act, signal, menuParent, slot.toLocal8Bit());
+		return;
+	}
+
+	if (slot.endsWith("()") && !slot.contains(':')) {
+		QString temp = "1" + slot;
+		act->setProperty("primarySlot", temp);
+		connect(act, signal, menuParent, temp.toLocal8Bit());
+		return;
+	}
+
+	int argSeparator = slot.indexOf('(');
+	REQUIRE(argSeparator >= 0);
+	
+	QString slotName = slot.mid(0, argSeparator);	
+	QString args = slot.mid(argSeparator);
+	if (slotName.contains(":")) {
+		act->setProperty("editorSlot", QVariant());
+		act->setProperty("editorViewSlot", QVariant());
+		if (slotName.startsWith("editorView:")) 
+			act->setProperty("editorViewSlot", slotName.mid(strlen("editorView:")));
+		else if (slotName.startsWith("editor:")) 
+			act->setProperty("editorSlot", slotName.mid(strlen("editor:")));
+		else REQUIRE(false);
+		slotName = SLOT(relayToEditorSlot());
+	} else {
+		act->setProperty("slot", slotName);
+		slotName = SLOT(relayToOwnSlot());
+	}
+	act->setProperty("primarySlot", slotName);
+	connect(act, signal, menuParent, slotName.toLocal8Bit());
+	act->setProperty("args", parseCommandArguments(args));
+}
+	
+QString prettySlotName(QAction* act) {
+	QString primary = act->property("primarySlot").toString();
+	if (primary.startsWith("1")) primary = primary.mid(1);
+	if (primary == "relayToOwnSlot()" || primary == "relayToEditorSlot()") {
+		if (primary == "relayToEditorSlot()") {
+			if (act->property("editorViewSlot").isValid()) primary = "editorView:" + act->property("editorViewSlot").toString();
+			else if (act->property("editorSlot").isValid()) primary = "editor:" + act->property("editorSlot").toString();
+		} else primary = act->property("slot").toString();
+		primary += "(";
+		QList<QVariant> args = act->property("args").value<QList<QVariant> >();
+		for (int i=0;i<args.size();i++) {
+			if (i!=0) primary += ", ";
+			if (args[i].type() == QVariant::String) primary += '"';
+			primary += args[i].toString();
+			if (args[i].type() == QVariant::String) primary += '"';
+		}
+		primary += ")";
+	}
+	return primary;
+}
+
+
 void ConfigManager::modifyMenuContents(){
 	QStringList ids = manipulatedMenus.keys();
 	while (!ids.isEmpty()) modifyMenuContent(ids, ids.first());
+	modifyMenuContentsFirstCall = false;
 }
 
 void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
@@ -1625,7 +1715,9 @@ void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
 	QStringList m = i.value().toStringList();
 	//qDebug() << id << ": ===> " << m.join(", ");
 	QAction * act = menuParent->findChild<QAction*>(id);
+	bool  newlyCreated = false;
 	if (!act && m.value(3, "") != "") {
+		newlyCreated = true;
 		QString before = m.value(3);
 		modifyMenuContent(ids, before);
 		QAction * prevact = 0;
@@ -1663,9 +1755,19 @@ void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
 		}
 	}
 	if (!act) return;
+	bool visible = !(m.value(2,"visible")=="hidden");
+	if (modifyMenuContentsFirstCall && !newlyCreated && visible && act->text() == m.first() && act->data() == m.at(1))
+		manipulatedMenus.remove(act->objectName());
 	act->setText(m.first());
 	act->setData(m.at(1));
-	act->setVisible(!(m.value(2,"visible")=="hidden"));
+	act->setVisible(visible);
+	if (!m.value(4).isEmpty()) {
+		if (!act->property("originalSlot").isValid())
+			act->setProperty("originalSlot", prettySlotName(act));
+		connectExtendedSlot(act, m.value(4));
+	} else if (act->property("originalSlot").isValid())
+		connectExtendedSlot(act, act->property("originalSlot").toString());
+	
 }
 
 void ConfigManager::modifyManagedShortcuts(){
@@ -2097,34 +2199,44 @@ void ConfigManager::moveCommand(int dir){
 	wsel->setFocus();
 }
 
-
 // manipulate latex menus
 QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
 	if (!menu) return 0;
-	QStringList relevantMenus;
-	relevantMenus << "main/tools" << "main/latex" << "main/math";
-	if(!parent && !relevantMenus.contains(menu->objectName())) return 0;
+	static QStringList relevantMenus = QStringList() << "main/tools" << "main/latex" << "main/math";
+	bool advanced = false;
+	if (parent) advanced = parent->data(0, Qt::UserRole+2).toBool();
+	if (!parent && !relevantMenus.contains(menu->objectName())) advanced = true;
 	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title()));
+	if (advanced) { superAdvancedItems << menuitem; menuitem->setData(0,Qt::UserRole+2, true); }
 	menuitem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 	menuitem->setCheckState(0, menu->menuAction() && menu->menuAction()->isVisible() ? Qt::Checked : Qt::Unchecked);
 	if (menu->objectName().count("/")<=2) menuitem->setExpanded(true);
 	QList<QAction *> acts=menu->actions();
 	for (int i=0; i<acts.size(); i++){
+		bool subAdvanced = advanced;
 		QTreeWidgetItem* twi = 0;
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
-			if(!acts[i]->data().isValid()) continue;
-			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << acts[i]->data().toString());
+			subAdvanced |= !acts[i]->data().isValid();
+			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << acts[i]->data().toString() << prettySlotName(acts[i]));
 			twi->setIcon(0,acts[i]->icon());
 			if (!acts[i]->isSeparator()) {
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				twi->setCheckState(0,acts[i]->isVisible() ? Qt::Checked : Qt::Unchecked);
 			}
+			twi->setData(2, Qt::UserRole, acts[i]->property("originalSlot").isValid()?acts[i]->property("originalSlot").toString():twi->text(2));
+			if (manipulatedMenus.contains(acts[i]->objectName())) {
+				QFont bold = twi->font(0);
+				bold.setBold(true);
+				for (int j=0;j<3;j++) twi->setFont(j, bold);
+			}			
 		}
 		if (!twi) continue;
 		QString id = acts[i]->menu()?(acts[i]->menu()->objectName() + "/"): acts[i]->objectName();
 		twi->setData(0,Qt::UserRole,id);
+		twi->setData(0,Qt::UserRole+2,subAdvanced);
 		manipulatedMenuTree.insert(id, twi);
+		if (subAdvanced) superAdvancedItems << twi;
 		
 		int j = i+1;
 		for (; j < acts.size() && acts[j]->isSeparator(); j++) ;
@@ -2140,7 +2252,12 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 }
 
 void ConfigManager::latexTreeItemChanged(QTreeWidgetItem* item,int ){
-	if((item->flags() & Qt::ItemIsEditable) && !changedItemsList.contains(item)) changedItemsList.append(item);
+	if((item->flags() & Qt::ItemIsEditable) && !changedItemsList.contains(item)) {
+		QFont f = item->font(0);
+		f.setBold(true);
+		for (int i=0;i<3;i++) item->setFont(i, f);
+		changedItemsList.append(item);
+	}
 }
 void ConfigManager::latexTreeNewItem(bool menu){
 	QAction* a = qobject_cast<QAction*>(sender());
@@ -2163,7 +2280,7 @@ void ConfigManager::latexTreeNewItem(bool menu){
 	twi->setData(0,Qt::UserRole+1, old->data(0,Qt::UserRole).toString());
 	old->parent()->insertChild(old->parent()->indexOfChild(old), twi);
 	manipulatedMenuTree.insert(newId, twi);
-	changedItemsList.append(twi);
+	latexTreeItemChanged(twi, 0);
 	if (menu) {
 		QTreeWidgetItem* filler=new QTreeWidgetItem(twi, QStringList() << QString("temporary menu end") << "");
 		filler->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -2174,6 +2291,16 @@ void ConfigManager::latexTreeNewMenuItem(){
 	latexTreeNewItem(true);
 }
 
+void ConfigManager::toggleVisibleTreeItems(bool show){
+	REQUIRE(!superAdvancedItems.isEmpty());
+	foreach (QTreeWidgetItem* twi, superAdvancedItems)
+		twi->setHidden(!show);
+	QTreeWidget* tw = superAdvancedItems.first()->treeWidget();
+	tw->setColumnHidden(2, !show);
+	if (show && tw->columnWidth(0) + tw->columnWidth(1) + tw->columnWidth(2) > tw->width() + 50) 
+		tw->setColumnWidth(1, tw->width() - tw->columnWidth(0) - tw->columnWidth(2));
+}
+
 void ConfigManager::treeWidgetToManagedLatexMenuTo() {
 	foreach(QTreeWidgetItem* item,changedItemsList){
 		QString id=item->data(0,Qt::UserRole).toString();
@@ -2182,7 +2309,8 @@ void ConfigManager::treeWidgetToManagedLatexMenuTo() {
 		m << item->text(0) 
 		  << item->text(1) 
 		  << (item->checkState(0)==Qt::Checked?"visible":"hidden")
-		  << item->data(0,Qt::UserRole+1).toString();
+		  << item->data(0, Qt::UserRole+1).toString()
+		  << ((item->text(2) != item->data(2, Qt::UserRole).toString())?item->text(2):"");
 		manipulatedMenus.insert(id, m);
 	}
 	modifyMenuContents();	
