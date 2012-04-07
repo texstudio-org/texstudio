@@ -133,20 +133,20 @@ public:
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
 	
-	QSet<QString> refCommands;
-	QSet<QString> labelCommands;
-	QSet<QString> citeCommands;
+    //QSet<QString> refCommands;
+    //QSet<QString> labelCommands;
+    //QSet<QString> citeCommands;
 	QSet<QString> environmentCommands;
-	QSet<QString> definitionCommands;
+    //QSet<QString> definitionCommands;
 	QSet<QString> optionCommands;
 	QSet<QString> mathStartCommands;
 	QSet<QString> mathStopCommands;
-	QSet<QString> tabularEnvirons;
+    //QSet<QString> tabularEnvirons;
 	QSet<QString> fileCommands;
 	QSet<QString> includeCommands;
-	QSet<QString> usepackageCommands;
+    //QSet<QString> usepackageCommands;
 	QSet<QString> customCommands;
-	QSet<QString> graphicsIncludeCommands;
+    //QSet<QString> graphicsIncludeCommands;
 	QStringList structureCommands;
 	QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
 	QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.

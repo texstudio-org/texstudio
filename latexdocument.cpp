@@ -424,7 +424,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		////Ref
 		//for reference counting (can be placed in command options as well ...
-		foreach(QString cmd,latexParser.refCommands){
+        foreach(QString cmd,latexParser.possibleCommands["%ref"]){
 			QString name;
 			cmd.append('{');
 			int start=0;
@@ -440,7 +440,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		//// label ////
 		//TODO: Use label from dynamical reference checker
-		foreach(QString cmd,latexParser.labelCommands){
+        foreach(QString cmd,latexParser.possibleCommands["%label"]){
 			QString name;
 			cmd.append('{');
 			int start=0;
@@ -492,7 +492,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			int offset=totalLength-curLine.length(); //TODO?? (line was commented out, with todo before)
 			//// newcommand ////
 			//TODO: handle optional arguments
-			if (latexParser.definitionCommands.contains(cmd)) {
+            if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*\\[(\\d+)\\](\\[.+\\])?");
 				int options=0;
@@ -603,7 +603,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
                 continue;
             }
 			///usepackage
-			if (latexParser.usepackageCommands.contains(cmd)) {
+            if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
 				completerNeedsUpdate=true;
 				QStringList packagesHelper=name.split(",");
 				QStringList packages;
@@ -2116,6 +2116,23 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
         }
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
+    //patch lines for new commands (ref,def, etc)
+    LatexParser& latexParser = LatexParser::getInstance();
+    QStringList categories;
+    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics";
+    QStringList newCmds;
+    foreach(const QString elem,categories){
+        QStringList cmds=ltxCommands.possibleCommands[elem].values();
+        foreach(const QString cmd,cmds){
+            if(!latexParser.possibleCommands[elem].contains(cmd)){
+                newCmds << cmd;
+                latexParser.possibleCommands[elem]<< cmd;
+            }
+        }
+    }
+    if(!newCmds.isEmpty()){
+        patchLinesContaining(newCmds);
+    }
 	
 	if(update){
 		foreach(LatexDocument* elem,getListOfDocs()){
@@ -2244,4 +2261,20 @@ void LatexDocuments::lineGrammarChecked(const void* doc,const void* line,int lin
 	if (d == -1) return;
 	if (!documents[d]->getEditorView()) return;
 	documents[d]->getEditorView()->lineGrammarChecked(doc,line,lineNr,errors);
+}
+
+void LatexDocument::patchLinesContaining(const QStringList cmds){
+    foreach(LatexDocument *elem,getListOfDocs()){
+        // search all cmds in all lines, patch line if cmd is found
+        for (int i=0;i<elem->lines();i++){
+            QString text=elem->line(i).text();
+            foreach(const QString cmd,cmds){
+                if(text.contains(cmd)){
+                    //elem->patchStructure(i,1);
+                    patchStructure(i,1);
+                    break;
+                }
+            }
+        }
+    }
 }

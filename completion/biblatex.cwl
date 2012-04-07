@@ -43,41 +43,41 @@
 
 \cite[prenote][postnote]{bibid}
 \cite[postnote]{bibid}
-\cite{bibid}
+\cite{bibid}#c
 \Cite[prenote][postnote]{bibid}
 \Cite[postnote]{bibid}
-\Cite{bibid}
+\Cite{bibid}#c
 
 \parencite[prenote][postnote]{bibid}
 \parencite[postnote]{bibid}
-\parencite{bibid}
+\parencite{bibid}#c
 \Parencite[prenote][postnote]{bibid}
 \Parencite[postnote]{bibid}
-\Parencite{bibid}
+\Parencite{bibid}#c
 
 \footcite[prenote][postnote]{bibid}
 \footcite[postnote]{bibid}
-\footcite{bibid}
+\footcite{bibid}#c
 \Footcite[prenote][postnote]{bibid}
 \Footcite[postnote]{bibid}
-\Footcite{bibid}
+\Footcite{bibid}#c
 
 \textcite[prenote][postnote]{bibid}
 \textcite[postnote]{bibid}
-\textcite{bibid}
+\textcite{bibid}#c
 \Textcite[prenote][postnote]{bibid}
 \Textcite[postnote]{bibid}
-\Textcite{bibid}
+\Textcite{bibid}#c
 
 \cite*[prenote][postnote]{bibid}
 \cite*[postnote]{bibid}
-\cite*{bibid}
+\cite*{bibid}#c
 
 \parencite*[prenote][postnote]{bibid}
 \parencite*[postnote]{bibid}
-\parencite*{bibid}
+\parencite*{bibid}#c
 
-\supercite{bibid}
+\supercite{bibid}#c
 
 \cites{bibid}{bibid}
 \cites(post){bibid}{bibid}
@@ -162,19 +162,19 @@
 
 \autocite[prenote][postnote]{bibid}
 \autocite[postnote]{bibid}
-\autocite{bibid}
+\autocite{bibid}#c
 
 \Autocite[prenote][postnote]{bibid}
 \Autocite[postnote]{bibid}
-\Autocite{bibid}
+\Autocite{bibid}#c
 
 \autocite*[prenote][postnote]{bibid}
 \autocite*[postnote]{bibid}
-\autocite*{bibid}
+\autocite*{bibid}#c
 
 \Autocite*[prenote][postnote]{bibid}
 \Autocite*[postnote]{bibid}
-\Autocite*{bibid}
+\Autocite*{bibid}#c
 
 \autocites{bibid}{bibid}
 \autocites(post){bibid}{bibid}
@@ -196,11 +196,11 @@
 
 \smartcite[prenote][postnote]{bibid}
 \smartcite[postnote]{bibid}
-\smartcite{bibid}
+\smartcite{bibid}#c
 
 \Smartcite[prenote][postnote]{bibid}
 \Smartcite[postnote]{bibid}
-\Smartcite{bibid}
+\Smartcite{bibid}#c
 
 \smartcites{bibid}{bibid}
 \smartcites(post){bibid}{bibid}
@@ -277,23 +277,23 @@
 
 \citeauthor[prenote][postnote]{bibid}
 \citeauthor[postnote]{bibid}
-\citeauthor{bibid}
+\citeauthor{bibid}#c
 
 \citedate[prenote][postnote]{bibid}
 \citedate[postnote]{bibid}
-\citedate{bibid}
+\citedate{bibid}#c
 
 \Citeauthor[prenote][postnote]{bibid}
 \Citeauthor[postnote]{bibid}
-\Citeauthor{bibid}
+\Citeauthor{bibid}#c
 
 \citetitle[prenote][postnote]{bibid}
 \citetitle[postnote]{bibid}
-\citetitle{bibid}
+\citetitle{bibid}#c
 
 \citetitle*[prenote][postnote]{bibid}
 \citetitle*[postnote]{bibid}
-\citetitle*{bibid}
+\citetitle*{bibid}#c
 
 \citeyear[prenote][postnote]{bibid}
 \citeyear[postnote]{bibid}
@@ -301,35 +301,35 @@
 
 \citeurl[prenote][postnote]{bibid}
 \citeurl[postnote]{bibid}
-\citeurl{bibid}
+\citeurl{bibid}#c
 
-\nocite{bibid}
+\nocite{bibid}#c
 
 \fullcite[prenote][postnote]{bibid}
 \fullcite[postnote]{bibid}
-\fullcite{bibid}
+\fullcite{bibid}#c
 
 \footfullcite[prenote][postnote]{bibid}
 \footfullcite[postnote]{bibid}
-\footfullcite{bibid}
+\footfullcite{bibid}#c
 
 \citename[prenote][postnote]{bibid}[format]{name list}
 \citename[postnote]{bibid}[format]{name list}
 \citename[postnote]{bibid}{name list}
 \citename{bibid}[format]{name list}
-\citename{bibid}{name list}
+\citename{bibid}{name list}#c
 
 \citelist[prenote][postnote]{bibid}[format]{literallist}
 \citelist[postnote]{bibid}[format]{literal list}
 \citelist[postnote]{bibid}{literal list}
 \citelist{bibid}[format]{literal list}
-\citelist{bibid}{literal list}
+\citelist{bibid}{literal list}#c
 
 \citefield[prenote][postnote]{bibid}[format]{field}
 \citefield[postnote]{bibid}[format]{field}
 \citefield[postnote]{bibid}{field}
 \citefield{bibid}[format]{field}
-\citefield{bibid}{field}
+\citefield{bibid}{field}#c
 
 \citereset
 \citereset*

@@ -1203,6 +1203,12 @@ cwl files are used by the completer to propose possible commands and by the synt
   <tr><td>t</td><td>valid only in tabular environment (or similar)</td></tr>
   <tr><td>T</td><td>valid only in tabbing environment</td></tr>
   <tr><td>n</td><td>valid only in text environment (i.e. not math env)</td></tr>
+  <tr><td>r</td><td>this command declares a reference like "\ref{key}"</td></tr>
+  <tr><td>c</td><td>this command declares a citation like "\cite{key}"</td></tr>
+  <tr><td>l</td><td>this command declares a label like "\label{key}"</td></tr>
+  <tr><td>d</td><td>this command declares a definition command like "\newcommand{cmd}{def}"</td></tr>
+  <tr><td>g</td><td>this command declares a include graphcs command like "\includegraphics{file}"</td></tr>
+  <tr><td>u</td><td>this command declares a used package like "\usepackage{package}"</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>
@@ -1213,6 +1219,7 @@ cwl files are used by the completer to propose possible commands and by the synt
 	<tr><td><code># test</code></td><td>comment</td></tr>
 	<tr><td><code>\typein{msg}#*</code></td><td>unusual command which is only shown in completion "all"</td></tr>
 	<tr><td><code>\sqrt{arg}#m</code></td><td>only in math mode valid</td></tr>
+	<tr><td><code>\pageref{key}#r</code></td><td>declares a reference command which is used correctly for completion</td></tr>
 	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is only in the picture environment valid</td></tr>
 	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</code></td></tr>
 </table>

@@ -166,7 +166,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 					lr.word+=options.first();
 				}
 			}
-			if(ltxCommands->definitionCommands.contains(word)){ // don't check in command definition
+            if(ltxCommands->possibleCommands["%definition"].contains(word)){ // don't check in command definition
 				QStringList options;
 				QList<int> starts;
 				ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
@@ -179,7 +179,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 					break;
 				}
 			}
-			if(ltxCommands->refCommands.contains(word)||ltxCommands->labelCommands.contains(word)||ltxCommands->fileCommands.contains(word)||ltxCommands->citeCommands.contains(word)){ //don't check syntax in reference, label or include
+            if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->fileCommands.contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)){ //don't check syntax in reference, label or include
 				QStringList options;
 				ltxCommands->resolveCommandOptions(line,wordstart,options);
 				if(options.size()>0){

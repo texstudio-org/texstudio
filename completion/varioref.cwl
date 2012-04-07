@@ -1,8 +1,8 @@
 # mode: varioref.sty
 # dani/2006-02-18
-\fullref{label}
+\fullref{label}#r
 \labelformat{counter}{argument}
-\Ref{label}
+\Ref{label}#r
 \reftextafter{text}
 \reftextbefore{text}
 \reftextcurrent{text}
@@ -11,8 +11,8 @@
 \reftextfaraway
 \reftextlabelrange
 \reftextpagerange
-\vpageref{label}
-\vpageref*{label}
+\vpageref{label}#r
+\vpageref*{label}#r
 \vpagerefrange{fromlabel}{tolabel}
 \vpagerefrange*{fromlabel}{tolabel}
 \vpagerefrange[same page]{fromlabel}{tolabel}
@@ -21,10 +21,10 @@
 \vpageref*[samepage]{label}
 \vpageref[samepage][otherpage]{label}
 \vpageref*[samepage][otherpage]{label}
-\vref{label}
-\vref*{label}
-\Vref{label}
-\Vref*{label}
+\vref{label}#r
+\vref*{label}#r
+\Vref{label}#r
+\Vref*{label}#r
 \vrefpagenum{cmd}{label}
 \vrefrange{fromlabel}{tolabel}
 \vreftextvario{text1}{text2}

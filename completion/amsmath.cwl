@@ -82,7 +82,7 @@
 \end{xalignat}
 \end{xalignat*}
 \end{xxalignat}
-\eqref{label}
+\eqref{label}#r
 \hdotsfor{columns}
 \hdotsfor[multiplier]{columns}
 \idotsint#m

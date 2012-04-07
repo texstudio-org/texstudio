@@ -98,18 +98,18 @@ LatexParser& LatexParser::getInstance(){
 }
 
 void LatexParser::init(){
-	refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref" << "\\eqref"  << "\\nameref" << "\\vref" << "\\autoref" << "\\cref" << "\\Cref");
-	labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
-	citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
+    //refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref"  << "\\cref" << "\\Cref");
+    //labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
+    //citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-	definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
+    //definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
 	mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
 	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
-	tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
+    //tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
     fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
 	includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
-	graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
-	usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
+    //graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
+    //usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 
 	possibleCommands.clear();
 	possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
@@ -117,6 +117,12 @@ void LatexParser::init(){
 	possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
 	possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
 	possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
+    possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength";
+    possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
+    possibleCommands["%graphics"] << "\\includegraphics";
+    possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite" ;
+    possibleCommands["%label"] << "\\label";
+    possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref";
 }
 
 int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
@@ -957,11 +963,11 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	case 2:
 		if (environmentCommands.contains(command))
 			return Environment;
-		else if (labelCommands.contains(command))
+        else if (possibleCommands["%label"].contains(command))
 			return Label;
-		else if (refCommands.contains(command))
+        else if (possibleCommands["%ref"].contains(command))
 			return Reference;
-		else if (citeCommands.contains(command))
+        else if (possibleCommands["%cite"].contains(command))
 			return Citation;
 		else return Option;
 	default: return Unknown;
@@ -1315,9 +1321,9 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 		case '}':
 			if (reference!=-1) {
 				NextWordFlag result = NW_NOTHING;
-				if (lp->refCommands.contains(lastCommand)) result = NW_REFERENCE;
-				else if (lp->labelCommands.contains(lastCommand)) result = NW_LABEL;
-				else if (lp->citeCommands.contains(lastCommand)) result = NW_CITATION;
+                if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
+                else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
+                else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
 				if (result != NW_NOTHING) {
 					wordStartIndex=reference;
 					--index;
@@ -1339,7 +1345,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 		case '\\':
 			if (word.length()==1 || !(EscapedChars.contains(word.at(1)) || CharacterAlteringChars.contains(word.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
-				if (lp->refCommands.contains(word)||lp->labelCommands.contains(word)||lp->citeCommands.contains(word)){
+                if (lp->possibleCommands["%ref"].contains(word)||lp->possibleCommands["%label"].contains(word)||lp->possibleCommands["%cite"].contains(word)){
 					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 					lastCommand=word;
 					inReferenz=true;
@@ -1407,8 +1413,8 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	QFile tagsfile(fn);
 	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
 		QString line;
-		QRegExp rxCom("^(\\\\\\w+)(\\[.+\\])*\\{(.+)\\}");
-		QRegExp rxCom2("^(\\\\\\w+)\\[(.+)\\]");
+        QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.+)\\}");
+        QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
 		rxCom.setMinimal(true);
 		QStringList keywords;
 		keywords << "text" << "title";
@@ -1450,7 +1456,6 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 						hideFromCompletion=true;
 						valid.remove('S');
 					}
-					
 				}
 				// parse for spell checkable commands
 				int res=rxCom.indexIn(line);
@@ -1461,6 +1466,42 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 				if(keywords.contains(rxCom2.cap(2))){
 					package.optionCommands << rxCom2.cap(1);
 				}
+                if(valid.contains('d')){ // definition command
+                    if(res>-1){
+                        package.possibleCommands["%definition"] << rxCom.cap(1);
+                    }
+                    valid.remove('d');
+                }
+                if(valid.contains('l')){ // label command
+                    if(res>-1){
+                        package.possibleCommands["%label"] << rxCom.cap(1);
+                    }
+                    valid.remove('l');
+                }
+                if(valid.contains('r')){ // ref command
+                    if(res>-1){
+                        package.possibleCommands["%ref"] << rxCom.cap(1);
+                    }
+                    valid.remove('r');
+                }
+                if(valid.contains('c')){ // cite command
+                    if(res>-1){
+                        package.possibleCommands["%cite"] << rxCom.cap(1);
+                    }
+                    valid.remove('c');
+                }
+                if(valid.contains('g')){ // definition command
+                    if(res>-1){
+                        package.possibleCommands["%graphics"] << rxCom.cap(1);
+                    }
+                    valid.remove('g');
+                }
+                if(valid.contains('u')){ // usepackage command
+                    if(res>-1){
+                        package.possibleCommands["%usepackage"] << rxCom.cap(1);
+                    }
+                    valid.remove('u');
+                }
 				// normal commands for syntax checking
 				// will be extended to distinguish between normal and math commands
 				if(valid.isEmpty() || valid.contains('n')){

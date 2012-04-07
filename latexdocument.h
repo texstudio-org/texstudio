@@ -85,8 +85,6 @@ public:
 	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
 	QSet<QString> lastCompiledBibTeXFiles;
 	
-	//	QMap<QString,DocumentLine> mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
-	//	QSet<QString> allBibTeXIds;
 private:	
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle*,ReferencePair>& list);
 public:
@@ -105,9 +103,7 @@ public:
 	QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
 	QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
 	
-	//void includeDocument(LatexDocument* includedDocument);
-	
-	//QString getAbsoluteFilePath(const QString& relativePath); //returns the absolute file path for an included file
+    void patchLinesContaining(const QStringList cmds);
 	
 	StructureEntry* baseStructure;
 	
