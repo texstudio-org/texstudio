@@ -1100,7 +1100,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	QString id=helpIndices.value(cmd,"");
 	if (id=="") return;
 	QString topic;
-	if(latexParser.refCommands.contains(cmd)){
+    if(latexParser.possibleCommands["%ref"].contains(cmd)){
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
 		value.remove(0,i+1);

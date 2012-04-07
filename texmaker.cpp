@@ -3011,7 +3011,7 @@ void Texmaker::NormalCompletion() {
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
 	case LatexParser::Option:
-		if(latexParser.graphicsIncludeCommands.contains(command)){
+        if(latexParser.possibleCommands["%graphics"].contains(command)){
 			QString fn=documents.getCompileFileName();
 			QFileInfo fi(fn);
 			completer->setWorkPath(fi.absolutePath());
@@ -4737,23 +4737,23 @@ void Texmaker::updateCompleter() {
 	foreach (const QString& cmd, words) 
 		if (citeCommandCheck.exactMatch(cmd)) { //todo: get rid of duplication
 			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.citeCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+            latexParser.possibleCommands["%cite"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
 		} else if (refCommandCheck.exactMatch(cmd)){
 			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.refCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+            latexParser.possibleCommands["%ref"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
 		}
 	foreach (const QString& cmd, configManager.completerConfig->words) 
 		if (citeCommandCheck.exactMatch(cmd)) {
 			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.citeCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+            latexParser.possibleCommands["%cite"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
 		} else if (refCommandCheck.exactMatch(cmd)){
 			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.refCommands.insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
+            latexParser.possibleCommands["%ref"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
 		}
 
 	// collect user commands and references
 	foreach(const LatexDocument* doc,docs){
-		foreach(const QString& refCommand, latexParser.refCommands){
+        foreach(const QString& refCommand, latexParser.possibleCommands["%ref"]){
 			QString temp=refCommand+"{%1}";
 			foreach (const QString& l, doc->labelItems())
 				words.insert(temp.arg(l));
@@ -4768,7 +4768,7 @@ void Texmaker::updateCompleter() {
 			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
 			
 			//automatic use of cite commands
-			foreach(const QString& citeCommand, latexParser.citeCommands){
+            foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
 				QString temp=citeCommand+"{%1}";
 				for (int i=0; i<bibTex.ids.count();i++)
 					words.insert(temp.arg(bibTex.ids[i]));

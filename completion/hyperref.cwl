@@ -21,12 +21,12 @@
 
 \phantomsection
 
-\autopageref{label}
-\autopageref*{label}
-\autoref{label}
-\autoref*{label}
-\ref*{label}
-\pageref*{label}
+\autopageref{label}#r
+\autopageref*{label}#r
+\autoref{label}#r
+\autoref*{label}#r
+\ref*{label}#r
+\pageref*{label}#r
 
 \pdfstringdef{macroname}{TEXstring}
 \pdfbookmark[level]{text}{name}

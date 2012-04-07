@@ -20,7 +20,8 @@
 \SI[options]{value}[pre-unit]{unit commands}
 \SIlist[options]{values}{unit commands}
 \SIrange[options]{value1}{value2}{unit commands}
-
+# Declaration
+\DeclareSIUnit{unit}{definition}#d
 # Powers of units
 \Square
 \ssquare

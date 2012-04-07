@@ -1,4 +1,4 @@
 # sdm
 # nameref
-\nameref{label}
-\Nameref{label}
+\nameref{label}#r
+\Nameref{label}#r
