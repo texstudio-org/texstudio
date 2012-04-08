@@ -23,9 +23,10 @@ public:
 	const QSet<QChar>& getAcceptedChars(){return acceptedChars;}
 	bool isNextCharPossible(const QChar &c); //does this character lead to a new possible word
 	void filterList(const QString &word,int mostUsed=-1,bool fetchMore=false);
-	void setBaseWords(const QSet<QString> &newwords, bool normalTextList);
-	void setBaseWords(const QList<CompletionWord> &newwords, bool normalTextList);
+	void setBaseWords(const QSet<QString> &newwords,CompletionType completionType);
+	void setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType);
 	void setAbbrevWords(const QList<CompletionWord> &newwords);
+        void setCitationWords(const QList<CompletionWord> &newwords);
 	void incUsage(const QModelIndex &index);
 	void setConfig(LatexCompleterConfig* newConfig);
 	virtual bool canFetchMore(const QModelIndex &parent) const;
@@ -37,7 +38,7 @@ private:
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-	QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev;
+        QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations;
 	QSet<QChar> acceptedChars;
 	int mostUsedUpdated;
 

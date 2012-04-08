@@ -675,14 +675,14 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 }
 
 typedef QPair<int,int> PairIntInt;
-void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool normalTextList) {
+void CompletionListModel::setBaseWords(const QSet<QString> &newwords, CompletionType completionType) {
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
 	for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
 		QString str=*i;
 		CompletionWord cw(str);
-		if(!normalTextList){
+		if(completionType==CT_COMMANDS){
 			cw.index=qHash(str);
 			cw.snippetLength=str.length();
 			cw.usageCount=0;
@@ -703,12 +703,23 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, bool norma
 	}
 	qSort(newWordList.begin(), newWordList.end());
 	
-	if (normalTextList) wordsText=newWordList;
-	else wordsCommands=newWordList;
+	switch(completionType){
+	case CT_NORMALTEXT:
+	    wordsText=newWordList;
+	    break;
+	case CT_CITATIONS:
+	    wordsCitations=newWordList;
+	    break;
+	default:
+	    wordsCommands=newWordList;
+	}
+
+	//if (completionType==CT_NORMALTEXT) wordsText=newWordList;
+	//else wordsCommands=newWordList;
 	baselist=wordsCommands;
 }
 
-void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bool normalTextList) {
+void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType) {
 	QList<CompletionWord> newWordList;
 	acceptedChars.clear();
 	newWordList.clear();
@@ -718,13 +729,28 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, bo
 	}
 	qSort(newWordList.begin(), newWordList.end());
 	
-	if (normalTextList) wordsText=newWordList;
-	else wordsCommands=newWordList;
+	//if (completionType==CT_NORMALTEXT) wordsText=newWordList;
+	//else wordsCommands=newWordList;
+	switch(completionType){
+	case CT_NORMALTEXT:
+	    wordsText=newWordList;
+	    break;
+	case CT_CITATIONS:
+	    wordsCitations=newWordList;
+	    break;
+	default:
+	    wordsCommands=newWordList;
+	}
+
 	baselist=wordsCommands;
 }
 
 void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) {
 	wordsAbbrev=newwords;
+}
+
+void CompletionListModel::setCitationWords(const QList<CompletionWord> &newwords) {
+        wordsCitations=newwords;
 }
 
 void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
@@ -809,11 +835,11 @@ void LatexCompleter::insertText(QString txt){
 	filterList(cur,completerInputBinding->getMostUsed());
 }
 
-void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, bool normalTextList) {
+void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType) {
 	QSet<QString> concated;
-	if (config && !normalTextList) concated.unite(config->words.toSet());
+	if (config && completionType==CT_COMMANDS) concated.unite(config->words.toSet());
 	concated.unite(newwords);
-	listModel->setBaseWords(concated,normalTextList);
+	listModel->setBaseWords(concated,completionType);
 	widget->resize(200,200);
 }
 
@@ -865,6 +891,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	Q_ASSERT(list); Q_ASSERT(listModel); Q_ASSERT(completerInputBinding);
 	forcedRef=flags & CF_FORCE_REF;
 	forcedGraphic=flags & CF_FORCE_GRAPHIC;
+        forcedCite=flags & CF_FORCE_CITE;
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
 		if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -914,14 +941,18 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 			dirReader->start();
 		}
 		QSet<QString> files;
-		listModel->setBaseWords(files,true);
+		listModel->setBaseWords(files,CT_NORMALTEXT);
 		listModel->baselist=listModel->wordsText;
 	}else{
+            if(forcedCite){
+                listModel->baselist=listModel->wordsCitations;
+            }else{
 		if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
 		else listModel->baselist=listModel->wordsCommands;
 		listModel->baselist << listModel->wordsAbbrev;
 		QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
 		std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
+            }
 	}
 	//qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
@@ -930,6 +961,12 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		if (flags & CF_FORCE_GRAPHIC) start=0;
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
 		if (flags & CF_NORMAL_TEXT) eow+="{";
+		if (flags & CF_FORCE_CITE){
+		    eow+="{";
+		    eow.remove(".");
+		    eow.remove(":");
+		    eow.remove("_");
+		}
 		if (flags & CF_FORCE_GRAPHIC) {
 			eow+="{";
 			eow.remove("/");
@@ -947,6 +984,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 			} else if (eow.contains(lineText.at(i))) {
 				if (flags & CF_NORMAL_TEXT) start=i+1;
 				if (flags & CF_FORCE_GRAPHIC) start=i+1;
+				if (flags & CF_FORCE_CITE) start=i+1;
 				break;
 			}
 		}
@@ -993,7 +1031,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 }
 
 void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
-	listModel->setBaseWords(content,true);
+	listModel->setBaseWords(content,CT_NORMALTEXT);
 	listModel->baselist=listModel->wordsText;
 	//setTab(2);
 	completerInputBinding->setMostUsed(2);
