@@ -20,6 +20,7 @@
 #include "qeditor.h"
 #include "latexeditorview.h"
 #include "directoryreader.h"
+#include "bibtexreader.h"
 
 //#include "qdocumentline_p.h"
 
@@ -68,7 +69,8 @@ public:
 
 	void insertText(QString txt);
 signals:
-        void setDirectoryForCompletion(QString fn);
+    void setDirectoryForCompletion(QString fn);
+    void searchBibtexSection(QString file,QString bibId);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
@@ -77,7 +79,7 @@ private:
 	int maxWordLen;
 	QListView * list;
 	CompletionListModel* listModel;
-        directoryReader *dirReader;
+    directoryReader *dirReader;
 	QEditor *editor;
 
 	QWidget *widget;
@@ -95,8 +97,13 @@ private:
 
 	bool forcedRef;
 	bool forcedGraphic;
-        bool forcedCite;
+    bool forcedCite;
 	QString workingDir;
+
+    QPoint lastPos;
+    bibtexReader *bibReader;
+
+    void showTooltip(QString topic);
 
 private slots:
 	void cursorPositionChanged();
@@ -105,6 +112,7 @@ private slots:
 	void changeView(int pos);
 	void listClicked(QModelIndex index);
 	void directoryLoaded(QString dn,QSet<QString> content);
+    void bibtexSectionFound(QString bibId, QString content);
 };
 
 #endif
