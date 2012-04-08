@@ -3010,6 +3010,9 @@ void Texmaker::NormalCompletion() {
 	case LatexParser::Reference:
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
+        case LatexParser::Citation:
+                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
+                break;
 	case LatexParser::Option:
         if(latexParser.possibleCommands["%graphics"].contains(command)){
 			QString fn=documents.getCompileFileName();
@@ -3048,7 +3051,7 @@ void Texmaker::NormalCompletion() {
 				}
 			}
 			
-			completer->setAdditionalWords(words, true);
+			completer->setAdditionalWords(words,CT_NORMALTEXT);
 			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 		}
 	}
@@ -3114,7 +3117,7 @@ void Texmaker::InsertTextCompletion() {
 			}
 		}
 		
-		completer->setAdditionalWords(words, true);
+		completer->setAdditionalWords(words, CT_NORMALTEXT);
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 	}
 }
@@ -4760,24 +4763,26 @@ void Texmaker::updateCompleter() {
 		}
 	}
 	if (configManager.parseBibTeX)
-		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
-			if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
+	    for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
+	    if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
                 qDebug("BibTeX-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
-				continue; //wtf?s
-			}
-			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
-			
-			//automatic use of cite commands
+		continue; //wtf?s
+	    }
+	    BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
+
+	    //automatic use of cite commands
             foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
-				QString temp=citeCommand+"{%1}";
-				for (int i=0; i<bibTex.ids.count();i++)
-					words.insert(temp.arg(bibTex.ids[i]));
-			}
-		}
+		QString temp=citeCommand+"{%1}";
+		for (int i=0; i<bibTex.ids.count();i++)
+		    words.insert(temp.arg(bibTex.ids[i]));
+	    }
+	    // add citation to completer for direct citation completion
+	    completer->setAdditionalWords(bibTex.ids.toSet(),CT_CITATIONS);
+	}
 	
 	completionBaseCommandsUpdated=false;
 	
-	completer->setAdditionalWords(words,false);
+	completer->setAdditionalWords(words,CT_COMMANDS);
 	if(edView) edView->viewActivated();
 	
 	if (!LatexCompleter::hasHelpfile()) {

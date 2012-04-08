@@ -31,14 +31,14 @@ class LatexCompleterConfig;
 class LatexCompleter : public QObject  {
 	Q_OBJECT
 public:
-	enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16};
+        enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
 
 	LatexCompleter(const LatexParser& latexParser, QObject *p = 0);
 	virtual ~LatexCompleter();
 
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
-	void setAdditionalWords(const QSet<QString> &newwords, bool normalTextList=false);
+	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType=CT_COMMANDS);
 	void updateAbbreviations();
 
 	static void parseHelpfile(QString text);
@@ -95,6 +95,7 @@ private:
 
 	bool forcedRef;
 	bool forcedGraphic;
+        bool forcedCite;
 	QString workingDir;
 
 private slots:
