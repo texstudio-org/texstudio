@@ -15,6 +15,7 @@
 #include "qdocument.h"
 #include "syntaxcheck.h"
 #include "grammarcheck.h"
+#include "bibtexreader.h"
 
 class QDocumentLineHandle;
 
@@ -118,6 +119,9 @@ private:
 
 	SyntaxCheck SynChecker;
 
+    bibtexReader *bibReader;
+    QPoint lastPos;
+
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
@@ -162,6 +166,8 @@ public slots:
 	void displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors);
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);
 	void updateGrammarOverlays();
+
+    void bibtexSectionFound(QString bibId,QString content);
 public:
 	static void setGrammarOverlayDisabled(int type, bool show);
 signals:
@@ -176,6 +182,7 @@ signals:
 	void spellerChanged(const QString &name);
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
+    void searchBibtexSection(QString file,QString bibId);
 };
 
 
