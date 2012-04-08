@@ -4762,23 +4762,26 @@ void Texmaker::updateCompleter() {
 				words.insert(temp.arg(l));
 		}
 	}
-	if (configManager.parseBibTeX)
-	    for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
-	    if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
+    if (configManager.parseBibTeX){
+        QStringList bibIds;
+        for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
+            if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
                 qDebug("BibTeX-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
-		continue; //wtf?s
-	    }
-	    BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
+                continue; //wtf?s
+            }
+            BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
 
-	    //automatic use of cite commands
+            //automatic use of cite commands
             foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
-		QString temp=citeCommand+"{%1}";
-		for (int i=0; i<bibTex.ids.count();i++)
-		    words.insert(temp.arg(bibTex.ids[i]));
-	    }
-	    // add citation to completer for direct citation completion
-	    completer->setAdditionalWords(bibTex.ids.toSet(),CT_CITATIONS);
-	}
+                QString temp=citeCommand+"{%1}";
+                for (int i=0; i<bibTex.ids.count();i++)
+                    words.insert(temp.arg(bibTex.ids[i]));
+            }
+            // add citation to completer for direct citation completion
+            bibIds<<bibTex.ids;
+        }
+        completer->setAdditionalWords(bibIds.toSet(),CT_CITATIONS);
+    }
 	
 	completionBaseCommandsUpdated=false;
 	

@@ -1440,7 +1440,10 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QStringList bibIDs;
             // get value at cursor point ...
             int col_start=cursor.columnNumber();
-            int col_stop=cursor.columnNumber();
+            if(col_start>=line.length())
+                col_start=line.length()-1;
+            int col_stop=col_start;
+
             QString eow="{,";
             while(col_start>=0 && !eow.contains(line.at(col_start)))
                 col_start--;
