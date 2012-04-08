@@ -896,7 +896,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	Q_ASSERT(list); Q_ASSERT(listModel); Q_ASSERT(completerInputBinding);
 	forcedRef=flags & CF_FORCE_REF;
 	forcedGraphic=flags & CF_FORCE_GRAPHIC;
-        forcedCite=flags & CF_FORCE_CITE;
+    forcedCite=flags & CF_FORCE_CITE;
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
 		if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -1138,10 +1138,10 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	if (!index.isValid()) return;
 	if (index.row() < 0 || index.row()>=listModel->words.size()) return;
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
-	if (wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
+    if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
 	QString cmd=wordrx.cap(0);
 	QString id=helpIndices.value(cmd,"");
-	if (id=="") return;
+    if (!forcedCite && id=="") return;
 	QString topic;
     if(latexParser.possibleCommands["%ref"].contains(cmd)){
 		QString value=listModel->words[index.row()].word;
@@ -1173,7 +1173,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			}
 		}
 	}else{
-        if(latexParser.possibleCommands["%cite"].contains(cmd)){
+        if(forcedCite || latexParser.possibleCommands["%cite"].contains(cmd)){
             QString value=listModel->words[index.row()].word;
             int i=value.indexOf("{");
             value.remove(0,i+1);
