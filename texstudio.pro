@@ -111,7 +111,8 @@ HEADERS += texmaker.h \
     diff/diff_match_patch.h \
     diffoperations.h \
     grammarcheck.h \
-    grammarcheck_config.h
+    grammarcheck_config.h \
+    bibtexreader.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -190,7 +191,8 @@ SOURCES += main.cpp \
     directoryreader.cpp \
     diff/diff_match_patch.cpp \
     diffoperations.cpp \
-    grammarcheck.cpp
+    grammarcheck.cpp \
+    bibtexreader.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \

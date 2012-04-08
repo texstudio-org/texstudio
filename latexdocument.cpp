@@ -1609,7 +1609,18 @@ void LatexDocuments::updateBibFiles(){
 			if (documents[i]->getEditorView())
 				documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
 		bibTeXFilesModified=true;
-	}
+    }
+}
+
+QString LatexDocuments::findFileFromBibId(QString bibId)
+{
+    QStringList keys=bibTeXFiles.keys();
+    foreach(const QString key,keys){
+        if(bibTeXFiles.value(key).ids.contains(bibId)){
+            return key;
+        }
+    }
+    return QString();
 }
 
 void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){

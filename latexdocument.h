@@ -296,7 +296,7 @@ public:
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
-	
+    QString findFileFromBibId(QString bibId);
 	
 	void updateStructure();
 	void updateLayout();

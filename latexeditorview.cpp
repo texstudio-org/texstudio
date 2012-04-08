@@ -292,7 +292,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),lastSetBookmark(0),config(aconfig) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),lastSetBookmark(0),config(aconfig),bibReader(0) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -359,6 +359,10 @@ LatexEditorView::~LatexEditorView() {
 	
 	SynChecker.stop();
 	SynChecker.wait();
+    if(bibReader){
+        bibReader->quit();
+        bibReader->wait();
+    }
 }
 
 void LatexEditorView::updateLtxCommands(){
@@ -1432,8 +1436,19 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		break;
 	case LatexParser::Citation:
 		if (bibTeXIds) {
-			QString tooltip(tr("Citation correct"));
+            QString tooltip(tr("Citation correct (reading ...)"));
 			QStringList bibIDs;
+            // get value at cursor point ...
+            int col_start=cursor.columnNumber();
+            int col_stop=cursor.columnNumber();
+            QString eow="{,";
+            while(col_start>=0 && !eow.contains(line.at(col_start)))
+                col_start--;
+            eow="},";
+            while(col_stop<line.length() && !eow.contains(line.at(col_stop)))
+                col_stop++;
+            value=line.mid(col_start+1,col_stop-col_start-1);
+
 			foreach (const QString &cit, value.split(',')) {
 				//trim left (left spaces are ignored by \cite, right space not)
 				int j;
@@ -1455,8 +1470,21 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("One ore more ids end with space. Trailing spaces are not ignored by BibTeX."));
 						break;
 					}
-			}
-			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
+            }else{
+                // read entry in bibtex file
+                if(!bibReader){
+                    bibReader=new bibtexReader(this);
+                    connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
+                    connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+                    bibReader->start();
+                }
+                QString file=document->parent->findFileFromBibId(value);
+                lastPos=pos;
+                if(!file.isEmpty())
+                    emit searchBibtexSection(file,value);
+                return;
+            }
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
 		break;
 	default:
@@ -1801,6 +1829,8 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 	return inverterSingleton;
 }
 
-
+void LatexEditorView::bibtexSectionFound(QString bibId, QString content){
+    QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(lastPos)), content);
+}
 
 

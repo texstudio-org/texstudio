@@ -3007,12 +3007,12 @@ void Texmaker::NormalCompletion() {
 	case LatexParser::Environment:
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case LatexParser::Reference:
-		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
-		break;
-        case LatexParser::Citation:
-                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
-                break;
+    case LatexParser::Reference:
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
+        break;
+    case LatexParser::Citation:
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
+        break;
 	case LatexParser::Option:
         if(latexParser.possibleCommands["%graphics"].contains(command)){
 			QString fn=documents.getCompileFileName();
