@@ -780,6 +780,7 @@ LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObj
 	editor=0;
 	workingDir="/";
 	dirReader=0;
+    bibReader=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
 	QVBoxLayout *layout = new QVBoxLayout;
@@ -812,6 +813,10 @@ LatexCompleter::~LatexCompleter() {
 		dirReader->quit();
 		dirReader->wait();
 	}
+    if(bibReader){
+        bibReader->quit();
+        bibReader->wait();
+    }
 	//delete list;
 }
 
@@ -1168,74 +1173,103 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			}
 		}
 	}else{
-		QString aim="<a name=\""+id;
-		int pos=helpIndicesCache.value(wordrx.cap(0),-2);
-		if (pos==-2) {
-			//search id in help file
-			//QRegExp aim ("<a\\s+name=\""+id);
-			pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
-			helpIndicesCache.insert(wordrx.cap(0),pos);
-		}
-		if (pos<0) return;
-		//get whole topic of the line
-		int opos=pos;
-		while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
-		topic=helpFile.mid(pos);
-		if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
-		else {
-			QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
-			int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
-			topic=topic.left(nextpos);
-		}
-	}
-	topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
-	QRect r = list->visualRect(index);
-	QDocumentCursor c=editor->cursor();
-	QRect screen = QApplication::desktop()->availableGeometry();
-	int lineHeight=c.line().document()->getLineSpacing();
-	QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
-	int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
-	// estimate width of coming tooltip
-	// rather dirty code
-	QLabel lLabel(0,Qt::ToolTip);
+        if(latexParser.possibleCommands["%cite"].contains(cmd)){
+            QString value=listModel->words[index.row()].word;
+            int i=value.indexOf("{");
+            value.remove(0,i+1);
+            i=value.indexOf("}");
+            value=value.left(i);
+            LatexDocument *document=qobject_cast<LatexDocument *>(editor->document());
+            if(!bibReader){
+                bibReader=new bibtexReader(this);
+                connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
+                connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+                bibReader->start();
+            }
+            QString file=document->parent->findFileFromBibId(value);
+            if(!file.isEmpty())
+                emit searchBibtexSection(file,value);
+            return;
+        }else{
+            QString aim="<a name=\""+id;
+            int pos=helpIndicesCache.value(wordrx.cap(0),-2);
+            if (pos==-2) {
+                //search id in help file
+                //QRegExp aim ("<a\\s+name=\""+id);
+                pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
+                helpIndicesCache.insert(wordrx.cap(0),pos);
+            }
+            if (pos<0) return;
+            //get whole topic of the line
+            int opos=pos;
+            while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
+            topic=helpFile.mid(pos);
+            if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
+            else {
+                QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
+                int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
+                topic=topic.left(nextpos);
+            }
+        }
+    }
+    showTooltip(topic);
+}
+
+void LatexCompleter::showTooltip(QString topic){
+    QModelIndex index=list->currentIndex();
+    topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
+    QRect r = list->visualRect(index);
+    QDocumentCursor c=editor->cursor();
+    QRect screen = QApplication::desktop()->availableGeometry();
+    int lineHeight=c.line().document()->getLineSpacing();
+    QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
+    int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
+    // estimate width of coming tooltip
+    // rather dirty code
+    QLabel lLabel(0,Qt::ToolTip);
 #if QT_VERSION >= 0x040400
-	lLabel.setForegroundRole(QPalette::ToolTipText);
-	lLabel.setBackgroundRole(QPalette::ToolTipBase);
+    lLabel.setForegroundRole(QPalette::ToolTipText);
+    lLabel.setBackgroundRole(QPalette::ToolTipBase);
 #else
-	lLabel.setForegroundRole(QPalette::Text);
-	lLabel.setBackgroundRole(QPalette::AlternateBase);
+    lLabel.setForegroundRole(QPalette::Text);
+    lLabel.setBackgroundRole(QPalette::AlternateBase);
 #endif
-	lLabel.setPalette(QToolTip::palette());
-	lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
-	lLabel.setFrameStyle(QFrame::StyledPanel);
-	lLabel.setAlignment(Qt::AlignLeft);
-	lLabel.setIndent(1);
-	lLabel.setWordWrap(true);
-	lLabel.ensurePolished();
-	lLabel.setText(topic);
-	lLabel.adjustSize();
-	
-	
-	int textWidthInPixels = lLabel.width()+10; // +10 good guess
-	
-	if(lineY>tt.y()){
-		tt.setY(lineY-lLabel.height()-lineHeight-5);
-	}
-	
-	if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
-	else {
-		//list->mapToGlobal
-		QPoint tt=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()-lineHeight));
-		if(lineY>tt.y()){
-			tt.setY(lineY-lLabel.height()-lineHeight-5);
-		}
-		QToolTip::showText(tt, topic, list,QRect(-300,-200,300,600));
-	}
+    lLabel.setPalette(QToolTip::palette());
+    lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
+    lLabel.setFrameStyle(QFrame::StyledPanel);
+    lLabel.setAlignment(Qt::AlignLeft);
+    lLabel.setIndent(1);
+    lLabel.setWordWrap(true);
+    lLabel.ensurePolished();
+    lLabel.setText(topic);
+    lLabel.adjustSize();
+
+
+    int textWidthInPixels = lLabel.width()+10; // +10 good guess
+
+    if(lineY>tt.y()){
+        tt.setY(lineY-lLabel.height()-lineHeight-5);
+    }
+
+    if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
+    else {
+        //list->mapToGlobal
+        QPoint tt=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()-lineHeight));
+        if(lineY>tt.y()){
+            tt.setY(lineY-lLabel.height()-lineHeight-5);
+        }
+        QToolTip::showText(tt, topic, list,QRect(-300,-200,300,600));
+    }
 }
 
 void LatexCompleter::editorDestroyed() {
 	editor=0;
 }
+
+void LatexCompleter::bibtexSectionFound(QString bibId, QString content){
+    showTooltip(content);
+}
+
 
 QString LatexCompleter::lookupWord(QString text){
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
