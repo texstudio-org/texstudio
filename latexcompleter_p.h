@@ -38,7 +38,7 @@ private:
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-        QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations;
+    QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations;
 	QSet<QChar> acceptedChars;
 	int mostUsedUpdated;
 
@@ -49,7 +49,7 @@ private:
 
 	int mWordCount;
 
-	QList<CompletionWord>::const_iterator it;
+    QList<CompletionWord>::iterator it;
 
 	static LatexCompleterConfig* config;
 };

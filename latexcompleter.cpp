@@ -596,9 +596,10 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 	}
 	int cnt=0;
 	QString sortWord = makeSortWord(word);
-	if(!fetchMore)
-		it=qLowerBound(baselist,CompletionWord(word));
-	while(it!=baselist.constEnd()){
+    if(!fetchMore){
+        it=qLowerBound(baselist.begin(),baselist.end(),CompletionWord(word));
+    }
+    while(it!=baselist.end()){
 		if (it->word.startsWith(word,cs) &&
 		              (!checkFirstChar || it->word[1] == word[1]) ){
 			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
