@@ -147,16 +147,16 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("dvips",       "dvips",        "DviPs",       "-o %.ps %.dvi", "Tools/Dvips");
 	registerCommand("dvipng",      "dvipng",       "DviPng",      "-T tight -D 120 %.dvi", "Tools/Dvipng");
 	registerCommand("ps2pdf",      "ps2pdf",       "Ps2Pdf",      "%.ps", "Tools/Ps2pdf");
-	registerCommand("dvipdf",      "dvipdf",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
+	registerCommand("dvipdf",      "dvipdf;dvipdfm",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
 	registerCommand("bibtex",      "bibtex",       "BibTeX",       ON_WIN("%") ON_NIX("%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
 	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux")); 
 	registerCommand("biber",       "biber",        "biber" ,       "%"); //todo: correct parameter?
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
-	registerCommand("makeglossary","makeglossary", "Makeglossary", "");
+	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
 	registerCommand("texindy",     "texindy",      "Texindy", "");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
-	registerCommand("gs",          "gs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
+	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	registerCommand("latexmk",     "latexmk",      "Latexmk", "%");
 
 	
@@ -468,10 +468,11 @@ QString findGhostscriptDLL() { //called dll, may also find an exe
 #endif
 
 QString searchBaseCommand(const QString &cmd, QString options) {
-	QString fileName=cmd   ON_WIN(+ ".exe"); 
+    foreach(QString command,cmd.split(";")){
+	QString fileName=command   ON_WIN(+ ".exe");
 	if (!options.startsWith(" ")) options=" "+options;
 	if (!BuildManager::findFileInPath(fileName).isEmpty())
-		return cmd+options; //found in path
+		return fileName+options; //found in path
 	else {
 		//platform dependent mess
 #ifdef Q_WS_WIN
@@ -500,7 +501,8 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 				return p+fileName+options;
 #endif
 	}
-	return "";
+    }
+    return "";
 }
 
 ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOptions& options){
