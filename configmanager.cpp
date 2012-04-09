@@ -1970,7 +1970,10 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 	QWidget * parent = gl->parentWidget();
 	QWidget *l;
 	if (cmd.user) l = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
-	else l = new QLabel(cmd.displayName, parent);
+	else {
+		l = new QLabel(cmd.displayName, parent);
+		l->setToolTip("ID: txs:///"+cmd.id);
+	}
 	QWidget* w;
 	if (cmd.metaSuggestionList.isEmpty()) {
 		w = new QLineEdit(cmd.getPrettyCommand(), parent);
