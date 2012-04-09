@@ -5983,7 +5983,7 @@ void Texmaker::findNextWordRepetion(){
 	if (!currentEditorView()) return;
 	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int);
 	OverlaySearch overlaySearch = backward?&QDocumentLine::getLastOverlayBetween:&QDocumentLine::getFirstOverlayBetween;
-	int overlayType = QDocument::formatFactory()->id("styleHint");
+	int overlayType = QDocument::formatFactory()->id("wordRepetition");
 	QDocumentCursor cur = currentEditor()->cursor();
 	if (cur.hasSelection()){
 		if (backward) cur = cur.selectionStart();
@@ -6008,6 +6008,7 @@ void Texmaker::findNextWordRepetion(){
 		fx = 0;
 		tx = line.length();
 	}
+	txsInformation(backward ? tr("Reached beginning of text.") : tr("Reached end of text."));
 }
 
 void Texmaker::latexModelViewMode(){
