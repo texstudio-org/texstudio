@@ -38,6 +38,8 @@
         <file>images/go-last.png</file>
         <file>images/go-next.png</file>
         <file>images/go-previous.png</file>
+        <file>images/go-next-diff.png</file>
+        <file>images/go-previous-diff.png</file>
         <file>images/warning.png</file>
         <file>images/error.png</file>
         <file>images/asymptote.png</file>
@@ -286,6 +288,7 @@
         <file>images/cutCol.png</file>
         <file>images/pasteCol.png</file>
         <file>images/alignCols.png</file>
+		<file>images/image.png</file>
         <file>completion/pifont.cwl</file>
         <file>completion/theorem.cwl</file>
         <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>

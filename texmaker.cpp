@@ -739,7 +739,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "tabular",tr("Quick &Tabular..."), SLOT(QuickTabular()));
 	newManagedAction(menu, "tabbing",tr("Quick T&abbing..."), SLOT(QuickTabbing()));
 	newManagedAction(menu, "array",tr("Quick &Array..."), SLOT(QuickArray()));
-	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()));
+	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()), QKeySequence(), ":images/image.png");
 	
 	menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
 	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
