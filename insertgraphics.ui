@@ -81,6 +81,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string>Defines the options for \includegraphics[options]{file}.</string>
+     </property>
      <property name="title">
       <string>Graphics options</string>
      </property>
@@ -143,7 +146,11 @@
        </widget>
       </item>
       <item row="3" column="0" colspan="4">
-       <widget class="QLineEdit" name="leScale"/>
+       <widget class="QLineEdit" name="leScale">
+        <property name="toolTip">
+         <string>Defines the options for \includegraphics[options]{file}.</string>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QRadioButton" name="rbUser">
@@ -261,7 +268,11 @@
        </widget>
       </item>
       <item row="2" column="1" colspan="3">
-       <widget class="QLineEdit" name="leLabel"/>
+       <widget class="QLineEdit" name="leLabel">
+        <property name="toolTip">
+         <string>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</string>
+        </property>
+       </widget>
       </item>
       <item row="5" column="0" colspan="2">
        <widget class="QCheckBox" name="cbSpan">
@@ -291,6 +302,16 @@
             <width>40</width>
             <height>100</height>
            </size>
+          </property>
+          <property name="toolTip">
+           <string>Suggest priorities, where the figure should appear.
+
+Here: At this position in the text
+Top: At the top the page
+Bottom: At the bottom of the page
+Page: On a separate page with figures
+
+Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </string>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>

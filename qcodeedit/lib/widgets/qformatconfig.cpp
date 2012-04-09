@@ -54,18 +54,29 @@ QFormatConfig::QFormatConfig(QWidget *w)
 			m_table->setHorizontalHeaderItem(i, new QTableWidgetItem());
 	Q_ASSERT(m_table->horizontalHeaderItem(0)!=0);
 	m_table->horizontalHeaderItem(0)->setText(tr("Identifier"));
+	m_table->horizontalHeaderItem(1)->setToolTip(tr("Bold"));
 	m_table->horizontalHeaderItem(1)->setIcon(QIcon(":/images/qcodeedit/bold.png"));
+	m_table->horizontalHeaderItem(2)->setToolTip(tr("Italic"));
 	m_table->horizontalHeaderItem(2)->setIcon(QIcon(":/images/qcodeedit/italic.png"));
+	m_table->horizontalHeaderItem(3)->setToolTip(tr("Underline"));
 	m_table->horizontalHeaderItem(3)->setIcon(QIcon(":/images/qcodeedit/underline.png"));
+	m_table->horizontalHeaderItem(4)->setToolTip(tr("Overline"));
 	m_table->horizontalHeaderItem(4)->setIcon(QIcon(":/images/qcodeedit/overline.png"));
+	m_table->horizontalHeaderItem(5)->setToolTip(tr("Strikeout"));
 	m_table->horizontalHeaderItem(5)->setIcon(QIcon(":/images/qcodeedit/strikeout.png"));
+	m_table->horizontalHeaderItem(6)->setToolTip(tr("Wave underline"));
 	m_table->horizontalHeaderItem(6)->setIcon(QIcon(":/images/qcodeedit/waveUnderline.png"));
+	m_table->horizontalHeaderItem(7)->setToolTip(tr("Text color (aka foreground)"));
 	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/images/qcodeedit/textcolor.png"));
+	m_table->horizontalHeaderItem(8)->setToolTip(tr("Background color"));
 	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
+	m_table->horizontalHeaderItem(9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
-	m_table->horizontalHeaderItem(10)->setText(tr("font"));
-	m_table->horizontalHeaderItem(11)->setText(tr("size")); // don't vary point size as the drwaing engine can't cope with it
-	m_table->horizontalHeaderItem(12)->setText(tr("prio"));  //TODO: images
+	m_table->horizontalHeaderItem(10)->setText(tr("Font Family"));
+	m_table->horizontalHeaderItem(11)->setText(tr("Size")); // don't vary point size as the drwaing engine can't cope with it
+	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: Sizes > 100\% may result in clipped characters."));
+	m_table->horizontalHeaderItem(12)->setText(tr("Prio"));  //TODO: images
+	m_table->horizontalHeaderItem(12)->setToolTip(tr("Priority determines which format is drawn on top, if multiple formats apply."));
 
 #ifdef Q_OS_WIN
 	m_table->verticalHeader()->setDefaultSectionSize(21);  // creates too high cells by default. TODO: use default height of a combobox instead of hard coding
@@ -331,49 +342,49 @@ void QFormatConfig::cancel()
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				item->setCheckState(fmt.weight == QFont::Bold ? Qt::Checked : Qt::Unchecked);
-				item->setToolTip(tr("Bold"));
+				item->setToolTip(m_table->horizontalHeaderItem(1)->toolTip());
 				m_table->setItem(r, 1, item);
 
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				item->setCheckState(fmt.italic ? Qt::Checked : Qt::Unchecked);
-				item->setToolTip(tr("Italic"));
+				item->setToolTip(m_table->horizontalHeaderItem(2)->toolTip());
 				m_table->setItem(r, 2, item);
 
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				item->setCheckState(fmt.underline ? Qt::Checked : Qt::Unchecked);
-				item->setToolTip(tr("Underline"));
+				item->setToolTip(m_table->horizontalHeaderItem(3)->toolTip());
 				m_table->setItem(r, 3, item);
 
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				item->setCheckState(fmt.overline ? Qt::Checked : Qt::Unchecked);
-				item->setToolTip(tr("Overline"));
+				item->setToolTip(m_table->horizontalHeaderItem(4)->toolTip());
 				m_table->setItem(r, 4, item);
 
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				item->setCheckState(fmt.strikeout ? Qt::Checked : Qt::Unchecked);
-				item->setToolTip(tr("Strikeout"));
+				item->setToolTip(m_table->horizontalHeaderItem(5)->toolTip());
 				m_table->setItem(r, 5, item);
 
 				item = new QTableWidgetItem;
 				item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				item->setCheckState(fmt.waveUnderline ? Qt::Checked : Qt::Unchecked);
-				item->setToolTip(tr("Wave underline"));
+				item->setToolTip(m_table->horizontalHeaderItem(6)->toolTip());
 				m_table->setItem(r, 6, item);
 
 				m_table->setCellWidget(r, 7, new QSimpleColorPicker(fmt.foreground));
-				m_table->cellWidget(r, 7)->setToolTip(tr("Text color (aka foreground)"));
+				m_table->cellWidget(r, 7)->setToolTip(m_table->horizontalHeaderItem(7)->toolTip());
 				//m_table->cellWidget(i, 7)->setMaximumSize(22, 22);
 
 				m_table->setCellWidget(r, 8, new QSimpleColorPicker(fmt.background));
-				m_table->cellWidget(r, 8)->setToolTip(tr("Background color"));
+				m_table->cellWidget(r, 8)->setToolTip(m_table->horizontalHeaderItem(8)->toolTip());
 				//m_table->cellWidget(i, 8)->setMaximumSize(22, 22);
 
 				m_table->setCellWidget(r, 9, new QSimpleColorPicker(fmt.linescolor));
-				m_table->cellWidget(r, 9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
+				m_table->cellWidget(r, 9)->setToolTip(m_table->horizontalHeaderItem(9)->toolTip());
 				//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
 
 				//item = new QTableWidgetItem;
@@ -385,7 +396,7 @@ void QFormatConfig::cancel()
 				if(ind>-1) fcmb->setCurrentIndex(ind);
 				else fcmb->setCurrentIndex(0);
 				m_table->setCellWidget(r, 10, fcmb);
-				fcmb->setToolTip(tr("Font family"));
+				fcmb->setToolTip(m_table->horizontalHeaderItem(10)->toolTip());
 
 				QDoubleSpinBox* sb = new QDoubleSpinBox();
 				sb->setMaximum(100000);
@@ -396,7 +407,7 @@ void QFormatConfig::cancel()
 				sb->setFrame(false);
 				double v = fmt.pointSize?100.0*fmt.pointSize/basePointSize:100;
 				sb->setValue(v);
-				sb->setToolTip(tr("Point size"));
+				sb->setToolTip(m_table->horizontalHeaderItem(11)->toolTip());
 				m_table->setCellWidget(r, 11, sb);
 
 				QSpinBox *psb = new QSpinBox();
@@ -405,7 +416,7 @@ void QFormatConfig::cancel()
 				psb->setAlignment(Qt::AlignRight);
 				psb->setFrame(false);
 				psb->setValue(fmt.priority);
-				psb->setToolTip(tr("Priority"));
+				psb->setToolTip(m_table->horizontalHeaderItem(12)->toolTip());
 				m_table->setCellWidget(r, 12, psb);
 				r++;
 			}

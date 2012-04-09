@@ -1976,6 +1976,7 @@ void PDFDocument::init()
 
 	QToolButton *buttonZoomOut = new QToolButton();
 	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
+	buttonZoomOut->setToolTip(tr("Zoom Out"));
 	statusBar()->addPermanentWidget(buttonZoomOut);
 	connect(buttonZoomOut, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomOut()));
 
@@ -1987,6 +1988,7 @@ void PDFDocument::init()
 	zoomSlider->setMinimum(-100);
 	zoomSlider->setMaximum(100);
 	zoomSlider->setFixedWidth(100);
+	zoomSlider->setToolTip(tr("Zoom"));
 	//zoomSlider->setTickInterval(100);
 	//zoomSlider->setTickPosition(QSlider::TicksBelow);
 	statusBar()->addPermanentWidget(zoomSlider);
@@ -1997,6 +1999,7 @@ void PDFDocument::init()
 //	statusBar()->addAction(actionZoom_In);
 	QToolButton *buttonZoomIn = new QToolButton();
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
+	buttonZoomIn->setToolTip(tr("Zoom In"));
 	statusBar()->addPermanentWidget(buttonZoomIn);
 	connect(buttonZoomIn, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomIn()));
 
