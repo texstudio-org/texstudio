@@ -623,7 +623,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				continue;
 			}
 			//// bibliography ////
-			if (cmd=="\\bibliography") {
+            if (latexParser.possibleCommands["%bibliography"].contains(cmd)) {
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				foreach(const QString& elem,bibs){ //latex doesn't seem to allow any spaces in file names
@@ -2130,7 +2130,7 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
     //patch lines for new commands (ref,def, etc)
     LatexParser& latexParser = LatexParser::getInstance();
     QStringList categories;
-    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics";
+    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics" << "%file" << "%bibliography";
     QStringList newCmds;
     foreach(const QString elem,categories){
         QStringList cmds=ltxCommands.possibleCommands[elem].values();

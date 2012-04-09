@@ -7,7 +7,7 @@
 
 \bibliography{bib ﬁles}
 
-\addbibresource{bibliographic resource}
+\addbibresource{bibliographic resource}#b
 \addbibresource[options]{bibliographic resource}
 \addglobalbib{resource}
 \addglobalbib[options]{resource}
