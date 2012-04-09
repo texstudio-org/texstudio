@@ -527,8 +527,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(fileDiffMerge()));
 	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
 	newManagedAction(svnSubmenu, "declareresolved",tr("Declare Conflict Resolved"), SLOT(declareConflictResolved()));
-	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,":/images/go-next.png");
-	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,":/images/go-previous.png");
+	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,":/images/go-next-diff.png");
+	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,":/images/go-previous-diff.png");
 	
 	menu->addSeparator();
 	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
