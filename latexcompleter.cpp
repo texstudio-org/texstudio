@@ -99,6 +99,11 @@ public:
 				if(cursor.nextChar()=='}')
 					cursor.deleteChar();
 			}
+            if(completer->forcedCite){
+                QString eow="},";
+                while(!cursor.atLineEnd() && !eow.contains(cursor.nextChar()))
+                    cursor.deleteChar();
+            }
 			if(isMirrored() && (cw.lines.first().startsWith("\\begin")||cw.lines.first().startsWith("\\end"))){
 				QString text=cw.lines.first();
 				int i=cursor.columnNumber()-curStart;

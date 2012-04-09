@@ -106,7 +106,7 @@ void LatexParser::init(){
 	mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
 	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
     //tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
-    fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
+    //fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
 	includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
     //graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
     //usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
@@ -122,6 +122,8 @@ void LatexParser::init(){
     possibleCommands["%graphics"] << "\\includegraphics";
     possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite" ;
     possibleCommands["%label"] << "\\label";
+    possibleCommands["%bibliography"] << "\\bibliography";
+    possibleCommands["%file"] << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
     possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref";
 }
 
@@ -1501,6 +1503,13 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                         package.possibleCommands["%usepackage"] << rxCom.cap(1);
                     }
                     valid.remove('u');
+                }
+                if(valid.contains('b')){ // usepackage command
+                    if(res>-1){
+                        package.possibleCommands["%bibliography"] << rxCom.cap(1);
+                        package.possibleCommands["%file"] << rxCom.cap(1);
+                    }
+                    valid.remove('b');
                 }
 				// normal commands for syntax checking
 				// will be extended to distinguish between normal and math commands
