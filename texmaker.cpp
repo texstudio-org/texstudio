@@ -4553,23 +4553,24 @@ void Texmaker::setFullScreenMode() {
 
 void Texmaker::viewSetHighlighting(){
 	if (!currentEditor()) return;
-    QStringList localizedLanguages;
-    foreach (const QString &s, m_languages->languages()) {
-        localizedLanguages.append(tr(qPrintable(s)));
-    }
-    QString lang = QInputDialog::getItem(this, TEXSTUDIO, tr("New highlighting:"),
-                                         localizedLanguages,
-                                         m_languages->languages().indexOf(currentEditor()->document()->languageDefinition()?currentEditor()->document()->languageDefinition()->language():""),
-                                         false);
-	if (lang.isEmpty()) return;
+	QStringList localizedLanguages;
+	foreach (const QString &s, m_languages->languages()) {
+		localizedLanguages.append(tr(qPrintable(s)));
+	}
+	bool ok;
+	QLanguageDefinition *oldLangDef = currentEditor()->document()->languageDefinition();
+	QString locLang = QInputDialog::getItem(this, TEXSTUDIO, tr("New highlighting:"),
+										localizedLanguages,
+										m_languages->languages().indexOf(oldLangDef?oldLangDef->language():""),
+										false, &ok);
+	if (!ok || locLang.isEmpty()) return;
+	QString newLangName = m_languages->languages().at(localizedLanguages.indexOf(locLang));
+	if (oldLangDef && oldLangDef->language()==newLangName) return;  // nothing changed
+
 	currentEditorView()->clearOverlays();
-	m_languages->setLanguageFromName(currentEditor(), m_languages->languages().at(localizedLanguages.indexOf(lang)));
-    if(currentEditor()->languageDefinition())
-        return;
-    if (currentEditor()->languageDefinition()->language()=="(La)TeX"){
-        //recheck syntax
-        currentEditorView()->reCheckSyntax();
-    }
+	m_languages->setLanguageFromName(currentEditor(), newLangName);
+	// TODO: Check if reCheckSyntax is really necessary. Setting the language emits (among others) contentsChange(0, lines)
+	currentEditorView()->reCheckSyntax();
 }
 
 void Texmaker::viewCollapseBlock() {
