@@ -227,8 +227,8 @@ private slots:
 		                           << (int)LatexReader::NW_CITATION << 21 << "aaaHallob" << 12;
 		QTest::newRow("citation1") << "012345\\cite{   Hallo   }abcdef" << 6 << false << false
 		                           << (int)LatexReader::NW_CITATION << 23 << "   Hallo   " << 12;
-		QTest::newRow("citation2") << "012345\\textcite{ Hallo:Welt! }abcdef" <<6  << false << false
-		                           << (int)LatexReader::NW_CITATION << 29 << " Hallo:Welt! " << 16;
+		QTest::newRow("citation2") << "012345\\cite{ Hallo:Welt! }abcdef" <<6  << false << false
+					   << (int)LatexReader::NW_CITATION << 25 << " Hallo:Welt! " << 12;
 		QTest::newRow("citation3") << "012345\\cite[aasasadaa]{Hallo:Welt!,miau!}abcdef" << 6 << false << false
 		                           << (int)LatexReader::NW_CITATION << 40 << "Hallo:Welt!,miau!" << 23;
 		//QTest::newRow("no abbre.") << "+++TEST.---" << 0 << false << false << (int)LatexReader::NW_TEXT << 7 << "TEST" << 3;
