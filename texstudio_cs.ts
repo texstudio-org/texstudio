@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
-        <translation type="unfinished">Používá Qt verze %1, sestaven Qt %2 %3 {1,?}</translation>
+        <translation>Používá Qt verze %1, sestaven Qt %2 %3</translation>
     </message>
 </context>
 <context>
@@ -194,87 +194,87 @@
     </message>
     <message>
         <source>External Pdf Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Vnější prohlížeč PDF</translation>
     </message>
     <message>
         <source>Quickbuild</source>
-        <translation type="unfinished"></translation>
+        <translation>Rychlý překlad</translation>
     </message>
     <message>
         <source>Default Compiler</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí překladač</translation>
     </message>
     <message>
         <source>Default Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí prohlížeč</translation>
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí bibliografie</translation>
     </message>
     <message>
         <source>Ps Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec PS</translation>
     </message>
     <message>
         <source>Dvi Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec DVI</translation>
     </message>
     <message>
         <source>Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec PDF</translation>
     </message>
     <message>
         <source>Dvi-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec DVI-&gt;PDF</translation>
     </message>
     <message>
         <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec DVI-&gt;PS</translation>
     </message>
     <message>
         <source>Asymptote Dvi Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec DVI Asymptote</translation>
     </message>
     <message>
         <source>Asymptote Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Řetězec PDF Asymptote</translation>
     </message>
     <message>
         <source>Pre-compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Předsestavit</translation>
     </message>
     <message>
         <source>Internal precompile</source>
-        <translation type="unfinished"></translation>
+        <translation>Vnitřní předsestavení</translation>
     </message>
     <message>
         <source>Recompile bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Předsestavit bibliografii znovu</translation>
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkaz byl rozšířen do %1 úrovní. Chcete pokračovat rozřířením &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Command %1 not defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkaz %1 nestanoven</translation>
     </message>
     <message>
         <source>Failed to understand command %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se porozumět příkazu %1</translation>
     </message>
     <message>
         <source>Error: No command given</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba: Nebyl zadán žádný příkaz</translation>
     </message>
     <message>
         <source>Internal Pdf Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Vnitřní prohlížeč PDF</translation>
     </message>
     <message>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Použil jste příkaz dde:// se dvěma lomítky, což je odmítnuto. Změňte to, prosím, na příkaz se třemi lomítky dde:/// přidáním dalšího lomítka.</translation>
     </message>
     <message>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
@@ -1170,193 +1170,195 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>qce (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>qce (doporučeno)</translation>
     </message>
     <message>
         <source>qt</source>
-        <translation type="unfinished"></translation>
+        <translation>qt</translation>
     </message>
     <message>
         <source>single letter</source>
-        <translation type="unfinished"></translation>
+        <translation>jedno písmeno</translation>
     </message>
     <message>
         <source>Render mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim vykreslení:</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokusit se automaticky vybrat nejlepší možnost zobrazení</translation>
     </message>
     <message>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je povolena vyrovnávací paměť vykreslovaných řádků, jsou vykreslované řádky ukládány do vyrovnávací paměti, takže je není potřeba dělat znovu. Vede to k zlepšení v rychlosti (zvláště na systému Mac) za cenu vyššího používání paměti.</translation>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakázat vyrovnávací paměť vykreslovaných řádků</translation>
     </message>
     <message>
         <source>Inline checking:</source>
-        <translation type="unfinished"></translation>
+        <translation>Řadové přezkoušení:</translation>
     </message>
     <message>
         <source>Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravopis</translation>
     </message>
     <message>
         <source>Grammar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mluvnice</translation>
     </message>
     <message>
         <source>Citations</source>
-        <translation type="unfinished"></translation>
+        <translation>Citace</translation>
     </message>
     <message>
         <source>References</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkazy</translation>
     </message>
     <message>
         <source>Syntax</source>
-        <translation type="unfinished"></translation>
+        <translation>Skladba</translation>
     </message>
     <message>
         <source>Internal</source>
-        <translation type="unfinished">Vnitřní</translation>
+        <translation>Vnitřní</translation>
     </message>
     <message>
         <source>Check for word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Prověřit opakování slov</translation>
     </message>
     <message>
         <source>Words between repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Slova mezi opakováními:</translation>
     </message>
     <message>
         <source>Wordlist directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresář se seznamem slov:</translation>
     </message>
     <message>
         <source>LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástroj pro jazyk</translation>
     </message>
     <message>
         <source>Serverurl: </source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa serveru:</translation>
     </message>
     <message>
         <source>Start LanguageTool if not running</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit nástroj pro jazyk, pokud neběží</translation>
     </message>
     <message>
         <source>LT path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k jazykovému nástroji:</translation>
     </message>
     <message>
         <source>Ignored rules:</source>
-        <translation type="unfinished"></translation>
+        <translation>Přehlížená pravidla:</translation>
     </message>
     <message>
         <source>Java:</source>
-        <translation type="unfinished"></translation>
+        <translation>Java:</translation>
     </message>
     <message>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat adresář se seznamem slov mluvnice</translation>
     </message>
     <message>
         <source>Select the LanguageTool jar</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit jar nástroj pro jazyk</translation>
     </message>
     <message>
         <source>Select java</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat Javu</translation>
     </message>
     <message>
         <source>Check for bad words</source>
-        <translation type="unfinished"></translation>
+        <translation>Prověřit na špatná slova</translation>
     </message>
     <message>
         <source>Special rules 2:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní pravidla 2:</translation>
     </message>
     <message>
         <source>Special rules 1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní pravidla 1:</translation>
     </message>
     <message>
         <source>Special rules 3:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní pravidla 3:</translation>
     </message>
     <message>
         <source>Special rules 4:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní pravidla 4:</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Přezkoušení LaTeXu</translation>
     </message>
     <message>
         <source>Language checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Přezkoušení jazyka</translation>
     </message>
     <message>
         <source>Long range repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakování s dlouhým dosahem:</translation>
     </message>
     <message>
         <source>Min length of words with long repetition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nejmenší délka slov s dlouhým opakováním:</translation>
     </message>
     <message>
         <source>Words repeated within a paragraph will be highlighted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Slova opakovaná v rámci odstavce budou zvýrazněna.</translation>
     </message>
     <message>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stejná slova jsou označena jako opakování, pokud mezi nimi není větší než tento počet slov.</translation>
     </message>
     <message>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stejná, delší slova jsou označena jako opakování s dlouhým dosahem, pokud mezi nimi není větší než tento počet slov.</translation>
     </message>
     <message>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pouze slova mající tuto délku jsou označena pro opakování s dlouhým dosahem.</translation>
     </message>
     <message>
         <source>Certain informal or weak words will be highlighted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Některá běžná nebo nevýrazná slova budou zvýrazněna.</translation>
     </message>
     <message>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresář obsahující seznam slov, která jsou &quot;špatná&quot; nebo se smí opakovat.</translation>
     </message>
     <message>
         <source>Url to connect to LanguageTool. </source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa (URL) pro spojení s nástrojem pro jazyk.</translation>
     </message>
     <message>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta obsahující archiv Java s nástrojem pro jazyk.</translation>
     </message>
     <message>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation type="unfinished"></translation>
+        <translation>Čárkou oddělený seznam pravidel nástroje pro jazyk, která nebudou zvýrazněna jako chyby.</translation>
     </message>
     <message>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustitelný soubor Java, používaný pro spuštění nástroje pro jazyk, pokud tento neběží.</translation>
     </message>
     <message>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Čárkou oddělený seznam pravidel nástroje pro jazyk, která budou zvýrazněna ve zvláštním formátu.</translation>
     </message>
     <message>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vámi zadaná zkratka je běžná klávesa pro znak.
+Nebudete moci napsat tento znak. Přesto tuto klávesu
+chcete nastavit?</translation>
     </message>
     <message>
         <source>Metacommands</source>
@@ -1371,10 +1373,6 @@ to set the key anyway?</source>
         <translation type="unfinished">Nabídky</translation>
     </message>
     <message>
-        <source>Meta Build</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation type="unfinished">Název</translation>
     </message>
@@ -1384,6 +1382,10 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Show all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta Build</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1860,16 +1862,16 @@ Chcete je odstranit?</translation>
         <translation type="obsolete">Vnitřní</translation>
     </message>
     <message>
-        <source>Add</source>
-        <translation type="unfinished">Přidat</translation>
-    </message>
-    <message>
         <source>insert new menu item (before)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>insert new sub menu (before)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
     </message>
 </context>
 <context>
@@ -2051,19 +2053,19 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <name>GrammarCheck</name>
     <message>
         <source>Word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakování slov</translation>
     </message>
     <message>
         <source>Bad word</source>
-        <translation type="unfinished"></translation>
+        <translation>Špatné slovo</translation>
     </message>
     <message>
         <source>Word repetition. Distance %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakování slov. Vzdálenost %1</translation>
     </message>
     <message>
         <source>Long range word repetition. Distance %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakování slov s dlouhým dosahem. Vzdálenost %1</translation>
     </message>
 </context>
 <context>
@@ -2368,16 +2370,20 @@ Note: This order is just a suggestion. If the resulting page layout would be ver
         <translation>Použít jinou</translation>
     </message>
     <message>
+        <source>Citation correct</source>
+        <translation type="obsolete">Správná citace</translation>
+    </message>
+    <message>
         <source>Citation missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Citace chybí</translation>
     </message>
     <message>
         <source>Warning:</source>
-        <translation type="unfinished"></translation>
+        <translation>Varování:</translation>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedno nebo více ID končí mezerou. Mezery na konci nejsou BibTeXem přehlíženy.</translation>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
@@ -2482,19 +2488,19 @@ Note: This order is just a suggestion. If the resulting page layout would be ver
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Kopírovat</translation>
+        <translation>&amp;Kopírovat</translation>
     </message>
     <message>
         <source>&amp;Copy all</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopírovat vše</translation>
     </message>
     <message>
         <source>&amp;Copy all with line numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopírovat vše s čísly řádků</translation>
     </message>
     <message>
         <source>&amp;Show in log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ukázat v zápisu</translation>
     </message>
 </context>
 <context>
@@ -3005,13 +3011,6 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
         <translation>Soubor PDF &quot;%1&quot; není úplný.</translation>
     </message>
     <message>
-        <source>%1
-does not look like a valid PDF document.
-
-Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Zoom Out</source>
         <translation type="unfinished">Oddálit</translation>
     </message>
@@ -3022,6 +3021,13 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     <message>
         <source>Zoom In</source>
         <translation type="unfinished">Přiblížit</translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document.
+
+Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4090,7 +4096,10 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
     <message>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolí použití únikových znaků. Jsou to tyto:
+ \n = nový řádek, \r = řádkový předstih (operace,
+která připravý další znak na vytištění nebo zobrazení
+jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
 </context>
 <context>
@@ -4458,7 +4467,7 @@ Důvěřujete tomuto skriptu?</translation>
     </message>
     <message>
         <source>File closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor zavřen</translation>
     </message>
 </context>
 <context>
@@ -4557,40 +4566,40 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Unknown word</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámé slovo</translation>
     </message>
     <message>
         <source>Replace with</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit</translation>
     </message>
     <message>
         <source>Suggested words</source>
-        <translation type="unfinished"></translation>
+        <translation>Navrhovaná slova</translation>
     </message>
     <message>
         <source>Ignored words</source>
-        <translation type="unfinished"></translation>
+        <translation>Přehlížená slova</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Přidat</translation>
+        <translation>Přidat</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Odstranit</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Hide ignore list</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt seznam přehlíženého</translation>
     </message>
     <message>
         <source>dummyStatusBar</source>
-        <translation type="unfinished"></translation>
+        <translation>napodobenýStavovýŘádek</translation>
     </message>
     <message>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;nový&gt;</translation>
     </message>
 </context>
 <context>
@@ -6048,90 +6057,72 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     <message>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Prostý text</translation>
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Záložky</translation>
     </message>
     <message>
         <source>move up</source>
-        <translation type="unfinished"></translation>
+        <translation>Posunout nahoru</translation>
     </message>
     <message>
         <source>move down</source>
-        <translation type="unfinished"></translation>
+        <translation>Posunout dolů</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>remove all</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit vše</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazat až po &amp;konec řádku</translation>
     </message>
     <message>
         <source>Grammar errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Mluvnické chyby</translation>
     </message>
     <message>
         <source>Word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakování slova</translation>
     </message>
     <message>
         <source>Bad words</source>
-        <translation type="unfinished"></translation>
+        <translation>Špatná slova</translation>
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Mluvnický omyl</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní mluvnický omyl %1</translation>
     </message>
     <message>
         <source>Long range word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakování slova s dlouhým dosahem</translation>
     </message>
     <message>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nevarovat znovu.</translation>
     </message>
     <message>
         <source>Jump to match</source>
-        <translation type="unfinished"></translation>
+        <translation>Skočit na shodu</translation>
     </message>
     <message>
         <source>Align Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarovnat sloupce</translation>
     </message>
     <message>
         <source>Unknown internal command: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The document %1 want to override the command %2 with %3.
-Do you trust this document?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Yes, allow all documents to use the overriden command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No, run the default command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;User</source>
-        <comment>menu</comment>
-        <translation type="unfinished">&amp;Uživatel</translation>
+        <translation>Neznámý vnitřní příkaz: %1</translation>
     </message>
     <message>
         <source>&amp;Quick</source>
@@ -6150,6 +6141,11 @@ Do you trust this document?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>&amp;User</source>
+        <comment>menu</comment>
+        <translation type="unfinished">&amp;Uživatel</translation>
+    </message>
+    <message>
         <source>Cl&amp;ear Markers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6158,7 +6154,20 @@ Do you trust this document?</source>
         <translation type="unfinished">&amp;Matematika</translation>
     </message>
     <message>
+        <source>The document %1 want to override the command %2 with %3.
+Do you trust this document?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Yes, always run the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, run the default command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6403,30 +6412,30 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>add own word</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat vlastní slovo</translation>
     </message>
     <message>
         <source>remove own word</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit vlastní slovo</translation>
     </message>
     <message>
         <source>New Word:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové slovo:</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupina:</translation>
     </message>
 </context>
 <context>
     <name>UniversalInputDialogScript</name>
     <message>
         <source>Invalid default value: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatná výchozí hodnota: %1</translation>
     </message>
     <message>
         <source>Unkown variable %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá proměnná %1</translation>
     </message>
 </context>
 <context>
@@ -6548,7 +6557,18 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je tento spouštěcí řetězec napsán v jakémkoli TeXovém dokumentu,
+je nahrazen nynější značkou.
+
+Pokud spouštěč začíná na (?&lt;=something), stane se to jen tehdy, když 
+je před zbývající částí spouštěče něco napsáno.
+
+Protože není spouštěč prostým řetězcem, ale regulárním výrazem, 
+(?&lt;=\S) lze použít pro označení nahrazení, která se mají objevit jen po slově, 
+a (?&lt;=\s|^) pro označení nahrazení, která se mají objevit jen před slovem.
+
+
+Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při spouštění txs.</translation>
     </message>
 </context>
 <context>
@@ -6630,23 +6650,23 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Přidat</translation>
+        <translation>Přidat</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Odstranit</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished">Nahoru</translation>
+        <translation>Nahoru</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished">Dolů</translation>
+        <translation>Dolů</translation>
     </message>
     <message>
         <source>User Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelský příkaz</translation>
     </message>
 </context>
 <context>
