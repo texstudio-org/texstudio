@@ -226,22 +226,22 @@
     <message>
         <location filename="buildmanager.cpp" line="146"/>
         <source>External Pdf Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador de PDF externo</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="164"/>
         <source>Quickbuild</source>
-        <translation type="unfinished"></translation>
+        <translation>Compilação Rápida</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="166"/>
         <source>Default Compiler</source>
-        <translation type="unfinished"></translation>
+        <translation>Compilador padrão</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="167"/>
         <source>Default Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador padrão</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="168"/>
@@ -251,93 +251,93 @@
     <message>
         <location filename="buildmanager.cpp" line="169"/>
         <source>Default Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliografia padrão</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="172"/>
         <source>Ps Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>PS sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="173"/>
         <source>Dvi Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI Sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="174"/>
         <source>Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>Dvi-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI-&gt;PDF sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="176"/>
         <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI-&gt;PS-&gt;PDF sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="177"/>
         <source>Asymptote Dvi Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Asymptote DVI sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="178"/>
         <source>Asymptote Pdf Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Asymptote PDF sequência</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="180"/>
         <source>Pre-compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Pré-compilação</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="181"/>
         <source>Internal precompile</source>
-        <translation type="unfinished"></translation>
+        <translation>Pré-compilação interna</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="182"/>
         <source>Recompile bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Recompilação da bibliografia</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="514"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>O comando foi expandido para %1 níveis. Você deseja continuar expandindo &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="573"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você utilizou modificadores txs:///comando[... ou txs:///comando{..., mas apenas são suportados modificadores da forma txs:///comando/[... ou txs:///comando/{... com o sufixo &quot;/&quot;, para manter a pureza da sintaxe.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="579"/>
         <location filename="buildmanager.cpp" line="580"/>
         <source>Command %1 not defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando %1 não definido</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="639"/>
         <source>Failed to understand command %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha para entender o comando %1</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="912"/>
         <source>Error: No command given</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Nenhum comando dado</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1242"/>
         <source>Internal Pdf Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador de PDF interno</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1374"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você utilizou umcomando dde:// com duas barras, o que está obsoleto. Por favor mude para um comando com três barras dde:///.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="61"/>
@@ -653,7 +653,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <location filename="configdialog.cpp" line="378"/>
         <source>Menus</source>
         <oldsource>Latex Menus</oldsource>
-        <translation type="unfinished">Menus LaTeX</translation>
+        <translation>Menus</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="875"/>
@@ -932,17 +932,17 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="641"/>
         <source>Metacommands</source>
-        <translation type="unfinished"></translation>
+        <translation>Meta Comandos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="648"/>
         <source>Usercommands</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos do Usuário</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="843"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="853"/>
@@ -952,7 +952,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="861"/>
         <source>Show all</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar todos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1170"/>
@@ -1560,7 +1560,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <location filename="configdialog.cpp" line="376"/>
         <source>Meta Build</source>
         <oldsource>Quick Build</oldsource>
-        <translation type="unfinished">Compilar</translation>
+        <translation>Meta Compilação</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="543"/>
@@ -2254,12 +2254,12 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configmanager.cpp" line="1040"/>
         <source>insert new menu item (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir novo item de menu (antes)</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1043"/>
         <source>insert new sub menu (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir novo submenu (antes)</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1061"/>
@@ -2324,7 +2324,7 @@ Deseja removê-las?</translation>
     <message>
         <location filename="configmanager.cpp" line="2067"/>
         <source>Add</source>
-        <translation type="unfinished">Adiconar</translation>
+        <translation>Adiconar</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2117"/>
@@ -2589,7 +2589,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="insertgraphics.ui" line="85"/>
         <location filename="insertgraphics.ui" line="151"/>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define as opções para \includegraphics[opções]{arquivo}.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="94"/>
@@ -2688,7 +2688,7 @@ Faltando opções para \includegraphics.</translation>
     <message>
         <location filename="insertgraphics.ui" line="273"/>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificador, que será utilizado como rótulo para referências: e.g. utilizando \ref{rótulo} </translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="280"/>
@@ -2705,7 +2705,14 @@ Bottom: At the bottom of the page
 Page: On a separate page with figures
 
 Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </source>
-        <translation type="unfinished"></translation>
+        <translation>Sugere prioridades para o posicionamento da figura.
+
+Here: Nesta posição do texto 
+Top: Topo da página
+Bottom: Base da página
+Page: Em uma página separada para figuras
+
+Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em uma disposição ruim. </translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="364"/>
@@ -2955,7 +2962,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="1439"/>
         <source>Citation correct (reading ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Citação correta (lendo ...)</translation>
     </message>
     <message>
         <source>Citation correct</source>
@@ -3705,17 +3712,17 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="PDFDocument.cpp" line="1979"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">Reduzir</translation>
+        <translation>Reduzir</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="1991"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Ampliar - Reduzir</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2002"/>
         <source>Zoom In</source>
-        <translation type="unfinished">Ampliar</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2243"/>
@@ -3725,8 +3732,10 @@ does not look like a valid PDF document.
 Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
         <oldsource>%1 does not look like a valid PDF document.
 Do you want to open it anyways? It could cause a crash.</oldsource>
-        <translation type="unfinished">%1 não parece um arquivo PDF válido.
-Deseja realmente abrí-lo? Isto pode ocasionar uma falha no aplicativo.</translation>
+        <translation>%1
+Não parece um arquivo PDF válido
+
+O arquivo está corrompido ou em processo de criação. Você pode tentar novamente após o término da compilação. Abrir um arquivo corrompido pode ocasionar uma falha no apliacativo. Voce deseja realmente abrí-lo?</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2262"/>
@@ -4955,29 +4964,31 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="75"/>
         <source>Font Family</source>
-        <translation type="unfinished">Fonte</translation>
+        <translation>Fonte</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="77"/>
         <source>Font size relative to editor font size.
 
 Note: Sizes &gt; 100% may result in clipped characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da fonte relativo ao tamanho da fonte do editor.
+
+Nota: Tamanhos maiores que 100% podem não ser visualizados corretamente.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
         <source>Prio</source>
-        <translation type="unfinished"></translation>
+        <translation>Prior.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="79"/>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prioridade determina qual formato aparecerá no topo se múltiplos formatos forem utilizados. </translation>
     </message>
     <message>
         <source>Font family</source>
@@ -6670,7 +6681,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="653"/>
         <source>Jump to match</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para coincidente</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="660"/>
@@ -6722,7 +6733,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="759"/>
         <source>&amp;View</source>
         <oldsource>&amp;View Dvi</oldsource>
-        <translation type="unfinished">&amp;Ver DVI</translation>
+        <translation>&amp;Visualizar</translation>
     </message>
     <message>
         <source>&amp;Dvi-&gt;PS</source>
@@ -6785,7 +6796,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="695"/>
         <source>&amp;User</source>
         <comment>menu</comment>
-        <translation type="unfinished">&amp;Usuário</translation>
+        <translation>&amp;Usuário</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="698"/>
@@ -6900,7 +6911,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="728"/>
         <source>Align Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Alinhar Colunas</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="734"/>
@@ -6966,32 +6977,32 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="674"/>
         <source>&amp;Quick</source>
-        <translation type="unfinished"></translation>
+        <translation>Compilação &amp;Rápida</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="675"/>
         <source>&amp;Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Compilar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="680"/>
         <source>View &amp;Dvi</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ver DVI</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="681"/>
         <source>Dvi-&gt;PS</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI-&gt;PS</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="699"/>
         <source>Cl&amp;ear Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar Marcadores</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="730"/>
         <source>&amp;Math</source>
-        <translation type="unfinished">&amp;Mat</translation>
+        <translation>&amp;Mat</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="760"/>
@@ -7172,28 +7183,29 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="3732"/>
         <source>The document %1 want to override the command %2 with %3.
 Do you trust this document?</source>
-        <translation type="unfinished"></translation>
+        <translation>O documento %1 deseja substituir o comando %2 com %3.
+Você confia neste documento?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3733"/>
         <source>Yes, always run the overriden command</source>
         <oldsource>Yes, alwas run the overriden command</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Sim, sempre execute o comando substituto </translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3734"/>
         <source>Yes, allow all documents to use the overriden command</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, permitir todos os documentos executarem o comando substituto</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3735"/>
         <source>No, run the default command</source>
-        <translation type="unfinished"></translation>
+        <translation>Não, execute o comando padrão</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3794"/>
         <source>Unknown internal command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando interno desconhecido: %1</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3859"/>
@@ -7225,12 +7237,12 @@ Do you trust this document?</source>
     <message>
         <location filename="texmaker.cpp" line="6012"/>
         <source>Reached beginning of text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Início do texto alcançado.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6012"/>
         <source>Reached end of text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Final do texto alcançado.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6168"/>
