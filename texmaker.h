@@ -93,6 +93,8 @@ protected:
 private slots:
 	void updateToolBarMenu(const QString& menuName);
 private:
+	void executeTests(const QStringList &args);
+	void generateAddtionalTranslations();
 	void setupMenus();
 	void setupDockWidgets();
 	void setupToolBars();

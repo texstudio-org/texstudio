@@ -1867,6 +1867,10 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
         <source>insert new sub menu (before)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>eqref</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -3933,7 +3937,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>styleHint</source>
-        <translation>Stilhinweis</translation>
+        <translation type="obsolete">Stilhinweis</translation>
     </message>
     <message>
         <source>latexSyntaxMistake</source>
@@ -3987,6 +3991,62 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     </message>
     <message>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>align-ampersand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>wordRepetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>wordRepetitionLongRange</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>badWord</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-pass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-skip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-qdebug</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6124,10 +6184,6 @@ Do you trust this document?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Yes, allow all documents to use the overriden command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No, run the default command</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6161,15 +6217,24 @@ Do you trust this document?</source>
         <translation type="unfinished">&amp;Mathe</translation>
     </message>
     <message>
-        <source>Yes, always run the overriden command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reached beginning of text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reached end of text.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TXS Test Results</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, always run the overridden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overridden command</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

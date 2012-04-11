@@ -1869,6 +1869,10 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
         <source>insert new sub menu (before)</source>
         <translation>insérer un nouveau sous-menu (avant)</translation>
     </message>
+    <message>
+        <source>eqref</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -3957,7 +3961,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>styleHint</source>
-        <translation>Conseil de Style</translation>
+        <translation type="obsolete">Conseil de Style</translation>
     </message>
     <message>
         <source>latexSyntaxMistake</source>
@@ -4012,6 +4016,62 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     <message>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
         <translation>La priorité détermine quel format est dessiné en priorité si plusieurs formats s&apos;appliquent.</translation>
+    </message>
+    <message>
+        <source>align-ampersand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>wordRepetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>wordRepetitionLongRange</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>badWord</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>grammarMistakeSpecial4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-pass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-skip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-qdebug</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6147,7 +6207,7 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overriden command</source>
-        <translation>Oui, autoriser tous les documents à utiliser la compilation de remplacement</translation>
+        <translation type="obsolete">Oui, autoriser tous les documents à utiliser la compilation de remplacement</translation>
     </message>
     <message>
         <source>No, run the default command</source>
@@ -6184,7 +6244,7 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>Yes, always run the overriden command</source>
-        <translation>Oui, toujours lancer la compilation de remplacement</translation>
+        <translation type="obsolete">Oui, toujours lancer la compilation de remplacement</translation>
     </message>
     <message>
         <source>Reached beginning of text.</source>
@@ -6193,6 +6253,19 @@ Faites-vous confiance à ce document ?</translation>
     <message>
         <source>Reached end of text.</source>
         <translation>La fin du texte a été atteinte.</translation>
+    </message>
+    <message>
+        <source>TXS Test Results</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, always run the overridden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, allow all documents to use the overridden command</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
