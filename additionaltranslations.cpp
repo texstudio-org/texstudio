@@ -76,6 +76,7 @@
 QT_TRANSLATE_NOOP("ConfigManager", "Cross References"), 
 QT_TRANSLATE_NOOP("ConfigManager", "label"), 
 QT_TRANSLATE_NOOP("ConfigManager", "ref"), 
+QT_TRANSLATE_NOOP("ConfigManager", "eqref"), 
 QT_TRANSLATE_NOOP("ConfigManager", "pageref"), 
 QT_TRANSLATE_NOOP("ConfigManager", "index"), 
 QT_TRANSLATE_NOOP("ConfigManager", "cite"), 
@@ -127,6 +128,7 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "keyword"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "extra-keyword"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "math-keyword"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "align-ampersand"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "verbatim"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "sweave"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "picture"), 
@@ -136,8 +138,15 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "numbers"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "text"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "escapeseq"), 
-QT_TRANSLATE_NOOP("QFormatConfig", "styleHint"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "spellingMistake"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "wordRepetition"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "wordRepetitionLongRange"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "badWord"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "grammarMistake"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "grammarMistakeSpecial1"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "grammarMistakeSpecial2"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "grammarMistakeSpecial3"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "grammarMistakeSpecial4"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "latexSyntaxMistake"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "temporaryCodeCompletion"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "environment"), 
@@ -153,6 +162,11 @@
 QT_TRANSLATE_NOOP("QFormatConfig", "diffDelete"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "diffAdd"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "diffReplace"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "txs-test"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "txs-test-pass"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "txs-test-fail"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "txs-test-skip"), 
+QT_TRANSLATE_NOOP("QFormatConfig", "txs-test-qdebug"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "normal"),
 QT_TRANSLATE_NOOP("Texmaker","Custom"),
 QT_TRANSLATE_NOOP("Texmaker","File"),
@@ -168,6 +182,7 @@
 QT_TRANSLATE_NOOP("Texmaker", "QtScript", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "(La)TeX", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "(La)TeX Macro", "Format name of language definition "), 
+QT_TRANSLATE_NOOP("Texmaker", "TXS Test Results", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "Plain text", "Format name of language definition "), 
 QT_TRANSLATE_NOOP("Texmaker", "XML", "Format name of language definition "), 
 ""};
