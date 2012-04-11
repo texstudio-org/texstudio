@@ -1371,6 +1371,19 @@ to set the key anyway?</source>
         <translatorcomment>« Construction » n&apos;est pas très heureux, mais je ne vois pas d&apos;autre traduction</translatorcomment>
         <translation>Méta-constructions</translation>
     </message>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
+    <message>
+        <source>Slot</source>
+        <translatorcomment>Traduction à vérifier : je ne suis pas certain du contexte.</translatorcomment>
+        <translation>Créneau</translation>
+    </message>
+    <message>
+        <source>Show all</source>
+        <translation>Afficher tout</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2184,6 +2197,32 @@ Missing \includegraphics options.</source>
         <translation>Impossible d&apos;analyser le code de l&apos;inclusion de graphique :
 Options de \includegraphics manquantes</translation>
     </message>
+    <message>
+        <source>Defines the options for \includegraphics[options]{file}.</source>
+        <translation>Définit les options pour \includegraphics[options]{fichier}</translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
+        <translation>Identifiant, utilisé pour référencer le label, par exemple via \ref{ceLabel}</translation>
+    </message>
+    <message>
+        <source>Suggest priorities, where the figure should appear.
+
+Here: At this position in the text
+Top: At the top the page
+Bottom: At the bottom of the page
+Page: On a separate page with figures
+
+Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </source>
+        <translation>Suggère des préférences d&apos;emplacement pour les figures flottantes.
+
+h (pour « here ») : à la position courante dans le texte
+t (pour « top ») : en haut de la page en cours
+b (pour « bottom ») : en bas de la page en cours
+p (pour « page ») : sur une page séparée, dédiée aux flottants.
+
+Remarque : ces préférences ne sont que suggestions. Si la mise en page en résultant devait être trop mauvaise, LaTeX pourrait les ignorer.</translation>
+    </message>
 </context>
 <context>
     <name>LatexCompleter</name>
@@ -2338,7 +2377,7 @@ Options de \includegraphics manquantes</translation>
     </message>
     <message>
         <source>Citation correct</source>
-        <translation>Citation correcte</translation>
+        <translation type="obsolete">Citation correcte</translation>
     </message>
     <message>
         <source>Citation missing</source>
@@ -2351,6 +2390,10 @@ Options de \includegraphics manquantes</translation>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>Une ou plusieurs clés se terminent par un espace. Ces espaces ne sont pas ignorés par BibTeX.</translation>
+    </message>
+    <message>
+        <source>Citation correct (reading ...)</source>
+        <translation>Citation correcte (lecture en cours...)</translation>
     </message>
 </context>
 <context>
@@ -2984,6 +3027,18 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 semble ne pas être un document PDF valide.
 
 Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous devriez réessayer après que la compilation soit terminée. Ouvrir un document corrompu peut provoquer un arrêt brutal. Voulez-vous néanmoins l&apos;ouvrir ?</translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation>Zoom arrière</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation>Zoom</translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation>Zoom avant</translation>
     </message>
 </context>
 <context>
@@ -3760,15 +3815,15 @@ Le fichier a pu être corrompu!</translation>
     </message>
     <message>
         <source>font</source>
-        <translation>Police</translation>
+        <translation type="obsolete">Police</translation>
     </message>
     <message>
         <source>size</source>
-        <translation>taille</translation>
+        <translation type="obsolete">taille</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation>prio.</translation>
+        <translation type="obsolete">prio.</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3808,15 +3863,15 @@ Le fichier a pu être corrompu!</translation>
     </message>
     <message>
         <source>Font family</source>
-        <translation>Famille de fonte</translation>
+        <translation type="obsolete">Famille de fonte</translation>
     </message>
     <message>
         <source>Point size</source>
-        <translation>Taille en points</translation>
+        <translation type="obsolete">Taille en points</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorité</translation>
+        <translation type="obsolete">Priorité</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -3935,6 +3990,28 @@ Voulez-vous l&apos;enregistrer ?</translation>
     <message>
         <source>diffReplace</source>
         <translation>diffReplace</translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation>Famille de fonte</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Taille</translation>
+    </message>
+    <message>
+        <source>Font size relative to editor font size.
+
+Note: Sizes &gt; 100% may result in clipped characters.</source>
+        <translation>Taille de fonte relative à celle de l&apos;éditeur. Remarque : il peut résulter des tailles &gt; 100 % des caractères rognés.</translation>
+    </message>
+    <message>
+        <source>Prio</source>
+        <translation>Priorité</translation>
+    </message>
+    <message>
+        <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
+        <translation>La priorité détermine quel format est dessiné en priorité si plusieurs formats s&apos;appliquent.</translation>
     </message>
 </context>
 <context>
@@ -6066,7 +6143,7 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>Yes, alwas run the overriden command</source>
-        <translation>Oui, toujours lancer la compilation de remplacement</translation>
+        <translation type="obsolete">Oui, toujours lancer la compilation de remplacement</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overriden command</source>
@@ -6104,6 +6181,18 @@ Faites-vous confiance à ce document ?</translation>
     <message>
         <source>&amp;Math</source>
         <translation>&amp;Maths</translation>
+    </message>
+    <message>
+        <source>Yes, always run the overriden command</source>
+        <translation>Oui, toujours lancer la compilation de remplacement</translation>
+    </message>
+    <message>
+        <source>Reached beginning of text.</source>
+        <translation>Le début du texte a été atteint.</translation>
+    </message>
+    <message>
+        <source>Reached end of text.</source>
+        <translation>La fin du texte a été atteinte.</translation>
     </message>
 </context>
 <context>

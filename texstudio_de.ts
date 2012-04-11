@@ -1370,6 +1370,18 @@ to set the key anyway?</source>
         <source>Meta Build</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Name</translation>
+    </message>
+    <message>
+        <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show all</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2183,6 +2195,25 @@ Missing \includegraphics options.</source>
         <translation>Konnte Bildereinfügecode nicht interpretieren:
 Fehlende Parameter für \includegraphics.</translation>
     </message>
+    <message>
+        <source>Defines the options for \includegraphics[options]{file}.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggest priorities, where the figure should appear.
+
+Here: At this position in the text
+Top: At the top the page
+Bottom: At the bottom of the page
+Page: On a separate page with figures
+
+Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexCompleter</name>
@@ -2333,10 +2364,6 @@ Fehlende Parameter für \includegraphics.</translation>
         <translation>Andere benutzen</translation>
     </message>
     <message>
-        <source>Citation correct</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Citation missing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2346,6 +2373,10 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Citation correct (reading ...)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2974,6 +3005,18 @@ does not look like a valid PDF document.
 
 Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished">Verkleinern</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished">Vergrößern</translation>
     </message>
 </context>
 <context>
@@ -3748,15 +3791,15 @@ Die Datei könnte zerstört sein!</translation>
     </message>
     <message>
         <source>font</source>
-        <translation>Schrift</translation>
+        <translation type="obsolete">Schrift</translation>
     </message>
     <message>
         <source>size</source>
-        <translation>Größe</translation>
+        <translation type="obsolete">Größe</translation>
     </message>
     <message>
         <source>prio</source>
-        <translation>Prio</translation>
+        <translation type="obsolete">Prio</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -3796,15 +3839,15 @@ Die Datei könnte zerstört sein!</translation>
     </message>
     <message>
         <source>Font family</source>
-        <translation>Schriftart</translation>
+        <translation type="obsolete">Schriftart</translation>
     </message>
     <message>
         <source>Point size</source>
-        <translation>Schriftgröße</translation>
+        <translation type="obsolete">Schriftgröße</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation>Priorität</translation>
+        <translation type="obsolete">Priorität</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -3923,6 +3966,28 @@ Wollen Sie es speichern?</translation>
     <message>
         <source>diffReplace</source>
         <translation>diff (Ersetzen)</translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation type="unfinished">Schriftart</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font size relative to editor font size.
+
+Note: Sizes &gt; 100% may result in clipped characters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6059,10 +6124,6 @@ Do you trust this document?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Yes, alwas run the overriden command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Yes, allow all documents to use the overriden command</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6098,6 +6159,18 @@ Do you trust this document?</source>
     <message>
         <source>&amp;Math</source>
         <translation type="unfinished">&amp;Mathe</translation>
+    </message>
+    <message>
+        <source>Yes, always run the overriden command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reached beginning of text.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reached end of text.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
