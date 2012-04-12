@@ -4378,12 +4378,11 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 
 void Texmaker::executeTests(const QStringList &args){
 	QFileInfo myself(QCoreApplication::applicationFilePath());
-	if (myself.lastModified()==configManager.debugLastFileModification) return;
-	if (args.contains("--disable-tests")) return;
+    if (args.contains("--disable-tests")) return;
 	bool allTests = args.contains("--execute-all-tests")
 		//execute all tests once a week or if command paramter is set
 		|| (configManager.debugLastFullTestRun.daysTo(myself.lastModified())>6);
-	if (args.contains("--execute-tests") || allTests) {
+    if (args.contains("--execute-tests") || myself.lastModified()!=configManager.debugLastFileModification || allTests) {
 		fileNew();
 		if (!currentEditorView() || !currentEditorView()->editor)
 			QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
