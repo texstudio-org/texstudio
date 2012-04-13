@@ -1378,7 +1378,7 @@ to set the key anyway?</source>
     <message>
         <source>Slot</source>
         <translatorcomment>Traduction à vérifier : je ne suis pas certain du contexte.</translatorcomment>
-        <translation>Créneau</translation>
+        <translation>Connecteur</translation>
     </message>
     <message>
         <source>Show all</source>
@@ -1871,7 +1871,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>eqref</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3981,7 +3981,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>picture</source>
-        <translation>image</translation>
+        <translation>Image</translation>
     </message>
     <message>
         <source>diffDelete</source>
@@ -4019,59 +4019,59 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     </message>
     <message>
         <source>align-ampersand</source>
-        <translation type="unfinished"></translation>
+        <translation>Alignement des &amp;</translation>
     </message>
     <message>
         <source>wordRepetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Répétition de mots</translation>
     </message>
     <message>
         <source>wordRepetitionLongRange</source>
-        <translation type="unfinished"></translation>
+        <translation>Longue plage de répétition de mot</translation>
     </message>
     <message>
         <source>badWord</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot incorrect</translation>
     </message>
     <message>
         <source>grammarMistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale spéciale 1</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale spéciale 2</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial3</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale spéciale 3</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial4</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale spéciale 4</translation>
     </message>
     <message>
         <source>txs-test</source>
-        <translation type="unfinished"></translation>
+        <translation>Test TXS</translation>
     </message>
     <message>
         <source>txs-test-pass</source>
-        <translation type="unfinished"></translation>
+        <translation>Succès du test TXS</translation>
     </message>
     <message>
         <source>txs-test-fail</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du test TXS</translation>
     </message>
     <message>
         <source>txs-test-skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Omission du test TXS</translation>
     </message>
     <message>
         <source>txs-test-qdebug</source>
-        <translation type="unfinished"></translation>
+        <translation>Test TXS qdebug</translation>
     </message>
 </context>
 <context>
@@ -6257,15 +6257,15 @@ Faites-vous confiance à ce document ?</translation>
     <message>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Résultats du test TXS</translation>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, toujours lancer la compilation de remplacement</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overridden command</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, autoriser tous les documents à utiliser la compilation de remplacement</translation>
     </message>
 </context>
 <context>
