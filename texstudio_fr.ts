@@ -1378,7 +1378,7 @@ to set the key anyway?</source>
     <message>
         <source>Slot</source>
         <translatorcomment>Traduction à vérifier : je ne suis pas certain du contexte.</translatorcomment>
-        <translation>Connecteur</translation>
+        <translation>Fonction</translation>
     </message>
     <message>
         <source>Show all</source>
