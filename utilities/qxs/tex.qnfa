@@ -56,17 +56,20 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
 
 	<foreach loopVar="$i">
-		<e>$</e> <e>+</e> <e>-</e> <e>1</e> <e>!</e> <e>.</e> <e>@</e> <e>#</e> <e>|</e> <e>/</e> <e>\</e> <e>_</e> <e>=</e> <e>*</e> <e>x</e>
+		<e>$</e> <e>+</e> <e>-</e> <e>1</e> <e>!</e> <e>.</e> <e>@</e> <e>#</e> <e>|</e> <e>/</e> <e>\</e> <e>_</e> <e>=</e> <e>x</e>
 		<body>
 	  	<context id="verb$i" format="verbatim">
 			<start parenthesis="verb$i:open" parenthesisWeight="20" format="keyword">\\verb\$i</start>
 			<stop parenthesis="verb$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
 		</context>
+		<context id="verb*$i" format="verbatim">
+			<start parenthesis="verb*$i:open" parenthesisWeight="20" format="keyword">\\verb\*\$i</start>
+			<stop parenthesis="verb*$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
 		</body>
 	</foreach>
 
 	<word id="keywords/single" format="align-ampersand">&amp;</word>
-		
 
 	<!-- ========================= COMMAND ====================== -->
 
