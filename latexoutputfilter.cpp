@@ -421,7 +421,7 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 	static QRegExp rePDFLaTeXError("^Error: pdflatex (.*)$", Qt::CaseInsensitive);
 	static QRegExp reTeXError("^! (.*)\\.$");
 	static QRegExp rePackageError("^! Package (.*) Error:(.*)$", Qt::CaseInsensitive);
-	static QRegExp reLineNumber("^l\\.([0-9]+)(.*)");
+    static QRegExp reLineNumber("^(\\.{3} )?l\\.([0-9]+)(.*)");
 
 	switch (dwCookie) {
 		case Start :
@@ -470,8 +470,8 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 				dwCookie = Start;
 				flush = true;
 				//KILE_DEBUG() << "\tline number: " << reLineNumber.cap(1) << endl;
-				m_currentItem.oldline=reLineNumber.cap(1).toInt();
-				m_currentItem.message=m_currentItem.message + reLineNumber.cap(2);
+                m_currentItem.oldline=reLineNumber.cap(2).toInt();
+                m_currentItem.message=m_currentItem.message + reLineNumber.cap(3);
 			}
 			else if(GetCurrentOutputLine() - m_currentItem.logline > 10) {
 				dwCookie = Start;
