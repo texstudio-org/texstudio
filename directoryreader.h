@@ -2,9 +2,10 @@
 #define DIRECTORYREADER_H
 
 #include "mostQtHeaders.h"
+#include "smallUsefulFunctions.h"
 #include <QThread>
 
-class directoryReader : public QThread
+class directoryReader : public SafeThread
 {
     Q_OBJECT
 public:

@@ -3,6 +3,8 @@
 
 #ifndef NO_POPPLER_PREVIEW
 
+#include "smallUsefulFunctions.h"
+
 #include "poppler-qt4.h"
 
 #include <QThread>
@@ -10,6 +12,7 @@
 #include <QMutex>
 #include <QQueue>
 #include <QImage>
+
 
 class PDFQueue;
 
@@ -28,7 +31,7 @@ public:
 	bool priority;
 };
 
-class PDFRenderEngine : public QThread
+class PDFRenderEngine : public SafeThread
 {
 	Q_OBJECT
 public:

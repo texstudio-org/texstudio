@@ -1,7 +1,7 @@
 #include "latexstyleparser.h"
 
 LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString kpsecmd) :
-    QThread(parent)
+    SafeThread(parent)
 {
     baseDir=baseDirName;
     stopped=false;

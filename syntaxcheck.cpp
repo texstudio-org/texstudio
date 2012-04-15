@@ -3,7 +3,7 @@
 #include "tablemanipulation.h"
 
 SyntaxCheck::SyntaxCheck(QObject *parent) :
-       QThread(parent), syntaxErrorFormat(-1), ltxCommands(0), newLtxCommandsAvailable(false)
+       SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(0), newLtxCommandsAvailable(false)
 {
 	mLinesLock.lock();
 	stopped=false;
@@ -56,8 +56,7 @@ void SyntaxCheck::run(){
 			}
 			mLtxCommandLock.unlock();
 		}
-		
-		
+				
 		// get Linedata
 		mLinesLock.lock();
 		SyntaxLine newLine=mLines.dequeue();
@@ -321,7 +320,7 @@ void SyntaxCheck::setLtxCommands(const LatexParser& cmds){
 }
 
 void SyntaxCheck::waitForQueueProcess(){
-	while(mLinesAvailable.available()>0){
+	while(!crashed && mLinesAvailable.available()>0){
 		wait(1);
 	}
 }

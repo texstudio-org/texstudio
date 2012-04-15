@@ -30,7 +30,7 @@ typedef QStack<Environment> StackEnvironment;
 
 Q_DECLARE_METATYPE(StackEnvironment)
 
-class SyntaxCheck : public QThread
+class SyntaxCheck : public SafeThread
 {
 	Q_OBJECT
 	
@@ -78,6 +78,7 @@ public:
 	static bool equalEnvStack(StackEnvironment env1,StackEnvironment env2);
 	bool queuedLines();
 	void setLtxCommands(const LatexParser& cmds);
+	
 signals:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay, int ticket);
 protected:

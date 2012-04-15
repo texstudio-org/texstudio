@@ -1660,3 +1660,20 @@ void LatexPackage::unite(LatexPackage &add){
 }
 
 
+void ThreadBreaker::sleep(int s){
+        QThread::sleep(s);
+};
+
+void ThreadBreaker::forceTerminate(QThread* t){
+	if (!t) t = QThread::currentThread();
+	t->setTerminationEnabled(true);
+	t->terminate();
+}
+
+SafeThread::SafeThread():QThread(0){}
+SafeThread::SafeThread(QObject* parent):QThread(parent), crashed(false){}
+
+void SafeThread::wait(unsigned long time){
+	if (crashed) return;
+	QThread::wait(time);
+}

@@ -1,7 +1,7 @@
 #include "bibtexreader.h"
 
 bibtexReader::bibtexReader(QObject *parent) :
-    QThread(parent)
+    SafeThread(parent)
 {
 }
 

@@ -1,7 +1,7 @@
 #include "directoryreader.h"
 
 directoryReader::directoryReader(QObject *parent) :
-    QThread(parent)
+    SafeThread(parent)
 {
 }
 
