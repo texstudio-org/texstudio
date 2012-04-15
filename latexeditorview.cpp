@@ -1833,6 +1833,7 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 }
 
 void LatexEditorView::bibtexSectionFound(QString bibId, QString content){
+    Q_UNUSED(bibId)
     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(lastPos)), content);
 }
 

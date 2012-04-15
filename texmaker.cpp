@@ -4379,6 +4379,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 void Texmaker::executeTests(const QStringList &args){
 	QFileInfo myself(QCoreApplication::applicationFilePath());
     if (args.contains("--disable-tests")) return;
+    #ifndef QT_NO_DEBUG
 	bool allTests = args.contains("--execute-all-tests")
 		//execute all tests once a week or if command paramter is set
 		|| (configManager.debugLastFullTestRun.daysTo(myself.lastModified())>6);
@@ -4392,6 +4393,7 @@ void Texmaker::executeTests(const QStringList &args){
 		currentEditorView()->editor->setText(result, false);
 		configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 	}
+    #endif
 }
 
 void Texmaker::generateAddtionalTranslations(){
@@ -5431,14 +5433,15 @@ void Texmaker::fileUpdateCWD(QString filename){
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
-	QString cmd=BuildManager::CMD_SVN;
-	cmd+=" ci -m \""+text+"\" \""+fn+("\"");
-	statusLabelProcess->setText(QString(" svn check in "));
-	//TODO: blocking
-	runCommand(cmd);
-	LatexEditorView *edView=getEditorViewFromFileName(fn);
-	if(edView)
-		edView->editor->setProperty("undoRevision",0);
+    Q_UNUSED(blocking)
+    QString cmd=BuildManager::CMD_SVN;
+    cmd+=" ci -m \""+text+"\" \""+fn+("\"");
+    statusLabelProcess->setText(QString(" svn check in "));
+    //TODO: blocking
+    runCommand(cmd);
+    LatexEditorView *edView=getEditorViewFromFileName(fn);
+    if(edView)
+	edView->editor->setProperty("undoRevision",0);
 }
 
 bool Texmaker::svnadd(QString fn,int stage){
