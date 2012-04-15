@@ -53,9 +53,85 @@
 
 #include <QMessageBox>
 
+
+
+
+
+
+
+
+#ifdef linux
+#include "signal.h"
+#include "ucontext.h"
+#define CRASH_HANDLER
+#if (defined(x86_64) || defined(__x86_64__))
+#define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RIP]
+#else
+#define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_EIP]
+#endif
+#endif
+
+#ifdef Q_WS_MACX
+#include "sys/signal.h"
+#include "sys/ucontext.h"
+#define CRASH_HANDLER
+//names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
+//for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
+#if (defined(x86_64) || defined(__x86_64__))
+#define PC_FROM_UCONTEXT(context) context->__ss.__rip
+#elif (defined(ppc) || defined(__ppc__))
+#define PC_FROM_UCONTEXT(context) context->__ss.__srr0
+#else
+#define PC_FROM_UCONTEXT(context) context->__ss.__eip
+#endif
+#endif
+
+bool programStopped = false;
+#ifdef CRASH_HANDLER
+
+volatile sig_atomic_t crashHandlerType = 1; 
+volatile sig_atomic_t lastCrashSignal = 0; 
+
+void recover(){
+	Texmaker::recoverFromCrash(lastCrashSignal);
+}
+
+
+void signalHandler(int type, siginfo_t *, void* ccontext){
+	if (crashHandlerType == 1 && ccontext != 0) {
+		lastCrashSignal = type;
+		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
+		// context->uc_mcontext.gregs[REG_RIP]
+		*(void**)(&context->uc_mcontext.gregs[REG_RIP]) = (void*)(&recover);
+	} else {
+		switch (type) {
+		case SIGSEGV: txs_assert("SIGSEGV","",0); break; 
+		case SIGFPE: txs_assert("SIGFPE","",0); break; 
+		default: txs_assert("SIG???","",0); break; 
+		}
+	}
+}
+
+Texmaker* txsInstance = 0;
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
        : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
 	
+	programStopped = false;
 	spellLanguageActions=0;
 	MapForSymbols=0;
 	currentLine=-1;
@@ -66,6 +142,16 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	latexStyleParser=0;
 	
 	ReadSettings();
+	
+#ifdef CRASH_HANDLER
+	txsInstance = this;
+	if (crashHandlerType >= 0) {
+		struct sigaction sa;
+		memset(&sa, 0, sizeof(sa)); sa.sa_flags = SA_SIGINFO;
+		sa.sa_sigaction = &signalHandler;  sigaction(SIGSEGV, &sa, 0);
+		sa.sa_sigaction = &signalHandler; sigaction(SIGFPE, &sa, 0);
+	}
+#endif
 	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -259,6 +345,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 
 Texmaker::~Texmaker(){
+	programStopped = true;
 	delete MapForSymbols;
 	if(latexStyleParser){
 		latexStyleParser->stop();
@@ -2002,6 +2089,7 @@ bool Texmaker::canCloseNow(){
 		if (userMacroDialog) delete userMacroDialog;
 		spellerManager.unloadAll();  //this saves the ignore list
 	}
+	programStopped = true;
 	return accept;
 }
 void Texmaker::closeEvent(QCloseEvent *e) {
@@ -2566,6 +2654,8 @@ void Texmaker::ReadSettings() {
 	}
 	
 	m_formats->load(*config,true); //load customized formats
+	
+	crashHandlerType = config->value("Crash Handler Type", 1).toInt();
 	config->endGroup();
 	
 	// read usageCount from file of its own.
@@ -2593,6 +2683,8 @@ void Texmaker::ReadSettings() {
 	documents.settingsRead();
 	
 	configManager.editorConfig->settingsChanged();
+	
+	
 }
 
 void Texmaker::SaveSettings(const QString& configName) {
@@ -6496,4 +6588,81 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 		}
 	}
 	return false;
+}
+
+
+#ifdef CRASH_HANDLER
+QThread* killAtCrashedThread = 0;
+QThread* lastCrashedThread = 0;
+
+QString getLastSignal(int type = -1){
+	if (type < 0) type = lastCrashSignal;
+	switch (type) {
+	case SIGSEGV: return "SIGSEGV"; break;
+	case SIGFPE: return "SIGFPE"; break;
+	default: return "SIG???";
+	}
+}
+#endif
+
+void Texmaker::recoverFromCrash(int type){
+#ifdef CRASH_HANDLER
+	QString name = getLastSignal(type);
+	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
+		QThread* t = QThread::currentThread();
+		lastCrashedThread = t;
+		if (qobject_cast<SafeThread*>(t)) qobject_cast<SafeThread*>(t)->crashed = true;
+		QTimer::singleShot(0, txsInstance, SLOT(threadCrashed()));
+		while(!programStopped) { 
+			ThreadBreaker::sleep(1); 
+			if (t &&  t == killAtCrashedThread) {
+				name += " forced kill in %1";
+				name.arg((long int)t, sizeof(long int)*2, 16,QChar('0'));
+				txs_assert(qPrintable(name), 0, 0);
+			}
+		};
+		ThreadBreaker::forceTerminate();
+		return;
+	}
+		
+	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
+	QMessageBox mb; //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk
+	mb.setWindowTitle(tr("TeXstudio Emergency"));
+	mb.setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
+	mb.setDefaultButton(mb.addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
+	mb.addButton(tr("No, kill the programm"), QMessageBox::RejectRole);
+	if (mb.exec() == QMessageBox::RejectRole) {
+		txs_assert(qPrintable(name), 0, 0);
+		exit(1);
+	}
+	while (!programStopped) {
+		QApplication::processEvents(QEventLoop::AllEvents);
+	}
+	name = "Normal close after " + name;
+	txs_assert(qPrintable(name), 0, 0);
+	exit(0);
+#endif
+}
+
+void Texmaker::threadCrashed(){
+#ifdef CRASH_HANDLER
+	QString signal = getLastSignal();
+	QThread* thread = lastCrashedThread;
+	
+	QString threadName = "<unknown<";
+	QString threadId = QString("%1").arg((long)(thread),sizeof(long int)*2,16,QChar('0'));
+	if (qobject_cast<QThread*>(static_cast<QObject*>(thread)))  
+		threadName = QString("%1 %2").arg(threadId).arg(qobject_cast<QThread*>(thread)->objectName());
+	
+	fprintf(stderr, "crashed with signal %s in thread %s\n", qPrintable(signal), qPrintable(threadName));
+	
+	int btn = QMessageBox::warning(this, tr("TeXstudio Emergency"), 
+	                               tr("TeXstudio has CRASHED due to a %1 in thread %2.\nThe thread has been stopped.\nDo you want to keep TeXstudio running? This may cause data corruption.").arg(signal).arg(threadId),
+	                     tr("Yes"), tr("No, kill the program"));
+	if (btn) {  
+		killAtCrashedThread = thread;
+		ThreadBreaker::sleep(10);
+		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
+	}
+#endif                                                         
 }

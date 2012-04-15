@@ -12,6 +12,7 @@
 #define SMALLUSEFULFUNCTIONS_H
 
 #include "mostQtHeaders.h"
+#include <QObject>
 
 //#inlcude "latexcompleter_config.h"
 
@@ -238,5 +239,23 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
 #else
 #define LIST_RESERVE(list, count) 
 #endif
+
+
+class ThreadBreaker : public QThread
+{
+public:
+    static void sleep(int s);
+    static void forceTerminate(QThread* t = 0);
+};
+
+class SafeThread: public QThread
+{
+	Q_OBJECT
+public:
+	SafeThread();
+	SafeThread(QObject* parent);
+	void wait(unsigned long time = 60000);
+	bool crashed;
+};
 
 #endif

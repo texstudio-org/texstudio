@@ -20,7 +20,7 @@ RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h)
 }
 
 PDFRenderEngine::PDFRenderEngine(QObject *parent,PDFQueue *mQueue) :
-       QThread(parent), cachedNumPages(0)
+       SafeThread(parent), cachedNumPages(0)
 {
 	document=0;
 	queue=mQueue;

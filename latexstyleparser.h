@@ -7,7 +7,7 @@
 #include <QMutex>
 #include <QQueue>
 
-class LatexStyleParser : public QThread
+class LatexStyleParser : public SafeThread
 {
     Q_OBJECT
 public:

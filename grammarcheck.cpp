@@ -410,15 +410,6 @@ bool GrammarCheckLanguageToolSOAP::isAvailable(){
 	return connectionAvailability >= 0;
 }
 
-class ThreadBreaker : public QThread
-{
-public:
-    static void sleep(int s)
-    {
-        QThread::sleep(s);
-    }
-};
- 
 void GrammarCheckLanguageToolSOAP::tryToStart(){
 	if (triedToStart) {
 		if (QDateTime::currentDateTime().toTime_t() - startTime < 60*1000 ) {

@@ -134,6 +134,7 @@
 #include <QToolBox>
 #include <QToolButton>
 #include <QToolTip>
+#include <QThread>
 #include <QTranslator>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>

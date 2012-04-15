@@ -146,7 +146,7 @@ private:
 	QStringList userTemplatesList;
 	
 	SpellerManager spellerManager;
-	QThread grammarCheckThread;
+	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
 	
 	//dialogs
@@ -510,6 +510,10 @@ public:
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;
 	Q_INVOKABLE void setClipboardText(const QString& text, const QClipboard::Mode& mode = QClipboard::Clipboard);
 	Q_INVOKABLE int getVersion() const;
+	
+	static void recoverFromCrash(int type);
+public slots:
+	void threadCrashed();
 };
 
 Q_DECLARE_METATYPE(Texmaker*)
