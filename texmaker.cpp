@@ -2654,8 +2654,9 @@ void Texmaker::ReadSettings() {
 	}
 	
 	m_formats->load(*config,true); //load customized formats
-	
+#ifdef CRASH_HANDLER
 	crashHandlerType = config->value("Crash Handler Type", 1).toInt();
+#endif
 	config->endGroup();
 	
 	// read usageCount from file of its own.
