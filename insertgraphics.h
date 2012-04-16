@@ -19,6 +19,16 @@
 class InsertGraphicsConfig;
 
 
+class PlacementValidator : public QRegExpValidator {
+	Q_OBJECT
+
+public:
+	explicit PlacementValidator(QObject *parent = 0);
+	void fixup (QString &input) const;
+	State validate(QString &input, int &pos) const;
+};
+
+
 class InsertGraphics : public QDialog {
 	Q_OBJECT
 
@@ -34,6 +44,7 @@ private:
 	InsertGraphicsConfig getConfig() const;
 	void setConfig(const InsertGraphicsConfig &conf);
 	bool parseCode(const QString &code, InsertGraphicsConfig &conf);
+	QString getCaptionLabelString(const InsertGraphicsConfig &conf) const;
 
 	QString generateLabel(QString fname);
 	Ui::InsertGraphics ui;
@@ -60,10 +71,10 @@ signals:
 private slots:
 	void chooseFile();
 	void includeOptionChanged();
-        void labelChanged(const QString &label);
-        void updateLabel(const QString &fname);
-        void posMoveItemUp();
-        void posMoveItemDown();
+	void labelChanged(const QString &label);
+	void updateLabel(const QString &fname);
+	void togglePlacementCheckboxes(bool forceHide=false);
+	void updatePlacement();
 	void saveDefault();
 };
 
