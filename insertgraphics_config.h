@@ -15,6 +15,7 @@ public:
     bool center;
     bool useFigure;
     bool captionBelow;
+	QString shortCaption;
     QString caption;
     QString label;
     bool spanTwoCols;

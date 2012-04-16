@@ -16,6 +16,25 @@
 #include "smallUsefulFunctions.h"
 
 
+PlacementValidator::PlacementValidator(QObject *parent)
+		: QRegExpValidator(parent)
+{
+	setRegExp(QRegExp("t?b?p?h?!?"));
+}
+
+void PlacementValidator::fixup(QString &input) const {
+	QString cleaned;
+	foreach (const QChar &c, QString("tbph!")) {
+		if (input.contains(c.toAscii())) cleaned.append(c);
+	}
+	input = cleaned;
+}
+
+QValidator::State PlacementValidator::validate(QString &input, int &pos) const {
+	fixup(input);
+	return QRegExpValidator::validate(input, pos);
+}
+
 QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";
 QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm" << "";
 QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "png" << "pdf";
@@ -38,31 +57,41 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	connect(ui.leHeight, SIGNAL(textChanged(QString)), this, SLOT(includeOptionChanged()));
 	connect(ui.cbWidthUnit, SIGNAL(currentIndexChanged(QString)), this, SLOT(includeOptionChanged()));
 	connect(ui.cbHeightUnit, SIGNAL(currentIndexChanged(QString)), this, SLOT(includeOptionChanged()));
-        connect(ui.upButton, SIGNAL(clicked()), this, SLOT(posMoveItemUp()));
-        connect(ui.downButton, SIGNAL(clicked()), this, SLOT(posMoveItemDown()));
-        connect(ui.leLabel, SIGNAL(textChanged(QString)), this, SLOT(labelChanged(QString)));
+	connect(ui.lePlacement, SIGNAL(textChanged(QString)), this, SLOT(updatePlacement()));
+	connect(ui.pbPlaceExpand, SIGNAL(clicked()), this, SLOT(togglePlacementCheckboxes()));
+	connect(ui.cbPlaceTop, SIGNAL(clicked()), this, SLOT(updatePlacement()));
+	connect(ui.cbPlaceBottom, SIGNAL(clicked()), this, SLOT(updatePlacement()));
+	connect(ui.cbPlacePage, SIGNAL(clicked()), this, SLOT(updatePlacement()));
+	connect(ui.cbPlaceHere, SIGNAL(clicked()), this, SLOT(updatePlacement()));
+	connect(ui.cbPlaceForce, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.pbSaveDefault, SIGNAL(clicked()), this, SLOT(saveDefault()));
 	connect(this, SIGNAL(fileNameChanged(const QString &)), this, SLOT(updateLabel(const QString &)));
-        setWindowTitle(tr("Insert Graphics","Wizard"));
+	setWindowTitle(tr("Insert Graphics","Wizard"));
 
-        // adjust listPlacement size
-	ui.listPlacement->addItem(new QListWidgetItem(tr("Here"), ui.listPlacement, InsertGraphics::PlaceHere));
-	ui.listPlacement->addItem(new QListWidgetItem(tr("Top"), ui.listPlacement, InsertGraphics::PlaceTop));
-	ui.listPlacement->addItem(new QListWidgetItem(tr("Bottom"), ui.listPlacement, InsertGraphics::PlaceBottom));
-	ui.listPlacement->addItem(new QListWidgetItem(tr("Page"), ui.listPlacement, InsertGraphics::PlacePage));
-
-	int rows = ui.listPlacement->count();
-        int rowSize = ui.listPlacement->sizeHintForRow(0);
-        int height = rows * rowSize;
-        int frameWidth = ui.listPlacement->frameWidth();
-        ui.listPlacement->setFixedHeight(height + frameWidth * 2);
+	ui.lePlacement->setValidator(new PlacementValidator(this));
+	togglePlacementCheckboxes(true);
+	QString tooltip(tr(
+		"Placement preferences for the figure\n\n"
+		"[t] Top: At the top the page\n"
+		"[b] Bottom: At the bottom of the page\n"
+		"[p] Page: On a separate page with figures\n"
+		"[h] Here: At this position in the text\n"
+		"[!]: Override internal parameters LaTeX uses for determining `good' float positions.\n\n"
+		"Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
+	));
+	ui.lePlacement->setToolTip(tooltip);
+	ui.cbPlaceTop->setToolTip(tooltip);
+	ui.cbPlaceBottom->setToolTip(tooltip);
+	ui.cbPlacePage->setToolTip(tooltip);
+	ui.cbPlaceHere->setToolTip(tooltip);
+	ui.cbPlaceForce->setToolTip(tooltip);
 
 	includeOptionChanged();
-        filter = "Images (*.eps *.jpg *.png *.pdf)";
+	filter = "Images (*.eps *.jpg *.png *.pdf)";
 
 	ui.cbWidthUnit->insertItems(0, widthUnits);
 	ui.cbHeightUnit->insertItems(0, heightUnits);
-        autoLabel = true;
+	autoLabel = true;
 
 	defaultConfig = conf;
 	setConfig(*conf);
@@ -104,21 +133,13 @@ InsertGraphicsConfig InsertGraphics::getConfig() const {
 
 	conf.file = ui.leFile->text();
 	conf.includeOptions = ui.leScale->text();
-	for(int i=0; i<ui.listPlacement->count(); i++) {
-		QListWidgetItem *item = ui.listPlacement->item(i);
-		if (item->checkState() == Qt::Checked) {
-			if (item->type() == InsertGraphics::PlaceHere) conf.placement.append("h");
-			if (item->type() == InsertGraphics::PlaceBottom) conf.placement.append("b");
-			if (item->type() == InsertGraphics::PlaceTop) conf.placement.append("t");
-			if (item->type() == InsertGraphics::PlacePage) conf.placement.append("p");
-		}
-	}
-
 	conf.center = ui.cbCentering->isChecked();
 	conf.useFigure = ui.gbFloat->isChecked();
 	conf.captionBelow = ui.cbPosition->currentIndex()!=0;
+	conf.shortCaption = ui.leShortCaption->text().simplified();
 	conf.caption = ui.teCaption->toPlainText().simplified();
 	conf.label = ui.leLabel->text();
+	conf.placement = ui.lePlacement->text();
 	conf.spanTwoCols = ui.cbSpan->isChecked();
 
 	return conf;
@@ -178,36 +199,13 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 		}
 	}
 
-	for(int row=0; row<ui.listPlacement->count(); row++) {
-		ui.listPlacement->item(row)->setCheckState(Qt::Unchecked);
-	}
-	for (int i=conf.placement.length()-1; i>=0; i--) {
-		QString plLabel;
-		PlacementType type;
-		switch (conf.placement.at(i).toAscii()) {
-			case 'h': type = InsertGraphics::PlaceHere; break;
-			case 't': type = InsertGraphics::PlaceTop; break;
-			case 'b': type = InsertGraphics::PlaceBottom; break;
-			case 'p': type = InsertGraphics::PlacePage; break;
-			default: continue;
-		}
-
-		for (int row=0; row<ui.listPlacement->count(); row++) {
-			QListWidgetItem *item = ui.listPlacement->item(row);
-			if (item->type()==type) {
-				item->setCheckState(Qt::Checked);
-				ui.listPlacement->takeItem(row);
-				ui.listPlacement->insertItem(0, item);
-				break;
-			}
-		}
-	}
-
 	ui.cbCentering->setChecked(conf.center);
 	ui.gbFloat->setChecked(conf.useFigure);
 	ui.cbPosition->setCurrentIndex(conf.captionBelow ? 1 : 0);
+	ui.leShortCaption->setText(conf.shortCaption);
 	ui.teCaption->setPlainText(conf.caption);
 	ui.leLabel->setText(conf.label);
+	ui.lePlacement->setText(conf.placement);
 	ui.cbSpan->setChecked(conf.spanTwoCols);
 }
 
@@ -265,7 +263,16 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 		} else if (lr.word=="\\end") {
 			;
 		} else if (lr.word=="\\caption") {
-			conf.caption = LatexParser::removeOptionBrackets(args.at(0));
+			if (args.at(0).at(0) == '[') {
+				conf.shortCaption = LatexParser::removeOptionBrackets((args.at(0)));
+				if (args.length()<2) {
+					txsWarning(tr("Could not parse graphics inclusion code:\nInvalid \\caption command."));
+				}
+				conf.caption = LatexParser::removeOptionBrackets(args.at(1));
+			} else {
+				conf.shortCaption.clear();
+				conf.caption = LatexParser::removeOptionBrackets(args.at(0));
+			}
 			conf.captionBelow = includeParsed;
 		} else if (lr.word=="\\label") {
 			conf.label = LatexParser::removeOptionBrackets(args.at(0));
@@ -291,6 +298,20 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 }
 
 
+QString InsertGraphics::getCaptionLabelString(const InsertGraphicsConfig &conf) const {
+	QString s;
+	if(!conf.caption.isEmpty() || !conf.shortCaption.isEmpty()) {
+		s.append("\\caption");
+		if (!conf.shortCaption.isEmpty()) s.append("["+conf.shortCaption+"]");
+		s.append("{"+conf.caption+"}\n");
+	}
+	if(!conf.label.isEmpty()) {
+		if(conf.caption.isEmpty()) s.append("\\caption{}\n");
+		s.append("\\label{"+conf.label+"}\n");
+	}
+	return s;
+}
+
 
 QString InsertGraphics::getCode() const {
 	QString insert;
@@ -308,13 +329,7 @@ QString InsertGraphics::getCode() const {
 		insert.append("\n");
 
 		if(conf.center) insert.append("\\centering\n");
-		if(!conf.captionBelow){
-			if(!conf.caption.isEmpty()) insert.append("\\caption{"+conf.caption+"}\n");
-			if(!conf.label.isEmpty()) {
-				if(conf.caption.isEmpty()) insert.append("\\caption{}\n");
-				insert.append("\\label{"+conf.label+"}\n");
-			}
-		}
+		if(!conf.captionBelow) insert.append(getCaptionLabelString(conf));
 	} else {
 		if(conf.center) insert.append("\\begin{center}\n");
 	}
@@ -357,13 +372,7 @@ QString InsertGraphics::getCode() const {
 #endif
 	insert.append("{"+fname+"}\n");
 	if(conf.useFigure){
-		if(conf.captionBelow){
-			if(!conf.caption.isEmpty()) insert.append("\\caption{"+conf.caption+"}\n");
-			if(!conf.label.isEmpty()) {
-				if(conf.caption.isEmpty()) insert.append("\\caption{}\n");
-				insert.append("\\label{"+conf.label+"}\n");
-			}
-		}
+		if(conf.captionBelow) insert.append(getCaptionLabelString(conf));
 		if (conf.spanTwoCols) {
 			insert.append("\\end{figure*}\n");
 		} else {
@@ -420,31 +429,46 @@ void InsertGraphics::includeOptionChanged() {
 	}
 }
 
-void InsertGraphics::posMoveItemUp() {
-        int row = ui.listPlacement->currentRow();
-        if (row <= 0) return;
-
-        QListWidgetItem *item = ui.listPlacement->takeItem(row);
-        ui.listPlacement->insertItem(row-1, item);
-        ui.listPlacement->setCurrentRow(row-1);
-}
-
-void InsertGraphics::posMoveItemDown() {
-        int row = ui.listPlacement->currentRow();
-        if (row >= ui.listPlacement->count() -1) return;
-
-        QListWidgetItem *item = ui.listPlacement->takeItem(row);
-        ui.listPlacement->insertItem(row+1, item);
-        ui.listPlacement->setCurrentRow(row+1);
-}
-
 void InsertGraphics::labelChanged(const QString &label) {
-        autoLabel = (label == generateLabel(ui.leFile->text()));
+	autoLabel = (label == generateLabel(ui.leFile->text()));
 }
 
 void InsertGraphics::updateLabel(const QString &fname) {
 	if (autoLabel) {
 		ui.leLabel->setText(generateLabel(fname));
+	}
+}
+
+void InsertGraphics::togglePlacementCheckboxes(bool forceHide) {
+	if (ui.placementCheckboxes->isVisible() || forceHide) {
+		ui.placementCheckboxes->hide();
+		ui.pbPlaceExpand->setIcon(QIcon(":/images/down-arrow-circle-silver.png"));
+		resize(width(),height()-(ui.placementCheckboxes->height()+ui.gridLayout->verticalSpacing()));
+	} else {
+		resize(width(),height()+(ui.placementCheckboxes->height()+ui.gridLayout->verticalSpacing()));
+		ui.pbPlaceExpand->setIcon(QIcon(":/images/up-arrow-circle-silver.png"));
+		ui.placementCheckboxes->show();
+	}
+}
+
+void InsertGraphics::updatePlacement() {
+	QObject *s = sender();
+
+	if (s == ui.cbPlaceTop || s == ui.cbPlaceBottom || s == ui.cbPlacePage || s == ui.cbPlaceHere || s == ui.cbPlaceForce) {
+		QString pl;
+		if (ui.cbPlaceTop->isChecked()) pl.append('t');
+		if (ui.cbPlaceBottom->isChecked()) pl.append('b');
+		if (ui.cbPlacePage->isChecked()) pl.append('p');
+		if (ui.cbPlaceHere->isChecked()) pl.append('h');
+		if (ui.cbPlaceForce->isChecked()) pl.append('!');
+		ui.lePlacement->setText(pl);
+	} else {
+		QString pl = ui.lePlacement->text();
+		ui.cbPlaceTop->setChecked(pl.contains('t'));
+		ui.cbPlaceBottom->setChecked(pl.contains('b'));
+		ui.cbPlacePage->setChecked(pl.contains('p'));
+		ui.cbPlaceHere->setChecked(pl.contains('h'));
+		ui.cbPlaceForce->setChecked(pl.contains('!'));
 	}
 }
 
@@ -459,11 +483,11 @@ void InsertGraphics::saveDefault() {
 void InsertGraphicsConfig::readSettings(QSettings& settings){
 	settings.beginGroup("InsertGraphics");
 
-    includeOptions = settings.value("/includeOption", "width=0.7\\linewidth").toString();
+	includeOptions = settings.value("/includeOption", "width=0.7\\linewidth").toString();
 	center = settings.value("/center", true).toBool();
 	useFigure = settings.value("/useFigure", true).toBool();
 	captionBelow = settings.value("/captionBelow", true).toBool();
-	placement = settings.value("/placement", "htbp").toString();
+	placement = settings.value("/placement", "").toString();
 	spanTwoCols = settings.value("/spanTwoCols", false).toBool();
 	settings.endGroup();
 }
@@ -479,3 +503,4 @@ void InsertGraphicsConfig::saveSettings(QSettings &settings){
 	settings.setValue("/spanTwoCols", spanTwoCols);
 	settings.endGroup();
 }
+
