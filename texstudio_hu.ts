@@ -6234,6 +6234,41 @@ Do you trust this document?</source>
         <source>Yes, allow all documents to use the overridden command</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>TeXstudio Emergency</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio has CRASHED due to a %1.
+Do you want to keep it running? This may cause data corruption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, try to recover.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No, kill the programm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio has CRASHED due to a %1 in thread %2.
+The thread has been stopped.
+Do you want to keep TeXstudio running? This may cause data corruption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished">Igen</translation>
+    </message>
+    <message>
+        <source>No, kill the program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I tried to die, but nothing happened.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
