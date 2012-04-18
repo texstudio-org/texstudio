@@ -63,6 +63,7 @@
 #ifdef linux
 #include "signal.h"
 #include "ucontext.h"
+#include "sys/ucontext.h"
 #define CRASH_HANDLER
 #if (defined(x86_64) || defined(__x86_64__))
 #define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RIP]
