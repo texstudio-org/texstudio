@@ -141,6 +141,8 @@ void BuildManager::initDefaultCommandNames(){
 	//id, platform-independent command, display name, command line
 	registerCommand("latex",       "latex",        "LaTeX",       "-src -interaction=nonstopmode %.tex", "Tools/Latex");
 	registerCommand("pdflatex",    "pdflatex",     "PdfLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "Tools/Pdflatex");
+	registerCommand("xelatex",     "xelatex",      "XeLaTeX",     "-synctex=1 -interaction=nonstopmode %.tex", "");
+	registerCommand("lualatex",    "lualatex",     "LuaLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "");
 	registerCommand("view-dvi",    "",             tr("Dvi Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
 	registerCommand("view-ps",     "",             tr("Ps Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
 	registerCommand("view-pdf-external","",        tr("External Pdf Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
@@ -163,7 +165,7 @@ void BuildManager::initDefaultCommandNames(){
 	
 	registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick");
 
-	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///latexmk");
+	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk");
 	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external");
 	registerCommand("view-pdf", tr("Pdf Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external");
 	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber");
@@ -1268,8 +1270,8 @@ void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList&
 		if (it.value().commandLine == tr("<unknown>"))
 			it.value().commandLine = "";	
 	
-	latexCommands.clear(); latexCommands << "latex" << "pdflatex" << "compile";
-	pdfCommands.clear(); pdfCommands << "pdflatex";
+	latexCommands.clear(); latexCommands << "latex" << "pdflatex" << "xelatex" << "lualatex" << "compile";
+	pdfCommands.clear(); pdfCommands << "pdflatex" << "xelatex" << "lualatex";
 	stdoutCommands.clear(); stdoutCommands << "bibtex" << "biber" << "bibtex8" << "bibliography";
 	viewerCommands.clear(); viewerCommands << "view-pdf" << "view-ps" << "view-dvi" << "view-pdf-internal" << "view-pdf-external" << "view";
 	QList<QStringList*> lists = QList<QStringList*>() << &latexCommands << &pdfCommands << &stdoutCommands << &viewerCommands;
