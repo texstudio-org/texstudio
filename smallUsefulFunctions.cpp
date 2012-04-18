@@ -1670,7 +1670,7 @@ void ThreadBreaker::forceTerminate(QThread* t){
 	t->terminate();
 }
 
-SafeThread::SafeThread():QThread(0){}
+SafeThread::SafeThread():QThread(0),crashed(false){}
 SafeThread::SafeThread(QObject* parent):QThread(parent), crashed(false){}
 
 void SafeThread::wait(unsigned long time){
