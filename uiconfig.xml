@@ -91,6 +91,7 @@
     <insert id="pagebreak" text="\pagebreak" insert="\pagebreak" info="The \pagebreak command tells LaTeX to break the current page at the point of the command."/>
     <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
+    <insert id="smallskip" text="\smallskip" insert="\smallskip" info="The \smallskip command adds a 'small' vertical space."/>
     <insert id="newline" text="New line" insert="\\%n" info="The \newline command breaks the line right where it is." icon="newline.png" shortcut="Ctrl+Return"/>
   </menu>
   
@@ -203,11 +204,12 @@
   </menu>
   
   <menu id="fontspaces" text="Math S&amp;paces">
-    <insert id="small" text="small" insert="\,"/>
-    <insert id="medium" text="medium" insert="\:"/>
-    <insert id="large" text="large" insert="\;"/>
-    <insert id="quad" text="quad" insert="\quad "/>
-    <insert id="qquad" text="qquad" insert="\qquad "/>
+    <insert id="negative" text="negative" insert="\!" info="-3/18 of a \quad"/>
+    <insert id="small" text="small" insert="\," info="3/18 of a \quad"/>
+    <insert id="medium" text="medium" insert="\:" info="4/18 of a \quad"/>
+    <insert id="large" text="large" insert="\;" info="5/18 of a \quad"/>
+    <insert id="quad" text="quad" insert="\quad " info="A \quad is a horizontal space with a size equal to the font size."/>
+    <insert id="qquad" text="qquad" insert="\qquad" info="Twice the size of a \quad"/>
   </menu>
 </menu>
 </TexMakerXUI>
