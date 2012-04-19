@@ -121,6 +121,8 @@ const int LAYOUT_PAGE_PREVIEW=3;
 const int LAYOUT_PAGE_SEARCH=4;
 	
 OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logModel(0), logpresent(false), tabbedLogView(false){
+	toggleViewAction()->setIcon(QIcon(":/images/logpanel.png"));
+
 	logModel = new LatexLogModel(this);//needs loaded line marks
 	searchResultModel = new SearchResultModel(this);
 

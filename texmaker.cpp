@@ -281,9 +281,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
-	// adapt menu output view visible;
-	outputViewAction->setChecked(outputView->isVisible());
-	connect(outputView, SIGNAL(visibilityChanged(bool)), outputViewAction, SLOT(setChecked(bool)));  //synchronize toggle action and menu action (todo: insert toggle action in menu, but not that easy with the managed menus)
 	
 	setAcceptDrops(true);
 	installEventFilter(this);
@@ -518,6 +515,8 @@ void Texmaker::setupDockWidgets(){
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);
 		outputView->setObjectName("OutputView");
+		outputView->setWindowTitle(tr("Messages / Log File"));
+		outputView->toggleViewAction()->setText(tr("Messages / Log File"));
 		outputView->setAllowedAreas(Qt::AllDockWidgetAreas);
 		outputView->setFeatures(QDockWidget::DockWidgetClosable);
 		outputView->setTabbedLogView(configManager.tabbedLogView);
@@ -543,8 +542,6 @@ void Texmaker::setupDockWidgets(){
 		QAction* temp = new QAction(this); temp->setSeparator(true);
 		addAction(temp);
 	}
-	outputView->setWindowTitle(tr("Messages / Log File"));
-	
 }
 
 void Texmaker::updateToolBarMenu(const QString& menuName){
@@ -851,8 +848,8 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",leftPanel->toggleViewAction());
-	outputViewAction=newManagedAction(menu, "outputview",tr("Messages / Log File"), SLOT(viewToggleOutputView()), 0, ":/images/logpanel.png");
-	outputViewAction->setCheckable(true);
+	newManagedAction(menu, "outputview",outputView->toggleViewAction());
+
 	newManagedAction(menu, "closesomething",tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
 	
 	menu->addSeparator();
@@ -4604,12 +4601,6 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
 }
 
-void Texmaker::viewToggleOutputView(){
-	bool mVis=outputView->isVisible();
-	outputView->setVisible(!mVis);
-	outputViewAction->setChecked(!mVis);
-}
-
 void Texmaker::viewCloseSomething(){
 	if (buildManager.waitingForProcess()) {
 		buildManager.killCurrentProcess();
@@ -4635,10 +4626,9 @@ void Texmaker::viewCloseSomething(){
 	if (currentEditorView() && currentEditorView()->closeSomething())
 		return;
 	if (outputView->isVisible() && configManager.useEscForClosingLog) {
-		viewToggleOutputView();
+		outputView->hide();
 		return;
 	}
-	
 }
 
 void Texmaker::setFullScreenMode() {

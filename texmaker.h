@@ -165,7 +165,7 @@ private:
 	void configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster=false);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
 	
-	QAction* outputViewAction, *fullscreenModeAction;
+	QAction *fullscreenModeAction;
 	
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction* act, const char* slot, const QList<QVariant>& args);
@@ -380,7 +380,6 @@ protected slots:
 	void gotoOpenDocument();
 	void updateOpenDocumentMenu(bool localChange=false);
 	
-	void viewToggleOutputView();
 	void viewCloseSomething();
 	void setFullScreenMode();
 	void viewSetHighlighting();
