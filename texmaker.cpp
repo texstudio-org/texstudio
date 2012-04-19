@@ -326,7 +326,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp)";
 	filters << tr("Plaintext files")+" (*.txt)";
     filters << tr("Sweave files")+" (*.Snw *.Rnw)";
-	filters << tr("Pdf files")+" (*.pdf)";
+	filters << tr("PDF files")+" (*.pdf)";
 	filters << tr("All files")+" (*)";
 	fileFilters = filters.join(";;");
 	
@@ -767,6 +767,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), Qt::Key_F4, ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
 	newManagedAction(menu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), Qt::Key_F5, ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
 	newManagedAction(menu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), Qt::Key_F6, ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
+	newManagedAction(menu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/xelatex.png")->setData(BuildManager::CMD_XELATEX);
+	newManagedAction(menu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/lualatex.png")->setData(BuildManager::CMD_LUALATEX);
 	newManagedAction(menu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), Qt::Key_F7, ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
 	newManagedAction(menu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
 	newManagedAction(menu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);

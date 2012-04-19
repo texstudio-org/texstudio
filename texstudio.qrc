@@ -116,6 +116,8 @@
         <file>images/modified.png</file>
         <file>images/part.png</file>
         <file>images/pdflatex.png</file>
+        <file>images/xelatex.png</file>
+        <file>images/lualatex.png</file>
         <file>images/ps2pdf.png</file>
         <file>images/quick.png</file>
         <file>images/section.png</file>
