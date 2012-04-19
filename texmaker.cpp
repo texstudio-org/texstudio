@@ -6643,6 +6643,8 @@ void Texmaker::recoverFromCrash(int type){
 	name = "Normal close after " + name;
 	txs_assert(qPrintable(name), 0, 0);
 	exit(0);
+#else
+	Q_UNUSED(type);
 #endif
 }
 
