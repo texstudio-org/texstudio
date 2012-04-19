@@ -808,7 +808,7 @@ LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObj
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
 	widget->setLayout(layout);
-	connect(list,SIGNAL(clicked(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
+	connect(list,SIGNAL(activated(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
 	// todo: change tab when shift+space is pressed ...
 	//connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
 	//connect(tbAbove,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
@@ -831,6 +831,7 @@ void LatexCompleter::changeView(int pos){
 }
 
 void LatexCompleter::listClicked(QModelIndex index){
+
 	Q_UNUSED(index);
 	if (!completerInputBinding->insertCompletedWord()) {
 		editor->insertText("\n");
@@ -1273,7 +1274,8 @@ void LatexCompleter::editorDestroyed() {
 }
 
 void LatexCompleter::bibtexSectionFound(QString bibId, QString content){
-    showTooltip(content);
+	Q_UNUSED(bibId);
+	showTooltip(content);
 }
 
 
