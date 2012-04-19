@@ -58,8 +58,6 @@
 
 
 
-
-
 #ifdef linux
 #include "signal.h"
 #include "ucontext.h"
@@ -103,7 +101,7 @@ void signalHandler(int type, siginfo_t *, void* ccontext){
 		lastCrashSignal = type;
 		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
 		// context->uc_mcontext.gregs[REG_RIP]
-		*(void**)(&context->uc_mcontext.gregs[REG_RIP]) = (void*)(&recover);
+		*(void**)(&PC_FROM_UCONTEXT(context)) = (void*)(&recover);
 	} else {
 		switch (type) {
 		case SIGSEGV: txs_assert("SIGSEGV","",0); break; 
