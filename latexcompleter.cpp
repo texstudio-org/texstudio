@@ -808,6 +808,7 @@ LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObj
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
 	widget->setLayout(layout);
+	widget->setContextMenuPolicy(Qt::PreventContextMenu);
 	connect(list,SIGNAL(activated(QModelIndex)),this,SLOT(listClicked(QModelIndex)));
 	// todo: change tab when shift+space is pressed ...
 	//connect(tbBelow,SIGNAL(currentChanged(int)),this,SLOT(changeView(int)));
