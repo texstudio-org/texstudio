@@ -20,6 +20,13 @@
 #define TXSVERSION "2.3"
 #define TXSVERSION_NUMERIC 0x020300
 
+struct CommandArgument {
+	bool isOptional;
+	int number;
+	QString value;
+};
+Q_DECLARE_METATYPE( CommandArgument )
+
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
 QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons);
@@ -76,6 +83,19 @@ QString& parseTexOrPDFString(QString& s);
 //compares two strings local aware
 bool localAwareLessThan(const QString &s1, const QString &s2);
 
+// returns the position of the first non-whitespace at or after pos
+inline int skipWhitespace(const QString &line, int pos=0) {while (pos<line.length()) {if (!line.at(pos).isSpace()) return pos; else pos++;}}
+// if line.at(pos) it the beginning of a command (\something), this command is stored in outCmd. Returns the index of the first char after outCmd in line
+inline int getCommand(const QString &line, QString &outCmd, int pos=0) {
+	if (line.at(pos) != '\\') return pos;
+	int i=pos+1;
+	for (; i<line.length(); i++)
+		if (!line.at(i).isLetter()) break;
+	outCmd = line.mid(pos, i-pos);
+	return i;
+}
+
+
 // find token (e.g. \label \input \section and return content (\section{content})
 QString findToken(const QString &line,const QString &token);
 QString findToken(const QString &line,const QString &token,int &start);
@@ -83,6 +103,8 @@ QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart);
+
+QList< CommandArgument > getCommandOptions(const QString &line, int pos=0, int *posBehind=0);
 
 // generate multiple times used regexpression
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);

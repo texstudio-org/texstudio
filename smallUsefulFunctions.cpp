@@ -668,6 +668,36 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 	return false;
 }
 
+// returns command option list. pos has to be at the beginning of the first bracket
+QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posBehind) {
+	static QMap<QChar, QChar> cbs;
+	if (cbs.isEmpty()) {
+		cbs[QChar('{')] = QChar('}');
+		cbs[QChar('[')] = QChar(']');
+	}
+
+	QList<CommandArgument> options;
+
+	int start = pos;
+	if (posBehind) *posBehind=start;
+	QChar oc = line[start];
+	if (!cbs.contains(oc)) return options;
+
+	for (int num=1;;num++) {
+		int end = findClosingBracket(line, start, oc, cbs[oc]);
+		if (end<0) break; // open without close
+		CommandArgument arg;
+		arg.isOptional = (oc=='[');
+		arg.number = num;
+		arg.value = line.mid(start+1, end-start);
+		options.append(arg);
+		start=end+1;
+		if (posBehind) *posBehind=start;
+		if (end == line.length()-1 || !cbs.contains(line[end+1])) break; // close on last char or last option reached
+	}
+	return options;
+}
+
 
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){	
 	const QFontMetrics &fm = parent->fontMetrics();
