@@ -513,20 +513,23 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur){
 }
 
 // return number of columns a \multicolumn command spans (number in first braces)
-
-int LatexTables::getNumOfColsInMultiColumn(const QString &str){
+// optionally string pointers may be passed to obtain alignment and the text
+int LatexTables::getNumOfColsInMultiColumn(const QString &str, QString *outAlignment, QString *outText){
 	//return the number of columns in mulitcolumn command
 	QStringList values;
 	LatexParser::resolveCommandOptions(str,0,values);
-	if(!values.isEmpty()){
-		QString zw=values.takeFirst();
-		if(zw.startsWith("{")&&zw.endsWith("}")){
-			zw.chop(1);
-			zw=zw.mid(1);
-			bool ok;
-			int col=zw.toInt(&ok);
-			if(ok) return col;
-		}
+	if(values.length() != 3) return -1;
+
+	if (outAlignment) *outAlignment = LatexParser::removeOptionBrackets(values.at(1));
+	if (outText) *outText = LatexParser::removeOptionBrackets(values.at(2));
+
+	QString zw=values.takeFirst();
+	if(zw.startsWith("{")&&zw.endsWith("}")){
+		zw.chop(1);
+		zw=zw.mid(1);
+		bool ok;
+		int col=zw.toInt(&ok);
+		if(ok) return col;
 	}
 	return -1;
 }
@@ -652,6 +655,25 @@ QStringList LatexTables::splitColDef(QString def){
 	return result;
 }
 
+// removes an @{} sequence form colDef
+void LatexTables::simplifyColDefs(QStringList &colDefs) {
+	for (int i=0; i<colDefs.count(); i++) {
+		QString colDef = colDefs.at(i);
+		colDef.remove('|');
+		if (colDef.startsWith('@')) {
+			if (colDef.at(1) == '{') {
+				int start=1;
+				int cb = findClosingBracket(colDef, start);
+				if (cb >= 0 && colDef.at(cb) == '}' && cb+1 < colDef.length()) colDef=colDef.mid(cb+1);
+				else colDef="l"; // fall back
+			} else {
+				colDef="l"; // fall back
+			}
+		}
+		colDefs.replace(i, colDef);
+	}
+}
+
 void LatexTables::executeScript(QString script, QEditor *m_editor){
 	scriptengine eng;
 	eng.setEditor(m_editor);
@@ -757,85 +779,216 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	int cellsEnd = text.indexOf("\\end{"+tableType);
 	QString beginPart = text.left(cellsStart);
 	QString endPart = text.mid(cellsEnd);
-	QStringList lines = text.mid(cellsStart, cellsEnd-cellsStart).split("\\\\");
-	if (!lines.isEmpty()) {
-		bool keepLast = false;
-		foreach (const QChar &c, lines.last()) {
-			if (!c.isSpace()) {
-				keepLast = true;
-			}
-		}
-		if (!keepLast) lines.removeLast();
-	}
-
-	// preprocess
-	QList<QStringList > rows;
-	foreach (const QString &line, lines) {
-		rows.append(QStringList());
-		foreach (const QString &cell, line.split('&'))
-			rows.last().append(cell.trimmed());
-	}
 
 
+	LatexTableModel ltm;
+	ltm.setContent(text.mid(cellsStart, cellsEnd-cellsStart));
 
-	int numCols = 0;
-	foreach (const QList<QString> &row, rows) {
-		if (row.count() > numCols)
-			numCols = row.count();
-	}
-	QList<int> maxColWidths;
-	for (int col=0; col<numCols; col++) {
-
-		int maxWidth = 0;
-		for (int row=0; row<rows.count(); row++) {
-			if (col >= rows.at(row).count()) continue;
-			if (rows.at(row).at(col).length() > maxWidth) {
-				maxWidth = rows.at(row).at(col).length();
-			}
-		}
-		maxColWidths.append(maxWidth);
-	}
-
-	QString simplifiedAlignment;
 	QStringList l_defs=splitColDef(alignment);
-	simplifiedAlignment=l_defs.join("");
-	simplifiedAlignment.remove('|');
-	while (simplifiedAlignment.length() < numCols) simplifiedAlignment.append('l'); // fallback
+	simplifyColDefs(l_defs);
+	QStringList content(ltm.getAlignedLines(l_defs));
 
-	// align
-	for (int col=0; col<numCols; col++) {
-		for (int row=0; row<rows.count(); row++) {
-			if (col >= rows.at(row).count()) continue;
-			QString cell = rows.at(row).at(col);
-			if (simplifiedAlignment.at(col) == 'r') {
-				while (cell.length() < maxColWidths.at(col)) cell.prepend(' ');
-			} else if (simplifiedAlignment.at(col) == 'c') {
-				bool spaceBehind = true;
-				while (cell.length() < maxColWidths.at(col)) {
-					if (spaceBehind) {
-						cell.append(' ');
-					 } else {
-						cell.prepend(' ');
-					}
-					spaceBehind = !spaceBehind;
-				}
-			} else {  // 'l'
-				while (cell.length() < maxColWidths.at(col)) cell.append(' ');
-			}
-
-			QStringList l(rows.at(row));
-			l.replace(col, cell);
-			rows.replace(row, l);
-		}
+	QString result = beginPart + '\n';
+	for (int i=0; i<content.count(); i++) {
+		result.append(indentation + content.at(i));
 	}
-
-	QStringList alignedLines;
-	QString contentIndent = indentation + '\t';
-foreach (const QStringList &row, rows) {
-		alignedLines.append(contentIndent + row.join(" & "));
-	}
-
-	QString result = beginPart + '\n' + alignedLines.join(" \\\\\n") + '\n' + indentation + endPart;
+	result.append(indentation + endPart);
 	cur.replaceSelectedText(result);
 }
 
+LatexTableModel::LatexTableModel(QObject *parent) : QAbstractTableModel(parent)
+{
+	// these commands appear on separate lines
+	metaLineCommands = QStringList() << "\\hline" << "\\cline" << "\\intertext" << "\\shortintertext";
+}
+
+// input everything between \begin{} and \end{}
+void LatexTableModel::setContent(const QString &text) {
+	QStringList sourceLines(text.split("\\\\"));
+	for (int i=0; i<sourceLines.count(); i++) {
+		QString pre;
+		QString line = sourceLines.at(i).trimmed();
+
+		if (i==sourceLines.count()-1 && line.isEmpty()) break; // last empty line
+
+		bool recheck = true;
+		while (line.startsWith("\\") && recheck) {
+			recheck = false;
+			foreach (const QString &cmd, metaLineCommands) {
+				if (line.startsWith(cmd)) {
+					int behind;
+					getCommandOptions(line, cmd.length(), &behind);
+					pre.append(line.left(behind));
+
+					line = line.mid(behind).trimmed();
+					recheck = true;
+					break;
+				}
+			}
+		}
+		LatexTableLine *ltl = new LatexTableLine(this);
+		if (!pre.isEmpty()) ltl->setMetaLine(pre);
+		if (!line.isEmpty()) ltl->setColLine(line);
+		lines.append(ltl);
+	}
+
+/*	*** alternative more efficient ansatz ***
+	int len = text.length();
+	int pos=skipWhitespace(text);
+	int start = pos;
+	LatexTableLine *ltl = new LatexTableLine(this);
+	bool hasMetaContent = false;
+	while (pos < len) {
+		if (text.at(pos) == '\\') {
+			if (pos < len && text.at(pos+1)  == '\\') {
+				ltl->setColStr(text.mid(start, pos-start));
+				pos+=2;
+				start=pos;
+			} else {
+				QString cmd;
+				int end = getCommand(text, cmd, pos);
+				if (metaLineCommands.contains(cmd)) {
+					QStringList args;
+					getCommandOptions(text, end, end);
+					hasMetaContent = true;
+				}
+
+			}
+
+		}
+
+		pos = skipWhitespace(pos);
+	}
+*/
+}
+
+QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const QString &rowIndent) const {
+	QString delim=" & ";
+	QString cl[lines.count()];
+	int multiColStarts[lines.count()];
+	for (int i=0; i<lines.count(); i++) multiColStarts[i] = -1;
+	QStringList alignTokens(alignment);
+
+	foreach (LatexTableLine *tl, lines) {
+		// fallback to 'l' if more columns are there than specified in alignment
+		while (alignTokens.length() < tl->colCount())
+			alignTokens.append("l");
+	}
+
+	int pos = 0;
+	for (int col=0; col<alignTokens.length(); col++) {
+		// col width detection
+		int width = 0;
+		for (int row=0; row<lines.length(); row++) {
+			LatexTableLine *tl = lines.at(row);
+			if (col>=tl->colCount()) continue;
+			switch (tl->multiColState(col)) {
+			case LatexTableLine::MCStart:
+				multiColStarts[row]=pos;
+				break;
+			case LatexTableLine::MCMid:
+				break;
+			case LatexTableLine::MCEnd:
+				{int startCol = tl->multiColStart(col);
+				Q_ASSERT(startCol>=0);
+				int w = tl->colWidth(startCol) - (pos-multiColStarts[row]);
+				if (width < w) width = w;
+				}break;
+			default:
+				int w = tl->colWidth(col);
+				if (width < w) width = w;
+			}
+		}
+
+		// size and append cols
+		QChar align = alignTokens.at(col).at(0);
+		for (int row=0; row<lines.length(); row++) {
+			LatexTableLine *tl = lines.at(row);
+			if (col<tl->colCount()) {
+				if (tl->multiColState(col) == LatexTableLine::MCEnd) {
+					int startCol = tl->multiColStart(col);
+					Q_ASSERT(startCol>=0);
+					cl[row].append(tl->colText(startCol, width+(pos-multiColStarts[row]), tl->multiColAlign(startCol)));
+					if (col < alignTokens.length()-1) cl[row].append(" & ");
+					multiColStarts[row]=-1;
+				} else if (tl->multiColState(col) == LatexTableLine::MCNone) {
+					cl[row].append(tl->colText(col, width, align));
+					if (col < alignTokens.length()-1) cl[row].append(" & ");
+				}
+			}
+		}
+		pos+=width+delim.length();
+	}
+
+	QStringList ret;
+	for (int row=0; row<lines.count(); row++) {
+		QString ml = lines.at(row)->toMetaLine();
+		if (!ml.isEmpty()) ret.append(ml+"\n");
+		ret.append(rowIndent + cl[row] + " \\\\\n");
+	}
+	return ret;
+}
+
+QVariant LatexTableModel::data(const QModelIndex &index, int role) const {
+	if (role != Qt::DisplayRole) return QVariant();
+	return lines.at(index.row())->colText(index.column());
+}
+
+
+
+LatexTableLine::LatexTableLine(QObject *parent) : QObject(parent) {
+}
+
+void LatexTableLine::setColLine(const QString line) {
+	int start = 0;
+	for (int i=0; i<line.length(); i++) {
+		if (line.at(i) == '&' && (i==0 || line.at(i-1)!='\\')) { // real col delimiter
+			appendCol(line.mid(start, i-start));
+			if (i<line.length()) start = i+1;
+		}
+	}
+	if (start < line.length()) appendCol(line.mid(start));
+}
+
+QString LatexTableLine::colText(int col, int width, const QChar &alignment) {
+	int spaceLength = width-cols.at(col).length();
+	if (alignment == 'r') {
+		return QString(spaceLength, ' ') + cols.at(col);
+	} else if (alignment == 'c') {
+		return QString(spaceLength/2, ' ') + cols.at(col) + QString((spaceLength+1)/2, ' ');
+	} // else  'l'
+	return cols.at(col) + QString(spaceLength, ' ');
+}
+
+void LatexTableLine::appendCol(const QString &col) {
+	int pos = col.indexOf("\\multicolumn");
+	if (pos>=0) {
+		QString align;
+		int colSpan = LatexTables::getNumOfColsInMultiColumn(col, &align);
+		QChar al = (align.isEmpty())?'l':align.at(0);
+		if (!QString("lcr").contains(al)) al = 'l'; // fallback
+		if (colSpan>1) {
+			cols.append(col.trimmed());
+			mcFlag.append(MCStart);
+			mcAlign.append(al);
+			// inserting dummy rows
+			for (int i=1; i<colSpan-1; i++) {
+				cols.append(QString());
+				mcFlag.append(MCMid);
+				mcAlign.append(al);
+			}
+			cols.append(QString());
+			mcFlag.append(MCEnd);
+			mcAlign.append(al);
+		} else {
+			// not really a span
+			cols.append(col.trimmed());
+			mcFlag.append(MCNone);
+			mcAlign.append(al);
+		}
+	} else {
+		cols.append(col.trimmed());
+		mcFlag.append(MCNone);
+		mcAlign.append(QChar());
+	}
+}
