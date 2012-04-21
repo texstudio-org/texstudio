@@ -369,6 +369,34 @@ private slots:
 		int ret = findClosingBracket(line, start, oc, cc);
 		QEQUAL(ret, out);
 	}
+	void test_getCommand_data(){
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<int>("pos");
+		QTest::addColumn<QString>("outCmd");
+		QTest::addColumn<int>("out");
+
+		QTest::newRow("before") << "test \\section{sec}" << 0 << QString() << 0;
+		QTest::newRow("before 2") << "test \\section{sec}" << 3 << QString() << 3;
+		QTest::newRow("before 3") << "test \\section{sec}" << 4 << QString() << 4;
+		QTest::newRow("at cmd start") << "\\section{sec}" << 0 << "\\section" << 8;
+		QTest::newRow("at cmd start 2") << "test \\section{sec}" << 5 << "\\section" << 13;
+		QTest::newRow("at cmd end") << "\\section{sec} end" << 7 << "\\section" << 8;
+		QTest::newRow("at cmd end2") << "\\section nothing" << 7 << "\\section" << 8;
+		QTest::newRow("at cmd end3") << "\\section" << 7 << "\\section" << 8;
+		QTest::newRow("on brace") << "\\section{sec}" << 8 << QString() << 8;
+		QTest::newRow("on optional brace") << "\\section[opt]{sec}" << 8 << QString() << 8;
+		QTest::newRow("in argument") << "\\section{sec}" << 10 << QString() << 10;
+	}
+	void test_getCommand(){
+		QFETCH(QString, line);
+		QFETCH(int, pos);
+		QFETCH(QString, outCmd);
+		QFETCH(int, out);
+		QString retCmd;
+		int ret = getCommand(line, retCmd, pos);
+		QEQUAL(ret, out);
+		QEQUAL(retCmd, outCmd);
+	}
 };
 
 

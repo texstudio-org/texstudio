@@ -750,33 +750,24 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 
 	// split off \begin and \end parts
 	int index = text.indexOf("\\begin{")+6;
-	QString tableType;
-	QString alignment;
-	int ocIndex = index;
-	QChar oc = '{';
-	QChar cc = '}';
-	while (true) {
-		index = findClosingBracket(text, index, oc, cc);
-		if (index<0 || index==text.length()-1) return; //non matching braces or missing end getTableText
-		if (oc == '{' && tableType.isEmpty()) { // first '{'
-			tableType = text.mid(ocIndex+1, index-ocIndex-1);
-		} else if (oc == '{' && alignment.isEmpty()) { // second '{'
-			alignment = text.mid(ocIndex+1, index-ocIndex-1);
-		}
+	int cellsStart;
+	QList<CommandArgument> args = getCommandOptions(text, index, &cellsStart);
+	if (args.count() < 2) return;
+	QString tableType = args.at(0).value;
 
-		index++;
-		if (text.at(index) == '{') {
-			oc = '{'; cc = '}';
-			ocIndex = index;
-		} else if (text.at(index) == '[') {
-			oc = '['; cc = ']';
-			ocIndex = index;
-		} else {
-			break;
-		}
-	}
-	int cellsStart = index;
+
+
+	// assume alignment in second arg except for the following environments (which have it in the third one)
+	QString alignment;
+	if (tabularNames.contains(tableType)) {
+		alignment = args.at(1).value;
+	} else if (tabularNamesWithOneOption.contains(tableType)) {
+		if (args.count()<3) alignment = ""; // incomplete definition -> fall back to defaults
+		else alignment = args.at(2).value;
+	} else return; // not a registered table environment
+
 	int cellsEnd = text.indexOf("\\end{"+tableType);
+	if (cellsEnd<0) return;
 	QString beginPart = text.left(cellsStart);
 	QString endPart = text.mid(cellsEnd);
 
@@ -924,7 +915,7 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 	for (int row=0; row<lines.count(); row++) {
 		QString ml = lines.at(row)->toMetaLine();
 		if (!ml.isEmpty()) ret.append(ml+"\n");
-		ret.append(rowIndent + cl[row] + " \\\\\n");
+		if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + " \\\\\n");
 	}
 	return ret;
 }

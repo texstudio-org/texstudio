@@ -33,7 +33,7 @@ public:
 };
 
 
-class LatexTableLine : QObject {
+class LatexTableLine : public QObject {
 	Q_OBJECT
 public:
 	LatexTableLine(QObject *parent = 0);
