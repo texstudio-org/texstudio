@@ -668,6 +668,24 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 	return false;
 }
 
+// returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
+// not in command options. Return value is the index of the first char after the command (or pos if there was no command
+// TODO: currently does not work for command '\\'
+int getCommand(const QString &line, QString &outCmd, int pos) {
+	int start=pos;
+
+	while(line.at(start) != '\\') { // find beginning
+		if (!isCommandChar(line.at(start)) || start==0) return pos; // no command
+		start--;
+	}
+
+	int i=pos+1;
+	for (; i<line.length(); i++)
+		if (!isCommandChar(line.at(i))) break;
+	outCmd = line.mid(start, i-start);
+	return i;
+}
+
 // returns command option list. pos has to be at the beginning of the first bracket
 QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posBehind) {
 	static QMap<QChar, QChar> cbs;
@@ -680,6 +698,7 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 
 	int start = pos;
 	if (posBehind) *posBehind=start;
+	if (pos >= line.length()) return options;
 	QChar oc = line[start];
 	if (!cbs.contains(oc)) return options;
 
@@ -689,11 +708,11 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 		CommandArgument arg;
 		arg.isOptional = (oc=='[');
 		arg.number = num;
-		arg.value = line.mid(start+1, end-start);
+		arg.value = line.mid(start+1, end-start-1);
 		options.append(arg);
 		start=end+1;
 		if (posBehind) *posBehind=start;
-		if (end == line.length()-1 || !cbs.contains(line[end+1])) break; // close on last char or last option reached
+		if (start >= line.length() || !cbs.contains(line[start])) break; // close on last char or last option reached
 	}
 	return options;
 }
