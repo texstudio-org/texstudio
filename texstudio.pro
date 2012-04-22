@@ -224,6 +224,7 @@ TRANSLATIONS += texstudio_fr.ts \
     texstudio_hu.ts \
     texstudio_pt_BR.ts \
     texstudio_uk.ts \
+    texstudio_es.ts \
     texstudio_zh_CH.ts
 
 # ###############################
