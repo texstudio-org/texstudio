@@ -2068,7 +2068,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="157"/>
         <source>eqref</source>
-        <translation type="unfinished"></translation>
+        <translation>eqref</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="159"/>
@@ -4765,7 +4765,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="261"/>
         <source>align-ampersand</source>
-        <translation type="unfinished"></translation>
+        <translation>alinhar ampersand</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="263"/>
@@ -4824,42 +4824,42 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="283"/>
         <source>wordRepetition</source>
-        <translation type="unfinished"></translation>
+        <translation>repetição de palavra</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="285"/>
         <source>wordRepetitionLongRange</source>
-        <translation type="unfinished"></translation>
+        <translation>repetição de palavras distantes</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="287"/>
         <source>badWord</source>
-        <translation type="unfinished"></translation>
+        <translation>palavra inadequada</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="289"/>
         <source>grammarMistake</source>
-        <translation type="unfinished"></translation>
+        <translation>erro gramatical</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="291"/>
         <source>grammarMistakeSpecial1</source>
-        <translation type="unfinished"></translation>
+        <translation>erro gramatical especial 1</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="293"/>
         <source>grammarMistakeSpecial2</source>
-        <translation type="unfinished"></translation>
+        <translation>erro gramatical especial 2</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="295"/>
         <source>grammarMistakeSpecial3</source>
-        <translation type="unfinished"></translation>
+        <translation>erro gramatical especial 3</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="297"/>
         <source>grammarMistakeSpecial4</source>
-        <translation type="unfinished"></translation>
+        <translation>erro gramatical especial 4</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="299"/>
@@ -4939,27 +4939,27 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="329"/>
         <source>txs-test</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-teste</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="331"/>
         <source>txs-test-pass</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-teste-successo</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="333"/>
         <source>txs-test-fail</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-teste-falha</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="335"/>
         <source>txs-test-skip</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-teste-ignorado</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="337"/>
         <source>txs-test-qdebug</source>
-        <translation type="unfinished"></translation>
+        <translation>tsx-teste-qdebug</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="339"/>
@@ -6184,7 +6184,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="additionaltranslations.cpp" line="369"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>TXS Resultados dos Testes</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="371"/>
@@ -6803,45 +6803,48 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="6660"/>
         <location filename="texmaker.cpp" line="6666"/>
         <source>TeXstudio Emergency</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio Emergência</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6632"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio teve uma falha devido a %1.
+Você deseja continuar executando o programa? Isto pode causar perda de dados.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6633"/>
         <source>Yes, try to recover.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, tentar recuperar.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6634"/>
         <source>No, kill the programm</source>
-        <translation type="unfinished"></translation>
+        <translation>Não, terminar o programa</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6661"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio teve uma falha devido a %1 na tarefa %2.
+A tarefa foi interrompda.
+Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6662"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation>Sim</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6662"/>
         <source>No, kill the program</source>
-        <translation type="unfinished"></translation>
+        <translation>Não, terminar o programa</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6666"/>
         <source>I tried to die, but nothing happened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eu tentei encerrar mas nada aconteceu.</translation>
     </message>
     <message>
         <source>Quick Build</source>
@@ -7315,13 +7318,13 @@ Você confia neste documento?</translation>
         <location filename="texmaker.cpp" line="3826"/>
         <source>Yes, always run the overridden command</source>
         <oldsource>Yes, always run the overriden command</oldsource>
-        <translation type="unfinished">Sim, sempre execute o comando substituto </translation>
+        <translation>Sim, sempre execute o comando substituto </translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3827"/>
         <source>Yes, allow all documents to use the overridden command</source>
         <oldsource>Yes, allow all documents to use the overriden command</oldsource>
-        <translation type="unfinished">Sim, permitir todos os documentos executarem o comando substituto</translation>
+        <translation>Sim, permitir todos os documentos executarem o comando substituto</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3828"/>
