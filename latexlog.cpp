@@ -6,10 +6,10 @@ LatexLogModel::LatexLogModel(QObject * parent): QAbstractTableModel(parent) {
 	markIDs[LT_ERROR]=QLineMarksInfoCenter::instance()->markTypeId("error");
 	markIDs[LT_WARNING]=QLineMarksInfoCenter::instance()->markTypeId("warning");
 	markIDs[LT_BADBOX]=QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	textColor[LT_NONE] = QColor(Qt::black);
-	textColor[LT_ERROR] = QColor(230, 32, 32);
-	textColor[LT_WARNING] = QColor(234, 136, 32);
-	textColor[LT_BADBOX] = QColor(58, 58, 230);
+	textColors[LT_NONE] = QColor(Qt::black);
+	textColors[LT_ERROR] = QColor(230, 32, 32);
+	textColors[LT_WARNING] = QColor(234, 136, 32);
+	textColors[LT_BADBOX] = QColor(58, 58, 230);
 	foundType[LT_NONE] = foundType[LT_ERROR] = foundType[LT_WARNING] = foundType[LT_BADBOX] = false;
 }
 
@@ -23,7 +23,7 @@ QVariant LatexLogModel::data(const QModelIndex &index, int role) const {
 	if (!index.isValid()) return QVariant();
 	if (index.row() >= log.count() || index.row() < 0) return QVariant();
 	if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
-	if (role == Qt::ForegroundRole) return textColor[log.at(index.row()).type];
+	if (role == Qt::ForegroundRole) return textColor(log.at(index.row()).type);
 	if (role != Qt::DisplayRole) return QVariant();
 	switch (index.column()) {
 	case 0:
@@ -112,6 +112,11 @@ int LatexLogModel::markID(LogType lt) const {
 	Q_ASSERT_X(lt>0&&lt<4, "markID logtype", "unbound array index");
 	return markIDs[lt];
 }
+QColor LatexLogModel::textColor(LogType lt) const {
+	Q_ASSERT_X(lt>0&&lt<4, "textcolor logtype", "unbound array index");
+	return textColors[lt];
+}
+
 int LatexLogModel::logLineNumberToLogEntryNumber(int logLine) const {
 	int res=-1;
 	for (int i=0; i<log.count();i++)
