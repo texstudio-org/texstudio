@@ -9,6 +9,7 @@ private:
 	QList<LatexLogEntry> log;
 	bool foundType[4];
 	int markIDs[4];
+	QColor textColor[4];
 public:
 	LatexLogModel(QObject * parent = 0);
 
