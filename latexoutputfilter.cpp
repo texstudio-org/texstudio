@@ -511,7 +511,7 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 		//detect the beginning of a warning
 		case Start :
 			if(reLaTeXWarning.indexIn(strLine) != -1) {
-				warning = reLaTeXWarning.cap(5);
+				warning = reLaTeXWarning.cap(5).trimmed();
  				//KILE_DEBUG() << "\tWarning found: " << warning << endl;
 
 				found = true;
@@ -542,7 +542,7 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 
 		//warning spans multiple lines, detect the end
 		case Warning :
-			warning = m_currentItem.message + strLine;
+		warning = m_currentItem.message + " " + strLine;
 			//KILE_DEBUG() << "'\tWarning (cont'd) : " << warning << endl;
 			flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
 			m_currentItem.message=(warning);
