@@ -883,6 +883,8 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
 	fullscreenModeAction->setCheckable(true);
+	menu->addSeparator();
+	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	
 	menu->addSeparator();
 	newManagedAction(menu,"sethighlighting",tr("Set High&lighting..."),SLOT(viewSetHighlighting()));
@@ -4641,6 +4643,32 @@ void Texmaker::setFullScreenMode() {
 		windowstate=saveState(0);
 		setWindowState(Qt::WindowFullScreen);
 		restoreState(stateFullScreen,1);
+	}
+}
+
+void Texmaker::viewAlignWindows() {
+	QWidgetList windows = QApplication::topLevelWidgets();
+
+	// find first pdf viewer window
+	PDFDocument *pdfViewer;
+	foreach (QWidget *w, windows) {
+		pdfViewer = qobject_cast<PDFDocument *>(w);
+		if (pdfViewer) break;
+	}
+
+	int splitXpos = frameGeometry().right();
+	int frameWidth = frameGeometry().width() - width();
+	int frameHeight = frameGeometry().height() - height();
+
+	// main window "full size" to the left
+	QRect screen = QApplication::desktop()->availableGeometry(this);
+	move(screen.topLeft());
+	resize(splitXpos - screen.left() - frameWidth, screen.height()-frameHeight);
+
+	// pdfViewer "full size" to the left
+	if (pdfViewer) {
+		pdfViewer->move(splitXpos, screen.top());
+		pdfViewer->resize(screen.right() - frameGeometry().right() - frameWidth, screen.height()-frameHeight);
 	}
 }
 
