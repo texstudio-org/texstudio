@@ -158,8 +158,18 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 									// get new cols
 									cols=containsEnv(*ltxCommands, "tabular",activeEnv);
 								}
-							}
-						}
+                            }else{
+                                Error elem;
+                                elem.range=QPair<int,int>(wordstart,word.length());
+                                elem.type=ERR_closingUnopendEnv;
+                                newRanges.append(elem);
+                            }
+                        }else{
+                            Error elem;
+                            elem.range=QPair<int,int>(wordstart,word.length());
+                            elem.type=ERR_closingUnopendEnv;
+                            newRanges.append(elem);
+                        }
 					}
 					// add env-name for syntax checking to "word"
 					lr.word+=options.first();
@@ -308,7 +318,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	
 	QStringList messages;
 	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
-	         << tr("\\\\ missing");
+             << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed");
 	return messages.value(int(result),tr("unknown"));
 }
 void SyntaxCheck::setLtxCommands(const LatexParser& cmds){
