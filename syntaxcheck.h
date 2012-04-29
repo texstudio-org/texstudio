@@ -47,7 +47,9 @@ public:
 		ERR_TabbingCommandOutside,
 		ERR_tooManyCols,
 		ERR_tooLittleCols,
-		ERR_missingEndOfLine
+        ERR_missingEndOfLine,
+        ERR_closingUnopendEnv,
+        ERR_EnvNotClosed
 	};
 	
 	struct SyntaxLine{
