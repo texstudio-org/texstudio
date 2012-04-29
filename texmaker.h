@@ -382,6 +382,7 @@ protected slots:
 	
 	void viewCloseSomething();
 	void setFullScreenMode();
+	void viewAlignWindows();
 	void viewSetHighlighting();
 	
 	void viewCollapseBlock();
