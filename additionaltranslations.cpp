@@ -102,6 +102,7 @@
 QT_TRANSLATE_NOOP("ConfigManager", "\\mathfrak{} [selection]"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math &Accents"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math S&paces"), 
+QT_TRANSLATE_NOOP("ConfigManager", "negative"), 
 QT_TRANSLATE_NOOP("ConfigManager", "small"), 
 QT_TRANSLATE_NOOP("ConfigManager", "medium"), 
 QT_TRANSLATE_NOOP("ConfigManager", "large"), 
