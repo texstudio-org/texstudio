@@ -17,6 +17,8 @@ public:
 	QString name;
 	int id;
 	int excessCol;
+    QDocumentLineHandle *dlh;
+    int ticket;
 	
 	bool operator ==(const Environment& env){
 		return (name==env.name)&&(id==env.id)&&(excessCol==env.excessCol);
@@ -80,12 +82,13 @@ public:
 	static bool equalEnvStack(StackEnvironment env1,StackEnvironment env2);
 	bool queuedLines();
 	void setLtxCommands(const LatexParser& cmds);
+    void markUnclosedEnv(Environment env);
 	
 signals:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay, int ticket);
 protected:
 	void run();
-	void checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv);
+    void checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,int ticket);
 	
 private:
 	QQueue<SyntaxLine> mLines;

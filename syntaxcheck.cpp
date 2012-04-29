@@ -64,6 +64,7 @@ void SyntaxCheck::run(){
 		// do syntax check
 		newLine.dlh->lockForRead();
 		QString line=newLine.dlh->text();
+        newLine.dlh->removeCookie(3); //remove possible errors from unclosed envs
 		newLine.dlh->unlock();
 		QVector<int>fmts=newLine.dlh->getFormats();
 		for(int i=0;i<line.length() && i < fmts.size();i++){
@@ -75,7 +76,7 @@ void SyntaxCheck::run(){
 		line=ltxCommands->cutComment(line);
 		Ranges newRanges;
 
-		checkLine(line,newRanges,activeEnv);
+        checkLine(line,newRanges,activeEnv,newLine.dlh,newLine.ticket);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		//if(newRanges.isEmpty()) continue;
@@ -110,7 +111,7 @@ void SyntaxCheck::run(){
 }
 
 
-void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv){
+void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,int ticket){
 	// do syntax check on that line
 	int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
 	LatexReader lr(*ltxCommands, line);
@@ -135,6 +136,8 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 						tp.name=env;
 						tp.id=1; //needs correction
 						tp.excessCol=0;
+                        tp.dlh=dlh;
+                        tp.ticket=ticket;
 						if(env=="tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")){
 							// tabular env opened
 							// get cols !!!!
@@ -210,6 +213,8 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 				Environment env;
 				env.name="math";
 				env.id=1; // to be changed
+                env.dlh=dlh;
+                env.ticket=ticket;
 				activeEnv.push(env);
 				continue;
 			}
@@ -306,7 +311,22 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	QStack<Environment> activeEnv=previous;
 	line=ltxCommands->cutComment(line);
 	Ranges newRanges;
-	checkLine(line,newRanges,activeEnv);
+    checkLine(line,newRanges,activeEnv,dlh,dlh->getCurrentTicket());
+    // add Error for unclosed env
+    QVariant var=dlh->getCookie(3);
+    if(var.isValid()){
+        activeEnv=var.value<StackEnvironment>();
+        Q_ASSERT_X(activeEnv.size()==1,"SyntaxCheck","Cookie error");
+        Environment env=activeEnv.top();
+        QString cmd="\\begin{"+env.name+"}";
+        int index=line.lastIndexOf(cmd);
+        if(index>=0){
+            Error elem;
+            elem.range=QPair<int,int>(index,cmd.length());
+            elem.type=ERR_EnvNotClosed;
+            newRanges.append(elem);
+        }
+    }
 	// find Error at Position
 	ErrorType result=ERR_none;
 	foreach(const Error& elem,newRanges){
@@ -402,4 +422,29 @@ bool SyntaxCheck::equalEnvStack(StackEnvironment env1,StackEnvironment env2){
 			return false;
 	}
 	return true;
+}
+
+void SyntaxCheck::markUnclosedEnv(Environment env){
+    QDocumentLineHandle *dlh=env.dlh;
+    if(!dlh)
+        return;
+    dlh->lockForWrite();
+    if(dlh->getCurrentTicket()==env.ticket){
+        QString line=dlh->text();
+        line=ltxCommands->cutComment(line);
+        QString cmd="\\begin{"+env.name+"}";
+        int index=line.lastIndexOf(cmd);
+        if(index>=0){
+            Error elem;
+            elem.range=QPair<int,int>(index,cmd.length());
+            elem.type=ERR_EnvNotClosed;
+            dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
+            QVariant var_env;
+            StackEnvironment activeEnv;
+            activeEnv.append(env);
+            var_env.setValue(activeEnv);
+            dlh->setCookie(3,var_env); //ERR_EnvNotClosed;
+        }
+    }
+    dlh->unlock();
 }
