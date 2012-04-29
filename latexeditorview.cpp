@@ -349,6 +349,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
 	SynChecker.setLtxCommands(LatexParser::getInstance());
 	SynChecker.start();
+    unclosedEnv.id=-1;
 	
 	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int)), Qt::QueuedConnection);
 }
@@ -882,7 +883,35 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 		int index = document->indexOf(dlh);
 		if (index == -1) return; //deleted
 		REQUIRE(dlh->document() == document);
-		if (index + 1 >= document->lines()) return;
+        if (index + 1 >= document->lines()) {
+            //remove old errror marker
+            if(unclosedEnv.id!=-1){
+                envVar=unclosedEnv.dlh->getCookie(3);
+                QDocumentLineHandle *dlh=unclosedEnv.dlh;
+                unclosedEnv.id=-1;
+                if(envVar.isValid()){
+                    StackEnvironment env;
+                    Environment newEnv;
+                    newEnv.name="normal";
+                    newEnv.id=1;
+                    env.push(newEnv);
+                    if (dlh->previous()) {
+                        QDocumentLineHandle *prev = dlh->previous();
+                        QVariant result=prev->getCookie(1);
+                        if(result.isValid())
+                            env=result.value<StackEnvironment>();
+                    }
+                    SynChecker.putLine(dlh, env, true);
+                }
+            }
+            if(env.size()>1){
+                //at least one env has not been closed
+                Environment environment=env.top();
+                unclosedEnv=env.top();
+                SynChecker.markUnclosedEnv(environment);
+            }
+            return;
+        }
 		SynChecker.putLine(document->line(index+1).handle(), env, clearOverlay);
 	}
 	dlh->deref();

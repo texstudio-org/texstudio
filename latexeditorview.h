@@ -118,6 +118,7 @@ private:
 	void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 
 	SyntaxCheck SynChecker;
+    Environment unclosedEnv;
 
     bibtexReader *bibReader;
     QPoint lastPos;
