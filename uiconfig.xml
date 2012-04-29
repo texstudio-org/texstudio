@@ -179,14 +179,14 @@
   </menu>
 
   <menu id="fontstyles" text="Math Font St&amp;yles">
-    <insert id="mathrm" text="\mathrm{} [selection]" insert="\mathrm{%|}"/>
-    <insert id="mathit" text="\mathit{} [selection]" insert="\mathit{%|}"/>
-    <insert id="mathbf" text="\mathbf{} [selection]" insert="\mathbf{%|}"/>
-    <insert id="mathsf" text="\mathsf{} [selection]" insert="\mathsf{%|}"/>
-    <insert id="mathtt" text="\mathtt{} [selection]" insert="\mathtt{%|}"/>
-    <insert id="mathcal" text="\mathcal{} [selection]" insert="\mathcal{%|}"/>
-    <insert id="mathbb" text="\mathbb{} [selection]" insert="\mathbb{%|}"/>
-    <insert id="mathfrak" text="\mathfrak{} [selection]" insert="\mathfrak{%|}"/>
+    <insert id="mathrm" text="\mathrm{} [selection]" insert="\mathrm{%|}" icon=":/images/font_mathrm.png"/>
+    <insert id="mathit" text="\mathit{} [selection]" insert="\mathit{%|}" icon=":/images/font_mathit.png"/>
+    <insert id="mathbf" text="\mathbf{} [selection]" insert="\mathbf{%|}" icon=":/images/font_mathbf.png"/>
+    <insert id="mathsf" text="\mathsf{} [selection]" insert="\mathsf{%|}" icon=":/images/font_mathsf.png"/>
+    <insert id="mathtt" text="\mathtt{} [selection]" insert="\mathtt{%|}" icon=":/images/font_mathtt.png"/>
+    <insert id="mathcal" text="\mathcal{} [selection]" insert="\mathcal{%|}" icon=":/images/font_mathcal.png"/>
+    <insert id="mathbb" text="\mathbb{} [selection]" insert="\mathbb{%|}" icon=":/images/font_mathbb.png"/>
+    <insert id="mathfrak" text="\mathfrak{} [selection]" insert="\mathfrak{%|}" icon=":/images/font_mathfrak.png"/>
   </menu>
 
   <menu id="fontaccent" text="Math &amp;Accents">
@@ -200,7 +200,7 @@
     <insert id="check" text="\check{}" insert="\check{%|}" icon=":/images/check.png"/>
     <insert id="breve" text="\breve{}" insert="\breve{%|}" icon=":/images/breve.png"/>
     <insert id="dot" text="\dot{}" insert="\dot{%|}" icon=":/images/dot.png"/>
-    <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon=":/images/ddtot.png"/>
+    <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon=":/images/ddot.png"/>
   </menu>
   
   <menu id="fontspaces" text="Math S&amp;paces">
