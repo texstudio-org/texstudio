@@ -61,6 +61,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		void setCurrentScheme(QFormatScheme *scheme);
 		
 		void setBasePointSize(int basePointSize);
+		void setLineSpacing(double spacing);
 	protected:
 		virtual void hideEvent(QHideEvent *e);
 		
@@ -76,6 +77,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		QList<QFormatScheme*> m_schemes;
 
 		int basePointSize;
+		double lineSpacing;
 };
 
 #endif // _QFORMAT_CONFIG_H_

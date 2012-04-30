@@ -2367,7 +2367,7 @@ PROPERTY_TYPE_FOREACH_MACRO(REGISTER_OPTION)
 void ConfigManager::setOption(const QString& name, const QVariant& value){
 	REQUIRE(persistentConfig);
 	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
-	ManagedProperty* option;
+    ManagedProperty* option = 0;
 	if (rname.startsWith("texmaker/") && ((option = getManagedProperty(rname.mid(9))))){
 		option->valueFromQVariant(value);
 		return;
@@ -2377,7 +2377,7 @@ void ConfigManager::setOption(const QString& name, const QVariant& value){
 QVariant ConfigManager::getOption(const QString& name) const{
 	REQUIRE_RET(persistentConfig,QVariant());
 	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
-	const ManagedProperty* option;
+    const ManagedProperty* option = 0;
 	if (rname.startsWith("texmaker/") && (option = getManagedProperty(rname.mid(9))))
 		return option->valueToQVariant();
 	return persistentConfig->value(rname);
