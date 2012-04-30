@@ -47,7 +47,7 @@ bool CleanDialog::checkClean(const LatexDocuments &docs) {
 	}
 	if (docs.currentDocument && docs.currentDocument->getFileInfo().suffix()=="tex") {
 		currentTexFile = docs.currentDocument->getFileName();
-		ui->cbScope->addItem(tr("Current file"), CleanDialog::CurrentTexFile);
+		ui->cbScope->addItem(tr("Current File"), CleanDialog::CurrentTexFile);
 		somethingToClean = true;
 	}
 	foreach (LatexDocument *doc, docs.documents) {

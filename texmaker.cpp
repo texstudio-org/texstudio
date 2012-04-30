@@ -4626,7 +4626,7 @@ void Texmaker::viewAlignWindows() {
 	QWidgetList windows = QApplication::topLevelWidgets();
 
 	// find first pdf viewer window
-	PDFDocument *pdfViewer;
+    PDFDocument *pdfViewer = 0;
 	foreach (QWidget *w, windows) {
 		pdfViewer = qobject_cast<PDFDocument *>(w);
 		if (pdfViewer) break;
