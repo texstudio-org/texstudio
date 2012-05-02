@@ -29,17 +29,17 @@
   </menu>
 
   <menu id="environment" text="&amp;Environments">
-    <insert id="common" text="\begin{&lt;environment>} [selection]" insert="\begin{%&lt;environment-name%>}%n%|%n\end{%&lt;environment-name%>}" shortcut="Ctrl+E"/>
-    <insert id="center" text="\begin{center} [selection]" insert="\begin{center}%n%|%n\end{center}" icon="format-justify-center"/>
-    <insert id="flushleft" text="\begin{flushleft} [selection]" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="format-justify-left"/>
-    <insert id="flushright" text="\begin{flushright}  [selection]" insert="\begin{flushright}%n%|%n\end{flushright}" icon="format-justify-right"/>
-    <insert id="quote" text="\begin{quote}  [selection]" insert="\begin{quote}%n%|%n\end{quote}"/>
-    <insert id="quotation" text="\begin{quotation}  [selection]" insert="\begin{quotation}%n%|%n\end{quotation}"/>
-    <insert id="verse" text="\begin{verse}  [selection]" insert="\begin{verse}%n%|%n\end{verse}"/>
-    <insert id="verbatim" text="\begin{verbatim}  [selection]" insert="\begin{verbatim}%n%|%n\end{verbatim}"/>
-    <insert id="table" text="\begin{table}  [selection]" insert="\begin{table}%n%|%n\caption{}%n\end{table}"/>
-    <insert id="figure" text="\begin{figure}  [selection]" insert="\begin{figure}%n%|%n\caption{}%n\end{figure}"/>
-    <insert id="titlepage" text="\begin{titlepage}  [selection]" insert="\begin{titlepage}%n%|%n\end{titlepage}"/>
+    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%n%|%n\end{%&lt;environment-name%>}" shortcut="Ctrl+E"/>
+    <insert id="center" text="\begin{center}" insert="\begin{center}%n%|%n\end{center}" icon="format-justify-center"/>
+    <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="format-justify-left"/>
+    <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%n%|%n\end{flushright}" icon="format-justify-right"/>
+    <insert id="quote" text="\begin{quote}" insert="\begin{quote}%n%|%n\end{quote}"/>
+    <insert id="quotation" text="\begin{quotation}" insert="\begin{quotation}%n%|%n\end{quotation}"/>
+    <insert id="verse" text="\begin{verse}" insert="\begin{verse}%n%|%n\end{verse}"/>
+    <insert id="verbatim" text="\begin{verbatim} " insert="\begin{verbatim}%n%|%n\end{verbatim}"/>
+    <insert id="table" text="\begin{table}" insert="\begin{table}%n%|%n\caption{}%n\end{table}"/>
+    <insert id="figure" text="\begin{figure}" insert="\begin{figure}%n%|%n\caption{}%n\end{figure}"/>
+    <insert id="titlepage" text="\begin{titlepage}" insert="\begin{titlepage}%n%|%n\end{titlepage}"/>
   </menu>
 
   <menu id="listenvironment" text="&amp;List Environments">
@@ -52,14 +52,14 @@
   
 
   <menu id="fontstyles" text="Font St&amp;yles">
-    <insert id="emph" text="\emph - Emphasis  [selection]" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
-    <insert id="textit" text="\textit - Italics  [selection]" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
-    <insert id="textsl" text="\textsl - Slanted  [selection]" insert="\textsl{%|}" shortcut="Ctrl+Shift+S"/>
-    <insert id="textbf" text="\textbf - Boldface  [selection]" insert="\textbf{%|}" icon="text_bold" shortcut="Ctrl+B"/>
-    <insert id="texttt" text="\texttt - Typewriter  [selection]" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>
-    <insert id="textsc" text="\textsc - Small caps  [selection]" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
-    <insert id="textsf" text="\textsf - Sans Serif  [selection]" insert="\textsf{%|}" shortcut="Ctrl+Shift+A"/>
-    <insert id="underline" text="\underline - Underline [selection]" insert="\underline{%|}" icon="text_under"/>
+    <insert id="emph" text="Emphasis -\t\emph" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
+    <insert id="textit" text="Italics -\t\textit" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
+    <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" shortcut="Ctrl+Shift+S"/>
+    <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="text_bold" shortcut="Ctrl+B"/>
+    <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>
+    <insert id="textsc" text="Small Caps - \textsc" insert="\textsc{%|}" shortcut="Ctrl+Shift+C"/>
+    <insert id="textsf" text="Sans Serif - \textsf" insert="\textsf{%|}" shortcut="Ctrl+Shift+A"/>
+    <insert id="underline" text="Underline - \underline" insert="\underline{%|}" icon="text_under"/>
   </menu>
 
   <menu id="fontsizes" text="Font Sizes">
@@ -85,7 +85,7 @@
     <insert id="cline" text="\cline" insert="\cline{%&lt;from%|%>-%&lt;to%>}" info=""/>
   </menu>
 
-  <menu id="spacing" text="S&amp;pacing">
+  <menu id="spacing" text="&amp;Vertical Spacing">
     <insert id="newpage" text="\newpage" insert="\newpage" info="The \newpage command ends the current page"/>
     <insert id="linebreak" text="\linebreak" insert="\linebreak" info="The \linebreak command tells LaTeX to break the current line at the point of the command."/>
     <insert id="pagebreak" text="\pagebreak" insert="\pagebreak" info="The \pagebreak command tells LaTeX to break the current page at the point of the command."/>
@@ -136,8 +136,8 @@
   <insert id="equation" text="Numbered equations \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
   <insert id="align" text="\begin{align}" insert="\begin{align}%n%|%n\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
   <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
-  <insert id="subscript" text="_{} - subscript" insert="_{%|}" icon="indice.png" shortcut="Ctrl+Shift+D"/>  
-  <insert id="superscript" text="^{} - superscript" insert="^{%|}"  icon="puissance.png" shortcut="Ctrl+Shift+U"/>  
+  <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="indice.png" shortcut="Ctrl+Shift+D"/>  
+  <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="puissance.png" shortcut="Ctrl+Shift+U"/>  
   <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%>}{%&lt;den%>}" icon="smallfrac.png" shortcut="Alt+Shift+F"/>    
   <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%>}{%&lt;den%>}" icon="dfrac.png" shortcut="Ctrl+Shift+F"/>  
   <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="racine.png" shortcut="Ctrl+Shift+Q"/>  
@@ -146,47 +146,47 @@
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%n%&lt;content%|%>%n\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
 
   <menu id="functions" text="Math &amp;Functions">
-    <insert id="arccos" text="\arccos " insert="\arccos "/>
-    <insert id="arcsin" text="\arcsin " insert="\arcsin "/>
-    <insert id="arctan" text="\arctan " insert="\arctan "/>
-    <insert id="cos" text="\cos " insert="\cos "/>
-    <insert id="cosh" text="\cosh " insert="\cosh "/>
-    <insert id="cot" text="\cot " insert="\cot "/>
-    <insert id="coth" text="\coth " insert="\coth "/>
-    <insert id="csc" text="\csc " insert="\csc "/>
-    <insert id="deg" text="\deg " insert="\deg "/>
-    <insert id="det" text="\det " insert="\det "/>
-    <insert id="dim" text="\dim " insert="\dim "/>
-    <insert id="exp" text="\exp " insert="\exp "/>
-    <insert id="gcd" text="\gcd " insert="\gcd "/>
-    <insert id="hom" text="\hom " insert="\hom "/>
-    <insert id="inf" text="\inf " insert="\inf "/>
-    <insert id="ker" text="\ker " insert="\ker "/>
-    <insert id="lg" text="\lg " insert="\lg "/>
-    <insert id="lim" text="\lim " insert="\lim "/>
-    <insert id="liminf" text="\liminf " insert="\liminf "/>
-    <insert id="limsup" text="\limsup " insert="\limsup "/>
-    <insert id="ln" text="\ln " insert="\ln "/>
-    <insert id="log" text="\log " insert="\log "/>
-    <insert id="max" text="\max " insert="\max "/>
-    <insert id="min" text="\min " insert="\min "/>
-    <insert id="sec" text="\sec " insert="\sec "/>
-    <insert id="sin" text="\sin " insert="\sin "/>
-    <insert id="sinh" text="\sinh " insert="\sinh "/>
-    <insert id="sup" text="\sup " insert="\sup "/>
-    <insert id="tan" text="\tan " insert="\tan "/>
-    <insert id="tanh" text="\tanh " insert="\tanh "/>
+    <insert id="arccos" text="arccos" insert="\arccos "/>
+    <insert id="arcsin" text="arcsin" insert="\arcsin "/>
+    <insert id="arctan" text="arctan" insert="\arctan "/>
+    <insert id="cos" text="cos" insert="\cos "/>
+    <insert id="cosh" text="cosh" insert="\cosh "/>
+    <insert id="cot" text="cot" insert="\cot "/>
+    <insert id="coth" text="coth" insert="\coth "/>
+    <insert id="csc" text="csc" insert="\csc "/>
+    <insert id="deg" text="deg" insert="\deg "/>
+    <insert id="det" text="det" insert="\det "/>
+    <insert id="dim" text="dim" insert="\dim "/>
+    <insert id="exp" text="exp" insert="\exp "/>
+    <insert id="gcd" text="gcd" insert="\gcd "/>
+    <insert id="hom" text="hom" insert="\hom "/>
+    <insert id="inf" text="inf" insert="\inf "/>
+    <insert id="ker" text="ker" insert="\ker "/>
+    <insert id="lg" text="lg" insert="\lg "/>
+    <insert id="lim" text="lim" insert="\lim "/>
+    <insert id="liminf" text="liminf" insert="\liminf "/>
+    <insert id="limsup" text="limsup" insert="\limsup "/>
+    <insert id="ln" text="ln" insert="\ln "/>
+    <insert id="log" text="log" insert="\log "/>
+    <insert id="max" text="max" insert="\max "/>
+    <insert id="min" text="min" insert="\min "/>
+    <insert id="sec" text="sec" insert="\sec "/>
+    <insert id="sin" text="sin" insert="\sin "/>
+    <insert id="sinh" text="sinh" insert="\sinh "/>
+    <insert id="sup" text="sup" insert="\sup "/>
+    <insert id="tan" text="tan" insert="\tan "/>
+    <insert id="tanh" text="tanh" insert="\tanh "/>
   </menu>
 
   <menu id="fontstyles" text="Math Font St&amp;yles">
-    <insert id="mathrm" text="\mathrm{} [selection]" insert="\mathrm{%|}" icon=":/images/font_mathrm.png"/>
-    <insert id="mathit" text="\mathit{} [selection]" insert="\mathit{%|}" icon=":/images/font_mathit.png"/>
-    <insert id="mathbf" text="\mathbf{} [selection]" insert="\mathbf{%|}" icon=":/images/font_mathbf.png"/>
-    <insert id="mathsf" text="\mathsf{} [selection]" insert="\mathsf{%|}" icon=":/images/font_mathsf.png"/>
-    <insert id="mathtt" text="\mathtt{} [selection]" insert="\mathtt{%|}" icon=":/images/font_mathtt.png"/>
-    <insert id="mathcal" text="\mathcal{} [selection]" insert="\mathcal{%|}" icon=":/images/font_mathcal.png"/>
-    <insert id="mathbb" text="\mathbb{} [selection]" insert="\mathbb{%|}" icon=":/images/font_mathbb.png"/>
-    <insert id="mathfrak" text="\mathfrak{} [selection]" insert="\mathfrak{%|}" icon=":/images/font_mathfrak.png"/>
+    <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon=":/images/font_mathrm.png"/>
+    <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon=":/images/font_mathit.png"/>
+    <insert id="mathbf" text="Bold - \mathbf{}" insert="\mathbf{%|}" icon=":/images/font_mathbf.png"/>
+    <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon=":/images/font_mathsf.png"/>
+    <insert id="mathtt" text="Courier - \mathtt{}" insert="\mathtt{%|}" icon=":/images/font_mathtt.png"/>
+    <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon=":/images/font_mathcal.png"/>
+    <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon=":/images/font_mathbb.png"/>
+    <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon=":/images/font_mathfrak.png"/>
   </menu>
 
   <menu id="fontaccent" text="Math &amp;Accents">
@@ -204,12 +204,13 @@
   </menu>
   
   <menu id="fontspaces" text="Math S&amp;paces">
-    <insert id="negative" text="negative" insert="\!" info="-3/18 of a \quad"/>
-    <insert id="small" text="small" insert="\," info="3/18 of a \quad"/>
-    <insert id="medium" text="medium" insert="\:" info="4/18 of a \quad"/>
-    <insert id="large" text="large" insert="\;" info="5/18 of a \quad"/>
-    <insert id="quad" text="quad" insert="\quad " info="A \quad is a horizontal space with a size equal to the font size."/>
-    <insert id="qquad" text="qquad" insert="\qquad" info="Twice the size of a \quad"/>
+    <insert id="negative" text="Negative" insert="\!" info="Negative thin space"/>
+    <insert id="small" text="Thin" insert="\," info="3/18 of a \quad"/>
+    <insert id="medium" text="Medium" insert="\:" info="4/18 of a \quad"/>
+    <insert id="large" text="Thick" insert="\;" info="5/18 of a \quad"/>
+	<insert id="interword" text="Interword" insert="\ " info="regular whitespace"/>
+	<insert id="quad" text="One quad" insert="\quad " info="A \quad is a horizontal space with a size equal to the font size."/>
+    <insert id="qquad" text="Two quads" insert="\qquad" info="Twice the size of a \quad"/>
   </menu>
 </menu>
 </TexMakerXUI>
