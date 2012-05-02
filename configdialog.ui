@@ -134,7 +134,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -157,8 +157,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>543</width>
-            <height>531</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -652,7 +652,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QGroupBox" name="groupBox_4">
          <property name="title">
-          <string>Quick Build Options</string>
+          <string>Build Options</string>
          </property>
          <property name="advancedOption" stdset="0">
           <bool>true</bool>
@@ -660,8 +660,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="1" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
+            <property name="toolTip">
+             <string>Runs txs:///recompile-bibliography, if bib-files were changed.</string>
+            </property>
             <property name="text">
-             <string>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</string>
+             <string>Check and update bibliography before compiling</string>
             </property>
            </widget>
           </item>
@@ -734,8 +737,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="label_38">
+            <property name="toolTip">
+             <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
+            </property>
             <property name="text">
-             <string>Times to rerun latex if requested:</string>
+             <string>Times to repeat compilation if requested:</string>
             </property>
            </widget>
           </item>
@@ -753,12 +759,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>441</width>
-           <height>40</height>
-          </size>
          </property>
         </spacer>
        </item>
