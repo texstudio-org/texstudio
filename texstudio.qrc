@@ -77,6 +77,14 @@
         <file>images/accent8.png</file>
         <file>images/accent9.png</file>
         <file>images/accent10.png</file>
+		<file>images/font_emph48.png</file>
+		<file>images/font_textbf48.png</file>
+		<file>images/font_textit48.png</file>
+		<file>images/font_textsc48.png</file>
+		<file>images/font_textsf48.png</file>
+		<file>images/font_textsl48.png</file>
+		<file>images/font_texttt48.png</file>
+		<file>images/font_underline48.png</file>
 		<file>images/font_mathrm.png</file>
 		<file>images/font_mathit.png</file>
 		<file>images/font_mathbf.png</file>
