@@ -52,8 +52,8 @@
   
 
   <menu id="fontstyles" text="Font St&amp;yles">
-    <insert id="emph" text="Emphasis -\t\emph" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
-    <insert id="textit" text="Italics -\t\textit" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
+    <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" shortcut="Ctrl+Shift+E"/>
+    <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
     <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" shortcut="Ctrl+Shift+S"/>
     <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="text_bold" shortcut="Ctrl+B"/>
     <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" shortcut="Ctrl+Shift+T"/>

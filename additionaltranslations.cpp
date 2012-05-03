@@ -28,31 +28,31 @@
 QT_TRANSLATE_NOOP("ConfigManager", "paragraph*"), 
 QT_TRANSLATE_NOOP("ConfigManager", "subparagraph*"), 
 QT_TRANSLATE_NOOP("ConfigManager", "&Environments"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{<environment>} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{center} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{flushleft} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{flushright}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{quote}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{quotation}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{verse}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{verbatim}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{table}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{figure}  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{titlepage}  [selection]"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{<environment>}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{center}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{flushleft}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{flushright}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{quote}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{quotation}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{verse}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{verbatim} "), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{table}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{figure}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "\\begin{titlepage}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "&List Environments"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{itemize}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{enumerate}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{description}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{list}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Font St&yles"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\emph - Emphasis  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\textit - Italics  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\textsl - Slanted  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\textbf - Boldface  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\texttt - Typewriter  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\textsc - Small caps  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\textsf - Sans Serif  [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\underline - Underline [selection]"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Emphasis - \\emph"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Italics - \\textit"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Slanted - \\textsl"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Boldface - \\textbf"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Typewriter - \\texttt"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Small Caps - \\textsc"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Sans Serif - \\textsf"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Underline - \\underline"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Font Sizes"), 
 QT_TRANSLATE_NOOP("ConfigManager", "tiny"), 
 QT_TRANSLATE_NOOP("ConfigManager", "scriptsize"), 
@@ -67,7 +67,7 @@
 QT_TRANSLATE_NOOP("ConfigManager", "&Tabular Environment"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{tabbing}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{tabular}"), 
-QT_TRANSLATE_NOOP("ConfigManager", "S&pacing"), 
+QT_TRANSLATE_NOOP("ConfigManager", "&Vertical Spacing"), 
 QT_TRANSLATE_NOOP("ConfigManager", "New line"), 
 QT_TRANSLATE_NOOP("ConfigManager", "International &Accents"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\includegraphics{file}"), 
@@ -87,27 +87,58 @@
 QT_TRANSLATE_NOOP("ConfigManager", "Numbered equations \\begin{equation}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{align}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{eqnarray}"), 
-QT_TRANSLATE_NOOP("ConfigManager", "_{} - subscript"), 
-QT_TRANSLATE_NOOP("ConfigManager", "^{} - superscript"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Subscript - _{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Superscript - ^{}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{array}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math &Functions"), 
+QT_TRANSLATE_NOOP("ConfigManager", "arccos"), 
+QT_TRANSLATE_NOOP("ConfigManager", "arcsin"), 
+QT_TRANSLATE_NOOP("ConfigManager", "arctan"), 
+QT_TRANSLATE_NOOP("ConfigManager", "cos"), 
+QT_TRANSLATE_NOOP("ConfigManager", "cosh"), 
+QT_TRANSLATE_NOOP("ConfigManager", "cot"), 
+QT_TRANSLATE_NOOP("ConfigManager", "coth"), 
+QT_TRANSLATE_NOOP("ConfigManager", "csc"), 
+QT_TRANSLATE_NOOP("ConfigManager", "deg"), 
+QT_TRANSLATE_NOOP("ConfigManager", "det"), 
+QT_TRANSLATE_NOOP("ConfigManager", "dim"), 
+QT_TRANSLATE_NOOP("ConfigManager", "exp"), 
+QT_TRANSLATE_NOOP("ConfigManager", "gcd"), 
+QT_TRANSLATE_NOOP("ConfigManager", "hom"), 
+QT_TRANSLATE_NOOP("ConfigManager", "inf"), 
+QT_TRANSLATE_NOOP("ConfigManager", "ker"), 
+QT_TRANSLATE_NOOP("ConfigManager", "lg"), 
+QT_TRANSLATE_NOOP("ConfigManager", "lim"), 
+QT_TRANSLATE_NOOP("ConfigManager", "liminf"), 
+QT_TRANSLATE_NOOP("ConfigManager", "limsup"), 
+QT_TRANSLATE_NOOP("ConfigManager", "ln"), 
+QT_TRANSLATE_NOOP("ConfigManager", "log"), 
+QT_TRANSLATE_NOOP("ConfigManager", "max"), 
+QT_TRANSLATE_NOOP("ConfigManager", "min"), 
+QT_TRANSLATE_NOOP("ConfigManager", "sec"), 
+QT_TRANSLATE_NOOP("ConfigManager", "sin"), 
+QT_TRANSLATE_NOOP("ConfigManager", "sinh"), 
+QT_TRANSLATE_NOOP("ConfigManager", "sup"), 
+QT_TRANSLATE_NOOP("ConfigManager", "tan"), 
+QT_TRANSLATE_NOOP("ConfigManager", "tanh"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math Font St&yles"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathrm{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathit{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathbf{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathsf{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathtt{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathcal{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathbb{} [selection]"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\mathfrak{} [selection]"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Roman - \\mathrm{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Italic - \\mathit{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Bold - \\mathbf{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Sans Serif - \\mathsf{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Courier - \\mathtt{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Calligraphic - \\mathcal{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Blackboard Bold - \\mathbb{}"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Fraktur - \\mathfrak{}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math &Accents"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math S&paces"), 
-QT_TRANSLATE_NOOP("ConfigManager", "negative"), 
-QT_TRANSLATE_NOOP("ConfigManager", "small"), 
-QT_TRANSLATE_NOOP("ConfigManager", "medium"), 
-QT_TRANSLATE_NOOP("ConfigManager", "large"), 
-QT_TRANSLATE_NOOP("ConfigManager", "quad"), 
-QT_TRANSLATE_NOOP("ConfigManager", "qquad"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Negative"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Thin"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Medium"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Thick"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Interword"), 
+QT_TRANSLATE_NOOP("ConfigManager", "One quad"), 
+QT_TRANSLATE_NOOP("ConfigManager", "Two quads"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "background"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "line:error"), 
 QT_TRANSLATE_NOOP("QFormatConfig", "line:warning"), 
