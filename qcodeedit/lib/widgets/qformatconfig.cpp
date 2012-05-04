@@ -157,8 +157,8 @@ void QFormatConfig::addScheme(const QString& name, QFormatScheme *scheme)
 		m_frame->show();
 	}
 
-	if ( !m_currentScheme )
-		setCurrentScheme(scheme);
+	//if ( !m_currentScheme ) not needed in txs
+	//	setCurrentScheme(scheme);
 }
 
 /*!
@@ -305,6 +305,11 @@ void QFormatConfig::cancel()
 {
 	m_table->clearContents();
 
+	QTime T; T.start();
+	QFontDatabase database;
+	QStringList fonts = database.families();
+	fonts.insert(0, tr("<default>"));
+	
 	if ( m_currentScheme )
 	{
 		if (m_categories.isEmpty()) {
@@ -389,9 +394,7 @@ void QFormatConfig::cancel()
 
 				//item = new QTableWidgetItem;
 				QComboBox *fcmb=new QComboBox();
-				fcmb->insertItem(0,tr("<default>"));
-				QFontDatabase database;
-				fcmb->addItems(database.families());
+				fcmb->addItems(fonts);
 				int ind=fcmb->findText(fmt.fontFamily);
 				if(ind>-1) fcmb->setCurrentIndex(ind);
 				else fcmb->setCurrentIndex(0);
@@ -424,6 +427,8 @@ void QFormatConfig::cancel()
 	}
 
 	m_table->resizeColumnsToContents();
+	
+	qDebug () << T.elapsed();
 }
 
 /*!
@@ -575,8 +580,18 @@ void QFormatConfig::hideEvent(QHideEvent *e)
 	}
 }
 
+void QFormatConfig::showEvent(QShowEvent *e){
+	Q_UNUSED(e);
+	if (m_currentScheme || m_schemes.isEmpty()) 
+		return;
+
+	setCurrentScheme(m_schemes.first());
+}
+
 void QFormatConfig::on_m_selector_currentIndexChanged(int idx)
 {
+	return; //not needed in txs
+	
 	QList<int> hasModif = modifiedFormats();
 
 	if ( hasModif.count() )

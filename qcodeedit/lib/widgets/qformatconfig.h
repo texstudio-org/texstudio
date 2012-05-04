@@ -63,6 +63,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 		void setBasePointSize(int basePointSize);
 	protected:
 		virtual void hideEvent(QHideEvent *e);
+		virtual void showEvent(QShowEvent *e);
 		
 	private slots:
 		void on_m_selector_currentIndexChanged(int idx);
