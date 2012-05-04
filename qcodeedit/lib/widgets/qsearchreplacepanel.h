@@ -118,25 +118,25 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void setHistory(const QStringList& newHistory, bool findHistory = true);
 		void rememberLastSearch(QStringList& history, const QString& str, bool incremental);
 		//protected to give unit tests access
+		//find
 		QToolButton *bClose;
 		QComboBox *cFind;
 		QToolButton *bNext, *bPrevious, *bCount;
-		QGridLayout *gridLayout1;
+		QGridLayout *layoutFindOptions;
 		QCheckBox *cbCase;
 		QCheckBox *cbWords;
 		QCheckBox *cbRegExp;
 		QCheckBox *cbHighlight;
 		QCheckBox *cbCursor;
 		QCheckBox *cbSelection;
-		QToolButton *bReplaceAll;
-		QCheckBox *cbPrompt;
-		QCheckBox *cbReplaceAll;
-		QCheckBox *cbEscapeSeq;
+		// replace
 		QCheckBox *cbReplace;
 		QComboBox *cReplace;
 		QToolButton *bReplaceNext;
 		QToolButton *bReplacePrevious;
-
+		QToolButton *bReplaceAll;
+		QCheckBox *cbPrompt;
+		QCheckBox *cbEscapeSeq;
 		
 		bool useLineForSearch, searchOnlyInSelection;
 };

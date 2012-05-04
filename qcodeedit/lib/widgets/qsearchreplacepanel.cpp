@@ -76,40 +76,26 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	this->resize(801, 71);
 	QGridLayout *gridLayout = new QGridLayout(this);
 	gridLayout->setContentsMargins(-1, 4, -1, 4);
-	QFrame* frame_2 = new QFrame(this);
-	frame_2->setObjectName(("frame_2"));
-	QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	frame_2->setSizePolicy(sizePolicy1);
-	frame_2->setMinimumSize(QSize(0, 22));
-	frame_2->setFrameShape(QFrame::NoFrame);
-	frame_2->setLineWidth(0);
-	QHBoxLayout* hboxLayout = new QHBoxLayout(frame_2);
-	hboxLayout->setObjectName(("hboxLayout"));
-	hboxLayout->setContentsMargins(-1, 0, -1, 0);
+	gridLayout->setVerticalSpacing(2);
 
 	QSize buttonSize(22,22);
 
-	bClose = new QToolButton(frame_2);
+	bClose = new QToolButton(this);
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
 	bClose->setIcon(QIcon(":/closeall.png"));
+	gridLayout->addWidget(bClose, 0, 0, 1, 1);
 
-	hboxLayout->addWidget(bClose);
-
-	QLabel* label = new QLabel(frame_2);
-	label->setObjectName(("label"));
+	QLabel* lbFind = new QLabel(this);
+	lbFind->setObjectName(("lbFind"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
 	sizePolicy3.setHorizontalStretch(0);
 	sizePolicy3.setVerticalStretch(0);
-	sizePolicy3.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
-	label->setSizePolicy(sizePolicy3);
-	label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-	hboxLayout->addWidget(label);
-
-
-	gridLayout->addWidget(frame_2, 0, 0, 1, 1);
+	sizePolicy3.setHeightForWidth(lbFind->sizePolicy().hasHeightForWidth());
+	//label->setSizePolicy(sizePolicy3);
+	//label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+	gridLayout->addWidget(lbFind, 0, 1, 1, 1);
 
 	cFind = new QComboBox(this);
 	cFind->setEditable(true);
@@ -123,7 +109,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	conf->registerOption("Search/Find History", &findHistory, QStringList()); 
 	conf->linkOptionToObject(&findHistory, cFind, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
 	
-	gridLayout->addWidget(cFind, 0, 1, 1, 1);
+	gridLayout->addWidget(cFind, 0, 2, 1, 1);
 
 	bNext = new QToolButton(this);
 	bNext->setObjectName(("bNext"));
@@ -149,58 +135,61 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	gridLayout->addWidget(bCount, 0, 5, 1, 1);
 
-	QFrame* frame_6 = new QFrame(this);
-	sizePolicy1.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
-	frame_6->setSizePolicy(sizePolicy1);
-	frame_6->setFrameShape(QFrame::NoFrame);
-	gridLayout1 = new QGridLayout(frame_6);
-	gridLayout1->setContentsMargins(0, 0, 0, 0);
-	cbCase = new QCheckBox(frame_6);
+	QFrame *frameFindOptions = new QFrame(this);
+	QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+	sizePolicy1.setHeightForWidth(frameFindOptions->sizePolicy().hasHeightForWidth());
+
+	frameFindOptions->setSizePolicy(sizePolicy1);
+	frameFindOptions->setFrameShape(QFrame::NoFrame);
+	layoutFindOptions = new QGridLayout(frameFindOptions);
+	layoutFindOptions->setContentsMargins(0, 0, 0, 0);
+	layoutFindOptions->setVerticalSpacing(0);
+	cbCase = new QCheckBox(frameFindOptions);
 	cbCase->setObjectName(("cbCase"));
 	cbCase->setToolTip(tr("Enables case sensitive search."));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
 
-	gridLayout1->addWidget(cbCase, 0, 0, 1, 1);
+	layoutFindOptions->addWidget(cbCase, 0, 0, 1, 1);
 
-	cbWords = new QCheckBox(frame_6);
+	cbWords = new QCheckBox(frameFindOptions);
 	cbWords->setToolTip(tr("Only searches for whole words."));
 	cbWords->setObjectName(("cbWords"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
 
-	gridLayout1->addWidget(cbWords, 0, 1, 1, 1);
+	layoutFindOptions->addWidget(cbWords, 0, 1, 1, 1);
 
-	cbRegExp = new QCheckBox(frame_6);
+	cbRegExp = new QCheckBox(frameFindOptions);
 	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
 	cbRegExp->setObjectName(("cbRegExp"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
 
-	gridLayout1->addWidget(cbRegExp, 0, 2, 1, 1);
+	layoutFindOptions->addWidget(cbRegExp, 0, 2, 1, 1);
 
-	cbHighlight = new QCheckBox(frame_6);
+	cbHighlight = new QCheckBox(frameFindOptions);
 	cbHighlight->setObjectName(("cbHighlight"));
 	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
 	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
 	cbHighlight->setSizePolicy(sizePolicy3);
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
 
-	gridLayout1->addWidget(cbHighlight, 0, 3, 1, 1);
+	layoutFindOptions->addWidget(cbHighlight, 0, 3, 1, 1);
 
-	cbCursor = new QCheckBox(frame_6);
+	cbCursor = new QCheckBox(frameFindOptions);
 	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
 	cbCursor->setObjectName(("cbCursor"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
 
-	gridLayout1->addWidget(cbCursor, 0, 4, 1, 1);
+	layoutFindOptions->addWidget(cbCursor, 0, 4, 1, 1);
 
-	cbSelection = new QCheckBox(frame_6);
+	cbSelection = new QCheckBox(frameFindOptions);
 	cbSelection->setToolTip(tr("Only searches in the selected text."));
 	cbSelection->setObjectName(("cbSelection"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
 
-	gridLayout1->addWidget(cbSelection, 0, 5, 1, 1);
+	layoutFindOptions->addWidget(cbSelection, 0, 5, 1, 1);
 
 
-	gridLayout->addWidget(frame_6, 0, 6, 2, 2,Qt::AlignTop);
+	gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
 
 	bReplaceAll = new QToolButton(this);
 	bReplaceAll->setObjectName(("bReplaceAll"));
@@ -208,41 +197,39 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bReplaceAll->setMaximumSize(buttonSize);
 	bReplaceAll->setIcon(QIcon(":/images/qcodeedit/replaceall.png"));
 
-	gridLayout->addWidget(bReplaceAll, 2, 5, 1, 1);
+	gridLayout->addWidget(bReplaceAll, 1, 5, 1, 1);
 
-	QFrame* frame = new QFrame(this);
-	frame->setObjectName(("frame"));
-	frame->setFrameShape(QFrame::NoFrame);
-	frame->setFrameShadow(QFrame::Raised);
-	QHBoxLayout* hboxLayout1 = new QHBoxLayout(frame);
-	hboxLayout1->setContentsMargins(-1, 0, -1, 0);
-	cbPrompt = new QCheckBox(frame);
+	QFrame* frameReplaceOptions = new QFrame(this);
+	frameReplaceOptions->setObjectName(("frameReplaceOptions"));
+	frameReplaceOptions->setFrameShape(QFrame::NoFrame);
+	QHBoxLayout *layoutReplaceOptions = new QHBoxLayout(frameReplaceOptions);
+	layoutReplaceOptions->setContentsMargins(0, 0, 0, 0);
+	cbPrompt = new QCheckBox(frameReplaceOptions);
 	cbPrompt->setToolTip(tr("Ask before any match is replaced."));
 	cbPrompt->setObjectName(("cbPrompt"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, askConfig, false, "Search/Ask before Replace", cbPrompt);
 
-	hboxLayout1->addWidget(cbPrompt);
+	layoutReplaceOptions->addWidget(cbPrompt);
 
-	//cbReplaceAll = new QCheckBox(frame);
-	//cbReplaceAll->setObjectName(("cbReplaceAll"));
-
-	//hboxLayout1->addWidget(cbReplaceAll);
-
-	cbEscapeSeq = new QCheckBox(frame);
+	cbEscapeSeq = new QCheckBox(frameReplaceOptions);
 	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\"));
 	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
 
-	hboxLayout1->addWidget(cbEscapeSeq);
+	layoutReplaceOptions->addWidget(cbEscapeSeq);
 
 
-	gridLayout->addWidget(frame, 2, 6, 1, 1);
+	gridLayout->addWidget(frameReplaceOptions, 1, 6, 1, 1);
 
 	cbReplace = new QCheckBox(this);
 	cbReplace->setObjectName(("cbReplace"));
 	cbReplace->setChecked(true);
 
-	gridLayout->addWidget(cbReplace, 2, 0, 1, 1);
+	gridLayout->addWidget(cbReplace, 1, 0, 1, 1, Qt::AlignCenter);
+
+	QLabel *lbReplace = new QLabel(this);
+	gridLayout->addWidget(lbReplace, 1, 1, 1, 1);
+
 
 	cReplace = new QComboBox(this);
 	cReplace->setEditable(true);
@@ -260,7 +247,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	conf->registerOption("Search/Replace History", &replaceHistory, QStringList()); 
 	conf->linkOptionToObject(&replaceHistory, cReplace, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
 
-	gridLayout->addWidget(cReplace, 2, 1, 1, 1);
+	gridLayout->addWidget(cReplace, 1, 2, 1, 1);
 
 	bReplaceNext = new QToolButton(this);
 	bReplaceNext->setObjectName(("bReplaceNext"));
@@ -268,7 +255,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bReplaceNext->setMaximumSize(buttonSize);
 	bReplaceNext->setIcon(QIcon(":/images/qcodeedit/replacedown.png"));
 
-	gridLayout->addWidget(bReplaceNext, 2, 3, 1, 1);
+	gridLayout->addWidget(bReplaceNext, 1, 3, 1, 1);
 
 	bReplacePrevious = new QToolButton(this);
 	bReplacePrevious->setObjectName(("bReplacePrevious"));
@@ -276,15 +263,15 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bReplacePrevious->setMaximumSize(buttonSize);
 	bReplacePrevious->setIcon(QIcon(":/images/qcodeedit/replaceup.png"));
 
-	gridLayout->addWidget(bReplacePrevious, 2, 4, 1, 1);
-
+	gridLayout->addWidget(bReplacePrevious, 1, 4, 1, 1);
 
 	//retranslateUi(this);
 	QObject::connect(cbReplace, SIGNAL(toggled(bool)), cbReplace, SLOT(setVisible(bool)));
+	QObject::connect(cbReplace, SIGNAL(toggled(bool)), lbReplace, SLOT(setVisible(bool)));
 	QObject::connect(cbReplace, SIGNAL(toggled(bool)), cReplace, SLOT(setVisible(bool)));
 	QObject::connect(cbReplace, SIGNAL(toggled(bool)), bReplacePrevious, SLOT(setVisible(bool)));
 	QObject::connect(cbReplace, SIGNAL(toggled(bool)), bReplaceNext, SLOT(setVisible(bool)));
-	QObject::connect(cbReplace, SIGNAL(toggled(bool)), frame, SLOT(setVisible(bool)));
+	QObject::connect(cbReplace, SIGNAL(toggled(bool)), frameReplaceOptions, SLOT(setVisible(bool)));
 	QObject::connect(cbReplace, SIGNAL(toggled(bool)), bReplaceAll, SLOT(setVisible(bool)));
 	QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
 
@@ -296,16 +283,16 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	// set texts
 	bClose->setToolTip(QApplication::translate("SearchReplace", "Close search/replace panel", 0, QApplication::UnicodeUTF8));
 	cFind->setToolTip(QApplication::translate("SearchReplace", "Text or pattern to search for", 0, QApplication::UnicodeUTF8));
-	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
-	bPrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous occurence", 0, QApplication::UnicodeUTF8));
+	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next", 0, QApplication::UnicodeUTF8));
+	bPrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous", 0, QApplication::UnicodeUTF8));
 	cReplace->setToolTip(QApplication::translate("SearchReplace", "Replacement text", 0, QApplication::UnicodeUTF8));
-	bReplaceNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
-	bReplacePrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous occurence", 0, QApplication::UnicodeUTF8));
+	bReplaceNext->setToolTip(QApplication::translate("SearchReplace", "Replace and find next", 0, QApplication::UnicodeUTF8));
+	bReplacePrevious->setToolTip(QApplication::translate("SearchReplace", "Replace and find previous", 0, QApplication::UnicodeUTF8));
 	bReplaceAll->setToolTip(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
 	bCount->setToolTip(QApplication::translate("SearchReplace", "Count occurences", 0, QApplication::UnicodeUTF8));
 
-	label->setText(QApplication::translate("SearchReplace", " Find :", 0, QApplication::UnicodeUTF8));
-	label->setMinimumWidth(label->sizeHint().width());
+	lbFind->setText(QApplication::translate("SearchReplace", "Find:", 0, QApplication::UnicodeUTF8));
+	lbFind->setMinimumWidth(lbFind->sizeHint().width());
 	cbCase->setText(QApplication::translate("SearchReplace", "Case", 0, QApplication::UnicodeUTF8));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
 	cbWords->setText(QApplication::translate("SearchReplace", "Words", 0, QApplication::UnicodeUTF8));
@@ -321,11 +308,16 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	//bReplaceAll->setText(QApplication::translate("SearchReplace", "all", 0, QApplication::UnicodeUTF8));
 	cbPrompt->setText(QApplication::translate("SearchReplace", "Prompt on replace", 0, QApplication::UnicodeUTF8));
 	cbEscapeSeq->setText(QApplication::translate("SearchReplace", "Escape sequences", 0, QApplication::UnicodeUTF8));
-	cbReplace->setText(QApplication::translate("SearchReplace", "Replace :", 0, QApplication::UnicodeUTF8));
+	lbReplace->setText(QApplication::translate("SearchReplace", "Replace:", 0, QApplication::UnicodeUTF8));
 	//cbReplaceAll->setText(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
 
-	minimum_width=frame_2->sizeHint().width()+cFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
-	//
+	minimum_width=bClose->sizeHint().width()
+			+qMax(lbFind->sizeHint().width(), lbReplace->sizeHint().width())
+			+cFind->minimumSize().width()
+			+3*bNext->sizeHint().width()
+			+gridLayout->contentsMargins().left()
+			+gridLayout->contentsMargins().right()
+			+6*gridLayout->horizontalSpacing();
 
 	cFind->installEventFilter(this);
 	cReplace->installEventFilter(this);
@@ -675,22 +667,26 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 
 
 void QSearchReplacePanel::resizeEvent(QResizeEvent *e){
-	int w=e->size().width();
+
+	int w=e->size().width() - layoutFindOptions->contentsMargins().left() - layoutFindOptions->contentsMargins().right();
 	w=w-minimum_width; // remaining space
 	QList<QWidget*> listOfWidget;
+	// search
 	listOfWidget << cbCase << cbWords << cbRegExp << cbHighlight << cbCursor << cbSelection;
 	int row=0;
 	int col=0;
 	int remaining_space=w;
+	int spacing=layoutFindOptions->horizontalSpacing();
 	foreach(QWidget *wdg,listOfWidget){
-		remaining_space=remaining_space-wdg->minimumWidth();
+		remaining_space -= wdg->minimumWidth();
 		if(remaining_space>0){
-			gridLayout1->addWidget(wdg, row, col, 1, 1);
+			layoutFindOptions->addWidget(wdg, row, col, 1, 1);
+			remaining_space -= spacing;
 			col++;
 		}else{
 			col=0;
 			row++;
-			gridLayout1->addWidget(wdg, row, col, 1, 1);
+			layoutFindOptions->addWidget(wdg, row, col, 1, 1);
 			col++;
 			remaining_space=w-wdg->minimumWidth();
 		}
