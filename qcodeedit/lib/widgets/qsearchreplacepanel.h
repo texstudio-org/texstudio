@@ -135,6 +135,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QToolButton *bReplaceNext;
 		QToolButton *bReplacePrevious;
 		QToolButton *bReplaceAll;
+		QGridLayout *layoutReplaceOptions;
 		QCheckBox *cbPrompt;
 		QCheckBox *cbEscapeSeq;
 		
