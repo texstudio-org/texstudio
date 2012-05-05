@@ -40,7 +40,12 @@ QVariant LatexLogModel::data(const QModelIndex &index, int role) const {
 			return QVariant(); //return Texmaker::tr("unknown");
 		}
 	case 2:
-		return tr("line")+ QString(" %1").arg(log.at(index.row()).oldline);
+		{
+		int line = log.at(index.row()).oldline > 0;
+		if (line > 0)
+			return tr("line")+ QString(" %1").arg(line);
+		return QString();
+		}
 	case 3:
 		return log.at(index.row()).message;
 	default:

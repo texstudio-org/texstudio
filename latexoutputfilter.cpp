@@ -97,11 +97,11 @@ bool OutputFilter::run(const QTextDocument* log)
 		QTextStream t(&pt,QIODevice::ReadOnly);
 		while(!t.atEnd()) {
 // 			KILE_DEBUG() << "line " << m_nOutputLines << endl;
-			s = t.readLine() + '\n';
-			sCookie = parseLine(s.trimmed(), sCookie);
+			s = t.readLine();
+			sCookie = parseLine(s, sCookie);
 			++m_nOutputLines;
 
-			m_log += s;
+			m_log += s + '\n';
 		}
 		/*f.close();
 	}
@@ -490,6 +490,7 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 	}
 
 	if(flush) {
+		m_currentItem.message = m_currentItem.message.simplified();
 		flushCurrentItem();
 	}
 
@@ -511,17 +512,17 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 		//detect the beginning of a warning
 		case Start :
 			if(reLaTeXWarning.indexIn(strLine) != -1) {
-				warning = reLaTeXWarning.cap(5).trimmed();
+				warning = reLaTeXWarning.cap(5);
  				//KILE_DEBUG() << "\tWarning found: " << warning << endl;
 
 				found = true;
 				dwCookie = Start;
 
-				m_currentItem.message=(warning);
 				m_currentItem.logline=GetCurrentOutputLine();
 
 				//do we expect a line number?
 				flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
+				m_currentItem.message=warning;
 			}
 			else if(reNoFile.indexIn(strLine) != -1) {
 				found = true;
@@ -542,7 +543,7 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 
 		//warning spans multiple lines, detect the end
 		case Warning :
-		warning = m_currentItem.message + " " + strLine;
+			warning = m_currentItem.message + strLine;
 			//KILE_DEBUG() << "'\tWarning (cont'd) : " << warning << endl;
 			flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
 			m_currentItem.message=(warning);
@@ -558,6 +559,7 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 	}
 
 	if(flush) {
+		m_currentItem.message = m_currentItem.message.simplified();
 		flushCurrentItem();
 	}
 
@@ -573,7 +575,7 @@ bool LatexOutputFilter::detectLaTeXLineNumber(QString & warning, short & dwCooki
 	if((reLaTeXLineNumber.indexIn(warning) != -1) || (reInternationalLaTeXLineNumber.indexIn(warning) != -1)) {
 		//KILE_DEBUG() << "een" << endl;
 		m_currentItem.oldline=(reLaTeXLineNumber.cap(2).toInt());
-		warning += reLaTeXLineNumber.cap(1);
+		warning = reLaTeXLineNumber.cap(1);
 		dwCookie = Start;
 		return true;
 	}

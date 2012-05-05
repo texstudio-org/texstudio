@@ -287,7 +287,12 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 		    !txsConfirmWarning(tr("The logfile is very large (> %1 MB) are you sure you want to load it?").arg(f.size() / 1024 / 1024))) 
 			return;
 		
-		QByteArray fullLog = simplifyLineConserving(f.readAll());
+		//QByteArray fullLog = simplifyLineConserving(f.readAll());
+		// TODO: if we want to habe simplification here it has to be smarter.
+		// The above version trims whitespace, which leads to undesired effects due to the 80 char
+		// line width of the log. "line\n 1"  would become "\line\n1" and, when rejoining lines for error/warning detection "line1".
+		// Do we need this or can we just leave the output as it is?
+		QByteArray fullLog = f.readAll();
 		f.close();
 		
 		int sure;
