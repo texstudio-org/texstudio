@@ -89,21 +89,6 @@
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>36</width>
-       <height>36</height>
-      </size>
-     </property>
-     <property name="gridSize">
-      <size>
-       <width>0</width>
-       <height>44</height>
-      </size>
-     </property>
      <property name="currentRow">
       <number>-1</number>
      </property>
@@ -157,8 +142,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>478</width>
+            <height>510</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -759,6 +744,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
          </property>
         </spacer>
        </item>
