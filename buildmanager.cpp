@@ -839,7 +839,7 @@ void BuildManager::readSettings(QSettings &settings){
 		//Choose suggestion that actually exists
 		CommandInfo &quick = commands.find("quick").value();
 		for (int i=0;i<quick.metaSuggestionList.size()-1;i++) {
-			QString referenced = commands.value(quick.metaSuggestionList[i]).commandLine;
+            QString referenced = quick.metaSuggestionList[i];
 			if (referenced.isEmpty()) continue;
 			QStringList subCommands = referenced.split("|");
 			bool hasAll = true;
