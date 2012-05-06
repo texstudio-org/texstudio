@@ -159,9 +159,13 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("texindy",     "texindy",      "Texindy", "");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
-    QStringList ltxmk_cmds;
-    ltxmk_cmds<<"bash -c \"latexmk -pdf -e '$pdflatex=q/pdflatex -synctex=1 --shell-escape %%O %%S/' %\""<<"bash -c \"latexmk -dvi -e '$latex=q/latex -src --shell-escape %%O %%S/' %\"";
-    registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
+	QStringList ltxmk_cmds;
+#ifdef Q_WS_WIN
+	ltxmk_cmds<<"latexmk -pdf -e \"$pdflatex=q/pdflatex -synctex=1 --shell-escape %%O %%S/\" %"<<"latexmk -dvi -e \"$latex=q/latex -src --shell-escape %%O %%S/\" %";
+#else
+	ltxmk_cmds<<"bash -c \"latexmk -pdf -e '$pdflatex=q/pdflatex -synctex=1 --shell-escape %%O %%S/' %\""<<"bash -c \"latexmk -dvi -e '$latex=q/latex -src --shell-escape %%O %%S/' %\"";
+#endif
+	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 
 	
 	
