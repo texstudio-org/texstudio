@@ -1987,7 +1987,7 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		if (index > 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);		
 	}
 	QList<QPushButton*> buttons;
-	if (cmd.user || !cmd.metaSuggestionList.isEmpty()) {
+    if (cmd.user || cmd.meta) {
 		buttons << new QPushButton("...", parent);
 		connect(buttons.last(),SIGNAL(clicked()),SLOT(editCommand()));
 	}
@@ -2056,7 +2056,8 @@ void ConfigManager::createCommandList(QGroupBox* box, const QStringList& order, 
 	int row = 0;
 	foreach (const QString& id, order){
 		const CommandInfo& cmd = tempCommands.value(id);
-		bool isMeta = !cmd.metaSuggestionList.isEmpty();
+        //bool isMeta = !cmd.metaSuggestionList.isEmpty();
+        bool isMeta = cmd.meta;
 		if (user != cmd.user) continue;
 		if (!user && (isMeta != meta)) continue;
 		addCommandRow(gl, cmd, row);

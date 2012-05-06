@@ -36,7 +36,7 @@ QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
 QString getCommandLineGhostscript();
 
-CommandInfo::CommandInfo(): user(false), guessFunc(0){}
+CommandInfo::CommandInfo(): user(false), guessFunc(0), meta(false){}
 
 QString CommandInfo::guessCommandLine() const{
 	if (guessFunc) {
@@ -159,7 +159,9 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("texindy",     "texindy",      "Texindy", "");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
-	registerCommand("latexmk",     "latexmk",      "Latexmk", "%");
+    QStringList ltxmk_cmds;
+    ltxmk_cmds<<"bash -c \"latexmk -pdf -e '$pdflatex=q/pdflatex -synctex=1 --shell-escape %%O %%S/' %\""<<"bash -c \"latexmk -dvi -e '$latex=q/latex -src --shell-escape %%O %%S/' %\"";
+    registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 
 	
 	
@@ -204,11 +206,12 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& bas
 	return commands.insert(id, ci).value();
 }
 
-CommandInfo& BuildManager::registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig){
+CommandInfo& BuildManager::registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig, const bool metaCommand){
 	CommandInfo ci;
 	ci.id = id;
 	ci.displayName = displayname;
 	ci.metaSuggestionList = alternatives;
+    ci.meta=metaCommand;
 	ci.deprecatedConfigName = oldConfig;
 	commandSortingsOrder << id;
 	return commands.insert(id, ci).value();
@@ -1573,9 +1576,10 @@ void ProcessX::onError(ProcessError error){
 }
 
 void ProcessX::onFinished(int error){
-	if (error)
+    if (error){
 		emit processNotification(tr("Process exited with error(s)"));
-	else {
+        readFromStandardError(true);
+    } else {
 		emit processNotification(tr("Process exited normally"));
 		readFromStandardOutput();
 		readFromStandardError();
@@ -1596,8 +1600,8 @@ void ProcessX::readFromStandardOutput(){
 	emit standardOutputRead(t);
 }
 
-void ProcessX::readFromStandardError(){
-	if (!stderrEnabled) return;
+void ProcessX::readFromStandardError(bool force){
+    if (!stderrEnabled && !force) return;
 	QString t = readAllStandardErrorStr().simplified();
 	emit standardErrorRead(t);
 }
