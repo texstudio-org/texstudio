@@ -3799,7 +3799,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master){
 		Q_ASSERT(!PDFDocument::documentList().isEmpty());
 	}
 	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
-	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber()+1:0;
+    int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
 	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
 		viewer->loadFile(pdfFile, master);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , true);

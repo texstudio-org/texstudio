@@ -51,6 +51,7 @@ struct CommandInfo {
 	QString defaultArgs;
 	QString displayName;
 	bool user;
+    bool meta;
 	
 	QStringList metaSuggestionList;
 	
@@ -177,7 +178,7 @@ signals:
 private:
 	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
-	CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "");
+    CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true);
 	QString getCommandLine(const QString& id, bool* user);
 	friend class ProcessX;
 	CommandMapping commands;
@@ -236,7 +237,7 @@ private slots:
 	void finished();
 #endif
 	void readFromStandardOutput();
-	void readFromStandardError();
+    void readFromStandardError(bool force=false);
 private:
 	QString cmd;
 	QString file;
