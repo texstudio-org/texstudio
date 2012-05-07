@@ -122,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -739,6 +739,16 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <number>5</number>
             </property>
            </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Commands with repeated compilation: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="3">
+           <widget class="QLineEdit" name="lineEditCommandsWithRerun"/>
           </item>
          </layout>
         </widget>

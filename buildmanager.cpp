@@ -21,6 +21,9 @@ static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-v
 
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
+int BuildManager::autoRerunLatex = 5;
+QString BuildManager::autoRerunCommands;
+
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
 CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
@@ -119,7 +122,7 @@ QString BuildManager::chainCommands(const QString& a, const QString& b, const QS
 
 
 
-BuildManager::BuildManager(): autoRerunLatex(0), processWaitedFor(0)
+BuildManager::BuildManager(): processWaitedFor(0)
 #ifdef Q_WS_WIN
 		, pidInst(0)
 #endif
@@ -225,7 +228,7 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& dis
 	ci.displayName = displayname;
 	ci.metaSuggestionList = alternatives;
     ci.simpleDescriptionList=simpleDescriptions;
-    ci.meta=metaCommand;
+	ci.meta=metaCommand;
 	ci.deprecatedConfigName = oldConfig;
 	commandSortingsOrder << id;
 	return commands.insert(id, ci).value();
@@ -542,10 +545,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 		QString subcmd = split.trimmed();
 		
 		if (!subcmd.startsWith(TXS_CMD_PREFIX))  {
-			bool latex = latexCommands.contains(subcmd), 
-                 pdf = pdfCommands.contains(subcmd),
-                 stdOut = stdoutCommands.contains(subcmd),
-			     viewer = viewerCommands.contains(subcmd);
+			RunCommandFlags  flags = getSingleCommandFlags(subcmd);
 			
 			if (options.override.removeAll)
 				subcmd = CommandInfo::getProgramName(subcmd);
@@ -577,11 +577,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			
 			foreach (const QString& c, parseExtendedCommandLine(subcmd, options.mainFile, options.currentFile, options.currentLine)) {
 				CommandToRun temp(c);
-				if (latex)  temp.flags |= RCF_LATEX_COMPILER;
-				if (pdf)    temp.flags |= RCF_CHANGE_PDF;
-				if (viewer) temp.flags |= RCF_SINGLE_INSTANCE;
-                if (stdOut) temp.flags |= RCF_SHOW_STDOUT;
-				
+				temp.flags = flags;
 				res.commands << temp;
 			}
 		} else if (re.exactMatch(subcmd)){	
@@ -645,6 +641,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			
 			if (newPart.isEmpty()) continue;
 			
+			if (rerunCommandsUnexpanded.contains(cmdName)) 
+				for (int i=0; i<newPart.size(); i++)
+					newPart[i].flags |= RCF_RERUN;
+			
 			for (int i=0; i<newPart.size(); i++)
 				if (newPart[i].parentCommand.isEmpty()) {
 					newPart[i].parentCommand = cmdName;
@@ -659,6 +659,16 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 	}
 	options.nestingDeep--;
 	return res;
+}
+
+RunCommandFlags BuildManager::getSingleCommandFlags(const QString& subcmd) const{
+	int result = 0;
+	if (latexCommands.contains(subcmd)) result |= RCF_COMPILES_TEX; 
+	if (rerunnableCommands.contains(subcmd)) result |= RCF_RERUNNABLE; 
+	if (pdfCommands.contains(subcmd)) result |= RCF_CHANGE_PDF;
+	if (stdoutCommands.contains(subcmd)) result |= RCF_SHOW_STDOUT;
+	if (viewerCommands.contains(subcmd)) result |= RCF_SINGLE_INSTANCE;
+	return (RunCommandFlags)(result);
 }
 
 bool BuildManager::hasCommandLine(const QString& program){
@@ -936,7 +946,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 
 	bool latexCompiled = false, pdfChanged = false;
 	for (int i=0;i<expansion.commands.size();i++){
-		latexCompiled |= expansion.commands[i].flags & RCF_LATEX_COMPILER;
+		latexCompiled |= expansion.commands[i].flags & RCF_COMPILES_TEX;
 		pdfChanged |= expansion.commands[i].flags & RCF_CHANGE_PDF;
 	}
 	if (latexCompiled) {
@@ -953,8 +963,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer){
 	const QList<CommandToRun> & commands = expandedCommands.commands;
 	
-	REQUIRE_RET(autoRerunLatex, false);
-	int remainingReRunCount = *autoRerunLatex;
+	int remainingReRunCount = autoRerunLatex;
 	for (int i=0;i<commands.size();i++) {
 		CommandToRun cur = commands[i];
 		if (internalCommandIds.contains(cur.command)) {
@@ -964,7 +973,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		
 		bool singleInstance = cur.flags & RCF_SINGLE_INSTANCE;
 		if (singleInstance && runningCommands.contains(cur.command)) continue;
-		bool latexCompiler = cur.flags & RCF_LATEX_COMPILER;
+		bool latexCompiler = cur.flags & RCF_COMPILES_TEX;
 		bool lastCommandToRun = i == commands.size()-1;
 		bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance);
 		
@@ -990,7 +999,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 
 		if (waitForCommand) p->deleteLater();
 		
-		if (latexCompiler){
+		if ((cur.flags & RCF_RERUN) && (cur.flags & RCF_RERUNNABLE)){
 			LatexCompileResult result = LCR_NORMAL;
 			emit latexCompiled(&result);
 			if (result == LCR_NORMAL) continue;
@@ -1287,16 +1296,29 @@ void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList&
 		if (it.value().commandLine == tr("<unknown>"))
 			it.value().commandLine = "";	
 	
-	latexCommands.clear(); latexCommands << "latex" << "pdflatex" << "xelatex" << "lualatex" << "compile";
-	pdfCommands.clear(); pdfCommands << "pdflatex" << "xelatex" << "lualatex";
-	stdoutCommands.clear(); stdoutCommands << "bibtex" << "biber" << "bibtex8" << "bibliography";
-	viewerCommands.clear(); viewerCommands << "view-pdf" << "view-ps" << "view-dvi" << "view-pdf-internal" << "view-pdf-external" << "view";
-	QList<QStringList*> lists = QList<QStringList*>() << &latexCommands << &pdfCommands << &stdoutCommands << &viewerCommands;
-	foreach (QStringList* sl, lists)
+	static QStringList latexCommandsUnexpanded, rerunnableCommandsUnexpanded, pdfCommandsUnexpanded, stdoutCommandsUnexpanded, viewerCommandsUnexpanded;
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/LaTeX", &latexCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex" << "latexmk" << "compile");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Rerunnable", &rerunnableCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Pdf", &pdfCommandsUnexpanded, QStringList() << "pdflatex" << "xelatex" << "lualatex" << "latexmk");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Stdout", &stdoutCommandsUnexpanded, QStringList() << "bibtex" << "biber" << "bibtex8" << "bibliography");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Viewer", &viewerCommandsUnexpanded, QStringList() << "view-pdf" << "view-ps" << "view-dvi" << "view-pdf-internal" << "view-pdf-external" << "view");
+	
+	QList<QStringList*> lists = QList<QStringList*>() << &latexCommands << &rerunnableCommands << &pdfCommands << &stdoutCommands << &viewerCommands;
+	QList<QStringList*> listsUnexpanded = QList<QStringList*>() << &latexCommandsUnexpanded << &rerunnableCommandsUnexpanded << &pdfCommandsUnexpanded << &stdoutCommandsUnexpanded << &viewerCommandsUnexpanded;
+	Q_ASSERT(lists.size() == listsUnexpanded.size());
+	for (int i=0;i<lists.size();i++) {
+		QStringList* sl = lists[i];
+		*sl = *listsUnexpanded.at(i);
 		for (int i=0;i<sl->size();i++) {
 			Q_ASSERT(commands.contains((*sl)[i]) || (*sl)[i] == "view-pdf-internal"); 
 			(*sl)[i] = getCommandInfo((*sl)[i]).commandLine.trimmed();
 		}
+	}
+	
+	rerunCommandsUnexpanded = autoRerunCommands.split("|");
+	for (int i=0;i<rerunCommandsUnexpanded.size();i++)
+		if (rerunCommandsUnexpanded.startsWith(TXS_CMD_PREFIX))
+			rerunCommandsUnexpanded[i] =  rerunCommandsUnexpanded[i].mid(TXS_CMD_PREFIX.size());
 }
 
 void BuildManager::singleInstanceCompleted(int status){
