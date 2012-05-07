@@ -133,7 +133,7 @@
   
   <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode.png" shortcut="Ctrl+Shift+M"/>
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
-  <insert id="equation" text="Numbered equations \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
+  <insert id="equation" text="Numbered equation \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
   <insert id="align" text="\begin{align}" insert="\begin{align}%n%|%n\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
   <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="indice.png" shortcut="Ctrl+Shift+D"/>  
@@ -183,7 +183,7 @@
     <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon=":/images/font_mathit.png"/>
     <insert id="mathbf" text="Bold - \mathbf{}" insert="\mathbf{%|}" icon=":/images/font_mathbf.png"/>
     <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon=":/images/font_mathsf.png"/>
-    <insert id="mathtt" text="Courier - \mathtt{}" insert="\mathtt{%|}" icon=":/images/font_mathtt.png"/>
+    <insert id="mathtt" text="Typewriter - \mathtt{}" insert="\mathtt{%|}" icon=":/images/font_mathtt.png"/>
     <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon=":/images/font_mathcal.png"/>
     <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon=":/images/font_mathbb.png"/>
     <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon=":/images/font_mathfrak.png"/>
