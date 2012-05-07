@@ -2571,7 +2571,6 @@ void Texmaker::ReadSettings() {
 	configManager.registerOption("User/Templates",&userTemplatesList);
 	
 	configManager.buildManager=&buildManager;
-	buildManager.autoRerunLatex = &configManager.autoRerunLatex;
 	scriptengine::buildManager=&buildManager;
 	scriptengine::app=this;	
 	QSettings *config=configManager.readSettings();
@@ -3927,17 +3926,17 @@ void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool 
 			}
 		}
 	}
-	if (latex)
-		outputView->resetMessagesAndLog();//log to old (whenever latex is called)		
+	if (latex) outputView->resetMessagesAndLog();//log to old (whenever latex is called)		
+	else outputView->resetMessages();
 	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
 
 void Texmaker::beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags){
 	if (commandMain != subCommand)
 		statusLabelProcess->setText(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName).arg(buildManager.getCommandInfo(subCommand).displayName));
-	if (flags & RCF_LATEX_COMPILER) 
+	if (flags & RCF_COMPILES_TEX) 
 		ClearMarkers();
-	outputView->resetMessages();
+	//outputView->resetMessages();
 	
 	connect(p, SIGNAL(standardErrorRead(QString)), outputView, SLOT(insertMessageLine(QString)));
 	if (p->showStdout()) {
@@ -3948,7 +3947,7 @@ void Texmaker::beginRunningSubCommand(ProcessX* p, const QString& commandMain, c
 
 
 void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags){
-	if (p->exitCode() && (flags & RCF_LATEX_COMPILER) && !LogExists()) {
+	if (p->exitCode() && (flags & RCF_COMPILES_TEX) && !LogExists()) {
 		if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable()) 
 			txsWarning(tr("You cannot compile the document in a non writable directory."));
 		else

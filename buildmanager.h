@@ -23,9 +23,11 @@ Q_DECLARE_METATYPE(LatexCompileResult);
 
 enum RunCommandFlag{
 	RCF_SHOW_STDOUT = 1,    //bibliography command (=> show stdout)
-	RCF_LATEX_COMPILER = 4, //latex command, show the log and rerun if there are errors
-	RCF_CHANGE_PDF = 16,    //pdflatex (=> lock pdf)
-	RCF_SINGLE_INSTANCE = 8,//viewer (=> start only once)
+	RCF_COMPILES_TEX = 4, //latex command, show the log 
+	RCF_RERUNNABLE = 8,   //rerun if there are errors (usually RCF_RERUNNABLE is set iff RCF_COMPILES_TEX is set, except for latexmk)
+	RCF_RERUN = 16,
+	RCF_CHANGE_PDF = 32,    //pdflatex (=> lock pdf)
+	RCF_SINGLE_INSTANCE = 64,//viewer (=> start only once)
 };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
@@ -96,7 +98,7 @@ public:
 	~BuildManager();
 
 	static const QString TXS_CMD_PREFIX;
-    static const QString CMD_LATEX, CMD_PDFLATEX, CMD_XELATEX, CMD_LUALATEX;
+	static const QString CMD_LATEX, CMD_PDFLATEX, CMD_XELATEX, CMD_LUALATEX;
 	static const QString CMD_VIEW_DVI, CMD_VIEW_PS, CMD_VIEW_PDF, CMD_VIEW_LOG;
 	static const QString CMD_DVIPNG, CMD_DVIPS, CMD_DVIPDF, CMD_PS2PDF, CMD_GS, CMD_MAKEINDEX, CMD_METAPOST, CMD_ASY, CMD_BIBTEX, CMD_SVN, CMD_SVNADMIN;
 	static const QString CMD_COMPILE, CMD_VIEW, CMD_BIBLIOGRAPHY, CMD_QUICK, CMD_RECOMPILE_BIBLIOGRAPHY;
@@ -110,6 +112,7 @@ public:
 	static QString findFileInPath(QString fileName);
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine=0);
 	ExpandedCommands expandCommandLine(const QString& str, ExpandingOptions& expandingOptions);
+	RunCommandFlags getSingleCommandFlags(const QString& command) const;
 	bool hasCommandLine(const QString& program);
 	
 	void registerOptions(ConfigManagerInterface& cmi);
@@ -145,7 +148,6 @@ public:
 	QStringList getCommandsOrder();
 	void setAllCommands(const CommandMapping& commands, const QStringList& userOrder);
 	
-	int *autoRerunLatex; //0: never, > 0 count of reruns
 	int maxExpandingNestingDeep;
 	
 	int deprecatedQuickmode;
@@ -187,8 +189,12 @@ private:
 	QMap<QString, ProcessX*> runningCommands;
 	QPointer<ProcessX> processWaitedFor;
 
-	QStringList latexCommands, pdfCommands, stdoutCommands, viewerCommands;
-	
+	QStringList latexCommands, rerunnableCommands, pdfCommands, stdoutCommands, viewerCommands;
+	QStringList rerunCommandsUnexpanded;
+public:
+	static int autoRerunLatex;
+	static QString autoRerunCommands;
+private:
 	QStringList previewFileNames;
 	QMap<QString, PreviewSource> previewFileNameToSource;
 	QHash<QString, QString> preambleHash;

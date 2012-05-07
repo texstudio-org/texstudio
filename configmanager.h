@@ -45,7 +45,6 @@ public:
 
 	//build
 	BuildManager* buildManager; 
-	int autoRerunLatex;
 	bool singleViewerInstance;
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
