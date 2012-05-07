@@ -948,6 +948,7 @@ bool ConfigManager::execConfigDialog() {
 	createCommandList(confDlg->ui.groupBoxCommands, tempOrder, false, false);
 	createCommandList(confDlg->ui.groupBoxMetaCommands, tempOrder, false, true);
 	createCommandList(confDlg->ui.groupBoxUserCommands, tempOrder, true, false);
+    confDlg->setBuildManger(buildManager);
 	
 	//quickbuild/more page	
 	confDlg->ui.checkBoxReplaceBeamer->setChecked(buildManager->previewRemoveBeamer);
@@ -1224,7 +1225,13 @@ bool ConfigManager::execConfigDialog() {
 			else  ++it;
 		for (int i=0;i<commandInputs.size();i++){
 			CommandMapping::iterator it = tempCommands.find(commandInputs[i]->property(PROPERTY_COMMAND_NAME).toString());
-			if (it != tempCommands.end()) it.value().commandLine = getText(commandInputs[i]);
+            if (it != tempCommands.end()) {
+                QString text = getText(commandInputs[i]);
+                int i=it.value().simpleDescriptionList.indexOf(text);
+                if(i>=0)
+                    text=it.value().metaSuggestionList.value(i);
+                it.value().commandLine =text;
+            }
 		}
 		//read user commands (ugly lists, but we can't use maps because they screw up the ordering)
 		for (int i=0;i<userCommandInputs.size();i++){
@@ -1980,9 +1987,19 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(w);
 	} else {
 		w = new QComboBox(parent);
-		static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
-		static_cast<QComboBox*>(w)->setEditable(true);
-		static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
+        w->setObjectName(cmd.id);
+        if(!configShowAdvancedOptions && simpleMetaOptions.contains(cmd.id) && cmd.metaSuggestionList.contains(cmd.getPrettyCommand())){
+            static_cast<QComboBox*>(w)->addItems(cmd.simpleDescriptionList);
+            static_cast<QComboBox*>(w)->setEditable(false);
+            int i=cmd.metaSuggestionList.indexOf(cmd.getPrettyCommand());
+            Q_ASSERT(i>=0);
+            static_cast<QComboBox*>(w)->setEditText(cmd.simpleDescriptionList.value(i,tr("<unknown>")));
+        }else{
+            static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
+            static_cast<QComboBox*>(w)->setEditable(true);
+            static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
+        }
+
 		int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
 		if (index > 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);		
 	}
@@ -2006,7 +2023,7 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		buttons << new QPushButton(getRealIcon("down"), "", parent);
 		connect(buttons.last(),SIGNAL(clicked()),SLOT(moveDownCommand()));
 	}
-	bool advanced = (cmd.metaSuggestionList.size() > 0) && !simpleMetaOptions.contains(cmd.id);
+    bool advanced = cmd.meta && !simpleMetaOptions.contains(cmd.id);
 	QList<QWidget*> temp; temp << l << w; foreach (QWidget* w, buttons) temp << w;
 	foreach (QWidget* x, temp) {
 		x->setMinimumHeight(x->sizeHint().height());

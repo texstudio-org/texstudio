@@ -54,6 +54,7 @@ struct CommandInfo {
     bool meta;
 	
 	QStringList metaSuggestionList;
+    QStringList simpleDescriptionList;
 	
 	QString guessCommandLine() const; 
 	//sets a command (accepts tr("<unknown>"))
@@ -178,7 +179,7 @@ signals:
 private:
 	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
-    CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true);
+    CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
 	QString getCommandLine(const QString& id, bool* user);
 	friend class ProcessX;
 	CommandMapping commands;
