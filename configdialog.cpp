@@ -307,7 +307,7 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionV
 
 int ConfigDialog::lastUsedPage = 0;
 
-ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), riddled(false), oldToolbarIndex(-1) {
+ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPDFViewer(0), riddled(false), oldToolbarIndex(-1),mBuildManager(0) {
 	setModal(true);
 	ui.setupUi(this);
 
@@ -553,12 +553,48 @@ void ConfigDialog::dictDirChanged(const QString &newText) {
 	}
 }
 
-void hideShowAdvancedOptions(QWidget* w, bool on){
+void ConfigDialog::hideShowAdvancedOptions(QWidget* w, bool on){
 	foreach (QObject* o, w->children()){
 		QWidget* w = qobject_cast<QWidget*> (o);
 		if (!w) continue;
 		if (w->property("advancedOption").isValid() && w->property("advancedOption").toBool())
 			w->setVisible(on);
+        // special treatment for metacommads
+        static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
+        if(simpleMetaOptions.contains(w->objectName())){
+            QComboBox *cb=qobject_cast<QComboBox*> (o);
+            if(cb){
+                if(on){
+                    CommandMapping tempCommands=mBuildManager->getAllCommands();
+                    CommandInfo cmd=tempCommands.value(w->objectName());
+                    QString text=cb->currentText();
+                    int i=cmd.simpleDescriptionList.indexOf(text);
+                    if(i>=0)
+                        text=cmd.metaSuggestionList.value(i,tr("<unknown>"));
+                    cb->clear();
+                    cb->addItems(cmd.metaSuggestionList);
+                    cb->setEditable(true);
+                    cb->setEditText(text);
+                }else{
+                    CommandMapping tempCommands=mBuildManager->getAllCommands();
+                    CommandInfo cmd=tempCommands.value(w->objectName());
+                    QString text=cb->currentText();
+                    int i=cmd.metaSuggestionList.indexOf(text);
+                    if(i>=0)
+                        text=cmd.simpleDescriptionList.value(i,tr("<unknown>"));
+                    cb->clear();
+                    if(i>=0){
+                        cb->addItems(cmd.simpleDescriptionList);
+                        cb->setCurrentIndex(i);
+                        cb->setEditable(false);
+                    }else{
+                        cb->addItems(cmd.metaSuggestionList);
+                        cb->setEditable(true);
+                        cb->setEditText(text);
+                    }
+                }
+            }
+        }
 		hideShowAdvancedOptions(w,on);
 	}
 }

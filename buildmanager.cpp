@@ -168,13 +168,22 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 
 	
-	
-	registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick");
+    QStringList descriptionList;
+    descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("pdf chain") << tr("dvi-pdf-chain") << tr("dvi-ps-pdf-chain") << tr("asy-dvi-chain") << tr("asy-pdf-chain");
+    registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
 
-	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk");
-	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external");
-	registerCommand("view-pdf", tr("Pdf Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external");
-	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber");
+    descriptionList.clear();
+    descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
+    registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
+    descriptionList.clear();
+    descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal pdf viewer") << tr("Use external pdf viewer");
+    registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+    descriptionList.clear();
+    descriptionList<< tr("Use internal PDF viewer") << tr("Use external PDF viewer");
+    registerCommand("view-pdf", tr("Pdf Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+    descriptionList.clear();
+    descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
+    registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
 	
 
 	registerCommand("ps-chain", tr("Ps Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
@@ -210,11 +219,12 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& bas
 	return commands.insert(id, ci).value();
 }
 
-CommandInfo& BuildManager::registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig, const bool metaCommand){
+CommandInfo& BuildManager::registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig, const bool metaCommand, const QStringList simpleDescriptions){
 	CommandInfo ci;
 	ci.id = id;
 	ci.displayName = displayname;
 	ci.metaSuggestionList = alternatives;
+    ci.simpleDescriptionList=simpleDescriptions;
     ci.meta=metaCommand;
 	ci.deprecatedConfigName = oldConfig;
 	commandSortingsOrder << id;

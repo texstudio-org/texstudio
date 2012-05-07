@@ -17,6 +17,7 @@
 #include "ui_configdialog.h"
 
 #include "qformat.h"
+#include "buildmanager.h"
 
 //TODO: perhaps move each class in its own file?
 class ShortcutComboBox: public QComboBox{
@@ -95,6 +96,11 @@ public:
 
 	QStringList * environModes;
 
+    void setBuildManger(BuildManager* buildManager){
+        mBuildManager=buildManager;
+    }
+
+
 	bool riddled;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
@@ -126,9 +132,11 @@ private slots:
 	void custSyntaxRemoveLine();
 private:
 	bool askRiddle();
+    void hideShowAdvancedOptions(QWidget* w, bool on);
 	static int lastUsedPage;
 	static QPoint lastSize;
 	int oldToolbarIndex;
+    BuildManager* mBuildManager;
 };
 
 Q_DECLARE_METATYPE(QAction*);
