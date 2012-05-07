@@ -432,6 +432,9 @@
        <property name="text">
         <string>OK</string>
        </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -486,8 +489,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>278</x>
-     <y>253</y>
+     <x>331</x>
+     <y>502</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -502,8 +505,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>253</y>
+     <x>412</x>
+     <y>502</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>

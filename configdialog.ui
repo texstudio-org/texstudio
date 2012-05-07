@@ -55,6 +55,9 @@
        <property name="text">
         <string>OK</string>
        </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -119,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -142,8 +145,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>478</width>
-            <height>510</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -2650,11 +2653,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
  </widget>
  <tabstops>
   <tabstop>contentsWidget</tabstop>
-  <tabstop>comboBoxFont</tabstop>
-  <tabstop>spinBoxSize</tabstop>
-  <tabstop>comboBoxEncoding</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>comboBoxInterfaceStyle</tabstop>
   <tabstop>comboBoxInterfaceModernStyle</tabstop>
+  <tabstop>checkBoxUseTexmakerPalette</tabstop>
+  <tabstop>checkBoxUseSystemTheme</tabstop>
   <tabstop>comboBoxInterfaceFont</tabstop>
   <tabstop>spinBoxInterfaceFontSize</tabstop>
   <tabstop>checkBoxTabbedLogView</tabstop>
@@ -2664,20 +2667,116 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>spinBoxMaxRecentProjects</tabstop>
   <tabstop>checkBoxParseBibTeX</tabstop>
   <tabstop>checkBoxParseMaster</tabstop>
+  <tabstop>leDictDir</tabstop>
+  <tabstop>pushButtonDictDir</tabstop>
+  <tabstop>comboBoxSpellcheckLang</tabstop>
+  <tabstop>comboBoxThesaurusFileName</tabstop>
   <tabstop>btSelectThesaurusFileName</tabstop>
+  <tabstop>checkBoxShowAdvancedOptions</tabstop>
+  <tabstop>checkBoxRunAfterBibTeXChange</tabstop>
   <tabstop>checkBoxShowLog</tabstop>
+  <tabstop>checkBoxSingleInstanceViewer</tabstop>
+  <tabstop>comboBoxShowStdout</tabstop>
+  <tabstop>spinBoxRerunLatex</tabstop>
   <tabstop>shortcutTree</tabstop>
+  <tabstop>cb_CloseLogByEsc</tabstop>
+  <tabstop>latexTree</tabstop>
+  <tabstop>checkBoxShowAllMenus</tabstop>
+  <tabstop>comboBoxToolbars</tabstop>
+  <tabstop>listCustomToolBar</tabstop>
+  <tabstop>pbToToolbar</tabstop>
+  <tabstop>pbFromToolbar</tabstop>
+  <tabstop>comboBoxActions</tabstop>
+  <tabstop>treePossibleToolbarActions</tabstop>
+  <tabstop>comboBoxFont</tabstop>
+  <tabstop>spinBoxSize</tabstop>
+  <tabstop>comboBoxEncoding</tabstop>
+  <tabstop>checkBoxAutoDetectOnLoad</tabstop>
+  <tabstop>checkBoxFolding</tabstop>
   <tabstop>comboBoxAutoIndent</tabstop>
+  <tabstop>comboBoxReplaceQuotes</tabstop>
+  <tabstop>checkBoxRealTimeCheck</tabstop>
+  <tabstop>checkBoxInlineSpellCheck</tabstop>
+  <tabstop>checkBoxInlineGrammarCheck</tabstop>
+  <tabstop>checkBoxInlineCitationCheck</tabstop>
+  <tabstop>checkBoxInlineReferenceCheck</tabstop>
+  <tabstop>checkBoxInlineSyntaxCheck</tabstop>
+  <tabstop>checkBoxLineState</tabstop>
+  <tabstop>checkBoxState</tabstop>
+  <tabstop>checkBoxDisplayModifyTime</tabstop>
+  <tabstop>comboboxLineNumbers</tabstop>
+  <tabstop>checkBoxShowWhitespace</tabstop>
+  <tabstop>sbTabSpace</tabstop>
+  <tabstop>checkBoxCloseSearchReplaceTogether</tabstop>
+  <tabstop>checkBoxUseLineForSearch</tabstop>
+  <tabstop>checkBoxSearchOnlyInSelection</tabstop>
+  <tabstop>checkBoxAutoCompleteParens</tabstop>
+  <tabstop>checkBoxMouseWheelZoom</tabstop>
+  <tabstop>checkBoxToolTipHelp2</tabstop>
+  <tabstop>checkBoxToolTipPreview</tabstop>
+  <tabstop>comboBoxLineWrap</tabstop>
+  <tabstop>spinBoxWrapLineWidth</tabstop>
+  <tabstop>comboBoxAutoSave</tabstop>
+  <tabstop>checkBoxHackDisableAccentWorkaround</tabstop>
+  <tabstop>checkBoxHackAutoRendering</tabstop>
+  <tabstop>checkBoxHackDisableFixedPitch</tabstop>
+  <tabstop>checkBoxHackDisableWidthCache</tabstop>
+  <tabstop>checkBoxHackDisableLineCache</tabstop>
+  <tabstop>comboBoxHackRenderMode</tabstop>
+  <tabstop>twHighlighEnvirons</tabstop>
+  <tabstop>pbAddLine</tabstop>
+  <tabstop>pbRemoveLine</tabstop>
+  <tabstop>twCustomSyntax</tabstop>
+  <tabstop>pbAddSyntaxLine</tabstop>
+  <tabstop>pbRemoveSyntaxLine</tabstop>
   <tabstop>checkBoxCompletion</tabstop>
   <tabstop>checkBoxCaseSensitive</tabstop>
   <tabstop>checkBoxCaseSensitiveInFirstCharacter</tabstop>
   <tabstop>checkBoxCompletePrefix</tabstop>
   <tabstop>checkBoxEOWCompletes</tabstop>
   <tabstop>checkBoxToolTipHelp</tabstop>
+  <tabstop>checkBoxUsePlaceholders</tabstop>
+  <tabstop>checkBoxAutoReplaceCommands</tabstop>
+  <tabstop>comboBoxPreferedTab</tabstop>
+  <tabstop>spinBoxTabRelFontSize</tabstop>
   <tabstop>completeListWidget</tabstop>
+  <tabstop>checkBoxGrammarRepetitionCheck</tabstop>
+  <tabstop>spinBoxGrammarRepetitionDistance</tabstop>
+  <tabstop>spinBoxGrammarLongRangeRepetition</tabstop>
+  <tabstop>spinBoxGrammarLongRangeRepetitionMinLength</tabstop>
+  <tabstop>checkBoxGrammarBadWordCheck</tabstop>
+  <tabstop>lineEditGrammarWordlists</tabstop>
+  <tabstop>pushButtonGrammarWordlists</tabstop>
+  <tabstop>lineEditGrammarLTUrl</tabstop>
+  <tabstop>lineEditGrammarLTIgnoredRules</tabstop>
+  <tabstop>checkBoxGrammarLTAutorun</tabstop>
+  <tabstop>lineEditGrammarLTPath</tabstop>
+  <tabstop>pushButtonGrammarLTPath</tabstop>
+  <tabstop>lineEditGrammarLTJava</tabstop>
+  <tabstop>pushButtonGrammarLTJava</tabstop>
+  <tabstop>lineEditGrammarSpecialRules1</tabstop>
+  <tabstop>lineEditGrammarSpecialRules2</tabstop>
+  <tabstop>lineEditGrammarSpecialRules3</tabstop>
+  <tabstop>lineEditGrammarSpecialRules4</tabstop>
+  <tabstop>comboBoxDvi2PngMode</tabstop>
+  <tabstop>comboBoxPreviewMode</tabstop>
+  <tabstop>comboBoxAutoPreview</tabstop>
+  <tabstop>spinBoxAutoPreviewDelay</tabstop>
+  <tabstop>checkBoxReplaceBeamer</tabstop>
+  <tabstop>checkBoxPrecompilePreamble</tabstop>
+  <tabstop>comboBoxPreviewScale</tabstop>
+  <tabstop>spinBoxPreviewScale</tabstop>
+  <tabstop>spinBoxPreviewDPI</tabstop>
+  <tabstop>comboBoxPreviewMagnifierShape</tabstop>
+  <tabstop>spinBoxPreviewMagnifierSize</tabstop>
+  <tabstop>checkBoxPreviewMagnifierBorder</tabstop>
+  <tabstop>lineEditPreviewSyncFileMask</tabstop>
+  <tabstop>cbAutoCheckin</tabstop>
+  <tabstop>cbSVNUndo</tabstop>
+  <tabstop>cbKeywordSubstitution</tabstop>
+  <tabstop>sbDirSearchDepth</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
-  <tabstop>checkBoxShowAdvancedOptions</tabstop>
  </tabstops>
  <resources>
   <include location="texstudio.qrc"/>
@@ -2690,8 +2789,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1043</x>
-     <y>661</y>
+     <x>1024</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -2707,7 +2806,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <hints>
     <hint type="sourcelabel">
      <x>1105</x>
-     <y>661</y>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -2722,12 +2821,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>326</x>
-     <y>12</y>
+     <x>553</x>
+     <y>40</y>
     </hint>
     <hint type="destinationlabel">
-     <x>319</x>
-     <y>16</y>
+     <x>357</x>
+     <y>66</y>
     </hint>
    </hints>
   </connection>
@@ -2738,12 +2837,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>389</x>
-     <y>240</y>
+     <x>354</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
-     <x>507</x>
-     <y>240</y>
+     <x>508</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>
@@ -2754,12 +2853,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>389</x>
-     <y>240</y>
+     <x>354</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
-     <x>743</x>
-     <y>240</y>
+     <x>797</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>
@@ -2770,12 +2869,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>389</x>
-     <y>240</y>
+     <x>354</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
-     <x>861</x>
-     <y>240</y>
+     <x>942</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>
@@ -2786,12 +2885,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>554</x>
-     <y>53</y>
+     <x>489</x>
+     <y>48</y>
     </hint>
     <hint type="destinationlabel">
-     <x>887</x>
-     <y>53</y>
+     <x>1096</x>
+     <y>48</y>
     </hint>
    </hints>
   </connection>
@@ -2802,12 +2901,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>389</x>
-     <y>240</y>
+     <x>354</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
-     <x>979</x>
-     <y>240</y>
+     <x>1086</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>
@@ -2818,12 +2917,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>392</x>
-     <y>491</y>
+     <x>629</x>
+     <y>438</y>
     </hint>
     <hint type="destinationlabel">
-     <x>413</x>
-     <y>518</y>
+     <x>415</x>
+     <y>461</y>
     </hint>
    </hints>
   </connection>
@@ -2834,12 +2933,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>510</x>
-     <y>489</y>
+     <x>747</x>
+     <y>438</y>
     </hint>
     <hint type="destinationlabel">
-     <x>443</x>
-     <y>549</y>
+     <x>415</x>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -2850,12 +2949,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>532</x>
-     <y>494</y>
+     <x>769</x>
+     <y>438</y>
     </hint>
     <hint type="destinationlabel">
-     <x>456</x>
-     <y>571</y>
+     <x>415</x>
+     <y>507</y>
     </hint>
    </hints>
   </connection>
@@ -2866,12 +2965,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>557</x>
-     <y>490</y>
+     <x>794</x>
+     <y>438</y>
     </hint>
     <hint type="destinationlabel">
-     <x>565</x>
-     <y>599</y>
+     <x>987</x>
+     <y>533</y>
     </hint>
    </hints>
   </connection>
@@ -2882,12 +2981,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>322</x>
-     <y>223</y>
+     <x>354</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
-     <x>548</x>
-     <y>231</y>
+     <x>653</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>
