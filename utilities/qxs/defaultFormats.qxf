@@ -43,6 +43,25 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#808080</foreground>
     </format>
+    <format id="dtxComment" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#800000</foreground>
+    </format>
+    <format id="dtxGuard" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#FFA500</foreground>
+    </format>
+	
     <format id="keyword" >
         <bold>false</bold>
         <italic>false</italic>
@@ -61,6 +80,15 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#0095ff</foreground>
     </format>
+    <format id="dtxMacrocode" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#006400</foreground>
+    </format>	
     <format id="math-keyword" >
         <bold>false</bold>
         <italic>false</italic>
