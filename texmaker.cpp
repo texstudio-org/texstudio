@@ -1217,6 +1217,7 @@ void Texmaker::NewDocumentStatus() {
 	tabText.replace("&", "&&");
 	if (EditorView->tabText(index) != tabText) {
 		EditorView->setTabText(index, tabText);
+		EditorView->setTabToolTip(index, ed->fileName());
 		updateOpenDocumentMenu(true);
 	}
 	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
@@ -1960,6 +1961,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 		}
 		
 		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name().replace("&","&&"));
+		EditorView->setTabToolTip(EditorView->currentIndex(), currentEditor()->fileName());
 		updateOpenDocumentMenu(true);
 		if (currentEditor()->fileInfo().suffix()!="tex")
 			m_languages->setLanguage(currentEditor(), fn);
