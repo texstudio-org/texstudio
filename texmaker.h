@@ -318,11 +318,6 @@ protected slots:
 	void EditUserMenu();
 	void userMacroDialogAccepted();
 	
-    void InsertRef(const QString &refCmd);
-    void InsertRef();
-    void InsertEqRef();
-	void InsertPageRef();
-	
 	void UpdateAvailableLanguages();
 	void EditorSpellerChanged(const QString &name);
 	void ChangeEditorSpeller();

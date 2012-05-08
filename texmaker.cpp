@@ -3702,39 +3702,6 @@ void Texmaker::userMacroDialogAccepted(){
 	userMacroDialog = 0;
 }
 
-void Texmaker::InsertRef(const QString &refCmd) {
-	//updateStructure();
-	
-	LatexEditorView* edView=currentEditorView();
-	QStringList labels;
-	if(edView && edView->document){
-		QList<LatexDocument*> docs;
-		if (documents.singleMode()) docs << edView->document;
-		else docs << documents.documents;
-		foreach(const LatexDocument* doc,docs)
-			labels << doc->labelItems();
-	} else return;
-	UniversalInputDialog dialog;
-	dialog.addVariable(&labels, tr("Labels:"));
-	if (dialog.exec() && !labels.isEmpty()) {
-		QString tag=refCmd+"{"+labels.first()+"}";
-		InsertTag(tag,tag.length(),0);
-	} else
-		InsertTag(refCmd+"{}",refCmd.length()+1,0);
-}
-
-void Texmaker::InsertRef() {
-	InsertRef("\\ref");
-}
-
-void Texmaker::InsertEqRef() {
-	InsertRef("\\eqref");
-}
-
-void Texmaker::InsertPageRef() {
-	InsertRef("\\pageref");
-}
-
 void Texmaker::EditorSpellerChanged(const QString &name) {
 	foreach (QAction *act, statusTbLanguage->actions()) {
 		if (act->data().toString() == name) {
@@ -4516,7 +4483,7 @@ void Texmaker::generateAddtionalTranslations(){
 
 	QFile translationFile("additionaltranslations.cpp");
 	translationFile.open(QIODevice::WriteOnly);
-	translationFile.write(translations.join("\n\r").toLatin1());;
+	translationFile.write(translations.join("\n").toLatin1());
 	translationFile.close();
 }
 
