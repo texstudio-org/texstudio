@@ -123,7 +123,7 @@ void LatexParser::init(){
     possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite" ;
     possibleCommands["%label"] << "\\label";
     possibleCommands["%bibliography"] << "\\bibliography";
-    possibleCommands["%file"] << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
+    possibleCommands["%file"] << "\\include" << "\\input" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
     possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref";
 }
 
