@@ -1144,6 +1144,9 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		if (!entry->tooltip.isNull()) {
 			return QVariant(entry->tooltip);
 		}
+		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
+			return QVariant(entry->document->getFileName());
+		}
 		if (entry->getCachedLineNumber()>-1)
 			return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
 		else
