@@ -2,8 +2,6 @@
 #define SEARCHRESULTMODEL_H
 
 #include "mostQtHeaders.h"
-#include <QAbstractItemModel>
-
 
 class QDocument;
 class QDocumentLineHandle;

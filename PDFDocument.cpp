@@ -25,29 +25,10 @@
 #include "PDFDocks.h"
 //#include "FindDialog.h"
 
-#include <QDockWidget>
-#include <QCloseEvent>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QStatusBar>
-#include <QPainter>
 #include <QPaintEngine>
-#include <QLabel>
-#include <QScrollArea>
-#include <QStyle>
-#include <QDesktopWidget>
-#include <QScrollBar>
 #include <QRegion>
-#include <QVector>
-#include <QList>
-#include <QStack>
-#include <QInputDialog>
-#include <QDesktopServices>
 #include <QUrl>
 #include <QShortcut>
-#include <QFileSystemWatcher>
-#include <QDebug>
-#include <QToolTip>
 
 #include <math.h>
 #include "universalinputdialog.h"

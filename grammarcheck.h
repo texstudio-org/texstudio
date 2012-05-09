@@ -3,9 +3,6 @@
 
 #include "mostQtHeaders.h"
 
-#include <QObject>
-#include <QVariant>
-
 #include "smallUsefulFunctions.h"
 //TODO: move this away
 #include "grammarcheck_config.h"
