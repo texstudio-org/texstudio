@@ -1,7 +1,7 @@
 #ifndef SCRIPTOBJECT_H
 #define SCRIPTOBJECT_H
 
-#include <QObject>
+#include "modifiedQObject.h"
 #include <QVariant>
 #include "qdocumentcursor.h"
 class ProcessX;

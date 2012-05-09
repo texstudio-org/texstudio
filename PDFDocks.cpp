@@ -21,6 +21,7 @@
 
 #ifndef NO_POPPLER_PREVIEW
 
+#include "mostQtHeaders.h"
 // Based on code by Pino Toscano from Poppler / qt4 / Demos, released under GPL 2 or later
 
 #include "PDFDocks.h"

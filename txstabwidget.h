@@ -1,6 +1,7 @@
 #ifndef TXSTABWIDGET_H
 #define TXSTABWIDGET_H
 
+#include "mostQtHeaders.h"
 #include <QTabWidget>
 #include <QTabBar>
 

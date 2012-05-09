@@ -16,6 +16,8 @@
 #ifndef _QDOCUMENT_H_
 #define _QDOCUMENT_H_
 
+#include "modifiedQObject.h"
+
 #include "qce-config.h"
 
 /*!
