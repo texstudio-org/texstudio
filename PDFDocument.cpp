@@ -52,6 +52,7 @@
 #include <math.h>
 #include "universalinputdialog.h"
 
+#include "configmanager.h"
 #include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
 #include "configmanagerinterface.h"
@@ -1958,6 +1959,13 @@ void PDFDocument::init()
 	leCurrentPage->setValidator(leCurrentPageValidator);
 	leCurrentPage->setText("1");
 	leCurrentPage->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+	// TODO: hack to adjust color of the line edit for modern style. Should be done properly in style itself (manhattanstyle.cpp)
+	bool modernStyle = ConfigManager::getInstance()->getOption("GUI/Style").toBool();
+	if (modernStyle) {
+		leCurrentPage->setStyleSheet("QLineEdit{ color: white; padding-top: -1px; margin-right: 2px; }");
+	} else {
+		leCurrentPage->setStyleSheet("QLineEdit{ padding-top: -1px; margin-right: 2px; }");
+	}
 	connect(leCurrentPage,SIGNAL(returnPressed()),this,SLOT(jumpToPage()));
 	pageCountLabel=new QLabel(toolBar);
 	pageCountLabel->setText(tr("of %1").arg(1));
