@@ -122,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -145,8 +145,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>419</width>
+            <height>455</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1015,7 +1015,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="6">
+          <item row="1" column="1" colspan="4">
            <widget class="QSpinBox" name="spinBoxSize">
             <property name="minimum">
              <number>1</number>
@@ -1025,7 +1025,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="labelEncoding">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -1038,10 +1038,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="3">
+          <item row="3" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="5" column="1" colspan="6">
+          <item row="6" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -1080,35 +1080,35 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="6">
+          <item row="4" column="1" colspan="4">
            <widget class="QCheckBox" name="checkBoxFolding">
             <property name="text">
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="6">
+          <item row="0" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxFont">
             <property name="editable">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Indentation mode:</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_39">
             <property name="text">
              <string>Replace double quotes:</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1" colspan="6">
+          <item row="7" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
@@ -1142,7 +1142,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
            </widget>
           </item>
-          <item row="7" column="1" colspan="6">
+          <item row="8" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -1192,7 +1192,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </layout>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1208,13 +1208,42 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="4" colspan="3">
+          <item row="3" column="3" colspan="2">
            <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
             <property name="toolTip">
              <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
             </property>
             <property name="text">
              <string>Auto detect encoding of loaded files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Line Spacing</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="4">
+           <widget class="QSpinBox" name="spinBoxLineSpacingPercent">
+            <property name="suffix">
+             <string>%</string>
+            </property>
+            <property name="minimum">
+             <number>100</number>
+            </property>
+            <property name="maximum">
+             <number>500</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>

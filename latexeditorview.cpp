@@ -743,6 +743,7 @@ void LatexEditorView::updateSettings(){
 	searchReplacePanel->setSearchOnlyInSelection(config->searchOnlyInSelection);
 	QDocument::setShowSpaces(config->showWhitespace?(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs):QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
+	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
 
 	SynChecker.setErrFormat(syntaxErrorFormat);
 	

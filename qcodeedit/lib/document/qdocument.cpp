@@ -1126,6 +1126,22 @@ int QDocument::getLineSpacing()
 	return QDocumentPrivate::m_lineSpacing;
 }
 
+void QDocument::setLineSpacingFactor(double scale)
+{
+	QDocumentPrivate::m_lineSpacingFactor = (scale<1.0)?1.0:scale;
+
+	if ( !QDocumentPrivate::m_font ) return;
+
+	// update m_leading and m_lineSpacing
+	QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
+	// It's a bit more costly than necessary, because we do not change any width.
+	// If performance needs improvement, one could extract the height calculation
+	// to a separate method and call it here and in setFont.
+	// Then we need to notify the documents for the changes:
+	// foreach ( QDocumentPrivate *d, QDocumentPrivate::m_documents )
+	//	d->emitFormatsChanged();
+}
+
 /*!
 	\return The default tab stop common to ALL documents
 
@@ -5751,6 +5767,7 @@ QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 
 bool QDocumentPrivate::m_fixedPitch;
 QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
+double QDocumentPrivate::m_lineSpacingFactor = 1.0;
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
 int QDocumentPrivate::m_leading;// = m_fontMetrics.leading();
@@ -6619,12 +6636,12 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 	QFontMetrics fm(*m_font);
 	m_spaceWidth = fm.width(' ');
-	m_lineSpacing = fm.lineSpacing();
 	m_ascent = fm.ascent();
 	m_descent = fm.descent();
-	m_leading = fm.leading();
-
 	m_lineHeight = fm.height();
+	m_leading = fm.leading() + qRound((m_lineSpacingFactor-1.0)*m_lineHeight);
+	m_lineSpacing = m_leading+m_lineHeight;
+
 	if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
 	//m_lineHeight = m_ascent + m_descent - 2;
 

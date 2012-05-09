@@ -241,7 +241,9 @@ class QCE_EXPORT QDocumentPrivate
 		
 		int m_tabStop;
 		static int m_defaultTabStop;
-		
+
+		static double m_lineSpacingFactor;
+
 		static QFont *m_font;
 		static bool m_fixedPitch;
 		static QDocument::WorkAroundMode m_workArounds;
