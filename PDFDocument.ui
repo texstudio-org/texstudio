@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -136,9 +136,6 @@
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>Toolbar</string>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">padding:2px</string>
    </property>
    <property name="iconSize">
     <size>
