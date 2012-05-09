@@ -39,7 +39,7 @@ QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
 QString getCommandLineGhostscript();
 
-CommandInfo::CommandInfo(): user(false), guessFunc(0), meta(false){}
+CommandInfo::CommandInfo(): user(false), meta(false), guessFunc(0){}
 
 QString CommandInfo::guessCommandLine() const{
 	if (guessFunc) {
