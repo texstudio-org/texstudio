@@ -28,11 +28,6 @@
 #include "PDFDocument.h"
 #include "math.h"
 
-#include <QTreeWidget>
-#include <QHeaderView>
-#include <QListWidget>
-#include <QTableWidget>
-
 PDFDock::PDFDock(PDFDocument *doc)
 	: QDockWidget("", doc), document(doc), filled(false)
 {

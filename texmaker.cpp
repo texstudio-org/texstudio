@@ -52,9 +52,6 @@
 
 #include "qnfadefinition.h"
 
-#include <QMessageBox>
-
-
 
 
 

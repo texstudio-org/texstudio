@@ -12,7 +12,6 @@
 #define SMALLUSEFULFUNCTIONS_H
 
 #include "mostQtHeaders.h"
-#include <QObject>
 
 //#inlcude "latexcompleter_config.h"
 

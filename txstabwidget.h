@@ -2,8 +2,6 @@
 #define TXSTABWIDGET_H
 
 #include "mostQtHeaders.h"
-#include <QTabWidget>
-#include <QTabBar>
 
 class TxsTabWidget : public QTabWidget
 {
