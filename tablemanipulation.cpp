@@ -1,7 +1,7 @@
+#include "tablemanipulation.h"
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
 #include "smallUsefulFunctions.h"
-#include "tablemanipulation.h"
 #include "scriptengine.h"
 
 QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular";

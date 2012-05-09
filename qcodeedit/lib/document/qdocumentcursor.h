@@ -18,8 +18,9 @@
 
 #include "qce-config.h"
 
-#include <QObject>
+#include "modifiedQObject.h"
 #include <QMetaType>
+#include <QPoint>
 
 /*!
 	\file qdocumentcursor.h

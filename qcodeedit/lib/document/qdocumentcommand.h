@@ -23,6 +23,8 @@
 	\brief Definition of the QDocumentCommand class
 */
 
+#include "modifiedQObject.h"
+
 #include <QUndoCommand>
 
 #include "qdocument.h"

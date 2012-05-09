@@ -1,9 +1,10 @@
 #ifndef TABLEMANIPULATION_H
 #define TABLEMANIPULATION_H
 
-#include "qdocument.h"
 #include "mostQtHeaders.h"
- class QEditor;
+#include "qdocument.h"
+
+class QEditor;
 
 class LatexTables{
 public:

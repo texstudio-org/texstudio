@@ -24,6 +24,7 @@
 
 #include <time.h>
 
+#include "modifiedQObject.h"
 #include <QtCore>
 #include <QString>
 #include <QList>
