@@ -24,6 +24,12 @@
 
 #include <time.h>
 
+#include <QtCore>
+#include <QString>
+#include <QList>
+#include <QMap>
+#include <QVariant>
+
 /*
  * Functions for diff, match and patch.
  * Computes the difference between two texts to create a patch.
