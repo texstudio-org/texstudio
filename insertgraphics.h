@@ -15,6 +15,7 @@
 #include "ui_insertgraphics.h"
 
 #include "QFileInfo"
+#include "QListWidgetItem"
 
 class InsertGraphicsConfig;
 

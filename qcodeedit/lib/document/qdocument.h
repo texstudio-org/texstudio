@@ -29,7 +29,7 @@
 #include <QMap>
 #include <QVector>
 #include <QLinkedList>
-
+#include <QFileInfo>
 #include <QObject>
 #include <QPalette>
 #include <QMetaType>

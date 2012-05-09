@@ -2,6 +2,7 @@
 #define SCRIPTOBJECT_H
 
 #include <QObject>
+#include <QVariant>
 #include "qdocumentcursor.h"
 class ProcessX;
 class BuildManager;
