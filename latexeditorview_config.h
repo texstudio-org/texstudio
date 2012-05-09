@@ -19,6 +19,7 @@ public:
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking;
 	QString fontFamily;
 	int fontSize;
+	int lineSpacingPercent;
 	int lineWidth;
 	bool displayModifyTime;
 	bool closeSearchAndReplace;

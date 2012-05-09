@@ -295,6 +295,7 @@ class QCE_EXPORT QDocument : public QObject
 		static void setFont(const QFont& f, bool forceUpdate = false);
 		//static const QFontMetrics fontMetrics() const;
 		static int getLineSpacing();
+		static void setLineSpacingFactor(double scale);
 		
 		static LineEnding defaultLineEnding();
 		static void setDefaultLineEnding(LineEnding le);
@@ -309,7 +310,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		static WhiteSpaceMode showSpaces();
 		static void setShowSpaces(WhiteSpaceMode y);
-		
+
 		static QFormatScheme* defaultFormatScheme();
 		static void setDefaultFormatScheme(QFormatScheme *f);
 		
