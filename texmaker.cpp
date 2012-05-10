@@ -17,6 +17,7 @@
 #include "smallUsefulFunctions.h"
 
 #include "cleandialog.h"
+#include "debughelper.h"
 #include "structdialog.h"
 #include "filechooser.h"
 #include "tabdialog.h"
@@ -56,74 +57,10 @@
 
 
 
-#ifdef linux
-#include "signal.h"
-#include "ucontext.h"
-#include "sys/ucontext.h"
-#define CRASH_HANDLER
-#if (defined(x86_64) || defined(__x86_64__))
-#define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RIP]
-#else
-#define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_EIP]
-#endif
-#endif
-
-#ifdef Q_WS_MACX
-#include "sys/signal.h"
-#include "sys/ucontext.h"
-#define CRASH_HANDLER
-//names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
-//for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
-#if (defined(x86_64) || defined(__x86_64__))
-#define PC_FROM_UCONTEXT(context) context->__ss.__rip
-#elif (defined(ppc) || defined(__ppc__))
-#define PC_FROM_UCONTEXT(context) context->__ss.__srr0
-#else
-#define PC_FROM_UCONTEXT(context) context->__ss.__eip
-#endif
-#endif
-
 bool programStopped = false;
-#ifdef CRASH_HANDLER
-
-volatile sig_atomic_t crashHandlerType = 1; 
-volatile sig_atomic_t lastCrashSignal = 0; 
-
-void recover(){
-	Texmaker::recoverFromCrash(lastCrashSignal);
-}
-
-
-void signalHandler(int type, siginfo_t *, void* ccontext){
-	if (crashHandlerType == 1 && ccontext != 0) {
-		lastCrashSignal = type;
-		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
-		// context->uc_mcontext.gregs[REG_RIP]
-		*(void**)(&PC_FROM_UCONTEXT(context)) = (void*)(&recover);
-	} else {
-		switch (type) {
-		case SIGSEGV: txs_assert("SIGSEGV","",0); break; 
-		case SIGFPE: txs_assert("SIGFPE","",0); break; 
-		default: txs_assert("SIG???","",0); break; 
-		}
-	}
-}
-
 Texmaker* txsInstance = 0;
-
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
+QThread* killAtCrashedThread = 0;
+QThread* lastCrashedThread = 0;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
        : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
@@ -140,15 +77,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	ReadSettings();
 	
-#ifdef CRASH_HANDLER
 	txsInstance = this;
-	if (crashHandlerType >= 0) {
-		struct sigaction sa;
-		memset(&sa, 0, sizeof(sa)); sa.sa_flags = SA_SIGINFO;
-		sa.sa_sigaction = &signalHandler;  sigaction(SIGSEGV, &sa, 0);
-		sa.sa_sigaction = &signalHandler; sigaction(SIGFPE, &sa, 0);
-	}
-#endif
+	registerCrashHandler();
 	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -6585,23 +6515,13 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 }
 
 
-#ifdef CRASH_HANDLER
-QThread* killAtCrashedThread = 0;
-QThread* lastCrashedThread = 0;
 
-QString getLastSignal(int type = -1){
-	if (type < 0) type = lastCrashSignal;
-	switch (type) {
-	case SIGSEGV: return "SIGSEGV"; break;
-	case SIGFPE: return "SIGFPE"; break;
-	default: return "SIG???";
-	}
+void recover(){
+	Texmaker::recoverFromCrash();
 }
-#endif
 
-void Texmaker::recoverFromCrash(int type){
-#ifdef CRASH_HANDLER
-	QString name = getLastSignal(type);
+void Texmaker::recoverFromCrash(){
+	QString name = getLastCrashInformation();
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
 		QThread* t = QThread::currentThread();
 		lastCrashedThread = t;
@@ -6635,14 +6555,10 @@ void Texmaker::recoverFromCrash(int type){
 	name = "Normal close after " + name;
 	txs_assert(qPrintable(name), 0, 0);
 	exit(0);
-#else
-	Q_UNUSED(type);
-#endif
 }
 
 void Texmaker::threadCrashed(){
-#ifdef CRASH_HANDLER
-	QString signal = getLastSignal();
+	QString signal = getLastCrashInformation();
 	QThread* thread = lastCrashedThread;
 	
 	QString threadName = "<unknown<";
@@ -6660,5 +6576,4 @@ void Texmaker::threadCrashed(){
 		ThreadBreaker::sleep(10);
 		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
 	}
-#endif                                                         
 }

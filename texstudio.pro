@@ -49,6 +49,7 @@ HEADERS += texmaker.h \
     latexcompleter_config.h \
     latexcompleter_p.h \
     codesnippet.h \
+    debughelper.h \
     thesaurusdialog.h \
     xmltagslistwidget.h \
     hunspell/affentry.hxx \
@@ -138,6 +139,7 @@ SOURCES += main.cpp \
     usertooldialog.cpp \
     configmanager.cpp \
     configdialog.cpp \
+    debughelper.cpp \
     aboutdialog.cpp \
     webpublishdialog.cpp \
     spellerdialog.cpp \
