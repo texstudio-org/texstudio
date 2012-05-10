@@ -172,30 +172,30 @@ void BuildManager::initDefaultCommandNames(){
 
 	
     QStringList descriptionList;
-    descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("pdf chain") << tr("dvi-pdf-chain") << tr("dvi-ps-pdf-chain") << tr("asy-dvi-chain") << tr("asy-pdf-chain");
+    descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("PDF chain") << tr("DVI-PDF-chain") << tr("DVI-PS-PDF-chain") << tr("asy-DVI-chain") << tr("asy-PDF-chain");
     registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
 
     descriptionList.clear();
     descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
     registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
     descriptionList.clear();
-    descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal pdf viewer") << tr("Use external pdf viewer");
+    descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use external PDF viewer");
     registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
     descriptionList.clear();
     descriptionList<< tr("Use internal PDF viewer") << tr("Use external PDF viewer");
-    registerCommand("view-pdf", tr("Pdf Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+    registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
     descriptionList.clear();
     descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
     registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
 	
 
-	registerCommand("ps-chain", tr("Ps Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
-	registerCommand("dvi-chain", tr("Dvi Chain"), QStringList() << "txs:///latex | txs:///view-dvi");
-	registerCommand("pdf-chain", tr("Pdf Chain"), QStringList() << "txs:///pdflatex | txs:///view-pdf");
-	registerCommand("dvi-pdf-chain", tr("Dvi->Pdf Chain"), QStringList() << "txs:///latex | txs:///dvipdf | txs:///view-pdf");
-	registerCommand("dvi-ps-pdf-chain", tr("Dvi->Ps->Pdf Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///ps2pdf | txs:///view-pdf");
-	registerCommand("asy-dvi-chain", tr("Asymptote Dvi Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
-	registerCommand("asy-pdf-chain", tr("Asymptote Pdf Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
+    registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
+    registerCommand("dvi-chain", tr("DVI Chain"), QStringList() << "txs:///latex | txs:///view-dvi");
+    registerCommand("pdf-chain", tr("PDF Chain"), QStringList() << "txs:///pdflatex | txs:///view-pdf");
+    registerCommand("dvi-pdf-chain", tr("DVI->PDF Chain"), QStringList() << "txs:///latex | txs:///dvipdf | txs:///view-pdf");
+    registerCommand("dvi-ps-pdf-chain", tr("DVI->PS->PDF Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///ps2pdf | txs:///view-pdf");
+    registerCommand("asy-dvi-chain", tr("Asymptote DVI Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
+    registerCommand("asy-pdf-chain", tr("Asymptote PDF Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
 	
 	registerCommand("pre-compile", tr("Pre-compile"), QStringList() << "", "Tools/Precompile");
 	registerCommand("internal-pre-compile", tr("Internal precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");

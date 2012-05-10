@@ -182,7 +182,7 @@
     </message>
     <message>
         <source>Pdf Viewer</source>
-        <translation>Prohlížeč PDF</translation>
+        <translation type="obsolete">Prohlížeč PDF</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -214,31 +214,31 @@
     </message>
     <message>
         <source>Ps Chain</source>
-        <translation>Řetězec PS</translation>
+        <translation type="obsolete">Řetězec PS</translation>
     </message>
     <message>
         <source>Dvi Chain</source>
-        <translation>Řetězec DVI</translation>
+        <translation type="obsolete">Řetězec DVI</translation>
     </message>
     <message>
         <source>Pdf Chain</source>
-        <translation>Řetězec PDF</translation>
+        <translation type="obsolete">Řetězec PDF</translation>
     </message>
     <message>
         <source>Dvi-&gt;Pdf Chain</source>
-        <translation>Řetězec DVI-&gt;PDF</translation>
+        <translation type="obsolete">Řetězec DVI-&gt;PDF</translation>
     </message>
     <message>
         <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
-        <translation>Řetězec DVI-&gt;PS</translation>
+        <translation type="obsolete">Řetězec DVI-&gt;PS</translation>
     </message>
     <message>
         <source>Asymptote Dvi Chain</source>
-        <translation>Řetězec DVI Asymptote</translation>
+        <translation type="obsolete">Řetězec DVI Asymptote</translation>
     </message>
     <message>
         <source>Asymptote Pdf Chain</source>
-        <translation>Řetězec PDF Asymptote</translation>
+        <translation type="obsolete">Řetězec PDF Asymptote</translation>
     </message>
     <message>
         <source>Pre-compile</source>
@@ -279,6 +279,157 @@
     <message>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>compile &amp; view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Postscipt chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-PS-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asy-DVI-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asy-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use pdflatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use latex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use xelatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use lualatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use DVI viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use postscript viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use internal PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use external PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use bibtex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use bibtex8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use biber</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PS Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS-&gt;PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote DVI Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CleanDialog</name>
+    <message>
+        <source>Clean</source>
+        <translation type="unfinished">Uklidit</translation>
+    </message>
+    <message>
+        <source>Scope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File Extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the output files generated by LaTeX:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project (Master file folder and all subfolders)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Files</source>
+        <translation type="unfinished">Otevřít soubory</translation>
     </message>
 </context>
 <context>
@@ -555,7 +706,7 @@
     </message>
     <message>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation>Spustit &quot;latex bibtex latex&quot; před sestavením, pokud byly soubory bib změněny</translation>
+        <translation type="obsolete">Spustit &quot;latex bibtex latex&quot; před sestavením, pokud byly soubory bib změněny</translation>
     </message>
     <message>
         <source>Show Modify Time</source>
@@ -994,7 +1145,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation>Kolikrát spustit LaTex znovu, je-li to požadováno:</translation>
+        <translation type="obsolete">Kolikrát spustit LaTex znovu, je-li to požadováno:</translation>
     </message>
     <message>
         <source>no line wrap</source>
@@ -1122,7 +1273,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Quick Build Options</source>
-        <translation>Volby pro rychlý překlad</translation>
+        <translation type="obsolete">Volby pro rychlý překlad</translation>
     </message>
     <message>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
@@ -1388,6 +1539,42 @@ chcete nastavit?</translation>
         <source>Meta Build</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check and update bibliography before compiling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Times to repeat compilation if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands with repeated compilation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DTX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;neznámý&gt;</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1521,47 +1708,47 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>\begin{&lt;environment&gt;} [selection]</source>
-        <translation>\begin{&lt;prostředí&gt;} [výběr]</translation>
+        <translation type="obsolete">\begin{&lt;prostředí&gt;} [výběr]</translation>
     </message>
     <message>
         <source>\begin{center} [selection]</source>
-        <translation>\begin{center} [výběr]</translation>
+        <translation type="obsolete">\begin{center} [výběr]</translation>
     </message>
     <message>
         <source>\begin{flushleft} [selection]</source>
-        <translation>\begin{flushleft} [výběr]</translation>
+        <translation type="obsolete">\begin{flushleft} [výběr]</translation>
     </message>
     <message>
         <source>\begin{flushright}  [selection]</source>
-        <translation>\begin{flushright}  [výběr]</translation>
+        <translation type="obsolete">\begin{flushright}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{quote}  [selection]</source>
-        <translation>\begin{quote}  [výběr]</translation>
+        <translation type="obsolete">\begin{quote}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{quotation}  [selection]</source>
-        <translation>\begin{quotation}  [výběr]</translation>
+        <translation type="obsolete">\begin{quotation}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{verse}  [selection]</source>
-        <translation>\begin{verse}  [výběr]</translation>
+        <translation type="obsolete">\begin{verse}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{verbatim}  [selection]</source>
-        <translation>\begin{verbatim}  [výběr]</translation>
+        <translation type="obsolete">\begin{verbatim}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{table}  [selection]</source>
-        <translation>\begin{table}  [výběr]</translation>
+        <translation type="obsolete">\begin{table}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{figure}  [selection]</source>
-        <translation>\begin{figure}  [výběr]</translation>
+        <translation type="obsolete">\begin{figure}  [výběr]</translation>
     </message>
     <message>
         <source>\begin{titlepage}  [selection]</source>
-        <translation>\begin{titlepage}  [výběr]</translation>
+        <translation type="obsolete">\begin{titlepage}  [výběr]</translation>
     </message>
     <message>
         <source>&amp;List Environments</source>
@@ -1589,35 +1776,35 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>\emph - Emphasis  [selection]</source>
-        <translation>\emph - Zdůraznění  [výběr]</translation>
+        <translation type="obsolete">\emph - Zdůraznění  [výběr]</translation>
     </message>
     <message>
         <source>\textit - Italics  [selection]</source>
-        <translation>\textit - Kurzíva  [výběr]</translation>
+        <translation type="obsolete">\textit - Kurzíva  [výběr]</translation>
     </message>
     <message>
         <source>\textsl - Slanted  [selection]</source>
-        <translation>\textsl - Nakloněné  [výběr]</translation>
+        <translation type="obsolete">\textsl - Nakloněné  [výběr]</translation>
     </message>
     <message>
         <source>\textbf - Boldface  [selection]</source>
-        <translation>\textbf - Tučné  [výběr]</translation>
+        <translation type="obsolete">\textbf - Tučné  [výběr]</translation>
     </message>
     <message>
         <source>\texttt - Typewriter  [selection]</source>
-        <translation>\texttt - Psací stroj  [výběr]</translation>
+        <translation type="obsolete">\texttt - Psací stroj  [výběr]</translation>
     </message>
     <message>
         <source>\textsc - Small caps  [selection]</source>
-        <translation>\textsc - Kapitálky  [výběr]</translation>
+        <translation type="obsolete">\textsc - Kapitálky  [výběr]</translation>
     </message>
     <message>
         <source>\textsf - Sans Serif  [selection]</source>
-        <translation>\textsf - Bezpatkové  [výběr]</translation>
+        <translation type="obsolete">\textsf - Bezpatkové  [výběr]</translation>
     </message>
     <message>
         <source>\underline - Underline [selection]</source>
-        <translation>\underline - Podtržení  [výběr]</translation>
+        <translation type="obsolete">\underline - Podtržení  [výběr]</translation>
     </message>
     <message>
         <source>Font Sizes</source>
@@ -1673,7 +1860,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>S&amp;pacing</source>
-        <translation>Odstu&amp;p</translation>
+        <translation type="obsolete">Odstu&amp;p</translation>
     </message>
     <message>
         <source>New line</source>
@@ -1749,11 +1936,11 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>_{} - subscript</source>
-        <translation>_{} - dolní index</translation>
+        <translation type="obsolete">_{} - dolní index</translation>
     </message>
     <message>
         <source>^{} - superscript</source>
-        <translation>^{} - horní index</translation>
+        <translation type="obsolete">^{} - horní index</translation>
     </message>
     <message>
         <source>\begin{array}</source>
@@ -1769,35 +1956,35 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>\mathrm{} [selection]</source>
-        <translation>\mathrm{} [výběr]</translation>
+        <translation type="obsolete">\mathrm{} [výběr]</translation>
     </message>
     <message>
         <source>\mathit{} [selection]</source>
-        <translation>\mathit{} [výběr]</translation>
+        <translation type="obsolete">\mathit{} [výběr]</translation>
     </message>
     <message>
         <source>\mathbf{} [selection]</source>
-        <translation>\mathbf{} [výběr]</translation>
+        <translation type="obsolete">\mathbf{} [výběr]</translation>
     </message>
     <message>
         <source>\mathsf{} [selection]</source>
-        <translation>\mathsf{} [výběr]</translation>
+        <translation type="obsolete">\mathsf{} [výběr]</translation>
     </message>
     <message>
         <source>\mathtt{} [selection]</source>
-        <translation>\mathtt{} [výběr]</translation>
+        <translation type="obsolete">\mathtt{} [výběr]</translation>
     </message>
     <message>
         <source>\mathcal{} [selection]</source>
-        <translation>\mathcal{} [výběr]</translation>
+        <translation type="obsolete">\mathcal{} [výběr]</translation>
     </message>
     <message>
         <source>\mathbb{} [selection]</source>
-        <translation>\mathbb{} [výběr]</translation>
+        <translation type="obsolete">\mathbb{} [výběr]</translation>
     </message>
     <message>
         <source>\mathfrak{} [selection]</source>
-        <translation>\mathfrak{} [výběr]</translation>
+        <translation type="obsolete">\mathfrak{} [výběr]</translation>
     </message>
     <message>
         <source>Math &amp;Accents</source>
@@ -1809,15 +1996,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>medium</source>
-        <translation>střední</translation>
-    </message>
-    <message>
-        <source>quad</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>qquad</source>
-        <translation></translation>
+        <translation type="obsolete">střední</translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -1876,6 +2055,278 @@ Chcete je odstranit?</translation>
     <message>
         <source>eqref</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{&lt;environment&gt;}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{center}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{flushleft}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{flushright}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{quote}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{quotation}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{verse}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{verbatim} </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{table}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{figure}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{titlepage}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Emphasis - \emph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italics - \textit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slanted - \textsl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boldface - \textbf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typewriter - \texttt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Small Caps - \textsc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sans Serif - \textsf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline - \underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Vertical Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscript - _{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superscript - ^{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arccos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arcsin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arctan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cosh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>coth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>csc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>det</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>exp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>gcd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>liminf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>limsup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ln</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sinh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tanh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Roman - \mathrm{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italic - \mathit{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bold - \mathbf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sans Serif - \mathsf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Courier - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Calligraphic - \mathcal{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blackboard Bold - \mathbb{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fraktur - \mathfrak{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Negative</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two quads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;neznámý&gt;</translation>
     </message>
 </context>
 <context>
@@ -2213,14 +2664,40 @@ Chybí volby \includegraphics.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Suggest priorities, where the figure should appear.
+        <source>Caption for display next to the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override internal layout parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption for display in the list of tables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Short</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Long</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Placement preferences for the figure
 
-Here: At this position in the text
-Top: At the top the page
-Bottom: At the bottom of the page
-Page: On a separate page with figures
+[t] Top: At the top the page
+[b] Bottom: At the bottom of the page
+[p] Page: On a separate page with figures
+[h] Here: At this position in the text
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
-Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </source>
+Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4492,7 +4969,7 @@ Důvěřujete tomuto skriptu?</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation>Nahradit:</translation>
+        <translation type="obsolete">Nahradit:</translation>
     </message>
     <message>
         <source>Replacement text</source>
@@ -4513,6 +4990,30 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <source>Count occurences</source>
         <translation>Počítat výskyty</translation>
+    </message>
+    <message>
+        <source>Find next</source>
+        <translation type="unfinished">Najít další</translation>
+    </message>
+    <message>
+        <source>Find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace and find next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace and find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find:</source>
+        <translation type="unfinished">Hledat:</translation>
+    </message>
+    <message>
+        <source>Replace:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4746,6 +5247,14 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <source>\\ missing</source>
         <translation>\\ chybí</translation>
     </message>
+    <message>
+        <source>closing environment which has not been opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>environment not closed</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>
@@ -4957,7 +5466,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Clean</source>
-        <translation>Uklidit</translation>
+        <translation type="obsolete">Uklidit</translation>
     </message>
     <message>
         <source>Fullscreen Mode</source>
@@ -5109,7 +5618,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Delete Files</source>
-        <translation>Smazat soubory</translation>
+        <translation type="obsolete">Smazat soubory</translation>
     </message>
     <message>
         <source>Log File not found !</source>
@@ -5137,7 +5646,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
-        <translation>Smazat výstupní soubory vytvořené Latexem?</translation>
+        <translation type="obsolete">Smazat výstupní soubory vytvořené Latexem?</translation>
     </message>
     <message>
         <source>No LaTeX warnings detected !</source>
@@ -5944,7 +6453,7 @@ Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Pdf files</source>
-        <translation>Soubory PDF</translation>
+        <translation type="obsolete">Soubory PDF</translation>
     </message>
     <message>
         <source>Show difference between two files</source>
@@ -6276,6 +6785,14 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Align Windows</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
