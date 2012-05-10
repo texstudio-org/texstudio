@@ -269,7 +269,8 @@ QString getBacktrace(){
 
 void print_backtrace(const QString& message){
   QString bt = getBacktrace();
-  QFile tf(QDir::tempPath() + "/texstudio_backtrace.txt");
+  static int count = 1;
+  QFile tf(QDir::tempPath() + QString("/texstudio_backtrace%1.txt").arg(count++));
   if (tf.open(QFile::WriteOnly)){
     tf.write(message.toLocal8Bit());
     tf.write(bt.toLocal8Bit());
@@ -417,7 +418,76 @@ QString getLastCrashInformation(){
 
 //=========================WINDOWS EXCEPTION HANDLER===========================
 #ifdef Q_WS_WIN
-void registerCrashHandler(int mode){}
+int crashHandlerType = 0;
 
-QString getLastCrashInformation(){return "";}
+#define CATCHED_EXCEPTIONS(X)  \
+	X(EXCEPTION_ACCESS_VIOLATION) \
+	X(EXCEPTION_ARRAY_BOUNDS_EXCEEDED) \
+	X(EXCEPTION_DATATYPE_MISALIGNMENT) \
+	X(EXCEPTION_FLT_DENORMAL_OPERAND) \
+	X(EXCEPTION_FLT_DIVIDE_BY_ZERO) \
+	X(EXCEPTION_FLT_INEXACT_RESULT) \
+	X(EXCEPTION_FLT_INVALID_OPERATION) \
+	X(EXCEPTION_FLT_OVERFLOW) \
+	X(EXCEPTION_FLT_UNDERFLOW) \
+	X(EXCEPTION_IN_PAGE_ERROR) \
+	X(EXCEPTION_INT_DIVIDE_BY_ZERO) \
+	X(EXCEPTION_INT_OVERFLOW) \
+	X(EXCEPTION_INVALID_DISPOSITION)
+//EXCEPTION_FLT_STACK_CHECK, EXCEPTION_STACK_OVERFLOW
+//EXCEPTION_ILLEGAL_INSTRUCTION
+//EXCEPTION_NONCONTINUABLE_EXCEPTION
+//EXCEPTION_PRIV_INSTRUCTION
+#ifdef CPU_IS_64
+#define PC_FROM_UCONTEXT(context) (context)->Rip
+#define FRAME_FROM_UCONTEXT(context) (context)->Rbp
+#define STACK_FROM_UCONTEXT(context) (context)->Rsp
+#else
+#define PC_FROM_UCONTEXT(context) (context)->Eip
+#define FRAME_FROM_UCONTEXT(context) (context)->Ebp
+#define STACK_FROM_UCONTEXT(context) (context)->Esp
+#endif
+
+const char* exceptionCodeToName(int code){
+	switch (code){
+#define X(t) case t: return #t;
+	CATCHED_EXCEPTIONS(X)
+#undef X
+	}
+	return "unknown";
+}
+
+
+int lastExceptionCode = 0;
+quintptr lastExceptionAddress = 0;
+
+LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
+	if (!ExceptionInfo) return EXCEPTION_CONTINUE_SEARCH;
+	bool isCatched = false;
+#define X(t) if (ExceptionInfo->ExceptionRecord->ExceptionCode == t) isCatched = true;
+	CATCHED_EXCEPTIONS(X)
+#undef X
+	if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
+
+	if (crashHandlerType == 1) {
+		lastExceptionCode = ExceptionInfo->ExceptionRecord->ExceptionCode;
+
+		lastExceptionAddress = quintptr(PC_FROM_UCONTEXT(ExceptionInfo->ContextRecord));
+
+		*(void**)(&PC_FROM_UCONTEXT(ExceptionInfo->ContextRecord)) = (void*)(&recover);
+		return EXCEPTION_CONTINUE_EXECUTION;
+	} else {
+		txs_assert(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode), "", 0);
+		return EXCEPTION_CONTINUE_SEARCH;
+	}
+}
+
+void registerCrashHandler(int mode){
+	crashHandlerType = mode;
+	if (mode >= 0) {
+		SetUnhandledExceptionFilter(&crashHandler);
+	}
+}
+
+QString getLastCrashInformation(){return QString::fromLocal8Bit(exceptionCodeToName(lastExceptionCode)) + " at " + QString::number(lastExceptionAddress,16);}
 #endif
