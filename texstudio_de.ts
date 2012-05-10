@@ -182,7 +182,7 @@
     </message>
     <message>
         <source>Pdf Viewer</source>
-        <translation>Pdf Betrachter</translation>
+        <translation type="obsolete">Pdf Betrachter</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -210,34 +210,6 @@
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ps Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pdf Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Asymptote Dvi Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Asymptote Pdf Chain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -279,6 +251,157 @@
     <message>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>compile &amp; view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Postscipt chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-PS-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asy-DVI-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asy-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use pdflatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use latex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use xelatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use lualatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use DVI viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use postscript viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use internal PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use external PDF viewer</source>
+        <translation>Nutze externen PDF Betrachter</translation>
+    </message>
+    <message>
+        <source>PDF Viewer</source>
+        <translation>PDF Betrachter</translation>
+    </message>
+    <message>
+        <source>Use bibtex</source>
+        <translation>Nutze bibtex</translation>
+    </message>
+    <message>
+        <source>Use bibtex8</source>
+        <translation>Nutze bibtex8</translation>
+    </message>
+    <message>
+        <source>Use biber</source>
+        <translation>Nutze biber</translation>
+    </message>
+    <message>
+        <source>PS Chain</source>
+        <translation>Übersetzung nach PS</translation>
+    </message>
+    <message>
+        <source>DVI Chain</source>
+        <translation>Übersetzung nach DVI</translation>
+    </message>
+    <message>
+        <source>PDF Chain</source>
+        <translation>Übersetzung nach PDF</translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PDF Chain</source>
+        <translation>Übersetzung über DVI nach PDF</translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS-&gt;PDF Chain</source>
+        <translation>Übersetzung über DVI,PS nach PDF</translation>
+    </message>
+    <message>
+        <source>Asymptote DVI Chain</source>
+        <translation>Übsertzung mit Asymptote nach DVI</translation>
+    </message>
+    <message>
+        <source>Asymptote PDF Chain</source>
+        <translation>Übsertzung mit Asymptote nach PDF</translation>
+    </message>
+</context>
+<context>
+    <name>CleanDialog</name>
+    <message>
+        <source>Clean</source>
+        <translation>Aufräumen</translation>
+    </message>
+    <message>
+        <source>Scope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File Extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore default</source>
+        <translation>Setze auf Vorgabe zurück</translation>
+    </message>
+    <message>
+        <source>Delete the output files generated by LaTeX:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project (Master file folder and all subfolders)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Files</source>
+        <translation>Dateien öffnen</translation>
     </message>
 </context>
 <context>
@@ -548,10 +671,6 @@
     <message>
         <source>Show advanced options</source>
         <translation>Zeige erweiterte Optionen</translation>
-    </message>
-    <message>
-        <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation></translation>
     </message>
     <message>
         <source>Show Modify Time</source>
@@ -990,7 +1109,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation>Max. Anzahl der Latex-Wiederholungen:</translation>
+        <translation type="obsolete">Max. Anzahl der Latex-Wiederholungen:</translation>
     </message>
     <message>
         <source>no line wrap</source>
@@ -1118,7 +1237,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Quick Build Options</source>
-        <translation>Optionen für schnelles Erzeugen</translation>
+        <translation type="obsolete">Optionen für schnelles Erzeugen</translation>
     </message>
     <message>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
@@ -1158,7 +1277,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation type="unfinished">Schriftart</translation>
+        <translation>Schriftart</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
@@ -1166,23 +1285,23 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>qce (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>qce (empfohlen)</translation>
     </message>
     <message>
         <source>qt</source>
-        <translation type="unfinished"></translation>
+        <translation>qt</translation>
     </message>
     <message>
         <source>single letter</source>
-        <translation type="unfinished"></translation>
+        <translation>einzelner Buchstabe</translation>
     </message>
     <message>
         <source>Render mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeichenmodus:</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche selbständig die beste Anzeigestrategie</translation>
     </message>
     <message>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
@@ -1198,63 +1317,63 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Spelling</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechtschreibung</translation>
     </message>
     <message>
         <source>Grammar</source>
-        <translation type="unfinished"></translation>
+        <translation>Grammatik</translation>
     </message>
     <message>
         <source>Citations</source>
-        <translation type="unfinished"></translation>
+        <translation>Zitate</translation>
     </message>
     <message>
         <source>References</source>
-        <translation type="unfinished"></translation>
+        <translation>Querverweise</translation>
     </message>
     <message>
         <source>Syntax</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax</translation>
     </message>
     <message>
         <source>Internal</source>
-        <translation type="unfinished">Intern</translation>
+        <translation>Intern</translation>
     </message>
     <message>
         <source>Check for word repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfe auf Wordwiederholungen</translation>
     </message>
     <message>
         <source>Words between repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl von Worten zwischen Wiederholungen:</translation>
     </message>
     <message>
         <source>Wordlist directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wortlistenverzeichnis:</translation>
     </message>
     <message>
         <source>LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation>LanguageTool</translation>
     </message>
     <message>
         <source>Serverurl: </source>
-        <translation type="unfinished"></translation>
+        <translation>Serverurl: </translation>
     </message>
     <message>
         <source>Start LanguageTool if not running</source>
-        <translation type="unfinished"></translation>
+        <translation>Starte LanguageTool falls es nicht läuft</translation>
     </message>
     <message>
         <source>LT path:</source>
-        <translation type="unfinished"></translation>
+        <translation>LT Pfad:</translation>
     </message>
     <message>
         <source>Ignored rules:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorierte Regeln:</translation>
     </message>
     <message>
         <source>Java:</source>
-        <translation type="unfinished"></translation>
+        <translation>Java:</translation>
     </message>
     <message>
         <source>Select the grammar word lists dir</source>
@@ -1266,7 +1385,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Select java</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle Java</translation>
     </message>
     <message>
         <source>Check for bad words</source>
@@ -1290,7 +1409,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX Prüfung</translation>
     </message>
     <message>
         <source>Language checking</source>
@@ -1381,6 +1500,42 @@ to set the key anyway?</source>
     <message>
         <source>Show all</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check and update bibliography before compiling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Times to repeat compilation if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands with repeated compilation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DTX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;unbekannt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1514,50 +1669,6 @@ to set the key anyway?</source>
         <translation>&amp;Umgebungen</translation>
     </message>
     <message>
-        <source>\begin{&lt;environment&gt;} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{center} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{flushleft} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{flushright}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{quote}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{quotation}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{verse}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{verbatim}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{table}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{figure}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\begin{titlepage}  [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&amp;List Environments</source>
         <translation>&amp;Listen</translation>
     </message>
@@ -1583,35 +1694,35 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>\emph - Emphasis  [selection]</source>
-        <translation>\emph - Hervorhebung  [Selektion]</translation>
+        <translation type="obsolete">\emph - Hervorhebung  [Selektion]</translation>
     </message>
     <message>
         <source>\textit - Italics  [selection]</source>
-        <translation>\textit - Schräggestellt  [Selektion]</translation>
+        <translation type="obsolete">\textit - Schräggestellt  [Selektion]</translation>
     </message>
     <message>
         <source>\textsl - Slanted  [selection]</source>
-        <translation>\textsl - Slanted  [Selektion]</translation>
+        <translation type="obsolete">\textsl - Slanted  [Selektion]</translation>
     </message>
     <message>
         <source>\textbf - Boldface  [selection]</source>
-        <translation>\textbf - Fett  [Selektion]</translation>
+        <translation type="obsolete">\textbf - Fett  [Selektion]</translation>
     </message>
     <message>
         <source>\texttt - Typewriter  [selection]</source>
-        <translation>\texttt - Typewriter  [Selektion]</translation>
+        <translation type="obsolete">\texttt - Typewriter  [Selektion]</translation>
     </message>
     <message>
         <source>\textsc - Small caps  [selection]</source>
-        <translation>\textsc - Small caps  [Selektion]</translation>
+        <translation type="obsolete">\textsc - Small caps  [Selektion]</translation>
     </message>
     <message>
         <source>\textsf - Sans Serif  [selection]</source>
-        <translation>\textsf - Serifenlos  [Selektion]</translation>
+        <translation type="obsolete">\textsf - Serifenlos  [Selektion]</translation>
     </message>
     <message>
         <source>\underline - Underline [selection]</source>
-        <translation>\underline - Unterstreichen [Selektion]</translation>
+        <translation type="obsolete">\underline - Unterstreichen [Selektion]</translation>
     </message>
     <message>
         <source>Font Sizes</source>
@@ -1667,7 +1778,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>S&amp;pacing</source>
-        <translation>A&amp;bstand</translation>
+        <translation type="obsolete">A&amp;bstand</translation>
     </message>
     <message>
         <source>New line</source>
@@ -1742,14 +1853,6 @@ to set the key anyway?</source>
         <translation></translation>
     </message>
     <message>
-        <source>_{} - subscript</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>^{} - superscript</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>\begin{array}</source>
         <translation></translation>
     </message>
@@ -1762,56 +1865,12 @@ to set the key anyway?</source>
         <translation>&amp;Schriftart im Mathematikmodus</translation>
     </message>
     <message>
-        <source>\mathrm{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathit{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathbf{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathsf{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathtt{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathcal{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathbb{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>\mathfrak{} [selection]</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Math &amp;Accents</source>
         <translation>&amp;Akzente im Mathematikmodus</translation>
     </message>
     <message>
         <source>Math S&amp;paces</source>
         <translation>A&amp;bstände im Mathematikmodus</translation>
-    </message>
-    <message>
-        <source>medium</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>quad</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>qquad</source>
-        <translation></translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -1870,6 +1929,278 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     <message>
         <source>eqref</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{&lt;environment&gt;}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{center}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{flushleft}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{flushright}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{quote}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{quotation}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{verse}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{verbatim} </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{table}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{figure}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{titlepage}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Emphasis - \emph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italics - \textit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slanted - \textsl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boldface - \textbf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typewriter - \texttt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Small Caps - \textsc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sans Serif - \textsf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline - \underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Vertical Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscript - _{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superscript - ^{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arccos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arcsin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arctan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cosh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>coth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>csc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>det</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>exp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>gcd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>liminf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>limsup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ln</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sinh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tanh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Roman - \mathrm{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italic - \mathit{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bold - \mathbf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sans Serif - \mathsf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Courier - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Calligraphic - \mathcal{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blackboard Bold - \mathbb{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fraktur - \mathfrak{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Negative</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two quads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;unbekannt&gt;</translation>
     </message>
 </context>
 <context>
@@ -2208,14 +2539,40 @@ Fehlende Parameter für \includegraphics.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Suggest priorities, where the figure should appear.
+        <source>Caption for display next to the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override internal layout parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption for display in the list of tables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Short</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Long</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Placement preferences for the figure
 
-Here: At this position in the text
-Top: At the top the page
-Bottom: At the bottom of the page
-Page: On a separate page with figures
+[t] Top: At the top the page
+[b] Bottom: At the bottom of the page
+[p] Page: On a separate page with figures
+[h] Here: At this position in the text
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
-Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </source>
+Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3012,7 +3369,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Zoom Out</source>
-        <translation type="unfinished">Verkleinern</translation>
+        <translation>Verkleinern</translation>
     </message>
     <message>
         <source>Zoom</source>
@@ -3020,7 +3377,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Zoom In</source>
-        <translation type="unfinished">Vergrößern</translation>
+        <translation>Vergrößern</translation>
     </message>
 </context>
 <context>
@@ -3973,11 +4330,11 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation type="unfinished">Schriftart</translation>
+        <translation>Schriftart</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <source>Font size relative to editor font size.
@@ -4031,23 +4388,23 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     </message>
     <message>
         <source>txs-test</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-test</translation>
     </message>
     <message>
         <source>txs-test-pass</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-test-pass</translation>
     </message>
     <message>
         <source>txs-test-fail</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-test-fail</translation>
     </message>
     <message>
         <source>txs-test-skip</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-test-skip</translation>
     </message>
     <message>
         <source>txs-test-qdebug</source>
-        <translation type="unfinished"></translation>
+        <translation>txs-test-qdebug</translation>
     </message>
 </context>
 <context>
@@ -4143,7 +4500,8 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviere die Nutzung von &apos;escape&apos;-Zeichen. Diese sind:
+ \n = new line, \r = carriage return, \t = tab, \\ = \</translation>
     </message>
 </context>
 <context>
@@ -4370,7 +4728,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX input</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -4476,7 +4834,7 @@ Vertrauen Sie diesem Skript?</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation>Ersetzen:</translation>
+        <translation type="obsolete">Ersetzen:</translation>
     </message>
     <message>
         <source>Replacement text</source>
@@ -4498,6 +4856,30 @@ Vertrauen Sie diesem Skript?</translation>
         <source>Count occurences</source>
         <translation>Zähle Vorkommen</translation>
     </message>
+    <message>
+        <source>Find next</source>
+        <translation>Weitersuchen</translation>
+    </message>
+    <message>
+        <source>Find previous</source>
+        <translation>Finde vorherige</translation>
+    </message>
+    <message>
+        <source>Replace and find next</source>
+        <translation>Ersetze und suche nächste</translation>
+    </message>
+    <message>
+        <source>Replace and find previous</source>
+        <translation>Ersetze und suche vorherige</translation>
+    </message>
+    <message>
+        <source>Find:</source>
+        <translation>Suche nach:</translation>
+    </message>
+    <message>
+        <source>Replace:</source>
+        <translation>Ersetze durch:</translation>
+    </message>
 </context>
 <context>
     <name>SearchResultModel</name>
@@ -4511,7 +4893,7 @@ Vertrauen Sie diesem Skript?</translation>
     </message>
     <message>
         <source>File closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei geschlossen</translation>
     </message>
 </context>
 <context>
@@ -4610,40 +4992,40 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Unknown word</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekanntes Wort</translation>
     </message>
     <message>
         <source>Replace with</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetze durch</translation>
     </message>
     <message>
         <source>Suggested words</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgeschlagene Wörter</translation>
     </message>
     <message>
         <source>Ignored words</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorierte Wörter</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufügen</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>Hide ignore list</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberge Ignorierenliste</translation>
     </message>
     <message>
         <source>dummyStatusBar</source>
-        <translation type="unfinished"></translation>
+        <translation>dummyStatusBar</translation>
     </message>
     <message>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;neu&gt;</translation>
     </message>
 </context>
 <context>
@@ -4729,6 +5111,14 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <source>\\ missing</source>
         <translation>\\ fehlt</translation>
+    </message>
+    <message>
+        <source>closing environment which has not been opened</source>
+        <translation>schließt eine Umgebung, die nicht zuvor geöffnet wurde</translation>
+    </message>
+    <message>
+        <source>environment not closed</source>
+        <translation>Umgebung nicht geschlossen</translation>
     </message>
 </context>
 <context>
@@ -4941,7 +5331,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Clean</source>
-        <translation>Aufräumen</translation>
+        <translation type="obsolete">Aufräumen</translation>
     </message>
     <message>
         <source>Fullscreen Mode</source>
@@ -5081,7 +5471,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Don&apos;t Save and Close</source>
-        <translation type="unfinished">Schließen ohne zu speichern</translation>
+        <translation>Schließen ohne zu speichern</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -5093,7 +5483,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Delete Files</source>
-        <translation>Dateien löschen</translation>
+        <translation type="obsolete">Dateien löschen</translation>
     </message>
     <message>
         <source>Log File not found !</source>
@@ -5121,7 +5511,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
-        <translation>Sollen die von Latex erzeugten Dateien gelöscht werden?</translation>
+        <translation type="obsolete">Sollen die von Latex erzeugten Dateien gelöscht werden?</translation>
     </message>
     <message>
         <source>No LaTeX warnings detected !</source>
@@ -5928,7 +6318,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Pdf files</source>
-        <translation>PDF Dateien</translation>
+        <translation type="obsolete">PDF Dateien</translation>
     </message>
     <message>
         <source>Show difference between two files</source>
@@ -6111,39 +6501,39 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     <message>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Einfacher Text</translation>
     </message>
     <message>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesezeichen</translation>
     </message>
     <message>
         <source>move up</source>
-        <translation type="unfinished"></translation>
+        <translation>bewege hoch</translation>
     </message>
     <message>
         <source>move down</source>
-        <translation type="unfinished"></translation>
+        <translation>bewege runter</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation type="unfinished"></translation>
+        <translation>entferne</translation>
     </message>
     <message>
         <source>remove all</source>
-        <translation type="unfinished"></translation>
+        <translation>entferne alle</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche bis zum Zeile&amp;nende</translation>
     </message>
     <message>
         <source>Grammar errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Grammatikfehler</translation>
     </message>
     <message>
         <source>Word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Wortwiederholung</translation>
     </message>
     <message>
         <source>Bad words</source>
@@ -6151,11 +6541,11 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Grammatikfehler</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Grammatikfehler spezial %1</translation>
     </message>
     <message>
         <source>Long range word repetition</source>
@@ -6164,7 +6554,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     <message>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Warnung nicht wiederholen</translation>
     </message>
     <message>
         <source>Jump to match</source>
@@ -6190,44 +6580,44 @@ Do you trust this document?</source>
     <message>
         <source>&amp;User</source>
         <comment>menu</comment>
-        <translation type="unfinished">Ben&amp;utzer</translation>
+        <translation>Ben&amp;utzer</translation>
     </message>
     <message>
         <source>&amp;Quick</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Schnell</translation>
     </message>
     <message>
         <source>&amp;Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Ü&amp;bersetze</translation>
     </message>
     <message>
         <source>View &amp;Dvi</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige &amp;DVI</translation>
     </message>
     <message>
         <source>Dvi-&gt;PS</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI-&gt;PS</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Lös&amp;che Markierungen</translation>
     </message>
     <message>
         <source>&amp;Math</source>
-        <translation type="unfinished">&amp;Mathe</translation>
+        <translation>&amp;Mathe</translation>
     </message>
     <message>
         <source>Reached beginning of text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Textanafang erreicht</translation>
     </message>
     <message>
         <source>Reached end of text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Textende erreicht</translation>
     </message>
     <message>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>TXS Testergebnisse</translation>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
@@ -6270,6 +6660,14 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Align Windows</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

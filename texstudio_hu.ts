@@ -182,7 +182,7 @@
     </message>
     <message>
         <source>Pdf Viewer</source>
-        <translation>Pdf megjelenítő</translation>
+        <translation type="obsolete">Pdf megjelenítő</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -210,34 +210,6 @@
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ps Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pdf Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;Ps-&gt;Pdf Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Asymptote Dvi Chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Asymptote Pdf Chain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -279,6 +251,157 @@
     <message>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>compile &amp; view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Postscipt chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-PS-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asy-DVI-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asy-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use pdflatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use latex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use xelatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use lualatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use DVI viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use postscript viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use internal PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use external PDF viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use bibtex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use bibtex8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use biber</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PS Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS-&gt;PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote DVI Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CleanDialog</name>
+    <message>
+        <source>Clean</source>
+        <translation type="unfinished">Tisztítás</translation>
+    </message>
+    <message>
+        <source>Scope</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File Extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the output files generated by LaTeX:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project (Master file folder and all subfolders)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Files</source>
+        <translation type="unfinished">Fájlok megnyitása</translation>
     </message>
 </context>
 <context>
@@ -554,7 +677,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation>A &quot;latex bibtex latex&quot; futtatása fordítás előtt, ha a bib-fájlok megváltoztak</translation>
+        <translation type="obsolete">A &quot;latex bibtex latex&quot; futtatása fordítás előtt, ha a bib-fájlok megváltoztak</translation>
     </message>
     <message>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
@@ -998,7 +1121,7 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
-        <translation>A LaTeX újrafuttatásához szükséges idő:</translation>
+        <translation type="obsolete">A LaTeX újrafuttatásához szükséges idő:</translation>
     </message>
     <message>
         <source>no line wrap</source>
@@ -1130,7 +1253,7 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     </message>
     <message>
         <source>Quick Build Options</source>
-        <translation>Gyorsfordítási opciók</translation>
+        <translation type="obsolete">Gyorsfordítási opciók</translation>
     </message>
     <message>
         <source>Line Wrapping:</source>
@@ -1388,6 +1511,42 @@ Biztosan ezt szeretné beállítani?</translation>
         <source>Show all</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Build Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check and update bibliography before compiling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Times to repeat compilation if requested:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands with repeated compilation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DTX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;ismeretlen&gt;</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -1521,47 +1680,47 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>\begin{&lt;environment&gt;} [selection]</source>
-        <translation>\begin{&lt;környezet&gt;}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{&lt;környezet&gt;}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{center} [selection]</source>
-        <translation>\begin{center}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{center}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{flushleft} [selection]</source>
-        <translation>\begin{flushleft}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{flushleft}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{flushright}  [selection]</source>
-        <translation>\begin{flushright}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{flushright}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{quote}  [selection]</source>
-        <translation>\begin{quote}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{quote}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{quotation}  [selection]</source>
-        <translation>\begin{quotation}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{quotation}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{verse}  [selection]</source>
-        <translation>\begin{verse}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{verse}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{verbatim}  [selection]</source>
-        <translation>\begin{verbatim}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{verbatim}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{table}  [selection]</source>
-        <translation>\begin{table}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{table}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{figure}  [selection]</source>
-        <translation>\begin{figure}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{figure}  [kijelölés]</translation>
     </message>
     <message>
         <source>\begin{titlepage}  [selection]</source>
-        <translation>\begin{titlepage}  [kijelölés]</translation>
+        <translation type="obsolete">\begin{titlepage}  [kijelölés]</translation>
     </message>
     <message>
         <source>&amp;List Environments</source>
@@ -1589,35 +1748,35 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>\emph - Emphasis  [selection]</source>
-        <translation>\emph - Kiemelés  [kijelölés]</translation>
+        <translation type="obsolete">\emph - Kiemelés  [kijelölés]</translation>
     </message>
     <message>
         <source>\textit - Italics  [selection]</source>
-        <translation>\textit - Kurzív  [kijelölés]</translation>
+        <translation type="obsolete">\textit - Kurzív  [kijelölés]</translation>
     </message>
     <message>
         <source>\textsl - Slanted  [selection]</source>
-        <translation>\textsl - Döntött  [kijelölés]</translation>
+        <translation type="obsolete">\textsl - Döntött  [kijelölés]</translation>
     </message>
     <message>
         <source>\textbf - Boldface  [selection]</source>
-        <translation>\textbf - Félkövér  [kijelölés]</translation>
+        <translation type="obsolete">\textbf - Félkövér  [kijelölés]</translation>
     </message>
     <message>
         <source>\texttt - Typewriter  [selection]</source>
-        <translation>\texttt - Írógép  [kijelölés]</translation>
+        <translation type="obsolete">\texttt - Írógép  [kijelölés]</translation>
     </message>
     <message>
         <source>\textsc - Small caps  [selection]</source>
-        <translation>\textsc - Kiskapitális  [kijelölés]</translation>
+        <translation type="obsolete">\textsc - Kiskapitális  [kijelölés]</translation>
     </message>
     <message>
         <source>\textsf - Sans Serif  [selection]</source>
-        <translation>\textsf - Groteszk  [kijelölés]</translation>
+        <translation type="obsolete">\textsf - Groteszk  [kijelölés]</translation>
     </message>
     <message>
         <source>\underline - Underline [selection]</source>
-        <translation>\underline - Aláhúzás  [kijelölés]</translation>
+        <translation type="obsolete">\underline - Aláhúzás  [kijelölés]</translation>
     </message>
     <message>
         <source>Font Sizes</source>
@@ -1673,7 +1832,7 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>S&amp;pacing</source>
-        <translation>&amp;Helykihagyás</translation>
+        <translation type="obsolete">&amp;Helykihagyás</translation>
     </message>
     <message>
         <source>New line</source>
@@ -1749,11 +1908,11 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>_{} - subscript</source>
-        <translation>_{} - alsó index</translation>
+        <translation type="obsolete">_{} - alsó index</translation>
     </message>
     <message>
         <source>^{} - superscript</source>
-        <translation>^{} -felső index (hatvány)</translation>
+        <translation type="obsolete">^{} -felső index (hatvány)</translation>
     </message>
     <message>
         <source>\begin{array}</source>
@@ -1769,35 +1928,35 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>\mathrm{} [selection]</source>
-        <translation>\mathrm{} [kijelölés]</translation>
+        <translation type="obsolete">\mathrm{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathit{} [selection]</source>
-        <translation>\mathit{} [kijelölés]</translation>
+        <translation type="obsolete">\mathit{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathbf{} [selection]</source>
-        <translation>\mathbf{} [kijelölés]</translation>
+        <translation type="obsolete">\mathbf{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathsf{} [selection]</source>
-        <translation>\mathsf{} [kijelölés]</translation>
+        <translation type="obsolete">\mathsf{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathtt{} [selection]</source>
-        <translation>\mathtt{} [kijelölés]</translation>
+        <translation type="obsolete">\mathtt{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathcal{} [selection]</source>
-        <translation>\mathcal{} [kijelölés]</translation>
+        <translation type="obsolete">\mathcal{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathbb{} [selection]</source>
-        <translation>\mathbb{} [kijelölés]</translation>
+        <translation type="obsolete">\mathbb{} [kijelölés]</translation>
     </message>
     <message>
         <source>\mathfrak{} [selection]</source>
-        <translation>\mathfrak{} [kijelölés]</translation>
+        <translation type="obsolete">\mathfrak{} [kijelölés]</translation>
     </message>
     <message>
         <source>Math &amp;Accents</source>
@@ -1809,15 +1968,15 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>medium</source>
-        <translation>közepes</translation>
+        <translation type="obsolete">közepes</translation>
     </message>
     <message>
         <source>quad</source>
-        <translation>\quad</translation>
+        <translation type="obsolete">\quad</translation>
     </message>
     <message>
         <source>qquad</source>
-        <translation>\qquad</translation>
+        <translation type="obsolete">\qquad</translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -1876,6 +2035,278 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <source>eqref</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{&lt;environment&gt;}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{center}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{flushleft}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{flushright}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{quote}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{quotation}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{verse}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{verbatim} </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{table}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{figure}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{titlepage}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Emphasis - \emph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italics - \textit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slanted - \textsl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boldface - \textbf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typewriter - \texttt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Small Caps - \textsc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sans Serif - \textsf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline - \underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Vertical Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscript - _{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superscript - ^{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arccos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arcsin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arctan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cosh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>coth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>csc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>det</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>exp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>gcd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>liminf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>limsup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ln</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sinh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tanh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Roman - \mathrm{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italic - \mathit{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bold - \mathbf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sans Serif - \mathsf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Courier - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Calligraphic - \mathcal{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blackboard Bold - \mathbb{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fraktur - \mathfrak{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Negative</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two quads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;ismeretlen&gt;</translation>
     </message>
 </context>
 <context>
@@ -2210,14 +2641,40 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Suggest priorities, where the figure should appear.
+        <source>Caption for display next to the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override internal layout parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption for display in the list of tables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Short</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Long</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Placement preferences for the figure
 
-Here: At this position in the text
-Top: At the top the page
-Bottom: At the bottom of the page
-Page: On a separate page with figures
+[t] Top: At the top the page
+[b] Bottom: At the bottom of the page
+[p] Page: On a separate page with figures
+[h] Here: At this position in the text
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
-Note: This order is just a suggestion. If the resulting page layout would be very bad, LaTeX may ignore this. </source>
+Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse graphics inclusion code:
+Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4501,7 +4958,31 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Replace :</source>
-        <translation>Csere:</translation>
+        <translation type="obsolete">Csere:</translation>
+    </message>
+    <message>
+        <source>Find next</source>
+        <translation type="unfinished">Következő keresés</translation>
+    </message>
+    <message>
+        <source>Find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace and find next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace and find previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find:</source>
+        <translation type="unfinished">Keresendő:</translation>
+    </message>
+    <message>
+        <source>Replace:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4734,6 +5215,14 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>\\ missing</source>
         <translation>Hiányzó \\</translation>
+    </message>
+    <message>
+        <source>closing environment which has not been opened</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>environment not closed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5090,7 +5579,7 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     </message>
     <message>
         <source>Clean</source>
-        <translation>Tisztítás</translation>
+        <translation type="obsolete">Tisztítás</translation>
     </message>
     <message>
         <source>&amp;LaTeX</source>
@@ -5624,11 +6113,11 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
-        <translation>Törli a LaTeX által előállított kimeneti fájlokat?</translation>
+        <translation type="obsolete">Törli a LaTeX által előállított kimeneti fájlokat?</translation>
     </message>
     <message>
         <source>Delete Files</source>
-        <translation>Fájlok törlése</translation>
+        <translation type="obsolete">Fájlok törlése</translation>
     </message>
     <message>
         <source>Text Analysis</source>
@@ -5936,7 +6425,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
     </message>
     <message>
         <source>Pdf files</source>
-        <translation>Pdf fájlok</translation>
+        <translation type="obsolete">Pdf fájlok</translation>
     </message>
     <message>
         <source>Show difference between two files</source>
@@ -6267,6 +6756,14 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Align Windows</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
