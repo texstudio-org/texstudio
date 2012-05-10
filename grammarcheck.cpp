@@ -123,6 +123,7 @@ void GrammarCheck::process(){
 	}
 		
 	//gather words
+	int nonTextIndex = 0;
 	QStringList words;
 	QList<int> indices, endindices, lines;
 	int firstLineNr = cr.firstLineNr;
@@ -132,7 +133,16 @@ void GrammarCheck::process(){
 		while ((type = lr.nextWord(false))) {
 			if (type == LatexReader::NW_ENVIRONMENT) continue;
 
-			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) break;
+			if (type == LatexReader::NW_COMMENT) break;
+			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) {
+				//environment, reference, label, citation
+				if (type == LatexReader::NW_ENVIRONMENT) continue;
+				words << QString("keyxyz%1").arg(nonTextIndex++);
+				indices << lr.wordStartIndex;
+				endindices << lr.index;
+				lines << l;
+				continue;
+			}
 			
 			if (latexParser->structureCommands.contains(lr.lastCommand)) {
 				//don't check captions
@@ -161,7 +171,7 @@ void GrammarCheck::process(){
 						
 						int tempIndex = lr.index;
 						int type = lr.nextWord(false);
-						if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) break;
+						if (type == LatexReader::NW_COMMENT) break;			
 						if (tempIndex != lr.wordStartIndex) {
 							lr.index = tempIndex;
 							continue;
