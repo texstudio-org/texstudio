@@ -1836,7 +1836,7 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>New line</source>
-        <translation type="obsolete">Új sor</translation>
+        <translation>Új sor</translation>
     </message>
     <message>
         <source>International &amp;Accents</source>
@@ -1896,7 +1896,7 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>Numbered equations \begin{equation}</source>
-        <translation type="obsolete">&amp;Számozott egyenlőségek \begin{equation}</translation>
+        <translation>&amp;Számozott egyenlőségek \begin{equation}</translation>
     </message>
     <message>
         <source>\begin{align}</source>
@@ -2065,6 +2065,10 @@ Szeretné azokat eltávolítani?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>\begin{verbatim} </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>\begin{table}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2121,6 +2125,126 @@ Szeretné azokat eltávolítani?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>arccos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arcsin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>arctan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cosh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>coth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>csc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>det</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>exp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>gcd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>liminf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>limsup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ln</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>max</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sinh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tanh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Roman - \mathrm{}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2137,6 +2261,10 @@ Szeretné azokat eltávolítani?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Courier - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Calligraphic - \mathcal{}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2149,52 +2277,36 @@ Szeretné azokat eltávolítani?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Negative</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thick</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two quads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&lt;unknown&gt;</source>
         <translation type="unfinished">&lt;ismeretlen&gt;</translation>
-    </message>
-    <message>
-        <source>\begin{verbatim}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New line - \\</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Numbered equation \begin{equation}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Typewriter - \mathtt{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Negative - \!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thin - \,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Medium - \:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thick - \;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interword - \ </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>One quad - \quad</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Two quads - \qquad</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4398,22 +4510,6 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     </message>
     <message>
         <source>txs-test-qdebug</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dtx:guard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dtx:macro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dtx:verbatim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dtx:specialchar</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6668,11 +6764,6 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>Align Windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TeX dtx file</source>
-        <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
