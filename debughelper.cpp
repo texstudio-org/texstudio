@@ -12,8 +12,6 @@
 
 //===========================STACK TRACE PRINTING=========================
 
-#define print_backtrace qt_noop
-
 #ifndef QT_NO_DEBUG
 #ifdef linux
 #include <stdio.h>
@@ -21,7 +19,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-void print_backtrace(){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
+void print_backtrace(const QString&){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
 	char pid_buf[30];
 	sprintf(pid_buf, "%d", getpid());
 	char name_buf[512];
@@ -281,10 +279,10 @@ void print_backtrace(const QString& message){
   fprintf(stderr, "%s\r\n", qPrintable(bt));
 }
 #else //unknown os/mac
-void print_backtrace(const QString&){}
+void print_backtrace(const QString&){fprintf(stderr, "Unknown OS");}
 #endif
 #else //release
-void print_backtrace(const QString&){}
+void print_backtrace(const QString&){fprintf(stderr, "Backtrace in release mode");}
 #endif
 
 
@@ -298,7 +296,7 @@ Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line);
 
 void txs_assert(const char *assertion, const char *file, int line){
 	QString message = QString(
-		"Assert failure: %s in %s:%i\r\n"
+		"Assert failure: %1 in %2:%3\r\n"
 		"Prepare to print backtrace:\r\n"
 		).arg(assertion).arg(file).arg(line);
 #ifdef linux
@@ -344,7 +342,7 @@ void txs_assert(const char *assertion, const char *file, int line){
 #include "ucontext.h"
 #include "sys/ucontext.h"
 #define USE_SIGNAL_HANDLER
-#if CPU_IS_64
+#ifdef CPU_IS_64
 #define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RIP]
 #else
 #define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_EIP]
@@ -357,9 +355,9 @@ void txs_assert(const char *assertion, const char *file, int line){
 #define USE_SIGNAL_HANDLER
 //names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
 //for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
-#if CPU_IS_64
+#ifdef CPU_IS_64
 #define PC_FROM_UCONTEXT(context) context->__ss.__rip
-#elif CPU_IS_PPC
+#elif defined(CPU_IS_PPC)
 #define PC_FROM_UCONTEXT(context) context->__ss.__srr0
 #else
 #define PC_FROM_UCONTEXT(context) context->__ss.__eip
@@ -386,8 +384,9 @@ void signalHandler(int type, siginfo_t *, void* ccontext){
 	}
 }
 
-void registerCrashHandler(){
-	if (crashHandlerType >= 0) {
+void registerCrashHandler(int mode){
+	crashHandlerType = mode;
+	if (mode >= 0) {
 		struct sigaction sa;
 		memset(&sa, 0, sizeof(sa)); sa.sa_flags = SA_SIGINFO;
 		sa.sa_sigaction = &signalHandler;  sigaction(SIGSEGV, &sa, 0);
@@ -417,7 +416,8 @@ QString getLastCrashInformation(){
 
 
 //=========================WINDOWS EXCEPTION HANDLER===========================
-void registerCrashHandler(){}
+#ifdef Q_WS_WIN
+void registerCrashHandler(int mode){}
 
 QString getLastCrashInformation(){return "";}
-
+#endif

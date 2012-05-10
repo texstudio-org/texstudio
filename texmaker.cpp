@@ -59,8 +59,6 @@
 
 bool programStopped = false;
 Texmaker* txsInstance = 0;
-QThread* killAtCrashedThread = 0;
-QThread* lastCrashedThread = 0;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
        : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
@@ -78,7 +76,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	ReadSettings();
 	
 	txsInstance = this;
-	registerCrashHandler();
+	static int crashHandlerType = 1; 
+	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
+	registerCrashHandler(crashHandlerType);
 	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -2583,9 +2583,6 @@ void Texmaker::ReadSettings() {
 	}
 	
 	m_formats->load(*config,true); //load customized formats
-#ifdef CRASH_HANDLER
-	crashHandlerType = config->value("Crash Handler Type", 1).toInt();
-#endif
 	config->endGroup();
 	
 	// read usageCount from file of its own.
@@ -6515,6 +6512,8 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 }
 
 
+QThread* killAtCrashedThread = 0;
+QThread* lastCrashedThread = 0;
 
 void recover(){
 	Texmaker::recoverFromCrash();
