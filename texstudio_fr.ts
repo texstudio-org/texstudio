@@ -282,154 +282,154 @@
     </message>
     <message>
         <source>compile &amp; view</source>
-        <translation type="unfinished"></translation>
+        <translation>Compiler &amp; voir</translation>
     </message>
     <message>
         <source>Postscipt chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne PostScript</translation>
     </message>
     <message>
         <source>DVI chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne DVI</translation>
     </message>
     <message>
         <source>PDF chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne PDF</translation>
     </message>
     <message>
         <source>DVI-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne DVI-PDF</translation>
     </message>
     <message>
         <source>DVI-PS-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne DVI-PS-PDF</translation>
     </message>
     <message>
         <source>asy-DVI-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne asy-DVI</translation>
     </message>
     <message>
         <source>asy-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne asy-PDF</translation>
     </message>
     <message>
         <source>Use pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser pdflatex</translation>
     </message>
     <message>
         <source>Use latex</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser latex</translation>
     </message>
     <message>
         <source>Use xelatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser xelatex</translation>
     </message>
     <message>
         <source>Use lualatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser lualatex</translation>
     </message>
     <message>
         <source>Use latexmk</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser latexmk</translation>
     </message>
     <message>
         <source>Use PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;afficheur PDF</translation>
     </message>
     <message>
         <source>Use DVI viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;afficheur DVI</translation>
     </message>
     <message>
         <source>Use postscript viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;afficheur PostScript</translation>
     </message>
     <message>
         <source>Use internal PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;afficheur PDF interne</translation>
     </message>
     <message>
         <source>Use external PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;afficheur PDF externe</translation>
     </message>
     <message>
         <source>PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur PDF interne</translation>
     </message>
     <message>
         <source>Use bibtex</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser bibtex</translation>
     </message>
     <message>
         <source>Use bibtex8</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser bibtex8</translation>
     </message>
     <message>
         <source>Use biber</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser biber</translation>
     </message>
     <message>
         <source>PS Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne PS</translation>
     </message>
     <message>
         <source>DVI Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne DVI</translation>
     </message>
     <message>
         <source>PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne PDF</translation>
     </message>
     <message>
         <source>DVI-&gt;PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne DVI→ PDF</translation>
     </message>
     <message>
         <source>DVI-&gt;PS-&gt;PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne DVI → PS → PDF</translation>
     </message>
     <message>
         <source>Asymptote DVI Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne Asymptote → DVI</translation>
     </message>
     <message>
         <source>Asymptote PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne Asymptote → PDF</translation>
     </message>
 </context>
 <context>
     <name>CleanDialog</name>
     <message>
         <source>Clean</source>
-        <translation type="unfinished">Nettoyer</translation>
+        <translation>Nettoyer</translation>
     </message>
     <message>
         <source>Scope</source>
-        <translation type="unfinished"></translation>
+        <translation>Portée</translation>
     </message>
     <message>
         <source>File Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Extensions de fichiers</translation>
     </message>
     <message>
         <source>Restore default</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer les réglages par défaut</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX:</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les fichiers produits par LaTeX :</translation>
     </message>
     <message>
         <source>Project (Master file folder and all subfolders)</source>
-        <translation type="unfinished"></translation>
+        <translation>Projet (répertoire du fichier maître et tous les sous-répertoires)</translation>
     </message>
     <message>
         <source>Current File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier en cours</translation>
     </message>
     <message>
         <source>Open Files</source>
-        <translation type="unfinished">Ouvrir fichiers</translation>
+        <translation>Fichiers ouverts</translation>
     </message>
 </context>
 <context>
@@ -1537,39 +1537,39 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options de production</translation>
     </message>
     <message>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer txs:///recompile-bibliography si les fichiers .bib ont changé.</translation>
     </message>
     <message>
         <source>Check and update bibliography before compiling</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier et mettre à jour la bibliographie avant de recompiler</translation>
     </message>
     <message>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Certaines constructions LaTeX (par exemple les références croisées) nécessitent plusieurs cycles de compilation avant d&apos;être affichés correctement.</translation>
     </message>
     <message>
         <source>Times to repeat compilation if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de compilations répétées si nécessaire :</translation>
     </message>
     <message>
         <source>Commands with repeated compilation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Commandes avec compilations répétées :</translation>
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Espace interligne</translation>
     </message>
     <message>
         <source>DTX files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers DTX</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;introuvable&gt;</translation>
+        <translation>&lt;inconnue&gt;</translation>
     </message>
 </context>
 <context>
@@ -1640,63 +1640,63 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>&amp;Sectioning</source>
-        <translation>&amp;Sectionnement</translation>
+        <translation>&amp;Structuration</translation>
     </message>
     <message>
         <source>part</source>
-        <translation></translation>
+        <translation>Partie - \part</translation>
     </message>
     <message>
         <source>chapter</source>
-        <translation></translation>
+        <translation>Chapitre - \chapter</translation>
     </message>
     <message>
         <source>section</source>
-        <translation></translation>
+        <translation>Section - \section</translation>
     </message>
     <message>
         <source>subsection</source>
-        <translation></translation>
+        <translation>Sous-section - \subsection</translation>
     </message>
     <message>
         <source>subsubsection</source>
-        <translation></translation>
+        <translation>Sous-sous-section - \subsubsection</translation>
     </message>
     <message>
         <source>paragraph</source>
-        <translation></translation>
+        <translation>Sous-sous-sous-section - \paragraph</translation>
     </message>
     <message>
         <source>subparagraph</source>
-        <translation></translation>
+        <translation>Sous-sous-sous-sous-section - \subparagraph</translation>
     </message>
     <message>
         <source>part*</source>
-        <translation></translation>
+        <translation>Partie - \part*</translation>
     </message>
     <message>
         <source>chapter*</source>
-        <translation></translation>
+        <translation>Chapitre - \chapter*</translation>
     </message>
     <message>
         <source>section*</source>
-        <translation></translation>
+        <translation>Section - \section*</translation>
     </message>
     <message>
         <source>subsection*</source>
-        <translation></translation>
+        <translation>Sous-section - \subsection*</translation>
     </message>
     <message>
         <source>subsubsection*</source>
-        <translation></translation>
+        <translation>Sous-sous-section - \subsubsection*</translation>
     </message>
     <message>
         <source>paragraph*</source>
-        <translation></translation>
+        <translation>Sous-sous-sous-section - \paragraph*</translation>
     </message>
     <message>
         <source>subparagraph*</source>
-        <translation></translation>
+        <translation>Sous-sous-sous-sous-section - \subparagraph*</translation>
     </message>
     <message>
         <source>&amp;Environments</source>
@@ -1752,19 +1752,19 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>\begin{itemize}</source>
-        <translation>\begin{itemize} - Liste à p&amp;uces</translation>
+        <translation>Liste à p&amp;uces - \begin{itemize}</translation>
     </message>
     <message>
         <source>\begin{enumerate}</source>
-        <translation>\begin{enumerate} - Liste &amp;numérotée</translation>
+        <translation>Liste &amp;numérotée - \begin{enumerate}</translation>
     </message>
     <message>
         <source>\begin{description}</source>
-        <translation>\begin{description} - Liste de &amp;description</translation>
+        <translation>Liste de &amp;description - \begin{description}</translation>
     </message>
     <message>
         <source>\begin{list}</source>
-        <translation>\begin{list} - Liste générique</translation>
+        <translation>Liste générique - \begin{list}</translation>
     </message>
     <message>
         <source>Font St&amp;yles</source>
@@ -1808,39 +1808,39 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>tiny</source>
-        <translation></translation>
+        <translation>Minuscule - \tiny</translation>
     </message>
     <message>
         <source>scriptsize</source>
-        <translation></translation>
+        <translation>Taille des indices - \scriptsize</translation>
     </message>
     <message>
         <source>footnotesize</source>
-        <translation></translation>
+        <translation>Taille des notes - \footnotesize</translation>
     </message>
     <message>
         <source>small</source>
-        <translation></translation>
+        <translation>Petit - \small</translation>
     </message>
     <message>
         <source>normalsize</source>
-        <translation></translation>
+        <translation>Taille normale - \normalsize</translation>
     </message>
     <message>
         <source>large</source>
-        <translation></translation>
+        <translation>Grand - \large</translation>
     </message>
     <message>
         <source>Large</source>
-        <translation></translation>
+        <translation>Très grand - \Large</translation>
     </message>
     <message>
         <source>LARGE</source>
-        <translation></translation>
+        <translation>Très très grand - \LARGE</translation>
     </message>
     <message>
         <source>Huge</source>
-        <translation></translation>
+        <translation>Vraiment énorme - \Huge</translation>
     </message>
     <message>
         <source>&amp;Tabular Environment</source>
@@ -1848,11 +1848,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>\begin{tabbing}</source>
-        <translation>\begin{tabbing} (tabulations)</translation>
+        <translation>Tabulations - \begin{tabbing}</translation>
     </message>
     <message>
         <source>\begin{tabular}</source>
-        <translation>\begin{tabular}</translation>
+        <translation>Tableau - \begin{tabular}</translation>
     </message>
     <message>
         <source>S&amp;pacing</source>
@@ -1860,7 +1860,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>New line</source>
-        <translation>Nouvelle ligne</translation>
+        <translation type="obsolete">Nouvelle ligne</translation>
     </message>
     <message>
         <source>International &amp;Accents</source>
@@ -1868,15 +1868,15 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>\includegraphics{file}</source>
-        <translation>\includegraphics{fichier}</translation>
+        <translation>\includegraphics{〈fichier〉}</translation>
     </message>
     <message>
         <source>\include{file}</source>
-        <translation>\include{fichier}</translation>
+        <translation>\include{〈fichier〉}</translation>
     </message>
     <message>
         <source>\input{file}</source>
-        <translation>\input{fichier}</translation>
+        <translation>\input{〈fichier〉}</translation>
     </message>
     <message>
         <source>Cross References</source>
@@ -1884,27 +1884,27 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>label</source>
-        <translation></translation>
+        <translation>\label{〈clé〉}</translation>
     </message>
     <message>
         <source>ref</source>
-        <translation></translation>
+        <translation>\ref{〈clé〉}</translation>
     </message>
     <message>
         <source>pageref</source>
-        <translation></translation>
+        <translation>\pageref{〈clé〉}</translation>
     </message>
     <message>
         <source>index</source>
-        <translation></translation>
+        <translation>\index{〈entrée〉}</translation>
     </message>
     <message>
         <source>cite</source>
-        <translation></translation>
+        <translation>\cite{〈clé〉}</translation>
     </message>
     <message>
         <source>footnote</source>
-        <translation></translation>
+        <translation>\footnote{〈texte〉}</translation>
     </message>
     <message>
         <source>&amp;Math</source>
@@ -1912,19 +1912,19 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Inline math mode $...$</source>
-        <translation>Mode math. en ligne $...$</translation>
+        <translation>Mode math. en ligne - $...$</translation>
     </message>
     <message>
         <source>Display math mode \[...\]</source>
-        <translation>Mode math. hors ligne \[...\]</translation>
+        <translation>Mode math. hors ligne - \[...\]</translation>
     </message>
     <message>
         <source>Numbered equations \begin{equation}</source>
-        <translation>Équations numérotées \begin{equation}</translation>
+        <translation type="obsolete">Équation numérotée - \begin{equation}</translation>
     </message>
     <message>
         <source>\begin{align}</source>
-        <translation>\begin{&amp;align} - Équations alignées</translation>
+        <translation>Équations alignées - \begin{&amp;align}</translation>
     </message>
     <message>
         <source>\begin{eqnarray}</source>
@@ -1992,15 +1992,15 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>medium</source>
-        <translation type="obsolete">medium</translation>
+        <translation type="obsolete">moyenne - \:</translation>
     </message>
     <message>
         <source>quad</source>
-        <translation type="obsolete">quad</translation>
+        <translation type="obsolete">1 cadratin - \quad</translation>
     </message>
     <message>
         <source>qquad</source>
-        <translation type="obsolete">qquad</translation>
+        <translation type="obsolete">2 cadratins - \qquad</translation>
     </message>
     <message>
         <source>Internal viewer</source>
@@ -2038,7 +2038,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>huge</source>
-        <translation></translation>
+        <translation>Énorme - \huge</translation>
     </message>
     <message>
         <source>Internal</source>
@@ -2058,279 +2058,203 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>eqref</source>
-        <translation></translation>
+        <translation>\eqref{〈clé〉}</translation>
     </message>
     <message>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation type="unfinished"></translation>
+        <translation>Générique - \begin{〈environnement〉}</translation>
     </message>
     <message>
         <source>\begin{center}</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrage - \begin{center}</translation>
     </message>
     <message>
         <source>\begin{flushleft}</source>
-        <translation type="unfinished"></translation>
+        <translation>Alignement à gauche - \begin{flushleft}</translation>
     </message>
     <message>
         <source>\begin{flushright}</source>
-        <translation type="unfinished"></translation>
+        <translation>Alignement à droite - \begin{flushright}</translation>
     </message>
     <message>
         <source>\begin{quote}</source>
-        <translation type="unfinished"></translation>
+        <translation>Citation courte - \begin{quote}</translation>
     </message>
     <message>
         <source>\begin{quotation}</source>
-        <translation type="unfinished"></translation>
+        <translation>Citation longue - \begin{quotation}</translation>
     </message>
     <message>
         <source>\begin{verse}</source>
-        <translation type="unfinished"></translation>
+        <translation>Poésie - \begin{verse}</translation>
     </message>
     <message>
         <source>\begin{verbatim} </source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Verbatim - \begin{verbatim}</translation>
     </message>
     <message>
         <source>\begin{table}</source>
-        <translation type="unfinished"></translation>
+        <translation>Tableau flottant - \begin{table}</translation>
     </message>
     <message>
         <source>\begin{figure}</source>
-        <translation type="unfinished"></translation>
+        <translation>Figure flottante - \begin{figure}</translation>
     </message>
     <message>
         <source>\begin{titlepage}</source>
-        <translation type="unfinished"></translation>
+        <translation>Page dédiée au titre - \begin{titlepage}</translation>
     </message>
     <message>
         <source>Emphasis - \emph</source>
-        <translation type="unfinished"></translation>
+        <translation>Emphase - \emph</translation>
     </message>
     <message>
         <source>Italics - \textit</source>
-        <translation type="unfinished"></translation>
+        <translation>Italique - \textit</translation>
     </message>
     <message>
         <source>Slanted - \textsl</source>
-        <translation type="unfinished"></translation>
+        <translation>Incliné - \textsl</translation>
     </message>
     <message>
         <source>Boldface - \textbf</source>
-        <translation type="unfinished"></translation>
+        <translation>Gras - \textbf</translation>
     </message>
     <message>
         <source>Typewriter - \texttt</source>
-        <translation type="unfinished"></translation>
+        <translation>À chasse fixe - \texttt</translation>
     </message>
     <message>
         <source>Small Caps - \textsc</source>
-        <translation type="unfinished"></translation>
+        <translation>Petites capitales - \textsc</translation>
     </message>
     <message>
         <source>Sans Serif - \textsf</source>
-        <translation type="unfinished"></translation>
+        <translation>Sans empattement - \textsf</translation>
     </message>
     <message>
         <source>Underline - \underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Souligné - \underline</translation>
     </message>
     <message>
         <source>&amp;Vertical Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Espacement &amp;vertical</translation>
     </message>
     <message>
         <source>Subscript - _{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Indice - _{}</translation>
     </message>
     <message>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arccos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arcsin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arctan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cosh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>coth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>csc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>deg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>det</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>exp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>gcd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>inf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>liminf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>limsup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ln</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>max</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>min</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sinh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tanh</source>
-        <translation type="unfinished"></translation>
+        <translation>Exposant - ^{}</translation>
     </message>
     <message>
         <source>Roman - \mathrm{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Romain - \mathrm{}</translation>
     </message>
     <message>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Italique - \mathit{}</translation>
     </message>
     <message>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Gras - \mathbf{}</translation>
     </message>
     <message>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Sans empattement - \mathsf{}</translation>
     </message>
     <message>
         <source>Courier - \mathtt{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">À chasse fixe - \mathtt{}</translation>
     </message>
     <message>
         <source>Calligraphic - \mathcal{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Calligraphique - \mathcal{}</translation>
     </message>
     <message>
         <source>Blackboard Bold - \mathbb{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Caractères ajourés - \mathbb{}</translation>
     </message>
     <message>
         <source>Fraktur - \mathfrak{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Caractères gothiques - \mathfrak{}</translation>
     </message>
     <message>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Négative - \!</translation>
     </message>
     <message>
         <source>Thin</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Fine - \,</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Moyenne - \:</translation>
     </message>
     <message>
         <source>Thick</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Épaisse - \;</translation>
     </message>
     <message>
         <source>Interword</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Intermot - \ </translation>
     </message>
     <message>
         <source>One quad</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Un cadratin - \quad</translation>
     </message>
     <message>
         <source>Two quads</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Deux cadratins - \qquad</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;introuvable&gt;</translation>
+        <translation>&lt;inconnue&gt;</translation>
+    </message>
+    <message>
+        <source>\begin{verbatim}</source>
+        <translation>Verbatim - \begin{verbatim}</translation>
+    </message>
+    <message>
+        <source>New line - \\</source>
+        <translation>Nouvelle ligne - \\</translation>
+    </message>
+    <message>
+        <source>Numbered equation \begin{equation}</source>
+        <translation>Équation numérotée - \begin{equation}</translation>
+    </message>
+    <message>
+        <source>Typewriter - \mathtt{}</source>
+        <translation>À chasse fixe - \mathtt{}</translation>
+    </message>
+    <message>
+        <source>Negative - \!</source>
+        <translation>Négative - \!</translation>
+    </message>
+    <message>
+        <source>Thin - \,</source>
+        <translation>Fine - \,</translation>
+    </message>
+    <message>
+        <source>Medium - \:</source>
+        <translation>Moyenne - \:</translation>
+    </message>
+    <message>
+        <source>Thick - \;</source>
+        <translation>Épaisse - \;</translation>
+    </message>
+    <message>
+        <source>Interword - \ </source>
+        <translation>Intermot - \ </translation>
+    </message>
+    <message>
+        <source>One quad - \quad</source>
+        <translation>Un cadratin - \quad</translation>
+    </message>
+    <message>
+        <source>Two quads - \qquad</source>
+        <translation>Deux cadratins - \qquad</translation>
     </message>
 </context>
 <context>
@@ -2662,7 +2586,7 @@ Options de \includegraphics manquantes</translation>
     </message>
     <message>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Définit les options pour \includegraphics[options]{fichier}</translation>
+        <translation>Définit les options pour \includegraphics[〈options〉]{〈fichier〉}</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
@@ -2688,23 +2612,23 @@ Remarque : ces préférences ne sont que suggestions. Si la mise en page en rés
     </message>
     <message>
         <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Légende à afficher à côté de l&apos;image</translation>
     </message>
     <message>
         <source>Override internal layout parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer les paramètres internes de mise en page</translation>
     </message>
     <message>
         <source>Caption for display in the list of tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Légende à afficher dans la liste des figures</translation>
     </message>
     <message>
         <source>  Short</source>
-        <translation type="unfinished"></translation>
+        <translation>  Courte</translation>
     </message>
     <message>
         <source>  Long</source>
-        <translation type="unfinished"></translation>
+        <translation>  Longue</translation>
     </message>
     <message>
         <source>Placement preferences for the figure
@@ -2716,12 +2640,21 @@ Remarque : ces préférences ne sont que suggestions. Si la mise en page en rés
 [!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences d&apos;emplacement pour la figure (flottante) :
+
+t (pour « top ») : en haut de la page en cours
+b (pour « bottom ») : en bas de la page en cours
+p (pour « page ») : sur une page séparée, dédiée aux flottants.
+h (pour « here ») : à la position courante dans le texte
+[!]: Ignore les paramètres internes de LaTeX utilisés pour déterminer les « bons » emplacements du flottant
+
+Remarque : ces préférences ne sont que suggestions. Si la mise en page en résultant devait être trop mauvaise, LaTeX pourrait les ignorer.</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;analyser le code d&apos;;inclusion du graphique :
+nombre d&apos;arguments insuffisant</translation>
     </message>
 </context>
 <context>
@@ -3933,7 +3866,7 @@ Cliquer sur &quot;Ignorer&quot; pour ignorer cet avertissement.</translation>
 Should I save the document as it is to restore the file?
 </source>
         <translation>Le fichier %1 a été supprimé sur le disque
-Le document soit-il être sauvé tel quel pour restaurer le fichier ?
+Le document doit-il être sauvé tel quel pour restaurer le fichier ?
 </translation>
     </message>
     <message>
@@ -4569,6 +4502,22 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <source>txs-test-qdebug</source>
         <translation>Test TXS qdebug</translation>
     </message>
+    <message>
+        <source>dtx:guard</source>
+        <translation>dtx:guard</translation>
+    </message>
+    <message>
+        <source>dtx:macro</source>
+        <translation>dtx:macro</translation>
+    </message>
+    <message>
+        <source>dtx:verbatim</source>
+        <translation>dtx:verbatim</translation>
+    </message>
+    <message>
+        <source>dtx:specialchar</source>
+        <translation>dtx:specialchar</translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -5017,27 +4966,27 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation type="unfinished">Chercher suivant</translation>
+        <translation>Chercher le suiva&amp;nt</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher le &amp;précédent</translation>
     </message>
     <message>
         <source>Replace and find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer et chercher le suivant</translation>
     </message>
     <message>
         <source>Replace and find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer et chercher le précédent</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation type="unfinished">Chercher :</translation>
+        <translation>Chercher :</translation>
     </message>
     <message>
         <source>Replace:</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer</translation>
     </message>
 </context>
 <context>
@@ -5273,11 +5222,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>closing environment which has not been opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferme un environnement qui n&apos;a pas été ouvert</translation>
     </message>
     <message>
         <source>environment not closed</source>
-        <translation type="unfinished"></translation>
+        <translation>environnement pas fermé</translation>
     </message>
 </context>
 <context>
@@ -5818,7 +5767,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;MakeIndex</source>
-        <translation>&amp;MakeIndex</translation>
+        <translation>&amp;Index</translation>
     </message>
     <message>
         <source>&amp;Clear Markers</source>
@@ -5938,7 +5887,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation>Toujours afficher la structure du document &amp;maître</translation>
+        <translation>Définir le document courant comme « maître »</translation>
     </message>
     <message>
         <source>Load Profile</source>
@@ -6086,7 +6035,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Labels:</source>
-        <translation></translation>
+        <translation>Labels :</translation>
     </message>
     <message>
         <source>Can&apos;t detect the file name</source>
@@ -6302,12 +6251,12 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>add \hline</source>
         <comment>table</comment>
-        <translation>Ajouter \hline</translation>
+        <translation>Ajouter un filet horizontal - \hline</translation>
     </message>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
-        <translation>Supprimer \hline</translation>
+        <translation>Supprimer un filet horizontal - \hline</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -6835,11 +6784,16 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     </message>
     <message>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers PDF</translation>
     </message>
     <message>
         <source>Align Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Aligner les fenêtres</translation>
+    </message>
+    <message>
+        <source>TeX dtx file</source>
+        <comment>Format name of language definition </comment>
+        <translation>Fichiers TeX dtx</translation>
     </message>
 </context>
 <context>
