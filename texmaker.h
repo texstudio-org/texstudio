@@ -511,7 +511,7 @@ public:
 	Q_INVOKABLE void setClipboardText(const QString& text, const QClipboard::Mode& mode = QClipboard::Clipboard);
 	Q_INVOKABLE int getVersion() const;
 	
-	static void recoverFromCrash(int type);
+	static void recoverFromCrash();
 public slots:
 	void threadCrashed();
 };
