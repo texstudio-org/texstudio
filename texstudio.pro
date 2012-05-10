@@ -1,7 +1,7 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
-CONFIG += qt  uitools
+CONFIG += qt precompile_header uitools
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
@@ -13,10 +13,8 @@ QT += network \
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
-QMAKE_INCDIR_QT=/usr/local/qt-cross/include/QtUiTools /usr/local/qt-cross/include/QtCore /usr/local/qt-cross/include/QtNetwork /usr/local/qt-cross/include/QtGui /usr/local/qt-cross/include/QtXml /usr/local/qt-cross/include/QtScript /usr/local/qt-cross/include qtsingleapplication qcodeedit/lib qcodeedit/lib/document qcodeedit/lib/language qcodeedit/lib/widgets qcodeedit/lib/qnfa include_win32 /usr/local/qt-cross/include/ActiveQt . .
-
 # ##############################
-#PRECOMPILED_HEADER = mostQtHeaders.h
+PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
@@ -478,7 +476,7 @@ debug{
         tests/structureview_t.h \
         tests/syntaxcheck_t.h
 # win32:LIBS += -lQtTest4
-#win32:LIBS += -lQtTestd4
+win32:LIBS += -lQtTestd4
 unix:!macx:LIBS += -lQtTest
 macx:LIBS += QtTest
 }
@@ -546,11 +544,8 @@ exists(./.svn/entries){
   SOURCES += svn_revision.cpp
 }
 
-SOURCES+=uitoolshack.cpp
-
 # moved to the end because it seems to destroy the precompiled header
 SOURCES+=synctex_parser_utils.c synctex_parser.c 
-
 
 
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
