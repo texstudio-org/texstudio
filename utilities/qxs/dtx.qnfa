@@ -36,7 +36,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<!--                           (keywords)                      -->
 
-	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
+	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%&amp;\$]</word>
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
 	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
 
@@ -71,22 +71,22 @@ environments in smallUsefulFunctions.cpp)
 	
 	<!-- ========================= dtx COMMAND ====================== -->
 	
-	<context id="dtxComment/single" format="dtxComment" stayOnLine="true" >
-		<start>\^\^A.*</start>
-		<stop exclusive="false">\n</stop>
+	<sequence id="dtxSpecialChar" format="dtx:specialchar">\^\^[AJKLM]</sequence>
+	
+	<!-- a better regex for the guards would be &lt;!?[A-Za-z0-9]+([&amp;\|,]!?[A-Za-z0-9]+)*&gt;
+	     but grouping is currently not supported by QCE - maybe in a later version. So we have to use 
+		 the simplified versions below, which also match some invalid expressions -->
+	<word id="dtxMacro/single" format="dtx:macro">%&lt;[A-Za-z0-9&amp;\|,!]+&gt;</word>
+	<word parenthesis="dtxMacro:open@nocomplete" parenthesisWeight="30" fold="1" format="dtx:macro">%&lt;\*[A-Za-z0-9&amp;\|,!]+&gt;</word>
+	<word parenthesis="dtxMacro:close@nocomplete" parenthesisWeight="30" fold="1" format="dtx:macro">%&lt;/[A-Za-z0-9&amp;\|,!]+&gt;</word>
+
+	<context id="dtxVerbatim" format="dtx:verbatim">
+		<start parenthesis="dtxVerbatim:open@nocomplete" parenthesisWeight="30" fold="1" format="dtx:macro">%&lt;&lt;[A-Za-z0-9]+</start>
+		<stop parenthesis="dtxVerbatim:close@nocomplete" parenthesisWeight="30" fold="1" format="dtx:macro">%[A-Za-z0-9]+</stop>
 	</context>
 
-	<word id="texCommentSign" format="dtxGuard">%</word>
+	<word id="dtxGuard" format="dtx:guard" ambiguous="true">%</word>
 
-	<word id="dtxGuard/single" format="dtxMacrocode">&lt;[A-Za-z]+&gt;</word>
-	<word parenthesis="dtxGuard:open@nocomplete" parenthesisWeight="30" fold="1" format="dtxMacrocode">&lt;\*[A-Za-z]+&gt;</word>
-	<word parenthesis="dtxGuard:close@nocomplete" parenthesisWeight="30" fold="1" format="dtxMacrocode">&lt;/[A-Za-z]+&gt;</word>
-
-<!--	
-	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="dtxMacrocode">\\begin{macrocode}</word>
-	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="dtxMacrocode" >\\end{macrocode}</word>
--->	
-	
 	<!-- ========================= MATH MODE ====================== -->
 	
 	<context id="mathmode$" format="numbers" transparency="true">

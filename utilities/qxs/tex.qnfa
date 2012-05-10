@@ -51,7 +51,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<!--                           (keywords)                      -->
 
-	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%\$]</word>
+	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%&amp;\$]</word>
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
 	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
 
