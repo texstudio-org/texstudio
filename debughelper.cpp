@@ -271,7 +271,7 @@ QString getBacktrace(){
 
 void print_backtrace(const QString& message){
   QString bt = getBacktrace();
-  QFile tf(QDir::tempPath() + "\\texstudio_backtrace.txt");
+  QFile tf(QDir::tempPath() + "/texstudio_backtrace.txt");
   if (tf.open(QFile::WriteOnly)){
     tf.write(message.toLocal8Bit());
     tf.write(bt.toLocal8Bit());
