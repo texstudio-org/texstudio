@@ -71,19 +71,21 @@ environments in smallUsefulFunctions.cpp)
 	
 	<!-- ========================= dtx COMMAND ====================== -->
 	
-	<context id="comment/single" format="dtxComment" stayOnLine="true" >
+	<context id="dtxComment/single" format="dtxComment" stayOnLine="true" >
 		<start>\^\^A.*</start>
 		<stop exclusive="false">\n</stop>
 	</context>
 
-	<context id="comment/single" format="dtxGuard" stayOnLine="true" >
-		<start>%</start>
-		<stop exclusive="false">\n</stop>
-	</context>	
-		
+	<word id="texCommentSign" format="dtxGuard">%</word>
+
+	<word id="dtxGuard/single" format="dtxMacrocode">&lt;[A-Za-z]+&gt;</word>
+	<word parenthesis="dtxGuard:open@nocomplete" parenthesisWeight="30" fold="1" format="dtxMacrocode">&lt;\*[A-Za-z]+&gt;</word>
+	<word parenthesis="dtxGuard:close@nocomplete" parenthesisWeight="30" fold="1" format="dtxMacrocode">&lt;/[A-Za-z]+&gt;</word>
+
+<!--	
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="dtxMacrocode">\\begin{macrocode}</word>
 	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="dtxMacrocode" >\\end{macrocode}</word>
-		
+-->	
 	
 	<!-- ========================= MATH MODE ====================== -->
 	
