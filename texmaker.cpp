@@ -6544,10 +6544,20 @@ void Texmaker::recoverFromCrash(){
 	mb.setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
 	mb.setDefaultButton(mb.addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
 	mb.addButton(tr("No, kill the programm"), QMessageBox::RejectRole);
-	if (mb.exec() == QMessageBox::RejectRole) {
+
+	//show the dialog (non modal, because on Windows showing the dialog modal here, permanently disables all other windows)
+	mb.setWindowFlags(Qt::WindowStaysOnTopHint	);
+	mb.setWindowModality(Qt::NonModal);
+	mb.setModal(false);
+	mb.show();
+	while (mb.isVisible())
+		QApplication::processEvents(QEventLoop::AllEvents);
+	if (mb.result() == QMessageBox::RejectRole) {
 		txs_assert(qPrintable(name), 0, 0);
 		exit(1);
 	}
+
+
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
 	}
