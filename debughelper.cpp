@@ -11,8 +11,6 @@
 #endif
 
 //===========================STACK TRACE PRINTING=========================
-
-#ifndef QT_NO_DEBUG
 #ifdef linux
 #include <stdio.h>
 #include <stdlib.h>
@@ -282,9 +280,7 @@ void print_backtrace(const QString& message){
 #else //unknown os/mac
 void print_backtrace(const QString&){fprintf(stderr, "Unknown OS");}
 #endif
-#else //release
-void print_backtrace(const QString&){fprintf(stderr, "Backtrace in release mode");}
-#endif
+
 
 
 
@@ -306,6 +302,7 @@ void txs_assert(const char *assertion, const char *file, int line){
 	qDebug() << message;
 	print_backtrace(message);
 	qt_assert(assertion, file, line);
+	exit(1);
 }
 
 
