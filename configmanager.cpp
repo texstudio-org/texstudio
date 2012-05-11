@@ -944,6 +944,7 @@ bool ConfigManager::execConfigDialog() {
 	//--build things
 	//normal commands
 	pdflatexEdit = 0;
+    buildManager->updateCommandNames();
 	tempCommands = buildManager->getAllCommands();
 	QStringList tempOrder = buildManager->getCommandsOrder();
 	commandInputs.clear(); userCommandInputs.clear(); userCommandNameInputs.clear();

@@ -134,6 +134,8 @@ public:
 	bool waitForProcess(ProcessX* p);
 	bool waitingForProcess() const;
 	void killCurrentProcess(); 
+
+    void updateCommandNames();
 	
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
@@ -179,7 +181,7 @@ signals:
 	void endRunningCommands(const QString& commandMain, bool latex, bool pdf);
 	
 private:
-	void initDefaultCommandNames();
+    void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
     CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
 	QString getCommandLine(const QString& id, bool* user);

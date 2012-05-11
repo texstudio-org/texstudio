@@ -170,11 +170,11 @@
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
-        <translation>Visualizzatore DVI</translation>
+        <translation type="obsolete">Visualizzatore DVI</translation>
     </message>
     <message>
         <source>Ps Viewer</source>
-        <translation>Visualizzatore PS</translation>
+        <translation type="obsolete">Visualizzatore PS</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -187,10 +187,6 @@
     <message>
         <source>User : (% : filename without extension)</source>
         <translation type="obsolete">Utente : (nome file senza estensione)</translation>
-    </message>
-    <message>
-        <source>External Pdf Viewer</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Quickbuild</source>
@@ -362,6 +358,18 @@
     </message>
     <message>
         <source>Asymptote PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PS Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External PDF Viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

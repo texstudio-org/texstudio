@@ -139,16 +139,16 @@ BuildManager::~BuildManager() {
 }
 
 void BuildManager::initDefaultCommandNames(){
-	REQUIRE (commands.isEmpty());
+    REQUIRE (commands.isEmpty());
 	
 	//id, platform-independent command, display name, command line
 	registerCommand("latex",       "latex",        "LaTeX",       "-src -interaction=nonstopmode %.tex", "Tools/Latex");
 	registerCommand("pdflatex",    "pdflatex",     "PdfLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "Tools/Pdflatex");
 	registerCommand("xelatex",     "xelatex",      "XeLaTeX",     "-synctex=1 -interaction=nonstopmode %.tex", "");
 	registerCommand("lualatex",    "lualatex",     "LuaLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "");
-	registerCommand("view-dvi",    "",             tr("Dvi Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
-	registerCommand("view-ps",     "",             tr("Ps Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
-	registerCommand("view-pdf-external","",        tr("External Pdf Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
+    registerCommand("view-dvi",    "",             tr("DVI Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
+    registerCommand("view-ps",     "",             tr("PS Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
+    registerCommand("view-pdf-external","",        tr("External PDF Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
 	registerCommand("dvips",       "dvips",        "DviPs",       "-o %.ps %.dvi", "Tools/Dvips");
 	registerCommand("dvipng",      "dvipng",       "DviPng",      "-T tight -D 120 %.dvi", "Tools/Dvipng");
 	registerCommand("ps2pdf",      "ps2pdf",       "Ps2Pdf",      "%.ps", "Tools/Ps2pdf");
@@ -1086,6 +1086,22 @@ void BuildManager::killCurrentProcess(){
 	if (!processWaitedFor) return;
 	processWaitedFor->kill();
 	processWaitedFor = 0;
+}
+
+void BuildManager::updateCommandNames(){
+    QHash<QString, CommandInfo>::iterator i = commands.begin();
+    while (i != commands.end()) {
+        QString dn=i.value().displayName;
+        dn=qApp->translate("BuildManager",qPrintable(dn));
+        i.value().displayName=dn;
+        QStringList sdl=i.value().simpleDescriptionList;
+        for (int j = 0; j<sdl.length(); ++j){
+            QString helper=qApp->translate("BuildManager",qPrintable(sdl.at(j)));
+            sdl[j]=helper;
+        }
+        i.value().simpleDescriptionList=sdl;
+        ++i;
+    }
 }
 
 

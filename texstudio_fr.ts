@@ -174,11 +174,11 @@
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
-        <translation>Afficheur DVI</translation>
+        <translation type="obsolete">Afficheur DVI</translation>
     </message>
     <message>
         <source>Ps Viewer</source>
-        <translation>Afficheur PS</translation>
+        <translation type="obsolete">Afficheur PS</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -194,7 +194,7 @@
     </message>
     <message>
         <source>External Pdf Viewer</source>
-        <translation>Afficheur Pdf externe</translation>
+        <translation type="obsolete">Afficheur Pdf externe</translation>
     </message>
     <message>
         <source>Quickbuild</source>
@@ -395,6 +395,18 @@
     <message>
         <source>Asymptote PDF Chain</source>
         <translation>Chaîne Asymptote → PDF</translation>
+    </message>
+    <message>
+        <source>DVI Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PS Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External PDF Viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2331,6 +2343,10 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;inconnu&gt;</translation>
+    </message>
+    <message>
+        <source>compile &amp; view</source>
+        <translation type="obsolete">Compiler et voir</translation>
     </message>
 </context>
 <context>
