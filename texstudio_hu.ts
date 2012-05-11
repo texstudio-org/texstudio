@@ -174,11 +174,11 @@
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
-        <translation>Dvi megjelenítő</translation>
+        <translation type="obsolete">Dvi megjelenítő</translation>
     </message>
     <message>
         <source>Ps Viewer</source>
-        <translation>Ps megjelenítő</translation>
+        <translation type="obsolete">Ps megjelenítő</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -191,10 +191,6 @@
     <message>
         <source>User : (% : filename without extension)</source>
         <translation type="obsolete">Felhasználó: (%: fájlnév kiterjesztés nélkül)</translation>
-    </message>
-    <message>
-        <source>External Pdf Viewer</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Quickbuild</source>
@@ -366,6 +362,18 @@
     </message>
     <message>
         <source>Asymptote PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PS Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External PDF Viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

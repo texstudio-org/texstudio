@@ -174,11 +174,11 @@
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
-        <translation>Prohlížeč Dvi</translation>
+        <translation type="obsolete">Prohlížeč Dvi</translation>
     </message>
     <message>
         <source>Ps Viewer</source>
-        <translation>Prohlížeč PS</translation>
+        <translation type="obsolete">Prohlížeč PS</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -194,7 +194,7 @@
     </message>
     <message>
         <source>External Pdf Viewer</source>
-        <translation>Vnější prohlížeč PDF</translation>
+        <translation type="obsolete">Vnější prohlížeč PDF</translation>
     </message>
     <message>
         <source>Quickbuild</source>
@@ -394,6 +394,18 @@
     </message>
     <message>
         <source>Asymptote PDF Chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PS Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External PDF Viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

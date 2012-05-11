@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
-        <translation type="unfinished">Nutze Qt-Version %1, kompiliert mit QT %2 %3 {1,?}</translation>
+        <translation>Nutze Qt-Version %1, kompiliert mit QT %2 %3</translation>
     </message>
 </context>
 <context>
@@ -174,11 +174,11 @@
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
-        <translation>Dvi Betrachter</translation>
+        <translation type="obsolete">Dvi Betrachter</translation>
     </message>
     <message>
         <source>Ps Viewer</source>
-        <translation>PS Betrachter</translation>
+        <translation type="obsolete">PS Betrachter</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -194,55 +194,55 @@
     </message>
     <message>
         <source>External Pdf Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Externer PDF Betrachter</translation>
     </message>
     <message>
         <source>Quickbuild</source>
-        <translation type="unfinished"></translation>
+        <translation>Schnelles Übersetzen</translation>
     </message>
     <message>
         <source>Default Compiler</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardübersetzer</translation>
     </message>
     <message>
         <source>Default Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardbetrachter</translation>
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardbibliographie</translation>
     </message>
     <message>
         <source>Pre-compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Vor dem Übersetzen</translation>
     </message>
     <message>
         <source>Internal precompile</source>
-        <translation type="unfinished"></translation>
+        <translation>Interne Kommados vor dem Übersetzen</translation>
     </message>
     <message>
         <source>Recompile bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetze Bibliographie erneut</translation>
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Command %1 not defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando %1 nicht definiert</translation>
     </message>
     <message>
         <source>Failed to understand command %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando %1 nicht verstanden</translation>
     </message>
     <message>
         <source>Error: No command given</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler: Kein Kommando definiert</translation>
     </message>
     <message>
         <source>Internal Pdf Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Interner PDF Betrachter</translation>
     </message>
     <message>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
@@ -254,71 +254,71 @@
     </message>
     <message>
         <source>compile &amp; view</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompilieren und Anzeigen</translation>
     </message>
     <message>
         <source>Postscipt chain</source>
-        <translation type="unfinished"></translation>
+        <translation>PS Übersetzungskette</translation>
     </message>
     <message>
         <source>DVI chain</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI Übersetzungskette</translation>
     </message>
     <message>
         <source>PDF chain</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF Übersetzungskette</translation>
     </message>
     <message>
         <source>DVI-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI-PDF-Übersetzungskette</translation>
     </message>
     <message>
         <source>DVI-PS-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>DVI-PS-PDF-Übersetzungskette</translation>
     </message>
     <message>
         <source>asy-DVI-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>asy-DVI-Übersetzungskette</translation>
     </message>
     <message>
         <source>asy-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>asy-PDF-Übersetzungskette</translation>
     </message>
     <message>
         <source>Use pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze pdflatex</translation>
     </message>
     <message>
         <source>Use latex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze latex</translation>
     </message>
     <message>
         <source>Use xelatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze xelatex</translation>
     </message>
     <message>
         <source>Use lualatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze lualatex</translation>
     </message>
     <message>
         <source>Use latexmk</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze latexmk</translation>
     </message>
     <message>
         <source>Use PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze PDF Betrachter</translation>
     </message>
     <message>
         <source>Use DVI viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze DVI Betrachter</translation>
     </message>
     <message>
         <source>Use postscript viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze PS Betrachter</translation>
     </message>
     <message>
         <source>Use internal PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze internen PDF Betrachter</translation>
     </message>
     <message>
         <source>Use external PDF viewer</source>
@@ -368,6 +368,18 @@
         <source>Asymptote PDF Chain</source>
         <translation>Übsertzung mit Asymptote nach PDF</translation>
     </message>
+    <message>
+        <source>DVI Viewer</source>
+        <translation>DVI Betrachter</translation>
+    </message>
+    <message>
+        <source>PS Viewer</source>
+        <translation>PS Betrachter</translation>
+    </message>
+    <message>
+        <source>External PDF Viewer</source>
+        <translation>Externer PDF Betrachter</translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -377,11 +389,11 @@
     </message>
     <message>
         <source>Scope</source>
-        <translation type="unfinished"></translation>
+        <translation>Bereich</translation>
     </message>
     <message>
         <source>File Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateiendungen</translation>
     </message>
     <message>
         <source>Restore default</source>
@@ -389,15 +401,15 @@
     </message>
     <message>
         <source>Delete the output files generated by LaTeX:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche die Ausgabbedateien, die von LaTeX generiert wurden:</translation>
     </message>
     <message>
         <source>Project (Master file folder and all subfolders)</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt (Masterdateiverzeichnis und alle Unterverzeichnisse)</translation>
     </message>
     <message>
         <source>Current File</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelle Datei</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -1313,7 +1325,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Inline checking:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interaktives Überprüfen:</translation>
     </message>
     <message>
         <source>Spelling</source>
@@ -1491,7 +1503,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Slot</source>
@@ -1499,7 +1511,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Show all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige alles</translation>
     </message>
     <message>
         <source>Build Options</source>
@@ -1527,15 +1539,15 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeilenabstand</translation>
     </message>
     <message>
         <source>DTX files</source>
-        <translation type="unfinished"></translation>
+        <translation>DTX Dateien</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;unbekannt&gt;</translation>
+        <translation>&lt;unbekannt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1802,7 +1814,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Cross References</source>
-        <translation>&amp;Querverweise</translation>
+        <translation>Querverweise</translation>
     </message>
     <message>
         <source>label</source>
@@ -1916,67 +1928,67 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufügen</translation>
     </message>
     <message>
         <source>insert new menu item (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge ein neues Menüelement hinzu (davor)</translation>
     </message>
     <message>
         <source>insert new sub menu (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge ein neues Untermenü dazu (davor)</translation>
     </message>
     <message>
         <source>eqref</source>
-        <translation type="unfinished"></translation>
+        <translation>eqref</translation>
     </message>
     <message>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{&lt;Umgebung&gt;}</translation>
     </message>
     <message>
         <source>\begin{center}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{center}</translation>
     </message>
     <message>
         <source>\begin{flushleft}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{flushleft}</translation>
     </message>
     <message>
         <source>\begin{flushright}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{flushright}</translation>
     </message>
     <message>
         <source>\begin{quote}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{quote}</translation>
     </message>
     <message>
         <source>\begin{quotation}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{quotation}</translation>
     </message>
     <message>
         <source>\begin{verse}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{verse}</translation>
     </message>
     <message>
         <source>\begin{verbatim} </source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{verbatim}</translation>
     </message>
     <message>
         <source>\begin{table}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{table}</translation>
     </message>
     <message>
         <source>\begin{figure}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{figure}</translation>
     </message>
     <message>
         <source>\begin{titlepage}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{titlepage}</translation>
     </message>
     <message>
         <source>Emphasis - \emph</source>
-        <translation type="unfinished"></translation>
+        <translation>Hervorhebung - \emph</translation>
     </message>
     <message>
         <source>Italics - \textit</source>
@@ -1988,7 +2000,7 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Boldface - \textbf</source>
-        <translation type="unfinished"></translation>
+        <translation>Fett - \textbf</translation>
     </message>
     <message>
         <source>Typewriter - \texttt</source>
@@ -2008,7 +2020,7 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>&amp;Vertical Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vertikaler Abstand</translation>
     </message>
     <message>
         <source>Subscript - _{}</source>
@@ -2020,123 +2032,123 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>arccos</source>
-        <translation type="unfinished"></translation>
+        <translation>arccos</translation>
     </message>
     <message>
         <source>arcsin</source>
-        <translation type="unfinished"></translation>
+        <translation>arcsin</translation>
     </message>
     <message>
         <source>arctan</source>
-        <translation type="unfinished"></translation>
+        <translation>arctan</translation>
     </message>
     <message>
         <source>cos</source>
-        <translation type="unfinished"></translation>
+        <translation>cos</translation>
     </message>
     <message>
         <source>cosh</source>
-        <translation type="unfinished"></translation>
+        <translation>cosh</translation>
     </message>
     <message>
         <source>cot</source>
-        <translation type="unfinished"></translation>
+        <translation>cot</translation>
     </message>
     <message>
         <source>coth</source>
-        <translation type="unfinished"></translation>
+        <translation>coth</translation>
     </message>
     <message>
         <source>csc</source>
-        <translation type="unfinished"></translation>
+        <translation>csc</translation>
     </message>
     <message>
         <source>deg</source>
-        <translation type="unfinished"></translation>
+        <translation>deg</translation>
     </message>
     <message>
         <source>det</source>
-        <translation type="unfinished"></translation>
+        <translation>det</translation>
     </message>
     <message>
         <source>dim</source>
-        <translation type="unfinished"></translation>
+        <translation>dim</translation>
     </message>
     <message>
         <source>exp</source>
-        <translation type="unfinished"></translation>
+        <translation>exp</translation>
     </message>
     <message>
         <source>gcd</source>
-        <translation type="unfinished"></translation>
+        <translation>gcd</translation>
     </message>
     <message>
         <source>hom</source>
-        <translation type="unfinished"></translation>
+        <translation>hom</translation>
     </message>
     <message>
         <source>inf</source>
-        <translation type="unfinished"></translation>
+        <translation>inf</translation>
     </message>
     <message>
         <source>ker</source>
-        <translation type="unfinished"></translation>
+        <translation>ker</translation>
     </message>
     <message>
         <source>lg</source>
-        <translation type="unfinished"></translation>
+        <translation>lg</translation>
     </message>
     <message>
         <source>lim</source>
-        <translation type="unfinished"></translation>
+        <translation>lim</translation>
     </message>
     <message>
         <source>liminf</source>
-        <translation type="unfinished"></translation>
+        <translation>liminf</translation>
     </message>
     <message>
         <source>limsup</source>
-        <translation type="unfinished"></translation>
+        <translation>limsup</translation>
     </message>
     <message>
         <source>ln</source>
-        <translation type="unfinished"></translation>
+        <translation>ln</translation>
     </message>
     <message>
         <source>log</source>
-        <translation type="unfinished"></translation>
+        <translation>log</translation>
     </message>
     <message>
         <source>max</source>
-        <translation type="unfinished"></translation>
+        <translation>max</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished"></translation>
+        <translation>sec</translation>
     </message>
     <message>
         <source>sin</source>
-        <translation type="unfinished"></translation>
+        <translation>sin</translation>
     </message>
     <message>
         <source>sinh</source>
-        <translation type="unfinished"></translation>
+        <translation>sinh</translation>
     </message>
     <message>
         <source>sup</source>
-        <translation type="unfinished"></translation>
+        <translation>sup</translation>
     </message>
     <message>
         <source>tan</source>
-        <translation type="unfinished"></translation>
+        <translation>tan</translation>
     </message>
     <message>
         <source>tanh</source>
-        <translation type="unfinished"></translation>
+        <translation>tanh</translation>
     </message>
     <message>
         <source>Roman - \mathrm{}</source>
@@ -2148,7 +2160,7 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Fett - \mathbf{}</translation>
     </message>
     <message>
         <source>Sans Serif - \mathsf{}</source>
@@ -2172,35 +2184,39 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Negativ</translation>
     </message>
     <message>
         <source>Thin</source>
-        <translation type="unfinished"></translation>
+        <translation>Dünn</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Mittel</translation>
     </message>
     <message>
         <source>Thick</source>
-        <translation type="unfinished"></translation>
+        <translation>Dick</translation>
     </message>
     <message>
         <source>Interword</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwischenwort</translation>
     </message>
     <message>
         <source>One quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Viertel</translation>
     </message>
     <message>
         <source>Two quads</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwei Viertel</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;unbekannt&gt;</translation>
+        <translation>&lt;unbekannt&gt;</translation>
+    </message>
+    <message>
+        <source>compile &amp; view</source>
+        <translation type="obsolete">Kompilieren und Anzeigen</translation>
     </message>
 </context>
 <context>
@@ -2383,7 +2399,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <name>GrammarCheck</name>
     <message>
         <source>Word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Wortwiederholung</translation>
     </message>
     <message>
         <source>Bad word</source>
@@ -2532,7 +2548,7 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definiert die Optionen für \includegraphics[Optionen]{Datei}.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
@@ -2552,11 +2568,11 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>  Short</source>
-        <translation type="unfinished"></translation>
+        <translation>  Kurz</translation>
     </message>
     <message>
         <source>  Long</source>
-        <translation type="unfinished"></translation>
+        <translation>  Lang</translation>
     </message>
     <message>
         <source>Placement preferences for the figure
@@ -2726,11 +2742,11 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Citation missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Zitat fehlt</translation>
     </message>
     <message>
         <source>Warning:</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung:</translation>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
@@ -2738,7 +2754,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziate korrekt (lese ...)</translation>
     </message>
 </context>
 <context>
@@ -2800,7 +2816,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Paper Size</source>
-        <translation>Papierformat:</translation>
+        <translation>Papierformat</translation>
     </message>
     <message>
         <source>OK</source>
@@ -2839,19 +2855,19 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Kopieren</translation>
+        <translation>&amp;Kopieren</translation>
     </message>
     <message>
         <source>&amp;Copy all</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alles Kopieren</translation>
     </message>
     <message>
         <source>&amp;Copy all with line numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles mit Zeile&amp;nnummern kopieren</translation>
     </message>
     <message>
         <source>&amp;Show in log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zeige im Log</translation>
     </message>
 </context>
 <context>
@@ -2981,7 +2997,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>New from Template...</source>
-        <translation>Neue Datei aus Template</translation>
+        <translation>Neue Datei aus Template...</translation>
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
@@ -3365,7 +3381,10 @@ Do you want to open it anyways? It could cause a crash.</source>
 does not look like a valid PDF document.
 
 Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+sieht nicht wie eine gültige PDF-Datei aus
+.
+Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können nach der Übersetzung es erneut versuchen. Das öffnen einer fehlerhaften Datei kann einen Absturz verursache. Möchten Sie sie trotzdem öffnen ?</translation>
     </message>
     <message>
         <source>Zoom Out</source>
@@ -3373,7 +3392,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergrößerung</translation>
     </message>
     <message>
         <source>Zoom In</source>
@@ -4314,7 +4333,7 @@ Wollen Sie es speichern?</translation>
     </message>
     <message>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>picture</translation>
     </message>
     <message>
         <source>diffDelete</source>
@@ -4340,51 +4359,52 @@ Wollen Sie es speichern?</translation>
         <source>Font size relative to editor font size.
 
 Note: Sizes &gt; 100% may result in clipped characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftgröße relativ zur Editor-Schriftgröße.
+Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
     </message>
     <message>
         <source>Prio</source>
-        <translation type="unfinished"></translation>
+        <translation>Prio</translation>
     </message>
     <message>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation type="unfinished"></translation>
+        <translation>Priorität bestimmt welches Format zu oberst gezeichnet wird, falls mehrere anwendbar sind. </translation>
     </message>
     <message>
         <source>align-ampersand</source>
-        <translation type="unfinished"></translation>
+        <translation>Richte &quot;ampersand&quot; aus</translation>
     </message>
     <message>
         <source>wordRepetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Wortwiederholung</translation>
     </message>
     <message>
         <source>wordRepetitionLongRange</source>
-        <translation type="unfinished"></translation>
+        <translation>WortwiederholungLangerAbstand</translation>
     </message>
     <message>
         <source>badWord</source>
-        <translation type="unfinished"></translation>
+        <translation>SchlechtesWort</translation>
     </message>
     <message>
         <source>grammarMistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Grammatikfehler</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial1</source>
-        <translation type="unfinished"></translation>
+        <translation>GrammatikfehlerSpezial1</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial2</source>
-        <translation type="unfinished"></translation>
+        <translation>GrammatikfehlerSpezial2</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial3</source>
-        <translation type="unfinished"></translation>
+        <translation>GrammatikfehlerSpezial3</translation>
     </message>
     <message>
         <source>grammarMistakeSpecial4</source>
-        <translation type="unfinished"></translation>
+        <translation>GrammatikfehlerSpezial4</translation>
     </message>
     <message>
         <source>txs-test</source>
@@ -4936,11 +4956,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <name>SpellerDialog</name>
     <message>
         <source>Check spelling selection...</source>
-        <translation>Rechtschreibung der Auswahl prüfen</translation>
+        <translation>Rechtschreibung der Auswahl prüfen...</translation>
     </message>
     <message>
         <source>Check spelling from cursor...</source>
-        <translation>Rechtschreibprüfung von Cursor aus</translation>
+        <translation>Rechtschreibprüfung von Cursor aus...</translation>
     </message>
     <message>
         <source>No more misspelled words</source>
@@ -6558,24 +6578,24 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Jump to match</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zu Fundstelle</translation>
     </message>
     <message>
         <source>Align Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Richte Spalten aneinader aus</translation>
     </message>
     <message>
         <source>Unknown internal command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekanntes internes Kommando: %1</translation>
     </message>
     <message>
         <source>The document %1 want to override the command %2 with %3.
 Do you trust this document?</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Dokument %1 möchte das Kommando %2 durch %3 ersetzen. Vertrauen Sie der Quelle des Dokuments ?</translation>
     </message>
     <message>
         <source>No, run the default command</source>
-        <translation type="unfinished"></translation>
+        <translation>Nein, nutze vorgegebene Kommandos</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -6621,28 +6641,28 @@ Do you trust this document?</source>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja, nutze immer die erstzten Kommandos</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overridden command</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja, nutze in allen Dokumenten die ersetzten Kommandos</translation>
     </message>
     <message>
         <source>TeXstudio Emergency</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio Notfall</translation>
     </message>
     <message>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio ist abgestürzt wegen %1. Möchten Sie es weiterlaufen lassen ? Dies könnte Daten zerstören.</translation>
     </message>
     <message>
         <source>Yes, try to recover.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja, versuche TeXstudio weiterlaufen zu lassen.</translation>
     </message>
     <message>
         <source>No, kill the programm</source>
-        <translation type="unfinished"></translation>
+        <translation>Nein, beende TeXstudio</translation>
     </message>
     <message>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
@@ -6652,11 +6672,11 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <source>No, kill the program</source>
-        <translation type="unfinished"></translation>
+        <translation>Nein, beende TeXstudio</translation>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
@@ -6664,11 +6684,11 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF Dateien</translation>
     </message>
     <message>
         <source>Align Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Richte Fenster aus</translation>
     </message>
 </context>
 <context>
@@ -6896,30 +6916,30 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>add own word</source>
-        <translation type="unfinished"></translation>
+        <translation>füge eigenes Wort hinzu</translation>
     </message>
     <message>
         <source>remove own word</source>
-        <translation type="unfinished"></translation>
+        <translation>entferne eigenes Wort</translation>
     </message>
     <message>
         <source>New Word:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neues Wort:</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie:</translation>
     </message>
 </context>
 <context>
     <name>UniversalInputDialogScript</name>
     <message>
         <source>Invalid default value: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Vorgabewert: %1</translation>
     </message>
     <message>
         <source>Unkown variable %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannte Variable %1</translation>
     </message>
 </context>
 <context>
@@ -7037,7 +7057,14 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn dieser Triggertext in einem tex-Dokument geschrieben wird, so wird durch das aktuelle Makro ersetzt.
+
+Wenn der Trigger mit (?&lt;=etwas) anfängt, so passiert dies nur wenn &quot;etwas&quot; vor den restlichen Teil des Triggers geschriben wurde.
+
+Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck ist, kann (?&lt;=\S) verwendet werden, um Ersetzungen nach einem Wort und (?&lt;=\s|^) um Ersetzungen vor einem Wort auszulösen.
+
+
+Man kann den spezillen Wert ?txs-start verwenden, um das Skript bei txs start zu starten.</translation>
     </message>
 </context>
 <context>
@@ -7115,23 +7142,23 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Zufügen</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished">Hoch</translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished">Runter</translation>
+        <translation>Runter</translation>
     </message>
     <message>
         <source>User Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerbefehl</translation>
     </message>
 </context>
 <context>

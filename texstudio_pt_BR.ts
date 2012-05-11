@@ -215,22 +215,60 @@
     <name>BuildManager</name>
     <message>
         <location filename="buildmanager.cpp" line="149"/>
-        <source>Dvi Viewer</source>
-        <translation>Visualizador DVI</translation>
+        <source>DVI Viewer</source>
+        <oldsource>Dvi Viewer</oldsource>
+        <translation type="unfinished">Visualizador DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="150"/>
-        <source>Ps Viewer</source>
-        <translation>Visualizador PS</translation>
+        <source>PS Viewer</source>
+        <oldsource>Ps Viewer</oldsource>
+        <translation type="unfinished">Visualizador PS</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="151"/>
-        <source>External Pdf Viewer</source>
-        <translation>Visualizador de PDF externo</translation>
+        <source>External PDF Viewer</source>
+        <oldsource>External Pdf Viewer</oldsource>
+        <translation type="unfinished">Visualizador de PDF externo</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>compile &amp; view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>Postscipt chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>DVI chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>PDF chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>DVI-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>DVI-PS-PDF-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>asy-DVI-chain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="buildmanager.cpp" line="175"/>
+        <source>asy-PDF-chain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -434,19 +472,19 @@
         <translation>Erro: Nenhum comando dado</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1270"/>
+        <location filename="buildmanager.cpp" line="1286"/>
         <source>Internal Pdf Viewer</source>
         <translation>Visualizador de PDF interno</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1415"/>
+        <location filename="buildmanager.cpp" line="1431"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>Você utilizou umcomando dde:// com duas barras, o que está obsoleto. Por favor mude para um comando com três barras dde:///.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="64"/>
         <location filename="buildmanager.cpp" line="84"/>
-        <location filename="buildmanager.cpp" line="1296"/>
+        <location filename="buildmanager.cpp" line="1312"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;desconhecido&gt;</translation>
     </message>
@@ -821,7 +859,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1008"/>
         <location filename="configdialog.cpp" line="381"/>
-        <location filename="configmanager.cpp" line="977"/>
+        <location filename="configmanager.cpp" line="978"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -1912,7 +1950,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation>Somente uma resposta permitida</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="978"/>
+        <location filename="configmanager.cpp" line="979"/>
         <source>Basic Key Mapping</source>
         <translation>Mapa Básico do Teclado</translation>
     </message>
@@ -2654,10 +2692,10 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configmanager.cpp" line="920"/>
         <location filename="configmanager.cpp" line="921"/>
-        <location filename="configmanager.cpp" line="1071"/>
-        <location filename="configmanager.cpp" line="1073"/>
-        <location filename="configmanager.cpp" line="1315"/>
-        <location filename="configmanager.cpp" line="1327"/>
+        <location filename="configmanager.cpp" line="1072"/>
+        <location filename="configmanager.cpp" line="1074"/>
+        <location filename="configmanager.cpp" line="1316"/>
+        <location filename="configmanager.cpp" line="1328"/>
         <source>default</source>
         <translation>padrão</translation>
     </message>
@@ -2670,99 +2708,99 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation type="obsolete">Interno</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="971"/>
+        <location filename="configmanager.cpp" line="972"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="998"/>
-        <location filename="configmanager.cpp" line="1868"/>
-        <location filename="configmanager.cpp" line="1875"/>
+        <location filename="configmanager.cpp" line="999"/>
+        <location filename="configmanager.cpp" line="1869"/>
+        <location filename="configmanager.cpp" line="1876"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nenhum&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1043"/>
+        <location filename="configmanager.cpp" line="1044"/>
         <source>insert new menu item (before)</source>
         <translation>Inserir novo item de menu (antes)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1046"/>
+        <location filename="configmanager.cpp" line="1047"/>
         <source>insert new sub menu (before)</source>
         <translation>Inserir novo submenu (antes)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1064"/>
+        <location filename="configmanager.cpp" line="1065"/>
         <source>Latex/Math menus</source>
         <translation>Latex/Mat menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1065"/>
+        <location filename="configmanager.cpp" line="1066"/>
         <source>All menus</source>
         <translation>Todos os menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1066"/>
+        <location filename="configmanager.cpp" line="1067"/>
         <source>Special Tags</source>
         <translation>Etiquetas Especiais</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1173"/>
+        <location filename="configmanager.cpp" line="1174"/>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Você tem habilitada a substituição automática de aspas. Todavia existem etiquetas de usuário (?&lt;=\s|^) e (?&lt;=\S) que irão sobrescrever estas novas aspas.
 Deseja removê-las?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1379"/>
+        <location filename="configmanager.cpp" line="1380"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <oldsource>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall </oldsource>
         <translation>Para utilizar plenamente o visualizador de pdf interno, synctex deve estar ativado.  TeXstudio deve ativá-lo agora?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1393"/>
+        <location filename="configmanager.cpp" line="1394"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>&apos;Documento Mestre&apos; Recente %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1396"/>
+        <location filename="configmanager.cpp" line="1397"/>
         <source>Recent File %1</source>
         <translation>Arquivo Recente %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1397"/>
+        <location filename="configmanager.cpp" line="1398"/>
         <source>Open first non-open file</source>
         <translation>Abrir o primeiro arquivo &apos;não aberto&apos;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1398"/>
+        <location filename="configmanager.cpp" line="1399"/>
         <source>&amp;* Open all files</source>
         <oldsource>Open all files</oldsource>
         <translation>&amp;* Abrir todos os arquivos</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1408"/>
+        <location filename="configmanager.cpp" line="1409"/>
         <source>Master Document: </source>
         <translation>Documento Mestre: </translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1869"/>
-        <location filename="configmanager.cpp" line="1876"/>
+        <location filename="configmanager.cpp" line="1870"/>
+        <location filename="configmanager.cpp" line="1877"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;padrão&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1998"/>
+        <location filename="configmanager.cpp" line="1999"/>
         <source>&lt;unknown&gt;</source>
         <translation type="unfinished">&lt;desconhecido&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2087"/>
+        <location filename="configmanager.cpp" line="2088"/>
         <source>Add</source>
         <translation>Adiconar</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2137"/>
+        <location filename="configmanager.cpp" line="2138"/>
         <source>Browse program</source>
         <translation>Selecionar Programa</translation>
     </message>
@@ -2992,23 +3030,23 @@ Você deseja desfazer as alterações?</translation>
 <context>
     <name>GrammarCheck</name>
     <message>
-        <location filename="grammarcheck.cpp" line="272"/>
+        <location filename="grammarcheck.cpp" line="282"/>
         <source>Word repetition</source>
         <translation>Repetição de palavra</translation>
     </message>
     <message>
-        <location filename="grammarcheck.cpp" line="282"/>
+        <location filename="grammarcheck.cpp" line="292"/>
         <source>Word repetition. Distance %1</source>
         <translation>Repetição de palavra. Distância %1</translation>
     </message>
     <message>
-        <location filename="grammarcheck.cpp" line="284"/>
+        <location filename="grammarcheck.cpp" line="294"/>
         <source>Long range word repetition. Distance %1</source>
         <translation>Repetição de palavras distantes. Distância %1</translation>
     </message>
     <message>
-        <location filename="grammarcheck.cpp" line="293"/>
-        <location filename="grammarcheck.cpp" line="295"/>
+        <location filename="grammarcheck.cpp" line="303"/>
+        <location filename="grammarcheck.cpp" line="305"/>
         <source>Bad word</source>
         <translation>Palavra inadequada</translation>
     </message>
@@ -4493,27 +4531,27 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="1604"/>
+        <location filename="buildmanager.cpp" line="1620"/>
         <source>Process started: %1</source>
         <translation>Processo iniciado: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1609"/>
+        <location filename="buildmanager.cpp" line="1625"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Erro: Não foi possível iniciar o comando: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1611"/>
+        <location filename="buildmanager.cpp" line="1627"/>
         <source>Error: Command crashed: %1</source>
         <translation>Erro: Comando falhou: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1616"/>
+        <location filename="buildmanager.cpp" line="1632"/>
         <source>Process exited with error(s)</source>
         <translation>Processo concluído com erro(s)</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1619"/>
+        <location filename="buildmanager.cpp" line="1635"/>
         <source>Process exited normally</source>
         <translation>Processo concluído com êxito</translation>
     </message>
@@ -6706,7 +6744,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1482"/>
+        <location filename="configmanager.cpp" line="1483"/>
         <location filename="texmaker.cpp" line="3601"/>
         <source>Edit User &amp;Tags</source>
         <translation>E&amp;ditar Etiquetas do Usuário</translation>
@@ -7304,9 +7342,14 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>&amp;Ferramentas</translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="815"/>
+        <source>Align Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="6543"/>
-        <location filename="texmaker.cpp" line="6570"/>
-        <location filename="texmaker.cpp" line="6576"/>
+        <location filename="texmaker.cpp" line="6580"/>
+        <location filename="texmaker.cpp" line="6586"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio Emergência</translation>
     </message>
@@ -7328,7 +7371,7 @@ Você deseja continuar executando o programa? Isto pode causar perda de dados.</
         <translation>Não, terminar o programa</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6571"/>
+        <location filename="texmaker.cpp" line="6581"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -7337,17 +7380,17 @@ A tarefa foi interrompda.
 Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6572"/>
+        <location filename="texmaker.cpp" line="6582"/>
         <source>Yes</source>
         <translation>Sim</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6572"/>
+        <location filename="texmaker.cpp" line="6582"/>
         <source>No, kill the program</source>
         <translation>Não, terminar o programa</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="6576"/>
+        <location filename="texmaker.cpp" line="6586"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Eu tentei encerrar mas nada aconteceu.</translation>
     </message>
