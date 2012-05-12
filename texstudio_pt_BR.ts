@@ -217,59 +217,59 @@
         <location filename="buildmanager.cpp" line="149"/>
         <source>DVI Viewer</source>
         <oldsource>Dvi Viewer</oldsource>
-        <translation type="unfinished">Visualizador DVI</translation>
+        <translation>Visualizador de DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="150"/>
         <source>PS Viewer</source>
         <oldsource>Ps Viewer</oldsource>
-        <translation type="unfinished">Visualizador PS</translation>
+        <translation>Visualizador de PS</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="151"/>
         <source>External PDF Viewer</source>
         <oldsource>External Pdf Viewer</oldsource>
-        <translation type="unfinished">Visualizador de PDF externo</translation>
+        <translation>Visualizador de PDF externo</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>compile &amp; view</source>
-        <translation type="unfinished"></translation>
+        <translation>compilar &amp; visualizar</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>Postscipt chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência Postscript</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>DVI chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>PDF chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>DVI-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência DVI-PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>DVI-PS-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência DVI-PS-PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>asy-DVI-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência asy-DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="175"/>
         <source>asy-PDF-chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência asy-PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="176"/>
@@ -279,27 +279,27 @@
     <message>
         <location filename="buildmanager.cpp" line="179"/>
         <source>Use pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar pdflatex</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="179"/>
         <source>Use latex</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar latex</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="179"/>
         <source>Use xelatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar xelatex</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="179"/>
         <source>Use lualatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar lualatex</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="179"/>
         <source>Use latexmk</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar latexmk</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="180"/>
@@ -309,29 +309,29 @@
     <message>
         <location filename="buildmanager.cpp" line="182"/>
         <source>Use PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar o visualizador de PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="182"/>
         <source>Use DVI viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar o visualizador de DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="182"/>
         <source>Use postscript viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar o visualizador de postscript</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="182"/>
         <location filename="buildmanager.cpp" line="185"/>
         <source>Use internal PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar o visualizador de PDF interno</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="182"/>
         <location filename="buildmanager.cpp" line="185"/>
         <source>Use external PDF viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar o visualizador de PDF externo</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="183"/>
@@ -341,57 +341,57 @@
     <message>
         <location filename="buildmanager.cpp" line="186"/>
         <source>PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador de PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="188"/>
         <source>Use bibtex</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar bibtex</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="188"/>
         <source>Use bibtex8</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar bibtex8</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="188"/>
         <source>Use biber</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar biber</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="192"/>
         <source>PS Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência PS</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="193"/>
         <source>DVI Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="194"/>
         <source>PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="195"/>
         <source>DVI-&gt;PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência DVI-&gt;PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="196"/>
         <source>DVI-&gt;PS-&gt;PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência DVi-&gt;PS-&gt;PDF</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="197"/>
         <source>Asymptote DVI Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência Asymptote DVI</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="198"/>
         <source>Asymptote PDF Chain</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequência Asymptote PDF</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -498,42 +498,42 @@
     <message>
         <location filename="cleandialog.ui" line="14"/>
         <source>Clean</source>
-        <translation type="unfinished">Limpar</translation>
+        <translation>Limpar</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="20"/>
         <source>Scope</source>
-        <translation type="unfinished"></translation>
+        <translation>Escopo</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="30"/>
         <source>File Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Extensões dos arquivos</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="42"/>
         <source>Restore default</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar padrão</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="81"/>
         <source>Delete the output files generated by LaTeX:</source>
-        <translation type="unfinished"></translation>
+        <translation>Excluir arquivos de saída gerados pelo LaTeX:</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="45"/>
         <source>Project (Master file folder and all subfolders)</source>
-        <translation type="unfinished"></translation>
+        <translation>Projeto (Arquivo mestre e todos os subdiretórios)</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="50"/>
         <source>Current File</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo Atual</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="57"/>
         <source>Open Files</source>
-        <translation type="unfinished">Abrir Arquivos</translation>
+        <translation>Arquivos Abertos</translation>
     </message>
 </context>
 <context>
@@ -1124,32 +1124,32 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="643"/>
         <source>Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções de Compilação</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="652"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar txs:///recompile-bibliography, se arquivos bib foram alterados.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="655"/>
         <source>Check and update bibliography before compiling</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar e atualizar a bibliografia antes de compilar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="729"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Algumas estruturas LaTeX (e.g. referências) necessitam de múltiplas compilações para serem exibidas corretamente.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="732"/>
         <source>Times to repeat compilation if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de vezes a repetir a compilação se requisitado:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="746"/>
         <source>Commands with repeated compilation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos com compilação repetida:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="847"/>
@@ -1184,7 +1184,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1224"/>
         <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaçamento de linhas</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1554"/>
@@ -1807,7 +1807,7 @@ Você não conseguirá mais inserir este caracter em seu texto. Deseja realmente
     <message>
         <location filename="configdialog.cpp" line="361"/>
         <source>DTX files</source>
-        <translation type="unfinished"></translation>
+        <translation>Aquivos DTX</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="382"/>
@@ -1863,7 +1863,7 @@ Personalizado</translation>
         <location filename="configdialog.cpp" line="574"/>
         <location filename="configdialog.cpp" line="585"/>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;desconhecido&gt;</translation>
+        <translation>&lt;desconhecido&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="696"/>
@@ -2056,67 +2056,67 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="additionaltranslations.cpp" line="61"/>
         <source>\begin{&lt;environment&gt;}</source>
         <oldsource>\begin{&lt;environment&gt;} [selection]</oldsource>
-        <translation type="unfinished">\begin{&lt;ambiente&gt;} [seleção]</translation>
+        <translation>\begin{&lt;ambiente&gt;}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="63"/>
         <source>\begin{center}</source>
         <oldsource>\begin{center} [selection]</oldsource>
-        <translation type="unfinished">\begin{center} [seleção]</translation>
+        <translation>\begin{center}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="65"/>
         <source>\begin{flushleft}</source>
         <oldsource>\begin{flushleft} [selection]</oldsource>
-        <translation type="unfinished">\begin{flushleft} [seleção]</translation>
+        <translation>\begin{flushleft}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="67"/>
         <source>\begin{flushright}</source>
         <oldsource>\begin{flushright}  [selection]</oldsource>
-        <translation type="unfinished">\begin{flushright}  [seleção]</translation>
+        <translation>\begin{flushright}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="69"/>
         <source>\begin{quote}</source>
         <oldsource>\begin{quote}  [selection]</oldsource>
-        <translation type="unfinished">\begin{quote}  [seleção]</translation>
+        <translation>\begin{quote}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="71"/>
         <source>\begin{quotation}</source>
         <oldsource>\begin{quotation}  [selection]</oldsource>
-        <translation type="unfinished">\begin{quotation}  [seleção]</translation>
+        <translation>\begin{quotation}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="73"/>
         <source>\begin{verse}</source>
         <oldsource>\begin{verse}  [selection]</oldsource>
-        <translation type="unfinished">\begin{verse}  [seleção]</translation>
+        <translation>\begin{verse}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="75"/>
         <source>\begin{verbatim} </source>
         <oldsource>\begin{verbatim}  [selection]</oldsource>
-        <translation type="unfinished">\begin{verbatim}  [seleção]</translation>
+        <translation>\begin{verbatim}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="77"/>
         <source>\begin{table}</source>
         <oldsource>\begin{table}  [selection]</oldsource>
-        <translation type="unfinished">\begin{table}  [seleção]</translation>
+        <translation>\begin{table}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="79"/>
         <source>\begin{figure}</source>
         <oldsource>\begin{figure}  [selection]</oldsource>
-        <translation type="unfinished">\begin{figure}  [seleção]</translation>
+        <translation>\begin{figure}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="81"/>
         <source>\begin{titlepage}</source>
         <oldsource>\begin{titlepage}  [selection]</oldsource>
-        <translation type="unfinished">\begin{titlepage}  [seleção]</translation>
+        <translation>\begin{titlepage}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
@@ -2152,49 +2152,49 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>Emphasis - \emph</source>
         <oldsource>\emph - Emphasis  [selection]</oldsource>
-        <translation type="unfinished">\emph - Ênfase  [seleção]</translation>
+        <translation>Ênfase - \emph</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
         <source>Italics - \textit</source>
         <oldsource>\textit - Italics  [selection]</oldsource>
-        <translation type="unfinished">\textit -Itálico  [seleção]</translation>
+        <translation>Itálico - \textit</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
         <source>Slanted - \textsl</source>
         <oldsource>\textsl - Slanted  [selection]</oldsource>
-        <translation type="unfinished">\textsl - Inclinado  [seleção]</translation>
+        <translation>Inclinado - \textsl</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <source>Boldface - \textbf</source>
         <oldsource>\textbf - Boldface  [selection]</oldsource>
-        <translation type="unfinished">\textbf - Negrito  [seleção]</translation>
+        <translation>Negrito - \textbf</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>Typewriter - \texttt</source>
         <oldsource>\texttt - Typewriter  [selection]</oldsource>
-        <translation type="unfinished">\texttt - Máquina de escrever  [seleção]</translation>
+        <translation>Mono espaçado - \texttt</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <source>Small Caps - \textsc</source>
         <oldsource>\textsc - Small caps  [selection]</oldsource>
-        <translation type="unfinished">\textsc - Caixa alta  [seleção]</translation>
+        <translation>Caixa Alta - \textsc</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>Sans Serif - \textsf</source>
         <oldsource>\textsf - Sans Serif  [selection]</oldsource>
-        <translation type="unfinished">\textsf - Sem serifa  [seleção]</translation>
+        <translation>Sem serifa - \textsf</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>Underline - \underline</source>
         <oldsource>\underline - Underline [selection]</oldsource>
-        <translation type="unfinished">\underline - Sublinhado [seleção]</translation>
+        <translation>Sublinhado - \underline</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
@@ -2270,7 +2270,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="additionaltranslations.cpp" line="139"/>
         <source>&amp;Vertical Spacing</source>
         <oldsource>S&amp;pacing</oldsource>
-        <translation type="unfinished">&amp;Espaçamento</translation>
+        <translation>&amp;Espaçamento Vertical</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="141"/>
@@ -2371,13 +2371,13 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="additionaltranslations.cpp" line="179"/>
         <source>Subscript - _{}</source>
         <oldsource>_{} - subscript</oldsource>
-        <translation type="unfinished">_{} - subscrito</translation>
+        <translation>Subscrito - _{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="181"/>
         <source>Superscript - ^{}</source>
         <oldsource>^{} - superscript</oldsource>
-        <translation type="unfinished">^{} - sobrescrito</translation>
+        <translation>Sobrescrito - ^{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="183"/>
@@ -2392,152 +2392,152 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="187"/>
         <source>arccos</source>
-        <translation type="unfinished"></translation>
+        <translation>arccos</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="189"/>
         <source>arcsin</source>
-        <translation type="unfinished"></translation>
+        <translation>arcsin</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="191"/>
         <source>arctan</source>
-        <translation type="unfinished"></translation>
+        <translation>arctan</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="193"/>
         <source>cos</source>
-        <translation type="unfinished"></translation>
+        <translation>cos</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="195"/>
         <source>cosh</source>
-        <translation type="unfinished"></translation>
+        <translation>cosh</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="197"/>
         <source>cot</source>
-        <translation type="unfinished"></translation>
+        <translation>cot</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="199"/>
         <source>coth</source>
-        <translation type="unfinished"></translation>
+        <translation>coth</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="201"/>
         <source>csc</source>
-        <translation type="unfinished"></translation>
+        <translation>csc</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="203"/>
         <source>deg</source>
-        <translation type="unfinished"></translation>
+        <translation>deg</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="205"/>
         <source>det</source>
-        <translation type="unfinished"></translation>
+        <translation>det</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="207"/>
         <source>dim</source>
-        <translation type="unfinished"></translation>
+        <translation>dim</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="209"/>
         <source>exp</source>
-        <translation type="unfinished"></translation>
+        <translation>exp</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="211"/>
         <source>gcd</source>
-        <translation type="unfinished"></translation>
+        <translation>gcd</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="213"/>
         <source>hom</source>
-        <translation type="unfinished"></translation>
+        <translation>hom</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="215"/>
         <source>inf</source>
-        <translation type="unfinished"></translation>
+        <translation>inf</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="217"/>
         <source>ker</source>
-        <translation type="unfinished"></translation>
+        <translation>ker</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
         <source>lg</source>
-        <translation type="unfinished"></translation>
+        <translation>lg</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
         <source>lim</source>
-        <translation type="unfinished"></translation>
+        <translation>lim</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="223"/>
         <source>liminf</source>
-        <translation type="unfinished"></translation>
+        <translation>liminf</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="225"/>
         <source>limsup</source>
-        <translation type="unfinished"></translation>
+        <translation>limsup</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="227"/>
         <source>ln</source>
-        <translation type="unfinished"></translation>
+        <translation>ln</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="229"/>
         <source>log</source>
-        <translation type="unfinished"></translation>
+        <translation>log</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="231"/>
         <source>max</source>
-        <translation type="unfinished"></translation>
+        <translation>max</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="233"/>
         <source>min</source>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>sec</source>
-        <translation type="unfinished"></translation>
+        <translation>sec</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="237"/>
         <source>sin</source>
-        <translation type="unfinished"></translation>
+        <translation>sin</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="239"/>
         <source>sinh</source>
-        <translation type="unfinished"></translation>
+        <translation>sinh</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="241"/>
         <source>sup</source>
-        <translation type="unfinished"></translation>
+        <translation>sup</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="243"/>
         <source>tan</source>
-        <translation type="unfinished"></translation>
+        <translation>tan</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="245"/>
         <source>tanh</source>
-        <translation type="unfinished"></translation>
+        <translation>tanh</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="247"/>
@@ -2547,77 +2547,77 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="249"/>
         <source>Roman - \mathrm{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Romano - \mathrm{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="251"/>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Itálico - \mathit{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="253"/>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Negrito - \mathbf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="255"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem serifa - \mathsf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="257"/>
         <source>Courier - \mathtt{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Mono espaçado - \mathtt{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="259"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Caligráfico - \mathcal{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="261"/>
         <source>Blackboard Bold - \mathbb{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Blackboard Bold - \mathbb{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="263"/>
         <source>Fraktur - \mathfrak{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Fraktur - \mathfrak{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="269"/>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Negativo</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="271"/>
         <source>Thin</source>
-        <translation type="unfinished"></translation>
+        <translation>Menor</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="273"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Médio</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="275"/>
         <source>Thick</source>
-        <translation type="unfinished"></translation>
+        <translation>Maior</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="277"/>
         <source>Interword</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre Palavras</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="279"/>
         <source>One quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Um quad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="281"/>
         <source>Two quads</source>
-        <translation type="unfinished"></translation>
+        <translation>Dois Quads</translation>
     </message>
     <message>
         <source>\mathrm{} [selection]</source>
@@ -2792,7 +2792,7 @@ Deseja removê-las?</translation>
     <message>
         <location filename="configmanager.cpp" line="1999"/>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;desconhecido&gt;</translation>
+        <translation>&lt;desconhecido&gt;</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2088"/>
@@ -3104,14 +3104,14 @@ Você deseja desfazer as alterações?</translation>
         <location filename="insertgraphics.cpp" line="283"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation>Falha ao analisar código de inclusão de gráficos:
+        <translation>Falha ao analisar código de inclusão de figuras:
 Faltando opções para \includegraphics.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="88"/>
         <source>Graphics options</source>
         <oldsource>Size / Include Options</oldsource>
-        <translation>Opções para gráficos</translation>
+        <translation>Opções para figuras</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="104"/>
@@ -3151,12 +3151,12 @@ Faltando opções para \includegraphics.</translation>
     <message>
         <location filename="insertgraphics.ui" line="235"/>
         <source>Below graphic</source>
-        <translation>Abaixo do gráfico</translation>
+        <translation>Abaixo da figura</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="262"/>
         <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Legenda para ser exibida próximo a figura</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="269"/>
@@ -3199,22 +3199,22 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
     <message>
         <location filename="insertgraphics.ui" line="337"/>
         <source>Override internal layout parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar parâmetros internos</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="365"/>
         <source>Caption for display in the list of tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Legenda para ser exibida na lista de figuras</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="372"/>
         <source>  Short</source>
-        <translation type="unfinished"></translation>
+        <translation>  Curta</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="379"/>
         <source>  Long</source>
-        <translation type="unfinished"></translation>
+        <translation>  Longa</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="406"/>
@@ -3240,7 +3240,7 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
         <location filename="insertgraphics.cpp" line="69"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
-        <translation>Inserir Gráficos</translation>
+        <translation>Inserir Figuras</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="73"/>
@@ -3253,7 +3253,15 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
 [!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferências para o posicionamento da figura
+
+[t] Topo: No topo da página
+[b] Base: Na base da página
+[p] Página: Em uma página separada com figuras
+[h] Aqui: Nesta posição do texto
+[!] Ignorar os parâmetros internos que o LaTeX utiliza para determinar o &apos;bom&apos; posicionamento para os objetos flutuantes.
+
+Nota: Estas preferências de posicionamento são apenas sugestões. Se a disposição resultante não for satisfatória o LaTeX pode ignorá-las.</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="243"/>
@@ -3273,7 +3281,8 @@ O assistente não suporta ambientes</translation>
         <location filename="insertgraphics.cpp" line="269"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao analisar código para inclusão de figuras:
+Comando \caption inválido.</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="293"/>
@@ -6156,27 +6165,27 @@ Você confia neste script?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="267"/>
         <source>Find next</source>
-        <translation type="unfinished">Localizar próximo</translation>
+        <translation>Localizar próximo</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="268"/>
         <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Localizar anterior</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="271"/>
         <source>Replace and find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir e localizar o próximo</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="272"/>
         <source>Replace and find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir e localizar o anterior</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="275"/>
         <source>Find:</source>
-        <translation type="unfinished">Localizar:</translation>
+        <translation>Localizar:</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="279"/>
@@ -6206,7 +6215,7 @@ Você confia neste script?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="289"/>
         <source>Replace:</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir:</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="290"/>
@@ -6501,12 +6510,12 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="syntaxcheck.cpp" line="341"/>
         <source>closing environment which has not been opened</source>
-        <translation type="unfinished"></translation>
+        <translation>fechando ambiente que não foi aberto</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="341"/>
         <source>environment not closed</source>
-        <translation type="unfinished"></translation>
+        <translation>ambiente não fechado</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="342"/>
@@ -7344,7 +7353,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="815"/>
         <source>Align Windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Alinhar Janelas</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6543"/>
@@ -7622,7 +7631,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="755"/>
         <source>Insert &amp;Graphic...</source>
-        <translation>Inserir &amp;Gráfico...</translation>
+        <translation>Inserir &amp;Figura...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="701"/>
@@ -7658,7 +7667,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="254"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos PDF</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="686"/>
