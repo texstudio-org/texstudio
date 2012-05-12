@@ -226,7 +226,7 @@
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation>Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;</translation>
+        <translation>Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Command %1 not defined</source>
@@ -246,11 +246,11 @@
     </message>
     <message>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde ein dde:// Kommando mit zwei Schrästrichen verwendet, dies ist überholt. Es muss nun mit drei Schrägstrichen verwendet werden dde:///.</translation>
     </message>
     <message>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde txs:///Kommando[... or txs:///Kommando{... verwendet, aber es werden nur Kommandos der Form  txs:///Kommando/[... or txs:///Kommando/{... mit einem extra Schrägstrich nach &quot;Kommando&quot; unstrüzt, um die Syntzax sauberer zu gestalten.</translation>
     </message>
     <message>
         <source>compile &amp; view</source>
@@ -1265,7 +1265,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation>Relative Schriftgröße der Reiter</translation>
+        <translation>Relative Schriftgröße der Reiter:</translation>
     </message>
     <message>
         <source>Diff</source>
@@ -1321,7 +1321,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviere Cache für dargestellte Zeilen</translation>
     </message>
     <message>
         <source>Inline checking:</source>
@@ -1405,19 +1405,19 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Special rules 2:</source>
-        <translation type="unfinished"></translation>
+        <translation>Speziele Regeln 2:</translation>
     </message>
     <message>
         <source>Special rules 1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Speziele Regeln 1:</translation>
     </message>
     <message>
         <source>Special rules 3:</source>
-        <translation type="unfinished"></translation>
+        <translation>Speziele Regeln 3:</translation>
     </message>
     <message>
         <source>Special rules 4:</source>
-        <translation type="unfinished"></translation>
+        <translation>Speziele Regeln 4:</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
@@ -1491,11 +1491,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Usercommands</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerbefehle</translation>
     </message>
     <message>
         <source>Menus</source>
-        <translation type="unfinished">Menüs</translation>
+        <translation>Menüs</translation>
     </message>
     <message>
         <source>Meta Build</source>
@@ -1515,7 +1515,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Build Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzungsoptionen</translation>
     </message>
     <message>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
@@ -1531,11 +1531,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Times to repeat compilation if requested:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Anzahl, die ein Kommando wiederholt wird, falls es notwendig ist:</translation>
     </message>
     <message>
         <source>Commands with repeated compilation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kommandos, die eventuell mehrfach ausgeführt werden müssen:</translation>
     </message>
     <message>
         <source>Line Spacing</source>
@@ -1992,11 +1992,11 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Italics - \textit</source>
-        <translation type="unfinished"></translation>
+        <translation>Kursiv - \textit</translation>
     </message>
     <message>
         <source>Slanted - \textsl</source>
-        <translation type="unfinished"></translation>
+        <translation>Geneigt - \textsl</translation>
     </message>
     <message>
         <source>Boldface - \textbf</source>
@@ -2004,19 +2004,19 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Typewriter - \texttt</source>
-        <translation type="unfinished"></translation>
+        <translation>Typewriter - \texttt</translation>
     </message>
     <message>
         <source>Small Caps - \textsc</source>
-        <translation type="unfinished"></translation>
+        <translation>Small Caps - \textsc</translation>
     </message>
     <message>
         <source>Sans Serif - \textsf</source>
-        <translation type="unfinished"></translation>
+        <translation>Serifenlos - \textsf</translation>
     </message>
     <message>
         <source>Underline - \underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterstreichen - \underline</translation>
     </message>
     <message>
         <source>&amp;Vertical Spacing</source>
@@ -2024,11 +2024,11 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Subscript - _{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiefgestellt - _{}</translation>
     </message>
     <message>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Hochgestellt - ^{}</translation>
     </message>
     <message>
         <source>arccos</source>
@@ -2156,7 +2156,7 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Kursiv - \mathit</translation>
     </message>
     <message>
         <source>Bold - \mathbf{}</source>
@@ -2164,7 +2164,7 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Serifenlos - \mathsf</translation>
     </message>
     <message>
         <source>Courier - \mathtt{}</source>
@@ -2552,19 +2552,19 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"></translation>
+        <translation>Referenz, die für Querverweise verwendet wird; z.B. \ref{thisLabel}</translation>
     </message>
     <message>
         <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Überschrift für das Bild</translation>
     </message>
     <message>
         <source>Override internal layout parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Überschreibe interne Layoutparameter</translation>
     </message>
     <message>
         <source>Caption for display in the list of tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Überschrift für die Liste der Tabellen</translation>
     </message>
     <message>
         <source>  Short</source>
@@ -2584,12 +2584,21 @@ Fehlende Parameter für \includegraphics.</translation>
 [!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Platzierungsvorgaben für das Bild
+
+[t] Top: Seitenanfang
+[b] Bottom: Seitenende
+[p] Page: Extraseite nur für Bilder
+[h] Here: an dieser Position
+[!]: Erzwinge Position.
+
+Achtung: Platzierungsvorgaben sind nur Vorschläge. LaTeX wählt denjenigen, der die beste Ansicht ergibt.</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Bildereinfügecode nicht interpretieren:
+Fehlender \caption Kommando.</translation>
     </message>
 </context>
 <context>
@@ -2750,7 +2759,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein oder mehrere Ids enden mit Leerzeichen. Nachfolgende Leerzeichen werden von BibTeX nicht ignoriert.</translation>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
@@ -2808,7 +2817,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Zeichenkodierung:</translation>
+        <translation>Zeichenkodierung</translation>
     </message>
     <message>
         <source>AMS Packages</source>
@@ -3449,7 +3458,7 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <name>PDFMovie</name>
     <message>
         <source>File %1 does not exists</source>
-        <translation>Datei %1 nicht gefunden.</translation>
+        <translation>Datei %1 nicht gefunden</translation>
     </message>
     <message>
         <source>Volume:</source>
@@ -3613,7 +3622,7 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <name>QCodeCompletionEngine</name>
     <message>
         <source>&amp;Trigger completion</source>
-        <translation>Vervollständigungsauslöser</translation>
+        <translation>&amp;Vervollständigungsauslöser</translation>
     </message>
 </context>
 <context>
@@ -5827,7 +5836,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;Neu:</translation>
+        <translation>&amp;Neu</translation>
     </message>
     <message>
         <source>New from &amp;template...</source>
@@ -6569,7 +6578,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Long range word repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Wortwiederholung über längeren Abstand</translation>
     </message>
     <message>
         <source>Do not warn again.</source>
@@ -6628,11 +6637,11 @@ Do you trust this document?</source>
     </message>
     <message>
         <source>Reached beginning of text.</source>
-        <translation>Textanafang erreicht</translation>
+        <translation>Textanafang erreicht.</translation>
     </message>
     <message>
         <source>Reached end of text.</source>
-        <translation>Textende erreicht</translation>
+        <translation>Textende erreicht.</translation>
     </message>
     <message>
         <source>TXS Test Results</source>
@@ -6668,7 +6677,7 @@ Do you want to keep it running? This may cause data corruption.</source>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio ist abgestürzt wegen %1 in Thread %2. Möchten Sie es weiterlaufen lassen ? Dies könnte Daten zerstören.</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -6680,7 +6689,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beenden hat nicht funktioniert.</translation>
     </message>
     <message>
         <source>PDF files</source>
