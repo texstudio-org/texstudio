@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="zh_CN">
 <context>
     <name>ConfigDialog</name>
     <message>
@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>Diff</source>
-        <translation>修改</translation>
+        <translation>比较</translation>
     </message>
     <message>
         <source>Font</source>
@@ -2603,7 +2603,8 @@ Press &quot;Ignore&quot; to ignore this warning.
         <translation>文档 %1 被其他程序修改. 
 点击&apos;保存&apos;覆盖文档.
 点击&apos;重设&apos;重新载入文档.
-点击&apos;忽略&apos;忽略此警告.</translation>
+点击&apos;忽略&apos;忽略此警告.
+</translation>
     </message>
     <message>
         <source>Move cursor right (1 character)</source>
@@ -3078,7 +3079,8 @@ Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation>文档 %1 被其他程序修改
 点击&apos;确定&apos;显示不同.
-点击&apos;取消&apos;关闭对话框.</translation>
+点击&apos;取消&apos;关闭对话框.
+</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
@@ -3921,7 +3923,8 @@ Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation>%1 和源冲突.
 点击&apos;确定&apos;显示不同.
-点击&apos;取消&apos;关闭对话框.</translation>
+点击&apos;取消&apos;关闭对话框.
+</translation>
     </message>
     <message>
         <source>Quick Start</source>
