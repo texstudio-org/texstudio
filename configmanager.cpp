@@ -604,7 +604,11 @@ QSettings* ConfigManager::readSettings() {
 	}
 	
 	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
-		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat");
+		QStringList fallBackPaths;
+#ifdef Q_WS_X11
+		fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes" ;
+#endif
+		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat", true, QStringList(), fallBackPaths);
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_US_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_GB_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
