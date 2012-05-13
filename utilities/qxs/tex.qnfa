@@ -93,8 +93,8 @@ environments in smallUsefulFunctions.cpp)
 	<!-- ========================= MATH MODE ====================== -->
 	
 	<context id="mathmode$" format="numbers" transparency="true">
-		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >\$</start>
-		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" >\$</stop>
+		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
 
 		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
@@ -119,8 +119,8 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
-		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</start>
-		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</stop>
+		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\(</start>
+		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\)</stop>
 
 		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
@@ -146,8 +146,8 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 	
 	<context id="mathmodeDisplay" format="numbers" transparency="true">
-		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" >\\\[</start>
-		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" >\\\]</stop>
+		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\[</start>
+		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\]</stop>
 
 		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
