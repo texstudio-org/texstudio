@@ -127,6 +127,15 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#008000</foreground>
     </format>
+    <format id="math-delimiter" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#8EC88E</foreground>
+    </format>
     <format id="text" >
         <bold>false</bold>
         <italic>false</italic>
