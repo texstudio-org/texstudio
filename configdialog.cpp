@@ -49,7 +49,10 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
 void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
 	if ( (e->modifiers()!=0 && e->text() != "+" && e->key() != Qt::Key_Alt && e->key() != Qt::Key_Shift && e->key() != Qt::Key_Control && e->key() != Qt::Key_AltGr && e->key() != Qt::Key_Meta && e->key() != 0 && e->key() != Qt::Key_Super_L && e->key() != Qt::Key_Super_R)
 		|| (e->key() >= Qt::Key_F1 &&  e->key() <= Qt::Key_F35)) {
-		QString newShortCut = QKeySequence(e->modifiers() | e->key()).toString(QKeySequence::NativeText);
+		// FIXME: Qt currently does not handle KeypadModifier correctly.
+		// as a workaround we just take it away, so there is no difference between keypad and non-keypad keys,
+		// but at least keypad keys don't produce rubbish. See also sf.net bug item 3525266
+		QString newShortCut = QKeySequence((e->modifiers() | e->key()) & ~Qt::KeypadModifier).toString(QKeySequence::NativeText);
 		int index = findText(newShortCut);
 		if (index != -1) setCurrentIndex(index);
 		else setEditText(newShortCut);
