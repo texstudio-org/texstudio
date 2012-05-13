@@ -3568,11 +3568,17 @@ void QDocumentLineHandle::draw(	QPainter *p,
 						if ( showTabs )
 						{
 							// draw tab marker
+							p->save();
+							p->setPen(Qt::lightGray);
+							/* old: manually drawn full line arrow
 							p->translate(xpos, ypos + QDocumentPrivate::m_lineHeight/2);
 							p->drawLine(QPoint(2,0),QPoint(xoff-2,0));
 							p->drawLine(QPoint(xoff-3,-1),QPoint(xoff-3,1));
 							if (QDocumentPrivate::m_lineHeight > 12) p->drawLine(QPoint(xoff-4,-2),QPoint(xoff-4,2));
-							p->translate(-xpos,-ypos - QDocumentPrivate::m_lineHeight/2);
+							p->translate(-xpos,-ypos - QDocumentPrivate::m_lineHeight/2);#
+							*/
+							p->drawText(QPoint(xpos + (xoff-currentSpaceWidth)/2, baseline), QString((ushort)0x2192));
+							p->restore();
 						}
 
 						xpos += xoff;
@@ -3594,7 +3600,13 @@ void QDocumentLineHandle::draw(	QPainter *p,
 							)
 						{
 							// draw space marker
+							p->save();
+							p->setPen(Qt::lightGray);
+							/* old: manually drawn dot
 							p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
+							*/
+							p->drawText(QPoint(xpos, baseline), QString((ushort)0xb7));
+							p->restore();
 						}
 
 						xpos += currentSpaceWidth;
