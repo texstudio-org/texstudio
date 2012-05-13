@@ -26,6 +26,14 @@ bool ScriptObject::confirm(const QString& message){ return txsConfirm(message); 
 bool ScriptObject::confirmWarning(const QString& message){ return txsConfirmWarning(message); }
 void ScriptObject::debug(const QString& message){ qDebug() << message; }
 
+#ifndef QT_NO_DEBUG
+void ScriptObject::crash_assert(){Q_ASSERT(false);}
+void ScriptObject::crash_sigsegv(){char *c = 0; *c = 'A';}
+int global0 = 0;
+void ScriptObject::crash_sigfpe(){int x = 1 / global0;}
+void ScriptObject::crash_stack(){ int temp = global0; crash_stack(); }
+#endif
+
 ProcessX* ScriptObject::system(const QString& commandline){
 	if (!buildManager || !needWritePrivileges("system",commandline))
 		return 0;

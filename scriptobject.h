@@ -52,6 +52,13 @@ public slots:
 	bool confirmWarning(const QString& message);
 	void debug(const QString& message);
 	
+#ifndef QT_NO_DEBUG
+	void crash_assert();
+	void crash_sigsegv();
+	void crash_sigfpe();
+	void crash_stack();
+#endif
+	
 	bool hasReadPrivileges();
 	bool hasWritePrivileges();
 	
