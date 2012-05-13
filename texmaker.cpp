@@ -6531,7 +6531,8 @@ void Texmaker::recoverFromCrash(){
 			if (t &&  t == killAtCrashedThread) {
 				name += " forced kill in %1";
 				name.arg((long int)t, sizeof(long int)*2, 16,QChar('0'));
-				txs_assert(qPrintable(name), 0, 0);
+				print_backtrace(name);
+				exit(1);
 			}
 		};
 		ThreadBreaker::forceTerminate();
@@ -6553,7 +6554,7 @@ void Texmaker::recoverFromCrash(){
 	while (mb.isVisible())
 		QApplication::processEvents(QEventLoop::AllEvents);
 	if (mb.result() == QMessageBox::RejectRole) {
-		txs_assert(qPrintable(name), 0, 0);
+		print_backtrace(name);
 		exit(1);
 	}
 
@@ -6562,7 +6563,7 @@ void Texmaker::recoverFromCrash(){
 		QApplication::processEvents(QEventLoop::AllEvents);
 	}
 	name = "Normal close after " + name;
-	txs_assert(qPrintable(name), 0, 0);
+	print_backtrace(name);
 	exit(0);
 }
 
