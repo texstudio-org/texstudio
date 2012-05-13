@@ -287,7 +287,7 @@
 	<format id="txs-test-fail" >
 		<foreground>#C00000</foreground>
 	</format>
-	<format id="txs-test-skip" >
+	<format id="txs-test-warn" >
         <foreground>#EA8800</foreground>
 	</format>
 	<format id="txs-test-qdebug" >
