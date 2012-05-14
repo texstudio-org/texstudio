@@ -6553,35 +6553,40 @@ void Texmaker::recoverFromCrash(){
 	}
 		
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
-	QMessageBox mb; //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk
-	mb.setWindowTitle(tr("TeXstudio Emergency"));
+	QMessageBox * mb = new QMessageBox(); //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or the longjmp below could cause a crash
+	mb->setWindowTitle(tr("TeXstudio Emergency"));
 	if (!wasLoop) {
-		mb.setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
-		mb.setDefaultButton(mb.addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
-		mb.addButton(tr("No, kill the programm"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
+		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
+		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
+		mb->addButton(tr("No, kill the programm"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
 	} else {
-		mb.setText(tr( "TeXstudio has been paused due to a possible endless loop.\nDo you want to keep the program running? This may cause data corruption."));
-		mb.setDefaultButton(mb.addButton(tr("Yes, stop the loop and try to recover."), QMessageBox::AcceptRole));
-		mb.addButton(tr("Yes, continue the loop."), QMessageBox::RejectRole);
-		mb.addButton(tr("No, kill the programm"), QMessageBox::DestructiveRole);
+		mb->setText(tr( "TeXstudio has been paused due to a possible endless loop.\nDo you want to keep the program running? This may cause data corruption."));
+		mb->setDefaultButton(mb->addButton(tr("Yes, stop the loop and try to recover."), QMessageBox::AcceptRole));
+		mb->addButton(tr("Yes, continue the loop."), QMessageBox::RejectRole);
+		mb->addButton(tr("No, kill the programm"), QMessageBox::DestructiveRole);
 	}
 	
 
 	//show the dialog (non modal, because on Windows showing the dialog modal here, permanently disables all other windows)
-	mb.setWindowFlags(Qt::WindowStaysOnTopHint);
-	mb.setWindowModality(Qt::NonModal);
-	mb.setModal(false);
-	mb.show();
-	while (mb.isVisible())
+	mb->setWindowFlags(Qt::WindowStaysOnTopHint);
+	mb->setWindowModality(Qt::NonModal);
+	mb->setModal(false);
+	mb->show();
+	QApplication::processEvents(QEventLoop::AllEvents);
+	mb->setFocus(); //without it, raise doesn't work. If it is in the loop, the buttons can't be clicked on (windows)
+	while (mb->isVisible()) {
 		QApplication::processEvents(QEventLoop::AllEvents);
-	fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb.result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
-	if (mb.result() == QMessageBox::DestructiveRole || (!wasLoop && mb.result() == QMessageBox::RejectRole)) {
+		mb->raise(); //sometimes the box is not visible behind the main window (windows)
+	}
+	//fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb->result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
+	if (mb->result() == QMessageBox::DestructiveRole || (!wasLoop && mb->result() == QMessageBox::RejectRole)) {
 		print_backtrace(name);
 		exit(1);
 	}
-	if (wasLoop && mb.result() == QMessageBox::RejectRole) 
+	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
+		delete mb;
 		longjmp(tempContext, 1);
-
+	}
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
 	}
