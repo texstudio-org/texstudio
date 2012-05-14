@@ -53,17 +53,8 @@ struct SimulatedCPU {
 		ret();
 	}
 	
-	template<typename T> void set_all(const T& pc, const T& frame, const T& stack){
-		this->pc = (char*)(pc);
-		this->frame = (char*)(frame);
-		this->stack = (char*)(stack);
-	}
-	template<typename T> void get_all(T& pc, T& frame, T& stack){
-		pc = (T)(this->pc);
-		frame = (T)(this->frame);
-		stack = (T)(this->stack);
-	}
-	
+	void set_all(void* context);
+	void get_all(void* context);
 
 	bool stackWalk(){
 		leave();
@@ -349,7 +340,7 @@ geteip:
 }
 
 void print_backtrace(const char* title, const char *assertion, const char *file, int line){
-	print_message(title, message, file, line);
+	print_message(title, assertion, file, line,"Prepare to print backtrace:\n");
 	QString bt = getBacktrace();
 	static int count = 1;
 	QFile tf(QDir::tempPath() + QString("/texstudio_backtrace%1.txt").arg(count++));
@@ -363,9 +354,6 @@ void print_backtrace(const char* title, const char *assertion, const char *file,
 }
 
 
-bool recoverMainThreadFromOutside(){
-	
-}
 
 #else //unknown os/mac
 void print_backtrace(const char* title, const char * assertion, const char * file, int line){
@@ -416,13 +404,13 @@ SAFE_INT lastErrorWasLoop = 0;
 #include "sys/ucontext.h"
 #define USE_SIGNAL_HANDLER
 #ifdef CPU_IS_64
-#define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RIP]
-#define STACK_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RSP]
-#define FRAME_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_RBP]
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RIP]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RSP]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RBP]
 #else
-#define PC_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_EIP]
-#define STACK_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_ESP]
-#define FRAME_FROM_UCONTEXT(context) context->uc_mcontext.gregs[REG_EBP]
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EIP]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_ESP]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EBP]
 #endif
 #endif
 
@@ -451,6 +439,26 @@ volatile sig_atomic_t lastCrashSignal = 0;
 #define SIGMYHANG SIGRTMIN + 4
 #define SIGMYSTACKSEGV 123
 
+SimulatedCPU::set_all(void *ccontext) {
+	ucontext_t* context = static_cast<ucontext_t*>(ccontext);
+	this->pc = (char*)(PC_FROM_UCONTEXT(context));
+	this->frame = (char*)(FRAME_FROM_UCONTEXT(context));
+	this->stack = (char*)(STACK_FROM_UCONTEXT(context));
+}
+SimulatedCPU::get_all(void *ccontext) {
+	ucontext_t* context = static_cast<ucontext_t*>(ccontext);
+	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
+	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
+	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
+}
+
+extern int _etext;
+
+bool isAddressInTeXstudio(void * address){
+	return address < &_etext;
+}
+
+
 inline quintptr ptrdistance(void* a, void* b){
 	if (a < b) return (quintptr)(b) - (quintptr)(a);
 	else return (quintptr)(a) - (quintptr)(b);
@@ -468,15 +476,12 @@ const char * signalIdToName(int id){
 	}
 }
 
-extern int _etext;
-
 void signalHandler(int type, siginfo_t * si, void* ccontext){
 	lastErrorWasAssert = 0;
 	lastErrorWasLoop = 0;
 	SimulatedCPU cpu;
 	if (ccontext) {
-		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
-		cpu.set_all(PC_FROM_UCONTEXT(context), FRAME_FROM_UCONTEXT(context), STACK_FROM_UCONTEXT(context));
+		cpu.set_all(ccontext);
 
 		char *addr = (char*)(si->si_addr);
 		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
@@ -488,7 +493,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 	}
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
 		if (type == SIGMYHANG) {
-			if (cpu.pc > (char*)(&_etext)) return; //don't mess with library functions
+			if (!isAddressInTeXstudio(cpu.pc)) return; //don't mess with library functions
 			lastErrorWasLoop = 1;
 		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();	
 		
@@ -496,8 +501,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 
 		cpu.call((char*)(&recover));
 		
-		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
-		cpu.get_all(PC_FROM_UCONTEXT(context), FRAME_FROM_UCONTEXT(context), STACK_FROM_UCONTEXT(context));		              
+		cpu.get_all(ccontext);
 	}
 }
 
@@ -568,8 +572,8 @@ bool recoverMainThreadFromOutside(){
 	X(EXCEPTION_IN_PAGE_ERROR) \
 	X(EXCEPTION_INT_DIVIDE_BY_ZERO) \
 	X(EXCEPTION_INT_OVERFLOW) \
-	X(EXCEPTION_INVALID_DISPOSITION)
-//EXCEPTION_FLT_STACK_CHECK, EXCEPTION_STACK_OVERFLOW
+	X(EXCEPTION_INVALID_DISPOSITION) \
+	X(EXCEPTION_FLT_STACK_CHECK)  X(EXCEPTION_STACK_OVERFLOW)
 //EXCEPTION_ILLEGAL_INSTRUCTION
 //EXCEPTION_NONCONTINUABLE_EXCEPTION
 //EXCEPTION_PRIV_INSTRUCTION
@@ -582,6 +586,19 @@ bool recoverMainThreadFromOutside(){
 #define FRAME_FROM_UCONTEXT(context) (context)->Ebp
 #define STACK_FROM_UCONTEXT(context) (context)->Esp
 #endif
+
+void SimulatedCPU::set_all(void *ccontext) {
+	PCONTEXT context = static_cast<PCONTEXT>(ccontext);
+	this->pc = (char*)PC_FROM_UCONTEXT(context);
+	this->frame = (char*)FRAME_FROM_UCONTEXT(context);
+	this->stack = (char*)STACK_FROM_UCONTEXT(context);
+}
+void SimulatedCPU::get_all(void *ccontext) {
+	PCONTEXT context = static_cast<PCONTEXT>(ccontext);
+	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
+	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
+	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
+}
 
 const char* exceptionCodeToName(int code){
 	switch (code){
@@ -605,30 +622,97 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 	              if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
 	
 	lastErrorWasAssert = 0;
+	lastErrorWasLoop = 0;
               
-	if (crashHandlerType == 1) {
+  if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE)
+    print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode),"","",0);
+
+
+	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
 		lastExceptionCode = ExceptionInfo->ExceptionRecord->ExceptionCode;
 		
-		lastExceptionAddress = quintptr(PC_FROM_UCONTEXT(ExceptionInfo->ContextRecord));
-		
-		*(void**)(&PC_FROM_UCONTEXT(ExceptionInfo->ContextRecord)) = (void*)(&recover);
+		SimulatedCPU cpu;
+		cpu.set_all(ExceptionInfo->ContextRecord);
+
+		lastExceptionAddress = (quintptr)(cpu.pc);
+		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_FLT_STACK_CHECK)
+			cpu.unwindStack();
+		cpu.call((char*)&recover);
+
+		cpu.get_all(ExceptionInfo->ContextRecord);
+
 		return EXCEPTION_CONTINUE_EXECUTION;
-	} else {
-		txs_assert(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode), "", 0);
-		return EXCEPTION_CONTINUE_SEARCH;
 	}
+
+	return EXCEPTION_CONTINUE_SEARCH;
 }
+
+#include "psapi.h"
+typedef BOOL WINAPI (*GetModuleInformationFunc)(HANDLE hProcess, HMODULE hModule, LPMODULEINFO lpmodinfo, DWORD cb );
+typedef WINBASEAPI HANDLE WINAPI (*OpenThreadFunc)(DWORD,BOOL,DWORD);
+
+
+void * ownBaseAddress = 0;
+unsigned int ownSize = 0x01000000;
+DWORD mainThreadID = 0;
+OpenThreadFunc OpenThreadDyn;
 
 void registerCrashHandler(int mode){
 	crashHandlerType = mode;
 	if (mode >= 0) {
 		SetUnhandledExceptionFilter(&crashHandler);
+
+		OpenThreadDyn = (OpenThreadFunc)(GetProcAddress(GetModuleHandleA("kernel32.dll"), "OpenThread"));
+
+		if (OpenThreadDyn) {
+			mainThreadID = GetCurrentThreadId();
+			MODULEINFO moduleInfo;
+			HMODULE psapi = LoadLibraryA("psapi.dll");
+			GetModuleInformationFunc GetModuleInformation = (GetModuleInformationFunc)(GetProcAddress(psapi, "K32GetModuleInformation"));
+			if (!GetModuleInformation) GetModuleInformation = (GetModuleInformationFunc)(GetProcAddress(psapi, "GetModuleInformation"));
+			if ((*GetModuleInformation)(GetCurrentProcess(), GetModuleHandle(0), &moduleInfo, sizeof(moduleInfo))) {
+				ownBaseAddress = moduleInfo.lpBaseOfDll;
+				ownSize = moduleInfo.SizeOfImage;
+			}
+			fprintf(stderr, "module: %p, s: %i\n",ownBaseAddress,ownSize);
+			Guardian::summon();
+		}
 	}
 }
 
 QString getLastCrashInformationInternal(){
 	return QString::fromLocal8Bit(exceptionCodeToName(lastExceptionCode)) + " at " + QString::number(lastExceptionAddress,16);
 }
+
+
+bool isAddressInTeXstudio(char * address){
+	return address >= ownBaseAddress && address <= ((char*)ownBaseAddress) + ownSize;
+}
+
+
+bool recoverMainThreadFromOutside(){
+	if (!mainThreadID || !OpenThreadDyn) return false;
+	HANDLE mainThread = (*OpenThreadDyn)(THREAD_GET_CONTEXT | THREAD_QUERY_INFORMATION | THREAD_SET_CONTEXT | THREAD_SUSPEND_RESUME, false, mainThreadID);
+	if (!mainThread) return false;
+	bool result = false;
+	SuspendThread(mainThread);
+	CONTEXT c;
+	c.ContextFlags = (CONTEXT_FULL);
+	if (GetThreadContext(mainThread, &c)) {
+		if (isAddressInTeXstudio((char*)(PC_FROM_UCONTEXT(&c)))) {
+			SimulatedCPU cpu;
+			cpu.set_all(&c);
+			cpu.call((char*)&recover);
+			cpu.get_all(&c);
+			result = SetThreadContext(mainThread, &c);
+			if (result) lastErrorWasLoop = true;
+		}
+	}
+	ResumeThread(mainThread);
+	CloseHandle(mainThread);
+	return result;
+}
+
 #endif
 
 
