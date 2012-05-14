@@ -1,5 +1,6 @@
 #include "debughelper.h"
 #include "mostQtHeaders.h"
+#include "smallUsefulFunctions.h"
 #include "QMutex"
 
 #if (defined(x86_64) || defined(__x86_64__))
@@ -360,10 +361,21 @@ void print_backtrace(const char* title, const char *assertion, const char *file,
 	qDebug() << bt;
 	fprintf(stderr, "%s\r\n", qPrintable(bt));
 }
+
+
+bool recoverMainThreadFromOutside(){
+	
+}
+
 #else //unknown os/mac
 void print_backtrace(const char* title, const char * assertion, const char * file, int line){
 	fprintf(stderr, "Unknown OS");
 }
+
+bool recoverMainThreadFromOutside(){
+	fprintf(stderr, "Main thread locks frozen\n");
+}
+
 #endif
 
 void print_backtrace(const QString& message){
@@ -388,6 +400,7 @@ void print_backtrace(const QString& message){
 
 SAFE_INT crashHandlerType = 1;
 SAFE_INT lastErrorWasAssert = 0;
+SAFE_INT lastErrorWasLoop = 0;
 
 #define CRASH_HANDLER_RECOVER 1
 #define CRASH_HANDLER_PRINT_BACKTRACE 2
@@ -435,20 +448,31 @@ SAFE_INT lastErrorWasAssert = 0;
 
 #ifdef USE_SIGNAL_HANDLER
 volatile sig_atomic_t lastCrashSignal = 0;
+#define SIGMYHANG SIGRTMIN + 4
+#define SIGMYSTACKSEGV 123
 
-#define SIGMYSTACKSEGV 64
+inline quintptr ptrdistance(void* a, void* b){
+	if (a < b) return (quintptr)(b) - (quintptr)(a);
+	else return (quintptr)(a) - (quintptr)(b);
+}
 
 const char * signalIdToName(int id){
 	switch (id){
 	case SIGSEGV: return ("SIGSEGV"); 
 	case SIGFPE: return ("SIGFPE"); 
 	case SIGMYSTACKSEGV: return ("SIGSEGV on stack"); 
-	default: return ("SIG???"); 
+	//case SIGMYHANG: return "Endless loop";
+	default: 
+		if (id == SIGMYHANG) return "Endless loop";
+		else return ("SIG???"); 
 	}
 }
 
+extern int _etext;
+
 void signalHandler(int type, siginfo_t * si, void* ccontext){
 	lastErrorWasAssert = 0;
+	lastErrorWasLoop = 0;
 	SimulatedCPU cpu;
 	if (ccontext) {
 		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
@@ -456,18 +480,22 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 
 		char *addr = (char*)(si->si_addr);
 		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
-		quintptr distance = addr < minstack ? minstack - addr : addr - minstack;
-		if (distance < 1024) type = SIGMYSTACKSEGV;
+		if (ptrdistance(addr, minstack) < 1024) type = SIGMYSTACKSEGV;
 	}
 	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE || !ccontext) {
 		print_backtrace(signalIdToName(type),"","",0); 
 		if (!ccontext) return;
 	}
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
+		if (type == SIGMYHANG) {
+			if (cpu.pc > (char*)(&_etext)) return; //don't mess with library functions
+			lastErrorWasLoop = 1;
+		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();	
+		
 		lastCrashSignal = type;
-		if (type == SIGMYSTACKSEGV) cpu.unwindStack();
-		cpu.call((char*)(&recover));
 
+		cpu.call((char*)(&recover));
+		
 		ucontext_t* context = static_cast<ucontext_t*>(ccontext);
 		cpu.get_all(PC_FROM_UCONTEXT(context), FRAME_FROM_UCONTEXT(context), STACK_FROM_UCONTEXT(context));		              
 	}
@@ -475,6 +503,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 
 const int SIGNAL_STACK_SIZE = 256*1024;
 char staticSignalStack[SIGNAL_STACK_SIZE];
+pthread_t mainThreadID;
 
 void registerCrashHandler(int mode){
 	crashHandlerType = mode;
@@ -489,11 +518,30 @@ void registerCrashHandler(int mode){
 		memset(&sa, 0, sizeof(sa)); sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
 		sa.sa_sigaction = &signalHandler; sigaction(SIGSEGV, &sa, 0);
 		sa.sa_sigaction = &signalHandler; sigaction(SIGFPE, &sa, 0);
+		sa.sa_sigaction = &signalHandler; sigaction(SIGMYHANG, &sa, 0);
+		
+		if (!(mode & 4)) {
+			mainThreadID = pthread_self();
+			Guardian::summon();
+		}		
 	}
 }
 
 QString getLastCrashInformationInternal(){
 	return signalIdToName(lastCrashSignal);
+}
+
+
+bool recoverMainThreadFromOutside(){
+	//fprintf(stderr, "%i -> %lx",SIGMYHANG, mainThreadID);
+	lastErrorWasLoop = 0;
+	lastCrashSignal = 0;
+	if (pthread_kill(mainThreadID, SIGMYHANG) != 0) return false;
+	
+	int loopend = 1000000;
+	while ( !lastCrashSignal && (--loopend >= 0) ) ;
+	__sync_synchronize(); //memory barrier (does it work?)  (better have a barrier here, than a lock in the signal handler)
+	return lastErrorWasLoop;
 }
 
 #endif
@@ -607,9 +655,61 @@ void txs_assert(const char *assertion, const char *file, int line){
 	exit(1);
 }
 
-QString getLastCrashInformation(){
+QString getLastCrashInformation(bool& wasLoop){
+	wasLoop = lastErrorWasLoop;
 	if (lastErrorWasAssert) return lastAssert;
 	else return getLastCrashInformationInternal();
 }
+
+
+
+
+
+
+
+
+//==================GUARDIAN==================
+
+SafeThread * guardian = 0;
+bool running = true;
+volatile int mainEventLoopTicks = 0;
+
+void Guardian::run(){
+	int lastTick = mainEventLoopTicks;
+	int errors = 0;
+	while (running) {
+		sleep(4);
+		if (lastTick == mainEventLoopTicks) errors++;
+		else errors = 0;
+		lastTick = mainEventLoopTicks;
+		if (errors >= 4) {
+			fprintf(stderr, "Main thread in trouble\n");
+			int repetitions = 0;
+			while (lastTick == mainEventLoopTicks && !recoverMainThreadFromOutside()) {
+				msleep(50);
+				repetitions ++;
+				if (repetitions > 50) break;  //give up for now
+			}
+			//if (repetitions < 50) return; the crash handler can't be debugged, if this thread continues calling it
+		}
+	}
+	guardian = 0;
+}
+
+void Guardian::summon(){
+	if (guardian) return;
+	guardian = new Guardian();
+	guardian->start();
+}
+
+void Guardian::calm(){
+	mainEventLoopTicks++;
+}
+
+void Guardian::shutdown(){
+	running = false;
+}
+
+
 
 

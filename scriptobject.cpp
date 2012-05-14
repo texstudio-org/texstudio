@@ -30,8 +30,9 @@ void ScriptObject::debug(const QString& message){ qDebug() << message; }
 void ScriptObject::crash_assert(){Q_ASSERT(false);}
 void ScriptObject::crash_sigsegv(){char *c = 0; *c = 'A';}
 int global0 = 0;
-void ScriptObject::crash_sigfpe(){int x = 1 / global0;}
-void ScriptObject::crash_stack(){ int temp = global0; crash_stack(); }
+void ScriptObject::crash_sigfpe(){int x = 1 / global0;  Q_UNUSED(x);}
+void ScriptObject::crash_stack(){ int temp = global0; crash_stack(); Q_UNUSED(temp);}
+void ScriptObject::crash_loop(){ while (1) {void * x = malloc(16); free(x);}; }
 #endif
 
 ProcessX* ScriptObject::system(const QString& commandline){
