@@ -572,7 +572,7 @@ void ConfigDialog::hideShowAdvancedOptions(QWidget* w, bool on){
                     CommandMapping tempCommands=mBuildManager->getAllCommands();
                     CommandInfo cmd=tempCommands.value(w->objectName());
                     QString text=cb->currentText();
-                    int i=cmd.simpleDescriptionList.indexOf(text);
+                    int i=cb->findText(text);
                     if(i>=0)
                         text=cmd.metaSuggestionList.value(i,tr("<unknown>"));
                     cb->clear();
@@ -584,11 +584,14 @@ void ConfigDialog::hideShowAdvancedOptions(QWidget* w, bool on){
                     CommandInfo cmd=tempCommands.value(w->objectName());
                     QString text=cb->currentText();
                     int i=cmd.metaSuggestionList.indexOf(text);
-                    if(i>=0)
-                        text=cmd.simpleDescriptionList.value(i,tr("<unknown>"));
+                    //if(i>=0)
+                     //   text=cmd.simpleDescriptionList.value(i,tr("<unknown>"));
                     cb->clear();
                     if(i>=0){
-                        cb->addItems(cmd.simpleDescriptionList);
+                        foreach(QString elem,cmd.simpleDescriptionList){
+                            elem=qApp->translate("BuildManager",qPrintable(elem));
+                            cb->addItem(elem);
+                        }
                         cb->setCurrentIndex(i);
                         cb->setEditable(false);
                     }else{

@@ -1088,23 +1088,6 @@ void BuildManager::killCurrentProcess(){
 	processWaitedFor = 0;
 }
 
-void BuildManager::updateCommandNames(){
-    QHash<QString, CommandInfo>::iterator i = commands.begin();
-    while (i != commands.end()) {
-        QString dn=i.value().displayName;
-        dn=qApp->translate("BuildManager",qPrintable(dn));
-        i.value().displayName=dn;
-        QStringList sdl=i.value().simpleDescriptionList;
-        for (int j = 0; j<sdl.length(); ++j){
-            QString helper=qApp->translate("BuildManager",qPrintable(sdl.at(j)));
-            sdl[j]=helper;
-        }
-        i.value().simpleDescriptionList=sdl;
-        ++i;
-    }
-}
-
-
 QString BuildManager::createTemporaryFileName(){
 	QTemporaryFile *temp=new QTemporaryFile(QDir::tempPath ()+"/texstudio_XXXXXX.tex");
 	temp->open();
