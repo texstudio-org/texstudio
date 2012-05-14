@@ -6521,13 +6521,7 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 QThread* killAtCrashedThread = 0;
 QThread* lastCrashedThread = 0;
 
-#include "setjmp.h"
-
-jmp_buf tempContext;
-
 void recover(){
-	if (setjmp(tempContext)) 
-		return;
 	Texmaker::recoverFromCrash();
 }
 
@@ -6553,7 +6547,7 @@ void Texmaker::recoverFromCrash(){
 	}
 		
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
-	QMessageBox * mb = new QMessageBox(); //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or the longjmp below could cause a crash
+	QMessageBox * mb = new QMessageBox(); //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or continuing a paused loop can crash
 	mb->setWindowTitle(tr("TeXstudio Emergency"));
 	if (!wasLoop) {
 		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
@@ -6585,7 +6579,8 @@ void Texmaker::recoverFromCrash(){
 	}
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
 		delete mb;
-		longjmp(tempContext, 1);
+		Guardian::continueEndlessLoop();
+		while (1) ; 
 	}
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
