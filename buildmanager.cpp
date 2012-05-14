@@ -156,11 +156,11 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("bibtex",      "bibtex",       "BibTeX",       ON_WIN("%") ON_NIX("%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
 	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux")); 
 	registerCommand("biber",       "biber",        "biber" ,       "%"); //todo: correct parameter?
-	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
-	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
 	registerCommand("texindy",     "texindy",      "Texindy", "");
-	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
+    registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
+    registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
+    registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	QStringList ltxmk_cmds;
 #ifdef Q_WS_WIN
