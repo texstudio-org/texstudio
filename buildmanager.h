@@ -135,9 +135,6 @@ public:
 	bool waitingForProcess() const;
 	void killCurrentProcess(); 
 
-    void updateCommandNames();
-	
-	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
 	void preview(const QString &preamble, const PreviewSource& source, const QString& masterFile, QTextCodec *outputCodec=0);
