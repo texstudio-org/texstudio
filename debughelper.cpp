@@ -72,7 +72,9 @@ struct SimulatedCPU {
 		while (frames > 0) { this->leave(); frames--; }
 	}	
 };
-
+#ifdef CPU_CONTEXT_TYPE
+#undef CPU_CONTEXT_TYPE
+#endif
 
 //===========================STACK TRACE PRINTING=========================
 void print_message(const char* title, const char *assertion, const char *file, int line, const char* end){
@@ -230,6 +232,8 @@ typedef BOOL WINAPI (*SymGetLineFromAddr64Func)(HANDLE, DWORD64, PDWORD, PIMAGEH
 
 QMutex backtraceMutex;
 
+
+#define CPU_CONTEXT_TYPE CONTEXT
 #define LOAD_FUNCTION(name, ansiname) static name##Func name = (name##Func)GetProcAddress(dbghelp, ansiname);
 #define LOAD_FUNCTIONREQ(name, ansiname) LOAD_FUNCTION(name,ansiname) if (!name) return "failed to load function: " #name;
 //from http://jpassing.com/2008/03/12/walking-the-stack-of-the-current-thread/
@@ -435,22 +439,10 @@ SAFE_INT lastErrorWasLoop = 0;
 #endif
 
 #ifdef USE_SIGNAL_HANDLER
+#define CPU_CONTEXT_TYPE ucontext_t
 volatile sig_atomic_t lastCrashSignal = 0;
 #define SIGMYHANG SIGRTMIN + 4
 #define SIGMYSTACKSEGV 123
-
-SimulatedCPU::set_all(void *ccontext) {
-	ucontext_t* context = static_cast<ucontext_t*>(ccontext);
-	this->pc = (char*)(PC_FROM_UCONTEXT(context));
-	this->frame = (char*)(FRAME_FROM_UCONTEXT(context));
-	this->stack = (char*)(STACK_FROM_UCONTEXT(context));
-}
-SimulatedCPU::get_all(void *ccontext) {
-	ucontext_t* context = static_cast<ucontext_t*>(ccontext);
-	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
-	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
-	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
-}
 
 extern int _etext;
 
@@ -587,18 +579,6 @@ bool recoverMainThreadFromOutside(){
 #define STACK_FROM_UCONTEXT(context) (context)->Esp
 #endif
 
-void SimulatedCPU::set_all(void *ccontext) {
-	PCONTEXT context = static_cast<PCONTEXT>(ccontext);
-	this->pc = (char*)PC_FROM_UCONTEXT(context);
-	this->frame = (char*)FRAME_FROM_UCONTEXT(context);
-	this->stack = (char*)STACK_FROM_UCONTEXT(context);
-}
-void SimulatedCPU::get_all(void *ccontext) {
-	PCONTEXT context = static_cast<PCONTEXT>(ccontext);
-	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
-	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
-	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
-}
 
 const char* exceptionCodeToName(int code){
 	switch (code){
@@ -797,3 +777,22 @@ void Guardian::shutdown(){
 
 
 
+
+
+
+#ifdef CPU_CONTEXT_TYPE
+
+void SimulatedCPU::set_all(void *ccontext) {
+	CPU_CONTEXT_TYPE* context = static_cast<CPU_CONTEXT_TYPE*>(ccontext);
+	this->pc = (char*)PC_FROM_UCONTEXT(context);
+	this->frame = (char*)FRAME_FROM_UCONTEXT(context);
+	this->stack = (char*)STACK_FROM_UCONTEXT(context);
+}
+void SimulatedCPU::get_all(void *ccontext) {
+	CPU_CONTEXT_TYPE* context = static_cast<CPU_CONTEXT_TYPE*>(ccontext);
+	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
+	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
+	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
+}
+
+#endif
