@@ -368,6 +368,7 @@ bool recoverMainThreadFromOutside(){
 	fprintf(stderr, "Main thread locks frozen\n");
 }
 
+void undoMainThreadRecoveringFromOutside(){}
 #endif
 
 void print_backtrace(const QString& message){
@@ -441,10 +442,13 @@ SAFE_INT lastErrorWasLoop = 0;
 #ifdef USE_SIGNAL_HANDLER
 #define CPU_CONTEXT_TYPE ucontext_t
 volatile sig_atomic_t lastCrashSignal = 0;
-#define SIGMYHANG SIGRTMIN + 4
+#define SIGMYHANG SIGRTMIN + 4             //signal send to the main thread, if the guardian detects an endless loop
+#define SIGMYHANG_CONTINUE SIGRTMIN + 5    //signal send to the main thread, if the endless loop should be continued
 #define SIGMYSTACKSEGV 123
 
 extern int _etext;
+
+ucontext lastLoopContext;
 
 bool isAddressInTeXstudio(void * address){
 	return address < &_etext;
@@ -486,6 +490,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
 		if (type == SIGMYHANG) {
 			if (!isAddressInTeXstudio(cpu.pc)) return; //don't mess with library functions
+			lastLoopContext = *(static_cast<ucontext_t*>(ccontext));
 			lastErrorWasLoop = 1;
 		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();	
 		
@@ -495,6 +500,10 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 		
 		cpu.get_all(ccontext);
 	}
+}
+
+void signalHandlerContinueHanging(int, siginfo_t *, void* ccontext){
+	*(static_cast<ucontext_t*>(ccontext)) = lastLoopContext; 
 }
 
 const int SIGNAL_STACK_SIZE = 256*1024;
@@ -515,6 +524,7 @@ void registerCrashHandler(int mode){
 		sa.sa_sigaction = &signalHandler; sigaction(SIGSEGV, &sa, 0);
 		sa.sa_sigaction = &signalHandler; sigaction(SIGFPE, &sa, 0);
 		sa.sa_sigaction = &signalHandler; sigaction(SIGMYHANG, &sa, 0);
+		sa.sa_sigaction = &signalHandlerContinueHanging; sigaction(SIGMYHANG_CONTINUE, &sa, 0);
 		
 		if (!(mode & 4)) {
 			mainThreadID = pthread_self();
@@ -538,6 +548,10 @@ bool recoverMainThreadFromOutside(){
 	while ( !lastCrashSignal && (--loopend >= 0) ) ;
 	__sync_synchronize(); //memory barrier (does it work?)  (better have a barrier here, than a lock in the signal handler)
 	return lastErrorWasLoop;
+}
+
+void undoMainThreadRecoveringFromOutside(){
+	pthread_kill(mainThreadID, SIGMYHANG_CONTINUE);
 }
 
 #endif
@@ -670,7 +684,10 @@ bool isAddressInTeXstudio(char * address){
 }
 
 
-bool recoverMainThreadFromOutside(){
+typedef bool (*ChangeThreadContextFunc)(HANDLE thread, CONTEXT* c);
+
+
+bool doSomethingWithMainThreadContext(ChangeThreadContextFunc something){
 	if (!mainThreadID || !OpenThreadDyn) return false;
 	HANDLE mainThread = (*OpenThreadDyn)(THREAD_GET_CONTEXT | THREAD_QUERY_INFORMATION | THREAD_SET_CONTEXT | THREAD_SUSPEND_RESUME, false, mainThreadID);
 	if (!mainThread) return false;
@@ -678,23 +695,38 @@ bool recoverMainThreadFromOutside(){
 	SuspendThread(mainThread);
 	CONTEXT c;
 	c.ContextFlags = (CONTEXT_FULL);
-	if (GetThreadContext(mainThread, &c)) {
-		if (isAddressInTeXstudio((char*)(PC_FROM_UCONTEXT(&c)))) {
-			SimulatedCPU cpu;
-			cpu.set_all(&c);
-			cpu.call((char*)&recover);
-			cpu.get_all(&c);
-			result = SetThreadContext(mainThread, &c);
-			if (result) lastErrorWasLoop = true;
-		}
-	}
+	if (GetThreadContext(mainThread, &c)) 
+		result = (*something)(mainThread, &c);
 	ResumeThread(mainThread);
 	CloseHandle(mainThread);
 	return result;
 }
 
-#endif
+CONTEXT lastRecoveredContext;
+bool changeContextToRecover(HANDLE thread, CONTEXT* c){
+	bool result = false;
+	if (isAddressInTeXstudio((char*)(PC_FROM_UCONTEXT(c)))) {
+		SimulatedCPU cpu;
+		cpu.set_all(c);
+		cpu.call((char*)&recover);
+		cpu.get_all(c);
+		lastRecoveredContext = *c;
+		result = SetThreadContext(thread, c);
+		if (result) lastErrorWasLoop = true;
+	}
+	return result;
+}
+bool recoverMainThreadFromOutside(){
+	doSomethingWithMainThreadContext(changeContextToRecover);
+}
 
+bool changeContextToUndoRecoving(HANDLE thread, CONTEXT* c){
+	SetThreadContext(thread, &lastRecoveredContext);
+}
+void undoMainThreadRecoveringFromOutside(){
+	doSomethingWithMainThreadContext(changeContextToUndoRecoving);
+}
+#endif
 
 
 
@@ -737,12 +769,17 @@ QString getLastCrashInformation(bool& wasLoop){
 SafeThread * guardian = 0;
 bool running = true;
 volatile int mainEventLoopTicks = 0;
-
+volatile bool undoRecovering = false;
 void Guardian::run(){
 	int lastTick = mainEventLoopTicks;
 	int errors = 0;
 	while (running) {
 		sleep(4);
+		if (undoRecovering) {
+			undoRecovering = false;
+			undoMainThreadRecoveringFromOutside();
+			continue;4
+		}
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
 		lastTick = mainEventLoopTicks;
@@ -774,7 +811,9 @@ void Guardian::shutdown(){
 	running = false;
 }
 
-
+void Guardian::continueEndlessLoop(){
+	undoRecovering = true;
+}
 
 
 
@@ -787,6 +826,8 @@ void SimulatedCPU::set_all(void *ccontext) {
 	this->pc = (char*)PC_FROM_UCONTEXT(context);
 	this->frame = (char*)FRAME_FROM_UCONTEXT(context);
 	this->stack = (char*)STACK_FROM_UCONTEXT(context);
+//	for (int i=0;i<sizeof(context->uc_mcontext.gregs) / sizeof(context->uc_mcontext.gregs[0]);i++)
+//		fprintf(stderr, "Regs: %i: %p\n", i, context->uc_mcontext.gregs[i]);
 }
 void SimulatedCPU::get_all(void *ccontext) {
 	CPU_CONTEXT_TYPE* context = static_cast<CPU_CONTEXT_TYPE*>(ccontext);

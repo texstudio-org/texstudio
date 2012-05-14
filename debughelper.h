@@ -21,6 +21,8 @@ public:
 	static void summon();
 	static void calm();
 	static void shutdown();
+
+	static void continueEndlessLoop();
 };
 
 

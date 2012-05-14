@@ -32,7 +32,13 @@ void ScriptObject::crash_sigsegv(){char *c = 0; *c = 'A';}
 int global0 = 0;
 void ScriptObject::crash_sigfpe(){int x = 1 / global0;  Q_UNUSED(x);}
 void ScriptObject::crash_stack(){ int temp = global0; crash_stack(); Q_UNUSED(temp);}
-void ScriptObject::crash_loop(){ while (1) {void * x = malloc(16); free(x);}; }
+void ScriptObject::crash_loop(){ 
+	register int a = 1, b = 2, c = 3, d = 4;
+	while (1) {
+		void * x = malloc(16); free(x);  
+		Q_ASSERT(a == 1); Q_ASSERT(b == 2); Q_ASSERT(c == 3); Q_ASSERT(d == 4); //make sure, no register suddenly change
+	}; 
+}
 #endif
 
 ProcessX* ScriptObject::system(const QString& commandline){
