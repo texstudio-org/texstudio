@@ -57,6 +57,7 @@ public slots:
 	void crash_sigsegv();
 	void crash_sigfpe();
 	void crash_stack();
+	void crash_loop();
 #endif
 	
 	bool hasReadPrivileges();

@@ -514,6 +514,7 @@ public:
 	static void recoverFromCrash();
 public slots:
 	void threadCrashed();
+	void iamalive();
 };
 
 Q_DECLARE_METATYPE(Texmaker*)

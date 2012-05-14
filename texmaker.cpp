@@ -78,7 +78,11 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	txsInstance = this;
 	static int crashHandlerType = 1; 
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
-	registerCrashHandler(crashHandlerType);
+	registerCrashHandler(crashHandlerType);	
+	QTimer * t  = new QTimer(this);
+	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
+	t->start(3000);
+	              
 	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -270,6 +274,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 Texmaker::~Texmaker(){
 	programStopped = true;
+	Guardian::shutdown();
 	delete MapForSymbols;
 	if(latexStyleParser){
 		latexStyleParser->stop();
@@ -2020,6 +2025,7 @@ bool Texmaker::canCloseNow(){
 		spellerManager.unloadAll();  //this saves the ignore list
 	}
 	programStopped = true;
+	Guardian::shutdown();
 	return accept;
 }
 void Texmaker::closeEvent(QCloseEvent *e) {
@@ -6515,12 +6521,19 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 QThread* killAtCrashedThread = 0;
 QThread* lastCrashedThread = 0;
 
+#include "setjmp.h"
+
+jmp_buf tempContext;
+
 void recover(){
+	if (setjmp(tempContext)) 
+		return;
 	Texmaker::recoverFromCrash();
 }
 
-void Texmaker::recoverFromCrash(){
-	QString name = getLastCrashInformation();
+void Texmaker::recoverFromCrash(){	
+	bool wasLoop;
+	QString name = getLastCrashInformation(wasLoop);
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
 		QThread* t = QThread::currentThread();
 		lastCrashedThread = t;
@@ -6542,22 +6555,32 @@ void Texmaker::recoverFromCrash(){
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 	QMessageBox mb; //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk
 	mb.setWindowTitle(tr("TeXstudio Emergency"));
-	mb.setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
-	mb.setDefaultButton(mb.addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
-	mb.addButton(tr("No, kill the programm"), QMessageBox::RejectRole);
+	if (!wasLoop) {
+		mb.setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
+		mb.setDefaultButton(mb.addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
+		mb.addButton(tr("No, kill the programm"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
+	} else {
+		mb.setText(tr( "TeXstudio has been paused due to a possible endless loop.\nDo you want to keep the program running? This may cause data corruption."));
+		mb.setDefaultButton(mb.addButton(tr("Yes, stop the loop and try to recover."), QMessageBox::AcceptRole));
+		mb.addButton(tr("Yes, continue the loop."), QMessageBox::RejectRole);
+		mb.addButton(tr("No, kill the programm"), QMessageBox::DestructiveRole);
+	}
+	
 
 	//show the dialog (non modal, because on Windows showing the dialog modal here, permanently disables all other windows)
-	mb.setWindowFlags(Qt::WindowStaysOnTopHint	);
+	mb.setWindowFlags(Qt::WindowStaysOnTopHint);
 	mb.setWindowModality(Qt::NonModal);
 	mb.setModal(false);
 	mb.show();
 	while (mb.isVisible())
 		QApplication::processEvents(QEventLoop::AllEvents);
-	if (mb.result() == QMessageBox::RejectRole) {
+	fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb.result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
+	if (mb.result() == QMessageBox::DestructiveRole || (!wasLoop && mb.result() == QMessageBox::RejectRole)) {
 		print_backtrace(name);
 		exit(1);
 	}
-
+	if (wasLoop && mb.result() == QMessageBox::RejectRole) 
+		longjmp(tempContext, 1);
 
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
@@ -6568,7 +6591,8 @@ void Texmaker::recoverFromCrash(){
 }
 
 void Texmaker::threadCrashed(){
-	QString signal = getLastCrashInformation();
+	bool wasLoop;
+	QString signal = getLastCrashInformation(wasLoop);
 	QThread* thread = lastCrashedThread;
 	
 	QString threadName = "<unknown<";
@@ -6586,4 +6610,8 @@ void Texmaker::threadCrashed(){
 		ThreadBreaker::sleep(10);
 		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
 	}
+}
+
+void Texmaker::iamalive(){
+	Guardian::calm();
 }
