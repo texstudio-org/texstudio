@@ -778,7 +778,7 @@ void Guardian::run(){
 		if (undoRecovering) {
 			undoRecovering = false;
 			undoMainThreadRecoveringFromOutside();
-			continue;4
+			continue;
 		}
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
