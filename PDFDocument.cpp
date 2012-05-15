@@ -386,6 +386,7 @@ PDFWidget::PDFWidget()
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
+       , totalScrolling(0)
 	, imageDpi(0)
 	, imagePage(-1)
 	, magnifier(NULL)
@@ -1010,31 +1011,32 @@ void PDFWidget::jumpToSource()
 
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
+	if (event->delta() == 0) return;
+	float numDegrees = event->delta() / 8.0;  
+	if ((totalScrolling < 0) != (numDegrees < 0)) totalScrolling = 0;
+	totalScrolling+=numDegrees;	
+	
 	if(event->modifiers()==Qt::ControlModifier){
-		int numDegrees = event->delta() / 8;
-		if(numDegrees>0){
-			doZoom(event->pos(), 1);
-		}else{
-			doZoom(event->pos(), -1);
+		if (qAbs(totalScrolling) >= 15 ) { //avoid small zoom changes, as they use a lot of memory
+			doZoom(event->pos(), totalScrolling / 15.0);
+			totalScrolling = 0;
 		}
-	}else{
+	} else	{
 		static QTime lastScrollTime = QTime::currentTime();
-		static int totalScrolling = 0;
-		bool mayChangePage = !getScrollArea()->getContinuous();
-		int numDegrees = event->delta() / 8;
-		totalScrolling+=numDegrees;
-		int numSteps = numDegrees / 15;
 		QScrollBar *scrollBar = (event->orientation() == Qt::Horizontal)
 					   ? getScrollArea()->horizontalScrollBar()
 						   : getScrollArea()->verticalScrollBar();
-		if (scrollBar->minimum() < scrollBar->maximum()) {
+		bool mayChangePage = !getScrollArea()->getContinuous();
+		if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
 			int oldValue = scrollBar->value();
-			scrollBar->setValue(scrollBar->value() - 3 * numSteps * scrollBar->singleStep());
-			if (scrollBar->value() != oldValue) {
+			scrollBar->setValue(scrollBar->value() - round(totalScrolling * scrollBar->singleStep() / 15.0));
+			int delta = oldValue - scrollBar->value();
+			if (delta != 0) {
 				lastScrollTime = QTime::currentTime();
-				totalScrolling = 0;
+				totalScrolling -= delta * 15 / scrollBar->singleStep();
 				mayChangePage = false;
-			}
+			} else 
+				mayChangePage &= (scrollBar->value() == scrollBar->minimum()) || (scrollBar->value() == scrollBar->maximum());
 			if (QTime::currentTime() < lastScrollTime.addMSecs(500) && qAbs(totalScrolling) < 180)
 				mayChangePage = false;
 		}
