@@ -2682,7 +2682,7 @@ void PDFDocument::goToSource()
 void PDFDocument::fileOpen(){
 	QString newFile = QFileDialog::getOpenFileName(this,tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
-	loadFile(newFile, newFile.replace(".pdf", ".tex"), false);
+	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), false);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
