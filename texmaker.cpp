@@ -820,8 +820,20 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	
 	menu->addSeparator();
-	newManagedAction(menu,"sethighlighting",tr("Set High&lighting..."),SLOT(viewSetHighlighting()));
-	
+	QMenu *hlMenu = new QMenu(tr("Highlighting"), this);
+	highlightLanguageActions = new QActionGroup(this);
+	highlightLanguageActions->setExclusive(true);
+	foreach (const QString &s, m_languages->languages()) {
+		QAction *act = new QAction(tr(qPrintable(s)), this);
+		act->setData(s);
+		act->setCheckable(true);
+		hlMenu->addAction(act);
+		highlightLanguageActions->addAction(act);
+	}
+	connect(highlightLanguageActions, SIGNAL(triggered(QAction*)), this, SLOT(viewSetHighlighting(QAction*)));
+	connect(hlMenu, SIGNAL(aboutToShow()), this, SLOT(showHighlightingMenu()));
+	menu->addMenu(hlMenu);
+
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
 	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
@@ -4580,26 +4592,26 @@ void Texmaker::viewAlignWindows() {
 	}
 }
 
-void Texmaker::viewSetHighlighting(){
+void Texmaker::viewSetHighlighting(QAction *act) {
 	if (!currentEditor()) return;
-	QStringList localizedLanguages;
-	foreach (const QString &s, m_languages->languages()) {
-		localizedLanguages.append(tr(qPrintable(s)));
-	}
-	bool ok;
-	QLanguageDefinition *oldLangDef = currentEditor()->document()->languageDefinition();
-	QString locLang = QInputDialog::getItem(this, TEXSTUDIO, tr("New highlighting:"),
-										localizedLanguages,
-										m_languages->languages().indexOf(oldLangDef?oldLangDef->language():""),
-										false, &ok);
-	if (!ok || locLang.isEmpty()) return;
-	QString newLangName = m_languages->languages().at(localizedLanguages.indexOf(locLang));
-	if (oldLangDef && oldLangDef->language()==newLangName) return;  // nothing changed
-
 	currentEditorView()->clearOverlays();
-	m_languages->setLanguageFromName(currentEditor(), newLangName);
+	m_languages->setLanguageFromName(currentEditor(), act->data().toString());
 	// TODO: Check if reCheckSyntax is really necessary. Setting the language emits (among others) contentsChange(0, lines)
 	currentEditorView()->reCheckSyntax();
+}
+
+void Texmaker::showHighlightingMenu() {
+	// check active item just before showing the menu. So we don't have to keep track of the languages, e.g. when switching editors
+	if (!currentEditor()) return;
+	QLanguageDefinition *ld = currentEditor()->languageDefinition();
+	if (ld) {
+		foreach (QAction *act, highlightLanguageActions->actions()) {
+			if (act->data().toString() == ld->language()) {
+				act->setChecked(true);
+				break;
+			}
+		}
+	}
 }
 
 void Texmaker::viewCollapseBlock() {
