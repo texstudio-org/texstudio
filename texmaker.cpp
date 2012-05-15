@@ -1328,7 +1328,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (f_real.endsWith(".pdf",Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
-		PDFDocument::documentList().first()->loadFile(f_real,f_real.replace(".pdf", ".tex"));
+		PDFDocument::documentList().first()->loadFile(f_real,QString(f_real).replace(".pdf", ".tex"));
 		PDFDocument::documentList().first()->show();
 		PDFDocument::documentList().first()->setFocus();
 		return 0;
