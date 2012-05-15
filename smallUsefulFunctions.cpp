@@ -84,7 +84,7 @@ void LatexParser::init(){
     possibleCommands["%label"] << "\\label";
     possibleCommands["%bibliography"] << "\\bibliography";
     possibleCommands["%file"] << "\\include" << "\\input" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
-    possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref";
+	possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref" << "\\figRef" << "\\FigRef" << "\\secRef" << "\\SecRef" << "\\appRef" << "\\AppRef";
 }
 
 int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {

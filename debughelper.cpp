@@ -720,11 +720,12 @@ bool changeContextToRecover(HANDLE thread, CONTEXT* c){
 	return result;
 }
 bool recoverMainThreadFromOutside(){
-	doSomethingWithMainThreadContext(changeContextToRecover);
+	return doSomethingWithMainThreadContext(changeContextToRecover);
 }
 
 bool changeContextToUndoRecoving(HANDLE thread, CONTEXT* c){
-	SetThreadContext(thread, &lastRecoveredContext);
+	Q_UNUSED(c);
+	return SetThreadContext(thread, &lastRecoveredContext);
 }
 void undoMainThreadRecoveringFromOutside(){
 	doSomethingWithMainThreadContext(changeContextToUndoRecoving);
