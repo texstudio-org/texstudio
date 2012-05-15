@@ -660,7 +660,15 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
 	newManagedAction(submenu,"badboxnext",tr("Next bad box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
-	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),Qt::CTRL+Qt::ALT+Qt::Key_F);
+
+	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
+#ifdef Q_WS_WIN
+	// on win ctrl+alt = altGr, hungarian: altGr+F = [
+	// so we should not use this as shortcut in this special case
+	if (QApplication::keyboardInputLocale().language() == QLocale::Hungarian)
+		sc = QKeySequence(Qt::CTRL+Qt::ALT+Qt::SHIFT+Qt::Key_F);
+#endif
+	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),sc);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
