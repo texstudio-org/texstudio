@@ -366,6 +366,7 @@ void print_backtrace(const char* title, const char * assertion, const char * fil
 
 bool recoverMainThreadFromOutside(){
 	fprintf(stderr, "Main thread locks frozen\n");
+	return true;
 }
 
 void undoMainThreadRecoveringFromOutside(){}
@@ -529,7 +530,6 @@ void registerCrashHandler(int mode){
 			sa.sa_sigaction = &signalHandler; sigaction(SIGMYHANG, &sa, 0);
 			sa.sa_sigaction = &signalHandlerContinueHanging; sigaction(SIGMYHANG_CONTINUE, &sa, 0);
 			mainThreadID = pthread_self();
-			Guardian::summon();
 		}		
 	}
 }
@@ -565,6 +565,13 @@ void undoMainThreadRecoveringFromOutside(){
 
 //=========================WINDOWS EXCEPTION HANDLER===========================
 #ifdef Q_WS_WIN
+
+typedef int (*ResetstkoflwFunc) ();
+void recoverWithStackGuardianPage(){
+	ResetstkoflwFunc myresetstkoflw = (ResetstkoflwFunc)(GetProcAddress(LoadLibraryA("msvcrt70.dll"),  "_resetstkoflw"));
+	if (myresetstkoflw) (*myresetstkoflw)();
+	recover();
+}
 
 #define CATCHED_EXCEPTIONS(X)  \
 	X(EXCEPTION_ACCESS_VIOLATION) \
@@ -630,9 +637,12 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 		cpu.set_all(ExceptionInfo->ContextRecord);
 
 		lastExceptionAddress = (quintptr)(cpu.pc);
-		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_FLT_STACK_CHECK)
+		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_FLT_STACK_CHECK) {
 			cpu.unwindStack();
-		cpu.call((char*)&recover);
+			cpu.call((char*)&recoverWithStackGuardianPage);
+		} else {
+			cpu.call((char*)&recover);
+		}
 
 		cpu.get_all(ExceptionInfo->ContextRecord);
 
@@ -670,8 +680,6 @@ void registerCrashHandler(int mode){
 					ownBaseAddress = moduleInfo.lpBaseOfDll;
 					ownSize = moduleInfo.SizeOfImage;
 				}
-				fprintf(stderr, "module: %p, s: %i\n",ownBaseAddress,ownSize);
-				Guardian::summon();
 			}
 		}
 	}
@@ -709,11 +717,11 @@ CONTEXT lastRecoveredContext;
 bool changeContextToRecover(HANDLE thread, CONTEXT* c){
 	bool result = false;
 	if (isAddressInTeXstudio((char*)(PC_FROM_UCONTEXT(c)))) {
+		lastRecoveredContext = *c;
 		SimulatedCPU cpu;
 		cpu.set_all(c);
 		cpu.call((char*)&recover);
 		cpu.get_all(c);
-		lastRecoveredContext = *c;
 		result = SetThreadContext(thread, c);
 		if (result) lastErrorWasLoop = true;
 	}
@@ -792,7 +800,7 @@ void Guardian::run(){
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
 		lastTick = mainEventLoopTicks;
-		if (errors >= 4) {
+		if (errors >= 6) {
 			fprintf(stderr, "Main thread in trouble\n");
 			int repetitions = 0;
 			while (lastTick == mainEventLoopTicks && !recoverMainThreadFromOutside()) {
@@ -800,6 +808,8 @@ void Guardian::run(){
 				repetitions ++;
 				if (repetitions > 50) break;  //give up for now
 			}
+			if (repetitions < 50) //recovered
+				errors = 0;
 			//if (repetitions < 50) return; the crash handler can't be debugged, if this thread continues calling it
 		}
 	}
@@ -808,6 +818,7 @@ void Guardian::run(){
 
 void Guardian::summon(){
 	if (guardian) return;
+	if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) return;
 	guardian = new Guardian();
 	guardian->start();
 }

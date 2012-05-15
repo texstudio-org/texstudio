@@ -4387,6 +4387,8 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		}
 	}
 #endif
+
+	if (realCmdLine) Guardian::summon();
 }
 
 void Texmaker::executeTests(const QStringList &args){
@@ -6593,7 +6595,7 @@ void Texmaker::recoverFromCrash(){
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
 		delete mb;
 		Guardian::continueEndlessLoop();
-		while (1) ; 
+		while (1) ;
 	}
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
