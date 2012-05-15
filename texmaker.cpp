@@ -78,7 +78,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	txsInstance = this;
 	static int crashHandlerType = 1; 
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
-	registerCrashHandler(crashHandlerType);	
+	registerCrashHandler(crashHandlerType);
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(3000);
@@ -2785,6 +2785,7 @@ void Texmaker::clickedOnBookmark(QListWidgetItem *item){
     LatexDocument *doc=documents.findDocumentFromName(fn);
     if(!doc){
         LatexEditorView* edView=load(fn);
+		if (!edView) return;
         edView->editor->setFocus();
         edView->editor->setCursorPosition(lineNr,1);
         dlh=edView->editor->document()->line(lineNr).handle();
