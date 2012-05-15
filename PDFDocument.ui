@@ -794,6 +794,9 @@
    <property name="text">
     <string>&amp;Print...</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionFileOpen">
    <property name="text">
