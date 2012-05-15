@@ -742,7 +742,7 @@ Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line);
 
 QString lastAssert;
 
-Q_CORE_EXPORT void txs_assert(const char *assertion, const char *file, int line){
+void txs_assert(const char *assertion, const char *file, int line){
 	print_message("Assertion failure: ", assertion, file, line, "Prepare to print backtrace:\r\n");
 	print_backtrace("Assertion failure (repeated): ", assertion, file, line);
 
