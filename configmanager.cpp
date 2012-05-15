@@ -425,7 +425,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
-	registerOption("Tools/Automatic Rerun Commands", &BuildManager::autoRerunCommands, "compile|latex|pdflatex|luatex|xelatex", &pseudoDialog->lineEditCommandsWithRerun);
+	registerOption("Tools/Automatic Rerun Commands", &BuildManager::autoRerunCommands, "compile|latex|pdflatex|lualatex|xelatex", &pseudoDialog->lineEditCommandsWithRerun);
 	
 	//SVN
 	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
