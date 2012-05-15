@@ -397,6 +397,7 @@ SAFE_INT lastErrorWasLoop = 0;
 
 #define CRASH_HANDLER_RECOVER 1
 #define CRASH_HANDLER_PRINT_BACKTRACE 2
+#define CRASH_HANDLER_LOOP_GUARDIAN_DISABLED 4
 
 
 //=========================POSIX SIGNAL HANDLER===========================
@@ -523,10 +524,10 @@ void registerCrashHandler(int mode){
 		memset(&sa, 0, sizeof(sa)); sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
 		sa.sa_sigaction = &signalHandler; sigaction(SIGSEGV, &sa, 0);
 		sa.sa_sigaction = &signalHandler; sigaction(SIGFPE, &sa, 0);
-		sa.sa_sigaction = &signalHandler; sigaction(SIGMYHANG, &sa, 0);
-		sa.sa_sigaction = &signalHandlerContinueHanging; sigaction(SIGMYHANG_CONTINUE, &sa, 0);
 		
-		if (!(mode & 4)) {
+		if (!(mode & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED)) {
+			sa.sa_sigaction = &signalHandler; sigaction(SIGMYHANG, &sa, 0);
+			sa.sa_sigaction = &signalHandlerContinueHanging; sigaction(SIGMYHANG_CONTINUE, &sa, 0);
 			mainThreadID = pthread_self();
 			Guardian::summon();
 		}		
@@ -656,20 +657,22 @@ void registerCrashHandler(int mode){
 	if (mode >= 0) {
 		SetUnhandledExceptionFilter(&crashHandler);
 
-		OpenThreadDyn = (OpenThreadFunc)(GetProcAddress(GetModuleHandleA("kernel32.dll"), "OpenThread"));
+		if (!(mode & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED)) {
+			OpenThreadDyn = (OpenThreadFunc)(GetProcAddress(GetModuleHandleA("kernel32.dll"), "OpenThread"));
 
-		if (OpenThreadDyn) {
-			mainThreadID = GetCurrentThreadId();
-			MODULEINFO moduleInfo;
-			HMODULE psapi = LoadLibraryA("psapi.dll");
-			GetModuleInformationFunc GetModuleInformation = (GetModuleInformationFunc)(GetProcAddress(psapi, "K32GetModuleInformation"));
-			if (!GetModuleInformation) GetModuleInformation = (GetModuleInformationFunc)(GetProcAddress(psapi, "GetModuleInformation"));
-			if ((*GetModuleInformation)(GetCurrentProcess(), GetModuleHandle(0), &moduleInfo, sizeof(moduleInfo))) {
-				ownBaseAddress = moduleInfo.lpBaseOfDll;
-				ownSize = moduleInfo.SizeOfImage;
+			if (OpenThreadDyn) {
+				mainThreadID = GetCurrentThreadId();
+				MODULEINFO moduleInfo;
+				HMODULE psapi = LoadLibraryA("psapi.dll");
+				GetModuleInformationFunc GetModuleInformation = (GetModuleInformationFunc)(GetProcAddress(psapi, "K32GetModuleInformation"));
+				if (!GetModuleInformation) GetModuleInformation = (GetModuleInformationFunc)(GetProcAddress(psapi, "GetModuleInformation"));
+				if ((*GetModuleInformation)(GetCurrentProcess(), GetModuleHandle(0), &moduleInfo, sizeof(moduleInfo))) {
+					ownBaseAddress = moduleInfo.lpBaseOfDll;
+					ownSize = moduleInfo.SizeOfImage;
+				}
+				fprintf(stderr, "module: %p, s: %i\n",ownBaseAddress,ownSize);
+				Guardian::summon();
 			}
-			fprintf(stderr, "module: %p, s: %i\n",ownBaseAddress,ownSize);
-			Guardian::summon();
 		}
 	}
 }
@@ -780,6 +783,10 @@ void Guardian::run(){
 			undoMainThreadRecoveringFromOutside();
 			continue;
 		}
+		if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) continue;
+#ifdef Q_WS_WIN
+		if (IsDebuggerPresent()) continue;
+#endif
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
 		lastTick = mainEventLoopTicks;
