@@ -1,7 +1,6 @@
 #ifndef MODIFIDIEDQOBJECT_H
 #define MODIFIDIEDQOBJECT_H
 
-void txs_assert(const char *assertion, const char *file, int line);
 
 #ifndef QT_NO_DEBUG
 #define qt_assert txs_assert
@@ -10,5 +9,7 @@ void txs_assert(const char *assertion, const char *file, int line);
 #endif
 
 #include <QObject>
+
+Q_CORE_EXPORT void txs_assert(const char *assertion, const char *file, int line);
 
 #endif
