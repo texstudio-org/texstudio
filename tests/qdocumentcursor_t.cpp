@@ -274,7 +274,7 @@ void QDocumentCursorTest::constMethods(){
 	QEQUAL(c.selectedText(), selectedText);
 	QEQUAL(c.previousChar(), previousChar);
 	QEQUAL(c.nextChar(), nextChar);
-	
+
 }
 void QDocumentCursorTest::const2Methods_data(){
 	QTest::addColumn<QString>("tc1");
