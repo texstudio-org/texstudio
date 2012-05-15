@@ -780,6 +780,7 @@ void Guardian::run(){
 		sleep(4);
 		if (undoRecovering) {
 			undoRecovering = false;
+			errors = 1;
 			undoMainThreadRecoveringFromOutside();
 			continue;
 		}
