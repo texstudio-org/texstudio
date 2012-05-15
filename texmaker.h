@@ -107,6 +107,7 @@ private:
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
 	LatexCompleter* completer;
+	QActionGroup *highlightLanguageActions;
 	
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 	
@@ -383,7 +384,8 @@ protected slots:
 	void viewCloseSomething();
 	void setFullScreenMode();
 	void viewAlignWindows();
-	void viewSetHighlighting();
+	void viewSetHighlighting(QAction *act);
+	void showHighlightingMenu();
 	
 	void viewCollapseBlock();
 	void viewExpandBlock();
