@@ -362,11 +362,11 @@
     </message>
     <message>
         <source>Asymptote DVI Chain</source>
-        <translation>Übsertzung mit Asymptote nach DVI</translation>
+        <translation>Übersetzung mit Asymptote nach DVI</translation>
     </message>
     <message>
         <source>Asymptote PDF Chain</source>
-        <translation>Übsertzung mit Asymptote nach PDF</translation>
+        <translation>Übersetzung mit Asymptote nach PDF</translation>
     </message>
     <message>
         <source>DVI Viewer</source>
