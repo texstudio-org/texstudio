@@ -236,6 +236,60 @@ QMutex backtraceMutex;
 #define CPU_CONTEXT_TYPE CONTEXT
 #define LOAD_FUNCTION(name, ansiname) static name##Func name = (name##Func)GetProcAddress(dbghelp, ansiname);
 #define LOAD_FUNCTIONREQ(name, ansiname) LOAD_FUNCTION(name,ansiname) if (!name) return "failed to load function: " #name;
+
+QString initDebugHelp(){
+	static HMODULE dbghelp = 0;
+	if (dbghelp != 0) return ""; //don't call syminitialize twice
+	dbghelp = LoadLibraryA("dbghelp.dll");
+	if (!dbghelp) return "failed to load dbghelp.dll";
+
+	LOAD_FUNCTIONREQ(SymInitialize, "SymInitialize");
+
+	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0)?GetCurrentProcess():(HANDLE)GetCurrentProcessId(), 0, true))
+		return "Failed to initialize SymInitialize " + QString::number(GetLastError());
+	return "";
+}
+
+QString lookUpAddresses(const QList<DWORD64>& stackFrames){
+	QStringList result(initDebugHelp());
+
+	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
+	if (!dbghelp) return "failed to load dbghelp.dll";
+
+	LOAD_FUNCTIONREQ(SymGetSymFromAddr64, "SymGetSymFromAddr64");
+	LOAD_FUNCTION(SymGetLineFromAddr64, "SymGetLineFromAddr64");
+
+	HANDLE process = GetCurrentProcess();
+
+	_IMAGEHLP_SYMBOL64* symbol = (_IMAGEHLP_SYMBOL64*)malloc(sizeof(_IMAGEHLP_SYMBOL64) + 256);
+	for (int i=0;i<stackFrames.size();i++) {
+		DWORD64 displacement = 0;
+		DWORD displacement32 = 0;
+		ZeroMemory(symbol, sizeof(_IMAGEHLP_SYMBOL64));
+		symbol->SizeOfStruct = sizeof(_IMAGEHLP_SYMBOL64);
+		symbol->MaxNameLength = 256;
+
+		_IMAGEHLP_LINE64 line;
+
+		QString cur = QString::number(stackFrames[i], 16)+": ";
+
+		if ((*SymGetSymFromAddr64)(process, stackFrames[i], &displacement, symbol))
+			cur += QString::fromLocal8Bit(symbol->Name)+"+"+QString::number(displacement);
+		else
+			cur += "??? error: " + QString::number(GetLastError());
+
+
+		if (SymGetLineFromAddr64) {
+			if ((*SymGetLineFromAddr64)(process, stackFrames[i], &displacement32, &line))
+				cur += " in " + QString::fromLocal8Bit(line.FileName)+":"+QString::number(line.LineNumber);
+		}
+
+		result << cur;
+	}
+	return result.join("\r\n");
+}
+
+
 //from http://jpassing.com/2008/03/12/walking-the-stack-of-the-current-thread/
 //     http://www.codeproject.com/Articles/11132/Walking-the-callstack
 //alternative: __builtin_return_address, but it is said to not work so well
@@ -243,23 +297,11 @@ QString getBacktrace(){
 	if (!backtraceMutex.tryLock()) return "locked";
 	
 	//init crap
-	QStringList result;
 	HANDLE process =  GetCurrentProcess();
 	HANDLE thread = GetCurrentThread();
 	
-	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
-	if (!dbghelp) return "failed to load dbghelp.dll";
-	
-	LOAD_FUNCTIONREQ(SymInitialize, "SymInitialize");
-	LOAD_FUNCTIONREQ(SymGetModuleBase64, "SymGetModuleBase64");
-	LOAD_FUNCTIONREQ(SymFunctionTableAccess64, "SymFunctionTableAccess64");
-	LOAD_FUNCTIONREQ(StackWalk64, "StackWalk64");
-	LOAD_FUNCTIONREQ(SymGetSymFromAddr64, "SymGetSymFromAddr64");
-	LOAD_FUNCTION(SymGetLineFromAddr64, "SymGetLineFromAddr64");
-	
-	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0)?process:(HANDLE)GetCurrentProcessId(), 0, true))
-		result << "Failed to initialize SymInitialize " << QString::number(GetLastError());
-	
+	QStringList result(initDebugHelp());
+
 	CONTEXT context;
 	ZeroMemory( &context, sizeof( CONTEXT ) );
 	STACKFRAME64 stackFrame;
@@ -305,39 +347,20 @@ geteip:
     #error "Unsupported platform"*/
 #endif
 	
-	
+	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
+	if (!dbghelp) return "failed to load dbghelp.dll";
+
+	LOAD_FUNCTIONREQ(StackWalk64, "StackWalk64");
+	LOAD_FUNCTIONREQ(SymGetModuleBase64, "SymGetModuleBase64");
+	LOAD_FUNCTIONREQ(SymFunctionTableAccess64, "SymFunctionTableAccess64");
+
 	//get stackframes
 	QList<DWORD64> stackFrames;
 	while ((*StackWalk64)(machineType, process, thread, &stackFrame, &context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0))
 		stackFrames << stackFrame.AddrPC.Offset;
 	
-	
-	_IMAGEHLP_SYMBOL64* symbol = (_IMAGEHLP_SYMBOL64*)malloc(sizeof(_IMAGEHLP_SYMBOL64) + 256);
-	for (int i=0;i<stackFrames.size();i++) {
-		DWORD64 displacement = 0;
-		DWORD displacement32 = 0;
-		ZeroMemory(symbol, sizeof(_IMAGEHLP_SYMBOL64));
-		symbol->SizeOfStruct = sizeof(_IMAGEHLP_SYMBOL64);
-		symbol->MaxNameLength = 256;
-		
-		_IMAGEHLP_LINE64 line;
-		
-		QString cur = QString::number(stackFrames[i], 16)+": ";
-		
-		if ((*SymGetSymFromAddr64)(process, stackFrames[i], &displacement, symbol))
-			cur += QString::fromLocal8Bit(symbol->Name)+"+"+QString::number(displacement);
-		else
-			cur += "??? error: " + QString::number(GetLastError());
-		
-		
-		if (SymGetLineFromAddr64) {
-			if ((*SymGetLineFromAddr64)(process, stackFrames[i], &displacement32, &line))
-				cur += " in " + QString::fromLocal8Bit(line.FileName)+":"+QString::number(line.LineNumber);
-		}
-		
-		result << cur;
-	}
-	
+	result << lookUpAddresses(stackFrames);
+
 	backtraceMutex.unlock();
 	
 	return result.join("\r\n");
@@ -566,26 +589,57 @@ void undoMainThreadRecoveringFromOutside(){
 //=========================WINDOWS EXCEPTION HANDLER===========================
 #ifdef Q_WS_WIN
 
-typedef int (*ResetstkoflwFunc) ();
+
+void * maxStack = 0;
+
+#if 0
+void printStackInfo(){
+	SYSTEM_INFO  si;
+	MEMORY_BASIC_INFORMATION mi, info;
+	GetSystemInfo(&si);
+	for (int i=-2; i<=32; i++) {
+	bool allocated = VirtualQuery((char*)maxStack + i*si.dwPageSize, &info, sizeof(info));
+	fprintf(stderr, "> %i: base: %p, allocbase: %p, size: %x, allocprotect: %x, protect: %x, state: %x\n",
+									 allocated, info.BaseAddress, info.AllocationBase, info.RegionSize, info.AllocationProtect,  info.Protect, info.State);
+	}
+}
+#endif
+
+void myresetstkoflw(){
+	if (!maxStack) return;
+	SYSTEM_INFO  si;
+	GetSystemInfo(&si);
+
+
+  MEMORY_BASIC_INFORMATION info;
+  if (VirtualQuery(maxStack, &info, sizeof(info)) != sizeof(info)) return;
+
+  //int pagesToFree = 16;
+ // allocated = VirtualFree(info.AllocationBase, pagesToFree * si.dwPageSize, MEM_DECOMMIT);
+  //VirtualProtect((char*)info.AllocationBase + si.dwPageSize, si.dwPageSize, PAGE_NOACCESS, &tempi);
+  //VirtualFree((char*)info.AllocationBase + si.dwPageSize, si.dwPageSize, MEM_DECOMMIT);
+  //VirtualProtect((char*)info.AllocationBase + 2*si.dwPageSize, si.dwPageSize, PAGE_GUARD | PAGE_READWRITE, &tempi);
+  DWORD tempi;
+  //Just put that guard page back, where it was.
+  VirtualProtect((char*)info.BaseAddress, si.dwPageSize, PAGE_GUARD | PAGE_READWRITE, &tempi);
+
+  //printStackInfo();
+}
+
 void recoverWithStackGuardianPage(){
-	ResetstkoflwFunc myresetstkoflw = (ResetstkoflwFunc)(GetProcAddress(LoadLibraryA("msvcrt70.dll"),  "_resetstkoflw"));
-	if (myresetstkoflw) (*myresetstkoflw)();
+	myresetstkoflw();
+	//typedef int (*ResetstkoflwFunc) ();
+	//ResetstkoflwFunc resetstkoflw = (ResetstkoflwFunc)(GetProcAddress(LoadLibraryA("msvcr70.dll"), "_resetstkoflw"));
+	//if (resetstkoflw) (*resetstkoflw)();
 	recover();
 }
 
 #define CATCHED_EXCEPTIONS(X)  \
-	X(EXCEPTION_ACCESS_VIOLATION) \
-	X(EXCEPTION_ARRAY_BOUNDS_EXCEEDED) \
-	X(EXCEPTION_DATATYPE_MISALIGNMENT) \
-	X(EXCEPTION_FLT_DENORMAL_OPERAND) \
-	X(EXCEPTION_FLT_DIVIDE_BY_ZERO) \
-	X(EXCEPTION_FLT_INEXACT_RESULT) \
-	X(EXCEPTION_FLT_INVALID_OPERATION) \
-	X(EXCEPTION_FLT_OVERFLOW) \
-	X(EXCEPTION_FLT_UNDERFLOW) \
+	X(EXCEPTION_ACCESS_VIOLATION) 	X(EXCEPTION_ARRAY_BOUNDS_EXCEEDED) X(EXCEPTION_DATATYPE_MISALIGNMENT) \
+	X(EXCEPTION_FLT_DENORMAL_OPERAND) 	X(EXCEPTION_FLT_DIVIDE_BY_ZERO) X(EXCEPTION_FLT_INEXACT_RESULT) \
+	X(EXCEPTION_FLT_INVALID_OPERATION) X(EXCEPTION_FLT_OVERFLOW) X(EXCEPTION_FLT_UNDERFLOW) \
 	X(EXCEPTION_IN_PAGE_ERROR) \
-	X(EXCEPTION_INT_DIVIDE_BY_ZERO) \
-	X(EXCEPTION_INT_OVERFLOW) \
+	X(EXCEPTION_INT_DIVIDE_BY_ZERO) X(EXCEPTION_INT_OVERFLOW) \
 	X(EXCEPTION_INVALID_DISPOSITION) \
 	X(EXCEPTION_FLT_STACK_CHECK)  X(EXCEPTION_STACK_OVERFLOW)
 //EXCEPTION_ILLEGAL_INSTRUCTION
@@ -606,7 +660,7 @@ const char* exceptionCodeToName(int code){
 	switch (code){
 #define X(t) case t: return #t;
 	CATCHED_EXCEPTIONS(X)
-              #undef X
+#undef X
 	}
 	return "unknown";
 }
@@ -621,8 +675,11 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 #define X(t) if (ExceptionInfo->ExceptionRecord->ExceptionCode == t) isCatched = true;
 	CATCHED_EXCEPTIONS(X)
               #undef X
-	              if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
+
+	if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
 	
+	//if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) print_backtrace("");
+
 	lastErrorWasAssert = 0;
 	lastErrorWasLoop = 0;
               
@@ -637,7 +694,9 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 		cpu.set_all(ExceptionInfo->ContextRecord);
 
 		lastExceptionAddress = (quintptr)(cpu.pc);
+
 		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_FLT_STACK_CHECK) {
+			maxStack = cpu.stack;
 			cpu.unwindStack();
 			cpu.call((char*)&recoverWithStackGuardianPage);
 		} else {
