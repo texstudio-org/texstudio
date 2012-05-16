@@ -190,7 +190,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cReplace = new QComboBox(this);
 	cReplace->setEditable(true);
 	cReplace->completer()->setCompletionMode(QCompleter::PopupCompletion);
-	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
+    cReplace->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cReplace->setObjectName(("cReplace"));
 	cReplace->setEnabled(true);
 	QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Fixed);
