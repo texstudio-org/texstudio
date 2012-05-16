@@ -398,15 +398,15 @@
     </message>
     <message>
         <source>DVI Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur DVI</translation>
     </message>
     <message>
         <source>PS Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur PS</translation>
     </message>
     <message>
         <source>External PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur PDF externe</translation>
     </message>
 </context>
 <context>
@@ -1872,7 +1872,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>New line</source>
-        <translation>Nouvelle ligne</translation>
+        <translation type="obsolete">Nouvelle ligne</translation>
     </message>
     <message>
         <source>International &amp;Accents</source>
@@ -1932,7 +1932,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Numbered equations \begin{equation}</source>
-        <translation>Équation numérotée - \begin{equation}</translation>
+        <translation type="obsolete">Équation numérotée - \begin{equation}</translation>
     </message>
     <message>
         <source>\begin{align}</source>
@@ -2102,7 +2102,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>\begin{verbatim} </source>
-        <translation>Verbatim - \begin{verbatim}</translation>
+        <translation type="obsolete">Verbatim - \begin{verbatim}</translation>
     </message>
     <message>
         <source>\begin{table}</source>
@@ -2162,123 +2162,123 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>arccos</source>
-        <translation>\arccos</translation>
+        <translation type="obsolete">\arccos</translation>
     </message>
     <message>
         <source>arcsin</source>
-        <translation>\arcsin</translation>
+        <translation type="obsolete">\arcsin</translation>
     </message>
     <message>
         <source>arctan</source>
-        <translation>\arctan</translation>
+        <translation type="obsolete">\arctan</translation>
     </message>
     <message>
         <source>cos</source>
-        <translation>\cos</translation>
+        <translation type="obsolete">\cos</translation>
     </message>
     <message>
         <source>cosh</source>
-        <translation>\cosh</translation>
+        <translation type="obsolete">\cosh</translation>
     </message>
     <message>
         <source>cot</source>
-        <translation>\cot</translation>
+        <translation type="obsolete">\cot</translation>
     </message>
     <message>
         <source>coth</source>
-        <translation>\coth</translation>
+        <translation type="obsolete">\coth</translation>
     </message>
     <message>
         <source>csc</source>
-        <translation>\csc</translation>
+        <translation type="obsolete">\csc</translation>
     </message>
     <message>
         <source>deg</source>
-        <translation>\deg</translation>
+        <translation type="obsolete">\deg</translation>
     </message>
     <message>
         <source>det</source>
-        <translation>\det</translation>
+        <translation type="obsolete">\det</translation>
     </message>
     <message>
         <source>dim</source>
-        <translation>\dim</translation>
+        <translation type="obsolete">\dim</translation>
     </message>
     <message>
         <source>exp</source>
-        <translation>\exp</translation>
+        <translation type="obsolete">\exp</translation>
     </message>
     <message>
         <source>gcd</source>
-        <translation>\gcd</translation>
+        <translation type="obsolete">\gcd</translation>
     </message>
     <message>
         <source>hom</source>
-        <translation>\hom</translation>
+        <translation type="obsolete">\hom</translation>
     </message>
     <message>
         <source>inf</source>
-        <translation>\inf</translation>
+        <translation type="obsolete">\inf</translation>
     </message>
     <message>
         <source>ker</source>
-        <translation>\ker</translation>
+        <translation type="obsolete">\ker</translation>
     </message>
     <message>
         <source>lg</source>
-        <translation>\lg</translation>
+        <translation type="obsolete">\lg</translation>
     </message>
     <message>
         <source>lim</source>
-        <translation>\lim</translation>
+        <translation type="obsolete">\lim</translation>
     </message>
     <message>
         <source>liminf</source>
-        <translation>\liminf</translation>
+        <translation type="obsolete">\liminf</translation>
     </message>
     <message>
         <source>limsup</source>
-        <translation>\limsup</translation>
+        <translation type="obsolete">\limsup</translation>
     </message>
     <message>
         <source>ln</source>
-        <translation>\ln</translation>
+        <translation type="obsolete">\ln</translation>
     </message>
     <message>
         <source>log</source>
-        <translation>\log</translation>
+        <translation type="obsolete">\log</translation>
     </message>
     <message>
         <source>max</source>
-        <translation>\max</translation>
+        <translation type="obsolete">\max</translation>
     </message>
     <message>
         <source>min</source>
-        <translation>\min</translation>
+        <translation type="obsolete">\min</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation>\sec</translation>
+        <translation type="obsolete">\sec</translation>
     </message>
     <message>
         <source>sin</source>
-        <translation>\sin</translation>
+        <translation type="obsolete">\sin</translation>
     </message>
     <message>
         <source>sinh</source>
-        <translation>\sinh</translation>
+        <translation type="obsolete">\sinh</translation>
     </message>
     <message>
         <source>sup</source>
-        <translation>\sup</translation>
+        <translation type="obsolete">\sup</translation>
     </message>
     <message>
         <source>tan</source>
-        <translation>\tan</translation>
+        <translation type="obsolete">\tan</translation>
     </message>
     <message>
         <source>tanh</source>
-        <translation>\tanh</translation>
+        <translation type="obsolete">\tanh</translation>
     </message>
     <message>
         <source>Roman - \mathrm{}</source>
@@ -2298,7 +2298,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>Courier - \mathtt{}</source>
-        <translation>À chasse fixe - \mathtt{}</translation>
+        <translation type="obsolete">À chasse fixe - \mathtt{}</translation>
     </message>
     <message>
         <source>Calligraphic - \mathcal{}</source>
@@ -2314,39 +2314,83 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>Negative</source>
-        <translation>Négative - \!</translation>
+        <translation type="obsolete">Négative - \!</translation>
     </message>
     <message>
         <source>Thin</source>
-        <translation>Fine - \,</translation>
+        <translation type="obsolete">Fine - \,</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation>Moyenne - \:</translation>
+        <translation type="obsolete">Moyenne - \:</translation>
     </message>
     <message>
         <source>Thick</source>
-        <translation>Épaisse - \;</translation>
+        <translation type="obsolete">Épaisse - \;</translation>
     </message>
     <message>
         <source>Interword</source>
-        <translation>Intermot - \ </translation>
+        <translation type="obsolete">Intermot - \ </translation>
     </message>
     <message>
         <source>One quad</source>
-        <translation>Un cadratin - \quad</translation>
+        <translation type="obsolete">Un cadratin - \quad</translation>
     </message>
     <message>
         <source>Two quads</source>
-        <translation>Deux cadratins - \qquad</translation>
+        <translation type="obsolete">Deux cadratins - \qquad</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation>&lt;inconnu&gt;</translation>
+        <translation type="obsolete">&lt;inconnu&gt;</translation>
     </message>
     <message>
         <source>compile &amp; view</source>
         <translation type="obsolete">Compiler et voir</translation>
+    </message>
+    <message>
+        <source>\begin{verbatim}</source>
+        <translation>Verbatim - \begin{verbatim}</translation>
+    </message>
+    <message>
+        <source>New line - \\</source>
+        <translation>Nouvelle ligne \\</translation>
+    </message>
+    <message>
+        <source>Numbered equation \begin{equation}</source>
+        <translation>Équation numérotée - \begin{equation}</translation>
+    </message>
+    <message>
+        <source>Typewriter - \mathtt{}</source>
+        <translation>À chasse fixe - \mathtt{}</translation>
+    </message>
+    <message>
+        <source>Negative - \!</source>
+        <translation>Négative - \!</translation>
+    </message>
+    <message>
+        <source>Thin - \,</source>
+        <translation>Fine - \,</translation>
+    </message>
+    <message>
+        <source>Medium - \:</source>
+        <translation>Moyenne - \:</translation>
+    </message>
+    <message>
+        <source>Thick - \;</source>
+        <translation>Épaisse - \;</translation>
+    </message>
+    <message>
+        <source>Interword - \ </source>
+        <translation>Intermot - \ </translation>
+    </message>
+    <message>
+        <source>One quad - \quad</source>
+        <translation>Un cadratin - \quad</translation>
+    </message>
+    <message>
+        <source>Two quads - \qquad</source>
+        <translation>Deux cadratins - \qquad</translation>
     </message>
 </context>
 <context>
@@ -3565,6 +3609,10 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
         <source>Zoom In</source>
         <translation>Zoom avant</translation>
     </message>
+    <message>
+        <source>Ctrl+P</source>
+        <translation>Ctrl+P</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -3655,7 +3703,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Contents</source>
-        <translation>Matières</translation>
+        <translation>Table des matières</translation>
     </message>
 </context>
 <context>
@@ -4490,7 +4538,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
         <source>commentTodo</source>
-        <translation>Commentaire À FAIRE</translation>
+        <translation>Commentaire « À FAIRE »</translation>
     </message>
     <message>
         <source>magicComment</source>
@@ -4588,11 +4636,35 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     </message>
     <message>
         <source>txs-test-skip</source>
-        <translation>Omission du test TXS</translation>
+        <translation type="obsolete">Omission du test TXS</translation>
     </message>
     <message>
         <source>txs-test-qdebug</source>
         <translation>Test TXS qdebug</translation>
+    </message>
+    <message>
+        <source>dtx:guard</source>
+        <translation>dtx:guard</translation>
+    </message>
+    <message>
+        <source>dtx:macro</source>
+        <translation>dtx:macro</translation>
+    </message>
+    <message>
+        <source>dtx:verbatim</source>
+        <translation>dtx:verbatim</translation>
+    </message>
+    <message>
+        <source>dtx:specialchar</source>
+        <translation>dtx:specialchar</translation>
+    </message>
+    <message>
+        <source>math-delimiter</source>
+        <translation>Délimiteur mathématique</translation>
+    </message>
+    <message>
+        <source>txs-test-warn</source>
+        <translation>Test TXS d&apos;avertissement</translation>
     </message>
 </context>
 <context>
@@ -6527,7 +6599,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
-        <translation>Activer le sur&amp;lignage...</translation>
+        <translation type="obsolete">Activer le sur&amp;lignage...</translation>
     </message>
     <message>
         <source>Move document to &amp;front</source>
@@ -6646,7 +6718,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>New highlighting:</source>
-        <translation>Nouveau surlignement</translation>
+        <translation type="obsolete">Nouveau surlignement</translation>
     </message>
     <message>
         <source>BibTeX</source>
@@ -6865,6 +6937,29 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <source>Align Windows</source>
         <translation>Aligner les fenêtres</translation>
+    </message>
+    <message>
+        <source>TeX dtx file</source>
+        <comment>Format name of language definition </comment>
+        <translation>Fichiers TeX dtx</translation>
+    </message>
+    <message>
+        <source>TeXstudio has been paused due to a possible endless loop.
+Do you want to keep the program running? This may cause data corruption.</source>
+        <translation>TeXstudio a été mis en pause en raison d&apos;une possible boucle infinie.
+Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</translation>
+    </message>
+    <message>
+        <source>Yes, stop the loop and try to recover.</source>
+        <translation>Oui, arrêter la boucle et tenter de récupérer les données.</translation>
+    </message>
+    <message>
+        <source>Yes, continue the loop.</source>
+        <translation>Oui, continuer la boucle.</translation>
+    </message>
+    <message>
+        <source>Highlighting</source>
+        <translation>Surlignement</translation>
     </message>
 </context>
 <context>
