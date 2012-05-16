@@ -74,13 +74,15 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
 	m_table->horizontalHeaderItem(10)->setText(tr("Font Family"));
 	m_table->horizontalHeaderItem(11)->setText(tr("Size")); // don't vary point size as the drwaing engine can't cope with it
-	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: Sizes > 100\% may result in clipped characters."));
+	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: If the size is larger that the line spacing, characters may be clipped."));
 	m_table->horizontalHeaderItem(12)->setText(tr("Prio"));  //TODO: images
 	m_table->horizontalHeaderItem(12)->setToolTip(tr("Priority determines which format is drawn on top, if multiple formats apply."));
 
 #ifdef Q_OS_WIN
 	m_table->verticalHeader()->setDefaultSectionSize(21);  // creates too high cells by default. TODO: use default height of a combobox instead of hard coding
 #endif
+	m_table->setShowGrid(false);
+	m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
@@ -327,11 +329,14 @@ void QFormatConfig::cancel()
 
 		int r = 0;
 		for ( int c = 0; c < m_categories.size(); c++ ) {
-			if (c!=0)
-				m_table->setItem(r++, 0, new QTableWidgetItem());
-                        QTableWidgetItem *item = new QTableWidgetItem(m_categories[c][0]);
-			QFont f = item->font(); f.setBold(true); item->setFont(f);
-			m_table->setItem(r++, 0, item);
+			if (c!=0) {
+				m_table->setItem(r, 0, new QTableWidgetItem());
+				m_table->setSpan(r++, 0, 1, 13);
+			}
+			QTableWidgetItem *item = new QTableWidgetItem(m_categories[c][0]);
+			QFont f = item->font(); f.setBold(true); item->setFont(f); item->setBackground(QApplication::palette().mid());
+			m_table->setItem(r, 0, item);
+			m_table->setSpan(r++, 0, 1, 13);
 
 			for ( int f = 1; f < m_categories[c].size(); f++ ) {
 				QString fid = m_categories[c][f];
