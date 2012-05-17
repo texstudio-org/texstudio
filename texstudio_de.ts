@@ -1317,7 +1317,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn &quot;caching&quot; aktiviert ist, so werden gezeichnete Zeilen in einem &quot;Cache&quot; gespeichert. Dies führt zu einer schnelleren Darstellung (besonders auf Mac) auf Kosten eines höheren Speicherverbrauchs.</translation>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
@@ -1389,11 +1389,11 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle Grammatikwortlistenverzeichnis</translation>
     </message>
     <message>
         <source>Select the LanguageTool jar</source>
-        <translation type="unfinished"></translation>
+        <translation>Wähle das &quot;LanguageTool jar&quot;</translation>
     </message>
     <message>
         <source>Select java</source>
@@ -1401,7 +1401,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Check for bad words</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfe auf &quot;schlechte&quot; Worte</translation>
     </message>
     <message>
         <source>Special rules 2:</source>
@@ -1425,59 +1425,59 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>Language checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Grammatikprüfung</translation>
     </message>
     <message>
         <source>Long range repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholungen über größere Abstände:</translation>
     </message>
     <message>
         <source>Min length of words with long repetition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale Wortlänge bei entfernten Wortwiederholungen:</translation>
     </message>
     <message>
         <source>Words repeated within a paragraph will be highlighted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wörter die innerhalb eines Absatzes wiederholt werden, werden hervorgehoben.</translation>
     </message>
     <message>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gleiche Wörter werden als Wiederholung gekennzeichnet, falls nicht mehr als diese Anzahl von Wörtern dazwischen vorkommt.</translation>
     </message>
     <message>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gleiche längere Wörter werden als Wiederholung gekennzeichnet, falls nicht mehr als diese Anzahl von Wörtern dazwischen vorkommt.</translation>
     </message>
     <message>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur Wörter, die mindesten diese Länge besitzen, werden über Entfernung auf Wiederholung geprüft.</translation>
     </message>
     <message>
         <source>Certain informal or weak words will be highlighted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestimmte umgangsprachliche oder &quot;schwache&quot; Wörter werden hervorgehoben.</translation>
     </message>
     <message>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnis, das die Liste der &quot;schlechten&quot; Wörter.</translation>
     </message>
     <message>
         <source>Url to connect to LanguageTool. </source>
-        <translation type="unfinished"></translation>
+        <translation>URL, um zu LanguageTool zu verbinden.</translation>
     </message>
     <message>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfad, der die LanguageTool Javadatei enthält.</translation>
     </message>
     <message>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommagetrennte Liste von LanguageTool-Regeln, die nicht als Fehler hervorgehoben werden.</translation>
     </message>
     <message>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation type="unfinished"></translation>
+        <translation>Java-Programm, das verwendet wird, um LanguageTool zu starten, falls es noch nicht läuft.</translation>
     </message>
     <message>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommagetrennte Liste von LanguageTool-Regeln, die hervorgehoben werden.</translation>
     </message>
     <message>
         <source>The shortcut you entered is a standard character key.
@@ -1519,15 +1519,15 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Startet txs:///recompile-bibliography, falls bib-Dateiern geändert wurden.</translation>
     </message>
     <message>
         <source>Check and update bibliography before compiling</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfe und aktualisiere Bibilograhie vor dem Übersetzen</translation>
     </message>
     <message>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Manche LaTeX Konstruktionen (z.B. Referenzen) benötigen mehrere Übersetzungsdurchläufe bevor sie korrekt angezeigt werden.</translation>
     </message>
     <message>
         <source>Times to repeat compilation if requested:</source>
@@ -2813,7 +2813,7 @@ Fehlender \caption Kommando.</translation>
     </message>
     <message>
         <source>Typeface Size</source>
-        <translation>Schriftgröße:</translation>
+        <translation>Schriftgröße</translation>
     </message>
     <message>
         <source>Encoding</source>
@@ -6583,7 +6583,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     <message>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation>Warnung nicht wiederholen</translation>
+        <translation>Warnung nicht wiederholen.</translation>
     </message>
     <message>
         <source>Jump to match</source>
