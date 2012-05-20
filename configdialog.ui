@@ -23,6 +23,44 @@
    <property name="margin">
     <number>9</number>
    </property>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>410</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>170</width>
+       <height>32000</height>
+      </size>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="5">
     <layout class="QHBoxLayout">
      <property name="spacing">
@@ -69,44 +107,6 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="0" rowspan="2">
-    <widget class="QListWidget" name="contentsWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>200</width>
-       <height>410</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>170</width>
-       <height>32000</height>
-      </size>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="currentRow">
-      <number>-1</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
-      <string>Show advanced options</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="1" rowspan="2" colspan="5">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
@@ -145,8 +145,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>419</width>
-            <height>455</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -177,7 +177,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Style</string>
+                 <string>Style:</string>
                 </property>
                </widget>
               </item>
@@ -200,7 +200,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Font</string>
+                 <string>Font:</string>
                 </property>
                </widget>
               </item>
@@ -223,7 +223,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Font Size</string>
+                 <string>Font Size:</string>
                 </property>
                </widget>
               </item>
@@ -246,7 +246,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Language</string>
+                 <string>Language:</string>
                 </property>
                </widget>
               </item>
@@ -263,7 +263,7 @@
               <item row="1" column="0">
                <widget class="QLabel" name="label_14">
                 <property name="text">
-                 <string>Color Scheme</string>
+                 <string>Color Scheme:</string>
                 </property>
                </widget>
               </item>
@@ -271,12 +271,12 @@
                <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
                 <item>
                  <property name="text">
-                  <string>classic</string>
+                  <string>Classic</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>modern</string>
+                  <string>Modern</string>
                  </property>
                 </item>
                </widget>
@@ -316,14 +316,14 @@
               <item row="2" column="1">
                <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
                 <property name="text">
-                 <string>Ignore most system colors</string>
+                 <string>Ignore Most System Colors</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="2">
                <widget class="QCheckBox" name="checkBoxUseSystemTheme">
                 <property name="text">
-                 <string>Use system theme icons</string>
+                 <string>Use System Theme Icons</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -351,7 +351,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Max. Recent Documents</string>
+                 <string>Max. Recent Documents:</string>
                 </property>
                </widget>
               </item>
@@ -374,7 +374,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Max. Recent Master Documents</string>
+                 <string>Max. Recent Master Documents:</string>
                 </property>
                </widget>
               </item>
@@ -398,7 +398,7 @@
               <item row="3" column="1">
                <widget class="QCheckBox" name="checkBoxParseMaster">
                 <property name="text">
-                 <string>Always show structure of master document</string>
+                 <string>Always Show Structure of Master Document</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -417,7 +417,7 @@
               <item row="3" column="0">
                <widget class="QLabel" name="label_13">
                 <property name="text">
-                 <string>Thesaurus Database</string>
+                 <string>Thesaurus Database:</string>
                 </property>
                </widget>
               </item>
@@ -454,17 +454,17 @@
               <item row="0" column="0">
                <widget class="QLabel" name="label_42">
                 <property name="text">
-                 <string>Spelling dictionary directory</string>
+                 <string>Spelling Dictionary Directory:</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" colspan="3">
+              <item row="1" column="1" colspan="5">
                <widget class="QComboBox" name="comboBoxSpellcheckLang"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_43">
                 <property name="text">
-                 <string>Default language</string>
+                 <string>Default Language:</string>
                 </property>
                </widget>
               </item>
@@ -626,14 +626,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </size>
          </property>
          <property name="title">
-          <string>Metacommands</string>
+          <string>Meta Commands</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBoxUserCommands">
          <property name="title">
-          <string>Usercommands</string>
+          <string>User Commands</string>
          </property>
         </widget>
        </item>
@@ -646,7 +646,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <bool>true</bool>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="1" column="0" colspan="3">
+          <item row="1" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
             <property name="toolTip">
              <string>Runs txs:///recompile-bibliography, if bib-files were changed.</string>
@@ -656,27 +656,17 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
            </widget>
           </item>
-          <item row="2" column="0" rowspan="2" colspan="2">
-           <widget class="QCheckBox" name="checkBoxShowLog">
-            <property name="text">
-             <string>Show log after compiling if there are errors</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
+          <item row="4" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxSingleInstanceViewer">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
             <property name="minimumSize">
              <size>
-              <width>570</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -694,10 +684,37 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="5" column="0">
            <widget class="QLabel" name="label_37">
             <property name="text">
-             <string>Show stdout</string>
+             <string>Show stdout:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="toolTip">
+             <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
+            </property>
+            <property name="text">
+             <string>Times to repeat compilation if requested:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Commands with repeated compilation: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="3">
+           <widget class="QLineEdit" name="lineEditCommandsWithRerun"/>
+          </item>
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="spinBoxRerunLatex">
+            <property name="value">
+             <number>5</number>
             </property>
            </widget>
           </item>
@@ -713,42 +730,25 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </item>
             <item>
              <property name="text">
-              <string>Only for user commands</string>
+              <string>Only For User Commands</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Always (if not redirected &gt; /dev/null)</string>
+              <string>Always (If not redirected &gt; /dev/null)</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_38">
-            <property name="toolTip">
-             <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
-            </property>
+          <item row="2" column="0" rowspan="2" colspan="4">
+           <widget class="QCheckBox" name="checkBoxShowLog">
             <property name="text">
-             <string>Times to repeat compilation if requested:</string>
+             <string>Show log after compiling if there are errors</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QSpinBox" name="spinBoxRerunLatex">
-            <property name="value">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Commands with repeated compilation: </string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1" colspan="3">
-           <widget class="QLineEdit" name="lineEditCommandsWithRerun"/>
           </item>
          </layout>
         </widget>
@@ -862,7 +862,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QCheckBox" name="checkBoxShowAllMenus">
          <property name="text">
-          <string>Show all</string>
+          <string>Show All</string>
          </property>
         </widget>
        </item>
@@ -977,31 +977,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <property name="spacing">
         <number>6</number>
        </property>
-       <item row="2" column="0">
-        <widget class="QGroupBox" name="formatConfigBox">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="baseSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Formats</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
@@ -1011,7 +986,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="0" column="0">
            <widget class="QLabel" name="labelFamily">
             <property name="text">
-             <string>Font Family</string>
+             <string>Font Family:</string>
             </property>
            </widget>
           </item>
@@ -1034,7 +1009,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Default Font Encoding</string>
+             <string>Default Font Encoding:</string>
             </property>
            </widget>
           </item>
@@ -1048,27 +1023,27 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <item>
              <property name="text">
-              <string>Ignore indentation</string>
+              <string>Ignore Indentation</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Keep indentation</string>
+              <string>Keep Indentation</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Indent and unindent automatically</string>
+              <string>Indent and Unindent Automatically</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Keep indentation with spaces only</string>
+              <string>Keep Indentation With Spaces Only</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Indent and unindent automatically with spaces only</string>
+              <string>Indent and Unindent Automatically With Spaces Only</string>
              </property>
             </item>
            </widget>
@@ -1076,7 +1051,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="0">
            <widget class="QLabel" name="labelSize">
             <property name="text">
-             <string>Font Size</string>
+             <string>Font Size:</string>
             </property>
            </widget>
           </item>
@@ -1097,14 +1072,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="6" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
-             <string>Indentation mode:</string>
+             <string>Indentation Mode:</string>
             </property>
            </widget>
           </item>
           <item row="7" column="0">
            <widget class="QLabel" name="label_39">
             <property name="text">
-             <string>Replace double quotes:</string>
+             <string>Replace Double Quotes:</string>
             </property>
            </widget>
           </item>
@@ -1112,32 +1087,32 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
-              <string>no replacement</string>
+              <string>No Replacement</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>English quotes:  `` ''</string>
+              <string>English Quotes:  `` ''</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>French quotes:  &quot;&lt; &quot;&gt;</string>
+              <string>French Quotes:  &quot;&lt; &quot;&gt;</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>German quotes:  &quot;` &quot;'</string>
+              <string>German Quotes:  &quot;` &quot;'</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>French quotes (babel): \og \fg{}</string>
+              <string>French Quotes (babel): \og \fg{}</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Reverse french quotes: &quot;&gt; &quot;&lt;</string>
+              <string>Reverse French Quotes: &quot;&gt; &quot;&lt;</string>
              </property>
             </item>
            </widget>
@@ -1201,7 +1176,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Inline checking:</string>
+             <string>Inline Checking:</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -1214,14 +1189,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
             </property>
             <property name="text">
-             <string>Auto detect encoding of loaded files</string>
+             <string>Auto Detect Encoding of Loaded Files</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Line Spacing</string>
+             <string>Line Spacing:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1249,6 +1224,19 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           </item>
          </layout>
         </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1299,7 +1287,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="0" colspan="2">
            <widget class="QLabel" name="label_33">
             <property name="text">
-             <string>Line numbers:</string>
+             <string>Show Line Numbers:</string>
             </property>
            </widget>
           </item>
@@ -1310,17 +1298,17 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <item>
              <property name="text">
-              <string>No line numbers</string>
+              <string>No Line Numbers</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Show line numbers</string>
+              <string>All Line Numbers</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Show important line numbers</string>
+              <string>Only Important Line Numbers</string>
              </property>
             </item>
            </widget>
@@ -1341,7 +1329,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="2" colspan="2">
            <widget class="QLabel" name="label_22">
             <property name="text">
-             <string>Tab space:</string>
+             <string>Tab Width:</string>
             </property>
            </widget>
           </item>
@@ -1412,7 +1400,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="8" column="0">
            <widget class="QLabel" name="label_24">
             <property name="text">
-             <string>Auto save all files </string>
+             <string>Auto Save All Files:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1422,7 +1410,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="6" column="0">
            <widget class="QLabel" name="label_23">
             <property name="text">
-             <string>Maximal characters:</string>
+             <string>Maximal Characters:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1477,7 +1465,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <item>
              <property name="text">
-              <string>never</string>
+              <string>Never</string>
              </property>
             </item>
             <item>
@@ -1512,22 +1500,22 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <item>
              <property name="text">
-              <string>no line wrap</string>
+              <string>No Line Wrap</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>soft line wrap at window edge</string>
+              <string>Soft Line Wrap at Window Edge</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>soft line wrap after max. characters</string>
+              <string>Soft Line Wrap after max. Characters</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>hard line wrap after max. characters</string>
+              <string>Hard Line Wrap after max. Characters</string>
              </property>
             </item>
            </widget>
@@ -1551,7 +1539,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
             <property name="text">
-             <string>Disable work-around on accent typing (mac os x only)</string>
+             <string>Disable work-around on accent typing (Mac OS X only)</string>
             </property>
            </widget>
           </item>
@@ -1559,17 +1547,17 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QComboBox" name="comboBoxHackRenderMode">
             <item>
              <property name="text">
-              <string>qce (recommended)</string>
+              <string>QCE (recommended)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>qt</string>
+              <string>Qt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>single letter</string>
+              <string>Single Letter</string>
              </property>
             </item>
            </widget>
@@ -1583,7 +1571,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Render mode:</string>
+             <string>Render Mode:</string>
             </property>
            </widget>
           </item>
@@ -1636,6 +1624,38 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="pageSyntaxHighlighting">
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="formatConfigBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Formats</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="pageCustomHighlighting">
       <layout class="QVBoxLayout">
        <property name="margin">
@@ -1670,14 +1690,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <item>
           <widget class="QPushButton" name="pbAddLine">
            <property name="text">
-            <string>Add line</string>
+            <string>Add Line</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pbRemoveLine">
            <property name="text">
-            <string>Remove line</string>
+            <string>Remove Line</string>
            </property>
           </widget>
          </item>
@@ -1717,14 +1737,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <item>
           <widget class="QPushButton" name="pbAddSyntaxLine">
            <property name="text">
-            <string>Add line</string>
+            <string>Add Line</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pbRemoveSyntaxLine">
            <property name="text">
-            <string>Remove line</string>
+            <string>Remove Line</string>
            </property>
           </widget>
          </item>
@@ -1785,7 +1805,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <item>
           <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
            <property name="text">
-            <string>In first character</string>
+            <string>In First Character</string>
            </property>
            <property name="advancedOption" stdset="0">
             <bool>true</bool>
@@ -1840,7 +1860,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QCheckBox" name="checkBoxUsePlaceholders">
          <property name="text">
-          <string>Use placeholders</string>
+          <string>Use Placeholders</string>
          </property>
          <property name="advancedOption" stdset="0">
           <bool>true</bool>
@@ -1895,7 +1915,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <item>
           <widget class="QLabel" name="label_40">
            <property name="text">
-            <string>Relative tab font size:</string>
+            <string>Relative Tab Font Size:</string>
            </property>
            <property name="advancedOption" stdset="0">
             <bool>true</bool>
@@ -1961,8 +1981,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page">
+     <widget class="QWidget" name="pageGrammar">
       <layout class="QVBoxLayout" name="verticalLayout_6">
+       <property name="margin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QGroupBox" name="groupBox_13">
          <property name="title">
@@ -1975,14 +1998,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string>Words repeated within a paragraph will be highlighted.</string>
             </property>
             <property name="text">
-             <string>Check for word repetitions</string>
+             <string>Check for Word Repetitions</string>
             </property>
            </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_47">
             <property name="text">
-             <string>Words between repetitions:</string>
+             <string>Words Between Repetitions:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2022,7 +2045,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="0">
            <widget class="QLabel" name="label_54">
             <property name="text">
-             <string>Long range repetitions:</string>
+             <string>Long Range Repetitions:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2032,7 +2055,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="3" column="0">
            <widget class="QLabel" name="label_55">
             <property name="text">
-             <string>Min length of words with long repetition:</string>
+             <string>Min Length of Words with Long Repetition:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2042,7 +2065,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="5" column="0">
            <widget class="QLabel" name="label_48">
             <property name="text">
-             <string>Wordlist directory:</string>
+             <string>Wordlist Directory:</string>
             </property>
            </widget>
           </item>
@@ -2052,7 +2075,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <string>Certain informal or weak words will be highlighted.</string>
             </property>
             <property name="text">
-             <string>Check for bad words</string>
+             <string>Check for Bad Words</string>
             </property>
            </widget>
           </item>
@@ -2092,7 +2115,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="0" column="0">
            <widget class="QLabel" name="label_44">
             <property name="text">
-             <string>Serverurl: </string>
+             <string>Server URL: </string>
             </property>
            </widget>
           </item>
@@ -2113,7 +2136,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="4" column="0">
            <widget class="QLabel" name="label_45">
             <property name="text">
-             <string>LT path:</string>
+             <string>LT Path:</string>
             </property>
            </widget>
           </item>
@@ -2144,7 +2167,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="0">
            <widget class="QLabel" name="label_46">
             <property name="text">
-             <string>Ignored rules:</string>
+             <string>Ignored Rules:</string>
             </property>
            </widget>
           </item>
@@ -2229,7 +2252,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="7" column="0">
            <widget class="QLabel" name="label_50">
             <property name="text">
-             <string>Special rules 2:</string>
+             <string>Special Rules 2:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2239,7 +2262,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="6" column="0">
            <widget class="QLabel" name="label_51">
             <property name="text">
-             <string>Special rules 1:</string>
+             <string>Special Rules 1:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2249,7 +2272,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="8" column="0">
            <widget class="QLabel" name="label_52">
             <property name="text">
-             <string>Special rules 3:</string>
+             <string>Special Rules 3:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2259,7 +2282,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="9" column="0">
            <widget class="QLabel" name="label_53">
             <property name="text">
-             <string>Special rules 4:</string>
+             <string>Special Rules 4:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2292,7 +2315,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QGroupBox" name="groupBox_5">
          <property name="title">
-          <string>Segment preview</string>
+          <string>Segment Preview</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
@@ -2327,7 +2350,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="0">
            <widget class="QLabel" name="label_32">
             <property name="text">
-             <string>Display mode:</string>
+             <string>Display Mode:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -2341,7 +2364,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             </property>
             <item>
              <property name="text">
-              <string>Show preview as tool tip if panel is hidden</string>
+              <string>Show preview as tooltip if panel is hidden</string>
              </property>
             </item>
             <item>
@@ -2369,7 +2392,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="0">
            <widget class="QLabel" name="label_35">
             <property name="text">
-             <string>Auto preview:</string>
+             <string>Auto Preview:</string>
             </property>
            </widget>
           </item>
@@ -2390,7 +2413,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="3" column="0">
            <widget class="QLabel" name="label_36">
             <property name="text">
-             <string>Auto preview delay:</string>
+             <string>Auto Preview Delay:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2442,13 +2465,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QGroupBox" name="groupBox_8">
          <property name="title">
-          <string>Full page pdf preview</string>
+          <string>Full Page PDF Preview</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <widget class="QLabel" name="label_28">
             <property name="text">
-             <string>Scale option:</string>
+             <string>Scale Option:</string>
             </property>
            </widget>
           </item>
@@ -2456,22 +2479,22 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QComboBox" name="comboBoxPreviewScale">
             <item>
              <property name="text">
-              <string>Original size</string>
+              <string>Original Size</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Fit to window width</string>
+              <string>Fit to Window Width</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Fit to window size</string>
+              <string>Fit to Window Size</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Scaled size</string>
+              <string>Scaled Size</string>
              </property>
             </item>
            </widget>
@@ -2505,7 +2528,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="2" column="0">
            <widget class="QLabel" name="label_27">
             <property name="text">
-             <string>Screen resolution:</string>
+             <string>Screen Resolution:</string>
             </property>
            </widget>
           </item>
@@ -2519,7 +2542,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="3" column="0">
            <widget class="QLabel" name="label_26">
             <property name="text">
-             <string>Magnifier shape:</string>
+             <string>Magnifier Shape:</string>
             </property>
            </widget>
           </item>
@@ -2540,7 +2563,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="4" column="0">
            <widget class="QLabel" name="label_25">
             <property name="text">
-             <string>Magnifier size:</string>
+             <string>Magnifier Size:</string>
             </property>
            </widget>
           </item>
@@ -2576,7 +2599,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="6" column="0">
            <widget class="QLabel" name="label_34">
             <property name="text">
-             <string>Synchronized files types:</string>
+             <string>Synchronized Files Types:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2622,14 +2645,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QCheckBox" name="cbAutoCheckin">
          <property name="text">
-          <string>Automatically check in after save ?</string>
+          <string>Automatically check in after save</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="cbSVNUndo">
          <property name="text">
-          <string>Uses SVN revisions to undo before last saved version ?</string>
+          <string>Uses SVN revisions to undo before last saved version</string>
          </property>
         </widget>
        </item>
@@ -2639,14 +2662,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <string>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</string>
          </property>
          <property name="text">
-          <string>Substitue Keywords with Properties (on svn add)</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBoxSVN">
-         <property name="title">
-          <string>SVN Commands</string>
+          <string>Substitute Keywords with Properties (on svn add)</string>
          </property>
         </widget>
        </item>

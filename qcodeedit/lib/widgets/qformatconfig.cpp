@@ -398,11 +398,19 @@ void QFormatConfig::cancel()
 				//m_table->cellWidget(i, 9)->setMaximumSize(22, 22);
 
 				//item = new QTableWidgetItem;
-				QComboBox *fcmb=new QComboBox();
-				fcmb->addItems(fonts);
+				QFontComboBox *fcmb=new QFontComboBox();
+				fcmb->insertItem(0, "<default>");
 				int ind=fcmb->findText(fmt.fontFamily);
 				if(ind>-1) fcmb->setCurrentIndex(ind);
 				else fcmb->setCurrentIndex(0);
+				//int ind=fcmb->findText(fmt.fontFamily);
+				//if(ind>-1) fcmb->setCurrentIndex(ind);
+				//else fcmb->setCurrentIndex(0);
+				//QComboBox *fcmb=new QComboBox();
+				//fcmb->addItems(fonts);
+				//int ind=fcmb->findText(fmt.fontFamily);
+				//if(ind>-1) fcmb->setCurrentIndex(ind);
+				//else fcmb->setCurrentIndex(0);
 				m_table->setCellWidget(r, 10, fcmb);
 				fcmb->setToolTip(m_table->horizontalHeaderItem(10)->toolTip());
 

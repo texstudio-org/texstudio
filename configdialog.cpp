@@ -344,7 +344,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
-	ui.labelGetDic->setText(tr("Get dictionaries at: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
+	ui.labelGetDic->setText(tr("Download Additional Dictionaries: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 	//page custom environment
 	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));
@@ -381,12 +381,13 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	//create icons
 	createIcon(tr("General"),QIcon(":/images/config_general.png"));
 	createIcon(tr("Commands"),QIcon(":/images/config_commands.png"));
-	createIcon(tr("Meta Build"),QIcon(":/images/config_quickbuild.png"));
+	createIcon(tr("Build"),QIcon(":/images/config_quickbuild.png"));
 	createIcon(tr("Shortcuts"),QIcon(":/images/config_shortcut.png"));
 	createIcon(tr("Menus"),QIcon(":/images/config_latexmenus.png"), true);
 	createIcon(tr("Toolbars"),QIcon(":/images/config_toolbars.png"), true);
 	createIcon(tr("Editor"),QIcon(":/images/config_editor.png"));
 	createIcon(tr("Adv. Editor"),QIcon(":/images/config_advancededitor.png"), true);
+	createIcon(tr("Syntax Highlighting"),QIcon(":/images/config_highlighting.png"));
 	createIcon(tr("Custom Highlighting"),QIcon(":/images/config_highlighting.png"), true);
 	createIcon(tr("Completion"),QIcon(":/images/config_completion.png"));
 	createIcon(tr("Grammar"),QIcon(":/images/config_editor.png"));
