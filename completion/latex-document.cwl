@@ -160,6 +160,8 @@
 \columnwidth
 \contentsline{type}{text}{page}
 \contentsname{name}
+\dag#*
+\ddag#*
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
@@ -407,12 +409,14 @@
 \textasteriskcentered
 \textbackslash
 \textbar
+\textbardbl#*
 \textbf{text}
 \textbraceleft
 \textbraceright
 \textbullet
 \textcircled
 \textcompwordmark
+\textcopyright
 \textdagger
 \textdaggerdbl
 \textdollar
