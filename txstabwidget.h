@@ -12,6 +12,7 @@ public:
 
 signals:
     void tabMoved(int from,int to);
+	void tabBarContextMenuRequested(QPoint point);
 
 public slots:
 

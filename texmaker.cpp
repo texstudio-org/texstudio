@@ -170,6 +170,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	EditorView=new TxsTabWidget(centralFrame);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
+
+	connect(EditorView, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(editorTabContextMenu(QPoint)));
 	connect(EditorView, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));
 	if (hasAtLeastQt(4,5)){
 		EditorView->setProperty("tabsClosable",true);
@@ -5286,6 +5288,13 @@ void Texmaker::symbolRemoveFavorite(){
 void Texmaker::symbolRemoveAllFavorites(){
 	symbolFavorites.clear();
 	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
+}
+
+void Texmaker::editorTabContextMenu(const QPoint &point) {
+	if (point.isNull()) return;
+
+	QMenu *documentsMenu = getManagedMenu("main/view/documents");
+	documentsMenu->exec(EditorView->tabBar()->mapToGlobal(point));
 }
 
 void Texmaker::MostUsedSymbolsTriggered(bool direct){

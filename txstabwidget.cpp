@@ -4,6 +4,11 @@
 TxsTabWidget::TxsTabWidget(QWidget *parent) :
 		QTabWidget(parent)
 {
+	QTabBar *tb = new QTabBar();
+	tb->setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
+	setTabBar(tb);
+
 	if (hasAtLeastQt(4,5)){
 		setDocumentMode(true);
 		const QTabBar* tb=tabBar();
