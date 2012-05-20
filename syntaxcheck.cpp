@@ -112,107 +112,102 @@ void SyntaxCheck::run(){
 
 
 void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,int ticket){
-	// do syntax check on that line
-	int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
-	LatexReader lr(*ltxCommands, line);
-	int status;
-	// check command-words
-	while ((status=lr.nextWord(true))){
-		const QString &word = lr.word;
-		const int &wordstart = lr.wordStartIndex;
-		if(status==LatexReader::NW_COMMAND){
-			if(word=="\\begin"||word=="\\end"){
-				QStringList options;
-				ltxCommands->resolveCommandOptions(line,wordstart,options);
-				if(options.size()>0){
-					// adapt env stack
-					QString env=options.first();
-					if(env.startsWith("{"))
-						env=env.remove(0,1);
-					if(env.endsWith("}"))
-						env.chop(1);
-					if(word=="\\begin"){
-						Environment tp;
-						tp.name=env;
-						tp.id=1; //needs correction
-						tp.excessCol=0;
-                        tp.dlh=dlh;
-                        tp.ticket=ticket;
-						if(env=="tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")){
-							// tabular env opened
-							// get cols !!!!
-							cols=LatexTables::getNumberOfColumns(options);
-							tp.id=cols;
-						}
-						activeEnv.push(tp);
-					}else{
-						if(!activeEnv.isEmpty()){
-							Environment tp=activeEnv.top();
-							if(tp.name==env){
-								activeEnv.pop();
-								if(tp.name=="tabular" || ltxCommands->environmentAliases.values(tp.name).contains("tabular")){
-									// correct length of col error if it exists
-									if(!newRanges.isEmpty()){
-										Error &elem=newRanges.last();
-										if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
-											elem.range.second=wordstart-elem.range.first;
-										}
-									}
-									// get new cols
-									cols=containsEnv(*ltxCommands, "tabular",activeEnv);
-								}
-                            }else{
-                                Error elem;
-                                elem.range=QPair<int,int>(wordstart,word.length());
-                                elem.type=ERR_closingUnopendEnv;
-                                newRanges.append(elem);
-                            }
-                        }else{
-                            Error elem;
-                            elem.range=QPair<int,int>(wordstart,word.length());
-                            elem.type=ERR_closingUnopendEnv;
-                            newRanges.append(elem);
-                        }
-					}
-					// add env-name for syntax checking to "word"
-					lr.word+=options.first();
-				}
+    // do syntax check on that line
+    int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
+    LatexReader lr(*ltxCommands, line);
+    int status;
+    // check command-words
+    while ((status=lr.nextWord(true))){
+	const QString &word = lr.word;
+	const int &wordstart = lr.wordStartIndex;
+	if(status==LatexReader::NW_COMMAND){
+	    if(word=="\\begin"||word=="\\end"){
+		QStringList options;
+		ltxCommands->resolveCommandOptions(line,wordstart,options);
+		if(options.size()>0){
+		    // adapt env stack
+		    QString env=options.first();
+		    if(env.startsWith("{"))
+			env=env.remove(0,1);
+		    if(env.endsWith("}"))
+			env.chop(1);
+		    if(word=="\\begin"){
+			Environment tp;
+			tp.name=env;
+			tp.id=1; //needs correction
+			tp.excessCol=0;
+			tp.dlh=dlh;
+			tp.ticket=ticket;
+			if(env=="tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")){
+			    // tabular env opened
+			    // get cols !!!!
+			    cols=LatexTables::getNumberOfColumns(options);
+			    tp.id=cols;
 			}
-            if(ltxCommands->possibleCommands["%definition"].contains(word)){ // don't check in command definition
-				QStringList options;
-				QList<int> starts;
-				ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
-				for(int i=1;i<options.count()&&i<4;i++){
-					QString option=options.at(i);
-					if(option.startsWith("[")){
-						continue;
+			activeEnv.push(tp);
+		    }else{
+			if(!activeEnv.isEmpty()){
+			    Environment tp=activeEnv.top();
+			    if(tp.name==env){
+				activeEnv.pop();
+				if(tp.name=="tabular" || ltxCommands->environmentAliases.values(tp.name).contains("tabular")){
+				    // correct length of col error if it exists
+				    if(!newRanges.isEmpty()){
+					Error &elem=newRanges.last();
+					if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>wordstart){
+					    elem.range.second=wordstart-elem.range.first;
 					}
-					lr.index=starts.at(i)+option.length();
-					break;
+				    }
+				    // get new cols
+				    cols=containsEnv(*ltxCommands, "tabular",activeEnv);
 				}
+			    }else{
+				Error elem;
+				elem.range=QPair<int,int>(wordstart,word.length());
+				elem.type=ERR_closingUnopendEnv;
+				newRanges.append(elem);
+			    }
+			}else{
+			    Error elem;
+			    elem.range=QPair<int,int>(wordstart,word.length());
+			    elem.type=ERR_closingUnopendEnv;
+			    newRanges.append(elem);
 			}
-            if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->possibleCommands["%file"].contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)){ //don't check syntax in reference, label or include
-				QStringList options;
-				ltxCommands->resolveCommandOptions(line,wordstart,options);
-				if(options.size()>0){
-					QString first=options.takeFirst();
-					if(!first.startsWith("[")){  //handling of includegraphics should be improved !!!
-						lr.index+=first.length();
-					}else{
-						if(!options.isEmpty()){
-							QString second=options.first();
-							if(second.startsWith("{")){
-								second.fill(' ');
-								lr.line.replace(lr.index+first.length(),second.length(),second);
-							}
-						}
-					}
-				}
-			}
-			if(ltxCommands->mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
-				Environment env;
-				env.name="math";
-				env.id=1; // to be changed
+		    }
+		    // add env-name for syntax checking to "word"
+		    lr.word+=options.first();
+		}
+	    }
+	    if(ltxCommands->possibleCommands["%definition"].contains(word)){ // don't check in command definition
+		QStringList options;
+		QList<int> starts;
+		ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
+		for(int i=1;i<options.count()&&i<4;i++){
+		    QString option=options.at(i);
+		    if(option.startsWith("[")){
+			continue;
+		    }
+		    lr.index=starts.at(i)+option.length();
+		    break;
+		}
+	    }
+	    if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->possibleCommands["%file"].contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)){ //don't check syntax in reference, label or include
+		QStringList options;
+		QList<int> starts;
+		ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
+		while(options.size()>0){
+		    QString first=options.takeFirst();
+		    int start=starts.takeFirst();
+		    lr.index=start+first.length();
+		    if(!first.startsWith("[")){  //handling of includegraphics should be improved !!!
+			break;
+		    }
+		}
+	    }
+	    if(ltxCommands->mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
+		Environment env;
+		env.name="math";
+		env.id=1; // to be changed
                 env.dlh=dlh;
                 env.ticket=ticket;
 				activeEnv.push(env);
