@@ -288,6 +288,7 @@
 \medskip
 \multicolumn{cols}{pos}{text}
 \multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}#*/picture
+\newblock#*
 \newlabel
 \newlength{\length}
 \newline
