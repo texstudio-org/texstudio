@@ -386,11 +386,11 @@ void OutputViewWidget::gotoLogEntry(int logEntryNumber) {
 }
 
 void OutputViewWidget::retranslateUi(){
-	logViewerTabBar->setTabText(0,tr("messages"));
-	logViewerTabBar->setTabText(1,tr("log file"));
-	logViewerTabBar->setTabText(2,tr("errors"));
-	logViewerTabBar->setTabText(3,tr("preview"));
-	logViewerTabBar->setTabText(4,tr("search results"));
+	logViewerTabBar->setTabText(0,tr("Messages"));
+	logViewerTabBar->setTabText(1,tr("Log File"));
+	logViewerTabBar->setTabText(2,tr("Errors"));
+	logViewerTabBar->setTabText(3,tr("Preview"));
+	logViewerTabBar->setTabText(4,tr("Search Results"));
 }
 
 void OutputViewWidget::clickedOnLogModelIndex(const QModelIndex& index){
