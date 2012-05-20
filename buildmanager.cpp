@@ -197,9 +197,9 @@ void BuildManager::initDefaultCommandNames(){
     registerCommand("asy-dvi-chain", tr("Asymptote DVI Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
     registerCommand("asy-pdf-chain", tr("Asymptote PDF Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
 	
-	registerCommand("pre-compile", tr("Pre-compile"), QStringList() << "", "Tools/Precompile");
-	registerCommand("internal-pre-compile", tr("Internal precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");
-	registerCommand("recompile-bibliography", tr("Recompile bibliography"), QStringList() << "txs:///compile | txs:///bibliography | txs:///compile");
+	registerCommand("pre-compile", tr("Precompile"), QStringList() << "", "Tools/Precompile");
+	registerCommand("internal-pre-compile", tr("Internal Precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");
+	registerCommand("recompile-bibliography", tr("Recompile Bibliography"), QStringList() << "txs:///compile | txs:///bibliography | txs:///compile");
 	
 	
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
