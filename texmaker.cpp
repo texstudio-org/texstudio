@@ -170,6 +170,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	EditorView=new TxsTabWidget(centralFrame);
 	EditorView->setFocusPolicy(Qt::ClickFocus);
 	EditorView->setFocus();
+	EditorView->setContextMenuPolicy(Qt::PreventContextMenu);
 
 	connect(EditorView, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(editorTabContextMenu(QPoint)));
 	connect(EditorView, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));
@@ -5294,7 +5295,7 @@ void Texmaker::editorTabContextMenu(const QPoint &point) {
 	if (point.isNull()) return;
 
 	QMenu *documentsMenu = getManagedMenu("main/view/documents");
-	documentsMenu->exec(EditorView->tabBar()->mapToGlobal(point));
+	documentsMenu->exec(EditorView->mapToGlobal(point));
 }
 
 void Texmaker::MostUsedSymbolsTriggered(bool direct){
