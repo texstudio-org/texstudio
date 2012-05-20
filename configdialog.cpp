@@ -98,8 +98,10 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 	}
 
 	//menu shortcut key
-	if (index.column()==1) txsWarning(tr("Sorry, you clicked in the wrong column.\nTo change a shortcut, you have to edit the third or fourth column."));
-	if (index.column()!=2 && index.column()!=3) return 0;
+	if (index.column()!=2 && index.column()!=3) {
+		txsWarning(tr("To change a shortcut, edit the column \"Current Shortcut\" or \"Additional Shortcut\"."));
+		return 0;
+	}
 	ShortcutComboBox *editor = new ShortcutComboBox(parent);
 
 	return editor;
@@ -189,10 +191,12 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 			REQUIRE(editorKeys);
 			if (!li.empty() && li.first() && (li.first()->parent() != editorKeys || isBasicEditorKey(index))) {
 				QString duplicate=li.first()->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
-				if (txsConfirmWarning(ConfigDialog::tr("The shortcut you entered is the same as the one of this command:") +"\n"+duplicate+"\n"+ConfigDialog::tr("Should I delete this other shortcut?"))) {
+				if (txsConfirmWarning(QString(ConfigDialog::tr("The shortcut <%1> is already assigned to the command:")).arg(value) +"\n"+duplicate+"\n\n"+ConfigDialog::tr("Do you wish to remove the old assignment and bind the shortcut to the new command?"))) {
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					if (li[0]->text(2) == value)  li[0]->setText(2,"");
 					else if (li[0]->text(3) == value)  li[0]->setText(3,"");
+				} else {
+					return;
 				}
 			}
 		}
