@@ -269,6 +269,8 @@ protected slots:
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
 	
+	void editorTabContextMenu(const QPoint& point);
+
 private slots:	
 	void ReadSettings();
 	void SaveSettings(const QString& configName="");
