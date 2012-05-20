@@ -26,6 +26,7 @@
 \Bumpeq
 \Cap
 \centerdot
+\checkmark
 \circeq
 \circlearrowleft
 \circlearrowright
@@ -103,6 +104,7 @@
 \Lsh
 \ltimes
 \lvertneqq
+\maltese
 \measuredangle
 \multimap
 \ncong
