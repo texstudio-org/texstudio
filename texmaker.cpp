@@ -1169,9 +1169,9 @@ void Texmaker::NewDocumentStatus() {
 	tabText.replace("&", "&&");
 	if (EditorView->tabText(index) != tabText) {
 		EditorView->setTabText(index, tabText);
-		EditorView->setTabToolTip(index, ed->fileName());
 		updateOpenDocumentMenu(true);
 	}
+	EditorView->setTabToolTip(index, ed->fileName());
 	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
 	else statusLabelEncoding->setText("unknown");
 }
