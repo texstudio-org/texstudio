@@ -71,20 +71,20 @@ void LatexParser::init(){
     //graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
     //usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 
-	possibleCommands.clear();
-	possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-	possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
-	possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
+    possibleCommands.clear();
+    possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
+    possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
+    possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
+    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
+    possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
     possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
     possibleCommands["%graphics"] << "\\includegraphics";
-    possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite" ;
+    possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite" << "\\bibitem" ;
     possibleCommands["%label"] << "\\label";
     possibleCommands["%bibliography"] << "\\bibliography";
     possibleCommands["%file"] << "\\include" << "\\input" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
-	possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref";
+    possibleCommands["%ref"] << "\\ref" << "\\pageref" << "\\cref" << "\\Cref";
 }
 
 int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
