@@ -425,8 +425,8 @@ void Texmaker::setupDockWidgets(){
 	addSymbolGrid("greek", "math5.png",tr("Greek letters"));
 	addSymbolGrid("cyrillic", "hi16-action-math10.png",tr("Cyrillic letters"));
 	addSymbolGrid("misc-math", "math3.png",tr("Miscellaneous math symbols"));
-	addSymbolGrid("misc-text", "hi16-action-math5.png",tr("Miscellaneous text symbols"));
-	addSymbolGrid("wasysym", "hi16-action-math5.png",tr("Miscellaneous text symbols (wasysym)"));
+	addSymbolGrid("misc-text", "misc-symbols.png",tr("Miscellaneous text symbols"));
+	addSymbolGrid("wasysym", "misc-symbols-wasysym.png",tr("Miscellaneous text symbols (wasysym)"));
 	addSymbolGrid("special", "math-accent.png",tr("Accented letters"));
 	
 	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
