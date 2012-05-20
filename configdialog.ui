@@ -122,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1265,19 +1265,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <widget class="QCheckBox" name="checkBoxState">
             <property name="text">
              <string>Show State Panel</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxDisplayModifyTime">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Show Modify Time</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -2758,7 +2745,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxInlineSyntaxCheck</tabstop>
   <tabstop>checkBoxLineState</tabstop>
   <tabstop>checkBoxState</tabstop>
-  <tabstop>checkBoxDisplayModifyTime</tabstop>
   <tabstop>comboboxLineNumbers</tabstop>
   <tabstop>checkBoxShowWhitespace</tabstop>
   <tabstop>sbTabSpace</tabstop>
@@ -2930,22 +2916,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <hint type="destinationlabel">
      <x>942</x>
      <y>211</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxState</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxDisplayModifyTime</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>489</x>
-     <y>48</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1096</x>
-     <y>48</y>
     </hint>
    </hints>
   </connection>
