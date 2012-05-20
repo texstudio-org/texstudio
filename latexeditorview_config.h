@@ -21,7 +21,6 @@ public:
 	int fontSize;
 	int lineSpacingPercent;
 	int lineWidth;
-	bool displayModifyTime;
 	bool closeSearchAndReplace;
 	bool useLineForSearch, searchOnlyInSelection;
 	static QString translateEditOperation(int key);

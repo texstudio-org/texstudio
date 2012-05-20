@@ -738,7 +738,7 @@ void LatexEditorView::updateSettings(){
 	lineFoldPanelAction->setChecked(config->folding);
 	lineChangePanelAction->setChecked(config->showlinestate);
 	statusPanelAction->setChecked(config->showcursorstate);
-	editor->setDisplayModifyTime(config->displayModifyTime);
+	editor->setDisplayModifyTime(false);
 	searchReplacePanel->setUseLineForSearch(config->useLineForSearch);
 	searchReplacePanel->setSearchOnlyInSelection(config->searchOnlyInSelection);
 	QDocument::setShowSpaces(config->showWhitespace?(QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs):QDocument::ShowNone);
