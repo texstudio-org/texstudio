@@ -10,6 +10,8 @@
         <file alias="qxs/dtx.qnfa">utilities/qxs/dtx.qnfa</file>
         <file alias="qxs/txstest.qnfa">utilities/qxs/txstest.qnfa</file>
         <file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
+        <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
+        <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
         <file alias="closeall.png">images/qcodeedit/closeall.png</file>
         <file alias="down.png">images/qcodeedit/down.png</file>
         <file alias="up.png">images/qcodeedit/up.png</file>
@@ -176,6 +178,7 @@
         <file>completion/calc.cwl</file>
         <file>completion/cancel.cwl</file>
         <file>completion/caption.cwl</file>
+        <file>completion/cases.cwl</file>
         <file>completion/class-beamer.cwl</file>
         <file>completion/class-book.cwl</file>
         <file>completion/class-letter.cwl</file>
@@ -188,8 +191,10 @@
         <file>completion/cyrillic.cwl</file>
         <file>completion/diagxy.cwl</file>
         <file>completion/doi.cwl</file>
+        <file>completion/empheq.cwl</file>
         <file>completion/enumerate.cwl</file>
         <file>completion/epigraph.cwl</file>
+        <file>completion/epstopdf.cwl</file>
         <file>completion/fancybox.cwl</file>
         <file>completion/fancyhdr.cwl</file>
         <file>completion/fancyunits-base.cwl</file>
@@ -205,6 +210,7 @@
         <file>completion/glosstex.cwl</file>
         <file>completion/graphicx.cwl</file>
         <file>completion/hyperref.cwl</file>
+        <file>completion/ifpdf.cwl</file>
         <file>completion/ifthen.cwl</file>
         <file>completion/import.cwl</file>
         <file>completion/jurabib.cwl</file>
@@ -220,6 +226,7 @@
         <file>completion/lscape.cwl</file>
         <file>completion/manyfoot.cwl</file>
         <file>completion/marvosym.cwl</file>
+        <file>completion/mathtools.cwl</file>
         <file>completion/mdwlist.cwl</file>
         <file>completion/microtype.cwl</file>
         <file>completion/multicol.cwl</file>
@@ -232,6 +239,7 @@
         <file>completion/pdfpages.cwl</file>
         <file>completion/pgfcore.cwl</file>
         <file>completion/pgf.cwl</file>
+        <file>completion/pifont.cwl</file>
         <file>completion/psfrag.cwl</file>
         <file>completion/pst-3d.cwl</file>
         <file>completion/pst-blur.cwl</file>
@@ -261,7 +269,9 @@
         <file>completion/tabularx.cwl</file>
         <file>completion/tex.cwl</file>
         <file>completion/textcomp.cwl</file>
+        <file>completion/theorem.cwl</file>
         <file>completion/tikz.cwl</file>
+        <file>completion/titlesec.cwl</file>
         <file>completion/tocbibind.cwl</file>
         <file>completion/tocloft.cwl</file>
         <file>completion/todonotes.cwl</file>
@@ -308,9 +318,6 @@
         <file>images/pasteCol.png</file>
         <file>images/alignCols.png</file>
 		<file>images/image.png</file>
-        <file>completion/pifont.cwl</file>
-        <file>completion/theorem.cwl</file>
-        <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
         <file>images/logpanel.png</file>
         <file>images/sidebar.png</file>
         <file>images/config_advancededitor.png</file>
@@ -332,13 +339,6 @@
         <file>images/left.png</file>
         <file>images/right.png</file>
         <file>images/bookmarks.png</file>
-        <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
-        <file>completion/mathtools.cwl</file>
-        <file>completion/cases.cwl</file>
-        <file>completion/epstopdf.cwl</file>
-        <file>completion/titlesec.cwl</file>
-        <file>completion/ifpdf.cwl</file>
-        <file>completion/empheq.cwl</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
@@ -351,9 +351,10 @@
         <file>images/classic/redo.png</file>
         <file>images/classic/undo.png</file>
         <file>images/classic/math-accent.png</file>
-        <file>images/classic/hi16-action-math5.png</file>
         <file>images/classic/hi16-action-math10.png</file>
         <file>images/classic/hi16-action-math1.png</file>
+		<file>images/classic/misc-symbols.png</file>
+		<file>images/classic/misc-symbols-wasysym.png</file>
         <file>images/classic/text_bold.png</file>
         <file>images/classic/text_italic.png</file>
         <file>images/classic/text_under.png</file>
@@ -384,9 +385,10 @@
         <file>images/modern/redo.png</file>
         <file>images/modern/undo.png</file>
         <file>images/modern/math-accent.png</file>
-        <file>images/modern/hi16-action-math5.png</file>
         <file>images/modern/hi16-action-math10.png</file>
         <file>images/modern/hi16-action-math1.png</file>
+		<file>images/modern/misc-symbols.png</file>
+		<file>images/modern/misc-symbols-wasysym.png</file>
         <file>images/modern/text_bold.png</file>
         <file>images/modern/text_italic.png</file>
         <file>images/modern/text_under.png</file>
