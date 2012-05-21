@@ -714,7 +714,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), Qt::Key_F8, ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
 	newManagedAction(menu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), Qt::Key_F9, ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
 	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), Qt::Key_F10, ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
-	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBTEX);
+    newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_MAKEINDEX);
 	
 	menu->addSeparator();
