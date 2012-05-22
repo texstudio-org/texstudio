@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=Office;Publishing;Qt;X-SuSE-Core-Office;X-Mandriva-Office-Publishing;X-Misc;
 Encoding=UTF-8
-Exec=texstudio
+Exec=texstudio %F
 GenericName=LaTeX Editor
 GenericName[fr]=Editeur LaTeX
 Comment=LaTeX development environment
