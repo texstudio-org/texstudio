@@ -979,6 +979,7 @@ bool ConfigManager::execConfigDialog() {
 	
 	QTreeWidgetItem * editorItem=new QTreeWidgetItem((QTreeWidget*)0, QStringList() << ConfigDialog::tr("Editor"));
 	QTreeWidgetItem * editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
+	const int editorKeys_EditOperationRole = Qt::UserRole;
 	
 	Q_ASSERT((int)Qt::CTRL == (int)Qt::ControlModifier && (int)Qt::ALT == (int)Qt::AltModifier && (int)Qt::SHIFT == (int)Qt::ShiftModifier && (int)Qt::META == (int)Qt::MetaModifier);
 	QMultiMap<int, int> keysReversed;
@@ -1002,7 +1003,7 @@ bool ConfigManager::execConfigDialog() {
 			} else {
 				twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << QKeySequence(key).toString(QKeySequence::NativeText));
 			}
-			twi->setData(0, Qt::UserRole, elem);
+			twi->setData(0, editorKeys_EditOperationRole, elem);
 			twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 #ifdef Q_WS_WIN
 			QSize sz=twi->sizeHint(0);
@@ -1298,10 +1299,14 @@ bool ConfigManager::execConfigDialog() {
 		confDlg->fmConfig->apply();
 		
 		this->editorKeys.clear();
-		for (int i=0;i<editorKeys->childCount();i++)
-			if (editorKeys->child(i)->data(0, Qt::UserRole).toInt() != /*QEditor::None*/0)
-				this->editorKeys.insert(QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText), editorKeys->child(i)->data(0, Qt::UserRole).toInt());
-		
+		for (int i=0;i<editorKeys->childCount();i++) {
+			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
+			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText);
+			qDebug() << i << kSeq << editOperation << kSeq.isEmpty();
+			if (!kSeq.isEmpty() && editOperation > 0 /* not QEditor::Invalid or QEditor::NoOperation*/)
+				this->editorKeys.insert(kSeq, editOperation);
+		}
+
 		//menus
 		managedMenuNewShortcuts.clear();
 		treeWidgetToManagedMenuTo(menuShortcuts);
