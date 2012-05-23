@@ -2599,8 +2599,11 @@ void Texmaker::ReadSettings() {
 	config->beginGroup("Editor Key Mapping");
 	QStringList sl = config->childKeys();
 	if (!sl.empty()) {
-		foreach (const QString& key, sl)
-			configManager.editorKeys.insert(key.toInt(), config->value(key).toInt());
+		foreach (const QString& key, sl) {
+			int k = key.toInt();
+			if (k==0) continue;
+			configManager.editorKeys.insert(k, config->value(key).toInt());
+		}
 		QEditor::setEditOperations(configManager.editorKeys);
 	}
 	config->endGroup();
