@@ -31,12 +31,19 @@ th {
 	background: #3F5881;
 	color: white;
 }
- 
+
 tr:nth-child(even) { background: #F0F0F0; }
 tr:nth-child(odd) { background: #FFF; }
 td { border-style: none; }
  
- 
+.two-columns {
+	-moz-column-count: 2;
+	-moz-column-width: 320px;
+	-webkit-column-count: 2;
+	-webkit-column-width: 320px;
+	column-count: 2;
+	column-width: 320px;
+}
  
 .command { font-family: monospace; }
 .scripting_help th {margin-top: 4em; }
