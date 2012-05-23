@@ -2142,13 +2142,21 @@ void Texmaker::editPaste() {
 	if (d->hasUrls()) {
 		QList<QUrl> uris=d->urls();
 		
+		bool onlyLocalImages = true;
 		for (int i=0; i<uris.length(); i++) {
 			QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
-			if (InsertGraphics::imageFormats().contains(fi.suffix())) {
-				QuickGraphics(uris.at(i).toLocalFile());
-			} else {
-				currentEditor()->insertText(uris.at(i).toLocalFile()+"\n");
+			if (!fi.exists() || !InsertGraphics::imageFormats().contains(fi.suffix())) {
+				onlyLocalImages = false;
+				break;
 			}
+		}
+
+		if (onlyLocalImages) {
+			for (int i=0; i<uris.length(); i++) {
+				QuickGraphics(uris.at(i).toLocalFile());
+			}
+		} else {
+			currentEditorView()->paste();
 		}
 	} else {
 		currentEditorView()->paste();
