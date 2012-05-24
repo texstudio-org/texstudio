@@ -242,15 +242,15 @@
     </message>
     <message>
         <source>Pre-compile</source>
-        <translation>Pré-compilation</translation>
+        <translation type="obsolete">Pré-compilation</translation>
     </message>
     <message>
         <source>Internal precompile</source>
-        <translation>Pré-compilation interne</translation>
+        <translation type="obsolete">Pré-compilation interne</translation>
     </message>
     <message>
         <source>Recompile bibliography</source>
-        <translation>Recompilation de la bibliographie</translation>
+        <translation type="obsolete">Recompilation de la bibliographie</translation>
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
@@ -408,6 +408,18 @@
         <source>External PDF Viewer</source>
         <translation>Afficheur PDF externe</translation>
     </message>
+    <message>
+        <source>Precompile</source>
+        <translation>Pré-compilation</translation>
+    </message>
+    <message>
+        <source>Internal Precompile</source>
+        <translation>Pré-compilation interne</translation>
+    </message>
+    <message>
+        <source>Recompile Bibliography</source>
+        <translation>Recompilation de la bibliographie</translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -478,31 +490,31 @@
     </message>
     <message>
         <source>Style</source>
-        <translation>Style</translation>
+        <translation type="obsolete">Style</translation>
     </message>
     <message>
         <source>Font</source>
-        <translation>Police</translation>
+        <translation type="obsolete">Police</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation>Taille de police</translation>
+        <translation type="obsolete">Taille de police</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="obsolete">Langue</translation>
     </message>
     <message>
         <source>Color Scheme</source>
-        <translation>Thème de couleurs</translation>
+        <translation type="obsolete">Thème de couleurs</translation>
     </message>
     <message>
         <source>classic</source>
-        <translation>classique</translation>
+        <translation type="obsolete">classique</translation>
     </message>
     <message>
         <source>modern</source>
-        <translation>moderne</translation>
+        <translation type="obsolete">moderne</translation>
     </message>
     <message>
         <source>Tabbed Structure/Symbol View</source>
@@ -514,7 +526,7 @@
     </message>
     <message>
         <source>Ignore most system colors</source>
-        <translation>ignorer le thème couleurs du système</translation>
+        <translation type="obsolete">ignorer le thème couleurs du système</translation>
     </message>
     <message>
         <source>Files</source>
@@ -522,11 +534,11 @@
     </message>
     <message>
         <source>Max. Recent Documents</source>
-        <translation>Nb. max. documents récents</translation>
+        <translation type="obsolete">Nb. max. documents récents</translation>
     </message>
     <message>
         <source>Max. Recent Master Documents</source>
-        <translation>Nb. max. documents maîtres récents</translation>
+        <translation type="obsolete">Nb. max. documents maîtres récents</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -534,7 +546,7 @@
     </message>
     <message>
         <source>Always show structure of master document</source>
-        <translation>Toujours afficher la structure du document maître</translation>
+        <translation type="obsolete">Toujours afficher la structure du document maître</translation>
     </message>
     <message>
         <source>Dictionaries</source>
@@ -550,7 +562,7 @@
     </message>
     <message>
         <source>Thesaurus Database</source>
-        <translation>Base de donnée du thésaurus</translation>
+        <translation type="obsolete">Base de donnée du thésaurus</translation>
     </message>
     <message>
         <source>Inline spell checking</source>
@@ -617,7 +629,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Tab space:</source>
-        <translation>Tab. (nb d&apos;espaces) :</translation>
+        <translation type="obsolete">Tab. (nb d&apos;espaces) :</translation>
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
@@ -625,11 +637,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Add line</source>
-        <translation>Ajouter ligne</translation>
+        <translation type="obsolete">Ajouter ligne</translation>
     </message>
     <message>
         <source>Remove line</source>
-        <translation>Supprimer ligne</translation>
+        <translation type="obsolete">Supprimer ligne</translation>
     </message>
     <message>
         <source>Shortcuts</source>
@@ -677,7 +689,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
-        <translation>Afficher la prévisualisation en info-bulle si le panneau est caché</translation>
+        <translation type="obsolete">Afficher la prévisualisation en info-bulle si le panneau est caché</translation>
     </message>
     <message>
         <source>Always show preview in preview panel</source>
@@ -709,27 +721,27 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Ignore indentation</source>
-        <translation>Ignorer l&apos;indentation</translation>
+        <translation type="obsolete">Ignorer l&apos;indentation</translation>
     </message>
     <message>
         <source>Keep indentation</source>
-        <translation>Conserver l&apos;indentation</translation>
+        <translation type="obsolete">Conserver l&apos;indentation</translation>
     </message>
     <message>
         <source>Indent and unindent automatically</source>
-        <translation>Indenter et désindenter automatiquement</translation>
+        <translation type="obsolete">Indenter et désindenter automatiquement</translation>
     </message>
     <message>
         <source>Keep indentation with spaces only</source>
-        <translation>Conserver l&apos;indentation sous forme d&apos;espaces seulement</translation>
+        <translation type="obsolete">Conserver l&apos;indentation sous forme d&apos;espaces seulement</translation>
     </message>
     <message>
         <source>Indent and unindent automatically with spaces only</source>
-        <translation>Indenter et désindenter automatiquement sous forme d&apos;espaces seulement</translation>
+        <translation type="obsolete">Indenter et désindenter automatiquement sous forme d&apos;espaces seulement</translation>
     </message>
     <message>
         <source>Auto detect encoding of loaded files</source>
-        <translation>Auto-détection du codage d&apos;entrée des fichiers chargés</translation>
+        <translation type="obsolete">Auto-détection du codage d&apos;entrée des fichiers chargés</translation>
     </message>
     <message>
         <source>Folding</source>
@@ -737,15 +749,15 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>No line numbers</source>
-        <translation>Pas de numéro de ligne</translation>
+        <translation type="obsolete">Pas de numéro de ligne</translation>
     </message>
     <message>
         <source>Show line numbers</source>
-        <translation>Afficher les numéros de ligne</translation>
+        <translation type="obsolete">Afficher les numéros de ligne</translation>
     </message>
     <message>
         <source>Show important line numbers</source>
-        <translation>Afficher les numéros de ligne importants</translation>
+        <translation type="obsolete">Afficher les numéros de ligne importants</translation>
     </message>
     <message>
         <source>Formats</source>
@@ -761,7 +773,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Show Modify Time</source>
-        <translation>Afficher le délai depuis la dernière modification</translation>
+        <translation type="obsolete">Afficher le délai depuis la dernière modification</translation>
     </message>
     <message>
         <source>Use single line selection as Search Word</source>
@@ -785,7 +797,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>In first character</source>
-        <translation>En premier caractère</translation>
+        <translation type="obsolete">En premier caractère</translation>
     </message>
     <message>
         <source>Auto Complete Common Prefix</source>
@@ -801,7 +813,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Use placeholders</source>
-        <translation>Utiliser des paramètres fictifs</translation>
+        <translation type="obsolete">Utiliser des paramètres fictifs</translation>
     </message>
     <message>
         <source>Use following completion files:</source>
@@ -809,11 +821,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Automatically check in after save ?</source>
-        <translation>Vérifier automatiquement après l&apos;enregistrement ?</translation>
+        <translation type="obsolete">Vérifier automatiquement après l&apos;enregistrement ?</translation>
     </message>
     <message>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée ?</translation>
+        <translation type="obsolete">Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée ?</translation>
     </message>
     <message>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
@@ -821,11 +833,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Substitue Keywords with Properties (on svn add)</source>
-        <translation>Remplacer Keywords par Properties (en cas de « svn add »)</translation>
+        <translation type="obsolete">Remplacer Keywords par Properties (en cas de « svn add »)</translation>
     </message>
     <message>
         <source>SVN Commands</source>
-        <translation>Commandes SVN</translation>
+        <translation type="obsolete">Commandes SVN</translation>
     </message>
     <message>
         <source>SVN Directory Search Depth: </source>
@@ -833,7 +845,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Show advanced options</source>
-        <translation>Afficher les options avancées</translation>
+        <translation type="obsolete">Afficher les options avancées</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
@@ -841,11 +853,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>The shortcut you entered is the same as the one of this command:</source>
-        <translation>Ce raccourci est déjà utilisé pour :</translation>
+        <translation type="obsolete">Ce raccourci est déjà utilisé pour :</translation>
     </message>
     <message>
         <source>Should I delete this other shortcut?</source>
-        <translation>Supprimer l&apos;autre raccourci ?</translation>
+        <translation type="obsolete">Supprimer l&apos;autre raccourci ?</translation>
     </message>
     <message>
         <source>Do you really want to delete this row?</source>
@@ -853,7 +865,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Get dictionaries at: %1</source>
-        <translation>Télécharger le dictionnaire : %1</translation>
+        <translation type="obsolete">Télécharger le dictionnaire : %1</translation>
     </message>
     <message>
         <source>Command</source>
@@ -921,7 +933,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Use system theme icons</source>
-        <translation>Utiliser les icônes du thème du système</translation>
+        <translation type="obsolete">Utiliser les icônes du thème du système</translation>
     </message>
     <message>
         <source>Inline syntax checking</source>
@@ -949,11 +961,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Auto save all files </source>
-        <translation>Sauvegarde automatique de tous les fichiers</translation>
+        <translation type="obsolete">Sauvegarde automatique de tous les fichiers</translation>
     </message>
     <message>
         <source>never</source>
-        <translation>jamais</translation>
+        <translation type="obsolete">jamais</translation>
     </message>
     <message>
         <source>5 minutes</source>
@@ -973,15 +985,15 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Indentation mode:</source>
-        <translation>Mode indentation :</translation>
+        <translation type="obsolete">Mode indentation :</translation>
     </message>
     <message>
         <source>Line numbers:</source>
-        <translation>Numéros de ligne :</translation>
+        <translation type="obsolete">Numéros de ligne :</translation>
     </message>
     <message>
         <source>Segment preview</source>
-        <translation>Prévisualisation de la portion</translation>
+        <translation type="obsolete">Prévisualisation de la portion</translation>
     </message>
     <message>
         <source>Command:</source>
@@ -989,15 +1001,15 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Display mode:</source>
-        <translation>Mode &quot;display&quot; :</translation>
+        <translation type="obsolete">Mode &quot;display&quot; :</translation>
     </message>
     <message>
         <source>Full page pdf preview</source>
-        <translation>Prévisualisation du pdf en pleine page</translation>
+        <translation type="obsolete">Prévisualisation du pdf en pleine page</translation>
     </message>
     <message>
         <source>Screen resolution:</source>
-        <translation>Résolution de l&apos;écran :</translation>
+        <translation type="obsolete">Résolution de l&apos;écran :</translation>
     </message>
     <message>
         <source>dpi</source>
@@ -1005,11 +1017,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Magnifier size:</source>
-        <translation>Facteur de zoom :</translation>
+        <translation type="obsolete">Facteur de zoom :</translation>
     </message>
     <message>
         <source>Scale option:</source>
-        <translation>Option d&apos;échelle :</translation>
+        <translation type="obsolete">Option d&apos;échelle :</translation>
     </message>
     <message>
         <source>Scaling:</source>
@@ -1017,20 +1029,20 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Original size</source>
-        <translation>Taille originale</translation>
+        <translation type="obsolete">Taille originale</translation>
     </message>
     <message>
         <source>Fit to window width</source>
-        <translation>Adapter à la largeur de la fenêtre</translation>
+        <translation type="obsolete">Adapter à la largeur de la fenêtre</translation>
     </message>
     <message>
         <source>Fit to window size</source>
-        <translation>Adapter aux dimensions de la fenêtre</translation>
+        <translation type="obsolete">Adapter aux dimensions de la fenêtre</translation>
     </message>
     <message>
         <source>Scaled size</source>
         <translatorcomment>???</translatorcomment>
-        <translation>Mise à l&apos;échelle</translation>
+        <translation type="obsolete">Mise à l&apos;échelle</translation>
     </message>
     <message>
         <source>%</source>
@@ -1038,7 +1050,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Magnifier shape:</source>
-        <translation>Forme du zoom :</translation>
+        <translation type="obsolete">Forme du zoom :</translation>
     </message>
     <message>
         <source>Square</source>
@@ -1070,7 +1082,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Maximal characters:</source>
-        <translation>un nb de caractères de au plus :</translation>
+        <translation type="obsolete">un nb de caractères de au plus :</translation>
     </message>
     <message>
         <source>Hacks/Workarounds</source>
@@ -1095,7 +1107,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation>Désactiver l&apos;astuce pour les caractères accentués (seulement pour Mac OS X)</translation>
+        <translation type="obsolete">Désactiver l&apos;astuce pour les caractères accentués (seulement pour Mac OS X)</translation>
     </message>
     <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
@@ -1107,7 +1119,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Synchronized files types:</source>
-        <translation>Types de fichiers synchronisés :</translation>
+        <translation type="obsolete">Types de fichiers synchronisés :</translation>
     </message>
     <message>
         <source>Inline</source>
@@ -1123,7 +1135,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Auto preview:</source>
-        <translation>Prévisualisation automatique :</translation>
+        <translation type="obsolete">Prévisualisation automatique :</translation>
     </message>
     <message>
         <source>Never</source>
@@ -1135,19 +1147,19 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Auto preview delay:</source>
-        <translation>Délai de prévisualisation automatique :</translation>
+        <translation type="obsolete">Délai de prévisualisation automatique :</translation>
     </message>
     <message>
         <source>Show stdout</source>
-        <translation>Afficher le flux de sortie</translation>
+        <translation type="obsolete">Afficher le flux de sortie</translation>
     </message>
     <message>
         <source>Only for user commands</source>
-        <translation>Seulement pour les commandes utilisateur</translation>
+        <translation type="obsolete">Seulement pour les commandes utilisateur</translation>
     </message>
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation>Toujours (si non redirigé vers &gt; /dev/null)</translation>
+        <translation type="obsolete">Toujours (si non redirigé vers &gt; /dev/null)</translation>
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
@@ -1155,19 +1167,19 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>no line wrap</source>
-        <translation>Pas de coupure de ligne</translation>
+        <translation type="obsolete">Pas de coupure de ligne</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation>Coupure de ligne douce en bord de fenêtre</translation>
+        <translation type="obsolete">Coupure de ligne douce en bord de fenêtre</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation>Coupure de ligne douce après un nombre de caractères maximal</translation>
+        <translation type="obsolete">Coupure de ligne douce après un nombre de caractères maximal</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation>Coupure de ligne brutale après un nombre de caractères maximal</translation>
+        <translation type="obsolete">Coupure de ligne brutale après un nombre de caractères maximal</translation>
     </message>
     <message>
         <source>Additional Commands</source>
@@ -1215,23 +1227,23 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Replace double quotes:</source>
-        <translation>Remplacer les guillemets :</translation>
+        <translation type="obsolete">Remplacer les guillemets :</translation>
     </message>
     <message>
         <source>no replacement</source>
-        <translation>pas de remplacement</translation>
+        <translation type="obsolete">pas de remplacement</translation>
     </message>
     <message>
         <source>English quotes:  `` &apos;&apos;</source>
-        <translation>guillemets anglais : `` &apos;&apos;</translation>
+        <translation type="obsolete">guillemets anglais : `` &apos;&apos;</translation>
     </message>
     <message>
         <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation>guillemets français : «   »</translation>
+        <translation type="obsolete">guillemets français : «   »</translation>
     </message>
     <message>
         <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation>guillemets allemands : &quot;` &quot;&apos;</translation>
+        <translation type="obsolete">guillemets allemands : &quot;` &quot;&apos;</translation>
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
@@ -1259,7 +1271,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>French quotes (babel): \og \fg{}</source>
-        <translation>Guillemets français (babel) : \og  \fg{}</translation>
+        <translation type="obsolete">Guillemets français (babel) : \og  \fg{}</translation>
     </message>
     <message>
         <source>one</source>
@@ -1283,7 +1295,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation>Inverser les guillemets français &quot;&gt; &quot;&lt;</translation>
+        <translation type="obsolete">Inverser les guillemets français &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <source>Restrict search scope to an existing selection</source>
@@ -1295,7 +1307,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation>Taille de caractères des onglets relative :</translation>
+        <translation type="obsolete">Taille de caractères des onglets relative :</translation>
     </message>
     <message>
         <source>Diff</source>
@@ -1307,11 +1319,11 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Spelling dictionary directory</source>
-        <translation>Répertoire du dictionnaire</translation>
+        <translation type="obsolete">Répertoire du dictionnaire</translation>
     </message>
     <message>
         <source>Default language</source>
-        <translation>Langue par défaut</translation>
+        <translation type="obsolete">Langue par défaut</translation>
     </message>
     <message>
         <source>Select dictionary directory</source>
@@ -1319,27 +1331,27 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation>Famille de fonte</translation>
+        <translation type="obsolete">Famille de fonte</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
-        <translation>Codage d&apos;entrée par défaut</translation>
+        <translation type="obsolete">Codage d&apos;entrée par défaut</translation>
     </message>
     <message>
         <source>qce (recommended)</source>
-        <translation>qce (recommandé)</translation>
+        <translation type="obsolete">qce (recommandé)</translation>
     </message>
     <message>
         <source>qt</source>
-        <translation>qt</translation>
+        <translation type="obsolete">qt</translation>
     </message>
     <message>
         <source>single letter</source>
-        <translation>lettre unique</translation>
+        <translation type="obsolete">lettre unique</translation>
     </message>
     <message>
         <source>Render mode:</source>
-        <translation>Mode de rendu</translation>
+        <translation type="obsolete">Mode de rendu</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
@@ -1355,7 +1367,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Inline checking:</source>
-        <translation>Vérification en ligne :</translation>
+        <translation type="obsolete">Vérification en ligne :</translation>
     </message>
     <message>
         <source>Spelling</source>
@@ -1383,15 +1395,15 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Check for word repetitions</source>
-        <translation>Vérifier la répétition de mots</translation>
+        <translation type="obsolete">Vérifier la répétition de mots</translation>
     </message>
     <message>
         <source>Words between repetitions:</source>
-        <translation>Nombre de mots entre les réptitions</translation>
+        <translation type="obsolete">Nombre de mots entre les réptitions</translation>
     </message>
     <message>
         <source>Wordlist directory:</source>
-        <translation>Répertoire de la liste de mots</translation>
+        <translation type="obsolete">Répertoire de la liste de mots</translation>
     </message>
     <message>
         <source>LanguageTool</source>
@@ -1399,7 +1411,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Serverurl: </source>
-        <translation>URL du serveur :</translation>
+        <translation type="obsolete">URL du serveur :</translation>
     </message>
     <message>
         <source>Start LanguageTool if not running</source>
@@ -1407,11 +1419,11 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>LT path:</source>
-        <translation>Chemin LT :</translation>
+        <translation type="obsolete">Chemin LT :</translation>
     </message>
     <message>
         <source>Ignored rules:</source>
-        <translation>Règles ignorées :</translation>
+        <translation type="obsolete">Règles ignorées :</translation>
     </message>
     <message>
         <source>Java:</source>
@@ -1431,23 +1443,23 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Check for bad words</source>
-        <translation>Vérifier les mots incorrects</translation>
+        <translation type="obsolete">Vérifier les mots incorrects</translation>
     </message>
     <message>
         <source>Special rules 2:</source>
-        <translation>Règles spéciales 2 :</translation>
+        <translation type="obsolete">Règles spéciales 2 :</translation>
     </message>
     <message>
         <source>Special rules 1:</source>
-        <translation>Règles spéciales 1 :</translation>
+        <translation type="obsolete">Règles spéciales 1 :</translation>
     </message>
     <message>
         <source>Special rules 3:</source>
-        <translation>Règles spéciales 3 :</translation>
+        <translation type="obsolete">Règles spéciales 3 :</translation>
     </message>
     <message>
         <source>Special rules 4:</source>
-        <translation>Règles spéciales 4 :</translation>
+        <translation type="obsolete">Règles spéciales 4 :</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
@@ -1459,11 +1471,11 @@ Lequel des trois sages dira toujours la vérité ?</translation>
     </message>
     <message>
         <source>Long range repetitions:</source>
-        <translation>Longue plage de répétitions :</translation>
+        <translation type="obsolete">Longue plage de répétitions :</translation>
     </message>
     <message>
         <source>Min length of words with long repetition:</source>
-        <translation>Longueur minimum des mots en cas de longue répétition</translation>
+        <translation type="obsolete">Longueur minimum des mots en cas de longue répétition</translation>
     </message>
     <message>
         <source>Words repeated within a paragraph will be highlighted.</source>
@@ -1518,12 +1530,12 @@ to set the key anyway?</source>
     <message>
         <source>Metacommands</source>
         <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
-        <translation>Méta-compilations</translation>
+        <translation type="obsolete">Méta-compilations</translation>
     </message>
     <message>
         <source>Usercommands</source>
         <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
-        <translation>Compilations utilisateur</translation>
+        <translation type="obsolete">Compilations utilisateur</translation>
     </message>
     <message>
         <source>Menus</source>
@@ -1532,7 +1544,7 @@ to set the key anyway?</source>
     <message>
         <source>Meta Build</source>
         <translatorcomment>« Construction » n&apos;est pas très heureux, mais je ne vois pas d&apos;autre traduction</translatorcomment>
-        <translation>Méta-constructions</translation>
+        <translation type="obsolete">Méta-constructions</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1545,7 +1557,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Show all</source>
-        <translation>Afficher tout</translation>
+        <translation type="obsolete">Afficher tout</translation>
     </message>
     <message>
         <source>Build Options</source>
@@ -1573,7 +1585,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Line Spacing</source>
-        <translation>Espace interligne</translation>
+        <translation type="obsolete">Espace interligne</translation>
     </message>
     <message>
         <source>DTX files</source>
@@ -1582,6 +1594,394 @@ to set the key anyway?</source>
     <message>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;inconnu&gt;</translation>
+    </message>
+    <message>
+        <source>Show Advanced Options</source>
+        <translation>Afficher les options avancées</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Style :</translation>
+    </message>
+    <message>
+        <source>Font:</source>
+        <translation>Police :</translation>
+    </message>
+    <message>
+        <source>Font Size:</source>
+        <translation>Taille de police :</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation>Langue :</translation>
+    </message>
+    <message>
+        <source>Color Scheme:</source>
+        <translation>Thème de couleurs :</translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation>Classique</translation>
+    </message>
+    <message>
+        <source>Modern</source>
+        <translation>Moderne</translation>
+    </message>
+    <message>
+        <source>Ignore Most System Colors</source>
+        <translation>ignorer l&apos;essentiel des couleurs système</translation>
+    </message>
+    <message>
+        <source>Use System Theme Icons</source>
+        <translation>Utiliser les icônes du thème du système</translation>
+    </message>
+    <message>
+        <source>Max. Recent Documents:</source>
+        <translation>Nb. max. documents récents :</translation>
+    </message>
+    <message>
+        <source>Max. Recent Master Documents:</source>
+        <translation>Nb. max. documents maîtres récents :</translation>
+    </message>
+    <message>
+        <source>Always Show Structure of Master Document</source>
+        <translation>Toujours afficher la structure du document maître</translation>
+    </message>
+    <message>
+        <source>Thesaurus Database:</source>
+        <translation>Base de donnée du thésaurus :</translation>
+    </message>
+    <message>
+        <source>Spelling Dictionary Directory:</source>
+        <translation>Répertoire du dictionnaire :</translation>
+    </message>
+    <message>
+        <source>Default Language:</source>
+        <translation>Langue par défaut :</translation>
+    </message>
+    <message>
+        <source>Meta Commands</source>
+        <translation>Méta-compilations</translation>
+    </message>
+    <message>
+        <source>User Commands</source>
+        <translation>Compilations utilisateur</translation>
+    </message>
+    <message>
+        <source>Show stdout:</source>
+        <translation>Afficher le flux de sortie :</translation>
+    </message>
+    <message>
+        <source>Only For User Commands</source>
+        <translation>Seulement pour les commandes utilisateur</translation>
+    </message>
+    <message>
+        <source>Always (If not redirected &gt; /dev/null)</source>
+        <translation>Toujours (si non redirigé vers &gt; /dev/null)</translation>
+    </message>
+    <message>
+        <source>Show All</source>
+        <translation>Afficher tout</translation>
+    </message>
+    <message>
+        <source>Font Family:</source>
+        <translation>Famille de fonte</translation>
+    </message>
+    <message>
+        <source>Default Font Encoding:</source>
+        <translation>Codage d&apos;entrée par défaut</translation>
+    </message>
+    <message>
+        <source>Ignore Indentation</source>
+        <translation>Ignorer l&apos;indentation</translation>
+    </message>
+    <message>
+        <source>Keep Indentation</source>
+        <translation>Conserver l&apos;indentation</translation>
+    </message>
+    <message>
+        <source>Indent and Unindent Automatically</source>
+        <translation>Indenter et désindenter automatiquement</translation>
+    </message>
+    <message>
+        <source>Keep Indentation With Spaces Only</source>
+        <translation>Conserver l&apos;indentation sous forme d&apos;espaces seulement</translation>
+    </message>
+    <message>
+        <source>Indent and Unindent Automatically With Spaces Only</source>
+        <translation>Indenter et désindenter automatiquement sous forme d&apos;espaces seulement</translation>
+    </message>
+    <message>
+        <source>Indentation Mode:</source>
+        <translation>Mode indentation :</translation>
+    </message>
+    <message>
+        <source>Replace Double Quotes:</source>
+        <translation>Remplacer les guillemets :</translation>
+    </message>
+    <message>
+        <source>No Replacement</source>
+        <translation>Pas de remplacement</translation>
+    </message>
+    <message>
+        <source>English Quotes:  `` &apos;&apos;</source>
+        <translation>Guillemets anglais : `` &apos;&apos;</translation>
+    </message>
+    <message>
+        <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation>Guillemets français : «   »</translation>
+    </message>
+    <message>
+        <source>German Quotes:  &quot;` &quot;&apos;</source>
+        <translation>Guillemets allemands : &quot;` &quot;&apos;</translation>
+    </message>
+    <message>
+        <source>French Quotes (babel): \og \fg{}</source>
+        <translation>Guillemets français (babel) : \og  \fg{}</translation>
+    </message>
+    <message>
+        <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
+        <translation>Inverser les guillemets français : »   «</translation>
+    </message>
+    <message>
+        <source>Inline Checking:</source>
+        <translation>Vérification en ligne :</translation>
+    </message>
+    <message>
+        <source>Auto Detect Encoding of Loaded Files</source>
+        <translation>Auto-détection du codage d&apos;entrée des fichiers chargés</translation>
+    </message>
+    <message>
+        <source>Line Spacing:</source>
+        <translation>Espace interligne :</translation>
+    </message>
+    <message>
+        <source>Show Line Numbers:</source>
+        <translation>Afficher les numéros de ligne :</translation>
+    </message>
+    <message>
+        <source>No Line Numbers</source>
+        <translation>Pas de numéro de ligne</translation>
+    </message>
+    <message>
+        <source>All Line Numbers</source>
+        <translation>Tous les numéro de ligne</translation>
+    </message>
+    <message>
+        <source>Only Important Line Numbers</source>
+        <translation>Seulement les numéros de ligne importants</translation>
+    </message>
+    <message>
+        <source>Tab Width:</source>
+        <translation>Largeur des tabulations :</translation>
+    </message>
+    <message>
+        <source>Auto Save All Files:</source>
+        <translation>Sauvegarde automatique de tous les fichiers :</translation>
+    </message>
+    <message>
+        <source>Maximal Characters:</source>
+        <translation>un nb de caractères de au plus :</translation>
+    </message>
+    <message>
+        <source>No Line Wrap</source>
+        <translation>Pas de coupure de ligne</translation>
+    </message>
+    <message>
+        <source>Soft Line Wrap at Window Edge</source>
+        <translation>Coupure de ligne douce en bord de fenêtre</translation>
+    </message>
+    <message>
+        <source>Soft Line Wrap after max. Characters</source>
+        <translation>Coupure de ligne douce après un nombre de caractères maximal</translation>
+    </message>
+    <message>
+        <source>Hard Line Wrap after max. Characters</source>
+        <translation>Coupure de ligne brutale après un nombre de caractères maximal</translation>
+    </message>
+    <message>
+        <source>Disable work-around on accent typing (Mac OS X only)</source>
+        <translation>Désactiver l&apos;astuce pour les caractères accentués (Mac OS X seulement)</translation>
+    </message>
+    <message>
+        <source>QCE (recommended)</source>
+        <translation>QCE (recommandé)</translation>
+    </message>
+    <message>
+        <source>Qt</source>
+        <translation>Qt</translation>
+    </message>
+    <message>
+        <source>Single Letter</source>
+        <translation>Lettre unique</translation>
+    </message>
+    <message>
+        <source>Render Mode:</source>
+        <translation>Mode de rendu</translation>
+    </message>
+    <message>
+        <source>Add Line</source>
+        <translation>Ajouter ligne</translation>
+    </message>
+    <message>
+        <source>Remove Line</source>
+        <translation>Supprimer ligne</translation>
+    </message>
+    <message>
+        <source>In First Character</source>
+        <translation>En premier caractère</translation>
+    </message>
+    <message>
+        <source>Use Placeholders</source>
+        <translation>Utiliser des paramètres fictifs</translation>
+    </message>
+    <message>
+        <source>Relative Tab Font Size:</source>
+        <translation>Taille de caractères des onglets relative :</translation>
+    </message>
+    <message>
+        <source>Check for Word Repetitions</source>
+        <translation>Vérifier la répétition de mots</translation>
+    </message>
+    <message>
+        <source>Words Between Repetitions:</source>
+        <translation>Nombre de mots entre les répétitions :</translation>
+    </message>
+    <message>
+        <source>Long Range Repetitions:</source>
+        <translation>Longue plage de répétitions :</translation>
+    </message>
+    <message>
+        <source>Min Length of Words with Long Repetition:</source>
+        <translation>Longueur minimum des mots en cas de longue répétition :</translation>
+    </message>
+    <message>
+        <source>Wordlist Directory:</source>
+        <translation>Répertoire de la liste de mots :</translation>
+    </message>
+    <message>
+        <source>Check for Bad Words</source>
+        <translation>Vérifier les mots incorrects</translation>
+    </message>
+    <message>
+        <source>Server URL: </source>
+        <translation>URL du serveur :</translation>
+    </message>
+    <message>
+        <source>LT Path:</source>
+        <translation>Chemin LT :</translation>
+    </message>
+    <message>
+        <source>Ignored Rules:</source>
+        <translation>Règles ignorées :</translation>
+    </message>
+    <message>
+        <source>Special Rules 2:</source>
+        <translation>Règles spéciales 2 :</translation>
+    </message>
+    <message>
+        <source>Special Rules 1:</source>
+        <translation>Règles spéciales 1 :</translation>
+    </message>
+    <message>
+        <source>Special Rules 3:</source>
+        <translation>Règles spéciales 3 :</translation>
+    </message>
+    <message>
+        <source>Special Rules 4:</source>
+        <translation>Règles spéciales 4 :</translation>
+    </message>
+    <message>
+        <source>Segment Preview</source>
+        <translation>Prévisualisation de la portion</translation>
+    </message>
+    <message>
+        <source>Display Mode:</source>
+        <translation>Mode &quot;display&quot; :</translation>
+    </message>
+    <message>
+        <source>Show preview as tooltip if panel is hidden</source>
+        <translation>Afficher la prévisualisation en info-bulle si le panneau est caché</translation>
+    </message>
+    <message>
+        <source>Auto Preview:</source>
+        <translation>Prévisualisation automatique :</translation>
+    </message>
+    <message>
+        <source>Auto Preview Delay:</source>
+        <translation>Délai de prévisualisation automatique :</translation>
+    </message>
+    <message>
+        <source>Full Page PDF Preview</source>
+        <translation>Prévisualisation du PDF en pleine page</translation>
+    </message>
+    <message>
+        <source>Scale Option:</source>
+        <translation>Option d&apos;échelle :</translation>
+    </message>
+    <message>
+        <source>Original Size</source>
+        <translation>Taille originale</translation>
+    </message>
+    <message>
+        <source>Fit to Window Width</source>
+        <translation>Adapter à la largeur de la fenêtre</translation>
+    </message>
+    <message>
+        <source>Fit to Window Size</source>
+        <translation>Adapter aux dimensions de la fenêtre</translation>
+    </message>
+    <message>
+        <source>Scaled Size</source>
+        <translation>Mise à l&apos;échelle</translation>
+    </message>
+    <message>
+        <source>Screen Resolution:</source>
+        <translation>Résolution de l&apos;écran :</translation>
+    </message>
+    <message>
+        <source>Magnifier Shape:</source>
+        <translation>Forme du zoom :</translation>
+    </message>
+    <message>
+        <source>Magnifier Size:</source>
+        <translation>Facteur de zoom :</translation>
+    </message>
+    <message>
+        <source>Synchronized Files Types:</source>
+        <translation>Types de fichiers synchronisés :</translation>
+    </message>
+    <message>
+        <source>Automatically check in after save</source>
+        <translation>Vérifier automatiquement après l&apos;enregistrement</translation>
+    </message>
+    <message>
+        <source>Uses SVN revisions to undo before last saved version</source>
+        <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée ?</translation>
+    </message>
+    <message>
+        <source>Substitute Keywords with Properties (on svn add)</source>
+        <translation>Remplacer Keywords par Properties (en cas de « svn add »)</translation>
+    </message>
+    <message>
+        <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
+        <translation>Le raccourci &lt;%1&gt; est déjà utilisé pour :</translation>
+    </message>
+    <message>
+        <source>Do you wish to remove the old assignment and bind the shortcut to the new command?</source>
+        <translation>Souhaitez-vous supprimer l&apos;ancienne assignation et lier ce raccourci à cette commande ?</translation>
+    </message>
+    <message>
+        <source>Download Additional Dictionaries: %1</source>
+        <translation>Télécharger les dictionnaires supplémentaires : %1</translation>
+    </message>
+    <message>
+        <source>Build</source>
+        <translation>Compilation</translation>
+    </message>
+    <message>
+        <source>Syntax Highlighting</source>
+        <translation>Coloration syntaxique</translation>
     </message>
 </context>
 <context>
@@ -2354,7 +2754,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>New line - \\</source>
-        <translation>Nouvelle ligne \\</translation>
+        <translation>Nouvelle ligne - \\</translation>
     </message>
     <message>
         <source>Numbered equation \begin{equation}</source>
@@ -3039,23 +3439,23 @@ la commande \caption n&apos;est pas valide.</translation>
     <name>OutputViewWidget</name>
     <message>
         <source>messages</source>
-        <translation>Messages</translation>
+        <translation type="obsolete">Messages</translation>
     </message>
     <message>
         <source>log file</source>
-        <translation>Fichier log</translation>
+        <translation type="obsolete">Fichier log</translation>
     </message>
     <message>
         <source>errors</source>
-        <translation>Erreurs</translation>
+        <translation type="obsolete">Erreurs</translation>
     </message>
     <message>
         <source>preview</source>
-        <translation>Prévisualisation</translation>
+        <translation type="obsolete">Prévisualisation</translation>
     </message>
     <message>
         <source>search results</source>
-        <translation>Résultats de la recherche</translation>
+        <translation type="obsolete">Résultats de la recherche</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
@@ -3076,6 +3476,26 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>&amp;Show in log</source>
         <translation>&amp;Montrer dans le log</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation>Messages</translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation>Fichier log</translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation>Erreurs</translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation>Prévisualisation</translation>
+    </message>
+    <message>
+        <source>Search Results</source>
+        <translation>Résultats de la recherche</translation>
     </message>
 </context>
 <context>
@@ -4576,7 +4996,7 @@ Voulez-vous l&apos;enregistrer ?</translation>
         <source>Font size relative to editor font size.
 
 Note: Sizes &gt; 100% may result in clipped characters.</source>
-        <translation>Taille de fonte relative à celle de l&apos;éditeur. Remarque : il peut résulter des tailles &gt; 100 % des caractères rognés.</translation>
+        <translation type="obsolete">Taille de fonte relative à celle de l&apos;éditeur. Remarque : il peut résulter des tailles &gt; 100 % des caractères rognés.</translation>
     </message>
     <message>
         <source>Prio</source>
@@ -4665,6 +5085,14 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
     <message>
         <source>txs-test-warn</source>
         <translation>Test TXS d&apos;avertissement</translation>
+    </message>
+    <message>
+        <source>Font size relative to editor font size.
+
+Note: If the size is larger that the line spacing, characters may be clipped.</source>
+        <translation>Taille de la police relativement à celle de l&apos;éditeur.
+
+Remarque : si la taille dépasse celle de la hauteur des lignes, des caractères pourront être coupés.</translation>
     </message>
 </context>
 <context>
@@ -5184,8 +5612,12 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <source>Sorry, you clicked in the wrong column.
 To change a shortcut, you have to edit the third or fourth column.</source>
-        <translation>Désolé, vous avez cliqué dans la mauvaise colonne.
+        <translation type="obsolete">Désolé, vous avez cliqué dans la mauvaise colonne.
 Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</translation>
+    </message>
+    <message>
+        <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
+        <translation>Pour modifier un raccourci clavier, éditer la colonne « Raccourci actuel » ou « Raccourci additionel ».</translation>
     </message>
 </context>
 <context>
