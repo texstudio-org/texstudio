@@ -1175,7 +1175,14 @@ void Texmaker::NewDocumentStatus() {
 		EditorView->setTabText(index, tabText);
 		updateOpenDocumentMenu(true);
 	}
-	EditorView->setTabToolTip(index, ed->fileName());
+    // child ?
+    LatexDocument *doc=edView->document;
+    LatexDocument *masterDoc=doc->getTopMasterDocument();
+    QString tooltip=ed->fileName();
+    if(masterDoc!=doc){
+        tooltip+=tr("\nChild of %1").arg(masterDoc->getName());
+    }
+    EditorView->setTabToolTip(index, tooltip);
 	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
 	else statusLabelEncoding->setText("unknown");
 }
