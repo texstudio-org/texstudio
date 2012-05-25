@@ -1504,18 +1504,34 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						break;
 					}
             }else{
-                // read entry in bibtex file
-                if(!bibReader){
-                    bibReader=new bibtexReader(this);
-                    connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
-                    connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-                    bibReader->start();
+                if(document->parent->bibItems.contains(value)){
+                    // by bibitem defined citation
+                    tooltip.clear();
+                    QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(value);
+                    QDocumentLineHandle *mLine=result.keys().first();
+                    int l=mLine->line();
+                    if(mLine->document()!=editor->document()){
+                        LatexDocument *doc=document->parent->findDocument(mLine->document());
+                        if(doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                    }
+                    for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+                        tooltip+=mLine->document()->line(i).text();
+                        if(i<l+2) tooltip+="\n";
+                    }
+                }else{
+                    // read entry in bibtex file
+                    if(!bibReader){
+                        bibReader=new bibtexReader(this);
+                        connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
+                        connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+                        bibReader->start();
+                    }
+                    QString file=document->parent->findFileFromBibId(value);
+                    lastPos=pos;
+                    if(!file.isEmpty())
+                        emit searchBibtexSection(file,value);
+                    return;
                 }
-                QString file=document->parent->findFileFromBibId(value);
-                lastPos=pos;
-                if(!file.isEmpty())
-                    emit searchBibtexSection(file,value);
-                return;
             }
             QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}

@@ -875,6 +875,21 @@ int LatexDocument::countRefs(const QString& name){
 	return result;
 }
 
+QMultiHash<QDocumentLineHandle*,int> LatexDocument::getBibItems(const QString& name){
+    QHash<QDocumentLineHandle*,int> result;
+    foreach(const LatexDocument *elem,getListOfDocs()){
+        QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+        for (it = elem->mBibItem.constBegin(); it != elem->mBibItem.constEnd(); ++it){
+            ReferencePair rp=it.value();
+            if(rp.name==name){
+                result.insert(it.key(),rp.start);
+            }
+        }
+    }
+    return result;
+}
+
+
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(const QString& name){
 	QHash<QDocumentLineHandle*,int> result;
 	foreach(const LatexDocument *elem,getListOfDocs()){

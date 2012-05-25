@@ -103,6 +103,7 @@ public:
 	int countRefs(const QString& name);
 	QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
 	QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
+    QMultiHash<QDocumentLineHandle*,int> getBibItems(const QString& name);
 	
     void patchLinesContaining(const QStringList cmds);
 	
