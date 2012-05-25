@@ -8,10 +8,6 @@
         <translation>OK</translation>
     </message>
     <message>
-        <source>Using Qt Version %1, compiled with Qt %2</source>
-        <translation type="obsolete">Használt Qt verzió: %1, fordítva a Qt %2 verzióval</translation>
-    </message>
-    <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
         <translation>Copyright (c) (eredeti TexMaker) 2004-2010, Pascal Brachet&lt;br&gt;</translation>
     </message>
@@ -173,24 +169,8 @@
 <context>
     <name>BuildManager</name>
     <message>
-        <source>Dvi Viewer</source>
-        <translation type="obsolete">Dvi megjelenítő</translation>
-    </message>
-    <message>
-        <source>Ps Viewer</source>
-        <translation type="obsolete">Ps megjelenítő</translation>
-    </message>
-    <message>
-        <source>Pdf Viewer</source>
-        <translation type="obsolete">Pdf megjelenítő</translation>
-    </message>
-    <message>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;ismeretlen&gt;</translation>
-    </message>
-    <message>
-        <source>User : (% : filename without extension)</source>
-        <translation type="obsolete">Felhasználó: (%: fájlnév kiterjesztés nélkül)</translation>
     </message>
     <message>
         <source>Quickbuild</source>
@@ -446,34 +426,6 @@ támogatott</translation>
         <translation>Megjelenés</translation>
     </message>
     <message>
-        <source>Style</source>
-        <translation type="obsolete">Stílus</translation>
-    </message>
-    <message>
-        <source>Font</source>
-        <translation type="obsolete">Betűtípus</translation>
-    </message>
-    <message>
-        <source>Font Size</source>
-        <translation type="obsolete">Betűméret</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">Nyelv</translation>
-    </message>
-    <message>
-        <source>Color Scheme</source>
-        <translation type="obsolete">Színséma</translation>
-    </message>
-    <message>
-        <source>classic</source>
-        <translation type="obsolete">Klasszikus</translation>
-    </message>
-    <message>
-        <source>modern</source>
-        <translation type="obsolete">Modern</translation>
-    </message>
-    <message>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Lapokra bontott struktúra/szimbólum nézet</translation>
     </message>
@@ -482,28 +434,12 @@ támogatott</translation>
         <translation>Lapokra bontott naplómegjelenítő</translation>
     </message>
     <message>
-        <source>Ignore most system colors</source>
-        <translation type="obsolete">A legtöbb rendszerszín mellőzése</translation>
-    </message>
-    <message>
         <source>Files</source>
         <translation>Fájlok</translation>
     </message>
     <message>
-        <source>Max. Recent Documents</source>
-        <translation type="obsolete">Legutóbbi dokumentumok max. száma</translation>
-    </message>
-    <message>
-        <source>Max. Recent Master Documents</source>
-        <translation type="obsolete">Legutóbbi mesterdokumentumok max. száma</translation>
-    </message>
-    <message>
         <source>Parse BibTeX</source>
         <translation>BibTeX feldolgozása</translation>
-    </message>
-    <message>
-        <source>Always show structure of master document</source>
-        <translation type="obsolete">Mindig mutassa a mesterdokumentum struktúráját</translation>
     </message>
     <message>
         <source>Dictionaries</source>
@@ -512,26 +448,6 @@ támogatott</translation>
     <message>
         <source>TextLabel</source>
         <translation>Szövegcímke</translation>
-    </message>
-    <message>
-        <source>Inline checking</source>
-        <translation type="obsolete">Azonnali ellenőrzés</translation>
-    </message>
-    <message>
-        <source>Thesaurus Database</source>
-        <translation type="obsolete">Tezaurusz adatbázis</translation>
-    </message>
-    <message>
-        <source>Inline spell checking</source>
-        <translation type="obsolete">Azonnali helyesírás-ellenőrzés</translation>
-    </message>
-    <message>
-        <source>Inline citation checking</source>
-        <translation type="obsolete">Azonnali hivatkozás ellenőrzés</translation>
-    </message>
-    <message>
-        <source>Inline reference checking</source>
-        <translation type="obsolete">Azonnali referencia ellenőrzés</translation>
     </message>
     <message>
         <source>*.dat</source>
@@ -569,14 +485,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>%%, @@ vagy ?? ezekké válik: %, @ or ?</translation>
     </message>
     <message>
-        <source>Quick Build Command</source>
-        <translation type="obsolete">Gyors fordítás parancsa</translation>
-    </message>
-    <message>
-        <source>Execute before compiling:</source>
-        <translation type="obsolete">Fordítás előtt végrehajtandó:</translation>
-    </message>
-    <message>
         <source>Show log after compiling if there are errors</source>
         <translation>Napló mutatása hibák esetén</translation>
     </message>
@@ -601,20 +509,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>4</translation>
     </message>
     <message>
-        <source>Latex Menus</source>
-        <translation type="obsolete">LaTeX menük</translation>
-    </message>
-    <message>
         <source>Toolbar Customization</source>
         <translation>Eszköztár testreszabása</translation>
-    </message>
-    <message>
-        <source>&lt;</source>
-        <translation type="obsolete">&lt;</translation>
-    </message>
-    <message>
-        <source>&gt;</source>
-        <translation type="obsolete">&gt;</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -623,18 +519,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Folding</source>
         <translation>Összezárás</translation>
-    </message>
-    <message>
-        <source>No line numbers</source>
-        <translation type="obsolete">Ne legyenek a sorok számozva</translation>
-    </message>
-    <message>
-        <source>Show line numbers</source>
-        <translation type="obsolete">A sorok legyenek számozva</translation>
-    </message>
-    <message>
-        <source>Show important line numbers</source>
-        <translation type="obsolete">A fontos sorok legyenek számozva</translation>
     </message>
     <message>
         <source>Formats</source>
@@ -649,10 +533,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Állapotpanel megjelenítése</translation>
     </message>
     <message>
-        <source>Show Modify Time</source>
-        <translation type="obsolete">Módosítás időpontjának megjelenítése</translation>
-    </message>
-    <message>
         <source>Use single line selection as Search Word</source>
         <translation>Kijelölt szöveg használata keresőszóként</translation>
     </message>
@@ -665,40 +545,12 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Térközök megjelenítése</translation>
     </message>
     <message>
-        <source>Tab space:</source>
-        <translation type="obsolete">Tabulátor szélesség:</translation>
-    </message>
-    <message>
-        <source>Use system theme icons</source>
-        <translation type="obsolete">Rendszertéma ikonok használata</translation>
-    </message>
-    <message>
-        <source>Inline syntax checking</source>
-        <translation type="obsolete">Azonnali szintaktikai ellenőrzés</translation>
-    </message>
-    <message>
-        <source>(The commands must be separated by &apos;|&apos;)</source>
-        <translation type="obsolete">(A parancsokat &apos;|&apos; jellel kell elválasztani)</translation>
-    </message>
-    <message>
-        <source>Wizard</source>
-        <translation type="obsolete">Varázsló</translation>
-    </message>
-    <message>
-        <source>Run &quot;latex bibtex latex&quot; before compiling if bib-files were changed</source>
-        <translation type="obsolete">A &quot;latex bibtex latex&quot; futtatása fordítás előtt, ha a bib-fájlok megváltoztak</translation>
-    </message>
-    <message>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Ne indítsa a néző újabb példányát, ha a dvi/ps/pdf már meg van nyitva</translation>
     </message>
     <message>
         <source>Close Log-View with Esc-Key</source>
         <translation>Napló bezárása Escape-pel</translation>
-    </message>
-    <message>
-        <source>Show preview as tool tip if panel is hidden</source>
-        <translation type="obsolete">Előnézetet mutasson tippként, ha a panel rejtve van</translation>
     </message>
     <message>
         <source>Always show preview in preview panel</source>
@@ -729,30 +581,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Keresés és csere panelek együttes bezárása</translation>
     </message>
     <message>
-        <source>Ignore indentation</source>
-        <translation type="obsolete">Behúzás mellőzése</translation>
-    </message>
-    <message>
-        <source>Keep indentation</source>
-        <translation type="obsolete">Behúzás megtartása</translation>
-    </message>
-    <message>
-        <source>Indent and unindent automatically</source>
-        <translation type="obsolete">Behúzás és annak megszüntetése automatikusan</translation>
-    </message>
-    <message>
-        <source>Keep indentation with spaces only</source>
-        <translation type="obsolete">Behúzás megtartása szóközökkel</translation>
-    </message>
-    <message>
-        <source>Indent and unindent automatically with spaces only</source>
-        <translation type="obsolete">Behúzás és annak megszüntetése automatikusan szóközökkel</translation>
-    </message>
-    <message>
-        <source>Auto detect encoding of loaded files</source>
-        <translation type="obsolete">Fájlkódolás automatikus felismerése</translation>
-    </message>
-    <message>
         <source>Auto Replace Latex-Commands</source>
         <translation>Latex parancsok automatikus cseréje</translation>
     </message>
@@ -765,20 +593,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Környezet típusa</translation>
     </message>
     <message>
-        <source>Add line</source>
-        <translation type="obsolete">Sor hozzáadása</translation>
-    </message>
-    <message>
-        <source>Remove line</source>
-        <translation type="obsolete">Sor eltávolítása</translation>
-    </message>
-    <message>
         <source>Case Sensitive</source>
         <translation>Kis/nagybetű érzékeny</translation>
-    </message>
-    <message>
-        <source>In first character</source>
-        <translation type="obsolete">Az első karakterben</translation>
     </message>
     <message>
         <source>Auto Complete Common Prefix</source>
@@ -793,60 +609,24 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Felugró-súgó engedélyezése</translation>
     </message>
     <message>
-        <source>Use placeholders</source>
-        <translation type="obsolete">Helykitöltők engedélyezése</translation>
-    </message>
-    <message>
         <source>Use following completion files:</source>
         <translation>Használja a következő kiegészítésfájlokat:</translation>
-    </message>
-    <message>
-        <source>Automatically check in after save ?</source>
-        <translation type="obsolete">Jelentkezzen be automatikusan mentés után?</translation>
-    </message>
-    <message>
-        <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation type="obsolete">Használja az SVN kiadásokat a visszavonáshoz a legutóbbi mentett verzió előtt?</translation>
     </message>
     <message>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Az svn add futtatásakor végrehajtódik az svn propset svn:keyword &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <source>Substitue Keywords with Properties (on svn add)</source>
-        <translation type="obsolete">Kulcsszavak helyettesítése Tulajdonságokkal (svn add esetén)</translation>
-    </message>
-    <message>
-        <source>SVN Commands</source>
-        <translation type="obsolete">SVN parancsok</translation>
-    </message>
-    <message>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN könyvtár keresési mélység:</translation>
-    </message>
-    <message>
-        <source>Show advanced options</source>
-        <translation type="obsolete">Haladó beállítások megjelenítése</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
         <translation>A megadott billentyűkombináció érvénytelen.</translation>
     </message>
     <message>
-        <source>The shortcut you entered is the same as the one of this command:</source>
-        <translation type="obsolete">A megadott billentyűkombináció ugyanaz, mint ezen a parancsok egyike:</translation>
-    </message>
-    <message>
-        <source>Should I delete this other shortcut?</source>
-        <translation type="obsolete">Töröljem ezt a másik billentyűkombinációt?</translation>
-    </message>
-    <message>
         <source>Do you really want to delete this row?</source>
         <translation>Biztosan törölni akarja ezt a sort?</translation>
-    </message>
-    <message>
-        <source>Get dictionaries at: %1</source>
-        <translation type="obsolete">Szótárak beszerzése: %1</translation>
     </message>
     <message>
         <source>Basic highlighting</source>
@@ -885,10 +665,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Parancsok</translation>
     </message>
     <message>
-        <source>Quick Build</source>
-        <translation type="obsolete">Gyors fordítás</translation>
-    </message>
-    <message>
         <source>Custom Highlighting</source>
         <translation>Egyéni kiemelés</translation>
     </message>
@@ -903,10 +679,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
     <message>
         <source>Browse thesaurus database</source>
         <translation>Tezaurusz adatbázis megadása</translation>
-    </message>
-    <message>
-        <source>Browse program</source>
-        <translation type="obsolete">Program megadása</translation>
     </message>
     <message>
         <source>Load other icon</source>
@@ -925,14 +697,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Alapvető billenyűparancsok</translation>
     </message>
     <message>
-        <source>Auto save all files </source>
-        <translation type="obsolete">Minden fájl automatikus mentése</translation>
-    </message>
-    <message>
-        <source>never</source>
-        <translation type="obsolete">Soha</translation>
-    </message>
-    <message>
         <source>5 minutes</source>
         <translation>5 percenként</translation>
     </message>
@@ -949,72 +713,20 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Óránként</translation>
     </message>
     <message>
-        <source>Indentation mode:</source>
-        <translation type="obsolete">Behúzás mód:</translation>
-    </message>
-    <message>
-        <source>Line numbers:</source>
-        <translation type="obsolete">Sorok számozása:</translation>
-    </message>
-    <message>
-        <source>Segment preview</source>
-        <translation type="obsolete">Részleges előnézet</translation>
-    </message>
-    <message>
         <source>Command:</source>
         <translation>Parancs:</translation>
-    </message>
-    <message>
-        <source>Display mode:</source>
-        <translation type="obsolete">Megjelenítési mód:</translation>
-    </message>
-    <message>
-        <source>Full page pdf preview</source>
-        <translation type="obsolete">Teljes oldal pdf előnézete</translation>
-    </message>
-    <message>
-        <source>Screen resolution:</source>
-        <translation type="obsolete">Képernyő felbontás:</translation>
     </message>
     <message>
         <source>dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <source>Magnifier size:</source>
-        <translation type="obsolete">Nagyítás mértéke:</translation>
-    </message>
-    <message>
-        <source>Scale option:</source>
-        <translation type="obsolete">Méret tulajdonságok:</translation>
-    </message>
-    <message>
         <source>Scaling:</source>
         <translation>Méret:</translation>
     </message>
     <message>
-        <source>Original size</source>
-        <translation type="obsolete">Eredeti méret</translation>
-    </message>
-    <message>
-        <source>Fit to window width</source>
-        <translation type="obsolete">Igazítás az ablak széléhez</translation>
-    </message>
-    <message>
-        <source>Fit to window size</source>
-        <translation type="obsolete">Igazítás az ablak méretéhez</translation>
-    </message>
-    <message>
-        <source>Scaled size</source>
-        <translation type="obsolete">Egyéni méret</translation>
-    </message>
-    <message>
         <source>%</source>
         <translation>%</translation>
-    </message>
-    <message>
-        <source>Magnifier shape:</source>
-        <translation type="obsolete">Nagyító alakja:</translation>
     </message>
     <message>
         <source>Square</source>
@@ -1045,10 +757,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Különleges beállítások</translation>
     </message>
     <message>
-        <source>Maximal characters:</source>
-        <translation type="obsolete">Karakterek maximális száma:</translation>
-    </message>
-    <message>
         <source>Hacks/Workarounds</source>
         <translation>Buherálás/Kerülő megoldások</translation>
     </message>
@@ -1069,20 +777,12 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Nagyítás az egérgörgővel</translation>
     </message>
     <message>
-        <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation type="obsolete">Kerülő megoldás kiiktatása ékezetek gépelésekor (csak Mac OS X esetén)</translation>
-    </message>
-    <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>A kiegészítő automatikusan működésbe lép LaTeX parancsok begépelésekor</translation>
     </message>
     <message>
         <source>Border</source>
         <translation>Szegély</translation>
-    </message>
-    <message>
-        <source>Synchronized files types:</source>
-        <translation type="obsolete">Szinkronizált fájltípusok:</translation>
     </message>
     <message>
         <source>Inline</source>
@@ -1097,10 +797,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Preambulum előfordítása</translation>
     </message>
     <message>
-        <source>Auto preview:</source>
-        <translation type="obsolete">Automatikus előnézet:</translation>
-    </message>
-    <message>
         <source>Never</source>
         <translation>Soha</translation>
     </message>
@@ -1109,44 +805,8 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Szöveg korábbi előnézete</translation>
     </message>
     <message>
-        <source>Auto preview delay:</source>
-        <translation type="obsolete">Késleltetett automatikus előnézet:</translation>
-    </message>
-    <message>
-        <source>Show stdout</source>
-        <translation type="obsolete">Megmutatja az alapértelmezet kimenetet</translation>
-    </message>
-    <message>
-        <source>Only for user commands</source>
-        <translation type="obsolete">Csak felhasználói parancsok</translation>
-    </message>
-    <message>
-        <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation type="obsolete">Mindig (ha nincs a /dev/null -ba irányítva)</translation>
-    </message>
-    <message>
         <source>Additional Commands</source>
         <translation>További parancsok</translation>
-    </message>
-    <message>
-        <source>Times to rerun latex if requested:</source>
-        <translation type="obsolete">A LaTeX újrafuttatásához szükséges idő:</translation>
-    </message>
-    <message>
-        <source>no line wrap</source>
-        <translation type="obsolete">Nincs sortörés</translation>
-    </message>
-    <message>
-        <source>soft line wrap at window edge</source>
-        <translation type="obsolete">Puha sortörés ablak szélén</translation>
-    </message>
-    <message>
-        <source>soft line wrap after max. characters</source>
-        <translation type="obsolete">Puha sortörés a max. karakterszám után</translation>
-    </message>
-    <message>
-        <source>hard line wrap after max. characters</source>
-        <translation type="obsolete">Kemény sortörés a max. karakterszám után</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
@@ -1189,26 +849,6 @@ példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a 
         <translation>Csak egy válasz megengedett</translation>
     </message>
     <message>
-        <source>Replace double quotes:</source>
-        <translation type="obsolete">Kettős idézőjelek helyettesítése:</translation>
-    </message>
-    <message>
-        <source>no replacement</source>
-        <translation type="obsolete">Nincs helyettesítés</translation>
-    </message>
-    <message>
-        <source>English quotes:  `` &apos;&apos;</source>
-        <translation type="obsolete">Angol idézőjelek:  `` &apos;&apos;</translation>
-    </message>
-    <message>
-        <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation type="obsolete">Francia idézőjelek:  &quot;&lt; &quot;&gt;</translation>
-    </message>
-    <message>
-        <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation type="obsolete">Német idézőjelek:  &quot;` &quot;&apos;</translation>
-    </message>
-    <message>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>A képletekről előnézetet mutat &quot;felugró-súgó&quot;-ként</translation>
     </message>
@@ -1233,10 +873,6 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <translation>Előnézetet mutasson tippként, ha a panel rejtve van</translation>
     </message>
     <message>
-        <source>French quotes (babel): \og \fg{}</source>
-        <translation type="obsolete">Francia idézőjelek (babel): \og \fg{}</translation>
-    </message>
-    <message>
         <source>one</source>
         <translation>egy</translation>
     </message>
@@ -1253,25 +889,12 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <translation>A TeXstudio beállításai</translation>
     </message>
     <message>
-        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="obsolete">Fordított francia idézőjelek: &quot;&gt; &quot;&lt;</translation>
-    </message>
-    <message>
         <source>Restrict search scope to an existing selection</source>
         <translation>Keresési tartomány megszorítása egy létező kiválasztásra</translation>
     </message>
     <message>
-        <source>Quick Build Options</source>
-        <translation type="obsolete">Gyorsfordítási opciók</translation>
-    </message>
-    <message>
         <source>Line Wrapping:</source>
         <translation>Sortörés:</translation>
-    </message>
-    <message>
-        <source>Relative tab font size:</source>
-        <translatorcomment>???</translatorcomment>
-        <translation type="obsolete">Relatív tab betűméret:</translation>
     </message>
     <message>
         <source>Diff</source>
@@ -1282,40 +905,8 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <translation>Eszköztár</translation>
     </message>
     <message>
-        <source>Spelling dictionary directory</source>
-        <translation type="obsolete">Szótár könyvtár</translation>
-    </message>
-    <message>
-        <source>Default language</source>
-        <translation type="obsolete">Más nyelv</translation>
-    </message>
-    <message>
         <source>Select dictionary directory</source>
         <translation>Szótár könyvtár választása</translation>
-    </message>
-    <message>
-        <source>Font Family</source>
-        <translation type="obsolete">Betűcsalád</translation>
-    </message>
-    <message>
-        <source>Default Font Encoding</source>
-        <translation type="obsolete">Karakterkódolása</translation>
-    </message>
-    <message>
-        <source>qce (recommended)</source>
-        <translation type="obsolete">qce (ajánlott)</translation>
-    </message>
-    <message>
-        <source>qt</source>
-        <translation type="obsolete">qt</translation>
-    </message>
-    <message>
-        <source>single letter</source>
-        <translation type="obsolete">egyszerű levél</translation>
-    </message>
-    <message>
-        <source>Render mode:</source>
-        <translation type="obsolete">Rederelési mód:</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
@@ -1328,10 +919,6 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>Disable cache of rendered lines</source>
         <translation>A rederelt sorok tárolójának kiiktatása</translation>
-    </message>
-    <message>
-        <source>Inline checking:</source>
-        <translation type="obsolete">Sorközi ellenőrzés:</translation>
     </message>
     <message>
         <source>Spelling</source>
@@ -1358,36 +945,12 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
         <translation>Belső</translation>
     </message>
     <message>
-        <source>Check for word repetitions</source>
-        <translation type="obsolete">Szóismétlés ellenőrzése</translation>
-    </message>
-    <message>
-        <source>Words between repetitions:</source>
-        <translation type="obsolete">Szavak az ismételtek között:</translation>
-    </message>
-    <message>
-        <source>Wordlist directory:</source>
-        <translation type="obsolete">Szószedet könyvtár:</translation>
-    </message>
-    <message>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <source>Serverurl: </source>
-        <translation type="obsolete">Kiszolgáló URL címe:</translation>
-    </message>
-    <message>
         <source>Start LanguageTool if not running</source>
         <translation>LanguageTool indítása, ha nem fut</translation>
-    </message>
-    <message>
-        <source>LT path:</source>
-        <translation type="obsolete">LT útvonal:</translation>
-    </message>
-    <message>
-        <source>Ignored rules:</source>
-        <translation type="obsolete">Mellőzött szabályok:</translation>
     </message>
     <message>
         <source>Java:</source>
@@ -1404,26 +967,6 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>Select java</source>
         <translation>Java kiválasztása</translation>
-    </message>
-    <message>
-        <source>Check for bad words</source>
-        <translation type="obsolete">Rossz szavak keresése</translation>
-    </message>
-    <message>
-        <source>Special rules 2:</source>
-        <translation type="obsolete">Különleges szabályok 2:</translation>
-    </message>
-    <message>
-        <source>Special rules 1:</source>
-        <translation type="obsolete">Különleges szabályok 1:</translation>
-    </message>
-    <message>
-        <source>Special rules 3:</source>
-        <translation type="obsolete">Különleges szabályok 3:</translation>
-    </message>
-    <message>
-        <source>Special rules 4:</source>
-        <translation type="obsolete">Különleges szabályok 4:</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
@@ -1448,14 +991,6 @@ A három bölcs közül melyik az igazmondó? (első/második/harmadik)</transla
     <message>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>A legalább ilyen hosszú szavak lesznek távoli ismételtként megjelölve.</translation>
-    </message>
-    <message>
-        <source>Long range repetitions:</source>
-        <translation type="obsolete">Távoli szóismétlések:</translation>
-    </message>
-    <message>
-        <source>Min length of words with long repetition:</source>
-        <translation type="obsolete">Távoli ismétlődő szavak minimális hossza:</translation>
     </message>
     <message>
         <source>Certain informal or weak words will be highlighted.</source>
@@ -1974,14 +1509,6 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Program megadása</translation>
     </message>
     <message>
-        <source>Latex</source>
-        <translation type="obsolete">LaTeX</translation>
-    </message>
-    <message>
-        <source>Math</source>
-        <translation type="obsolete">Matematika</translation>
-    </message>
-    <message>
         <source>&amp;Latex</source>
         <translation>&amp;LaTeX</translation>
     </message>
@@ -2058,50 +1585,6 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>&amp;Környezetek</translation>
     </message>
     <message>
-        <source>\begin{&lt;environment&gt;} [selection]</source>
-        <translation type="obsolete">\begin{&lt;környezet&gt;}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{center} [selection]</source>
-        <translation type="obsolete">\begin{center}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{flushleft} [selection]</source>
-        <translation type="obsolete">\begin{flushleft}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{flushright}  [selection]</source>
-        <translation type="obsolete">\begin{flushright}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{quote}  [selection]</source>
-        <translation type="obsolete">\begin{quote}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{quotation}  [selection]</source>
-        <translation type="obsolete">\begin{quotation}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{verse}  [selection]</source>
-        <translation type="obsolete">\begin{verse}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{verbatim}  [selection]</source>
-        <translation type="obsolete">\begin{verbatim}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{table}  [selection]</source>
-        <translation type="obsolete">\begin{table}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{figure}  [selection]</source>
-        <translation type="obsolete">\begin{figure}  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\begin{titlepage}  [selection]</source>
-        <translation type="obsolete">\begin{titlepage}  [kijelölés]</translation>
-    </message>
-    <message>
         <source>&amp;List Environments</source>
         <translation>&amp;Lista környezetek</translation>
     </message>
@@ -2124,38 +1607,6 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <source>Font St&amp;yles</source>
         <translation>&amp;Betűváltozatok</translation>
-    </message>
-    <message>
-        <source>\emph - Emphasis  [selection]</source>
-        <translation type="obsolete">\emph - Kiemelés  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\textit - Italics  [selection]</source>
-        <translation type="obsolete">\textit - Kurzív  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\textsl - Slanted  [selection]</source>
-        <translation type="obsolete">\textsl - Döntött  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\textbf - Boldface  [selection]</source>
-        <translation type="obsolete">\textbf - Félkövér  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\texttt - Typewriter  [selection]</source>
-        <translation type="obsolete">\texttt - Írógép  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\textsc - Small caps  [selection]</source>
-        <translation type="obsolete">\textsc - Kiskapitális  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\textsf - Sans Serif  [selection]</source>
-        <translation type="obsolete">\textsf - Groteszk  [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\underline - Underline [selection]</source>
-        <translation type="obsolete">\underline - Aláhúzás  [kijelölés]</translation>
     </message>
     <message>
         <source>Font Sizes</source>
@@ -2208,10 +1659,6 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <source>\begin{tabular}</source>
         <translation>\begin{tabular}</translation>
-    </message>
-    <message>
-        <source>S&amp;pacing</source>
-        <translation type="obsolete">&amp;Helykihagyás</translation>
     </message>
     <message>
         <source>New line</source>
@@ -2286,14 +1733,6 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>\begin{eqnarray}</translation>
     </message>
     <message>
-        <source>_{} - subscript</source>
-        <translation type="obsolete">_{} - alsó index</translation>
-    </message>
-    <message>
-        <source>^{} - superscript</source>
-        <translation type="obsolete">^{} -felső index (hatvány)</translation>
-    </message>
-    <message>
         <source>\begin{array}</source>
         <translation>\begin{array}</translation>
     </message>
@@ -2306,60 +1745,12 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Mat&amp;ematikai betűváltozatok</translation>
     </message>
     <message>
-        <source>\mathrm{} [selection]</source>
-        <translation type="obsolete">\mathrm{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathit{} [selection]</source>
-        <translation type="obsolete">\mathit{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathbf{} [selection]</source>
-        <translation type="obsolete">\mathbf{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathsf{} [selection]</source>
-        <translation type="obsolete">\mathsf{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathtt{} [selection]</source>
-        <translation type="obsolete">\mathtt{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathcal{} [selection]</source>
-        <translation type="obsolete">\mathcal{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathbb{} [selection]</source>
-        <translation type="obsolete">\mathbb{} [kijelölés]</translation>
-    </message>
-    <message>
-        <source>\mathfrak{} [selection]</source>
-        <translation type="obsolete">\mathfrak{} [kijelölés]</translation>
-    </message>
-    <message>
         <source>Math &amp;Accents</source>
         <translation>Matemat&amp;ikai ékezetek</translation>
     </message>
     <message>
         <source>Math S&amp;paces</source>
         <translation>Matemati&amp;kai helykihagyás</translation>
-    </message>
-    <message>
-        <source>medium</source>
-        <translation type="obsolete">közepes</translation>
-    </message>
-    <message>
-        <source>quad</source>
-        <translation type="obsolete">\quad</translation>
-    </message>
-    <message>
-        <source>qquad</source>
-        <translation type="obsolete">\qquad</translation>
-    </message>
-    <message>
-        <source>Internal viewer</source>
-        <translation type="obsolete">Belső megjelenítő</translation>
     </message>
     <message>
         <source>&amp;* Open all files</source>
@@ -2394,10 +1785,6 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <source>huge</source>
         <translation>hatalmas</translation>
-    </message>
-    <message>
-        <source>Internal</source>
-        <translation type="obsolete">Belső</translation>
     </message>
     <message>
         <source>Add</source>
@@ -2683,10 +2070,6 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <source>Two quads</source>
         <translation>Két negyed</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation type="obsolete">&lt;ismeretlen&gt;</translation>
     </message>
 </context>
 <context>
@@ -3189,14 +2572,6 @@ Invalid \caption command.</source>
         </translation>
     </message>
     <message>
-        <source>citation correct</source>
-        <translation type="obsolete">forrásmegjelölés helyes</translation>
-    </message>
-    <message>
-        <source>citation missing!</source>
-        <translation type="obsolete">forrásmegjelölés hiányzik!</translation>
-    </message>
-    <message>
         <source>Open %1</source>
         <translation>%1 megnyitása</translation>
     </message>
@@ -3305,26 +2680,6 @@ Invalid \caption command.</source>
 </context>
 <context>
     <name>OutputViewWidget</name>
-    <message>
-        <source>messages</source>
-        <translation type="obsolete">Üzenetek</translation>
-    </message>
-    <message>
-        <source>log file</source>
-        <translation type="obsolete">Naplófájl</translation>
-    </message>
-    <message>
-        <source>errors</source>
-        <translation type="obsolete">Hibák</translation>
-    </message>
-    <message>
-        <source>preview</source>
-        <translation type="obsolete">Előnézet</translation>
-    </message>
-    <message>
-        <source>search results</source>
-        <translation type="obsolete">Keresési eredmények</translation>
-    </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
         <translation>A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
@@ -3860,12 +3215,6 @@ Invalid \caption command.</source>
         <translation>Következő mutatott lap</translation>
     </message>
     <message>
-        <source>%1 does not look like a valid PDF document.
-Do you want to open it anyways? It could cause a crash.</source>
-        <translation type="obsolete">A(z) &quot;%1&quot; PDF fájl nem tűnik igazi PDF dokumentumnak. 
-Mindenképpen meg akarja nyitni? Programösszeomlást okozhat</translation>
-    </message>
-    <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
         <translation>A(z) &quot;%1&quot; PDF fájl nem teljes. Próbálja újra 2 másodperc múlva</translation>
     </message>
@@ -4120,12 +3469,6 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
     <message>
         <source>Failure</source>
         <translation>Hiba</translation>
-    </message>
-    <message>
-        <source>End of matches reached.
-Restart from the begining ?</source>
-        <translation type="obsolete">A dokumentum végére értünk.
-Újrakezdi az elejéről?</translation>
     </message>
     <message>
         <source>Replacement prompt</source>
@@ -4587,10 +3930,6 @@ Lehet, hogy a fájl sérült!</translation>
         <translation>Azonosító</translation>
     </message>
     <message>
-        <source>font</source>
-        <translation type="obsolete">betű</translation>
-    </message>
-    <message>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
@@ -4629,10 +3968,6 @@ Lehet, hogy a fájl sérült!</translation>
     <message>
         <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
         <translation>Vonalak színe (minden vonalhoz: aláhúzás, felső vonal, ...)</translation>
-    </message>
-    <message>
-        <source>Font family</source>
-        <translation type="obsolete">Betűkészlet</translation>
     </message>
     <message>
         <source>Unsaved changes</source>
@@ -4749,10 +4084,6 @@ Akarja menteni ezeket?</translation>
         <translation>escape szekvencia</translation>
     </message>
     <message>
-        <source>styleHint</source>
-        <translation type="obsolete">segítség stílusa</translation>
-    </message>
-    <message>
         <source>spellingMistake</source>
         <translation>helyesírási hiba</translation>
     </message>
@@ -4803,22 +4134,6 @@ Akarja menteni ezeket?</translation>
     <message>
         <source>replacement</source>
         <translation>helyettesítés</translation>
-    </message>
-    <message>
-        <source>size</source>
-        <translation type="obsolete">méret</translation>
-    </message>
-    <message>
-        <source>prio</source>
-        <translation type="obsolete">prio</translation>
-    </message>
-    <message>
-        <source>Point size</source>
-        <translation type="obsolete">Pontméret</translation>
-    </message>
-    <message>
-        <source>Priority</source>
-        <translation type="obsolete">Elsődleges</translation>
     </message>
     <message>
         <source>commentTodo</source>
@@ -5003,12 +4318,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
         <translation>Rákérdez mielőtt bármilyen találatot is lecserélne</translation>
     </message>
     <message>
-        <source>Enables the use of escape characters. These are:
- \n = new line, \r = carriage return, \t = tab, \\ = \, \0 = ascii 0 </source>
-        <translation type="obsolete">Escape karakterek használatának engedélyezése. Ezek az alábbiak:
- \n = új sor, \r = kocsivissza, \t = tab, \\ = \, \0 = ascii 0 </translation>
-    </message>
-    <message>
         <source>Count result</source>
         <translation>Találatok száma</translation>
     </message>
@@ -5059,10 +4368,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
     <message>
         <source>Author</source>
         <translation>Szerző</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="obsolete">+</translation>
     </message>
     <message>
         <source>Document Class</source>
@@ -5375,10 +4680,6 @@ Megbízik a parancsfájlban?</translation>
         <translation>Keresendő szöveg vagy minta</translation>
     </message>
     <message>
-        <source>Replace :</source>
-        <translation type="obsolete">Csere:</translation>
-    </message>
-    <message>
         <source>Find next</source>
         <translation>Következő keresése</translation>
     </message>
@@ -5448,12 +4749,6 @@ Megbízik a parancsfájlban?</translation>
         <translation>sor hozzáadása</translation>
     </message>
     <message>
-        <source>Sorry, you clicked in the wrong column.
-To change a shortcut, you have to edit the third or fourth column.</source>
-        <translation type="obsolete">Sajnos rossz oszlopra kattintottál!
-A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerkeszteni!</translation>
-    </message>
-    <message>
         <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
         <translation>Billentyűkombináció megváltoztatásához szerkessze a &quot;Jelenlegi billentyűkombináció&quot; vagy &quot;További billentyűkombinációk&quot; oszlopot</translation>
     </message>
@@ -5465,16 +4760,8 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Helyesírás-ellenőrzés</translation>
     </message>
     <message>
-        <source>Unknown word:</source>
-        <translation type="obsolete">Ismeretlen szó:</translation>
-    </message>
-    <message>
         <source>Replace</source>
         <translation>Csere</translation>
-    </message>
-    <message>
-        <source>Replace with:</source>
-        <translation type="obsolete">Csere erre:</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -5485,16 +4772,8 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Mindig mellőze</translation>
     </message>
     <message>
-        <source>Suggested words :</source>
-        <translation type="obsolete">Ajánlott szavak:</translation>
-    </message>
-    <message>
         <source>Close</source>
         <translation>Bezárás</translation>
-    </message>
-    <message>
-        <source>Add/Remove</source>
-        <translation type="obsolete">Hozzáadás/Eltávolítás</translation>
     </message>
     <message>
         <source>Check spelling selection...</source>
@@ -5992,18 +5271,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>&amp;Eszközök</translation>
     </message>
     <message>
-        <source>Quick Build</source>
-        <translation type="obsolete">&amp;Gyors fordítás</translation>
-    </message>
-    <message>
-        <source>BibTeX</source>
-        <translation type="obsolete">BibTeX</translation>
-    </message>
-    <message>
-        <source>Clean</source>
-        <translation type="obsolete">Tisztítás</translation>
-    </message>
-    <message>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
@@ -6144,14 +5411,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>Környezet átne&amp;vezése</translation>
     </message>
     <message>
-        <source>&amp;View Dvi</source>
-        <translation type="obsolete">&amp;Dvi megjelenítése</translation>
-    </message>
-    <message>
-        <source>&amp;Dvi-&gt;PS</source>
-        <translation type="obsolete">D&amp;vi-&gt;PS</translation>
-    </message>
-    <message>
         <source>Vie&amp;w PS</source>
         <translation>&amp;Ps megjelenítése</translation>
     </message>
@@ -6176,16 +5435,8 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>&amp;Napló megjelenítése</translation>
     </message>
     <message>
-        <source>&amp;BibTeX</source>
-        <translation type="obsolete">&amp;BibTeX</translation>
-    </message>
-    <message>
         <source>&amp;MakeIndex</source>
         <translation>Ma&amp;keIndex</translation>
-    </message>
-    <message>
-        <source>&amp;Clear Markers</source>
-        <translation type="obsolete">Jelzők &amp;törlése</translation>
     </message>
     <message>
         <source>&amp;MetaPost</source>
@@ -6262,14 +5513,6 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
     <message>
         <source>Edit User &amp;Tags</source>
         <translation>&amp;Felhasználói elemek szerkesztése</translation>
-    </message>
-    <message>
-        <source>User &amp;Commands</source>
-        <translation type="obsolete">F&amp;elhasználói parancsok</translation>
-    </message>
-    <message>
-        <source>Edit User &amp;Commands</source>
-        <translation type="obsolete">&amp;Felhasználói parancsok szerkesztése...</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -6520,26 +5763,10 @@ A parancsikon megváltoztatásához a harmadik vagy negyedik oszlopot kell szerk
         <translation>A fájlnév nem állapítható meg</translation>
     </message>
     <message>
-        <source>Pre-LaTeX</source>
-        <translation type="obsolete">Pre-LaTeX</translation>
-    </message>
-    <message>
-        <source>Could not start LaTeX.</source>
-        <translation type="obsolete">A LaTeX nem indítható.</translation>
-    </message>
-    <message>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
-    </message>
-    <message>
-        <source>Delete the output files generated by LaTeX?</source>
-        <translation type="obsolete">Törli a LaTeX által előállított kimeneti fájlokat?</translation>
-    </message>
-    <message>
-        <source>Delete Files</source>
-        <translation type="obsolete">Fájlok törlése</translation>
     </message>
     <message>
         <source>Text Analysis</source>
@@ -6624,11 +5851,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
-    </message>
-    <message>
-        <source>LaTeX</source>
-        <comment>Status</comment>
-        <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
         <source>Save all current settings</source>
@@ -6842,14 +6064,6 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TeXstudio változat anélkül lett fordítva.</translation>
     </message>
     <message>
-        <source>Set High&amp;lighting...</source>
-        <translation type="obsolete">K&amp;iemelések beállítása...</translation>
-    </message>
-    <message>
-        <source>Pdf files</source>
-        <translation type="obsolete">Pdf fájlok</translation>
-    </message>
-    <message>
         <source>Show difference between two files</source>
         <translation>Megmutatja a különbséget két fájl között</translation>
     </message>
@@ -6981,10 +6195,6 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     <message>
         <source>Find word repetitions</source>
         <translation>Szóismétlés keresése</translation>
-    </message>
-    <message>
-        <source>New highlighting:</source>
-        <translation type="obsolete">Új kiemelések</translation>
     </message>
     <message>
         <source>BibTeX</source>
@@ -7509,14 +6719,6 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <translation>Típus</translation>
     </message>
     <message>
-        <source>-</source>
-        <translation type="obsolete">-</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="obsolete">+</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Név</translation>
     </message>
@@ -7525,39 +6727,12 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <translation>Trigger</translation>
     </message>
     <message>
-        <source>If this trigger string is written in any tex document, 
-it is replaced by the current tag.
-
-If the trigger starts with (?&lt;=something), this only happens 
-if something is written before the remaining part of the trigger.
-
-Since this trigger is not a plain string, but a regular expression, 
-(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
-and (?&lt;=\s|^) to mark replacements which should only occur before a word.</source>
-        <translation type="obsolete">Ha a dokumentumban trigger található, az kicserélhető egy felhasználói elemmel.
-
-Egy trigger csak akkor kezdődhet a (?&lt;=valami) módon, ha a &quot;valami&quot;-t
-a trigger további része elé írták.
-
-Mivel a trigger nem egy egyszerű szöveg, hanem reguláris kifejezés,
-a (?&lt;=\S) helyettesítő jeleket csak szavak után,
-míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
-    </message>
-    <message>
-        <source>?</source>
-        <translation type="obsolete">?</translation>
-    </message>
-    <message>
         <source>Abbrev</source>
         <translation>Rövidítés</translation>
     </message>
     <message>
         <source>Tag</source>
         <translation>Címke</translation>
-    </message>
-    <message>
-        <source>run script</source>
-        <translation type="obsolete">parancsfájl futtatása</translation>
     </message>
     <message>
         <source>Add</source>
@@ -7658,26 +6833,6 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <source>Command (% : filename without extension)</source>
         <translation>Parancs (%: fájlnév kiterjesztés nélkül)</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <source>Command %1</source>
-        <translation type="obsolete">%1. parancs</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="obsolete">+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="obsolete">-</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the current command?</source>
-        <translation type="obsolete">Tényleg törli az aktuális parancsot?</translation>
     </message>
     <message>
         <source>Add</source>
