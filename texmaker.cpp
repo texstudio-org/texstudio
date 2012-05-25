@@ -1180,7 +1180,7 @@ void Texmaker::NewDocumentStatus() {
     LatexDocument *masterDoc=doc->getTopMasterDocument();
     QString tooltip=ed->fileName();
     if(masterDoc!=doc){
-        tooltip+=tr("\nChild of %1").arg(masterDoc->getName());
+        tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
     }
     EditorView->setTabToolTip(index, tooltip);
 	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
