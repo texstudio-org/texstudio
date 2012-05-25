@@ -27,6 +27,7 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	bibTeXList->title=tr("BIBTEX");
 	blockList->title=tr("BLOCKS");
 	mLabelItem.clear();
+    mBibItem.clear();
 	mUserCommandList.clear();
 	mMentionedBibTeXFiles.clear();
 	masterDocument=0;
@@ -117,6 +118,7 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 void LatexDocument::clearStructure() {
 	mUserCommandList.clear();
 	mLabelItem.clear();
+    mBibItem.clear();
 	mRefItem.clear();
 	mMentionedBibTeXFiles.clear();
 	
@@ -201,7 +203,11 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	mRefItem.remove(dlh);
 	if(mMentionedBibTeXFiles.remove(dlh))
 		bibTeXFilesNeedsUpdate=true;
-	
+    if (mBibItem.contains(dlh)) {
+        mBibItem.remove(dlh);
+        bibTeXFilesNeedsUpdate=true;
+    }
+
 	QStringList commands=mUserCommandList.values(dlh);
 	foreach(QString elem,commands){
 		int i=elem.indexOf("{");
@@ -351,6 +357,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		mRefItem.remove(dlh);
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
+        if(mBibItem.remove(dlh))
+            bibTeXFilesNeedsUpdate=true;
 		
 		removedUsepackages << mUsepackageList.values(dlh);
 		if (mUsepackageList.remove(dlh)>0) completerNeedsUpdate = true;
@@ -467,6 +475,23 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 			}while(start>=0);
 		}
+        /// bibitem ///
+        foreach(QString cmd,latexParser.possibleCommands["%bibitem"]){
+            QString name;
+            cmd.append('{');
+            int start=0;
+            do{
+                name=findToken(curLine,cmd,start);
+                if(!name.isEmpty()){
+                    ReferencePair elem;
+                    elem.name=name;
+                    elem.start=start;
+                    mBibItem.insert(line(i).handle(),elem);
+                    bibTeXFilesNeedsUpdate=true;
+                }
+            }while(start>=0);
+        }
+
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
 		if (curLine=="\\appendix") {
@@ -967,6 +992,10 @@ QStringList LatexDocument::labelItems() const{
 
 QStringList LatexDocument::refItems() const{
 	return someItems(mRefItem);
+}
+
+QStringList LatexDocument::bibItems() const{
+    return someItems(mBibItem);
 }
 
 void LatexDocument::updateRefsLabels(const QString& ref){
@@ -1580,6 +1609,7 @@ bool LatexDocuments::singleMode(){
 
 void LatexDocuments::updateBibFiles(){
 	mentionedBibTeXFiles.clear();
+    QSet<QString> newBibItems;
 	foreach (LatexDocument* doc, documents) {
 		QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
 		QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
@@ -1587,6 +1617,7 @@ void LatexDocuments::updateBibFiles(){
 			if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
 			mentionedBibTeXFiles << it.value().absolute;
 		}
+        newBibItems.unite(QSet<QString>::fromList(doc->bibItems()));
 	}
 	
 	bool changed=false;
@@ -1603,11 +1634,13 @@ void LatexDocuments::updateBibFiles(){
 			//handle obscure bib tex feature, a just line containing "link fileName"
 			mentionedBibTeXFiles.append(bibTex.linksTo);
 	}
-	if (changed) {
+    if (changed || (newBibItems!=bibItems)) {
 		allBibTeXIds.clear();
+        bibItems=newBibItems;
 		for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
 			foreach (const QString& s, it.value().ids)
 				allBibTeXIds << s;
+        allBibTeXIds.unite(bibItems);
 		for (int i=0;i<documents.size();i++)
 			if (documents[i]->getEditorView())
 				documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);

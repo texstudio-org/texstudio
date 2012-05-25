@@ -80,7 +80,8 @@ void LatexParser::init(){
     possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
     possibleCommands["%graphics"] << "\\includegraphics";
-    possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite" << "\\bibitem" ;
+    possibleCommands["%bibitem"]<< "\\bibitem";
+    possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite"  ;
     possibleCommands["%label"] << "\\label";
     possibleCommands["%bibliography"] << "\\bibliography";
     possibleCommands["%file"] << "\\include" << "\\input" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
