@@ -8,11 +8,16 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     kpseWhichCmd=kpsecmd;
     mFiles.clear();
     //check if texdef is present
+#ifndef Q_WS_WIN
     texdefDir=kpsecmd.left(kpsecmd.length()-9);
     QProcess myProc(0);
     myProc.start(texdefDir+"texdef");
     myProc.waitForFinished();
     texdefMode=(myProc.exitCode()==1);
+#else
+    texdefMode=false;
+    //miktex always has a texdef.exe present even if texdef is not installed or no working perl is present. Furthermore the call from txs does not seem to work properly with miktex
+#endif
 }
 
 void LatexStyleParser::stop(){
