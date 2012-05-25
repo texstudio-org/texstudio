@@ -191,7 +191,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 		    break;
 		}
 	    }
-	    if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->possibleCommands["%file"].contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)){ //don't check syntax in reference, label or include
+        if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->possibleCommands["%file"].contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)||ltxCommands->possibleCommands["%bibitem"].contains(word)){ //don't check syntax in reference, label or include
 		QStringList options;
 		QList<int> starts;
 		ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);

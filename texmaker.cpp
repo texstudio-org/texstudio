@@ -4847,6 +4847,14 @@ void Texmaker::updateCompleter() {
             // add citation to completer for direct citation completion
             bibIds<<bibTex.ids;
         }
+        //handle bibitem definitions
+        bibIds<<documents.bibItems.toList();
+        //automatic use of cite commands
+        foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
+            QString temp=citeCommand+"{%1}";
+            foreach (const QString &value, documents.bibItems)
+                words.insert(temp.arg(value));
+        }
         completer->setAdditionalWords(bibIds.toSet(),CT_CITATIONS);
     }
 	

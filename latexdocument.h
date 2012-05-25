@@ -90,6 +90,7 @@ private:
 public:
 	QStringList labelItems() const;
 	QStringList refItems() const;
+    QStringList bibItems() const;
 	const QSet<QString> userCommandList() const{
 		return mUserCommandList.values().toSet();
 	}
@@ -158,6 +159,7 @@ private:
 	StructureEntry* blockList;
 	
 	QMultiHash<QDocumentLineHandle*,ReferencePair> mLabelItem;
+    QMultiHash<QDocumentLineHandle*,ReferencePair> mBibItem;
 	QMultiHash<QDocumentLineHandle*,ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
@@ -294,6 +296,7 @@ public:
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
+    QSet<QString> bibItems; // direct defined bibitems
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
     QString findFileFromBibId(QString bibId);
