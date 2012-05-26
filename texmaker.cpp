@@ -717,6 +717,7 @@ void Texmaker::setupMenus() {
     newManagedAction(submenu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
     newManagedAction(submenu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
     newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
+    newManagedAction(submenu, "latexmk",tr("&LatexMK"), SLOT(commandFromAction()))->setData(BuildManager::CMD_LATEXMK);
 	
     //menu->addSeparator();
     newManagedAction(submenu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
