@@ -2392,7 +2392,7 @@ void Texmaker::editInsertUnicode(){
 	connect(uid, SIGNAL(destroyed()), currentEditor(), SLOT(setFocus()));
 	connect(currentEditor(), SIGNAL(cursorPositionChanged()), uid, SLOT(close()));
 	connect(currentEditor(), SIGNAL(visibleLinesChanged()), uid, SLOT(close()));
-	connect(currentEditor()->document(), SIGNAL(()), uid, SLOT(close()));
+	connect(currentEditor()->document(), SIGNAL(contentsChanged()), uid, SLOT(close()));
 	
 	uid->move(currentEditor()->mapTo(uid->parentWidget(), offset));
 	this->unicodeInsertionDialog = uid;
