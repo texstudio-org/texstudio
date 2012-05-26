@@ -726,7 +726,7 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "user",tr("&User", "menu"));
 	updateUserToolMenu();
 	menu->addSeparator();
-	newManagedAction(menu, "clean",tr("Cle&an"), SLOT(CleanAll()));
+	newManagedAction(menu, "clean",tr("Cle&an..."), SLOT(CleanAll()));
 	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
