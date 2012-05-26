@@ -134,6 +134,9 @@
         <file>images/metapost.png</file>
         <file>images/modified.png</file>
         <file>images/part.png</file>
+        <file>images/1rightarrow.png</file>
+        <file>images/2rightarrow.png</file>
+		<file>images/viewer.png</file>
         <file>images/pdflatex.png</file>
         <file>images/xelatex.png</file>
         <file>images/lualatex.png</file>

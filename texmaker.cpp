@@ -698,35 +698,41 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-    newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()), Qt::Key_F1)->setData(BuildManager::CMD_QUICK);
-    newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/pdflatex.png")->setData(BuildManager::CMD_COMPILE);
-    newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW);
-	
+	newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/2rightarrow.png")->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/1rightarrow.png")->setData(BuildManager::CMD_COMPILE);
+	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,":/images/viewer.png")->setData(BuildManager::CMD_VIEW);
+	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
+	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()))->setData(BuildManager::CMD_INDEX);
+
 	menu->addSeparator();
-    submenu=newManagedMenu(menu, "commands",tr("&Commands", "menu"));
-    newManagedAction(submenu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), QKeySequence(), ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
-    newManagedAction(submenu, "viewdvi",tr("View &Dvi"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
-    newManagedAction(submenu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
+	submenu=newManagedMenu(menu, "commands",tr("&Commands", "menu"));
+	newManagedAction(submenu, "latexmk",tr("&Latexmk"), SLOT(commandFromAction()))->setData(BuildManager::CMD_LATEXMK);
+	submenu->addSeparator();
+	newManagedAction(submenu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), QKeySequence(), ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
+	newManagedAction(submenu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
+	newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/xelatex.png")->setData(BuildManager::CMD_XELATEX);
+	newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/lualatex.png")->setData(BuildManager::CMD_LUALATEX);
+	submenu->addSeparator();
+	newManagedAction(submenu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
+	newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
+	newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
+	submenu->addSeparator();
+	newManagedAction(submenu, "viewdvi",tr("View &Dvi"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
     newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
-    newManagedAction(submenu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
-    newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/xelatex.png")->setData(BuildManager::CMD_XELATEX);
-    newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/lualatex.png")->setData(BuildManager::CMD_LUALATEX);
     newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
-    newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
-    newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
-    newManagedAction(submenu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
-    newManagedAction(submenu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
-    newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
-    newManagedAction(submenu, "latexmk",tr("&LatexMK"), SLOT(commandFromAction()))->setData(BuildManager::CMD_LATEXMK);
-	
-    //menu->addSeparator();
+	submenu->addSeparator();
+	newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
+	newManagedAction(submenu, "texindy",tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
+	submenu->addSeparator();
     newManagedAction(submenu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
     newManagedAction(submenu, "asymptote",tr("&Asymptote"), SLOT(commandFromAction()))->setData(BuildManager::CMD_ASY);
-    //menu->addSeparator();
+
 	submenu=newManagedMenu(menu, "user",tr("&User", "menu"));
 	updateUserToolMenu();
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an..."), SLOT(CleanAll()));
+	menu->addSeparator();
+	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
 	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
