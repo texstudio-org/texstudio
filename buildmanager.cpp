@@ -164,9 +164,9 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	QStringList ltxmk_cmds;
 #ifdef Q_WS_WIN
-    ltxmk_cmds<<"latexmk -pdf -e \"$pdflatex=q/pdflatex -synctex=1 --shell-escape -interaction=nonstopmode %%O %%S/\" %"<<"latexmk -dvi -e \"$latex=q/latex -src --shell-escape -interaction=nonstopmode %%O %%S/\" %";
+    ltxmk_cmds<<"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %"<<"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %";
 #else
-    ltxmk_cmds<<"bash -c \"latexmk -pdf -e '$pdflatex=q/pdflatex -synctex=1 --shell-escape -interaction=nonstopmode %%O %%S/' %\""<<"bash -c \"latexmk -dvi -e '$latex=q/latex -src --shell-escape -interaction=nonstopmode %%O %%S/' %\"";
+    ltxmk_cmds<<"bash -c \"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %\""<<"bash -c \"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %\"";
 #endif
 	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 
