@@ -166,7 +166,7 @@ void BuildManager::initDefaultCommandNames(){
 #ifdef Q_WS_WIN
     ltxmk_cmds<<"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %"<<"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %";
 #else
-    ltxmk_cmds<<"bash -c \"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %\""<<"bash -c \"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %\"";
+    ltxmk_cmds<<"latexmk -pdf -silent -pdflatex=\"pdflatex -synctex=1 -shell-escape %%O %%S\" %"<<"latexmk -dvi -silent -latex=\"latex -src -shell-escape %%O %%S\" %";
 #endif
 	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 
