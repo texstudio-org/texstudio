@@ -297,7 +297,7 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 		
 		int sure;
 		QTextCodec * codec = guessEncodingBasic(fullLog, &sure);
-		if (!sure) codec = QTextCodec::codecForLocale();
+        if (!sure || !codec) codec = QTextCodec::codecForLocale();
 		
 		OutputLogTextEdit->setPlainText(codec->toUnicode(fullLog));
 		
