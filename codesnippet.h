@@ -46,6 +46,8 @@ public:
 
 	static bool autoReplaceCommands;
 
+	static bool debugDisableAutoTranslate;
+	
 private:
 	QString name;
 	QDocumentCursor getCursor(QEditor* editor, const CodeSnippetPlaceHolder &ph, int snippetLine, int baseLine, int baseLineIndent, int lastLineRemainingLength) const;
