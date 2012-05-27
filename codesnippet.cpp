@@ -12,18 +12,21 @@ int CodeSnippetPlaceHolder::offsetEnd(){
 }
 
 
-inline void translatePlaceholder(const QString& content, QString& curLine, CodeSnippetPlaceHolder& ph){
+inline void translatePlaceholder(const QString& content, QString& curLine, CodeSnippetPlaceHolder& ph, int columnshift = 0){
+	bool translatable = ph.flags & CodeSnippetPlaceHolder::Translatable;
+	if (translatable)
 	for (int i=0;i<content.length();i++) 
 		if (!content[i].toAscii()){ //don't translate non ascii placeholders
-			curLine+=content;
-			ph.length+=content.length();
-			return;
+			translatable = false;
+			break;
 		}
-			
-	QString trans = QApplication::translate("CodeSnippet_PlaceHolder", content.toAscii().constData());
-	curLine += trans;
+	QString trans = !translatable ? content : QApplication::translate("CodeSnippet_PlaceHolder", content.toAscii().constData());
+	if (columnshift < 0) {
+		curLine = curLine.left(curLine.length() + columnshift) + trans + curLine.right(-columnshift); 
+		ph.offset += columnshift;
+		//todo: allow positive shift
+	} else curLine += trans;
 	ph.length = trans.length();
-	return;
 }
 
 
@@ -48,21 +51,24 @@ void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, C
 	
 	
 	secondLevelBreak:
-	translatePlaceholder(tmpPlaceHolderContent, curLine, ph);
-	if (i>=snippet.length()) return;
-	if (snippet.at(i)!=':') return;
+	int snippetEnd;
+	if ((snippet.at(i)!=':') || ((snippetEnd = snippet.indexOf("%>", i)) == -1)) return;
 
-	int snippetEnd = snippet.indexOf("%>", i);
-	if (snippetEnd == -1) return;
 	QString options = snippet.mid(i+1, snippetEnd-i-1);
 	i = snippetEnd+1;
+	int columnshift = 0;
 	foreach (const QString& s, options.split(",")) {
 		QString t = s.trimmed();
 		if (t == "mirror") ph.flags|=CodeSnippetPlaceHolder::Mirror;
 		else if (t == "multiline") ph.flags|=CodeSnippetPlaceHolder::PreferredMultilineAutoSelect;
 		else if (t.startsWith("id:")) ph.id = t.remove(0,3).toInt();
+		else if (t.startsWith("columnShift:", Qt::CaseInsensitive)) columnshift = t.remove(0,12).toInt();
 		else if (t.startsWith("select")) ph.flags|=CodeSnippetPlaceHolder::AutoSelect;
+		else if (t == "persistent") ph.flags|=CodeSnippetPlaceHolder::Persistent;
+		else if (t == "translatable") ph.flags|=CodeSnippetPlaceHolder::Translatable;
 	}
+
+	translatePlaceholder(tmpPlaceHolderContent, curLine, ph, columnshift);
 }
 
 bool CodeSnippet::autoReplaceCommands=true;
@@ -372,6 +378,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 				PlaceHolder ph;
 				ph.length=placeHolders[l][i].length;
 				ph.cursor = getCursor(editor, placeHolders[l][i], l, baseLine, baseLineIndent, lastLineRemainingLength);
+				ph.autoRemove = !(placeHolders[l][i].flags & CodeSnippetPlaceHolder::Persistent);
 				if (!ph.cursor.isValid()) continue;
 				editor->addPlaceHolder(ph);
 				if (placeHolders[l][i].flags & CodeSnippetPlaceHolder::Mirrored) {

@@ -13,7 +13,7 @@ enum CompletionType { CT_COMMANDS,CT_NORMALTEXT,CT_CITATIONS};
 struct CodeSnippetPlaceHolder{
 	int offset, length;
 	int id;
-	enum Flag{AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultilineAutoSelect = 8};
+	enum Flag{AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultilineAutoSelect = 8, Persistent = 16, Translatable = 32};
 	int flags;
 	int offsetEnd();
 };

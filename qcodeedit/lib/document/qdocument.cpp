@@ -6273,6 +6273,20 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	m_oldLineCacheWidth = lineCacheWidth;
 	//qDebug("painting done"); // in %i ms...", t.elapsed());
 
+	//mark placeholder which will probably be removed
+	if (cxt.lastPlaceHolder >=0 
+	    && cxt.lastPlaceHolder < cxt.placeHolders.count() 
+	    && cxt.lastPlaceHolder != cxt.curPlaceHolder){
+		const PlaceHolder& ph = cxt.placeHolders.at(cxt.lastPlaceHolder);
+		if (!ph.autoRemove) cxt.lastPlaceHolder = -1;
+		else if (!ph.cursor.line().isHidden()) {
+			p->setPen(QColor(0,0,0));
+			p->setPen(Qt::DotLine);
+			p->drawConvexPolygon(ph.cursor.documentRegion());
+			p->setPen(Qt::SolidLine);
+		}
+	}
+
 	//draw placeholders
 	for (int i=0; i < cxt.placeHolders.count(); i++)
 		if (i != cxt.curPlaceHolder && i!=cxt.lastPlaceHolder && !cxt.placeHolders[i].autoOverride &&  !cxt.placeHolders[i].cursor.line().isHidden())
@@ -6293,19 +6307,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				p->drawConvexPolygon(m.documentRegion());
 		}
 	}
-	//mark placeholder which will probably be removed
-	p->setPen(QColor(0,0,0));
-	p->setPen(Qt::DotLine);
-	if (cxt.lastPlaceHolder >=0 && cxt.lastPlaceHolder < cxt.placeHolders.count() && cxt.lastPlaceHolder != cxt.curPlaceHolder){
-		const PlaceHolder& ph = cxt.placeHolders.at(cxt.lastPlaceHolder);
-		if (!ph.cursor.line().isHidden())
-			p->drawConvexPolygon(ph.cursor.documentRegion());
-	}
 	for (int i=0; i < cxt.placeHolders.count(); i++)
 		if (cxt.placeHolders[i].autoOverride &&  !cxt.placeHolders[i].cursor.line().isHidden())
 			p->drawConvexPolygon(cxt.placeHolders[i].cursor.documentRegion());
 	// draw cursor(s)
-	p->setPen(Qt::SolidLine);
 	p->setPen(repForeground);	
 	foreach(QDocumentCursor cur, QList<QDocumentCursorHandle*>() << cxt.cursors << cxt.extra){
 	    if (!cur.line().isHidden()){
