@@ -78,7 +78,7 @@
 \Delta#m
 \delta#m
 \det#m
-\dfrac{num}{den}#m
+\dfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \diamond#m
 \diamondsuit#m
 \dim#m
@@ -97,7 +97,7 @@
 \exp#m
 \flat#m
 \forall#m
-\frac{num}{den}#m
+\frac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \frown#m
 \Gamma#m
 \gamma#m

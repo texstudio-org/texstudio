@@ -13,7 +13,7 @@ int CodeSnippetPlaceHolder::offsetEnd(){
 
 
 inline void translatePlaceholder(const QString& content, QString& curLine, CodeSnippetPlaceHolder& ph, int columnshift = 0){
-	bool translatable = ph.flags & CodeSnippetPlaceHolder::Translatable;
+	bool translatable = (ph.flags & CodeSnippetPlaceHolder::Translatable) && !CodeSnippet::debugDisableAutoTranslate;
 	if (translatable)
 	for (int i=0;i<content.length();i++) 
 		if (!content[i].toAscii()){ //don't translate non ascii placeholders
@@ -72,6 +72,7 @@ void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, C
 }
 
 bool CodeSnippet::autoReplaceCommands=true;
+bool CodeSnippet::debugDisableAutoTranslate = false;
 
 CodeSnippet::CodeSnippet(const QString &newWord) {
 	QString realNewWord=newWord;

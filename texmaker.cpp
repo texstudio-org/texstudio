@@ -4461,9 +4461,6 @@ void Texmaker::generateAddtionalTranslations(){
 	translations << "#ifdef UNDEFINED";
 	translations << "static const char* translations[] = {";
 
-	translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"num\"), ";
-	translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"den\"), ";
-
 	QRegExp commandOnly("\\\\['`^\"~=.^]?[a-zA-Z]*(\\{\\})* *"); //latex command
 	//copy menu item text
 	QFile xmlFile(":/uiconfig.xml");
@@ -4471,16 +4468,28 @@ void Texmaker::generateAddtionalTranslations(){
 	QDomDocument xml;
 	xml.setContent(&xmlFile);
 	QDomNode current = xml.documentElement();
+	CodeSnippet::debugDisableAutoTranslate = true;
+	QStringList translatablePlaceholders;
 	while (!current.isNull()) {
 		QDomNamedNodeMap attribs = current.attributes();
 		QString text = attribs.namedItem("text").nodeValue();
 		if (text!="" && !commandOnly.exactMatch(text))
 			translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \""+text.replace("\\","\\\\").replace("\"","\\\"")+"\"), ";
+		QString insert = attribs.namedItem("insert").nodeValue();
+		if (insert != "") {
+			CodeSnippet cs(insert);
+			for (int i=0;i<cs.placeHolders.size();i++)
+				for (int j=0;j<cs.placeHolders[i].size();j++)
+					if (cs.placeHolders[i][j].flags & CodeSnippetPlaceHolder::Translatable) 
+						translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \""+cs.lines[i].mid(cs.placeHolders[i][j].offset,cs.placeHolders[i][j].length)+"\"), ";
+						
+		}
 		if (current.hasChildNodes()) current=current.firstChild();
 		else if (!current.nextSibling().isNull()) current=current.nextSibling();
 		else if (!current.parentNode().isNull()) current = current.parentNode().nextSibling();
 		else current = current.parentNode();
 	}
+	CodeSnippet::debugDisableAutoTranslate = false;
 	//copy
 	QFile xmlFile2(":/qxs/defaultFormats.qxf");
 	xmlFile2.open(QIODevice::ReadOnly);
