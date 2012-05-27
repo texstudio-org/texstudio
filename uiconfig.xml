@@ -138,8 +138,8 @@
   <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="indice.png" shortcut="Ctrl+Shift+D"/>  
   <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="puissance.png" shortcut="Ctrl+Shift+U"/>  
-  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%>}{%&lt;den%>}" icon="smallfrac.png" shortcut="Alt+Shift+F"/>    
-  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%>}{%&lt;den%>}" icon="dfrac.png" shortcut="Ctrl+Shift+F"/>  
+  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac.png" shortcut="Alt+Shift+F"/>    
+  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="dfrac.png" shortcut="Ctrl+Shift+F"/>  
   <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="racine.png" shortcut="Ctrl+Shift+Q"/>  
   <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
   <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
