@@ -4469,7 +4469,6 @@ void Texmaker::generateAddtionalTranslations(){
 	xml.setContent(&xmlFile);
 	QDomNode current = xml.documentElement();
 	CodeSnippet::debugDisableAutoTranslate = true;
-	QStringList translatablePlaceholders;
 	while (!current.isNull()) {
 		QDomNamedNodeMap attribs = current.attributes();
 		QString text = attribs.namedItem("text").nodeValue();

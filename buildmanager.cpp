@@ -1001,18 +1001,19 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 
 		if (waitForCommand) p->deleteLater();
 		
-		if ((cur.flags & RCF_RERUN) && (cur.flags & RCF_RERUNNABLE)){
+		bool rerunnable = (cur.flags & RCF_RERUN) && (cur.flags & RCF_RERUNNABLE);
+		if (rerunnable || latexCompiler){
 			LatexCompileResult result = LCR_NORMAL;
 			emit latexCompiled(&result);
 			if (result == LCR_NORMAL) continue;
-			if (result == LCR_ERROR) return false;
+			if (!rerunnable || result == LCR_ERROR) return false;
 			if (remainingReRunCount <= 0) return false;
 			if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) { runCommand(CMD_BIBLIOGRAPHY, mainFile, mainFile, 0); remainingReRunCount--;}
 			REQUIRE_RET(result == LCR_RERUN || result == LCR_RERUN_WITH_BIBLIOGRAPHY, false);
 			remainingReRunCount--;
 			i--; //rerun
 			//qDebug() << "rerun";
-		}
+		} 
 
 	}
 	return true;
@@ -1021,7 +1022,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 ProcessX* BuildManager::firstProcessOfDirectExpansion(const QString& command, const QFileInfo& mainFile, const QFileInfo& currentFile, int currentLine){
 	ExpandingOptions options(mainFile, currentFile, currentLine);
 	ExpandedCommands expansion = expandCommandLine(command, options);
-	if (options.canceled) return false;
+	if (options.canceled) return 0;
 
 	if (expansion.commands.isEmpty()) return 0;
 	
@@ -1299,7 +1300,7 @@ void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList&
 	
 	static QStringList latexCommandsUnexpanded, rerunnableCommandsUnexpanded, pdfCommandsUnexpanded, stdoutCommandsUnexpanded, viewerCommandsUnexpanded;
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/LaTeX", &latexCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex" << "latexmk" << "compile");
-    ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Rerunnable", &rerunnableCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex" << "latexmk");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Rerunnable", &rerunnableCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex");
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Pdf", &pdfCommandsUnexpanded, QStringList() << "pdflatex" << "xelatex" << "lualatex" << "latexmk");
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Stdout", &stdoutCommandsUnexpanded, QStringList() << "bibtex" << "biber" << "bibtex8" << "bibliography");
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Viewer", &viewerCommandsUnexpanded, QStringList() << "view-pdf" << "view-ps" << "view-dvi" << "view-pdf-internal" << "view-pdf-external" << "view");
