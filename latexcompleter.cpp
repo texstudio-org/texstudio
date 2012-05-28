@@ -1326,15 +1326,32 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	abbrev = nabbrev;
 	trigger = ntrigger;
 	triggerLookBehind = false;
-	if (ntrigger.isEmpty()) return;
+	QString realtrigger = trigger;
+	if (realtrigger == "?txs-start") realtrigger = "", triggers = ST_TXS_START;
+	if (realtrigger.isEmpty()) return;
+
+	if (realtrigger.startsWith("(?language:")) {
+		const int langlen = strlen("(?language:");
+		int paren = 1, bracket = 0, i=langlen;
+		for (; i < realtrigger.length() && paren; i++) {
+			switch (realtrigger[i].unicode()) {
+			case '(': if (!bracket) paren++; break;
+			case ')': if (!bracket) paren--; break;
+			case '[': bracket = 1; break;
+			case ']': bracket = 0; break;
+			case '\\': i++; break;
+			}
+		}
+		triggerLanguage = realtrigger.mid(langlen, i - langlen - 1);
+		triggerLanguage.replace("latex", "\\(La\\)TeX");
+		realtrigger.remove(0,i);
+	}
 	
-	QString realtrigger = ntrigger;
 	if (realtrigger.startsWith("(?<=")) {
 		triggerLookBehind = true;
 		realtrigger.remove(1,3); //qregexp doesn't support look behind, but we can emulate it by removing the first capture
 	}
-	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)
-	
+	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)	
 }
 
 
