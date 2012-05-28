@@ -72,6 +72,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
 	latexStyleParser=0;
+	highlightLanguageActions = 0;
 	
 	ReadSettings();
 	
@@ -839,19 +840,25 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	
 	menu->addSeparator();
-	QMenu *hlMenu = new QMenu(tr("Highlighting"), this);
-	highlightLanguageActions = new QActionGroup(this);
-	highlightLanguageActions->setExclusive(true);
-	foreach (const QString &s, m_languages->languages()) {
-		QAction *act = new QAction(tr(qPrintable(s)), this);
-		act->setData(s);
-		act->setCheckable(true);
-		hlMenu->addAction(act);
-		highlightLanguageActions->addAction(act);
+	QMenu *hlMenu = newManagedMenu(menu, "highlighting", tr("Highlighting"));
+	if (!highlightLanguageActions) {
+		highlightLanguageActions = new QActionGroup(this);
+		highlightLanguageActions->setExclusive(true);
+		connect(highlightLanguageActions, SIGNAL(triggered(QAction*)), this, SLOT(viewSetHighlighting(QAction*)));
+		connect(hlMenu, SIGNAL(aboutToShow()), this, SLOT(showHighlightingMenu()));
+		int id = 0;
+		foreach (const QString &s, m_languages->languages()) {
+			QAction *act = newManagedAction(hlMenu, QString::number(id++), tr(qPrintable(s)));
+			act->setData(s);
+			act->setCheckable(true);
+			hlMenu->addAction(act);
+			highlightLanguageActions->addAction(act);
+		} 
+	} else {
+		int id = 0;
+		foreach (const QString &s, m_languages->languages()) 
+			newManagedAction(hlMenu, QString::number(id++), tr(qPrintable(s)));
 	}
-	connect(highlightLanguageActions, SIGNAL(triggered(QAction*)), this, SLOT(viewSetHighlighting(QAction*)));
-	connect(hlMenu, SIGNAL(aboutToShow()), this, SLOT(showHighlightingMenu()));
-	menu->addMenu(hlMenu);
 
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
