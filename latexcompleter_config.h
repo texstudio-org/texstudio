@@ -5,13 +5,25 @@
 //without having a relationship between completer and configmanager
 //so modifying one doesn't lead to a recompilation of the other
 
+#include "modifiedQObject.h"
+
+class QLanguageDefinition;
+
 struct Macro{
+	enum SpecialTrigger { ST_TXS_START = 1};
+	Q_DECLARE_FLAGS(SpecialTriggers, SpecialTrigger)
+	
 	Macro();
 	Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
 	QString name, tag, abbrev;
 	QString trigger;
 	QRegExp triggerRegex;
 	bool triggerLookBehind;
+	
+	
+	QString triggerLanguage;
+	QList<QLanguageDefinition*> triggerLanguages;
+	SpecialTriggers triggers;
 };
 
 

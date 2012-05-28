@@ -126,7 +126,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	// custom evironments<
 	if(!configManager.customEnvironments.isEmpty()){
-        QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
+		QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 		
 		QFile f(findResourceFile("qxs/tex.qnfa"));
 		QDomDocument doc;
@@ -149,7 +149,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 			marks[i].color = m_formats->format("line:"+marks[i].id).background;
 	
 	LatexEditorView::updateFormatSettings();
-	
+		
 	// TAB WIDGET EDITEUR
 	documents.indentationInStructure=configManager.indentationInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
@@ -790,7 +790,7 @@ void Texmaker::setupMenus() {
 	//  User
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
-	configManager.updateUserMacroMenu();
+	updateUserMacros();
 		
 	//---view---
 	menu=newManagedMenu("main/view",tr("&View"));
@@ -1547,7 +1547,7 @@ void Texmaker::relayToOwnSlot(){
 
 void Texmaker::autoRunScripts(){
 	for(int i=0;i<configManager.completerConfig->userMacro.count();i++)
-		if (configManager.completerConfig->userMacro[i].trigger == "?txs-start")
+		if (configManager.completerConfig->userMacro[i].triggers & Macro::ST_TXS_START)
 			insertUserTag(configManager.completerConfig->userMacro[i].tag);
 		
 }
@@ -2071,6 +2071,20 @@ void Texmaker::closeEvent(QCloseEvent *e) {
 	else e->ignore();
 }
 
+void Texmaker::updateUserMacros(){
+	QStringList tempLanguages = m_languages->languages();
+	configManager.updateUserMacroMenu();
+	for (int i=0;i<configManager.completerConfig->userMacro.size();i++) {
+		if (configManager.completerConfig->userMacro[i].triggerLanguage.isEmpty()) continue;
+		configManager.completerConfig->userMacro[i].triggerLanguages.clear();
+		QRegExp tempRE(configManager.completerConfig->userMacro[i].triggerLanguage,Qt::CaseInsensitive);
+		for (int j=0;j<tempLanguages.size();j++)
+			if (tempRE.exactMatch(tempLanguages[j]))
+				configManager.completerConfig->userMacro[i].triggerLanguages << m_languages->languageData(tempLanguages[j]).d;
+		
+		qDebug() << configManager.completerConfig->userMacro[i].name << ":"<<configManager.completerConfig->userMacro[i].trigger;
+	}
+}
 
 void Texmaker::fileOpenRecent() {
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -3678,7 +3692,7 @@ void Texmaker::userMacroDialogAccepted(){
 	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->triggers.size());
 	for (int i=0;i<userMacroDialog->names.size();i++)
 		configManager.completerConfig->userMacro.append(Macro(userMacroDialog->names[i], userMacroDialog->tags[i], userMacroDialog->abbrevs[i], userMacroDialog->triggers[i]));
-	configManager.updateUserMacroMenu();
+	updateUserMacros();	
 	completer->updateAbbreviations();
 	userMacroDialog->deleteLater();
 	userMacroDialog = 0;
@@ -4204,6 +4218,7 @@ void Texmaker::GeneralOptions() {
 	QMap<QString,QVariant> oldCustomEnvironments = configManager.customEnvironments;
 	bool oldModernStyle = modernStyle;
 	bool oldSystemTheme = useSystemTheme;
+	int oldReplaceQuotes = configManager.replaceQuotes;
 	autosaveTimer.stop();
 	m_formats->modified = false;
 	bool realtimeChecking=configManager.editorConfig->realtimeChecking;
@@ -4273,6 +4288,10 @@ void Texmaker::GeneralOptions() {
 				QDocument::setFont(QDocument::font(), true);
 			UpdateCaption();
 		}
+		
+		if (oldReplaceQuotes != configManager.replaceQuotes)
+			updateUserMacros();
+		
 		//custom toolbar
 		setupToolBars();
 		

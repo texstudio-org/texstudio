@@ -696,12 +696,12 @@ QSettings* ConfigManager::readSettings() {
 		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
 		userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
 		userAbbrevs.append("");
-		userTriggers.append("(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
+		userTriggers.append("(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
 		
 		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
 		userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
 		userAbbrevs.append("");
-		userTriggers.append("(?<=\\S)"+QRegExp::escape(keyReplace[i]));
+		userTriggers.append("(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i]));
 	}
 	
 	for (int i=0;i<userTags.size();i++)
@@ -1169,22 +1169,20 @@ bool ConfigManager::execConfigDialog() {
 					const Macro& m=completerConfig->userMacro.at(i);
 					if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN ||
 					              m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE) continue;
-					if (m.trigger == "(?<=\\s|^)\"" || m.trigger == "(?<=^)\"" || m.trigger == "(?<=\\S)\"") {
+					if (m.trigger == "(?language:latex)(?<=\\s|^)\"" || m.trigger == "(?language:latex)(?<=^)\"" || m.trigger == "(?language:latex)(?<=\\S)\"") {
 						conflict = true;
 						qDebug() << m.trigger;
 						break;
 					}
 				}
 			if (conflict) 
-				if (txsConfirm(tr("You have enabled auto quote replacement. However, there are user tags with trigger string (?<=\\s|^) or (?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))){
+				if (txsConfirm(tr("You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))){
 					for(int i=completerConfig->userMacro.count()-1;i>=0;i--){
 						const Macro& m=completerConfig->userMacro.at(i);
-						if (m.trigger == "(?<=\\s|^)\"" || m.trigger == "(?<=^)\"" || m.trigger == "(?<=\\S)\"") 
+						if (m.trigger == "(?language:latex)(?<=\\s|^)\"" || m.trigger == "(?language:latex)(?<=^)\"" || m.trigger == "(?language:latex)(?<=\\S)\"") 
 							completerConfig->userMacro.removeAt(i);
 					}
 				}
-			
-			updateUserMacroMenu();
 		}
 		
 		//completion
@@ -1495,32 +1493,11 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
 	}
 	// update quote replacement
-	switch(replaceQuotes){
-	case 0:
-		break;
-	case 1:
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN,"``", "","(?<=\\s|^)\""));
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE,"''", "","(?<=\\S)\""));
-		break;
-	case 2:
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN,"\"<", "","(?<=\\s|^)\""));
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE,"\">", "","(?<=\\S)\""));
-		break;
-	case 3:
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN,"\"`", "","(?<=\\s|^)\""));
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE,"\"'", "","(?<=\\S)\""));
-		break;
-	case 4:
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN,"\\og ", "","(?<=\\s|^)\""));
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE,"\\fg{}", "","(?<=\\S)\""));
-		break;
-	case 5:
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN,"\">", "","(?<=\\s|^)\""));
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE,"\"<", "","(?<=\\S)\""));
-		break;
-	default:
-		break;
-		
+	static const char * open[6] = {"",  "``", "\"<", "\"`", "\\og ",  "\">"};
+	static const char * close[6] = {"", "''", "\">", "\"'", "\\fg{}", "\"<"};
+	if (replaceQuotes >= 1 && replaceQuotes < 6) {
+		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, open[replaceQuotes], "", "(?language:latex)(?<=\\s|^)\""));
+		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, close[replaceQuotes], "", "(?language:latex)(?<=\\S)\""));
 	}
 }
 
