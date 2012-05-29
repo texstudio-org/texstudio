@@ -357,6 +357,10 @@ támogatott</translation>
         <source>Recompile Bibliography</source>
         <translation>Bibliográfia újrafordítása</translation>
     </message>
+    <message>
+        <source>Default Index Tool</source>
+        <translation>Alapértelmezett indexelés</translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -1661,10 +1665,6 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>\begin{tabular}</translation>
     </message>
     <message>
-        <source>New line</source>
-        <translation>Új sor</translation>
-    </message>
-    <message>
         <source>International &amp;Accents</source>
         <translation>&amp;Nemzetközi ékezetek</translation>
     </message>
@@ -1721,10 +1721,6 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Matematikai mód \[...\] (kirakatban)</translation>
     </message>
     <message>
-        <source>Numbered equations \begin{equation}</source>
-        <translation>Számozott egyenlőségek \begin{equation}</translation>
-    </message>
-    <message>
         <source>\begin{align}</source>
         <translation>\begin{align}</translation>
     </message>
@@ -1771,12 +1767,6 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
-    </message>
-    <message>
-        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
-Do you want to remove them?</source>
-        <translation>Engedélyezte az automatikus cserét, bár előfordulnak felhasználói elemek (?&lt;=\s|^) vagy (?&lt;=\S), melyek ilyenkor megváltozhatnak.
-Szeretné azokat eltávolítani?</translation>
     </message>
     <message>
         <source>Open first non-open file</source>
@@ -1829,10 +1819,6 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <source>\begin{verse}</source>
         <translation>\begin{verse}</translation>
-    </message>
-    <message>
-        <source>\begin{verbatim} </source>
-        <translation>\begin{verbatim}</translation>
     </message>
     <message>
         <source>\begin{table}</source>
@@ -1891,126 +1877,6 @@ Szeretné azokat eltávolítani?</translation>
         <translation>Felső index - ^{}</translation>
     </message>
     <message>
-        <source>arccos</source>
-        <translation>arccos</translation>
-    </message>
-    <message>
-        <source>arcsin</source>
-        <translation>arcsin</translation>
-    </message>
-    <message>
-        <source>arctan</source>
-        <translation>arctan</translation>
-    </message>
-    <message>
-        <source>cos</source>
-        <translation>cos</translation>
-    </message>
-    <message>
-        <source>cosh</source>
-        <translation>cosh</translation>
-    </message>
-    <message>
-        <source>cot</source>
-        <translation>cot</translation>
-    </message>
-    <message>
-        <source>coth</source>
-        <translation>coth</translation>
-    </message>
-    <message>
-        <source>csc</source>
-        <translation>csc</translation>
-    </message>
-    <message>
-        <source>deg</source>
-        <translation>deg</translation>
-    </message>
-    <message>
-        <source>det</source>
-        <translation>det</translation>
-    </message>
-    <message>
-        <source>dim</source>
-        <translation>dim</translation>
-    </message>
-    <message>
-        <source>exp</source>
-        <translation>exp</translation>
-    </message>
-    <message>
-        <source>gcd</source>
-        <translation>gcd</translation>
-    </message>
-    <message>
-        <source>hom</source>
-        <translation>hom</translation>
-    </message>
-    <message>
-        <source>inf</source>
-        <translation>inf</translation>
-    </message>
-    <message>
-        <source>ker</source>
-        <translation>ker</translation>
-    </message>
-    <message>
-        <source>lg</source>
-        <translation>lg</translation>
-    </message>
-    <message>
-        <source>lim</source>
-        <translation>lim</translation>
-    </message>
-    <message>
-        <source>liminf</source>
-        <translation>liminf</translation>
-    </message>
-    <message>
-        <source>limsup</source>
-        <translation>limsup</translation>
-    </message>
-    <message>
-        <source>ln</source>
-        <translation>ln</translation>
-    </message>
-    <message>
-        <source>log</source>
-        <translation>log</translation>
-    </message>
-    <message>
-        <source>max</source>
-        <translation>max</translation>
-    </message>
-    <message>
-        <source>min</source>
-        <translation>min</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>sec</translation>
-    </message>
-    <message>
-        <source>sin</source>
-        <translation>sin</translation>
-    </message>
-    <message>
-        <source>sinh</source>
-        <translation>sinh</translation>
-    </message>
-    <message>
-        <source>sup</source>
-        <translation>sup</translation>
-    </message>
-    <message>
-        <source>tan</source>
-        <translation>tan</translation>
-    </message>
-    <message>
-        <source>tanh</source>
-        <translation>tanh</translation>
-    </message>
-    <message>
         <source>Roman - \mathrm{}</source>
         <translation>Normál - \mathrm{}</translation>
     </message>
@@ -2027,10 +1893,6 @@ Szeretné azokat eltávolítani?</translation>
         <translation>Sans Serif - \mathsf{}</translation>
     </message>
     <message>
-        <source>Courier - \mathtt{}</source>
-        <translation>Írógép - \mathtt{}</translation>
-    </message>
-    <message>
         <source>Calligraphic - \mathcal{}</source>
         <translation>Kalligrafikus - \mathcal{}</translation>
     </message>
@@ -2044,32 +1906,54 @@ Szeretné azokat eltávolítani?</translation>
         <translation>Fraktur - \mathfrak{}</translation>
     </message>
     <message>
-        <source>Negative</source>
-        <translation>Negatív</translation>
+        <source>\begin{verbatim}</source>
+        <translation>\begin{verbatim}</translation>
     </message>
     <message>
-        <source>Thin</source>
-        <translation>Vékony</translation>
+        <source>New line - \\</source>
+        <translation>Új sor - \\</translation>
     </message>
     <message>
-        <source>Medium</source>
-        <translation>Közepes</translation>
+        <source>Numbered equation \begin{equation}</source>
+        <translation>Számozott egyenlőség \begin{equation}</translation>
     </message>
     <message>
-        <source>Thick</source>
-        <translation>Vastag</translation>
+        <source>Typewriter - \mathtt{}</source>
+        <translation>Írógép- \mathtt{}</translation>
     </message>
     <message>
-        <source>Interword</source>
+        <source>Negative - \!</source>
+        <translation>Negatív - \!</translation>
+    </message>
+    <message>
+        <source>Thin - \,</source>
+        <translation>Vékony - \,</translation>
+    </message>
+    <message>
+        <source>Medium - \:</source>
+        <translation>Közepes - \:</translation>
+    </message>
+    <message>
+        <source>Thick - \;</source>
+        <translation>Vastag - \;</translation>
+    </message>
+    <message>
+        <source>Interword - \ </source>
         <translation>Szóköz</translation>
     </message>
     <message>
-        <source>One quad</source>
-        <translation>Negyed</translation>
+        <source>One quad - \quad</source>
+        <translation>Negyed - \quad</translation>
     </message>
     <message>
-        <source>Two quads</source>
-        <translation>Két negyed</translation>
+        <source>Two quads - \qquad</source>
+        <translation>Két negyed - \qquad</translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation>Engedélyezte az automatikus cserét, bár előfordulnak felhasználói elemek triggerekkel, mint például (?language:latex)(?&lt;=\s|^) vagy (?language:latex)(?&lt;=\S), melyek ilyenkor megváltozhatnak.
+Szeretné azokat eltávolítani?</translation>
     </message>
 </context>
 <context>
@@ -4229,10 +4113,6 @@ Akarja menteni ezeket?</translation>
         <translation>txs-test-fail</translation>
     </message>
     <message>
-        <source>txs-test-skip</source>
-        <translation>txs-test-skip</translation>
-    </message>
-    <message>
         <source>txs-test-qdebug</source>
         <translation>txs-test-qdebug</translation>
     </message>
@@ -4243,6 +4123,30 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
         <translation>A tényleges betűméret függ a szerkesztő betűméretétől.
 
 Megjegyzés: ha a betűméret nagyobb, mint a sorköz távolság, az a karaktereket csonkolhatja.</translation>
+    </message>
+    <message>
+        <source>math-delimiter</source>
+        <translation>matematikai határolójel</translation>
+    </message>
+    <message>
+        <source>txs-test-warn</source>
+        <translation>txs-test-warn</translation>
+    </message>
+    <message>
+        <source>dtx:guard</source>
+        <translation>dtx:guard</translation>
+    </message>
+    <message>
+        <source>dtx:macro</source>
+        <translation>dtx:macro</translation>
+    </message>
+    <message>
+        <source>dtx:verbatim</source>
+        <translation>dtx:verbatim</translation>
+    </message>
+    <message>
+        <source>dtx:specialchar</source>
+        <translation>dtx:specialchar</translation>
     </message>
 </context>
 <context>
@@ -5447,10 +5351,6 @@ Megbízik a parancsfájlban?</translation>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <source>Cle&amp;an</source>
-        <translation>T&amp;isztítás</translation>
-    </message>
-    <message>
         <source>C&amp;onvert to Html...</source>
         <translation>K&amp;onvertálás Html-re...</translation>
     </message>
@@ -6419,6 +6319,37 @@ Biztosan mégis futtani akarja? Adatok veszhetnek el.</translation>
     <message>
         <source>Yes, continue the loop.</source>
         <translation>Igen, folytatom a ciklust</translation>
+    </message>
+    <message>
+        <source>TeX dtx file</source>
+        <comment>Format name of language definition </comment>
+        <translation>TeX dtx fájl</translation>
+    </message>
+    <message>
+        <source>&amp;Index</source>
+        <translation>&amp;Index</translation>
+    </message>
+    <message>
+        <source>&amp;Commands</source>
+        <comment>menu</comment>
+        <translation>&amp;Parancsok</translation>
+    </message>
+    <message>
+        <source>&amp;Latexmk</source>
+        <translation>&amp;Latexmk</translation>
+    </message>
+    <message>
+        <source>&amp;TexIndy</source>
+        <translation>&amp;TexIndy</translation>
+    </message>
+    <message>
+        <source>Cle&amp;an...</source>
+        <translation>&amp;Tisztítás...</translation>
+    </message>
+    <message>
+        <source>
+included document in %1</source>
+        <translation>Tartalmazott dokumentum %1-ben</translation>
     </message>
 </context>
 <context>
