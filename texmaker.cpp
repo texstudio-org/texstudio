@@ -734,7 +734,7 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "user",tr("&User", "menu"));
 	updateUserToolMenu();
 	menu->addSeparator();
-	newManagedAction(menu, "clean",tr("Cle&an..."), SLOT(CleanAll()));
+	newManagedAction(menu, "clean",tr("Cle&an Auxiliary Files..."), SLOT(CleanAll()));
 	menu->addSeparator();
 	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
 	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
