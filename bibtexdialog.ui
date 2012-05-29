@@ -6,25 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>467</width>
-    <height>300</height>
+    <width>767</width>
+    <height>469</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>New BibTeX Entry</string>
+   <string notr="true">&lt;generated in source&gt;</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,2">
    <item row="1" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Insert in file:</string>
+      <string>Insert in File:</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>BibTeX type</string>
+      <string>Entry Type:</string>
      </property>
     </widget>
    </item>
@@ -47,7 +47,7 @@
    <item row="1" column="2">
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>BibTeX Fields</string>
+      <string>Fields:</string>
      </property>
     </widget>
    </item>
@@ -59,6 +59,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
      <column>
       <property name="text">
        <string>Field</string>
@@ -74,7 +77,7 @@
    <item row="4" column="2">
     <widget class="QCheckBox" name="optFieldCheckBox">
      <property name="text">
-      <string>insert empty, optional fields</string>
+      <string>Insert Empty, Optional Fields</string>
      </property>
     </widget>
    </item>

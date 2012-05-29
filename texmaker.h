@@ -109,7 +109,6 @@ private:
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
 	LatexCompleter* completer;
-	QActionGroup *highlightLanguageActions;
 	
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 	
@@ -127,6 +126,12 @@ private:
 	
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
 	
+	//menu
+	QActionGroup *bibtexEntryActions;
+	QActionGroup *biblatexEntryActions;
+	QActionGroup *bibTypeActions;
+	QActionGroup *highlightLanguageActions;
+
 	//toolbars
 	//
 	QAction *ToggleAct, *ToggleRememberAct;
@@ -317,6 +322,7 @@ protected slots:
 	
 	void InsertBibEntryFromAction();
 	void InsertBibEntry(const QString& id="");
+	void SetBibTypeFromAction();
 	
 	void insertUserTag(const QString& macro);
 	void insertUserTag();

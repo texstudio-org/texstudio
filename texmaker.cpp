@@ -72,6 +72,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
 	latexStyleParser=0;
+	bibtexEntryActions = 0;
+	biblatexEntryActions = 0;
+	bibTypeActions = 0;
 	highlightLanguageActions = 0;
 	
 	ReadSettings();
@@ -779,15 +782,57 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "array",tr("Quick &Array..."), SLOT(QuickArray()));
 	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()), QKeySequence(), ":images/image.png");
 	
-	menu=newManagedMenu("main/bibtex",tr("&Bibliography"));
-	foreach (const BibTeXType& bt, BibTeXDialog::getPossibleBibTeXTypes())
-		newManagedAction(menu,bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()))->setData(bt.name);
-	menu->addSeparator();
+
+	menu=newManagedMenu("main/bibliography",tr("&Bibliography"));
+	if (!bibtexEntryActions) {
+		bibtexEntryActions = new QActionGroup(this);
+		foreach (const BibTeXType& bt, BibTeXDialog::getPossibleEntryTypes(BibTeXDialog::BIBTEX)) {
+			QAction *act = newManagedAction(menu,"bibtex/"+bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()));
+			act->setData(bt.name);
+			act->setActionGroup(bibtexEntryActions);
+		}
+	} else {
+		foreach (const BibTeXType& bt, BibTeXDialog::getPossibleEntryTypes(BibTeXDialog::BIBTEX))
+			newManagedAction(menu,"bibtex/"+bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()))->setData(bt.name);
+	}
+
+	if (!biblatexEntryActions) {
+		biblatexEntryActions = new QActionGroup(this);
+		foreach (const BibTeXType& bt, BibTeXDialog::getPossibleEntryTypes(BibTeXDialog::BIBLATEX)) {
+			QAction *act = newManagedAction(menu,"biblatex/"+bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()));
+			act->setData(bt.name);
+			act->setActionGroup(biblatexEntryActions);
+		}
+	} else {
+		foreach (const BibTeXType& bt, BibTeXDialog::getPossibleEntryTypes(BibTeXDialog::BIBLATEX))
+			newManagedAction(menu,"biblatex/"+bt.name.mid(1), bt.description, SLOT(InsertBibEntryFromAction()))->setData(bt.name);
+	}
+		menu->addSeparator();
 	newManagedEditorAction(menu, "clean", tr("&Clean"), "cleanBib");
 	menu->addSeparator();
-	newManagedAction(menu, "dialog", tr("BibTeX &insert dialog..."), SLOT(InsertBibEntry()));
-	
-	
+	newManagedAction(menu, "dialog", tr("&Insert Bibliography Entry..."), SLOT(InsertBibEntry()));
+	menu->addSeparator();
+	QMenu *bibTypeMenu = newManagedMenu(menu, "type", tr("Type"));
+	if (!bibTypeActions) {
+		bibTypeActions = new QActionGroup(this);
+		bibTypeActions->setExclusive(true);
+		act = newManagedAction(bibTypeMenu, "bibtex", tr("BibTeX"), SLOT(SetBibTypeFromAction()));
+		act->setData("bibtex");
+		act->setCheckable("true");
+		act->setChecked(true);
+		bibTypeActions->addAction(act);
+		act = newManagedAction(bibTypeMenu, "biblatex", tr("BibLaTeX"), SLOT(SetBibTypeFromAction()));
+		act->setData("biblatex");
+		act->setCheckable("true");
+		bibTypeActions->addAction(act);
+	}
+	act = newManagedAction(bibTypeMenu, "bibtex", tr("BibTeX"), SLOT(SetBibTypeFromAction()));
+	act = newManagedAction(bibTypeMenu, "biblatex", tr("BibLaTeX"), SLOT(SetBibTypeFromAction()));
+	act->trigger(); // initialize menu for specified type
+
+
+
+
 	//  User
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
@@ -834,10 +879,9 @@ void Texmaker::setupMenus() {
 		}
 	
 	menu->addSeparator();
+	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
 	fullscreenModeAction->setCheckable(true);
-	menu->addSeparator();
-	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	
 	menu->addSeparator();
 	QMenu *hlMenu = newManagedMenu(menu, "highlighting", tr("Highlighting"));
@@ -3624,6 +3668,7 @@ void Texmaker::InsertBibEntryFromAction(){
 	if (!currentEditorView()) return;
 	QAction* action=qobject_cast<QAction*>(sender());
 	if (!action) return;
+
 	QString insertText=BibTeXDialog::textToInsert(action->data().toString());
 	if (!insertText.isEmpty())
 		CodeSnippet(insertText).insert(currentEditor());
@@ -3658,6 +3703,20 @@ void Texmaker::InsertBibEntry(const QString& id){
 		CodeSnippet(bd->resultString).insert(currentEditor());
 	}
 	delete bd;
+}
+
+void Texmaker::SetBibTypeFromAction() {
+	QMenu *menu = getManagedMenu("main/bibliography/type");
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (!act) return;
+	if (menu) {
+		menu->setTitle(QString(tr("Type: %1")).arg(act->text()));
+	}
+
+	bool isBibtex = (act->data().toString() == "bibtex");
+	bibtexEntryActions->setVisible(isBibtex);
+	biblatexEntryActions->setVisible(!isBibtex);
+	BibTeXDialog::setBibType(isBibtex ? BibTeXDialog::BIBTEX : BibTeXDialog::BIBLATEX);
 }
 
 void Texmaker::insertUserTag() {
