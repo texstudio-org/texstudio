@@ -324,7 +324,7 @@ protected slots:
 	void InsertBibEntry(const QString& id="");
 	void SetBibTypeFromAction();
 	
-	void insertUserTag(const QString& macro);
+	void insertUserTag(const QString& macro, int triggerId = 0);
 	void insertUserTag();
 	void EditUserMenu();
 	void userMacroDialogAccepted();

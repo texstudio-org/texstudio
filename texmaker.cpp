@@ -1599,7 +1599,7 @@ void Texmaker::relayToOwnSlot(){
 void Texmaker::autoRunScripts(){
 	for(int i=0;i<configManager.completerConfig->userMacro.count();i++)
 		if (configManager.completerConfig->userMacro[i].triggers & Macro::ST_TXS_START)
-			insertUserTag(configManager.completerConfig->userMacro[i].tag);
+			insertUserTag(configManager.completerConfig->userMacro[i].tag, Macro::ST_TXS_START);
 		
 }
 
@@ -3727,9 +3727,9 @@ void Texmaker::insertUserTag() {
 	insertUserTag(userTag);
 }
 
-void Texmaker::insertUserTag(const QString& macro){
+void Texmaker::insertUserTag(const QString& macro, int triggerId){
 	//dont'check that, if (!currentEditorView()) return; insertMacro is 0 save
-	currentEditorView()->insertMacro(macro);
+	currentEditorView()->insertMacro(macro, QRegExp(), triggerId);
 }
 
 void Texmaker::EditUserMenu() {

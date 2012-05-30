@@ -162,7 +162,7 @@ public slots:
 	void clearOverlays();
 	void updateLtxCommands();
 	void paste();
-	void insertMacro(QString macro);
+	void insertMacro(QString macro, const QRegExp& trigger, int triggerId);
 	
 	void displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors);
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);

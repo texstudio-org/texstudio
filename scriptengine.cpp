@@ -211,7 +211,12 @@ void scriptengine::run(){
 		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor		
 		cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);
-	}
+
+		QScriptValue matches = engine->newArray(triggerMatches.size());
+		for (int i=0;i<triggerMatches.size();i++) matches.setProperty(i, triggerMatches[i]);
+		engine->globalObject().setProperty("triggerMatches", matches);
+	} 
+	engine->globalObject().setProperty("triggerId", engine->newVariant(triggerId));
 	
 	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
