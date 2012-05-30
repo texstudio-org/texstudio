@@ -120,10 +120,11 @@ private:
 	QString hiddenLeftPanelWidgets;
 	
 	QTreeView *structureTreeView;
-    QListWidget *bookmarksWidget;
+	QListWidget *bookmarksWidget;
 	LatexParser latexParser;
+public:
 	LatexDocuments documents;
-	
+private:
 	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
 	
 	//menu

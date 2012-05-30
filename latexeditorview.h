@@ -44,6 +44,12 @@ public:
 
 	LatexDocument* document;
 
+	QEditor * getEditor() const { return editor; }
+	LatexDocument* getDocument() const { return document; } 
+	Q_PROPERTY(QEditor* editor READ getEditor)
+	Q_PROPERTY(LatexDocument* document READ getDocument)
+
+	
 //  FindWidget *findwidget;
 	//Functions affecting the editor
 
@@ -54,7 +60,7 @@ public:
 	static void setBaseActions(QList<QAction *> baseActions);
 	void setSpellerManager(SpellerManager* manager);
 	void setSpeller(const QString &name);
-	QString getSpeller();
+	Q_INVOKABLE QString getSpeller();
 
 	static void setCompleter(LatexCompleter* newCompleter);
 	static LatexCompleter* getCompleter();
@@ -78,10 +84,10 @@ public:
 
 	void reCheckSyntax(int linenr=0, int count=-1);
 	
-	void closeCompleter();
-	void removeBookmark(int lineNr,int bookmarkNumber);
-	void addBookmark(int lineNr,int bookmarkNumber);
-	bool hasBookmark(int lineNr,int bookmarkNumber);
+	Q_INVOKABLE void closeCompleter();
+	Q_INVOKABLE void removeBookmark(int lineNr,int bookmarkNumber);
+	Q_INVOKABLE void addBookmark(int lineNr,int bookmarkNumber);
+	Q_INVOKABLE bool hasBookmark(int lineNr,int bookmarkNumber);
 	
 	QList<QDocumentCursor> autoPreviewCursor;
 private:

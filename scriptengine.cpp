@@ -4,8 +4,20 @@
 #include "qdocumentsearch.h"
 #include "scriptobject.h"
 #include "buildmanager.h"
+#include "latexdocument.h"
 #include "texmaker.h"
+
+
 Q_DECLARE_METATYPE(QDocument*);
+Q_DECLARE_METATYPE(LatexDocument*);
+Q_DECLARE_METATYPE(LatexDocuments*);
+Q_DECLARE_METATYPE(LatexEditorView*);
+Q_DECLARE_METATYPE(ProcessX*);
+Q_DECLARE_METATYPE(QAction*);
+Q_DECLARE_METATYPE(QMenu*);
+Q_DECLARE_METATYPE(SubScriptObject*);
+Q_DECLARE_METATYPE(QEditor*);
+Q_DECLARE_METATYPE(QList<LatexDocument*>);
 
 BuildManager* scriptengine::buildManager = 0;
 Texmaker* scriptengine::app = 0;
@@ -24,7 +36,32 @@ template <typename Tp> int qScriptRegisterQObjectMetaType( QScriptEngine *engine
 {
     return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject, qScriptValueToQObject, prototype);
 }
+
 //
+
+template <typename Tp> QScriptValue qScriptValueFromQList(QScriptEngine *engine, QList<Tp> const &list)
+{
+	QScriptValue result = engine->newArray(list.size());
+	for (int i=0;i<list.size();i++)
+		result.setProperty(i,  engine->newQObject(list[i])); //engine->newVariant(QVariant::fromValue<Tp>(list[i])));
+	return result;
+}
+
+template <typename Tp> void qScriptValueToQList(const QScriptValue &value, QList<Tp> &list) {
+	
+	list.clear();
+	for (QScriptValueIterator it(value); it.hasNext(); )
+	{
+		it.next();
+		list << it.value().toVariant().value<Tp>();
+	}		
+}
+
+template <typename Tp> int qScriptRegisterQListMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = 0)
+{
+    return qScriptRegisterMetaType<QList<Tp> >(engine, qScriptValueFromQList<Tp>, qScriptValueToQList<Tp>, prototype);
+}
+
 
 
 QScriptValue qScriptValueFromDocumentCursor(QScriptEngine *engine, QDocumentCursor const &cursor)
@@ -46,41 +83,6 @@ void qScriptValueToKeySequence(const QScriptValue &value, QKeySequence &ks) {
 	else ks = QKeySequence();
 }*/
 
-Q_DECLARE_METATYPE(ProcessX*);
-Q_DECLARE_METATYPE(QAction*);
-Q_DECLARE_METATYPE(QMenu*);
-Q_DECLARE_METATYPE(SubScriptObject*);
-
-scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
-{
-	engine=new QScriptEngine(this);
-	qScriptRegisterQObjectMetaType<QDocument*>(engine);
-	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
-	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
-	qScriptRegisterQObjectMetaType<SubScriptObject*>(engine);
-	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
-	qScriptRegisterQObjectMetaType<QAction*>(engine);
-	qScriptRegisterQObjectMetaType<QMenu*>(engine);
-//	qScriptRegisterMetaType<QKeySequence>(engine, qScriptValueFromKeySequence, qScriptValueToKeySequence, QScriptValue());
-	//qScriptRegisterQObjectMetaType<QUILoader*>(engine);
-//	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
-	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
-}
-
-scriptengine::~scriptengine(){
-	delete engine;
-	//don't delete globalObject, it has either been destroyed in run, or by another script
-}
-
-void scriptengine::setScript(const QString& script){
-	m_script=script;
-}
-void scriptengine::setEditor(QEditor *editor){
-	m_editor = editor;
-}
-
-#define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
-
 QDocumentCursor cursorFromValue(const QScriptValue& value){
 	QDocumentCursor * c = qobject_cast<QDocumentCursor*> (value.toQObject());
 	if (!c) {
@@ -89,6 +91,10 @@ QDocumentCursor cursorFromValue(const QScriptValue& value){
 	}
 	return *c;
 }
+
+
+#define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
+
 
 QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engine, bool replace){
 	QEditor *editor = qobject_cast<QEditor*>(context->thisObject().toQObject());
@@ -170,6 +176,48 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 	return searchReplaceFunction(context, engine, true);
 }
 
+
+scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
+{
+	engine=new QScriptEngine(this);
+	qScriptRegisterQObjectMetaType<QDocument*>(engine);
+	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
+	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
+	qScriptRegisterQObjectMetaType<SubScriptObject*>(engine);
+	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
+	qScriptRegisterQObjectMetaType<QAction*>(engine);
+	qScriptRegisterQObjectMetaType<QMenu*>(engine);
+	qScriptRegisterQObjectMetaType<LatexEditorView*>(engine);
+	qScriptRegisterQObjectMetaType<LatexDocument*>(engine);
+	qScriptRegisterQObjectMetaType<LatexDocuments*>(engine);
+	
+	QScriptValue extendedQEditor = engine->newObject();
+	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
+	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
+	qScriptRegisterQObjectMetaType<QEditor*>(engine, extendedQEditor);
+	
+	qScriptRegisterQListMetaType<LatexDocument*>(engine);
+//	qScriptRegisterMetaType<QKeySequence>(engine, qScriptValueFromKeySequence, qScriptValueToKeySequence, QScriptValue());
+	//qScriptRegisterQObjectMetaType<QUILoader*>(engine);
+//	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
+	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
+	
+	
+}
+
+scriptengine::~scriptengine(){
+	delete engine;
+	//don't delete globalObject, it has either been destroyed in run, or by another script
+}
+
+void scriptengine::setScript(const QString& script){
+	m_script=script;
+}
+void scriptengine::setEditor(QEditor *editor){
+	m_editor = editor;
+}
+
+
 /* partly copied from qt's Q_SCRIPT_DECLARE_QMETAOBJECT */ \
 template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialogScript>(QScriptContext *ctx, QScriptEngine *eng, UniversalInputDialogScript *) 
 { 
@@ -202,10 +250,7 @@ void scriptengine::run(){
 	QDocumentCursor c;
 	QScriptValue cursorValue;
 	if (m_editor) {
-		QScriptValue editorValue = engine->newQObject(m_editor);
-		editorValue.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
-		editorValue.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
-		engine->globalObject().setProperty("editor", editorValue);
+		engine->globalObject().setProperty("editor", engine->newQObject(m_editor));
 		
 		c=m_editor->cursor();
 		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor		
@@ -227,6 +272,8 @@ void scriptengine::run(){
 	FileChooser flchooser(0,scriptengine::tr("File Chooser"));
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
+	engine->globalObject().setProperty("documents", engine->newQObject(&app->documents));
+	
 	engine->evaluate(m_script);
 
 	if(engine->hasUncaughtException()){
