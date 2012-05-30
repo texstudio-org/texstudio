@@ -181,6 +181,7 @@ private slots:
 	void relayToEditorSlot();
 	void relayToOwnSlot();
 	void autoRunScripts();
+	void runScripts(int trigger);
 	
 protected slots:
 	void fileNew(QString fileName="");
@@ -527,6 +528,14 @@ public:
 public slots:
 	void threadCrashed();
 	void iamalive();
+	
+signals:
+	void infoNewFile();
+	void infoNewFromTemplate();
+	void infoLoadFile(const QString& filename);
+	void infoFileSaved(const QString& filename);
+	void infoFileClosed();
+	void infoAfterTypeset();
 };
 
 Q_DECLARE_METATYPE(Texmaker*)

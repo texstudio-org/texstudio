@@ -41,6 +41,7 @@
 #include "latexeditorview_config.h"
 #include "scriptengine.h"
 #include "grammarcheck.h"
+#include "qmetautils.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -52,7 +53,6 @@
 #include "qdocumentline_p.h"
 
 #include "qnfadefinition.h"
-
 
 
 
@@ -276,6 +276,16 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	//script things
 	setProperty("applicationName",TEXSTUDIO);
 	QTimer::singleShot(500, this, SLOT(autoRunScripts()));
+	
+	connectWithAdditionalArguments(this, SIGNAL(infoNewFile()), this, "runScripts", QList<QVariant>() << Macro::ST_NEW_FILE);
+	connectWithAdditionalArguments(this, SIGNAL(infoNewFromTemplate()), this, "runScripts", QList<QVariant>() << Macro::ST_NEW_FROM_TEMPLATE);
+	connectWithAdditionalArguments(this, SIGNAL(infoLoadFile(QString)), this, "runScripts", QList<QVariant>() << Macro::ST_LOAD_FILE);
+	connectWithAdditionalArguments(this, SIGNAL(infoFileSaved(QString)), this, "runScripts", QList<QVariant>() << Macro::ST_FILE_SAVED);
+	connectWithAdditionalArguments(this, SIGNAL(infoFileClosed()), this, "runScripts", QList<QVariant>() << Macro::ST_FILE_CLOSED);
+	connectWithAdditionalArguments(&documents, SIGNAL(masterDocumentChanged(LatexDocument*)), this, "runScripts", QList<QVariant>() << Macro::ST_MASTER_CHANGED);
+	connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
+	connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
+	
 }
 
 
@@ -1494,7 +1504,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	edit->updateLtxCommands();
 	updateStructure(true);
 	ShowStructure();
-    restoreBookmarks(edit);
+	restoreBookmarks(edit);
 	
 	if (asProject) documents.setMasterDocument(edit->document);
 	
@@ -1525,6 +1535,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	//        if (IsIconic (this->winId())) ShowWindow(this->winId(), SW_RESTORE);
 	//#endif
 #endif
+	
+	emit infoLoadFile(f_real);
 	
 	return edit;
 }
@@ -1597,10 +1609,13 @@ void Texmaker::relayToOwnSlot(){
 }
 
 void Texmaker::autoRunScripts(){
+	runScripts(Macro::ST_TXS_START); 
+}
+
+void Texmaker::runScripts(int trigger){
 	for(int i=0;i<configManager.completerConfig->userMacro.count();i++)
-		if (configManager.completerConfig->userMacro[i].triggers & Macro::ST_TXS_START)
-			insertUserTag(configManager.completerConfig->userMacro[i].tag, Macro::ST_TXS_START);
-		
+		if (configManager.completerConfig->userMacro[i].triggers & trigger)
+			insertUserTag(configManager.completerConfig->userMacro[i].tag, trigger);
 }
 
 void Texmaker::fileNew(QString fileName) {
@@ -1621,6 +1636,8 @@ void Texmaker::fileNew(QString fileName) {
 
 	configureNewEditorViewEnd(edit);
 	edit->updateLtxCommands();
+	
+	emit infoNewFile();
 }
 
 void Texmaker::fileAutoReloading(QString fname){
@@ -1756,6 +1773,8 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->setCursorPosition(0,0);
 		edit->editor->nextPlaceHolder();
 		edit->editor->ensureCursorVisibleSurrounding();
+		
+		emit infoNewFromTemplate();
 	}
 }
 
@@ -1914,6 +1933,7 @@ void Texmaker::fileSave() {
 			checkin(currentEditor()->fileName());
 			if(configManager.svnUndo) currentEditor()->document()->clearUndo();
 		}
+		emit infoFileSaved(currentEditor()->fileName());
 	}
 	UpdateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
@@ -1987,6 +2007,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 		if (currentEditor()->fileInfo().suffix()!="tex")
 			m_languages->setLanguage(currentEditor(), fn);
 		
+		emit infoFileSaved(currentEditor()->fileName());
 	}
 	
 	UpdateCaption();
@@ -2020,6 +2041,8 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 				temp=temp.replace(QDir::separator(),"/");
 				documents.bibTeXFilesModified = documents.bibTeXFilesModified  || documents.mentionedBibTeXFiles.contains(temp);//call bibtex on next compilation (this would also set as soon as the user switch to a tex file, but he could compile before switching)
 			}
+			
+			emit infoFileSaved(edView->editor->fileName());
 		}
 		//currentEditor()->save();
 		//UpdateCaption();
@@ -2057,6 +2080,7 @@ repeatAfterFileSavingFailed:
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
 	updateOpenDocumentMenu();
+	emit infoFileClosed();
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
 }
 
@@ -2097,6 +2121,7 @@ repeatAfterFileSavingFailed:
 			}
 		} else
 			documents.deleteDocument(currentEditorView()->document);
+		emit infoFileClosed();
 	}
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
@@ -2132,8 +2157,6 @@ void Texmaker::updateUserMacros(){
 		for (int j=0;j<tempLanguages.size();j++)
 			if (tempRE.exactMatch(tempLanguages[j]))
 				configManager.completerConfig->userMacro[i].triggerLanguages << m_languages->languageData(tempLanguages[j]).d;
-		
-		qDebug() << configManager.completerConfig->userMacro[i].name << ":"<<configManager.completerConfig->userMacro[i].trigger;
 	}
 }
 
@@ -4019,13 +4042,13 @@ void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, con
 
 void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf){
 	Q_UNUSED(commandMain)
-	Q_UNUSED(latex)
 	Q_UNUSED(pdf)
 #ifndef NO_POPPLER_PREVIEW
 	if (pdf) 
 		PDFDocument::isCompiling = false;
 #endif
 	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
+	if (latex) emit infoAfterTypeset();
 }
 
 
