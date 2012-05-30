@@ -10,7 +10,7 @@
 class QLanguageDefinition;
 
 struct Macro{
-	enum SpecialTrigger { ST_TXS_START = 1};
+	enum SpecialTrigger { ST_REGEX = 1, ST_TXS_START = 2};
 	Q_DECLARE_FLAGS(SpecialTriggers, SpecialTrigger)
 	
 	Macro();
@@ -23,7 +23,7 @@ struct Macro{
 	
 	QString triggerLanguage;
 	QList<QLanguageDefinition*> triggerLanguages;
-	SpecialTriggers triggers;
+	SpecialTriggers triggers;	
 };
 
 

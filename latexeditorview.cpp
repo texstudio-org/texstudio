@@ -104,7 +104,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 				
 				LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
 				Q_ASSERT(view);
-				view->insertMacro(completerConfig->userMacro[i].tag);
+				view->insertMacro(completerConfig->userMacro[i].tag, r, Macro::ST_REGEX);
 				//editor->insertText(c, completerConfig->userMacro[i].tag);
 				if (block) editor->document()->endMacro();
 				editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
@@ -408,10 +408,13 @@ void LatexEditorView::paste(){
 	}
 }
 
-void LatexEditorView::insertMacro(QString macro){
+void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int triggerId){
 	if (macro.isEmpty()) return;
 	if (macro.left(8)=="%SCRIPT\n"){
 		scriptengine* eng = new scriptengine();
+		for (int i=0;i<=trigger.captureCount();i++)
+			eng->triggerMatches << trigger.cap(i);
+		eng->triggerId = triggerId;
 		if (this) eng->setEditor(editor);
 		macro=macro.remove(0,8);
 		eng->setScript(macro);

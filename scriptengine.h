@@ -22,6 +22,9 @@ public:
 	static BuildManager* buildManager;
 	static Texmaker* app;
 	
+	QStringList triggerMatches;
+	int triggerId;
+	
 	ScriptObject *globalObject;
 protected:
 	QScriptEngine *engine;
