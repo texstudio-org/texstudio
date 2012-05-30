@@ -80,6 +80,10 @@ public:
 	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
 	
+	Q_PROPERTY(QString fileName READ getFileName)
+	Q_PROPERTY(QFileInfo fileInfo READ getFileInfo)
+	Q_PROPERTY(LatexEditorView* editorView READ getEditorView)
+	
 	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
 	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
@@ -88,24 +92,24 @@ public:
 private:	
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle*,ReferencePair>& list);
 public:
-	QStringList labelItems() const;
-	QStringList refItems() const;
-    QStringList bibItems() const;
-	const QSet<QString> userCommandList() const{
+	Q_INVOKABLE QStringList labelItems() const;
+	Q_INVOKABLE QStringList refItems() const;
+	Q_INVOKABLE QStringList bibItems() const;
+	Q_INVOKABLE const QSet<QString> userCommandList() const{
 		return mUserCommandList.values().toSet();
 	}
-	const QSet<QString> additionalCommandsList() const{
+	Q_INVOKABLE const QSet<QString> additionalCommandsList() const{
 		return mCompleterWords;
 	}
 	void updateRefsLabels(const QString& ref);
 	void recheckRefsLabels();
-	int countLabels(const QString& name);
-	int countRefs(const QString& name);
-	QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
-	QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
-    QMultiHash<QDocumentLineHandle*,int> getBibItems(const QString& name);
+	Q_INVOKABLE int countLabels(const QString& name);
+	Q_INVOKABLE int countRefs(const QString& name);
+	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
+	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
+	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getBibItems(const QString& name);
 	
-    void patchLinesContaining(const QStringList cmds);
+	void patchLinesContaining(const QStringList cmds);
 	
 	StructureEntry* baseStructure;
 	
@@ -118,31 +122,31 @@ public:
 	LatexDocuments *parent;
 	
 	void setTemporaryFileName(const QString& fileName);
-	QString getTemporaryFileName() const;
-	QString getAbsoluteFilePath(const QString & relName, const QString &extension) const;
+	Q_INVOKABLE QString getTemporaryFileName() const;
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension) const;
 	
 	void setMasterDocument(LatexDocument* doc);
-	LatexDocument* getMasterDocument() const{
+	Q_INVOKABLE LatexDocument* getMasterDocument() const{
 		return masterDocument;
 	}
 	const LatexDocument* getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs=0) const; 
-	LatexDocument* getTopMasterDocument(); 
+	Q_INVOKABLE LatexDocument* getTopMasterDocument(); 
 	
-	QStringList includedFiles();
-	QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
+	Q_INVOKABLE QStringList includedFiles();
+	Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
 	
 	LatexParser ltxCommands;
 	
-	bool containsPackage(const QString& name);
+	Q_INVOKABLE bool containsPackage(const QString& name);
 	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
 	void updateCompletionFiles(QStringList &files,bool forceUpdate);
 	
 	QLocale spellingLanguage() const {
 		return mSpellingLanguage;
 	}
-	QString getMagicComment(const QString& name);
-	QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
-	void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
+	Q_INVOKABLE QString getMagicComment(const QString& name);
+	Q_INVOKABLE QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
+	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
 	
 private:
 	QString fileName; //absolute
@@ -276,31 +280,38 @@ public:
 	~LatexDocuments();
 	void addDocument(LatexDocument* document);
 	void deleteDocument(LatexDocument* document);
-	void setMasterDocument(LatexDocument* document);
+	Q_INVOKABLE void setMasterDocument(LatexDocument* document);
+	Q_INVOKABLE LatexDocument* getCurrentDocument() const;
+	Q_INVOKABLE LatexDocument* getMasterDocument() const;
+	Q_INVOKABLE QList<LatexDocument*> getDocuments() const;
 	
-    LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
+	Q_PROPERTY(LatexDocument* currentDocument READ getCurrentDocument)
+	Q_PROPERTY(LatexDocument* masterDocument READ getMasterDocument)
+	Q_PROPERTY(QList<LatexDocument*> documents READ getDocuments)
 	
-	QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
-	QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
-	QString getTemporaryCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
-	QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
+	Q_INVOKABLE LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
 	
-	LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false);
-	LatexDocument* findDocument(const QDocument *qDoc);
-	LatexDocument* findDocumentFromName(const QString& fileName);
+	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
+	Q_INVOKABLE QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getTemporaryCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
+	
+	Q_INVOKABLE LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false);
+	Q_INVOKABLE LatexDocument* findDocument(const QDocument *qDoc);
+	Q_INVOKABLE LatexDocument* findDocumentFromName(const QString& fileName);
 	
 	void settingsRead();
 	
-	bool singleMode();
+	Q_INVOKABLE bool singleMode();
 	
 	//support for included BibTeX-files
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
-    QSet<QString> bibItems; // direct defined bibitems
+	QSet<QString> bibItems; // direct defined bibitems
 	QSet<QString> allBibTeXIds;
 	void updateBibFiles();
-    QString findFileFromBibId(QString bibId);
+	Q_INVOKABLE QString findFileFromBibId(const QString& bibId);
 	
 	void updateStructure();
 	void updateLayout();
@@ -309,7 +320,7 @@ public:
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
 
-    QHash<QString,LatexPackage>cachedPackages;
+	QHash<QString,LatexPackage> cachedPackages;
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 private slots:

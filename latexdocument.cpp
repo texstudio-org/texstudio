@@ -1513,6 +1513,15 @@ void LatexDocuments::setMasterDocument(LatexDocument* document){
 	model->resetAll();
 	emit masterDocumentChanged(masterDocument);
 }
+LatexDocument* LatexDocuments::getCurrentDocument() const{
+	return currentDocument;
+}
+LatexDocument* LatexDocuments::getMasterDocument() const{
+	return masterDocument;
+}
+QList<LatexDocument*> LatexDocuments::getDocuments() const{
+	return documents;
+}
 
 QString LatexDocuments::getCurrentFileName() {
 	if (!currentDocument) return "";
@@ -1663,7 +1672,7 @@ void LatexDocuments::updateBibFiles(){
     }
 }
 
-QString LatexDocuments::findFileFromBibId(QString bibId)
+QString LatexDocuments::findFileFromBibId(const QString& bibId)
 {
     QStringList keys=bibTeXFiles.keys();
     foreach(const QString key,keys){
