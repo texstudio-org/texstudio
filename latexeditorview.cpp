@@ -84,7 +84,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		QString prev = editor->cursor().selectionStart().line().text().mid(0, editor->cursor().selectionStart().columnNumber())+event->text(); //TODO: optimize
 		for (int i=0;i<completerConfig->userMacro.size();i++) {
 			const Macro& m = completerConfig->userMacro[i];			
-			if (m.trigger.isEmpty()) continue;
+			if (m.trigger.isEmpty() || !(m.triggers & Macro::ST_REGEX)) continue;
 			if (!m.triggerLanguage.isEmpty() && !m.triggerLanguages.contains(language)) 
 				continue;
 			QRegExp& r = const_cast<QRegExp&>(m.triggerRegex);//a const qregexp doesn't exist

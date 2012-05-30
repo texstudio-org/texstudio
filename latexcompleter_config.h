@@ -10,7 +10,11 @@
 class QLanguageDefinition;
 
 struct Macro{
-	enum SpecialTrigger { ST_REGEX = 1, ST_TXS_START = 2};
+	enum SpecialTrigger { ST_REGEX = 1, ST_TXS_START = 2, 
+		               ST_NEW_FILE = 4, ST_NEW_FROM_TEMPLATE = 8, ST_LOAD_FILE = 0x10, 
+		               ST_FILE_SAVED = 0x20, ST_FILE_CLOSED = 0x40, ST_MASTER_CHANGED = 0x80, 
+		               ST_AFTER_TYPESET = 0x100, ST_AFTER_COMMAND_RUN = 0x200
+		               };
 	Q_DECLARE_FLAGS(SpecialTriggers, SpecialTrigger)
 	
 	Macro();

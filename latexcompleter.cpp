@@ -1327,9 +1327,27 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	trigger = ntrigger;
 	triggerLookBehind = false;
 	QString realtrigger = trigger;
-	if (realtrigger == "?txs-start") realtrigger = "", triggers = ST_TXS_START;
+	triggers = 0;
+	if (realtrigger.startsWith("?")) {
+		QStringList sl = realtrigger.split("|");
+		realtrigger.clear();	
+		foreach (const QString& t, sl) 
+			if (t == "?txs-start") triggers |= ST_TXS_START;
+			else if (t == "?new-file") triggers |= ST_NEW_FILE;
+			else if (t == "?new-from-template") triggers |= ST_NEW_FROM_TEMPLATE;
+			else if (t == "?load-file") triggers |= ST_LOAD_FILE;
+			else if (t == "?file-saved") triggers |= ST_FILE_SAVED;
+			else if (t == "?file-closed") triggers |= ST_FILE_CLOSED;
+			else if (t == "?master-changed") triggers |= ST_MASTER_CHANGED;
+			else if (t == "?after-typeset") triggers |= ST_AFTER_TYPESET;
+			else if (t == "?after-command-run") triggers |= ST_AFTER_COMMAND_RUN;
+			else if (realtrigger.isEmpty()) realtrigger = t;
+			else realtrigger = realtrigger + "|" + t;
+	}
 	if (realtrigger.isEmpty()) return;
 
+	triggers |= ST_REGEX;
+	
 	if (realtrigger.startsWith("(?language:")) {
 		const int langlen = strlen("(?language:");
 		int paren = 1, bracket = 0, i=langlen;

@@ -92,9 +92,4 @@ class QCE_EXPORT QCodeEdit
 		static QList<QCodeEdit*> m_instances;
 };
 
-//TODO: move this to somewhere else?
-void QMetaObjectInvokeMethod(QObject* o, const char *signature, const QList<QGenericArgument>& args);
-void QMetaObjectInvokeMethod(QObject* o, const char *signature, const QList<QVariant>& args);
-QByteArray createMethodSignature(const char* methodName, const QList<QVariant>& args);
-
 #endif // _QCODE_EDIT_H_

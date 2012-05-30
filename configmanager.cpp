@@ -1171,7 +1171,6 @@ bool ConfigManager::execConfigDialog() {
 					              m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE) continue;
 					if (m.trigger == "(?language:latex)(?<=\\s|^)\"" || m.trigger == "(?language:latex)(?<=^)\"" || m.trigger == "(?language:latex)(?<=\\S)\"") {
 						conflict = true;
-						qDebug() << m.trigger;
 						break;
 					}
 				}
