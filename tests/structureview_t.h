@@ -6,13 +6,14 @@
 
 class scriptengine;
 class QEditor;
+class LatexEditorView;
 class StructureViewTest: public QObject{
 	Q_OBJECT
 	public:
-		StructureViewTest(QEditor* editor,LatexDocument *doc, bool all);
+		StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all);
 		QStringList unrollStructure(StructureEntry *baseStructure);
 	private:
-		QEditor *ed;
+		LatexEditorView *edView;
 		LatexDocument *document;
 		bool all;
 	private slots:

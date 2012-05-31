@@ -9,9 +9,9 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-ScriptEngineTest::ScriptEngineTest(QEditor* editor, bool all): ed(editor), all(all){
-	ed->setCursorPosition(0,0);
-	ed->document()->clear();
+ScriptEngineTest::ScriptEngineTest(LatexEditorView* editor, bool all): edView(editor), all(all){
+	edView->editor->setCursorPosition(0,0);
+	edView->editor->document()->clear();
 }
 
 void ScriptEngineTest::script_data(){
@@ -115,11 +115,11 @@ void ScriptEngineTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, newText);
 	scriptengine eng(0);
-	eng.setEditor(ed);
+	eng.setEditorView(edView);
 	eng.setScript(script);
 	eng.run();
 
-	QEQUAL(ed->document()->text(), newText);
+	QEQUAL(edView->editor->document()->text(), newText);
 	
 }
 #endif

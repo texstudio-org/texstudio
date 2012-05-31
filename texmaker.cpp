@@ -1868,7 +1868,7 @@ void Texmaker::insertTableTemplate() {
 			}
 			tableContent<<elems;
 		}
-		LatexTables::generateTableFromTemplate(m_edit,f_real,tableDef,tableContent,env);
+		LatexTables::generateTableFromTemplate(currentEditorView(),f_real,tableDef,tableContent,env);
     }
 }
 

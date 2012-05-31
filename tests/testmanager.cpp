@@ -68,9 +68,9 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new QEditorTest(editor,level==TL_ALL)
 		<< new LatexEditorViewTest(edView)
 		<< new LatexCompleterTest(edView)
-		<< new ScriptEngineTest(editor,level==TL_ALL)
+		<< new ScriptEngineTest(edView,level==TL_ALL)
 		<< new LatexEditorViewBenchmark(edView,level==TL_ALL)
-		<< new StructureViewTest(editor,edView->document,level==TL_ALL)
+		<< new StructureViewTest(edView,edView->document,level==TL_ALL)
 		<< new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView);
 	bool allPassed=true;

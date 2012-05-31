@@ -415,7 +415,7 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 		for (int i=0;i<=trigger.captureCount();i++)
 			eng->triggerMatches << trigger.cap(i);
 		eng->triggerId = triggerId;
-		if (this) eng->setEditor(editor);
+		if (this) eng->setEditorView(this);
 		macro=macro.remove(0,8);
 		eng->setScript(macro);
 		eng->run();

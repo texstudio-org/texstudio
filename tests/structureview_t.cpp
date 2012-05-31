@@ -9,7 +9,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-StructureViewTest::StructureViewTest(QEditor* editor,LatexDocument *doc, bool all): ed(editor),document(doc), all(all){}
+StructureViewTest::StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all): edView(editor),document(doc), all(all){}
 
 void StructureViewTest::script_data(){
 	QTest::addColumn<QString>("script");
@@ -207,7 +207,7 @@ void StructureViewTest::script(){
 	QFETCH(QString, expectedStructure);
 	
 	scriptengine eng(0);
-	eng.setEditor(ed);
+	eng.setEditorView(edView);
 	eng.setScript(script);
 	eng.run();
 
@@ -304,7 +304,7 @@ void StructureViewTest::benchmark(){
 		return;
 	}
 	
-	ed->setText(text, false);
+	edView->editor->setText(text, false);
 	QBENCHMARK {
 		document->patchStructure(start,count);
 	}

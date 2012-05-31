@@ -674,14 +674,14 @@ void LatexTables::simplifyColDefs(QStringList &colDefs) {
 	}
 }
 
-void LatexTables::executeScript(QString script, QEditor *m_editor){
+void LatexTables::executeScript(QString script, LatexEditorView *edView){
 	scriptengine eng;
-	eng.setEditor(m_editor);
+	eng.setEditorView(edView);
 	eng.setScript(script);
 	eng.run();
 }
 
-void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFileName,QString def,QList<QStringList> table,QString env){
+void LatexTables::generateTableFromTemplate(LatexEditorView *edView,QString templateFileName,QString def,QList<QStringList> table,QString env){
 	//read in js template which generates the tabular code
 	QFile file(templateFileName);
 	if(!file.open(QIODevice::ReadOnly| QIODevice::Text))
@@ -714,7 +714,7 @@ void LatexTables::generateTableFromTemplate(QEditor *m_editor,QString templateFi
 	templateText.prepend(envDef);
 	templateText.prepend(templateDef);
 	//generate tabular in editor
-	executeScript(templateText,m_editor);
+	executeScript(templateText,edView);
 }
 
 QString LatexTables::getSimplifiedDef(QDocumentCursor &cur){
