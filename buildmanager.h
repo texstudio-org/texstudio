@@ -53,10 +53,10 @@ struct CommandInfo {
 	QString defaultArgs;
 	QString displayName;
 	bool user;
-    bool meta;
+	bool meta;
 	
 	QStringList metaSuggestionList;
-    QStringList simpleDescriptionList;
+	QStringList simpleDescriptionList;
 	
 	QString guessCommandLine() const; 
 	//sets a command (accepts tr("<unknown>"))
@@ -68,7 +68,7 @@ private:
 	QString baseName;
 	GuessCommandLineFunc guessFunc;
 	QString deprecatedConfigName;
-		
+	
 	static QString getProgramName(const QString& commandLine);
 	QString getProgramName() const;
 };
@@ -96,9 +96,9 @@ class BuildManager: public QObject {
 public:
 	BuildManager();
 	~BuildManager();
-
+	
 	static const QString TXS_CMD_PREFIX;
-    static const QString CMD_LATEX, CMD_PDFLATEX, CMD_XELATEX, CMD_LUALATEX,CMD_LATEXMK;
+	static const QString CMD_LATEX, CMD_PDFLATEX, CMD_XELATEX, CMD_LUALATEX,CMD_LATEXMK;
 	static const QString CMD_VIEW_DVI, CMD_VIEW_PS, CMD_VIEW_PDF, CMD_VIEW_LOG;
 	static const QString CMD_DVIPNG, CMD_DVIPS, CMD_DVIPDF, CMD_PS2PDF, CMD_GS, CMD_MAKEINDEX, CMD_TEXINDY, CMD_METAPOST, CMD_ASY, CMD_BIBTEX, CMD_SVN, CMD_SVNADMIN;
 	static const QString CMD_COMPILE, CMD_VIEW, CMD_BIBLIOGRAPHY, CMD_INDEX, CMD_QUICK, CMD_RECOMPILE_BIBLIOGRAPHY;
@@ -118,7 +118,7 @@ public:
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
-
+	
 public slots:
 	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0);
 private:
@@ -128,18 +128,18 @@ public:
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	//QList<ProcessX*> newProcesses(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	Q_INVOKABLE ProcessX* firstProcessOfDirectExpansion(const QString& command, const QFileInfo& mainfile, const QFileInfo& currentFile = QFileInfo(), int currentLine = 0);
-
+	
 	Q_INVOKABLE ProcessX* newProcessInternal(const QString &fullCommandLine, const QFileInfo& mainFile, bool singleInstance = false);
 public:
 	Q_INVOKABLE bool waitForProcess(ProcessX* p);
 	Q_INVOKABLE bool waitingForProcess() const;
 	Q_INVOKABLE void killCurrentProcess(); 
-
+	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
-					
+	
 	void preview(const QString &preamble, const PreviewSource& source, const QString& masterFile, QTextCodec *outputCodec=0);
 	void clearPreviewPreambleCache();
-
+	
 	Q_INVOKABLE bool isCommandDirectlyDefined(const QString& id) const;
 	CommandInfo getCommandInfo(const QString& id) const;
 	QString editCommandList(const QString& list, const QString& excludeId = "");
@@ -170,7 +170,7 @@ signals:
 	
 	void commandLineRequested(const QString& cmdId, QString* result);
 	void runInternalCommand(const QString& cmdId, const QFileInfo& mainfile);
-		
+	
 	void latexCompiled(LatexCompileResult* rerun);
 	void beginRunningCommands(const QString& commandMain, bool latex, bool pdf);
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
@@ -187,7 +187,7 @@ private:
 	QStringList internalCommandIds, commandSortingsOrder;
 	QMap<QString, ProcessX*> runningCommands;
 	QPointer<ProcessX> processWaitedFor;
-
+	
 	QStringList latexCommands, rerunnableCommands, pdfCommands, stdoutCommands, viewerCommands;
 	QStringList rerunCommandsUnexpanded;
 public:
@@ -229,7 +229,7 @@ public:
 	Q_INVOKABLE QString readAllStandardOutputStr();
 	Q_INVOKABLE QString readAllStandardErrorStr();
 	Q_INVOKABLE bool waitForFinished ( int msecs = 30000 );
-
+	
 	bool isRunning() const;
 signals:
 	void processNotification(const QString& message);
@@ -243,7 +243,7 @@ private slots:
 	void finished();
 #endif
 	void readFromStandardOutput();
-    void readFromStandardError(bool force=false);
+	void readFromStandardError(bool force=false);
 private:
 	QString cmd;
 	QString file;

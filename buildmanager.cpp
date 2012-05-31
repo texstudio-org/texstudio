@@ -55,7 +55,7 @@ QString CommandInfo::guessCommandLine() const{
 	
 	if (metaSuggestionList.size() > 0)
 		return metaSuggestionList.first();
-
+	
 	return "";
 }
 
@@ -68,12 +68,12 @@ void CommandInfo::setCommandLine(const QString& cmdString){
 		QString unquote = trimmed;
 		if (trimmed.startsWith('"') && trimmed.endsWith('"')) unquote = trimmed.mid(1,trimmed.length()-2);
 		if (baseName != "" &&
-		    ((unquote == baseName) ||
-		     (   (unquote.endsWith(QDir::separator() + baseName) || unquote.endsWith("/" + baseName))
-		      && (!unquote.contains(" ") || (!unquote.contains('"') && unquote != trimmed)) //spaces mean options, if not everything is quoted
-		      && (QFileInfo(unquote).exists())		      
-		      )
-		     ))
+		              ((unquote == baseName) ||
+		               (   (unquote.endsWith(QDir::separator() + baseName) || unquote.endsWith("/" + baseName))
+		                   && (!unquote.contains(" ") || (!unquote.contains('"') && unquote != trimmed)) //spaces mean options, if not everything is quoted
+		                   && (QFileInfo(unquote).exists())		      
+		                   )
+		               ))
 			commandLine = cmdString + " " + defaultArgs;
 		else
 			commandLine = cmdString;
@@ -104,12 +104,12 @@ ExpandingOptions::ExpandingOptions(const QFileInfo &mainFile, const QFileInfo &c
 
 /*
 QString BuildManager::getLatexCommandExecutable(LatexCommand cmd){
-	QString cmdStr = getLatexCommand(cmd).trimmed();
-	int p=-1;
-	if (cmdStr.startsWith('"')) p = cmdStr.indexOf('"',1)+1;
-	else if (cmdStr.contains(' ')) p = cmdStr.indexOf(' ')+1;
-	if (p==-1) p = cmdStr.length(); //indexOf failed if it returns -1
-	return cmdStr.mid(0, p);
+ QString cmdStr = getLatexCommand(cmd).trimmed();
+ int p=-1;
+ if (cmdStr.startsWith('"')) p = cmdStr.indexOf('"',1)+1;
+ else if (cmdStr.contains(' ')) p = cmdStr.indexOf(' ')+1;
+ if (p==-1) p = cmdStr.length(); //indexOf failed if it returns -1
+ return cmdStr.mid(0, p);
 }*/
 
 CommandToRun::CommandToRun(){}
@@ -123,9 +123,9 @@ QString BuildManager::chainCommands(const QString& a, const QString& b, const QS
 
 
 BuildManager::BuildManager(): processWaitedFor(0)
-#ifdef Q_WS_WIN
-		, pidInst(0)
-#endif
+     #ifdef Q_WS_WIN
+     , pidInst(0)
+     #endif
 {
 	initDefaultCommandNames();
 }
@@ -139,16 +139,16 @@ BuildManager::~BuildManager() {
 }
 
 void BuildManager::initDefaultCommandNames(){
-    REQUIRE (commands.isEmpty());
+	REQUIRE (commands.isEmpty());
 	
 	//id, platform-independent command, display name, command line
 	registerCommand("latex",       "latex",        "LaTeX",       "-src -interaction=nonstopmode %.tex", "Tools/Latex");
 	registerCommand("pdflatex",    "pdflatex",     "PdfLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "Tools/Pdflatex");
 	registerCommand("xelatex",     "xelatex",      "XeLaTeX",     "-synctex=1 -interaction=nonstopmode %.tex", "");
 	registerCommand("lualatex",    "lualatex",     "LuaLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "");
-    registerCommand("view-dvi",    "",             tr("DVI Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
-    registerCommand("view-ps",     "",             tr("PS Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
-    registerCommand("view-pdf-external","",        tr("External PDF Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
+	registerCommand("view-dvi",    "",             tr("DVI Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
+	registerCommand("view-ps",     "",             tr("PS Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
+	registerCommand("view-pdf-external","",        tr("External PDF Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
 	registerCommand("dvips",       "dvips",        "DviPs",       "-o %.ps %.dvi", "Tools/Dvips");
 	registerCommand("dvipng",      "dvipng",       "DviPng",      "-T tight -D 120 %.dvi", "Tools/Dvipng");
 	registerCommand("ps2pdf",      "ps2pdf",       "Ps2Pdf",      "%.ps", "Tools/Ps2pdf");
@@ -158,46 +158,46 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("biber",       "biber",        "biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "");
-    registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
-    registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
-    registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
+	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
+	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
+	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	QStringList ltxmk_cmds;
 #ifdef Q_WS_WIN
-    ltxmk_cmds<<"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %"<<"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %";
+	ltxmk_cmds<<"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %"<<"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %";
 #else
-    ltxmk_cmds<<"latexmk -pdf -silent -pdflatex=\"pdflatex -synctex=1 -shell-escape %%O %%S\" %"<<"latexmk -dvi -silent -latex=\"latex -src -shell-escape %%O %%S\" %";
+	ltxmk_cmds<<"latexmk -pdf -silent -pdflatex=\"pdflatex -synctex=1 -shell-escape %%O %%S\" %"<<"latexmk -dvi -silent -latex=\"latex -src -shell-escape %%O %%S\" %";
 #endif
 	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
-
 	
-    QStringList descriptionList;
-    descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("PDF chain") << tr("DVI-PDF-chain") << tr("DVI-PS-PDF-chain") << tr("asy-DVI-chain") << tr("asy-PDF-chain");
-    registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
-
-    descriptionList.clear();
-    descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
-    registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
-    descriptionList.clear();
-    descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use external PDF viewer");
-    registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
-    descriptionList.clear();
-    descriptionList<< tr("Use internal PDF viewer") << tr("Use external PDF viewer");
-    registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
-    descriptionList.clear();
-    descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
-    registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
+	
+	QStringList descriptionList;
+	descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("PDF chain") << tr("DVI-PDF-chain") << tr("DVI-PS-PDF-chain") << tr("asy-DVI-chain") << tr("asy-PDF-chain");
+	registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
+	
+	descriptionList.clear();
+	descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
+	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
+	descriptionList.clear();
+	descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use external PDF viewer");
+	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+	descriptionList.clear();
+	descriptionList<< tr("Use internal PDF viewer") << tr("Use external PDF viewer");
+	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+	descriptionList.clear();
+	descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
+	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
 	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy","",true,descriptionList);
-
-    registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
-    registerCommand("dvi-chain", tr("DVI Chain"), QStringList() << "txs:///latex | txs:///view-dvi");
-    registerCommand("pdf-chain", tr("PDF Chain"), QStringList() << "txs:///pdflatex | txs:///view-pdf");
-    registerCommand("dvi-pdf-chain", tr("DVI->PDF Chain"), QStringList() << "txs:///latex | txs:///dvipdf | txs:///view-pdf");
-    registerCommand("dvi-ps-pdf-chain", tr("DVI->PS->PDF Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///ps2pdf | txs:///view-pdf");
-    registerCommand("asy-dvi-chain", tr("Asymptote DVI Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
-    registerCommand("asy-pdf-chain", tr("Asymptote PDF Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
+	
+	registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
+	registerCommand("dvi-chain", tr("DVI Chain"), QStringList() << "txs:///latex | txs:///view-dvi");
+	registerCommand("pdf-chain", tr("PDF Chain"), QStringList() << "txs:///pdflatex | txs:///view-pdf");
+	registerCommand("dvi-pdf-chain", tr("DVI->PDF Chain"), QStringList() << "txs:///latex | txs:///dvipdf | txs:///view-pdf");
+	registerCommand("dvi-ps-pdf-chain", tr("DVI->PS->PDF Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///ps2pdf | txs:///view-pdf");
+	registerCommand("asy-dvi-chain", tr("Asymptote DVI Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
+	registerCommand("asy-pdf-chain", tr("Asymptote PDF Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
 	
 	registerCommand("pre-compile", tr("Precompile"), QStringList() << "", "Tools/Precompile");
 	registerCommand("internal-pre-compile", tr("Internal Precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");
@@ -206,7 +206,7 @@ void BuildManager::initDefaultCommandNames(){
 	
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
-
+	
 	internalCommandIds << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
 	for (int i=0;i<internalCommandIds.size();i++) internalCommandIds[i] = internalCommandIds[i].mid(TXS_CMD_PREFIX.length());
 }
@@ -229,7 +229,7 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& dis
 	ci.id = id;
 	ci.displayName = displayname;
 	ci.metaSuggestionList = alternatives;
-    ci.simpleDescriptionList=simpleDescriptions;
+	ci.simpleDescriptionList=simpleDescriptions;
 	ci.meta=metaCommand;
 	ci.deprecatedConfigName = oldConfig;
 	commandSortingsOrder << id;
@@ -256,7 +256,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 		txsWarning("Synctex does not support file names or paths containing spaces on windows.\nPDF synchronization will not work properly.", noWarnAgain);
 	}
 #endif
-
+	
 	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
@@ -356,9 +356,9 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 
 QString BuildManager::findFileInPath(QString fileName) {
 #ifdef Q_WS_MAC
-        QProcess *myProcess = new QProcess();
+	QProcess *myProcess = new QProcess();
 	myProcess->start("bash -l -c \"echo $PATH\"");
-        myProcess->waitForFinished(3000);
+	myProcess->waitForFinished(3000);
 	if(myProcess->exitStatus()==QProcess::CrashExit) return "";
 	QByteArray res=myProcess->readAllStandardOutput();
 	delete myProcess;
@@ -369,12 +369,12 @@ QString BuildManager::findFileInPath(QString fileName) {
 	if (i==-1) return "";
 	QString path=env[i].mid(5); //skip path=
 #endif
-	#ifdef Q_WS_WIN
+#ifdef Q_WS_WIN
 	if (!fileName.contains('.')) fileName+=".exe";
 	QStringList paths=path.split(";"); //windows
-	#else
+#else
 	QStringList paths=path.split(":"); //linux
-	#endif
+#endif
 	foreach(const QString& p, paths)
 		if (p.endsWith("/") && QFileInfo(p+fileName).exists()) return (p+fileName);
 		else if (p.endsWith("\\") && QFileInfo(p+fileName).exists()) return (p+fileName);
@@ -492,41 +492,41 @@ QString findGhostscriptDLL() { //called dll, may also find an exe
 #endif
 
 QString searchBaseCommand(const QString &cmd, QString options) {
-    foreach(QString command,cmd.split(";")){
-	QString fileName=command   ON_WIN(+ ".exe");
-	if (!options.startsWith(" ")) options=" "+options;
-	if (!BuildManager::findFileInPath(fileName).isEmpty())
-		return fileName+options; //found in path
-	else {
-		//platform dependent mess
+	foreach(QString command,cmd.split(";")){
+		QString fileName=command   ON_WIN(+ ".exe");
+		if (!options.startsWith(" ")) options=" "+options;
+		if (!BuildManager::findFileInPath(fileName).isEmpty())
+			return fileName+options; //found in path
+		else {
+			//platform dependent mess
 #ifdef Q_WS_WIN
-		//Windows MikTex
-		QString mikPath=getMiKTeXBinPath();
-		if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
-			return "\""+mikPath+fileName+"\" "+options; //found
-		//Windows TeX Live
-		QString livePath=getTeXLiveBinPath();
-		if (!livePath.isEmpty() && QFileInfo(livePath+fileName).exists())
-			return "\""+livePath+fileName+"\" "+options; //found
+			//Windows MikTex
+			QString mikPath=getMiKTeXBinPath();
+			if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
+				return "\""+mikPath+fileName+"\" "+options; //found
+			//Windows TeX Live
+			QString livePath=getTeXLiveBinPath();
+			if (!livePath.isEmpty() && QFileInfo(livePath+fileName).exists())
+				return "\""+livePath+fileName+"\" "+options; //found
 #endif
 #ifdef Q_WS_MACX
-		QStringList paths;
-		paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/";
-		paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
-		
-		for (int i=2012; i>=2007; i--) {
-			//paths << QString("/usr/texbin MACTEX/TEXLIVE%i").arg(i); from texmaker comment
-			paths << QString("/usr/local/texlive/%i/bin/x86_64-darwin/").arg(i);
-			paths << QString("/usr/local/texlive/%i/bin/i386-darwin/").arg(i);
-			paths << QString("/usr/local/texlive/%i/bin/powerpc-darwin/").arg(i);
-		}
-		foreach (const QString& p, paths)
-			if (QFileInfo(p+fileName).exists())
-				return p+fileName+options;
+			QStringList paths;
+			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/";
+			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
+			
+			for (int i=2012; i>=2007; i--) {
+				//paths << QString("/usr/texbin MACTEX/TEXLIVE%i").arg(i); from texmaker comment
+				paths << QString("/usr/local/texlive/%i/bin/x86_64-darwin/").arg(i);
+				paths << QString("/usr/local/texlive/%i/bin/i386-darwin/").arg(i);
+				paths << QString("/usr/local/texlive/%i/bin/powerpc-darwin/").arg(i);
+			}
+			foreach (const QString& p, paths)
+				if (QFileInfo(p+fileName).exists())
+					return p+fileName+options;
 #endif
+		}
 	}
-    }
-    return "";
+	return "";
 }
 
 ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOptions& options){
@@ -629,7 +629,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			}
 			if (removeAllActivated) options.override.removeAll = true;
 			if (!parameters.isEmpty()) options.override.append.prepend(parameters);
-			              //todo /(masterfile,currentfile) modifier ?
+			//todo /(masterfile,currentfile) modifier ?
 			
 			//recurse
 			ExpandedCommands ecNew = expandCommandLine(cmd, options);
@@ -652,7 +652,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 					newPart[i].parentCommand = cmdName;
 					if (user) newPart[i].flags |= RCF_SHOW_STDOUT;
 				}
-
+			
 			if (splitted.size() == 1)
 				res.primaryCommand = cmdName;
 			
@@ -694,11 +694,11 @@ QString getCommandLineViewDvi(){
 		if (def.contains("yap.exe")) {
 			def=def.trimmed();
 			if (def.endsWith("\"?am.dvi\"")){
-			    def.replace("\"?am.dvi\"",yapOptions);
+				def.replace("\"?am.dvi\"",yapOptions);
 			} else if (def.endsWith("?am.dvi")) {
-			    def.replace("?am.dvi",yapOptions);
+				def.replace("?am.dvi",yapOptions);
 			} else if (def.endsWith(" /dde")) {
-			    def.replace(" /dde",yapOptions);
+				def.replace(" /dde",yapOptions);
 			}
 		}
 		return def;
@@ -707,7 +707,7 @@ QString getCommandLineViewDvi(){
 	if (!def.isEmpty()) return def;
 	def=searchBaseCommand("dviout","%.dvi");//texlive
 	if (!def.isEmpty()) return def;
-
+	
 	if (QFileInfo("C:/texmf/miktex/bin/yap.exe").exists())
 		return "C:/texmf/miktex/bin/yap.exe " + yapOptions;
 	
@@ -717,13 +717,13 @@ QString getCommandLineViewPs(){
 	QString def=W32_FileAssociation(".ps");
 	if (!def.isEmpty())
 		return def;
-
+	
 	QString livePath = getTeXLiveBinPath();
 	if (!livePath.isEmpty())
 		if (QFileInfo(livePath+"psv.exe").exists())
 			return "\""+livePath+"psv.exe\"  \"?am.ps\"";
-
-
+	
+	
 	QString gsDll = findGhostscriptDLL().replace("/","\\"); //gsview contains gs so x
 	int pos;
 	while ((pos=gsDll.lastIndexOf("\\"))>-1) {
@@ -734,7 +734,7 @@ QString getCommandLineViewPs(){
 			return "\""+gsDll+"gsview.exe\" -e \"?am.ps\"";
 		gsDll=gsDll.mid(0,pos);
 	}
-
+	
 	foreach (const QString& p, getProgramFilesPaths())
 		if (QFile::exists(p+"Ghostgum/gsview/gsview32.exe"))
 			return "\""+p+"Ghostgum/gsview/gsview32.exe\" -e \"?am.ps\"";
@@ -744,7 +744,7 @@ QString getCommandLineViewPdfExternal(){
 	QString def=W32_FileAssociation(".pdf");
 	if (!def.isEmpty())
 		return def;
-
+	
 	foreach (const QString& p, getProgramFilesPaths())
 		if (QDir(p+"Adobe").exists())
 			foreach (const QString& rv, QDir(p+"Adobe").entryList(QStringList() << "Reader*", QDir::Dirs, QDir::Time)){
@@ -810,18 +810,18 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int*>(&saveFilesBeforeCompiling), (int)SFBC_ONLY_NAMED);
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
-
+	
 	
 	cmi.registerOption("User/ToolNames", &deprecatedUserToolNames, QStringList());
 	cmi.registerOption("User/Tools", &deprecatedUserToolCommands, QStringList());
-
+	
 	cmi.registerOption("Tools/Display Names", &userToolDisplayNames, QStringList());
 	cmi.registerOption("Tools/User Order", &userToolOrder, QStringList());
 }
 void BuildManager::readSettings(QSettings &settings){
 	for (int i=0, end = qMin(userToolOrder.size(), userToolDisplayNames.size());i<end;++i)
 		registerCommand(userToolOrder[i], "", userToolDisplayNames[i], "", "", 0, true);
-
+	
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
@@ -863,12 +863,12 @@ void BuildManager::readSettings(QSettings &settings){
 		}
 		cmd.commandLine = cmd.guessCommandLine();
 	}
-		
+	
 	if (commands.value("quick").commandLine.isEmpty()) {
 		//Choose suggestion that actually exists
 		CommandInfo &quick = commands.find("quick").value();
 		for (int i=0;i<quick.metaSuggestionList.size()-1;i++) {
-            QString referenced = quick.metaSuggestionList[i];
+			QString referenced = quick.metaSuggestionList[i];
 			if (referenced.isEmpty()) continue;
 			QStringList subCommands = referenced.split("|");
 			bool hasAll = true;
@@ -908,7 +908,7 @@ void BuildManager::readSettings(QSettings &settings){
 			settings.remove(QString("User/ToolName%1").arg(i));
 		}
 	}			
-
+	
 	if (reinterpret_cast<int&>(dvi2pngMode)<0) {
 		if (isCommandDirectlyDefined(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG; //best/fastest mode
 		else if (isCommandDirectlyDefined(CMD_DVIPS) && isCommandDirectlyDefined(CMD_GS)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
@@ -945,7 +945,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	ExpandedCommands expansion = expandCommandLine(unparsedCommandLine, options);
 	if (options.canceled) return false;
 	if (expansion.commands.isEmpty()) return true;
-
+	
 	bool latexCompiled = false, pdfChanged = false;
 	for (int i=0;i<expansion.commands.size();i++){
 		latexCompiled |= expansion.commands[i].flags & RCF_COMPILES_TEX;
@@ -955,7 +955,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 		ExpandedCommands temp = expandCommandLine(CMD_INTERNAL_PRE_COMPILE, options);
 		for (int i=temp.commands.size()-1;i>=0;i--) expansion.commands.prepend(temp.commands[i]);
 	}
-		
+	
 	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
 	bool result = runCommandInternal(expansion, mainFile, buffer);
 	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
@@ -998,7 +998,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 			}
 		
 		emit endRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
-
+		
 		if (waitForCommand) p->deleteLater();
 		
 		bool rerunnable = (cur.flags & RCF_RERUN) && (cur.flags & RCF_RERUNNABLE);
@@ -1014,7 +1014,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 			i--; //rerun
 			//qDebug() << "rerun";
 		} 
-
+		
 	}
 	return true;
 }
@@ -1023,7 +1023,7 @@ ProcessX* BuildManager::firstProcessOfDirectExpansion(const QString& command, co
 	ExpandingOptions options(mainFile, currentFile, currentLine);
 	ExpandedCommands expansion = expandCommandLine(command, options);
 	if (options.canceled) return 0;
-
+	
 	if (expansion.commands.isEmpty()) return 0;
 	
 	return newProcessInternal(expansion.commands.first().command, mainFile);
@@ -1033,7 +1033,7 @@ ProcessX* BuildManager::firstProcessOfDirectExpansion(const QString& command, co
 ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& mainFile, bool singleInstance){
 	if (singleInstance && runningCommands.contains(cmd))
 		return 0;
-
+	
 	
 	ProcessX* proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
@@ -1045,7 +1045,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 		proc->setWorkingDirectory(mainFile.absolutePath());
 	if (cmd.startsWith(TXS_CMD_PREFIX)) 
 		connect(proc, SIGNAL(started()), SLOT(runInternalCommandThroughProcessX()));
-
+	
 #ifdef Q_WS_MACX
 #if (QT_VERSION >= 0x040600)
 	QProcess *myProcess = new QProcess();
@@ -1058,10 +1058,10 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 		env.insert("PATH", env.value("PATH") + ":"+path); //apply user path as well
 		proc->setProcessEnvironment(env);
-	 }
+	}
 #endif
 #endif
-
+	
 	return proc;
 }
 
@@ -1128,7 +1128,7 @@ void addLaTeXInputPaths(ProcessX* p, const QStringList& paths){
 //Then ghostscript to convert it to
 void BuildManager::preview(const QString &preamble, const PreviewSource& source, const QString& masterFile, QTextCodec *outputCodec){
 	QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
-
+	
 	//process preamble
 	QString preamble_mod = preamble;
 	static const QRegExp beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
@@ -1139,7 +1139,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 		preamble_mod.insert(0,"\\documentclass{article}\n\\usepackage{beamerarticle}");
 	}
 	//preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
-
+	
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
 	QStringList addPaths;
 	addPaths << masterDir;
@@ -1151,7 +1151,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 		foreach (const QString& dir, imports)
 			addPaths << masterDir+QDir::separator()+dir;
 	}
-
+	
 	QString preambleFormatFile;
 	if (previewPrecompilePreamble) {
 		preambleFormatFile = preambleHash.value(preamble_mod, "");
@@ -1169,7 +1169,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 				out << preamble_mod;
 				tf->setAutoRemove(false);
 				tf->close();
-
+				
 				//compile
 				QFileInfo fi(*tf);
 				preambleFormatFile = fi.completeBaseName();
@@ -1183,7 +1183,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 				tf->setParent(p); //free file when process is deleted
 				REQUIRE(p);
 				p->startCommand();
-
+				
 				if (p->waitForStarted()) {
 					if (p->waitForFinished(800)) {
 						if (p->exitStatus() == QProcess::NormalExit && p->exitCode() == 0) {
@@ -1194,19 +1194,19 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 						}
 					} else
 						preambleFormatFile = ""; //wait + normal compile while waiting
-
+					
 				} else preambleFormatFile = ""; //compiling failed
 				//delete tf; // tex file needs to be freed
 			}
 		} else preambleFormatFile = "";
 	}
-
+	
 	// write to temp file
-  // (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
+	// (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
 	QTemporaryFile *tf=new QTemporaryFile(tempPath + "XXXXXX.tex");
 	if (!tf) return;
 	tf->open();
-
+	
 	QTextStream out(tf);
 	if (outputCodec) out.setCodec(outputCodec);
 	if (preambleFormatFile.isEmpty()) out << preamble_mod;
@@ -1226,7 +1226,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 	addLaTeXInputPaths(p1, addPaths);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
-
+	
 	if (dvi2pngMode==DPM_DVIPNG_FOLLOW) {
 		p1->waitForStarted();
 		// dvi -> png
@@ -1293,7 +1293,7 @@ QStringList BuildManager::getCommandsOrder(){
 void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList& userOrder){
 	this->commands = cmds;
 	this->userToolOrder = userOrder;
-
+	
 	for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it)
 		if (it.value().commandLine == tr("<unknown>"))
 			it.value().commandLine = "";	
@@ -1402,7 +1402,7 @@ void BuildManager::removePreviewFiles(QString elem){
 	elem=QFileInfo(elem).completeBaseName();
 	QStringList files;
 	files = currentDir.entryList(QStringList(elem+"*"),
-							  QDir::Files | QDir::NoSymLinks);
+	                             QDir::Files | QDir::NoSymLinks);
 	foreach(const QString& file,files)
 		QFile::remove(currentDir.absolutePath()+"/"+file);
 }
@@ -1416,7 +1416,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	if (ddePseudoURL.startsWith("dde:///")) ddePseudoURL.remove(0,7);
 	else if (ddePseudoURL.startsWith("dde://")) { txsInformation(tr("You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.")); ddePseudoURL.remove(0,6); }
 	else return false;
-
+	
 	if (ddePseudoURL.length() < 3) return false;
 	QString serviceEXEPath;
 	if (ddePseudoURL[1] == ':' || (ddePseudoURL[0] == '"' && ddePseudoURL[2] == ':')) { //extended dde of format dde:///<path>:control/commands
@@ -1424,7 +1424,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 		serviceEXEPath = ddePseudoURL.left(pathLength);
 		ddePseudoURL.remove(0,pathLength+1);
 	}
-
+	
 	int slash=ddePseudoURL.indexOf("/");
 	if (slash==-1) return false;
 	QString service = ddePseudoURL.left(slash);
@@ -1435,16 +1435,16 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	ddePseudoURL.remove(0,slash+1);
 	QStringList commands = ddePseudoURL.split("[",QString::SkipEmptyParts);
 	if (commands.isEmpty()) return false;
-
-
+	
+	
 	//connect to server/topic
-
+	
 	if (pidInst==0)
 		if (DdeInitializeA(&pidInst, NULL, APPCLASS_STANDARD | APPCMD_CLIENTONLY | CBF_SKIP_ALLNOTIFICATIONS, 0L) != DMLERR_NO_ERROR)
 			return false;
-
+	
 	QCoreApplication::processEvents();
-
+	
 	HSZ hszService = DdeCreateStringHandleA(pidInst, service.toLocal8Bit().data() , CP_WINANSI);
 	if (!hszService) return false;
 	HSZ hszTopic = DdeCreateStringHandleA(pidInst, topic.toLocal8Bit().data(), CP_WINANSI);
@@ -1454,28 +1454,28 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 	}
 	HCONV hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
 	if (!hConv && !serviceEXEPath.isEmpty()){
-	    if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo(serviceEXEPath).exists())
-            serviceEXEPath = "\"" + serviceEXEPath + "\"";
+		if (!serviceEXEPath.contains('"') && serviceEXEPath.contains(' ') && QFileInfo(serviceEXEPath).exists())
+			serviceEXEPath = "\"" + serviceEXEPath + "\"";
 		//connecting failed; start the service if necessary
 		QProcess* p = new QProcess(QCoreApplication::instance()); //application is parent, to close the service if txs is closed
 		p->start(serviceEXEPath);
 		if (p->waitForStarted(5000)) {
 			connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater())); //will free proc after the process has ended
-		  //try again to connect (repeatedly 2s long)
+			//try again to connect (repeatedly 2s long)
 			DWORD startTime = GetTickCount();
-		  while (!hConv && GetTickCount() - startTime < 1000) {
+			while (!hConv && GetTickCount() - startTime < 1000) {
 				hConv = DdeConnect(pidInst, hszService, hszTopic, NULL);
 				Sleep(100);
 			}
 		} else delete p;
 	}
-
+	
 	QCoreApplication::processEvents();
-
+	
 	DdeFreeStringHandle(pidInst, hszService);
 	DdeFreeStringHandle(pidInst, hszTopic);
 	if (!hConv) return false;
-
+	
 	//execute requests
 	foreach(const QString s, commands) {
 		QString temp=("["+s.trimmed());
@@ -1488,20 +1488,20 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 		}
 		//else QMessageBox::information(0,"TeXstudio",QObject::tr("DDE command %1 failed").arg("["+s),0); //break; send all commands
 	}
-
+	
 	QCoreApplication::processEvents();
-
+	
 	//disconnect
 	DdeDisconnect(hConv);
-
+	
 	QCoreApplication::processEvents();
-
+	
 	return true;
 }
 #endif
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
-QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0) {
+       QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0) {
 	QString stdoutRedirection = cmd.mid(cmd.lastIndexOf(">") + 1).trimmed();
 	if (stdoutRedirection == "/dev/null" || stdoutRedirection == "txs:///messages"  )  {
 		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
@@ -1515,7 +1515,7 @@ QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted
 void ProcessX::startCommand() {
 	ended = false;
 	
-	#ifdef Q_WS_WIN
+#ifdef Q_WS_WIN
 	if (cmd.startsWith("dde://") || cmd.startsWith("dde:///")) {
 		onStarted();
 		BuildManager* manager = qobject_cast<BuildManager*>(parent());
@@ -1529,8 +1529,8 @@ void ProcessX::startCommand() {
 		emit finished(ok?0:1, NormalExit);
 		return;
 	}
-	#endif
-
+#endif
+	
 	if (cmd.startsWith("txs:///")){
 		emit started();
 		emit finished(0);
@@ -1544,7 +1544,7 @@ void ProcessX::startCommand() {
 	
 	
 	QProcess::start(cmd);
-
+	
 #ifdef PROFILE_PROCESSES
 	connect(this, SIGNAL(finished(int)), SLOT(finished()));
 	time.start();
@@ -1614,10 +1614,10 @@ void ProcessX::onError(ProcessError error){
 }
 
 void ProcessX::onFinished(int error){
-    if (error){
+	if (error){
 		emit processNotification(tr("Process exited with error(s)"));
-        readFromStandardError(true);
-    } else {
+		readFromStandardError(true);
+	} else {
 		emit processNotification(tr("Process exited normally"));
 		readFromStandardOutput();
 		readFromStandardError();
@@ -1639,7 +1639,7 @@ void ProcessX::readFromStandardOutput(){
 }
 
 void ProcessX::readFromStandardError(bool force){
-    if (!stderrEnabled && !force) return;
+	if (!stderrEnabled && !force) return;
 	QString t = readAllStandardErrorStr().simplified();
 	emit standardErrorRead(t);
 }

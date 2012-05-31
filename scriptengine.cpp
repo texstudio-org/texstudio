@@ -37,7 +37,7 @@ template <typename Tp> void qScriptValueToQObject(const QScriptValue &value, Tp 
 
 template <typename Tp> int qScriptRegisterQObjectMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = 0)
 {
-    return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject, qScriptValueToQObject, prototype);
+	return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject, qScriptValueToQObject, prototype);
 }
 
 //
@@ -62,7 +62,7 @@ template <typename Tp> void qScriptValueToQList(const QScriptValue &value, QList
 
 template <typename Tp> int qScriptRegisterQListMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = 0)
 {
-    return qScriptRegisterMetaType<QList<Tp> >(engine, qScriptValueFromQList<Tp>, qScriptValueToQList<Tp>, prototype);
+	return qScriptRegisterMetaType<QList<Tp> >(engine, qScriptValueFromQList<Tp>, qScriptValueToQList<Tp>, prototype);
 }
 
 
@@ -77,13 +77,13 @@ void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qo
 }
 /**QScriptValue qScriptValueFromKeySequence(QScriptEngine *engine, QKeySequence const &ks)
 {
-	return engine->newVariant(ks);
+ return engine->newVariant(ks);
 }
 void qScriptValueToKeySequence(const QScriptValue &value, QKeySequence &ks) {
-	if (value.isString()) ks = QKeySequence(value.toString());
-	else if (value.isNumber()) ks = QKeySequence(value.toInt32());
-	else if (value.isVariant()) ks = value.toVariant().value<QKeySequence>();
-	else ks = QKeySequence();
+ if (value.isString()) ks = QKeySequence(value.toString());
+ else if (value.isNumber()) ks = QKeySequence(value.toInt32());
+ else if (value.isVariant()) ks = value.toVariant().value<QKeySequence>();
+ else ks = QKeySequence();
 }*/
 
 QDocumentCursor cursorFromValue(const QScriptValue& value){
@@ -146,7 +146,7 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 	}
 	SCRIPT_REQUIRE(handler.isValid() || !replace, "No callback given");
 	if (!caseInsensitive) flags |= QDocumentSearch::CaseSensitive;
-
+	
 	//search/replace
 	QDocumentSearch search(editor, searchFor, flags);
 	search.setScope(scope);
@@ -190,11 +190,11 @@ QScriptValue buildManagerRunCommandWrapper(QScriptContext *context, QScriptEngin
 	ScriptObject* sc = needWritePrivileges(engine,"buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString());
 	if (!sc) return engine->undefinedValue();
 	return engine->newVariant(sc->buildManager->runCommand(
-	  context->argument(0).toString(), 
-	  context->argument(1).isUndefined()?QFileInfo():context->argument(1).toString(),
-	  context->argument(2).isUndefined()?QFileInfo():context->argument(2).toString(),
-	  context->argument(3).isUndefined()?0:context->argument(3).toInt32()
-	));
+	                                 context->argument(0).toString(), 
+	                                 context->argument(1).isUndefined()?QFileInfo():context->argument(1).toString(),
+	                                 context->argument(2).isUndefined()?QFileInfo():context->argument(2).toString(),
+	                                 context->argument(3).isUndefined()?0:context->argument(3).toInt32()
+	                                                                    ));
 }
 
 QScriptValue editorSaveWrapper(QScriptContext *context, QScriptEngine *engine){
@@ -241,9 +241,9 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	
 	qScriptRegisterQObjectMetaType<BuildManager*>(engine);
 	
-//	qScriptRegisterMetaType<QKeySequence>(engine, qScriptValueFromKeySequence, qScriptValueToKeySequence, QScriptValue());
+	//	qScriptRegisterMetaType<QKeySequence>(engine, qScriptValueFromKeySequence, qScriptValueToKeySequence, QScriptValue());
 	//qScriptRegisterQObjectMetaType<QUILoader*>(engine);
-//	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
+	//	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
 	//engine->setDefaultPrototype(qMetaTypeId<QDocumentCursor>(), QScriptValue());
 	
 	
@@ -297,7 +297,7 @@ void scriptengine::run(){
 	QScriptValue cursorValue;
 	if (m_editorView)
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
-		
+	
 	if (m_editor) {
 		engine->globalObject().setProperty("editor", engine->newQObject(m_editor));
 		
@@ -305,7 +305,7 @@ void scriptengine::run(){
 		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor		
 		cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);
-
+		
 		QScriptValue matches = engine->newArray(triggerMatches.size());
 		for (int i=0;i<triggerMatches.size();i++) matches.setProperty(i, triggerMatches[i]);
 		engine->globalObject().setProperty("triggerMatches", matches);
@@ -314,21 +314,21 @@ void scriptengine::run(){
 	
 	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
-
+	
 	QScriptValue uidClass = engine->scriptValueFromQMetaObject<UniversalInputDialogScript>();
-       engine->globalObject().setProperty("UniversalInputDialog", uidClass);
+	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
 	
 	FileChooser flchooser(0,scriptengine::tr("File Chooser"));
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
-
+	
 	engine->globalObject().setProperty("documents", engine->newQObject(&app->documents));
-
+	
 	QScriptValue bm = engine->newQObject(&app->buildManager);
 	bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));
 	engine->globalObject().setProperty("buildManager", bm);
 	
 	engine->evaluate(m_script);
-
+	
 	if(engine->hasUncaughtException()){
 		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(engine->uncaughtExceptionLineNumber()).arg(engine->uncaughtException().toString());
 		error += "\n"+QString(tr("Backtrace %1")).arg(engine->uncaughtExceptionBacktrace().join(", "));
@@ -340,7 +340,7 @@ void scriptengine::run(){
 		if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
 		else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
 	}
-
+	
 	if (!globalObject->backgroundScript) {
 		delete globalObject;
 		globalObject = 0;
@@ -361,11 +361,11 @@ QScriptValue UniversalInputDialogScript::add(const QScriptValue& def, const QScr
 		QStringList options;
 		QScriptValueIterator it(def);
 		while (it.hasNext()) {
-		    it.next();
-		    if (it.flags() & QScriptValue::SkipInEnumeration)
-			 continue;
-		    if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
-		    else engine->currentContext()->throwError("Invalid default value in array (must be string or number): "+it.value().toString());
+			it.next();
+			if (it.flags() & QScriptValue::SkipInEnumeration)
+				continue;
+			if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
+			else engine->currentContext()->throwError("Invalid default value in array (must be string or number): "+it.value().toString());
 		}
 		w = addComboBox(ManagedProperty::fromValue(options), description.toString());
 	} else if (def.isBool()) {
