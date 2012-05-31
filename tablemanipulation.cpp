@@ -519,10 +519,10 @@ int LatexTables::getNumOfColsInMultiColumn(const QString &str, QString *outAlign
 	QStringList values;
 	LatexParser::resolveCommandOptions(str,0,values);
 	if(values.length() != 3) return -1;
-
+	
 	if (outAlignment) *outAlignment = LatexParser::removeOptionBrackets(values.at(1));
 	if (outText) *outText = LatexParser::removeOptionBrackets(values.at(2));
-
+	
 	QString zw=values.takeFirst();
 	if(zw.startsWith("{")&&zw.endsWith("}")){
 		zw.chop(1);
@@ -747,16 +747,16 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	QString text = getTableText(cur);
 	if (!cur.hasSelection()) return;
 	QString indentation = cur.selectionStart().line().indentation();
-
+	
 	// split off \begin and \end parts
 	int index = text.indexOf("\\begin{")+6;
 	int cellsStart;
 	QList<CommandArgument> args = getCommandOptions(text, index, &cellsStart);
 	if (args.count() < 2) return;
 	QString tableType = args.at(0).value;
-
-
-
+	
+	
+	
 	// assume alignment in second arg except for the following environments (which have it in the third one)
 	QString alignment;
 	if (tabularNames.contains(tableType)) {
@@ -765,20 +765,20 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 		if (args.count()<3) alignment = ""; // incomplete definition -> fall back to defaults
 		else alignment = args.at(2).value;
 	} else return; // not a registered table environment
-
+	
 	int cellsEnd = text.indexOf("\\end{"+tableType);
 	if (cellsEnd<0) return;
 	QString beginPart = text.left(cellsStart);
 	QString endPart = text.mid(cellsEnd);
-
-
+	
+	
 	LatexTableModel ltm;
 	ltm.setContent(text.mid(cellsStart, cellsEnd-cellsStart));
-
+	
 	QStringList l_defs=splitColDef(alignment);
 	simplifyColDefs(l_defs);
 	QStringList content(ltm.getAlignedLines(l_defs));
-
+	
 	QString result = beginPart + '\n';
 	for (int i=0; i<content.count(); i++) {
 		result.append(indentation + content.at(i));
@@ -799,9 +799,9 @@ void LatexTableModel::setContent(const QString &text) {
 	for (int i=0; i<sourceLines.count(); i++) {
 		QString pre;
 		QString line = sourceLines.at(i).trimmed();
-
+		
 		if (i==sourceLines.count()-1 && line.isEmpty()) break; // last empty line
-
+		
 		bool recheck = true;
 		while (line.startsWith("\\") && recheck) {
 			recheck = false;
@@ -810,7 +810,7 @@ void LatexTableModel::setContent(const QString &text) {
 					int behind;
 					getCommandOptions(line, cmd.length(), &behind);
 					pre.append(line.left(behind));
-
+					
 					line = line.mid(behind).trimmed();
 					recheck = true;
 					break;
@@ -822,34 +822,34 @@ void LatexTableModel::setContent(const QString &text) {
 		if (!line.isEmpty()) ltl->setColLine(line);
 		lines.append(ltl);
 	}
-
-/*	*** alternative more efficient ansatz ***
-	int len = text.length();
-	int pos=skipWhitespace(text);
-	int start = pos;
-	LatexTableLine *ltl = new LatexTableLine(this);
-	bool hasMetaContent = false;
-	while (pos < len) {
-		if (text.at(pos) == '\\') {
-			if (pos < len && text.at(pos+1)  == '\\') {
-				ltl->setColStr(text.mid(start, pos-start));
-				pos+=2;
-				start=pos;
-			} else {
-				QString cmd;
-				int end = getCommand(text, cmd, pos);
-				if (metaLineCommands.contains(cmd)) {
-					QStringList args;
-					getCommandOptions(text, end, end);
-					hasMetaContent = true;
-				}
-
-			}
-
-		}
-
-		pos = skipWhitespace(pos);
-	}
+	
+	/*	*** alternative more efficient ansatz ***
+ int len = text.length();
+ int pos=skipWhitespace(text);
+ int start = pos;
+ LatexTableLine *ltl = new LatexTableLine(this);
+ bool hasMetaContent = false;
+ while (pos < len) {
+  if (text.at(pos) == '\\') {
+   if (pos < len && text.at(pos+1)  == '\\') {
+    ltl->setColStr(text.mid(start, pos-start));
+    pos+=2;
+    start=pos;
+   } else {
+    QString cmd;
+    int end = getCommand(text, cmd, pos);
+    if (metaLineCommands.contains(cmd)) {
+     QStringList args;
+     getCommandOptions(text, end, end);
+     hasMetaContent = true;
+    }
+    
+   }
+   
+  }
+  
+  pos = skipWhitespace(pos);
+ }
 */
 }
 
@@ -859,13 +859,13 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 	int multiColStarts[lines.count()];
 	for (int i=0; i<lines.count(); i++) multiColStarts[i] = -1;
 	QStringList alignTokens(alignment);
-
+	
 	foreach (LatexTableLine *tl, lines) {
 		// fallback to 'l' if more columns are there than specified in alignment
 		while (alignTokens.length() < tl->colCount())
 			alignTokens.append("l");
 	}
-
+	
 	int pos = 0;
 	for (int col=0; col<alignTokens.length(); col++) {
 		// col width detection
@@ -880,17 +880,17 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 			case LatexTableLine::MCMid:
 				break;
 			case LatexTableLine::MCEnd:
-				{int startCol = tl->multiColStart(col);
+			{int startCol = tl->multiColStart(col);
 				Q_ASSERT(startCol>=0);
 				int w = tl->colWidth(startCol) - (pos-multiColStarts[row]);
 				if (width < w) width = w;
-				}break;
+			}break;
 			default:
 				int w = tl->colWidth(col);
 				if (width < w) width = w;
 			}
 		}
-
+		
 		// size and append cols
 		QChar align = alignTokens.at(col).at(0);
 		for (int row=0; row<lines.length(); row++) {
@@ -910,7 +910,7 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 		}
 		pos+=width+delim.length();
 	}
-
+	
 	QStringList ret;
 	for (int row=0; row<lines.count(); row++) {
 		QString ml = lines.at(row)->toMetaLine();
