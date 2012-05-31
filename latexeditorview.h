@@ -53,8 +53,8 @@ public:
 //  FindWidget *findwidget;
 	//Functions affecting the editor
 
-	void complete(int flags);
-	bool gotoToLabel(const QString& label);
+	Q_INVOKABLE void complete(int flags);
+	Q_INVOKABLE bool gotoToLabel(const QString& label);
 		
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
@@ -168,7 +168,7 @@ public slots:
 	void clearOverlays();
 	void updateLtxCommands();
 	void paste();
-	void insertMacro(QString macro, const QRegExp& trigger, int triggerId);
+	void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0);
 	
 	void displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors);
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);

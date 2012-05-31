@@ -257,8 +257,10 @@ scriptengine::~scriptengine(){
 void scriptengine::setScript(const QString& script){
 	m_script=script;
 }
-void scriptengine::setEditor(QEditor *editor){
-	m_editor = editor;
+void scriptengine::setEditorView(LatexEditorView *edView){
+	REQUIRE(edView);
+	m_editor = edView->editor;
+	m_editorView = edView;
 }
 
 
@@ -293,6 +295,9 @@ void scriptengine::run(){
 	
 	QDocumentCursor c;
 	QScriptValue cursorValue;
+	if (m_editorView)
+		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
+		
 	if (m_editor) {
 		engine->globalObject().setProperty("editor", engine->newQObject(m_editor));
 		

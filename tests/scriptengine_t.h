@@ -4,13 +4,13 @@
 #include "mostQtHeaders.h"
 
 class scriptengine;
-class QEditor;
+class LatexEditorView;
 class ScriptEngineTest: public QObject{
 	Q_OBJECT
 	public:
-		ScriptEngineTest(QEditor* editor, bool all);
+		ScriptEngineTest(LatexEditorView* editor, bool all);
 	private:
-		QEditor *ed;
+		LatexEditorView *edView;
 		bool all;
 	private slots:
 		void script_data();

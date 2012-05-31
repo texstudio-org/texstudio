@@ -9,6 +9,7 @@
 class BuildManager;
 class Texmaker;
 class ScriptObject;
+class LatexEditorView;
 class scriptengine : public QObject
 {
 Q_OBJECT
@@ -17,7 +18,7 @@ public:
 	~scriptengine();
 	void run();
 	void setScript(const QString& script);
-	void setEditor(QEditor *editor);
+	void setEditorView(LatexEditorView* edView);
 
 	static BuildManager* buildManager;
 	static Texmaker* app;
@@ -28,6 +29,7 @@ public:
 	ScriptObject *globalObject;
 protected:
 	QScriptEngine *engine;
+	QPointer<LatexEditorView> m_editorView;
 	QPointer<QEditor> m_editor;
 	QString m_script;
 };
