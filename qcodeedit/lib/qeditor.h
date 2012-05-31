@@ -347,11 +347,11 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setHardLineWrapping(bool on);
 		void setSoftLimitedLineWrapping(bool on);
 		void setWrapLineWidth(int l);
-		
+public:		
 		virtual void save();
 		void save(const QString& filename);
 		bool saveCopy(const QString& filename);
-
+public slots:
 		
 		virtual void print();
 		

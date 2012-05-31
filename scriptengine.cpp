@@ -179,11 +179,16 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 	return searchReplaceFunction(context, engine, true);
 }
 
-QScriptValue runCommandFunction(QScriptContext *context, QScriptEngine *engine){
+ScriptObject* needWritePrivileges(QScriptEngine *engine, const QString& fn, const QString& args){
 	ScriptObject* sc = qobject_cast<ScriptObject*>(engine->globalObject().toQObject());
-	REQUIRE_RET(sc, engine->undefinedValue());
-	if (!sc->needWritePrivileges("buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString()))
-	  return engine->undefinedValue();
+	REQUIRE_RET(sc, 0);
+	if (!sc->needWritePrivileges(fn, args)) return 0;
+	return sc;
+}
+
+QScriptValue buildManagerRunCommandWrapper(QScriptContext *context, QScriptEngine *engine){
+	ScriptObject* sc = needWritePrivileges(engine,"buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString());
+	if (!sc) return engine->undefinedValue();
 	return engine->newVariant(sc->buildManager->runCommand(
 	  context->argument(0).toString(), 
 	  context->argument(1).isUndefined()?QFileInfo():context->argument(1).toString(),
@@ -192,6 +197,22 @@ QScriptValue runCommandFunction(QScriptContext *context, QScriptEngine *engine){
 	));
 }
 
+QScriptValue editorSaveWrapper(QScriptContext *context, QScriptEngine *engine){
+	ScriptObject* sc = needWritePrivileges(engine,"editor.save", context->argument(0).toString());
+	QEditor* ed = qobject_cast<QEditor*>(context->thisObject().toQObject());
+	if (!sc || !ed) return engine->undefinedValue();
+	if (context->argumentCount() == 0)	ed->save();
+	else ed->save(context->argument(0).toString());
+	return engine->undefinedValue();
+}
+
+QScriptValue editorSaveCopyWrapper(QScriptContext *context, QScriptEngine *engine){
+	ScriptObject* sc = needWritePrivileges(engine,"editor.save", context->argument(0).toString());
+	QEditor* ed = qobject_cast<QEditor*>(context->thisObject().toQObject());
+	if (!sc || !ed) return engine->undefinedValue();
+	return engine->newVariant(ed->saveCopy(context->argument(0).toString()));
+	
+}
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
@@ -210,6 +231,8 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	QScriptValue extendedQEditor = engine->newObject();
 	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
+	extendedQEditor.setProperty("save", engine->newFunction(&editorSaveWrapper), QScriptValue::ReadOnly|QScriptValue::Undeletable);
+	extendedQEditor.setProperty("saveCopy", engine->newFunction(&editorSaveCopyWrapper), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	qScriptRegisterQObjectMetaType<QEditor*>(engine, extendedQEditor);
 	
 	qScriptRegisterQListMetaType<LatexDocument*>(engine); //todo change to qScriptRegisterSequenceMetaType
@@ -296,7 +319,7 @@ void scriptengine::run(){
 	engine->globalObject().setProperty("documents", engine->newQObject(&app->documents));
 
 	QScriptValue bm = engine->newQObject(&app->buildManager);
-	bm.setProperty("runCommand", engine->newFunction(runCommandFunction));
+	bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));
 	engine->globalObject().setProperty("buildManager", bm);
 	
 	engine->evaluate(m_script);
