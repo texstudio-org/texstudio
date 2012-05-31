@@ -146,7 +146,9 @@ private:
 	
 	//settings
 	ConfigManager configManager;
+public:
 	BuildManager buildManager;
+private:
 	int split1_right, split1_left, split2_top, split2_bottom;
 	QString spell_ignored_words;
 	QStringList struct_level;

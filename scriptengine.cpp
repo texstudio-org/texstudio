@@ -12,12 +12,15 @@ Q_DECLARE_METATYPE(QDocument*);
 Q_DECLARE_METATYPE(LatexDocument*);
 Q_DECLARE_METATYPE(LatexDocuments*);
 Q_DECLARE_METATYPE(LatexEditorView*);
+Q_DECLARE_METATYPE(BuildManager*);
+Q_DECLARE_METATYPE(RunCommandFlags);
 Q_DECLARE_METATYPE(ProcessX*);
 Q_DECLARE_METATYPE(QAction*);
 Q_DECLARE_METATYPE(QMenu*);
 Q_DECLARE_METATYPE(SubScriptObject*);
 Q_DECLARE_METATYPE(QEditor*);
 Q_DECLARE_METATYPE(QList<LatexDocument*>);
+Q_DECLARE_METATYPE(QFileInfo);
 
 BuildManager* scriptengine::buildManager = 0;
 Texmaker* scriptengine::app = 0;
@@ -176,6 +179,19 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 	return searchReplaceFunction(context, engine, true);
 }
 
+QScriptValue runCommandFunction(QScriptContext *context, QScriptEngine *engine){
+	ScriptObject* sc = qobject_cast<ScriptObject*>(engine->globalObject().toQObject());
+	REQUIRE_RET(sc, engine->undefinedValue());
+	if (!sc->needWritePrivileges("buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString()))
+	  return engine->undefinedValue();
+	return engine->newVariant(sc->buildManager->runCommand(
+	  context->argument(0).toString(), 
+	  context->argument(1).isUndefined()?QFileInfo():context->argument(1).toString(),
+	  context->argument(2).isUndefined()?QFileInfo():context->argument(2).toString(),
+	  context->argument(3).isUndefined()?0:context->argument(3).toInt32()
+	));
+}
+
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
@@ -196,7 +212,12 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	qScriptRegisterQObjectMetaType<QEditor*>(engine, extendedQEditor);
 	
-	qScriptRegisterQListMetaType<LatexDocument*>(engine);
+	qScriptRegisterQListMetaType<LatexDocument*>(engine); //todo change to qScriptRegisterSequenceMetaType
+	
+	qRegisterMetaType<RunCommandFlags>();
+	
+	qScriptRegisterQObjectMetaType<BuildManager*>(engine);
+	
 //	qScriptRegisterMetaType<QKeySequence>(engine, qScriptValueFromKeySequence, qScriptValueToKeySequence, QScriptValue());
 	//qScriptRegisterQObjectMetaType<QUILoader*>(engine);
 //	engine->setDefaultPrototype(qMetaTypeId<QDocument*>(), QScriptValue());
@@ -273,6 +294,10 @@ void scriptengine::run(){
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
 	engine->globalObject().setProperty("documents", engine->newQObject(&app->documents));
+
+	QScriptValue bm = engine->newQObject(&app->buildManager);
+	bm.setProperty("runCommand", engine->newFunction(runCommandFunction));
+	engine->globalObject().setProperty("buildManager", bm);
 	
 	engine->evaluate(m_script);
 
