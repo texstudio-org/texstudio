@@ -95,10 +95,10 @@ public:
 	Q_INVOKABLE QStringList labelItems() const;
 	Q_INVOKABLE QStringList refItems() const;
 	Q_INVOKABLE QStringList bibItems() const;
-	Q_INVOKABLE const QSet<QString> userCommandList() const{
+	Q_INVOKABLE QSet<QString> userCommandList() const{
 		return mUserCommandList.values().toSet();
 	}
-	Q_INVOKABLE const QSet<QString> additionalCommandsList() const{
+	Q_INVOKABLE QSet<QString> additionalCommandsList() const{
 		return mCompleterWords;
 	}
 	void updateRefsLabels(const QString& ref);
