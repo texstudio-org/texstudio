@@ -127,20 +127,20 @@ public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	//QList<ProcessX*> newProcesses(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
-	ProcessX* firstProcessOfDirectExpansion(const QString& command, const QFileInfo& mainfile, const QFileInfo& currentFile = QFileInfo(), int currentLine = 0);
+	Q_INVOKABLE ProcessX* firstProcessOfDirectExpansion(const QString& command, const QFileInfo& mainfile, const QFileInfo& currentFile = QFileInfo(), int currentLine = 0);
 
-	ProcessX* newProcessInternal(const QString &fullCommandLine, const QFileInfo& mainFile, bool singleInstance = false);
+	Q_INVOKABLE ProcessX* newProcessInternal(const QString &fullCommandLine, const QFileInfo& mainFile, bool singleInstance = false);
 public:
-	bool waitForProcess(ProcessX* p);
-	bool waitingForProcess() const;
-	void killCurrentProcess(); 
+	Q_INVOKABLE bool waitForProcess(ProcessX* p);
+	Q_INVOKABLE bool waitingForProcess() const;
+	Q_INVOKABLE void killCurrentProcess(); 
 
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 					
 	void preview(const QString &preamble, const PreviewSource& source, const QString& masterFile, QTextCodec *outputCodec=0);
 	void clearPreviewPreambleCache();
 
-	bool isCommandDirectlyDefined(const QString& id) const;
+	Q_INVOKABLE bool isCommandDirectlyDefined(const QString& id) const;
 	CommandInfo getCommandInfo(const QString& id) const;
 	QString editCommandList(const QString& list, const QString& excludeId = "");
 	CommandMapping getAllCommands();
@@ -178,9 +178,9 @@ signals:
 	void endRunningCommands(const QString& commandMain, bool latex, bool pdf);
 	
 private:
-    void initDefaultCommandNames();
+	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
-    CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
+	CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
 	QString getCommandLine(const QString& id, bool* user);
 	friend class ProcessX;
 	CommandMapping commands;
@@ -200,7 +200,7 @@ private:
 	void removePreviewFiles(QString elemName);
 #ifdef Q_WS_WIN
 	unsigned long int pidInst;
-	bool executeDDE(QString ddePseudoURL);
+	Q_INVOKABLE bool executeDDE(QString ddePseudoURL);
 #endif
 };
 

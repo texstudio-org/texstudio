@@ -79,13 +79,16 @@ public slots:
 	void registerAsBackgroundScript(const QString& name = "");
 	QWidget* createUI(const QString& path, QWidget* parent = 0);
 	QWidget* createUIFromString(const QString& path, QWidget* parent = 0);
-private:
-	const QString& script;
-	BuildManager* buildManager;
-	Texmaker* app;
-	QByteArray scriptHash;
+
+public:
 	bool needReadPrivileges(const QString& fn, const QString& param);
 	bool needWritePrivileges(const QString& fn, const QString& param);
+
+	BuildManager* buildManager;
+private:
+	const QString& script;
+	Texmaker* app;
+	QByteArray scriptHash;
 	SubScriptObject subScriptObject;
 	SubScriptObject* getScript();
 	Texmaker* getApp();
