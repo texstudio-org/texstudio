@@ -160,10 +160,12 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				placeHolders.last().append(tempPlaceholder);
 			//	foundDescription = true;
 				break;
-			case 'n':
+			case 'n': case '\n':
+				if (currentChar.toAscii() == '\n') { curLine += "%"; word += "%";}
 				lines.append(curLine);
 				placeHolders.append(QList<CodeSnippetPlaceHolder>());
 				curLine.clear();
+				firstLine = false;
 				//curLine+="\n";
 				break;	
 			default: // escape was not an escape character ...
@@ -367,6 +369,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 		for (int l=0;l< lines.count();l++)
 			usePlaceholders|=placeHolders[l].size();
 	}
+	
 	int autoSelectPlaceholder = -1;
 	if (usePlaceholders) {
 		if (editor->currentPlaceHolder()!=-1 && 
