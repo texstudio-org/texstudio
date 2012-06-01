@@ -46,8 +46,8 @@ public:
 	
 	QEditor * getEditor() const { return editor; }
 	LatexDocument* getDocument() const { return document; } 
-	Q_PROPERTY(QEditor* editor READ getEditor)
-	Q_PROPERTY(LatexDocument* document READ getDocument)
+	Q_PROPERTY(QEditor* editor READ getEditor);
+	Q_PROPERTY(LatexDocument* document READ getDocument);     //<- semicolon necessary due to qt bug 22992
 	
 	
 	//  FindWidget *findwidget;
