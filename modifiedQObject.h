@@ -26,12 +26,15 @@
 
 #ifdef MY_WINDOWS
 #define Q_ASSERT(cond) ((!(cond)) ? txs_assert(#cond,__FILE__,__LINE__) : qt_noop())
+#define Q_ASSERT_X(cond, where, what) ((!(cond)) ? txs_assert(where, what, __FILE__,__LINE__) : qt_noop())
 #undef MY_WINDOWS
 #else
 #define qt_assert txs_assert
+#define qt_assert_x txs_assert_x
 #endif
 
 void txs_assert(const char *assertion, const char *file, int line);
+void txs_assert_x(const char *where, const char *assertion, const char *file, int line);
 #endif
 
 #include <QObject>

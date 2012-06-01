@@ -77,13 +77,13 @@ struct SimulatedCPU {
 #endif
 
 //===========================STACK TRACE PRINTING=========================
-void print_message(const char* title, const char *assertion, const char *file, int line, const char* end){
+void print_message(const char* title, const char *where, const char *assertion, const char *file, int line, const char* end){
 #ifdef Q_WS_WIN
-	qDebug("%s %s in %s: %i\r\n%s", title, assertion, file, line, end);
+	qDebug("%s %s at %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
 #else
-	fprintf(stderr, "%s %s in %s: %i\r\n%s", title, assertion, file, line, end);
+	fprintf(stderr, "%s %s at %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
 #endif
-	qDebug("%s %s in %s: %i\r\n%s", title, assertion, file, line, end);
+	qDebug("%s %s at  %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
 }
 
 #ifdef unix
@@ -92,8 +92,8 @@ void print_message(const char* title, const char *assertion, const char *file, i
 #include <sys/wait.h>
 #include <unistd.h>
 
-void print_backtrace(const char* title, const char * assertion, const char * file, int line){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
-	print_message(title, assertion, file, line,"");
+void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
+	print_message(title, where, assertion, file, line,"");
 	char pid_buf[30];
 	sprintf(pid_buf, "%d", getpid());
 	char name_buf[512];
@@ -366,8 +366,8 @@ geteip:
 	return result.join("\r\n");
 }
 
-void print_backtrace(const char* title, const char *assertion, const char *file, int line){
-	print_message(title, assertion, file, line,"Prepare to print backtrace:\n");
+void print_backtrace(const char* title, const char *where, const char *assertion, const char *file, int line){
+	print_message(title, where, assertion, file, line,"Prepare to print backtrace:\n");
 	QString bt = getBacktrace();
 	static int count = 1;
 	QFile tf(QDir::tempPath() + QString("/texstudio_backtrace%1.txt").arg(count++));
@@ -383,7 +383,7 @@ void print_backtrace(const char* title, const char *assertion, const char *file,
 
 
 #else //unknown os/mac
-void print_backtrace(const char* title, const char * assertion, const char * file, int line){
+void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){
 	fprintf(stderr, "Unknown OS");
 }
 
@@ -396,9 +396,12 @@ void undoMainThreadRecoveringFromOutside(){}
 #endif
 
 void print_backtrace(const QString& message){
-	print_backtrace(message.toLocal8Bit().data(),"","",0);
+	print_backtrace(message.toLocal8Bit().data(),"","","",0);
 }
 
+void print_backtrace(const char* message){
+	print_backtrace(message,"","","",0);
+}
 
 
 
@@ -509,7 +512,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 		if (ptrdistance(addr, minstack) < 1024) type = SIGMYSTACKSEGV;
 	}
 	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE || !ccontext) {
-		print_backtrace(signalIdToName(type),"","",0); 
+		print_backtrace(signalIdToName(type));
 		if (!ccontext) return;
 	}
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
@@ -807,15 +810,20 @@ void undoMainThreadRecoveringFromOutside(){
 
 #undef qt_assert
 Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line);
+Q_CORE_EXPORT void qt_assert_x(const char *where, const char *what, const char *file, int line);
 
 QString lastAssert;
 
 void txs_assert(const char *assertion, const char *file, int line){
-	print_message("Assertion failure: ", assertion, file, line, "Prepare to print backtrace:\r\n");
-	print_backtrace("Assertion failure (repeated): ", assertion, file, line);
+	txs_assert_x("something",assertion,file,line);
+}
+
+void txs_assert_x(const char *where, const char *assertion, const char *file, int line){
+	print_message("Assertion failure: ", where, assertion,  file, line, "Prepare to print backtrace:\r\n");
+	print_backtrace("Assertion failure (repeated): ", where, assertion, file, line);
 
 	lastErrorWasAssert = 1;
-	lastAssert = QString("Assert failure: %1 in %2:%3").arg(assertion).arg(file).arg(line);
+	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
 	recover();
 	//won't be called:
 	qt_assert(assertion, file, line);
