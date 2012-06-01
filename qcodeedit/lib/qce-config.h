@@ -21,6 +21,8 @@
 	\brief Utility file for shared library creation
 */
 
+#include "modifiedQObject.h"
+
 #include <qglobal.h>
 
 /*!
