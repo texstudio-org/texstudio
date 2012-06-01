@@ -80,9 +80,9 @@ public:
 	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
 	
-	Q_PROPERTY(QString fileName READ getFileName)
-	Q_PROPERTY(QFileInfo fileInfo READ getFileInfo)
-	Q_PROPERTY(LatexEditorView* editorView READ getEditorView)
+	Q_PROPERTY(QString fileName READ getFileName);
+	Q_PROPERTY(QFileInfo fileInfo READ getFileInfo);
+	Q_PROPERTY(LatexEditorView* editorView READ getEditorView);
 	
 	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
@@ -285,9 +285,9 @@ public:
 	Q_INVOKABLE LatexDocument* getMasterDocument() const;
 	Q_INVOKABLE QList<LatexDocument*> getDocuments() const;
 	
-	Q_PROPERTY(LatexDocument* currentDocument READ getCurrentDocument)
-	Q_PROPERTY(LatexDocument* masterDocument READ getMasterDocument)
-	Q_PROPERTY(QList<LatexDocument*> documents READ getDocuments)
+	Q_PROPERTY(LatexDocument* currentDocument READ getCurrentDocument);
+	Q_PROPERTY(LatexDocument* masterDocument READ getMasterDocument);
+	Q_PROPERTY(QList<LatexDocument*> documents READ getDocuments);  //<- semicolon necessary due to qt bug 22992
 	
 	Q_INVOKABLE LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
 	
