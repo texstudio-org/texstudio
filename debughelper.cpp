@@ -686,8 +686,9 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 	lastErrorWasAssert = 0;
 	lastErrorWasLoop = 0;
               
-  if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE)
-    print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode),"","",0);
+  if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE){
+      print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode));
+  }
 
 
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
