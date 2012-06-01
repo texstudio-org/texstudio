@@ -2607,6 +2607,11 @@ void QEditor::paintEvent(QPaintEvent *e)
 			ctx.selections << s;
 		}
 	}
+	
+	for (int i=0;i<ctx.selections.size();i++) {
+		if (ctx.selections[i].start < 0) ctx.selections[i].start = 0;
+		if (ctx.selections[i].end < 0) ctx.selections[i].end = 0;
+	}
 
 	if ( m_dragAndDrop.isValid() )
 	{
