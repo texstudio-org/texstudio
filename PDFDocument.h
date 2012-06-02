@@ -123,24 +123,24 @@ public:
 	void restoreState();
 	void setResolution(int res);
 	void resetMagnifier();
-	int normalizedPageIndex(int pageIndex);
-	void goToPageDirect(int pageIndex, bool sync);
-	void setHighlightPath(const int pageIndex, const QPainterPath& path);
-	int getHighlightPage() const;
-	void goToDestination(const QString& destName);
-	void goToPageRelativePosition(int page, float xinpage, float yinpage);
-	int getPageIndex();
-	void reloadPage(bool sync = true);
+	Q_INVOKABLE int normalizedPageIndex(int pageIndex);
+	Q_INVOKABLE void goToPageDirect(int pageIndex, bool sync);
+	Q_INVOKABLE void setHighlightPath(const int pageIndex, const QPainterPath& path);
+	Q_INVOKABLE int getHighlightPage() const;
+	Q_INVOKABLE void goToDestination(const QString& destName);
+	Q_INVOKABLE void goToPageRelativePosition(int page, float xinpage, float yinpage);
+	Q_INVOKABLE int getPageIndex();
+	Q_INVOKABLE void reloadPage(bool sync = true);
 	void updateStatusBar();
 	void setGridSize(int gx, int gy, bool setAsDefault=false);
-	int visiblePages() const;
-	int pseudoNumPages() const;
-	int realNumPages() const;
-	int pageStep();
-	int gridCols() const;
-	int gridRowHeight() const;
-	PDFDocument * getPDFDocument();
-	int getPageOffset() const;
+	Q_INVOKABLE int visiblePages() const;
+	Q_INVOKABLE int pseudoNumPages() const;
+	Q_INVOKABLE int realNumPages() const;
+	Q_INVOKABLE int pageStep();
+	Q_INVOKABLE int gridCols() const;
+	Q_INVOKABLE int gridRowHeight() const;
+	Q_INVOKABLE PDFDocument * getPDFDocument();
+	Q_INVOKABLE int getPageOffset() const;
 	double totalScaleFactor() const;
 
 	int currentPageHistoryIndex() const;
@@ -156,11 +156,11 @@ public:
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
 
-	void zoom(qreal scale);
+	Q_INVOKABLE void zoom(qreal scale);
 
 	virtual void wheelEvent(QWheelEvent *event);
 
-private slots:
+protected slots: //not private, so scripts have access
 	void goFirst();
 	void goPrev();
 	void goNext();
@@ -322,16 +322,16 @@ public:
 		return docList;
 	}
 
-	QString fileName() const { return curFile; }
-	QFileInfo getMasterFile() const { return masterFile; }
+	Q_INVOKABLE QString fileName() const { return curFile; }
+	Q_INVOKABLE QFileInfo getMasterFile() const { return masterFile; }
 
-	void zoomToRight(QWidget *otherWindow);
+	Q_INVOKABLE void zoomToRight(QWidget *otherWindow);
 	void showScale(qreal scale);
-	void showPage(int page);
-	void setResolution(int res);
+	Q_INVOKABLE void showPage(int page);
+	Q_INVOKABLE void setResolution(int res);
 	void resetMagnifier();
-	void goToDestination(const QString& destName);
-	void goToPage(const int page);
+	Q_INVOKABLE void goToDestination(const QString& destName);
+	Q_INVOKABLE void goToPage(const int page);
 	bool hasSyncData()
 	{
 		return scanner != NULL;
@@ -342,7 +342,7 @@ public:
 		return document;
 	}
 	
-	PDFWidget *widget(){ return pdfWidget; }
+	Q_INVOKABLE PDFWidget *widget(){ return pdfWidget; }
 	const PDFWidget *widget() const { return pdfWidget; }
 
 	bool followCursor() const;
