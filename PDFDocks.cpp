@@ -375,7 +375,7 @@ void PDFFontsDock::documentClosed()
 
 PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), document(doc){
 	// do it completely programatic
-	setObjectName("Search");
+	setObjectName("search");
 	setWindowTitle(tr("Search"));
 	//this->resize(801, 31);
 	QWidget* tempWidget = new QWidget(this);
@@ -823,9 +823,9 @@ struct renderInfo{
 PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	: PDFDock(doc), toGenerate(0)
 {
-	setObjectName("outline");
+	setObjectName("overview");
 	setWindowTitle(getTitle());
-    list = new PDFDockListView(this);
+	list = new PDFDockListView(this);
 	list->setViewMode(QListView::IconMode);
 	list->setIconSize(QSize(128, 128));
 	list->setMovement(QListView::Static);
@@ -925,10 +925,14 @@ void PDFClockDock::restart(){
 
 void PDFClockDock::setInterval(){
 	bool ok;
-	int inter = QInputDialog::getInt(0, "TeXstudio", "New clock interval (in minutes)", 60, 1, 9999, 5, &ok);
+	int interval = QInputDialog::getInt(0, "TeXstudio", tr("New clock interval (in minutes)"), 60, 1, 9999, 5, &ok);
 	if (!ok) return;
+	setInterval(interval);
+}
+
+void PDFClockDock::setInterval(int interval){
 	start = QDateTime::currentDateTime();
-	end = start.addSecs(inter * 60);
+	end = start.addSecs(interval * 60);
 	update();
 }
 

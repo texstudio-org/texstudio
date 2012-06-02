@@ -86,7 +86,6 @@ protected:
 protected slots:
 	virtual void changeLanguage();
 	
-private slots:
 	void followTocSelection();
 
 private:
@@ -310,10 +309,11 @@ public:
 	PDFClockDock(PDFDocument *parent = NULL);
 	virtual ~PDFClockDock();
 
-private slots:
+protected slots:
 	void onTimer();
 	void restart();
 	void setInterval();
+	void setInterval(int interval);
 protected:
 	//virtual void pageChanged(int page);
 	virtual void fillInfo();
