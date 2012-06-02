@@ -46,6 +46,7 @@ QLineChangePanel::QLineChangePanel(QWidget *p)
  : QPanel(p)
 {
 	setFixedWidth(4);
+	setObjectName("lineChangePanel");
 }
 
 /*!

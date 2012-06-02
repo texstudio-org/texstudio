@@ -70,6 +70,8 @@ QStringList findHistory, replaceHistory;
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	: QPanel(p),m_search(0),m_lastDirection(false),useLineForSearch(false),searchOnlyInSelection(false)
 {
+	setObjectName("searchPanel");
+	
 	ConfigManagerInterface* conf = ConfigManagerInterface::getInstance();
 	//setupUi(this);
 	// do it completely programatic
