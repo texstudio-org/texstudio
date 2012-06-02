@@ -485,7 +485,7 @@ void Texmaker::setupDockWidgets(){
 		connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), SLOT(endRunningCommand(QString,bool,bool)));
 		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(ViewLogOrReRun(LatexCompileResult*)));
 		connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo)), SLOT(runInternalCommand(QString,QFileInfo)));
-		connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*)), SLOT(commandLineRequested(QString,QString*)));
+		connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequested(QString,QString*,bool*)));
 		
 		
 		addAction(outputView->toggleViewAction());
@@ -3972,9 +3972,9 @@ void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfil
 	else txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
-void Texmaker::commandLineRequested(const QString& cmdId, QString* result){
+void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool *){
 	LatexDocument* master = documents.getMasterDocumentForDoc();
-	REQUIRE(master);
+	if (!master) return; 
 	QString magic = master->getMagicComment("TXS-program:"+cmdId);
 	if (!magic.isEmpty()) {
 		if (!checkProgramPermission(magic, cmdId, master)) return;

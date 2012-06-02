@@ -24,6 +24,7 @@ Q_DECLARE_METATYPE(QList<LatexDocument*>);
 Q_DECLARE_METATYPE(PDFDocument*);
 Q_DECLARE_METATYPE(PDFWidget*);
 Q_DECLARE_METATYPE(QList<PDFDocument*>);
+Q_DECLARE_METATYPE(QString*);
 
 BuildManager* scriptengine::buildManager = 0;
 Texmaker* scriptengine::app = 0;
@@ -89,6 +90,81 @@ QScriptValue qScriptValueFromQFileInfo(QScriptEngine *engine, QFileInfo const &f
 void qScriptValueToQFileInfo(const QScriptValue &value, QFileInfo &fi) {
 	fi = QFileInfo(value.toString());
 }
+
+
+
+ScriptObject* needWritePrivileges(QScriptEngine *engine, const QString& fn, const QString& args){
+	ScriptObject* sc = qobject_cast<ScriptObject*>(engine->globalObject().toQObject());
+	REQUIRE_RET(sc, 0);
+	if (!sc->needWritePrivileges(fn, args)) return 0;
+	return sc;
+}
+
+
+//map qstring* to scriptvalue object, for callbacks
+
+quintptr PointerObsfuscationKey = 0;
+
+quintptr pointerObsfuscationKey() { //hide true pointers from scripts
+	while (PointerObsfuscationKey == 0) {
+		for (unsigned int i=0;i<sizeof(PointerObsfuscationKey);i++) 
+			PointerObsfuscationKey = (PointerObsfuscationKey << 8) | (rand() & 0xFF);
+	}
+	return PointerObsfuscationKey;
+}
+
+
+QString* getStrPtr(QScriptValue value){
+	if (!value.property("dataStore").isValid()) 
+		return 0;
+	bool ok = false;
+	quintptr ptr = value.property("dataStore").toVariant().toULongLong(&ok);
+	if (!ok || ptr == 0 || ptr == pointerObsfuscationKey())
+		return 0;
+	return (QString*)(ptr ^ pointerObsfuscationKey());
+}
+
+QScriptValue getSetStrValue(QScriptContext *context, QScriptEngine *engine){
+	bool setterMode = context->argumentCount() == 1;
+	QString* s = getStrPtr(context->thisObject());
+	if (setterMode && !s) {
+		s = new QString();
+		context->thisObject().setProperty("dataStore", engine->newVariant((quintptr)(s) ^ pointerObsfuscationKey()));
+	}
+	if (!s) return engine->undefinedValue();
+	if (setterMode) {
+		if (!needWritePrivileges(engine, "string setting", context->argument(0).toString()))
+			return engine->undefinedValue();
+		*s = context->argument(0).toString();
+	}
+	return engine->newVariant(*s);
+}
+
+
+QScriptValue qScriptValueFromStringPtr(QScriptEngine *engine, QString * const &str)
+{	
+	QScriptValue wrapper = engine->newObject();
+	wrapper.setProperty("dataStore", engine->newVariant((quintptr)(str) ^ pointerObsfuscationKey()),QScriptValue::Undeletable | QScriptValue::ReadOnly);
+	wrapper.setProperty("value", engine->newFunction(&getSetStrValue), QScriptValue::Undeletable | QScriptValue::PropertyGetter | QScriptValue::PropertySetter);
+	//it should set wrapper.toString to wrapper.value, but I don't know how you can do that (setProperty didn't work)
+	return wrapper;
+}
+void qScriptValueToStringPtr(const QScriptValue &value, QString* &str) {
+	str = 0;
+	QString* s = getStrPtr(value);
+	if (!s) {
+		if (!value.isObject()) return;
+		s = new QString(); //memory leak. But better than null pointer
+		QScriptValue(value).setProperty("dataStore",value.engine()->newVariant((quintptr)(s) ^ pointerObsfuscationKey()),QScriptValue::Undeletable | QScriptValue::ReadOnly);
+		QScriptValue(value).setProperty("value", value.engine()->newFunction(&getSetStrValue), QScriptValue::Undeletable | QScriptValue::PropertyGetter | QScriptValue::PropertySetter);
+	}
+	str = s;
+}
+
+
+
+
+
 
 
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
@@ -174,12 +250,6 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 	return searchReplaceFunction(context, engine, true);
 }
 
-ScriptObject* needWritePrivileges(QScriptEngine *engine, const QString& fn, const QString& args){
-	ScriptObject* sc = qobject_cast<ScriptObject*>(engine->globalObject().toQObject());
-	REQUIRE_RET(sc, 0);
-	if (!sc->needWritePrivileges(fn, args)) return 0;
-	return sc;
-}
 
 QScriptValue buildManagerRunCommandWrapper(QScriptContext *context, QScriptEngine *engine){
 	ScriptObject* sc = needWritePrivileges(engine,"buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString());
@@ -215,6 +285,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	qScriptRegisterQObjectMetaType<QDocument*>(engine);
 	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
 	qScriptRegisterMetaType<QFileInfo>(engine, qScriptValueFromQFileInfo, qScriptValueToQFileInfo, QScriptValue());
+	qScriptRegisterMetaType<QString*>(engine, qScriptValueFromStringPtr, qScriptValueToStringPtr, QScriptValue());
 	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
 	qScriptRegisterQObjectMetaType<SubScriptObject*>(engine);
 	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
@@ -326,8 +397,10 @@ void scriptengine::run(){
 	engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
 	
 	QScriptValue bm = engine->newQObject(&app->buildManager);
-	bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));
+	bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));	
+	//bm.setProperty("commandLineRequested", engine->globalObject().property("buildManagerCommandLineRequestedWrapper"));
 	engine->globalObject().setProperty("buildManager", bm);
+	//connect(buildManager, SIGNAL(commandLineRequested(QString,QString*)), SLOT(buildManagerCommandLineRequestedWrapperSlot(const QString&, QString*)));
 	
 	engine->evaluate(m_script);
 	
@@ -348,6 +421,8 @@ void scriptengine::run(){
 		globalObject = 0;
 	}
 }
+
+
 
 
 UniversalInputDialogScript::UniversalInputDialogScript(QScriptEngine* engine, QWidget* parent):UniversalInputDialog(parent), engine(engine){

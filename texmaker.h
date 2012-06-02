@@ -355,7 +355,7 @@ protected slots:
 	void runBibliographyIfNecessary(const QFileInfo& cmd);
 private slots:	
 	void runInternalCommand(const QString& cmd, const QFileInfo& master);
-	void commandLineRequested(const QString& cmdId, QString* result);
+	void commandLineRequested(const QString& cmdId, QString* result, bool*);
 	void beginRunningCommand(const QString& commandMain, bool latex, bool pdf);
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
