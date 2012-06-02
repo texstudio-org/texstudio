@@ -6,7 +6,7 @@
 #include "buildmanager.h"
 #include "latexdocument.h"
 #include "texmaker.h"
-
+#include "PDFDocument.h"
 
 Q_DECLARE_METATYPE(QDocument*);
 Q_DECLARE_METATYPE(LatexDocument*);
@@ -17,10 +17,13 @@ Q_DECLARE_METATYPE(RunCommandFlags);
 Q_DECLARE_METATYPE(ProcessX*);
 Q_DECLARE_METATYPE(QAction*);
 Q_DECLARE_METATYPE(QMenu*);
+Q_DECLARE_METATYPE(QFileInfo);
 Q_DECLARE_METATYPE(SubScriptObject*);
 Q_DECLARE_METATYPE(QEditor*);
 Q_DECLARE_METATYPE(QList<LatexDocument*>);
-Q_DECLARE_METATYPE(QFileInfo);
+Q_DECLARE_METATYPE(PDFDocument*);
+Q_DECLARE_METATYPE(PDFWidget*);
+Q_DECLARE_METATYPE(QList<PDFDocument*>);
 
 BuildManager* scriptengine::buildManager = 0;
 Texmaker* scriptengine::app = 0;
@@ -42,31 +45,6 @@ template <typename Tp> int qScriptRegisterQObjectMetaType( QScriptEngine *engine
 
 //
 
-template <typename Tp> QScriptValue qScriptValueFromQList(QScriptEngine *engine, QList<Tp> const &list)
-{
-	QScriptValue result = engine->newArray(list.size());
-	for (int i=0;i<list.size();i++)
-		result.setProperty(i,  engine->newQObject(list[i])); //engine->newVariant(QVariant::fromValue<Tp>(list[i])));
-	return result;
-}
-
-template <typename Tp> void qScriptValueToQList(const QScriptValue &value, QList<Tp> &list) {
-	
-	list.clear();
-	for (QScriptValueIterator it(value); it.hasNext(); )
-	{
-		it.next();
-		list << it.value().toVariant().value<Tp>();
-	}		
-}
-
-template <typename Tp> int qScriptRegisterQListMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = 0)
-{
-	return qScriptRegisterMetaType<QList<Tp> >(engine, qScriptValueFromQList<Tp>, qScriptValueToQList<Tp>, prototype);
-}
-
-
-
 QScriptValue qScriptValueFromDocumentCursor(QScriptEngine *engine, QDocumentCursor const &cursor)
 {
 	return engine->newQObject(new QDocumentCursor(cursor), QScriptEngine::ScriptOwnership);
@@ -86,6 +64,15 @@ void qScriptValueToKeySequence(const QScriptValue &value, QKeySequence &ks) {
  else ks = QKeySequence();
 }*/
 
+
+template <typename Tp> QScriptValue qScriptValueFromQList(QScriptEngine *engine, QList<Tp> const &list)
+{
+	QScriptValue result = engine->newArray(list.size());
+	for (int i=0;i<list.size();i++)
+		result.setProperty(i,  engine->newQObject(list[i])); //engine->newVariant(QVariant::fromValue<Tp>(list[i])));
+	return result;
+}
+
 QDocumentCursor cursorFromValue(const QScriptValue& value){
 	QDocumentCursor * c = qobject_cast<QDocumentCursor*> (value.toQObject());
 	if (!c) {
@@ -93,6 +80,14 @@ QDocumentCursor cursorFromValue(const QScriptValue& value){
 		return QDocumentCursor();
 	}
 	return *c;
+}
+
+QScriptValue qScriptValueFromQFileInfo(QScriptEngine *engine, QFileInfo const &fi)
+{
+	return engine->newVariant(fi.absoluteFilePath());
+}
+void qScriptValueToQFileInfo(const QScriptValue &value, QFileInfo &fi) {
+	fi = QFileInfo(value.toString());
 }
 
 
@@ -219,6 +214,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	engine=new QScriptEngine(this);
 	qScriptRegisterQObjectMetaType<QDocument*>(engine);
 	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
+	qScriptRegisterMetaType<QFileInfo>(engine, qScriptValueFromQFileInfo, qScriptValueToQFileInfo, QScriptValue());
 	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
 	qScriptRegisterQObjectMetaType<SubScriptObject*>(engine);
 	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
@@ -227,6 +223,9 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	qScriptRegisterQObjectMetaType<LatexEditorView*>(engine);
 	qScriptRegisterQObjectMetaType<LatexDocument*>(engine);
 	qScriptRegisterQObjectMetaType<LatexDocuments*>(engine);
+
+	qScriptRegisterQObjectMetaType<PDFDocument*>(engine);
+	qScriptRegisterQObjectMetaType<PDFWidget*>(engine);
 	
 	QScriptValue extendedQEditor = engine->newObject();
 	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
@@ -235,7 +234,8 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	extendedQEditor.setProperty("saveCopy", engine->newFunction(&editorSaveCopyWrapper), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	qScriptRegisterQObjectMetaType<QEditor*>(engine, extendedQEditor);
 	
-	qScriptRegisterQListMetaType<LatexDocument*>(engine); //todo change to qScriptRegisterSequenceMetaType
+	qScriptRegisterSequenceMetaType<QList<LatexDocument*> >(engine);
+	qScriptRegisterSequenceMetaType<QList<PDFDocument*> >(engine);
 	
 	qRegisterMetaType<RunCommandFlags>();
 	
@@ -321,7 +321,9 @@ void scriptengine::run(){
 	FileChooser flchooser(0,scriptengine::tr("File Chooser"));
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 	
-	engine->globalObject().setProperty("documents", engine->newQObject(&app->documents));
+	engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
+	engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
+	engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
 	
 	QScriptValue bm = engine->newQObject(&app->buildManager);
 	bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));
