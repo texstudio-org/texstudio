@@ -91,19 +91,19 @@
     </message>
     <message>
         <source>Insert in file:</source>
-        <translation>Insérer dans le fichier :</translation>
+        <translation type="obsolete">Insérer dans le fichier :</translation>
     </message>
     <message>
         <source>BibTeX type</source>
-        <translation>Entrée BibTeX</translation>
+        <translation type="obsolete">Entrée BibTeX</translation>
     </message>
     <message>
         <source>BibTeX Fields</source>
-        <translation>Champs BibTeX</translation>
+        <translation type="obsolete">Champs BibTeX</translation>
     </message>
     <message>
         <source>Field</source>
-        <translation>Champ</translation>
+        <translation>Attribut</translation>
     </message>
     <message>
         <source>Value</source>
@@ -111,7 +111,7 @@
     </message>
     <message>
         <source>insert empty, optional fields</source>
-        <translation>Insérer les champs optionnels même vides</translation>
+        <translation type="obsolete">Insérer les champs optionnels même vides</translation>
     </message>
     <message>
         <source>&lt;new file&gt;</source>
@@ -119,55 +119,143 @@
     </message>
     <message>
         <source>Article in &amp;Journal</source>
-        <translation>Article de &amp;journal</translation>
+        <translation>Article de &amp;journal - @article</translation>
     </message>
     <message>
         <source>Article in Conference &amp;Proceedings</source>
-        <translation>Article et acte de &amp;conférence</translation>
+        <translation>Article d&apos;actes de &amp;conférence - @inproceedings</translation>
     </message>
     <message>
         <source>Article in a &amp;Collection</source>
-        <translation>Article dans une c&amp;ollection</translation>
+        <translation>Article dans une c&amp;ollection - @incollection</translation>
     </message>
     <message>
         <source>Chapter or &amp;Pages in a Book</source>
-        <translation>Chapitre ou extrait de &amp;livre</translation>
+        <translation>Chapitre ou extrait de &amp;livre - @inbook</translation>
     </message>
     <message>
         <source>Conference Pr&amp;oceedings</source>
-        <translation>Actes de c&amp;onférence</translation>
+        <translation>Actes de c&amp;onférence - @proceedings</translation>
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation>&amp;Livre</translation>
+        <translation>&amp;Livre - @book</translation>
     </message>
     <message>
         <source>Book&amp;let</source>
-        <translation></translation>
+        <translation>Livre sans éditeur ni sponsor - @booklet</translation>
     </message>
     <message>
         <source>PhD. &amp;Thesis</source>
-        <translation>Thèse de &amp;doctorat</translation>
+        <translation>Thèse de &amp;doctorat - @phdthesis</translation>
     </message>
     <message>
         <source>&amp;Master&apos;s Thesis</source>
-        <translation>Thèse de &amp;master</translation>
+        <translation>Mémoire de &amp;master - @masterthesis</translation>
     </message>
     <message>
         <source>Technical &amp;Report</source>
-        <translation>&amp;Rapport technique</translation>
+        <translation>&amp;Rapport technique - @techreport</translation>
     </message>
     <message>
         <source>Technical Ma&amp;nual</source>
-        <translation>Docume&amp;ntation technique</translation>
+        <translation>Docume&amp;ntation technique - @manual</translation>
     </message>
     <message>
         <source>&amp;Unpublished</source>
-        <translation>Non p&amp;ublié</translation>
+        <translation>Non p&amp;ublié - @unpublished</translation>
     </message>
     <message>
         <source>Miscellan&amp;eous</source>
-        <translation>Div&amp;ers</translation>
+        <translation>Div&amp;ers - @misc</translation>
+    </message>
+    <message>
+        <source>Insert in File:</source>
+        <translation>Insérer dans le fichier :</translation>
+    </message>
+    <message>
+        <source>Entry Type:</source>
+        <translation>Type de référence :</translation>
+    </message>
+    <message>
+        <source>Fields:</source>
+        <translation>Attribut :</translation>
+    </message>
+    <message>
+        <source>Insert Empty, Optional Fields</source>
+        <translation>Insérer les attributs optionnels même vides</translation>
+    </message>
+    <message>
+        <source>&amp;Multi-volume Book</source>
+        <translation>Livre &amp;multi-volumes - @mvbook</translation>
+    </message>
+    <message>
+        <source>Part of a Book With Its Own Title</source>
+        <translation>Partie d&apos;un livre avec titre propre - @inbook</translation>
+    </message>
+    <message>
+        <source>Book in Book</source>
+        <translation>Livre dans un livre - @bookinbook</translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Book</source>
+        <translation>Partie supplémentaire d&apos;un livre - @suppbook</translation>
+    </message>
+    <message>
+        <source>Single-volume Collection</source>
+        <translation>Volume unique d&apos;une collection - @collection</translation>
+    </message>
+    <message>
+        <source>Multi-volume Collection</source>
+        <translation>Multi-volume d&apos;une collection - @mvcollection</translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Collection</source>
+        <translation>Partie supplémentaire d&apos;une collection - @suppcollection</translation>
+    </message>
+    <message>
+        <source>Online Resource</source>
+        <translation>Ressource en ligne - @online</translation>
+    </message>
+    <message>
+        <source>Patent</source>
+        <translation>Brevet - @patent</translation>
+    </message>
+    <message>
+        <source>Complete Issue of a Periodical</source>
+        <translation>Édition complète d’un périodique - @periodical</translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Periodical</source>
+        <translation>Partie supplémentaire d&apos;un périodique - @suppperiodical</translation>
+    </message>
+    <message>
+        <source>Multi-volume Proceedings Entry</source>
+        <translation>Entrée multi-volume  des actes d&apos;une &amp;conférence</translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation>Ouvrage de &amp;référence - @reference</translation>
+    </message>
+    <message>
+        <source>Multi-volume Reference Entry</source>
+        <translation>Entrée multi-volume d&apos;un ouvrage de référence - @mvreference</translation>
+    </message>
+    <message>
+        <source>Article in a Reference</source>
+        <translation>Article dans un ouvrage de référence - @inreference</translation>
+    </message>
+    <message>
+        <source>&amp;Report</source>
+        <translation>&amp;Rapport, preprint - @report</translation>
+    </message>
+    <message>
+        <source>&amp;Thesis</source>
+        <translation>&amp;Thèse - @thesis</translation>
+    </message>
+    <message>
+        <source>New BibLaTeX Entry</source>
+        <translation>Nouvelle référence bibliographique</translation>
     </message>
 </context>
 <context>
@@ -420,6 +508,10 @@
         <source>Recompile Bibliography</source>
         <translation>Recompilation de la bibliographie</translation>
     </message>
+    <message>
+        <source>Default Index Tool</source>
+        <translation>Outil d&apos;index par défaut</translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -441,7 +533,7 @@
     </message>
     <message>
         <source>Delete the output files generated by LaTeX:</source>
-        <translation>Supprimer les fichiers produits par LaTeX :</translation>
+        <translation type="obsolete">Supprimer les fichiers produits par LaTeX :</translation>
     </message>
     <message>
         <source>Project (Master file folder and all subfolders)</source>
@@ -454,6 +546,10 @@
     <message>
         <source>Open Files</source>
         <translation>Fichiers ouverts</translation>
+    </message>
+    <message>
+        <source>Delete the auxiliary files generated by LaTeX:</source>
+        <translation>Supprimer les fichiers auxiliaires produits par LaTeX :</translation>
     </message>
 </context>
 <context>
@@ -681,7 +777,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Toolbar Customization</source>
-        <translation>personnalisation de la barre d&apos;outils</translation>
+        <translation>Personnalisation de la barre d&apos;outils</translation>
     </message>
     <message>
         <source>Editor</source>
@@ -693,11 +789,11 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Always show preview in preview panel</source>
-        <translation>Toujours afficher la prévisualisation dans le panneau de prévisualisation</translation>
+        <translation>Toujours afficher l&apos;aperçu dans le panneau d&apos;aperçu</translation>
     </message>
     <message>
         <source>Always show preview as tool tip</source>
-        <translation>Toujours afficher la prévisualisation en info-bulle</translation>
+        <translation>Toujours afficher l&apos;aperçu en info-bulle</translation>
     </message>
     <message>
         <source>Always show both</source>
@@ -705,15 +801,15 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Preview with dvipng</source>
-        <translation>Prévisualisation avec dvipng</translation>
+        <translation>Aperçu avec dvipng</translation>
     </message>
     <message>
         <source>Preview with dvipng --follow (parallel)</source>
-        <translation>Prévisualisation avec « dvipng --follow » (en parallèle)</translation>
+        <translation>Aperçu avec « dvipng --follow » (en parallèle)</translation>
     </message>
     <message>
         <source>Preview with dvips/ghostscript</source>
-        <translation>Prévisualisation avec dvips/ghostscript</translation>
+        <translation>Aperçu avec dvips/ghostscript</translation>
     </message>
     <message>
         <source>Close search and replace panel together</source>
@@ -889,7 +985,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Commands</source>
-        <translation>Commandes</translation>
+        <translation>Compilations</translation>
     </message>
     <message>
         <source>Quick Build</source>
@@ -1070,7 +1166,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Preview</source>
-        <translation>Prévisualisation</translation>
+        <translation>Aperçu</translation>
     </message>
     <message>
         <source>Search Panel</source>
@@ -1111,7 +1207,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation>Complétion automatique pour les commandes LaTeX</translation>
+        <translation>Complétion automatique pour les macros LaTeX</translation>
     </message>
     <message>
         <source>Border</source>
@@ -1143,7 +1239,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Previously previewed text</source>
-        <translation>Texte pré-visualisé précédent</translation>
+        <translation>Texte prévisualisé précédent</translation>
     </message>
     <message>
         <source>Auto preview delay:</source>
@@ -1183,7 +1279,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Additional Commands</source>
-        <translation>Commandes additionnelles</translation>
+        <translation>Macros additionnelles</translation>
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
@@ -1247,7 +1343,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
-        <translation>Afficher la prévisualisation en info-bulle sur les formules dans l&apos;éditeur</translation>
+        <translation>Afficher l&apos;aperçu en info-bulle pour les formules dans l&apos;éditeur</translation>
     </message>
     <message>
         <source>You come to a magic island where you meet three strange and wise friends. 
@@ -1581,7 +1677,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Commands with repeated compilation: </source>
-        <translation>Commandes avec compilations répétées :</translation>
+        <translation>Commandes avec compilations répétées : </translation>
     </message>
     <message>
         <source>Line Spacing</source>
@@ -1661,10 +1757,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Meta Commands</source>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
         <translation>Méta-compilations</translation>
     </message>
     <message>
         <source>User Commands</source>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
         <translation>Compilations utilisateur</translation>
     </message>
     <message>
@@ -1729,7 +1827,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation>Guillemets français : «   »</translation>
+        <translation>Guillemets français : &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
@@ -1741,7 +1839,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
-        <translation>Inverser les guillemets français : »   «</translation>
+        <translation>Inverser les guillemets français : &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <source>Inline Checking:</source>
@@ -1893,7 +1991,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Segment Preview</source>
-        <translation>Prévisualisation de la portion</translation>
+        <translation>Aperçu de la portion</translation>
     </message>
     <message>
         <source>Display Mode:</source>
@@ -1901,19 +1999,19 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Show preview as tooltip if panel is hidden</source>
-        <translation>Afficher la prévisualisation en info-bulle si le panneau est caché</translation>
+        <translation>Afficher l&apos;aperçu en info-bulle si le panneau est caché</translation>
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation>Prévisualisation automatique :</translation>
+        <translation>Aperçu automatique :</translation>
     </message>
     <message>
         <source>Auto Preview Delay:</source>
-        <translation>Délai de prévisualisation automatique :</translation>
+        <translation>Délai d&apos;aperçu automatique :</translation>
     </message>
     <message>
         <source>Full Page PDF Preview</source>
-        <translation>Prévisualisation du PDF en pleine page</translation>
+        <translation>Aperçu du PDF en pleine page</translation>
     </message>
     <message>
         <source>Scale Option:</source>
@@ -2441,7 +2539,7 @@ to set the key anyway?</source>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation>Vous avez activé le remplacement automatique des guillemets. Cependant, des balises utilisateur avec des caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
+        <translation type="obsolete">Vous avez activé le remplacement automatique des guillemets. Cependant, des balises utilisateur avec des caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
 Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
@@ -2792,6 +2890,12 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
         <source>Two quads - \qquad</source>
         <translation>Deux cadratins - \qquad</translation>
     </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation>Vous avez activé le remplacement automatique des guillemets. Cependant, des balises utilisateur avec des caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
+Voulez-vous supprimer ces balises utilisateur ?</translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2943,7 +3047,7 @@ Continuer tout de même ?</translation>
     <name>GotoDialog</name>
     <message>
         <source>Goto line ...</source>
-        <translation>Aller à la ligne...</translation>
+        <translation>Atteindre la ligne...</translation>
     </message>
     <message>
         <source>Select the line you want to go to :</source>
@@ -2962,7 +3066,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>&amp;Go to line :</source>
-        <translation>Aller à la li&amp;gne :</translation>
+        <translation>Atteindre la li&amp;gne :</translation>
     </message>
     <message>
         <source>G&amp;o</source>
@@ -3197,7 +3301,7 @@ la commande \caption n&apos;est pas valide.</translation>
     <name>LatexCompleter</name>
     <message>
         <source> (Usertag)</source>
-        <translation>(Commande utilisateur)</translation>
+        <translation> (Macro utilisateur)</translation>
     </message>
     <message>
         <source>label missing!</source>
@@ -3215,11 +3319,11 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>all</source>
         <translatorcomment>ou « tout » ?</translatorcomment>
-        <translation>tous</translation>
+        <translation>Toutes</translation>
     </message>
     <message>
         <source>most used</source>
-        <translation>les plus utilisés</translation>
+        <translation>Les plus utilisées</translation>
     </message>
     <message>
         <source>press shift+space to change view</source>
@@ -3227,7 +3331,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>typical</source>
-        <translation>typique</translation>
+        <translation>Typiques</translation>
     </message>
 </context>
 <context>
@@ -3369,7 +3473,7 @@ la commande \caption n&apos;est pas valide.</translation>
     <name>LatexLogModel</name>
     <message>
         <source>Click to jump to the line</source>
-        <translation>Cliquer pour aller à la ligne correspondante</translation>
+        <translation>Cliquer pour atteindre la ligne correspondante</translation>
     </message>
     <message>
         <source>error</source>
@@ -3491,7 +3595,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation>Prévisualisation</translation>
+        <translation>Aperçu</translation>
     </message>
     <message>
         <source>Search Results</source>
@@ -3522,6 +3626,10 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>%1min</source>
         <translation>%1min</translation>
+    </message>
+    <message>
+        <source>New clock interval (in minutes)</source>
+        <translation>Nouvel intervalle de temps (en minutes)</translation>
     </message>
 </context>
 <context>
@@ -3769,7 +3877,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>&amp;Go to Page...</source>
-        <translation>&amp;Aller à la page...</translation>
+        <translation>&amp;Atteindre la page...</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
@@ -3797,11 +3905,11 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
-        <translation>&amp;Défaire</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
-        <translation>&amp;Refaire</translation>
+        <translation>&amp;Rétablir</translation>
     </message>
     <message>
         <source>C&amp;ut</source>
@@ -3866,7 +3974,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation>&amp;Édition</translation>
     </message>
     <message>
         <source>&amp;Find...</source>
@@ -4164,11 +4272,11 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Jump to Source</source>
-        <translation>Aller au fichier source</translation>
+        <translation>Atteindre le fichier source</translation>
     </message>
     <message>
         <source>Go to Page</source>
-        <translation>Aller à la page</translation>
+        <translation>Atteindre la page</translation>
     </message>
     <message>
         <source>Page number:</source>
@@ -4366,7 +4474,7 @@ Reprendre du début ?</translation>
     </message>
     <message>
         <source>&amp;Goto line...</source>
-        <translation>Aller li&amp;gne...</translation>
+        <translation>&amp;Atteindre la li&amp;gne...</translation>
     </message>
     <message>
         <source>Dynamic line wrapping</source>
@@ -4453,7 +4561,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation>&amp;Édition</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -4461,7 +4569,7 @@ Rafraîchir en rouvrant le fichier ?</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Éditer</translation>
+        <translation>Édition</translation>
     </message>
     <message>
         <source>Search</source>
@@ -5546,7 +5654,7 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation>Chercher le &amp;précédent</translation>
+        <translation>Chercher &amp;précédent</translation>
     </message>
     <message>
         <source>Replace and find next</source>
@@ -5554,7 +5662,7 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Replace and find previous</source>
-        <translation>Remplacer et chercher le précédent</translation>
+        <translation>Remplacer et chercher précédent</translation>
     </message>
     <message>
         <source>Find:</source>
@@ -5569,7 +5677,7 @@ Faites-vous confiance à ce script ?</translation>
     <name>SearchResultModel</name>
     <message>
         <source>Click to jump to the line</source>
-        <translation>Cliquer pour aller à la ligne</translation>
+        <translation>Cliquer pour atteindre la ligne</translation>
     </message>
     <message>
         <source>Results</source>
@@ -5975,19 +6083,19 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Pstricks Commands</source>
-        <translation>Commandes PSTricks</translation>
+        <translation>Macros PSTricks</translation>
     </message>
     <message>
         <source>MetaPost Commands</source>
-        <translation>Commandes Metapost</translation>
+        <translation>Macros Metapost</translation>
     </message>
     <message>
         <source>Tikz Commands</source>
-        <translation>Commandes TikZ</translation>
+        <translation>Macros TikZ</translation>
     </message>
     <message>
         <source>Asymptote Commands</source>
-        <translation>Commandes Asymptote</translation>
+        <translation>Macros Asymptote</translation>
     </message>
     <message>
         <source>Messages / Log File</source>
@@ -6023,7 +6131,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation>&amp;Édition</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -6051,7 +6159,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Go to</source>
-        <translation>Aller &amp;à</translation>
+        <translation>&amp;Atteindre</translation>
     </message>
     <message>
         <source>Line</source>
@@ -6103,7 +6211,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Goto Bookmark</source>
-        <translation>Aller au &amp;signet</translation>
+        <translation>Atteindre le &amp;signet</translation>
     </message>
     <message>
         <source>Bookmark %1</source>
@@ -6111,7 +6219,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Toggle Bookmark</source>
-        <translation>Cr&amp;éer/supprimer un signet</translation>
+        <translation>Cr&amp;éer/Supprimer un signet</translation>
     </message>
     <message>
         <source>unnamed bookmark</source>
@@ -6135,7 +6243,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Line Ending</source>
-        <translation>Fin de &amp;ligne</translation>
+        <translation>Type de fin de &amp;ligne</translation>
     </message>
     <message>
         <source>DOS/Windows (CR LF)</source>
@@ -6151,7 +6259,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Setup Encoding...</source>
-        <translation>Sélectionner le codage d&apos;entrée...</translation>
+        <translation>Codage des caractères...</translation>
     </message>
     <message>
         <source>Check Spelling...</source>
@@ -6299,11 +6407,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Erase &amp;Line</source>
-        <translation>Ef&amp;facer la ligne</translation>
+        <translation>Supprimer la ligne</translation>
     </message>
     <message>
         <source>Erase &amp;Word/Cmd/Env</source>
-        <translation>Effacer le (ou la) &amp;mot/commande/environnement</translation>
+        <translation>Effacer &amp;mot/commande/environnement</translation>
     </message>
     <message>
         <source>Co&amp;nvert to LaTeX</source>
@@ -6311,7 +6419,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Pre&amp;view Selection/Parantheses</source>
-        <translation>Pré&amp;visualiser la sélection/les parenthèses</translation>
+        <translation>Pré&amp;visualiser sélection/parenthèses</translation>
     </message>
     <message>
         <source>&amp;Uncomment</source>
@@ -6327,7 +6435,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Re&amp;name Environment</source>
-        <translation>Re&amp;nommer l&apos;environnement</translation>
+        <translation>Re&amp;nommer environnement</translation>
     </message>
     <message>
         <source>View PD&amp;F</source>
@@ -6347,7 +6455,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;MakeIndex</source>
-        <translation>&amp;Index</translation>
+        <translation>&amp;MakeIndex</translation>
     </message>
     <message>
         <source>&amp;Clear Markers</source>
@@ -6363,7 +6471,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Cle&amp;an</source>
-        <translation>Netto&amp;yer</translation>
+        <translation type="obsolete">Netto&amp;yer</translation>
     </message>
     <message>
         <source>C&amp;onvert to Html...</source>
@@ -6395,7 +6503,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>BibTeX &amp;insert dialog...</source>
-        <translation>Formula&amp;ire BibTeX...</translation>
+        <translation type="obsolete">Formula&amp;ire BibTeX...</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -6403,11 +6511,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>User &amp;Tags</source>
-        <translation>&amp;Commandes utilisateur</translation>
+        <translation>&amp;Macros utilisateur</translation>
     </message>
     <message>
         <source>Edit User &amp;Tags</source>
-        <translation>Éditer &amp;commandes utilisateur</translation>
+        <translation>Éditer les &amp;macros utilisateur</translation>
     </message>
     <message>
         <source>User &amp;Commands</source>
@@ -6435,7 +6543,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Collapse</source>
-        <translation>Plier</translation>
+        <translation>Réduire</translation>
     </message>
     <message>
         <source>Everything</source>
@@ -6451,7 +6559,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Expand</source>
-        <translation>Dérouler</translation>
+        <translation>Développer</translation>
     </message>
     <message>
         <source>Fullscreen Mode</source>
@@ -6463,7 +6571,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Load &amp;Profile...</source>
-        <translation>Charger le &amp;profil...</translation>
+        <translation>Charger un &amp;profil...</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
@@ -6471,7 +6579,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Load Profile</source>
-        <translation>Charger le profil</translation>
+        <translation>Charger un profil</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
@@ -6531,7 +6639,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation>Cliquer pour aller au signet</translation>
+        <translation>Cliquer pour atteindre le signet</translation>
     </message>
     <message>
         <source>untitled</source>
@@ -6892,7 +7000,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>C&amp;lear Inline Preview</source>
-        <translation>Purger la pré-visualisation en &amp;ligne</translation>
+        <translation>Purger l&apos;aperçu en &amp;ligne</translation>
     </message>
     <message>
         <source>check in whole directory ?</source>
@@ -6916,7 +7024,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
-        <translation>E&amp;nregistrer le profil...</translation>
+        <translation>E&amp;nregistrer le profil actif...</translation>
     </message>
     <message>
         <source>Could not start %1.</source>
@@ -6932,7 +7040,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Save Profile</source>
-        <translation>Enregistrer le profil</translation>
+        <translation>Enregistrer le profil actif</translation>
     </message>
     <message>
         <source>&amp;Searching</source>
@@ -6944,11 +7052,11 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Find &amp;Prev</source>
-        <translation>Chercher le &amp;précédent</translation>
+        <translation>Chercher &amp;précédent</translation>
     </message>
     <message>
         <source>&amp;Count</source>
-        <translation>&amp;Compter</translation>
+        <translation>Nombre d&apos;&amp;occurrences</translation>
     </message>
     <message>
         <source>Find &amp;Dialog...</source>
@@ -6956,11 +7064,11 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Replace Next</source>
-        <translation>Remplacer le suivant</translation>
+        <translation>Remplacer suivant</translation>
     </message>
     <message>
         <source>Replace Prev</source>
-        <translation>Remplacer le précédent</translation>
+        <translation>Remplacer précédent</translation>
     </message>
     <message>
         <source>Replace &amp;All</source>
@@ -6968,7 +7076,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>&amp;Go to</source>
-        <translation>&amp;Aller à</translation>
+        <translation>&amp;Atteindre</translation>
     </message>
     <message>
         <source>&amp;Select all matches...</source>
@@ -7010,11 +7118,11 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Jump to next difference</source>
-        <translation>Aller à la différence suivante</translation>
+        <translation>Atteindre la différence suivante</translation>
     </message>
     <message>
         <source>Jump to previous difference</source>
-        <translation>Aller à la différence précédente</translation>
+        <translation>Atteindre la différence précédente</translation>
     </message>
     <message>
         <source>Debug undo stack</source>
@@ -7242,7 +7350,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>Jump to match</source>
-        <translation>Aller au délimiteur apparié</translation>
+        <translation>Atteindre le délimiteur apparié</translation>
     </message>
     <message>
         <source>Align Columns</source>
@@ -7277,7 +7385,7 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>&amp;Quick</source>
-        <translation>&amp;Rapide</translation>
+        <translation>&amp;Compilation rapide</translation>
     </message>
     <message>
         <source>&amp;Compile</source>
@@ -7393,6 +7501,57 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <source>Highlighting</source>
         <translation>Surlignement</translation>
     </message>
+    <message>
+        <source>&amp;Commands</source>
+        <comment>menu</comment>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
+        <translation>&amp;Compilations</translation>
+    </message>
+    <message>
+        <source>
+included document in %1</source>
+        <translation>document inclus dans %1</translation>
+    </message>
+    <message>
+        <source>&amp;Index</source>
+        <translation>&amp;Index</translation>
+    </message>
+    <message>
+        <source>&amp;Latexmk</source>
+        <translation>&amp;Latexmk</translation>
+    </message>
+    <message>
+        <source>&amp;TexIndy</source>
+        <translation>&amp;Texindy</translation>
+    </message>
+    <message>
+        <source>Cle&amp;an...</source>
+        <translation type="obsolete">Netto&amp;yer</translation>
+    </message>
+    <message>
+        <source>Cle&amp;an Auxiliary Files...</source>
+        <translation>Supprimer les fichiers auxiliaires...</translation>
+    </message>
+    <message>
+        <source>&amp;Insert Bibliography Entry...</source>
+        <translation>&amp;Insérer une référence bibliographique...</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <translation>BibTeX</translation>
+    </message>
+    <message>
+        <source>BibLaTeX</source>
+        <translation>Biblatex</translation>
+    </message>
+    <message>
+        <source>Type: %1</source>
+        <translation>Type : %1</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -7471,11 +7630,11 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     </message>
     <message>
         <source>If this is enabled, \commands are counted.</source>
-        <translation>Cocher pour compter les \commandes .</translation>
+        <translation>Cocher pour compter les macros LaTeX.</translation>
     </message>
     <message>
         <source>Analyse commands</source>
-        <translation>Analyser les commandes</translation>
+        <translation>Analyser les macros</translation>
     </message>
     <message>
         <source>If &quot;show all&quot; is selected, all phrases are shown.
@@ -7657,7 +7816,7 @@ Sinon la ponctuation est ignorée.</translation>
     <name>UserMenuDialog</name>
     <message>
         <source>Edit User Tags</source>
-        <translation>Modifier les commandes utilisateur</translation>
+        <translation>Modifier les macros utilisateur</translation>
     </message>
     <message>
         <source>OK</source>
@@ -7737,7 +7896,7 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Tag</source>
-        <translation>Balise</translation>
+        <translation>Macro</translation>
     </message>
     <message>
         <source>run script</source>
@@ -7811,7 +7970,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ordered list of commands :</source>
-        <translation>Liste de commandes ordonnée:</translation>
+        <translation>Liste de compilations ordonnée:</translation>
     </message>
     <message>
         <source>Up</source>
@@ -7834,7 +7993,7 @@ p, li { white-space: pre-wrap; }
     <name>UserToolDialog</name>
     <message>
         <source>Edit User Commands</source>
-        <translation>Modifier les commandes utilisateur</translation>
+        <translation>Modifier les macros utilisateur</translation>
     </message>
     <message>
         <source>OK</source>
@@ -7894,7 +8053,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>User Command</source>
-        <translation>Compilations utilisateur</translation>
+        <translation>Compilation utilisateur</translation>
     </message>
 </context>
 <context>
@@ -7969,7 +8128,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Create an index page ?</source>
-        <translation>Créer page index ?</translation>
+        <translation>Créer une page d&apos;index ?</translation>
     </message>
     <message>
         <source>Text displayed at the bottom of each html files </source>
