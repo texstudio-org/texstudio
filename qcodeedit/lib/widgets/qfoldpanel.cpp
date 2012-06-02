@@ -48,6 +48,7 @@ QFoldPanel::QFoldPanel(QWidget *p)
  :	QPanel(p)
 {
 	setFixedWidth(12);
+	setObjectName("foldPanel");
 }
 
 /*!

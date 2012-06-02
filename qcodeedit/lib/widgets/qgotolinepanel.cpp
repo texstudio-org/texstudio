@@ -49,6 +49,8 @@ QGotoLinePanel::QGotoLinePanel(QWidget *p)
 	setupUi(this);
 	setDefaultVisibility(false);
 	
+	setObjectName("gotoLinePanel");
+	
 	bClose->setIcon(QPixmap(":/closeall.png"));
 }
 

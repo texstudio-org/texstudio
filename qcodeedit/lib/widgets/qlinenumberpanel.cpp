@@ -47,6 +47,7 @@ QLineNumberPanel::QLineNumberPanel(QWidget *p)
  : QPanel(p), m_verbose(false)
 {
 	setFixedWidth(20);
+	setObjectName("lineNumberPanel");
 }
 
 /*!

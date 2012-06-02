@@ -46,8 +46,9 @@ QCE_AUTO_REGISTER(QLineMarkPanel)
 QLineMarkPanel::QLineMarkPanel(QWidget *p)
  : QPanel(p)
 {
-    minMarksPerLine=1;
-    maxMarksPerLine=1;
+	setObjectName("lineMarkPanel");
+	minMarksPerLine=1;
+	maxMarksPerLine=1;
 	setFixedWidth(minMarksPerLine*16+2);
 }
 
