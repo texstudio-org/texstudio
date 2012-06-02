@@ -116,7 +116,8 @@ HEADERS += texmaker.h \
     grammarcheck_config.h \
     bibtexreader.h \
     cleandialog.h \
-    qmetautils.h
+    qmetautils.h \
+    updatechecker.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -199,7 +200,8 @@ SOURCES += main.cpp \
     grammarcheck.cpp \
     bibtexreader.cpp \
     cleandialog.cpp \
-    qmetautils.cpp
+    qmetautils.cpp \
+    updatechecker.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \

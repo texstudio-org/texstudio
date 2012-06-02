@@ -11,6 +11,8 @@
 
 #include "configdialog.h"
 
+#include "updatechecker.h"
+
 #include "qdocument.h"
 
 #include "spellerutility.h"
@@ -321,6 +323,9 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.contentsWidget->setIconSize(QSize(36, 36));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
+
+	//pageEditor
+	connect(ui.pushButtonUpdateCheckNow, SIGNAL(clicked()), this, SLOT(updateCheckNow()));
 
 	//pageditor
 	QFontDatabase fdb;
@@ -747,7 +752,13 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 		else twi->setData(0,Qt::UserRole,acts[i]->objectName());
 		if (parent) parent->addChild(twi);
 		else ui.treePossibleToolbarActions->addTopLevelItem(twi);
-	}
+		}
+}
+
+void ConfigDialog::updateCheckNow() {
+	UpdateChecker::instance()->check(false);
+	//TODO check returns, before the network request is complete therefore we have to delay the update of the label
+	ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
 }
 
 void ConfigDialog::custEnvAddLine(){

@@ -42,6 +42,7 @@
 #include "scriptengine.h"
 #include "grammarcheck.h"
 #include "qmetautils.h"
+#include "updatechecker.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -224,6 +225,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	setAcceptDrops(true);
 	installEventFilter(this);
 	
+	UpdateChecker::instance()->autoCheck();
 	
 	completer=new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
