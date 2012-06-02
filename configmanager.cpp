@@ -11,6 +11,7 @@
 #include "PDFDocument_config.h"
 #include "smallUsefulFunctions.h"
 #include "codesnippet.h"
+#include "updatechecker.h"
 
 #include <QDomElement>
 
@@ -345,6 +346,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Spell/Dic", &spell_dic, "<dic not found>", 0);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 	
+	//updates
+	registerOption("Update/AutoCheck", &autoUpdateCheck, true, &pseudoDialog->checkBoxAutoUpdateCheck);
+	registerOption("Update/AutoCheckInvervalDays", &autoUpdateCheckIntervalDays, 7, &pseudoDialog->spinBoxAutoUpdateCheckIntervalDays);
+	registerOption("Update/LastCheck", &lastUpdateCheck, QDateTime());
+
 	//editor
 	registerOption("Editor/WordWrapMode", &editorConfig->wordwrap, 1, &pseudoDialog->comboBoxLineWrap);
 	registerOption("Editor/WrapLineWidth", &editorConfig->lineWidth, 80, &pseudoDialog->spinBoxWrapLineWidth);
@@ -885,7 +891,9 @@ bool ConfigManager::execConfigDialog() {
 	//files
 	//if (newfile_encoding)
 	//	confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
-	
+
+	confDlg->ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
+
 	//-----------------------editor------------------------------
 	switch (editorConfig->showlinemultiples) {
 	case 0:

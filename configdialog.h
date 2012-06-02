@@ -126,6 +126,8 @@ private slots:
 	void loadOtherIcon();
 	void populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy);
 
+	void updateCheckNow();
+
 	void custEnvAddLine();
 	void custEnvRemoveLine();
 	void custSyntaxAddLine();

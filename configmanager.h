@@ -50,7 +50,7 @@ public:
 	bool runLaTeXBibTeXLaTeX;
 	int showStdoutOption; //never = 0, user commands, always
 
-
+	//svn
 	bool autoCheckinAfterSave;
 	bool svnUndo;
 	bool svnKeywordSubstitution;
@@ -69,6 +69,11 @@ public:
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
 	
+	//update
+	bool autoUpdateCheck;
+	int autoUpdateCheckIntervalDays;
+	QDateTime lastUpdateCheck;
+
 	//language
 	QString language, lastLanguage;
 	QTranslator* appTranslator;
