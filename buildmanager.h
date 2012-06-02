@@ -164,11 +164,12 @@ private slots:
 	void dvi2psPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status); 
 	void runInternalCommandThroughProcessX();
+	void commandLineRequestedDefault(const QString& cmdId, QString* result, bool * user);
 signals:
 	void processNotification(const QString& message);
 	void previewAvailable(const QString& filename, const PreviewSource& source);
 	
-	void commandLineRequested(const QString& cmdId, QString* result);
+	void commandLineRequested(const QString& cmdId, QString* result, bool * user = 0);
 	void runInternalCommand(const QString& cmdId, const QFileInfo& mainfile);
 	
 	void latexCompiled(LatexCompileResult* rerun);
@@ -181,7 +182,7 @@ private:
 	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
 	CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
-	QString getCommandLine(const QString& id, bool* user);
+	Q_INVOKABLE QString getCommandLine(const QString& id, bool* user);
 	friend class ProcessX;
 	CommandMapping commands;
 	QStringList internalCommandIds, commandSortingsOrder;

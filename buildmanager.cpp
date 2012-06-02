@@ -128,6 +128,7 @@ BuildManager::BuildManager(): processWaitedFor(0)
      #endif
 {
 	initDefaultCommandNames();
+	connect(this, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequestedDefault(QString,QString*,bool*)));
 }
 BuildManager::~BuildManager() {
 	//remove preview file names
@@ -236,15 +237,8 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& dis
 	return commands.insert(id, ci).value();
 }
 QString BuildManager::getCommandLine(const QString& id, bool* user){
-	if (user) *user = false;
-	if (internalCommandIds.contains(id)) return "txs:///" + id;
-	CommandMapping::iterator it = commands.find(id);
 	QString result;
-	if (it != commands.end()) {
-		result = it->commandLine; 
-		if (user) *user = it->user;
-	}
-	emit commandLineRequested(id, &result);
+	emit commandLineRequested(id, &result, user);
 	return result;
 }
 
@@ -1395,6 +1389,19 @@ void BuildManager::runInternalCommandThroughProcessX(){
 	QString internal = p->getCommandLine().mid(TXS_CMD_PREFIX.length());
 	if (internalCommandIds.contains(internal))
 		emit runInternalCommand(internal, p->getFile());
+}
+void BuildManager::commandLineRequestedDefault(const QString& cmdId, QString* result, bool * user){
+	if (user) *user = false;
+	if (!result) return;
+	if (internalCommandIds.contains(cmdId)) {
+		*result = "txs:///" + cmdId;
+		return;
+	}
+	CommandMapping::iterator it = commands.find(cmdId);
+	if (it != commands.end()) {
+		*result = it->commandLine; 
+		if (user) *user = it->user;
+	}
 }
 
 void BuildManager::removePreviewFiles(QString elem){
