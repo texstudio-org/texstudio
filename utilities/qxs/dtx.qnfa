@@ -58,20 +58,25 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= COMMAND ====================== -->
 
-	<context id="comment/single" format="commentTodo" stayOnLine="true" >
+	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
 		<start>%TODO</start>
 		<start>%todo</start>
 		<stop exclusive="false">\n</stop>
 	</context>
 
-	<context id="comment/single" format="magicComment" stayOnLine="true" >
+	<context id="comment/magic" format="magicComment" stayOnLine="true" >
 		<start>% !TeX</start>
 		<stop exclusive="false">\n</stop>
 	</context>
 	
 	<!-- ========================= dtx COMMAND ====================== -->
 	
-	<sequence id="dtxSpecialChar" format="dtx:specialchar">\^\^[AJKLM]</sequence>
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>^^A</start>
+		<stop exclusive="false">\n</stop>
+	</context>	
+	
+	<sequence id="dtxSpecialChar" format="dtx:specialchar">^^[JKLM]</sequence>
 	
 	<!-- a better regex for the guards would be &lt;!?[A-Za-z0-9]+([&amp;\|,]!?[A-Za-z0-9]+)*&gt;
 	     but grouping is currently not supported by QCE - maybe in a later version. So we have to use 

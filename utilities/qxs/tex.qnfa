@@ -73,13 +73,13 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= COMMAND ====================== -->
 
-	<context id="comment/single" format="commentTodo" stayOnLine="true" >
+	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
 		<start>%TODO</start>
 		<start>%todo</start>
 		<stop exclusive="false">\n</stop>
 	</context>
 
-	<context id="comment/single" format="magicComment" stayOnLine="true" >
+	<context id="comment/magic" format="magicComment" stayOnLine="true" >
 		<start>% !TeX</start>
 		<stop exclusive="false">\n</stop>
 	</context>
