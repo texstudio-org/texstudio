@@ -44,6 +44,8 @@
 #include "scriptengine.h"
 #include "diffoperations.h"
 
+QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
+
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
@@ -982,7 +984,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if(!editor->languageDefinition())
 	    return;
-	if ( editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
+	if (!checkedLanguages.contains(editor->languageDefinition()->language())) return;
 	
 	if (config->inlineGrammarChecking) {
 		QList<LineInfo> changedLines;
@@ -1281,7 +1283,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 	if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
 	if(!editor->languageDefinition())
 	    return;
-	if (editor->languageDefinition()->language()!="(La)TeX") return; // no online checking in other files than tex
+	if (!checkedLanguages.contains(editor->languageDefinition()->language())) return; // no online checking in other files than tex
 
 	if(linenr<0 || linenr>=editor->document()->lineCount()) linenr=0;
 	QDocumentLine line=editor->document()->line(linenr);
