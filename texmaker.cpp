@@ -166,6 +166,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	documents.indentationInStructure=configManager.indentationInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
+	connect(&documents,SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
 	
 	QFrame *centralFrame=new QFrame(this);
 	centralFrame->setLineWidth(0);
@@ -860,6 +861,7 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/user",tr("&User"));
 	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
 	updateUserMacros();
+	scriptengine::macros = &configManager.completerConfig->userMacro;
 		
 	//---view---
 	menu=newManagedMenu("main/view",tr("&View"));
@@ -1549,6 +1551,11 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	//#endif
 #endif
 	
+	for (int i=0;i<doc->localMacros.size();i++)
+		if (doc->localMacros[i].triggers & Macro::ST_LOAD_THIS_FILE)
+			insertUserTag(doc->localMacros[i].tag, Macro::ST_LOAD_THIS_FILE);
+			
+	
 	emit infoLoadFile(f_real);
 	
 	return edit;
@@ -2093,7 +2100,6 @@ repeatAfterFileSavingFailed:
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
 	updateOpenDocumentMenu();
-	emit infoFileClosed();
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
 }
 
@@ -2134,7 +2140,6 @@ repeatAfterFileSavingFailed:
 			}
 		} else
 			documents.deleteDocument(currentEditorView()->document);
-		emit infoFileClosed();
 	}
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
@@ -2162,9 +2167,9 @@ void Texmaker::closeEvent(QCloseEvent *e) {
 	else e->ignore();
 }
 
-void Texmaker::updateUserMacros(){
+void Texmaker::updateUserMacros(bool updateMenu){
+	if (updateMenu) configManager.updateUserMacroMenu();
 	QStringList tempLanguages = m_languages->languages();
-	configManager.updateUserMacroMenu();
 	for (int i=0;i<configManager.completerConfig->userMacro.size();i++) {
 		if (configManager.completerConfig->userMacro[i].triggerLanguage.isEmpty()) continue;
 		configManager.completerConfig->userMacro[i].triggerLanguages.clear();
@@ -2915,9 +2920,14 @@ void Texmaker::updateStructure(bool initial) {
 	// collect user define tex commands for completer
 	// initialize List
 	if (!currentEditorView() || !currentEditorView()->document) return;
+	LatexDocument* doc = currentEditorView()->document;
 	if(initial){
-		int len=currentEditorView()->document->lineCount();
-		currentEditorView()->document->patchStructure(0,len);
+		int len=doc->lineCount();
+		doc->patchStructure(0,len);
+	
+		doc->updateMagicCommentScripts();
+		configManager.completerConfig->userMacro << doc->localMacros;
+		updateUserMacros();
 	}
 	else {
 		currentEditorView()->document->updateStructure();
@@ -3774,7 +3784,7 @@ void Texmaker::EditUserMenu() {
 	if (!userMacroDialog)  {
 		userMacroDialog = new UserMenuDialog(0,tr("Edit User &Tags"),m_languages);
 		foreach (const Macro& m, configManager.completerConfig->userMacro) {
-			if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close")
+			if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close" || m.document)
 				continue;
 			userMacroDialog->names << m.name;
 			userMacroDialog->tags << m.tag;
@@ -3796,6 +3806,8 @@ void Texmaker::userMacroDialogAccepted(){
 	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->triggers.size());
 	for (int i=0;i<userMacroDialog->names.size();i++)
 		configManager.completerConfig->userMacro.append(Macro(userMacroDialog->names[i], userMacroDialog->tags[i], userMacroDialog->abbrevs[i], userMacroDialog->triggers[i]));
+	for (int i=0;i<documents.documents.size();i++)
+		configManager.completerConfig->userMacro << documents.documents[i]->localMacros;
 	updateUserMacros();	
 	completer->updateAbbreviations();
 	userMacroDialog->deleteLater();
@@ -4848,6 +4860,13 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 		EditorView->moveTab(pos,0);
 	}
 	updateMasterDocumentCaption();
+}
+
+void Texmaker::aboutToDeleteDocument(LatexDocument * doc){
+	emit infoFileClosed();
+	for (int i=configManager.completerConfig->userMacro.size()-1;i>=0;i--)
+		if (configManager.completerConfig->userMacro[i].document == doc)
+			configManager.completerConfig->userMacro.removeAt(i);
 }
 
 //*********************************

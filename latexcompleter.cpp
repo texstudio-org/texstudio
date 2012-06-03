@@ -1317,10 +1317,14 @@ bool LatexCompleter::close(){
 	} else return false;
 }
 
-Macro::Macro():triggerLookBehind(false){
+Macro::Macro():triggerLookBehind(false),document(0){
 }
 
-Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger){
+Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger):document(0){
+	init(nname,ntag,nabbrev,ntrigger);
+}
+
+void Macro::init(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger){
 	name = nname;
 	tag = ntag;
 	abbrev = nabbrev;
@@ -1328,21 +1332,24 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	triggerLookBehind = false;
 	QString realtrigger = trigger;
 	triggers = 0;
-	if (realtrigger.startsWith("?")) {
+	if (realtrigger.trimmed().startsWith("?")) {
 		QStringList sl = realtrigger.split("|");
 		realtrigger.clear();	
-		foreach (const QString& t, sl) 
+		foreach (const QString& x, sl) {
+			QString t = x.trimmed();
 			if (t == "?txs-start") triggers |= ST_TXS_START;
 			else if (t == "?new-file") triggers |= ST_NEW_FILE;
 			else if (t == "?new-from-template") triggers |= ST_NEW_FROM_TEMPLATE;
 			else if (t == "?load-file") triggers |= ST_LOAD_FILE;
-			else if (t == "?file-saved") triggers |= ST_FILE_SAVED;
-			else if (t == "?file-closed") triggers |= ST_FILE_CLOSED;
+			else if (t == "?load-this-file") triggers |= ST_LOAD_THIS_FILE;
+			else if (t == "?save-file") triggers |= ST_FILE_SAVED;
+			else if (t == "?close-file") triggers |= ST_FILE_CLOSED;
 			else if (t == "?master-changed") triggers |= ST_MASTER_CHANGED;
 			else if (t == "?after-typeset") triggers |= ST_AFTER_TYPESET;
 			else if (t == "?after-command-run") triggers |= ST_AFTER_COMMAND_RUN;
 			else if (realtrigger.isEmpty()) realtrigger = t;
 			else realtrigger = realtrigger + "|" + t;
+		}
 	}
 	if (realtrigger.isEmpty()) return;
 

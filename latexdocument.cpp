@@ -27,7 +27,7 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	bibTeXList->title=tr("BIBTEX");
 	blockList->title=tr("BLOCKS");
 	mLabelItem.clear();
-    mBibItem.clear();
+	mBibItem.clear();
 	mUserCommandList.clear();
 	mMentionedBibTeXFiles.clear();
 	masterDocument=0;
@@ -118,7 +118,7 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 void LatexDocument::clearStructure() {
 	mUserCommandList.clear();
 	mLabelItem.clear();
-    mBibItem.clear();
+	mBibItem.clear();
 	mRefItem.clear();
 	mMentionedBibTeXFiles.clear();
 	
@@ -1449,6 +1449,7 @@ void LatexDocuments::addDocument(LatexDocument* document){
 	model->structureUpdated(document,0);
 }
 void LatexDocuments::deleteDocument(LatexDocument* document){
+	emit aboutToDeleteDocument(document);
 	LatexEditorView *view=document->getEditorView();
 	if(view)
 		view->closeCompleter();
@@ -2295,6 +2296,44 @@ void LatexDocument::updateMagicComment(const QString &name, const QString &val, 
 		}
 	}
 }
+
+void LatexDocument::updateMagicCommentScripts(){
+	if (!magicCommentList) return;
+	
+	localMacros.clear();
+	
+	QRegExp trigger(" *// *(Trigger) *[:=](.*)");
+	
+	StructureEntryIterator iter(magicCommentList);
+	while (iter.hasNext()) {
+		StructureEntry *se = iter.next();
+		QString seName, val;
+		splitMagicComment(se->title, seName, val);
+		if (seName=="TXS-SCRIPT") {
+			Macro newMacro;
+			newMacro.name = val;
+			newMacro.trigger = "";
+			newMacro.abbrev = "";
+			newMacro.tag = "%SCRIPT\n";
+			
+			int l = se->getRealLineNumber() + 1;
+			for (; l < lineCount(); l++) {
+				QString lt = line(l).text().trimmed();
+				if (lt.endsWith("TXS-SCRIPT-END") || !(lt.isEmpty() || lt.startsWith("%"))  ) break;
+				lt.remove(0,1);
+				newMacro.tag += lt + "\n";
+				if (trigger.exactMatch(lt)) 
+					newMacro.trigger = trigger.cap(2).trimmed();
+			}
+			
+			newMacro.init(newMacro.name,newMacro.tag,newMacro.abbrev,newMacro.trigger);
+			newMacro.document = this;
+			localMacros.append(newMacro);
+		}
+	}
+
+}
+
 
 bool LatexDocument::containsPackage(const QString& name){
 	return mUsepackageList.keys(name).count()>0;

@@ -5,6 +5,8 @@
 #include "bibtexparser.h"
 #include "latexeditorview.h"
 
+#include "usermacro.h"
+
 class QDocumentLineHandle;
 class LatexEditorView;
 class LatexDocument;
@@ -89,6 +91,8 @@ public:
 	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
 	QSet<QString> lastCompiledBibTeXFiles;
 	
+	QList<Macro> localMacros;
+	
 private:	
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle*,ReferencePair>& list);
 public:
@@ -147,6 +151,8 @@ public:
 	Q_INVOKABLE QString getMagicComment(const QString& name);
 	Q_INVOKABLE QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
 	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
+	
+	void updateMagicCommentScripts();
 	
 private:
 	QString fileName; //absolute
@@ -323,6 +329,7 @@ public:
 	QHash<QString,LatexPackage> cachedPackages;
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
+	void aboutToDeleteDocument(LatexDocument *document);
 private slots:
 	void bibTeXFilesNeedUpdate();
 public slots:
