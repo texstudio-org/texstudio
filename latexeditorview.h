@@ -128,6 +128,9 @@ private:
 	
 	bibtexReader *bibReader;
 	QPoint lastPos;
+
+	static QStringList checkedLanguages; // languages for online checking
+
 	
 private slots:
 	void requestCitation(); //emits needCitation with selected text
