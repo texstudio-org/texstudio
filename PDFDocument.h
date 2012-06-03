@@ -118,6 +118,7 @@ public:
 	virtual ~PDFWidget();
 	
 	void setDocument(Poppler::Document *doc);
+    void setPDFDocument(PDFDocument *docu);
 
 	void saveState(); // used when toggling full screen mode
 	void restoreState();
@@ -288,6 +289,8 @@ private:
 
 	QList<int> pageHistory;
 	int pageHistoryIndex;
+
+    PDFDocument *pdfdocument;
 };
 
 class PDFSearchResult {
@@ -313,7 +316,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 	Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	PDFDocument(PDFDocumentConfig* const pdfConfig );
+    PDFDocument(PDFDocumentConfig* const pdfConfig,bool embedded=false);
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -411,7 +414,7 @@ signals:
 	void triggeredClone();
 
 private:
-	void init();
+    void init(bool embedded=false);
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
