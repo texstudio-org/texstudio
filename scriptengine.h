@@ -10,6 +10,7 @@ class BuildManager;
 class Texmaker;
 class ScriptObject;
 class LatexEditorView;
+struct Macro;
 class scriptengine : public QObject
 {
 Q_OBJECT
@@ -27,6 +28,8 @@ public:
 	int triggerId;
 	
 	ScriptObject *globalObject;
+	
+	static QList<Macro>* macros;
 protected:
 	QScriptEngine *engine;
 	QPointer<LatexEditorView> m_editorView;

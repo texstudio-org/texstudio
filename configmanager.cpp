@@ -838,7 +838,7 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	//user macros
 	QStringList userTags, userNames, userAbbrevs, userTriggers;
 	foreach (const Macro&m, completerConfig->userMacro){
-		if(m.name==TXS_AUTO_REPLACE_QUOTE_OPEN || m.name==TXS_AUTO_REPLACE_QUOTE_CLOSE)
+		if(m.name==TXS_AUTO_REPLACE_QUOTE_OPEN || m.name==TXS_AUTO_REPLACE_QUOTE_CLOSE || m.document)
 			continue;
 		userNames << m.name;
 		userTags << m.tag;
@@ -1490,9 +1490,10 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	}
 	
 	
-	foreach (const Macro&m , completerConfig->userMacro){
-		macronames<<m.name;
-	}
+	foreach (const Macro&m , completerConfig->userMacro)
+		if (!m.document)
+			macronames<<m.name;
+	
 	
 	QMenu* recreatedMenu = updateListMenu("main/user/tags", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {

@@ -105,7 +105,7 @@ private:
 	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
 	
-	void updateUserMacros();
+	void updateUserMacros(bool updateMenu = true);
 	
 	QFormatFactory *m_formats;
 	QLanguageFactory* m_languages;
@@ -409,6 +409,7 @@ protected slots:
     void newPdfPreviewer(bool embedded=false);
 	
 	void masterDocumentChanged(LatexDocument * doc);
+	void aboutToDeleteDocument(LatexDocument * doc);
 	
 	void SetMostUsedSymbols(QTableWidgetItem* item);
 	

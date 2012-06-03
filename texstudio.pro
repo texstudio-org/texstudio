@@ -117,7 +117,8 @@ HEADERS += texmaker.h \
     bibtexreader.h \
     cleandialog.h \
     qmetautils.h \
-    updatechecker.h
+    updatechecker.h \
+    usermacro.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \

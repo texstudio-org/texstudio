@@ -7,6 +7,7 @@
 #include "latexdocument.h"
 #include "texmaker.h"
 #include "PDFDocument.h"
+#include "usermacro.h"
 
 Q_DECLARE_METATYPE(QDocument*);
 Q_DECLARE_METATYPE(LatexDocument*);
@@ -28,6 +29,8 @@ Q_DECLARE_METATYPE(QString*);
 
 BuildManager* scriptengine::buildManager = 0;
 Texmaker* scriptengine::app = 0;
+
+QList<Macro>* scriptengine::macros = 0;
 
 //copied from trolltech mailing list
 template <typename Tp> QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const &qobject)
@@ -93,10 +96,14 @@ void qScriptValueToQFileInfo(const QScriptValue &value, QFileInfo &fi) {
 
 
 
-ScriptObject* needWritePrivileges(QScriptEngine *engine, const QString& fn, const QString& args){
+ScriptObject* needPrivileges(QScriptEngine *engine, const QString& fn, const QString& args, bool write = true){
 	ScriptObject* sc = qobject_cast<ScriptObject*>(engine->globalObject().toQObject());
 	REQUIRE_RET(sc, 0);
-	if (!sc->needWritePrivileges(fn, args)) return 0;
+	if (write) {
+		if (!sc->needWritePrivileges(fn, args)) return 0;
+	} else {
+		if (!sc->needReadPrivileges(fn, args)) return 0;
+	}
 	return sc;
 }
 
@@ -133,7 +140,7 @@ QScriptValue getSetStrValue(QScriptContext *context, QScriptEngine *engine){
 	}
 	if (!s) return engine->undefinedValue();
 	if (setterMode) {
-		if (!needWritePrivileges(engine, "string setting", context->argument(0).toString()))
+		if (!needPrivileges(engine, "string setting", context->argument(0).toString()))
 			return engine->undefinedValue();
 		*s = context->argument(0).toString();
 	}
@@ -252,7 +259,7 @@ QScriptValue replaceFunction(QScriptContext *context, QScriptEngine *engine){
 
 
 QScriptValue buildManagerRunCommandWrapper(QScriptContext *context, QScriptEngine *engine){
-	ScriptObject* sc = needWritePrivileges(engine,"buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString());
+	ScriptObject* sc = needPrivileges(engine,"buildManager.runCommand", context->argument(0).toString() + ", "+context->argument(1).toString() + ", "+context->argument(2).toString());
 	if (!sc) return engine->undefinedValue();
 	return engine->newVariant(sc->buildManager->runCommand(
 	                                 context->argument(0).toString(), 
@@ -263,7 +270,7 @@ QScriptValue buildManagerRunCommandWrapper(QScriptContext *context, QScriptEngin
 }
 
 QScriptValue editorSaveWrapper(QScriptContext *context, QScriptEngine *engine){
-	ScriptObject* sc = needWritePrivileges(engine,"editor.save", context->argument(0).toString());
+	ScriptObject* sc = needPrivileges(engine,"editor.save", context->argument(0).toString());
 	QEditor* ed = qobject_cast<QEditor*>(context->thisObject().toQObject());
 	if (!sc || !ed) return engine->undefinedValue();
 	if (context->argumentCount() == 0)	ed->save();
@@ -272,12 +279,42 @@ QScriptValue editorSaveWrapper(QScriptContext *context, QScriptEngine *engine){
 }
 
 QScriptValue editorSaveCopyWrapper(QScriptContext *context, QScriptEngine *engine){
-	ScriptObject* sc = needWritePrivileges(engine,"editor.save", context->argument(0).toString());
+	ScriptObject* sc = needPrivileges(engine,"editor.save", context->argument(0).toString());
 	QEditor* ed = qobject_cast<QEditor*>(context->thisObject().toQObject());
 	if (!sc || !ed) return engine->undefinedValue();
 	return engine->newVariant(ed->saveCopy(context->argument(0).toString()));
 	
 }
+
+QScriptValue include(QScriptContext *context, QScriptEngine *engine){
+	if (context->argumentCount() != 1) return engine->undefinedValue();
+	QString name = context->argument(0).toString();
+	bool found = false;
+	QString macro;
+	if (scriptengine::macros) {
+		for (int i=0;i<scriptengine::macros->size();i++)
+			if (scriptengine::macros->at(i).name == name) {
+				found = true;
+				macro = scriptengine::macros->at(i).tag;
+				break;
+			}
+	}
+	if (!found) {
+		QString filename;
+		if (QFileInfo(name).exists()) filename = name;
+		else filename = findResourceFile(name, true);
+		if (filename.isEmpty() || !needPrivileges(engine, "include", filename, false))
+			return engine->undefinedValue();
+		QFile f(filename);
+		if (!f.open(QFile::ReadOnly)) 
+			return engine->undefinedValue();
+		macro = QString::fromUtf8(f.readAll().data());
+	}
+	if (macro.startsWith("%SCRIPT")) macro.remove(0, strlen("%SCRIPT"));
+	if (macro.isEmpty()) return engine->undefinedValue();
+	return engine->evaluate(macro);
+}
+
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
@@ -382,6 +419,8 @@ void scriptengine::run(){
 		engine->globalObject().setProperty("triggerMatches", matches);
 	} 
 	engine->globalObject().setProperty("triggerId", engine->newVariant(triggerId));
+
+	engine->globalObject().setProperty("include", engine->newFunction(include));
 	
 	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
