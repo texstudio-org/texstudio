@@ -374,11 +374,13 @@ QPixmap ManhattanStyle::standardPixmap(StandardPixmap standardPixmap, const QSty
 
     QPixmap pixmap;
     switch (standardPixmap) {
-    case QStyle::SP_ToolBarHorizontalExtensionButton: {
-            static const QPixmap extButton(":/images/extension.png");
+	/* TH 2012-06-03: commented out -> use standard version
+	case QStyle::SP_ToolBarHorizontalExtensionButton: {
+			static const QPixmap extButton(":/images/extension.png");
             pixmap = extButton;
         }
-        break;
+		break;
+	*/
     case QStyle::SP_TitleBarCloseButton: {
             static const QPixmap closeButton(":/images/closebutton.png");
             pixmap = closeButton;
