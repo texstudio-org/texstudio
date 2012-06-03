@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>659</width>
     <height>600</height>
    </rect>
   </property>
@@ -22,8 +22,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>21</height>
+     <width>659</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -168,6 +168,7 @@
    <addaction name="separator"/>
    <addaction name="actionZoom_Out"/>
    <addaction name="actionZoom_In"/>
+   <addaction name="actionClose"/>
   </widget>
   <action name="actionAbout_TW">
    <property name="text">

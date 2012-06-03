@@ -35,6 +35,7 @@
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
+#include <QSplitter>
 
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
@@ -114,6 +115,7 @@ private:
 	
 	//gui
 	TxsTabWidget *EditorView;
+    QSplitter *splitter;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
@@ -351,7 +353,7 @@ protected slots:
 	void QuickGraphics(const QString &graphicsFile = QString());
 	
 	bool checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master);
-	void runInternalPdfViewer(const QFileInfo& master);
+    void runInternalPdfViewer(const QFileInfo& master, bool embedded=false);
 	void runBibliographyIfNecessary(const QFileInfo& cmd);
 private slots:	
 	void runInternalCommand(const QString& cmd, const QFileInfo& master);
@@ -404,7 +406,7 @@ protected slots:
 	void viewCollapseBlock();
 	void viewExpandBlock();
 	
-	void newPdfPreviewer();
+    void newPdfPreviewer(bool embedded=false);
 	
 	void masterDocumentChanged(LatexDocument * doc);
 	

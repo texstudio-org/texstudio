@@ -29,7 +29,7 @@ CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xela
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
 CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
-CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
+CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(VIEW_PDF_INTERNAL_EMBEDDED, view-pdf-internal-embedded) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 #undef CMD_DEFINE
 
@@ -180,11 +180,11 @@ void BuildManager::initDefaultCommandNames(){
 	descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
 	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use external PDF viewer");
-	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+    descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TexStudio") << tr("Use external PDF viewer");
+    registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal-embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<< tr("Use internal PDF viewer") << tr("Use external PDF viewer");
-	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
+    descriptionList<< tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TexStudio") << tr("Use external PDF viewer");
+    registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-internal-embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
 	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
@@ -208,7 +208,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
 	
-	internalCommandIds << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
+    internalCommandIds << CMD_VIEW_PDF_INTERNAL << CMD_VIEW_PDF_INTERNAL_EMBEDDED << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
 	for (int i=0;i<internalCommandIds.size();i++) internalCommandIds[i] = internalCommandIds[i].mid(TXS_CMD_PREFIX.length());
 }
 

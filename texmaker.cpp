@@ -17,7 +17,12 @@
 #include "smallUsefulFunctions.h"
 
 #include "cleandialog.h"
+
+#define no_debughelper
+#ifndef no_debughelper
 #include "debughelper.h"
+#endif
+
 #include "structdialog.h"
 #include "filechooser.h"
 #include "tabdialog.h"
@@ -83,10 +88,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	txsInstance = this;
 	static int crashHandlerType = 1; 
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
-	registerCrashHandler(crashHandlerType);
+#ifndef no_debughelper
+    registerCrashHandler(crashHandlerType);
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(3000);
+#endif
 	              
 	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -190,7 +197,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	centralLayout->setSpacing(0);
 	centralLayout->setMargin(0);
 	centralLayout->addWidget(centralToolBar);
-	centralLayout->addWidget(EditorView);
+    splitter=new QSplitter(Qt::Horizontal);
+    centralLayout->addWidget(splitter);
+    splitter->addWidget(EditorView);
 	
 	setCentralWidget(centralFrame);
 	
@@ -293,7 +302,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 Texmaker::~Texmaker(){
 	programStopped = true;
-	Guardian::shutdown();
+#ifndef no_debughelper
+    Guardian::shutdown();
+#endif
 	delete MapForSymbols;
 	if(latexStyleParser){
 		latexStyleParser->stop();
@@ -2141,7 +2152,9 @@ bool Texmaker::canCloseNow(){
 		spellerManager.unloadAll();  //this saves the ignore list
 	}
 	programStopped = true;
-	Guardian::shutdown();
+#ifndef no_debughelper
+    Guardian::shutdown();
+#endif
 	return accept;
 }
 void Texmaker::closeEvent(QCloseEvent *e) {
@@ -3878,10 +3891,10 @@ bool Texmaker::runCommand(const QString& commandline, QString* buffer) {
 	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer);	
 }
 
-void Texmaker::runInternalPdfViewer(const QFileInfo& master){
+void Texmaker::runInternalPdfViewer(const QFileInfo& master,bool embedded){
 #ifndef NO_POPPLER_PREVIEW
 	if (PDFDocument::documentList().isEmpty()) {
-		newPdfPreviewer();
+        newPdfPreviewer(embedded);
 		Q_ASSERT(!PDFDocument::documentList().isEmpty());
 	}
 	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
@@ -3965,8 +3978,8 @@ void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){
 
 void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfile){
 	QString cmd = BuildManager::TXS_CMD_PREFIX + cmdid;
-	if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL) 
-		runInternalPdfViewer(mainfile);
+    if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL || cmd == BuildManager::CMD_VIEW_PDF_INTERNAL_EMBEDDED)
+        runInternalPdfViewer(mainfile,cmd == BuildManager::CMD_VIEW_PDF_INTERNAL_EMBEDDED);
 	else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
 	else if (cmd == BuildManager::CMD_VIEW_LOG)
@@ -4535,7 +4548,9 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	}
 #endif
 
-	if (realCmdLine) Guardian::summon();
+#ifndef no_debughelper
+    if (realCmdLine) Guardian::summon();
+#endif
 }
 
 void Texmaker::executeTests(const QStringList &args){
@@ -4780,9 +4795,21 @@ void Texmaker::viewExpandBlock() {
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
 
-void Texmaker::newPdfPreviewer(){
+void Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
-	PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig);
+    PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
+    if(embedded){
+        splitter->addWidget(pdfviewerWindow);
+        QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+        int sum=0;
+        foreach(int i,sz){
+            sum+=i;
+        }
+        sz.clear();
+        sz << sum/2;
+        sz << sum-(sum/2);
+        splitter->setSizes(sz);
+    }
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
@@ -6712,7 +6739,8 @@ void recover(){
 
 void Texmaker::recoverFromCrash(){	
 	bool wasLoop;
-	QString name = getLastCrashInformation(wasLoop);
+#ifndef no_debughelper
+    QString name = getLastCrashInformation(wasLoop);
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
 		QThread* t = QThread::currentThread();
 		lastCrashedThread = t;
@@ -6772,12 +6800,14 @@ void Texmaker::recoverFromCrash(){
 	}
 	name = "Normal close after " + name;
 	print_backtrace(name);
-	exit(0);
+    exit(0);
+#endif
 }
 
 void Texmaker::threadCrashed(){
 	bool wasLoop;
-	QString signal = getLastCrashInformation(wasLoop);
+#ifndef no_debughelper
+    QString signal = getLastCrashInformation(wasLoop);
 	QThread* thread = lastCrashedThread;
 	
 	QString threadName = "<unknown<";
@@ -6794,9 +6824,12 @@ void Texmaker::threadCrashed(){
 		killAtCrashedThread = thread;
 		ThreadBreaker::sleep(10);
 		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
-	}
+    }
+#endif
 }
 
 void Texmaker::iamalive(){
-	Guardian::calm();
+#ifndef no_debughelper
+    Guardian::calm();
+#endif
 }
