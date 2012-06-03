@@ -115,7 +115,7 @@ void UpdateChecker::parseData(const QByteArray &data) {
 				msgBox.setStandardButtons(QMessageBox::Ok);
 				msgBox.exec();
 			} else {
-				txsInformation(tr("TeXstudio is up-to-date."));
+				if (!silent) txsInformation(tr("TeXstudio is up-to-date."));
 			}
 
 			ConfigManager::getInstance()->setOption("Update/LastCheck", QDateTime::currentDateTime());
