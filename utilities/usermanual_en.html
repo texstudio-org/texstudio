@@ -1073,9 +1073,9 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 
 <h2 id="SECTION38">4.10 Synopsis of the TeXstudio command</h2>
 <p>
-TeXstudio file [--master] [--line xx] [--start-always] [--pdf-viewer-only] [--page yy]<br>
+TeXstudio file [--master] [--line xx[:cc]] [--start-always] [--pdf-viewer-only] [--page yy]<br>
 With the "--master" option, the document will be automatically defined as a "master" document.<br>
-With the "--line xx" option, TeXstudio will ask you if you want to jump to the xx line after loading the document.<br>
+With the "--line xx" option, TeXstudio will ask you if you want to jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.<br>
 With the "--start-always" option, TeXstudio will start, even if another instance of it is already running.<br>
 With the "--pdf-viewer-only" option, TeXstudio will open as standalone pdf viewer without editor<br>
 With the "--page" option, TeXstudio displays a certain page if used as pdf viewer<br>
