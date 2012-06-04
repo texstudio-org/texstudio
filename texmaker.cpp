@@ -6798,9 +6798,9 @@ void recover(){
 }
 
 void Texmaker::recoverFromCrash(){	
-	bool wasLoop;
 #ifndef no_debughelper
-    QString name = getLastCrashInformation(wasLoop);
+	bool wasLoop;
+	QString name = getLastCrashInformation(wasLoop);
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
 		QThread* t = QThread::currentThread();
 		lastCrashedThread = t;
@@ -6865,9 +6865,9 @@ void Texmaker::recoverFromCrash(){
 }
 
 void Texmaker::threadCrashed(){
-	bool wasLoop;
 #ifndef no_debughelper
-    QString signal = getLastCrashInformation(wasLoop);
+	bool wasLoop;
+	QString signal = getLastCrashInformation(wasLoop);
 	QThread* thread = lastCrashedThread;
 	
 	QString threadName = "<unknown<";
