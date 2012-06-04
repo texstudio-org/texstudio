@@ -2783,6 +2783,22 @@ void Texmaker::SaveSettings(const QString& configName) {
 	configManager.centralVisible=centralToolBar->isVisible();
 	// update completion usage
 	LatexCompleterConfig *conf=configManager.completerConfig;
+	//pdf viewer embedded open ?
+	if(!PDFDocument::documentList().isEmpty()){
+	    PDFDocument* doc=PDFDocument::documentList().first();
+	    if(doc->embeddedMode){
+		QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+		int sum=0;
+		int last=0;
+		foreach(int i,sz){
+		    sum+=i;
+		    last=i;
+		}
+		if(last>10)
+		    pdfSplitterRel=1.0*last/sum;
+	    }
+	}
+
 	
 	QSettings *config=configManager.saveSettings(configName);
 	
