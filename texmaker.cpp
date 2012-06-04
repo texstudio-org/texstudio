@@ -18,7 +18,7 @@
 
 #include "cleandialog.h"
 
-#define no_debughelper
+//#define no_debughelper
 #ifndef no_debughelper
 #include "debughelper.h"
 #endif
@@ -2658,6 +2658,7 @@ void Texmaker::ReadSettings() {
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
 	configManager.registerOption("User/Templates",&userTemplatesList);
+	configManager.registerOption("PDFSplitter",&pdfSplitterRel,0.5);
 	
 	configManager.buildManager=&buildManager;
 	scriptengine::buildManager=&buildManager;
@@ -4806,6 +4807,21 @@ void Texmaker::viewExpandBlock() {
 	if (!currentEditorView()) return;
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
+void Texmaker::pdfClosed(){
+    PDFDocument* from = qobject_cast<PDFDocument*>(sender());
+    if(from){
+	if(from->embeddedMode){
+	    QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+	    int sum=0;
+	    int last=0;
+	    foreach(int i,sz){
+		sum+=i;
+		last=i;
+	    }
+	    pdfSplitterRel=1.0*last/sum;
+	}
+    }
+}
 
 void Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
@@ -4818,12 +4834,13 @@ void Texmaker::newPdfPreviewer(bool embedded){
             sum+=i;
         }
         sz.clear();
-        sz << sum/2;
-        sz << sum-(sum/2);
+	sz << sum-qRound(pdfSplitterRel*sum);
+	sz << qRound(pdfSplitterRel*sum);
         splitter->setSizes(sz);
     }
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
+	connect(pdfviewerWindow, SIGNAL(documentClosed()), SLOT(pdfClosed()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool, QString)), SLOT(syncFromViewer(const QString &, int, bool, QString)));
