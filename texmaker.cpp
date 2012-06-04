@@ -4508,6 +4508,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	bool activateMasterMode = false;
 	
 	int line=-1;
+	int col=0;
 #ifndef NO_POPPLER_PREVIEW
 	int page=-1;
 	bool pdfViewerOnly = false;
@@ -4517,7 +4518,14 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		if (args[i][0] != '-')  filesToLoad << args[i];
 		//-form is for backward compatibility
 		if (args[i] == "--master") activateMasterMode=true;
-		if (args[i] == "--line" && i+1<args.size())  line=args[++i].toInt()-1;
+		if (args[i] == "--line" && i+1<args.size()) {
+			QStringList lineCol = args[++i].split(":");
+			line = lineCol.at(0).toInt()-1;
+			if (lineCol.count() >= 2) {
+				col = lineCol.at(1).toInt();
+				if ((col)<0) col = 0;
+			}
+		}
 #ifndef NO_POPPLER_PREVIEW
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
 		if (args[i] == "--page") page = args[++i].toInt()-1;
@@ -4562,7 +4570,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	
 	if (line!=-1){
 		QApplication::processEvents();
-		gotoLine(line);
+		gotoLine(line, col);
 		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
 	
@@ -5111,9 +5119,9 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 	}
 }
 
-void Texmaker::gotoLine(int line) {
+void Texmaker::gotoLine(int line, int col) {
 	if (currentEditorView() && line>=0)	{
-		currentEditorView()->editor->setCursorPosition(line,0);
+		currentEditorView()->editor->setCursorPosition(line,col);
 		currentEditorView()->editor->ensureCursorVisibleSurrounding();
 		currentEditorView()->editor->setFocus();
 	}

@@ -421,7 +421,7 @@ protected slots:
 	
 	void tabChanged(int i);
 	
-	void gotoLine(int line);  //0 based
+	void gotoLine(int line, int col=0);  //0 based
 	void gotoLocation(int line, const QString &fileName);  //0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
