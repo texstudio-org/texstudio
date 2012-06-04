@@ -352,6 +352,7 @@ public:
 	PDFRenderManager *renderManager;
 
 	static bool isCompiling;
+	bool embeddedMode;
 	
 protected:
 	virtual void changeEvent(QEvent *event);

@@ -157,6 +157,7 @@ private:
 	QStringList labelitem;
 	
 	QStringList userTemplatesList;
+	qreal pdfSplitterRel;
 	
 	SpellerManager spellerManager;
 	SafeThread grammarCheckThread;
@@ -406,7 +407,8 @@ protected slots:
 	void viewCollapseBlock();
 	void viewExpandBlock();
 	
-    void newPdfPreviewer(bool embedded=false);
+	void newPdfPreviewer(bool embedded=false);
+	void pdfClosed();
 	
 	void masterDocumentChanged(LatexDocument * doc);
 	void aboutToDeleteDocument(LatexDocument * doc);

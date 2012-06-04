@@ -1828,25 +1828,26 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig;
 
-    init(embedded);
+	embeddedMode=embedded;
+	init(embedded);
 
 
 	watcher = new QFileSystemWatcher(this);
 	connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));
 
-    if(!embedded){
-        QRect screen = QApplication::desktop()->screenGeometry();
-        while (globalConfig->windowLeft > screen.width() && screen.width() > 0)
-            globalConfig->windowLeft-=screen.width();
-        while (globalConfig->windowTop > screen.height() && screen.height() > 0)
-            globalConfig->windowTop-=screen.height();
+	if(!embedded){
+	    QRect screen = QApplication::desktop()->screenGeometry();
+	    while (globalConfig->windowLeft > screen.width() && screen.width() > 0)
+		globalConfig->windowLeft-=screen.width();
+	    while (globalConfig->windowTop > screen.height() && screen.height() > 0)
+		globalConfig->windowTop-=screen.height();
 
-        setWindowState(Qt::WindowNoState);
-        resize(globalConfig->windowWidth, globalConfig->windowHeight); //important to first resize then move
-        move(globalConfig->windowLeft, globalConfig->windowTop);
-        Q_ASSERT(x() == globalConfig->windowLeft);
-        if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
-    }
+	    setWindowState(Qt::WindowNoState);
+	    resize(globalConfig->windowWidth, globalConfig->windowHeight); //important to first resize then move
+	    move(globalConfig->windowLeft, globalConfig->windowTop);
+	    Q_ASSERT(x() == globalConfig->windowLeft);
+	    if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
+	}
 	
 
 	//batch test: 
