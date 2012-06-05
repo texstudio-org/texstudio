@@ -2326,6 +2326,35 @@ void Texmaker::editEraseWordCmdEnv(){
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
 	QString line=cursor.line().text();
 	QString command, value;
+
+	// Hack to fix problem problem reported in bug report 3443336 (see also detailed description there):
+	// findContext does not work at beginning of commands. Actually it would need
+	// pre-context and post-context otherwise, what context is either ambigous, like in
+	// \cmd|\cmd or it cannot work simultaneously at beginning and and (you cannot assign
+	// the context for |\cmd and \cmd| even if \cmd is surrounded by spaces. The latter
+	// both assignments make sense for editEraseWordCmdEnv().
+	//
+	// pre-context and post-context may be added when revising the latex parser
+	//
+	// Prelimiary solution part I:
+	// Predictable behaviour on selections: do nothing except in easy cases
+	if (cursor.hasSelection()) {
+		QRegExp partOfWordOrCmd("\\\\?\\w*");
+		if (!partOfWordOrCmd.exactMatch(cursor.selectedText()))
+			return;
+	}
+	// Prelimiary solution part II:
+	// If the case |\cmd is encountered, we shift the
+	// cursor by one to \|cmd so the regular erase approach works.
+	int col = cursor.columnNumber();
+	if ((col < line.count())						// not at end of line
+		&& (line.at(col) == '\\')					// likely a command/env - check further
+		&& (col==0 || line.at(col-1).isSpace()))	// cmd is at start or previous char is space: non-ambiguous situation like word|\cmd
+		// don't need to finally check for command |\c should be handled like \|c for any c (even space and empty)
+	{
+		cursor.movePosition(1);
+	}
+
 	switch (latexParser.findContext(line, cursor.columnNumber(), command, value)){
 	
 	case LatexParser::Command:
