@@ -4945,9 +4945,7 @@ void Texmaker::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void Texmaker::dropEvent(QDropEvent *event) {
-	QRegExp rx("file:///(.*)");
 	QList<QUrl> uris=event->mimeData()->urls();
-	QString uri;
 	
 	QStringList imageFormats = InsertGraphics::imageFormats();
 	
