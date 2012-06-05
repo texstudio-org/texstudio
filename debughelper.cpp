@@ -445,6 +445,8 @@ SAFE_INT lastErrorWasLoop = 0;
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_ESP]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EBP]
 #endif
+#define SIGMYHANG SIGRTMIN + 4             //signal send to the main thread, if the guardian detects an endless loop
+#define SIGMYHANG_CONTINUE SIGRTMIN + 5    //signal send to the main thread, if the endless loop should be continued
 #endif
 
 #ifdef Q_WS_MACX
@@ -465,18 +467,18 @@ SAFE_INT lastErrorWasLoop = 0;
 #define STACK_FROM_UCONTEXT(context) context->__ss.__esp
 #define FRAME_FROM_UCONTEXT(context) context->__ss.__ebp
 #endif
+#define SIGMYHANG SIGUSR1             //signal send to the main thread, if the guardian detects an endless loop
+#define SIGMYHANG_CONTINUE SIGUSR2    //signal send to the main thread, if the endless loop should be continued
 #endif
 
 #ifdef USE_SIGNAL_HANDLER
 #define CPU_CONTEXT_TYPE ucontext_t
 volatile sig_atomic_t lastCrashSignal = 0;
-#define SIGMYHANG SIGRTMIN + 4             //signal send to the main thread, if the guardian detects an endless loop
-#define SIGMYHANG_CONTINUE SIGRTMIN + 5    //signal send to the main thread, if the endless loop should be continued
 #define SIGMYSTACKSEGV 123
 
 extern int _etext;
 
-ucontext lastLoopContext;
+CPU_CONTEXT_TYPE lastLoopContext;
 
 bool isAddressInTeXstudio(void * address){
 	return address < &_etext;
@@ -518,7 +520,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
 		if (type == SIGMYHANG) {
 			if (!isAddressInTeXstudio(cpu.pc)) return; //don't mess with library functions
-			lastLoopContext = *(static_cast<ucontext_t*>(ccontext));
+			lastLoopContext = *(static_cast<CPU_CONTEXT_TYPE*>(ccontext));
 			lastErrorWasLoop = 1;
 		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();	
 		
@@ -531,7 +533,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 }
 
 void signalHandlerContinueHanging(int, siginfo_t *, void* ccontext){
-	*(static_cast<ucontext_t*>(ccontext)) = lastLoopContext; 
+	*(static_cast<CPU_CONTEXT_TYPE*>(ccontext)) = lastLoopContext; 
 }
 
 const int SIGNAL_STACK_SIZE = 256*1024;
