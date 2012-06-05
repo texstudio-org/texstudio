@@ -1309,8 +1309,7 @@ bool ConfigManager::execConfigDialog() {
 		for (int i=0;i<editorKeys->childCount();i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText);
-			qDebug() << i << kSeq << editOperation << kSeq.isEmpty();
-			if (!kSeq.isEmpty() && editOperation > 0 /* not QEditor::Invalid or QEditor::NoOperation*/)
+			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
 				this->editorKeys.insert(kSeq, editOperation);
 		}
 

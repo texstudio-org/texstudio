@@ -6899,7 +6899,7 @@ void Texmaker::threadCrashed(){
 	QString signal = getLastCrashInformation(wasLoop);
 	QThread* thread = lastCrashedThread;
 	
-	QString threadName = "<unknown<";
+	QString threadName = "<unknown>";
 	QString threadId = QString("%1").arg((long)(thread),sizeof(long int)*2,16,QChar('0'));
 	if (qobject_cast<QThread*>(static_cast<QObject*>(thread)))  
 		threadName = QString("%1 %2").arg(threadId).arg(qobject_cast<QThread*>(thread)->objectName());
