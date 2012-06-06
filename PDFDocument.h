@@ -114,7 +114,7 @@ class PDFWidget : public QLabel
 	Q_OBJECT
 
 public:
-	PDFWidget();
+    PDFWidget(bool embedded=false);
 	virtual ~PDFWidget();
 	
 	void setDocument(Poppler::Document *doc);

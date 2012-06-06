@@ -378,7 +378,7 @@ QCursor *PDFWidget::magnifierCursor = NULL;
 QCursor *PDFWidget::zoomInCursor = NULL;
 QCursor *PDFWidget::zoomOutCursor = NULL;
 
-PDFWidget::PDFWidget()
+PDFWidget::PDFWidget(bool embedded)
 	: QLabel()
 	, document(NULL)
 	, clickedLink(NULL), clickedAnnotation(0)
@@ -450,19 +450,20 @@ PDFWidget::PDFWidget()
 	connect(action, SIGNAL(triggered()), this, SLOT(fitWindow()));
 	addAction(action);
 	
-	shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()));
-	shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()));
-	shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
-	shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
-	shortcutPageUp1 = new QShortcut(QKeySequence(Qt::Key_PageUp), this, SLOT(pageUpOrPrev()));
-	//shortcutPageUp2 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Space), this, SLOT(pageUpOrPrev()));
-	//shortcutPageUp3 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Enter), this, SLOT(pageUpOrPrev()));
-	//shortcutPageUp4 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Return), this, SLOT(pageUpOrPrev()));
-	shortcutPageDown1 = new QShortcut(QKeySequence(Qt::Key_PageDown), this, SLOT(pageDownOrNext()));
-	//shortcutPageDown2 = new QShortcut(QKeySequence(Qt::Key_Space), this, SLOT(pageDownOrNext()));
-	//shortcutPageDown3 = new QShortcut(QKeySequence(Qt::Key_Enter), this, SLOT(pageDownOrNext()));
-	//shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
-
+    if(!embedded){
+        shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()));
+        shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()));
+        shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
+        shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
+        shortcutPageUp1 = new QShortcut(QKeySequence(Qt::Key_PageUp), this, SLOT(pageUpOrPrev()));
+        //shortcutPageUp2 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Space), this, SLOT(pageUpOrPrev()));
+        //shortcutPageUp3 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Enter), this, SLOT(pageUpOrPrev()));
+        //shortcutPageUp4 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Return), this, SLOT(pageUpOrPrev()));
+        shortcutPageDown1 = new QShortcut(QKeySequence(Qt::Key_PageDown), this, SLOT(pageDownOrNext()));
+        //shortcutPageDown2 = new QShortcut(QKeySequence(Qt::Key_Space), this, SLOT(pageDownOrNext()));
+        //shortcutPageDown3 = new QShortcut(QKeySequence(Qt::Key_Enter), this, SLOT(pageDownOrNext()));
+        //shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
+    }
 	highlightRemover.setSingleShot(true);
 	highlightPage=-1;
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
@@ -1940,7 +1941,7 @@ void PDFDocument::init(bool embedded)
 
 	setContextMenuPolicy(Qt::NoContextMenu);
 
-	pdfWidget = new PDFWidget;
+    pdfWidget = new PDFWidget(embedded);
     pdfWidget->setPDFDocument(this);
 
 	toolButtonGroup = new QButtonGroup(toolBar);
