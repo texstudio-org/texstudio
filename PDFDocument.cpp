@@ -1932,7 +1932,7 @@ void PDFDocument::init(bool embedded)
     actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
     if(embedded){
         actionTypeset->setVisible(false);
-        actionExternalViewer->setVisible(false);
+        //actionExternalViewer->setVisible(false);
         actionZoom_In->setVisible(false);
         actionZoom_Out->setVisible(false);
     }else{
@@ -2093,7 +2093,10 @@ void PDFDocument::init(bool embedded)
 	
 	connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
 
-	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
+    if(embedded)
+        connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runInternalViewer()));
+    else
+        connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
 
 	connect(actionCloseSomething, SIGNAL(triggered()), SLOT(closeSomething()));
 	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
@@ -2231,7 +2234,7 @@ void PDFDocument::sideBySide()
 void PDFDocument::closeEvent(QCloseEvent *event)
 {
 	Q_ASSERT(globalConfig);
-	if (isVisible()) {
+    if (isVisible() && !embeddedMode) {
 		globalConfig->windowLeft = x();
 		globalConfig->windowTop = y();
 		globalConfig->windowWidth = width();
@@ -2374,6 +2377,9 @@ void PDFDocument::idleReload(){
 
 void PDFDocument::runExternalViewer(){
 	emit runCommand("txs:///view-pdf-external", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+}
+void PDFDocument::runInternalViewer(){
+    emit runCommand("txs:///view-pdf-internal", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 }
 
 void PDFDocument::runQuickBuild(){
