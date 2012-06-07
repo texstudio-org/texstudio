@@ -24,12 +24,12 @@ private slots:
 	void myAccept();
 public:
 	UniversalInputDialog(QWidget* parent=0);
-	void addVariable(bool* var, const QString& description="");
-	void addVariable(int* var, const QString& description="");
-	void addVariable(QString* var, const QString& description="");
-	void addVariable(QStringList* var, const QString& description="");
-	void addTextEdit(QString* var, const QString& description="");
-	void addVariable(float* var, const QString& description="");
+	QCheckBox* addVariable(bool* var, const QString& description="");
+	QSpinBox* addVariable(int* var, const QString& description="");
+	QLineEdit* addVariable(QString* var, const QString& description="");
+	QComboBox* addVariable(QStringList* var, const QString& description="");
+	QTextEdit* addTextEdit(QString* var, const QString& description="");
+	QDoubleSpinBox* addVariable(float* var, const QString& description="");
 	virtual void showEvent(QShowEvent* event);
 };
 
