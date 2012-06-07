@@ -173,6 +173,7 @@ private:
 public:
 	void modifyMenuContents();
 	void modifyManagedShortcuts();
+	void setManagedShortCut(QAction* act, int num, const QKeySequence& key);
 	void loadManagedMenu(QMenu* parent,const QDomElement &f);
 	void loadManagedMenus(const QString &f);
 	QStringList possibleMenuSlots;
