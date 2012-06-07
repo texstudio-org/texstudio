@@ -42,7 +42,7 @@ void ThesaurusDatabaseType::saveUser(){
 		if (it.value().size() < 2) continue;
 		s << it.value().join("|") << "\n";
 	}
-	userFileName.clear();
+	//userFileName.clear(); why was it there? save only once?
 }
 void ThesaurusDatabaseType::load(QFile& file){
 	REQUIRE(!buffer); //only call it once
