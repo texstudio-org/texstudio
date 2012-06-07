@@ -71,23 +71,23 @@ QTextEdit* UniversalInputDialog::addTextEdit(const ManagedProperty& mp, const QS
 }
 
 
-void UniversalInputDialog::addVariable(bool* var, const QString& description){
-	addCheckBox(ManagedProperty(var), description);
+QCheckBox* UniversalInputDialog::addVariable(bool* var, const QString& description){
+	return addCheckBox(ManagedProperty(var), description);
 }
-void UniversalInputDialog::addVariable(int* var, const QString& description){
-	addSpinBox(ManagedProperty(var), description);
+QSpinBox* UniversalInputDialog::addVariable(int* var, const QString& description){
+	return addSpinBox(ManagedProperty(var), description);
 }
-void UniversalInputDialog::addVariable(QString* var, const QString& description){
-	addLineEdit(ManagedProperty(var), description);
+QLineEdit* UniversalInputDialog::addVariable(QString* var, const QString& description){
+	return addLineEdit(ManagedProperty(var), description);
 }
-void UniversalInputDialog::addVariable(QStringList* var, const QString& description){
-	addComboBox(ManagedProperty(var), description);
+QComboBox* UniversalInputDialog::addVariable(QStringList* var, const QString& description){
+	return addComboBox(ManagedProperty(var), description);
 }
-void UniversalInputDialog::addTextEdit(QString* var, const QString& description){
-	addTextEdit(ManagedProperty(var), description);
+QTextEdit* UniversalInputDialog::addTextEdit(QString* var, const QString& description){
+	return addTextEdit(ManagedProperty(var), description);
 }
-void UniversalInputDialog::addVariable(float* var, const QString& description){
-	addDoubleSpinBox(ManagedProperty(var), description);
+QDoubleSpinBox* UniversalInputDialog::addVariable(float* var, const QString& description){
+	return addDoubleSpinBox(ManagedProperty(var), description);
 }
 
 void UniversalInputDialog::showEvent(QShowEvent* event){
