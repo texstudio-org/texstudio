@@ -24,7 +24,7 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	magicCommentList->title=tr("MAGIC_COMMENTS");
 	labelList->title=tr("LABELS");
 	todoList->title=tr("TODO");
-	bibTeXList->title=tr("BIBTEX");
+	bibTeXList->title=tr("BIBLIOGRAPHY");
 	blockList->title=tr("BLOCKS");
 	mLabelItem.clear();
 	mBibItem.clear();
@@ -174,7 +174,7 @@ void LatexDocument::initStructure(){
 	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	todoList->title=tr("TODO");
 	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-	bibTeXList->title=tr("BIBTEX");
+	bibTeXList->title=tr("BIBLIOGRAPHY");
 	blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
 	blockList->title=tr("BLOCKS");
 }
