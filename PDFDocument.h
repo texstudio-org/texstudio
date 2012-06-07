@@ -383,6 +383,7 @@ private slots:
 	void idleReload();
 	
 	void runExternalViewer();
+    void runInternalViewer();
 	void runQuickBuild();
 
 	void setGrid();

@@ -3954,7 +3954,13 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master,bool embedded){
 	if (PDFDocument::documentList().isEmpty()) {
         newPdfPreviewer(embedded);
 		Q_ASSERT(!PDFDocument::documentList().isEmpty());
-	}
+    }else{
+        PDFDocument *doc=PDFDocument::documentList().first();
+        if(doc->embeddedMode!=embedded){
+            doc->close();
+            newPdfPreviewer(embedded);
+        }
+    }
 	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
     int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
 	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
