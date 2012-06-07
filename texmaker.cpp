@@ -3956,7 +3956,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master,bool embedded){
 		Q_ASSERT(!PDFDocument::documentList().isEmpty());
     }else{
         PDFDocument *doc=PDFDocument::documentList().first();
-        if(doc->embeddedMode!=embedded){
+        if(doc->embeddedMode!=embedded && !embedded){
             doc->close();
             newPdfPreviewer(embedded);
         }
