@@ -329,12 +329,17 @@ void ThesaurusDialog::startsWithClicked()
 
 void ThesaurusDialog::addUserWordClicked(){
 	if (!thesaurus) return;
-	QString word, category;	
-	if (classlistWidget->currentItem()) category = classlistWidget->currentItem()->text();
+	QString word;	
+	QStringList categories;
+	for (int i=1; i<classlistWidget->count();i++)
+		categories << classlistWidget->item(i)->text();
+	if (classlistWidget->currentItem() && categories.indexOf(classlistWidget->currentItem()->text()) >= 0 )  
+		categories.swap(0, categories.indexOf(classlistWidget->currentItem()->text()));
 	UniversalInputDialog uid;
 	uid.addVariable(&word, tr("New Word:"));
-	uid.addVariable(&category, tr("Category:"));
+	uid.addVariable(&categories, tr("Category:"))->setEditable(true);
 	if (!uid.exec()) return;
+	QString category = categories.first();
 	QStringList &sl = thesaurus->userWords[category.toLower()];
 	if (sl.contains(word)) return;
 	if (sl.isEmpty()) sl.append(category);
@@ -347,7 +352,16 @@ void ThesaurusDialog::addUserWordClicked(){
 			break;
 		}
 	if (found) classChanged(classlistWidget->currentRow());
-	else setSearchWord(searchWrdLe->text());
+	else {
+		QString oldWord = searchWrdLe->text();
+		if (!sl.contains(oldWord)) {
+			if (txsConfirm(tr("Do you want to add \"%1\" as synonym for \"%2\" or \"%3\"?").arg(oldWord).arg(word).arg(category))) {
+				sl.append(oldWord);
+				thesaurus->userCategories.insert(oldWord.toLower(), category);
+			}
+		}
+		setSearchWord(oldWord);
+	}
 }
 void ThesaurusDialog::removeUserWordClicked(){
 	if (!thesaurus) return;
