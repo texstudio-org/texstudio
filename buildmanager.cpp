@@ -29,7 +29,7 @@ CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xela
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
 CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
-CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(VIEW_PDF_INTERNAL_EMBEDDED, view-pdf-internal-embedded) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
+CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 #undef CMD_DEFINE
 
@@ -180,11 +180,11 @@ void BuildManager::initDefaultCommandNames(){
 	descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
 	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
 	descriptionList.clear();
-    descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TexStudio") << tr("Use external PDF viewer");
-    registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal-embedded" << "txs:///view-pdf-external","",true,descriptionList);
+	descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TeXstudio") << tr("Use external PDF viewer");
+	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
-    descriptionList<< tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TexStudio") << tr("Use external PDF viewer");
-    registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-internal-embedded" << "txs:///view-pdf-external","",true,descriptionList);
+	descriptionList<< tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TeXstudio")  << tr("Use external PDF viewer");
+	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
 	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
@@ -208,8 +208,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
 	
-    internalCommandIds << CMD_VIEW_PDF_INTERNAL << CMD_VIEW_PDF_INTERNAL_EMBEDDED << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
-	for (int i=0;i<internalCommandIds.size();i++) internalCommandIds[i] = internalCommandIds[i].mid(TXS_CMD_PREFIX.length());
+	internalCommands << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
 }
 
 CommandInfo& BuildManager::registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig, const GuessCommandLineFunc guessFunc, bool user ){
@@ -238,7 +237,7 @@ CommandInfo& BuildManager::registerCommand(const QString& id, const QString& dis
 }
 QString BuildManager::getCommandLine(const QString& id, bool* user){
 	QString result;
-	emit commandLineRequested(id, &result, user);
+	emit commandLineRequested(id.trimmed(), &result, user);
 	return result;
 }
 
@@ -592,8 +591,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 				continue; 
 			}
 			
-			if (cmd.startsWith(TXS_CMD_PREFIX) && internalCommandIds.contains(cmd.mid(TXS_CMD_PREFIX.length()))) {
-				res.commands << CommandToRun(cmd.mid(TXS_CMD_PREFIX.length()));
+			int space = cmd.indexOf(' ');
+			if (space == -1) space = cmd.size();
+			if (cmd.startsWith(TXS_CMD_PREFIX) && internalCommands.contains(cmd.left(space))) {
+				res.commands << CommandToRun(cmd + " " + parameters);
 				res.commands.last().parentCommand = res.commands.last().command;
 				continue;
 			}
@@ -962,10 +963,8 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 	int remainingReRunCount = autoRerunLatex;
 	for (int i=0;i<commands.size();i++) {
 		CommandToRun cur = commands[i];
-		if (internalCommandIds.contains(cur.command)) {
-			emit runInternalCommand(cur.command, mainFile);
+		if (testAndRunInternalCommand(cur.command, mainFile)) 
 			continue;
-		}
 		
 		bool singleInstance = cur.flags & RCF_SINGLE_INSTANCE;
 		if (singleInstance && runningCommands.contains(cur.command)) continue;
@@ -1244,7 +1243,7 @@ void BuildManager::clearPreviewPreambleCache(){
 
 bool BuildManager::isCommandDirectlyDefined(const QString& id) const{
 	if (id.startsWith(TXS_CMD_PREFIX)) return isCommandDirectlyDefined(id.mid(TXS_CMD_PREFIX.length()));
-	if (internalCommandIds.contains(id)) return true;
+	if (internalCommands.contains(TXS_CMD_PREFIX + id)) return true;
 	return !commands.value(id).commandLine.isEmpty();
 }
 CommandInfo BuildManager::getCommandInfo(const QString& id) const{
@@ -1382,19 +1381,14 @@ void BuildManager::conversionPreviewCompleted(int status){
 	if(QFileInfo(fn).exists())
 		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 }
-void BuildManager::runInternalCommandThroughProcessX(){
-	ProcessX *p = qobject_cast<ProcessX*>(sender());
-	REQUIRE(p);
-	REQUIRE(p->getCommandLine().startsWith(TXS_CMD_PREFIX));
-	QString internal = p->getCommandLine().mid(TXS_CMD_PREFIX.length());
-	if (internalCommandIds.contains(internal))
-		emit runInternalCommand(internal, p->getFile());
-}
 void BuildManager::commandLineRequestedDefault(const QString& cmdId, QString* result, bool * user){
 	if (user) *user = false;
 	if (!result) return;
-	if (internalCommandIds.contains(cmdId)) {
-		*result = "txs:///" + cmdId;
+	int space = cmdId.indexOf(' ');
+	if (space == -1) space = cmdId.size();
+	if (internalCommands.contains(cmdId.left(space)) || internalCommands.contains(TXS_CMD_PREFIX + cmdId.left(space))) {
+		*result = cmdId;
+		if (!result->startsWith(TXS_CMD_PREFIX)) *result = TXS_CMD_PREFIX + *result;
 		return;
 	}
 	CommandMapping::iterator it = commands.find(cmdId);
@@ -1402,6 +1396,23 @@ void BuildManager::commandLineRequestedDefault(const QString& cmdId, QString* re
 		*result = it->commandLine; 
 		if (user) *user = it->user;
 	}
+}
+void BuildManager::runInternalCommandThroughProcessX(){
+	ProcessX *p = qobject_cast<ProcessX*>(sender());
+	REQUIRE(p);
+	REQUIRE(p->getCommandLine().startsWith(TXS_CMD_PREFIX));
+	testAndRunInternalCommand(p->getCommandLine(), p->getFile());
+}
+bool BuildManager::testAndRunInternalCommand(const QString& cmd, const QFileInfo& mainFile){
+	int space = cmd.indexOf(' ');
+	QString cmdId, options;
+	if (space == -1 ) cmdId = cmd;
+	else cmdId = cmd.left(space), options = cmd.mid(space+1);
+	if (internalCommands.contains(cmdId)) {
+		emit runInternalCommand(cmdId, mainFile, options);
+		return true;
+	}
+	return false;
 }
 
 void BuildManager::removePreviewFiles(QString elem){

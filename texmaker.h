@@ -354,10 +354,10 @@ protected slots:
 	void QuickGraphics(const QString &graphicsFile = QString());
 	
 	bool checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master);
-    void runInternalPdfViewer(const QFileInfo& master, bool embedded=false);
+	void runInternalPdfViewer(const QFileInfo& master, const QString& options);
 	void runBibliographyIfNecessary(const QFileInfo& cmd);
 private slots:	
-	void runInternalCommand(const QString& cmd, const QFileInfo& master);
+	void runInternalCommand(const QString& cmd, const QFileInfo& master, const QString& options);
 	void commandLineRequested(const QString& cmdId, QString* result, bool*);
 	void beginRunningCommand(const QString& commandMain, bool latex, bool pdf);
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
@@ -407,7 +407,7 @@ protected slots:
 	void viewCollapseBlock();
 	void viewExpandBlock();
 	
-	void newPdfPreviewer(bool embedded=false);
+	QObject* newPdfPreviewer(bool embedded=false);
 	void pdfClosed();
 	
 	void masterDocumentChanged(LatexDocument * doc);

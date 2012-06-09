@@ -498,7 +498,7 @@ void Texmaker::setupDockWidgets(){
 		connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
 		connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), SLOT(endRunningCommand(QString,bool,bool)));
 		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(ViewLogOrReRun(LatexCompileResult*)));
-		connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo)), SLOT(runInternalCommand(QString,QFileInfo)));
+		connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo,QString)), SLOT(runInternalCommand(QString,QFileInfo,QString)));
 		connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequested(QString,QString*,bool*)));
 		
 		
@@ -3949,21 +3949,56 @@ bool Texmaker::runCommand(const QString& commandline, QString* buffer) {
 	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer);	
 }
 
-void Texmaker::runInternalPdfViewer(const QFileInfo& master,bool embedded){
+void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& options){
 #ifndef NO_POPPLER_PREVIEW
-	if (PDFDocument::documentList().isEmpty()) {
-        newPdfPreviewer(embedded);
-		Q_ASSERT(!PDFDocument::documentList().isEmpty());
-    }else{
-        PDFDocument *doc=PDFDocument::documentList().first();
-        if(doc->embeddedMode!=embedded && !embedded){
-            doc->close();
-            newPdfPreviewer(embedded);
-        }
-    }
+	QStringList ol = options.split(" ");
+	for (int i=ol.size()-1;i>=0;i--)
+		if (!ol[i].startsWith("-")) ol.removeAt(i);
+		else if (ol[i].startsWith("--")) ol[i] = ol[i].mid(2);
+		else ol[i] = ol[i].mid(1);
+	bool embedded = ol.contains("embedded");                          //if a new pdf viewer is opened, use the embedded mode
+	bool windowed = ol.contains("windowed") || ol.isEmpty();          //if a new pdf viewer is opened, use the windowed mode (default)
+	bool closeAll = ol.contains("close-all");                         //close all existing viewers
+	bool closeOne = ol.contains("close");                             //close a existing viewer
+	              
+	//embedded/windowed are mutual exclusive
+	//no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
+	
+	
+	//if closing and opening is set, reuse the first document 
+	QList<PDFDocument*> oldPDFs = PDFDocument::documentList();
+	PDFDocument* reuse = 0;
+	if ((embedded || windowed) && (closeOne || closeAll) && !oldPDFs.isEmpty() ) {
+		for (int i=0;i<oldPDFs.size();i++)
+			if (oldPDFs[i]->embeddedMode == embedded){
+				reuse = oldPDFs.takeAt(i);
+				break;
+			}
+	}
+	
+	//close current
+	if (closeOne && !oldPDFs.empty())
+		oldPDFs.takeFirst()->close(); //TODO: fix that close doesn't update PDFDOcument::documentList immediately	
+	if (closeAll){
+		foreach (PDFDocument* doc, oldPDFs)
+			doc->close();
+		oldPDFs.clear();
+	}
+	
+	
+	//open new
+	if (!embedded && !windowed) return;
+	
+	if (reuse) oldPDFs << reuse;
+	if (oldPDFs.isEmpty()){
+		PDFDocument* doc = qobject_cast<PDFDocument*>(newPdfPreviewer(embedded));
+		REQUIRE(doc);
+		oldPDFs << doc;
+	}
+	
 	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
-    int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
-	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
+	foreach (PDFDocument* viewer, oldPDFs) {
 		viewer->loadFile(pdfFile, master);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , true);
 		viewer->fillRenderCache(pg);
@@ -4040,10 +4075,9 @@ void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){
 }
 
 
-void Texmaker::runInternalCommand(const QString& cmdid, const QFileInfo& mainfile){
-	QString cmd = BuildManager::TXS_CMD_PREFIX + cmdid;
-    if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL || cmd == BuildManager::CMD_VIEW_PDF_INTERNAL_EMBEDDED)
-        runInternalPdfViewer(mainfile,cmd == BuildManager::CMD_VIEW_PDF_INTERNAL_EMBEDDED);
+void Texmaker::runInternalCommand(const QString& cmd, const QFileInfo& mainfile, const QString& options){
+	if (cmd == BuildManager::CMD_VIEW_PDF_INTERNAL || (cmd.startsWith(BuildManager::CMD_VIEW_PDF_INTERNAL) && cmd[BuildManager::CMD_VIEW_PDF_INTERNAL.length()] == ' '))
+		runInternalPdfViewer(mainfile, options);
 	else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
 	else if (cmd == BuildManager::CMD_VIEW_LOG)
@@ -4532,6 +4566,7 @@ void Texmaker::GeneralOptions() {
 			setupMenus();
 			setupDockWidgets();
 		}
+		updateUserToolMenu();
 	}
 	if(configManager.autosaveEveryMinutes>0){
 		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
@@ -4882,21 +4917,21 @@ void Texmaker::pdfClosed(){
     }
 }
 
-void Texmaker::newPdfPreviewer(bool embedded){
+QObject* Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
-    PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
-    if(embedded){
-        splitter->addWidget(pdfviewerWindow);
-        QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
-        int sum=0;
-        foreach(int i,sz){
-            sum+=i;
-        }
-        sz.clear();
-	sz << sum-qRound(pdfSplitterRel*sum);
-	sz << qRound(pdfSplitterRel*sum);
-        splitter->setSizes(sz);
-    }
+	PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
+	if(embedded){
+		splitter->addWidget(pdfviewerWindow);
+		QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+		int sum=0;
+		foreach(int i,sz){
+			sum+=i;
+		}
+		sz.clear();
+		sz << sum-qRound(pdfSplitterRel*sum);
+		sz << qRound(pdfSplitterRel*sum);
+		splitter->setSizes(sz);
+	}
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 	connect(pdfviewerWindow, SIGNAL(documentClosed()), SLOT(pdfClosed()));
@@ -4917,6 +4952,9 @@ void Texmaker::newPdfPreviewer(bool embedded){
 		connect(doc, SIGNAL(syncView(QString,QFileInfo,int)), pdfviewerWindow, SLOT(syncFromView(QString,QFileInfo,int)));
 		connect(pdfviewerWindow, SIGNAL(syncView(QString,QFileInfo, int)), doc, SLOT(syncFromView(QString,QFileInfo,int)));
 	}
+	return pdfviewerWindow;
+#else
+	return 0;
 #endif
 }
 
