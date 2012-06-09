@@ -1389,7 +1389,10 @@ void PDFWidget::goPrev()
 void PDFWidget::goNext()
 {
 	if (!document) return;
-	getScrollArea()->goToPage(realPageIndex+ getPageOffset() + pageStep());
+    int pageOffset=getPageOffset();
+    if(realPageIndex==0 && pageOffset==1)
+        pageOffset=-1;
+    getScrollArea()->goToPage(realPageIndex+ pageOffset + pageStep());
 }
 
 void PDFWidget::goLast()
