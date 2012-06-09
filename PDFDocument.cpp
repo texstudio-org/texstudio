@@ -2382,7 +2382,7 @@ void PDFDocument::runExternalViewer(){
 	emit runCommand("txs:///view-pdf-external", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 }
 void PDFDocument::runInternalViewer(){
-    emit runCommand("txs:///view-pdf-internal --windowed --close-all", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+    emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 }
 
 void PDFDocument::runQuickBuild(){

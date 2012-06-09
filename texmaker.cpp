@@ -3956,19 +3956,35 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		if (!ol[i].startsWith("-")) ol.removeAt(i);
 		else if (ol[i].startsWith("--")) ol[i] = ol[i].mid(2);
 		else ol[i] = ol[i].mid(1);
-	bool embedded = ol.contains("embedded");                          //if a new pdf viewer is opened, use the embedded mode
-	bool windowed = ol.contains("windowed") || ol.isEmpty();          //if a new pdf viewer is opened, use the windowed mode (default)
-	bool closeAll = ol.contains("close-all");                         //close all existing viewers
-	bool closeOne = ol.contains("close");                             //close a existing viewer
-	              
+	bool preserveExisting = ol.contains("preserve-existing");                  //completely ignore all existing internal viewers
+	bool preserveExistingEmbedded = ol.contains("preserve-existing-embedded"); //completely ignore all existing embedded internal viewers
+	bool preserveExistingWindowed = ol.contains("preserve-existing-windowed"); //completely ignore all existing windowed internal viewers
+	bool preserveDuplicates = ol.contains("preserve-duplicates");              //open the document only in one pdf viewer
+	bool embedded = ol.contains("embedded");                                   //if a new pdf viewer is opened, use the embedded mode
+	bool windowed = ol.contains("windowed") || ol.isEmpty();                   //if a new pdf viewer is opened, use the windowed mode (default)
+	bool closeAll = ol.contains("close-all");                                  //close all existing viewers
+	bool closeEmbedded = closeAll || ol.contains("close-embedded");            //close all embedded existing viewer
+	bool closeWindowed = closeAll || ol.contains("close-windowed");            //close all windowed existing viewer
+	
 	//embedded/windowed are mutual exclusive
 	//no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
 	
-	
-	//if closing and opening is set, reuse the first document 
+
 	QList<PDFDocument*> oldPDFs = PDFDocument::documentList();
+	
+	if (preserveExisting) oldPDFs.clear();
+	if (preserveExistingWindowed) 
+		for (int i=oldPDFs.size() - 1; i >= 0; i--)
+			if (!oldPDFs[i]->embeddedMode) 
+				oldPDFs.removeAt(i);
+	if (preserveExistingEmbedded) 
+		for (int i=oldPDFs.size() - 1; i >= 0; i--)
+			if (oldPDFs[i]->embeddedMode) 
+				oldPDFs.removeAt(i);
+	
+	//if closing and opening is set, reuse the first document (reuse = optimization, so it does not close a viewer and creates an equal viewer afterwards)
 	PDFDocument* reuse = 0;
-	if ((embedded || windowed) && (closeOne || closeAll) && !oldPDFs.isEmpty() ) {
+	if ((embedded || windowed) && (closeEmbedded || closeWindowed) && !oldPDFs.isEmpty() ) {
 		for (int i=0;i<oldPDFs.size();i++)
 			if (oldPDFs[i]->embeddedMode == embedded){
 				reuse = oldPDFs.takeAt(i);
@@ -3976,20 +3992,17 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 			}
 	}
 	
-	//close current
-	if (closeOne && !oldPDFs.empty())
-		oldPDFs.takeFirst()->close(); //TODO: fix that close doesn't update PDFDOcument::documentList immediately	
-	if (closeAll){
-		foreach (PDFDocument* doc, oldPDFs)
-			doc->close();
-		oldPDFs.clear();
-	}
+	//close old
+	for (int i=oldPDFs.size()-1;i>=0;i--) 
+		if ( (oldPDFs[i]->embeddedMode && closeEmbedded) ||
+		     (!oldPDFs[i]->embeddedMode && closeWindowed) )
+			oldPDFs[i]->close(), oldPDFs.removeAt(i);
 	
 	
 	//open new
 	if (!embedded && !windowed) return;
 	
-	if (reuse) oldPDFs << reuse;
+	if (reuse) oldPDFs.insert(0, reuse);
 	if (oldPDFs.isEmpty()){
 		PDFDocument* doc = qobject_cast<PDFDocument*>(newPdfPreviewer(embedded));
 		REQUIRE(doc);
@@ -4002,6 +4015,8 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		viewer->loadFile(pdfFile, master);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , true);
 		viewer->fillRenderCache(pg);
+		
+		if (preserveDuplicates) break;
 	}
 #else
 	txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
