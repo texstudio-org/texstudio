@@ -2075,6 +2075,14 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
     updateBookmarks(currentEditorView());
+    //close associated embedded pdf viewer
+    foreach(PDFDocument *viewer,PDFDocument::documentList()){
+        if(!viewer->embeddedMode)
+            continue;
+        if(viewer->getMasterFile()==currentEditorView()->document->getFileInfo()){
+            viewer->close();
+        }
+    }
 
 repeatAfterFileSavingFailed:
 	if (currentEditorView()->editor->isContentModified()) {
@@ -4943,6 +4951,8 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 			sum+=i;
 		}
 		sz.clear();
+        if(pdfSplitterRel<0.1) //sanity check
+            pdfSplitterRel=0.5;
 		sz << sum-qRound(pdfSplitterRel*sum);
 		sz << qRound(pdfSplitterRel*sum);
 		splitter->setSizes(sz);
