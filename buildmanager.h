@@ -102,7 +102,7 @@ public:
 	static const QString CMD_VIEW_DVI, CMD_VIEW_PS, CMD_VIEW_PDF, CMD_VIEW_LOG;
 	static const QString CMD_DVIPNG, CMD_DVIPS, CMD_DVIPDF, CMD_PS2PDF, CMD_GS, CMD_MAKEINDEX, CMD_TEXINDY, CMD_METAPOST, CMD_ASY, CMD_BIBTEX, CMD_SVN, CMD_SVNADMIN;
 	static const QString CMD_COMPILE, CMD_VIEW, CMD_BIBLIOGRAPHY, CMD_INDEX, CMD_QUICK, CMD_RECOMPILE_BIBLIOGRAPHY;
-    static const QString CMD_VIEW_PDF_INTERNAL, CMD_VIEW_PDF_INTERNAL_EMBEDDED, CMD_INTERNAL_PRE_COMPILE, CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY;
+	static const QString CMD_VIEW_PDF_INTERNAL, CMD_INTERNAL_PRE_COMPILE, CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY;
 	
 	static QString chainCommands(const QString& a);
 	static QString chainCommands(const QString& a, const QString& b);
@@ -163,14 +163,16 @@ private slots:
 	void latexPreviewCompleted(int status);
 	void dvi2psPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status); 
-	void runInternalCommandThroughProcessX();
 	void commandLineRequestedDefault(const QString& cmdId, QString* result, bool * user);
+	void runInternalCommandThroughProcessX();
+private:
+	bool testAndRunInternalCommand(const QString& cmd, const QFileInfo& mainFile);
 signals:
 	void processNotification(const QString& message);
 	void previewAvailable(const QString& filename, const PreviewSource& source);
 	
 	void commandLineRequested(const QString& cmdId, QString* result, bool * user = 0);
-	void runInternalCommand(const QString& cmdId, const QFileInfo& mainfile);
+	void runInternalCommand(const QString& cmdId, const QFileInfo& mainfile, const QString& options);
 	
 	void latexCompiled(LatexCompileResult* rerun);
 	void beginRunningCommands(const QString& commandMain, bool latex, bool pdf);
@@ -185,7 +187,7 @@ private:
 	Q_INVOKABLE QString getCommandLine(const QString& id, bool* user);
 	friend class ProcessX;
 	CommandMapping commands;
-	QStringList internalCommandIds, commandSortingsOrder;
+	QStringList internalCommands, commandSortingsOrder;
 	QMap<QString, ProcessX*> runningCommands;
 	QPointer<ProcessX> processWaitedFor;
 	
