@@ -18,10 +18,7 @@
 
 #include "cleandialog.h"
 
-//#define no_debughelper
-#ifndef no_debughelper
 #include "debughelper.h"
-#endif
 
 #include "structdialog.h"
 #include "filechooser.h"
@@ -88,12 +85,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	txsInstance = this;
 	static int crashHandlerType = 1; 
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
-#ifndef no_debughelper
-    registerCrashHandler(crashHandlerType);
+
+	registerCrashHandler(crashHandlerType);
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(3000);
-#endif
+
 	              
 	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
@@ -303,9 +300,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 
 Texmaker::~Texmaker(){
 	programStopped = true;
-#ifndef no_debughelper
-    Guardian::shutdown();
-#endif
+
+	Guardian::shutdown();
+	
 	delete MapForSymbols;
 	if(latexStyleParser){
 		latexStyleParser->stop();
@@ -2163,9 +2160,7 @@ bool Texmaker::canCloseNow(){
 		spellerManager.unloadAll();  //this saves the ignore list
 	}
 	programStopped = true;
-#ifndef no_debughelper
-    Guardian::shutdown();
-#endif
+	Guardian::shutdown();
 	return accept;
 }
 void Texmaker::closeEvent(QCloseEvent *e) {
@@ -4683,9 +4678,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	}
 #endif
 
-#ifndef no_debughelper
     if (realCmdLine) Guardian::summon();
-#endif
 }
 
 void Texmaker::executeTests(const QStringList &args){
@@ -6908,7 +6901,6 @@ void recover(){
 }
 
 void Texmaker::recoverFromCrash(){	
-#ifndef no_debughelper
 	bool wasLoop;
 	QString name = getLastCrashInformation(wasLoop);
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
@@ -6970,12 +6962,10 @@ void Texmaker::recoverFromCrash(){
 	}
 	name = "Normal close after " + name;
 	print_backtrace(name);
-    exit(0);
-#endif
+	exit(0);
 }
 
 void Texmaker::threadCrashed(){
-#ifndef no_debughelper
 	bool wasLoop;
 	QString signal = getLastCrashInformation(wasLoop);
 	QThread* thread = lastCrashedThread;
@@ -6995,11 +6985,8 @@ void Texmaker::threadCrashed(){
 		ThreadBreaker::sleep(10);
 		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
     }
-#endif
 }
 
 void Texmaker::iamalive(){
-#ifndef no_debughelper
-    Guardian::calm();
-#endif
+	Guardian::calm();
 }
