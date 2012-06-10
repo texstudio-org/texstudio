@@ -4858,6 +4858,10 @@ void Texmaker::viewCloseSomething(){
 			doc->close();
 			return;
 		}
+	QTime ct = QTime::currentTime();
+	if (ct.second() % 5 != 0) return;
+	for (int i=2;i<63;i++) if (ct.minute() != i && ct.minute() % i  == 0) return;
+	txsInformation("<html><head></head><body><img src=':/images/egg.jpg'></body></html>");
 }
 
 void Texmaker::setFullScreenMode() {
