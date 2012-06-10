@@ -353,6 +353,7 @@ public:
 
 	static bool isCompiling;
 	bool embeddedMode;
+	bool autoClose;
 	
 protected:
 	virtual void changeEvent(QEvent *event);
