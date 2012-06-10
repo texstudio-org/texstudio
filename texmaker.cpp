@@ -4853,6 +4853,11 @@ void Texmaker::viewCloseSomething(){
 		outputView->hide();
 		return;
 	}
+	foreach (PDFDocument* doc, PDFDocument::documentList())
+		if (doc->embeddedMode) {
+			doc->close();
+			return;
+		}
 }
 
 void Texmaker::setFullScreenMode() {
