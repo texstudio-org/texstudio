@@ -2074,15 +2074,8 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
-    updateBookmarks(currentEditorView());
-    //close associated embedded pdf viewer
-    foreach(PDFDocument *viewer,PDFDocument::documentList()){
-        if(!viewer->embeddedMode)
-            continue;
-        if(viewer->getMasterFile()==currentEditorView()->document->getFileInfo()){
-            viewer->close();
-        }
-    }
+	updateBookmarks(currentEditorView());
+	QFileInfo fi = currentEditorView()->document->getFileInfo();
 
 repeatAfterFileSavingFailed:
 	if (currentEditorView()->editor->isContentModified()) {
@@ -2109,6 +2102,11 @@ repeatAfterFileSavingFailed:
 	} else documents.deleteDocument(currentEditorView()->document);
 	updateOpenDocumentMenu();
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
+
+	//close associated embedded pdf viewer
+	foreach(PDFDocument *viewer,PDFDocument::documentList())
+		if (viewer->autoClose && viewer->getMasterFile()==fi)
+			viewer->close();
 }
 
 void Texmaker::fileCloseAll() {
@@ -3969,10 +3967,16 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	bool preserveExistingWindowed = ol.contains("preserve-existing-windowed"); //completely ignore all existing windowed internal viewers
 	bool preserveDuplicates = ol.contains("preserve-duplicates");              //open the document only in one pdf viewer
 	bool embedded = ol.contains("embedded");                                   //if a new pdf viewer is opened, use the embedded mode
-	bool windowed = ol.contains("windowed") || ol.isEmpty();                   //if a new pdf viewer is opened, use the windowed mode (default)
+	bool windowed = ol.contains("windowed");                                   //if a new pdf viewer is opened, use the windowed mode (default)
 	bool closeAll = ol.contains("close-all");                                  //close all existing viewers
 	bool closeEmbedded = closeAll || ol.contains("close-embedded");            //close all embedded existing viewer
 	bool closeWindowed = closeAll || ol.contains("close-windowed");            //close all windowed existing viewer
+	
+	bool autoClose;
+	if (embedded) autoClose = ! ol.contains("no-auto-close");                  //Don't close the viewer, if the corresponding document is closed
+	else autoClose = ol.contains("auto-close");                                //Close the viewer, if the corresponding document is closed
+	
+	if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
 	
 	//embedded/windowed are mutual exclusive
 	//no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
@@ -4013,6 +4017,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (reuse) oldPDFs.insert(0, reuse);
 	if (oldPDFs.isEmpty()){
 		PDFDocument* doc = qobject_cast<PDFDocument*>(newPdfPreviewer(embedded));
+		doc->autoClose = autoClose;
 		REQUIRE(doc);
 		oldPDFs << doc;
 	}
