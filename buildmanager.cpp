@@ -242,14 +242,6 @@ QString BuildManager::getCommandLine(const QString& id, bool* user){
 }
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
-#ifdef Q_WS_WIN
-	// on win synctex does not support spaces in the path
-	static bool noWarnAgain = false;
-	if (!noWarnAgain && str.contains("-synctex=1") && mainFile.absoluteFilePath().contains(' ')) {
-		txsWarning("Synctex does not support file names or paths containing spaces on windows.\nPDF synchronization will not work properly.", noWarnAgain);
-	}
-#endif
-	
 	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
