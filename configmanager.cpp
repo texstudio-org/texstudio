@@ -892,8 +892,6 @@ bool ConfigManager::execConfigDialog() {
 	//if (newfile_encoding)
 	//	confDlg->ui.comboBoxEncoding->setCurrentIndex(confDlg->ui.comboBoxEncoding->findText(newfile_encoding->name(), Qt::MatchExactly));
 
-	confDlg->ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
-
 	//-----------------------editor------------------------------
 	switch (editorConfig->showlinemultiples) {
 	case 0:

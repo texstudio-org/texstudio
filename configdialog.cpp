@@ -324,8 +324,10 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
 
-	//pageEditor
+	//pageGeneral
 	connect(ui.pushButtonUpdateCheckNow, SIGNAL(clicked()), this, SLOT(updateCheckNow()));
+	connect(UpdateChecker::instance(), SIGNAL(checkCompleted()), this, SLOT(refreshLastUpdateTime()));
+	refreshLastUpdateTime();
 
 	//pageditor
 	QFontDatabase fdb;
@@ -441,7 +443,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 		resize(nwidth, nheight);
 		move(frameGeometry().right() > screen.right()?screen.left():x(),
 		     frameGeometry().bottom() > screen.bottom()?screen.left():y());
-	}	
+	}
 }
 
 ConfigDialog::~ConfigDialog() {
@@ -757,7 +759,9 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 
 void ConfigDialog::updateCheckNow() {
 	UpdateChecker::instance()->check(false);
-	//TODO check returns, before the network request is complete therefore we have to delay the update of the label
+}
+
+void ConfigDialog::refreshLastUpdateTime() {
 	ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
 }
 

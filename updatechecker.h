@@ -18,7 +18,7 @@ public:
 	void autoCheck();
 	void check(bool silent = true);
 signals:
-	
+	void checkCompleted();
 public slots:
 	
 private slots:
