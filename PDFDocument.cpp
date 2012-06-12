@@ -2063,12 +2063,20 @@ void PDFDocument::init(bool embedded)
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
+	
 	connect(actionGrid11, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid12, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid21, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid23, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid33, SIGNAL(triggered()), SLOT(setGrid()));
+
+	static QStringList sl;
+	conf->registerOption("Preview/Grid Sizes",&sl,QStringList() << "3x1" << "3x2" << "3x3");
+	foreach (const QString& gs, sl) {
+		QAction* a = new QAction(gs, this);
+		a->setProperty("grid", gs);
+		menuGrid->insertAction(actionCustom, a);
+		connect(a, SIGNAL(triggered()), SLOT(setGrid()));
+	}
 	connect(actionCustom, SIGNAL(triggered()), SLOT(setGrid()));
 
     if(!embedded){
@@ -2410,10 +2418,10 @@ void PDFDocument::setGrid(){
 			globalConfig->gridy=y;
 		}
 	} else {
-		REQUIRE(gs.size()==2);
-		pdfWidget->setGridSize(gs.at(0).toAscii()-'0', gs.at(1).toAscii()-'0');
-		globalConfig->gridx=gs.at(0).toAscii()-'0';
-		globalConfig->gridy=gs.at(1).toAscii()-'0';
+		int p = gs.indexOf("x");
+		globalConfig->gridx=gs.left(p).toInt();
+		globalConfig->gridy=gs.mid(p+1).toInt();
+		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy);
 	}
 	pdfWidget->windowResized();
 }
