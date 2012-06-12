@@ -127,6 +127,7 @@ private slots:
 	void populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy);
 
 	void updateCheckNow();
+	void refreshLastUpdateTime();
 
 	void custEnvAddLine();
 	void custEnvRemoveLine();

@@ -119,6 +119,7 @@ void UpdateChecker::parseData(const QByteArray &data) {
 			}
 
 			ConfigManager::getInstance()->setOption("Update/LastCheck", QDateTime::currentDateTime());
+			emit checkCompleted();
 		}
 	}
 }
