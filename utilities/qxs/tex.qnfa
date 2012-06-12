@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="(La)TeX" extensions="tex;sty;cls;Snw;Rnw;ins;cfg" defaultLineMark="">
+<QNFA language="(La)TeX" extensions="tex;sty;cls;Snw;Rnw;ins;cfg;ltx" defaultLineMark="">
 <!-- Note: languages name is used to determine on-line checking. If changed also sources have to be adapted (latexeditorview.cpp) -->
 <!--
 parenthesis weights:
