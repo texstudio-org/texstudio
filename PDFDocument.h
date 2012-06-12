@@ -382,7 +382,7 @@ private slots:
 	void syncClick(int page, const QPointF& pos, bool activate);
 	void reloadWhenIdle();
 	void idleReload();
-	
+
 	void runExternalViewer();
     void runInternalViewer();
 	void runQuickBuild();
@@ -393,6 +393,7 @@ private slots:
 	void tileWindows();
 	void stackWindows();
 	void arrangeWindows(bool tile);
+	void updateToolBarForOrientation(Qt::Orientation orientation);
 
 	void jumpToPage();
 
@@ -437,6 +438,7 @@ private:
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
 	QLineEdit *leCurrentPage;
+	QLabel *pageCountSeparator;
 	QLabel *pageCountLabel;
 	QIntValidator *leCurrentPageValidator;
 
