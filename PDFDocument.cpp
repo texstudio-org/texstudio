@@ -1980,10 +1980,15 @@ void PDFDocument::init(bool embedded)
 		leCurrentPage->setStyleSheet("QLineEdit{ padding-top: -1px; margin-right: 2px; }");
 	}
 	connect(leCurrentPage,SIGNAL(returnPressed()),this,SLOT(jumpToPage()));
-	pageCountLabel=new QLabel(toolBar);
-	pageCountLabel->setText(tr("of %1").arg(1));
+	pageCountLabel = new QLabel("1", toolBar);
+	pageCountLabel->setAlignment(Qt::AlignCenter);
+	pageCountSeparator = new QLabel(tr("of", "separator for page number: 1 of 3"), toolBar);
+	pageCountSeparator->setAlignment(Qt::AlignCenter);
 	toolBar->insertWidget(actionNext_Page, leCurrentPage);
+	toolBar->insertWidget(actionNext_Page, pageCountSeparator);
 	toolBar->insertWidget(actionNext_Page, pageCountLabel);
+	connect(toolBar, SIGNAL(orientationChanged(Qt::Orientation)), this, SLOT(updateToolBarForOrientation(Qt::Orientation)));
+	updateToolBarForOrientation(toolBar->orientation());
 
 	pageLabel = new QLabel();
 	statusBar()->addPermanentWidget(pageLabel);
@@ -2343,11 +2348,13 @@ void PDFDocument::reload(bool fillCache)
 		pdfWidget->setFocus();
 		
 		// set page viewer only once
-		QFontMetrics fontMetrics(font());
-		QString placeHolder(3+log10(pdfWidget->realNumPages()), '#');
-		leCurrentPage->setFixedWidth(fontMetrics.width(placeHolder));
+		int maxDigits = 1 + floor(log10(pdfWidget->realNumPages()));
+		//if (maxDigits < 2) maxDigits = 2;
+		leCurrentPage->setMaxLength(maxDigits);
+		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits+1, '#')));
 		leCurrentPageValidator->setTop(pdfWidget->realNumPages());
-		
+		qDebug() << pdfWidget->realNumPages() << maxDigits << fontMetrics().width(QString(maxDigits+1, '#'));
+
 		loadSyncData();
 		if(fillCache){
 			renderManager->fillCache();
@@ -2458,6 +2465,16 @@ void PDFDocument::arrangeWindows(bool tile){
 				windows << widget;
 		if (windows.size() > 0)
 			(*(tile?&tileWindowsInRect:&stackWindowsInRect)) (windows, desktop->availableGeometry(screenIndex));
+	}
+}
+
+void PDFDocument::updateToolBarForOrientation(Qt::Orientation orientation) {
+	if (orientation == Qt::Horizontal) {
+		leCurrentPage->setAlignment(Qt::AlignRight);
+		pageCountSeparator->setText(pageCountSeparator->text()+" ");
+	} else {
+		leCurrentPage->setAlignment(Qt::AlignCenter);
+		pageCountSeparator->setText(pageCountSeparator->text().trimmed());
 	}
 }
 
@@ -2737,7 +2754,7 @@ void PDFDocument::showPage(int page)
 	int p2=page+pdfWidget->visiblePages()-1-pdfWidget->getPageOffset();
 	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(p).arg(pdfWidget->realNumPages()));
 	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(p).arg(p2).arg(pdfWidget->realNumPages()));
-	pageCountLabel->setText(tr("of %1").arg(pdfWidget->realNumPages()));
+	pageCountLabel->setText(QString("%1").arg(pdfWidget->realNumPages()));
 
 	leCurrentPage->setText(QString("%1").arg(p));
 }
