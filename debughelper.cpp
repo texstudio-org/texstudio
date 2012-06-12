@@ -508,6 +508,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 	SimulatedCPU cpu;
 	if (ccontext) {
 		cpu.set_all(ccontext);
+		if (cpu.frame == 0) cpu.frame = cpu.stack;
 
 		char *addr = (char*)(si->si_addr);
 		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
