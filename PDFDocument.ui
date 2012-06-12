@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>659</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -66,8 +66,6 @@
      <addaction name="actionGrid21"/>
      <addaction name="actionGrid12"/>
      <addaction name="actionGrid22"/>
-     <addaction name="actionGrid23"/>
-     <addaction name="actionGrid33"/>
      <addaction name="actionCustom"/>
      <addaction name="separator"/>
      <addaction name="actionSinglePageStep"/>
@@ -696,7 +694,7 @@
     <string>1x1</string>
    </property>
    <property name="grid" stdset="0">
-    <string notr="true">11</string>
+    <string notr="true">1x1</string>
    </property>
   </action>
   <action name="actionGrid21">
@@ -704,7 +702,7 @@
     <string>2x1</string>
    </property>
    <property name="grid" stdset="0">
-    <string notr="true">21</string>
+    <string notr="true">2x1</string>
    </property>
   </action>
   <action name="actionGrid12">
@@ -712,7 +710,7 @@
     <string>1x2</string>
    </property>
    <property name="grid" stdset="0">
-    <string notr="true">12</string>
+    <string notr="true">1x2</string>
    </property>
   </action>
   <action name="actionGrid22">
@@ -720,7 +718,7 @@
     <string>2x2</string>
    </property>
    <property name="grid" stdset="0">
-    <string notr="true">22</string>
+    <string notr="true">2x2</string>
    </property>
   </action>
   <action name="actionGrid23">
