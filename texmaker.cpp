@@ -5325,10 +5325,17 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		}
 		if (bestScore > guessedWord.size()*5 / 3) column = bestMatch; //accept if 0.33 similarity
 	}
-	if (column > -1) {
+
+	QDocumentLine docLine = currentEditor()->document()->line(line);
+	QFormatRange highlight(0, docLine.length(), QDocument::formatFactory()->id("search"));
+	if (column > -1 && !guessedWord.isEmpty()) {
 		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(),column+guessedWord.length()/2);
 		currentEditor()->ensureCursorVisibleSurrounding();
+		highlight = QFormatRange(column, guessedWord.length(), QDocument::formatFactory()->id("search"));
 	}
+	docLine.addOverlay(highlight);
+	syncHighlightQueue.append(QPair<QDocumentLine, QFormatRange>(docLine, highlight));
+	QTimer::singleShot(1000, this, SLOT(removeSyncHighlight()));
 	
 	if (activate) {
 		raise();
@@ -5337,6 +5344,14 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		if (isMinimized()) showNormal();
 	}
 	
+}
+
+void Texmaker::removeSyncHighlight() {
+	if (!syncHighlightQueue.isEmpty()) {
+		QDocumentLine docLine(syncHighlightQueue.first().first);
+		docLine.removeOverlay(syncHighlightQueue.first().second);
+		syncHighlightQueue.removeFirst();
+	}
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {
