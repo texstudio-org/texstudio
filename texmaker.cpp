@@ -855,8 +855,7 @@ void Texmaker::setupMenus() {
 
 
 	//  User
-	menu=newManagedMenu("main/user",tr("&User"));
-	submenu=newManagedMenu(menu,"tags",tr("User &Tags"));
+	menu=newManagedMenu("main/usertags",tr("&User Tags"));
 	updateUserMacros();
 	scriptengine::macros = &configManager.completerConfig->userMacro;
 		

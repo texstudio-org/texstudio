@@ -718,6 +718,7 @@ QSettings* ConfigManager::readSettings() {
 	//menu shortcuts
 	QMap<QString, QString> aliases = QMap<QString, QString>();
 	aliases.insert("main/user/commands/", "main/tools/user/");
+	aliases.insert("main/user/tags/", "main/usertags/");
 	int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
 		config->setArrayIndex(i);
@@ -1072,7 +1073,7 @@ bool ConfigManager::execConfigDialog() {
 		confDlg->ui.comboBoxToolbars->addItem(qApp->translate("Texmaker",qPrintable(mtb.name)));
 	}
 	confDlg->allMenus=managedMenus;
-	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/user");
+	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/usertags");
 	confDlg->ui.comboBoxActions->addItem(tr("Latex/Math menus"));
 	confDlg->ui.comboBoxActions->addItem(tr("All menus"));
 	confDlg->ui.comboBoxActions->addItem(tr("Special Tags"));
@@ -1492,7 +1493,7 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 			macronames<<m.name;
 	
 	
-	QMenu* recreatedMenu = updateListMenu("main/user/tags", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
+	QMenu* recreatedMenu = updateListMenu("main/usertags", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
