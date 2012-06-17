@@ -1254,6 +1254,7 @@ bool ConfigManager::execConfigDialog() {
 			QString combinedName = getText(userCommandNameInputs[i]);
 			int pos = combinedName.indexOf(":");
 			ci.id = pos == -1?combinedName:combinedName.left(pos);
+			if (ci.id.isEmpty()) ci.id = "user";
 			ci.displayName = pos == -1?combinedName:combinedName.mid(pos+1);
 			ci.commandLine = getText(userCommandInputs[i]);
 			ci.user = true;
