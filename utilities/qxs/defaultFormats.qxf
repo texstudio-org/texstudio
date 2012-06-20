@@ -2,9 +2,15 @@
 <QXF version="1.0" >
     <format id="background" >
     </format>
-    <format id="line:error"></format>
-    <format id="line:warning"></format>
-    <format id="line:badbox"></format>
+    <format id="line:error">
+		<background>#ffbfbf</background>
+	</format>
+    <format id="line:warning">
+		<background>#ffffbf</background>
+	</format>
+    <format id="line:badbox">
+		<background>#bfd6ff</background>
+	</format>
     <format id="line:bookmark"></format>
     <format id="line:bookmark0"></format>
     <format id="line:bookmark1"></format>
@@ -32,7 +38,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#55AA00</background>
+        <background>#a8cf83</background>
     </format>
     <format id="comment" >
         <bold>false</bold>
@@ -95,8 +101,8 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#ffff00</background>
-        <foreground>#ff0000</foreground>
+        <background>#ffff7f</background>
+        <foreground>#c00000</foreground>
     </format>
     <format id="braceMismatch" >
         <bold>true</bold>
@@ -105,8 +111,8 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#ff0000</background>
-        <foreground>#ffff00</foreground>
+        <background>#c00000</background>
+        <foreground>#ffff7f</foreground>
     </format>
     <format id="search" >
 		<bold>false</bold>
@@ -134,7 +140,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#8EC88E</foreground>
+        <foreground>#555500</foreground>
     </format>
     <format id="text" >
         <bold>false</bold>
@@ -188,7 +194,7 @@
     </format>
     
     <format id="latexSyntaxMistake" >
-        <background>#FFA000</background>
+        <background>#FFBF9F</background>
     </format>
     <format id="temporaryCodeCompletion" >
         <italic>true</italic>
