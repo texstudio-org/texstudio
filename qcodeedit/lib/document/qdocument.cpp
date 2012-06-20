@@ -2335,12 +2335,23 @@ void QDocumentLineHandle::updateWrap() const
 
 					if ( lastBreak <= lastActualBreak )
 					{
-						// perfect cut or fallback to aggressive cut
-						m_frontiers << qMakePair(idx, rx);
-						lastActualBreak = idx;
-						lastBreak = idx;
-						lastX = rx;
-						x = minx;
+						/* word is longer than maximal available line space - no reasonable wrapping possible
+						   Two possible stratigies:
+						   i) allow the word to exceed the line width
+						   ii) agressively wrap inside the word.
+
+						   ii) can be used for soft wrapping, because the wrap is only visual. In hard wrapping
+						   it would introduce a newline into the word which changes its meaning.
+						*/
+
+						if (!d->m_hardLineWrap) {
+							// agressive wrap inside the word
+							m_frontiers << qMakePair(idx, rx);
+							lastActualBreak = idx;
+							lastBreak = idx;
+							lastX = rx;
+							x = minx;
+						}
 					} else {
 						Q_ASSERT(lastBreak <= idx);
 						Q_ASSERT(lastBreak > 0);
