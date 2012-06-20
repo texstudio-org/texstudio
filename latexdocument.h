@@ -38,6 +38,8 @@ struct StructureEntry{
 	int getCachedLineNumber() const;
 	int getRealLineNumber() const;
 	int getRealParentRow() const;
+	
+	void debugPrint(const char* message) const;
 private:
 	mutable int parentRow;
 	QDocumentLineHandle* lineHandle;

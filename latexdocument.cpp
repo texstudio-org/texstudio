@@ -1118,6 +1118,15 @@ int StructureEntry::getRealParentRow() const{
 	return parentRow;
 }
 
+void StructureEntry::debugPrint(const char* message) const{
+	qDebug("%s %p",message, this);
+	if (!this) return;
+	qDebug("   level: %i",level);
+	qDebug("   type: %i",(int)type);
+	qDebug("   line nr: %i", lineNumber);
+	qDebug("   title: %s", qPrintable(title));
+}
+
 StructureEntryIterator::StructureEntryIterator(StructureEntry* entry){
 	if (!entry) return;
 	while (entry->parent){
@@ -1289,6 +1298,7 @@ QModelIndex LatexDocumentsModel::index ( StructureEntry* entry ) const{
 		return createIndex(row, 0, entry);
 	} else return QModelIndex(); //shouldn't happen
 }
+
 QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!index.isValid()) return QModelIndex();
 	const StructureEntry* entry = (StructureEntry*) index.internalPointer();
@@ -1304,13 +1314,14 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 #endif
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
+	
 	if(entry->level>LatexParser::getInstance().structureCommands.count() || entry->level<0){
-		qDebug("Structure broken! %p",entry);
+		entry->debugPrint("Structure broken!");
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
 	if(entry->parent->level>LatexParser::getInstance().structureCommands.count() || entry->parent->level<0){
-		qDebug("Structure broken! %p",entry);
+		entry->debugPrint("Structure broken (b)!");
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
