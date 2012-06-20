@@ -1309,6 +1309,7 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 			found = ld;
 			break;
 		}
+	if (!found) entry->debugPrint("No document for entry:");
 	Q_ASSERT(found);
 	Q_ASSERT(entry->document == found);
 #endif
