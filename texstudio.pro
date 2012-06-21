@@ -118,7 +118,8 @@ HEADERS += texmaker.h \
     cleandialog.h \
     qmetautils.h \
     updatechecker.h \
-    usermacro.h
+    usermacro.h \
+    dblclickmenubar.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -202,7 +203,8 @@ SOURCES += main.cpp \
     bibtexreader.cpp \
     cleandialog.cpp \
     qmetautils.cpp \
-    updatechecker.cpp
+    updatechecker.cpp \
+    dblclickmenubar.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
