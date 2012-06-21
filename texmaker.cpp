@@ -20,6 +20,7 @@
 
 #include "debughelper.h"
 
+#include "dblclickmenubar.h"
 #include "structdialog.h"
 #include "filechooser.h"
 #include "tabdialog.h"
@@ -206,6 +207,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	symbolMostused.clear();
 	setupDockWidgets();
 	
+	setMenuBar(new DblClickMenuBar());
 	setupMenus();
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
@@ -901,9 +903,18 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
-	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), SLOT(setFullScreenMode()));
+	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"));
 	fullscreenModeAction->setCheckable(true);
-	
+#if (QT_VERSION >= 0x040600)
+	connect(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()), Qt::UniqueConnection);
+	connect(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()), Qt::UniqueConnection);
+#else
+	disconnect(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
+	disconnect(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
+	connect(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
+	connect(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
+#endif
+
 	menu->addSeparator();
 	QMenu *hlMenu = newManagedMenu(menu, "highlighting", tr("Highlighting"));
 	if (!highlightLanguageActions) {
