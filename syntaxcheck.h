@@ -17,8 +17,8 @@ public:
 	QString name;
 	int id;
 	int excessCol;
-    QDocumentLineHandle *dlh;
-    int ticket;
+	QDocumentLineHandle *dlh;
+	int ticket;
 	
 	bool operator ==(const Environment& env){
 		return (name==env.name)&&(id==env.id)&&(excessCol==env.excessCol);
