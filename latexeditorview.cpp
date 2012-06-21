@@ -895,22 +895,21 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 		if (index + 1 >= document->lines()) {
 			//remove old errror marker
 			if(unclosedEnv.id!=-1){
-				envVar=unclosedEnv.dlh->getCookie(3);
-				QDocumentLineHandle *dlh=unclosedEnv.dlh;
-				unclosedEnv.id=-1;
-				if(envVar.isValid()){
+				unclosedEnv.id = -1;
+				int unclosedEnvIndex = document->indexOf(unclosedEnv.dlh);
+				if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookie(3).isValid()){
 					StackEnvironment env;
 					Environment newEnv;
 					newEnv.name="normal";
 					newEnv.id=1;
 					env.push(newEnv);
-					if (dlh->previous()) {
-						QDocumentLineHandle *prev = dlh->previous();
+					if (unclosedEnvIndex >= 1) {
+						QDocumentLineHandle *prev = document->line(unclosedEnvIndex-1).handle();
 						QVariant result=prev->getCookie(1);
 						if(result.isValid())
 							env=result.value<StackEnvironment>();
-					}
-					SynChecker.putLine(dlh, env, true);
+					} 
+					SynChecker.putLine(unclosedEnv.dlh, env, true);
 				}
 			}
 			if(env.size()>1){
