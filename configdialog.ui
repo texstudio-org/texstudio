@@ -122,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1473,7 +1473,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <property name="title">
               <string>Special options</string>
              </property>
-             <layout class="QGridLayout" columnstretch="0,1,5">
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <layout class="QGridLayout" columnstretch="0,1,1,1">
               <item row="8" column="0">
                <widget class="QLabel" name="label_24">
                 <property name="text">
@@ -1508,20 +1511,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
                 </property>
                </widget>
               </item>
-              <item row="3" column="2">
-               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
-                <property name="text">
-                 <string>Show help as tooltip on text in editor</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="2">
-               <widget class="QCheckBox" name="checkBoxToolTipPreview">
-                <property name="text">
-                 <string>Show preview as tooltip on formulas in editor</string>
-                </property>
-               </widget>
-              </item>
               <item row="6" column="1">
                <widget class="QSpinBox" name="spinBoxWrapLineWidth">
                 <property name="minimum">
@@ -1534,12 +1523,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               </item>
               <item row="8" column="1">
                <widget class="QComboBox" name="comboBoxAutoSave">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
                 <item>
                  <property name="text">
                   <string>Never</string>
@@ -1569,12 +1552,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               </item>
               <item row="5" column="1">
                <widget class="QComboBox" name="comboBoxLineWrap">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
                 <item>
                  <property name="text">
                   <string>No Line Wrap</string>
@@ -1601,6 +1578,20 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
                <widget class="QLabel" name="label_41">
                 <property name="text">
                  <string>Line Wrapping:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
+                <property name="text">
+                 <string>Show help as tooltip on text in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipPreview">
+                <property name="text">
+                 <string>Show preview as tooltip on formulas in editor</string>
                 </property>
                </widget>
               </item>
@@ -2879,7 +2870,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxAutoCompleteParens</tabstop>
   <tabstop>checkBoxMouseWheelZoom</tabstop>
   <tabstop>checkBoxToolTipHelp2</tabstop>
-  <tabstop>checkBoxToolTipPreview</tabstop>
   <tabstop>comboBoxLineWrap</tabstop>
   <tabstop>spinBoxWrapLineWidth</tabstop>
   <tabstop>comboBoxAutoSave</tabstop>
