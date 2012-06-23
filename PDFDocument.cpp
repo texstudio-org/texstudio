@@ -2210,6 +2210,8 @@ void PDFDocument::init(bool embedded)
         actionPresentation->setShortcut(QKeySequence());
         action_Print->setShortcut(QKeySequence());
         actionFileOpen->setShortcut(QKeySequence());
+        actionLast_Page->setShortcut(QKeySequence());
+        actionFirst_Page->setShortcut(QKeySequence());
     }
 }
 
