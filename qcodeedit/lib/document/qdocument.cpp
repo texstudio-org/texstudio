@@ -3374,11 +3374,11 @@ void QDocumentLineHandle::draw(	QPainter *p,
 		*/
 
 		// draw line width when hard wrapping is activated
-		if(m_doc->impl()->lineWidthConstraint()){
-		    p->save();
-		    p->setPen(Qt::lightGray);
-		    p->drawLine(m_doc->impl()->width(), 0,m_doc->impl()->width() , QDocumentPrivate::m_lineSpacing);
-		    p->restore();
+		if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
+			p->save();
+			p->setPen(Qt::lightGray);
+			p->drawLine(m_doc->impl()->width(), yStart, m_doc->impl()->width(), yEnd);
+			p->restore();
 		}
 
 	} else {
