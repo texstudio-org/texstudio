@@ -4508,6 +4508,8 @@ void QEditor::insertText(const QString& text){
 */
 void QEditor::write(const QString& s)
 {
+	document()->clearLanguageMatches();
+	
 	if (!m_mirrors.empty())
 		m_doc->beginMacro();
 	

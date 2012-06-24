@@ -291,6 +291,8 @@ class QCE_EXPORT QDocument : public QObject
 		void flushMatches(int groupId);
 		void addMatch(int groupId, int line, int pos, int len, int format);
 		
+		void clearLanguageMatches();
+		
 		static QFont font();
 		static void setFont(const QFont& f, bool forceUpdate = false);
 		//static const QFontMetrics fontMetrics() const;

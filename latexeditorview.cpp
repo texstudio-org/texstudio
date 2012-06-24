@@ -75,7 +75,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		//update completer if necessary
 		editor->emitNeedUpdatedCompleter();
 		bool autoOverriden = editor->isAutoOverrideText(event->text());
-		editor->insertText(event->text());
+		editor->write(event->text());
 		if (autoOverriden) LatexEditorView::completer->complete(editor,LatexCompleter::CF_OVERRIDEN_BACKSLASH);
 		else LatexEditorView::completer->complete(editor,0);
 		return true;
@@ -1219,7 +1219,7 @@ void LatexEditorView::spellCheckingReplace() {
 	QAction* action = qobject_cast<QAction*>(QObject::sender());
 	if (editor && action) {
 		if (action->text().isEmpty()) editor->cursor().removeSelectedText();
-		else editor->insertText(action->text());
+		else editor->write(action->text());
 		editor->setCursor(editor->cursor()); //to remove selection range
 	}
 }

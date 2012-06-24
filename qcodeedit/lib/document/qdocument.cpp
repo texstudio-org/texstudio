@@ -1778,6 +1778,12 @@ void QDocument::flushMatches(int gid)
 	}
 }
 
+
+void QDocument::clearLanguageMatches() 
+{
+	if (languageDefinition()) languageDefinition()->clearMatches(this);
+}
+
 /*!
 	\return Whether the document is in a clean state
 
