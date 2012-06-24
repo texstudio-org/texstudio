@@ -310,6 +310,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 				pos=first.indexOf('{',pos+1); //pos of second {
 				if(pos>-1)
 				    first.remove(pos,first.length()-pos);
+				editor->document()->clearLanguageMatches();
 				editor->insertText(*cursor,first);
 				if (editBlockOpened) cursor->endEditBlock();
 				return;
@@ -320,6 +321,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	int baseLine=cursor->lineNumber();
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
+	editor->document()->clearLanguageMatches();
 	editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
 
 	if (editBlockOpened) cursor->endEditBlock();

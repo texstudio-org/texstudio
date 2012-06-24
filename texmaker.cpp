@@ -2317,7 +2317,7 @@ void Texmaker::convertToLatex() {
 	QString originalText = currentEditor()->cursor().selectedText();
 	QString newText=textToLatex(originalText);
 	// insert
-	currentEditor()->insertText(newText);
+	currentEditor()->write(newText);
 }
 
 void Texmaker::editEraseLine() {
@@ -2503,6 +2503,7 @@ void Texmaker::editThesaurus(int line,int col) {
 		thesaurusDialog->setSearchWord(word);
 		if (thesaurusDialog->exec()){
 			QString replace=thesaurusDialog->getReplaceWord();
+			m_cursor.document()->clearLanguageMatches();
 			m_cursor.insertText(replace);
 		}
 	}
@@ -3314,6 +3315,7 @@ void Texmaker::InsertEnvironmentCompletion() {
 	
 	static const QString environmentStart = "\\begin{";
 	
+	currentEditor()->document()->clearLanguageMatches();
 	if (!c.line().text().left(c.columnNumber()).endsWith(environmentStart)){
 		c.insertText(environmentStart);//remaining part is up to the completion engine
 	}
@@ -3371,7 +3373,7 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	if (!currentEditorView())	return;
 	int curline,curindex;
 	currentEditor()->getCursorPosition(curline,curindex);
-	currentEditor()->insertText(Entity);
+	currentEditor()->write(Entity);
 	if (dy==0) currentEditor()->setCursorPosition(curline,curindex+dx);
 	else if (dx==0) currentEditor()->setCursorPosition(curline+dy,0);
 	else currentEditor()->setCursorPosition(curline+dy,curindex+dx);
@@ -5435,12 +5437,12 @@ void Texmaker::editPasteRef() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	QString name=action->text();
 	if (name==tr("Insert")) {
-		currentEditor()->insertText(entry->title);
+		currentEditor()->write(entry->title);
 		currentEditorView()->setFocus();
 	} else {
 		name.remove(0,name.indexOf("\\"));
 		name.chop(name.length()-name.indexOf("{"));
-		currentEditor()->insertText(name+"{"+entry->title+"}");
+		currentEditor()->write(name+"{"+entry->title+"}");
 		currentEditorView()->setFocus();	}
 }
 
@@ -5611,7 +5613,7 @@ void Texmaker::editInsertRefToNextLabel(bool backward) {
 	QString mLine=dLine.text();
 	QRegExp rx("\\\\label\\{(.*)\\}");
 	if(rx.indexIn(mLine)>-1){
-		currentEditor()->insertText("\\ref{"+rx.cap(1)+"}");
+		currentEditor()->write("\\ref{"+rx.cap(1)+"}");
 	}
 }
 void Texmaker::editInsertRefToPrevLabel() {
