@@ -417,8 +417,8 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 
 	bool found = false, flush = false;
 
-	static QRegExp reLaTeXError("^! LaTeX Error: (.*)$", Qt::CaseInsensitive);
-	static QRegExp rePDFLaTeXError("^Error: pdflatex (.*)$", Qt::CaseInsensitive);
+	static QRegExp reLaTeXError("^! (?:Lua|La)TeX Error(?: \\<\\\\directlua \\>:(?:[0-9]*))?: (.*)$", Qt::CaseInsensitive);
+	static QRegExp rePDFLaTeXError("^Error: (?:lua|pdf)latex (.*)$", Qt::CaseInsensitive);
 	static QRegExp reTeXError("^! (.*)\\.$");
 	static QRegExp rePackageError("^! Package (.*) Error:(.*)$", Qt::CaseInsensitive);
     static QRegExp reLineNumber("^(\\.{3} )?l\\.([0-9]+)(.*)");
@@ -504,7 +504,7 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 	bool found = false, flush = false;
 	QString warning;
 
-	static QRegExp reLaTeXWarning("^(((! )?(La|pdf)TeX)|Package|Class) .*Warning.*:(.*)", Qt::CaseInsensitive);
+	static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX)|Package|Class) .*Warning.*:(.*)", Qt::CaseInsensitive);
 	static QRegExp reNoFile("No file (.*)");
 	static QRegExp reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
 

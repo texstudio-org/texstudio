@@ -22,7 +22,7 @@ LogHighlighter::LogHighlighter(QTextDocument *parent)
 void LogHighlighter::highlightBlock(const QString &text) {
 	QRegExp rxLatexError("! (.*)");
 	QRegExp rxBadBox("(Over|Under)(full \\\\[hv]box .*)");
-	QRegExp rxWarning("(((! )?(La|pdf)TeX)|Package) .*Warning.*:(.*)");
+	QRegExp rxWarning("(((! )?(La|pdf|Lua)TeX)|Package) .*Warning.*:(.*)");
 	if (rxLatexError.indexIn(text)!=-1) {
 		setFormat(0, text.length(),ColorError);
 	} else if ((rxBadBox.indexIn(text)!=-1) || (rxWarning.indexIn(text)!=-1)) {
