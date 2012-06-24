@@ -49,7 +49,18 @@ environments in smallUsefulFunctions.cpp)
 		</body>
 	</foreach>
 
+	<!-- ========================= LUA ====================== -->
 
+	<context id="directlua" format="lua" transparency="true">	
+		<start parenthesis="directlua:open" parenthesisWeight="30" fold="1" format="keyword">\\directlua{</start>
+		<stop parenthesis="directlua:close" parenthesisWeight="30" fold="1" format="keyword">}</stop>
+		<embed target="Lua" />
+	</context>
+	<context id="latelua" format="lua" transparency="true">	
+		<start parenthesis="latelua:open" parenthesisWeight="30" fold="1" format="keyword">\\latelua{</start>
+		<stop parenthesis="latelua:close" parenthesisWeight="30" fold="1" format="keyword">}</stop>
+		<embed target="Lua" />
+	</context>
 	<!--                           (keywords)                      -->
 
 	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%&amp;\$]</word>

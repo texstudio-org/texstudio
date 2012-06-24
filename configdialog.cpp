@@ -373,6 +373,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	fmConfig->addCategory(tr("Search")) <<"search"<<"replacement"<<"selection";
 	fmConfig->addCategory(tr("Diff")) <<"diffDelete"<<"diffAdd"<<"diffReplace";
 	fmConfig->addCategory(tr("DTX files")) << "dtx:guard" << "dtx:macro" << "dtx:verbatim" << "dtx:specialchar";
+	fmConfig->addCategory(tr("Lua")) << "lua:keyword" << "lua:comment";
 
 	connect(ui.spinBoxSize, SIGNAL(valueChanged(int)), fmConfig, SLOT(setBasePointSize(int)));
 	

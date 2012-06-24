@@ -12,6 +12,7 @@
         <file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
         <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
         <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
+        <file alias="qxs/lua.qnfa">utilities/qxs/lua.qnfa</file>
         <file alias="closeall.png">images/qcodeedit/closeall.png</file>
         <file alias="down.png">images/qcodeedit/down.png</file>
         <file alias="up.png">images/qcodeedit/up.png</file>
@@ -229,6 +230,7 @@
         <file>completion/logsys.cwl</file>
         <file>completion/longtable.cwl</file>
         <file>completion/lscape.cwl</file>
+		<file>completion/luatex.cwl</file>
         <file>completion/manyfoot.cwl</file>
         <file>completion/marvosym.cwl</file>
         <file>completion/mathtools.cwl</file>

@@ -140,7 +140,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#555500</foreground>
+        <foreground>#509600</foreground>
     </format>
     <format id="text" >
         <bold>false</bold>
@@ -336,4 +336,22 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#CC8100</foreground>
     </format>	
+    <format id="lua:keyword" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#B200FF</foreground>
+    </format>
+	    <format id="lua:comment" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#808080</foreground>
+    </format>
 </QXF>

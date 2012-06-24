@@ -665,7 +665,8 @@ void addSequence(QNFA *lexer, const QString& w, int action, bool cs)
 	
 	if ( !seq )
 	{
-		qWarning("Invalid sequence regexp.");
+		QByteArray ba = w.toLocal8Bit();
+		qWarning("Invalid sequence regexp: %s", ba.data());
 		return;
 	}
 	
