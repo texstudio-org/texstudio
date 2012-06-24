@@ -1,8 +1,8 @@
 \luatexversion#*
-\directlua#*
-\luatexdirectlua#*
-\latelua#*
-\luatexlatelua#*
+\directlua{%|}#
+\luatexdirectlua{%|}#*
+\latelua{%|}#
+\luatexlatelua{%|}#*
 \luaescapestring#*
 \luatexluaescapestring#*
 \clearmarks#*
