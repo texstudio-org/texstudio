@@ -86,7 +86,7 @@ void print_message(const char* title, const char *where, const char *assertion, 
 	qDebug("%s %s at  %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
 }
 
-#ifdef unix
+#if defined(unix) || defined(Q_WS_MACX)
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -386,13 +386,6 @@ void print_backtrace(const char* title, const char *where, const char *assertion
 void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){
 	fprintf(stderr, "Unknown OS");
 }
-
-bool recoverMainThreadFromOutside(){
-	fprintf(stderr, "Main thread locks frozen\n");
-	return true;
-}
-
-void undoMainThreadRecoveringFromOutside(){}
 #endif
 
 void print_backtrace(const QString& message){
@@ -450,22 +443,32 @@ SAFE_INT lastErrorWasLoop = 0;
 #endif
 
 #ifdef Q_WS_MACX
+#include "signal.h"
+#include "ucontext.h"
 #include "sys/signal.h"
 #include "sys/ucontext.h"
 #define USE_SIGNAL_HANDLER
 //names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
 //for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
+
+#if defined(__DARWIN_UNIX03) && defined(_STRUCT_X86_EXCEPTION_STATE32
+#define MAC_CONTEXT_PREFIXED(x) __##x
+#else
+#define MAC_CONTEXT_PREFIXED(x) x
+#endif
+
+// >= mac 10.5
 #ifdef CPU_IS_64
-#define PC_FROM_UCONTEXT(context) context->__ss.__rip
-#define STACK_FROM_UCONTEXT(context) context->__ss.__rsp
-#define FRAME_FROM_UCONTEXT(context) context->__ss.__rbp
+#define PC_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(rip)
+#define STACK_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(rsp)
+#define FRAME_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(rbp)
 #elif defined(CPU_IS_PPC)
-#define PC_FROM_UCONTEXT(context) context->__ss.__srr0
+#define PC_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).__srr0
 #error need ppc stack register name
 #else
-#define PC_FROM_UCONTEXT(context) context->__ss.__eip
-#define STACK_FROM_UCONTEXT(context) context->__ss.__esp
-#define FRAME_FROM_UCONTEXT(context) context->__ss.__ebp
+#define PC_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(eip)
+#define STACK_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(esp)
+#define FRAME_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(ebp)
 #endif
 #define SIGMYHANG SIGUSR1             //signal send to the main thread, if the guardian detects an endless loop
 #define SIGMYHANG_CONTINUE SIGUSR2    //signal send to the main thread, if the endless loop should be continued
@@ -804,6 +807,16 @@ bool changeContextToUndoRecoving(HANDLE thread, CONTEXT* c){
 void undoMainThreadRecoveringFromOutside(){
 	doSomethingWithMainThreadContext(changeContextToUndoRecoving);
 }
+#endif
+
+
+#if !defined(USE_SIGNAL_HANDLER) && !defined(Q_WS_WIN)
+bool recoverMainThreadFromOutside(){
+	fprintf(stderr, "Main thread locks frozen\n");
+	return true;
+}
+
+void undoMainThreadRecoveringFromOutside(){}
 #endif
 
 
