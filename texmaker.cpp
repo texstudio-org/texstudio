@@ -1955,8 +1955,9 @@ void Texmaker::fileSave() {
    QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
    return;
    }*/
+
 		currentEditor()->save();
-		//currentEditorView()->editor->setModified(false);
+        currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
 		if(configManager.autoCheckinAfterSave) {
 			checkin(currentEditor()->fileName());
