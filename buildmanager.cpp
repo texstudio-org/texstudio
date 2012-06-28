@@ -937,11 +937,15 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	for (int i=0;i<expansion.commands.size();i++){
 		latexCompiled |= expansion.commands[i].flags & RCF_COMPILES_TEX;
 		pdfChanged |= expansion.commands[i].flags & RCF_CHANGE_PDF;
+        if(buffer)
+            expansion.commands[i].flags|=RCF_WAITFORFINISHED; // don't let buffer be destroyed before command is finished
 	}
 	if (latexCompiled) {
 		ExpandedCommands temp = expandCommandLine(CMD_INTERNAL_PRE_COMPILE, options);
 		for (int i=temp.commands.size()-1;i>=0;i--) expansion.commands.prepend(temp.commands[i]);
 	}
+
+
 	
 	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
 	bool result = runCommandInternal(expansion, mainFile, buffer);
@@ -962,7 +966,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		if (singleInstance && runningCommands.contains(cur.command)) continue;
 		bool latexCompiler = cur.flags & RCF_COMPILES_TEX;
 		bool lastCommandToRun = i == commands.size()-1;
-		bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance);
+        bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance) || cur.flags & RCF_WAITFORFINISHED;
 		
 		ProcessX* p = newProcessInternal(cur.command, mainFile, singleInstance);
 		REQUIRE_RET(p, false);
@@ -984,7 +988,10 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		
 		emit endRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 		
-		if (waitForCommand) p->deleteLater();
+        if (waitForCommand) {
+            p->waitForFinished();
+            p->deleteLater();
+        }
 		
 		bool rerunnable = (cur.flags & RCF_RERUN) && (cur.flags & RCF_RERUNNABLE);
 		if (rerunnable || latexCompiler){

@@ -5797,7 +5797,15 @@ void Texmaker::fileCheckin(QString filename){
 		if(wholeDirectory){
 			fn=QFileInfo(fn).absolutePath();
 		}
-		checkin(fn,text);
+        //checkin(fn,text);
+        if(svnadd(fn)){
+            checkin(fn,text,configManager.svnKeywordSubstitution);
+        } else {
+            //create simple repository
+            svncreateRep(fn);
+            svnadd(fn);
+            checkin(fn,text,configManager.svnKeywordSubstitution);
+        }
 	}
 }
 
