@@ -28,6 +28,7 @@ enum RunCommandFlag{
 	RCF_RERUN = 16,
 	RCF_CHANGE_PDF = 32,    //pdflatex (=> lock pdf)
 	RCF_SINGLE_INSTANCE = 64,//viewer (=> start only once)
+    RCF_WAITFORFINISHED = 128
 };
 Q_DECLARE_FLAGS(RunCommandFlags, RunCommandFlag);
 
