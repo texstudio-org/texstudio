@@ -444,14 +444,14 @@ SAFE_INT lastErrorWasLoop = 0;
 
 #ifdef Q_WS_MACX
 #include "signal.h"
-#include "ucontext.h"
+//#include "ucontext.h"
 #include "sys/signal.h"
 #include "sys/ucontext.h"
 #define USE_SIGNAL_HANDLER
 //names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
 //for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
 
-#if defined(__DARWIN_UNIX03) && defined(_STRUCT_X86_EXCEPTION_STATE32
+#if defined(__DARWIN_UNIX03) && defined(_STRUCT_X86_EXCEPTION_STATE32)
 #define MAC_CONTEXT_PREFIXED(x) __##x
 #else
 #define MAC_CONTEXT_PREFIXED(x) x
