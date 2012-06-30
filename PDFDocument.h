@@ -306,7 +306,7 @@ public:
 
 
 
-class PDFDocumentConfig;
+struct PDFDocumentConfig;
 class PDFDock;
 class PDFSearchDock;
 class PDFScrollArea;

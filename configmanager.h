@@ -12,7 +12,7 @@ class LatexCompleterConfig;
 class LatexEditorViewConfig;
 class WebPublishDialogConfig;
 class InsertGraphicsConfig;
-class PDFDocumentConfig;
+struct PDFDocumentConfig;
 class GrammarCheckerConfig;
 
 struct ManagedToolBar{
