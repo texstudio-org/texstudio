@@ -855,8 +855,8 @@ void LatexTableModel::setContent(const QString &text) {
 
 QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const QString &rowIndent) const {
 	QString delim=" & ";
-	QString cl[lines.count()];
-	int multiColStarts[lines.count()];
+    QVector<QString> cl(lines.count());
+    QVector<int> multiColStarts(lines.count());
 	for (int i=0; i<lines.count(); i++) multiColStarts[i] = -1;
 	QStringList alignTokens(alignment);
 	
