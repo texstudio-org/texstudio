@@ -16,8 +16,8 @@
 //#inlcude "latexcompleter_config.h"
 
 #define TEXSTUDIO "TeXstudio"
-#define TXSVERSION "2.3"
-#define TXSVERSION_NUMERIC 0x020300
+#define TXSVERSION "2.4"
+#define TXSVERSION_NUMERIC 0x020400
 
 struct CommandArgument {
 	bool isOptional;
