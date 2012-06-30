@@ -824,6 +824,8 @@ void LatexTableModel::setContent(const QString &text) {
 	}
 	
 	/*	*** alternative more efficient ansatz ***
+ inline int skipWhitespace(const QString &line, int pos=0) {while (pos<line.length()) {if (!line.at(pos).isSpace()) return pos; else pos++;}}
+ 
  int len = text.length();
  int pos=skipWhitespace(text);
  int start = pos;

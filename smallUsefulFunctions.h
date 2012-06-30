@@ -85,7 +85,6 @@ bool localAwareLessThan(const QString &s1, const QString &s2);
 // true for characters that are valid in latex command names, e.g. \section*
 inline bool isCommandChar(const QChar &c) { return c.isLetter() || c=='*'; }
 // returns the position of the first non-whitespace at or after pos
-inline int skipWhitespace(const QString &line, int pos=0) {while (pos<line.length()) {if (!line.at(pos).isSpace()) return pos; else pos++;}}
 int getCommand(const QString &line, QString &outCmd, int pos=0);
 QList< CommandArgument > getCommandOptions(const QString &line, int pos=0, int *posBehind=0);
 
