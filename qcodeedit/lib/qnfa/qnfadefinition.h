@@ -30,7 +30,7 @@
 
 struct QNFA;
 
-class QParenthesis;
+struct QParenthesis;
 
 class QFile;
 class QDomDocument;

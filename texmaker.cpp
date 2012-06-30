@@ -6949,8 +6949,7 @@ void Texmaker::recoverFromCrash(){
 		while(!programStopped) { 
 			ThreadBreaker::sleep(1); 
 			if (t &&  t == killAtCrashedThread) {
-				name += " forced kill in %1";
-				name.arg((long int)t, sizeof(long int)*2, 16,QChar('0'));
+				name += QString(" forced kill in %1").arg((long int)t, sizeof(long int)*2, 16,QChar('0'));
 				print_backtrace(name);
 				exit(1);
 			}
