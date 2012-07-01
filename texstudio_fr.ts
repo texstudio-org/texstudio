@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>Multi-volume Proceedings Entry</source>
-        <translation>Entrée multi-volume  des actes d&apos;une &amp;conférence</translation>
+        <translation>Multi-volume des actes d&apos;une &amp;conférence</translation>
     </message>
     <message>
         <source>Reference</source>
@@ -239,7 +239,7 @@
     </message>
     <message>
         <source>Multi-volume Reference Entry</source>
-        <translation>Entrée multi-volume d&apos;un ouvrage de référence - @mvreference</translation>
+        <translation>Multi-volume d&apos;un ouvrage de référence - @mvreference</translation>
     </message>
     <message>
         <source>Article in a Reference</source>
@@ -513,8 +513,12 @@
         <translation>Outil d&apos;index par défaut</translation>
     </message>
     <message>
+        <source>Use internal PDF viewer embedded in TexStudio</source>
+        <translation type="obsolete">Utiliser l&apos;afficheur PDF interne embarqué dans TeXstudio</translation>
+    </message>
+    <message>
         <source>Use internal PDF viewer embedded in TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;afficheur PDF interne embarqué dans TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -2087,27 +2091,27 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à jour</translation>
     </message>
     <message>
         <source>Automatically check every</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier automatiquement tous les</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished"></translation>
+        <translation> jours</translation>
     </message>
     <message>
         <source>Last Checked:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dernière vérification :</translation>
     </message>
     <message>
         <source>Check Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier maintenant</translation>
     </message>
     <message>
         <source>Lua</source>
-        <translation type="unfinished"></translation>
+        <translation>Lua</translation>
     </message>
 </context>
 <context>
@@ -3400,7 +3404,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>BIBLIOGRAPHY</source>
-        <translation type="unfinished"></translation>
+        <translation>BIBLIOGRAPHIE</translation>
     </message>
 </context>
 <context>
@@ -4172,7 +4176,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     <message>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
-        <translation type="unfinished">de</translation>
+        <translation>sur</translation>
     </message>
 </context>
 <context>
@@ -5237,11 +5241,11 @@ Remarque : si la taille dépasse celle de la hauteur des lignes, des caractères
     </message>
     <message>
         <source>lua:keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>lua : mot clé</translation>
     </message>
     <message>
         <source>lua:comment</source>
-        <translation type="unfinished"></translation>
+        <translation>lua : commentaire</translation>
     </message>
 </context>
 <context>
@@ -5290,7 +5294,7 @@ Remarque : si la taille dépasse celle de la hauteur des lignes, des caractères
     </message>
     <message>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation>Il existe %1 occurence dans la zone de recherche.</translation>
+        <translation>Il existe %1 occurences dans la zone de recherche.</translation>
     </message>
     <message>
         <source>Enables case sensitive search.</source>
@@ -7594,13 +7598,13 @@ included document in %1</source>
         <translation>Type : %1</translation>
     </message>
     <message>
-        <source>Lua</source>
-        <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <source>&amp;User Tags</source>
+        <translation>Macros &amp;utilisateur</translation>
     </message>
     <message>
-        <source>&amp;User Tags</source>
-        <translation type="unfinished"></translation>
+        <source>Lua</source>
+        <comment>Format name of language definition </comment>
+        <translation>Lua</translation>
     </message>
 </context>
 <context>
@@ -7852,7 +7856,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous ajouter « %1 » comme synonyme de « %2 » ou de « %3 » ?</translation>
     </message>
 </context>
 <context>
@@ -7871,28 +7875,29 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <source>Never</source>
         <comment>last update</comment>
-        <translation type="unfinished">Jamais</translation>
+        <translation>Jamais</translation>
     </message>
     <message>
         <source>Update check failed with error:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>La vérification des mises à jour a échoué avec l&apos;erreur :
+</translation>
     </message>
     <message>
         <source>Update check failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>La vérification des mises à jour a échoué (format de fichier de mise à jour non valide).</translation>
     </message>
     <message>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version de TeXstudio est disponible.&lt;br&gt;&lt;br&gt;Version installée : %1&lt;br&gt;Dernière version disponible : %2&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger depuis le &lt;a href=&apos;%3&apos;&gt;site de TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>TeXstudio Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à jour de TeXstudio</translation>
     </message>
     <message>
         <source>TeXstudio is up-to-date.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio est à jour.</translation>
     </message>
 </context>
 <context>
