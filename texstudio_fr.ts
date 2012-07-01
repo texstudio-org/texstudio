@@ -512,6 +512,10 @@
         <source>Default Index Tool</source>
         <translation>Outil d&apos;index par défaut</translation>
     </message>
+    <message>
+        <source>Use internal PDF viewer embedded in TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -2081,6 +2085,30 @@ to set the key anyway?</source>
         <source>Syntax Highlighting</source>
         <translation>Coloration syntaxique</translation>
     </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically check every</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last Checked:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lua</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3345,10 +3373,6 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>À FAIRE</translation>
     </message>
     <message>
-        <source>BIBTEX</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>BLOCKS</source>
         <translation>BLOCS</translation>
     </message>
@@ -3373,6 +3397,10 @@ la commande \caption n&apos;est pas valide.</translation>
         <source>Unknown magic comment</source>
         <translatorcomment>À préciser : qu&apos;est-ce qu&apos;un « commentaire magique » ?</translatorcomment>
         <translation>Commentaire magique inconnu</translation>
+    </message>
+    <message>
+        <source>BIBLIOGRAPHY</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3990,7 +4018,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>of %1</source>
-        <translation>de %1</translation>
+        <translation type="obsolete">de %1</translation>
     </message>
     <message>
         <source>Grid</source>
@@ -4140,6 +4168,11 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     <message>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
+    </message>
+    <message>
+        <source>of</source>
+        <comment>separator for page number: 1 of 3</comment>
+        <translation type="unfinished">de</translation>
     </message>
 </context>
 <context>
@@ -5201,6 +5234,14 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
         <translation>Taille de la police relativement à celle de l&apos;éditeur.
 
 Remarque : si la taille dépasse celle de la hauteur des lignes, des caractères pourront être coupés.</translation>
+    </message>
+    <message>
+        <source>lua:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lua:comment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6507,11 +6548,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>&amp;User</source>
-        <translation>&amp;Utilisateur</translation>
+        <translation type="obsolete">&amp;Utilisateur</translation>
     </message>
     <message>
         <source>User &amp;Tags</source>
-        <translation>&amp;Macros utilisateur</translation>
+        <translation type="obsolete">&amp;Macros utilisateur</translation>
     </message>
     <message>
         <source>Edit User &amp;Tags</source>
@@ -7552,6 +7593,15 @@ included document in %1</source>
         <source>Type: %1</source>
         <translation>Type : %1</translation>
     </message>
+    <message>
+        <source>Lua</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -7800,6 +7850,10 @@ Sinon la ponctuation est ignorée.</translation>
         <source>Category:</source>
         <translation>Catégorie :</translation>
     </message>
+    <message>
+        <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UniversalInputDialogScript</name>
@@ -7810,6 +7864,35 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <source>Unkown variable %1</source>
         <translation>Variable %1 inconnue</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateChecker</name>
+    <message>
+        <source>Never</source>
+        <comment>last update</comment>
+        <translation type="unfinished">Jamais</translation>
+    </message>
+    <message>
+        <source>Update check failed with error:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update check failed (invalid update file format).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio is up-to-date.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

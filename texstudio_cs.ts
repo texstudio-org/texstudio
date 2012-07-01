@@ -95,15 +95,15 @@
     </message>
     <message>
         <source>Insert in file:</source>
-        <translation>Vložit do souboru:</translation>
+        <translation type="obsolete">Vložit do souboru:</translation>
     </message>
     <message>
         <source>BibTeX type</source>
-        <translation>Druh BibTeX</translation>
+        <translation type="obsolete">Druh BibTeX</translation>
     </message>
     <message>
         <source>BibTeX Fields</source>
-        <translation>Pole BibTeX</translation>
+        <translation type="obsolete">Pole BibTeX</translation>
     </message>
     <message>
         <source>Field</source>
@@ -115,7 +115,7 @@
     </message>
     <message>
         <source>insert empty, optional fields</source>
-        <translation>Vložit prázdná, volitelná pole</translation>
+        <translation type="obsolete">Vložit prázdná, volitelná pole</translation>
     </message>
     <message>
         <source>Article in &amp;Journal</source>
@@ -168,6 +168,94 @@
     <message>
         <source>Miscellan&amp;eous</source>
         <translation>&amp;Různé</translation>
+    </message>
+    <message>
+        <source>Insert in File:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Entry Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fields:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Empty, Optional Fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Multi-volume Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Part of a Book With Its Own Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book in Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single-volume Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-volume Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online Resource</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Patent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Complete Issue of a Periodical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Periodical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-volume Proceedings Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-volume Reference Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article in a Reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Thesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New BibLaTeX Entry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -242,15 +330,15 @@
     </message>
     <message>
         <source>Pre-compile</source>
-        <translation>Předsestavit</translation>
+        <translation type="obsolete">Předsestavit</translation>
     </message>
     <message>
         <source>Internal precompile</source>
-        <translation>Vnitřní předsestavení</translation>
+        <translation type="obsolete">Vnitřní předsestavení</translation>
     </message>
     <message>
         <source>Recompile bibliography</source>
-        <translation>Předsestavit bibliografii znovu</translation>
+        <translation type="obsolete">Předsestavit bibliografii znovu</translation>
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
@@ -408,6 +496,26 @@
         <source>External PDF Viewer</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use internal PDF viewer embedded in TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Index Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precompile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Precompile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recompile Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -428,10 +536,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete the output files generated by LaTeX:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Project (Master file folder and all subfolders)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -442,6 +546,10 @@
     <message>
         <source>Open Files</source>
         <translation type="unfinished">Otevřít soubory</translation>
+    </message>
+    <message>
+        <source>Delete the auxiliary files generated by LaTeX:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -474,7 +582,7 @@
     </message>
     <message>
         <source>Get dictionaries at: %1</source>
-        <translation>Získat slovníky: %1</translation>
+        <translation type="obsolete">Získat slovníky: %1</translation>
     </message>
     <message>
         <source>Default Shortcut</source>
@@ -542,7 +650,7 @@
     </message>
     <message>
         <source>Should I delete this other shortcut?</source>
-        <translation>Má se tato jiná klávesová zkratka smazat?</translation>
+        <translation type="obsolete">Má se tato jiná klávesová zkratka smazat?</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -606,7 +714,7 @@
     </message>
     <message>
         <source>Show preview as tool tip if panel is hidden</source>
-        <translation>Ukázat náhled jako radu k nástroji, pokud je panel neviditelný</translation>
+        <translation type="obsolete">Ukázat náhled jako radu k nástroji, pokud je panel neviditelný</translation>
     </message>
     <message>
         <source>Always show preview in preview panel</source>
@@ -638,27 +746,27 @@
     </message>
     <message>
         <source>Ignore indentation</source>
-        <translation>Nikdy neodsadit automaticky</translation>
+        <translation type="obsolete">Nikdy neodsadit automaticky</translation>
     </message>
     <message>
         <source>Keep indentation</source>
-        <translation>Převzít odsazení předchozího řádku</translation>
+        <translation type="obsolete">Převzít odsazení předchozího řádku</translation>
     </message>
     <message>
         <source>Indent and unindent automatically</source>
-        <translation>Odsadit a zrušit odsazení automaticky</translation>
+        <translation type="obsolete">Odsadit a zrušit odsazení automaticky</translation>
     </message>
     <message>
         <source>Keep indentation with spaces only</source>
-        <translation>Převzít odsazení předchozího řádku (použít pouze mezery)</translation>
+        <translation type="obsolete">Převzít odsazení předchozího řádku (použít pouze mezery)</translation>
     </message>
     <message>
         <source>Indent and unindent automatically with spaces only</source>
-        <translation>Odsadit a zrušit odsazení automaticky (použít pouze mezery)</translation>
+        <translation type="obsolete">Odsadit a zrušit odsazení automaticky (použít pouze mezery)</translation>
     </message>
     <message>
         <source>Auto detect encoding of loaded files</source>
-        <translation>Automaticky převzít kódování nahraných souborů</translation>
+        <translation type="obsolete">Automaticky převzít kódování nahraných souborů</translation>
     </message>
     <message>
         <source>Use single line selection as Search Word</source>
@@ -682,15 +790,15 @@
     </message>
     <message>
         <source>Use placeholders</source>
-        <translation>Použít zástupné znaky</translation>
+        <translation type="obsolete">Použít zástupné znaky</translation>
     </message>
     <message>
         <source>Automatically check in after save ?</source>
-        <translation>Automaticky zapsat po uložení?</translation>
+        <translation type="obsolete">Automaticky zapsat po uložení?</translation>
     </message>
     <message>
         <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation>Použít revize SVN pro krok &quot;Zpět&quot; před naposledy uloženou verzi?</translation>
+        <translation type="obsolete">Použít revize SVN pro krok &quot;Zpět&quot; před naposledy uloženou verzi?</translation>
     </message>
     <message>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
@@ -698,11 +806,11 @@
     </message>
     <message>
         <source>Substitue Keywords with Properties (on svn add)</source>
-        <translation>Nahradit klíčová slova vlastnostmi (při svn add)</translation>
+        <translation type="obsolete">Nahradit klíčová slova vlastnostmi (při svn add)</translation>
     </message>
     <message>
         <source>SVN Commands</source>
-        <translation>Příkazy SVN</translation>
+        <translation type="obsolete">Příkazy SVN</translation>
     </message>
     <message>
         <source>SVN Directory Search Depth: </source>
@@ -710,7 +818,7 @@
     </message>
     <message>
         <source>Show advanced options</source>
-        <translation>Ukázat rozšířené volby</translation>
+        <translation type="obsolete">Ukázat rozšířené volby</translation>
     </message>
     <message>
         <source>(The commands must be separated by &apos;|&apos;)</source>
@@ -722,19 +830,19 @@
     </message>
     <message>
         <source>Show Modify Time</source>
-        <translation>Ukázat čas poslední změny</translation>
+        <translation type="obsolete">Ukázat čas poslední změny</translation>
     </message>
     <message>
         <source>Color Scheme</source>
-        <translation>Barevné pojetí</translation>
+        <translation type="obsolete">Barevné pojetí</translation>
     </message>
     <message>
         <source>classic</source>
-        <translation>Nadčasové</translation>
+        <translation type="obsolete">Nadčasové</translation>
     </message>
     <message>
         <source>modern</source>
-        <translation>Pokrokové</translation>
+        <translation type="obsolete">Pokrokové</translation>
     </message>
     <message>
         <source>Tabbed Structure/Symbol View</source>
@@ -742,11 +850,11 @@
     </message>
     <message>
         <source>Ignore most system colors</source>
-        <translation>Používat vlastní pojetí barev</translation>
+        <translation type="obsolete">Používat vlastní pojetí barev</translation>
     </message>
     <message>
         <source>Always show structure of master document</source>
-        <translation>Vždy ukazovat stavbu hlavního dokumentu</translation>
+        <translation type="obsolete">Vždy ukazovat stavbu hlavního dokumentu</translation>
     </message>
     <message>
         <source>Inline checking</source>
@@ -797,7 +905,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Tab space:</source>
-        <translation>Prostor zarážky:</translation>
+        <translation type="obsolete">Prostor zarážky:</translation>
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
@@ -805,11 +913,11 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Add line</source>
-        <translation>Přidat řádek</translation>
+        <translation type="obsolete">Přidat řádek</translation>
     </message>
     <message>
         <source>Remove line</source>
-        <translation>Odstranit řádek</translation>
+        <translation type="obsolete">Odstranit řádek</translation>
     </message>
     <message>
         <source>Case Sensitive</source>
@@ -817,7 +925,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>In first character</source>
-        <translation>Od prvního písmena</translation>
+        <translation type="obsolete">Od prvního písmena</translation>
     </message>
     <message>
         <source>Auto Complete Common Prefix</source>
@@ -857,15 +965,15 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>No line numbers</source>
-        <translation>Neukazovat žádná čísla řádků</translation>
+        <translation type="obsolete">Neukazovat žádná čísla řádků</translation>
     </message>
     <message>
         <source>Show line numbers</source>
-        <translation>Ukázat čísla řádků</translation>
+        <translation type="obsolete">Ukázat čísla řádků</translation>
     </message>
     <message>
         <source>Show important line numbers</source>
-        <translation>Ukázat důležitá čísla řádků</translation>
+        <translation type="obsolete">Ukázat důležitá čísla řádků</translation>
     </message>
     <message>
         <source>Formats</source>
@@ -885,15 +993,15 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Style</source>
-        <translation>Styl</translation>
+        <translation type="obsolete">Styl</translation>
     </message>
     <message>
         <source>Font</source>
-        <translation>Písmo</translation>
+        <translation type="obsolete">Písmo</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation>Velikost písma</translation>
+        <translation type="obsolete">Velikost písma</translation>
     </message>
     <message>
         <source>Tabbed Log Viewer</source>
@@ -901,7 +1009,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
         <source>Files</source>
@@ -909,19 +1017,19 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Max. Recent Documents</source>
-        <translation>Největší počet naposledy otevřených dokumentů</translation>
+        <translation type="obsolete">Největší počet naposledy otevřených dokumentů</translation>
     </message>
     <message>
         <source>Max. Recent Master Documents</source>
-        <translation>Největší počet naposledy otevřených hlavních dokumentů</translation>
+        <translation type="obsolete">Největší počet naposledy otevřených hlavních dokumentů</translation>
     </message>
     <message>
         <source>Thesaurus Database</source>
-        <translation>Slovníková databáze</translation>
+        <translation type="obsolete">Slovníková databáze</translation>
     </message>
     <message>
         <source>The shortcut you entered is the same as the one of this command:</source>
-        <translation>Zadaná klávesová zkratka je tatáž jako ta pro tento příkaz:</translation>
+        <translation type="obsolete">Zadaná klávesová zkratka je tatáž jako ta pro tento příkaz:</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
@@ -929,7 +1037,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Use system theme icons</source>
-        <translation>Použít systémové ikony</translation>
+        <translation type="obsolete">Použít systémové ikony</translation>
     </message>
     <message>
         <source>Inline syntax checking</source>
@@ -957,11 +1065,11 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Auto save all files </source>
-        <translation>Automaticky uložit všechny soubory </translation>
+        <translation type="obsolete">Automaticky uložit všechny soubory </translation>
     </message>
     <message>
         <source>never</source>
-        <translation>Nikdy</translation>
+        <translation type="obsolete">Nikdy</translation>
     </message>
     <message>
         <source>5 minutes</source>
@@ -981,15 +1089,15 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Indentation mode:</source>
-        <translation>Režim odsazení:</translation>
+        <translation type="obsolete">Režim odsazení:</translation>
     </message>
     <message>
         <source>Line numbers:</source>
-        <translation>Čísla řádků:</translation>
+        <translation type="obsolete">Čísla řádků:</translation>
     </message>
     <message>
         <source>Segment preview</source>
-        <translation>Náhled části</translation>
+        <translation type="obsolete">Náhled části</translation>
     </message>
     <message>
         <source>Command:</source>
@@ -997,15 +1105,15 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Display mode:</source>
-        <translation>Režim zobrazení:</translation>
+        <translation type="obsolete">Režim zobrazení:</translation>
     </message>
     <message>
         <source>Full page pdf preview</source>
-        <translation>Celostránkový náhled na PDF</translation>
+        <translation type="obsolete">Celostránkový náhled na PDF</translation>
     </message>
     <message>
         <source>Screen resolution:</source>
-        <translation>Rozlišení obrazovky:</translation>
+        <translation type="obsolete">Rozlišení obrazovky:</translation>
     </message>
     <message>
         <source>dpi</source>
@@ -1013,11 +1121,11 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Magnifier size:</source>
-        <translation>Velikost zvětšovacího skla:</translation>
+        <translation type="obsolete">Velikost zvětšovacího skla:</translation>
     </message>
     <message>
         <source>Scale option:</source>
-        <translation>Volba pro velikost:</translation>
+        <translation type="obsolete">Volba pro velikost:</translation>
     </message>
     <message>
         <source>Scaling:</source>
@@ -1025,19 +1133,19 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Original size</source>
-        <translation>Původní velikost</translation>
+        <translation type="obsolete">Původní velikost</translation>
     </message>
     <message>
         <source>Fit to window width</source>
-        <translation>Umístit do šířky okna</translation>
+        <translation type="obsolete">Umístit do šířky okna</translation>
     </message>
     <message>
         <source>Fit to window size</source>
-        <translation>Umístit do velikosti okna</translation>
+        <translation type="obsolete">Umístit do velikosti okna</translation>
     </message>
     <message>
         <source>Scaled size</source>
-        <translation>Změněná velikost</translation>
+        <translation type="obsolete">Změněná velikost</translation>
     </message>
     <message>
         <source>%</source>
@@ -1045,7 +1153,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Magnifier shape:</source>
-        <translation>Tvar zvětšovacího skla:</translation>
+        <translation type="obsolete">Tvar zvětšovacího skla:</translation>
     </message>
     <message>
         <source>Square</source>
@@ -1077,7 +1185,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Maximal characters:</source>
-        <translation>Největší počet znaků:</translation>
+        <translation type="obsolete">Největší počet znaků:</translation>
     </message>
     <message>
         <source>Hacks/Workarounds</source>
@@ -1101,7 +1209,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation>Zakázat ošetření při psaní přízvuků (pouze u mac os)</translation>
+        <translation type="obsolete">Zakázat ošetření při psaní přízvuků (pouze u mac os)</translation>
     </message>
     <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
@@ -1113,7 +1221,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Synchronized files types:</source>
-        <translation>Seřízené typy souborů:</translation>
+        <translation type="obsolete">Seřízené typy souborů:</translation>
     </message>
     <message>
         <source>Inline</source>
@@ -1129,7 +1237,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Auto preview:</source>
-        <translation>Automatický náhled:</translation>
+        <translation type="obsolete">Automatický náhled:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -1141,19 +1249,19 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Auto preview delay:</source>
-        <translation>Zpoždění automatického náhledu:</translation>
+        <translation type="obsolete">Zpoždění automatického náhledu:</translation>
     </message>
     <message>
         <source>Show stdout</source>
-        <translation>Ukázat běžný výstup (stdout)</translation>
+        <translation type="obsolete">Ukázat běžný výstup (stdout)</translation>
     </message>
     <message>
         <source>Only for user commands</source>
-        <translation>Pouze pro příkazy uživatele</translation>
+        <translation type="obsolete">Pouze pro příkazy uživatele</translation>
     </message>
     <message>
         <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation>Vždy (pokud není přesměrován &gt; /dev/null)</translation>
+        <translation type="obsolete">Vždy (pokud není přesměrován &gt; /dev/null)</translation>
     </message>
     <message>
         <source>Times to rerun latex if requested:</source>
@@ -1161,19 +1269,19 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>no line wrap</source>
-        <translation>Žádné zalamování řádků</translation>
+        <translation type="obsolete">Žádné zalamování řádků</translation>
     </message>
     <message>
         <source>soft line wrap at window edge</source>
-        <translation>Měkké zalomení řádků na okraji okna</translation>
+        <translation type="obsolete">Měkké zalomení řádků na okraji okna</translation>
     </message>
     <message>
         <source>soft line wrap after max. characters</source>
-        <translation>Měkké zalomení řádků po největším počtu znaků</translation>
+        <translation type="obsolete">Měkké zalomení řádků po největším počtu znaků</translation>
     </message>
     <message>
         <source>hard line wrap after max. characters</source>
-        <translation>Tvrdé zalomení řádků po největším počtu znaků</translation>
+        <translation type="obsolete">Tvrdé zalomení řádků po největším počtu znaků</translation>
     </message>
     <message>
         <source>Additional Commands</source>
@@ -1221,23 +1329,23 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Replace double quotes:</source>
-        <translation>Nahradit dvojité uvozovky:</translation>
+        <translation type="obsolete">Nahradit dvojité uvozovky:</translation>
     </message>
     <message>
         <source>no replacement</source>
-        <translation>žádné nahrazování</translation>
+        <translation type="obsolete">žádné nahrazování</translation>
     </message>
     <message>
         <source>English quotes:  `` &apos;&apos;</source>
-        <translation>Anglické uvozovky:  `` &apos;&apos;</translation>
+        <translation type="obsolete">Anglické uvozovky:  `` &apos;&apos;</translation>
     </message>
     <message>
         <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation>Francouzské uvozovky:  &quot;&lt; &quot;&gt;</translation>
+        <translation type="obsolete">Francouzské uvozovky:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
         <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation>Německé uvozovky:  &quot;` &quot;&apos;</translation>
+        <translation type="obsolete">Německé uvozovky:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
         <source>Show preview as tooltip on formulas in editor</source>
@@ -1265,7 +1373,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>French quotes (babel): \og \fg{}</source>
-        <translation>Francouzské uvozovky (babel): \og \fg{}</translation>
+        <translation type="obsolete">Francouzské uvozovky (babel): \og \fg{}</translation>
     </message>
     <message>
         <source>one</source>
@@ -1289,7 +1397,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation>Obrátit francouzské uvozovky: &quot;&gt; &quot;&lt;</translation>
+        <translation type="obsolete">Obrátit francouzské uvozovky: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <source>Restrict search scope to an existing selection</source>
@@ -1301,7 +1409,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Relative tab font size:</source>
-        <translation>Poměrná velikost písma karty:</translation>
+        <translation type="obsolete">Poměrná velikost písma karty:</translation>
     </message>
     <message>
         <source>Diff</source>
@@ -1313,11 +1421,11 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Spelling dictionary directory</source>
-        <translation>Adresář pro slovník pro pravopis</translation>
+        <translation type="obsolete">Adresář pro slovník pro pravopis</translation>
     </message>
     <message>
         <source>Default language</source>
-        <translation>Výchozí jazyk</translation>
+        <translation type="obsolete">Výchozí jazyk</translation>
     </message>
     <message>
         <source>Select dictionary directory</source>
@@ -1325,27 +1433,27 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation>Rodina písma</translation>
+        <translation type="obsolete">Rodina písma</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
-        <translation>Výchozí kódování písma</translation>
+        <translation type="obsolete">Výchozí kódování písma</translation>
     </message>
     <message>
         <source>qce (recommended)</source>
-        <translation>qce (doporučeno)</translation>
+        <translation type="obsolete">qce (doporučeno)</translation>
     </message>
     <message>
         <source>qt</source>
-        <translation>qt</translation>
+        <translation type="obsolete">qt</translation>
     </message>
     <message>
         <source>single letter</source>
-        <translation>jedno písmeno</translation>
+        <translation type="obsolete">jedno písmeno</translation>
     </message>
     <message>
         <source>Render mode:</source>
-        <translation>Režim vykreslení:</translation>
+        <translation type="obsolete">Režim vykreslení:</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
@@ -1361,7 +1469,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Inline checking:</source>
-        <translation>Řadové přezkoušení:</translation>
+        <translation type="obsolete">Řadové přezkoušení:</translation>
     </message>
     <message>
         <source>Spelling</source>
@@ -1389,15 +1497,15 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Check for word repetitions</source>
-        <translation>Prověřit opakování slov</translation>
+        <translation type="obsolete">Prověřit opakování slov</translation>
     </message>
     <message>
         <source>Words between repetitions:</source>
-        <translation>Slova mezi opakováními:</translation>
+        <translation type="obsolete">Slova mezi opakováními:</translation>
     </message>
     <message>
         <source>Wordlist directory:</source>
-        <translation>Adresář se seznamem slov:</translation>
+        <translation type="obsolete">Adresář se seznamem slov:</translation>
     </message>
     <message>
         <source>LanguageTool</source>
@@ -1405,7 +1513,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Serverurl: </source>
-        <translation>Adresa serveru:</translation>
+        <translation type="obsolete">Adresa serveru:</translation>
     </message>
     <message>
         <source>Start LanguageTool if not running</source>
@@ -1413,11 +1521,11 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>LT path:</source>
-        <translation>Cesta k jazykovému nástroji:</translation>
+        <translation type="obsolete">Cesta k jazykovému nástroji:</translation>
     </message>
     <message>
         <source>Ignored rules:</source>
-        <translation>Přehlížená pravidla:</translation>
+        <translation type="obsolete">Přehlížená pravidla:</translation>
     </message>
     <message>
         <source>Java:</source>
@@ -1437,23 +1545,23 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Check for bad words</source>
-        <translation>Prověřit na špatná slova</translation>
+        <translation type="obsolete">Prověřit na špatná slova</translation>
     </message>
     <message>
         <source>Special rules 2:</source>
-        <translation>Zvláštní pravidla 2:</translation>
+        <translation type="obsolete">Zvláštní pravidla 2:</translation>
     </message>
     <message>
         <source>Special rules 1:</source>
-        <translation>Zvláštní pravidla 1:</translation>
+        <translation type="obsolete">Zvláštní pravidla 1:</translation>
     </message>
     <message>
         <source>Special rules 3:</source>
-        <translation>Zvláštní pravidla 3:</translation>
+        <translation type="obsolete">Zvláštní pravidla 3:</translation>
     </message>
     <message>
         <source>Special rules 4:</source>
-        <translation>Zvláštní pravidla 4:</translation>
+        <translation type="obsolete">Zvláštní pravidla 4:</translation>
     </message>
     <message>
         <source>LaTeX checking</source>
@@ -1465,11 +1573,11 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Long range repetitions:</source>
-        <translation>Opakování s dlouhým dosahem:</translation>
+        <translation type="obsolete">Opakování s dlouhým dosahem:</translation>
     </message>
     <message>
         <source>Min length of words with long repetition:</source>
-        <translation>Nejmenší délka slov s dlouhým opakováním:</translation>
+        <translation type="obsolete">Nejmenší délka slov s dlouhým opakováním:</translation>
     </message>
     <message>
         <source>Words repeated within a paragraph will be highlighted.</source>
@@ -1524,14 +1632,6 @@ Nebudete moci napsat tento znak. Přesto tuto klávesu
 chcete nastavit?</translation>
     </message>
     <message>
-        <source>Metacommands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Usercommands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Menus</source>
         <translation type="unfinished">Nabídky</translation>
     </message>
@@ -1541,14 +1641,6 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Meta Build</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1576,16 +1668,424 @@ chcete nastavit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DTX files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
         <translation type="unfinished">&lt;neznámý&gt;</translation>
+    </message>
+    <message>
+        <source>Show Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Most System Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use System Theme Icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max. Recent Documents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max. Recent Master Documents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always Show Structure of Master Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thesaurus Database:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spelling Dictionary Directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically check every</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last Checked:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show stdout:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only For User Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always (If not redirected &gt; /dev/null)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Family:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Font Encoding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Indentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep Indentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent and Unindent Automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep Indentation With Spaces Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent and Unindent Automatically With Spaces Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indentation Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Double Quotes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Replacement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English Quotes:  `` &apos;&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German Quotes:  &quot;` &quot;&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French Quotes (babel): \og \fg{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline Checking:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Detect Encoding of Loaded Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Spacing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Line Numbers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only Important Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tab Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Save All Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximal Characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Line Wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Soft Line Wrap at Window Edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Soft Line Wrap after max. Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hard Line Wrap after max. Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable work-around on accent typing (Mac OS X only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QCE (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single Letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In First Character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Placeholders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative Tab Font Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for Word Repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Words Between Repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long Range Repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min Length of Words with Long Repetition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wordlist Directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for Bad Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server URL: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LT Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored Rules:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 2:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 1:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 3:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 4:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Segment Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show preview as tooltip if panel is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Preview Delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Page PDF Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale Option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Window Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Window Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaled Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen Resolution:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier Shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronized Files Types:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically check in after save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uses SVN revisions to undo before last saved version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Substitute Keywords with Properties (on svn add)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you wish to remove the old assignment and bind the shortcut to the new command?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Additional Dictionaries: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lua</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax Highlighting</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1876,7 +2376,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>New line</source>
-        <translation>Nový řádek</translation>
+        <translation type="obsolete">Nový řádek</translation>
     </message>
     <message>
         <source>International &amp;Accents</source>
@@ -1936,7 +2436,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Numbered equations \begin{equation}</source>
-        <translation>Očíslované rovnice \begin{equation}</translation>
+        <translation type="obsolete">Očíslované rovnice \begin{equation}</translation>
     </message>
     <message>
         <source>\begin{align}</source>
@@ -2037,7 +2537,7 @@ chcete nastavit?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation>Povolil jste automatické nahrazování uvozovek. Nicméně tu jsou uživatelské značky se spouštěcím řetězcem (?&lt;=\s|^) or (?&lt;=\S), které nahradí nové nahrazení uvozovek.
+        <translation type="obsolete">Povolil jste automatické nahrazování uvozovek. Nicméně tu jsou uživatelské značky se spouštěcím řetězcem (?&lt;=\s|^) or (?&lt;=\S), které nahradí nové nahrazení uvozovek.
 Chcete je odstranit?</translation>
     </message>
     <message>
@@ -2097,10 +2597,6 @@ Chcete je odstranit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>\begin{verbatim} </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>\begin{table}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2157,126 +2653,6 @@ Chcete je odstranit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>arccos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arcsin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arctan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cosh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>coth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>csc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>deg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>det</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>exp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>gcd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>inf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>liminf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>limsup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ln</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>max</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>min</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sinh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tanh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Roman - \mathrm{}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2293,10 +2669,6 @@ Chcete je odstranit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Courier - \mathtt{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Calligraphic - \mathcal{}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2309,36 +2681,57 @@ Chcete je odstranit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Negative</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Medium</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thick</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>One quad</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Two quads</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">&lt;neznámý&gt;</translation>
+        <translation type="obsolete">&lt;neznámý&gt;</translation>
+    </message>
+    <message>
+        <source>\begin{verbatim}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New line - \\</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numbered equation \begin{equation}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typewriter - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Negative - \!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thin - \,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium - \:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thick - \;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interword - \ </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One quad - \quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two quads - \qquad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2761,7 +3154,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>BIBTEX</source>
-        <translation>BIBTEX</translation>
+        <translation type="obsolete">BIBTEX</translation>
     </message>
     <message>
         <source>BLOCKS</source>
@@ -2786,6 +3179,10 @@ Invalid \caption command.</source>
     <message>
         <source>Unknown magic comment</source>
         <translation>Neznámá kouzelná poznámka</translation>
+    </message>
+    <message>
+        <source>BIBLIOGRAPHY</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2957,23 +3354,23 @@ Invalid \caption command.</source>
     <name>OutputViewWidget</name>
     <message>
         <source>messages</source>
-        <translation>Zprávy</translation>
+        <translation type="obsolete">Zprávy</translation>
     </message>
     <message>
         <source>log file</source>
-        <translation>Soubor se zápisem</translation>
+        <translation type="obsolete">Soubor se zápisem</translation>
     </message>
     <message>
         <source>errors</source>
-        <translation>Chyby</translation>
+        <translation type="obsolete">Chyby</translation>
     </message>
     <message>
         <source>preview</source>
-        <translation>Náhled</translation>
+        <translation type="obsolete">Náhled</translation>
     </message>
     <message>
         <source>search results</source>
-        <translation>Výsledky hledání</translation>
+        <translation type="obsolete">Výsledky hledání</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
@@ -2994,6 +3391,26 @@ Invalid \caption command.</source>
     <message>
         <source>&amp;Show in log</source>
         <translation>&amp;Ukázat v zápisu</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation type="unfinished">Náhled</translation>
+    </message>
+    <message>
+        <source>Search Results</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3020,6 +3437,10 @@ Invalid \caption command.</source>
     <message>
         <source>%1min</source>
         <translation>%1 min</translation>
+    </message>
+    <message>
+        <source>New clock interval (in minutes)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3379,7 +3800,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>of %1</source>
-        <translation>z %1</translation>
+        <translation type="obsolete">z %1</translation>
     </message>
     <message>
         <source>Grid</source>
@@ -3521,6 +3942,15 @@ does not look like a valid PDF document.
 
 Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <comment>separator for page number: 1 of 3</comment>
+        <translation type="unfinished">z</translation>
     </message>
 </context>
 <context>
@@ -4482,12 +4912,6 @@ Chcete, aby byly uloženy?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Font size relative to editor font size.
-
-Note: Sizes &gt; 100% may result in clipped characters.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Prio</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4544,11 +4968,45 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>txs-test-skip</source>
+        <source>txs-test-qdebug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>txs-test-qdebug</source>
+        <source>math-delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-warn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:guard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:macro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:verbatim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:specialchar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lua:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lua:comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font size relative to editor font size.
+
+Note: If the size is larger that the line spacing, characters may be clipped.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5075,8 +5533,12 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <source>Sorry, you clicked in the wrong column.
 To change a shortcut, you have to edit the third or fourth column.</source>
-        <translation>Promiňte, ale klepnul jste do špatného sloupce.
+        <translation type="obsolete">Promiňte, ale klepnul jste do špatného sloupce.
 Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translation>
+    </message>
+    <message>
+        <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5542,11 +6004,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>&amp;User</source>
-        <translation>&amp;Uživatel</translation>
+        <translation type="obsolete">&amp;Uživatel</translation>
     </message>
     <message>
         <source>User &amp;Tags</source>
-        <translation>&amp;Uživatelské značky</translation>
+        <translation type="obsolete">&amp;Uživatelské značky</translation>
     </message>
     <message>
         <source>Edit User &amp;Tags</source>
@@ -5878,7 +6340,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Cle&amp;an</source>
-        <translation>&amp;Uklidit</translation>
+        <translation type="obsolete">&amp;Uklidit</translation>
     </message>
     <message>
         <source>C&amp;onvert to Html...</source>
@@ -5910,7 +6372,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>BibTeX &amp;insert dialog...</source>
-        <translation>D&amp;ialog pro nový záznam BibTeX...</translation>
+        <translation type="obsolete">D&amp;ialog pro nový záznam BibTeX...</translation>
     </message>
     <message>
         <source>Load &amp;Profile...</source>
@@ -6042,7 +6504,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>BibTeX</source>
-        <translation type="obsolete">BibTeX</translation>
+        <translation type="unfinished">BibTeX</translation>
     </message>
     <message>
         <source>Insert \ref to next label</source>
@@ -6494,7 +6956,7 @@ Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
-        <translation>Nastavit &amp;zvýrazňování...</translation>
+        <translation type="obsolete">Nastavit &amp;zvýrazňování...</translation>
     </message>
     <message>
         <source>Move document to &amp;front</source>
@@ -6603,7 +7065,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>New highlighting:</source>
-        <translation>Nové zvýrazňování:</translation>
+        <translation type="obsolete">Nové zvýrazňování:</translation>
     </message>
     <message>
         <source>BibTeX</source>
@@ -6805,6 +7267,79 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>Align Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeX dtx file</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lua</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Commands</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;TexIndy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cle&amp;an Auxiliary Files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Insert Bibliography Entry...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+included document in %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio has been paused due to a possible endless loop.
+Do you want to keep the program running? This may cause data corruption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, stop the loop and try to recover.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, continue the loop.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7055,6 +7590,10 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
         <source>Category:</source>
         <translation>Skupina:</translation>
     </message>
+    <message>
+        <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UniversalInputDialogScript</name>
@@ -7065,6 +7604,35 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     <message>
         <source>Unkown variable %1</source>
         <translation>Neznámá proměnná %1</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateChecker</name>
+    <message>
+        <source>Never</source>
+        <comment>last update</comment>
+        <translation type="unfinished">Nikdy</translation>
+    </message>
+    <message>
+        <source>Update check failed with error:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update check failed (invalid update file format).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio is up-to-date.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
