@@ -1581,6 +1581,10 @@ Biztosan ezt szeretné beállítani?</translation>
         <source>Check Now</source>
         <translation>Azonnali ellenőrzés</translation>
     </message>
+    <message>
+        <source>Lua</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -4277,6 +4281,14 @@ Megjegyzés: ha a betűméret nagyobb, mint a sorköz távolság, az a karaktere
         <source>dtx:specialchar</source>
         <translation>dtx:specialchar</translation>
     </message>
+    <message>
+        <source>lua:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lua:comment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QLanguageFactory</name>
@@ -6507,6 +6519,11 @@ included document in %1</source>
     <message>
         <source>Type: %1</source>
         <translation>Típus: %1</translation>
+    </message>
+    <message>
+        <source>Lua</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

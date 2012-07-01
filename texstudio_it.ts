@@ -91,15 +91,15 @@
     </message>
     <message>
         <source>Insert in file:</source>
-        <translation>Inserisci in file:</translation>
+        <translation type="obsolete">Inserisci in file:</translation>
     </message>
     <message>
         <source>BibTeX type</source>
-        <translation>Tipo BibTeX</translation>
+        <translation type="obsolete">Tipo BibTeX</translation>
     </message>
     <message>
         <source>BibTeX Fields</source>
-        <translation>Campo BibTeX</translation>
+        <translation type="obsolete">Campo BibTeX</translation>
     </message>
     <message>
         <source>Field</source>
@@ -111,7 +111,7 @@
     </message>
     <message>
         <source>insert empty, optional fields</source>
-        <translation>Inserisci campi opzionali</translation>
+        <translation type="obsolete">Inserisci campi opzionali</translation>
     </message>
     <message>
         <source>Article in &amp;Journal</source>
@@ -165,6 +165,94 @@
         <source>Miscellan&amp;eous</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Insert in File:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Entry Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fields:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Empty, Optional Fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Multi-volume Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Part of a Book With Its Own Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book in Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single-volume Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-volume Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online Resource</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Patent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Complete Issue of a Periodical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supplemental Material in a Periodical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-volume Proceedings Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-volume Reference Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article in a Reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Thesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New BibLaTeX Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuildManager</name>
@@ -202,18 +290,6 @@
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pre-compile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Internal precompile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Recompile bibliography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -372,6 +448,26 @@
         <source>External PDF Viewer</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use internal PDF viewer embedded in TeXstudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Index Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precompile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Precompile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recompile Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -392,10 +488,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete the output files generated by LaTeX:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Project (Master file folder and all subfolders)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -406,6 +498,10 @@
     <message>
         <source>Open Files</source>
         <translation type="unfinished">Apri File</translation>
+    </message>
+    <message>
+        <source>Delete the auxiliary files generated by LaTeX:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -434,11 +530,11 @@
     </message>
     <message>
         <source>The shortcut you entered is the same as the one of this command:</source>
-        <translation>La combinazione di tasti inserita è la stessa di questo comando:</translation>
+        <translation type="obsolete">La combinazione di tasti inserita è la stessa di questo comando:</translation>
     </message>
     <message>
         <source>Should I delete this other shortcut?</source>
-        <translation>Elimino quest&apos;altra combinazione di tasti?</translation>
+        <translation type="obsolete">Elimino quest&apos;altra combinazione di tasti?</translation>
     </message>
     <message>
         <source>Do you really want to delete this row?</source>
@@ -450,7 +546,7 @@
     </message>
     <message>
         <source>Get dictionaries at: %1</source>
-        <translation>Scarica dizionario da :%1</translation>
+        <translation type="obsolete">Scarica dizionario da :%1</translation>
     </message>
     <message>
         <source>Default Shortcut</source>
@@ -530,15 +626,15 @@
     </message>
     <message>
         <source>Style</source>
-        <translation>Stile</translation>
+        <translation type="obsolete">Stile</translation>
     </message>
     <message>
         <source>Font</source>
-        <translation>Carattere</translation>
+        <translation type="obsolete">Carattere</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation>Dimensione Carattere</translation>
+        <translation type="obsolete">Dimensione Carattere</translation>
     </message>
     <message>
         <source>Tabbed Log Viewer</source>
@@ -546,7 +642,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Lingua</translation>
+        <translation type="obsolete">Lingua</translation>
     </message>
     <message>
         <source>Files</source>
@@ -554,11 +650,11 @@
     </message>
     <message>
         <source>Max. Recent Documents</source>
-        <translation>Max documenti recenti</translation>
+        <translation type="obsolete">Max documenti recenti</translation>
     </message>
     <message>
         <source>Max. Recent Master Documents</source>
-        <translation>Max documenti Master recenti</translation>
+        <translation type="obsolete">Max documenti Master recenti</translation>
     </message>
     <message>
         <source>Parse BibTeX</source>
@@ -574,7 +670,7 @@
     </message>
     <message>
         <source>Thesaurus Database</source>
-        <translation>Database Sinonimi </translation>
+        <translation type="obsolete">Database Sinonimi </translation>
     </message>
     <message>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
@@ -622,31 +718,27 @@
     </message>
     <message>
         <source>No line numbers</source>
-        <translation>Nascondi numeri righe</translation>
+        <translation type="obsolete">Nascondi numeri righe</translation>
     </message>
     <message>
         <source>Color Scheme</source>
-        <translation>Schema Colori</translation>
+        <translation type="obsolete">Schema Colori</translation>
     </message>
     <message>
         <source>classic</source>
-        <translation>classico</translation>
+        <translation type="obsolete">classico</translation>
     </message>
     <message>
         <source>modern</source>
-        <translation>moderno</translation>
+        <translation type="obsolete">moderno</translation>
     </message>
     <message>
         <source>Tabbed Structure/Symbol View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore most system colors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Always show structure of master document</source>
-        <translation>Mostra sempre la struttura del documento master</translation>
+        <translation type="obsolete">Mostra sempre la struttura del documento master</translation>
     </message>
     <message>
         <source>Inline checking</source>
@@ -702,15 +794,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Show line numbers</source>
-        <translation>Mostra numeri righe</translation>
+        <translation type="obsolete">Mostra numeri righe</translation>
     </message>
     <message>
         <source>Show important line numbers</source>
-        <translation>Mostra numeri linee importanti</translation>
-    </message>
-    <message>
-        <source>Show Modify Time</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Mostra numeri linee importanti</translation>
     </message>
     <message>
         <source>Use single line selection as Search Word</source>
@@ -725,15 +813,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tab space:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Close Log-View with Esc-Key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show preview as tool tip if panel is hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -765,30 +845,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore indentation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keep indentation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Indent and unindent automatically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keep indentation with spaces only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Indent and unindent automatically with spaces only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto detect encoding of loaded files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Auto Replace Latex-Commands</source>
         <translation type="unfinished"></translation>
     </message>
@@ -801,20 +857,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Case Sensitive</source>
         <translation></translation>
     </message>
     <message>
         <source>In first character</source>
-        <translation>Nel primo carattere</translation>
+        <translation type="obsolete">Nel primo carattere</translation>
     </message>
     <message>
         <source>Auto Complete Common Prefix</source>
@@ -830,30 +878,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Use placeholders</source>
-        <translation>Usa segnaposto</translation>
+        <translation type="obsolete">Usa segnaposto</translation>
     </message>
     <message>
         <source>Use following completion files:</source>
         <translation>Usa il seguente file di completamento:</translation>
     </message>
     <message>
-        <source>Automatically check in after save ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uses SVN revisions to undo before last saved version ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Substitue Keywords with Properties (on svn add)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SVN Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -862,14 +894,10 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Show advanced options</source>
-        <translation type="unfinished">mostra opzioni avanzate</translation>
+        <translation type="obsolete">mostra opzioni avanzate</translation>
     </message>
     <message>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use system theme icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -889,14 +917,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Auto save all files </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>never</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>5 minutes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -913,31 +933,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Indentation mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Line numbers:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Segment preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Display mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full page pdf preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Screen resolution:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -945,39 +941,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Magnifier size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Scale option:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Scaling:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Original size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fit to window width</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fit to window size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Scaled size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Magnifier shape:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1009,10 +977,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Maximal characters:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hacks/Workarounds</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1033,19 +997,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disable work-around on accent typing (mac os x only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Synchronized files types:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1061,47 +1017,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Auto preview:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Previously previewed text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto preview delay:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show stdout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Only for user commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Always (if not redirected &gt; /dev/null)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>no line wrap</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>soft line wrap at window edge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>soft line wrap after max. characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hard line wrap after max. characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1149,26 +1069,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Replace double quotes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>no replacement</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>English quotes:  `` &apos;&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>French quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>German quotes:  &quot;` &quot;&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1184,10 +1084,6 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>French quotes (babel): \og \fg{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1207,19 +1103,11 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Reverse french quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Restrict search scope to an existing selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Relative tab font size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1231,40 +1119,16 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Spelling dictionary directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Select dictionary directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Font Family</source>
-        <translation>Famiglia Font</translation>
+        <translation type="obsolete">Famiglia Font</translation>
     </message>
     <message>
         <source>Default Font Encoding</source>
-        <translation>Codifica Font</translation>
-    </message>
-    <message>
-        <source>qce (recommended)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>single letter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Render mode:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Codifica Font</translation>
     </message>
     <message>
         <source>Try to automatically choose best display options</source>
@@ -1276,10 +1140,6 @@ Which one of the three wise will always tell the truth?</source>
     </message>
     <message>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Inline checking:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1307,35 +1167,11 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check for word repetitions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Words between repetitions:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wordlist directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>LanguageTool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Serverurl: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Start LanguageTool if not running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LT path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ignored rules:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1355,39 +1191,11 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check for bad words</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Special rules 2:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Special rules 1:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Special rules 3:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Special rules 4:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>LaTeX checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Language checking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Long range repetitions:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Min length of words with long repetition:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1441,20 +1249,8 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Metacommands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Usercommands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Menus</source>
         <translation type="unfinished">Menu</translation>
-    </message>
-    <message>
-        <source>Meta Build</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
@@ -1462,10 +1258,6 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1493,16 +1285,424 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Line Spacing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DTX files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
         <translation type="unfinished">sconosciuto</translation>
+    </message>
+    <message>
+        <source>Show Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Most System Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use System Theme Icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max. Recent Documents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max. Recent Master Documents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always Show Structure of Master Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thesaurus Database:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spelling Dictionary Directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically check every</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last Checked:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show stdout:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only For User Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always (If not redirected &gt; /dev/null)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font Family:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Font Encoding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Indentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep Indentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent and Unindent Automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep Indentation With Spaces Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent and Unindent Automatically With Spaces Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indentation Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace Double Quotes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Replacement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English Quotes:  `` &apos;&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German Quotes:  &quot;` &quot;&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>French Quotes (babel): \og \fg{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inline Checking:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Detect Encoding of Loaded Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line Spacing:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Line Numbers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only Important Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tab Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Save All Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximal Characters:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Line Wrap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Soft Line Wrap at Window Edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Soft Line Wrap after max. Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hard Line Wrap after max. Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable work-around on accent typing (Mac OS X only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QCE (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single Letter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In First Character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Placeholders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative Tab Font Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for Word Repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Words Between Repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long Range Repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Min Length of Words with Long Repetition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wordlist Directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for Bad Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server URL: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LT Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored Rules:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 2:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 1:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 3:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Rules 4:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Segment Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display Mode:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show preview as tooltip if panel is hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Preview:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Preview Delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Page PDF Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale Option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Window Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Window Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaled Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen Resolution:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier Shape:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magnifier Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Synchronized Files Types:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically check in after save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uses SVN revisions to undo before last saved version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Substitute Keywords with Properties (on svn add)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you wish to remove the old assignment and bind the shortcut to the new command?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download Additional Dictionaries: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lua</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax Highlighting</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1704,10 +1904,6 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>International &amp;Accents</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1764,10 +1960,6 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Numbered equations \begin{equation}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>\begin{align}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1813,11 +2005,6 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?&lt;=\s|^) or (?&lt;=\S) which will override the new quote replacement.
-Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1870,10 +2057,6 @@ Do you want to remove them?</source>
     </message>
     <message>
         <source>\begin{verse}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>\begin{verbatim} </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1933,126 +2116,6 @@ Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>arccos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arcsin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>arctan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cosh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>coth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>csc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>deg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>det</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>exp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>gcd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>inf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>liminf</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>limsup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ln</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>max</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>min</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sinh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tanh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Roman - \mathrm{}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2069,10 +2132,6 @@ Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Courier - \mathtt{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Calligraphic - \mathcal{}</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2085,36 +2144,57 @@ Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Negative</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Medium</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thick</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>One quad</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Two quads</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation type="obsolete">sconosciuto</translation>
+    </message>
+    <message>
+        <source>\begin{verbatim}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New line - \\</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numbered equation \begin{equation}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typewriter - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Negative - \!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thin - \,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium - \:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thick - \;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interword - \ </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One quad - \quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two quads - \qquad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2533,10 +2613,6 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BIBTEX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BLOCKS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2558,6 +2634,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Unknown magic comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BIBLIOGRAPHY</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2728,23 +2808,19 @@ Invalid \caption command.</source>
     <name>OutputViewWidget</name>
     <message>
         <source>messages</source>
-        <translation>messaggi</translation>
+        <translation type="obsolete">messaggi</translation>
     </message>
     <message>
         <source>log file</source>
-        <translation>file di log</translation>
+        <translation type="obsolete">file di log</translation>
     </message>
     <message>
         <source>errors</source>
-        <translation>errori</translation>
+        <translation type="obsolete">errori</translation>
     </message>
     <message>
         <source>preview</source>
-        <translation>anteprima</translation>
-    </message>
-    <message>
-        <source>search results</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">anteprima</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
@@ -2764,6 +2840,26 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>&amp;Show in log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Results</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2790,6 +2886,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>%1min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New clock interval (in minutes)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3149,10 +3249,6 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>of %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Grid</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3285,6 +3381,15 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <comment>separator for page number: 1 of 3</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4212,12 +4317,6 @@ Vuoi salvarli?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Font size relative to editor font size.
-
-Note: Sizes &gt; 100% may result in clipped characters.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Prio</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4274,11 +4373,45 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>txs-test-skip</source>
+        <source>txs-test-qdebug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>txs-test-qdebug</source>
+        <source>math-delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>txs-test-warn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:guard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:macro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:verbatim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:specialchar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lua:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lua:comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Font size relative to editor font size.
+
+Note: If the size is larger that the line spacing, characters may be clipped.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4783,8 +4916,7 @@ Do you trust this script?</source>
         <translation>aggiungi riga</translation>
     </message>
     <message>
-        <source>Sorry, you clicked in the wrong column.
-To change a shortcut, you have to edit the third or fourth column.</source>
+        <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5467,7 +5599,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>Cle&amp;an</source>
-        <translation>Pulisci</translation>
+        <translation type="obsolete">Pulisci</translation>
     </message>
     <message>
         <source>C&amp;onvert to Html...</source>
@@ -5496,10 +5628,6 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     <message>
         <source>&amp;Clean</source>
         <translation>Pulisci</translation>
-    </message>
-    <message>
-        <source>BibTeX &amp;insert dialog...</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Load &amp;Profile...</source>
@@ -5559,7 +5687,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
     </message>
     <message>
         <source>BibTeX</source>
-        <translation type="obsolete">BibTeX</translation>
+        <translation type="unfinished">BibTeX</translation>
     </message>
     <message>
         <source>Clean</source>
@@ -5692,11 +5820,11 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>&amp;User</source>
-        <translation>&amp;Utente</translation>
+        <translation type="obsolete">&amp;Utente</translation>
     </message>
     <message>
         <source>User &amp;Tags</source>
-        <translation>Etichette &amp;Utente</translation>
+        <translation type="obsolete">Etichette &amp;Utente</translation>
     </message>
     <message>
         <source>Edit User &amp;Tags</source>
@@ -6178,10 +6306,6 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Set High&amp;lighting...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Move document to &amp;front</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6279,10 +6403,6 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New highlighting:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6485,6 +6605,79 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>Align Windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeX dtx file</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lua</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Commands</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;TexIndy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cle&amp;an Auxiliary Files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Insert Bibliography Entry...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Tipo</translation>
+    </message>
+    <message>
+        <source>BibLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlighting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+included document in %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio has been paused due to a possible endless loop.
+Do you want to keep the program running? This may cause data corruption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, stop the loop and try to recover.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, continue the loop.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6731,6 +6924,10 @@ If not, end characters are ignored.</source>
         <source>Category:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UniversalInputDialogScript</name>
@@ -6740,6 +6937,35 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <source>Unkown variable %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdateChecker</name>
+    <message>
+        <source>Never</source>
+        <comment>last update</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update check failed with error:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update check failed (invalid update file format).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio is up-to-date.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
