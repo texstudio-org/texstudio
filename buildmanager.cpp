@@ -164,11 +164,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	QStringList ltxmk_cmds;
-#ifdef Q_WS_WIN
-	ltxmk_cmds<<"latexmk -pdf -silent -pdflatex='pdflatex -synctex=1 --shell-escape %%O %%S' %"<<"latexmk -dvi -silent -latex='latex -src --shell-escape %%O %%S' %";
-#else
-	ltxmk_cmds<<"latexmk -pdf -silent -pdflatex=\"pdflatex -synctex=1 -shell-escape %%O %%S\" %"<<"latexmk -dvi -silent -latex=\"latex -src -shell-escape %%O %%S\" %";
-#endif
+	ltxmk_cmds << "latexmk -pdf -silent -pdflatex=\"pdflatex -synctex=1 %%O %%S\" %" << "latexmk -dvi -silent -latex=\"latex -src %%O %%S\" %";
 	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 	
 	
