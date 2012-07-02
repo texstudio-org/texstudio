@@ -336,7 +336,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 
 
 QString BuildManager::findFileInPath(QString fileName) {
-#ifdef Q_WS_MAC
+/*#ifdef Q_WS_MAC
 	QProcess *myProcess = new QProcess();
 	myProcess->start("bash -l -c \"echo $PATH\"");
 	myProcess->waitForFinished(3000);
@@ -344,12 +344,12 @@ QString BuildManager::findFileInPath(QString fileName) {
 	QByteArray res=myProcess->readAllStandardOutput();
 	delete myProcess;
 	QString path(res);
-#else
+#else*/
 	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
 	int i=env.indexOf(QRegExp("^PATH=.*", Qt::CaseInsensitive));
 	if (i==-1) return "";
 	QString path=env[i].mid(5); //skip path=
-#endif
+//#endif
 #ifdef Q_WS_WIN
 	if (!fileName.contains('.')) fileName+=".exe";
 	QStringList paths=path.split(";"); //windows
