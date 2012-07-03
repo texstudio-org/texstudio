@@ -1904,11 +1904,11 @@ void PDFDocument::init(bool embedded)
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));
 	
+	actionBack->setIcon(getRealIcon("back"));
+	actionForward->setIcon(getRealIcon("forward"));
 	actionFirst_Page->setIcon(getRealIcon("go-first"));
-	actionBack->setIcon(getRealIcon("undo"));
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
-	actionForward->setIcon(getRealIcon("redo"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
 	connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
 	connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));

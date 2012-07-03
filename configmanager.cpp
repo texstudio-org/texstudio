@@ -2022,7 +2022,7 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 	}
 	QList<QPushButton*> buttons;
     if (cmd.user || cmd.meta) {
-		buttons << new QPushButton("...", parent);
+		buttons << new QPushButton(QIcon(":/images/configure.png"), QString(), parent);
 		connect(buttons.last(),SIGNAL(clicked()),SLOT(editCommand()));
 	}
 	buttons << new QPushButton(getRealIcon("fileopen"), "", parent);
