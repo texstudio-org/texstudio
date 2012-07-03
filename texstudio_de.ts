@@ -2765,7 +2765,13 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation>Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Benuter-Makros mit einem Trigger (?language:latex)(?&lt;=\s|^) oder (?language:latex)(?&lt;=\S
+        <translation type="obsolete">Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Benuter-Makros mit einem Trigger (?language:latex)(?&lt;=\s|^) oder (?language:latex)(?&lt;=\S
+Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfernt werden?</translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation>Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Makros mit einem Trigger (?language:latex)(?&lt;=\s|^) oder (?language:latex)(?&lt;=\S
 Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfernt werden?</translation>
     </message>
 </context>
@@ -7375,7 +7381,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>&amp;User Tags</source>
-        <translation>Benutzer &amp;Makros</translation>
+        <translation type="obsolete">Benutzer &amp;Makros</translation>
     </message>
     <message>
         <source>Highlighting</source>
@@ -7403,6 +7409,14 @@ Soll das Programm weiterlaufen. Dies kann Teile Ihrer Daten korrumpieren.</trans
     <message>
         <source>Yes, continue the loop.</source>
         <translation>Ja, die Schleife fortsetzen.</translation>
+    </message>
+    <message>
+        <source>Edit &amp;Macros...</source>
+        <translation>&amp;Makros bearbeiten...</translation>
+    </message>
+    <message>
+        <source>&amp;Macros</source>
+        <translation>&amp;Makros</translation>
     </message>
 </context>
 <context>
@@ -7694,7 +7708,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <name>UserMenuDialog</name>
     <message>
         <source>Edit User Tags</source>
-        <translation>Benutzer Makros ändern...</translation>
+        <translation type="obsolete">Benutzer Makros ändern...</translation>
     </message>
     <message>
         <source>OK</source>
@@ -7813,6 +7827,10 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
 
 
 Man kann den spezillen Wert ?txs-start verwenden, um das Skript bei txs start zu starten.</translation>
+    </message>
+    <message>
+        <source>Edit Macros</source>
+        <translation>Macros bearbeiten</translation>
     </message>
 </context>
 <context>

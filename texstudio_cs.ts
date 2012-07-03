@@ -2729,7 +2729,7 @@ Chcete je odstranit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+        <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7313,10 +7313,6 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;User Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Highlighting</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7340,6 +7336,14 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Yes, continue the loop.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit &amp;Macros...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Macros</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7639,7 +7643,7 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     <name>UserMenuDialog</name>
     <message>
         <source>Edit User Tags</source>
-        <translation>Upravit uživatelské značky</translation>
+        <translation type="obsolete">Upravit uživatelské značky</translation>
     </message>
     <message>
         <source>OK</source>
@@ -7766,6 +7770,10 @@ a (?&lt;=\s|^) pro označení nahrazení, která se mají objevit jen před slov
 
 
 Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při spouštění txs.</translation>
+    </message>
+    <message>
+        <source>Edit Macros</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

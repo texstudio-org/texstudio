@@ -2072,8 +2072,13 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation>Engedélyezte az automatikus cserét, bár előfordulnak felhasználói elemek triggerekkel, mint például (?language:latex)(?&lt;=\s|^) vagy (?language:latex)(?&lt;=\S), melyek ilyenkor megváltozhatnak.
+        <translation type="obsolete">Engedélyezte az automatikus cserét, bár előfordulnak felhasználói elemek triggerekkel, mint például (?language:latex)(?&lt;=\s|^) vagy (?language:latex)(?&lt;=\S), melyek ilyenkor megváltozhatnak.
 Szeretné azokat eltávolítani?</translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6514,7 +6519,7 @@ included document in %1</source>
     </message>
     <message>
         <source>&amp;User Tags</source>
-        <translation>&amp;Felhasználói elemek</translation>
+        <translation type="obsolete">&amp;Felhasználói elemek</translation>
     </message>
     <message>
         <source>Type: %1</source>
@@ -6523,6 +6528,14 @@ included document in %1</source>
     <message>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit &amp;Macros...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Macros</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6822,7 +6835,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <name>UserMenuDialog</name>
     <message>
         <source>Edit User Tags</source>
-        <translation>Felhasználói elemek szerkesztése</translation>
+        <translation type="obsolete">Felhasználói elemek szerkesztése</translation>
     </message>
     <message>
         <source>OK</source>
@@ -6913,6 +6926,10 @@ a trigger további része elé írták.
 Mivel a trigger nem egy egyszerű szöveg, hanem reguláris kifejezés,
 a (?&lt;=\S) helyettesítő jeleket csak szavak után,
 míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
+    </message>
+    <message>
+        <source>Edit Macros</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

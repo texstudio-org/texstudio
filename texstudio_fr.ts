@@ -2925,8 +2925,13 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation>Vous avez activé le remplacement automatique des guillemets. Cependant, des balises utilisateur avec des caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
+        <translation type="obsolete">Vous avez activé le remplacement automatique des guillemets. Cependant, des balises utilisateur avec des caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
 Voulez-vous supprimer ces balises utilisateur ?</translation>
+    </message>
+    <message>
+        <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
+Do you want to remove them?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7599,12 +7604,20 @@ included document in %1</source>
     </message>
     <message>
         <source>&amp;User Tags</source>
-        <translation>Macros &amp;utilisateur</translation>
+        <translation type="obsolete">Macros &amp;utilisateur</translation>
     </message>
     <message>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
+    </message>
+    <message>
+        <source>Edit &amp;Macros...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Macros</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7904,7 +7917,7 @@ Sinon la ponctuation est ignorée.</translation>
     <name>UserMenuDialog</name>
     <message>
         <source>Edit User Tags</source>
-        <translation>Modifier les macros utilisateur</translation>
+        <translation type="obsolete">Modifier les macros utilisateur</translation>
     </message>
     <message>
         <source>OK</source>
@@ -8044,6 +8057,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Bright&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;?&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Edit Macros</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
