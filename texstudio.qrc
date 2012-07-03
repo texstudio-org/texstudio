@@ -369,7 +369,6 @@
         <file>images/classic/format-justify-left.png</file>
         <file>images/classic/format-justify-right.png</file>
         <file>images/classic/dfrac.png</file>
-        <file>images/classic/indice.png</file>
         <file>images/classic/math1.png</file>
         <file>images/classic/math2.png</file>
         <file>images/classic/math3.png</file>
@@ -377,8 +376,9 @@
         <file>images/classic/math5.png</file>
         <file>images/classic/mathmode.png</file>
         <file>images/classic/newline.png</file>
-        <file>images/classic/puissance.png</file>
-        <file>images/classic/racine.png</file>
+        <file>images/classic/sqrt.png</file>
+        <file>images/classic/subscript.png</file>
+        <file>images/classic/superscript.png</file>
         <file>images/classic/smallfrac.png</file>
     </qresource>
     <qresource prefix="/modern">
@@ -403,7 +403,6 @@
         <file>images/modern/format-justify-left.png</file>
         <file>images/modern/format-justify-right.png</file>
         <file>images/modern/dfrac.png</file>
-        <file>images/modern/indice.png</file>
         <file>images/modern/math1.png</file>
         <file>images/modern/math2.png</file>
         <file>images/modern/math3.png</file>
@@ -411,8 +410,9 @@
         <file>images/modern/math5.png</file>
         <file>images/modern/mathmode.png</file>
         <file>images/modern/newline.png</file>
-        <file>images/modern/puissance.png</file>
-        <file>images/modern/racine.png</file>
+        <file>images/modern/sqrt.png</file>
+        <file>images/modern/subscript.png</file>
+        <file>images/modern/superscript.png</file>
         <file>images/modern/smallfrac.png</file>
     </qresource>
 </RCC>
