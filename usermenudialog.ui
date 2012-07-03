@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Edit User Tags</string>
+   <string>Edit Macros</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_3">
    <item>
@@ -65,7 +65,7 @@
             <string>Add</string>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
+            <iconset>
              <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
            </property>
           </widget>
@@ -82,7 +82,7 @@
             <string>Remove</string>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
+            <iconset>
              <normaloff>:/images/list-remove.png</normaloff>:/images/list-remove.png</iconset>
            </property>
           </widget>
@@ -118,7 +118,7 @@
             <string>Up</string>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
+            <iconset>
              <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
            </property>
           </widget>
@@ -141,7 +141,7 @@
             <string>Down</string>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
+            <iconset>
              <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
            </property>
           </widget>
@@ -396,9 +396,7 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="texstudio.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>radioButtonScript</sender>

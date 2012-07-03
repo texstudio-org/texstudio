@@ -692,33 +692,56 @@ QSettings* ConfigManager::readSettings() {
 	}
 	
 	//user macros
-	QStringList userTags = config->value("User/Tags").toStringList();
-	QStringList userNames = config->value("User/TagNames").toStringList();
-	QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
-	QStringList userTriggers = config->value("User/TagTriggers").toStringList();
-	while (userTriggers.size()<userTags.size()) userTriggers << "";
-	
-	for (int i=0; i < keyReplace.size(); i++) {
-		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
-		userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
-		userAbbrevs.append("");
-		userTriggers.append("(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
-		
-		userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
-		userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
-		userAbbrevs.append("");
-		userTriggers.append("(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i]));
+	if (config->value("Macros/0").isValid()) {
+		for (int i=0; i<1000; i++) {
+			QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
+			if (ls.isEmpty()) break;
+			completerConfig->userMacro.append(Macro(ls));
+		}
+		for (int i=0; i < keyReplace.size(); i++) {
+			completerConfig->userMacro.append(Macro(
+												  tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
+												  keyReplaceBeforeWord[i].replace("%", "%%"),
+												  "",
+												  "(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i])
+												  ));
+			completerConfig->userMacro.append(Macro(
+												  tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
+												  keyReplaceAfterWord[i].replace("%", "%%"),
+												  "",
+												  "(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i])
+												  ));
+		}
+	} else {
+		// try importing old macros
+		QStringList userTags = config->value("User/Tags").toStringList();
+		QStringList userNames = config->value("User/TagNames").toStringList();
+		QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
+		QStringList userTriggers = config->value("User/TagTriggers").toStringList();
+
+		while (userTriggers.size()<userTags.size()) userTriggers << "";
+
+		for (int i=0; i < keyReplace.size(); i++) {
+			userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
+			userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
+			userAbbrevs.append("");
+			userTriggers.append("(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
+
+			userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
+			userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
+			userAbbrevs.append("");
+			userTriggers.append("(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i]));
+		}
+
+		for (int i=0;i<userTags.size();i++)
+			completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
 	}
-	
-	for (int i=0;i<userTags.size();i++)
-		completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
-	
-	
 	
 	//menu shortcuts
 	QMap<QString, QString> aliases = QMap<QString, QString>();
 	aliases.insert("main/user/commands/", "main/tools/user/");
-	aliases.insert("main/user/tags/", "main/usertags/");
+	aliases.insert("main/user/tags/", "main/macros/");
+	aliases.insert("main/usertags/", "main/macros/");
 	int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
 		config->setArrayIndex(i);
@@ -837,20 +860,13 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	config->setValue("User/New Key Replacements Created", true);
 	
 	//user macros
-	QStringList userTags, userNames, userAbbrevs, userTriggers;
+	int index=0;
 	foreach (const Macro&m, completerConfig->userMacro){
 		if(m.name==TXS_AUTO_REPLACE_QUOTE_OPEN || m.name==TXS_AUTO_REPLACE_QUOTE_CLOSE || m.document)
 			continue;
-		userNames << m.name;
-		userTags << m.tag;
-		userAbbrevs << m.abbrev;
-		userTriggers << m.trigger;
+		config->setValue(QString("Macros/%1").arg(index++), m.toStringList());
 	}
-	config->setValue("User/Tags", userTags);
-	config->setValue("User/TagNames", userNames);
-	config->setValue("User/TagAbbrevs", userAbbrevs);
-	config->setValue("User/TagTriggers", userTriggers);
-	
+
 	//menu shortcuts
 	config->beginWriteArray("keysetting");
 	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
@@ -1073,7 +1089,7 @@ bool ConfigManager::execConfigDialog() {
 		confDlg->ui.comboBoxToolbars->addItem(qApp->translate("Texmaker",qPrintable(mtb.name)));
 	}
 	confDlg->allMenus=managedMenus;
-	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/usertags");
+	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/macros");
 	confDlg->ui.comboBoxActions->addItem(tr("Latex/Math menus"));
 	confDlg->ui.comboBoxActions->addItem(tr("All menus"));
 	confDlg->ui.comboBoxActions->addItem(tr("Special Tags"));
@@ -1168,7 +1184,7 @@ bool ConfigManager::execConfigDialog() {
 		times << 0 << 5 << 10 << 20 << 60;
 		autosaveEveryMinutes=times.value(confDlg->ui.comboBoxAutoSave->currentIndex(),0);
 		
-		// update user tags menu to update quote replacement
+		// update macros menu to update quote replacement
 		if (changedProperties.contains(&replaceQuotes)) {
 			bool conflict = false;
 			if (replaceQuotes)
@@ -1182,7 +1198,7 @@ bool ConfigManager::execConfigDialog() {
 					}
 				}
 			if (conflict) 
-				if (txsConfirm(tr("You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))){
+				if (txsConfirm(tr("You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))){
 					for(int i=completerConfig->userMacro.count()-1;i>=0;i--){
 						const Macro& m=completerConfig->userMacro.at(i);
 						if (m.trigger == "(?language:latex)(?<=\\s|^)\"" || m.trigger == "(?language:latex)(?<=^)\"" || m.trigger == "(?language:latex)(?<=\\S)\"") 
@@ -1494,10 +1510,10 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 			macronames<<m.name;
 	
 	
-	QMenu* recreatedMenu = updateListMenu("main/usertags", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
+	QMenu* recreatedMenu = updateListMenu("main/macros", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
-		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit User &Tags"), SLOT(EditUserMenu()));
+		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit &Macros..."), SLOT(editMacros()));
 	}
 	// update quote replacement
 	static const char * open[6] = {"",  "``", "\"<", "\"`", "\\og ",  "\">"};

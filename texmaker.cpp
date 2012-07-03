@@ -859,7 +859,7 @@ void Texmaker::setupMenus() {
 
 
 	//  User
-	menu=newManagedMenu("main/usertags",tr("&User Tags"));
+	menu=newManagedMenu("main/macros",tr("&Macros"));
 	updateUserMacros();
 	scriptengine::macros = &configManager.completerConfig->userMacro;
 		
@@ -3842,32 +3842,27 @@ void Texmaker::insertUserTag(const QString& macro, int triggerId){
 	currentEditorView()->insertMacro(macro, QRegExp(), triggerId);
 }
 
-void Texmaker::EditUserMenu() {
+void Texmaker::editMacros() {
 	if (!userMacroDialog)  {
 		userMacroDialog = new UserMenuDialog(0,tr("Edit User &Tags"),m_languages);
 		foreach (const Macro& m, configManager.completerConfig->userMacro) {
 			if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close" || m.document)
 				continue;
-			userMacroDialog->names << m.name;
-			userMacroDialog->tags << m.tag;
-			userMacroDialog->abbrevs << m.abbrev;
-			userMacroDialog->triggers << m.trigger;
+			userMacroDialog->addMacro(m);
 		}
 		userMacroDialog->init();
-		connect(userMacroDialog, SIGNAL(accepted()), SLOT(userMacroDialogAccepted()));
+		connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
 		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(insertUserTag(QString)));
 	}
 	userMacroDialog->show();
 	userMacroDialog->setFocus();
 }
 
-void Texmaker::userMacroDialogAccepted(){
+void Texmaker::macroDialogAccepted(){
 	configManager.completerConfig->userMacro.clear();
-	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->tags.size());
-	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->abbrevs.size());
-	Q_ASSERT(userMacroDialog->names.size() == userMacroDialog->triggers.size());
-	for (int i=0;i<userMacroDialog->names.size();i++)
-		configManager.completerConfig->userMacro.append(Macro(userMacroDialog->names[i], userMacroDialog->tags[i], userMacroDialog->abbrevs[i], userMacroDialog->triggers[i]));
+	for (int i=0; i<userMacroDialog->macroCount(); i++) {
+		configManager.completerConfig->userMacro << userMacroDialog->getMacro(i);
+	}
 	for (int i=0;i<documents.documents.size();i++)
 		configManager.completerConfig->userMacro << documents.documents[i]->localMacros;
 	updateUserMacros();	
