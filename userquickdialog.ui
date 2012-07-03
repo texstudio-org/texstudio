@@ -42,8 +42,8 @@
         <string>Add</string>
        </property>
        <property name="icon">
-        <iconset resource="texmaker.qrc">
-         <normaloff>:/images/errornext.png</normaloff>:/images/errornext.png</iconset>
+        <iconset resource="texstudio.qrc">
+         <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
        </property>
       </widget>
      </item>
@@ -119,7 +119,7 @@
   <tabstop>listWidget</tabstop>
  </tabstops>
  <resources>
-  <include location="texmaker.qrc"/>
+  <include location="texstudio.qrc"/>
  </resources>
  <connections>
   <connection>
