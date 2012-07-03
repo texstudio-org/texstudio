@@ -1324,6 +1324,13 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	init(nname,ntag,nabbrev,ntrigger);
 }
 
+Macro::Macro(const QStringList &fieldList):document(0){
+	if (fieldList.count() >= 4) {
+		init(fieldList[0], fieldList[1], fieldList[2], fieldList[3]);
+	}
+}
+
+
 void Macro::init(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger){
 	name = nname;
 	tag = ntag;
@@ -1376,7 +1383,11 @@ void Macro::init(const QString& nname, const QString& ntag, const QString& nabbr
 		triggerLookBehind = true;
 		realtrigger.remove(1,3); //qregexp doesn't support look behind, but we can emulate it by removing the first capture
 	}
-	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)	
+	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)
+}
+
+QStringList Macro::toStringList() const {
+	return QStringList() << name << tag << abbrev << trigger;
 }
 
 

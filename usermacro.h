@@ -14,12 +14,14 @@ struct Macro{
 	
 	Macro();
 	Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
+	Macro(const QStringList &fieldList);
 	void init(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
 	QString name, tag, abbrev;
 	QString trigger;
 	QRegExp triggerRegex;
 	bool triggerLookBehind;
 	
+	QStringList toStringList() const;
 	
 	QString triggerLanguage;
 	QList<QLanguageDefinition*> triggerLanguages;

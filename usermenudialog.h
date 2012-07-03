@@ -13,8 +13,8 @@
 #define USERMENUDIALOG_H
 
 #include "mostQtHeaders.h"
-
 #include "ui_usermenudialog.h"
+#include "usermacro.h"
 
 class QCodeEdit;
 class QLanguageFactory;
@@ -28,13 +28,18 @@ public:
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
-	QStringList names, tags, abbrevs, triggers;
+	void addMacro(const Macro &m);
+	Macro getMacro(int i) const;
+	int macroCount() const;
 
 private:
+	QStringList names, tags, abbrevs, triggers;
+
 	QCodeEdit* codeedit;
 	QLanguageFactory* languages;
 	QSearchReplacePanel* searchReplacePanel;
 	StringListTableModel* model;
+
 public slots:
 	void init();
 

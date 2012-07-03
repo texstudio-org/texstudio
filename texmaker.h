@@ -333,8 +333,8 @@ protected slots:
 	
 	void insertUserTag(const QString& macro, int triggerId = 0);
 	void insertUserTag();
-	void EditUserMenu();
-	void userMacroDialogAccepted();
+	void editMacros();
+	void macroDialogAccepted();
 	
 	void InsertRef(const QString &refCmd);
 	void InsertRef();

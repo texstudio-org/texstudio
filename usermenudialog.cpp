@@ -186,6 +186,25 @@ UserMenuDialog::~UserMenuDialog() {
 	delete codeedit;
 }
 
+void UserMenuDialog::addMacro(const Macro &m) {
+	names << m.name;
+	tags << m.tag;
+	abbrevs << m.abbrev;
+	triggers << m.trigger;
+}
+
+Macro UserMenuDialog::getMacro(int i) const {
+	if (i>=names.count()) return Macro();
+	Q_ASSERT(names.size() == tags.size());
+	Q_ASSERT(names.size() == abbrevs.size());
+	Q_ASSERT(names.size() == triggers.size());
+	return Macro(names[i], tags[i], abbrevs[i], triggers[i]);
+}
+
+int UserMenuDialog::macroCount() const {
+	return names.count();
+}
+
 void UserMenuDialog::init() {
 	model = new StringListTableModel(this);
 	model->addStringList(&names,tr("Name"));
