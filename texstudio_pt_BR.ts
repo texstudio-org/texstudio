@@ -3271,7 +3271,8 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location filename="configmanager.cpp" line="1201"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Você tem habilitada a substituição automática de aspas. Todavia existem macros com as sequências (?&lt;=\s|^) ou (?language:latex)(?&lt;=\S) que irão sobrescrevê-las.
+Deseja removê-las?</translation>
     </message>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
@@ -8853,7 +8854,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location filename="texmaker.cpp" line="862"/>
         <source>&amp;Macros</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Macros</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="960"/>
@@ -9207,7 +9208,7 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
     <message>
         <location filename="configmanager.cpp" line="1516"/>
         <source>Edit &amp;Macros...</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar &amp;Macros...</translation>
     </message>
 </context>
 <context>
@@ -9584,7 +9585,7 @@ Se não, caracteres finalizadores serão ignorados.</translation>
         <location filename="usermenudialog.ui" line="19"/>
         <source>Edit Macros</source>
         <oldsource>Edit User Tags</oldsource>
-        <translation type="unfinished">Editar Etiquetas do Usuário</translation>
+        <translation>Editar Macros</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="65"/>
