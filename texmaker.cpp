@@ -3372,8 +3372,8 @@ void Texmaker::InsertTextCompletion() {
 	}
 }
 
-void Texmaker::InsertTag(QString Entity, int dx, int dy) {
-	if (!currentEditorView())	return;
+void Texmaker::InsertTag(const QString &Entity, int dx, int dy) {
+	if (!currentEditorView()) return;
 	int curline,curindex;
 	currentEditor()->getCursorPosition(curline,curindex);
 	currentEditor()->write(Entity);
@@ -3385,6 +3385,65 @@ void Texmaker::InsertTag(QString Entity, int dx, int dy) {
 	//logViewerTabBar->setCurrentIndex(0);
 	//OutputTable->hide();
 	//logpresent=false;
+}
+
+/*!
+  \brief Inserts a citation at the cursor position.
+
+  If \a text starts with '\' it is assumed to be a complete latex command and inserted as is.
+  Otherwise \a text is assumed to a be bibtex key or list of bibtex keys. In that case the cursor
+  context is evaluated. If it is within a citation command the text is inserted at the correct
+  position within the existing citation. If not, the text is wrapped in a \cite{} command.
+*/
+void Texmaker::InsertCitation(const QString &text) {
+	if (text.startsWith('\\')) {
+		InsertTag(text);
+	} else {
+		if (!currentEditorView()) return;
+		QDocumentCursor c=currentEditor()->cursor();
+		QString line = c.line().text();
+		int cursorCol = c.columnNumber();
+		QString command, value;
+		LatexParser::ContextType context = latexParser.findContext(line, cursorCol, command, value);
+
+		int insertCol = -1;
+		if (context == LatexParser::Command && latexParser.possibleCommands["%cite"].contains(command)) {
+			insertCol = line.indexOf('{', cursorCol)+1;
+		} else if (context == LatexParser::Citation) {
+			if (cursorCol <= 0) return; // should not be possible,
+			if (line.at(cursorCol) == '{' || line.at(cursorCol) == ',') {
+				insertCol = cursorCol+1;
+			} else if (line.at(cursorCol-1) == '{' || line.at(cursorCol-1) == ',') {
+				insertCol = cursorCol;
+			} else {
+				int nextComma = line.indexOf(',', c.columnNumber());
+				int closingBracket = line.indexOf('}', c.columnNumber());
+				if (nextComma >= 0 && (closingBracket == -1 || closingBracket > nextComma)) {
+					insertCol = nextComma+1;
+				} else if (closingBracket >= 0) {
+					insertCol = closingBracket;
+				}
+			}
+		} else {
+			QString tag("\\cite{"+text+"}");
+			InsertTag(tag, tag.length());
+			return;
+		}
+
+		if (insertCol < 0 || insertCol >= line.length()) return;
+
+		currentEditor()->setCursorPosition(c.lineNumber(), insertCol);
+		// now the insertCol is either behind '{', behind ',' or at '}'
+		if (line.at(insertCol-1) == '{') {
+			if (line.at(insertCol) == '}') {
+				InsertTag(text, text.length());
+			} else {
+				InsertTag(text+",", text.length()+1);
+			}
+		} else {
+			InsertTag(","+text, text.length()+1);
+		}
+	}
 }
 
 void Texmaker::InsertSymbolPressed(QTableWidgetItem *) {
@@ -4612,6 +4671,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	
 	int line=-1;
 	int col=0;
+	QString cite;
 #ifndef NO_POPPLER_PREVIEW
 	int page=-1;
 	bool pdfViewerOnly = false;
@@ -4628,6 +4688,9 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 				col = lineCol.at(1).toInt();
 				if ((col)<0) col = 0;
 			}
+		}
+		if (args[i] == "--insert-cite" && i+1<args.size()) {
+			cite = args[++i];
 		}
 #ifndef NO_POPPLER_PREVIEW
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
@@ -4676,6 +4739,11 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		gotoLine(line, col);
 		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
+
+	if (!cite.isNull()) {
+		InsertCitation(cite);
+	}
+
 	
 #ifndef QT_NO_DEBUG
 	//execute test after command line is known

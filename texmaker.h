@@ -317,7 +317,8 @@ protected slots:
 	void NormalCompletion();
 	void InsertEnvironmentCompletion();
 	void InsertTextCompletion();
-	void InsertTag(QString Entity, int dx, int dy);
+	void InsertTag(const QString &Entity, int dx=0, int dy=0);
+	void InsertCitation(const QString &text);
 	void InsertSymbol(QTableWidgetItem *item);
 	void InsertSymbolPressed(QTableWidgetItem *item);
 	void InsertXmlTag(QListWidgetItem *item);	
