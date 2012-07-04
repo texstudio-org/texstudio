@@ -137,6 +137,8 @@ int main(int argc, char ** argv) {
 				cmdLine << "--line" << args[i];
 			else if ((cmdArgument == "-page" || cmdArgument == "--page") && (++i < args.count()))
 				cmdLine << "--page" << args[i];
+			else if ((cmdArgument == "-insert-cite" || cmdArgument == "--insert-cite") && (++i < args.count()))
+				cmdLine << "--insert-cite" << args[i];
 			else if (cmdArgument.startsWith("-"))
 				cmdLine << cmdArgument;			
 		} else
