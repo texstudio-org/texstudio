@@ -686,7 +686,8 @@
     </message>
     <message>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
-        <translation>Commandes (% : nom  du fichier sans extension - @ : numéro de ligne - ? : nom du fichier étendu)</translation>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes (autrement dit des macros) LaTeX.</translatorcomment>
+        <translation>Compilations (% : nom du fichier sans extension - @ : numéro de ligne - ? : nom du fichier étendu)</translation>
     </message>
     <message>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
@@ -737,7 +738,7 @@ exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de 
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
-        <translation>Remplacement automatique des commandes LaTeX</translation>
+        <translation>Remplacement automatique des macros LaTeX</translation>
     </message>
     <message>
         <source>Add line</source>
@@ -1685,7 +1686,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Commands with repeated compilation: </source>
-        <translation>Commandes avec compilations répétées : </translation>
+        <translation>Compilateurs avec compilations répétées : </translation>
     </message>
     <message>
         <source>Line Spacing</source>
@@ -1765,12 +1766,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Meta Commands</source>
-        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes (autrement dit des macros) LaTeX.</translatorcomment>
         <translation>Méta-compilations</translation>
     </message>
     <message>
         <source>User Commands</source>
-        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes LaTeX.</translatorcomment>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes (autrement dit des macros) LaTeX.</translatorcomment>
         <translation>Compilations utilisateur</translation>
     </message>
     <message>
@@ -1779,7 +1780,8 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Only For User Commands</source>
-        <translation>Seulement pour les commandes utilisateur</translation>
+        <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes (autrement dit des macros) LaTeX.</translatorcomment>
+        <translation>Seulement pour les compilations utilisateur</translation>
     </message>
     <message>
         <source>Always (If not redirected &gt; /dev/null)</source>
@@ -2083,7 +2085,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Build</source>
-        <translation>Compilation</translation>
+        <translation>Production</translation>
     </message>
     <message>
         <source>Syntax Highlighting</source>
@@ -2931,7 +2933,8 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez activé le remplacement automatique des guillemets. Cependant, des macros avec caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
+Voulez-vous supprimer ces macros ?</translation>
     </message>
 </context>
 <context>
@@ -7613,11 +7616,11 @@ included document in %1</source>
     </message>
     <message>
         <source>Edit &amp;Macros...</source>
-        <translation type="unfinished"></translation>
+        <translation>Éditer les &amp;macros...</translation>
     </message>
     <message>
         <source>&amp;Macros</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Macros</translation>
     </message>
 </context>
 <context>
@@ -8060,7 +8063,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Edit Macros</source>
-        <translation type="unfinished"></translation>
+        <translation>Éditer les &amp;macros</translation>
     </message>
 </context>
 <context>
