@@ -5933,7 +5933,8 @@ void Texmaker::checkin(QString fn, QString text, bool blocking){
     cmd+=" ci -m \""+text+"\" \""+fn+("\"");
     statusLabelProcess->setText(QString(" svn check in "));
     //TODO: blocking
-    runCommand(cmd);
+    QString buffer;
+    runCommand(cmd,&buffer);
     LatexEditorView *edView=getEditorViewFromFileName(fn);
     if(edView)
 	edView->editor->setProperty("undoRevision",0);
@@ -5959,7 +5960,8 @@ bool Texmaker::svnadd(QString fn,int stage){
 	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" add \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn add "));
-	runCommand(cmd, 0);
+    QString buffer;
+    runCommand(cmd, &buffer);
 	return true;
 }
 
@@ -5967,7 +5969,8 @@ void Texmaker::svnLock(QString fn){
 	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" lock \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn lock "));
-	runCommand(cmd, 0);
+    QString buffer;
+    runCommand(cmd, &buffer);
 }
 
 
@@ -5977,16 +5980,17 @@ void Texmaker::svncreateRep(QString fn){
 	QString path=QFileInfo(fn).absolutePath();
 	admin+=" create "+path+"/repo";
 	statusLabelProcess->setText(QString(" svn create repo "));
-	runCommand(admin);
+    QString buffer;
+    runCommand(admin,&buffer);
 	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"txs auto generate\"";
-	runCommand(scmd);
+    runCommand(scmd,&buffer);
 	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"txs auto generate\"";
-	runCommand(scmd);
+    runCommand(scmd,&buffer);
 	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"txs auto generate\"";
-	runCommand(scmd);
+    runCommand(scmd,&buffer);
 	statusLabelProcess->setText(QString(" svn checkout repo"));
 	cmd+=" co file:///"+path+"/repo/trunk "+path;
-	runCommand(cmd);
+    runCommand(cmd,&buffer);
 }
 
 void Texmaker::svnUndo(bool redo){
@@ -6905,7 +6909,8 @@ void Texmaker::declareConflictResolved(){
 	QString cmd=BuildManager::CMD_SVN;
 	cmd+=" resolve --accept working \""+fn+("\"");
 	statusLabelProcess->setText(QString(" svn resolve conflict "));
-	runCommand(cmd);
+    QString buffer;
+    runCommand(cmd,&buffer);
 	checkin(fn,"txs: commit after resolve");
 }
 
