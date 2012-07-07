@@ -3390,59 +3390,74 @@ void Texmaker::InsertTag(const QString &Entity, int dx, int dy) {
 /*!
   \brief Inserts a citation at the cursor position.
 
-  If \a text starts with '\' it is assumed to be a complete latex command and inserted as is.
-  Otherwise \a text is assumed to a be bibtex key or list of bibtex keys. In that case the cursor
-  context is evaluated. If it is within a citation command the text is inserted at the correct
-  position within the existing citation. If not, the text is wrapped in a \cite{} command.
+  \a text may be either a complete (also custom) command like \mycite{key} or just the key. In the
+  latter case it is expanded to \cite{key}. Key may also be a comma separated list of keys.
+  The cursor context is evaluated: If it is within a citation command only the key is inserted at the correct
+  position within the existing citation. If not, the whole command is inserted.
 */
 void Texmaker::InsertCitation(const QString &text) {
-	if (text.startsWith('\\')) {
-		InsertTag(text);
+	QString citeCmd, citeKey;
+
+	if (text.length() > 1 && text.at(0) == '\\') {
+		LatexParser::ContextType ctx = latexParser.findContext(text, 1, citeCmd, citeKey);
+		if (LatexParser::Command != ctx) {
+			citeCmd = "";
+			citeKey = text;
+		}
 	} else {
-		if (!currentEditorView()) return;
-		QDocumentCursor c=currentEditor()->cursor();
-		QString line = c.line().text();
-		int cursorCol = c.columnNumber();
-		QString command, value;
-		LatexParser::ContextType context = latexParser.findContext(line, cursorCol, command, value);
+		citeCmd = "";
+		citeKey = text;
+	}
 
-		int insertCol = -1;
-		if (context == LatexParser::Command && latexParser.possibleCommands["%cite"].contains(command)) {
-			insertCol = line.indexOf('{', cursorCol)+1;
-		} else if (context == LatexParser::Citation) {
-			if (cursorCol <= 0) return; // should not be possible,
-			if (line.at(cursorCol) == '{' || line.at(cursorCol) == ',') {
-				insertCol = cursorCol+1;
-			} else if (line.at(cursorCol-1) == '{' || line.at(cursorCol-1) == ',') {
-				insertCol = cursorCol;
-			} else {
-				int nextComma = line.indexOf(',', c.columnNumber());
-				int closingBracket = line.indexOf('}', c.columnNumber());
-				if (nextComma >= 0 && (closingBracket == -1 || closingBracket > nextComma)) {
-					insertCol = nextComma+1;
-				} else if (closingBracket >= 0) {
-					insertCol = closingBracket;
-				}
-			}
+	if (!currentEditorView()) return;
+	QDocumentCursor c=currentEditor()->cursor();
+	QString line = c.line().text();
+	int cursorCol = c.columnNumber();
+	QString command, value;
+	LatexParser::ContextType context = latexParser.findContext(line, cursorCol, command, value);
+
+	int insertCol = -1;
+	if (context == LatexParser::Command && latexParser.possibleCommands["%cite"].contains(command)) {
+		insertCol = line.indexOf('{', cursorCol)+1;
+	} else if (context == LatexParser::Citation) {
+		if (cursorCol <= 0) return; // should not be possible,
+		if (line.at(cursorCol) == '{' || line.at(cursorCol) == ',') {
+			insertCol = cursorCol+1;
+		} else if (line.at(cursorCol-1) == '{' || line.at(cursorCol-1) == ',') {
+			insertCol = cursorCol;
 		} else {
-			QString tag("\\cite{"+text+"}");
-			InsertTag(tag, tag.length());
-			return;
-		}
-
-		if (insertCol < 0 || insertCol >= line.length()) return;
-
-		currentEditor()->setCursorPosition(c.lineNumber(), insertCol);
-		// now the insertCol is either behind '{', behind ',' or at '}'
-		if (line.at(insertCol-1) == '{') {
-			if (line.at(insertCol) == '}') {
-				InsertTag(text, text.length());
-			} else {
-				InsertTag(text+",", text.length()+1);
+			int nextComma = line.indexOf(',', c.columnNumber());
+			int closingBracket = line.indexOf('}', c.columnNumber());
+			if (nextComma >= 0 && (closingBracket == -1 || closingBracket > nextComma)) {
+				insertCol = nextComma+1;
+			} else if (closingBracket >= 0) {
+				insertCol = closingBracket;
 			}
-		} else {
-			InsertTag(","+text, text.length()+1);
 		}
+	} else {
+		QString tag;
+		if (citeCmd.isEmpty())
+			tag = citeCmd = "\\cite{"+citeKey+"}";
+		else
+			tag = text;
+		InsertTag(tag, tag.length());
+		return;
+	}
+
+	if (insertCol < 0 || insertCol >= line.length()) return;
+
+	currentEditor()->setCursorPosition(c.lineNumber(), insertCol);
+	// now the insertCol is either behind '{', behind ',' or at '}'
+	if (insertCol > 0 && line.at(insertCol-1) == '{') {
+		if (line.at(insertCol) == '}') {
+			InsertTag(citeKey, citeKey.length());
+		} else {
+			InsertTag(citeKey+",", citeKey.length()+1);
+		}
+	} else if (insertCol > 0 && line.at(insertCol-1) == ',') {
+		InsertTag(citeKey+",", citeKey.length()+1);
+	} else {
+		InsertTag(","+citeKey, citeKey.length()+1);
 	}
 }
 

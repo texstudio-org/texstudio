@@ -1073,10 +1073,10 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 
 <h2 id="SECTION38">4.10 Synopsis of the TeXstudio command</h2>
 <p>
-TeXstudio file [--master] [--line xx[:cc]] [--insert-cite key] [--start-always] [--pdf-viewer-only] [--page yy]<br>
+TeXstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]<br>
 With the "--master" option, the document will be automatically defined as a "master" document.<br>
 With the "--line xx[:cc]" option, TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.<br>
-With the "--insert-cite key" option, you can push a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise <code>\cite{key}</code> is inserted. Also a colon separated list of keys can be used. If key starts with a backslash, it is assumed that you provide the full citation command (e.g. <code>\customCite{tag}</code>). That way, you can insert user-defined citation macros.<br>
+With the "--insert-cite citation" option, you can push a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.
 With the "--start-always" option, TeXstudio will start, even if another instance of it is already running.<br>
 With the "--pdf-viewer-only" option, TeXstudio will open as standalone pdf viewer without editor<br>
 With the "--page" option, TeXstudio displays a certain page if used as pdf viewer<br>
