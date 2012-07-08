@@ -1840,17 +1840,24 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 	connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));
 
 	if(!embedded){
-	    QRect screen = QApplication::desktop()->screenGeometry();
-	    while (globalConfig->windowLeft > screen.width() && screen.width() > 0)
-		globalConfig->windowLeft-=screen.width();
-	    while (globalConfig->windowTop > screen.height() && screen.height() > 0)
-		globalConfig->windowTop-=screen.height();
+		int& x = globalConfig->windowLeft;
+		int& y = globalConfig->windowTop;
+		int& w = globalConfig->windowWidth;
+		int& h = globalConfig->windowHeight;
+		int screenNumber = QApplication::desktop()->screenNumber(QPoint(x,y));
+		QRect screen = QApplication::desktop()->availableGeometry(screenNumber);
+		if (!screen.contains(x,y)) {
+			// top left is not on screen
+			x = screen.x() + screen.width()*2/3;
+			y = screen.y()+10;
+			if (x+w > screen.right()) w = screen.width()/3-26;
+			if (y+h > screen.height()) h = screen.height()-100;
+		}
 
-	    setWindowState(Qt::WindowNoState);
-	    resize(globalConfig->windowWidth, globalConfig->windowHeight); //important to first resize then move
-	    move(globalConfig->windowLeft, globalConfig->windowTop);
-	    Q_ASSERT(x() == globalConfig->windowLeft);
-	    if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
+		setWindowState(Qt::WindowNoState);
+		resize(w,h); //important to first resize then move
+		move(x,y);
+		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
 	}
 	
 
@@ -2252,12 +2259,8 @@ void PDFDocument::sideBySide()
 void PDFDocument::closeEvent(QCloseEvent *event)
 {
 	Q_ASSERT(globalConfig);
-    if (isVisible() && !embeddedMode) {
-		globalConfig->windowLeft = x();
-		globalConfig->windowTop = y();
-		globalConfig->windowWidth = width();
-		globalConfig->windowHeight = height();
-		globalConfig->windowState = saveState();
+	if (isVisible() && !embeddedMode) {
+		saveGeometryToConfig();
 	}
 	event->accept();
 	deleteLater();
@@ -2714,6 +2717,15 @@ PDFDocument *PDFDocument::findDocument(const QString &fileName)
 			return theDoc;
 	}
 	return NULL;
+}
+
+void PDFDocument::saveGeometryToConfig()
+{
+	globalConfig->windowLeft = x();
+	globalConfig->windowTop = y();
+	globalConfig->windowWidth = width();
+	globalConfig->windowHeight = height();
+	globalConfig->windowState = saveState();
 }
 
 void PDFDocument::zoomToRight(QWidget *otherWindow)

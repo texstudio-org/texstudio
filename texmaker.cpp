@@ -2166,6 +2166,10 @@ repeatAfterFileSavingFailed:
 }
 
 bool Texmaker::canCloseNow(){
+#ifndef NO_POPPLER_PREVIEW
+	foreach (PDFDocument* viewer, PDFDocument::documentList())
+		viewer->saveGeometryToConfig();
+#endif
 	SaveSettings();
 	bool accept = closeAllFilesAsking();
 	if (accept){
