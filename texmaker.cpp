@@ -2711,16 +2711,22 @@ void Texmaker::ReadSettings() {
 	completionBaseCommandsUpdated=true;
 	
 	config->beginGroup("texmaker");
-	
-	QRect screen = QApplication::desktop()->screenGeometry();
+
+	QRect screen = QApplication::desktop()->availableGeometry();
 	int w= config->value("Geometries/MainwindowWidth",screen.width()-100).toInt();
 	int h= config->value("Geometries/MainwindowHeight",screen.height()-100).toInt() ;
-	int x= config->value("Geometries/MainwindowX",10).toInt();
-	int y= config->value("Geometries/MainwindowY",10).toInt() ;
+	int x= config->value("Geometries/MainwindowX",screen.x()+10).toInt();
+	int y= config->value("Geometries/MainwindowY",screen.y()+10).toInt() ;
+	int screenNumber = QApplication::desktop()->screenNumber(QPoint(x,y));
+	screen = QApplication::desktop()->availableGeometry(screenNumber);
+	if (!screen.contains(x,y)) {
+		// top left is not on screen
+		x = screen.x() + 10;
+		y = screen.y() + 10;
+		if (x+w > screen.right()) w = screen.width()-100;
+		if (y+h > screen.height()) h = screen.height()-100;
+	}
 	resize(w,h);
-	// in case desktop has changed since last run
-	while (x>screen.width() && screen.width() > 0) x-=screen.width();
-	while (y>screen.height() && screen.height() > 0) y-=screen.height();
 	move(x,y);
 	windowstate=config->value("MainWindowState").toByteArray();
 	stateFullScreen=config->value("MainWindowFullssscreenState").toByteArray();

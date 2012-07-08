@@ -105,12 +105,12 @@ void zoomToHalfScreen(QWidget *window, bool rhs)
 	}
 
 	if (rhs) {
-		r.setLeft(r.left() + r.right() / 2);
+		r.setLeft(r.left() + r.width() / 2);
 		window->move(r.left(), r.top());
 		window->resize(r.width() - wDiff, r.height() - hDiff);
 	}
 	else {
-		r.setRight(r.left() + r.right() / 2 - 1);
+		r.setWidth(r.width() / 2);
 		window->move(r.left(), r.top());
 		window->resize(r.width() - wDiff, r.height() - hDiff);
 	}
