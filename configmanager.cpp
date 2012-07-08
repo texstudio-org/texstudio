@@ -471,11 +471,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Auto Preview Delay", &autoPreviewDelay, 300, &pseudoDialog->spinBoxAutoPreviewDelay);
 	
 	//pdf preview
-	QRect screen = QApplication::desktop()->screenGeometry();
-	registerOption("Geometries/PdfViewerLeft", &pdfDocumentConfig->windowLeft, screen.width()/3);
-	registerOption("Geometries/PdfViewerTop", &pdfDocumentConfig->windowTop, screen.height()/3);
-	registerOption("Geometries/PdfViewerWidth", &pdfDocumentConfig->windowWidth, screen.width()/3);
-	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()/3);
+	QRect screen = QApplication::desktop()->availableGeometry();
+	registerOption("Geometries/PdfViewerLeft", &pdfDocumentConfig->windowLeft, screen.left()+screen.width()*2/3);
+	registerOption("Geometries/PdfViewerTop", &pdfDocumentConfig->windowTop, screen.top()+10);
+	registerOption("Geometries/PdfViewerWidth", &pdfDocumentConfig->windowWidth, screen.width()/3-26);
+	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()-100);
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
 	
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
