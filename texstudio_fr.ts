@@ -143,7 +143,7 @@
     </message>
     <message>
         <source>Book&amp;let</source>
-        <translation>Livre sans éditeur ni sponsor - @booklet</translation>
+        <translation>Livre sans éditeur ni s&amp;ponsor - @booklet</translation>
     </message>
     <message>
         <source>PhD. &amp;Thesis</source>
@@ -1793,11 +1793,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Font Family:</source>
-        <translation>Famille de fonte</translation>
+        <translation>Famille de fonte :</translation>
     </message>
     <message>
         <source>Default Font Encoding:</source>
-        <translation>Codage d&apos;entrée par défaut</translation>
+        <translation>Codage d&apos;entrée par défaut :</translation>
     </message>
     <message>
         <source>Ignore Indentation</source>
@@ -1925,7 +1925,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Render Mode:</source>
-        <translation>Mode de rendu</translation>
+        <translation>Mode de rendu :</translation>
     </message>
     <message>
         <source>Add Line</source>
@@ -2065,7 +2065,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Uses SVN revisions to undo before last saved version</source>
-        <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée ?</translation>
+        <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée</translation>
     </message>
     <message>
         <source>Substitute Keywords with Properties (on svn add)</source>
@@ -3262,11 +3262,11 @@ l&apos;assistant ne supporte pas la commande</translation>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation>Impossible d&apos;analyser le code de l&apos;inclusion de graphique :
-Options de \includegraphics manquantes</translation>
+Options de \includegraphics manquantes.</translation>
     </message>
     <message>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Définit les options pour \includegraphics[〈options〉]{〈fichier〉}</translation>
+        <translation>Définit les options pour \includegraphics[〈options〉]{〈fichier〉}.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
@@ -5723,7 +5723,7 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Replace:</source>
-        <translation>Remplacer</translation>
+        <translation>Remplacer :</translation>
     </message>
 </context>
 <context>
@@ -6460,7 +6460,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Erase &amp;Line</source>
-        <translation>Supprimer la ligne</translation>
+        <translation>Supprimer la &amp;ligne</translation>
     </message>
     <message>
         <source>Erase &amp;Word/Cmd/Env</source>
@@ -6628,7 +6628,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation>Faire du document courant le « document maître »</translation>
+        <translation>Définir le document courant comme « document &amp;maître »</translation>
     </message>
     <message>
         <source>Load Profile</source>
@@ -7141,11 +7141,11 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio...</source>
-        <translation>&amp;Configurer TeXstudio</translation>
+        <translation>&amp;Configurer TeXstudio...</translation>
     </message>
     <message>
         <source>About TeXstudio...</source>
-        <translation>À propos de TeXstudio</translation>
+        <translation>À propos de TeXstudio...</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
@@ -7196,11 +7196,11 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Move document to &amp;front</source>
-        <translation>Placer le document tout au-dessus</translation>
+        <translation>Placer le document tout au-dess&amp;us</translation>
     </message>
     <message>
         <source>Move document to &amp;end</source>
-        <translation>Placer le document tout au-dessous</translation>
+        <translation>Placer le document tout au-dess&amp;ous</translation>
     </message>
     <message>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -7454,7 +7454,7 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
-        <translation>Nettoyer les marqueurs</translation>
+        <translation>&amp;Nettoyer les marqueurs</translation>
     </message>
     <message>
         <source>&amp;Math</source>
@@ -7497,11 +7497,11 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     </message>
     <message>
         <source>Yes, try to recover.</source>
-        <translation>Oui, tenter de recouvrer.</translation>
+        <translation>Oui, tenter de recouvrer</translation>
     </message>
     <message>
         <source>No, kill the programm</source>
-        <translation>Non, fermer le programme.</translation>
+        <translation>Non, fermer le programme</translation>
     </message>
     <message>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
@@ -7517,7 +7517,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     </message>
     <message>
         <source>No, kill the program</source>
-        <translation>Non, fermer le programme.</translation>
+        <translation>Non, fermer le programme</translation>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
@@ -7583,7 +7583,7 @@ included document in %1</source>
     </message>
     <message>
         <source>Cle&amp;an Auxiliary Files...</source>
-        <translation>Supprimer les fichiers auxiliaires...</translation>
+        <translation>&amp;Supprimer les fichiers auxiliaires...</translation>
     </message>
     <message>
         <source>&amp;Insert Bibliography Entry...</source>
@@ -7620,7 +7620,7 @@ included document in %1</source>
     </message>
     <message>
         <source>&amp;Macros</source>
-        <translation>&amp;Macros</translation>
+        <translation>Ma&amp;cros</translation>
     </message>
 </context>
 <context>
@@ -7780,7 +7780,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Min&amp;max words per phrase:</source>
-        <translation>Minimum et maximum de mots par phrase :</translation>
+        <translation>&amp;Minimum et maximum de mots par phrase :</translation>
     </message>
     <message>
         <source>None (.*)</source>
