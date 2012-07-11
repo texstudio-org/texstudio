@@ -2,7 +2,7 @@
 a:visited { color: #672967; text-decoration: none }
  */
  body {
-	font: normal .80em 'trebuchet ms', arial, sans-serif;
+	font: normal 80% 'trebuchet ms', arial, sans-serif;
 	background: #ffffff;
 	color: black;
 }
@@ -19,13 +19,22 @@ h1 {
 	font-size: 150%;
 }
 
+h2 {margin-left: 0.5em;}
+
 h3 { 
 	background: #5F6B7F;
 	margin-left: 1em;
 }
 
-p {margin-left: 1em;}
- 
+p, table {margin-left: 2em;}
+
+table, caption {
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+}
+
 th {
 	border-style: none;
 	background: #3F5881;
@@ -45,7 +54,8 @@ td { border-style: none; }
 	column-width: 320px;
 }
  
-.command { font-family: monospace; }
+code, pre {font-size: 120%}
+.command { font-family: monospace; font-size: 120% }
 .scripting_help th {margin-top: 4em; }
 
 a { color:#004faf; text-decoration:none;}

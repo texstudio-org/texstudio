@@ -423,14 +423,14 @@ If you change a command by completing a new command, only the command name is su
 </p>
 
 <h2 id="SECTION114">2.14 Thesaurus</h2>
-TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases are used for this.
-By placing the cursor on a word and activating the thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms for this word. Please be patient if you start the thesaurus at first time since loading the database just occurs then and can take a few moments.
+<p>TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases are used for this.
+By placing the cursor on a word and activating the thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms for this word. Please be patient if you start the thesaurus at first time since loading the database just occurs then and can take a few moments.</p>
 <p><IMG src="thesaurus.png" border="1" alt="Thesaurus"></p>
-The first line to the left contains the word, for which a synonym is searched for.
+<p>The first line to the left contains the word, for which a synonym is searched for.
 The list below gives a list of word classes. The can be chosen to reduce the number of suggestions.
 The column to the right contains the list of suggested synonyms.
 A selected word from this list apears in the first line to the right as proposition for replacement of the text.
-This word can be changed manually. It is also used to do further investigations for words and their synonyms which "start with" or "contain" that word. With "lookup" it can be directly used to look for a synonym for that word.
+This word can be changed manually. It is also used to do further investigations for words and their synonyms which "start with" or "contain" that word. With "lookup" it can be directly used to look for a synonym for that word.</p>
 <h2 id="SECTION115">2.15 Special Commands</h2>
 <h3>Delete word/command/environment</h3>
 <p>With the shortcut Alt+Del, the word under the cursor is deleted.
@@ -507,7 +507,7 @@ To access the document these objects are introduced:
 <li>"fileChooser" gives access to the filechooser dialog, a very simple file selection dialog</li>
 <li>"app" to access application wide things like the clipboard or the menus</li>
 </ul>
-The following table gives an overview on the possible commands.
+<p>The following table gives an overview on the possible commands.</p>
 <table class="scripting_help">
   <tr>
     <th>Command</th>
@@ -998,7 +998,7 @@ Synopsis :<br>
 <h3>Integrated pdf-viewer</h3>
 <p>
 TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
-Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currentyl positioned.
+Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned.
 Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
 Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
 Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
@@ -1073,13 +1073,16 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 
 <h2 id="SECTION38">4.10 Synopsis of the TeXstudio command</h2>
 <p>
-TeXstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]<br>
-With the "--master" option, the document will be automatically defined as a "master" document.<br>
-With the "--line xx[:cc]" option, TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.<br>
-With the "--insert-cite citation" option, you can push a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.
-With the "--start-always" option, TeXstudio will start, even if another instance of it is already running.<br>
-With the "--pdf-viewer-only" option, TeXstudio will open as standalone pdf viewer without editor<br>
-With the "--page" option, TeXstudio displays a certain page if used as pdf viewer<br>
+<code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
+
+<table>
+<tr><td><code>--master</code></td><td>defines the document as master document.</td></tr>
+<tr><td><code>--line xx[:cc]</code></td><td>TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
+<tr><td><code>--insert-cite citation</code></td><td>Pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
+<tr><td><code>--start-always</code></td><td>TeXstudio will start, even if another instance of it is already running. This allows using of multiple instances.</td></tr>
+<tr><td><code>--pdf-viewer-only</code></td><td>TeXstudio will open as standalone pdf viewer without editor</td></tr>
+<tr><td><code>--page</code></td><td> option, TeXstudio displays a certain page if used as pdf viewer</td></tr>
+</table>
 </p>
 <h2 id="SECTION39">4.11 Keyboard shortcuts</h2>
 <p>
@@ -1147,41 +1150,41 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 	<li>Make index : F12</li>
 	</ul>
 </li>
-<li> * "LaTeX" menu :
+<li>"LaTeX" menu :
 	<ul>
-	<li>* item : Ctrl+Shift+I</li>
-	<li>* Italic : Ctrl+I</li>
-	<li>* Slanted : Ctrl+Shift+S</li>
-	<li>* Bold : Ctrl+O</li>
-	<li>* Typewriter : Ctrl+Shift+T</li>
-	<li>* Small caps : Ctrl+Shift+C</li>
-	<li>* Emphasis : Ctrl+Shift+E</li>
-	<li>* New line : Ctrl+Return</li>
-	<li>* begin{environment} : Ctrl+E</li>
-	<li>* Insert reference to next label : Ctrl+Alt+R</li>
+	<li>item : Ctrl+Shift+I</li>
+	<li>Italic : Ctrl+I</li>
+	<li>Slanted : Ctrl+Shift+S</li>
+	<li>Bold : Ctrl+O</li>
+	<li>Typewriter : Ctrl+Shift+T</li>
+	<li>Small caps : Ctrl+Shift+C</li>
+	<li>Emphasis : Ctrl+Shift+E</li>
+	<li>New line : Ctrl+Return</li>
+	<li>begin{environment} : Ctrl+E</li>
+	<li>Insert reference to next label : Ctrl+Alt+R</li>
 	</ul>
 </li>
-<li> * "Math" menu :
+<li>"Math" menu :
 	<ul>
-	<li>* Inline math mode : Ctrl+Shift+M</li>
-	<li>* Display math mode : Alt+Shift+M</li>
-	<li>* Numbered equations : Ctrl+Shift+N</li>
-	<li>* Subscript : Ctrl+Shift+D</li>
-	<li>* Superscript : CTrl+Shift+U</li>
-	<li>* Frac : Alt+Shift+F</li>
-	<li>* Dfrac : Ctrl+Shift+F</li>
-	<li>* Sqrt : Ctrl+Shift+Q</li>
-	<li>* Left : Ctrl+Shift+L</li>
-	<li>* Right : Ctrl+Shift+R</li>
+	<li>Inline math mode : Ctrl+Shift+M</li>
+	<li>Display math mode : Alt+Shift+M</li>
+	<li>Numbered equations : Ctrl+Shift+N</li>
+	<li>Subscript : Ctrl+Shift+D</li>
+	<li>Superscript : CTrl+Shift+U</li>
+	<li>Frac : Alt+Shift+F</li>
+	<li>Dfrac : Ctrl+Shift+F</li>
+	<li>Sqrt : Ctrl+Shift+Q</li>
+	<li>Left : Ctrl+Shift+L</li>
+	<li>Right : Ctrl+Shift+R</li>
 	</ul>
 </li>
-<li> "User" menu :
+<li>"User" menu :
 	<ul>
 	<li>User tags : Shift+F1...Shift+F10</li>
 	<li>User commands : Shift+Alt+F1...Shift+Alt+F10</li>
 	</ul>
 </li>
-<li> "View" menu :
+<li>"View" menu :
 	<ul>
 	<li>Next Document : Alt+PgUp</li>
 	<li>Previous Document : Alt+PgDown</li>
@@ -1227,7 +1230,7 @@ cwl files are used by the completer to propose possible commands and by the synt
 	<tr><td><code>\typein{msg}#*</code></td><td>unusual command which is only shown in completion "all"</td></tr>
 	<tr><td><code>\sqrt{arg}#m</code></td><td>only in math mode valid</td></tr>
 	<tr><td><code>\pageref{key}#r</code></td><td>declares a reference command which is used correctly for completion</td></tr>
-	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is only in the picture environment valid</td></tr>
+	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is valid only in the picture environment</td></tr>
 	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
 </table>
 </body></html>
