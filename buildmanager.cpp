@@ -516,7 +516,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 	options.nestingDeep++;
 	if (options.canceled) return ExpandedCommands();
 	if (options.nestingDeep > maxExpandingNestingDeep) {
-		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\"?").arg(options.nestingDeep).arg(str))){
+		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\".").arg(options.nestingDeep).arg(str))){
 			options.canceled = true;
 			return ExpandedCommands();
 		}
@@ -1307,7 +1307,7 @@ void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList&
 	
 	rerunCommandsUnexpanded = autoRerunCommands.split("|");
 	for (int i=0;i<rerunCommandsUnexpanded.size();i++)
-		if (rerunCommandsUnexpanded[i].startsWith(TXS_CMD_PREFIX))
+		if (rerunCommandsUnexpanded.startsWith(TXS_CMD_PREFIX))
 			rerunCommandsUnexpanded[i] =  rerunCommandsUnexpanded[i].mid(TXS_CMD_PREFIX.size());
 }
 

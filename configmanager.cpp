@@ -2004,58 +2004,48 @@ void ConfigManager::setInterfaceStyle(){
 void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int row){
 	static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
 	QWidget * parent = gl->parentWidget();
-	QWidget *label;
-	if (cmd.user) label = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
+	QWidget *l;
+	if (cmd.user) l = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
 	else {
         QString lbl=qApp->translate("BuildManager",qPrintable(cmd.displayName));
-		label = new QLabel(lbl, parent);
-		if (configShowAdvancedOptions) label->setToolTip("ID: txs:///"+cmd.id);
+        l = new QLabel(lbl, parent);
+		l->setToolTip("ID: txs:///"+cmd.id);
 	}
-	QWidget* cmdWidget;
+	QWidget* w;
 	if (cmd.metaSuggestionList.isEmpty()) {
-		cmdWidget = new QLineEdit(cmd.getPrettyCommand(), parent);
-		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(cmdWidget);
+		w = new QLineEdit(cmd.getPrettyCommand(), parent);
+		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(w);
 	} else {
-		cmdWidget = new QComboBox(parent);
-		cmdWidget->setObjectName(cmd.id);
+		w = new QComboBox(parent);
+        w->setObjectName(cmd.id);
         if(!configShowAdvancedOptions && simpleMetaOptions.contains(cmd.id) && cmd.metaSuggestionList.contains(cmd.getPrettyCommand())){
             foreach(QString elem,cmd.simpleDescriptionList){
                 elem=qApp->translate("BuildManager",qPrintable(elem));
-				static_cast<QComboBox*>(cmdWidget)->addItem(elem);
+                static_cast<QComboBox*>(w)->addItem(elem);
             }
-			static_cast<QComboBox*>(cmdWidget)->setEditable(false);
+            static_cast<QComboBox*>(w)->setEditable(false);
             int i=cmd.metaSuggestionList.indexOf(cmd.getPrettyCommand());
             Q_ASSERT(i>=0);
             //static_cast<QComboBox*>(w)->setEditText();
         }else{
-			static_cast<QComboBox*>(cmdWidget)->addItems(cmd.metaSuggestionList);
-			static_cast<QComboBox*>(cmdWidget)->setEditable(true);
-			static_cast<QComboBox*>(cmdWidget)->setEditText(cmd.getPrettyCommand());
+            static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
+            static_cast<QComboBox*>(w)->setEditable(true);
+            static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
         }
 
 		int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
-		if (index >= 0) static_cast<QComboBox*>(cmdWidget)->setCurrentIndex(index);
+        if (index >= 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);
 	}
 	QList<QPushButton*> buttons;
-
-	QPushButton *pb;
     if (cmd.user || cmd.meta) {
-		pb = new QPushButton(QIcon(":/images/configure.png"), QString(), parent);
-		pb->setToolTip(tr("Configure"));
-		connect(pb, SIGNAL(clicked()), SLOT(editCommand()));
-		buttons << pb;
+		buttons << new QPushButton(QIcon(":/images/configure.png"), QString(), parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(editCommand()));
 	}
-
-	pb = new QPushButton(getRealIcon("fileopen"), "", parent);
-	pb->setToolTip(tr("Select program"));
-	connect(pb, SIGNAL(clicked()), SLOT(browseCommand()));
-	buttons << pb;
-
+	buttons << new QPushButton(getRealIcon("fileopen"), "", parent);
+	connect(buttons.last(),SIGNAL(clicked()),SLOT(browseCommand()));
 	if (!cmd.user && cmd.metaSuggestionList.isEmpty()) {
-		pb = new QPushButton(getRealIcon("undo"), "", parent);
-		pb->setToolTip(tr("Restore default"));
-		connect(pb, SIGNAL(clicked()), SLOT(undoCommand()));
-		buttons << pb;
+		buttons << new QPushButton(getRealIcon("undo"), "", parent);
+		connect(buttons.last(),SIGNAL(clicked()),SLOT(undoCommand()));
 	}
 	if (cmd.user) {
 		buttons << new QPushButton(getRealIcon("list-remove"), "", parent);
@@ -2067,18 +2057,18 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		connect(buttons.last(),SIGNAL(clicked()),SLOT(moveDownCommand()));
 	}
     bool advanced = cmd.meta && !simpleMetaOptions.contains(cmd.id);
-	QList<QWidget*> temp; temp << label << cmdWidget; foreach (QWidget* w, buttons) temp << w;
+	QList<QWidget*> temp; temp << l << w; foreach (QWidget* w, buttons) temp << w;
 	foreach (QWidget* x, temp) {
 		x->setMinimumHeight(x->sizeHint().height());
-		if (x != cmdWidget) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+		if (x != w) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 		advanced |= (cmd.user && buttons.indexOf(static_cast<QPushButton*>(x)) >= 3);
 		x->setProperty("advancedOption", advanced);
 		if (advanced && !configShowAdvancedOptions) x->setVisible(false);
 	}
-	cmdWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
+	w->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
 	gl->setRowStretch(row, 1);
-	gl->addWidget(label, row,0);
-	int off = 1;
+	gl->addWidget(l, row,0);
+	int off =  0;
 	/*if (cmd == BuildManager::CMD_VIEWPDF) {
 		QButtonGroup *bgPDFViewer = new QButtonGroup(confDlg);
 		confDlg->checkboxInternalPDFViewer = new QRadioButton(confDlg);
@@ -2094,27 +2084,17 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		gl->addWidget(rbExternalPDFViewer, (int)cmd, 2);
 		off+=2;
 	}*/
-
-	QIcon icon;
-	pb = new QPushButton();
-	icon.addFile(":/images/repeat-compile.png", QSize(), QIcon::Normal, QIcon::On);
-	icon.addFile(":/images/repeat-compile-off.png", QSize(), QIcon::Normal, QIcon::Off);
-	pb->setIcon(icon);
-	pb->setToolTip("Repeat contained compilation commands");
-	pb->setCheckable(true);
-	gl->addWidget(pb, row, 1, 1, 1);
-
-	gl->addWidget(cmdWidget,row,1+off,1,1);
+	gl->addWidget(w,row,1+off,1,6-off-buttons.size());
 	for (int i = 0; i < buttons.size(); i++){
-		gl->addWidget(buttons[i],row,2+off+i, 1, 1);
-		buttons[i]->setProperty(PROPERTY_ASSOCIATED_INPUT, QVariant::fromValue<QWidget*>(cmdWidget));
+		gl->addWidget(buttons[i],row,7-buttons.size()+i, 1, 1);
+		buttons[i]->setProperty(PROPERTY_ASSOCIATED_INPUT, QVariant::fromValue<QWidget*>(w));
 	}
-	cmdWidget->setProperty(PROPERTY_COMMAND_NAME, cmd.id);
+	w->setProperty(PROPERTY_COMMAND_NAME, cmd.id);
 	
 	if (cmd.user) {
-		userCommandInputs << cmdWidget;
-		userCommandNameInputs << label;
-	} else commandInputs << cmdWidget;
+		userCommandInputs << w;
+		userCommandNameInputs << l;
+	} else commandInputs << w;
 }
 
 void ConfigManager::createCommandList(QGroupBox* box, const QStringList& order, bool user, bool meta){
