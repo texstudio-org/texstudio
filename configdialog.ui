@@ -122,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>13</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1321,8 +1321,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>646</width>
+            <height>541</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2071,8 +2071,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2755,7 +2755,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        <item>
         <widget class="QCheckBox" name="cbSVNUndo">
          <property name="text">
-          <string>Uses SVN revisions to undo before last saved version</string>
+          <string>Use SVN revisions to undo before last saved version</string>
          </property>
         </widget>
        </item>
