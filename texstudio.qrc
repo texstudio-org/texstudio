@@ -346,8 +346,6 @@
         <file>images/left.png</file>
         <file>images/right.png</file>
         <file>images/bookmarks.png</file>
-		<file>images/repeat-compile.png</file>
-		<file>images/repeat-compile-off.png</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
