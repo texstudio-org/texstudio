@@ -7056,12 +7056,12 @@ void Texmaker::recoverFromCrash(){
 	mb->setWindowTitle(tr("TeXstudio Emergency"));
 	if (!wasLoop) {
 		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
-		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover."), QMessageBox::AcceptRole));
+		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("No, kill the programm"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
 	} else {
 		mb->setText(tr( "TeXstudio has been paused due to a possible endless loop.\nDo you want to keep the program running? This may cause data corruption."));
-		mb->setDefaultButton(mb->addButton(tr("Yes, stop the loop and try to recover."), QMessageBox::AcceptRole));
-		mb->addButton(tr("Yes, continue the loop."), QMessageBox::RejectRole);
+		mb->setDefaultButton(mb->addButton(tr("Yes, stop the loop and try to recover"), QMessageBox::AcceptRole));
+		mb->addButton(tr("Yes, continue the loop"), QMessageBox::RejectRole);
 		mb->addButton(tr("No, kill the programm"), QMessageBox::DestructiveRole);
 	}
 	
