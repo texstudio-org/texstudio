@@ -24,7 +24,7 @@ private slots:
 	void onReject();
 
 private:
-	enum Scope {None, Project, CurrentTexFile, OpenTexFiles};
+	enum Scope {None, Project, CurrentTexFile, CurrentFileFolder, OpenTexFiles};
 
 	Ui::CleanDialog *ui;
 	static QString defaultExtensions;

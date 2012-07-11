@@ -48,6 +48,7 @@ bool CleanDialog::checkClean(const LatexDocuments &docs) {
 	if (docs.currentDocument && docs.currentDocument->getFileInfo().suffix()=="tex") {
 		currentTexFile = docs.currentDocument->getFileName();
 		ui->cbScope->addItem(tr("Current File"), CleanDialog::CurrentTexFile);
+		ui->cbScope->addItem(tr("Current File Folder"), CleanDialog::CurrentFileFolder);
 		somethingToClean = true;
 	}
 	foreach (LatexDocument *doc, docs.documents) {
@@ -91,6 +92,14 @@ void CleanDialog::onAccept() {
 			foreach(const QString& ext, extList)
 				//qDebug() << basename + "." + ext;
 				QFile::remove(basename + "." + ext);
+		}
+		break;
+	case CurrentFileFolder:
+		{
+			QStringList filterList;
+			foreach (const QString &ext, extList) filterList << "*." + ext;
+
+			removeFromDir(QFileInfo(currentTexFile).absoluteDir(), filterList);
 		}
 		break;
 	case OpenTexFiles:

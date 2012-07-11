@@ -180,7 +180,6 @@ signals:
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningCommands(const QString& commandMain, bool latex, bool pdf);
-	
 private:
 	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);

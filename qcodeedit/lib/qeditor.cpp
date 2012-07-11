@@ -958,7 +958,6 @@ bool QEditor::saveCopy(const QString& filename){
 	} else if (bytesWritten != data.size()) {
 		QMessageBox::critical(this, tr("Saving failed"),
 				tr("Only part of the file could be written:\n%1\n\n"
-				   "failed after the old content was deleted.\n\n"
 				   "The file may have been corrupted by this! You should save\n"
 				   "to another location or fix the problem to prevent data loss.\n"
 				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
