@@ -945,9 +945,36 @@ bool QEditor::saveCopy(const QString& filename){
 		return false;
 	}
 
-	if (f.write(data) == -1)
-		QMessageBox::critical(this, tr("Saving failed"), tr("Writing the document to file %1 failed after the old content was deleted.\n\nThe file may have been corrupted!").arg(filename),QMessageBox::Ok);
-
+	int bytesWritten = f.write(data);
+	if (bytesWritten == -1) {
+		QMessageBox::critical(this, tr("Saving failed"),
+				tr("Writing the document to file\n%1\n"
+				   "failed after the old content was deleted.\n\n"
+				   "The file may have been corrupted by this! You should save\n"
+				   "to another location or fix the problem to prevent data loss.\n"
+				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
+		f.close();
+		return false;
+	} else if (bytesWritten != data.size()) {
+		QMessageBox::critical(this, tr("Saving failed"),
+				tr("Only part of the file could be written:\n%1\n\n"
+				   "failed after the old content was deleted.\n\n"
+				   "The file may have been corrupted by this! You should save\n"
+				   "to another location or fix the problem to prevent data loss.\n"
+				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
+		f.close();
+		return false;
+	}
+	if (!f.flush()) { // make sure the data are really on disk, not only buffered
+		QMessageBox::critical(this, tr("Saving failed"),
+				tr("Writing the document to file\n%1\n"
+				   "failed after the old content was deleted.\n\n"
+				   "The file may have been corrupted by this! You should save\n"
+				   "to another location or fix the problem to prevent data loss.\n"
+				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
+		f.close();
+		return false;
+	}
 
 	f.close(); //explicite close for watcher
 
@@ -962,30 +989,17 @@ bool QEditor::saveCopy(const QString& filename){
 */
 void QEditor::save(const QString& fn)
 {
-	if ( fileName().count() )
-	{
+	if ( fileName().count() ) {
 		watcher()->removeWatch(fileName(), this);
 	}
 
-	QFile f(fn);
-
-	if ( !f.open(QFile::WriteOnly) )
-	{
+	if ( !saveCopy(fn) ) {
 		m_saveState = Undefined;
 		reconnectWatcher();
 
 		return;
 	}
 
-	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
-
-	if ( m_doc->codec() )
-		f.write(m_doc->codec()->fromUnicode(txt));
-	else
-		f.write(txt.toLocal8Bit());
-
-	f.close();//explicitly close for watcher
-	
 	m_doc->setClean();
 
 	setFileName(fn);
