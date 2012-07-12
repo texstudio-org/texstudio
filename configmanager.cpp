@@ -572,6 +572,14 @@ QSettings* ConfigManager::readSettings() {
 	for (int i=0;i<managedProperties.size();i++)
 		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
 	
+	//language
+	QString locale=language;
+	appTranslator=new QTranslator(this);
+	basicTranslator=new QTranslator(this);
+	loadTranslations(language);
+	QCoreApplication::installTranslator(appTranslator);
+	QCoreApplication::installTranslator(basicTranslator);
+	
 	//------------------files--------------------
 	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
 	
@@ -818,15 +826,7 @@ QSettings* ConfigManager::readSettings() {
 	
 	setInterfaceStyle();
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
-	
-	//language
-	QString locale=language;
-	appTranslator=new QTranslator(this);
-	basicTranslator=new QTranslator(this);
-	loadTranslations(language);
-	QCoreApplication::installTranslator(appTranslator);
-	QCoreApplication::installTranslator(basicTranslator);
-	
+		
 	config->endGroup();
 	
 	return config;
