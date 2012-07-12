@@ -3,10 +3,10 @@
     <format id="background" >
     </format>
     <format id="line:error">
-		<background>#ffbfbf</background>
+		<background>##ffcabf</background>
 	</format>
     <format id="line:warning">
-		<background>#ffffbf</background>
+		<background>#fffbbf</background>
 	</format>
     <format id="line:badbox">
 		<background>#bfd6ff</background>
