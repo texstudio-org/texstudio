@@ -938,6 +938,26 @@ bool QEditor::saveCopy(const QString& filename){
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
+	quint64 freeBytes;
+	while (1) {
+		if (!getDiskFreeSpace(QFileInfo(filename).canonicalPath(), freeBytes)) break;
+		if (static_cast<quint64>(data.size()) < freeBytes) break;
+
+		QMessageBox::StandardButton bt;
+		bt = QMessageBox::critical(this, tr("Saving failed"),
+				tr("There seems to be not enough space to save the file at\n%1\n\n"
+				   "File size: %2 kB\n"
+				   "Free space: %3 kB\n\n"
+				   "You should clean up some space and retry. Alternatively you can\n"
+				   "cancel the save operation and save to another location instead.\n"
+				   "When ignoring this warning TeXstudio will try save to the specified\n"
+				   "location. However if there is really not enough space, this will\n"
+				   "result in data loss.\n"
+				   ).arg(filename).arg(data.size()/1024).arg(freeBytes/1024L),QMessageBox::Retry|QMessageBox::Ignore|QMessageBox::Cancel, QMessageBox::Retry);
+		if (bt == QMessageBox::Cancel) return false;
+		else if (bt == QMessageBox::Ignore) break;
+	}
+
 	QFile f(filename);
 
 	if ( !f.open(QFile::WriteOnly) ) {

@@ -33,6 +33,31 @@ void txsCritical(const QString &message){
 }
 
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
+#ifdef Q_OS_WIN
+	wchar_t d[path.size()+1];
+	int len = path.toWCharArray(d);
+	d[len] = 0;
+
+	ULARGE_INTEGER freeBytesToCaller;
+	freeBytesToCaller.QuadPart = 0L;
+
+	if( !GetDiskFreeSpaceEx( d, &freeBytesToCaller, NULL, NULL ) ) {
+		qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed on path" << path;
+		return false;
+	}
+	freeBytes = freeBytesToCaller.QuadPart;
+	return true;
+#else
+	return false;
+#endif
+}
+
+
+
 #ifdef Q_WS_MAC
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
