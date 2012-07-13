@@ -561,7 +561,7 @@
     </message>
     <message>
         <source>Current File Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire du fichier en cours</translation>
     </message>
 </context>
 <context>
@@ -2121,7 +2121,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Use SVN revisions to undo before last saved version</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée</translation>
     </message>
 </context>
 <context>
@@ -4873,7 +4873,15 @@ failed after the old content was deleted.
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;enregistrement du document dans le fichier
+%1
+a échoué après la suppression de l&apos;ancien contenu.
+
+Ceci a pu corrompre vos données ! Pour éviter de les perdre,
+vous devriez les enregistrer dans un autre fichier ou bien régler le
+problème.
+Les causes possibles de ce problème incluent une défaillance du (ou un
+manque de place sur) le disque.</translation>
     </message>
     <message>
         <source>Only part of the file could be written:
@@ -4882,7 +4890,41 @@ Possible causes include disk failure or a full harddisk.</source>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seule une partie du fichier
+%1
+a pu être enregistrée.
+
+Ceci a pu corrompre vos données ! Pour éviter de les perdre,
+vous devriez les enregistrer dans un autre fichier ou bien régler le
+problème.
+Les causes possibles de ce problème incluent une défaillance du (ou un
+manque de place sur) le disque.</translation>
+    </message>
+    <message>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
+        <translation>Il semble qu&apos;il n&apos;y ait pas suffisamment de place sur le disque
+pour enregistrer le fichier :
+%1
+
+Taille du fichier : %2 kB
+Espace disponible : %3 kB
+
+Vous devriez libérer un peu d&apos;espace sur votre disque et réessayer.
+Une alternative est d&apos;annuler l&apos;enregistrement et de sauvegarder à un
+autre endroit. Si vous ne tenez pas compte de cet avertissement, TeXstudio
+va tenter de sauver le fichier à l&apos;endroit spécifié ; cependant, s&apos;il n&apos;y a
+vraiment pas assez de place, il peut en résulter une perte des données.</translation>
     </message>
 </context>
 <context>
@@ -5730,11 +5772,11 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation>Chercher le suiva&amp;nt</translation>
+        <translation>Chercher le suivant</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation>Chercher &amp;précédent</translation>
+        <translation>Chercher précédent</translation>
     </message>
     <message>
         <source>Replace and find next</source>
@@ -7651,15 +7693,15 @@ included document in %1</source>
     </message>
     <message>
         <source>Yes, try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, tenter de recouvrer</translation>
     </message>
     <message>
         <source>Yes, stop the loop and try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, arrêter la boucle et tenter de récupérer les données</translation>
     </message>
     <message>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui, continuer la boucle</translation>
     </message>
 </context>
 <context>
