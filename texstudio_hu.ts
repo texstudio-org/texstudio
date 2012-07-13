@@ -474,7 +474,7 @@ támogatott</translation>
     </message>
     <message>
         <source>Current File Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenlegi fájl könytára</translation>
     </message>
 </context>
 <context>
@@ -1518,10 +1518,6 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Jelentkezzen be automatikusan mentés után</translation>
     </message>
     <message>
-        <source>Uses SVN revisions to undo before last saved version</source>
-        <translation type="obsolete">Az utolsó mentett verzió visszaállításához az SVN kiadásokat használja</translation>
-    </message>
-    <message>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Kulcsszavak helyettesítése Tulajdonságokkal (svn add esetén)</translation>
     </message>
@@ -1571,7 +1567,7 @@ Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
         <source>Use SVN revisions to undo before last saved version</source>
-        <translation type="unfinished"></translation>
+        <translation>Az utolsó mentés előtti verzió visszaállításához az SVN kiadásokat használja</translation>
     </message>
 </context>
 <context>
@@ -3916,7 +3912,9 @@ failed after the old content was deleted.
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 fájl írása meghiúsult a korábbi tartalom törlése után.
+
+Lehet, hogy a fájl megsérült! Meg kellene próbálnia máshová menteni. Előfordulhat, hogy a lemez sérült, vagy nincs rajta szabad hely.</translation>
     </message>
     <message>
         <source>Only part of the file could be written:
@@ -3925,7 +3923,29 @@ Possible causes include disk failure or a full harddisk.</source>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) %1 fájl írása csak részben sikerült.
+
+Lehet, hogy a fájl megsérült! Meg kellene próbálnia máshová menteni. Előfordulhat, hogy a lemez sérült, vagy nincs rajta szabad hely.</translation>
+    </message>
+    <message>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
+        <translation>Úgy tűnik, nincs elég szabad hely a(z) %1 fájl mentéséhez.
+
+File méret: %2 kB
+Szabad hely: %3 kB
+
+Fel kellene szabadítania némi helyet és újra meg kellene próbálni a mentést. Esetleg megpróbálhatja a fájlt máshova menteni. Amennyiben ezt a figyelmeztetést figyelmen kívül hagyja, a TeXstudio megpróbálja végrehajtani a mentést a megadott helyre, de amennyiben tényleg nincs elég szabad hely, ez adatvesztést okozhat.</translation>
     </message>
 </context>
 <context>
@@ -6514,15 +6534,15 @@ included document in %1</source>
     </message>
     <message>
         <source>Yes, try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation>Igen, megkíséreltem a helyreállítást</translation>
     </message>
     <message>
         <source>Yes, stop the loop and try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation>Igen, megszakítom a ciklust és megkíséreltem a helyreállítást</translation>
     </message>
     <message>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"></translation>
+        <translation>Igen, folytatom a ciklust</translation>
     </message>
 </context>
 <context>
