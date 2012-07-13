@@ -1917,8 +1917,10 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-	connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
-	connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
+    if(!embedded){
+        connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
+        connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
+    }
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
 	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
