@@ -122,7 +122,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>13</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -145,8 +145,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>526</width>
+            <height>583</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1321,8 +1321,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>646</width>
-            <height>541</height>
+            <width>733</width>
+            <height>610</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1967,19 +1967,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            </item>
           </widget>
          </item>
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
         </layout>
        </item>
        <item>
@@ -2071,8 +2058,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2893,7 +2880,6 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>checkBoxToolTipHelp</tabstop>
   <tabstop>checkBoxUsePlaceholders</tabstop>
   <tabstop>checkBoxAutoReplaceCommands</tabstop>
-  <tabstop>comboBoxPreferedTab</tabstop>
   <tabstop>spinBoxTabRelFontSize</tabstop>
   <tabstop>completeListWidget</tabstop>
   <tabstop>checkBoxGrammarRepetitionCheck</tabstop>
