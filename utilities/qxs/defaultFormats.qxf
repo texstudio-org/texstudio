@@ -3,7 +3,7 @@
     <format id="background" >
     </format>
     <format id="line:error">
-		<background>##ffcabf</background>
+		<background>#ffcabf</background>
 	</format>
     <format id="line:warning">
 		<background>#fffbbf</background>
