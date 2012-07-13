@@ -1005,7 +1005,7 @@ void Texmaker::setupToolBars() {
 		QObject *obj=configManager.menuParent->findChild<QObject*>(id);
 		QAction *act=qobject_cast<QAction*>(obj);
 		if (act && zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-		qDebug() << "Icon:" << id << zw.toString();
+        qDebug() << "Icon:" << id << zw.toString();
 		++i;
 	}
 	//setup customizable toolbars

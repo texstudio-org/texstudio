@@ -951,16 +951,20 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 void PDFWidget::keyPressEvent(QKeyEvent *event)
 {
 	updateCursor(mapFromGlobal(QCursor::pos()));
+    if (event->key() == Qt::Key_Home)
+        goFirst();
+    if (event->key() == Qt::Key_End)
+        goLast();
+    if (event->key() == Qt::Key_Space || event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return ){
+        if (event->modifiers() & Qt::SHIFT) pageUpOrPrev();
+        else pageDownOrNext();
+    }
 	event->ignore();
 }
 
 void PDFWidget::keyReleaseEvent(QKeyEvent *event)
 {
 	updateCursor(mapFromGlobal(QCursor::pos()));
-	if (event->key() == Qt::Key_Space || event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return ){
-		if (event->modifiers() & Qt::SHIFT) pageUpOrPrev();
-		else pageDownOrNext();
-	}
 	event->ignore();
 }
 
@@ -2694,6 +2698,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 				activateWindow();
 				if (isMinimized()) showNormal();
 			}
+            pdfWidget->setFocus();
 			syncToSourceBlock = false;
 			//pdfWidget->repaint();
 			return page-1;
