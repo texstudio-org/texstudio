@@ -1946,8 +1946,8 @@ void Texmaker::fileSave() {
 	if (!currentEditor())
 		return;
 	
-	if (currentEditor()->fileName()=="" || !currentEditor()->fileInfo().exists())
-		fileSaveAs();
+	if (currentEditor()->fileName()=="" || !QFileInfo(currentEditor()->fileName()).exists())
+		fileSaveAs(currentEditor()->fileName());
 	else {
 		/*QFile file( *filenames.find( currentEditorView() ) );
   if ( !file.open( QIODevice::WriteOnly ) )
@@ -1984,9 +1984,10 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 				currentDir=fi.absolutePath();
 		}
 	} else {
-		QFileInfo currentFile(fileName);
+		currentDir = fileName;
+		/*QFileInfo currentFile(fileName);
 		if (currentFile.absoluteDir().exists())
-			currentDir = fileName;
+			currentDir = fileName;*/
 	}
 	
 	// get a file name
@@ -6941,6 +6942,9 @@ void Texmaker::declareConflictResolved(){
 
 void Texmaker::fileInConflict(){
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
+	REQUIRE(mEditor);
+	if (!QFileInfo(mEditor->fileName()).exists())  //create new qfileinfo to avoid caching
+		return;
 	int ret = QMessageBox::warning(this,
 	                               tr("Conflict!"),
 	                               tr(
