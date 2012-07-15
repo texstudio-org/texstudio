@@ -6856,10 +6856,10 @@ LatexDocument* Texmaker::diffLoadDocHidden(QString f){
 	if (!QFile::exists(f_real)) return 0;
 	
 	LatexDocument *doc=new LatexDocument(this);
-	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+    //LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
 	
-	edit->document=doc;
-	edit->document->setEditorView(edit);
+    //edit->document=doc;
+    //edit->document->setEditorView(edit);
 	
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
@@ -6868,16 +6868,19 @@ LatexDocument* Texmaker::diffLoadDocHidden(QString f){
 	}
 	file.close();
 	
-	if (edit->editor->fileInfo().suffix()!="tex")
-		m_languages->setLanguage(edit->editor, f_real);
+    //if (edit->editor->fileInfo().suffix()!="tex")
+    //	m_languages->setLanguage(edit->editor, f_real);
 	
 	//QTime time;
 	//time.start();
-	edit->editor->load(f_real,QDocument::defaultCodec());
+
+    //edit->editor->load(f_real,QDocument::defaultCodec());
+    doc->load(f_real,QDocument::defaultCodec());
+
 	//qDebug() << "Load time: " << time.elapsed();
-	edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
+    //edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
 	
-	edit->document->setEditorView(edit); //update file name (if document didn't exist)
+    //edit->document->setEditorView(edit); //update file name (if document didn't exist)
 	
 	
 	return doc;
