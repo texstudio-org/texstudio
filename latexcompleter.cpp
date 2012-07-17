@@ -412,7 +412,8 @@ public:
 		//reenable auto close chars
 		editor->setFlag(QEditor::AutoCloseChars,completer->editorAutoCloseChars);
 		editor->setInputBinding(oldBinding);
-		editor->setFocus();
+		if (completer && completer->widget && completer->widget->isVisible())
+			editor->setFocus();
 		if (completer) {
 			completer->widget->hide();
 			completer->disconnect(editor,SIGNAL(cursorPositionChanged()),completer,SLOT(cursorPositionChanged()));
