@@ -3574,9 +3574,9 @@ void QEditor::wheelEvent(QWheelEvent *e)
 		const int delta = e->delta();
 
 		if ( delta > 0 )
-			zoom(-1);
-		else if ( delta < 0 )
 			zoom(1);
+		else if ( delta < 0 )
+			zoom(-1);
 
 		//viewport()->update();
 
