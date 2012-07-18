@@ -9,7 +9,6 @@ private:
 	QList<LatexLogEntry> log;
 	bool foundType[4];
 	int markIDs[4];
-	QColor textColors[4];
 public:
 	LatexLogModel(QObject * parent = 0);
 
@@ -29,7 +28,6 @@ public:
 
 	bool found(LogType lt) const;
 	int markID(LogType lt) const;
-	QColor textColor(LogType lt) const;
 	int logLineNumberToLogEntryNumber(int logLine) const; //returns the last entry with has a logline number <= logLine, or -1 if none exist
 	bool existsReRunWarning() const;
 	QStringList getMissingCitations() const;

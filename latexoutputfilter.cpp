@@ -22,6 +22,14 @@
 
 using namespace std;
 
+QColor LatexLogEntry::textColors[LT_MAX] = {QColor(Qt::black), QColor(230, 32, 32), QColor(234, 136, 32), QColor(58, 58, 230)};
+
+/*textColors[LT_NONE] = QColor(Qt::black);
+textColors[LT_ERROR] = QColor(230, 32, 32);
+textColors[LT_WARNING] = QColor(234, 136, 32);
+textColors[LT_BADBOX] = QColor(58, 58, 230);
+*/
+
 //====================texstudio log data struct=======================
 LatexLogEntry::LatexLogEntry()
 		: file(""), type(LT_NONE), oldline(-1), logline(-1), message("") {
@@ -30,7 +38,7 @@ LatexLogEntry::LatexLogEntry(QString aFile, LogType aType, int aOldline, int aLo
 		: file(aFile), type(aType), oldline(aOldline), logline(aLogline), message(aMessage) {
 }
 
-QString LatexLogEntry::niceMessage() const {
+QString LatexLogEntry::niceMessage(bool richFormat) const {
 	QString pre="";
 	switch (type) {
 	case LT_BADBOX:
@@ -44,7 +52,31 @@ QString LatexLogEntry::niceMessage() const {
 		break;
 	default:;
 	}
-	return pre+message;
+
+	bool richFormat = true;
+	if (!richFormat) {
+		return pre+message;
+	}
+
+	QString fmtMsg = message;
+	if (type == LT_WARNING) {
+		int begin = fmtMsg.indexOf("Citation `");
+		if (begin>=0) {
+			fmtMsg.insert(begin+10, "<b>");
+			int end = fmtMsg.indexOf('\'', begin+13);
+			if (end>=0)
+				fmtMsg.insert(end, "</b>");
+			else
+				fmtMsg.append("</b>");
+		}
+	} else if (type == LT_ERROR) {
+		if (fmtMsg.startsWith("Undefined control sequence ")) {
+			fmtMsg.insert(27, "<b>");
+			fmtMsg.append("</b>");
+		}
+	}
+
+	return QString("<nobr><font color=\"%1\">%2</font>%3</nobr>").arg(textColors[type].name()).arg(pre).arg(fmtMsg);
 }
 
 void LatexLogEntry::clear(){
