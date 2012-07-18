@@ -2247,15 +2247,14 @@ void QEditor::cut()
 {
 	copy();
 
-	bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
-	bool macroing = hasPH || m_mirrors.count();
+	bool macroing = atPlaceholder() || m_mirrors.count();
 
 	if ( macroing )
 		m_doc->beginMacro();
 
 	m_cursor.removeSelectedText();
 
-	if ( hasPH )
+	if ( atPlaceholder() ) // need new evaluation, because remove operation might have changed things
 	{
 		PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
 		QString baseText = ph.cursor.selectedText();
@@ -2932,20 +2931,10 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-		bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
-		bool macroing = hasPH || m_mirrors.count();
+		bool macroing = atPlaceholder() || m_mirrors.count();
 
 		if ( macroing )
 			m_doc->beginMacro();
-
-		QStringList prevText;
-
-		if ( hasPH )
-		{
-			for ( int k = 0; k < m_placeHolders.count(); ++k )
-				prevText << m_placeHolders.at(k).cursor.selectedText();
-
-		}
 
 		//TODO: blocked key
 		if(!m_blockKey)
@@ -2953,7 +2942,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		else
 			m_blockKey=false;
 
-		if ( m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count() ) //hasPH is invalid
+		if ( atPlaceholder() ) // need new evaluation, because edit operation might have changed things
 		{
 			PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
 
@@ -4981,10 +4970,8 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			if (txt.isEmpty())
 				return;
-				
 
-			bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
-			bool macroing = hasPH || m_mirrors.count();
+			bool macroing = atPlaceholder() || m_mirrors.count();
 
 			if ( macroing )
 				m_doc->beginMacro();
@@ -4996,7 +4983,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			insertText(m_cursor, txt);
 
-			if ( hasPH )
+			if ( atPlaceholder() ) // need new evaluation, because insert operation might have changed things
 			{
 				PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
 				QString baseText = ph.cursor.selectedText();

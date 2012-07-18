@@ -575,6 +575,7 @@ public slots:
 		
 		QList<QDocumentCursor> m_mirrors;
 		
+		bool atPlaceholder();
 		int m_curPlaceHolder, m_lastPlaceHolder, m_cphOffset;
 		bool m_placeHolderSynchronizing; 
 		
@@ -615,5 +616,9 @@ public slots:
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);
+
+inline bool QEditor::atPlaceholder() {
+	return m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
+}
 
 #endif
