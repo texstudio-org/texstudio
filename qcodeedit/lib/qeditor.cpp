@@ -2247,17 +2247,31 @@ void QEditor::cut()
 {
 	copy();
 
-	bool macro = m_mirrors.count();
+	bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
+	bool macroing = hasPH || m_mirrors.count();
 
-	if ( macro )
+	if ( macroing )
 		m_doc->beginMacro();
 
 	m_cursor.removeSelectedText();
 
+	if ( hasPH )
+	{
+		PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+		QString baseText = ph.cursor.selectedText();
+
+		QKeyEvent ev(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier); // just a dummy to be able to pass something reasonable to affect() - currently unused
+		for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+		{
+			QString s = ph.affector ?  ph.affector->affect(&ev, baseText, m_curPlaceHolder, phm) : baseText;
+			ph.mirrors[phm].replaceSelectedText(s);
+		}
+	}
+
 	for ( int i = 0; i < m_mirrors.count(); ++i )
 		m_mirrors[i].removeSelectedText();
 
-	if ( macro )
+	if ( macroing )
 		m_doc->endMacro();
 
 	clearCursorMirrors();
@@ -4968,7 +4982,12 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			if (txt.isEmpty())
 				return;
 				
-			m_doc->beginMacro();
+
+			bool hasPH = m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
+			bool macroing = hasPH || m_mirrors.count();
+
+			if ( macroing )
+				m_doc->beginMacro();
 
 			//if ( s )
 			//{
@@ -4977,12 +4996,26 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			insertText(m_cursor, txt);
 
+			if ( hasPH )
+			{
+				PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+				QString baseText = ph.cursor.selectedText();
+
+				QKeyEvent ev(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier); // just a dummy to be able to pass something reasonable to affect() - currently unused
+				for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+				{
+					QString s = ph.affector ?  ph.affector->affect(&ev, baseText, m_curPlaceHolder, phm) : baseText;
+					ph.mirrors[phm].replaceSelectedText(s);
+				}
+			}
+
 			for ( int i = 0; i < m_mirrors.count(); ++i )
 			{
 				insertText(m_mirrors[i], txt);
 			}
 
-			m_doc->endMacro();
+			if ( macroing )
+				m_doc->endMacro();
 		}
 
 		ensureCursorVisible();
