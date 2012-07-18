@@ -19,8 +19,10 @@
 
 #include "mostQtHeaders.h"
 
-enum LogType {LT_NONE = 0, LT_ERROR=1, LT_WARNING=2, LT_BADBOX=3};
+enum LogType {LT_NONE = 0, LT_ERROR=1, LT_WARNING=2, LT_BADBOX=3, LT_MAX};
 struct LatexLogEntry {
+	static QColor textColors[LT_MAX];
+	static QColor textColor(LogType lt) {return textColors[lt];}
 	QString file;
 	LogType type;
 	//QString oldline;
@@ -29,7 +31,7 @@ struct LatexLogEntry {
 	QString message;
 	LatexLogEntry();
 	LatexLogEntry(QString aFile, LogType aType, int aOldline, int aLogline, QString aMessage);
-	QString niceMessage() const;
+	QString niceMessage(bool richFormat = true) const;
 	void clear();
 };
 
