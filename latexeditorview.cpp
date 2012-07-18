@@ -297,7 +297,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),lastSetBookmark(0),config(aconfig),bibReader(0) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),config(aconfig),bibReader(0) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -541,7 +541,6 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber) {
 	for (int i=-1; i<10; i++) editor->cursor().line().removeMark(bookMarkId(i));
 	editor->cursor().line().addMark(rmid);
 	editor->ensureCursorVisible();
-	if (bookmarkNumber>=1 && bookmarkNumber<=3) lastSetBookmark=bookmarkNumber;
     return true;
 }
 
@@ -860,17 +859,14 @@ void LatexEditorView::lineMarkClicked(int line) {
 		l.removeMark(QLineMarksInfoCenter::instance()->markTypeId("badbox"));
 		return;
 	}
-	//add unused mark (1..3) (when possible)
-	for (int i=1; i<=3; i++)
-		if (editor->document()->findNextMark(bookMarkId(i))<0) {
-			l.addMark(bookMarkId(i));
+	//add unused mark (1,2 .. 9,0) (when possible)
+	for (int i=1; i<=10; i++) {
+		if (editor->document()->findNextMark(bookMarkId(i%10))<0) {
+			l.addMark(bookMarkId(i%10));
 			return;
 		}
-	//remove/add used mark
-	lastSetBookmark++;
-	if (lastSetBookmark<1 || lastSetBookmark>3) lastSetBookmark=1;
-	editor->document()->line(editor->document()->findNextMark(bookMarkId(lastSetBookmark))).removeMark(bookMarkId(lastSetBookmark));
-	l.addMark(bookMarkId(lastSetBookmark));
+	}
+	l.addMark(bookMarkId(-1));
 }
 void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (line < 0 || line>=editor->document()->lines()) return;
