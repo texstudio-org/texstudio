@@ -117,7 +117,6 @@ private:
 	QSet<QString>* bibTeXIds;
 	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
 	int curChangePos;
-	int lastSetBookmark; //only looks at 1..3 (mouse range)
 	
 	LatexEditorViewConfig* config;
 	
