@@ -53,7 +53,6 @@ QString LatexLogEntry::niceMessage(bool richFormat) const {
 	default:;
 	}
 
-	bool richFormat = true;
 	if (!richFormat) {
 		return pre+message;
 	}
