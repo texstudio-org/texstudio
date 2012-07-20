@@ -39,7 +39,7 @@ QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
 QString getCommandLineGhostscript();
 
-CommandInfo::CommandInfo(): user(false), meta(false), guessFunc(0){}
+CommandInfo::CommandInfo(): user(false), meta(false), rerunCompiler(false), guessFunc(0){}
 
 QString CommandInfo::guessCommandLine() const{
 	if (guessFunc) {
@@ -516,7 +516,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 	options.nestingDeep++;
 	if (options.canceled) return ExpandedCommands();
 	if (options.nestingDeep > maxExpandingNestingDeep) {
-		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\".").arg(options.nestingDeep).arg(str))){
+		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\"?").arg(options.nestingDeep).arg(str))){
 			options.canceled = true;
 			return ExpandedCommands();
 		}
@@ -626,7 +626,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			
 			if (newPart.isEmpty()) continue;
 			
-			if (rerunCommandsUnexpanded.contains(cmdName)) 
+			if (commands.value(cmdName).rerunCompiler)
 				for (int i=0; i<newPart.size(); i++)
 					newPart[i].flags |= RCF_RERUN;
 			
@@ -794,7 +794,8 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
 	
-	
+	cmi.registerOption("Tools/Automatic Rerun Commands", &autoRerunCommands, "compile|latex|pdflatex|lualatex|xelatex");
+
 	cmi.registerOption("User/ToolNames", &deprecatedUserToolNames, QStringList());
 	cmi.registerOption("User/Tools", &deprecatedUserToolCommands, QStringList());
 	
@@ -802,6 +803,11 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Tools/User Order", &userToolOrder, QStringList());
 }
 void BuildManager::readSettings(QSettings &settings){
+	QStringList rerunCommandsUnexpanded = autoRerunCommands.split("|");
+	for (int i=0;i<rerunCommandsUnexpanded.size();i++)
+		if (rerunCommandsUnexpanded[i].startsWith(TXS_CMD_PREFIX))
+			rerunCommandsUnexpanded[i] = rerunCommandsUnexpanded[i].mid(TXS_CMD_PREFIX.size());
+
 	for (int i=0, end = qMin(userToolOrder.size(), userToolDisplayNames.size());i<end;++i)
 		registerCommand(userToolOrder[i], "", userToolDisplayNames[i], "", "", 0, true);
 	
@@ -813,7 +819,10 @@ void BuildManager::readSettings(QSettings &settings){
 		if (cmd.isEmpty()) continue;
 		CommandMapping::iterator it = commands.find(id);
 		if (it == commands.end()) registerCommand(id, "", id, "", "", 0, true).commandLine = cmd;
-		else it.value().commandLine = cmd;
+		else {
+			it.value().commandLine = cmd;
+			it.value().rerunCompiler = rerunCommandsUnexpanded.contains(id);
+		}
 	}
 	settings.endGroup();
 	settings.endGroup();
@@ -908,6 +917,7 @@ void BuildManager::saveSettings(QSettings &settings){
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	settings.remove("");
+	QStringList rerunCmds;
 	for (int i=0;i<order.size();i++){
 		CommandMapping::iterator it = commands.find(order[i]);
 		if (it == commands.end()) continue;
@@ -916,7 +926,11 @@ void BuildManager::saveSettings(QSettings &settings){
 			userToolDisplayNames << it->displayName;
 			userToolOrder << it->id;
 		}
+		if (it->rerunCompiler) {
+			rerunCmds << it->id;
+		}
 	}
+	autoRerunCommands = rerunCmds.join("|");
 	settings.endGroup();
 	settings.endGroup();
 }
@@ -1304,11 +1318,6 @@ void BuildManager::setAllCommands(const CommandMapping& cmds, const QStringList&
 			(*sl)[i] = getCommandInfo((*sl)[i]).commandLine.trimmed();
 		}
 	}
-	
-	rerunCommandsUnexpanded = autoRerunCommands.split("|");
-	for (int i=0;i<rerunCommandsUnexpanded.size();i++)
-		if (rerunCommandsUnexpanded.startsWith(TXS_CMD_PREFIX))
-			rerunCommandsUnexpanded[i] =  rerunCommandsUnexpanded[i].mid(TXS_CMD_PREFIX.size());
 }
 
 void BuildManager::singleInstanceCompleted(int status){
