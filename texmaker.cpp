@@ -707,9 +707,12 @@ void Texmaker::setupMenus() {
 	
 	submenu = newManagedMenu(menu, "parens", tr("Parenthesis"));
 	newManagedAction(submenu, "jump", tr("Jump to match"), SLOT(jumpToBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_J));
-	newManagedAction(submenu, "selectBracketInner", tr("Select (inner)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("maximal", false);
-	newManagedAction(submenu, "selectBracketOuter", tr("Select (outer)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("maximal", true);
+	newManagedAction(submenu, "selectBracketInner", tr("Select (inner)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("minimal", true);
+	newManagedAction(submenu, "selectBracketOuter", tr("Select (outer)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("minimal", false);
+	newManagedAction(submenu, "selectBracketCommand", tr("Select (command)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_C))->setProperty("backslash", true);
+	newManagedAction(submenu, "selectBracketLine", tr("Select (line)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_L))->setProperty("line", true);
 	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select (inverting)"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
+	             
 	submenu->addSeparator();
 	newManagedAction(submenu, "findMissingBracket", tr("Find mismatch"), SLOT(findMissingBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_M));
 	
@@ -6292,17 +6295,29 @@ void Texmaker::jumpToBracket(){
 
 void Texmaker::selectBracket(){
 	if (!currentEditor()) return;
-	REQUIRE(sender() && currentEditor()->document() && currentEditor()->document()->languageDefinition());
+	REQUIRE(sender() && currentEditor()->document());
+	if (!currentEditor()->document()->languageDefinition()) return;
 	QDocumentCursor orig, to;
-	currentEditor()->cursor().getMatchingPair(orig, to, sender()->property("maximal").toBool());
+	currentEditor()->cursor().getMatchingPair(orig, to, !sender()->property("minimal").toBool());
+	if (!orig.isValid() && !to.isValid()) return;
+	
+	if (sender()->property("line").toBool()) {
+		if (to < orig) to.setColumnNumber(0);
+		else to.setColumnNumber(to.line().length());
+	}
 	QDocumentCursor::sort(orig, to);
-	if (sender()->property("maximal").toBool()) {
-		if (orig.hasSelection()) orig = orig.selectionStart();
-		if (to.hasSelection()) to = to.selectionEnd();
-	} else {
+	if (sender()->property("minimal").toBool()) {
 		if (orig.hasSelection()) orig = orig.selectionEnd();
 		if (to.hasSelection()) to = to.selectionStart();
+	} else {
+		if (orig.hasSelection()) orig = orig.selectionStart();
+		if (to.hasSelection()) to = to.selectionEnd();
 	}
+	if (sender()->property("backslash").toBool()) {
+		int backslash = orig.line().text().lastIndexOf('\\', orig.columnNumber());
+		if (backslash >= 0) orig.setColumnNumber(backslash);
+	}	
+		
 	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
 }
 
