@@ -869,7 +869,7 @@ QString getLastCrashInformation(bool& wasLoop){
 
 //==================GUARDIAN==================
 
-SafeThread * guardian = 0;
+Guardian * guardian = 0;
 bool running = true;
 volatile int mainEventLoopTicks = 0;
 volatile bool undoRecovering = false;
@@ -877,7 +877,12 @@ void Guardian::run(){
 	int lastTick = mainEventLoopTicks;
 	int errors = 0;
 	while (running) {
-		sleep(4);
+		int slowOperationWait = slowOperations * 15;
+		do {
+			sleep(4);
+			slowOperationWait -= 1;
+		} while (slowOperationWait >= 0);
+		
 		if (undoRecovering) {
 			undoRecovering = false;
 			errors = 1;
@@ -891,7 +896,7 @@ void Guardian::run(){
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
 		lastTick = mainEventLoopTicks;
-		if (errors >= 6) {
+		if (errors >= 10) {
 			fprintf(stderr, "Main thread in trouble\n");
 			int repetitions = 0;
 			while (lastTick == mainEventLoopTicks && !recoverMainThreadFromOutside()) {
@@ -927,6 +932,18 @@ void Guardian::continueEndlessLoop(){
 }
 
 
+Guardian* Guardian::instance(){
+	return guardian;
+}
+
+void Guardian::slowOperationStarted(){
+	slowOperations++;
+}
+
+void Guardian::slowOperationEnded(){
+	slowOperations--;
+	if (slowOperations < 0) slowOperations = 0;
+}
 
 
 

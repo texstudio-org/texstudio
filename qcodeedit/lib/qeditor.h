@@ -433,6 +433,9 @@ public slots:
 		void emitWordDoubleClicked();
 		
 		void visibleLinesChanged();
+		
+		void slowOperationStarted();
+		void slowOperationEnded();
 	public slots:
 		void checkClipboard();
 		void reconnectWatcher();

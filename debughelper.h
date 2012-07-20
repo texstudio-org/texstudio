@@ -16,6 +16,8 @@ QString getLastCrashInformation(bool & wasLoop);
 
 
 class Guardian: public SafeThread{
+	Q_OBJECT
+	
 	void run();
 public:
 	static void summon();
@@ -23,6 +25,15 @@ public:
 	static void shutdown();
 
 	static void continueEndlessLoop();
+	
+	static Guardian* instance();
+	
+public slots: 
+	void slowOperationStarted();
+	void slowOperationEnded();
+
+private:
+	int slowOperations;
 };
 
 
