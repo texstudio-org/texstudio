@@ -648,6 +648,9 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 	const int size = f.size();
 	//const int size = m_lastFileState.size = f.size();
 
+	bool slow = (size > 30 * 1024);
+	if (slow) emit slowOperationStarted();
+	
 	if ( size < 500000 )
 	{
 		// instant load for files smaller than 500kb
@@ -681,6 +684,9 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		delete dec;
 		stopChunkLoading();
 	}
+	
+	if (slow) emit slowOperationEnded();
+	
 	setCodecDirect(codec);
 	setLastModified(QFileInfo(file).lastModified());
 }

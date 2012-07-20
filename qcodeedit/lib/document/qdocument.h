@@ -389,6 +389,8 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void lineEndingChanged(int lineEnding);
 		
+		void slowOperationStarted();
+		void slowOperationEnded();
 	public:
 		int indexOf(QDocumentLineHandle* h, int hint = -1);
 	private:

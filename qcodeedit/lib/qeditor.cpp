@@ -472,6 +472,9 @@ void QEditor::init(bool actions,QDocument *doc)
 	connect(m_doc	, SIGNAL( lineEndingChanged(int) ),
 			this	, SLOT  ( lineEndingChanged(int) ) );
 
+	connect(m_doc, SIGNAL(slowOperationStarted()), SIGNAL(slowOperationStarted()));
+	connect(m_doc, SIGNAL(slowOperationEnded()), SIGNAL(slowOperationEnded()));
+	
 	m_cursor = QDocumentCursor(m_doc);
 	m_cursor.setAutoUpdated(true);
 
@@ -935,6 +938,9 @@ void QEditor::save()
 
 bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
+
+	emit slowOperationStarted();
+	
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
@@ -954,7 +960,7 @@ bool QEditor::saveCopy(const QString& filename){
 				   "location. However if there is really not enough space, this will\n"
 				   "result in data loss.\n"
 				   ).arg(filename).arg(data.size()/1024).arg(freeBytes/1024L),QMessageBox::Retry|QMessageBox::Ignore|QMessageBox::Cancel, QMessageBox::Retry);
-		if (bt == QMessageBox::Cancel) return false;
+		if (bt == QMessageBox::Cancel) { emit slowOperationEnded(); return false; }
 		else if (bt == QMessageBox::Ignore) break;
 	}
 
@@ -962,9 +968,12 @@ bool QEditor::saveCopy(const QString& filename){
 
 	if ( !f.open(QFile::WriteOnly) ) {
 		QMessageBox::warning(this, tr("Saving failed"), tr("I failed to acquire write permissions on the file %1.\n\nPerhaps it is read-only or opened in another program?").arg(filename),QMessageBox::Ok);
+		emit slowOperationEnded();
 		return false;
 	}
 
+	bool sucessfullySaved = false;
+	
 	int bytesWritten = f.write(data);
 	if (bytesWritten == -1) {
 		QMessageBox::critical(this, tr("Saving failed"),
@@ -973,31 +982,29 @@ bool QEditor::saveCopy(const QString& filename){
 				   "The file may have been corrupted by this! You should save\n"
 				   "to another location or fix the problem to prevent data loss.\n"
 				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
-		f.close();
-		return false;
 	} else if (bytesWritten != data.size()) {
 		QMessageBox::critical(this, tr("Saving failed"),
 				tr("Only part of the file could be written:\n%1\n\n"
 				   "The file may have been corrupted by this! You should save\n"
 				   "to another location or fix the problem to prevent data loss.\n"
 				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
-		f.close();
-		return false;
-	}
-	if (!f.flush()) { // make sure the data are really on disk, not only buffered
+	} else sucessfullySaved = true;
+	
+	if (sucessfullySaved) if (!f.flush()) { // make sure the data are really on disk, not only buffered
 		QMessageBox::critical(this, tr("Saving failed"),
 				tr("Writing the document to file\n%1\n"
 				   "failed after the old content was deleted.\n\n"
 				   "The file may have been corrupted by this! You should save\n"
 				   "to another location or fix the problem to prevent data loss.\n"
 				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
-		f.close();
-		return false;
+		sucessfullySaved = false;
 	}
 
-	f.close(); //explicite close for watcher
+	f.close(); //explicite close for watcher (??? is this necessary anymore?)
 
-	return true;
+	emit slowOperationEnded();
+	
+	return sucessfullySaved;
 }
 
 /*!
@@ -4971,6 +4978,9 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			if (txt.isEmpty())
 				return;
 
+			bool slow = txt.size() > 20*1024;
+			if (slow) emit slowOperationStarted();
+			
 			bool macroing = atPlaceholder() || m_mirrors.count();
 
 			if ( macroing )
@@ -5003,6 +5013,8 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			if ( macroing )
 				m_doc->endMacro();
+			
+			if (slow) emit slowOperationEnded();
 		}
 
 		ensureCursorVisible();
