@@ -480,9 +480,9 @@ volatile sig_atomic_t lastCrashSignal = 0;
 #define SIGMYSTACKSEGV 123
 
 #ifdef Q_WS_MACX
-#define LAST_POSSIBLE_TXS_ADDRESS __etext
+#define LAST_POSSIBLE_TXS_ADDRESS ( ( (char*)&isAddressInTeXstudio) + 0x800000 )
 #else
-#define LAST_POSSIBLE_TXS_ADDRESS _etext
+#define LAST_POSSIBLE_TXS_ADDRESS (&_etext)
 //perhaps always use __etext? (did work on linux)
 #endif
 
@@ -491,7 +491,7 @@ extern int LAST_POSSIBLE_TXS_ADDRESS;
 CPU_CONTEXT_TYPE lastLoopContext;
 
 bool isAddressInTeXstudio(void * address){
-	return address < &LAST_POSSIBLE_TXS_ADDRESS;
+	return address < LAST_POSSIBLE_TXS_ADDRESS;
 }
 
 
