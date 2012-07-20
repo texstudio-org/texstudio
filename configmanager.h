@@ -199,8 +199,10 @@ signals:
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName,configBaseDir;
+	enum CommmandGridWidgetType {CG_ID, CG_RERUN, CG_CMD, CG_PROGRAM, CG_RESET, CG_CONFIG, CG_DEL, CG_MOVEUP, CG_MOVEDOWN, CG_ADD};
 	CommandMapping tempCommands;
-	QList<QWidget*> commandInputs, userCommandInputs, userCommandNameInputs;
+	QList<QPushButton*> rerunButtons; // only for non-user commands
+	QList<QWidget*> commandInputs;    // only for non-user commands
 	QGridLayout* userGridLayout;
 	QLineEdit* pdflatexEdit;
 	void loadTranslations(QString locale);
@@ -242,6 +244,7 @@ private:
 
 	QMap<ManagedProperty*, QPair<LinkOptions, QList<QObject*> > > managedOptionObjects;
 	
+	int userCommandRowCount();
 	void addCommandRow(QGridLayout* parent, const CommandInfo& cmd, int row);
 	void createCommandList(QGroupBox* box, const QStringList& order, bool user, bool meta);
 	void setFirstRowMoveUpEnable(bool enable);
@@ -254,7 +257,7 @@ private slots:
 	void removeCommand();
 	void moveUpCommand();
 	void moveDownCommand();
-	void moveCommand(int dir);
+	void moveCommand(int dir, int atRow=-1);
 
 	void latexTreeItemChanged(QTreeWidgetItem* item,int l);
 	void latexTreeNewItem(bool menu = false);

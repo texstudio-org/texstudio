@@ -55,6 +55,7 @@ struct CommandInfo {
 	QString displayName;
 	bool user;
 	bool meta;
+	bool rerunCompiler;
 	
 	QStringList metaSuggestionList;
 	QStringList simpleDescriptionList;
@@ -115,7 +116,7 @@ public:
 	ExpandedCommands expandCommandLine(const QString& str, ExpandingOptions& expandingOptions);
 	RunCommandFlags getSingleCommandFlags(const QString& command) const;
 	bool hasCommandLine(const QString& program);
-	
+
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
@@ -180,7 +181,6 @@ signals:
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningCommands(const QString& commandMain, bool latex, bool pdf);
-	
 private:
 	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
@@ -193,7 +193,6 @@ private:
 	QPointer<ProcessX> processWaitedFor;
 	
 	QStringList latexCommands, rerunnableCommands, pdfCommands, stdoutCommands, viewerCommands;
-	QStringList rerunCommandsUnexpanded;
 public:
 	static int autoRerunLatex;
 	static QString autoRerunCommands;

@@ -22,8 +22,13 @@
 const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
 const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
 
-const char* PROPERTY_COMMAND_NAME = "commandName";
+const char* PROPERTY_COMMAND_ID = "cmdID";
+const char* PROPERTY_NAME_WIDGET = "nameWidget";
+const char* PROPERTY_WIDGET_TYPE = "widgetType";
 const char* PROPERTY_ASSOCIATED_INPUT = "associatedInput";
+const char* PROPERTY_ADD_BUTTON = "addButton";
+Q_DECLARE_METATYPE(QPushButton*)
+
 
 ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 }
@@ -276,6 +281,33 @@ void setText(QWidget* w, const QString& t){
 	else REQUIRE(false);
 }
 
+void assignNameWidget(QWidget *w, QWidget *nameWidget) {
+	w->setProperty(PROPERTY_NAME_WIDGET, QVariant::fromValue<QWidget*>(nameWidget));
+	QString cmdID = nameWidget->property(PROPERTY_COMMAND_ID).toString();
+	if (!cmdID.isEmpty()) {
+		// user commands don't store the ID in the property, because it's editable
+		// In builtin commmands, the ID is fixed, so we can directly assign it to the widget.
+		// this speeds up lookup in getCmdID
+		w->setProperty(PROPERTY_COMMAND_ID, cmdID);
+	}
+}
+QString getCmdID(QWidget *w) {
+	QString cmdID = w->property(PROPERTY_COMMAND_ID).toString();
+	if (!cmdID.isEmpty()) return cmdID;
+
+	QWidget *nameWidget = w->property(PROPERTY_NAME_WIDGET).value<QWidget*>();
+	if (!nameWidget) nameWidget = w;
+	cmdID = nameWidget->property(PROPERTY_COMMAND_ID).toString();
+	if (!cmdID.isEmpty()) return cmdID;
+
+	// user commands don't store the ID in the property, because it's editable
+	QLineEdit *le = qobject_cast<QLineEdit *>(nameWidget);
+	REQUIRE_RET(le, "");
+	QString combinedName = le->text();
+	int pos = combinedName.indexOf(":");
+	cmdID = (pos == -1)?combinedName:combinedName.left(pos);
+	return cmdID;
+}
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
        buildManager(0),editorConfig(new LatexEditorViewConfig),
@@ -284,7 +316,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
        pdfDocumentConfig(new PDFDocumentConfig),
        insertGraphicsConfig(new InsertGraphicsConfig),
        grammarCheckerConfig(new GrammarCheckerConfig),
-       menuParent(0), menuParentsBar(0), modifyMenuContentsFirstCall(true), persistentConfig(0) {
+	   menuParent(0), menuParentsBar(0), modifyMenuContentsFirstCall(true), persistentConfig(0) {
 	
 	Q_ASSERT(!globalConfigManager);
 	globalConfigManager = this;
@@ -432,8 +464,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
-	registerOption("Tools/Automatic Rerun Commands", &BuildManager::autoRerunCommands, "compile|latex|pdflatex|lualatex|xelatex", &pseudoDialog->lineEditCommandsWithRerun);
-	
+
 	//SVN
 	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
 	registerOption("Tools/SVN Undo", &svnUndo, false, &pseudoDialog->cbSVNUndo);
@@ -974,7 +1005,7 @@ bool ConfigManager::execConfigDialog() {
 	pdflatexEdit = 0;
 	tempCommands = buildManager->getAllCommands();
 	QStringList tempOrder = buildManager->getCommandsOrder();
-	commandInputs.clear(); userCommandInputs.clear(); userCommandNameInputs.clear();
+	rerunButtons.clear(); commandInputs.clear();
 	createCommandList(confDlg->ui.groupBoxCommands, tempOrder, false, false);
 	createCommandList(confDlg->ui.groupBoxMetaCommands, tempOrder, false, true);
 	createCommandList(confDlg->ui.groupBoxUserCommands, tempOrder, true, false);
@@ -1252,7 +1283,7 @@ bool ConfigManager::execConfigDialog() {
 			if (it.value().user) it = tempCommands.erase(it);
 			else  ++it;
 		for (int i=0;i<commandInputs.size();i++){
-			CommandMapping::iterator it = tempCommands.find(commandInputs[i]->property(PROPERTY_COMMAND_NAME).toString());
+			CommandMapping::iterator it = tempCommands.find(commandInputs[i]->property(PROPERTY_COMMAND_ID).toString());
             if (it != tempCommands.end()) {
                 QString text = getText(commandInputs[i]);
                 QComboBox *cb=qobject_cast<QComboBox*>(commandInputs[i]);
@@ -1264,19 +1295,44 @@ bool ConfigManager::execConfigDialog() {
                 it.value().commandLine =text;
             }
 		}
-		//read user commands (ugly lists, but we can't use maps because they screw up the ordering)
-		for (int i=0;i<userCommandInputs.size();i++){
-			CommandInfo ci;
-			QString combinedName = getText(userCommandNameInputs[i]);
-			int pos = combinedName.indexOf(":");
-			ci.id = pos == -1?combinedName:combinedName.left(pos);
-			if (ci.id.isEmpty()) ci.id = "user";
-			ci.displayName = pos == -1?combinedName:combinedName.mid(pos+1);
-			ci.commandLine = getText(userCommandInputs[i]);
-			ci.user = true;
-			tempCommands.insert(ci.id, ci);
-			userOrder << ci.id;
+		for (int i=0;i<rerunButtons.size();i++){
+			CommandMapping::iterator it = tempCommands.find(getCmdID(rerunButtons[i]));
+			if (it != tempCommands.end()) {
+				it.value().rerunCompiler = rerunButtons[i]->isChecked();
+			}
 		}
+		//read user commands
+		for (int i=0; i<userGridLayout->count(); i++) {
+			QWidget *nameWidget = userGridLayout->itemAt(i)->widget();
+			if (!nameWidget) continue;
+			if (CG_ID == nameWidget->property(PROPERTY_WIDGET_TYPE).toInt()) {
+				CommandInfo ci;
+				QString combinedName = getText(nameWidget);
+				int pos = combinedName.indexOf(":");
+				ci.id = pos == -1?combinedName:combinedName.left(pos);
+				if (ci.id.isEmpty()) ci.id = "user";
+				ci.displayName = pos == -1?combinedName:combinedName.mid(pos+1);
+				ci.user = true;
+
+				while (i<userGridLayout->count()-1) {
+					i++;
+					QWidget *w = userGridLayout->itemAt(i)->widget();
+					if (!w) continue;
+					int type = w->property(PROPERTY_WIDGET_TYPE).toInt();
+					if (type == CG_ID || type == CG_ADD) {
+						i--;
+						break;
+					} else if (type == CG_RERUN) {
+						ci.rerunCompiler = static_cast<QPushButton*>(w)->isChecked();
+					} else if (type == CG_CMD) {
+						ci.commandLine = getText(w);
+					}
+				}
+				tempCommands.insert(ci.id, ci);
+				userOrder << ci.id;
+			}
+		}
+
 		buildManager->setAllCommands(tempCommands, userOrder);
 		/*TODO for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd < BuildManager::CMD_USER_QUICK; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
@@ -2001,100 +2057,147 @@ void ConfigManager::setInterfaceStyle(){
 	QApplication::setPalette(pal);
 }
 
+/*! GridLayout::rowCount() apparently never decreases. Instead there may be empty rows at the end
+	Therefore we manually keep track of the actual count of command rows
+	*/
+int ConfigManager::userCommandRowCount() {
+	int index = userGridLayout->indexOf(userGridLayout->property(PROPERTY_ADD_BUTTON).value<QPushButton*>());
+	if (index < 0) return 0;
+	int r, unused;
+	userGridLayout->getItemPosition(index, &r, &unused, &unused, &unused);
+	return r;
+}
+
 void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int row){
 	static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
 	QWidget * parent = gl->parentWidget();
-	QWidget *l;
-	if (cmd.user) l = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
+
+	// ID
+	QWidget *nameWidget;
+	if (cmd.user) nameWidget = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
 	else {
         QString lbl=qApp->translate("BuildManager",qPrintable(cmd.displayName));
-        l = new QLabel(lbl, parent);
-		l->setToolTip("ID: txs:///"+cmd.id);
+		nameWidget = new QLabel(lbl, parent);
+		if (configShowAdvancedOptions) nameWidget->setToolTip("ID: txs:///"+cmd.id);
+		nameWidget->setProperty(PROPERTY_COMMAND_ID, cmd.id);
 	}
-	QWidget* w;
+	nameWidget->setProperty(PROPERTY_WIDGET_TYPE, CG_ID);
+
+
+	// cmd Widget
+	QWidget* cmdWidget;
 	if (cmd.metaSuggestionList.isEmpty()) {
-		w = new QLineEdit(cmd.getPrettyCommand(), parent);
-		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(w);
+		cmdWidget = new QLineEdit(cmd.getPrettyCommand(), parent);
+		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(cmdWidget);
 	} else {
-		w = new QComboBox(parent);
-        w->setObjectName(cmd.id);
+		cmdWidget = new QComboBox(parent);
+		cmdWidget->setObjectName(cmd.id);
         if(!configShowAdvancedOptions && simpleMetaOptions.contains(cmd.id) && cmd.metaSuggestionList.contains(cmd.getPrettyCommand())){
             foreach(QString elem,cmd.simpleDescriptionList){
                 elem=qApp->translate("BuildManager",qPrintable(elem));
-                static_cast<QComboBox*>(w)->addItem(elem);
+				static_cast<QComboBox*>(cmdWidget)->addItem(elem);
             }
-            static_cast<QComboBox*>(w)->setEditable(false);
+			static_cast<QComboBox*>(cmdWidget)->setEditable(false);
             int i=cmd.metaSuggestionList.indexOf(cmd.getPrettyCommand());
             Q_ASSERT(i>=0);
             //static_cast<QComboBox*>(w)->setEditText();
         }else{
-            static_cast<QComboBox*>(w)->addItems(cmd.metaSuggestionList);
-            static_cast<QComboBox*>(w)->setEditable(true);
-            static_cast<QComboBox*>(w)->setEditText(cmd.getPrettyCommand());
+			static_cast<QComboBox*>(cmdWidget)->addItems(cmd.metaSuggestionList);
+			static_cast<QComboBox*>(cmdWidget)->setEditable(true);
+			static_cast<QComboBox*>(cmdWidget)->setEditText(cmd.getPrettyCommand());
         }
 
 		int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
-        if (index >= 0) static_cast<QComboBox*>(w)->setCurrentIndex(index);
+		if (index >= 0) static_cast<QComboBox*>(cmdWidget)->setCurrentIndex(index);
 	}
+	assignNameWidget(cmdWidget, nameWidget);
+	cmdWidget->setProperty(PROPERTY_WIDGET_TYPE, CG_CMD);
+
 	QList<QPushButton*> buttons;
-    if (cmd.user || cmd.meta) {
-		buttons << new QPushButton(QIcon(":/images/configure.png"), QString(), parent);
-		connect(buttons.last(),SIGNAL(clicked()),SLOT(editCommand()));
+
+	QPushButton *pb;
+	if (cmd.user || cmd.meta) {
+		pb = new QPushButton(QIcon(":/images/configure.png"), QString(), parent);
+		pb->setToolTip(tr("Configure"));
+		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_CONFIG);
+		connect(pb, SIGNAL(clicked()), SLOT(editCommand()));
+		buttons << pb;
 	}
-	buttons << new QPushButton(getRealIcon("fileopen"), "", parent);
-	connect(buttons.last(),SIGNAL(clicked()),SLOT(browseCommand()));
+
+	pb = new QPushButton(getRealIcon("fileopen"), "", parent);
+	pb->setToolTip(tr("Select Program"));
+	pb->setProperty(PROPERTY_WIDGET_TYPE, CG_PROGRAM);
+	connect(pb, SIGNAL(clicked()), SLOT(browseCommand()));
+	buttons << pb;
+
 	if (!cmd.user && cmd.metaSuggestionList.isEmpty()) {
-		buttons << new QPushButton(getRealIcon("undo"), "", parent);
-		connect(buttons.last(),SIGNAL(clicked()),SLOT(undoCommand()));
+		pb = new QPushButton(getRealIcon("undo"), "", parent);
+		pb->setToolTip(tr("Restore Default"));
+		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RESET);
+		connect(pb, SIGNAL(clicked()), SLOT(undoCommand()));
+		buttons << pb;
 	}
 	if (cmd.user) {
-		buttons << new QPushButton(getRealIcon("list-remove"), "", parent);
-		connect(buttons.last(),SIGNAL(clicked()),SLOT(removeCommand()));
-		buttons << new QPushButton(getRealIcon("up"), "", parent);
-		connect(buttons.last(),SIGNAL(clicked()),SLOT(moveUpCommand()));
-		if (row == 0) buttons.last()->setEnabled(false);
-		buttons << new QPushButton(getRealIcon("down"), "", parent);
-		connect(buttons.last(),SIGNAL(clicked()),SLOT(moveDownCommand()));
+		pb = new QPushButton(getRealIcon("list-remove"), "", parent);
+		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_DEL);
+		connect(pb,SIGNAL(clicked()),SLOT(removeCommand()));
+		buttons << pb;
+		pb = new QPushButton(getRealIcon("up"), "", parent);
+		if (row == 0) pb->setEnabled(false);
+		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_MOVEUP);
+		connect(pb,SIGNAL(clicked()),SLOT(moveUpCommand()));
+		buttons << pb;
+		pb = new QPushButton(getRealIcon("down"), "", parent);
+		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_MOVEDOWN);
+		connect(pb,SIGNAL(clicked()),SLOT(moveDownCommand()));
+		buttons << pb;
 	}
-    bool advanced = cmd.meta && !simpleMetaOptions.contains(cmd.id);
-	QList<QWidget*> temp; temp << l << w; foreach (QWidget* w, buttons) temp << w;
+	bool advanced = cmd.meta && !simpleMetaOptions.contains(cmd.id);
+	QList<QWidget*> temp; temp << nameWidget << cmdWidget; foreach (QWidget* w, buttons) temp << w;
 	foreach (QWidget* x, temp) {
 		x->setMinimumHeight(x->sizeHint().height());
-		if (x != w) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+		if (x != cmdWidget) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 		advanced |= (cmd.user && buttons.indexOf(static_cast<QPushButton*>(x)) >= 3);
 		x->setProperty("advancedOption", advanced);
 		if (advanced && !configShowAdvancedOptions) x->setVisible(false);
 	}
-	w->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
+	cmdWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
 	gl->setRowStretch(row, 1);
-	gl->addWidget(l, row,0);
-	int off =  0;
-	/*if (cmd == BuildManager::CMD_VIEWPDF) {
-		QButtonGroup *bgPDFViewer = new QButtonGroup(confDlg);
-		confDlg->checkboxInternalPDFViewer = new QRadioButton(confDlg);
-		confDlg->checkboxInternalPDFViewer->setObjectName("internal");
-		confDlg->checkboxInternalPDFViewer->setText(tr("Internal"));
-		confDlg->checkboxInternalPDFViewer->setChecked(buildManager->getLatexCommand(cmd).startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER));
-		connect(confDlg->checkboxInternalPDFViewer,SIGNAL(toggled(bool)),this,SLOT(activateInternalViewer(bool)));
-		QRadioButton *rbExternalPDFViewer = new QRadioButton("External:", confDlg);
-		rbExternalPDFViewer->setChecked(!confDlg->checkboxInternalPDFViewer->isChecked());
-		bgPDFViewer->addButton(confDlg->checkboxInternalPDFViewer);
-		bgPDFViewer->addButton(rbExternalPDFViewer);
-		gl->addWidget(confDlg->checkboxInternalPDFViewer, (int)cmd, 1);
-		gl->addWidget(rbExternalPDFViewer, (int)cmd, 2);
-		off+=2;
-	}*/
-	gl->addWidget(w,row,1+off,1,6-off-buttons.size());
-	for (int i = 0; i < buttons.size(); i++){
-		gl->addWidget(buttons[i],row,7-buttons.size()+i, 1, 1);
-		buttons[i]->setProperty(PROPERTY_ASSOCIATED_INPUT, QVariant::fromValue<QWidget*>(w));
+	gl->addWidget(nameWidget, row, CG_ID);
+	int off = 1;
+
+	// rerun button
+	static QStringList rerunnable = QStringList() << "latex" << "pdflatex" << "lualatex" << "xelatex" << "quick" << "compile" << "ps-chain" << "dvi-chain" << "pdf-chain" << "dvi-pdf-chain" << "dvi-ps-pdf-chain" << "asy-dvi-chain" << "asy-pdf-chain" << "pre-compile" << "internal-pre-compile" << "recompile-bibliography";
+	if (cmd.user || rerunnable.contains(cmd.id)) {
+		QIcon icon;
+		pb = new QPushButton();
+		icon.addFile(":/images/repeat-compile.png", QSize(), QIcon::Normal, QIcon::On);
+		icon.addFile(":/images/repeat-compile-off.png", QSize(), QIcon::Normal, QIcon::Off);
+		pb->setIcon(icon);
+		pb->setToolTip("Repeat contained compilation commands");
+		pb->setCheckable(true);
+		pb->setChecked(cmd.rerunCompiler);
+		assignNameWidget(pb, nameWidget);
+		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RERUN);
+		pb->setProperty("advancedOption", true);
+		gl->addWidget(pb, row, CG_RERUN, 1, 1);
+		if (!cmd.user)
+			rerunButtons << pb;
 	}
-	w->setProperty(PROPERTY_COMMAND_NAME, cmd.id);
-	
-	if (cmd.user) {
-		userCommandInputs << w;
-		userCommandNameInputs << l;
-	} else commandInputs << w;
+
+	gl->addWidget(cmdWidget,row,1+off,1,1);
+	for (int i = 0; i < buttons.size(); i++){
+		gl->addWidget(buttons[i],row,2+off+i, 1, 1);
+		buttons[i]->setProperty(PROPERTY_ASSOCIATED_INPUT, QVariant::fromValue<QWidget*>(cmdWidget));
+		assignNameWidget(buttons[i], nameWidget);
+	}
+
+	QPushButton *addButton = gl->property(PROPERTY_ADD_BUTTON).value<QPushButton*>();
+	if (cmd.user && addButton)
+		QWidget::setTabOrder(buttons.last(), addButton);
+
+	if (!cmd.user)
+		commandInputs << cmdWidget;
 }
 
 void ConfigManager::createCommandList(QGroupBox* box, const QStringList& order, bool user, bool meta){
@@ -2111,34 +2214,38 @@ void ConfigManager::createCommandList(QGroupBox* box, const QStringList& order, 
 		if (user != cmd.user) continue;
 		if (!user && (isMeta != meta)) continue;
 		addCommandRow(gl, cmd, row);
-
 		row++;
 	}
 	if (user){
-		QPushButton* b = new QPushButton(getRealIcon("list-add"), tr("Add"), box);
-		connect(b, SIGNAL(clicked()), SLOT(addCommand()));
-		gl->addWidget(b, row, 0);
+		QPushButton *addButton = new QPushButton(getRealIcon("list-add"), tr("Add"), box);
+		addButton->setProperty(PROPERTY_WIDGET_TYPE, CG_ADD);
+		addButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+		connect(addButton, SIGNAL(clicked()), SLOT(addCommand()));
+		gl->addWidget(addButton, row, 0, 1, 1, Qt::AlignLeft|Qt::AlignTop);
 		userGridLayout = gl;
 		setLastRowMoveDownEnable(false);
+		gl->setProperty(PROPERTY_ADD_BUTTON, QVariant::fromValue<QPushButton*>(addButton));
 	}
+	//gl->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), row, CG_RERUN);
+
 	scrollAreaCommands->setWidget(scrollAreaWidgetContents);
 	verticalLayout->addWidget(scrollAreaCommands);
 }
 
 void ConfigManager::setFirstRowMoveUpEnable(bool enable){
 	REQUIRE(userGridLayout);
-	int rows = userGridLayout->rowCount();
-	for (int i=0; i < rows-1;i++) {
-		QLayoutItem* li = userGridLayout->itemAtPosition(i, 5);
+	int rows = userCommandRowCount();
+	for (int i=0; i < rows;i++) {
+		QLayoutItem* li = userGridLayout->itemAtPosition(i, 6);
 		if (li && li->widget()) { li->widget()->setEnabled(enable); break; }
 	}
 }
 
 void ConfigManager::setLastRowMoveDownEnable(bool enable){
 	REQUIRE(userGridLayout);
-	int rows = userGridLayout->rowCount();
-	for (int i=rows-2; i >= 0; i--) {
-		QLayoutItem* li = userGridLayout->itemAtPosition(i, 6);
+	int rows = userCommandRowCount();
+	for (int i=rows-1; i >= 0; i--) {
+		QLayoutItem* li = userGridLayout->itemAtPosition(i, 7);
 		if (li && li->widget()) { li->widget()->setEnabled(enable); break; }
 	}
 }
@@ -2148,7 +2255,6 @@ void ConfigManager::browseCommand(){
 	REQUIRE(pb);
 	QWidget *w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>();
 	REQUIRE(w);
-	QString cmd = w->property(PROPERTY_COMMAND_NAME).toString();
 	QString old = getText(w);
 	QString path = old;
 	if (old.contains("|")) {
@@ -2168,7 +2274,7 @@ void ConfigManager::browseCommand(){
 	QString location=QFileDialog::getOpenFileName(0,tr("Browse program"),path,"Program (*)",0,QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"),QString("/"));
-		location="\""+location+"\" "+ tempCommands.value(cmd).defaultArgs;
+		location="\""+location+"\" "+ tempCommands.value(getCmdID(w)).defaultArgs;
 		if (old.contains("|")) setText(w, old + (old.trimmed().endsWith("|")?"":" | ") + location);
 		else setText(w, location);
 	}
@@ -2178,8 +2284,7 @@ void ConfigManager::undoCommand(){
 	REQUIRE(pb);
 	QWidget *w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>();
 	REQUIRE(w);
-	QString cmd = w->property(PROPERTY_COMMAND_NAME).toString();
-	setText(w, tempCommands.value(cmd).guessCommandLine());
+	setText(w, tempCommands.value(getCmdID(w)).guessCommandLine());
 }
 
 void ConfigManager::editCommand(){
@@ -2187,73 +2292,151 @@ void ConfigManager::editCommand(){
 	REQUIRE(pb);
 	QWidget *w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>();
 	REQUIRE(w);
-	setText(w, buildManager->editCommandList(getText(w), w->property(PROPERTY_COMMAND_NAME).toString()));
+	setText(w, buildManager->editCommandList(getText(w), getCmdID(w)));
 }
 
 void ConfigManager::addCommand(){
 	QPushButton* self = qobject_cast<QPushButton*>(sender());
 	REQUIRE(self); REQUIRE(userGridLayout);
 	CommandInfo cmd;
-	cmd.id = QString("user%1").arg(userCommandInputs.size());
+
+	// make sure the ID is unique
+	QStringList currentUserCmdIDs;
+	for (int i=0; i<userGridLayout->count(); i++) {
+		QWidget *nameWidget = userGridLayout->itemAt(i)->widget();
+		if (!nameWidget || !nameWidget->property(PROPERTY_WIDGET_TYPE).toInt() == CG_ID) continue;
+		currentUserCmdIDs << getCmdID(nameWidget);
+	}
+	for (int i=0; i<currentUserCmdIDs.count()+1; i++) {
+		QString id = QString("user%1").arg(i);
+		if (!currentUserCmdIDs.contains(id)) {
+			cmd.id = id;
+			break;
+		}
+	}
+
 	cmd.user = true;
-	int row = userGridLayout->rowCount();
 	setLastRowMoveDownEnable(true);
+
+	int row, c, dr, dc;
+	userGridLayout->getItemPosition(userGridLayout->count()-1, &row, &c, &dr, &dc);
+
 	userGridLayout->removeWidget(self);
-	addCommandRow(userGridLayout, cmd, row-1);
+	addCommandRow(userGridLayout, cmd, row);
 	userGridLayout->addWidget(self, row+1, 0);
 	setLastRowMoveDownEnable(false);
 }
 
-void ConfigManager::removeCommand(){
+void ConfigManager::removeCommand() {
+	// deleting widget from within the grid causes layout problems because of empty rows
+	// because we don't want to repopulate the whole table, we move the command to delete to the last row and delete it there
+	// using moveCommand is not best in performance, but easy and safe and we're not performance critical here anyway
 	QPushButton* self = qobject_cast<QPushButton*>(sender()); REQUIRE(self); REQUIRE(userGridLayout);
-	QWidget* w = self->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>(); REQUIRE(w);
-	int pos = userCommandInputs.indexOf(w); REQUIRE(pos >= 0);
-	int widgetId = userGridLayout->indexOf(self) - 2; 
-	for (int i=0;i<5;i++) {
-		QLayoutItem* li = userGridLayout->takeAt(widgetId);
-		REQUIRE(li);
-		delete li->widget();
+
+	userGridLayout->parentWidget()->setUpdatesEnabled(false);
+
+	int row, col, unused;
+	userGridLayout->getItemPosition(userGridLayout->indexOf(self), &row, &col, &unused, &unused ); REQUIRE(row >= 0);
+
+	int rows = userCommandRowCount();
+	for (int r = row; r<rows-1; r++) {
+		moveCommand(+1, r);
 	}
-	delete userCommandInputs[pos]; //layout item memory leak??
-	delete userCommandNameInputs[pos];
-	userCommandInputs.removeAt(pos);
-	userCommandNameInputs.removeAt(pos);
+
+	QWidget *nameWidget = userGridLayout->itemAtPosition(rows-1, 0)->widget();
+	QString cmdID(getCmdID(nameWidget));
+
+	int index=userGridLayout->indexOf(nameWidget);
+	while (index+1 < userGridLayout->count()) {
+		QLayoutItem *li = userGridLayout->itemAt(index+1);
+		QWidget *w = li->widget();
+		if (w && nameWidget != li->widget()->property(PROPERTY_NAME_WIDGET).value<QWidget*>()) break;
+		userGridLayout->removeItem(li);
+		if (w) delete w;
+		delete li;
+	}
+	delete userGridLayout->takeAt(index);
+	delete nameWidget;
+
+	// add button and spacer
+	QPushButton *addButton = userGridLayout->property(PROPERTY_ADD_BUTTON).value<QPushButton*>();
+	userGridLayout->removeWidget(addButton);
+	userGridLayout->addWidget(addButton, rows-1, 0, 1, 1);
+	/*col = 0;
+	for (int i=index; i<userGridLayout->count(); i++) {
+		QLayoutItem *li = userGridLayout->takeAt(index);
+		qDebug() << li->widget();
+		userGridLayout->addItem(li, rows-1, col++, 1, 1);
+	}*/
+	qDebug() << rows << userCommandRowCount();
+
+	/*for (int i=0; i<userGridLayout->count(); i++) {
+		int r, c, unused;
+		userGridLayout->getItemPosition(i, &r, &c, &unused, &unused);
+		qDebug() << i << r << c;
+	}*/
+
 	setLastRowMoveDownEnable(false);
 	setFirstRowMoveUpEnable(false);
+
+	userGridLayout->parentWidget()->setUpdatesEnabled(true);
 }
 
+
+void exchangeProperties(QWidget *w, QWidget *w2) {
+	if (!w || !w2) return;
+
+	QLineEdit *le;
+	QComboBox *cb;
+	QPushButton *pb;
+	if ( (le = qobject_cast<QLineEdit *>(w)) ) {
+		QLineEdit *le2 = qobject_cast<QLineEdit *>(w2);
+		QString s = le->text();
+		le->setText(le2->text());
+		le2->setText(s);
+	} else if ( (cb = qobject_cast<QComboBox *>(w)) ) {
+		QComboBox *cb2 = qobject_cast<QComboBox *>(w2);
+		QString cbCurrent = cb->currentText();
+		QStringList cbTexts;
+		for (int i=0; i<cb->count(); i++) {
+			cbTexts << cb->itemText(i);
+		}
+		cb->clear();
+		for (int i=0; i<cb2->count(); i++) {
+			cb->addItem(cb2->itemText(i));
+		}
+		cb->setEditText(cb2->currentText());
+		cb2->clear();
+		cb2->addItems(cbTexts);
+		cb2->setEditText(cbCurrent);
+	} else if ((pb = qobject_cast<QPushButton *>(w)) && pb->isCheckable()) {
+		QPushButton *pb2 = qobject_cast<QPushButton *>(w2);
+		bool b = pb->isChecked();
+		pb->setChecked(pb2->isChecked());
+		pb2->setChecked(b);
+	}
+}
 void ConfigManager::moveUpCommand(){ moveCommand(-1); }
 void ConfigManager::moveDownCommand(){ moveCommand(+1); }
-void ConfigManager::moveCommand(int dir){
-	QPushButton* self = qobject_cast<QPushButton*>(sender()); REQUIRE(self); REQUIRE(userGridLayout);
-	QWidget* w = self->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>(); REQUIRE(w);
-	int pos = userCommandInputs.indexOf(w); REQUIRE(pos >= 0);
-	int rowpos, column, temp;
-	userGridLayout->getItemPosition(userGridLayout->indexOf(self), &rowpos, &column, &temp, &temp ); REQUIRE(rowpos >= 0);
-	int rows = userGridLayout->rowCount();
-	QWidget* w2 = 0, *wsel = 0;
-	for (rowpos+=dir; rowpos >= 0 && rowpos < rows; rowpos+=dir) {
-		QLayoutItem* li = userGridLayout->itemAtPosition(rowpos, 1);
-		QLayoutItem* lis = userGridLayout->itemAtPosition(rowpos, column);
-		if (li && li->widget() && lis && lis->widget()) { 
-			w2 = li->widget();
-			wsel = lis->widget();
-			break;
-		}
+void ConfigManager::moveCommand(int dir, int atRow){
+	if (atRow<0) {
+		// determine row from sending button
+		QPushButton* self = qobject_cast<QPushButton*>(sender()); REQUIRE(self); REQUIRE(userGridLayout);
+		QWidget* w = self->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget*>(); REQUIRE(w);
+		int col, unused;
+		userGridLayout->getItemPosition(userGridLayout->indexOf(self), &atRow, &col, &unused, &unused ); REQUIRE(atRow >= 0);
 	}
-	if (!w2) return;
-	int pos2 = userCommandInputs.indexOf(w2);  REQUIRE(pos2 >= 0); 
-	REQUIRE(userCommandInputs.size() == userCommandNameInputs.size());
-	QString mixedId = getText(userCommandNameInputs[pos]);
-	setText(userCommandNameInputs[pos], getText(userCommandNameInputs[pos2]));
-	setText(userCommandNameInputs[pos2], mixedId);
-	QString cmd = getText(w);
-	setText(w, getText(w2));
-	setText(w2, cmd);
-	QVariant id = w->property(PROPERTY_COMMAND_NAME);
-	w->setProperty(PROPERTY_COMMAND_NAME, w2->property(PROPERTY_COMMAND_NAME));
-	w2->setProperty(PROPERTY_COMMAND_NAME, id);
-	wsel->setFocus();
+	int cols = userGridLayout->columnCount();
+	for (int c=0; c<cols; c++) {
+		QLayoutItem* li = userGridLayout->itemAtPosition(atRow, c);
+		QLayoutItem* li2 = userGridLayout->itemAtPosition(atRow+dir, c);
+		Q_ASSERT(li && li2);
+		QWidget *wd = li->widget();
+		QWidget *wd2 = li2->widget();
+		exchangeProperties(wd, wd2);
+	}
+	setLastRowMoveDownEnable(false);
+	setFirstRowMoveUpEnable(false);
 }
 
 // manipulate latex menus
