@@ -940,6 +940,12 @@ bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
 
 	emit slowOperationStarted();
+
+    // insert hard line breaks on modified lines (if desired)
+    if(flag(HardLineWrap)){
+        QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
+        m_doc->applyHardLineWrap(handles);
+    }
 	
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
