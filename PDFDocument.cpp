@@ -1850,7 +1850,9 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		int& h = globalConfig->windowHeight;
 		int screenNumber = QApplication::desktop()->screenNumber(QPoint(x,y));
 		QRect screen = QApplication::desktop()->availableGeometry(screenNumber);
-		if (!screen.contains(x,y)) {
+        // add some tolerance, as fullscreen seems to have negative coordinate (KDE...)
+        screen.adjust(-5,-5,+5,+5);
+        if (!screen.contains(x,y)) {
 			// top left is not on screen
 			x = screen.x() + screen.width()*2/3;
 			y = screen.y()+10;
