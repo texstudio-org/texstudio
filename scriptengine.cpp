@@ -22,9 +22,11 @@ Q_DECLARE_METATYPE(QFileInfo);
 Q_DECLARE_METATYPE(SubScriptObject*);
 Q_DECLARE_METATYPE(QEditor*);
 Q_DECLARE_METATYPE(QList<LatexDocument*>);
+#ifndef NO_POPPLER_PREVIEW
 Q_DECLARE_METATYPE(PDFDocument*);
 Q_DECLARE_METATYPE(PDFWidget*);
 Q_DECLARE_METATYPE(QList<PDFDocument*>);
+#endif
 Q_DECLARE_METATYPE(QString*);
 
 BuildManager* scriptengine::buildManager = 0;
@@ -331,10 +333,10 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	qScriptRegisterQObjectMetaType<LatexEditorView*>(engine);
 	qScriptRegisterQObjectMetaType<LatexDocument*>(engine);
 	qScriptRegisterQObjectMetaType<LatexDocuments*>(engine);
-
+#ifndef NO_POPPLER_PREVIEW
 	qScriptRegisterQObjectMetaType<PDFDocument*>(engine);
 	qScriptRegisterQObjectMetaType<PDFWidget*>(engine);
-	
+#endif
 	QScriptValue extendedQEditor = engine->newObject();
 	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
@@ -343,7 +345,9 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m
 	qScriptRegisterQObjectMetaType<QEditor*>(engine, extendedQEditor);
 	
 	qScriptRegisterSequenceMetaType<QList<LatexDocument*> >(engine);
+#ifndef NO_POPPLER_PREVIEW
 	qScriptRegisterSequenceMetaType<QList<PDFDocument*> >(engine);
+#endif
 	
 	qRegisterMetaType<RunCommandFlags>();
 	
@@ -433,8 +437,9 @@ void scriptengine::run(){
 	
 	engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
 	engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
+#ifndef NO_POPPLER_PREVIEW
 	engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
-	
+#endif
 	QScriptValue bm = engine->newQObject(&app->buildManager);
 	bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));	
 	//bm.setProperty("commandLineRequested", engine->globalObject().property("buildManagerCommandLineRequestedWrapper"));
