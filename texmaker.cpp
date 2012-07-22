@@ -2120,10 +2120,12 @@ repeatAfterFileSavingFailed:
 	updateOpenDocumentMenu();
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
 
+#ifndef NO_POPPLER_PREVIEW
 	//close associated embedded pdf viewer
 	foreach(PDFDocument *viewer,PDFDocument::documentList())
 		if (viewer->autoClose && viewer->getMasterFile()==fi)
 			viewer->close();
+#endif
 }
 
 void Texmaker::fileCloseAll() {
@@ -2844,21 +2846,23 @@ void Texmaker::SaveSettings(const QString& configName) {
 	configManager.centralVisible=centralToolBar->isVisible();
 	// update completion usage
 	LatexCompleterConfig *conf=configManager.completerConfig;
+#ifndef NO_POPPLER_PREVIEW
 	//pdf viewer embedded open ?
-	if(!PDFDocument::documentList().isEmpty()){
-	    PDFDocument* doc=PDFDocument::documentList().first();
-	    if(doc->embeddedMode){
-		QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
-		int sum=0;
-		int last=0;
-		foreach(int i,sz){
-		    sum+=i;
-		    last=i;
-		}
-		if(last>10)
-		    pdfSplitterRel=1.0*last/sum;
-	    }
-	}
+    if(!PDFDocument::documentList().isEmpty()){
+        PDFDocument* doc=PDFDocument::documentList().first();
+        if(doc->embeddedMode){
+            QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+            int sum=0;
+            int last=0;
+            foreach(int i,sz){
+                sum+=i;
+                last=i;
+            }
+            if(last>10)
+                pdfSplitterRel=1.0*last/sum;
+        }
+    }
+#endif
 
 	
 	QSettings *config=configManager.saveSettings(configName);
@@ -4961,11 +4965,13 @@ void Texmaker::viewCloseSomething(){
 		outputView->hide();
 		return;
 	}
+#ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* doc, PDFDocument::documentList())
-		if (doc->embeddedMode) {
-			doc->close();
-			return;
-		}
+        if (doc->embeddedMode) {
+            doc->close();
+            return;
+        }
+#endif
 	QTime ct = QTime::currentTime();
 	if (ct.second() % 5 != 0) return;
 	for (int i=2;i<63;i++) if (ct.minute() != i && ct.minute() % i  == 0) return;
@@ -4987,7 +4993,7 @@ void Texmaker::setFullScreenMode() {
 
 void Texmaker::viewAlignWindows() {
 	QWidgetList windows = QApplication::topLevelWidgets();
-
+#ifndef NO_POPPLER_PREVIEW
 	// find first pdf viewer window
     PDFDocument *pdfViewer = 0;
 	foreach (QWidget *w, windows) {
@@ -5009,6 +5015,7 @@ void Texmaker::viewAlignWindows() {
 		pdfViewer->move(splitXpos, screen.top());
 		pdfViewer->resize(screen.right() - frameGeometry().right() - frameWidth, screen.height()-frameHeight);
 	}
+#endif
 }
 
 void Texmaker::viewSetHighlighting(QAction *act) {
@@ -5042,6 +5049,7 @@ void Texmaker::viewExpandBlock() {
 	currentEditorView()->foldBlockAt(true,currentEditorView()->editor->cursor().lineNumber());
 }
 void Texmaker::pdfClosed(){
+#ifndef NO_POPPLER_PREVIEW
     PDFDocument* from = qobject_cast<PDFDocument*>(sender());
     if(from){
 	if(from->embeddedMode){
@@ -5055,6 +5063,7 @@ void Texmaker::pdfClosed(){
 	    pdfSplitterRel=1.0*last/sum;
 	}
     }
+#endif
 }
 
 QObject* Texmaker::newPdfPreviewer(bool embedded){
