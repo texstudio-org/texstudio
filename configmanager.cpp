@@ -2180,6 +2180,7 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		assignNameWidget(pb, nameWidget);
 		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RERUN);
 		pb->setProperty("advancedOption", true);
+        if (!configShowAdvancedOptions) pb->setVisible(false);
 		gl->addWidget(pb, row, CG_RERUN, 1, 1);
 		if (!cmd.user)
 			rerunButtons << pb;
