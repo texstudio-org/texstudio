@@ -52,8 +52,9 @@ public:
 	
 	void insertText(const QString& text){
 		maxWritten += text.length();
-		//editor->cursor().insertText(text);
-		editor->cursor().insertText(text);
+        if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
+            editor->document()->beginMacro();
+        editor->cursor().insertText(text);
 		//cursor mirrors
 		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
 		{
@@ -61,13 +62,14 @@ public:
 			
 			QString baseText = ph.cursor.selectedText();
 			
-			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+            for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
 			{
 				//QString s = ph.affector ?  ph.affector->affect(text, baseText, m_curPlaceHolder, phm) : baseText;
 				
 				ph.mirrors[phm].replaceSelectedText(baseText);
-			}
-		}
+            }
+            editor->document()->endMacro();
+        }
 		//end cursor mirrors
 		if (editor->cursor().columnNumber()+1>curStart && !completer->isVisible()){
 			QString wrd=getCurWord();
@@ -108,11 +110,14 @@ public:
 				QString text=cw.lines.first();
 				int i=cursor.columnNumber()-curStart;
 				text.remove(0,i);
-				text.remove('}');
+                i=text.indexOf('}');
+                if(i>=0)
+                    text.remove(i,text.length());
 				while(!cursor.atLineEnd() && cursor.nextChar()!='}'){
 					cursor.deleteChar();
 				}
 				insertText(text);
+                editor->document()->endMacro();
 				return true;
 			}
 			for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
@@ -185,7 +190,7 @@ public:
 			}
 			
 			removeRightWordPart();
-			editor->insertText(myResult.right(myResult.length()-my_start));
+            insertText(myResult.right(myResult.length()-my_start));
 			maxWritten+=myResult.length()-my_start;
 			completer->filterList(getCurWord(),getMostUsed());
 			if (!completer->list->currentIndex().isValid())
@@ -961,11 +966,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
             if(forcedCite){
                 listModel->baselist=listModel->wordsCitations;
             }else{
-		if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
-		else listModel->baselist=listModel->wordsCommands;
-		listModel->baselist << listModel->wordsAbbrev;
-		QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
-		std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
+                if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
+                else listModel->baselist=listModel->wordsCommands;
+                listModel->baselist << listModel->wordsAbbrev;
+                QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
+                std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
             }
 	}
 	//qSort(listModel->baselist.begin(),listModel->baselist.end());
