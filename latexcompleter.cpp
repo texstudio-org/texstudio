@@ -410,6 +410,7 @@ public:
 	}
 	
 	void resetBinding() {
+        completer->listModel->setEnvironMode(false);
 		showMostUsed=false;
 		QString curWord = getCurWord();
 		if (!active) return;
@@ -587,6 +588,9 @@ QString makeSortWord(const QString& normal) {
 	res.replace("*","#");
 	return res;
 }
+void CompletionListModel::setEnvironMode(bool mode){
+    mEnvMode=mode;
+}
 
 void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
 	if(mostUsed<0)
@@ -614,7 +618,21 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		if (it->word.startsWith(word,cs) &&
 		              (!checkFirstChar || it->word[1] == word[1]) ){
 			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
-				words.append(*it);
+                if(mEnvMode){
+                    CompletionWord cw=*it;
+                    if(cw.word.startsWith("\\begin")||cw.word.startsWith("\\end")){
+                        QString text=cw.word;
+                        int i=text.indexOf('}');
+                        text.truncate(i+1);
+                        cw.word=text;
+                        cw.sortWord=text;
+                        cw.lines=QStringList(text);
+                    }
+
+                    if(!words.contains(cw))
+                        words.append(cw);
+                }else
+                    words.append(*it);
 				cnt++;
 			}
 		}else{
@@ -973,6 +991,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
                 std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
             }
 	}
+    if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
+    {
+        listModel->setEnvironMode(true);
+    }
 	//qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
 		int start=c.columnNumber()-1;
