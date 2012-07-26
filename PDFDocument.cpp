@@ -1946,7 +1946,8 @@ void PDFDocument::init(bool embedded)
 	actionPaste->setIcon(getRealIcon("paste"));
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
-    actionTypeset->setIcon(QIcon(":/images/quick.png"));
+	actionTypeset->setIcon(QIcon(":/images/build.png"));
+	actionToggleEmbedded->setIcon(QIcon(":/images/windowed-viewer.png"));
     actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
     if(embedded){
         actionTypeset->setVisible(false);
@@ -2124,10 +2125,8 @@ void PDFDocument::init(bool embedded)
 	
 	connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
 
-    if(embedded)
-        connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runInternalViewer()));
-    else
-        connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
+	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
+	connect(actionToggleEmbedded, SIGNAL(triggered()), SLOT(toggleEmbedded()));
 
 	connect(actionCloseSomething, SIGNAL(triggered()), SLOT(closeSomething()));
 	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
@@ -2410,7 +2409,14 @@ void PDFDocument::runExternalViewer(){
 	emit runCommand("txs:///view-pdf-external", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 }
 void PDFDocument::runInternalViewer(){
-    emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+	emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+}
+
+void PDFDocument::toggleEmbedded() {
+	if (embeddedMode)
+		emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+	else
+		emit runCommand("txs:///view-pdf-internal --embedded --close-windowed", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 }
 
 void PDFDocument::runQuickBuild(){

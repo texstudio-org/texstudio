@@ -136,14 +136,13 @@
         <file>images/metapost.png</file>
         <file>images/modified.png</file>
         <file>images/part.png</file>
-        <file>images/1rightarrow.png</file>
-        <file>images/2rightarrow.png</file>
 		<file>images/viewer.png</file>
         <file>images/pdflatex.png</file>
         <file>images/xelatex.png</file>
         <file>images/lualatex.png</file>
         <file>images/ps2pdf.png</file>
-        <file>images/quick.png</file>
+        <file>images/build.png</file>
+		<file>images/compile.png</file>
         <file>images/section.png</file>
         <file>images/structure.png</file>
         <file>images/subsection.png</file>
@@ -348,6 +347,7 @@
         <file>images/bookmarks.png</file>
 		<file>images/repeat-compile.png</file>
 		<file>images/repeat-compile-off.png</file>
+		<file>images/windowed-viewer.png</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>
