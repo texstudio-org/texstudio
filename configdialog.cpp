@@ -832,6 +832,12 @@ void ConfigDialog::custSyntaxRemoveLine(){
 }
 
 bool ConfigDialog::askRiddle(){
+	txsInformation("You have enabled the advanced options. This allows to\n"
+				   "configure TXS in great detail. Disable the advanced\n"
+				   "options again to only view the most common settings.");
+	return true;
+
+	/*
 	QString solution = QInputDialog::getText(this, tr("Riddle"), tr(
 			"You come to a magic island where you meet three strange and wise friends. \n"
 			"One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). \n"
@@ -847,6 +853,7 @@ bool ConfigDialog::askRiddle(){
 	if ((a1 && a2) || (a1 && a3) || (a2 && a3)) { QMessageBox::warning(this,tr("Riddle"),tr("Only one answer allowed")); return false; }
 	if (a3) return true;
 	return false;
+	*/
 }
 
 
