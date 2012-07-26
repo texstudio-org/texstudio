@@ -57,25 +57,53 @@ QString LatexLogEntry::niceMessage(bool richFormat) const {
 		return pre+message;
 	}
 
-	QString fmtMsg = message;
-	if (type == LT_WARNING) {
-		int begin = fmtMsg.indexOf("Citation `");
-		if (begin>=0) {
-			fmtMsg.insert(begin+10, "<b>");
-			int end = fmtMsg.indexOf('\'', begin+13);
-			if (end>=0)
-				fmtMsg.insert(end, "</b>");
-			else
-				fmtMsg.append("</b>");
+	int beginBold=-1;
+	int endBold=-1;
+
+	if (type == LT_WARNING) { // hilight quoted strings 'citation' and `label'
+		beginBold = message.indexOf(" `");
+		if (beginBold<0) {
+			beginBold = message.indexOf(" \'");
+		}
+		if (beginBold>=0) {
+			endBold = message.indexOf('\'', beginBold+2);
 		}
 	} else if (type == LT_ERROR) {
-		if (fmtMsg.startsWith("Undefined control sequence ")) {
-			fmtMsg.insert(27, "<b>");
-			fmtMsg.append("</b>");
+		if (message.startsWith("Undefined control sequence ")) {
+			beginBold = 27; // size of above string
 		}
 	}
 
-	return QString("<nobr><font color=\"%1\">%2</font>%3</nobr>").arg(textColors[type].name()).arg(pre).arg(fmtMsg);
+	// WORKAROUND: Even with <nobr> or style=\"white-space: nowrap\" Qt still breaks at hyphens
+	// see: https://bugreports.qt-project.org/browse/QTBUG-1135
+	// and: https://bugreports.qt-project.org/browse/QTBUG-6092
+	// replacing with non-breaking hyphen did not work on Win7 (character not displayed correctly)
+	// therefore we use fixed widths
+	// TODO: still does not work correctly for multiple rows
+	//   apparently only the first row determines the <td> width
+	//   so if later rows are larger, they are still wrapped
+	int width;
+
+	QString fmtMsg = message;
+	if (beginBold >= 0) {
+		if (endBold >= 0)
+			fmtMsg.insert(endBold, "</b>");
+		else
+			fmtMsg.append("</b>");
+		fmtMsg.insert(beginBold, "<b>");
+
+		QFont f = QToolTip::font();
+		QFontMetrics fm(f);
+		width = fm.width(message, beginBold);
+		width += fm.width(message.mid(endBold));
+		f.setBold(true);
+		fm = QFontMetrics(f);
+		width += fm.width(message.mid(beginBold, endBold-beginBold));
+	} else {
+		width = QFontMetrics(QToolTip::font()).width(message);
+	}
+
+	return QString("<tr><td style=\"color: %1\">%2</td><td width=\"%3\"><nobr>%4</nobr></td>").arg(textColors[type].name()).arg(pre).arg(width).arg(fmtMsg);
 }
 
 void LatexLogEntry::clear(){

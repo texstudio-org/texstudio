@@ -874,9 +874,9 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
 	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
 	if (mark != errorMarkID && mark != warningMarkID && mark != badboxMarkID) return;
-	int error = lineToLogEntries.value(editor->document()->line(line).handle(),-1);
-	if (error>=0)
-		emit showMarkTooltipForLogMessage(error);
+	QList<int> errors = lineToLogEntries.values(editor->document()->line(line).handle());
+	if (!errors.isEmpty())
+		emit showMarkTooltipForLogMessage(errors);
 }
 void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket){
 	Q_ASSERT_X(dlh!=0,"checkNextLine","empty dlh used in checkNextLine");

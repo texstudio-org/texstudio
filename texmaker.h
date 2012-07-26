@@ -290,7 +290,7 @@ private slots:
 	void SaveSettings(const QString& configName="");
 	
 protected slots:	
-	void showMarkTooltipForLogMessage(int error);
+	void showMarkTooltipForLogMessage(QList<int> errors);
 	void NewDocumentStatus();
 	void NewDocumentLineEnding();
 	void UpdateCaption();
