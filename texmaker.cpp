@@ -626,8 +626,8 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
 	newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, ":/images/goto.png");
-	newManagedEditorAction(submenu,"lastchange",tr("last change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
-	newManagedEditorAction(submenu,"nextchange",tr("\"next\" change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
+	newManagedEditorAction(submenu,"lastchange",tr("Previous Change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
+	newManagedEditorAction(submenu,"nextchange",tr("Next Change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
 	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",Qt::CTRL+Qt::Key_Up,"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
@@ -637,7 +637,7 @@ void Texmaker::setupMenus() {
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"jumpToBookmark",Qt::CTRL+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
 	submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
-    newManagedAction(submenu,"bookmark",tr("unnamed bookmark"),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_B);
+	newManagedAction(submenu,"bookmark",tr("Unnamed Bookmark"),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_B);
 	for (int i=0; i<=9; i++)
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
@@ -685,12 +685,12 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("&Go to"));
 	
-	newManagedAction(submenu,"errorprev",tr("Previous error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
-	newManagedAction(submenu,"errornext",tr("Next error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
-	newManagedAction(submenu,"warningprev",tr("Previous warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Up,"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
-	newManagedAction(submenu,"warningnext",tr("Next warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
-	newManagedAction(submenu,"badboxprev",tr("Previous bad box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
-	newManagedAction(submenu,"badboxnext",tr("Next bad box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
+	newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"warningprev",tr("Previous Warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Up,"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"warningnext",tr("Next Warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
+	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
 
 	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
@@ -706,20 +706,20 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
 	
 	submenu = newManagedMenu(menu, "parens", tr("Parenthesis"));
-	newManagedAction(submenu, "jump", tr("Jump to match"), SLOT(jumpToBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_J));
-	newManagedAction(submenu, "selectBracketInner", tr("Select (inner)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("minimal", true);
-	newManagedAction(submenu, "selectBracketOuter", tr("Select (outer)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("minimal", false);
-	newManagedAction(submenu, "selectBracketCommand", tr("Select (command)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_C))->setProperty("backslash", true);
-	newManagedAction(submenu, "selectBracketLine", tr("Select (line)"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_L))->setProperty("line", true);
-	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select (inverting)"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
+	newManagedAction(submenu, "jump", tr("Jump to Match"), SLOT(jumpToBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_J));
+	newManagedAction(submenu, "selectBracketInner", tr("Select Inner"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_I))->setProperty("minimal", true);
+	newManagedAction(submenu, "selectBracketOuter", tr("Select Outer"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_O))->setProperty("minimal", false);
+	newManagedAction(submenu, "selectBracketCommand", tr("Select Command"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_C))->setProperty("backslash", true);
+	newManagedAction(submenu, "selectBracketLine", tr("Select Line"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_L))->setProperty("line", true);
+	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select Inverting"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_S));
 	             
 	submenu->addSeparator();
-	newManagedAction(submenu, "findMissingBracket", tr("Find mismatch"), SLOT(findMissingBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_M));
+	newManagedAction(submenu, "findMissingBracket", tr("Find Mismatch"), SLOT(findMissingBracket()), QKeySequence(Qt::SHIFT+Qt::CTRL+Qt::Key_P, Qt::Key_M));
 	
 	submenu=newManagedMenu(menu, "complete",tr("Complete"));
-	newManagedAction(submenu, "normal", tr("normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
-	newManagedAction(submenu, "environment", tr("\\begin{ completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
-	newManagedAction(submenu, "text", tr("normal text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
+	newManagedAction(submenu, "normal", tr("Normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
+	newManagedAction(submenu, "environment", tr("\\begin{ Completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
+	newManagedAction(submenu, "text", tr("Normal Text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
@@ -784,16 +784,16 @@ void Texmaker::setupMenus() {
 	menu->setProperty("defaultSlot", QByteArray(SLOT(InsertFromAction())));
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
-	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate tables","table"));
-	newManagedAction(submenu, "addRow",tr("add row","table"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
-	newManagedAction(submenu, "addColumn",tr("add column","table"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
-	newManagedAction(submenu, "removeRow",tr("remove row","table"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
-	newManagedAction(submenu, "removeColumn",tr("remove column","table"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
-	newManagedAction(submenu, "cutColumn",tr("cut column","table"), SLOT(cutColumnCB()),QKeySequence(),":/images/cutCol.png");
-	newManagedAction(submenu, "pasteColumn",tr("paste column","table"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
-	newManagedAction(submenu, "addHLine",tr("add \\hline","table"), SLOT(addHLineCB()));
-	newManagedAction(submenu, "remHLine",tr("remove \\hline","table"), SLOT(remHLineCB()));
-	newManagedAction(submenu, "insertTableTemplate",tr("remodel table after template","table"), SLOT(insertTableTemplate()));
+	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate Tables","table"));
+	newManagedAction(submenu, "addRow",tr("Add Row","table"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
+	newManagedAction(submenu, "addColumn",tr("Add Column","table"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
+	newManagedAction(submenu, "removeRow",tr("Remove Row","table"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
+	newManagedAction(submenu, "removeColumn",tr("Remove Column","table"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
+	newManagedAction(submenu, "cutColumn",tr("Cut Column","table"), SLOT(cutColumnCB()),QKeySequence(),":/images/cutCol.png");
+	newManagedAction(submenu, "pasteColumn",tr("Paste Column","table"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
+	newManagedAction(submenu, "addHLine",tr("Add \\hline","table"), SLOT(addHLineCB()));
+	newManagedAction(submenu, "remHLine",tr("Remove \\hline","table"), SLOT(remHLineCB()));
+	newManagedAction(submenu, "insertTableTemplate",tr("Remodel Table Using Template","table"), SLOT(insertTableTemplate()));
 	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
 	
 	menu=newManagedMenu("main/math",tr("&Math"));
@@ -973,8 +973,8 @@ void Texmaker::setupMenus() {
 	structureTreeView->setContextMenuPolicy(Qt::CustomContextMenu);
 	newManagedAction(structureTreeView,"CopySection",tr("Copy"), SLOT(editSectionCopy()));
 	newManagedAction(structureTreeView,"CutSection",tr("Cut"), SLOT(editSectionCut()));
-	newManagedAction(structureTreeView,"PasteBefore",tr("Paste before"), SLOT(editSectionPasteBefore()));
-	newManagedAction(structureTreeView,"PasteAfter",tr("Paste after"), SLOT(editSectionPasteAfter()));
+	newManagedAction(structureTreeView,"PasteBefore",tr("Paste Before"), SLOT(editSectionPasteBefore()));
+	newManagedAction(structureTreeView,"PasteAfter",tr("Paste After"), SLOT(editSectionPasteAfter()));
 	QAction* sep = new QAction(structureTreeView);
 	sep->setSeparator(true);
 	structureTreeView->addAction(sep);
@@ -983,10 +983,10 @@ void Texmaker::setupMenus() {
 	connect(structureTreeView,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 	
 	bookmarksWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
-	newManagedAction(bookmarksWidget,"moveMarkUp",tr("move up"),SLOT(moveBookmarkUp()));
-	newManagedAction(bookmarksWidget,"moveMarkDown",tr("move down"),SLOT(moveBookmarkDown()));
-	newManagedAction(bookmarksWidget,"removeOneMark",tr("remove"),SLOT(removeBookmark()));
-	newManagedAction(bookmarksWidget,"removeAllMark",tr("remove all"),SLOT(removeAllBookmarks()));
+	newManagedAction(bookmarksWidget,"moveMarkUp",tr("Move Up"),SLOT(moveBookmarkUp()));
+	newManagedAction(bookmarksWidget,"moveMarkDown",tr("Move Down"),SLOT(moveBookmarkDown()));
+	newManagedAction(bookmarksWidget,"removeOneMark",tr("Remove"),SLOT(removeBookmark()));
+	newManagedAction(bookmarksWidget,"removeAllMark",tr("Remove All"),SLOT(removeAllBookmarks()));
 	
 	configManager.updateRecentFiles(true);
 	
