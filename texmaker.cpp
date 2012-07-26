@@ -1234,12 +1234,17 @@ void Texmaker::CloseEditorTab(int tab) {
 	if (total!=EditorView->count() && cur!=tab)//if user clicks cancel stay in clicked editor
 		EditorView->setCurrentIndex(cur);
 }
-void Texmaker::showMarkTooltipForLogMessage(int error){
+void Texmaker::showMarkTooltipForLogMessage(QList<int> errors){
 	if (!currentEditorView()) return;
 	REQUIRE(outputView->getLogModel());
-	if (error<0 || error >= outputView->getLogModel()->count()) return;
-	currentEditorView()->setLineMarkToolTip(outputView->getLogModel()->at(error).niceMessage());
-	
+	QString msg = "<table>";
+	foreach (int error, errors) {
+		if (error<0 || error >= outputView->getLogModel()->count()) continue;
+		msg.append(outputView->getLogModel()->at(error).niceMessage());
+	}
+	msg.append("</table>");
+
+	currentEditorView()->setLineMarkToolTip(msg);
 }
 
 void Texmaker::NewDocumentStatus() {
@@ -1335,7 +1340,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
 	connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
-	connect(edit, SIGNAL(showMarkTooltipForLogMessage(int)),this,SLOT(showMarkTooltipForLogMessage(int)));
+	connect(edit, SIGNAL(showMarkTooltipForLogMessage(QList<int>)),this,SLOT(showMarkTooltipForLogMessage(QList<int>)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
@@ -5379,7 +5384,18 @@ bool Texmaker::gotoLogEntryAt(int newLineNumber) {
 	
 	QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
-	QToolTip::showText(p, outputView->getLogModel()->at(logEntryNumber).niceMessage(), 0);
+
+	REQUIRE_RET(outputView->getLogModel(), true);
+	QList<int> errors = currentEditorView()->lineToLogEntries.values(lh);
+	QString msg = "<table>";
+	foreach (int error, errors) {
+		if (error<0 || error >= outputView->getLogModel()->count()) continue;
+		msg.append(outputView->getLogModel()->at(error).niceMessage());
+	}
+	msg.append(outputView->getLogModel()->at(logEntryNumber).niceMessage());
+	msg.append("</table>");
+
+	QToolTip::showText(p, msg, 0);
 	LatexEditorView::hideTooltipWhenLeavingLine=newLineNumber;
 	return true;
 }

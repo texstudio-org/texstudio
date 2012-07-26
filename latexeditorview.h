@@ -181,7 +181,7 @@ public:
 	static void setGrammarOverlayDisabled(int type, bool show);
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
-	void showMarkTooltipForLogMessage(int logMessage);
+	void showMarkTooltipForLogMessage(QList<int> logMessages);
 	void needCitation(const QString& id);//request a new citation 
 	void showPreview(const QString& text);
 	void showPreview(const QDocumentCursor& c);
