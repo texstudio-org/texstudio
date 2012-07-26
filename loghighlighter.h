@@ -22,7 +22,7 @@ class LogHighlighter : public QSyntaxHighlighter {
 
 public:
 	LogHighlighter(QTextDocument *parent = 0);
-	QColor ColorStandard, ColorFile, ColorError, ColorWarning;
+	QColor ColorFile;
 
 protected:
 	void highlightBlock(const QString &text);
