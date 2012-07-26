@@ -4529,14 +4529,20 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		}
 
 		if (autoComplete) {
-			QDocumentCursor copiedCursor = c.selectionEnd();
-			PlaceHolder ph(autoBracket.length(),copiedCursor);
-			ph.autoOverride = true;
-			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
-			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
-			copiedCursor.insertText(autoBracket);
-			addPlaceHolder(ph);
-			m_cursor.movePosition(autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
+			if (!cutBuffer.isEmpty()) {
+				c.insertText(cutBuffer+autoBracket);
+				m_cursor.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
+				m_cursor.movePosition(cutBuffer.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+			} else {
+				QDocumentCursor copiedCursor = c.selectionEnd();
+				PlaceHolder ph(autoBracket.length(),copiedCursor);
+				ph.autoOverride = true;
+				ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
+				ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
+				copiedCursor.insertText(autoBracket);
+				addPlaceHolder(ph);
+				m_cursor.movePosition(autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
+			}
 		}
 	}
 
