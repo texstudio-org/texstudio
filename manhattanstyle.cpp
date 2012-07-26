@@ -323,7 +323,7 @@ void ManhattanStyle::polish(QWidget *widget)
         }
         else if (qobject_cast<QLabel*>(widget))
             widget->setPalette(panelPalette(widget->palette()));
-        else if (qobject_cast<QToolBar*>(widget))
+/*        else if (qobject_cast<QToolBar*>(widget))
             widget->setMinimumHeight(StyleHelper::navigationWidgetHeight());
 //        else if (qobject_cast<QStatusBar*>(widget))
 //            widget->setFixedHeight(StyleHelper::navigationWidgetHeight() + 2);
@@ -331,6 +331,7 @@ void ManhattanStyle::polish(QWidget *widget)
             widget->setMaximumHeight(StyleHelper::navigationWidgetHeight() - 2);
             widget->setAttribute(Qt::WA_Hover);
         }
+*/
     }
 }
 

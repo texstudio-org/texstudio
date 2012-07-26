@@ -74,7 +74,7 @@ QColor StyleHelper::panelTextColor()
     return Qt::white;
 }
 
-QColor StyleHelper::m_baseColor(0x556676);
+QColor StyleHelper::m_baseColor(0x606060);
 
 QColor StyleHelper::baseColor()
 {
@@ -186,8 +186,8 @@ void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, c
     QLinearGradient grad(rect.topLeft(), rect.bottomLeft());
 
     grad.setColorAt(0, highlightColor().lighter(120));
-    grad.setColorAt(0.5, highlightColor());
-    grad.setColorAt(0.501, base);
+	grad.setColorAt(0.2, highlightColor());
+	grad.setColorAt(0.301, base);
     grad.setColorAt(1, shadowColor());
     p->fillRect(rect, grad);
 
