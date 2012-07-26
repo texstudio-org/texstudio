@@ -1947,7 +1947,15 @@ void PDFDocument::init(bool embedded)
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(QIcon(":/images/build.png"));
-	actionToggleEmbedded->setIcon(QIcon(":/images/windowed-viewer.png"));
+
+	if (embedded) {
+		actionToggleEmbedded->setIcon(QIcon(":/images/windowed-viewer.png"));
+		actionToggleEmbedded->setToolTip("Windowed Viewer");
+	} else {
+		actionToggleEmbedded->setIcon(QIcon(":/images/embedded-viewer.png"));
+		actionToggleEmbedded->setToolTip("Embedded Viewer");
+	}
+
     actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
     if(embedded){
         actionTypeset->setVisible(false);

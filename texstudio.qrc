@@ -348,6 +348,7 @@
 		<file>images/repeat-compile.png</file>
 		<file>images/repeat-compile-off.png</file>
 		<file>images/windowed-viewer.png</file>
+		<file>images/embedded-viewer.png</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>

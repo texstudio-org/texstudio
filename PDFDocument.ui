@@ -829,9 +829,6 @@
    <property name="text">
     <string>Windowed/Embedded</string>
    </property>
-   <property name="toolTip">
-    <string>Toggle Windowed/Embedded Viewer</string>
-   </property>
   </action>
  </widget>
  <resources/>
