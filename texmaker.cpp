@@ -1350,9 +1350,10 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 	
-	connect(edit->editor,SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
-	connect(edit->editor,SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
-	
+	if (Guardian::instance()) { // Guardian is not yet there when this is called at program startup
+		connect(edit->editor,SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
+		connect(edit->editor,SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
+	}
 	connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int)));
 	
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
