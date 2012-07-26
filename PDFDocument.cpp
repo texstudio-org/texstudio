@@ -2030,8 +2030,6 @@ void PDFDocument::init(bool embedded)
 	statusBar()->addPermanentWidget(buttonZoomOut);
 	connect(buttonZoomOut, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomOut()));
 
-//	statusBar()->addAction(actionZoom_Out);
-
 	zoomSlider = new QSlider(toolBar);
 	zoomSlider->setOrientation(Qt::Horizontal);
 	zoomSlider->setSingleStep(25);
@@ -2046,7 +2044,6 @@ void PDFDocument::init(bool embedded)
 	//connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
 	connect(zoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(zoomSliderChange(int)));
 
-//	statusBar()->addAction(actionZoom_In);
 	QToolButton *buttonZoomIn = new QToolButton();
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
 	buttonZoomIn->setToolTip(tr("Zoom In"));
