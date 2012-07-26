@@ -782,8 +782,8 @@ void Texmaker::setupMenus() {
 	// add some additional items
 	menu=newManagedMenu("main/latex",tr("&LaTeX"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(InsertFromAction())));
-	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to next label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
-	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to previous label"), SLOT(editInsertRefToPrevLabel()));
+	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
+	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to Previous Label"), SLOT(editInsertRefToPrevLabel()));
 	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate Tables","table"));
 	newManagedAction(submenu, "addRow",tr("Add Row","table"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
 	newManagedAction(submenu, "addColumn",tr("Add Column","table"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
@@ -929,6 +929,9 @@ void Texmaker::setupMenus() {
 		connect(hlMenu, SIGNAL(aboutToShow()), this, SLOT(showHighlightingMenu()));
 		int id = 0;
 		foreach (const QString &s, m_languages->languages()) {
+#ifdef QT_NO_DEBUG
+			if (s == "TXS Test Results") continue;
+#endif
 			QAction *act = newManagedAction(hlMenu, QString::number(id++), tr(qPrintable(s)));
 			act->setData(s);
 			act->setCheckable(true);
