@@ -51,62 +51,6 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
-      <string>Show Advanced Options</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>407</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="0" column="1" rowspan="2" colspan="5">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
@@ -122,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -145,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>526</width>
-            <height>583</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1301,8 +1245,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>733</width>
-            <height>610</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1823,174 +1767,226 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <number>0</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="checkBoxCompletion">
-         <property name="text">
-          <string>Automatically start completer when typing LaTeX-Commands</string>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Completion</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBoxCaseSensitive">
-         <property name="text">
-          <string>Case Sensitive</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout">
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
-           <property name="text">
-            <string>In First Character</string>
-           </property>
-           <property name="advancedOption" stdset="0">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBoxCompletePrefix">
-         <property name="text">
-          <string>Auto Complete Common Prefix</string>
-         </property>
-         <property name="advancedOption" stdset="0">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBoxEOWCompletes">
-         <property name="text">
-          <string>Complete selected text when non-word character is pressed</string>
-         </property>
-         <property name="advancedOption" stdset="0">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBoxToolTipHelp">
-         <property name="text">
-          <string>Enable ToolTip-Help</string>
-         </property>
-         <property name="advancedOption" stdset="0">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBoxUsePlaceholders">
-         <property name="text">
-          <string>Use Placeholders</string>
-         </property>
-         <property name="advancedOption" stdset="0">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
-           <property name="text">
-            <string>Auto Replace Latex-Commands</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBoxPreferedTab">
-           <item>
-            <property name="text">
-             <string>Prefer &quot;Typical&quot;</string>
+         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0,0,0,0,0,0" columnstretch="1,1,0,0">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxCompletion">
+            <property name="toolTip">
+             <string>Starts the completer as soon as '\' is typed. Alternatively the completer can always be started manually by Ctrl+Space.</string>
             </property>
-           </item>
-           <item>
             <property name="text">
-             <string>Prefer &quot;Most Used&quot;</string>
+             <string>Automatically start completer when typing LaTeX-Commands</string>
             </property>
-           </item>
-           <item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxCaseSensitive">
             <property name="text">
-             <string>Prefer &quot;All&quot;</string>
+             <string>Case Sensitive</string>
             </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="label_40">
-           <property name="text">
-            <string>Relative Tab Font Size:</string>
-           </property>
-           <property name="advancedOption" stdset="0">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="spinBoxTabRelFontSize">
-           <property name="suffix">
-            <string notr="true"> %</string>
-           </property>
-           <property name="maximum">
-            <number>10000</number>
-           </property>
-           <property name="value">
-            <number>75</number>
-           </property>
-           <property name="advancedOption" stdset="0">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout">
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Minimum</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
+              <property name="text">
+               <string>In First Character</string>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="checkBoxCompletePrefix">
+            <property name="toolTip">
+             <string>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</string>
+            </property>
+            <property name="text">
+             <string>Auto Complete Common Prefix</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxEOWCompletes">
+            <property name="text">
+             <string>Complete selected text when non-word character is pressed</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Preferred Commands Set:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxPreferedTab">
+              <item>
+               <property name="text">
+                <string>Typical</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Most Used</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>All</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
+            <property name="toolTip">
+             <string>Allows in-place substition of commands. Example:
+- \textbf{foo}
+- Put cursor behind &quot;text&quot;.
+- Start completer by Ctrl+Space
+- Select \textrm
+- The result is \textrm{foo}</string>
+            </property>
+            <property name="text">
+             <string>Auto Replace Latex-Commands</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipHelp">
+            <property name="toolTip">
+             <string>Shows a tooltip with a description of the selected completer command</string>
+            </property>
+            <property name="text">
+             <string>ToolTip-Help</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxUsePlaceholders">
+            <property name="text">
+             <string>Use Placeholders</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="label_40">
+              <property name="toolTip">
+               <string>Size of the command set tabs at the bottom or top of the completer</string>
+              </property>
+              <property name="text">
+               <string>Relative Tab Font Size:</string>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxTabRelFontSize">
+              <property name="toolTip">
+               <string>Size of the command set tabs at the bottom or top of the completer</string>
+              </property>
+              <property name="suffix">
+               <string notr="true"> %</string>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>75</number>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_12">
@@ -2001,6 +1997,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
        </item>
        <item>
         <widget class="QListWidget" name="completeListWidget">
+         <property name="toolTip">
+          <string>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</string>
+         </property>
          <property name="flow">
           <enum>QListView::TopToBottom</enum>
          </property>
@@ -2774,6 +2778,62 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
      </widget>
     </widget>
    </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="5">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -2852,14 +2912,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
   <tabstop>twCustomSyntax</tabstop>
   <tabstop>pbAddSyntaxLine</tabstop>
   <tabstop>pbRemoveSyntaxLine</tabstop>
-  <tabstop>checkBoxCompletion</tabstop>
-  <tabstop>checkBoxCaseSensitive</tabstop>
   <tabstop>checkBoxCaseSensitiveInFirstCharacter</tabstop>
-  <tabstop>checkBoxCompletePrefix</tabstop>
-  <tabstop>checkBoxEOWCompletes</tabstop>
-  <tabstop>checkBoxToolTipHelp</tabstop>
-  <tabstop>checkBoxUsePlaceholders</tabstop>
-  <tabstop>checkBoxAutoReplaceCommands</tabstop>
   <tabstop>spinBoxTabRelFontSize</tabstop>
   <tabstop>completeListWidget</tabstop>
   <tabstop>checkBoxGrammarRepetitionCheck</tabstop>
