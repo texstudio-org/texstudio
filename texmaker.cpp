@@ -730,8 +730,8 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-	newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/2rightarrow.png")->setData(BuildManager::CMD_QUICK);
-	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/1rightarrow.png")->setData(BuildManager::CMD_COMPILE);
+	newManagedAction(menu, "quickbuild",tr("&Quick"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/build.png")->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/compile.png")->setData(BuildManager::CMD_COMPILE);
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,":/images/viewer.png")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()))->setData(BuildManager::CMD_INDEX);

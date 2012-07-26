@@ -387,6 +387,7 @@ private slots:
 
 	void runExternalViewer();
     void runInternalViewer();
+	void toggleEmbedded();
 	void runQuickBuild();
 
 	void setGrid();
