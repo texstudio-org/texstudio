@@ -259,6 +259,7 @@ QLayoutItem* QPanelLayout::takeAt(int idx)
 	{
 		PanelWrapper *layoutStruct = m_list.takeAt(idx);
 		Q_ASSERT(layoutStruct);
+		if (!layoutStruct) return 0;
 		QLayoutItem* li =  layoutStruct->item;
 		delete layoutStruct;
 		return li;

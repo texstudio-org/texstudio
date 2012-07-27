@@ -632,13 +632,16 @@ void addWord(QNFA *lexer, const QString& w, int action, bool cs)
 	QNFA *nfa, *word, *end;
 	
 	word = sequence(w.constData(), w.length(), &end, cs);
-	
+		
 	if ( !word )
 	{
 		qWarning("Invalid word regex.");
 		return;
 	}
 	
+	Q_ASSERT(end);
+	if (!end) return;
+
 	word->assertion |= WordStart;
 	
 	nfa = new QNFA;
