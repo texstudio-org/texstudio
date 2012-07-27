@@ -173,7 +173,6 @@ template<typename T> void CacheCache<T>::clear(){
 
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
-static int PICTURE_COOKIE = 42;
 static int PICTURE_BORDER = 2;
 
 
@@ -2252,7 +2251,7 @@ void QDocumentLineHandle::updateWrap() const
 	splitAtFormatChanges(&ranges);
 
 	if (ranges.isEmpty()){
-		if (hasCookie(PICTURE_COOKIE)) {
+		if (hasCookie(QDocumentLine::PICTURE_COOKIE)) {
 			int h = getPictureCookieHeight();
 			QPair<int,int> l(text().length(), 0);
 			for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
@@ -2391,7 +2390,7 @@ void QDocumentLineHandle::updateWrap() const
 		}
 	}
 
-	if (hasCookie(PICTURE_COOKIE)) {
+	if (hasCookie(QDocumentLine::PICTURE_COOKIE)) {
 		int h = getPictureCookieHeight();
 		QPair<int,int> l(text().length(), rx);
 		for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
@@ -3289,8 +3288,8 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 }
 
 int QDocumentLineHandle::getPictureCookieHeight() const{
-	if (!hasCookie(PICTURE_COOKIE)) return 0;
-	int h = 2*PICTURE_BORDER + getCookie(PICTURE_COOKIE).value<QPixmap>().height();
+	if (!hasCookie(QDocumentLine::PICTURE_COOKIE)) return 0;
+	int h = 2*PICTURE_BORDER + getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>().height();
 	if (h % QDocumentPrivate::m_lineSpacing > 0) h += QDocumentPrivate::m_lineSpacing - h % QDocumentPrivate::m_lineSpacing;
 	return h;
 }
@@ -6208,13 +6207,12 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		// draw text with caching
 		int pseudoWrap = 0;
-		if (h->hasCookie(PICTURE_COOKIE)){
-			const QPixmap& pm = h->getCookie(PICTURE_COOKIE).value<QPixmap>();
+		if (h->hasCookie(QDocumentLine::PICTURE_COOKIE)){
+			const QPixmap& pm = h->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
 
 			int ph = h->getPictureCookieHeight();
 
 			pseudoWrap = ph/m_lineSpacing;
-
 			p->drawPixmap((cxt.width - pm.width())/2, m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2, pm);
 		}
 

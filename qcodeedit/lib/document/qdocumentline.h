@@ -66,6 +66,14 @@ class QCE_EXPORT QDocumentLine
 	friend class QDocumentCursorHandle;
 	
 	public:
+		enum LineCookies {
+			STACK_ENVIRONMENT_COOKIE = 1,
+			DIFF_LIST_COOCKIE = 2,
+			UNCLOSED_ENVIRONMENT_COOKIE = 3,
+			PICTURE_COOKIE = 42,
+			GRAMMAR_ERROR_COOKIE = 43
+		};
+
 		enum State
 		{
 			None				= 0,
