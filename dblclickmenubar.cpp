@@ -1,5 +1,7 @@
 #include "dblclickmenubar.h"
 
+#include "QMouseEvent"
+
 DblClickMenuBar::DblClickMenuBar(QWidget *parent) :
 	QMenuBar(parent)
 {

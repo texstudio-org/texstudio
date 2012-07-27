@@ -114,7 +114,7 @@ void PDFRenderEngine::run(){
 						p.drawRect(annon->boundary() );
 				
 				delete page;
-				if(!queue->stopped)
+				if(!queue->stopped)  qDebug() << command.ticket << " send from "<<QThread::currentThreadId(), 
 					emit sendImage(image,command.pageNr,command.ticket);
 			}
 			//qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << priorityThread << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;

@@ -222,6 +222,7 @@ QString getCommonEOW() {
 	return CommonEOW;
 }
 
+
 QStringList findResourceFiles(const QString& dirName, const QString& filter, QStringList additionalPreferredPaths) {
 	QStringList searchFiles;
 	QString dn = dirName;
@@ -231,6 +232,11 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter, QSt
 	searchFiles.append(additionalPreferredPaths);
 	searchFiles<<QCoreApplication::applicationDirPath() + dn; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
+
+#if !defined(PREFIX)
+#define PREFIX ""
+#endif
+	
 #if defined( Q_WS_X11 )
 	searchFiles<<PREFIX"/share/texstudio"+dn; //X_11
 	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11

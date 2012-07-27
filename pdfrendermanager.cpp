@@ -267,6 +267,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 }
 
 void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
+	qDebug() << ticket << " rec at "<<QThread::currentThreadId();
 	if(lstOfReceivers.contains(ticket)){
 		QList<RecInfo> infos=lstOfReceivers.values(ticket);
 		lstOfReceivers.remove(ticket);
