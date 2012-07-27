@@ -130,7 +130,7 @@ public:
 			}
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
-			cw.insertAt(editor,&cursor,LatexCompleter::config && LatexCompleter::config->usePlaceholders,true);
+            cw.insertAt(editor,&cursor,LatexCompleter::config && LatexCompleter::config->usePlaceholders,!completer->startedFromTriggerKey);
 			editor->document()->endMacro();
 			
 			return true;
@@ -794,7 +794,7 @@ QHash<QString, QString> LatexCompleter::helpIndices;
 QHash<QString, int> LatexCompleter::helpIndicesCache;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false) {
+LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false) {
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -929,6 +929,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	forcedRef=flags & CF_FORCE_REF;
 	forcedGraphic=flags & CF_FORCE_GRAPHIC;
     forcedCite=flags & CF_FORCE_CITE;
+    startedFromTriggerKey= !(flags &CF_FORCE_VISIBLE_LIST);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
 		if (newEditor) connect(newEditor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));

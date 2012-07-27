@@ -263,7 +263,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	QDocumentLine curLine=cursor->line();
 
 	// on multi line commands, replace environments only
-	if(autoReplaceCommands && lines.size()>1 && line.contains("\\begin{")){
+    if(autoReplaceCommands && byCompleter && lines.size()>1 && line.contains("\\begin{")){
 		QString curLine=cursor->line().text();
 		int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
 		int closeCurl=curLine.indexOf("}",cursor->columnNumber());
@@ -327,7 +327,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 	if (editBlockOpened) cursor->endEditBlock();
 
 	// on single line commands only: replace command
-	if(byCompleter && autoReplaceCommands && lines.size()==1 && line.startsWith('\\')){
+    if(byCompleter && autoReplaceCommands && lines.size()==1 && line.startsWith('\\')){
 		if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')){
 			QString curLine=cursor->line().text();
 			int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
