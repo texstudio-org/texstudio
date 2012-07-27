@@ -507,6 +507,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Geometries/PdfViewerTop", &pdfDocumentConfig->windowTop, screen.top()+10);
 	registerOption("Geometries/PdfViewerWidth", &pdfDocumentConfig->windowWidth, screen.width()/3-26);
 	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()-100);
+	registerOption("Geometries/PdfViewerMaximized", &pdfDocumentConfig->windowMaximized, false);
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
 	
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);

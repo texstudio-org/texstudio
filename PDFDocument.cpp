@@ -1859,6 +1859,8 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 			if (x+w > screen.right()) w = screen.width()/3-26;
 			if (y+h > screen.height()) h = screen.height()-100;
 		}
+		if (globalConfig->windowMaximized)
+			showMaximized();
 
 		setWindowState(Qt::WindowNoState);
 		resize(w,h); //important to first resize then move
@@ -1892,6 +1894,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 
 PDFDocument::~PDFDocument()
 {
+	globalConfig->windowMaximized = isMaximized();
 	docList.removeAll(this);
 	emit documentClosed();
 	if (scanner != NULL)
@@ -2314,7 +2317,11 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 	}
 	if (alert) {
 		raise();
-		show();
+		if (globalConfig->windowMaximized) {
+			showMaximized();
+		} else {
+			showNormal();
+		}
 		setFocus();
 		if (scrollArea) scrollArea->setFocus();
 	}
@@ -2720,7 +2727,10 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
 			if (activatePreview) {
-				show();
+				if (globalConfig->windowMaximized)
+					showMaximized();
+				else
+					showNormal();
 				raise();
 				activateWindow();
 				if (isMinimized()) showNormal();
@@ -2759,6 +2769,7 @@ void PDFDocument::saveGeometryToConfig()
 	globalConfig->windowTop = y();
 	globalConfig->windowWidth = width();
 	globalConfig->windowHeight = height();
+	globalConfig->windowMaximized = isMaximized();
 	globalConfig->windowState = saveState();
 }
 
@@ -2912,7 +2923,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		// entering full-screen mode
 		statusBar()->hide();
 		toolBar->hide();
-		wasMaximized=isMaximized();
+		globalConfig->windowMaximized=isMaximized();
 		showFullScreen();
 		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
@@ -2946,7 +2957,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		// exiting full-screen mode		
 		statusBar()->show();
 		toolBar->show();
-		if(wasMaximized)
+		if(globalConfig->windowMaximized)
 			showMaximized();
 		else
 			showNormal();
