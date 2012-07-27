@@ -54,7 +54,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 			if( splitListInsert.size()>0 && (splitList.size()>1 || splitListInsert.size()>1) ){
 				toBeReplaced=true;
 			}
-			QVariant var=doc->line(lineNr).getCookie(2);
+			QVariant var=doc->line(lineNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 			DiffList lineData;
 			
 			bool lineModified;
@@ -87,7 +87,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 				diffOperation.type=DiffOp::Delete;
 			}
 			lineData.append(diffOperation);
-			doc->line(lineNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
+			doc->line(lineNr).setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(lineData));
 			col+=diff;
 			int sz=splitList.size();
 			for(int j=0;j<sz;j++){
@@ -114,7 +114,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 					diffOperation.type=DiffOp::Delete;
 				}
 				
-				var=doc->line(lineNr+j+1).getCookie(2);
+				var=doc->line(lineNr+j+1).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 				DiffList lineData;
 				
 				if(var.isValid()){
@@ -129,7 +129,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 				diffOperation.lineWasModified=lineModified;
 				
 				lineData.append(diffOperation);
-				doc->line(lineNr+j+1).setCookie(2,QVariant::fromValue<DiffList>(lineData));
+				doc->line(lineNr+j+1).setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(lineData));
 				col=ln.length();
 			}
 			lineNr+=elem.text.count("\n");
@@ -155,7 +155,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 			int lnNr=cur.lineNumber();
 			if(splitList.size()>1 &&!dontAddLines)
 				cur.insertText("\n");
-			QVariant var=doc->line(lnNr).getCookie(2);
+			QVariant var=doc->line(lnNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 			DiffList lineData;
 			bool lineModified;
 			
@@ -178,7 +178,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 			diffOperation.dlh=doc2->line(lineNr2).handle();
 			qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
 			lineData.append(diffOperation);
-			doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
+			doc->line(lnNr).setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(lineData));
 			//doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
 			col+=diff;
 			splitList.removeFirst();
@@ -191,7 +191,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 				lnNr=cur.lineNumber();
 				if(i+1<splitList.size())
 					cur.insertText("\n");
-				QVariant var=doc->line(lnNr).getCookie(2);
+				QVariant var=doc->line(lnNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 				DiffList lineData;
 				
 				if(var.isValid()){
@@ -212,7 +212,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 				diffOperation.dlh=doc2->line(lineNr2).handle();
 				qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
 				lineData.append(diffOperation);
-				doc->line(lnNr).setCookie(2,QVariant::fromValue<DiffList>(lineData));
+				doc->line(lnNr).setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(lineData));
 				//doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));
 				col=ln.length();
 			}
@@ -228,7 +228,7 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 	QDocumentCursor cur(doc);
 	
 	for(int i=0;i<doc->lineCount();i++){
-		QVariant var=doc->line(i).getCookie(2);
+		QVariant var=doc->line(i).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		
 		if(var.isValid()){
 			DiffList lineData=var.value<DiffList>();
@@ -297,7 +297,7 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 			QDocumentCursor range=diffSearchBoundaries(doc,ln,col,fid);
 			cursor.moveTo(range.lineNumber(),range.columnNumber());
 			
-			QVariant var=cursor.line().getCookie(2);
+			QVariant var=cursor.line().getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 			if(var.isValid()){
 				DiffList diffList=var.value<DiffList>();
 				//QString word=cursor.line().text().mid(fr.offset,fr.length);
@@ -327,7 +327,7 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 							}
 							range.removeSelectedText();
 							diffList.erase(i);
-							cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
+							cursor.line().setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(diffList));
 							break;
 						case DiffOp::Insert:
 							//op.type=DiffOp::Inserted;
@@ -352,7 +352,7 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 							splitText=txt.split("\n");
 							op.length=splitText.first().length();
 							*i=op;
-							cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
+							cursor.line().setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(diffList));
 							break;
 						default:
 							;
@@ -379,7 +379,7 @@ void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
 							}
 							range.removeSelectedText();
 							diffList.erase(i);
-							cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
+							cursor.line().setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(diffList));
 							if(range.line().text().isEmpty())
 								range.eraseLine();
 							//if(removeLine)
@@ -447,7 +447,7 @@ QString diffCollectText(QDocumentCursor range){
 	QString result;
 	
 	while(cursor.lineNumber()<=range.anchorLineNumber()){
-		QVariant var=cursor.line().getCookie(2);
+		QVariant var=cursor.line().getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		if(var.isValid()){
 			DiffList diffList=var.value<DiffList>();
 			//QString word=cursor.line().text().mid(fr.offset,fr.length);
@@ -477,7 +477,7 @@ void diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type){
 	QDocumentCursor cursor(range);
 	
 	while(cursor.lineNumber()<=range.anchorLineNumber()){
-		QVariant var=cursor.line().getCookie(2);
+		QVariant var=cursor.line().getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		if(var.isValid()){
 			DiffList diffList=var.value<DiffList>();
 			//QString word=cursor.line().text().mid(fr.offset,fr.length);
@@ -494,7 +494,7 @@ void diffChangeOpType(QDocumentCursor range,DiffOp::DiffType type){
 				op.type=type;
 				*i=op;
 			}
-			cursor.line().setCookie(2,QVariant::fromValue<DiffList>(diffList));
+			cursor.line().setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(diffList));
 		}
 		if(cursor.lineNumber()+1==cursor.document()->lineCount())
 			break;
@@ -513,7 +513,7 @@ void diffMerge(LatexDocument *doc){
 	QDocumentCursor cur(doc);
 	
 	for(int i=0;i<doc->lineCount();i++){
-		QVariant var=doc->line(i).getCookie(2);
+		QVariant var=doc->line(i).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		
 		if(var.isValid()){
 			DiffList lineData=var.value<DiffList>();
@@ -522,7 +522,7 @@ void diffMerge(LatexDocument *doc){
 				if(op.lineWasModified){
 					whose=mine;
 					if(op.dlh!=0){
-						QVariant var=op.dlh->getCookie(2);
+						QVariant var=op.dlh->getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 						if(var.isValid()){
 							whose=conflict;
 						}

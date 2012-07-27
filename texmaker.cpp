@@ -5620,12 +5620,12 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 		doc->setForceLineWrapCalculation(true);
 		int toLine = qBound(0, source.toLine, doc->lines() - 1);
 		for (int l = source.fromLine; l <= toLine; l++ ) 
-			if (doc->line(l).getCookie(42).isValid()) {
-				doc->line(l).removeCookie(42);
+			if (doc->line(l).getCookie(QDocumentLine::PICTURE_COOKIE).isValid()) {
+				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE);
 				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
 				doc->adjustWidth(l);
 			}	
-		doc->line(toLine).setCookie(42, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
+		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
 		doc->adjustWidth(toLine);
 	}
@@ -6774,7 +6774,7 @@ void Texmaker::jumpNextDiff(){
 	
 	//search for next diff
 	int lineNr=c.lineNumber();
-	QVariant var=doc->line(lineNr).getCookie(2);
+	QVariant var=doc->line(lineNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 	if(var.isValid()){
 		DiffList lineData=var.value<DiffList>();
 		for(int j=0;j<lineData.size();j++){
@@ -6791,7 +6791,7 @@ void Texmaker::jumpNextDiff(){
 	
 	
 	for(;lineNr<doc->lineCount();lineNr++) {
-		var=doc->line(lineNr).getCookie(2);
+		var=doc->line(lineNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		if(var.isValid()){
 			break;
 		}
@@ -6819,7 +6819,7 @@ void Texmaker::jumpPrevDiff(){
 	
 	//search for next diff
 	int lineNr=c.lineNumber();
-	QVariant var=doc->line(lineNr).getCookie(2);
+	QVariant var=doc->line(lineNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 	if(var.isValid()){
 		DiffList lineData=var.value<DiffList>();
 		for(int j=lineData.size()-1;j>=0;j--){
@@ -6836,7 +6836,7 @@ void Texmaker::jumpPrevDiff(){
 	
 	
 	for(;lineNr>=0;lineNr--) {
-		var=doc->line(lineNr).getCookie(2);
+		var=doc->line(lineNr).getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		if(var.isValid()){
 			break;
 		}

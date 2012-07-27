@@ -144,7 +144,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			foreach (const int f, edView->grammarFormats){
 				fr = cursor.line().getOverlayAt(pos, f); 
 				if (fr.length>0 && fr.format==f) {
-					QVariant var=cursor.line().getCookie(43);
+					QVariant var=cursor.line().getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE);
 					if (var.isValid()){
 						QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
 						wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
@@ -244,7 +244,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				if (cursor.hasSelection()) fr= cursor.line().getOverlayAt((cursor.columnNumber()+cursor.anchorColumnNumber()) / 2,fid);
 				else fr = cursor.line().getOverlayAt(cursor.columnNumber(),fid);
 				if (fr.length>0 ) {
-					QVariant var=cursor.line().getCookie(2);
+					QVariant var=cursor.line().getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 					if(var.isValid()){
 						DiffList diffList=var.value<DiffList>();
 						//QString word=cursor.line().text().mid(fr.offset,fr.length);
@@ -456,7 +456,7 @@ void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle
 	lineNr = document->indexOf(const_cast<QDocumentLineHandle*>(static_cast<const QDocumentLineHandle*>(lineHandle)), lineNr);
 	if (lineNr < 0) return; //line already deleted
 	displayLineGrammarErrorsInternal(lineNr, errors);
-	document->line(lineNr).setCookie(43, QVariant::fromValue<QList<GrammarError> >(errors));
+	document->line(lineNr).setCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE, QVariant::fromValue<QList<GrammarError> >(errors));
 }
 
 void LatexEditorView::setGrammarOverlayDisabled(int type, bool newValue){
@@ -467,7 +467,7 @@ void LatexEditorView::setGrammarOverlayDisabled(int type, bool newValue){
 
 void LatexEditorView::updateGrammarOverlays(){
 	for (int i=0;i<document->lineCount();i++) 
-		displayLineGrammarErrorsInternal(i, document->line(i).getCookie(43).value<QList<GrammarError> >());
+		displayLineGrammarErrorsInternal(i, document->line(i).getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE).value<QList<GrammarError> >());
 	editor->viewport()->update();
 }
 
@@ -882,7 +882,7 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 	Q_ASSERT_X(dlh!=0,"checkNextLine","empty dlh used in checkNextLine");
 	if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
 		StackEnvironment env;
-		QVariant envVar=dlh->getCookie(1);
+		QVariant envVar=dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 		if(envVar.isValid())
 			env=envVar.value<StackEnvironment>();
 		int index = document->indexOf(dlh);
@@ -893,7 +893,7 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 			if(unclosedEnv.id!=-1){
 				unclosedEnv.id = -1;
 				int unclosedEnvIndex = document->indexOf(unclosedEnv.dlh);
-				if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookie(3).isValid()){
+				if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE).isValid()){
 					StackEnvironment env;
 					Environment newEnv;
 					newEnv.name="normal";
@@ -901,7 +901,7 @@ void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,i
 					env.push(newEnv);
 					if (unclosedEnvIndex >= 1) {
 						QDocumentLineHandle *prev = document->line(unclosedEnvIndex-1).handle();
-						QVariant result=prev->getCookie(1);
+						QVariant result=prev->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 						if(result.isValid())
 							env=result.value<StackEnvironment>();
 					} 
@@ -1038,7 +1038,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		bool addedOverlayStructure = false;
 		
 		// diff presentation
-		QVariant cookie=line.getCookie(2);
+		QVariant cookie=line.getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		if(!cookie.isNull()){
 			DiffList diffList=cookie.value<DiffList>();
 			for(int i=0;i<diffList.size();i++){
@@ -1306,7 +1306,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	
 	QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(),replaceFormat);
 	if (fr.length>0 && fr.format==replaceFormat) {
-		QVariant var=l.getCookie(2);
+		QVariant var=l.getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		if(var.isValid()){
 			DiffList diffList=var.value<DiffList>();
 			DiffOp op;
@@ -1328,7 +1328,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	foreach (const int f, grammarFormats){
 		fr = cursor.line().getOverlayAt(cursor.columnNumber(), f); 
 		if (fr.length>0 && fr.format==f) {
-			QVariant var=l.getCookie(43);
+			QVariant var=l.getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE);
 			if (var.isValid()){
 				const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
 				for (int i=0;i<errors.size();i++)
@@ -1776,7 +1776,7 @@ void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
 	if (lineNumber > 0) {
 		QDocumentLine prev = editor->document()->line(lineNumber - 1);
 		REQUIRE(prev.isValid());
-		QVariant result=prev.getCookie(1);
+		QVariant result=prev.getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 		if(result.isValid())
 			env=result.value<StackEnvironment>();
 	}

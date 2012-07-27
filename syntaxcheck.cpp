@@ -86,7 +86,7 @@ void SyntaxCheck::run(){
 				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first,elem.range.second,syntaxErrorFormat));
 			
 			// active envs
-			QVariant oldEnvVar=newLine.dlh->getCookie(1);
+			QVariant oldEnvVar=newLine.dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 			StackEnvironment oldEnv;
 			if(oldEnvVar.isValid())
 				oldEnv=oldEnvVar.value<StackEnvironment>();
@@ -95,7 +95,7 @@ void SyntaxCheck::run(){
 			if(cookieChanged){
 				QVariant env;
 				env.setValue(activeEnv);
-				newLine.dlh->setCookie(1,env);
+				newLine.dlh->setCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE,env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
 				//qDebug() << newLine.dlh->text() << ":" << activeEnv.size();
 				emit checkNextLine(newLine.dlh,true,newLine.ticket);
@@ -308,7 +308,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	Ranges newRanges;
 	checkLine(line,newRanges,activeEnv,dlh,dlh->getCurrentTicket());
 	// add Error for unclosed env
-	QVariant var=dlh->getCookie(3);
+	QVariant var=dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
 	if(var.isValid()){
 		activeEnv=var.value<StackEnvironment>();
 		Q_ASSERT_X(activeEnv.size()==1,"SyntaxCheck","Cookie error");
@@ -438,7 +438,7 @@ void SyntaxCheck::markUnclosedEnv(Environment env){
 			StackEnvironment activeEnv;
 			activeEnv.append(env);
 			var_env.setValue(activeEnv);
-			dlh->setCookie(3,var_env); //ERR_EnvNotClosed;
+			dlh->setCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE,var_env); //ERR_EnvNotClosed;
 		}
 	}
 	dlh->unlock();
