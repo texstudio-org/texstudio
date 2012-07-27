@@ -811,7 +811,7 @@ void diff_match_patch::diff_cleanupSemantic(QList<Diff> &diffs) {
       thisDiff = &pointer.next();
     }
   }
-  while (thisDiff != NULL) {
+  while (prevDiff != NULL && thisDiff != NULL) { //prevDiff check only needed for static analyze 
     if (prevDiff->operation == DELETE &&
         thisDiff->operation == INSERT) {
       QString deletion = prevDiff->text;
@@ -849,7 +849,7 @@ void diff_match_patch::diff_cleanupSemanticLossless(QList<Diff> &diffs) {
   Diff *nextDiff = pointer.hasNext() ? &pointer.next() : NULL;
 
   // Intentionally ignore the first and last element (don't need checking).
-  while (nextDiff != NULL) {
+  while (prevDiff != NULL && nextDiff != NULL) { //prevDiff check only needed for static analyze 
     if (prevDiff->operation == EQUAL &&
       nextDiff->operation == EQUAL) {
         // This is a single edit surrounded by equalities.
