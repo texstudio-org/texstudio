@@ -401,7 +401,7 @@ private slots:
 	void jumpToPage();
 
 	void search(bool backward, bool incremental);
-	void setZoom();
+	void zoomFromAction();
 	void zoomSliderChange(int pos = 0);
 signals:
 	void documentClosed();
@@ -446,7 +446,7 @@ private:
 	QIntValidator *leCurrentPageValidator;
 
 	QLabel *pageLabel;
-	QLabel *scaleLabel;
+	QToolButton *scaleButton;
 	QSlider *zoomSlider;
 	QList<QAction*> recentFileActions;
 	QShortcut* exitFullscreen;

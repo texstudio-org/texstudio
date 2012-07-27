@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>714</width>
+    <width>1197</width>
     <height>600</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>714</width>
+     <width>1197</width>
      <height>21</height>
     </rect>
    </property>
@@ -145,7 +145,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionTypeset"/>
    <addaction name="separator"/>
@@ -170,7 +170,6 @@
    <addaction name="actionZoom_Out"/>
    <addaction name="actionZoom_In"/>
    <addaction name="actionClose"/>
-   <addaction name="separator"/>
   </widget>
   <action name="actionAbout_TW">
    <property name="text">
