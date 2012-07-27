@@ -1832,7 +1832,7 @@ QList<PDFDocument*> PDFDocument::docList;
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
        : renderManager(0),curFileSize(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false),syncToSourceBlock(false)
 {
-	Q_ASSERT(pdfConfig);
+	REQUIRE(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
 	globalConfig = pdfConfig;
 

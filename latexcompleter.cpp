@@ -1112,7 +1112,7 @@ bool LatexCompleter::acceptTriggerString(const QString& trigger){
 	return trigger=="\\" && (!config || config->enabled);;
 }
 void LatexCompleter::setConfig(LatexCompleterConfig* config){
-	Q_ASSERT(config);
+	REQUIRE(config);
 	this->config=config;
 	listModel->setConfig(config);
 	

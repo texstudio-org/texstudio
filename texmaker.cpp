@@ -3619,8 +3619,7 @@ void Texmaker::QuickTabular() {
 	QString hs="";
 	QString tag;
 	TabDialog *quickDlg = new TabDialog(this,"Tabular");
-	//TODO: move this in tabdialog.h
-	QTableWidgetItem *item=new QTableWidgetItem();
+	//TODO: move this in tabdialog.h	
 	if (quickDlg->exec()) {
 		int y = quickDlg->ui.spinBoxRows->value();
 		int x = quickDlg->ui.spinBoxColumns->value();
@@ -3646,11 +3645,11 @@ void Texmaker::QuickTabular() {
 		for (int i=0; i<y; i++) {
 			tag +=hs;
 			for (int j=0; j<x-1; j++) {
-				item =quickDlg->ui.tableWidget->item(i,j);
+				QTableWidgetItem * item =quickDlg->ui.tableWidget->item(i,j);
 				if (item) tag +=item->text()+ QString(" & ");
 				else tag +=QString(" & ");
 			}
-			item =quickDlg->ui.tableWidget->item(i,x-1);
+			QTableWidgetItem * item =quickDlg->ui.tableWidget->item(i,x-1);
 			if (item) tag +=item->text()+ QString(" \\\\ \n");
 			else tag +=QString(" \\\\ \n");
 		}
@@ -3666,7 +3665,6 @@ void Texmaker::QuickArray() {
 	//TODO: move this in arraydialog class
 	QString al;
 	ArrayDialog *arrayDlg = new ArrayDialog(this,"Array");
-	QTableWidgetItem *item=new QTableWidgetItem();
 	if (arrayDlg->exec()) {
 		int y = arrayDlg->ui.spinBoxRows->value();
 		int x = arrayDlg->ui.spinBoxColumns->value();
@@ -3685,20 +3683,20 @@ void Texmaker::QuickArray() {
 		tag +=QString("\n");
 		for (int i=0; i<y-1; i++) {
 			for (int j=0; j<x-1; j++) {
-				item =arrayDlg->ui.tableWidget->item(i,j);
+				QTableWidgetItem * item =arrayDlg->ui.tableWidget->item(i,j);
 				if (item) tag +=item->text()+ QString(" & ");
 				else tag +=QString(" & ");
 			}
-			item =arrayDlg->ui.tableWidget->item(i,x-1);
+			QTableWidgetItem * item =arrayDlg->ui.tableWidget->item(i,x-1);
 			if (item) tag +=item->text()+ QString(" \\\\ \n");
 			else tag +=QString(" \\\\ \n");
 		}
 		for (int j=0; j<x-1; j++) {
-			item =arrayDlg->ui.tableWidget->item(y-1,j);
+			QTableWidgetItem * item =arrayDlg->ui.tableWidget->item(y-1,j);
 			if (item) tag +=item->text()+ QString(" & ");
 			else tag +=QString(" & ");
 		}
-		item =arrayDlg->ui.tableWidget->item(y-1,x-1);
+		QTableWidgetItem * item =arrayDlg->ui.tableWidget->item(y-1,x-1);
 		if (item) tag +=item->text()+ QString("\n\\end{")+env+"} ";
 		else tag +=QString("\n\\end{")+env+"} ";
 		InsertTag(tag,0,0);
