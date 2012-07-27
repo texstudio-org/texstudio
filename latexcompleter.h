@@ -98,6 +98,7 @@ private:
 	bool forcedRef;
 	bool forcedGraphic;
 	bool forcedCite;
+    bool startedFromTriggerKey;
 	QString workingDir;
 	
 	QPoint lastPos;
