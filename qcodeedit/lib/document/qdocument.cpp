@@ -6258,7 +6258,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		}
 
 
-		currentLine=false;
 		// see above
 		p->translate(0, -pos);
 
