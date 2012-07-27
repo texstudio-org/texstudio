@@ -1982,10 +1982,13 @@ void PDFDocument::init(bool embedded)
     if(!embedded){
         QStringList lst;
         lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
-        comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(setZoom()),"100%");
+		comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(zoomFromAction()),"100%");
         toolBar->insertWidget(actionZoom_In, comboZoom);
     }else{
         comboZoom=0;
+		QWidget *spacer = new QWidget(toolBar);
+		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+		toolBar->insertWidget(actionClose, spacer);
     }
 	addAction(toolBar->toggleViewAction());
 
@@ -2016,13 +2019,24 @@ void PDFDocument::init(bool embedded)
 
 	pageLabel = new QLabel();
 	statusBar()->addPermanentWidget(pageLabel);
-	pageLabel->setFrameStyle(QFrame::StyledPanel);
 	pageLabel->setFont(statusBar()->font());
 
-	scaleLabel = new QLabel();
-	statusBar()->addPermanentWidget(scaleLabel);
-	scaleLabel->setFrameStyle(QFrame::StyledPanel);
-	scaleLabel->setFont(statusBar()->font());
+	scaleButton = new QToolButton(toolBar);
+	scaleButton->setToolTip(tr("Scale"));
+	scaleButton->setPopupMode(QToolButton::InstantPopup);
+	scaleButton->setAutoRaise(true);
+	scaleButton->setMinimumWidth(statusBar()->fontMetrics().width("OOOOOO"));
+	scaleButton->setText("100%");
+	statusBar()->addPermanentWidget(scaleButton,0);
+	QList<int> levels = QList<int>() << 25 << 50 << 75 << 100 << 150 << 200 << 300 << 400;
+	QActionGroup *scaleActions = new QActionGroup(scaleButton);
+	foreach (int level, levels) {
+		QAction *act = new QAction(scaleActions);
+		act->setText(QString("%1\%").arg(level));
+		act->setData(QVariant(level));
+		connect(act, SIGNAL(triggered()), this, SLOT(zoomFromAction()));
+	}
+	scaleButton->addActions(scaleActions->actions());
 
 	QToolButton *buttonZoomOut = new QToolButton();
 	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
@@ -2794,8 +2808,8 @@ void PDFDocument::showPage(int page)
 	if(p<1)
 	    p=1;
 	int p2=page+pdfWidget->visiblePages()-1-pdfWidget->getPageOffset();
-	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("page %1 of %2").arg(p).arg(pdfWidget->realNumPages()));
-	else pageLabel->setText(tr("pages %1 to %2 of %3").arg(p).arg(p2).arg(pdfWidget->realNumPages()));
+	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("Page %1 of %2").arg(p).arg(pdfWidget->realNumPages()));
+	else pageLabel->setText(tr("Pages %1 to %2 of %3").arg(p).arg(p2).arg(pdfWidget->realNumPages()));
 	pageCountLabel->setText(QString("%1").arg(pdfWidget->realNumPages()));
 
 	leCurrentPage->setText(QString("%1").arg(p));
@@ -2803,7 +2817,8 @@ void PDFDocument::showPage(int page)
 
 void PDFDocument::showScale(qreal scale)
 {
-	scaleLabel->setText(tr("%1%").arg(ROUND(scale * 10000.0) / 100.0));
+	QString scaleString = QString("%1%").arg(ROUND(scale * 100.0));
+	scaleButton->setText(scaleString);
 	zoomSlider->setValue(scaleToZoomSliderPos(scale));
 }
 
@@ -2956,17 +2971,23 @@ void PDFDocument::resetMagnifier()
 	pdfWidget->resetMagnifier();
 }
 
-void PDFDocument::setZoom(){
-	QAction *action=qobject_cast<QAction *>(sender());
-	QString text=action->text();
-	text.chop(1);
+void PDFDocument::zoomFromAction(){
+	QAction *act=qobject_cast<QAction *>(sender());
+	if (!act) return;
+
 	bool ok;
-	int factor=text.toInt(&ok);
+	int factor = act->data().toInt(&ok);
+	if (!ok) { // old combobox
+		QString text=act->text();
+		text.chop(1);
+		factor=text.toInt(&ok);
+	}
 	if(ok){
 		pdfWidget->fixedScale(0.01*factor);
 	}
-    if(comboZoom)
-        comboZoom->setDefaultAction(action);
+
+	if(comboZoom)
+		comboZoom->setDefaultAction(act);
 }
 
 void PDFDocument::setResolution(int res)
