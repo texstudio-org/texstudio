@@ -5,6 +5,7 @@
 struct PDFDocumentConfig{
 	int windowLeft, windowTop;
 	int windowWidth, windowHeight;
+	bool windowMaximized;
 	QByteArray windowState;
 
 	int dpi;
