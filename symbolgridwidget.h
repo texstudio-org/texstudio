@@ -13,6 +13,7 @@
 #define SYMBOLGRIDWIDGET_H
 
 #include "mostQtHeaders.h"
+#include <QTableWidgetItem>
 
 typedef QList<QTableWidgetItem*> usercodelist;
 
