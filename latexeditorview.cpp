@@ -131,8 +131,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	QDocumentCursor cursor;
 	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
 	else cursor=editor->cursor();
-	if (cursor.isValid() && cursor.line().isValid())  {
-		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+	LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+	bool validPosition = cursor.isValid() && cursor.line().isValid();
+	if (validPosition) {
 		QFormatRange fr;
 		//spell checking
 		
@@ -278,6 +279,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		contextMenu->addAction(act);
 	}
 	contextMenu->addActions(baseActions);
+	if (validPosition) {
+		contextMenu->addSeparator();
+		QAction *act = new QAction(LatexEditorView::tr("Jump to PDF"), contextMenu);
+		edView->connect(act, SIGNAL(triggered()), edView, SIGNAL(syncPDFRequested()));
+		contextMenu->addAction(act);
+	}
+
+
 	if (event->reason()==QContextMenuEvent::Mouse) contextMenu->exec(event->globalPos());
 	else {
 		QPoint curPoint=editor->cursor().documentPosition();
