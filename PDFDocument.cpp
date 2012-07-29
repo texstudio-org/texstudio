@@ -980,7 +980,7 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 
     PDFDocument *pdfDoc = getPDFDocument();
 	if (pdfDoc && pdfDoc->hasSyncData()) {
-		QAction *act = new QAction(tr("Jump to Source"), &menu);
+		QAction *act = new QAction(tr("Go to Source"), &menu);
 		act->setData(QVariant(event->pos()));
 		connect(act, SIGNAL(triggered()), this, SLOT(jumpToSource()));
 		menu.addAction(act);

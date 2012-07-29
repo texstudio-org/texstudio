@@ -1347,6 +1347,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
+	connect(edit, SIGNAL(syncPDFRequested()), this, SLOT(syncPDFViewer()));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
@@ -5901,10 +5902,13 @@ void Texmaker::cursorPositionChanged(){
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
-	
+	syncPDFViewer(true);
+}
+
+void Texmaker::syncPDFViewer(bool onlyIfFollowingCursor) {
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
-		if (viewer->followCursor())
+		if (!onlyIfFollowingCursor || viewer->followCursor())
 			viewer->syncFromSource(getCurrentFileName(), currentLine, false);
 #endif
 }
