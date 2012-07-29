@@ -946,7 +946,7 @@ void Texmaker::setupMenus() {
 
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
+    newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
 	
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
@@ -4615,6 +4615,8 @@ void Texmaker::GeneralOptions() {
 						if(configManager.editorConfig->realtimeChecking){
 							edView->updateLtxCommands();
 							edView->documentContentChanged(0,edView->document->lines());
+                            QStringList lst;
+                            edView->document->updateCompletionFiles(lst,false,true);
 						}else{
 							edView->clearOverlays();
 						}

@@ -2169,7 +2169,7 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	}
 }
 
-void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
+void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bool forceLabelUpdate){
 	// remove
 	LatexEditorView *edView=getEditorView();
 	LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
@@ -2208,7 +2208,7 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate){
     foreach(const QString elem,categories){
         QStringList cmds=ltxCommands.possibleCommands[elem].values();
         foreach(const QString cmd,cmds){
-            if(!latexParser.possibleCommands[elem].contains(cmd)){
+            if(!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate){
                 newCmds << cmd;
                 latexParser.possibleCommands[elem]<< cmd;
             }
