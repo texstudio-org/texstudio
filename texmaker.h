@@ -541,6 +541,7 @@ public:
 public slots:
 	void threadCrashed();
 	void iamalive();
+    void checkLatexInstall();
 	
 signals:
 	void infoNewFile();
