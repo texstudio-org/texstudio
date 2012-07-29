@@ -963,6 +963,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
 	
 	menu->addSeparator();
+    newManagedAction(menu, "checkinstall",tr("Check Latex installation"), SLOT(checkLatexInstall()), 0,":/images/appicon.png");
 	newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
 	
 	//additional elements for development
@@ -7177,4 +7178,30 @@ void Texmaker::threadCrashed(){
 
 void Texmaker::iamalive(){
 	Guardian::calm();
+}
+
+void Texmaker::checkLatexInstall(){
+    fileNew();
+    QString result;
+    // run pdflatex
+    statusLabelProcess->setText(QString("check pdflatex"));
+    QString buffer;
+    CommandInfo cmdInfo=buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
+    QString cmd=cmdInfo.getBaseName();
+    // where is pdflatex located
+    runCommand("which "+cmd, &buffer);
+    result="which pdflatex: "+buffer+"\n";
+    buffer.clear();
+    cmd+=" -v";
+    // run pdflatex
+    runCommand(cmd, &buffer);
+    result+="PDFLATEX: "+cmd+"\n";
+    result+=buffer;
+    result+="\n";
+    result+="printenv:\n";
+    buffer.clear();
+    // check env
+    runCommand("printenv", &buffer);
+    result+=buffer;
+    currentEditorView()->editor->setText(result, false);
 }

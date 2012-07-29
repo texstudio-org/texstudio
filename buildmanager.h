@@ -65,9 +65,12 @@ struct CommandInfo {
 	void setCommandLine(const QString& newCmd);
 	
 	QString getPrettyCommand() const;
+    QString getBaseName() const {
+        return baseName;
+    }
 private:
 	friend class BuildManager;
-	QString baseName;
+    QString baseName;
 	GuessCommandLineFunc guessFunc;
 	QString deprecatedConfigName;
 	
