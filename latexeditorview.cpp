@@ -281,7 +281,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	contextMenu->addActions(baseActions);
 	if (validPosition) {
 		contextMenu->addSeparator();
-		QAction *act = new QAction(LatexEditorView::tr("Jump to PDF"), contextMenu);
+		QAction *act = new QAction(LatexEditorView::tr("Go to PDF"), contextMenu);
 		edView->connect(act, SIGNAL(triggered()), edView, SIGNAL(syncPDFRequested()));
 		contextMenu->addAction(act);
 	}

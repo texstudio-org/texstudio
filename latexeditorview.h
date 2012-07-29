@@ -189,6 +189,7 @@ signals:
 	void thesaurus(int line,int col);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
+	void syncPDFRequested();
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
