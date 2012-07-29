@@ -779,9 +779,22 @@ QSettings* ConfigManager::readSettings() {
 	
 	//menu shortcuts
 	QMap<QString, QString> aliases = QMap<QString, QString>();
+	// key and value may be a full command or a prefix only
 	aliases.insert("main/user/commands/", "main/tools/user/");
 	aliases.insert("main/user/tags/", "main/macros/");
 	aliases.insert("main/usertags/", "main/macros/");
+	aliases.insert("main/tools/latex", "main/tools/commands/latex");
+	aliases.insert("main/tools/viewdvi", "main/tools/commands/viewdvi");
+	aliases.insert("main/tools/dvi2ps", "main/tools/commands/dvi2ps");
+	aliases.insert("main/tools/viewps", "main/tools/commands/viewps");
+	aliases.insert("main/tools/pdflatex", "main/tools/commands/pdflatex");
+	aliases.insert("main/tools/viewpdf", "main/tools/commands/viewpdf");
+	aliases.insert("main/tools/ps2pdf", "main/tools/commands/ps2pdf");
+	aliases.insert("main/tools/dvipdf", "main/tools/commands/dvipdf");
+	aliases.insert("main/tools/makeindex", "main/tools/commands/makeindex");
+	aliases.insert("main/tools/metapost", "main/tools/commands/metapost");
+	aliases.insert("main/tools/asymptote", "main/tools/commands/asymptote");
+
 	int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
 		config->setArrayIndex(i);
@@ -803,6 +816,16 @@ QSettings* ConfigManager::readSettings() {
 	for (int i=0; i<managedToolBars.size();i++){
 		ManagedToolBar& mtb=managedToolBars[i];
 		mtb.actualActions=config->value(mtb.name+"ToolBar").toStringList();
+		for (int i=0; i<mtb.actualActions.count(); i++) {
+			for (QMap<QString, QString>::iterator it = aliases.begin(), end = aliases.end(); it != end; ++it) {
+				QString id = mtb.actualActions.at(i);
+				if (id.startsWith(it.key())) {
+					id.replace(0, it.key().length(), it.value());
+					mtb.actualActions.replace(i, id);
+					break;
+				}
+			}
+		}
 		if (mtb.actualActions.empty()) mtb.actualActions=mtb.defaults;
 	}
 	replacedIconsOnMenus=config->value("customIcons").toMap();
