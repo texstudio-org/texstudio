@@ -191,7 +191,7 @@ public:
 			
 			removeRightWordPart();
             insertText(myResult.right(myResult.length()-my_start));
-			maxWritten+=myResult.length()-my_start;
+            //maxWritten+=myResult.length()-my_start; insert text already adapt maxWritten
 			completer->filterList(getCurWord(),getMostUsed());
 			if (!completer->list->currentIndex().isValid())
 				select(completer->list->model()->index(0,0,QModelIndex()));
