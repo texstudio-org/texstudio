@@ -188,6 +188,11 @@ void SpellerManager::setDictPath(const QString &dictPath) {
 	dictFiles.clear();
 	QDir dir(dictPath);
 	foreach (QFileInfo fi, dir.entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
+		QString affFile = fi.canonicalFilePath().left(fi.canonicalFilePath().length()-3) + "aff";
+		if (!QFileInfo(affFile).exists()) {
+			txsInformation(QString("Broken dictionary detected:\n%1\n\nMissing .aff file. This dictionary will not be loaded.").arg(fi.canonicalFilePath()));
+			continue;
+		}
 		dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
 	}
 
@@ -233,6 +238,7 @@ SpellerUtility *SpellerManager::getSpeller(QString name) {
 	if (!su) {
 		su = new SpellerUtility(name);
 		if (!su->loadDictionary(dictFiles.value(name), ignoreFilePrefix)) {
+			txsWarning(QString("Loading of dictionary failed:\n%1").arg(dictFiles.value(name)));
 			delete su;
 			return emptySpeller;
 		}
