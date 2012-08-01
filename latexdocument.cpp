@@ -1344,6 +1344,30 @@ StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & i
 	if (!result || !result->document) return 0;
 	return result;
 }
+
+/*!
+	Returns an associated SE_LABEL entry for a structure element if one exists, otherwise 0.
+	TODO: currently association is checked, by checking, if the label is on the same line.
+	This is not necessarily correct. It fails if:
+	 - there are multiple labels on one line (always the first label is chosen)
+	 - the label is on a later line (label not detected)
+*/
+StructureEntry *LatexDocumentsModel::labelForStructureEntry(const StructureEntry *entry)
+{
+	StructureEntryIterator iter(entry->document->baseStructure);
+	QDocumentLineHandle *dlh = entry->getLineHandle();
+
+	while (iter.hasNext()){
+		StructureEntry *se = iter.next();
+		if (se->type==StructureEntry::SE_LABEL) {
+			if (se->getLineHandle() == dlh) {
+				return se;
+			}
+		}
+	}
+	return 0;
+}
+
 QModelIndex LatexDocumentsModel::highlightedEntry(){
 	return mHighlightIndex;
 }
