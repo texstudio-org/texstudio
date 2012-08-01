@@ -1200,6 +1200,15 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
 			return QVariant(entry->document->getFileName());
 		}
+		if (entry->type==StructureEntry::SE_SECTION) {
+			QString tooltip(entry->title);
+			if (entry->getCachedLineNumber()>-1)
+				tooltip.append("\n"+tr("Line")+QString(": %1").arg(entry->getRealLineNumber()+1));
+			StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
+			if (se)
+				tooltip.append("\n"+tr("Label")+": "+se->title);
+			return QVariant(tooltip);
+		}
 		if (entry->getCachedLineNumber()>-1)
 			return QVariant(entry->title+QString(tr(" (Line %1)").arg(entry->getRealLineNumber()+1)));
 		else
