@@ -256,6 +256,7 @@ public:
 	QModelIndex parent ( const QModelIndex & index ) const;
 	
 	static StructureEntry* indexToStructureEntry(const QModelIndex & index );
+	static StructureEntry* labelForStructureEntry(const StructureEntry* entry);
 	QModelIndex highlightedEntry();
 	void setHighlightedEntry(StructureEntry* entry);
 	

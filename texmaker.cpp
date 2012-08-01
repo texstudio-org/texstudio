@@ -5518,13 +5518,21 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 	if (!entry->parent) return;
 	if (entry->type==StructureEntry::SE_LABEL) {
 		QMenu menu;
-		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()));
-		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()));
-		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()));
+		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()))->setData(entry->title);
+		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(entry->title));
+		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\pageref{%1}").arg(entry->title));
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 	if (entry->type==StructureEntry::SE_SECTION) {
 		QMenu menu(this);
+
+		StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(entry);
+		if (labelEntry) {
+			menu.addAction(tr("Insert Label"),this, SLOT(editPasteRef()))->setData(labelEntry->title);
+			menu.addAction(tr("Insert \\ref to Label"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(labelEntry->title));
+			menu.addSeparator();
+		}
+
 		menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
 		menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
 		menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
@@ -5532,6 +5540,7 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addSeparator();
 		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
 		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
+
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 }
@@ -5560,19 +5569,12 @@ void Texmaker::structureContextMenuSwitchMasterDocument(){
 
 void Texmaker::editPasteRef() {
 	if (!currentEditorView()) return;
-	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry) return;
 	
 	QAction *action = qobject_cast<QAction *>(sender());
-	QString name=action->text();
-	if (name==tr("Insert")) {
-		currentEditor()->write(entry->title);
-		currentEditorView()->setFocus();
-	} else {
-		name.remove(0,name.indexOf("\\"));
-		name.chop(name.length()-name.indexOf("{"));
-		currentEditor()->write(name+"{"+entry->title+"}");
-		currentEditorView()->setFocus();	}
+	if (!action) return;
+
+	currentEditor()->write(action->data().toString());
+	currentEditorView()->setFocus();
 }
 
 void Texmaker::previewLatex(){
