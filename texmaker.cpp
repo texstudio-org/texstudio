@@ -7180,6 +7180,15 @@ void Texmaker::iamalive(){
 	Guardian::calm();
 }
 
+void Texmaker::slowOperationStarted(){
+	Guardian::instance()->slowOperationStarted();
+}
+
+void Texmaker::slowOperationEnded(){
+	Guardian::instance()->slowOperationEnded();
+	
+}
+
 void Texmaker::checkLatexInstall(){
     fileNew();
     QString result;
@@ -7205,3 +7214,4 @@ void Texmaker::checkLatexInstall(){
     result+=buffer;
     currentEditorView()->editor->setText(result, false);
 }
+

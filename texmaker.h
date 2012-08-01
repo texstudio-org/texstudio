@@ -538,10 +538,16 @@ public:
 	Q_INVOKABLE int getVersion() const;
 	
 	static void recoverFromCrash();
+	
+	
 public slots:
 	void threadCrashed();
 	void iamalive();
     void checkLatexInstall();
+	
+	void slowOperationStarted();
+	void slowOperationEnded();
+	
 	
 signals:
 	void infoNewFile();
