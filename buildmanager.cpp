@@ -1073,10 +1073,17 @@ bool BuildManager::waitForProcess(ProcessX* p){
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	QTime time;
 	time.start();
+	int sleepTime = 0;
 	while (p && p->isRunning()){
-		qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
 		if (time.elapsed()>2000)
 			qApp->instance()->processEvents(QEventLoop::AllEvents);
+		else
+			qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);			
+		sleepTime++;
+		if (sleepTime > 10) { //simulate 0.1ms sleep, so it stays responsible without using 100% cpu
+			ThreadBreaker::sleep(1);
+			sleepTime = 0;
+		}
 	}
 	QApplication::restoreOverrideCursor();
 	bool result = processWaitedFor;
