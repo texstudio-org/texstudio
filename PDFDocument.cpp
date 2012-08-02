@@ -2399,7 +2399,7 @@ void PDFDocument::reload(bool fillCache)
 		leCurrentPage->setMaxLength(maxDigits);
 		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits+1, '#')));
 		leCurrentPageValidator->setTop(pdfWidget->realNumPages());
-		qDebug() << pdfWidget->realNumPages() << maxDigits << fontMetrics().width(QString(maxDigits+1, '#'));
+		//qDebug() << pdfWidget->realNumPages() << maxDigits << fontMetrics().width(QString(maxDigits+1, '#'));
 
 		loadSyncData();
 		if(fillCache){
