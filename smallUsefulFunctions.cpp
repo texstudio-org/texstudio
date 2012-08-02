@@ -1703,7 +1703,12 @@ void LatexPackage::unite(LatexPackage &add){
 
 
 void ThreadBreaker::sleep(int s){
-        QThread::sleep(s);
+	QThread::sleep(s);
+}
+
+void ThreadBreaker::msleep(unsigned long ms)
+{
+	QThread::msleep(ms);
 };
 
 void ThreadBreaker::forceTerminate(QThread* t){

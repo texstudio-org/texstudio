@@ -261,6 +261,7 @@ class ThreadBreaker : public QThread
 {
 public:
     static void sleep(int s);
+	static void msleep(unsigned long ms);
     static void forceTerminate(QThread* t = 0);
 };
 
