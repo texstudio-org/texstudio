@@ -386,7 +386,7 @@ PDFWidget::PDFWidget(bool embedded)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
-       , totalScrolling(0)
+	   , summedWheelDegrees(0)
 	, imageDpi(0)
 	, imagePage(-1)
 	, magnifier(NULL)
@@ -1023,13 +1023,15 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 {
 	if (event->delta() == 0) return;
 	float numDegrees = event->delta() / 8.0;  
-	if ((totalScrolling < 0) != (numDegrees < 0)) totalScrolling = 0;
-	totalScrolling+=numDegrees;	
-	
+	if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;
+	// we may accumulate rotation and handle it in larger chunks
+	summedWheelDegrees+=numDegrees;
+	const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
+
 	if(event->modifiers()==Qt::ControlModifier){
-		if (qAbs(totalScrolling) >= 15 ) { //avoid small zoom changes, as they use a lot of memory
-			doZoom(event->pos(), totalScrolling / 15.0);
-			totalScrolling = 0;
+		if (qAbs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
+			doZoom(event->pos(), (summedWheelDegrees>0)?1:-1);
+			summedWheelDegrees = 0;
 		}
 	} else	{
 		static QTime lastScrollTime = QTime::currentTime();
@@ -1039,15 +1041,16 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		bool mayChangePage = !getScrollArea()->getContinuous();
 		if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
 			int oldValue = scrollBar->value();
-			scrollBar->setValue(scrollBar->value() - round(totalScrolling * scrollBar->singleStep() / 15.0));
+			const int scrollPerWheelStep = scrollBar->singleStep() * 3; // 3: typical empirical value
+			scrollBar->setValue(scrollBar->value() - round(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
 			int delta = oldValue - scrollBar->value();
 			if (delta != 0) {
 				lastScrollTime = QTime::currentTime();
-				totalScrolling -= delta * 15 / scrollBar->singleStep();
+				summedWheelDegrees -= delta * degreesPerStep / scrollPerWheelStep;
 				mayChangePage = false;
 			} else 
 				mayChangePage &= (scrollBar->value() == scrollBar->minimum()) || (scrollBar->value() == scrollBar->maximum());
-			if (QTime::currentTime() < lastScrollTime.addMSecs(500) && qAbs(totalScrolling) < 180)
+			if (QTime::currentTime() < lastScrollTime.addMSecs(500) && qAbs(summedWheelDegrees) < 180)
 				mayChangePage = false;
 		}
 		if (mayChangePage) {
@@ -1060,7 +1063,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 				scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 			}
 			lastScrollTime = QTime::currentTime();
-			totalScrolling = 0;
+			summedWheelDegrees = 0;
 		}
 		event->accept();
 	}
