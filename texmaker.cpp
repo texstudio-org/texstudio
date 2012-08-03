@@ -7192,28 +7192,44 @@ void Texmaker::slowOperationEnded(){
 }
 
 void Texmaker::checkLatexInstall(){
-    fileNew();
-    QString result;
-    // run pdflatex
-    statusLabelProcess->setText(QString("check pdflatex"));
-    QString buffer;
-    CommandInfo cmdInfo=buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
-    QString cmd=cmdInfo.getBaseName();
-    // where is pdflatex located
-    runCommand("which "+cmd, &buffer);
-    result="which pdflatex: "+buffer+"\n";
-    buffer.clear();
-    cmd+=" -v";
-    // run pdflatex
-    runCommand(cmd, &buffer);
-    result+="PDFLATEX: "+cmd+"\n";
-    result+=buffer;
-    result+="\n";
-    result+="printenv:\n";
-    buffer.clear();
-    // check env
-    runCommand("printenv", &buffer);
-    result+=buffer;
-    currentEditorView()->editor->setText(result, false);
+	fileNew();
+	m_languages->setLanguageFromName(currentEditor(), "Plain text");
+
+	QString result;
+	// run pdflatex
+	statusLabelProcess->setText(QString("check pdflatex"));
+	QString buffer;
+	CommandInfo cmdInfo=buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
+	QString cmd=cmdInfo.getBaseName();
+	// where is pdflatex located
+#ifdef Q_OS_WIN
+	runCommand("where "+cmd, &buffer);
+	result="where pdflatex: "+buffer+"\n\n";
+#else
+	runCommand("which "+cmd, &buffer);
+	result="which pdflatex: "+buffer+"\n\n";
+#endif
+	buffer.clear();
+	cmd+=" -v";
+	// run pdflatex
+	runCommand(cmd, &buffer);
+	result+="PDFLATEX: "+cmd+"\n";
+	result+=buffer;
+	result+="\n\n";
+	// check env
+	result+="Environment variables:\n";
+	buffer.clear();
+#ifdef Q_OS_WIN
+	// TODO: it's not guaranteed that a process started with runCommand has the same environment
+	// currently that should be the case, as long as we don't start to change the environment in
+	// runCommand before execution.
+	// The equivalent to printenv on windows would be set. However this is not a program, but a
+	// command directly built into cmd.com, so we cannot directly use runCommand("set");
+	buffer = QProcessEnvironment::systemEnvironment().toStringList().join("\n");
+#else
+	runCommand("printenv", &buffer);
+#endif
+	result+=buffer;
+	currentEditorView()->editor->setText(result, false);
 }
 
