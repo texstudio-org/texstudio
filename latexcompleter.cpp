@@ -775,6 +775,70 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, Co
 	baselist=wordsCommands;
 }
 
+void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const QSet<QString> &newwords, CompletionType completionType) {
+    QList<CompletionWord> newWordList;
+    acceptedChars.clear();
+    newWordList.clear();
+    for(QSet<QString>::const_iterator i=baseCommands.constBegin();i!=baseCommands.constEnd();++i) {
+        QString str=*i;
+        CompletionWord cw(str);
+        if(completionType==CT_COMMANDS){
+            cw.index=qHash(str);
+            cw.snippetLength=str.length();
+            cw.usageCount=0;
+            QList<QPair<int,int> >res=config->usage.values(cw.index);
+            foreach(const PairIntInt& elem,res){
+                if(elem.first==cw.snippetLength){
+                    cw.usageCount=elem.second;
+                    break;
+                }
+            }
+        }else{
+            cw.index=0;
+            cw.usageCount=-2;
+            cw.snippetLength=0;
+        }
+        newWordList.append(cw);
+        foreach(const QChar& c, str) acceptedChars.insert(c);
+    }
+    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+        QString str=*i;
+        CompletionWord cw(str);
+        if(completionType==CT_COMMANDS){
+            cw.index=qHash(str);
+            cw.snippetLength=str.length();
+            cw.usageCount=2;
+            QList<QPair<int,int> >res=config->usage.values(cw.index);
+            foreach(const PairIntInt& elem,res){
+                if(elem.first==cw.snippetLength){
+                    cw.usageCount=elem.second;
+                    break;
+                }
+            }
+        }else{
+            cw.index=0;
+            cw.usageCount=-2;
+            cw.snippetLength=0;
+        }
+        newWordList.append(cw);
+        foreach(const QChar& c, str) acceptedChars.insert(c);
+    }
+    qSort(newWordList.begin(), newWordList.end());
+
+    switch(completionType){
+    case CT_NORMALTEXT:
+        wordsText=newWordList;
+        break;
+    case CT_CITATIONS:
+        wordsCitations=newWordList;
+        break;
+    default:
+        wordsCommands=newWordList;
+    }
+
+    baselist=newWordList;
+}
+
 void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) {
 	wordsAbbrev=newwords;
 }
@@ -875,8 +939,8 @@ void LatexCompleter::insertText(QString txt){
 void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType) {
 	QSet<QString> concated;
 	if (config && completionType==CT_COMMANDS) concated.unite(config->words.toSet());
-	concated.unite(newwords);
-	listModel->setBaseWords(concated,completionType);
+    //concated.unite(newwords);
+    listModel->setBaseWords(concated,newwords,completionType);
 	widget->resize(200,200);
 }
 
