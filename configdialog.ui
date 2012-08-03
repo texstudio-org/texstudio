@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1265,17 +1265,53 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
               <string>Appearance</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_6">
-              <item row="0" column="0">
-               <widget class="QCheckBox" name="checkBoxLineState">
-                <property name="text">
-                 <string>Show Line Change State</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
+              <item row="2" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <item>
+                 <widget class="QLabel" name="label_33">
+                  <property name="text">
+                   <string>Show Line Numbers:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboboxLineNumbers">
+                  <property name="advancedOption" stdset="0">
+                   <bool>true</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>No Line Numbers</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>All Line Numbers</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Only Important Line Numbers</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_6">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
-              <item row="0" column="1" colspan="2">
+              <item row="1" column="0">
                <widget class="QCheckBox" name="checkBoxState">
                 <property name="text">
                  <string>Show State Panel</string>
@@ -1285,36 +1321,44 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
                 </property>
                </widget>
               </item>
-              <item row="1" column="0" colspan="2">
-               <widget class="QLabel" name="label_33">
-                <property name="text">
-                 <string>Show Line Numbers:</string>
-                </property>
-               </widget>
+              <item row="1" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
+                   <string>Tab Width:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="sbTabSpace">
+                  <property name="minimum">
+                   <number>2</number>
+                  </property>
+                  <property name="maximum">
+                   <number>10</number>
+                  </property>
+                  <property name="value">
+                   <number>4</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
-              <item row="1" column="2" colspan="3">
-               <widget class="QComboBox" name="comboboxLineNumbers">
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>No Line Numbers</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>All Line Numbers</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Only Important Line Numbers</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="2">
+              <item row="0" column="1">
                <widget class="QCheckBox" name="checkBoxShowWhitespace">
                 <property name="text">
                  <string>Show Whitespace</string>
@@ -1327,29 +1371,13 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
                 </property>
                </widget>
               </item>
-              <item row="2" column="2" colspan="2">
-               <widget class="QLabel" name="label_22">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBoxLineState">
                 <property name="text">
-                 <string>Tab Width:</string>
+                 <string>Show Line Change State</string>
                 </property>
-               </widget>
-              </item>
-              <item row="2" column="4">
-               <widget class="QSpinBox" name="sbTabSpace">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimum">
-                 <number>2</number>
-                </property>
-                <property name="maximum">
-                 <number>10</number>
-                </property>
-                <property name="value">
-                 <number>4</number>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1527,54 +1555,36 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
              <property name="title">
               <string>Hacks/Workarounds</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_9">
-              <item row="2" column="0" colspan="2">
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
                <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
                 <property name="text">
                  <string>Disable work-around on accent typing (Mac OS X only)</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
-               <widget class="QComboBox" name="comboBoxHackRenderMode">
-                <item>
-                 <property name="text">
-                  <string>QCE (recommended)</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Qt</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Single Letter</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_11">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Render Mode:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0" colspan="2">
+              <item>
                <widget class="QCheckBox" name="checkBoxHackAutoRendering">
                 <property name="text">
                  <string>Try to automatically choose best display options</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackDisableFixedPitch">
+                <property name="text">
+                 <string>Disable fixed pitch mode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
+                <property name="text">
+                 <string>Disable cache of character width</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
                 <property name="toolTip">
                  <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
@@ -1584,19 +1594,41 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
-                <property name="text">
-                 <string>Disable cache of character width</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QCheckBox" name="checkBoxHackDisableFixedPitch">
-                <property name="text">
-                 <string>Disable fixed pitch mode</string>
-                </property>
-               </widget>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Render Mode:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBoxHackRenderMode">
+                  <item>
+                   <property name="text">
+                    <string>QCE (recommended)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Qt</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Single Letter</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>
@@ -1771,7 +1803,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
          <property name="title">
           <string>Completion</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0,0,0,0,0,0" columnstretch="1,1,0,0">
+         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0" columnstretch="1,1">
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxCompletion">
             <property name="toolTip">
@@ -2042,8 +2074,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2887,10 +2919,6 @@ them here.</string>
   <tabstop>checkBoxInlineReferenceCheck</tabstop>
   <tabstop>checkBoxInlineSyntaxCheck</tabstop>
   <tabstop>checkBoxLineState</tabstop>
-  <tabstop>checkBoxState</tabstop>
-  <tabstop>comboboxLineNumbers</tabstop>
-  <tabstop>checkBoxShowWhitespace</tabstop>
-  <tabstop>sbTabSpace</tabstop>
   <tabstop>checkBoxCloseSearchReplaceTogether</tabstop>
   <tabstop>checkBoxUseLineForSearch</tabstop>
   <tabstop>checkBoxSearchOnlyInSelection</tabstop>
@@ -2905,7 +2933,6 @@ them here.</string>
   <tabstop>checkBoxHackDisableFixedPitch</tabstop>
   <tabstop>checkBoxHackDisableWidthCache</tabstop>
   <tabstop>checkBoxHackDisableLineCache</tabstop>
-  <tabstop>comboBoxHackRenderMode</tabstop>
   <tabstop>twHighlighEnvirons</tabstop>
   <tabstop>pbAddLine</tabstop>
   <tabstop>pbRemoveLine</tabstop>
