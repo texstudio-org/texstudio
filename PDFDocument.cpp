@@ -497,6 +497,21 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 	}
 #endif
 	reloadPage();
+
+	switch (globalConfig->scaleOption) {
+	default:
+		fixedScale(1.0);
+		break;
+	case 1:
+		fitWidth(true);
+		break;
+	case 2:
+		fitWindow(true);
+		break;
+	case 3:
+		fixedScale(globalConfig->scale / 100.0);
+		break;
+	}
 }
 
 void PDFWidget::windowResized()
@@ -2312,6 +2327,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 	this->masterFile = masterFile;
 	setCurrentFile(fileName);
 	reload(false);
+
 	if (watcher) {
 		const QStringList files = watcher->files();
 		if (!files.isEmpty())
@@ -2328,7 +2344,6 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 		setFocus();
 		if (scrollArea) scrollArea->setFocus();
 	}
-
 }
 
 void PDFDocument::fillRenderCache(int pg){
