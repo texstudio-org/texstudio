@@ -85,7 +85,7 @@
       <string>Defines the options for \includegraphics[options]{file}.</string>
      </property>
      <property name="title">
-      <string>Graphics options</string>
+      <string>Graphics Options</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
@@ -155,7 +155,7 @@
       <item row="2" column="0">
        <widget class="QRadioButton" name="rbUser">
         <property name="text">
-         <string>User defined</string>
+         <string>User Defined</string>
         </property>
        </widget>
       </item>
@@ -183,7 +183,7 @@
      <item>
       <widget class="QCheckBox" name="cbCentering">
        <property name="text">
-        <string>Center horizontally</string>
+        <string>Center Horizontally</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -207,7 +207,7 @@
       </size>
      </property>
      <property name="title">
-      <string>Place in figure environment</string>
+      <string>Place in Figure Environment</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -280,7 +280,7 @@
       <item row="14" column="0" colspan="2">
        <widget class="QCheckBox" name="cbSpan">
         <property name="text">
-         <string>Span two columns</string>
+         <string>Span Two Columns</string>
         </property>
        </widget>
       </item>
@@ -334,7 +334,7 @@
          <item row="1" column="0" colspan="4">
           <widget class="QCheckBox" name="cbPlaceForce">
            <property name="text">
-            <string>Override internal layout parameters</string>
+            <string>Override Internal Layout Parameters</string>
            </property>
           </widget>
          </item>
@@ -406,7 +406,7 @@
         <string>Save current settings as default.</string>
        </property>
        <property name="text">
-        <string>as default</string>
+        <string>as Default</string>
        </property>
        <property name="icon">
         <iconset resource="texstudio.qrc">

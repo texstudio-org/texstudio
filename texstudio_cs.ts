@@ -3042,7 +3042,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Place in figure environment</source>
-        <translation>Umístit obraz do prostředí</translation>
+        <translation type="obsolete">Umístit obraz do prostředí</translation>
     </message>
     <message>
         <source>Here</source>
@@ -3096,11 +3096,11 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>User defined</source>
-        <translation>Stanoveno uživatelem</translation>
+        <translation type="obsolete">Stanoveno uživatelem</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation>Zarovnat vodorovně na střed</translation>
+        <translation type="obsolete">Zarovnat vodorovně na střed</translation>
     </message>
     <message>
         <source>Caption</source>
@@ -3120,7 +3120,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Span two columns</source>
-        <translation>Zahrnovat dva sloupce</translation>
+        <translation type="obsolete">Zahrnovat dva sloupce</translation>
     </message>
     <message>
         <source>Position</source>
@@ -3132,7 +3132,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>as default</source>
-        <translation>jako výchozí</translation>
+        <translation type="obsolete">jako výchozí</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
@@ -3158,7 +3158,7 @@ Průvodce nepodporuje příkaz </translation>
     </message>
     <message>
         <source>Graphics options</source>
-        <translation>Volby pro obrázky</translation>
+        <translation type="obsolete">Volby pro obrázky</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
@@ -3176,10 +3176,6 @@ Chybí volby \includegraphics.</translation>
     </message>
     <message>
         <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Override internal layout parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3209,6 +3205,34 @@ Note: These placement preferences are just suggestions. If the resulting page la
     <message>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Graphics Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Place in Figure Environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span Two Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override Internal Layout Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as Default</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5745,7 +5769,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Always ignore</source>
-        <translation>Vždy přehlížet</translation>
+        <translation type="obsolete">Vždy přehlížet</translation>
     </message>
     <message>
         <source>Suggested words :</source>
@@ -5769,7 +5793,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Unknown word</source>
-        <translation>Neznámé slovo</translation>
+        <translation type="obsolete">Neznámé slovo</translation>
     </message>
     <message>
         <source>Replace with</source>
@@ -5777,11 +5801,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Suggested words</source>
-        <translation>Navrhovaná slova</translation>
+        <translation type="obsolete">Navrhovaná slova</translation>
     </message>
     <message>
         <source>Ignored words</source>
-        <translation>Přehlížená slova</translation>
+        <translation type="obsolete">Přehlížená slova</translation>
     </message>
     <message>
         <source>Add</source>
@@ -5793,7 +5817,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Hide ignore list</source>
-        <translation>Skrýt seznam přehlíženého</translation>
+        <translation type="obsolete">Skrýt seznam přehlíženého</translation>
     </message>
     <message>
         <source>dummyStatusBar</source>
@@ -5803,6 +5827,22 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
         <translation>&lt;nový&gt;</translation>
+    </message>
+    <message>
+        <source>Unknown Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggested Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored Words</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6348,7 +6388,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Restore previous session</source>
-        <translation>Obnovit předchozí sezení</translation>
+        <translation type="obsolete">Obnovit předchozí sezení</translation>
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
@@ -6588,7 +6628,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>New from &amp;template...</source>
-        <translation>Nový z &amp;předlohy...</translation>
+        <translation type="obsolete">Nový z &amp;předlohy...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
@@ -6726,7 +6766,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Nearest block</source>
-        <translation>Nejbližší blok</translation>
+        <translation type="obsolete">Nejbližší blok</translation>
     </message>
     <message>
         <source>Level %1</source>
@@ -6859,15 +6899,15 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Find word repetitions...</source>
-        <translation>Najít opakování slov...</translation>
+        <translation type="obsolete">Najít opakování slov...</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
-        <translation>Najít &amp;další</translation>
+        <translation type="obsolete">Najít &amp;další</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
-        <translation>Najít &amp;předchozí</translation>
+        <translation type="obsolete">Najít &amp;předchozí</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
@@ -6884,7 +6924,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>Save all current settings</source>
         <comment>menu</comment>
-        <translation>Uložit veškerá současná nastavení</translation>
+        <translation type="obsolete">Uložit veškerá současná nastavení</translation>
     </message>
     <message>
         <source>Manipulate tables</source>
@@ -7229,7 +7269,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation>Najít opakování slov</translation>
+        <translation type="obsolete">Najít opakování slov</translation>
     </message>
     <message>
         <source>New highlighting:</source>
@@ -7300,7 +7340,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Word repetition</source>
-        <translation>Opakování slova</translation>
+        <translation type="obsolete">Opakování slova</translation>
     </message>
     <message>
         <source>Bad words</source>
@@ -7308,15 +7348,15 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation>Mluvnický omyl</translation>
+        <translation type="obsolete">Mluvnický omyl</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation>Zvláštní mluvnický omyl %1</translation>
+        <translation type="obsolete">Zvláštní mluvnický omyl %1</translation>
     </message>
     <message>
         <source>Long range word repetition</source>
-        <translation>Opakování slova s dlouhým dosahem</translation>
+        <translation type="obsolete">Opakování slova s dlouhým dosahem</translation>
     </message>
     <message>
         <source>Do not warn again.</source>
@@ -7649,10 +7689,6 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check Latex installation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Paste Before</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7678,6 +7714,59 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Insert \ref to Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New From &amp;Template...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore Previous Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nearest Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word Repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake Special %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Current Settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check LaTeX Installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8077,7 +8166,7 @@ a pro označení nahrazení, která by se měla objevit pouze před slovem, pou�
     </message>
     <message>
         <source>Run script</source>
-        <translation>Spustit skript</translation>
+        <translation type="obsolete">Spustit skript</translation>
     </message>
     <message>
         <source>If this trigger string is written in any tex document, 
@@ -8107,6 +8196,10 @@ Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při sp
     </message>
     <message>
         <source>Edit Macros</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Script</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8475,7 +8568,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Complete Words only</source>
-        <translation>Pouze celá slova</translation>
+        <translation type="obsolete">Pouze celá slova</translation>
+    </message>
+    <message>
+        <source>Complete Words Only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

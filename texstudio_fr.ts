@@ -3262,7 +3262,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
-        <translation>Faire flotter l&apos;image</translation>
+        <translation type="obsolete">Faire flotter l&apos;image</translation>
     </message>
     <message>
         <source>Here</source>
@@ -3316,11 +3316,11 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>User defined</source>
-        <translation>Défini par l&apos;utilisateur</translation>
+        <translation type="obsolete">Défini par l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation>Centré horizontallement</translation>
+        <translation type="obsolete">Centré horizontallement</translation>
     </message>
     <message>
         <source>Caption</source>
@@ -3340,7 +3340,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Span two columns</source>
-        <translation>Étendre sur deux colonnes</translation>
+        <translation type="obsolete">Étendre sur deux colonnes</translation>
     </message>
     <message>
         <source>Position</source>
@@ -3352,7 +3352,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>as default</source>
-        <translation>Par défaut</translation>
+        <translation type="obsolete">Par défaut</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
@@ -3378,7 +3378,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <source>Graphics options</source>
-        <translation>Options de graphiques</translation>
+        <translation type="obsolete">Options de graphiques</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
@@ -3418,7 +3418,7 @@ Remarque : ces préférences ne sont que suggestions. Si la mise en page en rés
     </message>
     <message>
         <source>Override internal layout parameters</source>
-        <translation>Ignorer les paramètres internes de mise en page</translation>
+        <translation type="obsolete">Ignorer les paramètres internes de mise en page</translation>
     </message>
     <message>
         <source>Caption for display in the list of tables</source>
@@ -3457,6 +3457,34 @@ Remarque : ces préférences ne sont que suggestions. Si la mise en page en rés
 Invalid \caption command.</source>
         <translation>Impossible d&apos;analyser le code de l&apos;inclusion de graphique :
 la commande \caption n&apos;est pas valide.</translation>
+    </message>
+    <message>
+        <source>Graphics Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Place in Figure Environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span Two Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override Internal Layout Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as Default</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6016,7 +6044,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Always ignore</source>
-        <translation>Toujours ignorer</translation>
+        <translation type="obsolete">Toujours ignorer</translation>
     </message>
     <message>
         <source>Suggested words :</source>
@@ -6052,7 +6080,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Unknown word</source>
-        <translation>Mot inconnu</translation>
+        <translation type="obsolete">Mot inconnu</translation>
     </message>
     <message>
         <source>Replace with</source>
@@ -6060,11 +6088,11 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Suggested words</source>
-        <translation>Mots suggérés</translation>
+        <translation type="obsolete">Mots suggérés</translation>
     </message>
     <message>
         <source>Ignored words</source>
-        <translation>Mots ignorés</translation>
+        <translation type="obsolete">Mots ignorés</translation>
     </message>
     <message>
         <source>Add</source>
@@ -6076,7 +6104,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Hide ignore list</source>
-        <translation>Masquer la liste des mots ignorés</translation>
+        <translation type="obsolete">Masquer la liste des mots ignorés</translation>
     </message>
     <message>
         <source>dummyStatusBar</source>
@@ -6086,6 +6114,22 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
         <translation>Paramètre fictif pour les nouveaux mots ajoutés à la liste des mots ignorés</translation>
+    </message>
+    <message>
+        <source>Unknown Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggested Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored Words</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6371,7 +6415,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Restore previous session</source>
-        <translation>Rest&amp;aurer la session précédente</translation>
+        <translation type="obsolete">Rest&amp;aurer la session précédente</translation>
     </message>
     <message>
         <source>Save As</source>
@@ -6615,7 +6659,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>New from &amp;template...</source>
-        <translation>Nouveau à par&amp;tir d&apos;un modèle...</translation>
+        <translation type="obsolete">Nouveau à par&amp;tir d&apos;un modèle...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
@@ -6815,7 +6859,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Nearest block</source>
-        <translation>Bloc voisin</translation>
+        <translation type="obsolete">Bloc voisin</translation>
     </message>
     <message>
         <source>Level %1</source>
@@ -7138,15 +7182,15 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Find word repetitions...</source>
-        <translation>Chercher les répétitions de mots...</translation>
+        <translation type="obsolete">Chercher les répétitions de mots...</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
-        <translation>Trouver le &amp;suivant</translation>
+        <translation type="obsolete">Trouver le &amp;suivant</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
-        <translation>Trouver le &amp;précédent</translation>
+        <translation type="obsolete">Trouver le &amp;précédent</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
@@ -7163,7 +7207,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <source>Save all current settings</source>
         <comment>menu</comment>
-        <translation>Sauver les réglages courants</translation>
+        <translation type="obsolete">Sauver les réglages courants</translation>
     </message>
     <message>
         <source>Manipulate tables</source>
@@ -7508,7 +7552,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation>Chercher les répétitions de mots</translation>
+        <translation type="obsolete">Chercher les répétitions de mots</translation>
     </message>
     <message>
         <source>Binary</source>
@@ -7589,7 +7633,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>Word repetition</source>
-        <translation>Répétition de mots</translation>
+        <translation type="obsolete">Répétition de mots</translation>
     </message>
     <message>
         <source>Bad words</source>
@@ -7597,15 +7641,15 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation>Erreur grammaticale</translation>
+        <translation type="obsolete">Erreur grammaticale</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation>Erreur grammaticale spéciale %1</translation>
+        <translation type="obsolete">Erreur grammaticale spéciale %1</translation>
     </message>
     <message>
         <source>Long range word repetition</source>
-        <translation>Longue plage de répétition de mot</translation>
+        <translation type="obsolete">Longue plage de répétition de mot</translation>
     </message>
     <message>
         <source>Do not warn again.</source>
@@ -7980,10 +8024,6 @@ included document in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check Latex installation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Paste Before</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8009,6 +8049,59 @@ included document in %1</source>
     </message>
     <message>
         <source>Insert \ref to Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New From &amp;Template...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore Previous Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nearest Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word Repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake Special %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Current Settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check LaTeX Installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8405,7 +8498,7 @@ Puisque ce déclencheur n&apos;est pas une chaîne simple mais une expression r�
     </message>
     <message>
         <source>Run script</source>
-        <translation>Lancer le script</translation>
+        <translation type="obsolete">Lancer le script</translation>
     </message>
     <message>
         <source>Up</source>
@@ -8453,6 +8546,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Edit Macros</source>
         <translation>Éditer les &amp;macros</translation>
+    </message>
+    <message>
+        <source>Run Script</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8820,7 +8917,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Complete Words only</source>
-        <translation>Mots entiers seulement</translation>
+        <translation type="obsolete">Mots entiers seulement</translation>
+    </message>
+    <message>
+        <source>Complete Words Only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

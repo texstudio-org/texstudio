@@ -551,11 +551,11 @@ void Texmaker::setupMenus() {
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
 	getManagedMenu("main/file");
 	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, "filenew");
-	newManagedAction(menu, "newfromtemplate",tr("New from &template..."), SLOT(fileNewFromTemplate()));
+	newManagedAction(menu, "newfromtemplate",tr("New From &Template..."), SLOT(fileNewFromTemplate()));
 	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen");
 	
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open &Recent")); //only create the menu here, actions are created by config manager
-	newManagedAction(menu, "restoresession",tr("Restore previous session"), SLOT(fileRestoreSession()));
+	newManagedAction(menu, "restoresession",tr("Restore Previous Session"), SLOT(fileRestoreSession()));
 	
 	menu->addSeparator();
 	actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
@@ -775,7 +775,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
-	newManagedAction(menu,"wordrepetions",tr("Find word repetitions..."),SLOT(findWordRepetions()));
+	newManagedAction(menu,"wordrepetions",tr("Find Word Repetitions..."),SLOT(findWordRepetions()));
 	
 	//  Latex/Math external
 	configManager.loadManagedMenus(":/uiconfig.xml");
@@ -881,24 +881,24 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "collapse", tr("Collapse"));
 	newManagedEditorAction(submenu, "all", tr("Everything"), "foldEverything", 0, "", QList<QVariant>() << false);
-	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewCollapseBlock()));
+	newManagedAction(submenu, "block", tr("Nearest Block"), SLOT(viewCollapseBlock()));
 	for (int i=1; i<=4; i++)
 		newManagedEditorAction(submenu, QString::number(i), tr("Level %1").arg(i), "foldLevel", 0, "", QList<QVariant>() << false << i);
 	submenu=newManagedMenu(menu, "expand", tr("Expand"));
 	newManagedEditorAction(submenu, "all", tr("Everything"), "foldEverything", 0, "", QList<QVariant>() << true);
-	newManagedAction(submenu, "block", tr("Nearest block"), SLOT(viewExpandBlock()));
+	newManagedAction(submenu, "block", tr("Nearest Block"), SLOT(viewExpandBlock()));
 	for (int i=1; i<=4; i++)
 		newManagedEditorAction(submenu, QString::number(i), tr("Level %1").arg(i), "foldLevel", 0, "", QList<QVariant>() << true << i);
 	
 	submenu=newManagedMenu(menu, "grammar", tr("Grammar errors"));
 	static bool showGrammarType[8] = {false};
 	for (int i=0;i<8;i++) configManager.registerOption(QString("Grammar/Display Error %1").arg(i), &showGrammarType[i], true);
-	newManagedAction(submenu, "0", tr("Word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
-	newManagedAction(submenu, "1", tr("Long range word repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
+	newManagedAction(submenu, "0", tr("Word Repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
+	newManagedAction(submenu, "1", tr("Long-range Word Repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
 	newManagedAction(submenu, "2", tr("Bad words"), "toggleGrammar", 0, "", QList<QVariant>() << 2);
-	newManagedAction(submenu, "3", tr("Grammer mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
+	newManagedAction(submenu, "3", tr("Grammer Mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
 	for (int i=4;i<8;i++)
-		newManagedAction(submenu, QString("%1").arg(i), tr("Grammer mistake special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
+		newManagedAction(submenu, QString("%1").arg(i), tr("Grammer Mistake Special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
 	for (int i=0;i<submenu->actions().size();i++)
 		if (!submenu->actions()[i]->isCheckable()){
 			submenu->actions()[i]->setCheckable(true);
@@ -951,7 +951,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
 	newManagedAction(menu, "saveProfile",tr("S&ave Profile..."), SLOT(saveProfile()));
-	newManagedAction(menu, "saveSettings",tr("Save all current settings","menu"), SLOT(SaveSettings()));
+	newManagedAction(menu, "saveSettings",tr("Save Current Settings","menu"), SLOT(SaveSettings()));
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically Restore &Session at Next Start"));
@@ -963,7 +963,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
 	
 	menu->addSeparator();
-    newManagedAction(menu, "checkinstall",tr("Check Latex installation"), SLOT(checkLatexInstall()), 0,":/images/appicon.png");
+	newManagedAction(menu, "checkinstall",tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
 	newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
 	
 	//additional elements for development
@@ -6544,13 +6544,13 @@ void Texmaker::findWordRepetions(){
 	}
 	QDialog *dlg=new QDialog(this);
 	dlg->setAttribute(Qt::WA_DeleteOnClose,true);
-    dlg->setWindowTitle(tr("Find word repetitions"));
+	dlg->setWindowTitle(tr("Find Word Repetitions"));
 	QGridLayout *layout = new QGridLayout;
 	layout->setColumnStretch(1, 1);
 	layout->setColumnStretch(0, 1);
-    QPushButton *btNext= new QPushButton(tr("&Find next"), dlg);
+	QPushButton *btNext= new QPushButton(tr("&Find Next"), dlg);
     btNext->setObjectName("next");
-    QPushButton *btPrev= new QPushButton(tr("&Find previous"), dlg);
+	QPushButton *btPrev= new QPushButton(tr("&Find Previous"), dlg);
     btPrev->setObjectName("prev");
     QPushButton *btClose= new QPushButton(tr("&Close"), dlg);
     btClose->setObjectName("close");

@@ -2377,7 +2377,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
-        <translation>Elhelyezés az ábra környezetben</translation>
+        <translation type="obsolete">Elhelyezés az ábra környezetben</translation>
     </message>
     <message>
         <source>Here</source>
@@ -2431,11 +2431,11 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>User defined</source>
-        <translation>Felhasználó által definiált</translation>
+        <translation type="obsolete">Felhasználó által definiált</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation>Vízszintesen középre helyezett</translation>
+        <translation type="obsolete">Vízszintesen középre helyezett</translation>
     </message>
     <message>
         <source>Caption</source>
@@ -2455,7 +2455,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>Span two columns</source>
-        <translation>Kétoszlopos</translation>
+        <translation type="obsolete">Kétoszlopos</translation>
     </message>
     <message>
         <source>Position</source>
@@ -2467,7 +2467,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <source>as default</source>
-        <translation>alapértelmezett</translation>
+        <translation type="obsolete">alapértelmezett</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
@@ -2490,7 +2490,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <source>Graphics options</source>
-        <translation>Grafikus opciók</translation>
+        <translation type="obsolete">Grafikus opciók</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
@@ -2511,7 +2511,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Override internal layout parameters</source>
-        <translation>Belső szerkezeti paraméterek felülbírálata</translation>
+        <translation type="obsolete">Belső szerkezeti paraméterek felülbírálata</translation>
     </message>
     <message>
         <source>Caption for display in the list of tables</source>
@@ -2550,6 +2550,34 @@ Megjegyzés: Ezek a megjelenítési paraméterek csak javaslatok. Ha a megjelen�
 Invalid \caption command.</source>
         <translation>A grafika beillesztési kódja nem értelmezhető:
 Érvénytelen \caption parancs</translation>
+    </message>
+    <message>
+        <source>Graphics Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Place in Figure Environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span Two Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override Internal Layout Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as Default</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4979,7 +5007,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Always ignore</source>
-        <translation>Mindig mellőze</translation>
+        <translation type="obsolete">Mindig mellőze</translation>
     </message>
     <message>
         <source>Close</source>
@@ -5007,7 +5035,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Unknown word</source>
-        <translation>Ismeretlen szó</translation>
+        <translation type="obsolete">Ismeretlen szó</translation>
     </message>
     <message>
         <source>Replace with</source>
@@ -5015,11 +5043,11 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Suggested words</source>
-        <translation>Ajánlott szavak</translation>
+        <translation type="obsolete">Ajánlott szavak</translation>
     </message>
     <message>
         <source>Ignored words</source>
-        <translation>Mellőzött szavak</translation>
+        <translation type="obsolete">Mellőzött szavak</translation>
     </message>
     <message>
         <source>Add</source>
@@ -5031,7 +5059,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Hide ignore list</source>
-        <translation>Elrejti a mellőzöttek listáját</translation>
+        <translation type="obsolete">Elrejti a mellőzöttek listáját</translation>
     </message>
     <message>
         <source>dummyStatusBar</source>
@@ -5041,6 +5069,22 @@ Megbízik a parancsfájlban?</translation>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
         <translation>&lt;új&gt;</translation>
+    </message>
+    <message>
+        <source>Unknown Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggested Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored Words</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5326,7 +5370,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Restore previous session</source>
-        <translation>Előző munkamenet helyreállítása</translation>
+        <translation type="obsolete">Előző munkamenet helyreállítása</translation>
     </message>
     <message>
         <source>Save As</source>
@@ -5510,7 +5554,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>New from &amp;template...</source>
-        <translation>Új, &amp;sablonból...</translation>
+        <translation type="obsolete">Új, &amp;sablonból...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
@@ -5674,7 +5718,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Find word repetitions...</source>
-        <translation>Szóismétlés keresése...</translation>
+        <translation type="obsolete">Szóismétlés keresése...</translation>
     </message>
     <message>
         <source>Quick &amp;Start...</source>
@@ -5734,7 +5778,7 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>Nearest block</source>
-        <translation>Legközelebbi blokk</translation>
+        <translation type="obsolete">Legközelebbi blokk</translation>
     </message>
     <message>
         <source>Level %1</source>
@@ -5794,11 +5838,11 @@ Megbízik a parancsfájlban?</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
-        <translation>&amp;Következő</translation>
+        <translation type="obsolete">&amp;Következő</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
-        <translation>&amp;Előző</translation>
+        <translation type="obsolete">&amp;Előző</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
@@ -6049,7 +6093,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <source>Save all current settings</source>
         <comment>menu</comment>
-        <translation>Minden jelenlegi beállítás mentése</translation>
+        <translation type="obsolete">Minden jelenlegi beállítás mentése</translation>
     </message>
     <message>
         <source>Manipulate tables</source>
@@ -6388,7 +6432,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation>Szóismétlés keresése</translation>
+        <translation type="obsolete">Szóismétlés keresése</translation>
     </message>
     <message>
         <source>BibTeX</source>
@@ -6455,7 +6499,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
     <message>
         <source>Word repetition</source>
-        <translation>Szóismétlés</translation>
+        <translation type="obsolete">Szóismétlés</translation>
     </message>
     <message>
         <source>Bad words</source>
@@ -6463,15 +6507,15 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation>Nyelvtani hiba</translation>
+        <translation type="obsolete">Nyelvtani hiba</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation>Nyelvtani hiba %1</translation>
+        <translation type="obsolete">Nyelvtani hiba %1</translation>
     </message>
     <message>
         <source>Long range word repetition</source>
-        <translation>Távoli szóismétlés</translation>
+        <translation type="obsolete">Távoli szóismétlés</translation>
     </message>
     <message>
         <source>Do not warn again.</source>
@@ -6825,10 +6869,6 @@ included document in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check Latex installation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Paste Before</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6854,6 +6894,59 @@ included document in %1</source>
     </message>
     <message>
         <source>Insert \ref to Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New From &amp;Template...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore Previous Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nearest Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word Repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake Special %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Current Settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check LaTeX Installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7209,7 +7302,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>Run script</source>
-        <translation>Parancsfájl futtatása</translation>
+        <translation type="obsolete">Parancsfájl futtatása</translation>
     </message>
     <message>
         <source>Up</source>
@@ -7244,6 +7337,10 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <source>Edit Macros</source>
         <translation>Makrók szerkesztése</translation>
+    </message>
+    <message>
+        <source>Run Script</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7590,7 +7687,11 @@ The html files are located in the %1 directory.</source>
     </message>
     <message>
         <source>Complete Words only</source>
-        <translation>Csak teljes szavak</translation>
+        <translation type="obsolete">Csak teljes szavak</translation>
+    </message>
+    <message>
+        <source>Complete Words Only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
