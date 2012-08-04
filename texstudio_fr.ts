@@ -41,27 +41,27 @@
     </message>
     <message>
         <source>html conversion: </source>
-        <translation type="unfinished"></translation>
+        <translation>conversion HTML :</translation>
     </message>
     <message>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utilise l&apos;afficheur PDF de TeXworks.</translation>
     </message>
     <message>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utilise la classe DSingleApplication (Auteur : Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</translation>
     </message>
     <message>
         <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio contient une image créée par Alexander Klink.</translation>
     </message>
     <message>
         <source>Project home site:</source>
-        <translation type="unfinished"></translation>
+        <translation>Site du projet :</translation>
     </message>
     <message>
         <source>Home site of original Texmaker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Site du Texmaker original :</translation>
     </message>
 </context>
 <context>
@@ -546,7 +546,7 @@
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>La commande a été développée en %1 niveaux. Voulez-vous continuer le développement « %2 » ?</translation>
     </message>
 </context>
 <context>
@@ -2153,31 +2153,31 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Maximum Compile Repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre maximum de compilations répétées :</translation>
     </message>
     <message>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarre la complétion dès que « \ » est saisi. Autrement, la complétion peut toujours être démarée manuellement au moyen de Ctrl+Espace.</translation>
     </message>
     <message>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si toutes les suggestions de complétion ont les mêmes caractères suivants, vous pouvez utiliser la touche « Tab » pour les insérer automatiquement.</translation>
     </message>
     <message>
         <source>Preferred Commands Set:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ensemble de commandes préférées :</translation>
     </message>
     <message>
         <source>Typical</source>
-        <translation type="unfinished"></translation>
+        <translation>Typiques</translation>
     </message>
     <message>
         <source>Most Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Les plus utilisées</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Toutes</translation>
     </message>
     <message>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
@@ -2188,23 +2188,30 @@ to set the key anyway?</source>
 &lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
 &lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorise la substitution de commandes. Par exemple :&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Placer le curseur devant « text ».&lt;/li&gt;
+&lt;li&gt;Démarrer la complétion avec Ctrl+Espace&lt;/li&gt;
+&lt;li&gt;Sélectionner &lt;code&gt;\textrm&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Le résultat est &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</translation>
     </message>
     <message>
         <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation type="unfinished"></translation>
+        <translation>Affiche une info-bulle avec une description de la commande sélectionnée par complétion</translation>
     </message>
     <message>
         <source>ToolTip-Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Info-bulles d&apos;aide</translation>
     </message>
     <message>
         <source>Tab Bar Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille de la barre de l&apos;onglet</translation>
     </message>
     <message>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
     </message>
     <message>
         <source>TXS tries to automatically load completion files for packages if a
@@ -2213,17 +2220,24 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"></translation>
+        <translation>TXS essaie de charger automatiquement les fichiers de complétion si
+une commande \usepackage est trouvée. Ces fichiers automatiquement
+inclus ne sont pas montrés ici. Cocher ici les packages additionnels est en
+général inutile. Cependant, si la détection automatique échoue ou si vous
+voulez inclure des fichiers de complétion personnalisés, vous pouvez forcer
+leur usage en les activant ici.</translation>
     </message>
     <message>
         <source>You have enabled the advanced options. This allows to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez activé les options avancées. Ceci permet une
+configuration fine deTXS. Pour ne voir que les réglages
+de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
         <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
     </message>
 </context>
 <context>
@@ -3048,15 +3062,15 @@ Voulez-vous supprimer ces macros ?</translation>
     </message>
     <message>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer</translation>
     </message>
     <message>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner le programme</translation>
     </message>
     <message>
         <source>Restore Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer les réglages par défauts</translation>
     </message>
 </context>
 <context>
@@ -3460,31 +3474,31 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Graphics Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options des graphiques</translation>
     </message>
     <message>
         <source>User Defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Défini par l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Center Horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Centré horizontallement</translation>
     </message>
     <message>
         <source>Place in Figure Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Faire flotter l&apos;image</translation>
     </message>
     <message>
         <source>Span Two Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Étendre sur deux colonnes</translation>
     </message>
     <message>
         <source>Override Internal Layout Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer les paramètres internes de mise en page</translation>
     </message>
     <message>
         <source>as Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Par défaut</translation>
     </message>
 </context>
 <context>
@@ -3577,11 +3591,11 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished">Ligne</translation>
+        <translation>Ligne</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished">Label</translation>
+        <translation>Label</translation>
     </message>
 </context>
 <context>
@@ -3668,7 +3682,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Go to PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Atteindre le PDF</translation>
     </message>
 </context>
 <context>
@@ -4346,19 +4360,19 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Windowed/Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Fénêtré/Embarqué</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Échelle</translation>
     </message>
     <message>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Page %1 sur %2</translation>
     </message>
     <message>
         <source>Pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Pages %1 à %2 de %3</translation>
     </message>
 </context>
 <context>
@@ -4511,7 +4525,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Go to Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller au fichier source</translation>
     </message>
 </context>
 <context>
@@ -6117,19 +6131,19 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>Unknown Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot inconnu</translation>
     </message>
     <message>
         <source>Suggested Words</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots suggérés</translation>
     </message>
     <message>
         <source>Always Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours ignorer</translation>
     </message>
     <message>
         <source>Ignored Words</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots ignorés</translation>
     </message>
 </context>
 <context>
@@ -7891,218 +7905,218 @@ included document in %1</source>
     </message>
     <message>
         <source>Previous Change</source>
-        <translation type="unfinished"></translation>
+        <translation>Modification précédente</translation>
     </message>
     <message>
         <source>Next Change</source>
-        <translation type="unfinished"></translation>
+        <translation>Modification suivante</translation>
     </message>
     <message>
         <source>Unnamed Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Signet sans nom</translation>
     </message>
     <message>
         <source>Previous Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur précédente</translation>
     </message>
     <message>
         <source>Next Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur suivante</translation>
     </message>
     <message>
         <source>Previous Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avertissement précédent</translation>
     </message>
     <message>
         <source>Next Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avertissement suivant</translation>
     </message>
     <message>
         <source>Previous Bad Box</source>
-        <translation type="unfinished"></translation>
+        <translation>Dépassement de marge précédent</translation>
     </message>
     <message>
         <source>Next Bad Box</source>
-        <translation type="unfinished"></translation>
+        <translation>Dépassement de marge suivant</translation>
     </message>
     <message>
         <source>Jump to Match</source>
-        <translation type="unfinished"></translation>
+        <translation>Atteindre le délimiteur apparié</translation>
     </message>
     <message>
         <source>Select Inner</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner intérieur</translation>
     </message>
     <message>
         <source>Select Outer</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner extérieur</translation>
     </message>
     <message>
         <source>Select Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner commande</translation>
     </message>
     <message>
         <source>Select Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner ligne</translation>
     </message>
     <message>
         <source>Select Inverting</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner inverse</translation>
     </message>
     <message>
         <source>Find Mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver les discordances</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <source>\begin{ Completion</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{ Complétion</translation>
     </message>
     <message>
         <source>Normal Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte normal</translation>
     </message>
     <message>
         <source>Insert \ref to Next Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer \ref pour label suivant</translation>
     </message>
     <message>
         <source>Insert \ref to Previous Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer \ref pour label précédent</translation>
     </message>
     <message>
         <source>Manipulate Tables</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Manipuler des tableaux</translation>
     </message>
     <message>
         <source>Add Row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une ligne</translation>
     </message>
     <message>
         <source>Add Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter colonne</translation>
     </message>
     <message>
         <source>Remove Row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer ligne</translation>
     </message>
     <message>
         <source>Remove Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer colonne</translation>
     </message>
     <message>
         <source>Cut Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Couper colonne</translation>
     </message>
     <message>
         <source>Paste Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Coller colonne</translation>
     </message>
     <message>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un filet horizontal - \hline</translation>
     </message>
     <message>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer un filet horizontal - \hline</translation>
     </message>
     <message>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Reconstruire le tableau d&apos;après le modèle</translation>
     </message>
     <message>
         <source>Paste Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Coller avant</translation>
     </message>
     <message>
         <source>Paste After</source>
-        <translation type="unfinished"></translation>
+        <translation>Coller après</translation>
     </message>
     <message>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplace vers le haut</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplace vers le bas</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tout</translation>
     </message>
     <message>
         <source>Insert Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer un label</translation>
     </message>
     <message>
         <source>Insert \ref to Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer \ref pour label</translation>
     </message>
     <message>
         <source>New From &amp;Template...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau à par&amp;tir d&apos;un modèle...</translation>
     </message>
     <message>
         <source>Restore Previous Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Rest&amp;aurer la session précédente</translation>
     </message>
     <message>
         <source>Find Word Repetitions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher les répétitions de mots...</translation>
     </message>
     <message>
         <source>Nearest Block</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloc le plus proche</translation>
     </message>
     <message>
         <source>Word Repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Répétition de mots</translation>
     </message>
     <message>
         <source>Grammer Mistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale</translation>
     </message>
     <message>
         <source>Grammer Mistake Special %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur grammaticale spéciale %1</translation>
     </message>
     <message>
         <source>Save Current Settings</source>
         <comment>menu</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sauver les réglages courants</translation>
     </message>
     <message>
         <source>Check LaTeX Installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier l&apos;installation LaTeX</translation>
     </message>
     <message>
         <source>Find Word Repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher les répétitions de mots</translation>
     </message>
     <message>
         <source>&amp;Find Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver le &amp;suivant</translation>
     </message>
     <message>
         <source>&amp;Find Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver le &amp;précédent</translation>
     </message>
     <message>
         <source>Long-range Word Repetition</source>
-        <translation type="unfinished"></translation>
+        <translation>Longue plage de répétition de mot</translation>
     </message>
 </context>
 <context>
@@ -8549,7 +8563,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Run Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer le script</translation>
     </message>
 </context>
 <context>
@@ -8921,7 +8935,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Complete Words Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots entiers seulement</translation>
     </message>
 </context>
 <context>
