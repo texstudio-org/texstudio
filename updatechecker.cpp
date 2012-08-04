@@ -88,15 +88,15 @@ void UpdateChecker::parseData(const QByteArray &data) {
 	QDomDocument domDocument;
 	if (domDocument.setContent(data)){
 		QDomElement root = domDocument.documentElement();
-		if (root.tagName() != "texstudio") {
+		if (root.tagName() != "versions") {
 			if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
 			return;
 		}
-		QDomNodeList nodes = root.elementsByTagName("latestRelease");
+		QDomNodeList nodes = root.elementsByTagName("stable");
 		if (nodes.count() == 1) {
 			QDomElement latestRelease = nodes.at(0).toElement();
 
-			VersionCompareResult res = versionCompare(latestRelease.attribute("version"), TXSVERSION);
+			VersionCompareResult res = versionCompare(latestRelease.attribute("value"), TXSVERSION);
 			if (res == Invalid) {
 				if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
 				return;
