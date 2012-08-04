@@ -5535,8 +5535,8 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 
 		menu.addAction(tr("Copy"),this, SLOT(editSectionCopy()));
 		menu.addAction(tr("Cut"),this, SLOT(editSectionCut()));
-		menu.addAction(tr("Paste before"),this, SLOT(editSectionPasteBefore()));
-		menu.addAction(tr("Paste after"),this, SLOT(editSectionPasteAfter()));
+		menu.addAction(tr("Paste Before"),this, SLOT(editSectionPasteBefore()));
+		menu.addAction(tr("Paste After"),this, SLOT(editSectionPasteAfter()));
 		menu.addSeparator();
 		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
 		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
