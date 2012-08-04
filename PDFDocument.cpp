@@ -497,21 +497,7 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 	}
 #endif
 	reloadPage();
-
-	switch (globalConfig->scaleOption) {
-	default:
-		fixedScale(1.0);
-		break;
-	case 1:
-		fitWidth(true);
-		break;
-	case 2:
-		fitWindow(true);
-		break;
-	case 3:
-		fixedScale(globalConfig->scale / 100.0);
-		break;
-	}
+    adjustSize();
 }
 
 void PDFWidget::windowResized()
