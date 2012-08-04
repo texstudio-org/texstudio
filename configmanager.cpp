@@ -1599,7 +1599,7 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	static const char * open[6] = {"",  "``", "\"<", "\"`", "\\og ",  "\">"};
 	static const char * close[6] = {"", "''", "\">", "\"'", "\\fg{}", "\"<"};
 	if (replaceQuotes >= 1 && replaceQuotes < 6) {
-		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, open[replaceQuotes], "", "(?language:latex)(?<=\\s|^)\""));
+        completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, open[replaceQuotes], "", "(?language:latex)(?<=\\W|^)\""));
 		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, close[replaceQuotes], "", "(?language:latex)(?<=\\S)\""));
 	}
 }
