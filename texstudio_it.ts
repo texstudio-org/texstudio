@@ -12,10 +12,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -28,11 +24,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
+        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Using Qt Version %1, compiled with Qt %2 %3</source>
+        <source>html conversion: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses the PDF viewer of TeXworks.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio contains an image by Alexander Klink.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project home site:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home site of original Texmaker:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -293,10 +309,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Command %1 not defined</source>
         <translation type="unfinished"></translation>
     </message>
@@ -466,6 +478,10 @@
     </message>
     <message>
         <source>Recompile Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -878,7 +894,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <source>Enable ToolTip-Help</source>
-        <translation>Attiva l&apos;aiuto contestuale</translation>
+        <translation type="obsolete">Attiva l&apos;aiuto contestuale</translation>
     </message>
     <message>
         <source>Use placeholders</source>
@@ -1033,73 +1049,11 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Prefer &quot;Typical&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Prefer &quot;Most Used&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Prefer &quot;All&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Riddle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>first</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>second</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>three</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>last</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please answer 1, 2 or 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Only one answer allowed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You come to a magic island where you meet three strange and wise friends. 
-One of them is always telling the truth, another one is always lying, and the third is deaf, so he answers randomly and cannot lie(!). 
-You ask the first: &quot;Are you lying?&quot;, and he answers: &quot;No&quot;.
-You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;No&quot;.
-You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
-
-Which one of the three wise will always tell the truth?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>one</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>two</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>third</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1278,14 +1232,6 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Times to repeat compilation if requested:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Commands with repeated compilation: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1557,10 +1503,6 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Relative Tab Font Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Check for Word Repetitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1706,6 +1648,80 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Use SVN revisions to undo before last saved version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Compile Repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred Commands Set:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Most Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shows a tooltip with a description of the selected completer command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ToolTip-Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tab Bar Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size of the command set tabs at the bottom or top of the completer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2200,6 +2216,18 @@ to set the key anyway?</source>
 Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore Default</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2655,6 +2683,14 @@ Invalid \caption command.</source>
         <source> (Line %1)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Line</source>
+        <translation type="unfinished">Linea</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexEditorView</name>
@@ -2735,6 +2771,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to PDF</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3097,14 +3137,6 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>page %1 of %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Aiuto</translation>
     </message>
@@ -3293,10 +3325,6 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Synchronize multiple views</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3394,6 +3422,22 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     <message>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windowed/Embedded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pages %1 to %2 of %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3526,10 +3570,6 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Jump to Source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Go to Page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3543,6 +3583,10 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Could not open browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Source</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4071,6 +4115,21 @@ Possible causes include disk failure or a full harddisk.</source>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5468,11 +5527,11 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>last change</source>
-        <translation>ultimo cambiamento</translation>
+        <translation type="obsolete">ultimo cambiamento</translation>
     </message>
     <message>
         <source>&quot;next&quot; change</source>
-        <translation>cambiamento successivo</translation>
+        <translation type="obsolete">cambiamento successivo</translation>
     </message>
     <message>
         <source>Previous mark</source>
@@ -5484,27 +5543,27 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Previous error</source>
-        <translation>Errore precedente</translation>
+        <translation type="obsolete">Errore precedente</translation>
     </message>
     <message>
         <source>Next error</source>
-        <translation>Errore successivo</translation>
+        <translation type="obsolete">Errore successivo</translation>
     </message>
     <message>
         <source>Previous warning</source>
-        <translation>Warning precedente</translation>
+        <translation type="obsolete">Warning precedente</translation>
     </message>
     <message>
         <source>Next warning</source>
-        <translation>Warning successivo</translation>
+        <translation type="obsolete">Warning successivo</translation>
     </message>
     <message>
         <source>Previous bad box</source>
-        <translation>Badbox precedente</translation>
+        <translation type="obsolete">Badbox precedente</translation>
     </message>
     <message>
         <source>Next bad box</source>
-        <translation>Badbox successivo</translation>
+        <translation type="obsolete">Badbox successivo</translation>
     </message>
     <message>
         <source>Definition</source>
@@ -5524,7 +5583,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>unnamed bookmark</source>
-        <translation>segnalibro senza nome</translation>
+        <translation type="obsolete">segnalibro senza nome</translation>
     </message>
     <message>
         <source>Complete</source>
@@ -5532,15 +5591,15 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>normal</source>
-        <translation>normale</translation>
+        <translation type="obsolete">normale</translation>
     </message>
     <message>
         <source>\begin{ completion</source>
-        <translation>\begin{completamento</translation>
+        <translation type="obsolete">\begin{completamento</translation>
     </message>
     <message>
         <source>normal text</source>
-        <translation>testo normale</translation>
+        <translation type="obsolete">testo normale</translation>
     </message>
     <message>
         <source>Line Ending</source>
@@ -5712,11 +5771,11 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Insert \ref to next label</source>
-        <translation>inserisci \ref alla prossima etichetta</translation>
+        <translation type="obsolete">inserisci \ref alla prossima etichetta</translation>
     </message>
     <message>
         <source>Insert \ref to previous label</source>
-        <translation>inserisci \ref alla precedente etichetta</translation>
+        <translation type="obsolete">inserisci \ref alla precedente etichetta</translation>
     </message>
     <message>
         <source>&amp;Wizards</source>
@@ -5913,11 +5972,11 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Paste before</source>
-        <translation>Incolla prima</translation>
+        <translation type="obsolete">Incolla prima</translation>
     </message>
     <message>
         <source>Paste after</source>
-        <translation>Incolla dopo</translation>
+        <translation type="obsolete">Incolla dopo</translation>
     </message>
     <message>
         <source>Indent Section</source>
@@ -6094,49 +6153,9 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Manipulate tables</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation type="unfinished">aggiungi riga</translation>
-    </message>
-    <message>
-        <source>add column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove row</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cut column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>paste column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>add \hline</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove \hline</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">aggiungi riga</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -6200,18 +6219,6 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Parenthesis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select (inner)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select (outer)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select (inverting)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6311,15 +6318,6 @@ However, you are using a version of TeXstudio that was compiled without the inte
     </message>
     <message>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Find mismatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remodel table after template</source>
-        <comment>table</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6462,22 +6460,6 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>move up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>move down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove all</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Erase until E&amp;nd of Line</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6508,10 +6490,6 @@ Press &quot;Cancel&quot;to do nothing.
     <message>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Jump to match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6699,6 +6677,172 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Yes, continue the loop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Bad Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Bad Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to Match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Inner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Outer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Inverting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\begin{ Completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert \ref to Next Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert \ref to Previous Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manipulate Tables</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Row</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Row</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add \hline</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove \hline</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remodel Table Using Template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Latex installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste Before</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste After</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert \ref to Label</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

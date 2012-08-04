@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Domovské stránky původního Texmakeru: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Domovské stránky původního Texmakeru: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
@@ -33,11 +33,35 @@
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Domovské stránky projektu: &lt;a href=&quot;http://texmakerx.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation>Používá Qt verze %1, sestaven Qt %2 %3</translation>
+    </message>
+    <message>
+        <source>html conversion: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses the PDF viewer of TeXworks.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio contains an image by Alexander Klink.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project home site:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home site of original Texmaker:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -342,7 +366,7 @@
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation>Příkaz byl rozšířen do %1 úrovní. Chcete pokračovat rozřířením &quot;%2&quot;.</translation>
+        <translation type="obsolete">Příkaz byl rozšířen do %1 úrovní. Chcete pokračovat rozřířením &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Command %1 not defined</source>
@@ -514,6 +538,10 @@
     </message>
     <message>
         <source>Recompile Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -941,7 +969,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Enable ToolTip-Help</source>
-        <translation>Zapnout nápovědu v podobě rady k nástroji</translation>
+        <translation type="obsolete">Zapnout nápovědu v podobě rady k nástroji</translation>
     </message>
     <message>
         <source>Use following completion files:</source>
@@ -1293,43 +1321,43 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
-        <translation>Upřednostňovat &quot;typické&quot;</translation>
+        <translation type="obsolete">Upřednostňovat &quot;typické&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;Most Used&quot;</source>
-        <translation>Upřednostňovat &quot;nejpoužívanější&quot;</translation>
+        <translation type="obsolete">Upřednostňovat &quot;nejpoužívanější&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;All&quot;</source>
-        <translation>Upřednostňovat &quot;všechny&quot;</translation>
+        <translation type="obsolete">Upřednostňovat &quot;všechny&quot;</translation>
     </message>
     <message>
         <source>Riddle</source>
-        <translation>Hádanka</translation>
+        <translation type="obsolete">Hádanka</translation>
     </message>
     <message>
         <source>first</source>
-        <translation>první</translation>
+        <translation type="obsolete">první</translation>
     </message>
     <message>
         <source>second</source>
-        <translation>druhý</translation>
+        <translation type="obsolete">druhý</translation>
     </message>
     <message>
         <source>three</source>
-        <translation>třetí</translation>
+        <translation type="obsolete">třetí</translation>
     </message>
     <message>
         <source>last</source>
-        <translation>poslední</translation>
+        <translation type="obsolete">poslední</translation>
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation>Odpovězte, prosím, 1, 2 nebo 3</translation>
+        <translation type="obsolete">Odpovězte, prosím, 1, 2 nebo 3</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
-        <translation>Je dovolena pouze jedna odpověď</translation>
+        <translation type="obsolete">Je dovolena pouze jedna odpověď</translation>
     </message>
     <message>
         <source>Replace double quotes:</source>
@@ -1363,7 +1391,7 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
-        <translation>Přicházíte na kouzelný ostrov, kde se potkáváte se třemi podivnými a moudrými přáteli.
+        <translation type="obsolete">Přicházíte na kouzelný ostrov, kde se potkáváte se třemi podivnými a moudrými přáteli.
 Jeden z nich vždy říká pravdu, druhý vždycky lže a třetí je hluchý, takže odpovídá náhodně a nemůže lhát (!).
 Ptáte se prvního: &quot;Lžeš?&quot;, a on odpovídá: &quot;Ne&quot;.
 Ptáte se druhého: &quot;První lže?&quot;, a on odpovídá: &quot;Ne&quot;.
@@ -1381,15 +1409,15 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>one</source>
-        <translation>jedna</translation>
+        <translation type="obsolete">jedna</translation>
     </message>
     <message>
         <source>two</source>
-        <translation>dvě</translation>
+        <translation type="obsolete">dvě</translation>
     </message>
     <message>
         <source>third</source>
-        <translation>tři</translation>
+        <translation type="obsolete">tři</translation>
     </message>
     <message>
         <source>Configure TeXstudio</source>
@@ -1664,14 +1692,6 @@ chcete nastavit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Times to repeat compilation if requested:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Commands with repeated compilation: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DTX files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1940,10 +1960,6 @@ chcete nastavit?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Relative Tab Font Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Check for Word Repetitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2089,6 +2105,80 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Use SVN revisions to undo before last saved version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Compile Repetitions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferred Commands Set:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Typical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Most Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shows a tooltip with a description of the selected completer command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ToolTip-Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tab Bar Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size of the command set tabs at the bottom or top of the completer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2737,6 +2827,18 @@ Chcete je odstranit?</translation>
 Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore Default</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -3199,6 +3301,14 @@ Invalid \caption command.</source>
         <source> (Line %1)</source>
         <translation> (Řádek %1)</translation>
     </message>
+    <message>
+        <source>Line</source>
+        <translation type="unfinished">Řádek</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished">Štítek</translation>
+    </message>
 </context>
 <context>
     <name>LatexEditorView</name>
@@ -3281,6 +3391,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to PDF</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3648,11 +3762,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>page %1 of %2</source>
-        <translation>Strana %1 z %2</translation>
-    </message>
-    <message>
-        <source>%1%</source>
-        <translation></translation>
+        <translation type="obsolete">Strana %1 z %2</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -3848,7 +3958,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
-        <translation>Strany %1 až %2 z %3</translation>
+        <translation type="obsolete">Strany %1 až %2 z %3</translation>
     </message>
     <message>
         <source>Synchronize multiple views</source>
@@ -3955,6 +4065,22 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation type="unfinished">z</translation>
+    </message>
+    <message>
+        <source>Windowed/Embedded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pages %1 to %2 of %3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4087,7 +4213,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Jump to Source</source>
-        <translation>Skočit na zdrojový text</translation>
+        <translation type="obsolete">Skočit na zdrojový text</translation>
     </message>
     <message>
         <source>Go to Page</source>
@@ -4104,6 +4230,10 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     <message>
         <source>Could not open browser</source>
         <translation>Nepodařilo se otevřít prohlížeč</translation>
+    </message>
+    <message>
+        <source>Go to Source</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4644,6 +4774,21 @@ Possible causes include disk failure or a full harddisk.</source>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6235,11 +6380,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>last change</source>
-        <translation>Poslední změna</translation>
+        <translation type="obsolete">Poslední změna</translation>
     </message>
     <message>
         <source>&quot;next&quot; change</source>
-        <translation>&quot;Další&quot; změna</translation>
+        <translation type="obsolete">&quot;Další&quot; změna</translation>
     </message>
     <message>
         <source>Previous mark</source>
@@ -6251,27 +6396,27 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Previous error</source>
-        <translation>Předchozí chyba</translation>
+        <translation type="obsolete">Předchozí chyba</translation>
     </message>
     <message>
         <source>Next error</source>
-        <translation>Další chyba</translation>
+        <translation type="obsolete">Další chyba</translation>
     </message>
     <message>
         <source>Previous warning</source>
-        <translation>Předchozí varování</translation>
+        <translation type="obsolete">Předchozí varování</translation>
     </message>
     <message>
         <source>Next warning</source>
-        <translation>Další varování</translation>
+        <translation type="obsolete">Další varování</translation>
     </message>
     <message>
         <source>Previous bad box</source>
-        <translation>Předchozí špatné políčko</translation>
+        <translation type="obsolete">Předchozí špatné políčko</translation>
     </message>
     <message>
         <source>Next bad box</source>
-        <translation>Další špatné políčko</translation>
+        <translation type="obsolete">Další špatné políčko</translation>
     </message>
     <message>
         <source>Definition</source>
@@ -6283,7 +6428,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>unnamed bookmark</source>
-        <translation>Nepojmenovaná záložka</translation>
+        <translation type="obsolete">Nepojmenovaná záložka</translation>
     </message>
     <message>
         <source>Complete</source>
@@ -6291,15 +6436,15 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>normal</source>
-        <translation>Obvyklý</translation>
+        <translation type="obsolete">Obvyklý</translation>
     </message>
     <message>
         <source>\begin{ completion</source>
-        <translation>\begin{ doplnění</translation>
+        <translation type="obsolete">\begin{ doplnění</translation>
     </message>
     <message>
         <source>normal text</source>
-        <translation>Obvyklý text</translation>
+        <translation type="obsolete">Obvyklý text</translation>
     </message>
     <message>
         <source>Line Ending</source>
@@ -6531,11 +6676,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Insert \ref to next label</source>
-        <translation>Vložit \ref k dalšímu štítku</translation>
+        <translation type="obsolete">Vložit \ref k dalšímu štítku</translation>
     </message>
     <message>
         <source>Insert \ref to previous label</source>
-        <translation>Vložit \ref k předchozímu štítku</translation>
+        <translation type="obsolete">Vložit \ref k předchozímu štítku</translation>
     </message>
     <message>
         <source>&amp;Wizards</source>
@@ -6593,11 +6738,11 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Paste before</source>
-        <translation>Vložit před</translation>
+        <translation type="obsolete">Vložit před</translation>
     </message>
     <message>
         <source>Paste after</source>
-        <translation>Vložit za</translation>
+        <translation type="obsolete">Vložit za</translation>
     </message>
     <message>
         <source>Indent Section</source>
@@ -6744,47 +6889,47 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     <message>
         <source>Manipulate tables</source>
         <comment>table</comment>
-        <translation>Zacházet s tabulkami</translation>
+        <translation type="obsolete">Zacházet s tabulkami</translation>
     </message>
     <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation>Přidat řádek</translation>
+        <translation type="obsolete">Přidat řádek</translation>
     </message>
     <message>
         <source>add column</source>
         <comment>table</comment>
-        <translation>Přidat sloupec</translation>
+        <translation type="obsolete">Přidat sloupec</translation>
     </message>
     <message>
         <source>remove row</source>
         <comment>table</comment>
-        <translation>Odstranit řádek</translation>
+        <translation type="obsolete">Odstranit řádek</translation>
     </message>
     <message>
         <source>remove column</source>
         <comment>table</comment>
-        <translation>Odstranit sloupec</translation>
+        <translation type="obsolete">Odstranit sloupec</translation>
     </message>
     <message>
         <source>cut column</source>
         <comment>table</comment>
-        <translation>Vyjmout sloupec</translation>
+        <translation type="obsolete">Vyjmout sloupec</translation>
     </message>
     <message>
         <source>paste column</source>
         <comment>table</comment>
-        <translation>Vložit sloupec</translation>
+        <translation type="obsolete">Vložit sloupec</translation>
     </message>
     <message>
         <source>add \hline</source>
         <comment>table</comment>
-        <translation>Přidat \hline</translation>
+        <translation type="obsolete">Přidat \hline</translation>
     </message>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
-        <translation>Odstranit \hline</translation>
+        <translation type="obsolete">Odstranit \hline</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -6852,15 +6997,15 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Select (inner)</source>
-        <translation>Vybrat (vnitřní)</translation>
+        <translation type="obsolete">Vybrat (vnitřní)</translation>
     </message>
     <message>
         <source>Select (outer)</source>
-        <translation>Vybrat (vnější)</translation>
+        <translation type="obsolete">Vybrat (vnější)</translation>
     </message>
     <message>
         <source>Select (inverting)</source>
-        <translation>Vybrat (obracející)</translation>
+        <translation type="obsolete">Vybrat (obracející)</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
@@ -6970,12 +7115,12 @@ Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Find mismatch</source>
-        <translation>Najít nesoulad</translation>
+        <translation type="obsolete">Najít nesoulad</translation>
     </message>
     <message>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation>Předělat tabulku podle předlohy</translation>
+        <translation type="obsolete">Předělat tabulku podle předlohy</translation>
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
@@ -7131,19 +7276,19 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>move up</source>
-        <translation>Posunout nahoru</translation>
+        <translation type="obsolete">Posunout nahoru</translation>
     </message>
     <message>
         <source>move down</source>
-        <translation>Posunout dolů</translation>
+        <translation type="obsolete">Posunout dolů</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation>Odstranit</translation>
+        <translation type="obsolete">Odstranit</translation>
     </message>
     <message>
         <source>remove all</source>
-        <translation>Odstranit vše</translation>
+        <translation type="obsolete">Odstranit vše</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
@@ -7180,7 +7325,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Jump to match</source>
-        <translation>Skočit na shodu</translation>
+        <translation type="obsolete">Skočit na shodu</translation>
     </message>
     <message>
         <source>Align Columns</source>
@@ -7367,6 +7512,172 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Yes, continue the loop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Bad Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Bad Box</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to Match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Inner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Outer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Inverting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Mismatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished">Obvyklá</translation>
+    </message>
+    <message>
+        <source>\begin{ Completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert \ref to Next Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert \ref to Previous Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manipulate Tables</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Row</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Row</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add \hline</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove \hline</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remodel Table Using Template</source>
+        <comment>table</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check Latex installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste Before</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste After</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert \ref to Label</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

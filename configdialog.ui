@@ -1933,7 +1933,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
           <item row="1" column="1">
            <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
             <property name="toolTip">
-             <string>Allows in-place substition of commands. Example:&lt;br&gt;
+             <string>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
 &lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
@@ -1975,11 +1975,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
             <item>
              <widget class="QLabel" name="label_40">
               <property name="toolTip">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Size of the tab bar at the bottom or top of the completer&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>Size of the tab bar at the bottom or top of the completer</string>
               </property>
               <property name="text">
                <string>Tab Bar Size</string>
@@ -2080,8 +2076,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">

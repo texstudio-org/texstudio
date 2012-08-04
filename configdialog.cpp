@@ -832,9 +832,9 @@ void ConfigDialog::custSyntaxRemoveLine(){
 }
 
 bool ConfigDialog::askRiddle(){
-	txsInformation("You have enabled the advanced options. This allows to\n"
+	txsInformation(tr("You have enabled the advanced options. This allows to\n"
 				   "configure TXS in great detail. Disable the advanced\n"
-				   "options again to only view the most common settings.");
+				   "options again to only view the most common settings."));
 	return true;
 
 	/*
