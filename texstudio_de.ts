@@ -1935,7 +1935,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Relative Tab Font Size:</source>
-        <translation>Relative Schriftgröße der Reiter:</translation>
+        <translation type="obsolete">Relative Schriftgröße der Reiter:</translation>
     </message>
     <message>
         <source>Check for Word Repetitions</source>
@@ -2124,7 +2124,7 @@ to set the key anyway?</source>
 - Start completer by Ctrl+Space
 - Select \textrm
 - The result is \textrm{foo}</source>
-        <translation>Erlaubt die Substitution von Kommandos an der aktuellen Stelle. Beispiel:
+        <translation type="obsolete">Erlaubt die Substitution von Kommandos an der aktuellen Stelle. Beispiel:
 - \textbf{foo}
 - Setze den Mauszeiger hinter &quot;text&quot;.
 - Starte die Vervollständigung mit Strg+Leertaste
@@ -2157,6 +2157,38 @@ normalerweise nicht notwendig. Falls die automatische Erkennung jedoch nicht
 funktioniert oder benutzerspezifische Vervollständigungsdateien verwendet 
 werden kann die Verwendung durch die Auswahl der entsprechenden Dateien 
 hier erzwungen werden.</translation>
+    </message>
+    <message>
+        <source>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</source>
+        <translation>Erlaubt die Substitution von Kommandos an der aktuellen Stelle. Beispiel:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Setze den Cursor hinter &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Starte die Vervollständigung mit Strg+Leertaste&lt;/li&gt;
+&lt;li&gt;Wähle &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;Das Ergebnis ist &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <source>Tab Bar Size</source>
+        <translation>Größe der Reiter</translation>
+    </message>
+    <message>
+        <source>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</source>
+        <translation>Sie haben die Anzeige der erweiterten Optionen aktiviert. Hierduch können Sie sehr viele Details von TeXstudio konfigurieren. Schalten sie diese Option wieder aus, um nur die gängigsten Einstellungen anzuzeigen.</translation>
+    </message>
+    <message>
+        <source>Size of the tab bar at the bottom or top of the completer</source>
+        <translation type="unfinished">Größe der Reiter am oberen oder unteren Rand des Vervollständigen-Dialogs</translation>
     </message>
 </context>
 <context>
@@ -5229,7 +5261,7 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
     </message>
     <message>
         <source>math-delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>txs-test-warn</source>
@@ -6826,11 +6858,11 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>Paste before</source>
-        <translation>Vorher einfügen</translation>
+        <translation type="obsolete">Vorher einfügen</translation>
     </message>
     <message>
         <source>Paste after</source>
-        <translation>Danach einfügen</translation>
+        <translation type="obsolete">Danach einfügen</translation>
     </message>
     <message>
         <source>Indent Section</source>
