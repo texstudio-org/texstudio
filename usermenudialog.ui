@@ -65,7 +65,7 @@
             <string>Add</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="texstudio.qrc">
              <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
            </property>
           </widget>
@@ -82,7 +82,7 @@
             <string>Remove</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="texstudio.qrc">
              <normaloff>:/images/list-remove.png</normaloff>:/images/list-remove.png</iconset>
            </property>
           </widget>
@@ -118,7 +118,7 @@
             <string>Up</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="texstudio.qrc">
              <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
            </property>
           </widget>
@@ -141,7 +141,7 @@
             <string>Down</string>
            </property>
            <property name="icon">
-            <iconset>
+            <iconset resource="texstudio.qrc">
              <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
            </property>
           </widget>
@@ -357,7 +357,7 @@ p, li { white-space: pre-wrap; }
             <bool>false</bool>
            </property>
            <property name="text">
-            <string>Run script</string>
+            <string>Run Script</string>
            </property>
           </widget>
          </item>
@@ -396,7 +396,9 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="texstudio.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>radioButtonScript</sender>

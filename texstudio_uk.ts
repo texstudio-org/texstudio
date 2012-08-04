@@ -2466,10 +2466,6 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished">Файл</translation>
     </message>
     <message>
-        <source>Place in figure environment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Here</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2520,14 +2516,6 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>User defined</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Center horizontally</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Caption</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2544,19 +2532,11 @@ Are you sure you want to undo all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Span two columns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save current settings as default.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>as default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2579,10 +2559,6 @@ The wizard does not support command </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Graphics options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
@@ -2597,10 +2573,6 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Override internal layout parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2630,6 +2602,34 @@ Note: These placement preferences are just suggestions. If the resulting page la
     <message>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Graphics Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Place in Figure Environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Span Two Columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override Internal Layout Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>as Default</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5076,7 +5076,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Always ignore</source>
-        <translation>Завжди пропускати</translation>
+        <translation type="obsolete">Завжди пропускати</translation>
     </message>
     <message>
         <source>Suggested words :</source>
@@ -5099,19 +5099,7 @@ Do you trust this script?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unknown word</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Replace with</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Suggested words</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ignored words</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5123,16 +5111,28 @@ Do you trust this script?</source>
         <translation type="unfinished">Видалити</translation>
     </message>
     <message>
-        <source>Hide ignore list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>dummyStatusBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggested Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignored Words</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5623,7 +5623,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Restore previous session</source>
-        <translation>Обновити попередню сесію</translation>
+        <translation type="obsolete">Обновити попередню сесію</translation>
     </message>
     <message>
         <source>Go to</source>
@@ -5765,7 +5765,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Nearest block</source>
-        <translation>Найближчий блок</translation>
+        <translation type="obsolete">Найближчий блок</translation>
     </message>
     <message>
         <source>Level %1</source>
@@ -5865,10 +5865,6 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New from &amp;template...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6165,18 +6161,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Find word repetitions...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Find next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Find previous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>C&amp;onvert Source to Html...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6186,11 +6170,6 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>Finding word repetitions only works with activated online spell checking !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save all current settings</source>
-        <comment>menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6463,10 +6442,6 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Find word repetitions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished">BibTeX</translation>
@@ -6514,23 +6489,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Word repetition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Bad words</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grammer mistake</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grammer mistake special %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Long range word repetition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6860,10 +6819,6 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check Latex installation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Paste Before</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6889,6 +6844,59 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Insert \ref to Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New From &amp;Template...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore Previous Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nearest Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word Repetition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammer Mistake Special %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Current Settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check LaTeX Installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Find Previous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7255,10 +7263,6 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <translation type="unfinished">Видалити</translation>
     </message>
     <message>
-        <source>Run script</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Up</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7283,6 +7287,10 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     </message>
     <message>
         <source>Edit Macros</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Script</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7629,7 +7637,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Complete Words only</source>
-        <translation>Слово повністю</translation>
+        <translation type="obsolete">Слово повністю</translation>
+    </message>
+    <message>
+        <source>Complete Words Only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

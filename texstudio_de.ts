@@ -2188,7 +2188,7 @@ options again to only view the most common settings.</source>
     </message>
     <message>
         <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation type="unfinished">Größe der Reiter am oberen oder unteren Rand des Vervollständigen-Dialogs</translation>
+        <translation>Größe der Reiter am oberen oder unteren Rand des Vervollständigen-Dialogs</translation>
     </message>
 </context>
 <context>
@@ -3127,7 +3127,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Place in figure environment</source>
-        <translation>Platziere Bild in einer Umgebung</translation>
+        <translation type="obsolete">Platziere Bild in einer Umgebung</translation>
     </message>
     <message>
         <source>Here</source>
@@ -3181,11 +3181,11 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>User defined</source>
-        <translation>Benutzerdefiniert</translation>
+        <translation type="obsolete">Benutzerdefiniert</translation>
     </message>
     <message>
         <source>Center horizontally</source>
-        <translation>Zentriere horizontal</translation>
+        <translation type="obsolete">Zentriere horizontal</translation>
     </message>
     <message>
         <source>Caption</source>
@@ -3205,7 +3205,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>Span two columns</source>
-        <translation>Über zwei Spalten ausdehnen</translation>
+        <translation type="obsolete">Über zwei Spalten ausdehnen</translation>
     </message>
     <message>
         <source>Position</source>
@@ -3217,7 +3217,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <source>as default</source>
-        <translation>als Vorgabe</translation>
+        <translation type="obsolete">als Vorgabe</translation>
     </message>
     <message>
         <source>Insert Graphic</source>
@@ -3243,7 +3243,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <source>Graphics options</source>
-        <translation>Grafik Parameter</translation>
+        <translation type="obsolete">Grafik Parameter</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
@@ -3265,7 +3265,7 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>Override internal layout parameters</source>
-        <translation>Überschreibe interne Layoutparameter</translation>
+        <translation type="obsolete">Überschreibe interne Layoutparameter</translation>
     </message>
     <message>
         <source>Caption for display in the list of tables</source>
@@ -3304,6 +3304,34 @@ Achtung: Platzierungsvorgaben sind nur Vorschläge. LaTeX wählt denjenigen, der
 Invalid \caption command.</source>
         <translation>Konnte Bildereinfügecode nicht interpretieren:
 Fehlender \caption Kommando.</translation>
+    </message>
+    <message>
+        <source>Graphics Options</source>
+        <translation>Grafik Parameter</translation>
+    </message>
+    <message>
+        <source>User Defined</source>
+        <translation>Benutzerdefiniert</translation>
+    </message>
+    <message>
+        <source>Center Horizontally</source>
+        <translation>Zentriere horizontal</translation>
+    </message>
+    <message>
+        <source>Place in Figure Environment</source>
+        <translation>Platziere Bild in einer Umgebung</translation>
+    </message>
+    <message>
+        <source>Span Two Columns</source>
+        <translation>Über zwei Spalten ausdehnen</translation>
+    </message>
+    <message>
+        <source>Override Internal Layout Parameters</source>
+        <translation>Überschreibe interne Layoutparameter</translation>
+    </message>
+    <message>
+        <source>as Default</source>
+        <translation>als Vorgabe</translation>
     </message>
 </context>
 <context>
@@ -5865,7 +5893,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Always ignore</source>
-        <translation>Immer ignorieren</translation>
+        <translation type="obsolete">Immer ignorieren</translation>
     </message>
     <message>
         <source>Suggested words :</source>
@@ -5889,7 +5917,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Unknown word</source>
-        <translation>Unbekanntes Wort</translation>
+        <translation type="obsolete">Unbekanntes Wort</translation>
     </message>
     <message>
         <source>Replace with</source>
@@ -5897,11 +5925,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Suggested words</source>
-        <translation>Vorgeschlagene Wörter</translation>
+        <translation type="obsolete">Vorgeschlagene Wörter</translation>
     </message>
     <message>
         <source>Ignored words</source>
-        <translation>Ignorierte Wörter</translation>
+        <translation type="obsolete">Ignorierte Wörter</translation>
     </message>
     <message>
         <source>Add</source>
@@ -5913,7 +5941,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Hide ignore list</source>
-        <translation>Verberge Ignorierenliste</translation>
+        <translation type="obsolete">Verberge Ignorierenliste</translation>
     </message>
     <message>
         <source>dummyStatusBar</source>
@@ -5923,6 +5951,22 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
         <translation>&lt;neu&gt;</translation>
+    </message>
+    <message>
+        <source>Unknown Word</source>
+        <translation>Unbekanntes Wort</translation>
+    </message>
+    <message>
+        <source>Suggested Words</source>
+        <translation>Vorgeschlagene Wörter</translation>
+    </message>
+    <message>
+        <source>Always Ignore</source>
+        <translation>Immer ignorieren</translation>
+    </message>
+    <message>
+        <source>Ignored Words</source>
+        <translation>Ignorierte Wörter</translation>
     </message>
 </context>
 <context>
@@ -6468,7 +6512,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Restore previous session</source>
-        <translation>Vorherige Sitzung wieder herstellen</translation>
+        <translation type="obsolete">Vorherige Sitzung wieder herstellen</translation>
     </message>
     <message>
         <source>Hard Line &amp;Break...</source>
@@ -6708,7 +6752,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>New from &amp;template...</source>
-        <translation>Neue Datei aus &amp;Vorlage...</translation>
+        <translation type="obsolete">Neue Datei aus &amp;Vorlage...</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
@@ -6846,7 +6890,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>Nearest block</source>
-        <translation>Vorherigen Block</translation>
+        <translation type="obsolete">Vorherigen Block</translation>
     </message>
     <message>
         <source>Level %1</source>
@@ -6979,15 +7023,15 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>Find word repetitions...</source>
-        <translation>Finde Wortwiederholungen...</translation>
+        <translation type="obsolete">Finde Wortwiederholungen...</translation>
     </message>
     <message>
         <source>&amp;Find next</source>
-        <translation>&amp;Finde nächste</translation>
+        <translation type="obsolete">&amp;Finde nächste</translation>
     </message>
     <message>
         <source>&amp;Find previous</source>
-        <translation>F&amp;inde vorherige</translation>
+        <translation type="obsolete">F&amp;inde vorherige</translation>
     </message>
     <message>
         <source>C&amp;onvert Source to Html...</source>
@@ -7004,7 +7048,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     <message>
         <source>Save all current settings</source>
         <comment>menu</comment>
-        <translation>Speichere aktuelle Konfiguration</translation>
+        <translation type="obsolete">Speichere aktuelle Konfiguration</translation>
     </message>
     <message>
         <source>Manipulate tables</source>
@@ -7349,7 +7393,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Find word repetitions</source>
-        <translation>Wortwiederholung finden</translation>
+        <translation type="obsolete">Wortwiederholung finden</translation>
     </message>
     <message>
         <source>Binary</source>
@@ -7430,7 +7474,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Word repetition</source>
-        <translation>Wortwiederholung</translation>
+        <translation type="obsolete">Wortwiederholung</translation>
     </message>
     <message>
         <source>Bad words</source>
@@ -7438,15 +7482,15 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Grammer mistake</source>
-        <translation>Grammatikfehler</translation>
+        <translation type="obsolete">Grammatikfehler</translation>
     </message>
     <message>
         <source>Grammer mistake special %1</source>
-        <translation>Grammatikfehler spezial %1</translation>
+        <translation type="obsolete">Grammatikfehler spezial %1</translation>
     </message>
     <message>
         <source>Long range word repetition</source>
-        <translation>Wortwiederholung über längeren Abstand</translation>
+        <translation type="obsolete">Wortwiederholung über längeren Abstand</translation>
     </message>
     <message>
         <source>Do not warn again.</source>
@@ -7797,7 +7841,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     </message>
     <message>
         <source>Check Latex installation</source>
-        <translation>Prüfe LaTeX Installation</translation>
+        <translation type="obsolete">Prüfe LaTeX Installation</translation>
     </message>
     <message>
         <source>Paste Before</source>
@@ -7826,6 +7870,59 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     <message>
         <source>Insert \ref to Label</source>
         <translation>Füge \ref zum Label ein</translation>
+    </message>
+    <message>
+        <source>New From &amp;Template...</source>
+        <translation>Neue Datei aus &amp;Vorlage...</translation>
+    </message>
+    <message>
+        <source>Restore Previous Session</source>
+        <translation>Vorherige Sitzung wieder herstellen</translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions...</source>
+        <translation>Finde Wortwiederholungen...</translation>
+    </message>
+    <message>
+        <source>Nearest Block</source>
+        <translation>Vorherigen Block</translation>
+    </message>
+    <message>
+        <source>Word Repetition</source>
+        <translation>Wortwiederholung</translation>
+    </message>
+    <message>
+        <source>Grammer Mistake</source>
+        <translation>Grammatikfehler</translation>
+    </message>
+    <message>
+        <source>Grammer Mistake Special %1</source>
+        <translation>Grammatikfehler Spezial %1</translation>
+    </message>
+    <message>
+        <source>Save Current Settings</source>
+        <comment>menu</comment>
+        <translation>Speichere aktuelle Konfiguration</translation>
+    </message>
+    <message>
+        <source>Check LaTeX Installation</source>
+        <translation>LaTeX Installation prüfen</translation>
+    </message>
+    <message>
+        <source>Find Word Repetitions</source>
+        <translation>Wortwiederholung finden</translation>
+    </message>
+    <message>
+        <source>&amp;Find Next</source>
+        <translation>Finde &amp;nächsten Treffer</translation>
+    </message>
+    <message>
+        <source>&amp;Find Previous</source>
+        <translation>F&amp;inde vorherigen Treffer</translation>
+    </message>
+    <message>
+        <source>Long-range Word Repetition</source>
+        <translation>Wortwiederholung über längeren Abstand</translation>
     </message>
 </context>
 <context>
@@ -8205,7 +8302,7 @@ Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck
     </message>
     <message>
         <source>Run script</source>
-        <translation>Skript ausführen</translation>
+        <translation type="obsolete">Skript ausführen</translation>
     </message>
     <message>
         <source>Up</source>
@@ -8240,6 +8337,10 @@ Man kann den spezillen Wert ?txs-start verwenden, um das Skript bei txs start zu
     <message>
         <source>Edit Macros</source>
         <translation>Macros bearbeiten</translation>
+    </message>
+    <message>
+        <source>Run Script</source>
+        <translation>Skript ausführen</translation>
     </message>
 </context>
 <context>
@@ -8598,6 +8699,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Complete Words only</source>
+        <translation type="obsolete">nur ganze Worte</translation>
+    </message>
+    <message>
+        <source>Complete Words Only</source>
         <translation>nur ganze Worte</translation>
     </message>
 </context>

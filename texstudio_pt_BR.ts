@@ -3725,8 +3725,9 @@ Você deseja desfazer as alterações?</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="210"/>
-        <source>Place in figure environment</source>
-        <translation>Inserir em ambiente &apos;figure&apos;</translation>
+        <source>Place in Figure Environment</source>
+        <oldsource>Place in figure environment</oldsource>
+        <translation type="unfinished">Inserir em ambiente &apos;figure&apos;</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="330"/>
@@ -3762,9 +3763,9 @@ Faltando opções para \includegraphics.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="88"/>
-        <source>Graphics options</source>
-        <oldsource>Size / Include Options</oldsource>
-        <translation>Opções para figuras</translation>
+        <source>Graphics Options</source>
+        <oldsource>Graphics options</oldsource>
+        <translation type="unfinished">Opções para figuras</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="104"/>
@@ -3783,13 +3784,15 @@ Faltando opções para \includegraphics.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="158"/>
-        <source>User defined</source>
-        <translation>Definida pelo usuário</translation>
+        <source>User Defined</source>
+        <oldsource>User defined</oldsource>
+        <translation type="unfinished">Definida pelo usuário</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="186"/>
-        <source>Center horizontally</source>
-        <translation>Centralizar horizontalmente</translation>
+        <source>Center Horizontally</source>
+        <oldsource>Center horizontally</oldsource>
+        <translation type="unfinished">Centralizar horizontalmente</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="219"/>
@@ -3823,8 +3826,9 @@ Faltando opções para \includegraphics.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="283"/>
-        <source>Span two columns</source>
-        <translation>Sobre duas colunas</translation>
+        <source>Span Two Columns</source>
+        <oldsource>Span two columns</oldsource>
+        <translation type="unfinished">Sobre duas colunas</translation>
     </message>
     <message>
         <source>Suggest priorities, where the figure should appear.
@@ -3851,8 +3855,9 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
     </message>
     <message>
         <location filename="insertgraphics.ui" line="337"/>
-        <source>Override internal layout parameters</source>
-        <translation>Ignorar parâmetros internos</translation>
+        <source>Override Internal Layout Parameters</source>
+        <oldsource>Override internal layout parameters</oldsource>
+        <translation type="unfinished">Ignorar parâmetros internos</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="365"/>
@@ -3876,8 +3881,9 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
     </message>
     <message>
         <location filename="insertgraphics.ui" line="409"/>
-        <source>as default</source>
-        <translation>como padrão</translation>
+        <source>as Default</source>
+        <oldsource>as default</oldsource>
+        <translation type="unfinished">como padrão</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="433"/>
@@ -7114,8 +7120,9 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="spellerdialog.ui" line="34"/>
-        <source>Unknown word</source>
-        <translation>Palavra desconhecida</translation>
+        <source>Unknown Word</source>
+        <oldsource>Unknown word</oldsource>
+        <translation type="unfinished">Palavra desconhecida</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="51"/>
@@ -7124,8 +7131,9 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="spellerdialog.ui" line="58"/>
-        <source>Suggested words</source>
-        <translation>Palavras sugeridas</translation>
+        <source>Suggested Words</source>
+        <oldsource>Suggested words</oldsource>
+        <translation type="unfinished">Palavras sugeridas</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="78"/>
@@ -7134,13 +7142,15 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="spellerdialog.ui" line="85"/>
-        <source>Always ignore</source>
-        <translation>Sempre Ignorar</translation>
+        <source>Always Ignore</source>
+        <oldsource>Always ignore</oldsource>
+        <translation type="unfinished">Sempre Ignorar</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="99"/>
-        <source>Ignored words</source>
-        <translation>Palavras ignoradas</translation>
+        <source>Ignored Words</source>
+        <oldsource>Ignored words</oldsource>
+        <translation type="unfinished">Palavras ignoradas</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="114"/>
@@ -7154,8 +7164,10 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="spellerdialog.ui" line="167"/>
-        <source>Hide ignore list</source>
-        <translation>Ocultar lista de ignorados</translation>
+        <location filename="spellerdialog.cpp" line="218"/>
+        <source>Hide Ignore List</source>
+        <oldsource>Hide ignore list</oldsource>
+        <translation type="unfinished">Ocultar lista de ignorados</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="182"/>
@@ -7197,6 +7209,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <translation>Sem mais palavras com erros ortográficos</translation>
     </message>
     <message>
+        <location filename="spellerdialog.ui" line="167"/>
         <location filename="spellerdialog.cpp" line="218"/>
         <source>Hide Ignore List</source>
         <translation>Ocultar Lista de Ignorados</translation>
@@ -7715,8 +7728,9 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="554"/>
-        <source>New from &amp;template...</source>
-        <translation>Novo a &amp;partir do modelo...</translation>
+        <source>New From &amp;Template...</source>
+        <oldsource>New from &amp;template...</oldsource>
+        <translation type="unfinished">Novo a &amp;partir do modelo...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="555"/>
@@ -7725,8 +7739,9 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     </message>
     <message>
         <location filename="texmaker.cpp" line="558"/>
-        <source>Restore previous session</source>
-        <translation>&amp;Restaurar Sessão Anterior</translation>
+        <source>Restore Previous Session</source>
+        <oldsource>Restore previous session</oldsource>
+        <translation type="unfinished">&amp;Restaurar Sessão Anterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="561"/>
@@ -8423,8 +8438,9 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     </message>
     <message>
         <location filename="texmaker.cpp" line="778"/>
-        <source>Find word repetitions...</source>
-        <translation>Localizar Repetições de Palavras...</translation>
+        <source>Find Word Repetitions...</source>
+        <oldsource>Find word repetitions...</oldsource>
+        <translation type="unfinished">Localizar Repetições de Palavras...</translation>
     </message>
     <message>
         <source>Insert \ref to next label</source>
@@ -8618,8 +8634,9 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="884"/>
         <location filename="texmaker.cpp" line="889"/>
-        <source>Nearest block</source>
-        <translation>Bloco mais próximo</translation>
+        <source>Nearest Block</source>
+        <oldsource>Nearest block</oldsource>
+        <translation type="unfinished">Bloco mais próximo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="886"/>
@@ -8639,13 +8656,15 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     </message>
     <message>
         <location filename="texmaker.cpp" line="896"/>
-        <source>Word repetition</source>
-        <translation>Repetição de palavra</translation>
+        <source>Word Repetition</source>
+        <oldsource>Word repetition</oldsource>
+        <translation type="unfinished">Repetição de palavra</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="897"/>
-        <source>Long range word repetition</source>
-        <translation>Repetição de palavras distantes</translation>
+        <source>Long-range Word Repetition</source>
+        <oldsource>Long range Word Repetition</oldsource>
+        <translation type="unfinished">Repetição de palavras distantes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="898"/>
@@ -8654,13 +8673,15 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     </message>
     <message>
         <location filename="texmaker.cpp" line="899"/>
-        <source>Grammer mistake</source>
-        <translation>Erro gramatical</translation>
+        <source>Grammer Mistake</source>
+        <oldsource>Grammer mistake</oldsource>
+        <translation type="unfinished">Erro gramatical</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="901"/>
-        <source>Grammer mistake special %1</source>
-        <translation>Erro gramatical especial %1</translation>
+        <source>Grammer Mistake Special %1</source>
+        <oldsource>Grammer mistake special %1</oldsource>
+        <translation type="unfinished">Erro gramatical especial %1</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="911"/>
@@ -8694,9 +8715,10 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     </message>
     <message>
         <location filename="texmaker.cpp" line="954"/>
-        <source>Save all current settings</source>
+        <source>Save Current Settings</source>
+        <oldsource>Save all current settings</oldsource>
         <comment>menu</comment>
-        <translation>&amp;Salvar Configuração Atual</translation>
+        <translation type="unfinished">&amp;Salvar Configuração Atual</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="956"/>
@@ -8806,8 +8828,9 @@ Você confia neste documento?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6547"/>
-        <source>Find word repetitions</source>
-        <translation>Localizar repetições de palavras</translation>
+        <source>Find Word Repetitions</source>
+        <oldsource>Find word repetitions</oldsource>
+        <translation type="unfinished">Localizar repetições de palavras</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6601"/>
@@ -9162,7 +9185,8 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="966"/>
-        <source>Check Latex installation</source>
+        <source>Check LaTeX Installation</source>
+        <oldsource>Check Latex installation</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9535,13 +9559,15 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
     </message>
     <message>
         <location filename="texmaker.cpp" line="6551"/>
-        <source>&amp;Find next</source>
-        <translation>Localizar &amp;próxima</translation>
+        <source>&amp;Find Next</source>
+        <oldsource>&amp;Find next</oldsource>
+        <translation type="unfinished">Localizar &amp;próxima</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6553"/>
-        <source>&amp;Find previous</source>
-        <translation>Localizar &amp;anterior</translation>
+        <source>&amp;Find Previous</source>
+        <oldsource>&amp;Find previous</oldsource>
+        <translation type="unfinished">Localizar &amp;anterior</translation>
     </message>
     <message>
         <location filename="smallUsefulFunctions.cpp" line="23"/>
@@ -9990,8 +10016,9 @@ devem ocorrer somente antes de uma palavra.</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="360"/>
-        <source>Run script</source>
-        <translation>Executar script</translation>
+        <source>Run Script</source>
+        <oldsource>Run script</oldsource>
+        <translation type="unfinished">Executar script</translation>
     </message>
     <message>
         <source>run script</source>
@@ -10507,44 +10534,48 @@ The html files are located in the %1 directory.</source>
 <context>
     <name>findGlobalDialog</name>
     <message>
-        <location filename="findGlobalDialog.ui" line="13"/>
+        <location filename="findGlobalDialog.ui" line="14"/>
         <source>Dialog</source>
         <translation>Diálogo</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="23"/>
+        <location filename="findGlobalDialog.ui" line="24"/>
         <source>Scope:</source>
         <translation>Escopo:</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="34"/>
+        <location filename="findGlobalDialog.ui" line="35"/>
         <source>current document</source>
         <translation>Documento atual</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="39"/>
+        <location filename="findGlobalDialog.ui" line="40"/>
         <source>open documents</source>
         <translation>Documentos abertos</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="53"/>
+        <location filename="findGlobalDialog.ui" line="54"/>
         <source>Find:</source>
         <translation>Localizar:</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="63"/>
+        <location filename="findGlobalDialog.ui" line="64"/>
         <source>Case Sensitive</source>
         <translation>Dif. Maiúsculas</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="70"/>
+        <location filename="findGlobalDialog.ui" line="71"/>
         <source>Regular Expression</source>
         <translation>Expressão Regular</translation>
     </message>
     <message>
-        <location filename="findGlobalDialog.ui" line="90"/>
+        <location filename="findGlobalDialog.ui" line="91"/>
+        <source>Complete Words Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Complete Words only</source>
-        <translation>Palavras Inteiras</translation>
+        <translation type="obsolete">Palavras Inteiras</translation>
     </message>
 </context>
 <context>
