@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>Home site of original Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Webseite des originalen Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Webseite des originalen Texmaker: &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;http://www.xm1math.net/texmaker/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
@@ -33,11 +33,35 @@
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>Projekt Homepage : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">Projekt Homepage : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation>Nutze Qt-Version %1, kompiliert mit QT %2 %3</translation>
+    </message>
+    <message>
+        <source>html conversion: </source>
+        <translation>HTML Export:</translation>
+    </message>
+    <message>
+        <source>TeXstudio uses the PDF viewer of TeXworks.</source>
+        <translation>TeXstudio verwendet den PDF-Betrachter von TeXworks.</translation>
+    </message>
+    <message>
+        <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
+        <translation>TeXstudio verwendet DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</translation>
+    </message>
+    <message>
+        <source>TeXstudio contains an image by Alexander Klink.</source>
+        <translation>TeXstudio verwendet ein Bild von Alexander Klink.</translation>
+    </message>
+    <message>
+        <source>Project home site:</source>
+        <translation>Homepage des Projekts:</translation>
+    </message>
+    <message>
+        <source>Home site of original Texmaker:</source>
+        <translation>Homepage des original Texmaker:</translation>
     </message>
 </context>
 <context>
@@ -223,15 +247,15 @@
     </message>
     <message>
         <source>Complete Issue of a Periodical</source>
-        <translation type="unfinished"></translation>
+        <translation>Vollständige Ausgabe einer Zeitschrift</translation>
     </message>
     <message>
         <source>Supplemental Material in a Periodical</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergänzungsmaterial in einer Zeitschrift</translation>
     </message>
     <message>
         <source>Multi-volume Proceedings Entry</source>
-        <translation>Eintrag in Mehrbändigem Tagungsband</translation>
+        <translation>Eintrag in mehrbändigem Tagungsband</translation>
     </message>
     <message>
         <source>Reference</source>
@@ -239,7 +263,7 @@
     </message>
     <message>
         <source>Multi-volume Reference Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag in mehrbändiger Referenz</translation>
     </message>
     <message>
         <source>Article in a Reference</source>
@@ -251,7 +275,7 @@
     </message>
     <message>
         <source>&amp;Thesis</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Studienarbeit</translation>
     </message>
     <message>
         <source>New BibLaTeX Entry</source>
@@ -314,19 +338,19 @@
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</source>
-        <translation>Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;.</translation>
+        <translation type="obsolete">Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Command %1 not defined</source>
-        <translation>Kommando %1 nicht definiert</translation>
+        <translation>Befehl %1 nicht definiert</translation>
     </message>
     <message>
         <source>Failed to understand command %1</source>
-        <translation>Kommando %1 nicht verstanden</translation>
+        <translation>Befehl %1 nicht verstanden</translation>
     </message>
     <message>
         <source>Error: No command given</source>
-        <translation>Fehler: Kein Kommando definiert</translation>
+        <translation>Fehler: Kein Befehl definiert</translation>
     </message>
     <message>
         <source>Internal Pdf Viewer</source>
@@ -334,11 +358,11 @@
     </message>
     <message>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
-        <translation>Es wurde ein dde:// Kommando mit zwei Schrästrichen verwendet, dies ist überholt. Es muss nun mit drei Schrägstrichen verwendet werden dde:///.</translation>
+        <translation>Es wurde ein dde:// Befehl mit zwei Schrästrichen verwendet, dies ist überholt. Es muss nun mit drei Schrägstrichen verwendet werden dde:///.</translation>
     </message>
     <message>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation>Es wurde txs:///Kommando[... or txs:///Kommando{... verwendet, aber es werden nur Kommandos der Form  txs:///Kommando/[... or txs:///Kommando/{... mit einem extra Schrägstrich nach &quot;Kommando&quot; unstrüzt, um die Syntzax sauberer zu gestalten.</translation>
+        <translation>Es wurde txs:///Befehl[... or txs:///Befehl{... verwendet, aber es werden nur Befehle der Form  txs:///Befehl/[... or txs:///Befehl/{... mit einem extra Schrägstrich nach &quot;Befehl&quot; unterstützt, um die Syntax sauberer zu gestalten.</translation>
     </message>
     <message>
         <source>compile &amp; view</source>
@@ -488,6 +512,10 @@
         <source>Recompile Bibliography</source>
         <translation>Übersetze Bibliographie erneut</translation>
     </message>
+    <message>
+        <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
+        <translation>Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;?</translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -529,7 +557,7 @@
     </message>
     <message>
         <source>Current File Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner der aktuellen Datei</translation>
     </message>
 </context>
 <context>
@@ -869,7 +897,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
-        <translation></translation>
+        <translation>Automatisches Ersetzen von LaTeX-Kommandos</translation>
     </message>
     <message>
         <source>Add line</source>
@@ -897,7 +925,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Enable ToolTip-Help</source>
-        <translation>Aktiviere Tooltip-Hilfe</translation>
+        <translation type="obsolete">Aktiviere Tooltip-Hilfe</translation>
     </message>
     <message>
         <source>Use following completion files:</source>
@@ -1249,43 +1277,43 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     </message>
     <message>
         <source>Prefer &quot;Typical&quot;</source>
-        <translation>Bevorzuge &quot;Typisch&quot;</translation>
+        <translation type="obsolete">Bevorzuge &quot;Typisch&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;Most Used&quot;</source>
-        <translation>Bevorzuge &quot;Am häufigsten benutzt&quot;</translation>
+        <translation type="obsolete">Bevorzuge &quot;Am häufigsten benutzt&quot;</translation>
     </message>
     <message>
         <source>Prefer &quot;All&quot;</source>
-        <translation>Bevorzuge &quot;Alle&quot;</translation>
+        <translation type="obsolete">Bevorzuge &quot;Alle&quot;</translation>
     </message>
     <message>
         <source>Riddle</source>
-        <translation>Rätsel</translation>
+        <translation type="obsolete">Rätsel</translation>
     </message>
     <message>
         <source>first</source>
-        <translation>erste</translation>
+        <translation type="obsolete">erste</translation>
     </message>
     <message>
         <source>second</source>
-        <translation>zweite</translation>
+        <translation type="obsolete">zweite</translation>
     </message>
     <message>
         <source>three</source>
-        <translation>drei</translation>
+        <translation type="obsolete">drei</translation>
     </message>
     <message>
         <source>last</source>
-        <translation>letzte</translation>
+        <translation type="obsolete">letzte</translation>
     </message>
     <message>
         <source>Please answer 1, 2 or 3</source>
-        <translation>Bitte antworte mit 1, 2 oder 3</translation>
+        <translation type="obsolete">Bitte antworte mit 1, 2 oder 3</translation>
     </message>
     <message>
         <source>Only one answer allowed</source>
-        <translation>Nur eine Antwort erlaubt</translation>
+        <translation type="obsolete">Nur eine Antwort erlaubt</translation>
     </message>
     <message>
         <source>Replace double quotes:</source>
@@ -1319,7 +1347,7 @@ You ask the second: &quot;Is the first one lying?&quot;, and he answers: &quot;N
 You ask the last: &quot;Is the second one lying?&quot;, and he answers: &quot;No&quot;.
 
 Which one of the three wise will always tell the truth?</source>
-        <translation>Du entdeckst eine magische Insel, auf der drei seltsame und weise Freunde leben.
+        <translation type="obsolete">Du entdeckst eine magische Insel, auf der drei seltsame und weise Freunde leben.
 Einer spricht immer die Wahrheit, der Nächste lügt immer, und der Letzte ist taub, so dass er zufällig antwortet und nicht lügen kann(!).
 Du fragst den Ersten: &quot;Lügst du?&quot;, und er antwortet: &quot;Nein&quot;.
 Du fragst den Zweiten: &quot;Lügt der erste von euch?&quot;, und er antwortet: &quot;Nein&quot;.
@@ -1337,15 +1365,15 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
     </message>
     <message>
         <source>one</source>
-        <translation>Eins</translation>
+        <translation type="obsolete">Eins</translation>
     </message>
     <message>
         <source>two</source>
-        <translation>Zwei</translation>
+        <translation type="obsolete">Zwei</translation>
     </message>
     <message>
         <source>third</source>
-        <translation>dritte</translation>
+        <translation type="obsolete">dritte</translation>
     </message>
     <message>
         <source>Configure TeXstudio</source>
@@ -1627,11 +1655,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Times to repeat compilation if requested:</source>
-        <translation>Maximale Anzahl, die ein Kommando wiederholt wird, falls es notwendig ist:</translation>
+        <translation type="obsolete">Maximale Anzahl, die ein Kommando wiederholt wird, falls es notwendig ist:</translation>
     </message>
     <message>
         <source>Commands with repeated compilation: </source>
-        <translation>Kommandos, die eventuell mehrfach ausgeführt werden müssen:</translation>
+        <translation type="obsolete">Kommandos, die eventuell mehrfach ausgeführt werden müssen:</translation>
     </message>
     <message>
         <source>Line Spacing</source>
@@ -2059,7 +2087,76 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Use SVN revisions to undo before last saved version</source>
-        <translation type="unfinished"></translation>
+        <translation>Nutze SVN-Versionen um vor der letzten gespeicherten Version rückgängig zu machen</translation>
+    </message>
+    <message>
+        <source>Maximum Compile Repetitions:</source>
+        <translation>Maximale Anzahl der Übersetzungen:</translation>
+    </message>
+    <message>
+        <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
+        <translation>Startet die Vervollständigung sobald &apos;\&apos; eingegeben wird. Alternativ kann die Vervollständigung immer manuell mit Strg+Leertaste gestartet werden.</translation>
+    </message>
+    <message>
+        <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
+        <translation>Falls die nächsten Zeichen aller Vorschläge der Vervollständigung gleich sind, können sie mit &lt;Tab&gt; automatisch eingefügt werden.</translation>
+    </message>
+    <message>
+        <source>Preferred Commands Set:</source>
+        <translation>Bevorzugte Kommandos:</translation>
+    </message>
+    <message>
+        <source>Typical</source>
+        <translation>Typisch</translation>
+    </message>
+    <message>
+        <source>Most Used</source>
+        <translation>Meist genutzt</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>Alle</translation>
+    </message>
+    <message>
+        <source>Allows in-place substition of commands. Example:
+- \textbf{foo}
+- Put cursor behind &quot;text&quot;.
+- Start completer by Ctrl+Space
+- Select \textrm
+- The result is \textrm{foo}</source>
+        <translation>Erlaubt die Substitution von Kommandos an der aktuellen Stelle. Beispiel:
+- \textbf{foo}
+- Setze den Mauszeiger hinter &quot;text&quot;.
+- Starte die Vervollständigung mit Strg+Leertaste
+- Wähle \textrm
+- Das Ergebnis ist \textrm{foo}</translation>
+    </message>
+    <message>
+        <source>Shows a tooltip with a description of the selected completer command</source>
+        <translation>Zeigt Tooltip mit einer Beschreibung des ausgewählten Kommandos der Vervollständigung</translation>
+    </message>
+    <message>
+        <source>ToolTip-Help</source>
+        <translation>Tooltip-Hilfe</translation>
+    </message>
+    <message>
+        <source>Size of the command set tabs at the bottom or top of the completer</source>
+        <translation>Größe der Reiter mit Kommandos unter oder über der Vervollständigungs-Liste</translation>
+    </message>
+    <message>
+        <source>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</source>
+        <translation>TXS versucht die Vervollständigungsdateien automatisch zu laden, wenn 
+ein \usepackage{}-Kommando gefunden wird. Diese automatisch eingebundenen
+Dateien werden hier nicht angezeigt. Die Auswahl von zusätzlichen Paketen ist
+normalerweise nicht notwendig. Falls die automatische Erkennung jedoch nicht
+funktioniert oder benutzerspezifische Vervollständigungsdateien verwendet 
+werden kann die Verwendung durch die Auswahl der entsprechenden Dateien 
+hier erzwungen werden.</translation>
     </message>
 </context>
 <context>
@@ -2782,6 +2879,18 @@ Do you want to remove them?</source>
         <translation>Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Makros mit einem Trigger (?language:latex)(?&lt;=\s|^) oder (?language:latex)(?&lt;=\S
 Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfernt werden?</translation>
     </message>
+    <message>
+        <source>Configure</source>
+        <translation>Konfigurieren</translation>
+    </message>
+    <message>
+        <source>Select Program</source>
+        <translation>Programm auswählen</translation>
+    </message>
+    <message>
+        <source>Restore Default</source>
+        <translation>Setze auf Vorgabe zurück</translation>
+    </message>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -3254,6 +3363,14 @@ Fehlender \caption Kommando.</translation>
         <source> (Line %1)</source>
         <translation>(Zeile %1)</translation>
     </message>
+    <message>
+        <source>Line</source>
+        <translation>Zeile</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
 </context>
 <context>
     <name>LatexEditorView</name>
@@ -3332,6 +3449,10 @@ Fehlender \caption Kommando.</translation>
     <message>
         <source>Citation correct (reading ...)</source>
         <translation>Ziate korrekt (lese ...)</translation>
+    </message>
+    <message>
+        <source>Go to PDF</source>
+        <translation>Gehe zu PDF</translation>
     </message>
 </context>
 <context>
@@ -3698,11 +3819,7 @@ Fehlender \caption Kommando.</translation>
     </message>
     <message>
         <source>page %1 of %2</source>
-        <translation>Seite %1 von %2</translation>
-    </message>
-    <message>
-        <source>%1%</source>
-        <translation></translation>
+        <translation type="obsolete">Seite %1 von %2</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -3898,7 +4015,7 @@ Fehlender \caption Kommando.</translation>
     </message>
     <message>
         <source>pages %1 to %2 of %3</source>
-        <translation>Seiten %1 bis %2 von %3</translation>
+        <translation type="obsolete">Seiten %1 bis %2 von %3</translation>
     </message>
     <message>
         <source>Synchronize multiple views</source>
@@ -4007,6 +4124,22 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>von</translation>
+    </message>
+    <message>
+        <source>Windowed/Embedded</source>
+        <translation>Eigenes Fenster / Integriert</translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation>Skalierung</translation>
+    </message>
+    <message>
+        <source>Page %1 of %2</source>
+        <translation>Seite %1 von %2</translation>
+    </message>
+    <message>
+        <source>Pages %1 to %2 of %3</source>
+        <translation>Seiten %1 bis %2 von %3</translation>
     </message>
 </context>
 <context>
@@ -4139,7 +4272,7 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     </message>
     <message>
         <source>Jump to Source</source>
-        <translation>Gehe zum Quelltext</translation>
+        <translation type="obsolete">Gehe zum Quelltext</translation>
     </message>
     <message>
         <source>Go to Page</source>
@@ -4156,6 +4289,10 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <message>
         <source>Could not open browser</source>
         <translation>Konnte Browser nicht öffnen</translation>
+    </message>
+    <message>
+        <source>Go to Source</source>
+        <translation>Gehe zum Quelltext</translation>
     </message>
 </context>
 <context>
@@ -4685,7 +4822,10 @@ failed after the old content was deleted.
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern des Dokuments in Datei %1 fehlgeschalgen, nachdem der alte Inhalt gelöscht wurde.
+Die Datei könnte dadurch zerstört worden sein! Sie sollten die Datei an eine andere Stelle speichern
+oder das Problem beheben um Datenverlust zu vermeiden. 
+Mögliche Ursachen: Fehler der Festplatte oder Festplattenspeicher voll.</translation>
     </message>
     <message>
         <source>Only part of the file could be written:
@@ -4694,7 +4834,39 @@ Possible causes include disk failure or a full harddisk.</source>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnten nur Teile gespeichert werden:
+%1
+
+Die Datei könnte dadurch zerstört worden sein! Sie sollten die Datei an eine andere Stelle speichern
+oder das Problem beheben um Datenverlust zu vermeiden. 
+Mögliche Ursachen: Fehler der Festplatte oder Festplattenspeicher voll.</translation>
+    </message>
+    <message>
+        <source>There seems to be not enough space to save the file at
+%1
+
+File size: %2 kB
+Free space: %3 kB
+
+You should clean up some space and retry. Alternatively you can
+cancel the save operation and save to another location instead.
+When ignoring this warning TeXstudio will try save to the specified
+location. However if there is really not enough space, this will
+result in data loss.
+</source>
+        <translation>Es scheint nicht genügent Speicherplatz frei zu sein um die Datei 
+an der folgenden Stelle zu speichern:
+%1
+
+Dateigröße: %2 kB
+Freier Speicherplatz: %3 kB
+
+Sie sollten den Speicherplatz bereinigen und es erneut versuchen. 
+Alternativ können Sie den Speichervorgang abbrechen und die 
+Datei an eine andere Stelle speichern. Wenn Sie diese Warnung 
+ignorieren wir TeXstudio versuchen die Datei an der ausgewählten 
+Stelle zu speichern. Sollte dort jedoch nicht genügent Speicherplatz 
+zur Verfügung stehen, gehen die Daten verloren.</translation>
     </message>
 </context>
 <context>
@@ -6296,11 +6468,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>last change</source>
-        <translation>Letzte Änderung</translation>
+        <translation type="obsolete">Letzte Änderung</translation>
     </message>
     <message>
         <source>&quot;next&quot; change</source>
-        <translation>&quot;Nächste&quot; Änderung</translation>
+        <translation type="obsolete">&quot;Nächste&quot; Änderung</translation>
     </message>
     <message>
         <source>Previous mark</source>
@@ -6312,27 +6484,27 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Previous error</source>
-        <translation>Vorheriger Fehler</translation>
+        <translation type="obsolete">Vorheriger Fehler</translation>
     </message>
     <message>
         <source>Next error</source>
-        <translation>Nächster Fehler</translation>
+        <translation type="obsolete">Nächster Fehler</translation>
     </message>
     <message>
         <source>Previous warning</source>
-        <translation>Vorherige Warnung</translation>
+        <translation type="obsolete">Vorherige Warnung</translation>
     </message>
     <message>
         <source>Next warning</source>
-        <translation>Nächste Warnung</translation>
+        <translation type="obsolete">Nächste Warnung</translation>
     </message>
     <message>
         <source>Previous bad box</source>
-        <translation>Vorherige Bad Box</translation>
+        <translation type="obsolete">Vorherige Bad Box</translation>
     </message>
     <message>
         <source>Next bad box</source>
-        <translation>Nächste Bad Box</translation>
+        <translation type="obsolete">Nächste Bad Box</translation>
     </message>
     <message>
         <source>Definition</source>
@@ -6344,7 +6516,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>unnamed bookmark</source>
-        <translation>unbenanntes Lesezeichen</translation>
+        <translation type="obsolete">unbenanntes Lesezeichen</translation>
     </message>
     <message>
         <source>Complete</source>
@@ -6352,15 +6524,15 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation type="obsolete">normal</translation>
     </message>
     <message>
         <source>\begin{ completion</source>
-        <translation>\begin{ Vervollständigung</translation>
+        <translation type="obsolete">\begin{ Vervollständigung</translation>
     </message>
     <message>
         <source>normal text</source>
-        <translation>Normaler Text</translation>
+        <translation type="obsolete">Normaler Text</translation>
     </message>
     <message>
         <source>Line Ending</source>
@@ -6592,11 +6764,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Insert \ref to next label</source>
-        <translation>Füge \ref zur nächsten Label ein</translation>
+        <translation type="obsolete">Füge \ref zur nächsten Label ein</translation>
     </message>
     <message>
         <source>Insert \ref to previous label</source>
-        <translation>Füge \ref zur vorherigen Label ein</translation>
+        <translation type="obsolete">Füge \ref zur vorherigen Label ein</translation>
     </message>
     <message>
         <source>&amp;Wizards</source>
@@ -6805,47 +6977,47 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     <message>
         <source>Manipulate tables</source>
         <comment>table</comment>
-        <translation>Manipuliere Tabellen</translation>
+        <translation type="obsolete">Manipuliere Tabellen</translation>
     </message>
     <message>
         <source>add row</source>
         <comment>table</comment>
-        <translation>Zeile hinzufügen</translation>
+        <translation type="obsolete">Zeile hinzufügen</translation>
     </message>
     <message>
         <source>add column</source>
         <comment>table</comment>
-        <translation>Spalte hinzufügen</translation>
+        <translation type="obsolete">Spalte hinzufügen</translation>
     </message>
     <message>
         <source>remove row</source>
         <comment>table</comment>
-        <translation>Zeile entfernen</translation>
+        <translation type="obsolete">Zeile entfernen</translation>
     </message>
     <message>
         <source>remove column</source>
         <comment>table</comment>
-        <translation>Spalte entfernen</translation>
+        <translation type="obsolete">Spalte entfernen</translation>
     </message>
     <message>
         <source>cut column</source>
         <comment>table</comment>
-        <translation>Spalte ausschneiden</translation>
+        <translation type="obsolete">Spalte ausschneiden</translation>
     </message>
     <message>
         <source>paste column</source>
         <comment>table</comment>
-        <translation>Spalte einfügen</translation>
+        <translation type="obsolete">Spalte einfügen</translation>
     </message>
     <message>
         <source>add \hline</source>
         <comment>table</comment>
-        <translation>Füge \hline ein</translation>
+        <translation type="obsolete">Füge \hline ein</translation>
     </message>
     <message>
         <source>remove \hline</source>
         <comment>table</comment>
-        <translation>Entferne \hline</translation>
+        <translation type="obsolete">Entferne \hline</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -6913,15 +7085,15 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>Select (inner)</source>
-        <translation>Wähle (innere)</translation>
+        <translation type="obsolete">Wähle (innere)</translation>
     </message>
     <message>
         <source>Select (outer)</source>
-        <translation>Wähle (äußere)</translation>
+        <translation type="obsolete">Wähle (äußere)</translation>
     </message>
     <message>
         <source>Select (inverting)</source>
-        <translation>Wähle (invertieren)</translation>
+        <translation type="obsolete">Wähle (invertieren)</translation>
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
@@ -7031,12 +7203,12 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>Find mismatch</source>
-        <translation>Klammerfehler finden</translation>
+        <translation type="obsolete">Klammerfehler finden</translation>
     </message>
     <message>
         <source>remodel table after template</source>
         <comment>table</comment>
-        <translation>Tabelle nach Vorlage umformen</translation>
+        <translation type="obsolete">Tabelle nach Vorlage umformen</translation>
     </message>
     <message>
         <source>Set High&amp;lighting...</source>
@@ -7202,19 +7374,19 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>move up</source>
-        <translation>bewege hoch</translation>
+        <translation type="obsolete">bewege hoch</translation>
     </message>
     <message>
         <source>move down</source>
-        <translation>bewege runter</translation>
+        <translation type="obsolete">bewege runter</translation>
     </message>
     <message>
         <source>remove</source>
-        <translation>entferne</translation>
+        <translation type="obsolete">entferne</translation>
     </message>
     <message>
         <source>remove all</source>
-        <translation>entferne alle</translation>
+        <translation type="obsolete">entferne alle</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
@@ -7251,7 +7423,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Jump to match</source>
-        <translation>Springe zu Fundstelle</translation>
+        <translation type="obsolete">Springe zu Fundstelle</translation>
     </message>
     <message>
         <source>Align Columns</source>
@@ -7259,16 +7431,16 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Unknown internal command: %1</source>
-        <translation>Unbekanntes internes Kommando: %1</translation>
+        <translation>Unbekanntes interner Befehl: %1</translation>
     </message>
     <message>
         <source>The document %1 want to override the command %2 with %3.
 Do you trust this document?</source>
-        <translation>Das Dokument %1 möchte das Kommando %2 durch %3 ersetzen. Vertrauen Sie der Quelle des Dokuments ?</translation>
+        <translation>Das Dokument %1 möchte den Befehl %2 durch %3 ersetzen. Vertrauen Sie der Quelle des Dokuments ?</translation>
     </message>
     <message>
         <source>No, run the default command</source>
-        <translation>Nein, nutze vorgegebene Kommandos</translation>
+        <translation>Nein, nutze vorgegebene Befehle</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -7314,11 +7486,11 @@ Do you trust this document?</source>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
-        <translation>Ja, nutze immer die erstzten Kommandos</translation>
+        <translation>Ja, nutze immer die erstzten Befehle</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overridden command</source>
-        <translation>Ja, nutze in allen Dokumenten die ersetzten Kommandos</translation>
+        <translation>Ja, nutze in allen Dokumenten die ersetzten Befehle</translation>
     </message>
     <message>
         <source>TeXstudio Emergency</source>
@@ -7456,6 +7628,172 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     <message>
         <source>Yes, continue the loop</source>
         <translation>Ja, lasse die Schleife weiterlaufen</translation>
+    </message>
+    <message>
+        <source>Previous Change</source>
+        <translation>Vorherige Änderung</translation>
+    </message>
+    <message>
+        <source>Next Change</source>
+        <translation>Nächste Änderung</translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation>unbenanntes Lesezeichen</translation>
+    </message>
+    <message>
+        <source>Previous Error</source>
+        <translation>Vorheriger Fehler</translation>
+    </message>
+    <message>
+        <source>Next Error</source>
+        <translation>Nächster Fehler</translation>
+    </message>
+    <message>
+        <source>Previous Warning</source>
+        <translation>Vorherige Warnung</translation>
+    </message>
+    <message>
+        <source>Next Warning</source>
+        <translation>Nächste Warnung</translation>
+    </message>
+    <message>
+        <source>Previous Bad Box</source>
+        <translation>Vorherige Bad Box</translation>
+    </message>
+    <message>
+        <source>Next Bad Box</source>
+        <translation>Nächste Bad Box</translation>
+    </message>
+    <message>
+        <source>Jump to Match</source>
+        <translation>Springe zu Fundstelle</translation>
+    </message>
+    <message>
+        <source>Select Inner</source>
+        <translation>Markiere inneres</translation>
+    </message>
+    <message>
+        <source>Select Outer</source>
+        <translation>Markiere äußeres</translation>
+    </message>
+    <message>
+        <source>Select Command</source>
+        <translation>Befehl auswählen</translation>
+    </message>
+    <message>
+        <source>Select Line</source>
+        <translation>Zeile auswählen</translation>
+    </message>
+    <message>
+        <source>Select Inverting</source>
+        <translation>Markiere invertierend</translation>
+    </message>
+    <message>
+        <source>Find Mismatch</source>
+        <translation>Klammerfehler finden</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <source>\begin{ Completion</source>
+        <translation>\begin{ Vervollständigung</translation>
+    </message>
+    <message>
+        <source>Normal Text</source>
+        <translation>Normaler Text</translation>
+    </message>
+    <message>
+        <source>Insert \ref to Next Label</source>
+        <translation>Füge \ref zum nächsten Label ein</translation>
+    </message>
+    <message>
+        <source>Insert \ref to Previous Label</source>
+        <translation>Füge \ref zum vorherigen Label ein</translation>
+    </message>
+    <message>
+        <source>Manipulate Tables</source>
+        <comment>table</comment>
+        <translation>Tabellen ändern</translation>
+    </message>
+    <message>
+        <source>Add Row</source>
+        <comment>table</comment>
+        <translation>Zeile hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add Column</source>
+        <comment>table</comment>
+        <translation>Spalte hinzufügen</translation>
+    </message>
+    <message>
+        <source>Remove Row</source>
+        <comment>table</comment>
+        <translation>Zeile entfernen</translation>
+    </message>
+    <message>
+        <source>Remove Column</source>
+        <comment>table</comment>
+        <translation>Spalte entfernen</translation>
+    </message>
+    <message>
+        <source>Cut Column</source>
+        <comment>table</comment>
+        <translation>Spalte ausschneiden</translation>
+    </message>
+    <message>
+        <source>Paste Column</source>
+        <comment>table</comment>
+        <translation>Spalte einfügen</translation>
+    </message>
+    <message>
+        <source>Add \hline</source>
+        <comment>table</comment>
+        <translation>Füge \hline ein</translation>
+    </message>
+    <message>
+        <source>Remove \hline</source>
+        <comment>table</comment>
+        <translation>Entferne \hline</translation>
+    </message>
+    <message>
+        <source>Remodel Table Using Template</source>
+        <comment>table</comment>
+        <translation>Tabelle nach Vorlage umformen</translation>
+    </message>
+    <message>
+        <source>Check Latex installation</source>
+        <translation>Prüfe LaTeX Installation</translation>
+    </message>
+    <message>
+        <source>Paste Before</source>
+        <translation>Vorher einfügen</translation>
+    </message>
+    <message>
+        <source>Paste After</source>
+        <translation>Danach einfügen</translation>
+    </message>
+    <message>
+        <source>Move Up</source>
+        <translation>Bewege hoch</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Bewege runter</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation>Entferne alle</translation>
+    </message>
+    <message>
+        <source>Insert Label</source>
+        <translation>Label einfügen</translation>
+    </message>
+    <message>
+        <source>Insert \ref to Label</source>
+        <translation>Füge \ref zum Label ein</translation>
     </message>
 </context>
 <context>
@@ -7884,7 +8222,7 @@ Man kann den spezillen Wert ?txs-start verwenden, um das Skript bei txs start zu
     </message>
     <message>
         <source>Ordered list of commands :</source>
-        <translation>geordnete Liste der Kommandos:</translation>
+        <translation>geordnete Liste der Befehle:</translation>
     </message>
     <message>
         <source>Up</source>
@@ -8012,7 +8350,7 @@ Die HTML-Dateien befinden sich in Verzeichnis %1.</translation>
     </message>
     <message>
         <source>could not start the command</source>
-        <translation>Programm konnte nicht gestartet werden.</translation>
+        <translation>Kommando konnte nicht gestartet werden</translation>
     </message>
     <message>
         <source>Input file not found.</source>
