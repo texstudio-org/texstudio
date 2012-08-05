@@ -288,6 +288,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	bool completerNeedsUpdate=false;
 	bool bibTeXFilesNeedsUpdate=false;
+    bool bibItemsChanged=false;
 	
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
 	
@@ -474,22 +475,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 			}while(start>=0);
 		}
-        /// bibitem ///
-        foreach(QString cmd,latexParser.possibleCommands["%bibitem"]){
-            QString name;
-            cmd.append('{');
-            int start=0;
-            do{
-                name=findToken(curLine,cmd,start);
-                if(!name.isEmpty()){
-                    ReferencePair elem;
-                    elem.name=name;
-                    elem.start=start;
-                    mBibItem.insert(line(i).handle(),elem);
-                    bibTeXFilesNeedsUpdate=true;
-                }
-            }while(start>=0);
-        }
+
 
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
@@ -625,6 +611,17 @@ void LatexDocument::patchStructure(int linenr, int count) {
                     }
                 }
                 continue;
+            }
+            /// bibitem ///
+            if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
+                if(!name.isEmpty()){
+                    ReferencePair elem;
+                    elem.name=name;
+                    elem.start=optionStart;
+                    mBibItem.insert(line(i).handle(),elem);
+                    bibItemsChanged=true;
+                    continue;
+                }
             }
 			///usepackage
             if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
@@ -781,6 +778,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
+
+    if(bibItemsChanged)
+        parent->updateBibFiles(false);
 	
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
@@ -1676,33 +1676,37 @@ bool LatexDocuments::singleMode(){
 	return !masterDocument;
 }
 
-void LatexDocuments::updateBibFiles(){
+void LatexDocuments::updateBibFiles(bool updateFiles){
 	mentionedBibTeXFiles.clear();
     QSet<QString> newBibItems;
 	foreach (LatexDocument* doc, documents) {
-		QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
-		QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
-		for (; it != itend; ++it){
-			if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
-			mentionedBibTeXFiles << it.value().absolute;
-		}
+        if(updateFiles){
+            QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
+            QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
+            for (; it != itend; ++it){
+                if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
+                mentionedBibTeXFiles << it.value().absolute;
+            }
+        }
         newBibItems.unite(QSet<QString>::fromList(doc->bibItems()));
 	}
 	
 	bool changed=false;
-	for (int i=0; i<mentionedBibTeXFiles.count();i++){
-		QString &fileName=mentionedBibTeXFiles[i];
-		QFileInfo fi(fileName);
-		if (!fi.isReadable()) continue; //ups...
-		if (!bibTeXFiles.contains(fileName))
-			bibTeXFiles.insert(fileName,BibTeXFileInfo());
-		BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-		if (bibTex.loadIfModified(fileName))
-			changed = true;
-		if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
-			//handle obscure bib tex feature, a just line containing "link fileName"
-			mentionedBibTeXFiles.append(bibTex.linksTo);
-	}
+    if(updateFiles){
+        for (int i=0; i<mentionedBibTeXFiles.count();i++){
+            QString &fileName=mentionedBibTeXFiles[i];
+            QFileInfo fi(fileName);
+            if (!fi.isReadable()) continue; //ups...
+            if (!bibTeXFiles.contains(fileName))
+                bibTeXFiles.insert(fileName,BibTeXFileInfo());
+            BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
+            if (bibTex.loadIfModified(fileName))
+                changed = true;
+            if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
+                //handle obscure bib tex feature, a just line containing "link fileName"
+                mentionedBibTeXFiles.append(bibTex.linksTo);
+        }
+    }
     if (changed || (newBibItems!=bibItems)) {
 		allBibTeXIds.clear();
         bibItems=newBibItems;

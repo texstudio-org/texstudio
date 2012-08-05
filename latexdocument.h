@@ -319,7 +319,7 @@ public:
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> bibItems; // direct defined bibitems
 	QSet<QString> allBibTeXIds;
-	void updateBibFiles();
+    void updateBibFiles(bool updateFiles=true);
 	Q_INVOKABLE QString findFileFromBibId(const QString& bibId);
 	
 	void updateStructure();
