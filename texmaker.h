@@ -479,6 +479,8 @@ protected slots:
 	void updateHighlighting();
 	
 	void toggleGrammar(int type);
+
+    void bookmarkDeleted(QDocumentLineHandle* dlh);
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);

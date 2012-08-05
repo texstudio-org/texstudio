@@ -853,6 +853,8 @@ void LatexEditorView::lineMarkClicked(int line) {
 	for (int i=-1; i<10; i++)
 		if (l.hasMark(bookMarkId(i))) {
 			l.removeMark(bookMarkId(i));
+            if(i<0)
+                emit bookmarkRemoved(l.handle());
 			return;
 		}
 	// remove error marks
