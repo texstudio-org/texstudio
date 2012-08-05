@@ -289,6 +289,7 @@ public:
 	~LatexDocuments();
 	void addDocument(LatexDocument* document);
 	void deleteDocument(LatexDocument* document);
+    void move(int from,int to);
 	Q_INVOKABLE void setMasterDocument(LatexDocument* document);
 	Q_INVOKABLE LatexDocument* getCurrentDocument() const;
 	Q_INVOKABLE LatexDocument* getMasterDocument() const;
@@ -323,7 +324,6 @@ public:
 	Q_INVOKABLE QString findFileFromBibId(const QString& bibId);
 	
 	void updateStructure();
-	void updateLayout();
 	void updateMasterSlaveRelations(LatexDocument *doc);
 	
 	bool showLineNumbersInStructure;

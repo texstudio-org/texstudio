@@ -1568,6 +1568,18 @@ QList<LatexDocument*> LatexDocuments::getDocuments() const{
 	return documents;
 }
 
+void LatexDocuments::move(int from, int to){
+#if QT_VERSION >= 0x040600
+    model->beginMoveRows(QModelIndex(),from,from,QModelIndex(),to);
+    documents.move(from,to);
+    model->endMoveRows();
+#else
+    model->layoutAboutToBeChanged();
+    documents.move(from,to);
+    model->layoutChanged();
+#endif
+}
+
 QString LatexDocuments::getCurrentFileName() {
 	if (!currentDocument) return "";
 	return currentDocument->getFileName();
@@ -2033,10 +2045,6 @@ void LatexDocuments::updateStructure(){
 	if(model->getSingleDocMode()){
 		model->structureUpdated(currentDocument,0);
 	}
-}
-
-void LatexDocuments::updateLayout(){
-	model->layoutChanged();
 }
 
 void LatexDocuments::bibTeXFilesNeedUpdate(){
