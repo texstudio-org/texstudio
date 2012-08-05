@@ -190,6 +190,7 @@ signals:
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	void syncPDFRequested();
+    void bookmarkRemoved(QDocumentLineHandle *dlh);
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);

@@ -1350,6 +1350,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
 	connect(edit, SIGNAL(syncPDFRequested()), this, SLOT(syncPDFViewer()));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
+    connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
@@ -3100,6 +3101,22 @@ void Texmaker::removeAllBookmarks(){
           edView->removeBookmark(lineNr,-1);
     }
 }
+
+void Texmaker::bookmarkDeleted(QDocumentLineHandle* dlh){
+    QString text=documents.currentDocument->getFileInfo().fileName();
+    QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
+    foreach(QListWidgetItem *item,lst){
+        //QString fn=item->data(Qt::UserRole).toString();
+        //int lineNr=item->data(Qt::UserRole+1).toInt();
+        QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
+        if(dlh_item==dlh){
+            int row=bookmarksWidget->row(item);
+            bookmarksWidget->takeItem(row);
+            return;
+        }
+    }
+}
+
 void Texmaker::lineWithBookmarkRemoved(int lineNr){
      LatexDocument *doc=qobject_cast<LatexDocument*> (sender());
      QString text=doc->getFileInfo().fileName();
@@ -3109,7 +3126,8 @@ void Texmaker::lineWithBookmarkRemoved(int lineNr){
          QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
          if(dlh_item==dlh){
              int row=bookmarksWidget->row(item);
-             bookmarksWidget->takeItem(row);
+             item=bookmarksWidget->takeItem(row);
+             delete item;
              return;
          }
      }
@@ -3141,7 +3159,8 @@ void Texmaker::updateLineWithBookmark(int lineNr){
              return;
          }
      }
-     // no bookmark found, add one
+     // no bookmark found, add one (why)
+     /*
      text=doc->getFileInfo().fileName();
      text+="\n"+dlh->text().trimmed();
      QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
@@ -3157,6 +3176,7 @@ void Texmaker::updateLineWithBookmark(int lineNr){
          text+=ln+"\n";
      }
      item->setToolTip(text);
+     */
 }
 
 void Texmaker::updateBookmarks(LatexEditorView *edView){
