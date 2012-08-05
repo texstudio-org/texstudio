@@ -87,7 +87,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	static int crashHandlerType = 1; 
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
 
-	registerCrashHandler(crashHandlerType);
+    registerCrashHandler(crashHandlerType);
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(3000);
@@ -1224,8 +1224,9 @@ void Texmaker::editorTabChanged(int index){
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
-	documents.documents.move(from,to);
-	documents.updateLayout();
+    //documents.aboutToUpdateLayout();
+    documents.move(from,to);
+    //documents.updateLayout();
 	updateOpenDocumentMenu(false);
 }
 
