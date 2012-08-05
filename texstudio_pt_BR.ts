@@ -31,22 +31,22 @@
     <message>
         <location filename="aboutdialog.cpp" line="32"/>
         <source>html conversion: </source>
-        <translation type="unfinished"></translation>
+        <translation>conversão html: </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="34"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utiliza o visualizador de PDF de TeXworks.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="35"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utiliza a classe DSingleApplication (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licença: GPL).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="36"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio contém uma imagem de Alexander Klink.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="aboutdialog.cpp" line="39"/>
         <source>Project home site:</source>
-        <translation type="unfinished"></translation>
+        <translation>Site do Projeto:</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="40"/>
         <source>Home site of original Texmaker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Site do Texmaker original:</translation>
     </message>
     <message>
         <source>Project home site : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -609,7 +609,7 @@
         <location filename="buildmanager.cpp" line="519"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <oldsource>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;.</oldsource>
-        <translation type="unfinished">O comando foi expandido para %1 níveis. Você deseja continuar expandindo &quot;%2&quot;.</translation>
+        <translation>O comando foi expandido por %1 níveis. Você deseja continuar expandindo &quot;%2&quot;?</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="571"/>
@@ -695,7 +695,7 @@
     <message>
         <location filename="cleandialog.cpp" line="51"/>
         <source>Current File Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta do Arquivo Atual</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="58"/>
@@ -739,12 +739,12 @@
     <message>
         <location filename="configdialog.ui" line="1981"/>
         <source>Tab Bar Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da Aba</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1991"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da aba acima ou abaixo do conjunto de comandos de completamento</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2035"/>
@@ -754,7 +754,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"></translation>
+        <translation>TXS tenta carregar automaticamente os arquivos de completamento
+se um comando \usepackage{} é encontrado. Estes arquivos incluídos
+automaticamente não são indicados aqui. Marcar pacotes adicionais 
+geralmente não é necessário. Todavia se a detecção automática falhar
+ou se desejar incluir algum arquivo de completamento específico, você
+pode forçar o seu uso selecionando-o aqui.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2818"/>
@@ -954,7 +959,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="742"/>
         <source>Maximum Compile Repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Máximo de Repetições na Compilação:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="852"/>
@@ -1057,7 +1062,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="1810"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar o completamento logo que um &apos;\&apos; é digitado. Alternativamene o completamento pode sempre ser ativado manualmente com Ctrl+Espaço.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1845"/>
@@ -1067,27 +1072,27 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="1870"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se todas as sugestões tem os próximos caracteres em comum, você pode utilizar &lt;Tab&gt; para automaticamente inseri-los.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1895"/>
         <source>Preferred Commands Set:</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos Preferidos:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1903"/>
         <source>Typical</source>
-        <translation type="unfinished"></translation>
+        <translation>Típicos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1908"/>
         <source>Most Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Mais Utilizados</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1913"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1936"/>
@@ -1099,17 +1104,24 @@ them here.</source>
 &lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
 &lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Permite substituição de comandos. Exemplo:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Coloque o cursor após &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Inicie o completamento com Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Seleccione &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;O resultado é &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1953"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar dica com a descrição do comando de completamento selecionado</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1956"/>
         <source>ToolTip-Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuda como Dica</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1966"/>
@@ -1119,7 +1131,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="1978"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da aba no topo ou base da janela de completamento</translation>
     </message>
     <message>
         <source>Relative Tab Font Size:</source>
@@ -1269,7 +1281,7 @@ them here.</source>
         <location filename="configdialog.ui" line="2763"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <oldsource>Uses SVN revisions to undo before last saved version</oldsource>
-        <translation type="unfinished">Utilizar revisões SVN para desfazer antes da última versão salva</translation>
+        <translation>Utilizar revisões SVN para desfazer antes da última versão salva</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2773"/>
@@ -1887,7 +1899,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1813"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation>Iniciar automaticamente completamento quando digitando comandos LaTeX</translation>
+        <translation>Iniciar completamento ao digitar comandos LaTeX</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1820"/>
@@ -1906,7 +1918,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1883"/>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation>Completar texto selecionado quando caracter &quot;não textual&quot; for pressionado</translation>
+        <translation>Completar texto selecionado ao pressionar caracter &quot;não textual&quot;</translation>
     </message>
     <message>
         <source>Enable ToolTip-Help</source>
@@ -2442,7 +2454,10 @@ Personalizado</translation>
         <source>You have enabled the advanced options. This allows to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você habilitou as opções avançadas. Isto permite
+configurar TXS em detalhes. Desabilite as opções
+avançadas novamente para somente visualizar
+os ajustes mais comuns.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1804"/>
@@ -3382,17 +3397,17 @@ Deseja removê-las?</translation>
     <message>
         <location filename="configmanager.cpp" line="2145"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2152"/>
         <source>Select Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Programa</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2159"/>
         <source>Restore Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar Padrão</translation>
     </message>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
@@ -3727,7 +3742,7 @@ Você deseja desfazer as alterações?</translation>
         <location filename="insertgraphics.ui" line="210"/>
         <source>Place in Figure Environment</source>
         <oldsource>Place in figure environment</oldsource>
-        <translation type="unfinished">Inserir em ambiente &apos;figure&apos;</translation>
+        <translation>Inserir em Ambiente &apos;Figure&apos;</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="330"/>
@@ -3765,7 +3780,7 @@ Faltando opções para \includegraphics.</translation>
         <location filename="insertgraphics.ui" line="88"/>
         <source>Graphics Options</source>
         <oldsource>Graphics options</oldsource>
-        <translation type="unfinished">Opções para figuras</translation>
+        <translation>Opções para Figuras</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="104"/>
@@ -3786,13 +3801,13 @@ Faltando opções para \includegraphics.</translation>
         <location filename="insertgraphics.ui" line="158"/>
         <source>User Defined</source>
         <oldsource>User defined</oldsource>
-        <translation type="unfinished">Definida pelo usuário</translation>
+        <translation>Definido pelo Usuário</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="186"/>
         <source>Center Horizontally</source>
         <oldsource>Center horizontally</oldsource>
-        <translation type="unfinished">Centralizar horizontalmente</translation>
+        <translation>Centralizar Horizontalmente</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="219"/>
@@ -3802,7 +3817,7 @@ Faltando opções para \includegraphics.</translation>
     <message>
         <location filename="insertgraphics.ui" line="230"/>
         <source>Above graphic</source>
-        <translation>Acima do gráfico</translation>
+        <translation>Acima da figura</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="235"/>
@@ -3828,7 +3843,7 @@ Faltando opções para \includegraphics.</translation>
         <location filename="insertgraphics.ui" line="283"/>
         <source>Span Two Columns</source>
         <oldsource>Span two columns</oldsource>
-        <translation type="unfinished">Sobre duas colunas</translation>
+        <translation>Sobre Duas Colunas</translation>
     </message>
     <message>
         <source>Suggest priorities, where the figure should appear.
@@ -3857,7 +3872,7 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
         <location filename="insertgraphics.ui" line="337"/>
         <source>Override Internal Layout Parameters</source>
         <oldsource>Override internal layout parameters</oldsource>
-        <translation type="unfinished">Ignorar parâmetros internos</translation>
+        <translation>Ignorar Parâmetros Internos</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="365"/>
@@ -3883,7 +3898,7 @@ Nota: Esta ordem é apenas uma sugestão, LaTeX pode ignorá-la se resultar em u
         <location filename="insertgraphics.ui" line="409"/>
         <source>as Default</source>
         <oldsource>as default</oldsource>
-        <translation type="unfinished">como padrão</translation>
+        <translation>como Padrão</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="433"/>
@@ -4080,12 +4095,12 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexdocument.cpp" line="1206"/>
         <source>Line</source>
-        <translation type="unfinished">Linha</translation>
+        <translation>Linha</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1209"/>
         <source>Label</source>
-        <translation type="unfinished">Rótulo</translation>
+        <translation>Rótulo</translation>
     </message>
 </context>
 <context>
@@ -4134,7 +4149,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="284"/>
         <source>Go to PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para PDF</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="1452"/>
@@ -4641,7 +4656,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="PDFDocument.ui" line="477"/>
         <source>&amp;Go to Source</source>
-        <translation>&amp;Ir para fonte</translation>
+        <translation>&amp;Ir para Fonte</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="480"/>
@@ -4865,7 +4880,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="PDFDocument.ui" line="829"/>
         <source>Windowed/Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Independente/Integrado</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="705"/>
@@ -4940,7 +4955,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="PDFDocument.cpp" line="2032"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2050"/>
@@ -5003,12 +5018,12 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location filename="PDFDocument.cpp" line="2829"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Página %1 de %2</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2830"/>
         <source>Pages %1 to %2 of %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Páginas %1 a %2 de %3</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2852"/>
@@ -5206,7 +5221,7 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location filename="PDFDocument.cpp" line="984"/>
         <source>Go to Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para Fonte</translation>
     </message>
     <message>
         <source>Jump to Source</source>
@@ -5550,7 +5565,19 @@ When ignoring this warning TeXstudio will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Parece não haver espaço suficiente para salvar o arquivo em
+%1
+
+Tamanho do arquivo: %2 kB
+Espaço livre: %3 kB
+
+Você deve obter algum espaço livre e tentar novamente.
+Alternativamente você pode cancelar a operação e salvar
+em outra localização. Ignorando este alerta TeXstudio irá
+tentar salvar para a localização especificada. Todavia se
+realmente não existe espaço suficiente, isto resultará
+em perda de dados.
+</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="976"/>
@@ -5579,7 +5606,14 @@ failed after the old content was deleted.
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvando documento para o arquivo
+%1
+falhou após o conteúdo anterior ser deletado.
+
+O arquivo pode ter sido corrompido! Você deve
+salvar para outra localização ou corrigir o problema
+para impedir a perda de dados. Causas prováveis
+incluem falha no disco ou disco cheio.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="993"/>
@@ -5589,7 +5623,13 @@ Possible causes include disk failure or a full harddisk.</source>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente parte do arquivo pode ser salva:
+%1
+
+O arquivo pode ter sido corrompido! Você deve
+salvar para outra localização ou corrigir o problema
+para impedir a perda de dados. Causas prováveis
+incluem falha no disco ou disco cheio.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1089"/>
@@ -7122,7 +7162,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.ui" line="34"/>
         <source>Unknown Word</source>
         <oldsource>Unknown word</oldsource>
-        <translation type="unfinished">Palavra desconhecida</translation>
+        <translation>Palavra Desconhecida</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="51"/>
@@ -7133,7 +7173,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.ui" line="58"/>
         <source>Suggested Words</source>
         <oldsource>Suggested words</oldsource>
-        <translation type="unfinished">Palavras sugeridas</translation>
+        <translation>Palavras Sugeridas</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="78"/>
@@ -7144,13 +7184,13 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.ui" line="85"/>
         <source>Always Ignore</source>
         <oldsource>Always ignore</oldsource>
-        <translation type="unfinished">Sempre Ignorar</translation>
+        <translation>Sempre Ignorar</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="99"/>
         <source>Ignored Words</source>
         <oldsource>Ignored words</oldsource>
-        <translation type="unfinished">Palavras ignoradas</translation>
+        <translation>Palavras Ignoradas</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="114"/>
@@ -7167,7 +7207,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.cpp" line="218"/>
         <source>Hide Ignore List</source>
         <oldsource>Hide ignore list</oldsource>
-        <translation type="unfinished">Ocultar lista de ignorados</translation>
+        <translation>Ocultar Lista de Ignorados</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="182"/>
@@ -7207,12 +7247,6 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.cpp" line="205"/>
         <source>No more misspelled words</source>
         <translation>Sem mais palavras com erros ortográficos</translation>
-    </message>
-    <message>
-        <location filename="spellerdialog.ui" line="167"/>
-        <location filename="spellerdialog.cpp" line="218"/>
-        <source>Hide Ignore List</source>
-        <translation>Ocultar Lista de Ignorados</translation>
     </message>
     <message>
         <location filename="spellerdialog.cpp" line="232"/>
@@ -7730,7 +7764,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="554"/>
         <source>New From &amp;Template...</source>
         <oldsource>New from &amp;template...</oldsource>
-        <translation type="unfinished">Novo a &amp;partir do modelo...</translation>
+        <translation>Novo a &amp;Partir de modelo...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="555"/>
@@ -7741,7 +7775,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="558"/>
         <source>Restore Previous Session</source>
         <oldsource>Restore previous session</oldsource>
-        <translation type="unfinished">&amp;Restaurar Sessão Anterior</translation>
+        <translation>&amp;Restaurar Sessão Anterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="561"/>
@@ -7963,23 +7997,23 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="629"/>
         <source>Previous Change</source>
         <oldsource>last change</oldsource>
-        <translation type="unfinished">Última alteração</translation>
+        <translation>Alteração Anterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="630"/>
         <source>Next Change</source>
         <oldsource>&quot;next&quot; change</oldsource>
-        <translation type="unfinished">Alteração &apos;seguinte&apos;</translation>
+        <translation>Alteração Seguinte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="632"/>
         <source>Previous mark</source>
-        <translation>Marca anterior</translation>
+        <translation>Marca Anterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="633"/>
         <source>Next mark</source>
-        <translation>Próxima marca</translation>
+        <translation>Marca Seguinte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="635"/>
@@ -8001,7 +8035,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="640"/>
         <source>Unnamed Bookmark</source>
         <oldsource>unnamed bookmark</oldsource>
-        <translation type="unfinished">Marcador sem rótulo</translation>
+        <translation>Marcador sem Rótulo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="646"/>
@@ -8102,7 +8136,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="688"/>
         <source>Previous Error</source>
         <oldsource>Previous error</oldsource>
-        <translation type="unfinished">Erro anterior</translation>
+        <translation>Erro Anterior</translation>
     </message>
     <message>
         <source>Next error</source>
@@ -8112,7 +8146,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="690"/>
         <source>Previous Warning</source>
         <oldsource>Previous warning</oldsource>
-        <translation type="unfinished">Alerta anterior</translation>
+        <translation>Alerta Anterior</translation>
     </message>
     <message>
         <source>Next warning</source>
@@ -8122,7 +8156,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="692"/>
         <source>Previous Bad Box</source>
         <oldsource>Previous bad box</oldsource>
-        <translation type="unfinished">&apos;Bad box&apos; anterior</translation>
+        <translation>&apos;Bad box&apos; Anterior</translation>
     </message>
     <message>
         <source>Next bad box</source>
@@ -8142,7 +8176,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="texmaker.cpp" line="709"/>
         <source>Jump to Match</source>
         <oldsource>Jump to match</oldsource>
-        <translation type="unfinished">Ir para coincidente</translation>
+        <translation>Ir para Coincidente</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="719"/>
@@ -8221,17 +8255,17 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location filename="texmaker.cpp" line="7120"/>
         <source>Yes, try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, tentar recuperar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="7124"/>
         <source>Yes, stop the loop and try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, encerrar o loop e tentar recuperar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="7125"/>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim, continuar o loop</translation>
     </message>
     <message>
         <source>&amp;User Tags</source>
@@ -8440,7 +8474,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <location filename="texmaker.cpp" line="778"/>
         <source>Find Word Repetitions...</source>
         <oldsource>Find word repetitions...</oldsource>
-        <translation type="unfinished">Localizar Repetições de Palavras...</translation>
+        <translation>Localizar Repetições de Palavras...</translation>
     </message>
     <message>
         <source>Insert \ref to next label</source>
@@ -8480,7 +8514,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <source>Add Column</source>
         <oldsource>cut column</oldsource>
         <comment>table</comment>
-        <translation type="unfinished">Cortar coluna</translation>
+        <translation>Adicionar Coluna</translation>
     </message>
     <message>
         <source>paste column</source>
@@ -8636,7 +8670,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <location filename="texmaker.cpp" line="889"/>
         <source>Nearest Block</source>
         <oldsource>Nearest block</oldsource>
-        <translation type="unfinished">Bloco mais próximo</translation>
+        <translation>Bloco mais Próximo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="886"/>
@@ -8658,13 +8692,13 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <location filename="texmaker.cpp" line="896"/>
         <source>Word Repetition</source>
         <oldsource>Word repetition</oldsource>
-        <translation type="unfinished">Repetição de palavra</translation>
+        <translation>Repetição de Palavra</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="897"/>
         <source>Long-range Word Repetition</source>
         <oldsource>Long range Word Repetition</oldsource>
-        <translation type="unfinished">Repetição de palavras distantes</translation>
+        <translation>Repetição de Palavras Distantes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="898"/>
@@ -8675,13 +8709,13 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <location filename="texmaker.cpp" line="899"/>
         <source>Grammer Mistake</source>
         <oldsource>Grammer mistake</oldsource>
-        <translation type="unfinished">Erro gramatical</translation>
+        <translation>Erro Gramatical</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="901"/>
         <source>Grammer Mistake Special %1</source>
         <oldsource>Grammer mistake special %1</oldsource>
-        <translation type="unfinished">Erro gramatical especial %1</translation>
+        <translation>Erro Gramatical Especial %1</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="911"/>
@@ -8718,7 +8752,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <source>Save Current Settings</source>
         <oldsource>Save all current settings</oldsource>
         <comment>menu</comment>
-        <translation type="unfinished">&amp;Salvar Configuração Atual</translation>
+        <translation>Salvar Configuração Atual</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="956"/>
@@ -8830,7 +8864,7 @@ Você confia neste documento?</translation>
         <location filename="texmaker.cpp" line="6547"/>
         <source>Find Word Repetitions</source>
         <oldsource>Find word repetitions</oldsource>
-        <translation type="unfinished">Localizar repetições de palavras</translation>
+        <translation>Localizar Repetições de Palavras</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6601"/>
@@ -9049,17 +9083,17 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location filename="texmaker.cpp" line="689"/>
         <source>Next Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro Seguinte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="691"/>
         <source>Next Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Alerta Seguinte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="693"/>
         <source>Next Bad Box</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;Bad Box&apos; Seguinte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="708"/>
@@ -9070,113 +9104,113 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location filename="texmaker.cpp" line="710"/>
         <source>Select Inner</source>
         <oldsource>Select (inner)</oldsource>
-        <translation type="unfinished">Selecionar (interior)</translation>
+        <translation>Selecionar Interior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="711"/>
         <source>Select Outer</source>
         <oldsource>Select (outer)</oldsource>
-        <translation type="unfinished">Selecionar (interior + par)</translation>
+        <translation>Selecionar Exterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="712"/>
         <source>Select Command</source>
         <oldsource>Select (inverting)</oldsource>
-        <translation type="unfinished">Selecionar (par)</translation>
+        <translation>Selecionar Comando</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="713"/>
         <source>Select Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Linha</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="714"/>
         <source>Select Inverting</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter Seleção</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="717"/>
         <source>Find Mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Localizar Não-Coincidentes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="720"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="721"/>
         <source>\begin{ Completion</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{ Completamento</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="722"/>
         <source>Normal Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto Normal</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="785"/>
         <source>Insert \ref to Next Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir \ref para Rótulo Seguinte</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="786"/>
         <source>Insert \ref to Previous Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir \ref para Rótulo Anterior</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="787"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Manipular Tabelas</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="788"/>
         <source>Add Row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar Linha</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="790"/>
         <source>Remove Row</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Remover Linha</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="791"/>
         <source>Remove Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Remover Coluna</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="792"/>
         <source>Cut Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Cortar Coluna</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="793"/>
         <source>Paste Column</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Colar Coluna</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="794"/>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar \hline</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="795"/>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Remover \hline</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="796"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar Modelo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="865"/>
@@ -9187,7 +9221,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location filename="texmaker.cpp" line="966"/>
         <source>Check LaTeX Installation</source>
         <oldsource>Check Latex installation</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Verificar Instalação LaTeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="967"/>
@@ -9198,28 +9232,28 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location filename="texmaker.cpp" line="980"/>
         <location filename="texmaker.cpp" line="5538"/>
         <source>Paste Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Colar Antes</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="981"/>
         <location filename="texmaker.cpp" line="5539"/>
         <source>Paste After</source>
-        <translation type="unfinished"></translation>
+        <translation>Colar Depois</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="990"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover Acima</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="991"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover Abaixo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="993"/>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover Todos</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1935"/>
@@ -9484,12 +9518,12 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
     <message>
         <location filename="texmaker.cpp" line="5531"/>
         <source>Insert Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir Rótulo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5532"/>
         <source>Insert \ref to Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir \ref para Rótulo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="5758"/>
@@ -9561,13 +9595,13 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
         <location filename="texmaker.cpp" line="6551"/>
         <source>&amp;Find Next</source>
         <oldsource>&amp;Find next</oldsource>
-        <translation type="unfinished">Localizar &amp;próxima</translation>
+        <translation>Localizar &amp;Próxima</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="6553"/>
         <source>&amp;Find Previous</source>
         <oldsource>&amp;Find previous</oldsource>
-        <translation type="unfinished">Localizar &amp;anterior</translation>
+        <translation>Localizar &amp;Anterior</translation>
     </message>
     <message>
         <location filename="smallUsefulFunctions.cpp" line="23"/>
@@ -10018,7 +10052,7 @@ devem ocorrer somente antes de uma palavra.</translation>
         <location filename="usermenudialog.ui" line="360"/>
         <source>Run Script</source>
         <oldsource>Run script</oldsource>
-        <translation type="unfinished">Executar script</translation>
+        <translation>Executar Script</translation>
     </message>
     <message>
         <source>run script</source>
@@ -10571,7 +10605,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="findGlobalDialog.ui" line="91"/>
         <source>Complete Words Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Palavras Completas</translation>
     </message>
     <message>
         <source>Complete Words only</source>
