@@ -3121,6 +3121,8 @@ void Texmaker::lineWithBookmarkRemoved(int lineNr){
      LatexDocument *doc=qobject_cast<LatexDocument*> (sender());
      QString text=doc->getFileInfo().fileName();
      QDocumentLineHandle *dlh=doc->line(lineNr).handle();
+     LatexEditorView* edView=doc->getEditorView();
+     edView->removeBookmark(lineNr,-1);
      QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
      foreach(QListWidgetItem *item,lst){
          QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
