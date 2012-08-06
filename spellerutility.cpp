@@ -23,6 +23,8 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	QString base = dic.left(dic.length()-4);
 	QString dicFile = base+".dic";
 	QString affFile = base+".aff";
+	if (!QFileInfo(affFile).exists()) 
+		txsInformation(tr("Broken dictionary detected:\n%1\n\nMissing .aff file. This dictionary will not be loaded.").arg(affFile));
 	if (!QFileInfo(dicFile).exists() || !QFileInfo(affFile).exists()) {
 		emit dictionaryLoaded(); //remove spelling error marks from errors with previous dictionary (because these marks could lead to crashes if not removed)
 		return false;
@@ -187,14 +189,21 @@ void SpellerManager::setDictPath(const QString &dictPath) {
 	dicts.clear();
 	dictFiles.clear();
 	QDir dir(dictPath);
+	QMap<QString, QString> usedFiles;
 	foreach (QFileInfo fi, dir.entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
-		QString affFile = fi.canonicalFilePath().left(fi.canonicalFilePath().length()-3) + "aff";
-		if (!QFileInfo(affFile).exists()) {
-			txsInformation(QString("Broken dictionary detected:\n%1\n\nMissing .aff file. This dictionary will not be loaded.").arg(fi.canonicalFilePath()));
+		QString realDictFile;
+		if (fi.isSymLink()) realDictFile = QFileInfo(fi.symLinkTarget()).canonicalFilePath();
+		else realDictFile = fi.canonicalFilePath();
+		
+		if ( usedFiles.value(fi.baseName().replace("_", "-"), "") == realDictFile )
 			continue;
-		}
+		else 
+			usedFiles.insert(fi.baseName().replace("_", "-"), realDictFile);
+			
+		
 		dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
 	}
+	
 
 	// delete after new dict files are identified so a user can reload the new dict in response to a aboutToDelete signal
 	foreach (SpellerUtility *su, oldDicts) {
@@ -225,6 +234,37 @@ bool SpellerManager::hasSpeller(const QString &name) {
 	if (name==emptySpeller->name()) return true;
 	return dictFiles.contains(name);
 }
+
+bool SpellerManager::hasSimilarSpeller(const QString &name, QString* bestName){
+	REQUIRE_RET(bestName, false);
+
+	QList<QString> keys = dictFiles.keys();
+	for (int i=0;i<keys.length();i++)
+		if (QString::compare(keys[i], name, Qt::CaseInsensitive)) {
+			*bestName = keys[i];
+			return true;
+		}
+	
+	*bestName = name;
+	bestName->replace("_", "-");
+
+	if (!bestName->contains('-')) return false;
+	
+	for (int i=0;i<keys.length();i++)
+		if (QString::compare(keys[i], *bestName, Qt::CaseInsensitive)) {
+			*bestName = keys[i];
+			return true;
+		}
+	
+	*bestName = bestName->left(bestName->indexOf('-'));
+	for (int i=0;i<keys.length();i++)
+		if (keys[i].startsWith(bestName, Qt::CaseInsensitive)) {
+			*bestName = keys[i];
+			return true;
+		}
+	return false;	
+}
+
 /*!
     If the language has not been used yet, a SpellerUtility for the language is loaded. Otherwise
     the existing SpellerUtility is returned. Possible names are the dictionary file names without ".dic"
