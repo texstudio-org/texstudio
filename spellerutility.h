@@ -62,6 +62,7 @@ public:
 	static QStringList dictNamesForDir(const QString &dir);
 
 	bool hasSpeller(const QString &name);
+	bool hasSimilarSpeller(const QString &name, QString* bestName);
 	SpellerUtility *getSpeller(QString name);
 
 	QString defaultSpellerName();
