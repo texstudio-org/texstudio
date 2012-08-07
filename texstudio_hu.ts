@@ -4928,6 +4928,19 @@ Megbízik a parancsfájlban?</translation>
     </message>
 </context>
 <context>
+    <name>SpellerUtility</name>
+    <message>
+        <source>Broken dictionary detected:
+%1
+
+Missing .aff file. This dictionary will not be loaded.</source>
+        <translation>Törött szótár:
+%1
+
+Hiányzó .aff fájl. A szótárt így nem lehet betölteni.</translation>
+    </message>
+</context>
+<context>
     <name>StructDialog</name>
     <message>
         <source>Structure</source>
