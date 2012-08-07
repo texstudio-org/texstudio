@@ -305,7 +305,6 @@ protected slots:
 	void clickedOnStructureEntry(const QModelIndex & index);
     void clickedOnBookmark(QListWidgetItem *item);
 	void editRemovePlaceHolders();
-    void toggleBookmark();
     void moveBookmarkUp();
     void moveBookmarkDown();
     void removeBookmark();
