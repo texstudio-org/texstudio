@@ -656,19 +656,22 @@ void LatexEditorView::setSpellerManager(SpellerManager* manager) {
 	spellerManager = manager;
 	connect(spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(reloadSpeller()));
 }
-void LatexEditorView::setSpeller(const QString &name) {
-	if (!spellerManager) return;
+bool LatexEditorView::setSpeller(const QString &name) {
+	if (!spellerManager) return false;
 	
 	useDefaultSpeller = (name == "<default>");
 	
 	SpellerUtility* su;
 	if (spellerManager->hasSpeller(name)) {
 		su = spellerManager->getSpeller(name);
+		if (!su) return false;
 	} else {
 		su = spellerManager->getSpeller(spellerManager->defaultSpellerName());
+		REQUIRE_RET(su, false);
 		useDefaultSpeller = true;
 	}
-	if (su == speller) return;
+	if (su == speller) return true; // nothing to do
+
 	if (speller) {
 		disconnect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
 	}
@@ -682,6 +685,7 @@ void LatexEditorView::setSpeller(const QString &name) {
 	
 	// force new highlighting
 	documentContentChanged(0,editor->document()->lines());
+	return true;
 }
 void LatexEditorView::reloadSpeller() {
 	if (useDefaultSpeller) {

@@ -59,7 +59,7 @@ public:
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
 	void setSpellerManager(SpellerManager* manager);
-	void setSpeller(const QString &name);
+	bool setSpeller(const QString &name);
 	Q_INVOKABLE QString getSpeller();
 	
 	static void setCompleter(LatexCompleter* newCompleter);

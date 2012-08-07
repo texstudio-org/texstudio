@@ -40,6 +40,7 @@ private:
 	void unload();
 
 	QString mName;
+	QString mLastError;
 	QString currentDic, ignoreListFileName, spell_encoding;
 	Hunspell * pChecker;
 	QTextCodec *spellCodec;

@@ -23,9 +23,11 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	QString base = dic.left(dic.length()-4);
 	QString dicFile = base+".dic";
 	QString affFile = base+".aff";
-	if (!QFileInfo(affFile).exists()) 
-		txsInformation(tr("Broken dictionary detected:\n%1\n\nMissing .aff file. This dictionary will not be loaded.").arg(affFile));
 	if (!QFileInfo(dicFile).exists() || !QFileInfo(affFile).exists()) {
+		if (!QFileInfo(affFile).exists())
+			mLastError = tr("Missing .aff file:\n%1").arg(affFile);
+		else
+			mLastError = tr("Dictionary does not exist.");
 		emit dictionaryLoaded(); //remove spelling error marks from errors with previous dictionary (because these marks could lead to crashes if not removed)
 		return false;
 	}
@@ -34,11 +36,13 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	if (!pChecker) {
 		currentDic="";
 		ignoreListFileName="";
+		mLastError = "Creation of Hunspell object failed.";
 		REQUIRE_RET(false,false);
 	}
 	spell_encoding=QString(pChecker->get_dic_encoding());
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	if (spellCodec==0) {
+		mLastError = "Could not determine encoding.";
 		unload();
 		emit dictionaryLoaded();
 		return false;
@@ -53,11 +57,13 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 		ignoreListFileName=ignoreFilePrefix+QFileInfo(dic).baseName()+".ign";
 	if (!isFileRealWritable(ignoreListFileName)) {
 		ignoreListFileName="";
+		mLastError.clear();
 		emit dictionaryLoaded();
 		return true;
 	}
 	QFile f(ignoreListFileName);
 	if (!f.open(QFile::ReadOnly)) {
+		mLastError.clear();
 		emit dictionaryLoaded();
 		return true;
 	}
@@ -74,6 +80,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
 	ignoredWords=ignoredWordList.toSet();
+	mLastError.clear();
 	emit dictionaryLoaded();
 	return true;
 
@@ -278,9 +285,9 @@ SpellerUtility *SpellerManager::getSpeller(QString name) {
 	if (!su) {
 		su = new SpellerUtility(name);
 		if (!su->loadDictionary(dictFiles.value(name), ignoreFilePrefix)) {
-			txsWarning(QString("Loading of dictionary failed:\n%1").arg(dictFiles.value(name)));
+			txsWarning(QString("Loading of dictionary failed:\n%1\n\n%2").arg(dictFiles.value(name)).arg(su->mLastError));
 			delete su;
-			return emptySpeller;
+			return 0;
 		}
 		dicts.insert(name, su);
 	}
