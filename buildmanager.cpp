@@ -170,7 +170,7 @@ void BuildManager::initDefaultCommandNames(){
 	
 	QStringList descriptionList;
 	descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("PDF chain") << tr("DVI-PDF-chain") << tr("DVI-PS-PDF-chain") << tr("asy-DVI-chain") << tr("asy-PDF-chain");
-	registerCommand("quick", tr("Quickbuild"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
+	registerCommand("quick", tr("Build+View"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
 	
 	descriptionList.clear();
 	descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
