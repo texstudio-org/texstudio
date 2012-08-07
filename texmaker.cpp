@@ -2506,7 +2506,13 @@ void Texmaker::editSpell() {
 		txsWarning(tr("No document open"));
 		return;
 	}
-	if (!spellDlg) spellDlg=new SpellerDialog(this, spellerManager.getSpeller(currentEditorView()->getSpeller()));
+	SpellerUtility *su = spellerManager.getSpeller(currentEditorView()->getSpeller());
+	if (!su) return; // getSpeller already gives a warning message
+	if (su->name() == "<none>") {
+		txsWarning(tr("No dictionary available."));
+		return;
+	}
+	if (!spellDlg) spellDlg=new SpellerDialog(this, su);
 	spellDlg->setEditorView(currentEditorView());
 	spellDlg->startSpelling();
 }
@@ -4045,6 +4051,7 @@ void Texmaker::EditorSpellerChanged(const QString &name) {
 	foreach (QAction *act, statusTbLanguage->actions()) {
 		if (act->data().toString() == name) {
 			act->setChecked(true);
+			break;
 		}
 	}
 	if (name == "<default>") {
@@ -4059,7 +4066,15 @@ void Texmaker::ChangeEditorSpeller() {
 	if (!action) return;
 	if (!currentEditorView()) return;
 	
-	currentEditorView()->setSpeller(action->data().toString());
+	if (!currentEditorView()->setSpeller(action->data().toString())) {
+		// restore activity of previous action
+		foreach (QAction *act, statusTbLanguage->actions()) {
+			if (act->data().toString() == currentEditorView()->getSpeller()) {
+				act->setChecked(true);
+				break;
+			}
+		}
+	}
 }
 
 void Texmaker::InsertSpellcheckMagicComment() {
