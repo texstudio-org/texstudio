@@ -91,6 +91,8 @@ public:
 	Q_INVOKABLE bool hasBookmark(int lineNr,int bookmarkNumber);
 	
 	QList<QDocumentCursor> autoPreviewCursor;
+
+    static int bookMarkId(int bookmarkNumber);
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -109,7 +111,6 @@ private:
 	
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;
-	static int bookMarkId(int bookmarkNumber);
 	
 	SpellerManager* spellerManager;
 	SpellerUtility* speller;
@@ -192,6 +193,7 @@ signals:
 	void spellerChanged(const QString &name);
 	void syncPDFRequested();
     void bookmarkRemoved(QDocumentLineHandle *dlh);
+    void bookmarkAdded(QDocumentLineHandle *dlh,int nr);
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);

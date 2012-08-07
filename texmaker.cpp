@@ -436,10 +436,20 @@ void Texmaker::setupDockWidgets(){
             bookmark=configManager.bookmarkList.at(i).toStringList();
             QString fn=bookmark.takeFirst();
             int lineNr=bookmark.takeFirst().toInt();
+            int bookmarkNumber=-1;
+            if(!bookmark.isEmpty()){
+                bool ok;
+                bookmarkNumber=bookmark.first().toInt(&ok);
+                if(!ok)
+                    bookmarkNumber=-1;
+                else
+                    bookmark.removeFirst();
+            }
             QString text=bookmark.takeFirst();
             QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
             item->setData(Qt::UserRole,fn);
             item->setData(Qt::UserRole+1,lineNr);
+            item->setData(Qt::UserRole+3,bookmarkNumber);
             LatexDocument *doc=documents.findDocumentFromName(fn);
             if(doc && lineNr<doc->lineCount() && lineNr>=0) {
                 QDocumentLineHandle *dlh=doc->line(lineNr).handle();
@@ -1352,6 +1362,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(syncPDFRequested()), this, SLOT(syncPDFViewer()));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
     connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
+    connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)) ,this,SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
@@ -1429,7 +1440,8 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
         if(doc->getFileName()!=fn)
             continue;
         int lineNr=item->data(Qt::UserRole+1).toInt();
-        edView->addBookmark(lineNr,-1);
+        int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
+        edView->addBookmark(lineNr,bookmarkNumber);
         QDocumentLineHandle *dlh=doc->line(lineNr).handle();
 	if(!dlh)
 	    continue;
@@ -2933,6 +2945,7 @@ void Texmaker::SaveSettings(const QString& configName) {
             QListWidgetItem *item=bookmarksWidget->item(i);
             QString fn=item->data(Qt::UserRole).toString();
             int lineNr=item->data(Qt::UserRole+1).toInt();
+            int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
             QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
             LatexDocument *doc=documents.findDocumentFromName(fn);
             if(doc && doc->indexOf(dlh)>=0) {
@@ -2940,6 +2953,7 @@ void Texmaker::SaveSettings(const QString& configName) {
             }
             bookmark<<fn;
             bookmark<<QString::number(lineNr);
+            bookmark<<QString::number(bookmarkNumber);
             bookmark<<item->text();
             bookmarkList<<bookmark;
         }
@@ -3133,6 +3147,27 @@ void Texmaker::bookmarkDeleted(QDocumentLineHandle* dlh){
         }
     }
 }
+void Texmaker::bookmarkAdded(QDocumentLineHandle* dlh,int nr){
+    LatexDocument *doc=qobject_cast<LatexDocument*> (dlh->document());
+
+    QString text=documents.currentDocument->getFileInfo().fileName();
+    text+="\n"+dlh->text().trimmed();
+    QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
+    item->setData(Qt::UserRole,doc->getFileName());
+    item->setData(Qt::UserRole+1,dlh->line());
+    item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
+    item->setData(Qt::UserRole+3,nr);
+    int lineNr=dlh->line();
+    lineNr = lineNr>1 ? lineNr-2 : 0;
+    text.clear();
+    for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
+        QString ln=doc->line(i).text().trimmed();
+        if(ln.length()>40)
+            ln=ln.left(40)+"...";
+        text+=ln+"\n";
+    }
+    item->setToolTip(text);
+}
 
 void Texmaker::lineWithBookmarkRemoved(int lineNr){
      LatexDocument *doc=qobject_cast<LatexDocument*> (sender());
@@ -3224,6 +3259,7 @@ void Texmaker::toggleBookmark(){
         item->setData(Qt::UserRole,documents.currentDocument->getFileName());
         item->setData(Qt::UserRole+1,c.lineNumber());
         item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
+        item->setData(Qt::UserRole+2,-1);
         int lineNr=c.lineNumber();
         lineNr = lineNr>1 ? lineNr-2 : 0;
         text.clear();

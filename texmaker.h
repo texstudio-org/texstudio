@@ -481,6 +481,7 @@ protected slots:
 	void toggleGrammar(int type);
 
     void bookmarkDeleted(QDocumentLineHandle* dlh);
+    void bookmarkAdded(QDocumentLineHandle* dlh,int nr);
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);

@@ -555,11 +555,25 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber) {
 	int rmid=bookMarkId(bookmarkNumber);
 	if (editor->cursor().line().hasMark(rmid)) {
 		editor->cursor().line().removeMark(rmid);
+        emit bookmarkRemoved(editor->cursor().line().handle());
         return false;
 	}
-	if (bookmarkNumber>=0) editor->document()->line(editor->document()->findNextMark(rmid)).removeMark(rmid);
-	for (int i=-1; i<10; i++) editor->cursor().line().removeMark(bookMarkId(i));
+    if (bookmarkNumber>=0){
+        int ln=editor->document()->findNextMark(rmid);
+        if(ln>=0){
+            editor->document()->line(ln).removeMark(rmid);
+            emit bookmarkRemoved(editor->document()->line(ln).handle());
+        }
+    }
+    for (int i=-1; i<10; i++) {
+        int rmid=bookMarkId(i);
+        if(editor->cursor().line().hasMark(rmid)){
+            editor->cursor().line().removeMark(rmid);
+            emit bookmarkRemoved(editor->cursor().line().handle());
+        }
+    }
 	editor->cursor().line().addMark(rmid);
+    emit bookmarkAdded(editor->cursor().line().handle(),bookmarkNumber);
 	editor->ensureCursorVisible();
     return true;
 }
@@ -868,8 +882,7 @@ void LatexEditorView::lineMarkClicked(int line) {
 	for (int i=-1; i<10; i++)
 		if (l.hasMark(bookMarkId(i))) {
 			l.removeMark(bookMarkId(i));
-            if(i<0)
-                emit bookmarkRemoved(l.handle());
+            emit bookmarkRemoved(l.handle());
 			return;
 		}
 	// remove error marks
@@ -889,10 +902,12 @@ void LatexEditorView::lineMarkClicked(int line) {
 	for (int i=1; i<=10; i++) {
 		if (editor->document()->findNextMark(bookMarkId(i%10))<0) {
 			l.addMark(bookMarkId(i%10));
+            emit bookmarkAdded(l.handle(),i);
 			return;
 		}
 	}
 	l.addMark(bookMarkId(-1));
+    emit bookmarkAdded(l.handle(),-1);
 }
 void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (line < 0 || line>=editor->document()->lines()) return;
