@@ -625,25 +625,29 @@ void LatexDocument::patchStructure(int linenr, int count) {
             }
 			///usepackage
             if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
-				completerNeedsUpdate=true;
-				QStringList packagesHelper=name.split(",");
-				QStringList packages;
-				foreach(const QString& elem,packagesHelper)
-					if(latexParser.packageAliases.contains(elem))
-						packages << latexParser.packageAliases.values(elem);
-					else
-						packages << elem;
-				
-				
-				
-				foreach(const QString& elem,packages){
-					if(!removedUsepackages.removeAll(elem))
-						addedUsepackages << elem;
-					mUsepackageList.insertMulti(dlh,elem);
-				}
-				continue;
-			}
-			//// bibliography ////
+		completerNeedsUpdate=true;
+		QStringList packagesHelper=name.split(",");
+                if(cmd.endsWith("theme")){ // special treatment for  \usetheme
+                    QString preambel=cmd;
+                    preambel.remove(0,4);
+                    preambel.prepend("beamer");
+                    packagesHelper.replaceInStrings(QRegExp("^"),preambel);
+                }
+		QStringList packages;
+		foreach(const QString& elem,packagesHelper)
+		    if(latexParser.packageAliases.contains(elem))
+			packages << latexParser.packageAliases.values(elem);
+		else
+		    packages << elem;
+
+		foreach(const QString& elem,packages){
+		    if(!removedUsepackages.removeAll(elem))
+			addedUsepackages << elem;
+		    mUsepackageList.insertMulti(dlh,elem);
+		}
+		continue;
+	    }
+	    //// bibliography ////
             if (latexParser.possibleCommands["%bibliography"].contains(cmd)) {
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change

@@ -86,6 +86,7 @@ public:
 	
 	Q_INVOKABLE void closeCompleter();
 	Q_INVOKABLE void removeBookmark(int lineNr,int bookmarkNumber);
+    void removeBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
 	Q_INVOKABLE void addBookmark(int lineNr,int bookmarkNumber);
 	Q_INVOKABLE bool hasBookmark(int lineNr,int bookmarkNumber);
 	

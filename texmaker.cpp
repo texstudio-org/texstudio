@@ -3086,20 +3086,30 @@ void Texmaker::removeBookmark(){
     QListWidgetItem *item=bookmarksWidget->takeItem(row);
     QString fn=item->data(Qt::UserRole).toString();
     int lineNr=item->data(Qt::UserRole+1).toInt();
+    QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
     LatexDocument *doc=documents.findDocumentFromName(fn);
     if(!doc) return;
     LatexEditorView* edView=doc->getEditorView();
-    edView->removeBookmark(lineNr,-1);
+    if(dlh)
+      edView->removeBookmark(dlh,-1);
+    else{
+      edView->removeBookmark(lineNr,-1);
+    }
 }
 void Texmaker::removeAllBookmarks(){
     while(bookmarksWidget->count()>0){
           QListWidgetItem *item=bookmarksWidget->takeItem(0);
           QString fn=item->data(Qt::UserRole).toString();
           int lineNr=item->data(Qt::UserRole+1).toInt();
+          QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
           LatexDocument *doc=documents.findDocumentFromName(fn);
           if(!doc) return;
           LatexEditorView* edView=doc->getEditorView();
-          edView->removeBookmark(lineNr,-1);
+          if(dlh)
+            edView->removeBookmark(dlh,-1);
+          else{
+            edView->removeBookmark(lineNr,-1);
+          }
     }
 }
 

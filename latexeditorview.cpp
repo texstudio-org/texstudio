@@ -523,6 +523,17 @@ void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
 	}
 }
 
+void LatexEditorView::removeBookmark(QDocumentLineHandle *dlh,int bookmarkNumber){
+    if(!dlh)
+        return;
+    int rmid=bookMarkId(bookmarkNumber);
+    int lineNr=document->indexOf(dlh);
+    if(lineNr<0)
+        return;
+    if(document->line(lineNr).hasMark(rmid))
+        document->line(lineNr).removeMark(rmid);
+}
+
 void LatexEditorView::removeBookmark(int lineNr,int bookmarkNumber){
     int rmid=bookMarkId(bookmarkNumber);
     if(document->line(lineNr).hasMark(rmid))
@@ -1076,15 +1087,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			StackEnvironment env;
 			getEnv(i,env);
 			QString text=line.text();
-			if(!text.isEmpty() || SyntaxCheck::containsEnv(LatexParser::getInstance(), "tabular",env)){
-				QVector<int>fmts=line.getFormats();
-				for(int i=0;i<text.length() && i < fmts.size();i++){
-					if(fmts[i]==verbatimFormat){
-						text[i]=QChar(' ');
-					}
-				}
-				SynChecker.putLine(line.handle(),env,false);
-			}
+
+            QVector<int>fmts=line.getFormats();
+            for(int i=0;i<text.length() && i < fmts.size();i++){
+                if(fmts[i]==verbatimFormat){
+                    text[i]=QChar(' ');
+                }
+            }
+            SynChecker.putLine(line.handle(),env,false);
 		}
 		
 		
@@ -1803,9 +1813,9 @@ void LatexEditorView::changeSpellingLanguage(const QLocale &loc) {
 	QString sim;
 	if (spellerManager->hasSpeller(loc.name())) {
 		setSpeller(loc.name());
-	} else 	if (spellerManager->hasSpeller(loc.name().replace("_", "-"))) {
+	    } else  if (spellerManager->hasSpeller(loc.name().replace("_", "-"))) {
 		setSpeller(loc.name().replace("_", "-"));
-	} else if (spellerManager->hasSimilarSpeller(loc.name(), &sim)) {
+	    } else if (spellerManager->hasSimilarSpeller(loc.name(), &sim)) {
 		setSpeller(sim);
 	}
 }
