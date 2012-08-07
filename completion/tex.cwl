@@ -24,6 +24,7 @@
 \belowdisplayskip#*
 \bgroup#*
 \bgroup..\egroup#*
+\bigbreak#*
 \bigskip#*
 \bigskipamount#*
 \bordermatrix#*
@@ -252,6 +253,7 @@
 \maxdimen#*
 \meaning#*
 \medmuskip#*
+\medbreak#*
 \medskip#*
 \medskipamount#*
 \message#*
@@ -368,6 +370,7 @@
 \skipdef#*
 \slash#*
 \smallskip#*
+\smallbreak#*
 \smallskipamount#*
 \spacefactor#*
 \spaceskip#*
