@@ -430,15 +430,15 @@
 \action{text}
 \beamerdefaultoverlayspecification{default overlay specification}
 \usetheme[options]{name list}
-\usetheme{name list}
+\usetheme{name list}#u
 \usecolortheme[options]{name list}
-\usecolortheme{name list}
+\usecolortheme{name list}#u
 \usefonttheme[options]{name}
-\usefonttheme{name}
+\usefonttheme{name}#u
 \useinnertheme[options]{name}
-\useinnertheme{name}
+\useinnertheme{name}#u
 \useoutertheme[options]{name}
-\useoutertheme{name}
+\useoutertheme{name}#u
 \addheadbox{beamer color}{box template}
 \addfootbox{beamer color}{box template}
 \includeonlyframes{frame label list}

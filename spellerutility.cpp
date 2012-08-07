@@ -258,7 +258,7 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString* bestName){
 	
 	*bestName = bestName->left(bestName->indexOf('-'));
 	for (int i=0;i<keys.length();i++)
-		if (keys[i].startsWith(bestName, Qt::CaseInsensitive)) {
+		if (keys[i].startsWith(*bestName, Qt::CaseInsensitive)) {
 			*bestName = keys[i];
 			return true;
 		}
