@@ -647,7 +647,7 @@ void Texmaker::setupMenus() {
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"jumpToBookmark",Qt::CTRL+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
 	submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
-	newManagedAction(submenu,"bookmark",tr("Unnamed Bookmark"),SLOT(toggleBookmark()),Qt::CTRL+Qt::SHIFT+Qt::Key_B);
+    newManagedEditorAction(submenu,QString("bookmark"),tr("Unnamed Bookmark"),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_B,"",QList<QVariant>() <<-1);
 	for (int i=0; i<=9; i++)
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
@@ -3106,14 +3106,15 @@ void Texmaker::removeBookmark(){
     QListWidgetItem *item=bookmarksWidget->takeItem(row);
     QString fn=item->data(Qt::UserRole).toString();
     int lineNr=item->data(Qt::UserRole+1).toInt();
+    int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
     QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
     LatexDocument *doc=documents.findDocumentFromName(fn);
     if(!doc) return;
     LatexEditorView* edView=doc->getEditorView();
     if(dlh)
-      edView->removeBookmark(dlh,-1);
+      edView->removeBookmark(dlh,bookmarkNumber);
     else{
-      edView->removeBookmark(lineNr,-1);
+      edView->removeBookmark(lineNr,bookmarkNumber);
     }
 }
 void Texmaker::removeAllBookmarks(){
@@ -3121,14 +3122,15 @@ void Texmaker::removeAllBookmarks(){
           QListWidgetItem *item=bookmarksWidget->takeItem(0);
           QString fn=item->data(Qt::UserRole).toString();
           int lineNr=item->data(Qt::UserRole+1).toInt();
+          int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
           QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
           LatexDocument *doc=documents.findDocumentFromName(fn);
           if(!doc) return;
           LatexEditorView* edView=doc->getEditorView();
           if(dlh)
-            edView->removeBookmark(dlh,-1);
+            edView->removeBookmark(dlh,bookmarkNumber);
           else{
-            edView->removeBookmark(lineNr,-1);
+            edView->removeBookmark(lineNr,bookmarkNumber);
           }
     }
 }
@@ -3244,46 +3246,6 @@ void Texmaker::updateBookmarks(LatexEditorView *edView){
         int lineNr=doc->indexOf(dlh);
         item->setData(Qt::UserRole+1,lineNr);
         item->setData(Qt::UserRole+2,0);
-    }
-}
-
-void Texmaker::toggleBookmark(){
-    if (!currentEditorView()) return;
-    QDocumentCursor c = currentEditorView()->editor->cursor();
-    QDocumentLineHandle *dlh=c.line().handle();
-    bool bookmarkSet=currentEditorView()->toggleBookmark(-1);
-    if(bookmarkSet){
-        QString text=documents.currentDocument->getFileInfo().fileName();
-        text+="\n"+dlh->text().trimmed();
-        QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
-        item->setData(Qt::UserRole,documents.currentDocument->getFileName());
-        item->setData(Qt::UserRole+1,c.lineNumber());
-        item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-        item->setData(Qt::UserRole+2,-1);
-        int lineNr=c.lineNumber();
-        lineNr = lineNr>1 ? lineNr-2 : 0;
-        text.clear();
-        LatexDocument *doc=currentEditorView()->document;
-        for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
-            QString ln=doc->line(i).text().trimmed();
-            if(ln.length()>40)
-                ln=ln.left(40)+"...";
-            text+=ln+"\n";
-        }
-        item->setToolTip(text);
-    }else{
-        QString text=documents.currentDocument->getFileInfo().fileName();
-        QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
-        foreach(QListWidgetItem *item,lst){
-            //QString fn=item->data(Qt::UserRole).toString();
-            //int lineNr=item->data(Qt::UserRole+1).toInt();
-            QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-            if(dlh_item==dlh){
-                int row=bookmarksWidget->row(item);
-                bookmarksWidget->takeItem(row);
-                return;
-            }
-        }
     }
 }
 
