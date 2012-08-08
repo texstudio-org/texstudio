@@ -497,7 +497,7 @@ void PDFWidget::setDocument(Poppler::Document *doc)
 	}
 #endif
 	reloadPage();
-    adjustSize();
+    windowResized();
 }
 
 void PDFWidget::windowResized()
