@@ -590,6 +590,20 @@ bool LatexEditorView::gotoToLabel(const QString& label){
 	return true;
 }
 
+bool LatexEditorView::gotoToBibItem(const QString &bibId) {
+	// only supports local bibitems BibTeX should be handled on a higher level
+	QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibId);
+	if (result.isEmpty()) return false;
+	QDocumentLine line(result.keys().first());
+	int ln=line.lineNumber();
+	if (ln<0) return false;
+	editor->setCursorPosition(ln, line.text().indexOf("\\bibitem{"+bibId) + 9);
+	editor->ensureCursorVisible();
+	return true;
+}
+
+
+
 //collapse/expand every possible line
 void LatexEditorView::foldEverything(bool unFold) {
 	QDocument* doc = editor->document();

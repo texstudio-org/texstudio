@@ -55,6 +55,7 @@ public:
 	
 	Q_INVOKABLE void complete(int flags);
 	Q_INVOKABLE bool gotoToLabel(const QString& label);
+	Q_INVOKABLE bool gotoToBibItem(const QString& bibId);
 	
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
