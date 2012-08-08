@@ -740,7 +740,7 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-	newManagedAction(menu, "quickbuild",tr("&Build+View"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/build.png")->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/build.png")->setData(BuildManager::CMD_QUICK);
 	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/compile.png")->setData(BuildManager::CMD_COMPILE);
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,":/images/viewer.png")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
@@ -755,11 +755,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/xelatex.png")->setData(BuildManager::CMD_XELATEX);
 	newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/lualatex.png")->setData(BuildManager::CMD_LUALATEX);
 	submenu->addSeparator();
-	newManagedAction(submenu, "dvi2ps",tr("Dvi->PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
+	newManagedAction(submenu, "dvi2ps",tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
 	newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
 	newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
 	submenu->addSeparator();
-	newManagedAction(submenu, "viewdvi",tr("View &Dvi"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
+	newManagedAction(submenu, "viewdvi",tr("View &DVI"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
     newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
     newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
 	submenu->addSeparator();
