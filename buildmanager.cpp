@@ -156,7 +156,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("dvipdf",      "dvipdf;dvipdfm",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
 	registerCommand("bibtex",      "bibtex",       "BibTeX",       ON_WIN("%") ON_NIX("%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
 	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux")); 
-	registerCommand("biber",       "biber",        "biber" ,       "%"); //todo: correct parameter?
+	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "");
 	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
@@ -169,23 +169,23 @@ void BuildManager::initDefaultCommandNames(){
 	
 	
 	QStringList descriptionList;
-	descriptionList << tr("compile & view") << tr("Postscipt chain") << tr("DVI chain") << tr("PDF chain") << tr("DVI-PDF-chain") << tr("DVI-PS-PDF-chain") << tr("asy-DVI-chain") << tr("asy-PDF-chain");
-	registerCommand("quick", tr("Build+View"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
+	descriptionList << tr("Compile & View") << tr("PS Chain") << tr("DVI Chain") << tr("PDF Chain") << tr("DVI->PDF Chain") << tr("DVI->PS->PDF Chain") << tr("Asymptote DVI Chain") << tr("Asymptote PDF Chain");
+	registerCommand("quick", tr("Build & View"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick",true,descriptionList);
 	
 	descriptionList.clear();
-	descriptionList<< tr("Use pdflatex") << tr("Use latex") << tr("Use xelatex") << tr("Use lualatex") << tr("Use latexmk");
+	descriptionList<< tr("PdfLaTeX") << tr("LaTeX") << tr("XeLaTeX") << tr("LuaLaTeX") << tr("Latexmk");
 	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<<tr("Use PDF viewer") << tr("Use DVI viewer") << tr("Use postscript viewer") << tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TeXstudio") << tr("Use external PDF viewer");
+	descriptionList<<tr("PDF Viewer") << tr("DVI Viewer") << tr("PS Viewer") << tr("Internal PDF Viewer (Windowed)") << tr("Internal PDF Viewer (Embedded)") << tr("External PDF Viewer");
 	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<< tr("Use internal PDF viewer") << tr("Use internal PDF viewer embedded in TeXstudio")  << tr("Use external PDF viewer");
+	descriptionList<< tr("Internal PDF Viewer (Windowed)") << tr("Internal PDF Viewer (Embedded)")  << tr("External PDF Viewer");
 	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
+	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
 	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<< tr("Use bibtex") << tr("Use bibtex8") << tr("Use biber");
+	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
 	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy","",true,descriptionList);
 	
 	registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
