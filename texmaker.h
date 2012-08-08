@@ -340,6 +340,7 @@ protected slots:
 	void InsertRef();
 	void InsertEqRef();
 	void InsertPageRef();
+	void createLabelFromAction();
 
 	void UpdateAvailableLanguages();
 	void EditorSpellerChanged(const QString &name);
