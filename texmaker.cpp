@@ -4045,6 +4045,61 @@ void Texmaker::InsertPageRef() {
 	InsertRef("\\pageref");
 }
 
+void Texmaker::createLabelFromAction()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (!act) return;
+	StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
+	if (!entry) return;
+
+	// find editor and line nr
+	mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
+	LatexEditorView* edView=entry->document->getEditorView();
+	if (!edView){
+		edView=load(entry->document->getFileName());
+		if (!edView) return;
+		//entry is now invalid
+	}
+	int lineNr=entry->getRealLineNumber();
+
+	qDebug() << entry->level << latexParser.structureCommands[entry->level];
+
+	// find column position after structure command
+	QString lineText = entry->document->line(lineNr).text();
+	int pos = lineText.indexOf(latexParser.structureCommands[entry->level]);
+	if (pos>=0) {
+		pos += latexParser.structureCommands[entry->level].length();
+	} else {
+		// fallback if structure commands are redefined
+		foreach (const QString &cmd, latexParser.structureCommands) {
+			pos = lineText.indexOf(cmd);
+			if (pos<0) continue;
+			pos += cmd.length();
+		}
+		if (pos<0) return; // could not find associated command
+	}
+
+	// advance pos behind options, and use title to guess a label
+	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
+	QString label = "sec:";
+	if (args.length()>0) {
+		label+=args.at(0).value.toLower();
+		label.replace(' ','-');
+	}
+	if (label.contains('\\') || label.contains('$')) { // title too complicated to extract label: fall back
+		label = "sec:";
+	}
+
+	EditorView->setCurrentWidget(edView);
+	edView->editor->setFocus();
+	edView->editor->setCursorPosition(lineNr,pos);
+
+	InsertTag(QString("\\label{%1}").arg(label),7);
+	QDocumentCursor cur(edView->editor->cursor());
+	cur.movePosition(label.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+	edView->editor->setCursor(cur);
+}
+
 void Texmaker::EditorSpellerChanged(const QString &name) {
 	foreach (QAction *act, statusTbLanguage->actions()) {
 		if (act->data().toString() == name) {
@@ -5466,6 +5521,8 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 	gotoLine(line);
 	Q_ASSERT(currentEditor());
 	
+	qDebug() << line << guessedWord;
+
 	QString checkLine =currentEditor()->cursor().line().text();
 	int column = checkLine.indexOf(guessedWord);
 	if (column == -1) column = checkLine.indexOf(guessedWord, Qt::CaseInsensitive);
@@ -5576,6 +5633,9 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		if (labelEntry) {
 			menu.addAction(tr("Insert Label"),this, SLOT(editPasteRef()))->setData(labelEntry->title);
 			menu.addAction(tr("Insert \\ref to Label"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(labelEntry->title));
+			menu.addSeparator();
+		} else {
+			menu.addAction(tr("Create Label"),this, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(entry));
 			menu.addSeparator();
 		}
 

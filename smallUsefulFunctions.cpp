@@ -679,6 +679,7 @@ int getCommand(const QString &line, QString &outCmd, int pos) {
 }
 
 // returns command option list. pos has to be at the beginning of the first bracket
+// posBehind returns the position after the last bracket, you may pass the same variable as in pos
 QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posBehind) {
 	static QMap<QChar, QChar> cbs;
 	if (cbs.isEmpty()) {

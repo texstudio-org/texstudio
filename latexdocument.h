@@ -46,6 +46,8 @@ private:
 	mutable int lineNumber;
 };
 
+Q_DECLARE_METATYPE(StructureEntry*)
+
 //iterator for fast traversal of a structure entry tree
 class StructureEntryIterator{
 public:
