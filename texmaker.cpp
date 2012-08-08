@@ -2494,6 +2494,10 @@ void Texmaker::editGotoDefinition(){
 	case LatexParser::Reference:
 		currentEditorView()->gotoToLabel(value);
 		break;
+	case LatexParser::Citation:
+		currentEditorView()->gotoToBibItem(value);
+		break;
+
 	default:; //TODO: Jump to command definition and in bib files
 	}
 }
