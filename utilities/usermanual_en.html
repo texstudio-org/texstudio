@@ -1076,7 +1076,6 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 <h2 id="SECTION38">4.10 Synopsis of the TeXstudio command</h2>
 <p>
 <code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
-
 <table>
 <tr><td><code>--master</code></td><td>defines the document as master document.</td></tr>
 <tr><td><code>--line xx[:cc]</code></td><td>TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
@@ -1086,6 +1085,15 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 <tr><td><code>--page</code></td><td> option, TeXstudio displays a certain page if used as pdf viewer</td></tr>
 </table>
 </p>
+<p>Additional options only available in debug versions of texstudio:
+<table>
+<tr><td><code>--disable-tests</code></td><td>Prevent running any tests.</td></tr>
+<tr><td><code>--execute-tests</code></td><td>Force running the most common tests.</td></tr>
+<tr><td><code>--execute-all-tests</code></td><td>Force running all tests.</td></tr>
+</table>
+Note: The most common tests are run automatically, if there were changes to the executable (TXS has been compiled since the last run). Furthermore all tests are run one a week.
+</p>
+
 <h2 id="SECTION39">4.11 Keyboard shortcuts</h2>
 <p>
 Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "Editor") -->:
