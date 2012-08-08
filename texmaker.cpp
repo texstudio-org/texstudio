@@ -743,8 +743,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/build.png")->setData(BuildManager::CMD_QUICK);
 	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/compile.png")->setData(BuildManager::CMD_COMPILE);
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,":/images/viewer.png")->setData(BuildManager::CMD_VIEW);
-	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
-	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()))->setData(BuildManager::CMD_INDEX);
+	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
+	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_INDEX);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "commands",tr("&Commands", "menu"));
