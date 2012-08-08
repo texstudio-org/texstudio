@@ -627,6 +627,8 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
                         cw.word=text;
                         cw.sortWord=text;
                         cw.lines=QStringList(text);
+                        cw.placeHolders.clear();
+                        cw.placeHolders.append(QList<CodeSnippetPlaceHolder>());
                     }
 
                     if(!words.contains(cw))
@@ -1058,7 +1060,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	}
     if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
     {
-        listModel->setEnvironMode(true);
+        PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
+        if(ph.mirrors.count()>0)
+            listModel->setEnvironMode(true);
     }
 	//qSort(listModel->baselist.begin(),listModel->baselist.end());
 	if (c.previousChar()!='\\' || (flags & CF_FORCE_VISIBLE_LIST)) {
