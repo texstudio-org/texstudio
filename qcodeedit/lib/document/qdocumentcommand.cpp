@@ -723,6 +723,7 @@ QDocumentEraseCommand::QDocumentEraseCommand(	int bl, int bo,
 	}
 
 	m_state = true;
+    m_mergedLines=false;
 }
 
 QStringList QDocumentInsertCommand::debugRepresentation() const{
@@ -797,8 +798,10 @@ void QDocumentEraseCommand::redo()
 	} else {
 		removeText(m_data.lineNumber, m_data.startOffset, m_data.begin.count());
 
-		if ( m_data.endOffset != -1 )
+        if ( m_data.endOffset != -1 ){
 			insertText(m_data.lineNumber, m_data.startOffset, m_data.end);
+            m_mergedLines=m_doc->linesMerged(hl,m_data.startOffset,m_data.handles.last());
+        }
 
 		removeLines(m_data.lineNumber, m_data.handles.count());
 	}
@@ -841,6 +844,10 @@ void QDocumentEraseCommand::undo()
 			removeText(m_data.lineNumber, m_data.startOffset, m_data.end.count());
 
 		insertText(m_data.lineNumber, m_data.startOffset, m_data.begin);
+
+        if(m_mergedLines){
+            m_doc->linesUnMerged(hl,m_data.handles.last());
+        }
 
 		m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
 	} else {

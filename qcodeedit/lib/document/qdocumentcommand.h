@@ -139,6 +139,7 @@ class QCE_EXPORT QDocumentEraseCommand : public QDocumentCommand
 		virtual QStringList debugRepresentation() const;
 	private:
 		TextCommandData m_data;
+        bool m_mergedLines;
 };
 
 class QCE_EXPORT QDocumentCommandBlock : public QDocumentCommand

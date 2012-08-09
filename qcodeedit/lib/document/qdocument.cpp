@@ -202,6 +202,65 @@ bool QDocument::forceLineWrapCalculation() const{
 void QDocument::setForceLineWrapCalculation(bool v){
 	if (m_impl) m_impl->setForceLineWrapCalculation(v);
 }
+bool QDocument::linesMerged(QDocumentLineHandle* dlh,int bo,QDocumentLineHandle* fromLineHandle){
+    QDocumentLine ln(dlh);
+    bool hasBookmark=false;
+    int rmid=-1;
+    int i=-1;
+    for(i=-1;i<10;i++){
+        rmid=bookMarkId(i);
+        hasBookmark=ln.hasMark(rmid);
+        if(hasBookmark)
+            break;
+    }
+    if(hasBookmark && bo==0){
+        // line has been removed completely, remove bookmark
+        ln.removeMark(rmid);
+        emit bookmarkRemoved(dlh);
+        hasBookmark=false;
+    }
+    if(hasBookmark)
+        return false; //don't overwrite existing bookmark
+    QDocumentLine fromLine(fromLineHandle);
+    for(i=-1;i<10;i++){
+        rmid=bookMarkId(i);
+        hasBookmark=fromLine.hasMark(rmid);
+        if(hasBookmark)
+            break;
+    }
+    if(hasBookmark){
+        fromLine.removeMark(rmid);
+        emit bookmarkRemoved(fromLineHandle);
+        ln.addMark(rmid);
+        emit bookmarkAdded(dlh,i);
+    }
+    return hasBookmark;
+}
+
+void QDocument::linesUnMerged(QDocumentLineHandle *dlh,QDocumentLineHandle *fromLineHandle){
+    QDocumentLine ln(dlh);
+    bool hasBookmark=false;
+    int rmid=-1;
+    int i=-1;
+    for(i=-1;i<10;i++){
+        rmid=bookMarkId(i);
+        hasBookmark=ln.hasMark(rmid);
+        if(hasBookmark)
+            break;
+    }
+    if(hasBookmark){
+        QDocumentLine fromLine(fromLineHandle);
+        ln.removeMark(rmid);
+        emit bookmarkRemoved(dlh);
+        fromLine.addMark(rmid);
+        emit bookmarkAdded(fromLineHandle,i);
+    }
+}
+
+int QDocument::bookMarkId(int bookmarkNumber) {
+    if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
+    else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
+}
 
 void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles){
 	if (in_handles.isEmpty()) return;
