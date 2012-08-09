@@ -345,6 +345,9 @@ class QCE_EXPORT QDocument : public QObject
 		void setOverwriteMode(bool overwrite);
 		
 		void applyHardLineWrap(const QList<QDocumentLineHandle*>& handles);		
+        bool linesMerged(QDocumentLineHandle* dlh,int bo,QDocumentLineHandle* fromLineHandle);
+        void linesUnMerged(QDocumentLineHandle *dlh,QDocumentLineHandle *fromLineHandle);
+        int bookMarkId(int bookmarkNumber);
 	public slots:
 		void clear();
 		
@@ -391,6 +394,9 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void slowOperationStarted();
 		void slowOperationEnded();
+
+        void bookmarkRemoved(QDocumentLineHandle *dlh);
+        void bookmarkAdded(QDocumentLineHandle *dlh,int nr);
 	public:
 		int indexOf(QDocumentLineHandle* h, int hint = -1);
 	private:

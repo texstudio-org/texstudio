@@ -354,6 +354,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 	
 	connect(doc, SIGNAL(spellingLanguageChanged(QLocale)), this, SLOT(changeSpellingLanguage(QLocale)));
+    connect(doc, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)),this,SIGNAL(bookmarkRemoved(QDocumentLineHandle*)));
+    connect(doc, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)),this,SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)));
 	
 	//editor->setFlag(QEditor::CursorJumpPastWrap,false);
 	editor->disableAccentHack(config->hackDisableAccentWorkaround);
@@ -765,8 +767,9 @@ void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
 	}
 }
 int LatexEditorView::bookMarkId(int bookmarkNumber) {
-	if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
-	else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
+    if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
+    else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
+    //return document->bookMarkId(bookmarkNumber);
 }
 
 void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
