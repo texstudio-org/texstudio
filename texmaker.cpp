@@ -5704,6 +5704,15 @@ void Texmaker::previewLatex(){
 	if (c.hasSelection()) {
 		previewc = c; //X o riginalText = c.selectedText();
 	} else {
+		// if in math mode, move cursor to opening bracket
+		//TODO: Is there a more elegant solution to determine the beginning of a math environment.
+		QDocumentLine dl = c.line();
+		int col = c.columnNumber();
+		QList<int> mathFormats = QList<int>() << m_formats->id("numbers") << m_formats->id("math-keyword");
+		mathFormats.removeAll(0); // keep only valid entries in list
+		while(col>0 && mathFormats.contains(dl.getFormatAt(col-1))) col --;
+		c.setColumnNumber(col);
+
 		QDocumentCursor orig, to;
 		c.getMatchingPair(orig, to, true);
 		if (!orig.hasSelection() || !to.hasSelection()) return;
