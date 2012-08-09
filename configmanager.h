@@ -162,6 +162,7 @@ public:
 	QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act);
 	QAction* newOrLostOldManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString & iconFile="");
 	QAction* getManagedAction(const QString& id);
+	QList<QAction *> getManagedActions(const QStringList& ids, const QString &commonPrefix="");
 	QMenu* getManagedMenu(const QString& id);
 	void removeManagedMenus();
 	void triggerManagedAction(const QString& id);

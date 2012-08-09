@@ -599,8 +599,6 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q);
 	
 	//edit
-	QList<QAction*> latexEditorContextMenu;
-	
 	menu=newManagedMenu("main/edit",tr("&Edit"));
 	actUndo = newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo");
 	actRedo = newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo");
@@ -613,10 +611,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
-    newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
-    newManagedAction(menu,"eraseEndLine",tr("Erase until E&nd of Line"), SLOT(editEraseEndLine()), (QList<QKeySequence>()<< Qt::AltModifier+Qt::Key_K));
-	
-	latexEditorContextMenu = menu->actions();
+	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
+	newManagedAction(menu,"eraseEndLine",tr("Erase until E&nd of Line"), SLOT(editEraseEndLine()), (QList<QKeySequence>()<< Qt::AltModifier+Qt::Key_K));
 	
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
@@ -676,13 +672,13 @@ void Texmaker::setupMenus() {
 	
 	//Edit 2 (for LaTeX related things)
 	menu=newManagedMenu("main/edit2",tr("&Idefix"));
-	latexEditorContextMenu << newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
+	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
 	
-	latexEditorContextMenu << menu->addSeparator();
-	latexEditorContextMenu << newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste.png");
-	latexEditorContextMenu << newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
-	latexEditorContextMenu << newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
-	latexEditorContextMenu << newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
+	menu->addSeparator();
+	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste.png");
+	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
+	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 	
 	menu->addSeparator();
 	newManagedEditorAction(menu,"comment", tr("&Comment"), "commentSelection", Qt::CTRL+Qt::Key_T);
@@ -980,8 +976,16 @@ void Texmaker::setupMenus() {
 	
 	
 	//-----context menus-----
-	if (LatexEditorView::getBaseActions().empty()) //only called at first menu created
-		LatexEditorView::setBaseActions(latexEditorContextMenu);
+	if (LatexEditorView::getBaseActions().empty()) { //only called at first menu created
+		QList<QAction*> baseContextActions;
+		QAction *sep = new QAction(menu);
+		sep->setSeparator(true);
+		baseContextActions << getManagedActions(QStringList() << "copy" << "cut" << "paste", "main/edit/");
+		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit/selectall");
+		baseContextActions << sep;
+		baseContextActions << getManagedActions(QStringList() << "previewLatex" << "removePreviewLatex", "main/edit2/");
+		LatexEditorView::setBaseActions(baseContextActions);
+	}
 	
 	structureTreeView->setObjectName("StructureTree");
 	structureTreeView->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -1359,6 +1363,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
+	connect(edit, SIGNAL(gotoDefinition()),this,SLOT(editGotoDefinition()));
 	connect(edit, SIGNAL(syncPDFRequested()), this, SLOT(syncPDFViewer()));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
     connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
@@ -2495,7 +2500,11 @@ void Texmaker::editGotoDefinition(){
 		currentEditorView()->gotoToLabel(value);
 		break;
 	case LatexParser::Citation:
-		currentEditorView()->gotoToBibItem(value);
+		// value does not work, if cite command contains multiple entries.
+		c.movePosition(1, QDocumentCursor::StartOfWord);
+		c.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+		qDebug() << c.selectedText();
+		currentEditorView()->gotoToBibItem(c.selectedText());
 		break;
 
 	default:; //TODO: Jump to command definition and in bib files

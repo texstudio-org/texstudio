@@ -133,6 +133,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	else cursor=editor->cursor();
 	LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
+	LatexParser::ContextType context = LatexParser::Unknown;
+	QString ctxCommand, ctxValue;
 	if (validPosition) {
 		QFormatRange fr;
 		//spell checking
@@ -202,23 +204,22 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		//check input/include
 		//find context of cursor
 		QString line=cursor.line().text();
-		QString command, value;
-		LatexParser::ContextType result = LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value);
-		static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
-		if( (result==LatexParser::Command || result==LatexParser::Option) && inputTokens.contains(command)){
-			QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(value),contextMenu);
-			act->setData(value);
+		context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
+		static const QStringList inputTokens = QStringList() << "\\input" << "\\include" << "\\includeonly";
+		if( (context==LatexParser::Command || context==LatexParser::Option) && inputTokens.contains(ctxCommand)){
+			QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(ctxValue),contextMenu);
+			act->setData(ctxValue);
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
 		//package help
-		if( (result==LatexParser::Command || result==LatexParser::Option) && command=="\\usepackage"){
+		if( (context==LatexParser::Command || context==LatexParser::Option) && ctxCommand=="\\usepackage"){
 			QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
 			QString packageName;
-			if (value.contains(',')) {
+			if (ctxValue.contains(',')) {
 				// multiple packages included in one \usepackage command
 				QStringList packages;
-				foreach (const QString& pkg, value.split(',')) {
+				foreach (const QString& pkg, ctxValue.split(',')) {
 					packages.append(pkg.simplified());
 				}
 				QDocumentCursor wordCursor = cursor;
@@ -229,7 +230,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					packageName = packages.first();
 				}
 			} else {
-				packageName = value;
+				packageName = ctxValue;
 			}
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
 			act->setData(packageName);
@@ -277,10 +278,18 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		act->setData(QPoint(cursor.anchorLineNumber(),cursor.anchorColumnNumber()));
 		edView->connect(act,SIGNAL(triggered()),edView,SLOT(triggeredThesaurus()));
 		contextMenu->addAction(act);
+		contextMenu->addSeparator();
 	}
 	contextMenu->addActions(baseActions);
 	if (validPosition) {
 		contextMenu->addSeparator();
+
+		if (context == LatexParser::Citation || context == LatexParser::Reference) {
+			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
+			edView->connect(act, SIGNAL(triggered()), edView, SIGNAL(gotoDefinition()));
+			contextMenu->addAction(act);
+		}
+
 		QAction *act = new QAction(LatexEditorView::tr("Go to PDF"), contextMenu);
 		edView->connect(act, SIGNAL(triggered()), edView, SIGNAL(syncPDFRequested()));
 		contextMenu->addAction(act);
@@ -591,7 +600,7 @@ bool LatexEditorView::gotoToLabel(const QString& label){
 }
 
 bool LatexEditorView::gotoToBibItem(const QString &bibId) {
-	// only supports local bibitems BibTeX should be handled on a higher level
+	// only supports local bibitems. BibTeX has to be handled on a higher level
 	QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibId);
 	if (result.isEmpty()) return false;
 	QDocumentLine line(result.keys().first());
