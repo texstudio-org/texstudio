@@ -192,6 +192,7 @@ signals:
 	void thesaurus(int line,int col);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
+	void gotoDefinition();
 	void syncPDFRequested();
     void bookmarkRemoved(QDocumentLineHandle *dlh);
     void bookmarkAdded(QDocumentLineHandle *dlh,int nr);

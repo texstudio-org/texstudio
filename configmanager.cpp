@@ -1701,6 +1701,20 @@ QAction* ConfigManager::getManagedAction(const QString& id) {
 	if (act==0) qWarning("Can't find internal action %s",id.toAscii().data());
 	return act;
 }
+QList<QAction *> ConfigManager::getManagedActions(const QStringList& ids, const QString &commonPrefix) {
+	QList<QAction *> actions;
+	if (!menuParent) {
+		qWarning("Can't find internal actions: menuParent missing.");
+		return actions;
+	}
+	QAction *act;
+	foreach(const QString& id, ids) {
+		act=menuParent->findChild<QAction*>(commonPrefix+id);
+		if (act==0) qWarning("Can't find internal action %s",id.toAscii().data());
+		else actions << act;
+	}
+	return actions;
+}
 QMenu* ConfigManager::getManagedMenu(const QString& id) {
 	QMenu* menu=0;
 	if (menuParent) menu=menuParent->findChild<QMenu*>(id);

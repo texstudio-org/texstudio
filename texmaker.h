@@ -84,6 +84,7 @@ protected:
 	Q_INVOKABLE inline QAction* newManagedAction(QWidget* menu, const QString &id, QAction* act) { return configManager.newManagedAction(menu,id,act); }
 	Q_INVOKABLE inline QMenu* getManagedMenu(const QString& id){ return configManager.getManagedMenu(id); }
 	Q_INVOKABLE inline QAction* getManagedAction(const QString& id){ return configManager.getManagedAction(id); }
+	Q_INVOKABLE inline QList<QAction *> getManagedActions(const QStringList& ids, const QString &commonPrefix=""){ return configManager.getManagedActions(ids, commonPrefix); }
 	Q_INVOKABLE QAction* insertManagedAction(QAction* before, const QString &id,const QString &text, const char* slotName=0, const QKeySequence &shortCut=0, const QString & iconFile="");
 	
 	SymbolGridWidget* addSymbolGrid(const QString& SymbolList,  const QString& iconName, const QString& text);
