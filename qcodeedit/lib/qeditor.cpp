@@ -4379,12 +4379,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		m_doc->beginMacro();
 
 	bool autoOverridePlaceHolder = false;
-	if ( hasSelection ){
-		cutBuffer=c.selectedText();
-		c.removeSelectedText();
-	} else if ( flag(Overwrite) && !c.atLineEnd() )
+	if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
 		c.deleteChar();
-	else { //see isAutoOverrideText()
+	else {
+		if ( hasSelection ){
+			cutBuffer=c.selectedText();
+			c.removeSelectedText();
+		}
+		
+		//see isAutoOverrideText()
 		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
 			if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
 			     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
@@ -4533,12 +4536,18 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 				c.insertText(cutBuffer+autoBracket);
 				m_cursor.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
 				m_cursor.movePosition(cutBuffer.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+			} 
+			
+			QDocumentCursor copiedCursor = c.selectionEnd();
+			PlaceHolder ph(autoBracket.length(),copiedCursor);
+			ph.autoOverride = true;
+			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
+			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
+			
+			if (!cutBuffer.isEmpty()) {
+				addPlaceHolder(ph);
+				cutBuffer.clear();
 			} else {
-				QDocumentCursor copiedCursor = c.selectionEnd();
-				PlaceHolder ph(autoBracket.length(),copiedCursor);
-				ph.autoOverride = true;
-				ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
-				ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
 				copiedCursor.insertText(autoBracket);
 				addPlaceHolder(ph);
 				m_cursor.movePosition(autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
