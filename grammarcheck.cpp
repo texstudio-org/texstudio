@@ -71,6 +71,7 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	
 	QString lang = language;
 	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));		
+	if (lang.contains('-')) lang = lang.left(lang.indexOf('-'));		
 	requests << CheckRequest(lang,doc,inlines,firstLineNr,ticket);
 
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
