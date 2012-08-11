@@ -487,7 +487,7 @@ debug{
 # win32:LIBS += -lQtTest4
 win32:LIBS += -lQtTestd4
 unix:!macx:LIBS += -lQtTest
-macx:LIBS += QtTest
+macx:LIBS += -framework QtTest
 }
 macx:LIBS += -framework CoreFoundation
 
