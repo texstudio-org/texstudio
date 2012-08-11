@@ -1462,6 +1462,14 @@ void LatexDocumentsModel::setSingleDocMode(bool singleMode){
 	structureUpdated(documents.currentDocument,0);
 }
 
+void LatexDocumentsModel::moveDocs(int from,int to){ //work only for adjacent elements !!!
+    Q_ASSERT(abs(from-to)==1);
+    StructureEntry *se=documents.documents.at(from)->baseStructure;
+    changePersistentIndex(index(se),createIndex(to,0,se));
+    se=documents.documents.at(to)->baseStructure;
+    changePersistentIndex(index(se),createIndex(from,0,se));
+}
+
 bool LatexDocumentsModel::getSingleDocMode(){
 	return m_singleMode;
 }
@@ -1516,6 +1524,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 			elem->recheckRefsLabels();
 		}
 		int row=documents.indexOf(document);
+        qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
 		if(model->getSingleDocMode()){
 			row=0;
@@ -1573,15 +1582,17 @@ QList<LatexDocument*> LatexDocuments::getDocuments() const{
 }
 
 void LatexDocuments::move(int from, int to){
-#if QT_VERSION >= 0x040600
+/*#if QT_VERSION >= 0x040600
     model->beginMoveRows(QModelIndex(),from,from,QModelIndex(),to);
     documents.move(from,to);
-    model->endMoveRows();
-#else
+    model->endMoveRows(); //seems not to work because of a qt bug (throws an exception, qt 4.8.1,linux)
+#else*/
+    qDebug()<<from<<to;
     model->layoutAboutToBeChanged();
+    model->moveDocs(from,to);
     documents.move(from,to);
     model->layoutChanged();
-#endif
+//#endif
 }
 
 QString LatexDocuments::getCurrentFileName() {
