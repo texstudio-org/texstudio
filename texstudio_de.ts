@@ -310,7 +310,7 @@
     </message>
     <message>
         <source>Quickbuild</source>
-        <translation>Schnelles Übersetzen</translation>
+        <translation type="obsolete">Schnelles Übersetzen</translation>
     </message>
     <message>
         <source>Default Compiler</source>
@@ -366,75 +366,75 @@
     </message>
     <message>
         <source>compile &amp; view</source>
-        <translation>Kompilieren und Anzeigen</translation>
+        <translation type="obsolete">Kompilieren und Anzeigen</translation>
     </message>
     <message>
         <source>Postscipt chain</source>
-        <translation>PS Übersetzungskette</translation>
+        <translation type="obsolete">PS Übersetzungskette</translation>
     </message>
     <message>
         <source>DVI chain</source>
-        <translation>DVI Übersetzungskette</translation>
+        <translation type="obsolete">DVI Übersetzungskette</translation>
     </message>
     <message>
         <source>PDF chain</source>
-        <translation>PDF Übersetzungskette</translation>
+        <translation type="obsolete">PDF Übersetzungskette</translation>
     </message>
     <message>
         <source>DVI-PDF-chain</source>
-        <translation>DVI-PDF-Übersetzungskette</translation>
+        <translation type="obsolete">DVI-PDF-Übersetzungskette</translation>
     </message>
     <message>
         <source>DVI-PS-PDF-chain</source>
-        <translation>DVI-PS-PDF-Übersetzungskette</translation>
+        <translation type="obsolete">DVI-PS-PDF-Übersetzungskette</translation>
     </message>
     <message>
         <source>asy-DVI-chain</source>
-        <translation>asy-DVI-Übersetzungskette</translation>
+        <translation type="obsolete">asy-DVI-Übersetzungskette</translation>
     </message>
     <message>
         <source>asy-PDF-chain</source>
-        <translation>asy-PDF-Übersetzungskette</translation>
+        <translation type="obsolete">asy-PDF-Übersetzungskette</translation>
     </message>
     <message>
         <source>Use pdflatex</source>
-        <translation>Nutze pdflatex</translation>
+        <translation type="obsolete">Nutze pdflatex</translation>
     </message>
     <message>
         <source>Use latex</source>
-        <translation>Nutze latex</translation>
+        <translation type="obsolete">Nutze latex</translation>
     </message>
     <message>
         <source>Use xelatex</source>
-        <translation>Nutze xelatex</translation>
+        <translation type="obsolete">Nutze xelatex</translation>
     </message>
     <message>
         <source>Use lualatex</source>
-        <translation>Nutze lualatex</translation>
+        <translation type="obsolete">Nutze lualatex</translation>
     </message>
     <message>
         <source>Use latexmk</source>
-        <translation>Nutze latexmk</translation>
+        <translation type="obsolete">Nutze latexmk</translation>
     </message>
     <message>
         <source>Use PDF viewer</source>
-        <translation>Nutze PDF Betrachter</translation>
+        <translation type="obsolete">Nutze PDF Betrachter</translation>
     </message>
     <message>
         <source>Use DVI viewer</source>
-        <translation>Nutze DVI Betrachter</translation>
+        <translation type="obsolete">Nutze DVI Betrachter</translation>
     </message>
     <message>
         <source>Use postscript viewer</source>
-        <translation>Nutze PS Betrachter</translation>
+        <translation type="obsolete">Nutze PS Betrachter</translation>
     </message>
     <message>
         <source>Use internal PDF viewer</source>
-        <translation>Nutze internen PDF Betrachter</translation>
+        <translation type="obsolete">Nutze internen PDF Betrachter</translation>
     </message>
     <message>
         <source>Use external PDF viewer</source>
-        <translation>Nutze externen PDF Betrachter</translation>
+        <translation type="obsolete">Nutze externen PDF Betrachter</translation>
     </message>
     <message>
         <source>PDF Viewer</source>
@@ -442,15 +442,15 @@
     </message>
     <message>
         <source>Use bibtex</source>
-        <translation>Nutze bibtex</translation>
+        <translation type="obsolete">Nutze bibtex</translation>
     </message>
     <message>
         <source>Use bibtex8</source>
-        <translation>Nutze bibtex8</translation>
+        <translation type="obsolete">Nutze bibtex8</translation>
     </message>
     <message>
         <source>Use biber</source>
-        <translation>Nutze biber</translation>
+        <translation type="obsolete">Nutze biber</translation>
     </message>
     <message>
         <source>PS Chain</source>
@@ -494,7 +494,7 @@
     </message>
     <message>
         <source>Use internal PDF viewer embedded in TeXstudio</source>
-        <translation>Nutze internen PDF Betrachter (integriert in Hauptfenster)</translation>
+        <translation type="obsolete">Nutze internen PDF Betrachter (integriert in Hauptfenster)</translation>
     </message>
     <message>
         <source>Default Index Tool</source>
@@ -515,6 +515,54 @@
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>Das Kommando wurde zu %1 Ebenen expandiert. Möchten Sie es weiter expandieren &quot;%2&quot;?</translation>
+    </message>
+    <message>
+        <source>Compile &amp; View</source>
+        <translation>Kompilieren &amp; Anzeigen</translation>
+    </message>
+    <message>
+        <source>Build &amp; View</source>
+        <translation>Kompilieren &amp; Anzeigen</translation>
+    </message>
+    <message>
+        <source>PdfLaTeX</source>
+        <translation>PdfLaTeX</translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <translation>LaTeX</translation>
+    </message>
+    <message>
+        <source>XeLaTeX</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>LuaLaTeX</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Latexmk</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Windowed)</source>
+        <translation>Interner PDF Betrachter (als Fenster)</translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Embedded)</source>
+        <translation>Interner PDF Betrachter (eingebettet)</translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>BibTeX 8-Bit</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Biber</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3514,6 +3562,10 @@ Fehlender \caption Kommando.</translation>
         <source>Go to PDF</source>
         <translation>Gehe zu PDF</translation>
     </message>
+    <message>
+        <source>Go to Definition</source>
+        <translation>Springe zur Definition</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -5970,6 +6022,18 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
 </context>
 <context>
+    <name>SpellerUtility</name>
+    <message>
+        <source>Missing .aff file:
+%1</source>
+        <translation>.aff-Datei fehlt: %1</translation>
+    </message>
+    <message>
+        <source>Dictionary does not exist.</source>
+        <translation>Wörterbuch existiert nicht.</translation>
+    </message>
+</context>
+<context>
     <name>StructDialog</name>
     <message>
         <source>Structure</source>
@@ -7525,7 +7589,7 @@ Do you trust this document?</source>
     </message>
     <message>
         <source>&amp;Quick</source>
-        <translation>&amp;Schnell</translation>
+        <translation type="obsolete">&amp;Schnell</translation>
     </message>
     <message>
         <source>&amp;Compile</source>
@@ -7533,11 +7597,11 @@ Do you trust this document?</source>
     </message>
     <message>
         <source>View &amp;Dvi</source>
-        <translation>Zeige &amp;DVI</translation>
+        <translation type="obsolete">Zeige &amp;DVI</translation>
     </message>
     <message>
         <source>Dvi-&gt;PS</source>
-        <translation>DVI-&gt;PS</translation>
+        <translation type="obsolete">DVI-&gt;PS</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
@@ -7923,6 +7987,26 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     <message>
         <source>Long-range Word Repetition</source>
         <translation>Wortwiederholung über längeren Abstand</translation>
+    </message>
+    <message>
+        <source>&amp;Build &amp;&amp; View</source>
+        <translation>&amp;Kompilieren &amp;&amp; Anzeigen</translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>View &amp;DVI</source>
+        <translation>&amp;DVI anzeigen</translation>
+    </message>
+    <message>
+        <source>No dictionary available.</source>
+        <translation>Kein Wörterbuch verfügbar.</translation>
+    </message>
+    <message>
+        <source>Create Label</source>
+        <translation>Generiere Label</translation>
     </message>
 </context>
 <context>
