@@ -1527,7 +1527,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 #endif
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
-       QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0) {
+    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0) {
 	QString stdoutRedirection = cmd.mid(cmd.lastIndexOf(">") + 1).trimmed();
 	if (stdoutRedirection == "/dev/null" || stdoutRedirection == "txs:///messages"  )  {
 		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
