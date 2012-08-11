@@ -1582,17 +1582,10 @@ QList<LatexDocument*> LatexDocuments::getDocuments() const{
 }
 
 void LatexDocuments::move(int from, int to){
-/*#if QT_VERSION >= 0x040600
-    model->beginMoveRows(QModelIndex(),from,from,QModelIndex(),to);
-    documents.move(from,to);
-    model->endMoveRows(); //seems not to work because of a qt bug (throws an exception, qt 4.8.1,linux)
-#else*/
-    qDebug()<<from<<to;
     model->layoutAboutToBeChanged();
     model->moveDocs(from,to);
     documents.move(from,to);
     model->layoutChanged();
-//#endif
 }
 
 QString LatexDocuments::getCurrentFileName() {
