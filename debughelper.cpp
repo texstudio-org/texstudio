@@ -483,10 +483,10 @@ volatile sig_atomic_t lastCrashSignal = 0;
 #define LAST_POSSIBLE_TXS_ADDRESS ( ( (char*)&isAddressInTeXstudio) + 0x800000 )
 #else
 #define LAST_POSSIBLE_TXS_ADDRESS (&_etext)
+extern int LAST_POSSIBLE_TXS_ADDRESS;
 //perhaps always use __etext? (did work on linux)
 #endif
 
-extern int LAST_POSSIBLE_TXS_ADDRESS;
 
 CPU_CONTEXT_TYPE lastLoopContext;
 
