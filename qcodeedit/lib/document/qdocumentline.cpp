@@ -582,7 +582,14 @@ void QDocumentLine::clearOverlays(int formatToClear){
 	if ( !m_handle )
 		return;
 
-	m_handle->clearOverlays(formatToClear);
+    m_handle->clearOverlays(formatToClear);
+}
+
+void QDocumentLine::clearOverlays(QList<int> formatsToClear){
+    if ( !m_handle )
+        return;
+
+    m_handle->clearOverlays(formatsToClear);
 }
 
 /*!

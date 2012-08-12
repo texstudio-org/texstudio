@@ -783,6 +783,7 @@ int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView:
 
 QList<int> LatexEditorView::grammarFormats;
 QVector<bool> LatexEditorView::grammarFormatsDisabled;
+QList<int> LatexEditorView::formatsList;
 
 void LatexEditorView::updateSettings(){
 	lineNumberPanel->setVerboseMode(config->showlinemultiples!=10);
@@ -1083,7 +1084,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		if (!line.isValid()) continue;
 		
 		//remove all overlays used for latex things, in descending frequency
-		line.clearOverlays(SpellerUtility::spellcheckErrorFormat);
+        line.clearOverlays(formatsList); //faster as it avoids multiple lock/unlock operations
+        /*line.clearOverlays(SpellerUtility::spellcheckErrorFormat);
 		line.clearOverlays(referencePresentFormat);
 		line.clearOverlays(citationPresentFormat);
 		line.clearOverlays(referenceMissingFormat);
@@ -1095,7 +1097,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		line.clearOverlays(structureFormat);
 		line.clearOverlays(insertFormat);
 		line.clearOverlays(deleteFormat);
-		line.clearOverlays(replaceFormat);
+        line.clearOverlays(replaceFormat);*/
 		
 		bool addedOverlaySpellCheckError = false;
 		bool addedOverlayReference = false;
