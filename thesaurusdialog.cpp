@@ -116,13 +116,13 @@ QString ThesaurusDialog::userPath;
 ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	:QDialog(parent)
 {
-	replaceBt=new QPushButton(tr("replace"),this);
-	lookupBt=new QPushButton(tr("lookup"),this);
-	startsWithBt=new QPushButton(tr("starts with ..."),this);
-	containsBt=new QPushButton(tr("contains ..."),this);
-	cancelBt=new QPushButton(tr("cancel"),this);
-	addBt=new QPushButton(tr("add own word"),this);
-	removeBt=new QPushButton(tr("remove own word"),this);
+	replaceBt=new QPushButton(tr("Replace"),this);
+	lookupBt=new QPushButton(tr("Lookup"),this);
+	startsWithBt=new QPushButton(tr("Starts With ..."),this);
+	containsBt=new QPushButton(tr("Contains ..."),this);
+	cancelBt=new QPushButton(tr("Cancel"),this);
+	addBt=new QPushButton(tr("Add Own Word"),this);
+	removeBt=new QPushButton(tr("Remove Own Word"),this);
 	searchWrdLe=new QLineEdit("",this);
 	replaceWrdLe=new QLineEdit("",this);
 

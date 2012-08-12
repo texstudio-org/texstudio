@@ -23,7 +23,7 @@
       <item row="5" column="0" colspan="3">
        <widget class="QRadioButton" name="wordOrder1RadioButton">
         <property name="text">
-         <string>First order word</string>
+         <string>First Order Word</string>
         </property>
        </widget>
       </item>
@@ -178,7 +178,7 @@
       <item row="15" column="0" colspan="3">
        <widget class="QCheckBox" name="upperCaseCheckBox">
         <property name="text">
-         <string>ignore case</string>
+         <string>Ignore Case</string>
         </property>
        </widget>
       </item>
@@ -198,14 +198,14 @@
       <item row="10" column="0" colspan="3">
        <widget class="QCheckBox" name="punctationCheckBox">
         <property name="text">
-         <string>punctation</string>
+         <string>Punctation</string>
         </property>
        </widget>
       </item>
       <item row="16" column="0" colspan="3">
        <widget class="QCheckBox" name="latexInput">
         <property name="text">
-         <string>LaTeX input</string>
+         <string>LaTeX Input</string>
         </property>
         <property name="checked">
          <bool>true</bool>
