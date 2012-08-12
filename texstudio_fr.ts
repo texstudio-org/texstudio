@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>Multi-volume Proceedings Entry</source>
-        <translation>Multi-volume des actes d&apos;une &amp;conférence</translation>
+        <translation>Multi-volume des actes d&apos;une &amp;conférence - @mvproceedings</translation>
     </message>
     <message>
         <source>Reference</source>
@@ -2089,7 +2089,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Display Mode:</source>
-        <translation>Mode &quot;display&quot; :</translation>
+        <translation>Mode « display » :</translation>
     </message>
     <message>
         <source>Show preview as tooltip if panel is hidden</source>
@@ -2324,7 +2324,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
         <source>Master Document: </source>
-        <translation>Document maître :</translation>
+        <translation>Document maître : </translation>
     </message>
     <message>
         <source>&lt;none&gt;</source>
@@ -2806,7 +2806,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>\begin{verse}</source>
-        <translation>Poésie - \begin{verse}</translation>
+        <translation>Poème - \begin{verse}</translation>
     </message>
     <message>
         <source>\begin{verbatim} </source>
@@ -3458,7 +3458,7 @@ Options de \includegraphics manquantes.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation>Identifiant, utilisé pour référencer le label, par exemple via \ref{ceLabel}</translation>
+        <translation>Identifiant, utilisé pour référencer le graphique, par exemple via \ref{ceLabel}</translation>
     </message>
     <message>
         <source>Suggest priorities, where the figure should appear.
@@ -3510,13 +3510,13 @@ Remarque : ces préférences ne sont que suggestions. Si la mise en page en rés
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Préférences d&apos;emplacement pour la figure (flottante) :
 
-t (pour « top ») : en haut de la page en cours
-b (pour « bottom ») : en bas de la page en cours
-p (pour « page ») : sur une page séparée, dédiée aux flottants.
-h (pour « here ») : à la position courante dans le texte
-[!]: Ignore les paramètres internes de LaTeX utilisés pour déterminer les « bons » emplacements du flottant
+t (pour « top ») : en haut de la page en cours ;
+b (pour « bottom ») : en bas de la page en cours ;
+p (pour « page ») : sur une page séparée, dédiée aux flottants ;
+h (pour « here ») : à la position courante dans le texte ;
+[!]: Ignore les paramètres internes qu&apos;utilise LaTeX pour déterminer les « bons » emplacements du flottant.
 
-Remarque : ces préférences ne sont que suggestions. Si la mise en page en résultant devait être trop mauvaise, LaTeX pourrait les ignorer.</translation>
+Remarque : ces préférences ne sont que des suggestions. Si la mise en page en résultant devait être trop mauvaise, LaTeX pourrait les ignorer.</translation>
     </message>
     <message>
         <source>Could not parse graphics inclusion code:
@@ -4085,11 +4085,11 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
-        <translation>Le fichier PDF &quot;%1&quot; est verrouillé ; cette action n&apos;est pas possible actuellement.</translation>
+        <translation>Le fichier PDF « %1 » est verrouillé ; cette action n&apos;est pas possible actuellement.</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation>Échec du chargement du fichier &quot;%1&quot;; ce n&apos;est peut-être pas un PDF valide.</translation>
+        <translation>Échec du chargement du fichier « %1 »; ce n&apos;est peut-être pas un PDF valide.</translation>
     </message>
     <message>
         <source>No SyncTeX data available</source>
@@ -4097,7 +4097,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>SyncTeX: &quot;%1&quot;</source>
-        <translation></translation>
+        <translation>SyncTeX : « %1 »</translation>
     </message>
     <message>
         <source>%1[*] - %2</source>
@@ -4377,11 +4377,11 @@ Do you want to open it anyways? It could cause a crash.</source>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
-        <translation>Le fichier PDF %1 est incomplet. Nouvel essai dans 2 secondes.</translation>
+        <translation>Le fichier PDF « %1 » est incomplet. Nouvel essai dans 2 secondes.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
-        <translation>Le fichier PDF %1 est incomplet.</translation>
+        <translation>Le fichier PDF « %1 » est incomplet.</translation>
     </message>
     <message>
         <source>%1
@@ -4814,9 +4814,9 @@ Press &quot;Ignore&quot; to ignore this warning.
 </source>
         <translation>Le document %1 
 a été modifié par un autre programme.
-Cliquer sur &quot;Enregistrer&quot; pour sauver le document courant.
-Cliquer sur &quot;Réinitialiser&quot; pour rouvrir le fichier.
-Cliquer sur &quot;Ignorer&quot; pour ignorer cet avertissement.</translation>
+Cliquer sur « Enregistrer » pour sauver le document courant.
+Cliquer sur « Réinitialiser » pour rouvrir le fichier.
+Cliquer sur « Ignorer » pour ignorer cet avertissement.</translation>
     </message>
     <message>
         <source>File deleted</source>
@@ -5862,7 +5862,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation>Le document ne contient aucun mot, alors que du texte est nécessaire à la génération aléatoire</translation>
+        <translation>Le document ne contient aucun mot, alors que du texte est nécessaire à la génération aléatoire.</translation>
     </message>
     <message>
         <source>You didn&apos;t select an order!</source>
@@ -5874,7 +5874,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>ignore case</source>
-        <translation>ignorer la casse</translation>
+        <translation>Ignorer la casse</translation>
     </message>
     <message>
         <source>punctation</source>
@@ -5886,7 +5886,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>Save to:</source>
-        <translation>Enregistrer à:</translation>
+        <translation>Enregistrer sous :</translation>
     </message>
     <message>
         <source>Couldn&apos;t create file %1</source>
@@ -6386,7 +6386,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>@{text}</source>
-        <translation>@{texte}</translation>
+        <translation>@{〈texte〉}</translation>
     </message>
 </context>
 <context>
@@ -7158,7 +7158,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
-        <translation>Le générateur de texte aléatoire a besoin de texte. Ouvrez un fichier</translation>
+        <translation>Le générateur de texte aléatoire a besoin de texte. Ouvrez un fichier.</translation>
     </message>
     <message>
         <source>File must be saved and compiling before you can view the log</source>
@@ -8187,11 +8187,11 @@ included document in %1</source>
     </message>
     <message>
         <source>&amp;Find Next</source>
-        <translation>Trouver le &amp;suivant</translation>
+        <translation>Chercher &amp;suivant</translation>
     </message>
     <message>
         <source>&amp;Find Previous</source>
-        <translation>Trouver le &amp;précédent</translation>
+        <translation>Chercher &amp;précédent</translation>
     </message>
     <message>
         <source>Long-range Word Repetition</source>
@@ -8312,12 +8312,12 @@ If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if 
 If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
-        <translation>Si &quot;tout montrer&quot; est sélectionné, toutes les phrases sont affichées.
-Si &quot;longueur de phrase min.&quot; est sélectionné, les phrases sont affichées si elles contiennent un minimum de caractères. (par ex.. &quot;un test&quot; compte 7 caractères)
-Si &quot;longueur de mot min. (un)&quot; est sélectionné, les phrases sont affichées si un mot contient un minimum de caractères. (par ex.. &quot;un test&quot; compte 4 caractères)
-Si &quot;longueur de mot min. (tous)&quot; est sélectionné, les phrases sont affichées si tous leurs mots contiennent un minimum de caractères. (par ex.. &quot;un test&quot; compte 1 caractère)
-Si &quot;ignorer complètement&quot; est sélectionné, les mots plus courts sont ignorés.
-(par ex.. avec une longueur 3, la phrase &quot;juste un test&quot; rendra &quot;juste test&quot;, tandis que d&apos;autres options sépareraient en &quot;juste un&quot;, &quot;un test&quot;, même si aucune de ses phrases n&apos;est affichée)</translation>
+        <translation>Si « Afficher toutes les phrases » est sélectionné, toutes les phrases sont affichées.
+Si « Longueur minimale des phrases » est sélectionné, les phrases sont affichées si elles contiennent un minimum de caractères. (par ex. « un test » compte 7 caractères)
+Si « Longueur minimale des mots (un) » est sélectionné, les phrases sont affichées si un mot contient un minimum de caractères. (par ex. « un test » compte 4 caractères)
+Si « Longueur minimale des mots (tous) » est sélectionné, les phrases sont affichées si tous leurs mots contiennent un minimum de caractères. (par ex. « un test » compte 1 caractère)
+Si « Ignorer complètement les mots plus courts » est sélectionné, les mots plus courts sont ignorés.
+(par ex. avec une longueur 3, la phrase « juste un test » rendra « juste test », tandis que d&apos;autres options sépareraient en « juste un&quot;, « un test&quot;, même si aucune de ces phrases n&apos;est affichée).</translation>
     </message>
     <message>
         <source>Show all phrases</source>
@@ -8352,8 +8352,8 @@ Si &quot;ignorer complètement&quot; est sélectionné, les mots plus courts son
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
         <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs constituent une même phrase.
-Si &quot;min et max&quot;. est sélectionné, le nombre exact de mots est considéré (par ex. avec 2 pour la phrase précédente : &quot;Les paramètres&quot;, &quot;paramètres de&quot;,...)
-Si seul &quot;max.&quot; est sélectionné, les mots initaux sont aussi inclus (par ex. : &quot;Les&quot;, &quot;Les paramètres&quot;, &quot;paramètres de&quot;,...)</translation>
+Si « Minimum &amp; maximum de mots par phrase ». est sélectionné, le nombre exact de mots est considéré (par ex. avec 2 pour la phrase précédente : « Les paramètres », « paramètres de », ...)
+Si seul « Maximum de mots par phrase » est sélectionné, les mots initaux sont aussi inclus (par ex. : « Les », « Les paramètres », « paramètres de », ...)</translation>
     </message>
     <message>
         <source>Source:</source>
@@ -8362,7 +8362,7 @@ Si seul &quot;max.&quot; est sélectionné, les mots initaux sont aussi inclus (
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
-        <translation>Si &quot;considérer la ponctuation&quot; est sélectionné, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes
+        <translation>Si « Considérer la ponctuation » est sélectionné, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes.
 Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
@@ -8375,11 +8375,11 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Maximum words per phrase:</source>
-        <translation>Nombre maximum de mots par phrase :</translation>
+        <translation>Maximum de mots par phrase :</translation>
     </message>
     <message>
         <source>Min&amp;max words per phrase:</source>
-        <translation>&amp;Minimum et maximum de mots par phrase :</translation>
+        <translation>Minimum &amp; maximum de mots par phrase :</translation>
     </message>
     <message>
         <source>None (.*)</source>
