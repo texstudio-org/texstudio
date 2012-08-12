@@ -332,7 +332,7 @@ BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList& fileList, int cur
 	m_ui(new Ui::BibTeXDialog)
 {
 	m_ui->setupUi(this);
-	m_ui->fileList->addItem(tr("<new file>"));
+	m_ui->fileList->addItem(tr("<New File>"));
 	foreach (const QString& s, fileList)
 		m_ui->fileList->addItem(s);
 	m_ui->fileList->setCurrentRow(curFile+1);

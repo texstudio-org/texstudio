@@ -3943,7 +3943,7 @@ void Texmaker::InsertBibEntry(const QString& id){
 	int usedFile=0;
 	if (currentEditor()){
 		if (currentEditor()->fileName().isEmpty())
-			possibleBibFiles.prepend(tr("<current file>"));
+			possibleBibFiles.prepend(tr("<Current File>"));
 		else {
 			usedFile=documents.mentionedBibTeXFiles.indexOf(currentEditor()->fileName());
 			if (usedFile<0 && !documents.mentionedBibTeXFiles.empty()) usedFile=0;
@@ -4536,7 +4536,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 			if (!gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"))) //jump to next error
 				gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !")); //prev error
 		
-	} else if (!fic.exists()) txsWarning(tr("Log File not found !"));
+	} else if (!fic.exists()) txsWarning(tr("Log File not found!"));
 	else txsWarning(tr("Log File is not readable!"));	
 }
 
