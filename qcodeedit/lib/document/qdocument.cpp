@@ -2852,14 +2852,31 @@ void QDocumentLineHandle::clearOverlays()
 
 void QDocumentLineHandle::clearOverlays(int format){
 	QWriteLocker locker(&mLock);
-	int oldsize = m_overlays.size();
+    bool changed=false;
 	for ( int i = m_overlays.size()-1; i>=0; i-- )
-		if ( m_overlays[i].format == format )
+        if ( m_overlays[i].format == format ){
 			m_overlays.removeAt(i);
+            changed=true;
+        }
 
-	if (oldsize != m_overlays.size()){
+    if (changed){
 		setFlag(QDocumentLine::FormatsApplied, false);
 	}
+
+}
+
+void QDocumentLineHandle::clearOverlays(QList<int> formats){
+    QWriteLocker locker(&mLock);
+    bool changed=false;
+    for ( int i = m_overlays.size()-1; i>=0; i-- )
+        if ( formats.contains(m_overlays[i].format) ){
+            m_overlays.removeAt(i);
+            changed=true;
+        }
+
+    if (changed){
+        setFlag(QDocumentLine::FormatsApplied, false);
+    }
 
 }
 
