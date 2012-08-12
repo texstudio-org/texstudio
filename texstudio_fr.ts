@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>&lt;new file&gt;</source>
-        <translation>&lt;Nouveau fichier&gt;</translation>
+        <translation type="obsolete">&lt;Nouveau fichier&gt;</translation>
     </message>
     <message>
         <source>Article in &amp;Journal</source>
@@ -280,6 +280,10 @@
     <message>
         <source>New BibLaTeX Entry</source>
         <translation>Nouvelle référence bibliographique</translation>
+    </message>
+    <message>
+        <source>&lt;New File&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3458,7 +3462,7 @@ Options de \includegraphics manquantes.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation>Identifiant, utilisé pour référencer le graphique, par exemple via \ref{ceLabel}</translation>
+        <translation type="obsolete">Identifiant, utilisé pour référencer le graphique, par exemple via \ref{ceLabel}</translation>
     </message>
     <message>
         <source>Suggest priorities, where the figure should appear.
@@ -3551,6 +3555,10 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>as Default</source>
         <translation>Par défaut</translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5812,7 +5820,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>First order word</source>
-        <translation>Premier ordre de mots</translation>
+        <translation type="obsolete">Premier ordre de mots</translation>
     </message>
     <message>
         <source>Second Order Words</source>
@@ -5874,15 +5882,15 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>ignore case</source>
-        <translation>Ignorer la casse</translation>
+        <translation type="obsolete">Ignorer la casse</translation>
     </message>
     <message>
         <source>punctation</source>
-        <translation>ponctuation</translation>
+        <translation type="obsolete">ponctuation</translation>
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation>Import LaTeX</translation>
+        <translation type="obsolete">Import LaTeX</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -5895,6 +5903,22 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <source>Finished generation</source>
         <translation>Génération terminée</translation>
+    </message>
+    <message>
+        <source>First Order Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Input</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7120,7 +7144,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>&lt;current file&gt;</source>
-        <translation>&lt;fichier courant&gt;</translation>
+        <translation type="obsolete">&lt;fichier courant&gt;</translation>
     </message>
     <message>
         <source>Labels:</source>
@@ -7166,7 +7190,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Log File not found !</source>
-        <translation>Fichier log introuvable !</translation>
+        <translation type="obsolete">Fichier log introuvable !</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -8221,6 +8245,18 @@ included document in %1</source>
         <source>Create Label</source>
         <translation>Créer un label</translation>
     </message>
+    <message>
+        <source>&lt;Current File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No open project or tex file to clean.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -8399,7 +8435,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Détermine si le document entier, seulement un chapitre ou une sélection sont analysés.</translation>
+        <translation type="obsolete">Détermine si le document entier, seulement un chapitre ou une sélection sont analysés.</translation>
     </message>
     <message>
         <source>Whole document</source>
@@ -8422,28 +8458,47 @@ Sinon la ponctuation est ignorée.</translation>
         <source>Count relative</source>
         <translation>Décompte relatif</translation>
     </message>
+    <message>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThesaurusDialog</name>
     <message>
         <source>replace</source>
-        <translation>Remplacer</translation>
+        <translation type="obsolete">Remplacer</translation>
     </message>
     <message>
         <source>lookup</source>
-        <translation>Chercher</translation>
+        <translation type="obsolete">Chercher</translation>
     </message>
     <message>
         <source>starts with ...</source>
-        <translation>Préfixe...</translation>
+        <translation type="obsolete">Préfixe...</translation>
     </message>
     <message>
         <source>contains ...</source>
-        <translation>Contient...</translation>
+        <translation type="obsolete">Contient...</translation>
     </message>
     <message>
         <source>cancel</source>
-        <translation>Abandon</translation>
+        <translation type="obsolete">Abandon</translation>
     </message>
     <message>
         <source>Thesaurus</source>
@@ -8455,11 +8510,11 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>add own word</source>
-        <translation>ajouter un mot personnel</translation>
+        <translation type="obsolete">ajouter un mot personnel</translation>
     </message>
     <message>
         <source>remove own word</source>
-        <translation>supprimer un mot personnel</translation>
+        <translation type="obsolete">supprimer un mot personnel</translation>
     </message>
     <message>
         <source>New Word:</source>
@@ -8472,6 +8527,34 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
         <translation>Voulez-vous ajouter « %1 » comme synonyme de « %2 » ou de « %3 » ?</translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished">Remplacer</translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts With ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contains ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Own Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Own Word</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -111,7 +111,7 @@
     <name>BibTeXDialog</name>
     <message>
         <source>&lt;new file&gt;</source>
-        <translation>&lt;nový soubor&gt;</translation>
+        <translation type="obsolete">&lt;nový soubor&gt;</translation>
     </message>
     <message>
         <source>New BibTeX Entry</source>
@@ -281,6 +281,10 @@
         <source>New BibLaTeX Entry</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;New File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuildManager</name>
@@ -310,7 +314,7 @@
     </message>
     <message>
         <source>Quickbuild</source>
-        <translation>Rychlý překlad</translation>
+        <translation type="obsolete">Rychlý překlad</translation>
     </message>
     <message>
         <source>Default Compiler</source>
@@ -393,91 +397,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>compile &amp; view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postscipt chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVI chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PDF chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVI-PDF-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVI-PS-PDF-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>asy-DVI-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>asy-PDF-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use pdflatex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use latex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use xelatex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use lualatex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use latexmk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use PDF viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use DVI viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use postscript viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use internal PDF viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use external PDF viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>PDF Viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use bibtex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use bibtex8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use biber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -521,10 +441,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use internal PDF viewer embedded in TeXstudio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Default Index Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -542,6 +458,54 @@
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile &amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build &amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PdfLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <translation type="unfinished">LaTeX</translation>
+    </message>
+    <message>
+        <source>XeLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LuaLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Windowed)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Embedded)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <translation type="unfinished">BibTeX</translation>
+    </message>
+    <message>
+        <source>BibTeX 8-Bit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Biber</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3171,10 +3135,6 @@ Chybí volby \includegraphics.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Caption for display next to the image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3233,6 +3193,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>as Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3419,6 +3383,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Go to PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Definition</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5477,7 +5445,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>First order word</source>
-        <translation>Slovo prvního řádu</translation>
+        <translation type="obsolete">Slovo prvního řádu</translation>
     </message>
     <message>
         <source>Second Order Words</source>
@@ -5517,15 +5485,15 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>ignore case</source>
-        <translation>Nevšímat si velikosti písmen</translation>
+        <translation type="obsolete">Nevšímat si velikosti písmen</translation>
     </message>
     <message>
         <source>punctation</source>
-        <translation>Tečkování</translation>
+        <translation type="obsolete">Tečkování</translation>
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation>LaTeXový vstup</translation>
+        <translation type="obsolete">LaTeXový vstup</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -5538,6 +5506,22 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <source>Finished generation</source>
         <translation>Vytvoření dokončeno</translation>
+    </message>
+    <message>
+        <source>First Order Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Input</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5842,6 +5826,18 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Ignored Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpellerUtility</name>
+    <message>
+        <source>Missing .aff file:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dictionary does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6304,7 +6300,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Log File not found !</source>
-        <translation>Soubor se zápisem nebyl nalezen!</translation>
+        <translation type="obsolete">Soubor se zápisem nebyl nalezen!</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -6826,7 +6822,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>&lt;current file&gt;</source>
-        <translation>&lt;nynější soubor&gt;</translation>
+        <translation type="obsolete">&lt;nynější soubor&gt;</translation>
     </message>
     <message>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
@@ -7376,19 +7372,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
         <translation>Neznámý vnitřní příkaz: %1</translation>
     </message>
     <message>
-        <source>&amp;Quick</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Compile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View &amp;Dvi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;PS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7769,6 +7753,38 @@ Do you want to keep the program running? This may cause data corruption.</source
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Build &amp;&amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View &amp;DVI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No dictionary available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;Current File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No open project or tex file to clean.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create Label</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -7916,7 +7932,7 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Udává, zda se má rozebrat celý dokument, pouze výběr nebo pouze určitá kapitola.</translation>
+        <translation type="obsolete">Udává, zda se má rozebrat celý dokument, pouze výběr nebo pouze určitá kapitola.</translation>
     </message>
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
@@ -7970,28 +7986,47 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
 Když je vybrán nejmenší a největší počet, vezme se přesně tolik slov. (při 2 ve větě výše: &quot;Ovládání na&quot;, &quot;na tomto&quot;, &quot;tomto řádku&quot;,...)
 Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i slova na začátku (tedy &quot;Ovládání&quot;, &quot;IOvládání na&quot;, ...)</translation>
     </message>
+    <message>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThesaurusDialog</name>
     <message>
         <source>replace</source>
-        <translation>Nahradit</translation>
+        <translation type="obsolete">Nahradit</translation>
     </message>
     <message>
         <source>lookup</source>
-        <translation>Vyhledat</translation>
+        <translation type="obsolete">Vyhledat</translation>
     </message>
     <message>
         <source>starts with ...</source>
-        <translation>Začíná na...</translation>
+        <translation type="obsolete">Začíná na...</translation>
     </message>
     <message>
         <source>contains ...</source>
-        <translation>Obsahuje...</translation>
+        <translation type="obsolete">Obsahuje...</translation>
     </message>
     <message>
         <source>cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <source>Thesaurus</source>
@@ -8003,11 +8038,11 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>add own word</source>
-        <translation>Přidat vlastní slovo</translation>
+        <translation type="obsolete">Přidat vlastní slovo</translation>
     </message>
     <message>
         <source>remove own word</source>
-        <translation>Odstranit vlastní slovo</translation>
+        <translation type="obsolete">Odstranit vlastní slovo</translation>
     </message>
     <message>
         <source>New Word:</source>
@@ -8019,6 +8054,34 @@ Když je vybrán pouze největší počet, vezmou se jako jednotlivá věta i sl
     </message>
     <message>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished">Nahradit</translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts With ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contains ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Zrušit</translation>
+    </message>
+    <message>
+        <source>Add Own Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Own Word</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
