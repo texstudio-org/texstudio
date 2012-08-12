@@ -133,7 +133,7 @@ void LatexStyleParser::addFile(QString filename){
 QStringList LatexStyleParser::readPackage(QString fn){
     QFile data(fn);
     QStringList results;
-    if(data.open(QFile::ReadOnly)){
+    if(data.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream stream(&data);
         QString line;
         QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
