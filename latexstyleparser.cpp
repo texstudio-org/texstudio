@@ -100,7 +100,8 @@ void LatexStyleParser::run(){
 			QString fn=findResourceFile("completion/"+elem+".cwl",false,QStringList(baseDir));
 			if(fn.isEmpty()){
 				elem=kpsewhich(elem+".sty");
-				addFile(elem);
+                if(!elem.isEmpty())
+                    addFile(elem);
 			}
 		}
 		
@@ -151,6 +152,8 @@ QStringList LatexStyleParser::readPackage(QString fn){
         while(!stream.atEnd()) {
             line = stream.readLine();
             line = LatexParser::cutComment(line);
+            if(line.startsWith("\\endinput"))
+                break;
             int options=0;
             if(inReq){
                 int col=line.indexOf('}');
@@ -233,7 +236,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
             if(rxInput.indexIn(line)>-1){
                 QString name=rxInput.cap(1);
                 name=kpsewhich(name);
-                if(name!=fn) // avoid indefinite loops
+                if(!name.isEmpty() && name!=fn) // avoid indefinite loops
                     results << readPackage(name);
                 continue;
             }
