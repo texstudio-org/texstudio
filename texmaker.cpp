@@ -4432,7 +4432,7 @@ void Texmaker::CleanAll() {
 	if (cleanDlg->checkClean(documents)) {
 		cleanDlg->exec();
 	} else {
-		txsInformation("No open project or tex file to clean.");
+        txsInformation(tr("No open project or tex file to clean."));
 	}
 }
 
