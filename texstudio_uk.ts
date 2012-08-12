@@ -99,7 +99,7 @@
     <name>BibTeXDialog</name>
     <message>
         <source>&lt;new file&gt;</source>
-        <translation>&lt;новий файл&gt;</translation>
+        <translation type="obsolete">&lt;новий файл&gt;</translation>
     </message>
     <message>
         <source>New BibTeX Entry</source>
@@ -269,6 +269,10 @@
         <source>New BibLaTeX Entry</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;New File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuildManager</name>
@@ -291,10 +295,6 @@
     <message>
         <source>User : (% : filename without extension)</source>
         <translation type="obsolete">Команда користувача: (%: ім&apos;я файла без розширення)</translation>
-    </message>
-    <message>
-        <source>Quickbuild</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Default Compiler</source>
@@ -333,91 +333,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>compile &amp; view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postscipt chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVI chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PDF chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVI-PDF-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DVI-PS-PDF-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>asy-DVI-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>asy-PDF-chain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use pdflatex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use latex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use xelatex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use lualatex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use latexmk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use PDF viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use DVI viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use postscript viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use internal PDF viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use external PDF viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>PDF Viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use bibtex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use bibtex8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use biber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -461,10 +377,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use internal PDF viewer embedded in TeXstudio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Default Index Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -482,6 +394,54 @@
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile &amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build &amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PdfLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <translation type="unfinished">LaTeX</translation>
+    </message>
+    <message>
+        <source>XeLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LuaLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Windowed)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Embedded)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <translation type="unfinished">BibTeX</translation>
+    </message>
+    <message>
+        <source>BibTeX 8-Bit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Biber</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2568,10 +2528,6 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Caption for display next to the image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2630,6 +2586,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>as Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2812,6 +2772,10 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Go to PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to Definition</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4796,7 +4760,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>First order word</source>
-        <translation>Слово першого рівня</translation>
+        <translation type="obsolete">Слово першого рівня</translation>
     </message>
     <message>
         <source>Second Order Words</source>
@@ -4835,18 +4799,6 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>Символи третього рівня</translation>
     </message>
     <message>
-        <source>ignore case</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>punctation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>LaTeX input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save to:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4856,6 +4808,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <source>Finished generation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First Order Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Input</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5133,6 +5101,18 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Ignored Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpellerUtility</name>
+    <message>
+        <source>Missing .aff file:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dictionary does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5543,7 +5523,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Log File not found !</source>
-        <translation>Log файл не знайдено!</translation>
+        <translation type="obsolete">Log файл не знайдено!</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -5825,7 +5805,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <source>&lt;current file&gt;</source>
-        <translation>&lt;поточний файл&gt;</translation>
+        <translation type="obsolete">&lt;поточний файл&gt;</translation>
     </message>
     <message>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
@@ -6520,19 +6500,7 @@ Do you trust this document?</source>
         <translation type="unfinished">&amp;Користувач</translation>
     </message>
     <message>
-        <source>&amp;Quick</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Compile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>View &amp;Dvi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;PS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6899,6 +6867,38 @@ Do you want to keep the program running? This may cause data corruption.</source
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Build &amp;&amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View &amp;DVI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No dictionary available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;Current File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No open project or tex file to clean.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create Label</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6936,7 +6936,7 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Вказує, що має аналізуватись -- весь документ, лише виділення, чи тільки певні розділи.</translation>
+        <translation type="obsolete">Вказує, що має аналізуватись -- весь документ, лише виділення, чи тільки певні розділи.</translation>
     </message>
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
@@ -7100,28 +7100,47 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <source>Count relative</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThesaurusDialog</name>
     <message>
         <source>replace</source>
-        <translation>Замінити</translation>
+        <translation type="obsolete">Замінити</translation>
     </message>
     <message>
         <source>lookup</source>
-        <translation>Знайти</translation>
+        <translation type="obsolete">Знайти</translation>
     </message>
     <message>
         <source>starts with ...</source>
-        <translation>Починається з...</translation>
+        <translation type="obsolete">Починається з...</translation>
     </message>
     <message>
         <source>contains ...</source>
-        <translation>Містить...</translation>
+        <translation type="obsolete">Містить...</translation>
     </message>
     <message>
         <source>cancel</source>
-        <translation>Відміна</translation>
+        <translation type="obsolete">Відміна</translation>
     </message>
     <message>
         <source>Thesaurus</source>
@@ -7130,14 +7149,6 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <source>&lt;all&gt;</source>
         <translation>&lt;все&gt;</translation>
-    </message>
-    <message>
-        <source>add own word</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>remove own word</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New Word:</source>
@@ -7149,6 +7160,34 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished">Замінити</translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts With ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contains ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Відміна</translation>
+    </message>
+    <message>
+        <source>Add Own Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Own Word</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

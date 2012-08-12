@@ -163,7 +163,7 @@
     </message>
     <message>
         <source>&lt;new file&gt;</source>
-        <translation>&lt;új fájl&gt;</translation>
+        <translation type="obsolete">&lt;új fájl&gt;</translation>
     </message>
     <message>
         <source>Insert in File:</source>
@@ -253,6 +253,10 @@
         <source>New BibLaTeX Entry</source>
         <translation>Új BibLaTeX bejegyzés</translation>
     </message>
+    <message>
+        <source>&lt;New File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuildManager</name>
@@ -262,7 +266,7 @@
     </message>
     <message>
         <source>Quickbuild</source>
-        <translation>Gyorsfordítás</translation>
+        <translation type="obsolete">Gyorsfordítás</translation>
     </message>
     <message>
         <source>Default Compiler</source>
@@ -303,75 +307,75 @@ támogatott</translation>
     </message>
     <message>
         <source>compile &amp; view</source>
-        <translation>fordítás és megjelenítés</translation>
+        <translation type="obsolete">fordítás és megjelenítés</translation>
     </message>
     <message>
         <source>Postscipt chain</source>
-        <translation>Postscipt lánc</translation>
+        <translation type="obsolete">Postscipt lánc</translation>
     </message>
     <message>
         <source>DVI chain</source>
-        <translation>DVI lánc</translation>
+        <translation type="obsolete">DVI lánc</translation>
     </message>
     <message>
         <source>PDF chain</source>
-        <translation>PDF lánc</translation>
+        <translation type="obsolete">PDF lánc</translation>
     </message>
     <message>
         <source>DVI-PDF-chain</source>
-        <translation>DVI-PDF lánc</translation>
+        <translation type="obsolete">DVI-PDF lánc</translation>
     </message>
     <message>
         <source>DVI-PS-PDF-chain</source>
-        <translation>DVI-PS-PDF lánc</translation>
+        <translation type="obsolete">DVI-PS-PDF lánc</translation>
     </message>
     <message>
         <source>asy-DVI-chain</source>
-        <translation>asy-DVI lánc</translation>
+        <translation type="obsolete">asy-DVI lánc</translation>
     </message>
     <message>
         <source>asy-PDF-chain</source>
-        <translation>asy-PDF lánc</translation>
+        <translation type="obsolete">asy-PDF lánc</translation>
     </message>
     <message>
         <source>Use pdflatex</source>
-        <translation>pdflatex használata</translation>
+        <translation type="obsolete">pdflatex használata</translation>
     </message>
     <message>
         <source>Use latex</source>
-        <translation>latex használata</translation>
+        <translation type="obsolete">latex használata</translation>
     </message>
     <message>
         <source>Use xelatex</source>
-        <translation>xelatex használata</translation>
+        <translation type="obsolete">xelatex használata</translation>
     </message>
     <message>
         <source>Use lualatex</source>
-        <translation>lualatex használata</translation>
+        <translation type="obsolete">lualatex használata</translation>
     </message>
     <message>
         <source>Use latexmk</source>
-        <translation>latexmk használata</translation>
+        <translation type="obsolete">latexmk használata</translation>
     </message>
     <message>
         <source>Use PDF viewer</source>
-        <translation>PDF megjelenítő használata</translation>
+        <translation type="obsolete">PDF megjelenítő használata</translation>
     </message>
     <message>
         <source>Use DVI viewer</source>
-        <translation>DVI megjelenítő használata</translation>
+        <translation type="obsolete">DVI megjelenítő használata</translation>
     </message>
     <message>
         <source>Use postscript viewer</source>
-        <translation>Postsrcip megjelenítő használata</translation>
+        <translation type="obsolete">Postsrcip megjelenítő használata</translation>
     </message>
     <message>
         <source>Use internal PDF viewer</source>
-        <translation>Belső PDF megjelenítő használata</translation>
+        <translation type="obsolete">Belső PDF megjelenítő használata</translation>
     </message>
     <message>
         <source>Use external PDF viewer</source>
-        <translation>Külső PDF megjelenítő használata</translation>
+        <translation type="obsolete">Külső PDF megjelenítő használata</translation>
     </message>
     <message>
         <source>PDF Viewer</source>
@@ -379,15 +383,15 @@ támogatott</translation>
     </message>
     <message>
         <source>Use bibtex</source>
-        <translation>bibtex használata</translation>
+        <translation type="obsolete">bibtex használata</translation>
     </message>
     <message>
         <source>Use bibtex8</source>
-        <translation>bibtex8 használata</translation>
+        <translation type="obsolete">bibtex8 használata</translation>
     </message>
     <message>
         <source>Use biber</source>
-        <translation>biber használata</translation>
+        <translation type="obsolete">biber használata</translation>
     </message>
     <message>
         <source>PS Chain</source>
@@ -447,11 +451,59 @@ támogatott</translation>
     </message>
     <message>
         <source>Use internal PDF viewer embedded in TeXstudio</source>
-        <translation>A TeXstudioba épített belső PDF néző használata</translation>
+        <translation type="obsolete">A TeXstudioba épített belső PDF néző használata</translation>
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>A parancs végrehajtása a(z) %1 szintig jutott. Akarja folytatni &quot;%2&quot;-ig?</translation>
+    </message>
+    <message>
+        <source>Compile &amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Build &amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PdfLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XeLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LuaLaTeX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Latexmk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Windowed)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer (Embedded)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX</source>
+        <translation type="unfinished">BibTeX</translation>
+    </message>
+    <message>
+        <source>BibTeX 8-Bit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Biber</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2391,7 +2443,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation>Címkehivatkozás azonosítója, például \ref{thisLabel}</translation>
+        <translation type="obsolete">Címkehivatkozás azonosítója, például \ref{thisLabel}</translation>
     </message>
     <message>
         <source>Caption for display next to the image</source>
@@ -2462,6 +2514,10 @@ Invalid \caption command.</source>
     <message>
         <source>as Default</source>
         <translation>alapértelmezett</translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2632,6 +2688,10 @@ Invalid \caption command.</source>
     <message>
         <source>Go to PDF</source>
         <translation>Ugrás a PDF-re</translation>
+    </message>
+    <message>
+        <source>Go to Definition</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4584,7 +4644,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
     </message>
     <message>
         <source>First order word</source>
-        <translation>Elsőrendű szó</translation>
+        <translation type="obsolete">Elsőrendű szó</translation>
     </message>
     <message>
         <source>Second Order Words</source>
@@ -4646,16 +4706,16 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
     </message>
     <message>
         <source>ignore case</source>
-        <translation>Eset mellőzése</translation>
+        <translation type="obsolete">Eset mellőzése</translation>
     </message>
     <message>
         <source>punctation</source>
         <translatorcomment>???</translatorcomment>
-        <translation>pontozás</translation>
+        <translation type="obsolete">pontozás</translation>
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation>LaTeX bemenet</translation>
+        <translation type="obsolete">LaTeX bemenet</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -4668,6 +4728,22 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
     <message>
         <source>Finished generation</source>
         <translation>A létrehozás befejeződött</translation>
+    </message>
+    <message>
+        <source>First Order Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore Case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Punctation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LaTeX Input</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4934,10 +5010,19 @@ Megbízik a parancsfájlban?</translation>
 %1
 
 Missing .aff file. This dictionary will not be loaded.</source>
-        <translation>Törött szótár:
+        <translation type="obsolete">Törött szótár:
 %1
 
 Hiányzó .aff fájl. A szótárt így nem lehet betölteni.</translation>
+    </message>
+    <message>
+        <source>Missing .aff file:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dictionary does not exist.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5755,7 +5840,7 @@ Hiányzó .aff fájl. A szótárt így nem lehet betölteni.</translation>
     </message>
     <message>
         <source>&lt;current file&gt;</source>
-        <translation>&lt;jelenlegi fájl&gt;</translation>
+        <translation type="obsolete">&lt;jelenlegi fájl&gt;</translation>
     </message>
     <message>
         <source>Labels:</source>
@@ -5785,7 +5870,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
         <source>Log File not found !</source>
-        <translation>A naplófájl nem található!</translation>
+        <translation type="obsolete">A naplófájl nem található!</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -6205,7 +6290,7 @@ Megbízik a leírásban?</translation>
     </message>
     <message>
         <source>&amp;Quick</source>
-        <translation>&amp;Gyors</translation>
+        <translation type="obsolete">&amp;Gyors</translation>
     </message>
     <message>
         <source>&amp;Compile</source>
@@ -6213,11 +6298,11 @@ Megbízik a leírásban?</translation>
     </message>
     <message>
         <source>View &amp;Dvi</source>
-        <translation>&amp;Dvi megjelenítése</translation>
+        <translation type="obsolete">&amp;Dvi megjelenítése</translation>
     </message>
     <message>
         <source>Dvi-&gt;PS</source>
-        <translation>Dvi-&gt;PS</translation>
+        <translation type="obsolete">Dvi-&gt;PS</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
@@ -6591,6 +6676,38 @@ included document in %1</source>
         <source>Long-range Word Repetition</source>
         <translation>Távoli szóismétlés</translation>
     </message>
+    <message>
+        <source>&amp;Build &amp;&amp; View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVI-&gt;PS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View &amp;DVI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No dictionary available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;Current File&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No open project or tex file to clean.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create Label</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -6769,7 +6886,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Meghatározza, hogy az egész dokumentum, a kijelölés vagy az egész fejezet legyen-e elemezve.</translation>
+        <translation type="obsolete">Meghatározza, hogy az egész dokumentum, a kijelölés vagy az egész fejezet legyen-e elemezve.</translation>
     </message>
     <message>
         <source>Whole document</source>
@@ -6792,28 +6909,47 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <source>Count relative</source>
         <translation>Relatív mennyiség</translation>
     </message>
+    <message>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThesaurusDialog</name>
     <message>
         <source>replace</source>
-        <translation>Csere</translation>
+        <translation type="obsolete">Csere</translation>
     </message>
     <message>
         <source>lookup</source>
-        <translation>Kikeresés</translation>
+        <translation type="obsolete">Kikeresés</translation>
     </message>
     <message>
         <source>starts with ...</source>
-        <translation>Ezzel kezdődik...</translation>
+        <translation type="obsolete">Ezzel kezdődik...</translation>
     </message>
     <message>
         <source>contains ...</source>
-        <translation>Tartalmazza...</translation>
+        <translation type="obsolete">Tartalmazza...</translation>
     </message>
     <message>
         <source>cancel</source>
-        <translation>Mégsem</translation>
+        <translation type="obsolete">Mégsem</translation>
     </message>
     <message>
         <source>Thesaurus</source>
@@ -6825,11 +6961,11 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <source>add own word</source>
-        <translation>saját szó hozzáadása</translation>
+        <translation type="obsolete">saját szó hozzáadása</translation>
     </message>
     <message>
         <source>remove own word</source>
-        <translation>saját szó eltávolítása</translation>
+        <translation type="obsolete">saját szó eltávolítása</translation>
     </message>
     <message>
         <source>New Word:</source>
@@ -6842,6 +6978,34 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
         <translation>Hozzá akarja adni &quot;%1&quot;-et, mint &quot;%2&quot; vagy &quot;%3 szinonímáját?</translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished">Csere</translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts With ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contains ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Mégsem</translation>
+    </message>
+    <message>
+        <source>Add Own Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Own Word</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
