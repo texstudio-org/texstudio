@@ -111,7 +111,7 @@
     <name>BibTeXDialog</name>
     <message>
         <source>&lt;new file&gt;</source>
-        <translation>&lt;neue Datei&gt;</translation>
+        <translation type="obsolete">&lt;neue Datei&gt;</translation>
     </message>
     <message>
         <source>New BibTeX Entry</source>
@@ -280,6 +280,10 @@
     <message>
         <source>New BibLaTeX Entry</source>
         <translation>Neuer BibLaTeX Eintrag</translation>
+    </message>
+    <message>
+        <source>&lt;New File&gt;</source>
+        <translation>&lt;Neue Datei&gt;</translation>
     </message>
 </context>
 <context>
@@ -3305,7 +3309,7 @@ Fehlende Parameter für \includegraphics.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation>Referenz, die für Querverweise verwendet wird; z.B. \ref{thisLabel}</translation>
+        <translation type="obsolete">Referenz, die für Querverweise verwendet wird; z.B. \ref{thisLabel}</translation>
     </message>
     <message>
         <source>Caption for display next to the image</source>
@@ -3380,6 +3384,10 @@ Fehlender \caption Kommando.</translation>
     <message>
         <source>as Default</source>
         <translation>als Vorgabe</translation>
+    </message>
+    <message>
+        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
+        <translation>Referenz, die für Querverweise verwendet wird; z.B. \ref{thisLabel}</translation>
     </message>
 </context>
 <context>
@@ -5653,7 +5661,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     </message>
     <message>
         <source>First order word</source>
-        <translation>Wort erster Ordnung</translation>
+        <translation type="obsolete">Wort erster Ordnung</translation>
     </message>
     <message>
         <source>Second Order Words</source>
@@ -5693,15 +5701,15 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     </message>
     <message>
         <source>ignore case</source>
-        <translation>Ignoriere Groß-/Kleinschreibung</translation>
+        <translation type="obsolete">Ignoriere Groß-/Kleinschreibung</translation>
     </message>
     <message>
         <source>punctation</source>
-        <translation>Interpunktion</translation>
+        <translation type="obsolete">Interpunktion</translation>
     </message>
     <message>
         <source>LaTeX input</source>
-        <translation>LaTeX input</translation>
+        <translation type="obsolete">LaTeX input</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -5714,6 +5722,22 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <source>Finished generation</source>
         <translation>Erzeugung abgeschlossen</translation>
+    </message>
+    <message>
+        <source>First Order Word</source>
+        <translation>Wort erster Ordnung</translation>
+    </message>
+    <message>
+        <source>Ignore Case</source>
+        <translation>Ignoriere Groß-/Kleinschreibung</translation>
+    </message>
+    <message>
+        <source>Punctation</source>
+        <translation>Interpunktion</translation>
+    </message>
+    <message>
+        <source>LaTeX Input</source>
+        <translation>LaTeX Input</translation>
     </message>
 </context>
 <context>
@@ -6492,7 +6516,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Log File not found !</source>
-        <translation>Logdatei nicht gefunden!</translation>
+        <translation type="obsolete">Logdatei nicht gefunden!</translation>
     </message>
     <message>
         <source>No LaTeX errors detected !</source>
@@ -7014,7 +7038,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>&lt;current file&gt;</source>
-        <translation>&lt;aktuelle Datei&gt;</translation>
+        <translation type="obsolete">&lt;aktuelle Datei&gt;</translation>
     </message>
     <message>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
@@ -8008,6 +8032,18 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
         <source>Create Label</source>
         <translation>Generiere Label</translation>
     </message>
+    <message>
+        <source>&lt;Current File&gt;</source>
+        <translation>&lt;Aktuelle Datei&gt;</translation>
+    </message>
+    <message>
+        <source>No open project or tex file to clean.</source>
+        <translation>Kein geöffnetes Projekt oder Datei zu reinigen.</translation>
+    </message>
+    <message>
+        <source>Log File not found!</source>
+        <translation>Logdatei nicht gefunden!</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -8151,11 +8187,11 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     </message>
     <message>
         <source>Filter</source>
-        <translation>Filter:</translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Gibt an, ob das gesamte Dokument, die Markierung oder nur bestimmte Kapitel analysiert werden sollen</translation>
+        <translation type="obsolete">Gibt an, ob das gesamte Dokument, die Markierung oder nur bestimmte Kapitel analysiert werden sollen</translation>
     </message>
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
@@ -8184,7 +8220,7 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <source>If this is enabled, words/phrases in the comments are counted.</source>
-        <translation>Ist dies aktiviert, werden Worte/Phrasen in Kommentaren gezählt</translation>
+        <translation>Ist dies aktiviert, werden Worte/Phrasen in Kommentaren gezählt.</translation>
     </message>
     <message>
         <source>If &quot;show all&quot; is selected, all phrases are shown.
@@ -8201,28 +8237,51 @@ If minimum and maximum are selected, exactly so many words are taken. (e.g. with
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
         <translation>In dieser Zeile wird eingestellt wieviele aufeinander folgende Worte zu einer Phrase gezählt werden.Ist minimal und maximal ausgewählt, werden genau soviele Worte genommen. (bei 2 im Satz zuvor: &quot;In dieser&quot;, &quot;dieser Zeile&quot;, &quot;Zeile wird&quot;...)Ist nur maximal ausgewählt, werden Worte am Satzanfang als Einzelphrase verwendet (also &quot;In&quot;, &quot;In dieser&quot;, ...)</translation>
     </message>
+    <message>
+        <source>Possible Options:
+&quot;Show all&quot;: All phrases are shown.
+&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
+&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
+&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
+&quot;Completely ignore&quot;: Shorter words are completely ignored.
+(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
+If not, end characters are ignored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Determines if the whole document, only the selection, or only a certain chapter are analysed.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThesaurusDialog</name>
     <message>
         <source>replace</source>
-        <translation>Ersetze</translation>
+        <translation type="obsolete">Ersetze</translation>
     </message>
     <message>
         <source>lookup</source>
-        <translation>Nachschlagen</translation>
+        <translation type="obsolete">Nachschlagen</translation>
     </message>
     <message>
         <source>starts with ...</source>
-        <translation>Beginnt mit ...</translation>
+        <translation type="obsolete">Beginnt mit ...</translation>
     </message>
     <message>
         <source>contains ...</source>
-        <translation>Enthält ...</translation>
+        <translation type="obsolete">Enthält ...</translation>
     </message>
     <message>
         <source>cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="obsolete">Abbrechen</translation>
     </message>
     <message>
         <source>Thesaurus</source>
@@ -8234,11 +8293,11 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     </message>
     <message>
         <source>add own word</source>
-        <translation>füge eigenes Wort hinzu</translation>
+        <translation type="obsolete">füge eigenes Wort hinzu</translation>
     </message>
     <message>
         <source>remove own word</source>
-        <translation>entferne eigenes Wort</translation>
+        <translation type="obsolete">entferne eigenes Wort</translation>
     </message>
     <message>
         <source>New Word:</source>
@@ -8251,6 +8310,34 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
         <translation>Soll &quot;%1 als Synonym für &quot;%2&quot; oder &quot;%3&quot; hinzugefügt werden?</translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation>Ersetzen</translation>
+    </message>
+    <message>
+        <source>Lookup</source>
+        <translation>Nachschlagen</translation>
+    </message>
+    <message>
+        <source>Starts With ...</source>
+        <translation>Beginnt mit ...</translation>
+    </message>
+    <message>
+        <source>Contains ...</source>
+        <translation>Enthält ...</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Add Own Word</source>
+        <translation>Füge eigenes Wort hinzu</translation>
+    </message>
+    <message>
+        <source>Remove Own Word</source>
+        <translation>Entferne eigenes Wort</translation>
     </message>
 </context>
 <context>
