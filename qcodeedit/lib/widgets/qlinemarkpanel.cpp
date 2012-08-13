@@ -202,7 +202,7 @@ void QLineMarkPanel::mousePressEvent(QMouseEvent *e)
 */
 void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 {
-	if ( !editor() || !editor()->document() || !editor()->languageDefinition() )
+	if ( !editor() || !editor()->document() || !editor()->languageDefinition() || e->button()!= Qt::LeftButton)
 	{
 		QPanel::mouseReleaseEvent(e);
 		return;
@@ -216,7 +216,7 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 	QDocumentLine l;
 	QLanguageDefinition *d = editor()->languageDefinition();
 	const int id = QLineMarksInfoCenter::instance()->markTypeId(d->defaultLineMark());
-
+	qDebug() << id << d->defaultLineMark();
 	if ( id < 0 )
 		return;
 
