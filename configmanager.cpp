@@ -467,6 +467,16 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 
+	//Paths
+#ifdef Q_WS_MACX
+	QString defaultSearchPaths = "/usr/local/texlive/2012/bin/x86_64-darwin"; //workaround for xelatex
+#else
+	QString defaultSearchPaths;
+#endif
+	registerOption("Tools/Search Paths", &BuildManager::additionalSearchPaths, defaultSearchPaths, &pseudoDialog->lineEditPathCommands);
+	registerOption("Tools/Log Paths", &BuildManager::additionalLogPaths, "", &pseudoDialog->lineEditPathLog);
+	registerOption("Tools/PDF Paths", &BuildManager::additionalPdfPaths, "", &pseudoDialog->lineEditPathPDF);
+	
 	//SVN
 	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
 	registerOption("Tools/SVN Undo", &svnUndo, false, &pseudoDialog->cbSVNUndo);

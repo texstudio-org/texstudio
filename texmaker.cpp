@@ -4247,7 +4247,9 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		oldPDFs << doc;
 	}
 	
-	QString pdfFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
+	QString pdfDefFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
+	QString pdfFile = buildManager.findFile(pdfDefFile, buildManager.additionalPdfPaths);
+	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
 	foreach (PDFDocument* viewer, oldPDFs) {
 		viewer->loadFile(pdfFile, master);
@@ -4526,10 +4528,9 @@ void Texmaker::ViewLog(bool noTabChange) {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
 		return;
 	}
-	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");
-	QString line;
+	QString logname=buildManager.findFile(getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log"), buildManager.additionalLogPaths);
 	QFileInfo fic(logname);
-	if (fic.exists() && fic.isReadable()) {
+	if (!logname.isEmpty() && fic.exists() && fic.isReadable()) {
 		//OutputLogTextEdit->insertLine("LOG FILE :");
 		outputView->loadLogFile(logname,documents.getTemporaryCompileFileName());
 		//display errors in editor
