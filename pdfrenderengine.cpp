@@ -39,6 +39,16 @@ void PDFRenderEngine::setDocument(Poppler::Document *doc){
 
 
 void PDFRenderEngine::run(){
+#if defined(__MINGW32__)
+	// Workaround for QTBUG-19886
+	asm volatile ("mov %esp, %eax");
+	asm volatile ("and $0xf, %eax");
+	asm volatile ("je alignmentok");
+	asm volatile ("push %eax");
+	asm volatile ("push %eax");
+	asm volatile ("alignmentok:");
+#endif
+
 	forever {
 		bool priorityThread=queue->mPriorityLock.tryLock();
 		RenderCommand command(-1);
@@ -97,9 +107,15 @@ void PDFRenderEngine::run(){
 			Poppler::Page *page=document->page(command.pageNr);
 			if(page){
 				QImage image=page->renderToImage(command.xres, command.yres,
-				                                 command.x, command.y, command.w, command.h,command.rotate);
-				
+												 command.x, command.y, command.w, command.h,command.rotate);
+				qDebug() << image.isDetached();
+				uchar *data = image.bits();
+				qDebug() << data << image.bits() << image.isDetached();
+				//image = QImage(data, image.width(), image.height(), image.format());
+
+				qDebug() << data << image.bits();
 				QSizeF pageSize = page->pageSizeF();
+
 				QPainter p(&image);
 				p.setPen(Qt::blue);
 				p.scale(command.xres * pageSize.width() / 72.0, command.yres * pageSize.height() / 72.0);
