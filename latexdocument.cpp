@@ -1524,7 +1524,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 			elem->recheckRefsLabels();
 		}
 		int row=documents.indexOf(document);
-        qDebug()<<document->getFileName()<<row;
+        //qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
 		if(model->getSingleDocMode()){
 			row=0;

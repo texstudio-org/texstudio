@@ -1648,7 +1648,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 				              (lineString.contains("$$")) ||
 				              (lineString.contains("\\[")) ||
 				              (lineString.contains("\\]"))) {
-					qDebug() << lineString;
+                    //qDebug() << lineString;
 					break;
 				}
 			} while (lineCursor.movePosition(1, QDocumentCursor::Up, QDocumentCursor::MoveAnchor));
@@ -1664,7 +1664,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 				              (lineString.contains("$$")) ||
 				              (lineString.contains("\\[")) ||
 				              (lineString.contains("\\]"))) {
-					qDebug() << lineString;
+                    //qDebug() << lineString;
 					break;
 				}
 			} while (lineCursor.movePosition(1, QDocumentCursor::Down, QDocumentCursor::MoveAnchor));
