@@ -78,7 +78,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 				diffOperation.type=DiffOp::Replace;
 				diffOperation.text=splitListInsert.takeFirst();
 				diffOperation.dlh=doc2->line(lineNr2).handle();
-				qDebug()<<doc->line(lineNr).text()<<" <-> "<< diffOperation.dlh->text();
+                //qDebug()<<doc->line(lineNr).text()<<" <-> "<< diffOperation.dlh->text();
 				if(splitList.isEmpty()){
 					diffOperation.text+="\n"+splitListInsert.join("\n");
 					lineNr2+=splitListInsert.size();
@@ -104,7 +104,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 					}else{
 						diffOperation.text=splitListInsert.takeFirst();
 						diffOperation.dlh=doc2->line(lineNr2).handle();
-						qDebug()<<doc->line(lineNr+j+1).text()<<" <-> "<< diffOperation.dlh->text();
+                        //qDebug()<<doc->line(lineNr+j+1).text()<<" <-> "<< diffOperation.dlh->text();
 						if(splitList.isEmpty() && !splitListInsert.isEmpty()){
 							diffOperation.text+="\n"+splitListInsert.join("\n");
 							lineNr2+=splitListInsert.size();
@@ -176,7 +176,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 			diffOperation.text="";
 			diffOperation.lineWasModified=lineModified;
 			diffOperation.dlh=doc2->line(lineNr2).handle();
-			qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
+            //qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
 			lineData.append(diffOperation);
 			doc->line(lnNr).setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(lineData));
 			//doc->line(lnNr).addOverlay(QFormatRange(col,diff,fid_Insert));
@@ -210,7 +210,7 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 				diffOperation.text="";
 				diffOperation.lineWasModified=lineModified;
 				diffOperation.dlh=doc2->line(lineNr2).handle();
-				qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
+                //qDebug()<<doc->line(lnNr).text()<<" <-> "<< diffOperation.dlh->text();
 				lineData.append(diffOperation);
 				doc->line(lnNr).setCookie(QDocumentLine::DIFF_LIST_COOCKIE,QVariant::fromValue<DiffList>(lineData));
 				//doc->line(lnNr).addOverlay(QFormatRange(0,ln.length(),fid_Insert));

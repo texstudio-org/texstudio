@@ -85,7 +85,7 @@ void LatexStyleParser::run(){
 
                     if(addCommand){
                         appendList<<*texdefIterator;
-                        qDebug()<<td;
+                        //qDebug()<<td;
                     }
                 }
             }

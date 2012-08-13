@@ -1028,7 +1028,7 @@ void Texmaker::setupToolBars() {
 		QObject *obj=configManager.menuParent->findChild<QObject*>(id);
 		QAction *act=qobject_cast<QAction*>(obj);
 		if (act && zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-        qDebug() << "Icon:" << id << zw.toString();
+        //qDebug() << "Icon:" << id << zw.toString();
 		++i;
 	}
 	//setup customizable toolbars
@@ -1658,7 +1658,7 @@ void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QLis
 			return;
 		}
 	
-	qDebug() << methodName << signature;
+    qDebug() << methodName << signature;
 	Q_ASSERT(false);
 }
 
@@ -2505,7 +2505,7 @@ void Texmaker::editGotoDefinition(){
 		// value does not work, if cite command contains multiple entries.
 		c.movePosition(1, QDocumentCursor::StartOfWord);
 		c.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
-		qDebug() << c.selectedText();
+        //qDebug() << c.selectedText();
 		currentEditorView()->gotoToBibItem(c.selectedText());
 		break;
 
@@ -4077,7 +4077,7 @@ void Texmaker::createLabelFromAction()
 	}
 	int lineNr=entry->getRealLineNumber();
 
-	qDebug() << entry->level << latexParser.structureCommands[entry->level];
+    //qDebug() << entry->level << latexParser.structureCommands[entry->level];
 
 	// find column position after structure command
 	QString lineText = entry->document->line(lineNr).text();
@@ -5533,7 +5533,7 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 	gotoLine(line);
 	Q_ASSERT(currentEditor());
 	
-	qDebug() << line << guessedWord;
+    //qDebug() << line << guessedWord;
 
 	QString checkLine =currentEditor()->cursor().line().text();
 	int column = checkLine.indexOf(guessedWord);
