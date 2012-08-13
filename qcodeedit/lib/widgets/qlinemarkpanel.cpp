@@ -216,7 +216,6 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 	QDocumentLine l;
 	QLanguageDefinition *d = editor()->languageDefinition();
 	const int id = QLineMarksInfoCenter::instance()->markTypeId(d->defaultLineMark());
-	qDebug() << id << d->defaultLineMark();
 	if ( id < 0 )
 		return;
 
