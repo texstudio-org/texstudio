@@ -347,6 +347,10 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
 
+	connect(ui.pushButtonPathLog, SIGNAL(clicked()), this, SLOT(browsePathLog()));
+	connect(ui.pushButtonPathPdf, SIGNAL(clicked()), this, SLOT(browsePathPdf()));
+	connect(ui.pushButtonPathCommands, SIGNAL(clicked()), this, SLOT(browsePathCommands()));
+	
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
@@ -434,6 +438,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 #if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11))
 	ui.checkBoxUseSystemTheme->setVisible(false);
 #endif
+	
+	ui.scrollAreaPaths->setVisible(false);
 	
 	QRect screen = QApplication::desktop()->screenGeometry();
 	if (!screen.isEmpty()) {
@@ -523,18 +529,26 @@ void ConfigDialog::comboBoxWithPathHighlighted(const QString& newText){
 }
 
 
-bool ConfigDialog::browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath){
+bool ConfigDialog::browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath, bool list){
 	QLineEdit* le = qobject_cast<QLineEdit*>(w);
 	QComboBox* cb = qobject_cast<QComboBox*>(w);
 	REQUIRE_RET(le || cb, false);
-	QString path = le?le->text():cb->currentText();
+	QString oldpath = le?le->text():cb->currentText();
+	QString path = oldpath;
+#ifdef Q_WS_WIN
+	QString pathSep = ";";
+#else
+	QString pathSep = ":";
+#endif
+	if (list && !path.isEmpty()) path = path.split(pathSep).last();
 	if (path.startsWith('"')) path.remove(0,1);
 	if (path.endsWith('"')) path.chop(1);
 	if (path.isEmpty()) path = startPath;
 	if (extension == "/") path = QFileDialog::getExistingDirectory(this, title, path);
 	else path = QFileDialog::getOpenFileName(this,title,path,extension,0,QFileDialog::DontResolveSymlinks);
 	if (!path.isEmpty()) {
-		path.replace(QString("\\"),QString("/"));
+		if (!list) path.replace(QString("\\"),QString("/"));
+		else if (!oldpath.isEmpty()) path = oldpath + pathSep + path;
 		if (le) le->setText(path);
 		if (cb) cb->setEditText(path);
 		return true;
@@ -559,6 +573,16 @@ void ConfigDialog::browseGrammarLTJavaPath(){
 void ConfigDialog::browseDictDir() {
 	browse(ui.leDictDir, tr("Select dictionary directory"), "/");
 }
+void ConfigDialog::browsePathLog(){
+	browse(ui.lineEditPathLog, tr("Select a new path to search for logs."), "/", QDir::currentPath(), true);
+}
+void ConfigDialog::browsePathPdf(){
+	browse(ui.lineEditPathPDF, tr("Select a new path to search for pdf."), "/", QDir::currentPath(), true);
+}
+void ConfigDialog::browsePathCommands(){
+	browse(ui.lineEditPathCommands, tr("Select a new path to search for indirectly called commands."), "/", QDir::rootPath(), true);
+}
+
 void ConfigDialog::dictDirChanged(const QString &newText) {
 	QString lang = ui.comboBoxSpellcheckLang->currentText();
 	ui.comboBoxSpellcheckLang->clear();

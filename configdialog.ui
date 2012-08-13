@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>475</width>
-            <height>517</height>
+            <width>592</width>
+            <height>600</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -743,6 +743,113 @@ prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
             </property>
            </widget>
           </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox">
+            <property name="text">
+             <string>Configure additional search paths:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QScrollArea" name="scrollAreaPaths">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>850</width>
+               <height>137</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="1" column="2">
+               <widget class="QPushButton" name="pushButtonPathLog">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="texstudio.qrc">
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_58">
+                <property name="text">
+                 <string>PDF Viewer</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2" rowspan="4">
+               <widget class="QPushButton" name="pushButtonPathPdf">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="texstudio.qrc">
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_57">
+                <property name="text">
+                 <string>Log file</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="lineEditPathPDF"/>
+              </item>
+              <item row="0" column="1" rowspan="3">
+               <widget class="QLineEdit" name="lineEditPathLog"/>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLineEdit" name="lineEditPathCommands"/>
+              </item>
+              <item row="6" column="2" rowspan="2">
+               <widget class="QPushButton" name="pushButtonPathCommands">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="texstudio.qrc">
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_59">
+                <property name="text">
+                 <string>Commands ($PATH)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1238,8 +1345,8 @@ prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>835</width>
+            <height>626</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2069,8 +2176,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>377</width>
+            <height>528</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3018,12 +3125,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>553</x>
-     <y>40</y>
+     <x>667</x>
+     <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>357</x>
-     <y>66</y>
+     <x>408</x>
+     <y>115</y>
     </hint>
    </hints>
   </connection>
@@ -3034,12 +3141,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>354</x>
-     <y>211</y>
+     <x>409</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
-     <x>508</x>
-     <y>211</y>
+     <x>558</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -3050,12 +3157,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>354</x>
-     <y>211</y>
+     <x>409</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
-     <x>797</x>
-     <y>211</y>
+     <x>823</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -3066,12 +3173,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>354</x>
-     <y>211</y>
+     <x>409</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
-     <x>942</x>
-     <y>211</y>
+     <x>956</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -3082,12 +3189,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>354</x>
-     <y>211</y>
+     <x>409</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1086</x>
-     <y>211</y>
+     <x>1088</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -3098,12 +3205,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>629</x>
-     <y>438</y>
+     <x>871</x>
+     <y>496</y>
     </hint>
     <hint type="destinationlabel">
-     <x>415</x>
-     <y>461</y>
+     <x>657</x>
+     <y>530</y>
     </hint>
    </hints>
   </connection>
@@ -3114,12 +3221,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>747</x>
-     <y>438</y>
+     <x>989</x>
+     <y>496</y>
     </hint>
     <hint type="destinationlabel">
-     <x>415</x>
-     <y>484</y>
+     <x>657</x>
+     <y>556</y>
     </hint>
    </hints>
   </connection>
@@ -3130,12 +3237,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>769</x>
-     <y>438</y>
+     <x>1011</x>
+     <y>496</y>
     </hint>
     <hint type="destinationlabel">
-     <x>415</x>
-     <y>507</y>
+     <x>657</x>
+     <y>582</y>
     </hint>
    </hints>
   </connection>
@@ -3146,12 +3253,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>794</x>
-     <y>438</y>
+     <x>1036</x>
+     <y>496</y>
     </hint>
     <hint type="destinationlabel">
-     <x>987</x>
-     <y>533</y>
+     <x>1072</x>
+     <y>616</y>
     </hint>
    </hints>
   </connection>
@@ -3162,12 +3269,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>354</x>
-     <y>211</y>
+     <x>409</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
-     <x>653</x>
-     <y>211</y>
+     <x>691</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -3178,12 +3285,28 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>310</x>
-     <y>498</y>
+     <x>437</x>
+     <y>568</y>
     </hint>
     <hint type="destinationlabel">
-     <x>420</x>
-     <y>497</y>
+     <x>514</x>
+     <y>567</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scrollAreaPaths</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>319</x>
+     <y>470</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>342</x>
+     <y>501</y>
     </hint>
    </hints>
   </connection>

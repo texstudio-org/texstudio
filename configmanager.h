@@ -49,7 +49,7 @@ public:
 	bool showLogAfterCompiling;
 	bool runLaTeXBibTeXLaTeX;
 	int showStdoutOption; //never = 0, user commands, always
-
+	
 	//svn
 	bool autoCheckinAfterSave;
 	bool svnUndo;

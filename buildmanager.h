@@ -199,6 +199,9 @@ private:
 public:
 	static int autoRerunLatex;
 	static QString autoRerunCommands;
+	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths;
+	
+	QString findFile(const QString& baseName, const QString& searchPaths);
 private:
 	QStringList previewFileNames;
 	QMap<QString, PreviewSource> previewFileNameToSource;

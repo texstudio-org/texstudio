@@ -23,6 +23,7 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
 QString BuildManager::autoRerunCommands;
+QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
 CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
@@ -1048,6 +1049,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 	if (cmd.startsWith(TXS_CMD_PREFIX)) 
 		connect(proc, SIGNAL(started()), SLOT(runInternalCommandThroughProcessX()));
 	
+	QString addPaths = additionalSearchPaths;
 #ifdef Q_WS_MACX
 #if (QT_VERSION >= 0x040600)
 	QProcess *myProcess = new QProcess();
@@ -1057,12 +1059,18 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 		QByteArray res=myProcess->readAllStandardOutput();
 		delete myProcess;
 		QString path(res);
-		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		env.insert("PATH", env.value("PATH") + ":"+path); //apply user path as well
-		proc->setProcessEnvironment(env);
+		if (addPaths.isEmpty()) addPaths = path;
+		else addPaths += ":" + path;
 	}
 #endif
 #endif
+	
+
+	if (!addPaths.isEmpty()) {
+		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+		env.insert("PATH", env.value("PATH") + ":"+addPaths); //apply user path as well
+		proc->setProcessEnvironment(env);		
+	}	
 	
 	return proc;
 }
@@ -1421,6 +1429,32 @@ bool BuildManager::testAndRunInternalCommand(const QString& cmd, const QFileInfo
 		return true;
 	}
 	return false;
+}
+
+
+QString BuildManager::findFile(const QString& defaultName, const QString& searchPaths){
+	//TODO: merge with findResourceFile
+	QFileInfo base(defaultName);
+	if (base.exists()) return defaultName;
+	if (searchPaths.isEmpty()) return "";
+	
+	QString absPath = base.absolutePath() + "/";
+	QString baseName = "/" + base.fileName();
+	              
+	
+#ifdef Q_WS_WIN
+	QString dirSep = ";";
+#else
+	QString dirSep = ":";
+#endif
+	QStringList paths = searchPaths.split(dirSep);
+	
+	foreach (const QString& p, paths)
+		if (p.startsWith('/') || p.startsWith('\\\\') || (p.length() > 2 && p[1] == ':' && p[2] == '\\')) {
+			if (QFileInfo(p + baseName).exists()) return p + baseName;
+		} else 
+			if (QFileInfo(absPath + p + baseName).exists()) return absPath + p + baseName;
+	return "";
 }
 
 void BuildManager::removePreviewFiles(QString elem){

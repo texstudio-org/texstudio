@@ -297,12 +297,12 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 		
 		int sure;
 		QTextCodec * codec = guessEncodingBasic(fullLog, &sure);
-        if (!sure || !codec) codec = QTextCodec::codecForLocale();
+		if (!sure || !codec) codec = QTextCodec::codecForLocale();
 		
 		OutputLogTextEdit->setPlainText(codec->toUnicode(fullLog));
 		
-        logModel->parseLogDocument(OutputLogTextEdit->document(), compiledFileName);
-
+		logModel->parseLogDocument(OutputLogTextEdit->document(), compiledFileName);
+		
 		logpresent=true;		
 		//update table size
 		OutputTable->resizeColumnsToContents();
