@@ -5250,6 +5250,7 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 		EditorView->moveTab(pos,0);
 	}
 	updateMasterDocumentCaption();
+	updateOpenDocumentMenu();
 }
 
 void Texmaker::aboutToDeleteDocument(LatexDocument * doc){
