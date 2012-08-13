@@ -1224,9 +1224,9 @@ void Texmaker::updateMasterDocumentCaption(){
 		statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	} else {
 		QString shortName = documents.masterDocument->getFileInfo().fileName();
-		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
+		ToggleAct->setText(tr("Normal Mode (current master document: ")+shortName+")");
 		statusLabelMode->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
-	}	
+	}
 }
 
 void Texmaker::editorTabChanged(int index){
@@ -5240,17 +5240,13 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 	Q_UNUSED(doc);
 	Q_ASSERT(documents.singleMode()==!documents.masterDocument);
 	if (documents.singleMode()){
-		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
 		outputView->resetMessagesAndLog();
-		statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	} else {
-		QString shortName = documents.masterDocument->getFileInfo().fileName();
-		ToggleAct->setText(tr("Normal Mode (current master document :")+shortName+")");
-		statusLabelMode->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
 		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
 		int pos=EditorView->currentIndex();
 		EditorView->moveTab(pos,0);
 	}
+
 	updateMasterDocumentCaption();
 	updateOpenDocumentMenu();
 }
