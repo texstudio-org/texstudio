@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>Ce programme distribué avec la license &apos;GNU General Public License Version 2&apos; telle qu&apos;elle est publiée par la Free Software Foundation.</translation>
+        <translation>Ce programme distribué avec la license « GNU General Public License Version 2 » telle qu&apos;elle est publiée par la Free Software Foundation.</translation>
     </message>
     <message>
         <source>Using Qt Version %1, compiled with Qt %2</source>
@@ -714,7 +714,7 @@
     </message>
     <message>
         <source>Tabbed Log Viewer</source>
-        <translation>Voir log dans les onglets</translation>
+        <translation>Voir le log dans les onglets</translation>
     </message>
     <message>
         <source>Ignore most system colors</source>
@@ -783,7 +783,7 @@
     </message>
     <message>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
-        <translation>&lt;b&gt;%&lt;/b&gt;: nom de fichier sans extension &lt;b&gt;@&lt;/b&gt;: numéro de ligne </translation>
+        <translation>&lt;b&gt;%&lt;/b&gt; : nom de fichier sans extension &lt;b&gt;@&lt;/b&gt;: numéro de ligne </translation>
     </message>
     <message>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
@@ -794,15 +794,15 @@
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
 ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</source>
-        <translation>&lt;i&gt;a&lt;/i&gt;: chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt;: chemin relatif, --&gt;&lt;i&gt;m&lt;/i&gt;: nom de fichier sans extension, &lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
-&lt;i&gt;&quot;&lt;/i&gt;: met l&apos;expression entre guillemets, . (point): finit avec un point, (espace): finit et ajoute une espace, &lt;i&gt;)&lt;/i&gt;: finit simplement&lt;br /&gt;
-exemples: ?ame&quot;: nom de fichier avec chemin et son extension, entourés de guillemets, ?e) extension seule (sans point), &lt;br /&gt;
-?m&quot; (nom de fichier sans extension, identique à %) ?me (nom de fichier avec extension comme par exemple: exemple.tex)</translation>
+        <translation>&lt;i&gt;a&lt;/i&gt; : chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt;: chemin relatif, --&gt;&lt;i&gt;m&lt;/i&gt; : nom de fichier sans extension, &lt;i&gt;e&lt;/i&gt; : extension&lt;br /&gt;
+&lt;i&gt;&quot;&lt;/i&gt; : met l&apos;expression entre guillemets, . (point) : finit avec un point, (espace) : finit et ajoute une espace, &lt;i&gt;)&lt;/i&gt; : finit simplement&lt;br /&gt;
+exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés de guillemets, ?e) : extension seule (sans point),&lt;br /&gt;
+?m&quot; : nom de fichier (sans extension, identique à %), ?me : nom de fichier (avec extension comme par exemple: exemple.tex).</translation>
     </message>
     <message>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
-        <translation>pour %, @ ou ?, noter respectivement %%, @@ ou ??</translation>
+        <translation>Pour %, @ ou ?, noter respectivement %%, @@ ou ??</translation>
     </message>
     <message>
         <source>Quick Build Command</source>
@@ -1822,7 +1822,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Ignore Most System Colors</source>
-        <translation>ignorer l&apos;essentiel des couleurs système</translation>
+        <translation>Ignorer l&apos;essentiel des couleurs système</translation>
     </message>
     <message>
         <source>Use System Theme Icons</source>
@@ -1977,7 +1977,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Maximal Characters:</source>
-        <translation>un nb de caractères de au plus :</translation>
+        <translation>Nb de caractères maximal :</translation>
     </message>
     <message>
         <source>No Line Wrap</source>
@@ -1989,11 +1989,11 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation>Coupure de ligne douce après un nombre de caractères maximal</translation>
+        <translation>Coupure de ligne douce après un maximum de caractères</translation>
     </message>
     <message>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation>Coupure de ligne brutale après un nombre de caractères maximal</translation>
+        <translation>Coupure de ligne brutale après un maximum de caractères</translation>
     </message>
     <message>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
@@ -7210,7 +7210,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Normal Mode (current master document :</source>
-        <translation>Mode normal (document maître actuel :</translation>
+        <translation>Mode normal (document maître actuel : </translation>
     </message>
     <message>
         <source>Master Document</source>
@@ -8076,7 +8076,7 @@ included document in %1</source>
     </message>
     <message>
         <source>\begin{ Completion</source>
-        <translation>\begin{ Complétion</translation>
+        <translation>\begin{complétion</translation>
     </message>
     <message>
         <source>Normal Text</source>
@@ -8388,8 +8388,10 @@ Si « Ignorer complètement les mots plus courts » est sélectionné, les mots 
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
         <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs constituent une même phrase.
-Si « Minimum &amp; maximum de mots par phrase ». est sélectionné, le nombre exact de mots est considéré (par ex. avec 2 pour la phrase précédente : « Les paramètres », « paramètres de », ...)
-Si seul « Maximum de mots par phrase » est sélectionné, les mots initaux sont aussi inclus (par ex. : « Les », « Les paramètres », « paramètres de », ...)</translation>
+Si « Minimum &amp; maximum de mots par phrase ». est sélectionné, le nombre exact de mots est considéré
+    (par ex. avec 2 pour la phrase précédente : « Les paramètres », « paramètres de », ...)
+Si seul « Maximum de mots par phrase » est sélectionné, les mots initaux sont aussi inclus
+    (par ex. : « Les », « Les paramètres », « paramètres de », ...)</translation>
     </message>
     <message>
         <source>Source:</source>
@@ -8398,7 +8400,7 @@ Si seul « Maximum de mots par phrase » est sélectionné, les mots initaux son
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
-        <translation>Si « Considérer la ponctuation » est sélectionné, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes.
+        <translation>Si « Considérer la ponctuation » est coché, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes.
 Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
@@ -8468,20 +8470,25 @@ Sinon la ponctuation est ignorée.</translation>
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
         <translation>Options possibles :
 « Afficher toutes les phrases » : toutes les phrases sont affichées.
-« Longueur minimale des phrases » : une phrase est affichée seulement si elle contient au minimum ce nombre de caractères (par ex. « un test » compte 7 caractères).
-« Longueur minimale des mots (un) » : une phrase est affichée seulement si elle contient au moins un mot contenant au minimum ce nombre de caractères (par ex. « un test » compte 4 caractères).
-« Longueur minimale des mots (tous) » : une phrase est affichée seulement si tous les mots qu&apos;elle contient contiennent au minimum ce nombre de caractères (par ex. « un test » compte 1 caractère).
-« Ignorer complètement les mots plus courts » : les mots plus courts sont ignorés (par ex. avec une longueur 3, la phrase « juste un test » rendra « juste test », tandis que d&apos;autres options sépareraient en « juste un&quot;, « un test&quot;, même si aucune de ces phrases n&apos;est affichée).</translation>
+« Longueur minimale des phrases » : une phrase est affichée seulement si elle contient au minimum ce nombre de caractères
+    (par ex. « un test » compte 7 caractères).
+« Longueur minimale des mots (un) » : une phrase est affichée seulement si elle contient au moins un mot contenant au minimum ce nombre de caractères
+    (par ex. « un test » compte 4 caractères).
+« Longueur minimale des mots (tous) » : une phrase est affichée seulement si tous les mots qu&apos;elle contient contiennent au minimum ce nombre de caractères
+    (par ex. « un test » compte 1 caractère).
+« Ignorer complètement les mots plus courts » : les mots plus courts sont ignorés
+    (par ex. avec une longueur 3, la phrase « juste un test » rendra « juste test »,
+    tandis que d&apos;autres options sépareraient en « juste un », « un test », même si aucune de ces phrases n&apos;est affichée).</translation>
     </message>
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</source>
-        <translation>Si « Considérer la ponctuation » est sélectionné, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes.
+        <translation>Si « Considérer la ponctuation » est coché, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes.
 Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Détermine si le document entier, seulement un chapitre ou une sélection sont analysés.</translation>
+        <translation>Détermine si le document entier, seulement un chapitre ou seulement une sélection sont analysés.</translation>
     </message>
 </context>
 <context>
@@ -9103,11 +9110,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>current document</source>
-        <translation>document en cours</translation>
+        <translation>Document en cours</translation>
     </message>
     <message>
         <source>open documents</source>
-        <translation>documents ouverts</translation>
+        <translation>Documents ouverts</translation>
     </message>
     <message>
         <source>Find:</source>
