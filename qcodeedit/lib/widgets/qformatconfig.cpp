@@ -256,7 +256,6 @@ void QFormatConfig::apply()
 				fmt.foreground = cp->color();
 
 			cp = qobject_cast<QSimpleColorPicker*>(m_table->cellWidget(i, 8));
-			if ( cp )
 				fmt.background = cp->color();
 
 			cp = qobject_cast<QSimpleColorPicker*>(m_table->cellWidget(i, 9));
