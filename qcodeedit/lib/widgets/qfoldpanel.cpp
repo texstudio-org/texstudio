@@ -96,6 +96,28 @@ void QFoldPanel::mousePressEvent(QMouseEvent *e)
 
 }
 
+void QFoldPanel::contextMenuEvent(QContextMenuEvent *e)
+{
+	if (!editor() || !editor()->languageDefinition()) {
+		QPanel::contextMenuEvent(e);
+		return;
+	}
+
+	QMenu menu(this);
+	menu.addAction(tr("Expand All"));
+	if (menu.exec(e->globalPos())) {
+		QDocument *doc = editor()->document();
+		QLanguageDefinition *def = editor()->languageDefinition();
+
+		for (int ln = 0; ln < doc->lineCount(); ln++) {
+			QDocumentLine b = doc->line(ln);
+			if ( b.hasFlag(QDocumentLine::CollapsedBlockStart) )
+				def->expand(doc, ln);
+		}
+		editor()->setFocus();
+	}
+}
+
 
 /*!
 
