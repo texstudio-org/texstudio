@@ -21,6 +21,8 @@ QTextCharFormat QFormat::toTextCharFormat() const
 
 	if ( background.isValid() )
 		f.setBackground(background);
+	else
+		f.setBackground(Qt::transparent);
 
 	if ( !fontFamily.isEmpty() )
 		f.setFontFamily(fontFamily);

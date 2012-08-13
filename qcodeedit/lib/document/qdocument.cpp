@@ -6109,7 +6109,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if ( !repForeground.isValid() )
 		repForeground.setRgb(0,0,0); // Fallback = black
 
-
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
 
@@ -6217,7 +6216,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 					cursorOnLine = true;
 
 				if ( cxt.fillCursorRect ){
-					bg = alternate;
+					if (alternate.color().alpha()!=0) // keep standard background, if alternate is fully transparent
+						bg = alternate;
 					currentLine=true;
 				}
 
@@ -6238,8 +6238,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			QLineMarksInfoCenter *mic = QLineMarksInfoCenter::instance();
 
 			QColor c = mic->markType(mic->priority(m)).color;
-
-			if ( c.isValid() )
+			if ( c.isValid() && c.alpha()!=0 )
 				bg = c;
 
 		}

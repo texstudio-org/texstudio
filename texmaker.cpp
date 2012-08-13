@@ -157,6 +157,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	for (int i=0;i<marks.size();i++)
 		if (m_formats->format("line:"+marks[i].id).background.isValid())
 			marks[i].color = m_formats->format("line:"+marks[i].id).background;
+		else
+			marks[i].color = Qt::transparent;
 	
 	LatexEditorView::updateFormatSettings();
 		
@@ -4796,7 +4798,7 @@ void Texmaker::GeneralOptions() {
 			if (m_formats->format("line:"+marks[i].id).background.isValid())
 				marks[i].color = m_formats->format("line:"+marks[i].id).background;
 			else
-				marks[i].color = marks[i].defaultColor;
+				marks[i].color = Qt::transparent;
 		
 		// update all docuemnts views as spellcheck may be different
 		QEditor::setEditOperations(configManager.editorKeys,true);
