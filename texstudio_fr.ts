@@ -283,7 +283,7 @@
     </message>
     <message>
         <source>&lt;New File&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Nouveau fichier&gt;</translation>
     </message>
 </context>
 <context>
@@ -787,7 +787,7 @@
     </message>
     <message>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation>&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;, &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt; : nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier courant au lieu du document maître)</translation>
+        <translation>&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;, &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt; : nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier en cours au lieu du document maître)</translation>
     </message>
     <message>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
@@ -3517,7 +3517,7 @@ Note: These placement preferences are just suggestions. If the resulting page la
 t (pour « top ») : en haut de la page en cours ;
 b (pour « bottom ») : en bas de la page en cours ;
 p (pour « page ») : sur une page séparée, dédiée aux flottants ;
-h (pour « here ») : à la position courante dans le texte ;
+h (pour « here ») : à la position en cours dans le texte ;
 [!]: Ignore les paramètres internes qu&apos;utilise LaTeX pour déterminer les « bons » emplacements du flottant.
 
 Remarque : ces préférences ne sont que des suggestions. Si la mise en page en résultant devait être trop mauvaise, LaTeX pourrait les ignorer.</translation>
@@ -3558,7 +3558,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifiant, utilisé pour référencer le graphique, par exemple via \ref{ceLabel}</translation>
     </message>
 </context>
 <context>
@@ -4169,7 +4169,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>&amp;Actual Size</source>
-        <translation>Dim&amp;ensions courantes</translation>
+        <translation>Dim&amp;ensions en cours</translation>
     </message>
     <message>
         <source>Fit to Wi&amp;dth</source>
@@ -4557,7 +4557,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Actual Size</source>
-        <translation>Dimensions courantes</translation>
+        <translation>Dimensions en cours</translation>
     </message>
     <message>
         <source>Fit to Width</source>
@@ -4822,7 +4822,7 @@ Press &quot;Ignore&quot; to ignore this warning.
 </source>
         <translation>Le document %1 
 a été modifié par un autre programme.
-Cliquer sur « Enregistrer » pour sauver le document courant.
+Cliquer sur « Enregistrer » pour sauver le document en cours.
 Cliquer sur « Réinitialiser » pour rouvrir le fichier.
 Cliquer sur « Ignorer » pour ignorer cet avertissement.</translation>
     </message>
@@ -5906,19 +5906,19 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>First Order Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Premier ordre de mots</translation>
     </message>
     <message>
         <source>Ignore Case</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer la casse</translation>
     </message>
     <message>
         <source>Punctation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponctuation</translation>
     </message>
     <message>
         <source>LaTeX Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Import LaTeX</translation>
     </message>
 </context>
 <context>
@@ -6792,7 +6792,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>&amp;Make Template...</source>
-        <translation>&amp;Créer un modèle (à partir du fichier courant)...</translation>
+        <translation>&amp;Créer un modèle (à partir du fichier en cours)...</translation>
     </message>
     <message>
         <source>Check &amp;in...</source>
@@ -7000,7 +7000,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation>Définir le document courant comme « document &amp;maître »</translation>
+        <translation>Définir le document en cours comme « document &amp;maître »</translation>
     </message>
     <message>
         <source>Load Profile</source>
@@ -7008,7 +7008,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
-        <translation>Définir le document courant comme « maître »</translation>
+        <translation>Définir le document en cours comme « maître »</translation>
     </message>
     <message>
         <source>Automatically Restore &amp;Session at Next Start</source>
@@ -7222,7 +7222,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Set this document as master document</source>
-        <translation>Déclarer le document courant comme document maître</translation>
+        <translation>Déclarer le document en cours comme document maître</translation>
     </message>
     <message>
         <source>Remove master document role</source>
@@ -7461,7 +7461,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Show only current document in this tree</source>
-        <translation>Afficher seulement le document courant dans cette arborescence</translation>
+        <translation>Afficher seulement le document en cours dans cette arborescence</translation>
     </message>
     <message>
         <source>Save Profile</source>
@@ -8199,7 +8199,7 @@ included document in %1</source>
     <message>
         <source>Save Current Settings</source>
         <comment>menu</comment>
-        <translation>Sauver les réglages courants</translation>
+        <translation>Sauver les réglages en cours</translation>
     </message>
     <message>
         <source>Check LaTeX Installation</source>
@@ -8247,15 +8247,15 @@ included document in %1</source>
     </message>
     <message>
         <source>&lt;Current File&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Fichier en cours&gt;</translation>
     </message>
     <message>
         <source>No open project or tex file to clean.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun projet ou fichier .tex ouvert à nettoyer.</translation>
     </message>
     <message>
         <source>Log File not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier log introuvable !</translation>
     </message>
 </context>
 <context>
@@ -8466,16 +8466,22 @@ Sinon la ponctuation est ignorée.</translation>
 &quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
-        <translation type="unfinished"></translation>
+        <translation>Options possibles :
+« Afficher toutes les phrases » : toutes les phrases sont affichées.
+« Longueur minimale des phrases » : une phrase est affichée seulement si elle contient au minimum ce nombre de caractères (par ex. « un test » compte 7 caractères).
+« Longueur minimale des mots (un) » : une phrase est affichée seulement si elle contient au moins un mot contenant au minimum ce nombre de caractères (par ex. « un test » compte 4 caractères).
+« Longueur minimale des mots (tous) » : une phrase est affichée seulement si tous les mots qu&apos;elle contient contiennent au minimum ce nombre de caractères (par ex. « un test » compte 1 caractère).
+« Ignorer complètement les mots plus courts » : les mots plus courts sont ignorés (par ex. avec une longueur 3, la phrase « juste un test » rendra « juste test », tandis que d&apos;autres options sépareraient en « juste un&quot;, « un test&quot;, même si aucune de ces phrases n&apos;est affichée).</translation>
     </message>
     <message>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si « Considérer la ponctuation » est sélectionné, les mots précédant et suivant un signe de ponctuation sont traités comme des mots des phrases différentes.
+Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Détermine si le document entier, seulement un chapitre ou une sélection sont analysés.</translation>
     </message>
 </context>
 <context>
@@ -8530,31 +8536,31 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished">Remplacer</translation>
+        <translation>Remplacer</translation>
     </message>
     <message>
         <source>Lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <source>Starts With ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Préfixe...</translation>
     </message>
     <message>
         <source>Contains ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Contient...</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abandon</translation>
     </message>
     <message>
         <source>Add Own Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un mot personnel</translation>
     </message>
     <message>
         <source>Remove Own Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer un mot personnel</translation>
     </message>
 </context>
 <context>
@@ -9097,7 +9103,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>current document</source>
-        <translation>fichier courant</translation>
+        <translation>document en cours</translation>
     </message>
     <message>
         <source>open documents</source>
@@ -9133,7 +9139,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Uncaught exception at line %1: %2
 </source>
-        <translation>Exception manquée à la ligne %1: %2
+        <translation>Exception manquée à la ligne %1 : %2
 </translation>
     </message>
     <message>
