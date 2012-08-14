@@ -1545,14 +1545,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
 			QDocumentLineHandle *mLine=result.keys().first();
 			int l=mLine->line();
+            LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
 			if(mLine->document()!=editor->document()){
-				LatexDocument *doc=document->parent->findDocument(mLine->document());
+                doc=document->parent->findDocument(mLine->document());
 				if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
 			}
-			for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+            if(doc)
+                mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
+            /*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
 				mText+=mLine->document()->line(i).text();
 				if(i<l+2) mText+="\n";
-			}
+            }*/
 		}
 		QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
 		break;
@@ -1611,14 +1614,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
                     QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(value);
                     QDocumentLineHandle *mLine=result.keys().first();
                     int l=mLine->line();
+                    LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
                     if(mLine->document()!=editor->document()){
-                        LatexDocument *doc=document->parent->findDocument(mLine->document());
+                        doc=document->parent->findDocument(mLine->document());
                         if(doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
                     }
-                    for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+                    if(doc)
+                        tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
+                    /*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
                         tooltip+=mLine->document()->line(i).text();
                         if(i<l+2) tooltip+="\n";
-                    }
+                    }*/
                 }else{
                     // read entry in bibtex file
                     if(!bibReader){
