@@ -442,6 +442,9 @@ void OutputViewWidget::clearSearch(){
 void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
         searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
 }
+QString OutputViewWidget::searchExpression() {
+	return searchResultModel->searchExpression();
+}
 int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
         return searchResultModel->getNextSearchResultColumn(text,col);
 }

@@ -453,6 +453,33 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 	} else CodeSnippet(macro).insert(editor);
 }
 
+void LatexEditorView::temporaryHighlight(QDocumentCursor cur) {
+	if (!cur.hasSelection()) return;
+
+	QDocumentLine docLine(cur.selectionStart().line());
+	if (cur.endLineNumber() != cur.startLineNumber()) {
+		// TODO: proper highlighting of selections spanning more than one line. Currently just highlight to the end of the first line:
+		cur = cur.selectionStart();
+		cur.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+	}
+
+	QFormatRange highlight(cur.startColumnNumber(), cur.endColumnNumber()-cur.startColumnNumber(), QDocument::formatFactory()->id("search"));
+	docLine.addOverlay(highlight);
+	tempHighlightQueue.append(QPair<QDocumentLine, QFormatRange>(docLine, highlight));
+	QTimer::singleShot(1000, this, SLOT(removeTemporaryHighlight()));
+}
+
+void LatexEditorView::removeTemporaryHighlight() {
+	if (!tempHighlightQueue.isEmpty()) {
+		QDocumentLine docLine(tempHighlightQueue.first().first);
+		docLine.removeOverlay(tempHighlightQueue.first().second);
+		tempHighlightQueue.removeFirst();
+	}
+}
+
+
+
+
 void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors){
 	QDocumentLine line = document->line(lineNr);
 

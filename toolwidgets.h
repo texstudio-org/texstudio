@@ -57,6 +57,7 @@ public:
 	}
 
 	virtual void changeEvent(QEvent *event);
+	QString searchExpression();
 public slots:
 	void copy();
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)

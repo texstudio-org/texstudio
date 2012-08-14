@@ -31,6 +31,7 @@ public:
 	QDocument* getDocument(const QModelIndex &index);
 	int getLineNumber(const QModelIndex &index);
 	void setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp);
+	QString searchExpression() { return mExpression; }
 	int getNextSearchResultColumn(const QString& text,int col);
 private:
 	QList<QPair<int,int> > getSearchResults(const QString &text) const;
