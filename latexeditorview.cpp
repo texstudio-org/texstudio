@@ -59,6 +59,7 @@ public:
 	}
 	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
+	virtual bool mouseReleaseEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
 	friend class LatexEditorView;
@@ -125,6 +126,17 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	}
 	return false;
 }
+
+bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor) {
+	if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton) {
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+		if (!edView) return false;
+		edView->emitSyncPDF();
+		return true;
+	}
+	return false;
+}
+
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor) {
 	if (!contextMenu) contextMenu=new QMenu(0);
 	contextMenu->clear();
@@ -930,6 +942,10 @@ void LatexEditorView::emitChangeDiff(){
 	QAction *act = qobject_cast<QAction*>(sender());
 	QPoint pt=act->data().toPoint();
 	emit changeDiff(pt);
+}
+
+void LatexEditorView::emitSyncPDF() {
+	emit syncPDFRequested();
 }
 
 void LatexEditorView::lineMarkClicked(int line) {
@@ -1992,7 +2008,6 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 
 void LatexEditorView::bibtexSectionFound(QString bibId, QString content){
     Q_UNUSED(bibId)
-    QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(lastPos)), content);
+	QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(lastPos)), content);
 }
-
 
