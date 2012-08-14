@@ -858,6 +858,9 @@ void LatexEditorView::updateFormatSettings(){
 		grammarFormats << wordRepetitionFormat << wordRepetitionLongRangeFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
 		grammarFormatsDisabled.resize(9);
 		grammarFormatsDisabled.fill(false);
+		formatsList<<SpellerUtility::spellcheckErrorFormat<<referencePresentFormat<<citationPresentFormat<<referenceMissingFormat;
+		formatsList<<referenceMultipleFormat<<citationMissingFormat<<environmentFormat<<syntaxErrorFormat;
+		formatsList<<wordRepetitionFormat<<structureFormat<<insertFormat<<deleteFormat<<replaceFormat;
 	}	
 }
 
