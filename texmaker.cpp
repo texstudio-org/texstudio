@@ -1454,8 +1454,7 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
 			continue;
         item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
         item->text()=dlh->text();
-		int wrapWidth = edView->editor->flag(QEditor::HardLineWrap)?-1:80;
-		item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,wrapWidth));
+		item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
     }
 }
 
@@ -3171,8 +3170,7 @@ void Texmaker::bookmarkAdded(QDocumentLineHandle* dlh,int nr){
     int lineNr=dlh->line();
     lineNr = lineNr>1 ? lineNr-2 : 0;
 	if (!currentEditorView()) return;
-	int wrapWidth = currentEditorView()->editor->flag(QEditor::HardLineWrap)?-1:80;
-	item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,wrapWidth));
+	item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
 }
 
 void Texmaker::lineWithBookmarkRemoved(int lineNr){
@@ -3208,8 +3206,7 @@ void Texmaker::updateLineWithBookmark(int lineNr){
              item->setText(text);
              lineNr = lineNr>1 ? lineNr-2 : 0;
              LatexDocument *doc=currentEditorView()->document;
-			 int wrapWidth = currentEditorView()->editor->flag(QEditor::HardLineWrap)?-1:80;
-			 item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,wrapWidth));
+			 item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
              return;
          }
      }
