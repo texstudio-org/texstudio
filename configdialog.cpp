@@ -574,13 +574,13 @@ void ConfigDialog::browseDictDir() {
 	browse(ui.leDictDir, tr("Select dictionary directory"), "/");
 }
 void ConfigDialog::browsePathLog(){
-	browse(ui.lineEditPathLog, tr("Select a new path to search for logs."), "/", QDir::currentPath(), true);
+	browse(ui.lineEditPathLog, tr("Search Path for Logs"), "/", QDir::currentPath(), true);
 }
 void ConfigDialog::browsePathPdf(){
-	browse(ui.lineEditPathPDF, tr("Select a new path to search for pdf."), "/", QDir::currentPath(), true);
+	browse(ui.lineEditPathPDF, tr("Search Path for PDFs"), "/", QDir::currentPath(), true);
 }
 void ConfigDialog::browsePathCommands(){
-	browse(ui.lineEditPathCommands, tr("Select a new path to search for indirectly called commands."), "/", QDir::rootPath(), true);
+	browse(ui.lineEditPathCommands, tr("Search Path for Commands"), "/", QDir::rootPath(), true);
 }
 
 void ConfigDialog::dictDirChanged(const QString &newText) {
