@@ -5447,6 +5447,9 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 		currentEditor()->ensureCursorVisibleSurrounding();
 		outputView->showSearchResults();
 	}
+	QDocumentCursor highlight = currentEditor()->cursor();
+	highlight.movePosition(outputView->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+	currentEditorView()->temporaryHighlight(highlight);
 }
 
 void Texmaker::gotoLine(int line, int col) {
@@ -5566,16 +5569,23 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		if (bestScore > guessedWord.size()*5 / 3) column = bestMatch; //accept if 0.33 similarity
 	}
 
-	QDocumentLine docLine = currentEditor()->document()->line(line);
-	QFormatRange highlight(0, docLine.length(), QDocument::formatFactory()->id("search"));
+	QDocumentCursor highlight(currentEditor()->document(), line, 0);
 	if (column > -1 && !guessedWord.isEmpty()) {
-		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(),column+guessedWord.length()/2);
+		int cursorCol = column+guessedWord.length()/2;
+		highlight.setColumnNumber(cursorCol);
+		highlight.movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
+		highlight.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+		if (!highlight.hasSelection()) { // fallback, if we are not at a word
+			highlight.setColumnNumber(cursorCol);
+			highlight.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+			highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+		}
+		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol);
 		currentEditor()->ensureCursorVisibleSurrounding();
-		highlight = QFormatRange(column, guessedWord.length(), QDocument::formatFactory()->id("search"));
+	} else {
+		highlight.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 	}
-	docLine.addOverlay(highlight);
-	syncHighlightQueue.append(QPair<QDocumentLine, QFormatRange>(docLine, highlight));
-	QTimer::singleShot(1000, this, SLOT(removeSyncHighlight()));
+	currentEditorView()->temporaryHighlight(highlight);
 	
 	if (activate) {
 		raise();
@@ -5584,14 +5594,6 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		if (isMinimized()) showNormal();
 	}
 	
-}
-
-void Texmaker::removeSyncHighlight() {
-	if (!syncHighlightQueue.isEmpty()) {
-		QDocumentLine docLine(syncHighlightQueue.first().first);
-		docLine.removeOverlay(syncHighlightQueue.first().second);
-		syncHighlightQueue.removeFirst();
-	}
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {

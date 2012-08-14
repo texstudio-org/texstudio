@@ -429,7 +429,6 @@ protected slots:
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id=-1);
 	void syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
-	void removeSyncHighlight();
 	
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const PreviewSource& source);
@@ -517,8 +516,6 @@ protected:
 	QSet<int> previewQueue;
 	LatexEditorView* previewQueueOwner;
 	
-	QList<QPair<QDocumentLine, QFormatRange> > syncHighlightQueue;
-
 	QString fileFilters;
 	QString selectedFileFilter;
 	

@@ -132,6 +132,8 @@ private:
 	bibtexReader *bibReader;
 	QPoint lastPos;
 
+	QList<QPair<QDocumentLine, QFormatRange> > tempHighlightQueue;
+
 	static QStringList checkedLanguages; // languages for online checking
 
 	
@@ -160,7 +162,6 @@ public slots:
 	void foldLevel(bool unFold, int level);
 	void foldBlockAt(bool unFold, int line);
 	
-	
 	void documentContentChanged(int linenr, int count);
 	void lineDeleted(QDocumentLineHandle* l);
 	void spellCheckingReplace();
@@ -175,7 +176,10 @@ public slots:
 	void updateLtxCommands();
 	void paste();
 	void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0);
-	
+
+	void temporaryHighlight(QDocumentCursor cur);
+	void removeTemporaryHighlight();
+
 	void displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors);
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);
 	void updateGrammarOverlays();
