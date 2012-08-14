@@ -143,6 +143,7 @@ private slots:
 	void openPackageDocumentation();
 	void openPackageDocumentationError();
 	void emitChangeDiff();
+	void emitSyncPDF();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket);
