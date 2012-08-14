@@ -1450,18 +1450,12 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
         int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
         edView->addBookmark(lineNr,bookmarkNumber);
         QDocumentLineHandle *dlh=doc->line(lineNr).handle();
-	if(!dlh)
-	    continue;
+		if(!dlh)
+			continue;
         item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
         item->text()=dlh->text();
-        QString text;
-        for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
-            QString ln=doc->line(i).text().trimmed();
-            if(ln.length()>40)
-                ln=ln.left(40)+"...";
-            text+=ln+"\n";
-        }
-        item->setToolTip(text);
+		int wrapWidth = edView->editor->flag(QEditor::HardLineWrap)?-1:80;
+		item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,wrapWidth));
     }
 }
 
@@ -3176,14 +3170,9 @@ void Texmaker::bookmarkAdded(QDocumentLineHandle* dlh,int nr){
     item->setData(Qt::UserRole+3,nr);
     int lineNr=dlh->line();
     lineNr = lineNr>1 ? lineNr-2 : 0;
-    text.clear();
-    for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
-        QString ln=doc->line(i).text().trimmed();
-        if(ln.length()>40)
-            ln=ln.left(40)+"...";
-        text+=ln+"\n";
-    }
-    item->setToolTip(text);
+	if (!currentEditorView()) return;
+	int wrapWidth = currentEditorView()->editor->flag(QEditor::HardLineWrap)?-1:80;
+	item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,wrapWidth));
 }
 
 void Texmaker::lineWithBookmarkRemoved(int lineNr){
@@ -3218,15 +3207,9 @@ void Texmaker::updateLineWithBookmark(int lineNr){
              text+="\n"+dlh->text().trimmed();
              item->setText(text);
              lineNr = lineNr>1 ? lineNr-2 : 0;
-             text.clear();
              LatexDocument *doc=currentEditorView()->document;
-             for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
-                 QString ln=doc->line(i).text().trimmed();
-                 if(ln.length()>40)
-                     ln=ln.left(40)+"...";
-                 text+=ln+"\n";
-             }
-             item->setToolTip(text);
+			 int wrapWidth = currentEditorView()->editor->flag(QEditor::HardLineWrap)?-1:80;
+			 item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,wrapWidth));
              return;
          }
      }
