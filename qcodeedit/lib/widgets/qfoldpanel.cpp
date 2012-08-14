@@ -67,6 +67,10 @@ QString QFoldPanel::type() const
 	return "Fold indicators";
 }
 
+void QFoldPanel::mouseMoveEvent(QMouseEvent *e)
+{
+}
+
 /*!
 
 */
@@ -279,13 +283,22 @@ bool QFoldPanel::event(QEvent *e) {
 			QFoldedLineIterator it = def->foldedLineIterator(doc, line);
 			it.incrementUntilBlockEnd();
 			QString tooltip;
-			if (it.lineNr - line < 16)
-				tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr),true,true);
+
+
+			int lineWidth = 80;
+			int maxShownLines = 9;
+			if (editor()->flag(QEditor::HardLineWrap)) {
+				lineWidth = -1; // rely on wrapping of editor
+				maxShownLines = 15;
+			}
+
+			if (it.lineNr - line < maxShownLines)
+				tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr),true,true,lineWidth);
 			else {
-				tooltip = doc->exportAsHtml(doc->cursor(line,0,line+7),true,true);
+				tooltip = doc->exportAsHtml(doc->cursor(line,0,line+maxShownLines/2),true,true,lineWidth);
 				tooltip.replace("</body></html>","");
 				tooltip += "<br>...<br>";
-				tooltip += doc->exportAsHtml(doc->cursor(it.lineNr-7,0,it.lineNr),false);
+				tooltip += doc->exportAsHtml(doc->cursor(it.lineNr-maxShownLines/2,0,it.lineNr),false,true,lineWidth);
 				tooltip +=  "</body></html>";
 			}
 			if (tooltip.isEmpty()) QToolTip::hideText();
