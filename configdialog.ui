@@ -764,7 +764,7 @@ prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
                <height>124</height>
               </rect>
              </property>
-             <layout class="QGridLayout" name="gridLayout">
+             <layout class="QGridLayout" name="gridLayout_1">
               <item row="1" column="2">
                <widget class="QPushButton" name="pushButtonPathLog">
                 <property name="sizePolicy">
@@ -2315,7 +2315,7 @@ them here.</string>
              <property name="title">
               <string>LanguageTool</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_7">
+             <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
                <widget class="QLabel" name="label_44">
                 <property name="text">
