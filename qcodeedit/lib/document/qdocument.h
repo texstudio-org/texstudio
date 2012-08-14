@@ -258,7 +258,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		virtual void draw(QPainter *p, PaintContext& cxt);
 
-		virtual QString exportAsHtml(const QDocumentCursor &range, bool includeHeader=true, bool simplifyCSS = false) const;
+		virtual QString exportAsHtml(const QDocumentCursor &range, bool includeHeader=true, bool simplifyCSS = false, int maxLineWidth = -1) const;
 		
 		void execute(QDocumentCommand *cmd);
 		

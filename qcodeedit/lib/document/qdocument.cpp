@@ -1646,10 +1646,14 @@ void QDocument::draw(QPainter *p, PaintContext& cxt)
 	m_impl->draw(p, cxt);
 }
 
-
-QString QDocument::exportAsHtml(const QDocumentCursor& range, bool includeFullHeader, bool simplifyCSS) const{
-	return m_impl->exportAsHtml(range.isValid()?range:cursor(0,0,lineCount()-1), includeFullHeader, simplifyCSS);
+/*!
+	\brief Creates a html document from the code (incuding highlighting)
+	\param maxLineWidth long lines are wrapped by introducing <br> after after at most this many chars.
+*/
+QString QDocument::exportAsHtml(const QDocumentCursor& range, bool includeFullHeader, bool simplifyCSS, int maxLineWidth) const{
+	return m_impl->exportAsHtml(range.isValid()?range:cursor(0,0,lineCount()-1), includeFullHeader, simplifyCSS, maxLineWidth);
 }
+
 /*!
 	\brief Execute a document command (editing operation)
 */
@@ -3877,7 +3881,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 	}
 }
 
-QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
+QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset, int maxLineWidth) const{
 	QReadLocker locker(&mLock);
 	if ( !document()->formatScheme() ) {
 	    return text();
@@ -3886,16 +3890,24 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset) const{
 	QList<RenderRange> ranges;
 	splitAtFormatChanges(&ranges,0);
 	QString result = "<pre>";
+	int col = 0;
 	foreach ( const RenderRange& r, ranges ) {
 		if ( r.position + r.length < fromOffset ) continue;
 		if ( r.position > toOffset ) break;
+
+		if ((maxLineWidth > 0) && (col + r.length > maxLineWidth)) {
+			result += "<br>";
+			col = 0;
+		} else {
+			col += r.length;
+		}
 
 		int fmt = r.format;
 		int fmts[FORMAT_MAX_COUNT];
 		QFormat formats[FORMAT_MAX_COUNT];
 		int newFont;
 		document()->formatScheme()->extractFormats(fmt, fmts, formats, newFont);
-		for (int i=2;i>=0;i--)
+		for (int i=FORMAT_MAX_COUNT-1;i>=0;i--)
 			if ( fmts[i] )
 				result+=QString("<span class=\"fmt%1\">").arg(fmts[i]);
 		//result += QString("<span class=\"fmt%1\">").arg(newFont);
@@ -6436,7 +6448,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 }
 
-QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS) const{
+QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS, int maxLineWidth) const{
 	QString result;
 	if (includeHeader) {
 		result += "<html><head>";
@@ -6451,11 +6463,11 @@ QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includ
 	QDocumentSelection sel = range.selection();
 	REQUIRE_RET(sel.startLine >= 0 && sel.startLine < m_lines.size(),"");
 	REQUIRE_RET(sel.endLine >= 0 && sel.endLine < m_lines.size(),"");
-	result += m_lines[sel.startLine]->exportAsHtml(sel.start)+"\n";
+	result += m_lines[sel.startLine]->exportAsHtml(sel.start, -1, maxLineWidth)+"\n";
 	for (int i=sel.startLine+1; i<sel.endLine; i++)
-		result += m_lines[i]->exportAsHtml() + "\n";
+		result += m_lines[i]->exportAsHtml(0, -1, maxLineWidth) + "\n";
 	if (sel.startLine != sel.endLine)
-		result += m_lines[sel.endLine]->exportAsHtml(0,sel.end);
+		result += m_lines[sel.endLine]->exportAsHtml(0, sel.end, maxLineWidth);
 
 	if (includeHeader)
 		result += "</body></html>";

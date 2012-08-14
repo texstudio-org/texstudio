@@ -42,6 +42,7 @@ class QCE_EXPORT QFoldPanel : public QPanel
 		virtual QString type() const;
 		
 	protected:
+		virtual void mouseMoveEvent(QMouseEvent *e);
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void contextMenuEvent(QContextMenuEvent *e);
 		virtual bool paint(QPainter *p, QEditor *e);
