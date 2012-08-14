@@ -926,18 +926,18 @@
     </message>
     <message>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
-        <translation>&lt;b&gt;%&lt;/b&gt;: Dateiname ohne Endung &lt;b&gt;@&lt;/b&gt;: Zeilennummer</translation>
+        <translation type="obsolete">&lt;b&gt;%&lt;/b&gt;: Dateiname ohne Endung &lt;b&gt;@&lt;/b&gt;: Zeilennummer</translation>
     </message>
     <message>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation>&lt;b&gt;?&lt;/b&gt; gefolgt von  &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: erweiterter Dateiname; steht &lt;i&gt;c:&lt;/i&gt; davor wird die aktuelle Datei statt der Masterdatei genommen</translation>
+        <translation type="obsolete">&lt;b&gt;?&lt;/b&gt; gefolgt von  &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: erweiterter Dateiname; steht &lt;i&gt;c:&lt;/i&gt; davor wird die aktuelle Datei statt der Masterdatei genommen</translation>
     </message>
     <message>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
 ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</source>
-        <translation>&lt;i&gt;a&lt;/i&gt;: absoluter Pfad, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: Dateiname ohne Endung/Pfad,&lt;i&gt;e&lt;/i&gt;: Endung&lt;br /&gt;
+        <translation type="obsolete">&lt;i&gt;a&lt;/i&gt;: absoluter Pfad, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: Dateiname ohne Endung/Pfad,&lt;i&gt;e&lt;/i&gt;: Endung&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: umgibt den Dateinamen mit &quot;..&quot;, . (Punkt): beendet Namen mit einem Punkt, (space): beendet Namen und fügt ein Leerzeichen hinzu, &lt;i&gt;)&lt;/i&gt;: beendet Namen &lt;br /&gt;
 Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben von &quot;, ?e) nur die Endung (ohne Punkt), &lt;br /&gt;
 ?m&quot; (Dateiname ohne Endung, indentisch zu %), ?me (Dateiname mit Endung wie beispiel.tex)</translation>
@@ -945,7 +945,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
     <message>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
-        <translation>%%, @@ or ?? wird zu: %, @ oder ?</translation>
+        <translation type="obsolete">%%, @@ or ?? wird zu: %, @ oder ?</translation>
     </message>
     <message>
         <source>Auto Replace Latex-Commands</source>
@@ -2241,6 +2241,59 @@ options again to only view the most common settings.</source>
     <message>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Größe der Reiter am oberen oder unteren Rand des Vervollständigen-Dialogs</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
+</source>
+        <translation>&lt;b&gt;%&lt;/b&gt;: Dateiname ohne Endung; &lt;b&gt;@&lt;/b&gt;: Zeilennummer; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: Formatierter Dateiname
+</translation>
+    </message>
+    <message>
+        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
+prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
+&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
+        <translation>&lt;i&gt;Selectors:&lt;/i&gt; Eine Kombination der folgenden Symbole &lt;b&gt;a&lt;/b&gt;: absoluter Pfad, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: Dateiname ohne Endung,&lt;b&gt;e&lt;/b&gt;: Dateiendung&lt;br /&gt;
+Wenn &lt;b&gt;c&lt;/b&gt; vorangestellt wird, wird die aktuelle Datei verwendet statt der Masterdatei&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: Beendet den Befehl. Ebenso beenden die folgenden Symbole den Befehl. Sie haben jedoch eine Zusatzbedeutung&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: mit doppelten Anführungszeichen umschließen, &lt;b&gt;.&lt;/b&gt; (Punkt) fügt am Ende einen Punkt ein, (Leerzeichen): fügt am Ende ein Leerzeichen ein&lt;br /&gt;
+&lt;i&gt;Beispiele:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: absoluter Dateiname in Anführungszeichen, &lt;b&gt;?e)&lt;/b&gt; nur Dateiendung (z.B. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; Dateiname in Anführungszeichen ohne Endung (identisch to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; Dateiname mit Endung (z.B. example.tex)</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;??&lt;/b&gt; become: %, @ or ?
+</source>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; und &lt;b&gt;??&lt;/b&gt; werden ersetzt zu: %, @ or ?</translation>
+    </message>
+    <message>
+        <source>PDF Viewer</source>
+        <translation>PDF Betrachter</translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation>Log</translation>
+    </message>
+    <message>
+        <source>Commands ($PATH)</source>
+        <translation>Befehle ($PATH)</translation>
+    </message>
+    <message>
+        <source>Search Path for Logs</source>
+        <translation>Suchpfad für Logs</translation>
+    </message>
+    <message>
+        <source>Search Path for PDFs</source>
+        <translation>Suchpfad für PDFs</translation>
+    </message>
+    <message>
+        <source>Search Path for Commands</source>
+        <translation>Suchpfad für Befehle</translation>
+    </message>
+    <message>
+        <source>Additional Search Paths:</source>
+        <translation>Zusätzliche Suchpfade:</translation>
     </message>
 </context>
 <context>
@@ -4997,6 +5050,13 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
     </message>
 </context>
 <context>
+    <name>QFoldPanel</name>
+    <message>
+        <source>Expand All</source>
+        <translation>Alle Ausklappen</translation>
+    </message>
+</context>
+<context>
     <name>QFormatConfig</name>
     <message>
         <source>normal</source>
@@ -6528,7 +6588,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>Normal Mode (current master document :</source>
-        <translation>Normaler Modus (aktuelles Masterdokument:</translation>
+        <translation type="obsolete">Normaler Modus (aktuelles Masterdokument:</translation>
     </message>
     <message>
         <source>Toggle Bookmark</source>
@@ -8044,6 +8104,10 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
         <source>Log File not found!</source>
         <translation>Logdatei nicht gefunden!</translation>
     </message>
+    <message>
+        <source>Normal Mode (current master document: </source>
+        <translation>Normaler Modus (aktuelles Masterdokument: </translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -8851,11 +8915,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>current document</source>
-        <translation>aktuellem Dokument</translation>
+        <translation type="obsolete">aktuellem Dokument</translation>
     </message>
     <message>
         <source>open documents</source>
-        <translation>allen offenen Dokumenten</translation>
+        <translation type="obsolete">allen offenen Dokumenten</translation>
     </message>
     <message>
         <source>Find:</source>
@@ -8876,6 +8940,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Complete Words Only</source>
         <translation>nur ganze Worte</translation>
+    </message>
+    <message>
+        <source>Current Document</source>
+        <translation>aktuellem Dokument</translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation>allen offenen Dokumenten</translation>
     </message>
 </context>
 <context>
