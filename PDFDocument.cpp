@@ -2672,6 +2672,14 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 				if (pagecontent) {
 					word = pagecontent->text(QRectF(pos,pos).adjusted(-35,-10,35,10));
 					if (word.contains("\n")) word = word.split("\n")[word.split("\n").size()/2];
+					// replace ligatures
+					word.replace(QChar(L'\xFB00'), QString("ff"));
+					word.replace(QChar(L'\xFB01'), QString("fi"));
+					word.replace(QChar(L'\xFB02'), QString("fl"));
+					word.replace(QChar(L'\xFB03'), QString("ffi"));
+					word.replace(QChar(L'\xFB04'), QString("ffl"));
+					word.replace(QChar(L'\xFB05'), QString("ft"));
+					word.replace(QChar(L'\xFB06'), QString("st"));
 				}
 			}
 
