@@ -1964,14 +1964,13 @@ void PDFDocument::init(bool embedded)
 	}
 
     actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
-    if(embedded){
+	actionZoom_In->setVisible(false);
+	actionZoom_Out->setVisible(false);
+	if(embedded){
         actionTypeset->setVisible(false);
-        //actionExternalViewer->setVisible(false);
-        actionZoom_In->setVisible(false);
-        actionZoom_Out->setVisible(false);
     }else{
         actionClose->setVisible(false);
-    }
+	}
 
 	setContextMenuPolicy(Qt::NoContextMenu);
 
@@ -1986,17 +1985,18 @@ void PDFDocument::init(bool embedded)
 	connect(toolButtonGroup, SIGNAL(buttonClicked(int)), pdfWidget, SLOT(setTool(int)));
 	pdfWidget->setTool(kMagnifier);
 
-    if(!embedded){
-        QStringList lst;
-        lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
-		comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(zoomFromAction()),"100%");
-        toolBar->insertWidget(actionZoom_In, comboZoom);
-    }else{
-        comboZoom=0;
+	comboZoom=0;
+
+	if(!embedded){
+		//QStringList lst;
+		//lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
+		//comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(zoomFromAction()),"100%");
+		//toolBar->insertWidget(actionZoom_In, comboZoom);
+	}else{
 		QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);
-    }
+	}
 	addAction(toolBar->toggleViewAction());
 
 	leCurrentPage=new QLineEdit(toolBar);
