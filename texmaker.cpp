@@ -4064,6 +4064,8 @@ void Texmaker::createLabelFromAction()
 	int pos = lineText.indexOf(latexParser.structureCommands[entry->level]);
 	if (pos>=0) {
 		pos += latexParser.structureCommands[entry->level].length();
+		// workaround for starred commands: \section*{Cap}
+		if ((lineText.length() > pos+1) && lineText.at(pos) == '*') pos++;
 	} else {
 		// fallback if structure commands are redefined
 		foreach (const QString &cmd, latexParser.structureCommands) {
