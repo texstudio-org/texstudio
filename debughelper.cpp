@@ -82,8 +82,8 @@ void print_message(const char* title, const char *where, const char *assertion, 
 	qDebug("%s %s at %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
 #else
 	fprintf(stderr, "%s %s at %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
-#endif
 	qDebug("%s %s at  %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
+#endif
 }
 
 #if defined(unix) || defined(Q_WS_MACX)
@@ -91,9 +91,10 @@ void print_message(const char* title, const char *where, const char *assertion, 
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
-	print_message(title, where, assertion, file, line,"");
+#include "execinfo.h"
+/*
+void print_backtrace_with_gdb(){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
+	//carefully, might crash the X server
 	char pid_buf[30];
 	sprintf(pid_buf, "%d", getpid());
 	char name_buf[512];
@@ -103,11 +104,36 @@ void print_backtrace(const char* title, const char *where, const char * assertio
 		dup2(2,1); // redirect output to stderr
 		fprintf(stdout,"stack trace for %s pid=%s\n",name_buf,pid_buf);
 		execlp("gdb", "gdb", "--batch", "-n", "-ex", "thread", "-ex", "bt", name_buf, pid_buf, NULL);
-		abort(); /* If gdb failed to start */
+		abort(); // If gdb failed to start 
 	} else {
 		waitpid(child_pid,NULL,0);
 	}
+}*/
+
+
+void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){ //http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace/4611112#4611112
+	print_message(title, where, assertion, file, line,"");
+
+	void *trace[48];
+	int trace_size = backtrace(trace, 48);
+	char** messages = backtrace_symbols(trace, trace_size);
+	for (int i=1; i<trace_size; ++i)
+		printf("[bt] %s\n", messages[i]);
+	
+	
+	char filename[] = "/tmp/texstudioXXXX_backtrace.txt";
+	static int count = 1;
+	snprintf(filename, sizeof(filename), "/tmp/texstudio_backtrace%i.txt", count);
+	
+	FILE* f = fopen(filename, "w");
+	if (!f) return;
+	fprintf(f, "%s %s at %s in %s: %i\r\n", title, assertion, where, file, line);
+	for (int i=1; i<trace_size; ++i)
+		fprintf(f,"[bt] %s\n", messages[i]);
+	fclose(f);
 }
+
+
 #elif defined(Q_WS_WIN)
 #include <QSysInfo>
 #include "windows.h"
