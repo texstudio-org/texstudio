@@ -6020,10 +6020,17 @@ void Texmaker::cursorPositionChanged(){
 	syncPDFViewer(true);
 }
 
-void Texmaker::syncPDFViewer(bool onlyIfFollowingCursor) {
+void Texmaker::syncPDFViewer(bool fromCursorMovement) {
 #ifndef NO_POPPLER_PREVIEW
+	if(PDFDocument::documentList().isEmpty() && !fromCursorMovement) {
+		// open new viewer, if none exists
+		QAction *viewAct = getManagedAction("main/tools/view");
+		if (viewAct) viewAct->trigger();
+		return;
+	}
+
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
-		if (!onlyIfFollowingCursor || viewer->followCursor())
+		if (!fromCursorMovement || viewer->followCursor())
 			viewer->syncFromSource(getCurrentFileName(), currentLine, false);
 #endif
 }
