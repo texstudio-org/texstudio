@@ -3810,6 +3810,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				*/
 			}
 #else
+                const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
 
 				int cp = 0;
 				brokenWave = false;
