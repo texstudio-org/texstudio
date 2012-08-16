@@ -1450,7 +1450,7 @@ QString BuildManager::findFile(const QString& defaultName, const QString& search
 	QStringList paths = searchPaths.split(dirSep);
 	
 	foreach (const QString& p, paths)
-		if (p.startsWith('/') || p.startsWith('\\\\') || (p.length() > 2 && p[1] == ':' && p[2] == '\\')) {
+		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && p[2] == '\\')) {
 			if (QFileInfo(p + baseName).exists()) return p + baseName;
 		} else 
 			if (QFileInfo(absPath + p + baseName).exists()) return absPath + p + baseName;

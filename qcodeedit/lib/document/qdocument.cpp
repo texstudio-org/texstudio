@@ -3769,7 +3769,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 				// focus on getting that code to work...
 
 				// gotta center things
-				const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
+				//const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
 									/*
 									qMin(
 										ypos + (QDocumentPrivate::m_ascent + QDocumentPrivate::m_lineSpacing) / 2,
@@ -6470,6 +6470,21 @@ QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includ
 	QDocumentSelection sel = range.selection();
 	REQUIRE_RET(sel.startLine >= 0 && sel.startLine < m_lines.size(),"");
 	REQUIRE_RET(sel.endLine >= 0 && sel.endLine < m_lines.size(),"");
+
+	// remove surrounding empty lines
+	int line = sel.startLine;
+	while (line < sel.endLine && m_lines[line]->length()==0) line++;
+	if (line < sel.endLine) {
+		sel.startLine = line;
+		sel.start = 0;
+	}
+	line = sel.endLine;
+	while (line > sel.startLine && m_lines[line]->length()==0) line--;
+	if (line < sel.endLine) {
+		sel.endLine = line;
+		sel.end = -1;
+	}
+
 	result += m_lines[sel.startLine]->exportAsHtml(sel.start, -1, maxLineWidth, maxWrap)+"\n";
 	for (int i=sel.startLine+1; i<sel.endLine; i++)
 		result += m_lines[i]->exportAsHtml(0, -1, maxLineWidth, maxWrap) + "\n";

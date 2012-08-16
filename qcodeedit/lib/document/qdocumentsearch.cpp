@@ -499,7 +499,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		}
 	}
 	
-	QDocumentSelection boundaries;
+	QDocumentSelection boundaries = {0,0,0,0};
 	bool bounded = scope.isValid() && scope.hasSelection();
 	
 	// condition only to avoid debug messages...
