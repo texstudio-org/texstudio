@@ -29,11 +29,11 @@ void BibTeXFileInfo::parse(QByteArray& data){
 						  BTS_IN_ENTRY}; //read balanced bracket until all are closed, then reset
 		enum BibTeXState state=BTS_IN_SPACE;
 		const char* comment="comment\0"; const char* COMMENT="COMMENT\0";
-		int typeLen;
-		bool commentPossible;
-		int bracketBalance;
-		char bracketOpen;
-		char bracketClose;
+		int typeLen = 0;
+		bool commentPossible = false;
+		int bracketBalance = 0;
+		char bracketOpen = 0;
+		char bracketClose = 0;
 		QString curID;
 		for (int j=0; j<data.count(); j++){
 			char c = data.at(j);
