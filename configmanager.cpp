@@ -933,6 +933,15 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 			continue;
 		config->setValue(QString("Macros/%1").arg(index++), m.toStringList());
 	}
+    while(config->contains(QString("Macros/%1").arg(index))){ //remove old macros which are not used any more
+        config->remove(QString("Macros/%1").arg(index));
+        index++;
+    }
+    // remove old Tags
+    config->remove("User/Tags");
+    config->remove("User/TagNames");
+    config->remove("User/TagAbbrevs");
+    config->remove("User/TagTriggers");
 
 	//menu shortcuts
 	config->beginWriteArray("keysetting");
