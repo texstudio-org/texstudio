@@ -195,9 +195,9 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 			    renderedPages.insert(pageNr,image,cost);
 			}
 		}
-        /*if(x>-1 && y>-1 && w>-1 && h>-1){
-			img=img.copy(x,y,w,h);
-        }*/
+		if(!cache && x>-1 && y>-1 && w>-1 && h>-1){
+		    img=img.copy(x,y,w,h);
+		}
 	}
 	if(xres<0){
         if(mFillCacheMode){
