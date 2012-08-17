@@ -1474,6 +1474,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	QStringList MathEnvirons;
 	int i,first,last;
 	int id_first;
+    bool forward=true;
+    QStringList strngLst;
 	QVector<QParenthesis> parens;
 	switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
 	case LatexParser::Unknown:
@@ -1510,31 +1512,33 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
 	case LatexParser::Command:
+        forward= (command=="\\begin");
 		if (command=="\\begin" || command=="\\end")
 			command="\\begin{"+value+"}";
 		
         //MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
-        if(document->ltxCommands.possibleCommands["math"].contains(command)&&config->toolTipPreview){
-			if(command.startsWith("\\begin")){
+        strngLst=document->ltxCommands.environmentAliases.values(value);
+        if(strngLst.contains("math")&&config->toolTipPreview){
+            QString text;
+            if(forward){
 				// find closing
-                /*if(value=="eqnarray"||value=="eqnarray*")
-					command="\\begin{eqnarray*}";
-                else command="\\begin{displaymath}";*/
-				
 				int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
-				QString text;
 				text=command+"\n";
 				for(int i=cursor.lineNumber()+1;i<endingLine;i++){
 					text=text+editor->document()->line(i).text()+"\n";
 				}
-				
-                /*if(value=="eqnarray"||value=="eqnarray*")
-					text+="\\end{eqnarray*}";
-                else text+="\\end{displaymath}";*/
                 text+="\\end{"+value+"}";
-				
-				emit showPreview(text);
-			}
+            }else{
+                int endingLine=editor->document()->findLineContaining(QString("\\begin{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,true);
+                text="\\end{"+value+"}";
+                for(int i=cursor.lineNumber()-1;i>endingLine;i--){
+                    text=editor->document()->line(i).text()+"\n"+text;
+                }
+
+                text="\\begin{"+value+"}"+text;
+            }
+            m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+            emit showPreview(text);
 		} else {
 			if(config->toolTipHelp){
 				topic=completer->lookupWord(command);

@@ -1566,7 +1566,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 						package.possibleCommands["normal"] << line.simplified();
 					}
 				}
-				if(valid.isEmpty() || valid.contains('m')){ // math commands
+                if(valid.contains('m')){ // math commands
 					if(res>-1){
 						if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
 							package.possibleCommands["math"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
