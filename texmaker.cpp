@@ -870,7 +870,7 @@ void Texmaker::setupMenus() {
 
 
 	//  User
-	menu=newManagedMenu("main/macros",tr("&Macros"));
+	menu=newManagedMenu("main/macros",tr("Ma&cros"));
 	updateUserMacros();
 	scriptengine::macros = &configManager.completerConfig->userMacro;
 		
