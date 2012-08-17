@@ -1513,13 +1513,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		if (command=="\\begin" || command=="\\end")
 			command="\\begin{"+value+"}";
 		
-		MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
-		if(MathEnvirons.contains(value)&&config->toolTipPreview){
+        //MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
+        if(document->ltxCommands.possibleCommands["math"].contains(command)&&config->toolTipPreview){
 			if(command.startsWith("\\begin")){
 				// find closing
-				if(value=="eqnarray"||value=="eqnarray*")
+                /*if(value=="eqnarray"||value=="eqnarray*")
 					command="\\begin{eqnarray*}";
-				else command="\\begin{displaymath}";
+                else command="\\begin{displaymath}";*/
 				
 				int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
 				QString text;
@@ -1528,9 +1528,10 @@ void LatexEditorView::mouseHovered(QPoint pos){
 					text=text+editor->document()->line(i).text()+"\n";
 				}
 				
-				if(value=="eqnarray"||value=="eqnarray*")
+                /*if(value=="eqnarray"||value=="eqnarray*")
 					text+="\\end{eqnarray*}";
-				else text+="\\end{displaymath}";
+                else text+="\\end{displaymath}";*/
+                text+="\\end{"+value+"}";
 				
 				emit showPreview(text);
 			}
