@@ -5726,6 +5726,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 		else
 			p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QRect screen = QApplication::desktop()->screenGeometry();
+        qDebug()<<p;
 		QPixmap img(imageFile);
 		int w=img.width();
 		if(w>screen.width()) w=screen.width()-2;
