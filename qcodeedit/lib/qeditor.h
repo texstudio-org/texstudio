@@ -579,6 +579,7 @@ public slots:
 		QList<QDocumentCursor> m_mirrors;
 		
 		bool atPlaceholder();
+        bool isMirrored();
 		int m_curPlaceHolder, m_lastPlaceHolder, m_cphOffset;
 		bool m_placeHolderSynchronizing; 
 		

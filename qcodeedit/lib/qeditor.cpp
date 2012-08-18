@@ -2267,11 +2267,7 @@ void QEditor::cut()
 {
 	copy();
 
-    bool macroing = atPlaceholder();
-    if(macroing){
-        if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
-            macroing=false;
-    }
+    bool macroing = isMirrored();
 
 	if ( macroing )
 		m_doc->beginMacro();
@@ -2955,12 +2951,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-        bool macroing = atPlaceholder();
-        if(macroing){
-            if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
-                macroing=false;
-        }
-        //m_mirrors.count();
+        bool macroing = isMirrored();
 
 		if ( macroing )
 			m_doc->beginMacro();
@@ -5018,11 +5009,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			bool slow = txt.size() > 20*1024;
 			if (slow) emit slowOperationStarted();
 			
-            bool macroing = atPlaceholder();
-            if(macroing){
-                if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
-                    macroing=false;
-            }
+            bool macroing = isMirrored();
 
 			if ( macroing )
 				m_doc->beginMacro();
@@ -5363,6 +5350,15 @@ void QEditor::markChanged(QDocumentLineHandle *l, int mark, bool on)
 bool QEditor::displayModifyTime()
 {
     return mDisplayModifyTime;
+}
+
+bool QEditor::isMirrored(){
+    bool macroing=atPlaceholder();
+    if(macroing){
+        if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
+            macroing=false;
+    }
+    return macroing;
 }
 
 /*! @} */
