@@ -2267,7 +2267,11 @@ void QEditor::cut()
 {
 	copy();
 
-	bool macroing = atPlaceholder() || m_mirrors.count();
+    bool macroing = atPlaceholder();
+    if(macroing){
+        if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
+            macroing=false;
+    }
 
 	if ( macroing )
 		m_doc->beginMacro();
@@ -2951,7 +2955,12 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-		bool macroing = atPlaceholder() || m_mirrors.count();
+        bool macroing = atPlaceholder();
+        if(macroing){
+            if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
+                macroing=false;
+        }
+        //m_mirrors.count();
 
 		if ( macroing )
 			m_doc->beginMacro();
@@ -5009,7 +5018,11 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			bool slow = txt.size() > 20*1024;
 			if (slow) emit slowOperationStarted();
 			
-			bool macroing = atPlaceholder() || m_mirrors.count();
+            bool macroing = atPlaceholder();
+            if(macroing){
+                if(m_placeHolders[m_curPlaceHolder].mirrors.count()<1)
+                    macroing=false;
+            }
 
 			if ( macroing )
 				m_doc->beginMacro();
