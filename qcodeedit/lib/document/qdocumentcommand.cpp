@@ -621,6 +621,7 @@ void QDocumentInsertCommand::redo()
 	updateCursorsOnInsertion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
 
 	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
+    m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber+m_data.handles.size(),m_data.endOffset));
 
 	markRedone(hl, m_first);
 
@@ -658,6 +659,7 @@ void QDocumentInsertCommand::undo()
 	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
 
 	m_doc->impl()->emitContentsChange(m_data.lineNumber, m_data.handles.count() + 1);
+    m_doc->setProposedPosition(QDocumentCursor(m_doc,m_data.lineNumber,m_data.startOffset));
 
 	markUndone(hl);
 
