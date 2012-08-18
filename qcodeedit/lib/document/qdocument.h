@@ -348,6 +348,14 @@ class QCE_EXPORT QDocument : public QObject
         bool linesMerged(QDocumentLineHandle* dlh,int bo,QDocumentLineHandle* fromLineHandle);
         void linesUnMerged(QDocumentLineHandle *dlh,QDocumentLineHandle *fromLineHandle);
         int bookMarkId(int bookmarkNumber);
+
+        QDocumentCursor getProposedPosition(){
+            return m_proposedPostion;
+        }
+        void setProposedPosition(QDocumentCursor c){
+            m_proposedPostion=c;
+        }
+
 	public slots:
 		void clear();
 		
@@ -402,6 +410,7 @@ class QCE_EXPORT QDocument : public QObject
 	private:
 		QString m_leftOver;
 		QDocumentPrivate *m_impl;
+        QDocumentCursor m_proposedPostion;
 
 };
 
