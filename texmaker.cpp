@@ -80,6 +80,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	biblatexEntryActions = 0;
 	bibTypeActions = 0;
 	highlightLanguageActions = 0;
+	runningPDFCommands = 0;
 	
 	ReadSettings();
 	
@@ -4348,6 +4349,7 @@ void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool 
 
 void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf){
 	if (pdf) {
+		runningPDFCommands++;
 		#ifndef NO_POPPLER_PREVIEW
 		PDFDocument::isCompiling = true;
 		#endif
@@ -4391,12 +4393,15 @@ void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, con
 }
 
 void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf){
-	Q_UNUSED(commandMain)
+	//Q_UNUSED(commandMain)
 	Q_UNUSED(pdf)
+	if (pdf) {
+		runningPDFCommands--;
 #ifndef NO_POPPLER_PREVIEW
-	if (pdf) 
-		PDFDocument::isCompiling = false;
+		if (runningPDFCommands <= 0)
+			PDFDocument::isCompiling = false;
 #endif
+	}
 	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
 }

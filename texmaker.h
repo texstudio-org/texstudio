@@ -116,7 +116,7 @@ private:
 	
 	//gui
 	TxsTabWidget *EditorView;
-    QSplitter *splitter;
+	QSplitter *splitter;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
@@ -137,7 +137,6 @@ private:
 	QActionGroup *highlightLanguageActions;
 
 	//toolbars
-	//
 	QAction *ToggleAct, *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 	
@@ -145,17 +144,12 @@ private:
 	QToolButton *statusTbLanguage;
 	QActionGroup *spellLanguageActions;
 	
-	QToolButton *combo1,*combo2,*combo;
-	
 	//settings
 	ConfigManager configManager;
 public:
 	BuildManager buildManager;
 private:
-	int split1_right, split1_left, split2_top, split2_bottom;
-	QString spell_ignored_words;
 	QStringList struct_level;
-	QStringList labelitem;
 	
 	QStringList userTemplatesList;
 	qreal pdfSplitterRel;
@@ -170,7 +164,6 @@ private:
 	templateselector *templateSelectorDialog;
 	
 	//tools
-	SymbolList symbolScore;
 	usercodelist symbolMostused;
 	QStringList symbolFavorites;
 	
@@ -182,6 +175,8 @@ private:
 	
 	QAction *fullscreenModeAction;
 	
+	int runningPDFCommands;
+
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction* act, const char* slot, const QList<QVariant>& args);
 private slots:
