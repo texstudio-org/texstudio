@@ -303,14 +303,14 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 	foreach(const QString& fn, searchFiles) {
 		QFileInfo fic(fn + fileName);
 		if (fic.exists() && fic.isReadable())
-			return fn + fileName;
+			return fic.canonicalFilePath();
 	}
 	QString newFileName=fileName.split("/").last();
 	if(!newFileName.isEmpty()){
 		foreach(const QString& fn, searchFiles) {
 			QFileInfo fic(fn + newFileName);
 			if (fic.exists() && fic.isReadable())
-				return fn + newFileName;
+				return fic.canonicalFilePath();
 		}
 	}
 	return "";
