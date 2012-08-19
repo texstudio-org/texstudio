@@ -230,11 +230,15 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	if (linenr==-1) linenr=lines();
 
     // check if line contains bookmark
-    /*if(edView){
-        if(edView->hasBookmark(linenr-1,-1)){
-            emit bookmarkRemoved(linenr-1);
+    if(edView){
+        for(int i=-1;i<10;i++){
+            if(edView->hasBookmark(linenr-1,i)){
+                emit bookmarkRemoved(linenr-1);
+                edView->removeBookmark(dlh,i);
+                break;
+            }
         }
-    }*/
+    }
 	
 	QList<StructureEntry*> categories=QList<StructureEntry*>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
 	foreach (StructureEntry* sec, categories) {
