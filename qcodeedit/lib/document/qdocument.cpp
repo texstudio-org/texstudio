@@ -3501,7 +3501,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 		int rngIdx = 0;
 		int column = 0;
-#ifdef Q_OS_LINUX
+#ifndef Q_OS_WIN
 		bool continuingWave = false, brokenWave = false;
 		int dir = 0; // 0 = down; 1 = up
 #endif
@@ -3514,7 +3514,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 			if ( wrap != r.wrap )
 			{
-#ifdef Q_OS_LINUX
+#ifndef Q_OS_WIN
 				continuingWave = false;
 #endif
 				if ( fmt & FORMAT_SELECTION )
@@ -3778,7 +3778,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 
 				//if (format.waveUnderlineForeground.isValid())
 				//	p->setPen(format.waveUnderlineForeground);
-#ifndef Q_OS_LINUX
+#ifdef Q_OS_WIN
 				QPen pn2=p->pen();
 				QVector<qreal>pattern2;
 				pattern2 << 1.0 << 3.0;
