@@ -714,18 +714,18 @@
     </message>
     <message>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
-        <translation>&lt;b&gt;%&lt;/b&gt; - Ім&apos;я файла без розширення     &lt;b&gt;@&lt;/b&gt; - номер рядка </translation>
+        <translation type="obsolete">&lt;b&gt;%&lt;/b&gt; - Ім&apos;я файла без розширення     &lt;b&gt;@&lt;/b&gt; - номер рядка </translation>
     </message>
     <message>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation>&lt;b&gt;?&lt;/b&gt; - може набувати значень &lt;i&gt;a&lt;/i&gt;, &lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt; &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt;, &lt;i&gt;.&lt;/i&gt;, &lt;i&gt;)&lt;/i&gt; для розширення опцій імені файла;   додайте &lt;i&gt;c:&lt;/i&gt; для поточного файла замість головного файла</translation>
+        <translation type="obsolete">&lt;b&gt;?&lt;/b&gt; - може набувати значень &lt;i&gt;a&lt;/i&gt;, &lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt; &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt;, &lt;i&gt;.&lt;/i&gt;, &lt;i&gt;)&lt;/i&gt; для розширення опцій імені файла;   додайте &lt;i&gt;c:&lt;/i&gt; для поточного файла замість головного файла</translation>
     </message>
     <message>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
 ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</source>
-        <translation>&lt;i&gt;a&lt;/i&gt; - абсолютгий шлях;   &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt; - ім&apos;я базового файла без розширення;   &lt;i&gt;e&lt;/i&gt; - розширення&lt;br /&gt;
+        <translation type="obsolete">&lt;i&gt;a&lt;/i&gt; - абсолютгий шлях;   &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt; - ім&apos;я базового файла без розширення;   &lt;i&gt;e&lt;/i&gt; - розширення&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt; - взяти ім&apos;я у лапки &quot;..&quot;;   . (крапка) - завершує заповнювач крапкою;   (пробіл) - завершує заповнювач пробілом; &lt;i&gt;)&lt;/i&gt; - завершує заповнювач&lt;br /&gt;
 Приклади: ?ame&quot; (Повне абсолютне ім&apos;я, взяте у лапки), ?e) (Тільки розширення файла без крапки), &lt;br /&gt;
 ?m&quot; (Ім&apos;я файла у лапках без розширення, тотожне до %), ?me (Ім&apos;я файла з розширенням за шаблоном example.tex)</translation>
@@ -733,7 +733,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     <message>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
-        <translation>%%, @@ або ?? перетворяться в %, @ або ?</translation>
+        <translation type="obsolete">%%, @@ або ?? перетворяться в %, @ або ?</translation>
     </message>
     <message>
         <source>Add line</source>
@@ -1697,6 +1697,53 @@ options again to only view the most common settings.</source>
     </message>
     <message>
         <source>Size of the tab bar at the bottom or top of the completer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
+&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Search Paths:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands ($PATH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for Logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for PDFs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for Commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4148,6 +4195,13 @@ result in data loss.
     </message>
 </context>
 <context>
+    <name>QFoldPanel</name>
+    <message>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QFormatConfig</name>
     <message>
         <source>Bold</source>
@@ -5535,7 +5589,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Normal Mode (current master document :</source>
-        <translation>Звичайний режим (поточний головний документ:</translation>
+        <translation type="obsolete">Звичайний режим (поточний головний документ:</translation>
     </message>
     <message>
         <source>Toggle Bookmark</source>
@@ -6637,10 +6691,6 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Macros</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Yes, try to recover</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6897,6 +6947,14 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Create Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ma&amp;cros</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal Mode (current master document: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7656,11 +7714,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>current document</source>
-        <translation>поточний документ</translation>
+        <translation type="obsolete">поточний документ</translation>
     </message>
     <message>
         <source>open documents</source>
-        <translation>відкриті документи</translation>
+        <translation type="obsolete">відкриті документи</translation>
     </message>
     <message>
         <source>Find:</source>
@@ -7680,6 +7738,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Complete Words Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
