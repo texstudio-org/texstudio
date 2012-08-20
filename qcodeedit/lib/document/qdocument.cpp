@@ -2087,6 +2087,18 @@ void QDocument::removeMarks(int id){
     if (m_impl) m_impl->removeMarks(id);
 }
 
+QList<int> QDocument::marks(QDocumentLineHandle *dlh) const
+{
+    //return QList<int>() << 1; //testcase
+
+    return m_impl ? m_impl->marks(dlh) : QList<int>();
+}
+
+void QDocument::removeMark(QDocumentLineHandle *dlh, int mid){
+    if(m_impl)
+        m_impl->removeMark(dlh,mid);
+}
+
 /*!
 	\return the date/time of the last modification of the document
 	

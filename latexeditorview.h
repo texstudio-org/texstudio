@@ -90,6 +90,7 @@ public:
     void removeBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
 	Q_INVOKABLE void addBookmark(int lineNr,int bookmarkNumber);
 	Q_INVOKABLE bool hasBookmark(int lineNr,int bookmarkNumber);
+    bool hasBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
 	
 	QList<QDocumentCursor> autoPreviewCursor;
 

@@ -239,7 +239,9 @@ class QCE_EXPORT QDocument : public QObject
 		int findNextMark(int id, int from = 0, int until = -1) const;
 		int findPreviousMark(int id, int from = -1, int until = 0) const;
 		void removeMarks(int id);
-		
+        QList<int> marks(QDocumentLineHandle *dlh) const;
+        void removeMark(QDocumentLineHandle *dlh, int mid);
+
 		QDocumentLine lineAt(const QPoint& p) const;
 		void cursorForDocumentPosition(const QPoint& p, int& line, int& column) const;
 		QDocumentCursor cursorAt(const QPoint& p) const;

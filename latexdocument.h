@@ -233,7 +233,6 @@ signals:
 	void toBeChanged();
 	void importPackage(QString name);
 	void spellingLanguageChanged(const QLocale &lang);
-    void bookmarkRemoved(int linenr);
     void bookmarkLineUpdated(int lineNr);
 };
 
