@@ -232,8 +232,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
     // check if line contains bookmark
     if(edView){
         for(int i=-1;i<10;i++){
-            if(edView->hasBookmark(linenr-1,i)){
-                emit bookmarkRemoved(linenr-1);
+            if(edView->hasBookmark(dlh,i)){
+                emit bookmarkRemoved(dlh);
                 edView->removeBookmark(dlh,i);
                 break;
             }

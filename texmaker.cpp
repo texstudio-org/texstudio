@@ -1401,7 +1401,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 	connect(edit->document,SIGNAL(importPackage(QString)),this,SLOT(importPackage(QString)));
-    connect(edit->document, SIGNAL(bookmarkRemoved(int)),this,SLOT(lineWithBookmarkRemoved(int)));
+    //connect(edit->document, SIGNAL(bookmarkRemoved(int)),this,SLOT(lineWithBookmarkRemoved(int)));
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)),this,SLOT(updateLineWithBookmark(int)));
 	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
@@ -3172,24 +3172,6 @@ void Texmaker::bookmarkAdded(QDocumentLineHandle* dlh,int nr){
     lineNr = lineNr>1 ? lineNr-2 : 0;
 	if (!currentEditorView()) return;
 	item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
-}
-
-void Texmaker::lineWithBookmarkRemoved(int lineNr){
-     LatexDocument *doc=qobject_cast<LatexDocument*> (sender());
-     QString text=doc->getFileInfo().fileName();
-     QDocumentLineHandle *dlh=doc->line(lineNr).handle();
-     LatexEditorView* edView=doc->getEditorView();
-     edView->removeBookmark(lineNr,-1);
-     QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
-     foreach(QListWidgetItem *item,lst){
-         QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-         if(dlh_item==dlh){
-             int row=bookmarksWidget->row(item);
-             item=bookmarksWidget->takeItem(row);
-             delete item;
-             return;
-         }
-     }
 }
 
 void Texmaker::updateLineWithBookmark(int lineNr){

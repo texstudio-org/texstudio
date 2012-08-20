@@ -305,7 +305,6 @@ protected slots:
     void moveBookmarkDown();
     void removeBookmark();
     void removeAllBookmarks();
-    void lineWithBookmarkRemoved(int lineNr);
     void updateLineWithBookmark(int lineNr);
     void updateBookmarks(LatexEditorView *edView);
 	
