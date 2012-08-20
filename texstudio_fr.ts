@@ -783,18 +783,18 @@
     </message>
     <message>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
-        <translation>&lt;b&gt;%&lt;/b&gt; : nom de fichier sans extension &lt;b&gt;@&lt;/b&gt;: numéro de ligne </translation>
+        <translation type="obsolete">&lt;b&gt;%&lt;/b&gt; : nom de fichier sans extension &lt;b&gt;@&lt;/b&gt;: numéro de ligne </translation>
     </message>
     <message>
         <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation>&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;, &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt; : nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier en cours au lieu du document maître)</translation>
+        <translation type="obsolete">&lt;b&gt;?&lt;/b&gt; suivi de &lt;i&gt;a&lt;/i&gt;, &lt;i&gt;m&lt;/i&gt;, &lt;i&gt;e&lt;/i&gt;, &lt;i&gt;&quot;&lt;/i&gt; ou &lt;i&gt;)&lt;/i&gt; : nom de fichier étendu (utiliser &lt;i&gt;c:&lt;/i&gt; pour désigner le fichier en cours au lieu du document maître)</translation>
     </message>
     <message>
         <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
 examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
 ?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</source>
-        <translation>&lt;i&gt;a&lt;/i&gt; : chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt;: chemin relatif, --&gt;&lt;i&gt;m&lt;/i&gt; : nom de fichier sans extension, &lt;i&gt;e&lt;/i&gt; : extension&lt;br /&gt;
+        <translation type="obsolete">&lt;i&gt;a&lt;/i&gt; : chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt;: chemin relatif, --&gt;&lt;i&gt;m&lt;/i&gt; : nom de fichier sans extension, &lt;i&gt;e&lt;/i&gt; : extension&lt;br /&gt;
 &lt;i&gt;&quot;&lt;/i&gt; : met l&apos;expression entre guillemets, . (point) : finit avec un point, (espace) : finit et ajoute une espace, &lt;i&gt;)&lt;/i&gt; : finit simplement&lt;br /&gt;
 exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés de guillemets, ?e) : extension seule (sans point),&lt;br /&gt;
 ?m&quot; : nom de fichier (sans extension, identique à %), ?me : nom de fichier (avec extension comme par exemple: exemple.tex).</translation>
@@ -802,7 +802,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     <message>
         <source>%%, @@ or ?? become: %, @ or ?
 </source>
-        <translation>Pour %, @ ou ?, noter respectivement %%, @@ ou ??</translation>
+        <translation type="obsolete">Pour %, @ ou ?, noter respectivement %%, @@ ou ??</translation>
     </message>
     <message>
         <source>Quick Build Command</source>
@@ -2294,6 +2294,53 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
+&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Search Paths:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF Viewer</source>
+        <translation type="unfinished">Afficheur PDF</translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation type="unfinished">Fichier log</translation>
+    </message>
+    <message>
+        <source>Commands ($PATH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for Logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for PDFs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for Commands</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5183,6 +5230,13 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     </message>
 </context>
 <context>
+    <name>QFoldPanel</name>
+    <message>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QFormatConfig</name>
     <message>
         <source>comment</source>
@@ -7210,7 +7264,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>Normal Mode (current master document :</source>
-        <translation>Mode normal (document maître actuel : </translation>
+        <translation type="obsolete">Mode normal (document maître actuel : </translation>
     </message>
     <message>
         <source>Master Document</source>
@@ -7992,7 +8046,7 @@ included document in %1</source>
     </message>
     <message>
         <source>&amp;Macros</source>
-        <translation>Ma&amp;cros</translation>
+        <translation type="obsolete">Ma&amp;cros</translation>
     </message>
     <message>
         <source>Yes, try to recover</source>
@@ -8256,6 +8310,14 @@ included document in %1</source>
     <message>
         <source>Log File not found!</source>
         <translation>Fichier log introuvable !</translation>
+    </message>
+    <message>
+        <source>Ma&amp;cros</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal Mode (current master document: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9110,11 +9172,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>current document</source>
-        <translation>Document en cours</translation>
+        <translation type="obsolete">Document en cours</translation>
     </message>
     <message>
         <source>open documents</source>
-        <translation>Documents ouverts</translation>
+        <translation type="obsolete">Documents ouverts</translation>
     </message>
     <message>
         <source>Find:</source>
@@ -9135,6 +9197,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Complete Words Only</source>
         <translation>Mots entiers seulement</translation>
+    </message>
+    <message>
+        <source>Current Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Documents</source>
+        <translation type="unfinished">Documents ouverts</translation>
     </message>
 </context>
 <context>

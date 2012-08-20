@@ -7858,7 +7858,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     </message>
     <message>
         <source>&amp;Macros</source>
-        <translation>&amp;Makros</translation>
+        <translation type="obsolete">&amp;Makros</translation>
     </message>
     <message>
         <source>Yes, try to recover</source>
@@ -8126,6 +8126,10 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     <message>
         <source>Normal Mode (current master document: </source>
         <translation>Normaler Modus (aktuelles Masterdokument: </translation>
+    </message>
+    <message>
+        <source>Ma&amp;cros</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

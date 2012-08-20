@@ -1647,7 +1647,7 @@ prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
-        <translation>&lt;i&gt;Választások:&lt;/i&gt; a következők kombinációja &lt;b&gt;a&lt;/b&gt;: abszolút út, &lt;!--&lt;i&gt;r&lt;/i&gt;: relatív út, --&gt;&lt;b&gt;m&lt;/b&gt;: fájlnév kiterjesztés nélkül,&lt;b&gt;e&lt;/b&gt;: kiterjesztés&lt;br /&gt;
+        <translation type="obsolete">&lt;i&gt;Választások:&lt;/i&gt; a következők kombinációja &lt;b&gt;a&lt;/b&gt;: abszolút út, &lt;!--&lt;i&gt;r&lt;/i&gt;: relatív út, --&gt;&lt;b&gt;m&lt;/b&gt;: fájlnév kiterjesztés nélkül,&lt;b&gt;e&lt;/b&gt;: kiterjesztés&lt;br /&gt;
 prepend &lt;b&gt;c&lt;/b&gt; a jelenlegi- a mesterfájl helyett&lt;br /&gt;
 &lt;i&gt;Végjelek:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: zárja a választást. A következő további jelentéssel is bíró karakterek zárják a választást&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: idézőjel bezárása, &lt;b&gt;.&lt;/b&gt; (pont) pontot rak a végére, (szóköz): szóközt rak a végére&lt;br /&gt;
@@ -1657,7 +1657,7 @@ prepend &lt;b&gt;c&lt;/b&gt; a jelenlegi- a mesterfájl helyett&lt;br /&gt;
     <message>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;??&lt;/b&gt; become: %, @ or ?
 </source>
-        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; és &lt;b&gt;??&lt;/b&gt; lesz: %, @ vagy ?</translation>
+        <translation type="obsolete">&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; és &lt;b&gt;??&lt;/b&gt; lesz: %, @ vagy ?</translation>
     </message>
     <message>
         <source>Additional Search Paths:</source>
@@ -1686,6 +1686,20 @@ prepend &lt;b&gt;c&lt;/b&gt; a jelenlegi- a mesterfájl helyett&lt;br /&gt;
     <message>
         <source>Search Path for Commands</source>
         <translation>Elérési út keresése (parancsok)</translation>
+    </message>
+    <message>
+        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
+&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6507,7 +6521,7 @@ included document in %1</source>
     </message>
     <message>
         <source>&amp;Macros</source>
-        <translation>&amp;Makrók</translation>
+        <translation type="obsolete">&amp;Makrók</translation>
     </message>
     <message>
         <source>Yes, try to recover</source>
@@ -6771,6 +6785,10 @@ included document in %1</source>
     <message>
         <source>Normal Mode (current master document: </source>
         <translation>Normál mód (jelenlegi mesterdokumentum:</translation>
+    </message>
+    <message>
+        <source>Ma&amp;cros</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
