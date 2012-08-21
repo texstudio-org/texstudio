@@ -7233,6 +7233,10 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
         <source>Run Script</source>
         <translation>Parancsfájl futtatása</translation>
     </message>
+    <message>
+        <source>Do you really want to delete the current macro?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>

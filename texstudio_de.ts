@@ -8601,6 +8601,10 @@ Man kann den spezillen Wert ?txs-start verwenden, um das Skript bei txs start zu
         <source>Run Script</source>
         <translation>Skript ausführen</translation>
     </message>
+    <message>
+        <source>Do you really want to delete the current macro?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>

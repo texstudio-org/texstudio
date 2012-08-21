@@ -8323,6 +8323,10 @@ Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při sp
         <source>Run Script</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Do you really want to delete the current macro?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>

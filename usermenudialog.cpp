@@ -263,7 +263,7 @@ void UserMenuDialog::slotAdd(){
 }
 
 void UserMenuDialog::slotRemove(){
-	if (!txsConfirm("Do you really want to delete the current macro?")) 
+	if (!txsConfirm(tr("Do you really want to delete the current macro?")))
 		return;
 	int index = ui.tableView->currentIndex().row();
 	if (index < 0) return;
