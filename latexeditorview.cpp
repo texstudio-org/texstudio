@@ -59,6 +59,7 @@ public:
 	}
 	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
+	virtual bool mousePressEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool mouseReleaseEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
@@ -68,6 +69,8 @@ private:
 	
 	QMenu* contextMenu;
 	QString lastSpellCheckedWord;
+	
+	QPoint lastMousePress;
 	
 };
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
@@ -127,8 +130,20 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	return false;
 }
 
+bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
+	lastMousePress = event->pos();
+	return false;
+}
+
 bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor) {
 	if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton) {
+		int distanceSqr = (event->pos().x() - lastMousePress.x())*(event->pos().x() - lastMousePress.x()) + (event->pos().y() - lastMousePress.y())*(event->pos().y() - lastMousePress.y());
+		if (distanceSqr > QDocument::getLineSpacing() * QDocument::getLineSpacing()) 
+			return false;
+		if (!editor->languageDefinition()) return false;
+		qDebug() << editor->languageDefinition()->language();
+		if (editor->languageDefinition()->language() != "(La)TeX") 
+			return false;
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
 		if (!edView) return false;
 		edView->emitSyncPDF();
