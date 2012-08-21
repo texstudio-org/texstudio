@@ -662,7 +662,16 @@ QSettings* ConfigManager::readSettings() {
 		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QFileInfo(sw).absolutePath();
 	}
 	
-	if (thesaurus_database=="<dic not found>"||thesaurus_database=="") {
+	if (thesaurus_database == "<dic not found>") {
+		thesaurus_database = "";
+	}
+	if (thesaurus_database != "") {
+		QFileInfo fi(thesaurus_database);
+		if (!fi.exists()) { // try finding the file in other directories (e.g. after update tmx->txs
+			thesaurus_database = findResourceFile(fi.fileName());
+		}
+	}
+	if (thesaurus_database == "") { // fall back to system or fixed language
 		QStringList fallBackPaths;
 #ifdef Q_WS_X11
 		fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes" ;
