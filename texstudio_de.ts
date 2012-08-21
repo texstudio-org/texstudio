@@ -8129,7 +8129,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     </message>
     <message>
         <source>Ma&amp;cros</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Makros</translation>
     </message>
 </context>
 <context>
@@ -8603,7 +8603,7 @@ Man kann den spezillen Wert ?txs-start verwenden, um das Skript bei txs start zu
     </message>
     <message>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soll das aktuelle Makro wirklich gelöscht werden?</translation>
     </message>
 </context>
 <context>
