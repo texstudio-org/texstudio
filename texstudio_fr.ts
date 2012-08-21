@@ -8826,6 +8826,10 @@ p, li { white-space: pre-wrap; }
         <source>Run Script</source>
         <translation>Lancer le script</translation>
     </message>
+    <message>
+        <source>Do you really want to delete the current macro?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserQuickDialog</name>
