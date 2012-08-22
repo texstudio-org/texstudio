@@ -428,7 +428,7 @@ private:
 	qreal zoomSliderPosToScale(int pos);
 	int scaleToZoomSliderPos(qreal scale);
 
-	QString curFile;
+	QString curFile, curFileUnnormalized;
 	qint64 curFileSize;
 	QDateTime curFileLastModified;
 	QFileInfo masterFile, lastSyncSourceFile;
