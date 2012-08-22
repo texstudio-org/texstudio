@@ -510,17 +510,17 @@
     <message>
         <location filename="buildmanager.cpp" line="177"/>
         <source>XeLaTeX</source>
-        <translation type="unfinished"></translation>
+        <translation>XeLaTeX</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="177"/>
         <source>LuaLaTeX</source>
-        <translation type="unfinished"></translation>
+        <translation>LuaLaTeX</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="177"/>
         <source>Latexmk</source>
-        <translation type="unfinished"></translation>
+        <translation>Latexmk</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="180"/>
@@ -544,7 +544,7 @@
         <location filename="buildmanager.cpp" line="186"/>
         <location filename="buildmanager.cpp" line="189"/>
         <source>BibTeX 8-Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>BibTeX 8-Bit</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="200"/>
@@ -950,7 +950,7 @@ prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</oldsource>
-        <translation type="unfinished">&lt;i&gt;Seletores:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nome do arquivo sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão&lt;br /&gt;
+        <translation>&lt;i&gt;Seletores:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nome do arquivo sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão&lt;br /&gt;
 anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mestre&lt;br /&gt;
 &lt;i&gt;Caracteres de encerramento:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: encerra seletor. Os seguintes caracteres encerram o seletor e têm significado adicional&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: entre aspas, &lt;b&gt;.&lt;/b&gt; (ponto) adiciona um ponto ao fim, (espaço): adiciona um espaço ao fim&lt;br /&gt;
@@ -963,7 +963,7 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
 </source>
         <oldsource>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;??&lt;/b&gt; become: %, @ or ?
 </oldsource>
-        <translation type="unfinished">&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; e &lt;b&gt;??&lt;/b&gt; tornam-se: %, @ or ?
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; e &lt;b&gt;??&lt;/b&gt; tornam-se: %, @ or ?
 </translation>
     </message>
     <message>
@@ -999,22 +999,22 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location filename="configdialog.ui" line="749"/>
         <source>Additional Search Paths:</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminhos Adicionais para Busca:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="788"/>
         <source>PDF Viewer</source>
-        <translation type="unfinished">Visualizador de PDF</translation>
+        <translation>Visualizador de PDF</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="812"/>
         <source>Log File</source>
-        <translation type="unfinished">Arquivo de Log</translation>
+        <translation>Arquivo de Log</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="845"/>
         <source>Commands ($PATH)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos ($Caminho)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="952"/>
@@ -2507,17 +2507,17 @@ Personalizado</translation>
     <message>
         <location filename="configdialog.cpp" line="577"/>
         <source>Search Path for Logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de Busca por Logs</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="580"/>
         <source>Search Path for PDFs</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de Busca por PDFs</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="583"/>
         <source>Search Path for Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de Busca por Comandos</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="859"/>
@@ -6055,7 +6055,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qfoldpanel.cpp" line="107"/>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir Todos</translation>
     </message>
 </context>
 <context>
@@ -8736,7 +8736,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="874"/>
         <source>Ma&amp;cros</source>
-        <translation type="unfinished"></translation>
+        <translation>Ma&amp;cros</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="880"/>
@@ -10319,7 +10319,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="usermenudialog.cpp" line="266"/>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"></translation>
+        <translation>Você realmente deseja apagar a macro atual?</translation>
     </message>
 </context>
 <context>
