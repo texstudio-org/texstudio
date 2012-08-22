@@ -1957,10 +1957,10 @@ void PDFDocument::init(bool embedded)
 
 	if (embedded) {
 		actionToggleEmbedded->setIcon(QIcon(":/images/windowed-viewer.png"));
-		actionToggleEmbedded->setToolTip("Windowed Viewer");
+		actionToggleEmbedded->setToolTip(tr("Windowed Viewer"));
 	} else {
 		actionToggleEmbedded->setIcon(QIcon(":/images/embedded-viewer.png"));
-		actionToggleEmbedded->setToolTip("Embedded Viewer");
+		actionToggleEmbedded->setToolTip(tr("Embedded Viewer"));
 	}
 
     actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
