@@ -141,7 +141,6 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 		if (distanceSqr > QDocument::getLineSpacing() * QDocument::getLineSpacing()) 
 			return false;
 		if (!editor->languageDefinition()) return false;
-		qDebug() << editor->languageDefinition()->language();
 		if (editor->languageDefinition()->language() != "(La)TeX") 
 			return false;
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events

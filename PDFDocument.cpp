@@ -2318,7 +2318,8 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 		const QStringList files = watcher->files();
 		if (!files.isEmpty())
 			watcher->removePaths(files); // in case we ever load different files into the same widget
-		watcher->addPath(curFile);
+		if (curFile != "")
+			watcher->addPath(curFile);
 	}
 	if (alert) {
 		raise();
@@ -2379,7 +2380,7 @@ void PDFDocument::reload(bool fillCache)
 
 	if (!document) {
 		switch (errorType) {
-		case 1: statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFile)); break;
+		case 1: statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
 		case 2: statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
 		case 3: statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;			
 		case 4: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete. Trying again in 2 seconds.").arg(curFile)); break;
@@ -2761,6 +2762,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 
 void PDFDocument::setCurrentFile(const QString &fileName)
 {
+	curFileUnnormalized = fileName;
 	curFile = QFileInfo(fileName).canonicalFilePath();
 	QString niceFile = QFileInfo(curFile).fileName();
 	setWindowTitle(tr("%1[*] - %2").arg(niceFile).arg(tr(TEXSTUDIO)));
