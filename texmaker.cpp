@@ -984,7 +984,7 @@ void Texmaker::setupMenus() {
 		QAction *sep = new QAction(menu);
 		sep->setSeparator(true);
 		baseContextActions << getManagedActions(QStringList() << "copy" << "cut" << "paste", "main/edit/");
-		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit/selectall");
+		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit2/convertTo" << "main/edit/selectall");
 		baseContextActions << sep;
 		baseContextActions << getManagedActions(QStringList() << "previewLatex" << "removePreviewLatex", "main/edit2/");
 		LatexEditorView::setBaseActions(baseContextActions);
