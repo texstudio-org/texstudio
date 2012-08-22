@@ -908,7 +908,7 @@ void PDFClockDock::fillInfo(){
 }
 
 QString PDFClockDock::getTitle(){
-	return "Clock";
+	return tr("Clock");
 }
 
 void PDFClockDock::onTimer(){
