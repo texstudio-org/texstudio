@@ -131,6 +131,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 }
 
 bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
+	Q_UNUSED(editor)
 	lastMousePress = event->pos();
 	return false;
 }
