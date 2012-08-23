@@ -139,7 +139,7 @@ bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
 bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor) {
 	if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton) {
 		int distanceSqr = (event->pos().x() - lastMousePress.x())*(event->pos().x() - lastMousePress.x()) + (event->pos().y() - lastMousePress.y())*(event->pos().y() - lastMousePress.y());
-		if (distanceSqr > QDocument::getLineSpacing() * QDocument::getLineSpacing()) 
+		if (distanceSqr > 4)
 			return false;
 		if (!editor->languageDefinition()) return false;
 		if (editor->languageDefinition()->language() != "(La)TeX") 
