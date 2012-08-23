@@ -167,8 +167,6 @@
    <addaction name="actionFit_to_Width"/>
    <addaction name="actionFit_to_Window"/>
    <addaction name="separator"/>
-   <addaction name="actionZoom_Out"/>
-   <addaction name="actionZoom_In"/>
    <addaction name="actionClose"/>
   </widget>
   <action name="actionAbout_TW">

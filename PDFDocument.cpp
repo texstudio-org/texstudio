@@ -1964,8 +1964,6 @@ void PDFDocument::init(bool embedded)
 	}
 
     actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
-	actionZoom_In->setVisible(false);
-	actionZoom_Out->setVisible(false);
 	if(embedded){
         actionTypeset->setVisible(false);
     }else{
@@ -2049,7 +2047,7 @@ void PDFDocument::init(bool embedded)
 	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
 	buttonZoomOut->setToolTip(tr("Zoom Out"));
 	statusBar()->addPermanentWidget(buttonZoomOut);
-	connect(buttonZoomOut, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomOut()));
+	connect(buttonZoomOut, SIGNAL(clicked(bool)), actionZoom_Out, SLOT(trigger()));
 
 	zoomSlider = new QSlider(toolBar);
 	zoomSlider->setOrientation(Qt::Horizontal);
@@ -2069,7 +2067,7 @@ void PDFDocument::init(bool embedded)
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
 	buttonZoomIn->setToolTip(tr("Zoom In"));
 	statusBar()->addPermanentWidget(buttonZoomIn);
-	connect(buttonZoomIn, SIGNAL(clicked(bool)), pdfWidget, SLOT(zoomIn()));
+	connect(buttonZoomIn, SIGNAL(clicked()), actionZoom_In, SLOT(trigger()));
 
 	scrollArea = new PDFScrollArea;
 	scrollArea->setBackgroundRole(QPalette::Dark);
@@ -2148,6 +2146,9 @@ void PDFDocument::init(bool embedded)
 
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
 		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()));
+	if (!actionActual_Size->shortcut().isEmpty())
+		new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()));
+
 	
 	connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
 
