@@ -19,21 +19,23 @@
 	<li><a href="#SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</a></li>
 	<li><a href="#SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></li>
 	<li><a href="#SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</a></li>
+	<li><a href="#SECTIONNEW24">0.8 Version 2.3 -> Version 2.4</a></li>
 	</ul>
 </li>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
 	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
-	<li><a href="#SECTION030">1.3 Configuring some general issues</a></li>
-	<li><a href="#SECTION03">1.3.1 Configuring the spell checker</a></li>
-	<li><a href="#SECTION04">1.3.2 Configuring the thesaurus</a></li>
-	<li><a href="#SECTION041">1.3.3 Configuring the latex syntax checker</a></li>
-	<li><a href="#SECTION040">1.4 Configuring the autocompletion</a></li>
-	<li><a href="#SECTION05">1.5 Configuring shortcuts</a></li>
-	<li><a href="#SECTION06">1.6 Configuring the Latex/Math-Menu</a></li>
-	<li><a href="#SECTION07">1.7 Configuring the Custom Toolbar</a></li>
-	<li><a href="#SECTION08">1.8 Configuring SVN support</a></li>
+	<li><a href="#SECTION02a">1.3 Configuring the build system</a></li>
+	<li><a href="#SECTION030">1.4 Configuring some general issues</a></li>
+	<li><a href="#SECTION03">1.4.1 Configuring the spell checker</a></li>
+	<li><a href="#SECTION04">1.4.2 Configuring the thesaurus</a></li>
+	<li><a href="#SECTION041">1.4.3 Configuring the latex syntax checker</a></li>
+	<li><a href="#SECTION040">1.5 Configuring the autocompletion</a></li>
+	<li><a href="#SECTION05">1.6 Configuring shortcuts</a></li>
+	<li><a href="#SECTION06">1.7 Configuring the Latex/Math-Menu</a></li>
+	<li><a href="#SECTION07">1.8 Configuring the Custom Toolbar</a></li>
+	<li><a href="#SECTION08">1.9 Configuring SVN support</a></li>
 	</ul>
 </li>
 <li><a href="#SECTION1">2. Editing a TeX document</a>
@@ -221,6 +223,15 @@ changed functionality:</P>
 <li><p>more methods available for scripting </p></li>
 <li><p>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
 </ul>
+<h2 id="SECTIONNEW24">0.8 Version 2.3 -> Version 2.4</h2>
+<ul>
+<li><p>new build system which allows easier combination of serveral commands</p></li>
+<li><p>embedded pdf viewer</p></li>
+<li><p>bookmark overview which is restored after starting texstudio</p></li>
+<li><p>improved appearance</p></li>
+<li><p>many small improvements</p></li>
+<li><p>several bug fixes</p></li>
+</ul>
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
 <p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advancde options" in the lower left corner.</p>
 <h2 id="SECTION01">1.1 Configuring the editor</h2>
@@ -241,7 +252,15 @@ Section <a href="#SECTION37">Forward/Inverse search</a> gives some example comma
 You can always restore the original settings using the revert button to the right.
 </p>
 <p><IMG src="configure_commands.png" border="1" alt="Configure Commands"></p>
-<h2 id="SECTION030">1.3 Configuring some general issues</h2>
+<h2 id="SECTION02a">1.3 Configuring the build system</h2>
+<p>TeXstudio provides general commands for translating latex.<br>
+The default settings use "pdflatex" and the internal pdf viewer. Other commands and viewer can be selected as well as a different bibliography translator.<br>
+The "embedded pdf viewer" does not open a new window for viewing the pdf document but presents it directly next to the text in the editor.<br>
+A useful alternative might be using the "latexmk" as compile command (if the command is installed on your system), as it handles dependencies with biblatex and index very well.<br>
+The advanced options allows finer customization which is in general not necessary.
+</p>
+<p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p>
+<h2 id="SECTION030">1.4 Configuring some general issues</h2>
 <p>This panel allows the setting of some general aspects.</p>
 <ul>
 <li>The "style" and "color scheme" of TeXstudio can be selected. The modern variant is closer to texmaker 1.9.
@@ -250,7 +269,7 @@ You can always restore the original settings using the revert button to the righ
 <li>The language of the menus can be changed directly to ignore system settings.
 </ul>
 <p><IMG src="configure_general.png" border="1" alt="Configure General"></p>
-<h2 id="SECTION03">1.3.1 Configuring the spell checker</h2>
+<h2 id="SECTION03">1.4.1 Configuring the spell checker</h2>
 <p>
 TeXstudio checks the spelling while you type. If the typed text is within a LaTeX-command, TeXstudio takes information from the command-completion-list to determine whether the text is natural language which needs to be checked or just command options which are left alone. Only known LaTeX-commands are considered to be checked in its options! For more information known commands and packages see the section on <a href="#SECTION040">completion</a> <br>
 The spell checker uses the OpenOffice.org dictionaries. By default GPL French, British and German dictionaries are distributed with TeXstudio. Users can download others dictionaries at <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A>. All dictionaries are a stored in one directory.<br>
@@ -261,15 +280,15 @@ Please note: spell checking with Ctrl+Shift+F7 starts at the cursor position and
 If the interactive spell checker is enabled (default), any incorrectly spelled word is underlined with a red wave. Right-click on the word to open a menu with a list of possible corrections. In this context menu you can also add the word to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.<br><br>
 Since the internal structure of the dictionaries is complex (e.g. contains rules how to generate a word with in different inflections) it is not possible to simply add words to the dictionary. Instead if a word is missing in the dictionary, you can add it to an ignore list, so that the spell checker won't complain about it. The ignore list is normally saved in the same directory as the dictionary. It's a plain text file with the extension .ign. If this isn't possible (e.g. missing access rights) the list is stored in the user configuration directory.
 </p>
-<h2 id="SECTION04">1.3.2 Configuring the thesaurus</h2>
+<h2 id="SECTION04">1.4.2 Configuring the thesaurus</h2>
 <p>
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TeXstudio.<br>
 Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 </p>
-<h2 id="SECTION041">1.3.3 Configuring latex syntax checker</h2>
+<h2 id="SECTION041">1.4.3 Configuring latex syntax checker</h2>
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br></p>
-<h2 id="SECTION040">1.4 Configuring the autocompletion</h2>
+<h2 id="SECTION040">1.5 Configuring the autocompletion</h2>
 <p>
 TeXstudio has taken up completion word list from kile which extended the number of known commands for completion considerably.
 TeXstudio understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
@@ -290,19 +309,19 @@ Following options are available:</p>
 </p>
 
 <p><IMG src="configure_completion.png" border="1" alt="Configure Completion"></p>
-<h2 id="SECTION05">1.5 Configuring shortcuts</h2>
+<h2 id="SECTION05">1.6 Configuring shortcuts</h2>
 <p>
 Shortcuts can be changed by double clicking on "Current Shortcut" or "Additional Shortcut".
 A shortcut can be selected from the drop down list or put in as text directly.
 If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected.
 </p>
 <p><IMG src="configure_shortcuts.png" border="1" alt="Configure Shortcuts"></p>
-<h2 id="SECTION06">1.6 Configuring the Latex/Math-Menu (Advanced option)</h2>
+<h2 id="SECTION06">1.7 Configuring the Latex/Math-Menu (Advanced option)</h2>
 <p>The Math/Latex-Menu can be adapted to user likings.
 For this menu items can be renamed and a new Latex-Code can be placed. The apropriate item can be be directly edited by doubleclicking on them.
 </p>
 <p><IMG src="configure_customizeMenu.png" border="1" alt="Customize Menu"></p>
-<h2 id="SECTION07">1.7 Configuring the Custom Toolbar (Advanced option)</h2>
+<h2 id="SECTION07">1.8 Configuring the Custom Toolbar (Advanced option)</h2>
 <p>One Custom Toolbar is present in TMX. This toolbar can be filled with actions from the Latex-, Math- and User-Menu.
 Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
 </p>
@@ -374,11 +393,11 @@ Section can be indented/unindented which means that the hierarchy level is chang
 <h2 id="SECTION17">2.7 Inserting a list</h2>
 <p>The usual list environments code can be insert quickly via the "LaTeX-List" menu.<br>Note : the shortcut for the \item command is Ctrl+Alt+H.</p>
 <h2 id="SECTION18">2.8 Inserting a table</h2>
-<p>With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a tabular environment can be quickly inserted :</p>
+<p>With the "Tabular" wizard ("Wizard" menu), t he LaTeX code for a tabular environment can be quickly inserted :</p>
 <p><IMG src="doc7.png" border="1" alt="Tabular Wizard"></p>
 <p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
 <h2 id="SECTION18a">2.8.1 Manipulating tables</h2>
-<p>TeXstudio provides some commands to ease handling of tables. The commands are located at LaTeX &rarr; Manipulate Table and in the Table toolbar. Please be aware that some unexpected results may arise, if the table constructing commands get to complex.
+<p>TeXstudio provides some commands to ease handling of tables. The commands are located at LaTeX &rarr; Manipulate Table and in the Table toolbar. Please be aware that some unexpected results may arise, if the table constructing commands get too complex.
 Following commands are offered:</p>
 <ul>
 <li>Add Row after the current row</li>
@@ -387,6 +406,7 @@ Following commands are offered:</p>
 <li>Remove Column: remove current column</li>
 <li>Add/Remove \hline: add/remove \hline in all rows following the current row. If already a command \hline is present, no second command is placed.</li>
 <li>Align Columns: Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source.</li>
+<li>Remodel the table after a template. This allows to force uniform table set-up in a document. Some templates are predefined, more can be added though it needs some programming in java script. This command is only present in the menu (math/tables)</li>
 </ul>
 <p>TeXstudio also allows block cursors. Press &lt;Ctrl&gt;+&lt;Alt&gt;+&lt;Shift&gt; and drag the cursor with the mouse. The block cursor works like a set of normal cursors. You can copy and paste text as usual. Also you can type in new text, which will be added in every row.</p>
 <p><IMG src="block_selection.png" border="1" alt="Block Selection"></p>
@@ -400,7 +420,7 @@ Following commands are offered:</p>
 <p>Properly inserting figures is a challenge for LaTeX beginners and still quite a bit of text to type for the expert. Therefore TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics options" defines the optional parameter of <code>\insertgraphics[options]{file}</code>. While the most used width/height attributes can be easily set, alternatively you have full control with the user defined setting.<br>
 Place the graphic inside a <code>figure</code> environment if it does not have to be at an exact position in the text. Then LaTeX will determine an optimal position on the page.<br>
 By pressing the "Save as default" button the current settings (except file, caption and label) are stored and will hence be used as default when you open the wizard.<br>
-The wizard also comes into play when you drag &amp; drop an image file to your document or use copy in explorer and paste in TeXstudio. Together with the adjustable default parameters this makes insertion of new pictures very fast. Furthermore, if you start the wizard while the cursor is on picture code, the wizard is used to manipulate the existing picture settings.</p>
+The wizard also comes into play when you drag   drop an image file to your document or use copy in explorer and paste in TeXstudio. Together with the adjustable default parameters this makes insertion of new pictures very fast. Furthermore, if you start the wizard while the cursor is on picture code, the wizard is used to manipulate the existing picture settings.</p>
 <p><IMG src="wizard_figure.png" border="1" alt="Figure Wizard"></p>
 <h2 id="SECTION111">2.11 Cross References and notes</h2>
 <p>This toolbox in the toolbar allows you to insert quickly the label, cite, ref, footnote... code.<br>Note : the labels used in your documents are displayed in the "Structure View".</p>
@@ -447,7 +467,8 @@ So if you want to change a "\begin{tabular}...\end{tabular}" construction to "\b
 E.g. you have a "text", select it and start typing "\textbf", command which is completed. The resulting text is "\textbf{text}"</p>
 <h1 id="SECTION2">3. Compiling a document</h1>
 <h2 id="SECTION22">3.1 Compiling</h2>
-<p>The easiest way to compile a document is to use the "Quick Build" command ("Quick" button - shortcut : F1). You can define the sequence of commands used by the "Quick Build" command via the "Configure TeXstudio" dialog.<br>You can also launch each command one by one (shortcuts : F2...F12 - see the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
+<p>The easiest way to compile a document is to use the "Compile" command or the "Build&amp;View" command ("Compile" button - shortcut : F6). You can select the default command via the "Configure TeXstudio" dialog.<br>(You can also launch each command one by one in the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
+<p><IMG src="compile_toolbar.png" border="1" alt="compile_toolbar"></p>
 <b>Warning : all yours files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
 <h2 id="SECTION23">3.2 The log files</h2>
 <p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
@@ -460,7 +481,7 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <h2 id="SECTION31">4.1 About documents separated in several files</h2>
 <p>TeXstudio allows you to work onto documents separated in several files.<br>
 To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TeXstudio will open it.</p>
-<p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefor, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
+<p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefore, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
 <p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
 If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio. 
 <br>Note : you can leave the "master" mode with the "Options" menu.</p>

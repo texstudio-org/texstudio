@@ -309,6 +309,8 @@ unix {
         utilities/configure_general.png \
         utilities/configure_shortcuts.png \
         utilities/configure_svn.png \
+	utilities/configure_build.png \
+	utilities/compile_toolbar.png \
         utilities/template.png \
         utilities/thesaurus.png \
         utilities/latexhelp.html \
