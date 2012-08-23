@@ -5275,6 +5275,11 @@ void Texmaker::changeEvent(QEvent *e) {
 		updateMasterDocumentCaption();
 		break;
 #ifdef Q_OS_MAC
+	case QEvent::ActivationChange:
+		qDebug() << "activationChange";
+		break;
+	case QEvent::ApplicationFontChange:
+		qDebug() << "applicationFontChange";
 	case QEvent::FontChange:
 		qDebug() << "fontChange";
 		// TODO workaround for unwanted font changes:
