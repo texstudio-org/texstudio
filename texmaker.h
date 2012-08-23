@@ -442,7 +442,7 @@ protected slots:
 	void jumpToSearch(QDocument* doc,int lineNumber);
 	
 	void cursorPositionChanged();
-	void syncPDFViewer(bool fromCursorMovement = false);
+	void syncPDFViewer(bool openIfNecessary = true);
 	//	void treeWidgetChanged();
 	
 	bool generateMirror(bool setCur=false);
