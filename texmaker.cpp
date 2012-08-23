@@ -6005,12 +6005,12 @@ void Texmaker::cursorPositionChanged(){
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
-	syncPDFViewer(true);
+	syncPDFViewer(false);
 }
 
-void Texmaker::syncPDFViewer(bool fromCursorMovement) {
+void Texmaker::syncPDFViewer(bool openIfNecessary) {
 #ifndef NO_POPPLER_PREVIEW
-	if(PDFDocument::documentList().isEmpty() && !fromCursorMovement) {
+	if(PDFDocument::documentList().isEmpty() && openIfNecessary) {
 		// open new viewer, if none exists
 		QAction *viewAct = getManagedAction("main/tools/view");
 		if (viewAct) viewAct->trigger();
@@ -6018,7 +6018,7 @@ void Texmaker::syncPDFViewer(bool fromCursorMovement) {
 	}
 
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
-		if (!fromCursorMovement || viewer->followCursor())
+		if (openIfNecessary || viewer->followCursor())
 			viewer->syncFromSource(getCurrentFileName(), currentLine, false);
 #endif
 }
