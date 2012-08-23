@@ -5274,25 +5274,24 @@ void Texmaker::changeEvent(QEvent *e) {
 		UpdateCaption();
 		updateMasterDocumentCaption();
 		break;
-#ifdef Q_OS_MAC
+//#ifdef Q_OS_MAC
 	case QEvent::ActivationChange:
-		qDebug() << "activationChange";
-		break;
-	case QEvent::ApplicationFontChange:
-		qDebug() << "applicationFontChange";
-	case QEvent::FontChange:
-		qDebug() << "fontChange";
 		// TODO workaround for unwanted font changes:
 		// https://sourceforge.net/tracker/?func=detail&aid=3559432&group_id=250595&atid=1126426
 		{
 			QFont font = QApplication::font();
+			qDebug() << "Application Font:" << font.family() << font.pointSize();
+			qDebug() << "Config Font:" << configManager.interfaceFontSize << configManager.interfaceFontSize;
 			if (font.pointSize() != configManager.interfaceFontSize)
 				qDebug() << "incorrect font size";
 			if (font.family() != configManager.interfaceFontFamily)
 				qDebug() << "incorrect font family";
+			if (font.pointSize() != configManager.interfaceFontSize || font.family() != configManager.interfaceFontFamily) {
+				QApplication::setFont(QFont(configManager.interfaceFontFamily, configManager.interfaceFontSize));
+			}
 		}
 		break;
-#endif
+//#endif
 	default:
 		break;
 	}
