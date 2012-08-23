@@ -5281,7 +5281,7 @@ void Texmaker::changeEvent(QEvent *e) {
 		{
 			QFont font = QApplication::font();
 			qDebug() << "Application Font:" << font.family() << font.pointSize();
-			qDebug() << "Config Font:" << configManager.interfaceFontSize << configManager.interfaceFontSize;
+			qDebug() << "Config Font     :" << configManager.interfaceFontFamily << configManager.interfaceFontSize;
 			if (font.pointSize() != configManager.interfaceFontSize)
 				qDebug() << "incorrect font size";
 			if (font.family() != configManager.interfaceFontFamily)
