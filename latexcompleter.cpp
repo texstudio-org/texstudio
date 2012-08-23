@@ -1011,6 +1011,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
    editor->removePlaceHolder(phId);
   }
  }*/
+	if (editor->cursorMirrorCount() > 0) return; // completer does not handle cursor mirrors. It would just remove them. -> don't use completer
+
 	if (c.hasSelection()) {
 		c.setColumnNumber(qMax(c.columnNumber(),c.anchorColumnNumber()));
 		editor->setCursor(c);
