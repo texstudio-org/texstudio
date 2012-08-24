@@ -1165,7 +1165,7 @@ void Texmaker::createStatusBar() {
 	statusTbLanguage->setToolTip(tr("Language"));
 	statusTbLanguage->setPopupMode(QToolButton::InstantPopup);
 	statusTbLanguage->setAutoRaise(true);
-	statusTbLanguage->setMinimumWidth(status->fontMetrics().width("OOOOOO"));
+	statusTbLanguage->setMinimumWidth(status->fontMetrics().width("OOOOOOO"));
 	connect(&spellerManager, SIGNAL(dictPathChanged()), this, SLOT(UpdateAvailableLanguages()));
 	connect(&spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(UpdateAvailableLanguages()));
 	UpdateAvailableLanguages();
@@ -1954,7 +1954,17 @@ void Texmaker::fileOpen() {
 
 void Texmaker::fileRestoreSession(){
 	fileCloseAll();
+
+	QProgressDialog progress(this);
+	progress.setMaximum(configManager.sessionFilesToRestore.size());
+	progress.setCancelButton(0);
+	progress.setMinimumDuration(2000);
+	progress.setLabel(new QLabel());
+
 	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++){
+		progress.setValue(i);
+		//progress.setLabelText(QString(tr("Restoring session:\n%1")).arg(QFileInfo(configManager.sessionFilesToRestore[i]).fileName()));
+		progress.setLabelText(QFileInfo(configManager.sessionFilesToRestore[i]).fileName());
 		LatexEditorView* edView=load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
 		if(edView){
 			int row=configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt();
@@ -1971,6 +1981,7 @@ void Texmaker::fileRestoreSession(){
 			edView->editor->scrollToFirstLine(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
 		}
 	}
+	progress.setValue(progress.maximum());
 	FileAlreadyOpen(configManager.sessionCurrent);
 }
 
@@ -4662,6 +4673,8 @@ void Texmaker::GeneralOptions() {
 	}
 	
 	if (configManager.execConfigDialog()) {
+		QApplication::setOverrideCursor(Qt::WaitCursor);
+
 		configManager.editorConfig->settingsChanged();
 		
 		spellerManager.setDictPath(configManager.spellDictDir);
@@ -4669,12 +4682,10 @@ void Texmaker::GeneralOptions() {
 		
 		GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 		
-		
 		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 		
 		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
-		
 		//update highlighting ???
 		bool updateHighlighting=(inlineSpellChecking!=configManager.editorConfig->inlineSpellChecking);
 		updateHighlighting|=(inlineCitationChecking!=configManager.editorConfig->inlineCitationChecking);
@@ -4691,7 +4702,6 @@ void Texmaker::GeneralOptions() {
 		}
 		if(!loadFiles.isEmpty())
 			updateHighlighting=true;
-		
 		buildManager.clearPreviewPreambleCache();//possible changed latex command / preview behaviour
 		
 		if (currentEditorView()) {
@@ -4715,13 +4725,10 @@ void Texmaker::GeneralOptions() {
 				QDocument::setFont(QDocument::font(), true);
 			UpdateCaption();
 		}
-		
 		if (oldReplaceQuotes != configManager.replaceQuotes)
 			updateUserMacros();
-		
 		//custom toolbar
 		setupToolBars();
-		
 		// custom evironments
 		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
 		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
@@ -4756,12 +4763,10 @@ void Texmaker::GeneralOptions() {
 			newLaTeX = m_lang.d;
 			Q_ASSERT(oldLaTeX != newLaTeX);
 		}
-		
 		//completion
 		completionBaseCommandsUpdated=true;
 		completerNeedsUpdate();
 		completer->setConfig(configManager.completerConfig);
-		
 		//update changed line mark colors
 		QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();
 		for (int i=0;i<marks.size();i++)
@@ -4769,7 +4774,6 @@ void Texmaker::GeneralOptions() {
 				marks[i].color = m_formats->format("line:"+marks[i].id).background;
 			else
 				marks[i].color = Qt::transparent;
-		
 		// update all docuemnts views as spellcheck may be different
 		QEditor::setEditOperations(configManager.editorKeys,true);
 		for (int i=0; i<EditorView->count();i++) {
@@ -4786,12 +4790,12 @@ void Texmaker::GeneralOptions() {
 				}
 			}
 		}
-		
 		if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
 			setupMenus();
 			setupDockWidgets();
 		}
 		updateUserToolMenu();
+		QApplication::restoreOverrideCursor();
 	}
 	if(configManager.autosaveEveryMinutes>0){
 		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
