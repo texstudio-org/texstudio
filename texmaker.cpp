@@ -5274,7 +5274,7 @@ void Texmaker::changeEvent(QEvent *e) {
 		UpdateCaption();
 		updateMasterDocumentCaption();
 		break;
-//#ifdef Q_OS_MAC
+#ifdef Q_OS_MAC
 	case QEvent::ActivationChange:
 		// TODO workaround for unwanted font changes:
 		// https://sourceforge.net/tracker/?func=detail&aid=3559432&group_id=250595&atid=1126426
@@ -5291,7 +5291,7 @@ void Texmaker::changeEvent(QEvent *e) {
 			}
 		}
 		break;
-//#endif
+#endif
 	default:
 		break;
 	}
