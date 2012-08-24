@@ -5290,11 +5290,21 @@ void Texmaker::changeEvent(QEvent *e) {
 				qDebug() << "incorrect font size";
 			if (font.family() != configManager.interfaceFontFamily)
 				qDebug() << "incorrect font family";
-			if (font.pointSize() != configManager.interfaceFontSize || font.family() != configManager.interfaceFontFamily) {
-				QApplication::setFont(QFont(configManager.interfaceFontFamily, configManager.interfaceFontSize));
-			}
+			//if (font.pointSize() != configManager.interfaceFontSize || font.family() != configManager.interfaceFontFamily) {
+			QApplication::setFont(QFont(configManager.interfaceFontFamily, configManager.interfaceFontSize));
+			//}
 		}
 		break;
+	case QEvent::ApplicationFontChange:
+		qDebug() << "applicationFontChange";
+	case QEvent::FontChange:
+		{
+		qDebug() << "fontChange";
+		QFont font = QApplication::font();
+		qDebug() << "Application Font:" << font.family() << font.pointSize();
+		qDebug() << "Config Font     :" << configManager.interfaceFontFamily << configManager.interfaceFontSize;
+		break;
+		}
 #endif
 	default:
 		break;
