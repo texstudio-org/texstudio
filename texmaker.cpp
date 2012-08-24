@@ -696,8 +696,8 @@ void Texmaker::setupMenus() {
 	
 	newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
 	newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
-	newManagedAction(submenu,"warningprev",tr("Previous Warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Up,"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
-	newManagedAction(submenu,"warningnext",tr("Next Warning"),"gotoNearLogEntry",Qt::CTRL+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
+	newManagedAction(submenu,"warningprev",tr("Previous Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"warningnext",tr("Next Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
 	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
 	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
