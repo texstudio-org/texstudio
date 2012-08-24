@@ -71,7 +71,7 @@ public:
             editor->document()->endMacro();
         }
 		//end cursor mirrors
-		if (editor->cursor().columnNumber()+1>curStart && !completer->isVisible()){
+        if (editor->cursor().columnNumber()>curStart+1 && !completer->isVisible()){
 			QString wrd=getCurWord();
 			completer->filterList(wrd,showMostUsed);
 			completer->widget->show();
