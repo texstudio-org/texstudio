@@ -1268,7 +1268,6 @@ bool ConfigManager::execConfigDialog() {
 		QList<int> times;
 		times << 0 << 5 << 10 << 20 << 60;
 		autosaveEveryMinutes=times.value(confDlg->ui.comboBoxAutoSave->currentIndex(),0);
-		
 		// update macros menu to update quote replacement
 		if (changedProperties.contains(&replaceQuotes)) {
 			bool conflict = false;
@@ -1291,7 +1290,6 @@ bool ConfigManager::execConfigDialog() {
 					}
 				}
 		}
-		
 		//completion
 		completerConfig->enabled=confDlg->ui.checkBoxCompletion->isChecked();
 		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completerConfig->caseSensitive=LatexCompleterConfig::CCS_CASE_INSENSITIVE;
@@ -1326,7 +1324,6 @@ bool ConfigManager::execConfigDialog() {
 			}
 		}
 		completerConfig->setFiles(newFiles);
-		
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
 		buildManager->dvi2pngMode=(BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();
@@ -1398,7 +1395,6 @@ bool ConfigManager::execConfigDialog() {
 			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
 		}*/
 		
-		
 		/*Q_ASSERT(confDlg->checkboxInternalPDFViewer);
 		QString curPdfViewer = buildManager->getLatexCommand(BuildManager::CMD_VIEWPDF);
 		if (confDlg->checkboxInternalPDFViewer && confDlg->checkboxInternalPDFViewer->isChecked() != curPdfViewer.startsWith(BuildManager::TXS_INTERNAL_PDF_VIEWER)) {
@@ -1430,7 +1426,6 @@ bool ConfigManager::execConfigDialog() {
 		
 		//formats
 		confDlg->fmConfig->apply();
-		
 		this->editorKeys.clear();
 		for (int i=0;i<editorKeys->childCount();i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
@@ -1458,7 +1453,6 @@ bool ConfigManager::execConfigDialog() {
 			if (interfaceStyle==tr("default")) interfaceStyle="";
 			setInterfaceStyle();
 		}
-		
 		// read checkbox and set logViewer accordingly
 		if (changedProperties.contains(&tabbedLogView))
 			emit tabbedLogViewChanged(tabbedLogView);
