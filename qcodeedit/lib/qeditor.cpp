@@ -2815,45 +2815,64 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	EditOperation op = getEditOperation(e->modifiers(), (Qt::Key)e->key());
 	bool handled = op != NoOperation;
 	if (op >= EnumForCursorStart && op <= EnumForCursorEnd ){
-		int curLine = m_cursor.lineNumber();
-		cursorMoveOperation(m_cursor, op);
-		bool leftLine = curLine != m_cursor.lineNumber();
-
 		e->accept();
 
-		//setFlag(CursorOn, true);
-		//ensureCursorVisible();
-
-		if ( !leftLine )
-			for ( int i = 0; !leftLine && (i < m_mirrors.count()); ++i ) {
-				curLine = m_mirrors[i].lineNumber();
-				cursorMoveOperation(m_mirrors[i], op);
-				leftLine = m_mirrors[i].lineNumber() != curLine;
+		if (m_mirrors.count()) {
+			int maxSelect = 0;
+			for (int i = -1; i < m_mirrors.count(); i++) {
+				QDocumentCursor &cur = (i==-1) ? m_cursor : m_mirrors[i];
+				// TODO can it happen with mirrors that the selection is across different lines?
+				int len = cur.hasSelection() ? cur.selection().end-cur.selection().start : 0;
+				if (len > maxSelect) maxSelect = len;
 			}
 
-		if ( leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
-			setPlaceHolder(-1);
-			/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
-			{
-				// allow mirror movement out of line while in placeholder
-				PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
-				if ( ph.cursor.isWithinSelection(cursor) )
-					return true;
-				for ( int i = 0; i < ph.mirrors.count(); ++i )
-					if ( ph.mirrors.at(i).isWithinSelection(cursor) )
-						return true;
-				if ( prev == cursor.lineNumber() && m_mirrors.empty()) {
-					//mark placeholder as leaved
-					m_curPlaceHolder = -1;
-					return false;
+			bool leftLine = false;
+			for ( int i = -1; !leftLine && (i < m_mirrors.count()); ++i ) {
+				QDocumentCursor &cur = (i==-1) ? m_cursor : m_mirrors[i];
+				int curLine = cur.lineNumber();
+				// handle unequal line lenghts
+				if ((op == SelectCursorRight || op == SelectCursorWordRight) && cur.atLineEnd()) continue;
+				if (op == SelectCursorLeft) {
+					// TODO can it happen with mirrors that the selection is across different lines?
+					int len = cur.hasSelection() ? cur.selection().end-cur.selection().start : 0;
+					if (len < maxSelect) continue;
 				}
-			}*/
+				cursorMoveOperation(cur, op);
+				leftLine = cur.lineNumber() != curLine;
+			}
 
-		if ( leftLine && m_mirrors.count() )
-		{
-			clearCursorMirrors();
-			viewport()->update();
+			if ( leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
+				setPlaceHolder(-1);
+			if (leftLine) {
+				clearCursorMirrors();
+				viewport()->update();
+			} else {
+				repaintCursor();
+			}
 		} else {
+			// normal single cursor movement
+			cursorMoveOperation(m_cursor, op);
+
+			//setFlag(CursorOn, true);
+			//ensureCursorVisible();
+
+			if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor))
+				setPlaceHolder(-1);
+				/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
+				{
+					// allow mirror movement out of line while in placeholder
+					PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+					if ( ph.cursor.isWithinSelection(cursor) )
+						return true;
+					for ( int i = 0; i < ph.mirrors.count(); ++i )
+						if ( ph.mirrors.at(i).isWithinSelection(cursor) )
+							return true;
+					if ( prev == cursor.lineNumber() && m_mirrors.empty()) {
+						//mark placeholder as leaved
+						m_curPlaceHolder = -1;
+						return false;
+					}
+				}*/
 			repaintCursor();
 		}
 	} else switch (op) {
