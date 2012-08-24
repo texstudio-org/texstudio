@@ -190,7 +190,7 @@ protected slots:
 	void fileNewFromTemplate();
 	void fileMakeTemplate();
 	void fileOpen();
-	void fileRestoreSession();
+	void fileRestoreSession(bool showProgress = true);
 	void fileSave();
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);

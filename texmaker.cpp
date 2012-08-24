@@ -246,7 +246,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	completer->updateAbbreviations();
 	
 	if (configManager.sessionRestore) {
-		fileRestoreSession();
+		fileRestoreSession(false);
 		ToggleRememberAct->setChecked(true);
 	}
 	
@@ -1952,19 +1952,24 @@ void Texmaker::fileOpen() {
 		load(fn);
 }
 
-void Texmaker::fileRestoreSession(){
+void Texmaker::fileRestoreSession(bool showProgress){
 	fileCloseAll();
 
 	QProgressDialog progress(this);
-	progress.setMaximum(configManager.sessionFilesToRestore.size());
-	progress.setCancelButton(0);
-	progress.setMinimumDuration(2000);
-	progress.setLabel(new QLabel());
+	if (showProgress) {
+		progress.setMaximum(configManager.sessionFilesToRestore.size());
+		progress.setCancelButton(0);
+		progress.setMinimumDuration(3000);
+		progress.setLabel(new QLabel());
+	}
 
 	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++){
-		progress.setValue(i);
-		//progress.setLabelText(QString(tr("Restoring session:\n%1")).arg(QFileInfo(configManager.sessionFilesToRestore[i]).fileName()));
-		progress.setLabelText(QFileInfo(configManager.sessionFilesToRestore[i]).fileName());
+
+		if (showProgress) {
+			progress.setValue(i);
+			//progress.setLabelText(QString(tr("Restoring session:\n%1")).arg(QFileInfo(configManager.sessionFilesToRestore[i]).fileName()));
+			progress.setLabelText(QFileInfo(configManager.sessionFilesToRestore[i]).fileName());
+		}
 		LatexEditorView* edView=load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
 		if(edView){
 			int row=configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt();
@@ -1981,7 +1986,9 @@ void Texmaker::fileRestoreSession(){
 			edView->editor->scrollToFirstLine(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
 		}
 	}
-	progress.setValue(progress.maximum());
+	if (showProgress) {
+		progress.setValue(progress.maximum());
+	}
 	FileAlreadyOpen(configManager.sessionCurrent);
 }
 

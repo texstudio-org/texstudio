@@ -79,6 +79,7 @@ TexmakerApp::TexmakerApp(int & argc, char ** argv) : QApplication(argc, argv) {
 void TexmakerApp::init(QStringList &cmdLine) {
 	QPixmap pixmap(":/images/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
+	splash->setWindowFlags(splash->windowFlags() | Qt::WindowStaysOnTopHint);
 	splash->show();
 	processEvents();
 
