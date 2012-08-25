@@ -484,7 +484,11 @@ QString QDocument::debugUndoStack() const{
 	for (int i=0;i<commands.count();i++)
 		result << dynamic_cast<const QDocumentCommand*>(commands.command(i))->debugRepresentation();
 	
-	return result.join("\n");
+	QString res = result.join("\n");
+	
+	qDebug() << res;
+	
+	return res;
 }
 
 /*!
