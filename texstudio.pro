@@ -295,6 +295,7 @@ unix {
         utilities/doc19.png \
         utilities/doc2.png \
         utilities/doc20.png \
+	utilities/doc21.png \
         utilities/doc3.png \
         utilities/doc4.png \
         utilities/doc5.png \

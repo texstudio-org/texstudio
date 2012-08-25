@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
-            <height>600</height>
+            <width>516</width>
+            <height>548</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -760,8 +760,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>850</width>
-               <height>137</height>
+               <width>860</width>
+               <height>107</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1345,8 +1345,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>835</width>
-            <height>626</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2056,7 +2056,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
              <string>ToolTip-Help</string>
             </property>
             <property name="advancedOption" stdset="0">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -2176,8 +2176,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>351</width>
+            <height>483</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
