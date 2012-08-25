@@ -64,7 +64,7 @@
 bool programStopped = false;
 Texmaker* txsInstance = 0;
 
-Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
+Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
        : QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
 	
 	programStopped = false;
@@ -209,8 +209,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	
 	symbolMostused.clear();
 	setupDockWidgets();
-	
+
+#ifndef Q_OS_MAC
+	// TODO Test: Is the custom menubar related to the fact, that the menu sometimes vanishes on MAC?
+	// bug report: http://sourceforge.net/tracker/?func=detail&atid=1126426&aid=3559432&group_id=250595
 	setMenuBar(new DblClickMenuBar());
+#endif
 	setupMenus();
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
@@ -230,6 +234,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags)
 	UpdateCaption();
 	
 	show();
+	if (splash)
+		splash->raise();
 	
 	statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
 	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
@@ -5285,34 +5291,6 @@ void Texmaker::changeEvent(QEvent *e) {
 		UpdateCaption();
 		updateMasterDocumentCaption();
 		break;
-#ifdef Q_OS_MAC
-	case QEvent::ActivationChange:
-		// TODO workaround for unwanted font changes:
-		// https://sourceforge.net/tracker/?func=detail&aid=3559432&group_id=250595&atid=1126426
-		{
-			QFont font = QApplication::font();
-			qDebug() << "Application Font:" << font.family() << font.pointSize();
-			qDebug() << "Config Font     :" << configManager.interfaceFontFamily << configManager.interfaceFontSize;
-			if (font.pointSize() != configManager.interfaceFontSize)
-				qDebug() << "incorrect font size";
-			if (font.family() != configManager.interfaceFontFamily)
-				qDebug() << "incorrect font family";
-			//if (font.pointSize() != configManager.interfaceFontSize || font.family() != configManager.interfaceFontFamily) {
-			QApplication::setFont(QFont(configManager.interfaceFontFamily, configManager.interfaceFontSize));
-			//}
-		}
-		break;
-	case QEvent::ApplicationFontChange:
-		qDebug() << "applicationFontChange";
-	case QEvent::FontChange:
-		{
-		qDebug() << "fontChange";
-		QFont font = QApplication::font();
-		qDebug() << "Application Font:" << font.family() << font.pointSize();
-		qDebug() << "Config Font     :" << configManager.interfaceFontFamily << configManager.interfaceFontSize;
-		break;
-		}
-#endif
 	default:
 		break;
 	}
