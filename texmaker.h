@@ -36,6 +36,7 @@
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
 #include <QSplitter>
+#include <QSplashScreen>
 
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
@@ -60,7 +61,7 @@ class Texmaker : public QMainWindow {
 	Q_OBJECT
 	
 public:
-	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0);
+	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0, QSplashScreen *splash = 0);
 	~Texmaker();
 	
 	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
