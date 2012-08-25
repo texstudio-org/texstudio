@@ -264,9 +264,13 @@ You can always restore the original settings using the revert button to the righ
 The default settings use "pdflatex" and the internal pdf viewer. Other commands and viewer can be selected as well as a different bibliography translator.<br>
 The "embedded pdf viewer" does not open a new window for viewing the pdf document but presents it directly next to the text in the editor.<br>
 A useful alternative might be using the "latexmk" as compile command (if the command is installed on your system), as it handles dependencies with biblatex and index very well.<br>
-The advanced options allows finer customization which is in general not necessary.
+The advanced options allows finer customization which is in general not necessary.<br>
 </p>
 <p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p>
+User commands can be defined here by "adding" them. Each user command has  a name like "user%n:" where "%n" is a number. After the colon a name can be stated which is shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
+User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
+Alternatively a command can be directly selected through the file system.
+<p><IMG src="doc21.png" border="1" alt="Configure user commands from known commands"></p>
 <h2 id="SECTION030">1.4 Configuring some general issues</h2>
 <p>This panel allows the setting of some general aspects.</p>
 <ul>
@@ -513,20 +517,34 @@ Apart from the supported svn features already describes in section 1.8, TeXstudi
 You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new 
 most recent version though yet unsaved.
 </p>
-<h2 id="SECTION33">4.5 Personals tags and tools</h2>
-<p>TeXstudio allows you to insert your own tags (shortcuts : Shift+F1...Shift+F10). These tags are defined with the "User - User Tags" menu.<br>Note : if the code of the menu is "%environment", TeXstudio will directly insert:<br>
-\begin{environment }<br>
-<br>
-\end{environment }<br>
-<br>
+<h2 id="SECTION33">4.5 Personal macros</h2>
+<p>TeXstudio allows you to insert your own macros (shortcuts : Shift+F1...Shift+F10). These macros are defined with the "Macros - Edit Macros" menu.
+Macros can consist of simple text which is directly placed into txs. It can also be an "environment" which are automatically extended by begin/end and it can be a java script.
+The needed functionality can be selected by checkbox.<br>
+The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-command is completed, the macro will be inserted instead. Note that the pseudo-command needs to start with a backslash ("\").<br>
+"Trigger" is a regular expression which trigger the inclusion of the macro.<br>
+It can simply be a text, which is replaced by the macro.
+E.g. trigger="eg" macro="example given", "eg" in the is replaced on pressing "g" when entering the text by "example given"<br>
+As the trigger is a regular expression, more elaborate triggers can be created. Txs makes use of neighbor searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
+Additionally one special trigger term can be used ("?txs-start") which forces texstudio to execute the script on the start of the program.<br>
+<p><IMG src="doc17.png" border="1" alt="doc17"></p>
+<p>
+<h3 id="SECTION33a">4.5.1 Text macros</h3>
+Apart from normal text, some special codes are recognized and replaced on insertion.<br>
 If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).<br>
 Write %&lt;something%&gt; to mark it as descriptive text which can be selected by Ctrl+Left/Right.
 <br>
 The option %(<i>filefilter</i>%) will be replaced by a filename which is asked for in a file dialog. The file filter is the standard Qt-Filefilterformat.
 For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)", see also <a href="http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName">Qt-Doc</a>
 </p>
-<p><IMG src="doc17.png" border="1" alt="doc17"></p>
-<p>
+<h3 id="SECTION33b">4.5.2 Environment macros</h3>
+The text will be used as environment-name, thus "%environment" will be inserted as:<br>
+\begin{environment }<br>
+<br>
+\end{environment }<br>
+<br>
+Note: texstudio needs that the env-name starts with "%", though that character is not placed on insertion.
+<h3 id="SECTION33c">4.5.3 Javascript macros</h3>
 Instead of using code snippets, you can also make use of javascript.
 To do so, put "%SCRIPT" in the first line. The following code will be interpreted as javascript.
 The language is based on <a href="http://doc.trolltech.com/4.5/ecmascript.html">ECMAScript</a>.
