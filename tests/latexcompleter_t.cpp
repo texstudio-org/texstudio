@@ -265,6 +265,8 @@ void LatexCompleterTest::simple(){
 
 	config->eowCompletes = eowCompletes;
 
+	edView->editor->cutBuffer = "";
+	
 	edView->editor->setFlag(QEditor::AutoCloseChars, autoParenComplete);
 	edView->editor->setText(text, false);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
