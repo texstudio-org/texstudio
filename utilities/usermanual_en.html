@@ -72,14 +72,15 @@
 	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
 	<li><a href="#SECTION32">4.3 Bibliography</a></li>
 	<li><a href="#SECTION33a">4.4 SVN Support</a></li>
-	<li><a href="#SECTION33">4.5 Personal tags and tools</a></li>
+	<li><a href="#SECTION33">4.5 Personal macros</a></li>
 	<li><a href="#SECTION34">4.6 Pstricks support</a></li>
 	<li><a href="#SECTION35">4.7 Metapost support</a></li>
 	<li><a href="#SECTION36">4.8 The "Convert to Html" command</a></li>
 	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TeXstudio</a></li>
-	<li><a href="#SECTION38">4.10 Synopsis of the TeXstudio command</a></li>
-	<li><a href="#SECTION39">4.11 Keyboard shortcuts</a></li>
-	<li><a href="#CWLDESCRIPTION">4.12 Description of the cwl format</a></li>
+	<li><a href="#SECTION_TEXCOM">4.10 Advanced header usage</a></li>
+	<li><a href="#SECTION38">4.11 Synopsis of the TeXstudio command</a></li>
+	<li><a href="#SECTION39">4.12 Keyboard shortcuts</a></li>
+	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
 	</ul>
 </li>
 </ul>
@@ -1046,7 +1047,7 @@ Synopsis :<br>
 <h3>Integrated pdf-viewer</h3>
 <p>
 TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
-Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned.
+Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can CTRL+left click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".<br> 
 Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
 Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
 Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
@@ -1118,8 +1119,17 @@ To launch Skim from TeXstudio: <span class="command">(your Skim path)/Contents/S
 To launch TeXstudio from skim : Command: <span class="command">/applications/texstudio.app/contents/macos/texstudio</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 </p>
-
-<h2 id="SECTION38">4.10 Synopsis of the TeXstudio command</h2>
+<h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
+Texstudio can use special comments in the text to adapt options for that document.
+<br><br>
+"% !TeX spellcheck = de_DE"
+<br><br>
+This special comment tells txs that this document is written in German and German spell checking is to be used, independent on any general settings.<br>
+<br>
+"% !TeX encoding = utf8"
+<br><br>
+The code defines the character encoding of a document.
+<h2 id="SECTION38">4.11 Synopsis of the TeXstudio command</h2>
 <p>
 <code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
 <table>
@@ -1140,7 +1150,7 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 Note: The most common tests are run automatically, if there were changes to the executable (i.e. TXS has been compiled since the last run). Furthermore all tests are run once a week.
 </p>
 
-<h2 id="SECTION39">4.11 Keyboard shortcuts</h2>
+<h2 id="SECTION39">4.12 Keyboard shortcuts</h2>
 <p>
 Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "Editor") -->:
 </p>
@@ -1248,7 +1258,7 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 	</ul>
 </li>
 </ul>
-<h2 id="CWLDESCRIPTION">4.12 Description of the cwl format</h2>
+<h2 id="CWLDESCRIPTION">4.13 Description of the cwl format</h2>
 <p>
 cwl files are used by the completer to propose possible commands and by the syntax checker to check if a command you wrote actually exists. Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
 <p><code>&lt;command&gt;[#classification]</code><br></p>
