@@ -410,7 +410,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		//// magic comment
 		s=curLine;
-		l=s.indexOf("% !TeX");
+        l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
 			bool reuse=false;
@@ -1962,7 +1962,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = false;
 	}
 	
-	if (name == "spellcheck") {
+    if (name.toLower() == "spellcheck") {
 		QString lang=val;
 		lang.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
 		mSpellingLanguage = QLocale(lang);
@@ -1977,7 +1977,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
  } else if (type == "texroot") {
   se->valid = true;
  */
-	} else if (name == "encoding") {
+    } else if (name.toLower() == "encoding") {
 		QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
 		if (!codec) {
 			se->tooltip = tr("Invalid codec");
