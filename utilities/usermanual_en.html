@@ -81,6 +81,7 @@
 	<li><a href="#SECTION38">4.11 Synopsis of the TeXstudio command</a></li>
 	<li><a href="#SECTION39">4.12 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
+	<li><a href="#TABLETEMPLATE">4.14 Using table templates</a></li>
 	</ul>
 </li>
 </ul>
@@ -1299,4 +1300,98 @@ cwl files are used by the completer to propose possible commands and by the synt
 	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is valid only in the picture environment</td></tr>
 	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
 </table>
+<h2 id="TABLETEMPLATE">4.14 Using table templates</h2>
+<p>Texstudio offers the possibility to reformat an existing latex table after a table template.<br>
+For example, you have entered following table into txs:
+<pre>
+\begin{tabular}{ll}
+a&amp;b\\
+c&amp;d\\
+\end{tabular}
+</pre>
+Place the cursor inside the table and select the menu "Latex/Manipulate Tables/Remodel Table Using Template".<br>
+Now you can select a template which defines the formating of the table.
+A number of templates are predefined by txs:
+<ul>
+<li>fullyframed_firstBold</li>
+<li>fullyframed_longtable</li>
+<li>plain_tabular</li>
+<li>plain_tabularx</li>
+<li>rowcolors_tabular</li>
+</ul>
+By selecting the first entry, the table is reformated to:
+<pre>
+\begin{tabular}{|l|l|}
+\hline
+\textbf{a}&amp;\textbf{b}\\ \hline
+c&amp;d\\ \hline
+\end{tabular}
+</pre>
+These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.
+<br>
+The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.<br>
+The template itself is a javascript (see above) with some prefined variables which contain the whole table.
+The new table is just placed as replacement of the old one, using information from that variables.
+3 variables are given:
+<ul>
+<li>def   the simplified table definition without any formatting (i.e. ll instead of |l|l|)</li>
+<li>env   the actual enviroment name of the old table like "tabular" or "longtable"</li>
+<li>tab   the actual table. It is a list of lines, each line is a list of columsn which contains the cell content as string</li>
+</ul>
+<br>
+To see the principle of work, the source for the "plain_tabular" template is given here.
+<pre>
+function print(str){ //define this function to make source more readable
+cursor.insertText(str)
+}
+function println(str){ //define this function to make source more readable
+cursor.insertText(str+"\n")
+}
+var arDef=def.split("") // split the table definition (ll -> 'l' 'l')
+println("\\begin{tabular}{"+arDef.join("")+"}") //print table env 
+for(var i=0;i&lt;tab.length;i++){  // loop through all rows of the table
+	var line=tab[i];  // line is a list of all columns of row[i]
+	for(var j=0;j&lt;line.length;j++){ // loop through all columns of a row
+		print(line[j]) // print cell
+		if(j&lt;line.length-1) // if not last columns
+			print("&amp;") // print &amp;
+	}
+	println("\\\\") // close row with \\, note that js demands for backslashes in the string
+}
+println("\\end{tabular}") // close enviroment
+</pre>
+As can be seen in the example, the table has to be rebuilt completely, thus allowing new formatting.
+A second example gives a slightly more elaborate table (fullyframed_firstBold):
+<pre>
+function print(str){
+cursor.insertText(str)
+}
+function println(str){
+cursor.insertText(str+"\n")
+}
+var arDef=def.split("");
+if(env=="tabularx"){
+  println("\\begin{tabularx}{\\linewidth}{|"+arDef.join("|")+"|}")
+}else{
+    println("\\begin{"+env+"}{|"+arDef.join("|")+"|}")
+}
+println("\\hline")
+for(var i=0;i&lt;tab.length;i++){
+	var line=tab[i];
+	for(var j=0;j&lt;line.length;j++){
+                var col=line[j];
+                var mt=col.match(/^\\textbf/);
+                if(i==0 &amp;&amp; !mt)
+                  print("\\textbf{")
+		print(line[j])
+                if(i==0 &amp;&amp; !mt)
+                  print("}")
+		if(j&lt;line.length-1)
+			print("&amp;")
+	}
+	println("\\\\ \\hline")
+}
+println("\\end{"+env+"}")
+</pre>
+</p>
 </body></html>
