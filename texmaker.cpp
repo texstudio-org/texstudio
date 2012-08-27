@@ -1862,7 +1862,7 @@ void Texmaker::insertTableTemplate() {
 		connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
 		templateSelectorDialog->ui.listWidget->addAction(act);
 	}
-	QStringList templates=findResourceFiles("templates/","tabletemplate_*.js");
+    QStringList templates=findResourceFiles("templates/","tabletemplate_*.js",QStringList(configManager.configBaseDir));
 	templates.replaceInStrings(QRegExp("(^|^.*/)(tabletemplate_)?"),"");
 	templates.replaceInStrings(QRegExp(".js$"),"");
 	templateSelectorDialog->ui.listWidget->clear();
@@ -1873,7 +1873,7 @@ void Texmaker::insertTableTemplate() {
         if (currentItem == 0) return;
 
         QString f_real="templates/tabletemplate_"+currentItem->text()+".js";
-        f_real=findResourceFile(f_real);
+        f_real=findResourceFile(f_real,false,QStringList(configManager.configBaseDir));
 		QFile file(f_real);
 		if (!file.open(QIODevice::ReadOnly)) {
 			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
