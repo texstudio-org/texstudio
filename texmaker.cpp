@@ -210,11 +210,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	symbolMostused.clear();
 	setupDockWidgets();
 
-#ifndef Q_OS_MAC
-	// TODO Test: Is the custom menubar related to the fact, that the menu sometimes vanishes on MAC?
-	// bug report: http://sourceforge.net/tracker/?func=detail&atid=1126426&aid=3559432&group_id=250595
 	setMenuBar(new DblClickMenuBar());
-#endif
 	setupMenus();
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
