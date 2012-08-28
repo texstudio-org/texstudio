@@ -14,6 +14,8 @@ class LatexDocument;
 class Environment{
 	
 public:
+	Environment(): id(-1), excessCol(0), dlh(0), ticket(0) {}
+	
 	QString name;
 	int id;
 	int excessCol;

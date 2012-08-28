@@ -129,8 +129,9 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 		if(!queueAdministration->renderQueues[i]->isRunning())
 			queueAdministration->renderQueues[i]->start();
 	}
-    mFillCacheMode=true;
+	mFillCacheMode=true;
 
+	errorType = 0;
 	return document;
 }
 
