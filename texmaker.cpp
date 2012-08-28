@@ -6021,18 +6021,22 @@ void Texmaker::cursorPositionChanged(){
 	syncPDFViewer(false);
 }
 
-void Texmaker::syncPDFViewer(bool openIfNecessary) {
+void Texmaker::syncPDFViewer(bool inForeground) {
 #ifndef NO_POPPLER_PREVIEW
-	if(PDFDocument::documentList().isEmpty() && openIfNecessary) {
+	if(PDFDocument::documentList().isEmpty() && inForeground) {
 		// open new viewer, if none exists
 		QAction *viewAct = getManagedAction("main/tools/view");
 		if (viewAct) viewAct->trigger();
 		return;
 	}
 
-	foreach (PDFDocument* viewer, PDFDocument::documentList())
-		if (openIfNecessary || viewer->followCursor())
+	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
+		if (inForeground || viewer->followCursor())
 			viewer->syncFromSource(getCurrentFileName(), currentLine, false);
+		if (inForeground) {
+			viewer->raise();
+		}
+	}
 #endif
 }
 
