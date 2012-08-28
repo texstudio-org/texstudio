@@ -25,6 +25,12 @@
 #include "PDFDocks.h"
 //#include "FindDialog.h"
 
+#if (QT_VERSION >= 0x040800) && (defined(Q_WS_WIN) || defined(Q_WS_MACX))
+#error Warning: The internal pdf viewer does not work (i.e. crashes) when compiled with qt4.8.x on Windows/Mac
+#error You should either downgrade to qt4.7.x or disable the internal pdf viewer by defining NO_POPPLER_PREVIEW
+#endif
+
+
 #include <QPaintEngine>
 #include <QRegion>
 #include <QUrl>
