@@ -381,7 +381,14 @@ GrammarCheckBackend::GrammarCheckBackend(QObject* parent):QObject(parent){}
 #include "QtNetwork/QNetworkRequest"
 
 
-GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false),triedToStart(false){
+struct CheckRequestBackend{
+	int ticket;
+	QString language;
+	QString text;
+	CheckRequestBackend(int ti, const QString& la, const QString& te): ticket(ti), language(la), text(te) {}
+};
+
+GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false),triedToStart(false),firstRequest(true){
 	
 }
 
@@ -405,6 +412,7 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
 	connectionAvailability = 0;
 	if (config.languageToolURL.isEmpty()) connectionAvailability = -1;
 	triedToStart = false;
+	firstRequest = true;
 	
 	
 	specialRules.clear();
@@ -449,6 +457,15 @@ const QNetworkRequest::Attribute AttributeText = (QNetworkRequest::Attribute)(QN
 
 void GrammarCheckLanguageToolSOAP::check(uint ticket, const QString& language, const QString& text){
 	REQUIRE(nam);
+		
+	if (connectionAvailability == 0) {
+		if (firstRequest) firstRequest = false;
+		else {
+			delayedRequests << CheckRequestBackend(ticket, language, text);
+			return;
+		}
+	}
+
 	QNetworkRequest req(server);
 	req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=UTF-8");
 	QByteArray post;
@@ -464,6 +481,8 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, const QString& language, c
 	req.setAttribute(AttributeText, text);
 
 	nam->post(req, post);
+	
+	
 }
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
@@ -472,14 +491,18 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 	QByteArray reply = nreply->readAll();
 	int status = nreply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
-	//qDebug() << reply;
+	//qDebug() << status << ": " << reply;
 	
 	if (status == 0) {
 		//no response
 		connectionAvailability = -1; //assume no backend
 		tryToStart();
-		if (connectionAvailability == -1) return; //confirmed: no backend
+		if (connectionAvailability == -1) {
+			if (delayedRequests.size()) delayedRequests.clear();
+			return; //confirmed: no backend
+		}
 		//there might be a backend now, but we still don't have the results
+		firstRequest = true;
 		check(ticket, nreply->request().attribute(AttributeLanguage).toString(), text);
 		nreply->deleteLater();		
 		return;
@@ -521,5 +544,13 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 	emit checked(ticket, results);
 	
 	nreply->deleteLater();
+	
+	if (delayedRequests.size()) {
+		QList<CheckRequestBackend> delayedRequestsCopy = delayedRequests;
+		delayedRequests.clear();
+		foreach (const CheckRequestBackend& cr, delayedRequestsCopy)
+			check(cr.ticket, cr.language, cr.text);
+	}
+	
 	return;	
 }

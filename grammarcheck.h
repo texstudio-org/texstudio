@@ -73,6 +73,7 @@ private:
 	QList<CheckRequest> requests;
 };
 
+struct CheckRequestBackend;
 class GrammarCheckBackend : public QObject{
 	Q_OBJECT
 public:
@@ -85,7 +86,7 @@ signals:
 };
 
 class QNetworkAccessManager;
-class QNetworkReply;
+class QNetworkReply; 
 class GrammarCheckLanguageToolSOAP: public GrammarCheckBackend{
 	Q_OBJECT
 public:
@@ -101,13 +102,17 @@ private:
 	QUrl server;
 	
 	int connectionAvailability; //-1: broken, 0: don't know, 1: worked at least once
+	
 	bool triedToStart;
+	bool firstRequest; 
 	
 	QString ltPath, javaPath;
 	QSet<QString> ignoredRules;
 	QList<QSet<QString> >  specialRules;
 	uint startTime;
 	void tryToStart();
+	
+	QList<CheckRequestBackend> delayedRequests;
 	
 };
 
