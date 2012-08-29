@@ -1053,7 +1053,7 @@ void QEditor::saveEmergencyBackup(const QString& filename){
 	bool sucessfullySaved = QFile::exists(filename);
 	do {
 		QString txt = m_doc->textLines().join(m_doc->lineEndingString()); 
-		QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
+		QByteArray data = txt.toUtf8();
 
 		quint64 freeBytes;
 		if (getDiskFreeSpace(QFileInfo(filename).canonicalPath(), freeBytes) && (static_cast<quint64>(data.size()) < freeBytes)) 

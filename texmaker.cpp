@@ -1486,7 +1486,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		DisplayLatexError();
 		return 0;
 	}
-	
+		
 	raise();
 	
 	//test is already opened
@@ -1557,9 +1557,27 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	
 	MarkCurrentFileAsRecent();
 	
+	
+	
+	
 	documents.updateMasterSlaveRelations(doc);
 	
 	edit->updateLtxCommands();
+	
+	if (QFile::exists(f_real + ".recover.bak~")
+	    && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
+		if (txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString()).arg(f_real))){
+			QFile f(f_real + ".recover.bak~");
+			if (f.open(QFile::ReadOnly)) {
+				QByteArray ba = f.readAll();
+				QString recovered = QTextCodec::codecForMib(MIB_UTF8)->toUnicode(ba); //TODO: chunk loading?
+				edit->document->setText(recovered, true);
+			} else txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
+		}
+	}
+	
+	
+	
 	updateStructure(true);
 	ShowStructure();
 	restoreBookmarks(edit);
