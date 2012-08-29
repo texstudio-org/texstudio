@@ -7235,8 +7235,24 @@ void Texmaker::recoverFromCrash(){
 		ThreadBreaker::forceTerminate();
 		return;
 	}
-		
+			
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
+	
+	//hide editor views in case the error occured during drawing
+	for (int i=0;i<txsInstance->EditorView->count();i++)
+		txsInstance->EditorView->widget(i)->hide();
+	
+	//save recover information
+	for (int i=0;i<txsInstance->EditorView->count();i++){
+		LatexEditorView* edView = qobject_cast<LatexEditorView*>(txsInstance->EditorView->widget(i));
+		QEditor* ed = edView ? edView->editor : 0;
+		if (ed && !ed->fileName().isEmpty()) 
+			ed->saveEmergencyBackup(ed->fileName()+".recover.bak~");
+	}
+	
+	print_backtrace(name); 	
+	
+	
 	QMessageBox * mb = new QMessageBox(); //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or continuing a paused loop can crash
 	mb->setWindowTitle(tr("TeXstudio Emergency"));
 	if (!wasLoop) {
@@ -7262,9 +7278,22 @@ void Texmaker::recoverFromCrash(){
 		QApplication::processEvents(QEventLoop::AllEvents);
 		mb->raise(); //sometimes the box is not visible behind the main window (windows)
 	}
+
+	//print edit history
+	for (int i=0;i<txsInstance->EditorView->count();i++){
+		LatexEditorView* edView = qobject_cast<LatexEditorView*>(txsInstance->EditorView->widget(i));
+		QEditor* ed = edView ? edView->editor : 0;
+		
+		QFile tf(QDir::tempPath() + QString("/texstudio_undostack%1%2.txt").arg(i).arg(ed->fileInfo().completeBaseName()));
+		if (tf.open(QFile::WriteOnly)){
+			tf.write(ed->document()->debugUndoStack(100).toLocal8Bit());
+			tf.close();
+		};
+	}
+	
+	
 	//fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb->result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
 	if (mb->result() == QMessageBox::DestructiveRole || (!wasLoop && mb->result() == QMessageBox::RejectRole)) {
-		print_backtrace(name);
 		exit(1);
 	}
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
@@ -7272,6 +7301,11 @@ void Texmaker::recoverFromCrash(){
 		Guardian::continueEndlessLoop();
 		while (1) ;
 	}
+	
+	//restore editor views
+	for (int i=0;i<txsInstance->EditorView->count();i++)
+		txsInstance->EditorView->widget(i)->show();
+	
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
 	}

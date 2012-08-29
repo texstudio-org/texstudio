@@ -1041,6 +1041,39 @@ void QEditor::save(const QString& fn)
 	QTimer::singleShot(100, this, SLOT( reconnectWatcher() ));
 }
 
+
+/*! 
+  Saves the text to filename without error checking and unmodified (e.g. without performing hard line break) 
+  */
+void QEditor::saveEmergencyBackup(const QString& filename){
+	Q_ASSERT(m_doc);
+
+	emit slowOperationStarted();
+
+	bool sucessfullySaved = QFile::exists(filename);
+	do {
+		QString txt = m_doc->textLines().join(m_doc->lineEndingString()); 
+		QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
+
+		quint64 freeBytes;
+		if (getDiskFreeSpace(QFileInfo(filename).canonicalPath(), freeBytes) && (static_cast<quint64>(data.size()) < freeBytes)) 
+			break;
+
+		QFile f(filename);
+
+		if ( !f.open(QFile::WriteOnly) ) 
+			break;
+
+		sucessfullySaved = f.write(data) == data.size();
+		f.flush();
+	} while (0);
+
+	if (!sucessfullySaved)
+		QFile::remove(filename);
+	
+	emit slowOperationEnded();
+}
+
 /*!
 	\internal
 */

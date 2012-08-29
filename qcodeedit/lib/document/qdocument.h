@@ -365,7 +365,7 @@ class QCE_EXPORT QDocument : public QObject
 		void redo();
 
 		void clearUndo();
-		QString debugUndoStack() const;
+		QString debugUndoStack(int limit = 10000) const;
 		
 		void setClean();
 		
