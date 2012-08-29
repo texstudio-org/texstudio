@@ -7264,7 +7264,7 @@ void Texmaker::recoverFromCrash(){
 	for (int i=0;i<txsInstance->EditorView->count();i++){
 		LatexEditorView* edView = qobject_cast<LatexEditorView*>(txsInstance->EditorView->widget(i));
 		QEditor* ed = edView ? edView->editor : 0;
-		if (ed && !ed->fileName().isEmpty()) 
+		if (ed && ed->isContentModified() && !ed->fileName().isEmpty()) 
 			ed->saveEmergencyBackup(ed->fileName()+".recover.bak~");
 	}
 	
@@ -7326,6 +7326,7 @@ void Texmaker::recoverFromCrash(){
 	
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
+		ThreadBreaker::msleep(1);
 	}
 	name = "Normal close after " + name;
 	print_backtrace(name);
