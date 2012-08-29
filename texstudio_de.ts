@@ -4419,7 +4419,7 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <name>PDFOutlineDock</name>
     <message>
         <source>No TOC</source>
-        <translation>Keine Inhaltsverzeichnis</translation>
+        <translation>Kein Inhaltsverzeichnis</translation>
     </message>
     <message>
         <source>Contents</source>
@@ -4518,7 +4518,7 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <name>ProcessX</name>
     <message>
         <source>Process started: %1</source>
-        <translation>Prozeß gestartet: %1</translation>
+        <translation>Prozess gestartet: %1</translation>
     </message>
     <message>
         <source>Error: Could not start the command: %1</source>
@@ -4530,11 +4530,11 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     </message>
     <message>
         <source>Process exited with error(s)</source>
-        <translation>Prozeß endete mit Fehler(n)</translation>
+        <translation>Prozess endete mit Fehler(n)</translation>
     </message>
     <message>
         <source>Process exited normally</source>
-        <translation>Prozeß endete normal</translation>
+        <translation>Prozess endete normal</translation>
     </message>
 </context>
 <context>
@@ -8758,7 +8758,7 @@ Die HTML-Dateien befinden sich in Verzeichnis %1.</translation>
     </message>
     <message>
         <source>a process has failed</source>
-        <translation>ein Prozeß meldete einen Fehler</translation>
+        <translation>ein Prozess meldete einen Fehler</translation>
     </message>
     <message>
         <source>Open File</source>
