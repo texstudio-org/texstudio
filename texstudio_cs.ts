@@ -63,6 +63,14 @@
         <source>Home site of original Texmaker:</source>
         <translation>Stránky původního Texmakeru:</translation>
     </message>
+    <message>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -3627,6 +3635,10 @@ Neplatný příkaz \caption.</translation>
         <source>New clock interval (in minutes)</source>
         <translation>Nový interval hodin (v minutách)</translation>
     </message>
+    <message>
+        <source>Clock</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFDocument</name>
@@ -4151,6 +4163,14 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     <message>
         <source>Pages %1 to %2 of %3</source>
         <translation>Strany %1 až %2 z %3</translation>
+    </message>
+    <message>
+        <source>Windowed Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7906,6 +7926,15 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     <message>
         <source>Normal Mode (current master document: </source>
         <translation>Obvyklý režim (nynější hlavní dokument: </translation>
+    </message>
+    <message>
+        <source>A crash recover file from %1 has been found for &quot;%2&quot;.
+Do you want to restore it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open recover file &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -51,6 +51,14 @@
         <source>Home site of original Texmaker:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -2935,6 +2943,10 @@ Invalid \caption command.</source>
         <source>New clock interval (in minutes)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Clock</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFDocument</name>
@@ -3437,6 +3449,14 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Pages %1 to %2 of %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windowed Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Viewer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6893,6 +6913,15 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <source>Normal Mode (current master document: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A crash recover file from %1 has been found for &quot;%2&quot;.
+Do you want to restore it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
