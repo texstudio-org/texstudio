@@ -30,11 +30,11 @@ AboutDialog::AboutDialog(QWidget *parent)
 				TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>"
 				"QCodeEdit: Luc Bruant <br>"+
 				tr("html conversion: ")+QString::fromUtf8("Joël Amblard.</i><br>")+
-				tr(TEXSTUDIO " contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)")+"<br>"+
+				tr("TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)")+"<br>"+
 				tr("TeXstudio uses the PDF viewer of TeXworks.")+"<br>"+
 				tr("TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).")+"<br>"+
 				tr("TeXstudio contains an image by Alexander Klink.")+"<br>"+
-				tr(TEXSTUDIO " uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).")+"<br>"+
+				tr("TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).")+"<br>"+
 				tr("Thanks to ")+QString::fromUtf8("Frederic Devernay, Denis Bitouzé, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, mattgk, A. Weder, Pavel Fric, András Somogyi, István Blahota, Edson Henriques, Grant McLean, Tom Jampen, ranks.nl, AI Corleone, Diego Andrés Jarrín, Matthias Pospiech, Zulkifli Hidayat, Christian Spieß, Robert Diaz & Kirill Müller.<br><br>")+
 				tr("Project home site:") + " <a href=\"http://texstudio.sourceforge.net/\">http://texstudio.sourceforge.net/</a><br><br>"+
 				tr("Home site of original Texmaker:")+" <a href=\"http://www.xm1math.net/texmaker/\">http://www.xm1math.net/texmaker/</a><br><br>"+
