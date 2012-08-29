@@ -351,6 +351,7 @@ public:
 		virtual void save();
 		void save(const QString& filename);
 		bool saveCopy(const QString& filename);
+		void saveEmergencyBackup(const QString& filename);
 public slots:
 		
 		virtual void print();
