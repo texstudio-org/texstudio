@@ -63,6 +63,14 @@
         <source>Home site of original Texmaker:</source>
         <translation>Homepage des original Texmaker:</translation>
     </message>
+    <message>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
+        <translation>TeXstudio verwendet Code von Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) und SyncTeX (von Jerome Laurens)</translation>
+    </message>
+    <message>
+        <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
+        <translation>TeXstudio verwendet Icons von dem Crystal Project (LGPL) uund dem Oxygen Iconset (CC-BY-SA 3.0).</translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -3809,6 +3817,10 @@ Fehlender \caption Kommando.</translation>
         <source>New clock interval (in minutes)</source>
         <translation>Neues Interval (in Minuten)</translation>
     </message>
+    <message>
+        <source>Clock</source>
+        <translation>Uhr</translation>
+    </message>
 </context>
 <context>
     <name>PDFDocument</name>
@@ -4333,6 +4345,14 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
         <source>Pages %1 to %2 of %3</source>
         <translation>Seiten %1 bis %2 von %3</translation>
     </message>
+    <message>
+        <source>Windowed Viewer</source>
+        <translation>Fenster-basierter PDF Betrachter </translation>
+    </message>
+    <message>
+        <source>Embedded Viewer</source>
+        <translation>Eingebundener PDF Betrachter</translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -4437,7 +4457,7 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <name>PDFSearchDock</name>
     <message>
         <source>Sync</source>
-        <translation></translation>
+        <translation>Sync</translation>
     </message>
 </context>
 <context>
@@ -6563,7 +6583,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>You do not have read permission to this file.</source>
-        <translation>Dir fehlen die nötigen Rechte um die Datei zu lesen.</translation>
+        <translation>Dir fehlen die nötigen Rechte, um die Datei zu lesen.</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -7125,7 +7145,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>File must be saved and compiling before you can view the log</source>
-        <translation>Die Datei muss gespeichert und kompiliert werden bevor das Log angesehen werden kann</translation>
+        <translation>Die Datei muss gespeichert und kompiliert werden, bevor das Log angesehen werden kann</translation>
     </message>
     <message>
         <source>Insert</source>
@@ -7170,7 +7190,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>Join lines before wrapping</source>
-        <translation>Füge Zeilen vor dem Umbruch wieder zusammen</translation>
+        <translation>Füge Zeilen vor dem Umbrechen wieder zusammen</translation>
     </message>
     <message>
         <source>Table</source>
@@ -7292,7 +7312,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>SVN update &amp;work directory</source>
-        <translation>SVN update des &amp;Arbeitsverzeichnises</translation>
+        <translation>SVN update des &amp;Arbeitsverzeichnisses</translation>
     </message>
     <message>
         <source>Lock &amp;PDF</source>
@@ -7340,7 +7360,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>S&amp;ave Profile...</source>
-        <translation>S&amp;peichere Profil...</translation>
+        <translation>&amp;Profil speichern...</translation>
     </message>
     <message>
         <source>Could not start %1.</source>
@@ -7404,7 +7424,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>&amp;Configure TeXstudio...</source>
-        <translation>TeXstudio konfigurieren...</translation>
+        <translation>TeXstudio &amp;konfigurieren...</translation>
     </message>
     <message>
         <source>About TeXstudio...</source>
@@ -7511,7 +7531,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
     </message>
     <message>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation></translation>
+        <translation>Ein Dokument kann nicht in einem schreibgeschützten Verzeichnis kompiliert werden.</translation>
     </message>
     <message>
         <source>Log File is not readable!</source>
@@ -7670,11 +7690,11 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
     </message>
     <message>
         <source>Align Columns</source>
-        <translation>Richte Spalten aneinader aus</translation>
+        <translation>Richte Spalten aneinander aus</translation>
     </message>
     <message>
         <source>Unknown internal command: %1</source>
-        <translation>Unbekanntes interner Befehl: %1</translation>
+        <translation>Unbekannter interner Befehl: %1</translation>
     </message>
     <message>
         <source>The document %1 want to override the command %2 with %3.
@@ -8129,7 +8149,17 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     </message>
     <message>
         <source>Ma&amp;cros</source>
-        <translation>&amp;Makros</translation>
+        <translation>Mak&amp;ros</translation>
+    </message>
+    <message>
+        <source>A crash recover file from %1 has been found for &quot;%2&quot;.
+Do you want to restore it?</source>
+        <translation>Eine Crashsicherheitskopie vom %1 wurde für die Datei &quot;%2&quot; gefunden.
+Soll das Dokument damit wiederhergestellt werden?</translation>
+    </message>
+    <message>
+        <source>Failed to open recover file &quot;%1&quot;.</source>
+        <translation>Sicherheitskopie &quot;%1&quot; konnte nicht geöffnet werden.</translation>
     </message>
 </context>
 <context>

@@ -51,6 +51,14 @@
         <source>Home site of original Texmaker:</source>
         <translation>Az eredeti Texmaker honlapja:</translation>
     </message>
+    <message>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -2902,6 +2910,10 @@ Invalid \caption command.</source>
         <source>New clock interval (in minutes)</source>
         <translation>Új időintervallum (percekben)</translation>
     </message>
+    <message>
+        <source>Clock</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFDocument</name>
@@ -3406,6 +3418,14 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
     <message>
         <source>Pages %1 to %2 of %3</source>
         <translation>%1-%2/%3 oldal</translation>
+    </message>
+    <message>
+        <source>Windowed Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded Viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6788,6 +6808,15 @@ included document in %1</source>
     </message>
     <message>
         <source>Ma&amp;cros</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A crash recover file from %1 has been found for &quot;%2&quot;.
+Do you want to restore it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
