@@ -330,8 +330,17 @@ public:
 					curStart=edc.columnNumber();
 					maxWritten=curStart+1;
 				}
-				editor->cursor().insertText(written);
-				//editor->insertText(written);
+				bool autoOverride = editor->isAutoOverrideText("\\");
+				if (!autoOverride) editor->cursor().insertText(written);
+				else { 
+					QDocumentCursor c = editor->cursor();
+					editor->document()->beginMacro();
+					c.deleteChar();
+					c.insertText("\\");
+					editor->document()->endMacro();
+					autoOverridenText = "\\";
+				}
+				//editor->insertText(written); <- can't use that since it may break the completer by auto closing brackets
 				handled=true;
 			} else if (completer->acceptChar(written,editor->cursor().columnNumber()-curStart)) {
 				insertText(written);
