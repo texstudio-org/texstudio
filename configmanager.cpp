@@ -901,6 +901,14 @@ QSettings* ConfigManager::readSettings() {
 #endif
 	
 	setInterfaceStyle();
+	
+#ifdef Q_OS_MAC
+	// workaround for unwanted font changes when changing the desktop
+	// https://sourceforge.net/tracker/?func=detail&aid=3559432&group_id=250595&atid=1126426
+	if (interfaceFontFamily != QApplication::font().family() 
+	    || interfaceFontSize != QApplication::font().pointSize())
+		QApplication::setDesktopSettingsAware(false);
+#endif
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 		
 	config->endGroup();
@@ -1447,8 +1455,14 @@ bool ConfigManager::execConfigDialog() {
 		}
 		
 		//  interface
-		if (changedProperties.contains(&interfaceFontFamily) || changedProperties.contains(&interfaceFontSize))
+		if (changedProperties.contains(&interfaceFontFamily) || changedProperties.contains(&interfaceFontSize)) {
+#ifdef Q_OS_MAC
+			// workaround for unwanted font changes when changing the desktop
+			// https://sourceforge.net/tracker/?func=detail&aid=3559432&group_id=250595&atid=1126426
+			QApplication::setDesktopSettingsAware(false);
+#endif
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
+		}
 		if (changedProperties.contains(&interfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)){
 			if (interfaceStyle==tr("default")) interfaceStyle="";
 			setInterfaceStyle();

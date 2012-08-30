@@ -77,12 +77,6 @@ TexmakerApp::TexmakerApp(int & argc, char ** argv) : QApplication(argc, argv) {
 
 
 void TexmakerApp::init(QStringList &cmdLine) {
-#ifdef Q_OS_MAC
-	// workaround for unwanted font changes when changing the desktop
-	// https://sourceforge.net/tracker/?func=detail&aid=3559432&group_id=250595&atid=1126426
-	setDesktopSettingsAware(false);
-#endif
-
 	QPixmap pixmap(":/images/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
 	splash->show();
