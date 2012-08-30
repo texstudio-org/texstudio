@@ -822,7 +822,6 @@ void BuildManager::readSettings(QSettings &settings){
 		if (it == commands.end()) registerCommand(id, "", id, "", "", 0, true).commandLine = cmd;
 		else {
 			it.value().commandLine = cmd;
-			it.value().rerunCompiler = rerunCommandsUnexpanded.contains(id);
 		}
 	}
 	settings.endGroup();
@@ -831,6 +830,7 @@ void BuildManager::readSettings(QSettings &settings){
 	//import old or choose default
 	for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it) {
 		CommandInfo &cmd = it.value();
+		cmd.rerunCompiler = rerunCommandsUnexpanded.contains(cmd.id);
 		if (!cmd.commandLine.isEmpty()) continue;
 		if (!cmd.deprecatedConfigName.isEmpty()) {
 			QString import = settings.value(it.value().deprecatedConfigName).toString();
