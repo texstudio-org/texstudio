@@ -4356,15 +4356,19 @@ void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool 
 	QString program = master->getMagicComment("program");
 	if (program.isEmpty()) program = master->getMagicComment("TS-program");
 	if (program.isEmpty()) return;
-	if (program == "pdflatex") {
-		if (cmdId == "quick") *result = BuildManager::chainCommands(BuildManager::CMD_PDFLATEX, BuildManager::CMD_VIEW_PDF);
-		else if (cmdId == "compile") *result = BuildManager::CMD_PDFLATEX;
-		else if (cmdId == "view") *result = BuildManager::CMD_VIEW_PDF;
-	} else if (program == "latex"){
-		if (cmdId == "quick") *result = BuildManager::chainCommands(BuildManager::CMD_LATEX, BuildManager::CMD_VIEW_DVI);
-		else if (cmdId == "compile") *result = BuildManager::CMD_LATEX;
-		else if (cmdId == "view") *result = BuildManager::CMD_VIEW_DVI;
-	} if (cmdId == "quick" && checkProgramPermission(program, cmdId, master)) *result = program;
+	if (program == "pdflatex" || program == "latex" || program == "xelatex" || program == "luatex"  || program == "lualatex") {
+		//TODO: don't replicate build logic here
+		QString viewer = BuildManager::CMD_VIEW_PDF;
+		QString compiler = BuildManager::CMD_PDFLATEX;
+		if (program == "latex") viewer = BuildManager::CMD_VIEW_DVI, compiler = BuildManager::CMD_LATEX;
+		else if (program == "xelatex") compiler = BuildManager::CMD_XELATEX;
+		else if (program == "luatex" || program == "lualatex") compiler = BuildManager::CMD_LUALATEX;
+		else ; //pdflatex
+		
+		if (cmdId == "quick") *result = BuildManager::chainCommands(compiler, viewer);
+		else if (cmdId == "compile") *result = compiler;
+		else if (cmdId == "view") *result = viewer;
+	} else if (cmdId == "quick" && checkProgramPermission(program, cmdId, master)) *result = program;
 }
 
 void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf){
