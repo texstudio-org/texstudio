@@ -55,6 +55,16 @@ td { border-style: none; }
 }
  
 code, pre {font-size: 120%}
+pre {display: table; /* not 100 % width as a block, but line break afterwards*/
+     background-color: #F0F0F0;
+     border: 1px solid #3F5881;
+     padding: 5px;
+     margin-left: 3em;
+     }
+
+.magiccomments li {margin-bottom: 1em; list-style: none}
+.magiccomments p {padding-left:1em}
+
 .command { font-family: monospace; font-size: 120% }
 .scripting_help th {margin-top: 4em; }
 
