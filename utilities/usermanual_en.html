@@ -237,6 +237,7 @@ changed functionality:</P>
 <li><p>table autoformating</p></li>
 <li><p>improved appearance</p></li>
 <li><p>update checker</p></li>
+<li><p>crash protection</p></li>
 <li><p>many small improvements</p></li>
 <li><p>several bug fixes</p></li>
 
@@ -746,6 +747,21 @@ To access the document these objects are introduced:
 <tr><td>editor.document().collapse(lineNr)</td><td>   Collapse the line     </td></tr>
 <tr><td>editor.document().expandParents(lineNr)</td><td>  Expand all parents of the line until it is visible     </td></tr>
 <tr><td>editor.document().foldBlockAt(bool unFold, lineNr);</td><td>  Collapses or expands the first block before lineNr     </td></tr>
+<tr><td>editor.document().getMasterDocument();</td><td>  Returns the open document which directly includes this document  </td></tr>
+<tr><td>editor.document().getTopMasterDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
+<tr><td>editor.document().getMagicComment(name);</td><td>  Returns the content of a magic comment, if it exists   </td></tr>
+<tr><td>editor.document().updateMagicComment(name, value, [create = false]);</td><td>  Changes a magic comment  </td></tr>
+<tr><td>editor.document().labelItems/refItems/bibItems</td><td>  Returns the ids of all labels/references or included bibliography files. </td></tr>
+
+  <tr><th colspan=2>Document Manager object</th></tr>
+  <tr><td>documentManager.currentDocument </td><td>   Current document (usually the same as editor.document(), unless the script is running in background mode) </td></tr>
+  <tr><td>documents.masterDocument </td><td>   Master document </td></tr>
+  <tr><td>[documentManager.]documents</td><td>   Array of all open documents     </td></tr>
+  <tr><td>documentManager.findDocument(fileName) </td><td>   Returns the open document with a certain file name  </td></tr>
+  <tr><td>documentManager.singleMode() </td><td>   Returns if there is no explicit master document  </td></tr>
+  <tr><td>documentManager.getMasterDocumentForDoc(document) </td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
+  <tr><td>documentManager.findFileFromBibId(id) </td><td>   Returns the file name of the bib file containing an entry with the given id  </td></tr>
+    
   
   <tr>
   <th colspan=2>Cursor object</th>
@@ -892,7 +908,7 @@ To access the document these objects are introduced:
   <tr><td>app.getCurrentFileName()</td><td>File name of currently edited file</td></tr>
   <tr><td>app.getAbsoluteFilePath(rel, ext = "")</td><td>Converts a relative filename to an absolute one</td></tr>
   <tr><td>app.load(file)</td><td>Loads an file </td></tr>
-  <tr><td>app.fileOpen/Save/Close/.../editUndo/.../QuickBuild/... </td><td>All menu commands (i.e. all slots in the texmaker.h file). You can view a list of all currently existing slots on the "menu" page of config dialog.</td></tr>
+  <tr><td>app.fileOpen/Save/Close/.../editUndo/.../QuickBuild/... </td><td>All menu commands (i.e. all slots in the texmaker.h file). You can view a list of all currently existing slots on the "menu" page of the config dialog.</td></tr>
   <tr><td>app.newManagedMenu([parent menu,] id, caption)</td> <td>Creates a new menu and returns it</td></tr>
   <tr><td>app.getManagedMenu(id)</td> <td>Returns a <a href="http://developer.qt.nokia.com/doc/qt-4.8/QMenu.html">QMenu</a> with a certain id</td></tr>
   <tr><td>app.newManagedAction(menu, id, caption)<!--, [slot, [shortCut, [icon]]])--></td> <td>Creates a new action and returns it<br>
@@ -908,6 +924,8 @@ To access the document these objects are introduced:
   <tr><td>app.getManagedAction([id])</td> <td>Returns an <a href="http://developer.qt.nokia.com/doc/qt-4.8/QAction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/.../menuN/action, with usually one menu, e.g. "main/edit/undo", see texmaker.cpp) </td></tr>
   <tr><td>app.createUI(file, [parent])</td><td>Loads a certain ui file and creates a QWidget* from it</td></tr>
   <tr><td>app.createUIFromString(string, [parent])</td><td>Creates a QWidget* described in the string</td></tr>
+  <tr><td>app.slowOperationStarted()/slowOperationEnded()</td><td>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</td></tr>
+
   <tr><th colspan=2>UniversalInputDialog class</th></tr>
   <tr><td>new UniversalInputDialog()</td><td>Creates a new dialog</td></tr>
   <tr><td>dialog.add(defaultValue, [description, [id]])</td><td>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. <br> A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</td></tr>
@@ -945,6 +963,16 @@ app.clipboard = editor.fileName();</pre>
 <li>Execution of editor text: <pre>
 %SCRIPT
 eval(editor.text());</pre>
+</li>
+<li>Show all properties of an object: <pre>
+%SCRIPT
+obj = editor;                                                    //object to show (e.g. the current editor)
+
+app.fileNew();                                                   //create a new document
+newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
+for (var prop in obj)              
+  newEditor.write(prop+"\n");                                    //print the properties
+</pre>
 </li>
 <li>Additional action in the edit menu<pre>
 %SCRIPT
@@ -1121,15 +1149,35 @@ To launch TeXstudio from skim : Command: <span class="command">/applications/tex
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 </p>
 <h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
-Texstudio can use special comments in the text to adapt options for that document.
-<br><br>
-"% !TeX spellcheck = de_DE"
-<br><br>
-This special comment tells txs that this document is written in German and German spell checking is to be used, independent on any general settings.<br>
-<br>
-"% !TeX encoding = utf8"
-<br><br>
-The code defines the character encoding of a document.
+<p>Texstudio can use special, "magic" comments in the text to adapt options for that document.
+<ul class="magiccomments">
+<li>
+<code>% !TeX spellcheck = de_DE</code>
+<p>This special comment tells txs that this document is written in German and German spell checking is to be used, independent on any general settings.
+</li>
+<li>
+<code>% !TeX encoding = utf8</code>
+<p>The code defines the character encoding of a document.
+</li>
+<li>
+<code>% !TeX program = pdflatex</code>
+<p>This marks the document as to be compiled with pdflatex. (i.e. overrides the default txs:///quick command)
+</li>
+<li>
+<code>% !TeX TXS-program:latex = txs:///xelatex %</code>
+<p>This overrides the default txs:///latex command to call xelatex instead
+</li>
+<li>
+<code>
+% !TeX TXS-SCRIPT = foobar <br>
+% //Trigger = ?load-this-file <br>
+% app.load("/tmp/test/test.tex"); <br>
+% app.load("/tmp/test/a.tex"); <br>
+% TXS-SCRIPT-END 
+</code>
+<p>This defines a temporary javascript macro which is executed, when the file is loaded, and which in turns loads the two files in /tmp/test. .
+</li>
+</ul>
 <h2 id="SECTION38">4.11 Synopsis of the TeXstudio command</h2>
 <p>
 <code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
@@ -1309,6 +1357,7 @@ a&amp;b\\
 c&amp;d\\
 \end{tabular}
 </pre>
+<p>
 Place the cursor inside the table and select the menu "Latex/Manipulate Tables/Remodel Table Using Template".<br>
 Now you can select a template which defines the formating of the table.
 A number of templates are predefined by txs:
@@ -1319,7 +1368,7 @@ A number of templates are predefined by txs:
 <li>plain_tabularx</li>
 <li>rowcolors_tabular</li>
 </ul>
-By selecting the first entry, the table is reformated to:
+<p>By selecting the first entry, the table is reformated to:
 <pre>
 \begin{tabular}{|l|l|}
 \hline
@@ -1327,7 +1376,7 @@ By selecting the first entry, the table is reformated to:
 c&amp;d\\ \hline
 \end{tabular}
 </pre>
-These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.
+<p>These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.
 <br>
 The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.<br>
 The template itself is a javascript (see above) with some prefined variables which contain the whole table.
@@ -1339,7 +1388,7 @@ The new table is just placed as replacement of the old one, using information fr
 <li>tab   the actual table. It is a list of lines, each line is a list of columsn which contains the cell content as string</li>
 </ul>
 <br>
-To see the principle of work, the source for the "plain_tabular" template is given here.
+<p>To see the principle of work, the source for the "plain_tabular" template is given here.
 <pre>
 function print(str){ //define this function to make source more readable
 cursor.insertText(str)
@@ -1360,7 +1409,7 @@ for(var i=0;i&lt;tab.length;i++){  // loop through all rows of the table
 }
 println("\\end{tabular}") // close enviroment
 </pre>
-As can be seen in the example, the table has to be rebuilt completely, thus allowing new formatting.
+<p>As can be seen in the example, the table has to be rebuilt completely, thus allowing new formatting.
 A second example gives a slightly more elaborate table (fullyframed_firstBold):
 <pre>
 function print(str){
