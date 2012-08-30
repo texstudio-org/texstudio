@@ -248,7 +248,7 @@ macx {
     
     # #universal tiger
     CONFIG += link_prl \
-        x86
+        x86_64
     
     # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
