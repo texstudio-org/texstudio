@@ -231,12 +231,14 @@ changed functionality:</P>
 <li><p>support many new tools: xelatex, lualatex, biber, latexmk, texindy</p></li>
 <li><p>embedded pdf viewer</p></li>
 <li><p>bookmark manager and persistent bookmarks</p></li>
+<li><p>inline grammar checking using LanguageTool</p></li>
 <li><p>basic syntax highlighting for lua and for dtx files</p></li>
 <li><p>biblatex support</p></li>
-<li><p>citation API to insert citations from other appliciations (JabRef plugin available)</p></li>
+<li><p>citation API to insert citations from other applications (JabRef plugin available)</p></li>
 <li><p>table autoformating</p></li>
 <li><p>improved appearance</p></li>
 <li><p>update checker</p></li>
+<li><p>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</p></li>
 <li><p>crash protection</p></li>
 <li><p>many small improvements</p></li>
 <li><p>several bug fixes</p></li>
@@ -525,12 +527,10 @@ most recent version though yet unsaved.
 Macros can consist of simple text which is directly placed into txs. It can also be an "environment" which are automatically extended by begin/end and it can be a java script.
 The needed functionality can be selected by checkbox.<br>
 The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-command is completed, the macro will be inserted instead. Note that the pseudo-command needs to start with a backslash ("\").<br>
-"Trigger" is a regular expression which trigger the inclusion of the macro.<br>
-It can simply be a text, which is replaced by the macro.
-E.g. trigger="eg" macro="example given", "eg" in the is replaced on pressing "g" when entering the text by "example given"<br>
-As the trigger is a regular expression, more elaborate triggers can be created. Txs makes use of neighbor searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
-Additionally one special trigger term can be used ("?txs-start") which forces texstudio to execute the script on the start of the program.<br>
+"Trigger" is a regular expression which triggers the inclusion of the macro: When the last written characters match this expression, they are removed and the macro is inserted/executed. (see <a href="#sectionTriggers">below</a> for more details).<br>
+<br>
 <p><IMG src="doc17.png" border="1" alt="doc17"></p>
+
 <p>
 <h3 id="SECTION33a">4.5.1 Text macros</h3>
 Apart from normal text, some special codes are recognized and replaced on insertion.<br>
@@ -1054,7 +1054,27 @@ This will add to all selected coordinate pairs the offset of the first pair whic
 
 </ul>
 
-<p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>
+<h3 id="sectionTriggers">4.5.4 Triggers</h3>
+<p>In its simplest form, the trigger is simply a text, which is replaced by the macro. 
+E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
+As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
+You can also prepend the pseudo expression "(?language:...)" to only activate the macro in documents of a specify language (like the language "latex").<br>
+Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
+<table>
+<tr><td>?txs-start</td><td>TeXstudio is started.</td></tr>
+<tr><td>?new-file</td><td>A new file is created</td></tr>
+<tr><td>?new-from-template</td><td>A new file is created from a template</td></tr>
+<tr><td>?load-file</td><td>A file is loaded</td></tr>
+<tr><td>?load-this-file</td><td>The file containing the macro is loaded (only makes sense, if the  script is defined as <a href="#SECTION_TEXCOM">magic comment</a>)</td></tr>
+<tr><td>?save-file</td><td>A file is saved</td></tr>
+<tr><td>?close-file</td><td>A file is closed</td></tr>
+<tr><td>?master-changed</td><td>A document is un/defined as master document</td></tr>
+<tr><td>?after-typeset</td><td>A latex-like command has ended</td></tr>
+<tr><td>?after-command-run</td><td>A command run has ended (e.g. a compile command that calls latex twice and opens the viewer, will trigger this event once, but after-typeset twice)</td></tr>
+</table>
+<p>Multiple of theses special triggers can be combined by | symbols.
+
+<!-- Deprecated:? <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>-->
 <h2 id="SECTION34">4.6 Pstricks support</h2>
 <p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
 <h2 id="SECTION35">4.7 Metapost support</h2>
