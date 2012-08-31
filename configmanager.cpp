@@ -445,7 +445,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Grammar/Long Repetition Check", &grammarCheckerConfig->longRangeRepetitionCheck, true, &pseudoDialog->checkBoxGrammarRepetitionCheck);
 	registerOption("Grammar/Bad Word Check", &grammarCheckerConfig->badWordCheck, true, &pseudoDialog->checkBoxGrammarBadWordCheck);
 	registerOption("Grammar/Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionDelta, 3, &pseudoDialog->spinBoxGrammarRepetitionDistance);
-	registerOption("Grammar/Very Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionLongRangeDelta, 40, &pseudoDialog->spinBoxGrammarLongRangeRepetition);
+	registerOption("Grammar/Very Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionLongRangeDelta, 10, &pseudoDialog->spinBoxGrammarLongRangeRepetition);
 	registerOption("Grammar/Very Long Repetition Check Min Length", &grammarCheckerConfig->maxRepetitionLongRangeMinWordLength, 6, &pseudoDialog->spinBoxGrammarLongRangeRepetitionMinLength);
 	registerOption("Grammar/Word Lists Dir", &grammarCheckerConfig->wordlistsDir, "", &pseudoDialog->lineEditGrammarWordlists);
 	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/",&pseudoDialog->lineEditGrammarLTUrl);
