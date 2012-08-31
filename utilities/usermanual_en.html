@@ -12,14 +12,14 @@
 <ul class="two-columns">
 <li><a href="#SECTIONNEW">0. What's new</a>
 	<ul>
-	<li><a href="#SECTIONNEW19">0.1 Version 1.8.1 -> Version 1.9</a></li>
-	<li><a href="#SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</a></li>
+	<li><a href="#SECTIONNEW24">0.8 Version 2.3 -> Version 2.4</a></li>
+	<li><a href="#SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</a></li>
+	<li><a href="#SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></li>
+	<li><a href="#SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</a></li>
 	<li><a href="#SECTIONNEW199a">0.3 Version 1.9.9 -> Version 1.9.9a</a></li>
 	<li><a href="#SECTIONNEW20">0.4 Version 1.9.9a -> Version 2.0</a></li>
-	<li><a href="#SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</a></li>
-	<li><a href="#SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</a></li>
-	<li><a href="#SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</a></li>
-	<li><a href="#SECTIONNEW24">0.8 Version 2.3 -> Version 2.4</a></li>
+	<li><a href="#SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</a></li>
+	<li><a href="#SECTIONNEW19">0.1 Version 1.8.1 -> Version 1.9</a></li>
 	</ul>
 </li>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a>
@@ -31,6 +31,7 @@
 	<li><a href="#SECTION03">1.4.1 Configuring the spell checker</a></li>
 	<li><a href="#SECTION04">1.4.2 Configuring the thesaurus</a></li>
 	<li><a href="#SECTION041">1.4.3 Configuring the latex syntax checker</a></li>
+	<li><a href="#SECTION044">1.4.4 Configuring the grammar checker</a></li>
 	<li><a href="#SECTION040">1.5 Configuring the autocompletion</a></li>
 	<li><a href="#SECTION05">1.6 Configuring shortcuts</a></li>
 	<li><a href="#SECTION06">1.7 Configuring the Latex/Math-Menu</a></li>
@@ -87,6 +88,120 @@
 </ul>
 <hr>
 <h1 id="SECTIONNEW">0. What's new</h1>
+
+<h2 id="SECTIONNEW24">0.8 Version 2.3 -> Version 2.4</h2>
+<ul>
+<li><p>new build system which allows easier combination of several commands</p></li>
+<li><p>support many new tools: xelatex, lualatex, biber, latexmk, texindy</p></li>
+<li><p>embedded pdf viewer</p></li>
+<li><p>bookmark manager and persistent bookmarks</p></li>
+<li><p>inline grammar checking using LanguageTool</p></li>
+<li><p>basic syntax highlighting for lua and for dtx files</p></li>
+<li><p>biblatex support</p></li>
+<li><p>citation API to insert citations from other applications (JabRef plugin available)</p></li>
+<li><p>table autoformating</p></li>
+<li><p>improved appearance</p></li>
+<li><p>update checker</p></li>
+<li><p>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</p></li>
+<li><p>crash protection</p></li>
+<li><p>many small improvements</p></li>
+<li><p>several bug fixes</p></li>
+
+</ul>
+<h2 id="SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</h2>
+<ul>
+<li><p>list of commands accepting \ref/\cite-references can be changed</p></li>
+<li><p>remember search history</p></li>
+<li><p>support for different dictionaries per document</p></li>
+<li><p>find-invalid-bracket feature</p></li>
+<li><p>almost word level inverse pdf search</p></li>
+<li><p>complete file names in graphic including macros</p></li>
+<li><p>improved BibTeX auto calling</p></li>
+<li><p>more methods available for scripting </p></li>
+<li><p>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
+</ul>
+
+<h2 id="SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</h2>
+<ul>
+	<li><p>improved preview:</p>
+	    <ul><li><p>Pdf viewer can show multiple pages in continous fashion</li>
+	        <li><p>Pdf viewer works non-blocking (multi-threaded)</li>
+  	<li><p>preview works with included files</p></li>
+	    </ul>
+	</li>
+	<li><p>key replacements can trigger arbitrary user macros</p></li>
+	<li><p>double quote replacement can easily be selected from predefined list</p></li>
+	<li><p>completer distinguishes between usual, most often used and all possible commands</p></li>
+	<li><p>saving/loading profiles working
+	<li><p>more environments are syntax highlighted</p></li>
+	<li><p>as always, bug fixes and small improvements</p></li>
+</ul>
+
+<h2 id="SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</h2>
+<ul>
+	<li><p>online latex syntax check has been extended</p>
+	    <ul>
+	      <li><p>number of columns is checked in tabulars</p>
+	      <li><p>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p>
+	      <li><p>new commands added</p></li>
+	    </ul>
+	</li>
+	<li><p>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
+	<li><p>improved preview:</p>
+	    <ul><li><p>Pdf viewer can show multiple pages</li>
+	        <li><p>Pdf viewer supports a presentation mode and multiple views</li>
+                <li><p>Pdf viewer has a new overview and clock dock</p></li>
+	        <li><p>Selection preview become faster and is shown within the text</li>  
+	    </ul>
+	</li>
+	<li>easy parenthesis selection</li>
+	<li><p>as always, bug fixes and small improvements</p>
+</ul>
+
+<h2 id="SECTIONNEW20">0.4 Version 1.9.9a -> Version 2.0</h2>
+<ul>
+	<li><p>integrated pdf viewer with forward/reverse search</p>
+	<li><p>online latex syntax check (for simple errors)</p>
+	<li><p>support to manipulate tables (add/remove lines,columns or \hline)</p>
+	<li><p>inserted brackets are automatically closed</p>
+	<li><p>option to limit line length with hard wraps</p>
+	<li><p>word repetitions are marked as possible style error</p>
+	<li><p>as always, bug fixes and small improvements</p>
+</ul>
+
+<h2 id="SECTIONNEW199a">0.3 Version 1.9.9 -> Version 1.9.9a</h2>
+<ul>
+    <li><p>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.</p>
+    <li><p>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p>
+	<li><p>command replacement in completed commands was added</p>
+	<li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
+	<li><p>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
+	<li><p>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
+	<li><p>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
+	<li><p>delete word, a command or an environment by typing ALT-del</p>
+	<li><p>spell checking is only done in known text commands</p>
+	<li><p>some dialogs adapted to cope better with small screen sizes</p>
+    <li><p>lots of bugs removed after user feedback</p>
+</ul>
+
+<h2 id="SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</h2>
+<ul>
+    <LI><p>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
+    <li><p>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
+    <li><p>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
+    <li><p>a customizable tool bar is available</p>
+    <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
+    <li><p>global find over all open documents improved</p>
+    <li><p>support of transparent versioning of text documents via svn</p>
+    <li><p>structure view and custom command completer are updated as you type</p>
+    <li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
+    <li><p>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
+    <li><p>dde commands can be modified to start a corresponding program if it is not running</p>
+    <li><p>if a started latex freezes up, you can kill it by pressing escape after 2 seconds</p>
+    <li><p>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited</p>
+    <li><p>lots of bugs removed after user feedback</p>
+</ul>
+
 <h2 id="SECTIONNEW19">0.1 Version 1.8.1 -> Version 1.9</h2>
 
 <P>TeXstudio has been diligently extended for the last months. The
@@ -137,113 +252,8 @@ changed functionality:</P>
 	<li><p>A thesaurus was added. It allows search for word parts as well.</p>
 	<LI><P>For sure, lots of bugs have been squashed !</P>
 </ul>
-<h2 id="SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</h2>
-<ul>
-    <LI><p>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
-    <li><p>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
-    <li><p>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
-    <li><p>a customizable tool bar is available</p>
-    <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
-    <li><p>global find over all open documents improved</p>
-    <li><p>support of transparent versioning of text documents via svn</p>
-    <li><p>structure view and custom command completer are updated as you type</p>
-    <li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
-    <li><p>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
-    <li><p>dde commands can be modified to start a corresponding program if it is not running</p>
-    <li><p>if a started latex freezes up, you can kill it by pressing escape after 2 seconds</p>
-    <li><p>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited</p>
-    <li><p>lots of bugs removed after user feedback</p>
-</ul>
-<h2 id="SECTIONNEW199a">0.3 Version 1.9.9 -> Version 1.9.9a</h2>
-<ul>
-    <li><p>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.</p>
-    <li><p>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p>
-	<li><p>command replacement in completed commands was added</p>
-	<li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
-	<li><p>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
-	<li><p>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
-	<li><p>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
-	<li><p>delete word, a command or an environment by typing ALT-del</p>
-	<li><p>spell checking is only done in known text commands</p>
-	<li><p>some dialogs adapted to cope better with small screen sizes</p>
-    <li><p>lots of bugs removed after user feedback</p>
-</ul>
-<h2 id="SECTIONNEW20">0.4 Version 1.9.9a -> Version 2.0</h2>
-<ul>
-	<li><p>integrated pdf viewer with forward/reverse search</p>
-	<li><p>online latex syntax check (for simple errors)</p>
-	<li><p>support to manipulate tables (add/remove lines,columns or \hline)</p>
-	<li><p>inserted brackets are automatically closed</p>
-	<li><p>option to limit line length with hard wraps</p>
-	<li><p>word repetitions are marked as possible style error</p>
-	<li><p>as always, bug fixes and small improvements</p>
-</ul>
-<h2 id="SECTIONNEW201">0.5 Version 2.0 -> Version 2.1</h2>
-<ul>
-	<li><p>online latex syntax check has been extended</p>
-	    <ul>
-	      <li><p>number of columns is checked in tabulars</p>
-	      <li><p>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p>
-	      <li><p>new commands added</p></li>
-	    </ul>
-	</li>
-	<li><p>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
-	<li><p>improved preview:</p>
-	    <ul><li><p>Pdf viewer can show multiple pages</li>
-	        <li><p>Pdf viewer supports a presentation mode and multiple views</li>
-                <li><p>Pdf viewer has a new overview and clock dock</p></li>
-	        <li><p>Selection preview become faster and is shown within the text</li>  
-	    </ul>
-	</li>
-	<li>easy parenthesis selection</li>
-	<li><p>as always, bug fixes and small improvements</p>
-</ul>
-<h2 id="SECTIONNEW22">0.6 Version 2.1 -> Version 2.2</h2>
-<ul>
-	<li><p>improved preview:</p>
-	    <ul><li><p>Pdf viewer can show multiple pages in continous fashion</li>
-	        <li><p>Pdf viewer works non-blocking (multi-threaded)</li>
-  	<li><p>preview works with included files</p></li>
-	    </ul>
-	</li>
-	<li><p>key replacements can trigger arbitrary user macros</p></li>
-	<li><p>double quote replacement can easily be selected from predefined list</p></li>
-	<li><p>completer distinguishes between usual, most often used and all possible commands</p></li>
-	<li><p>saving/loading profiles working
-	<li><p>more environments are syntax highlighted</p></li>
-	<li><p>as always, bug fixes and small improvements</p></li>
-</ul>
-<h2 id="SECTIONNEW23">0.7 Version 2.2 -> Version 2.3</h2>
-<ul>
-<li><p>list of commands accepting \ref/\cite-references can be changed</p></li>
-<li><p>remember search history</p></li>
-<li><p>support for different dictionaries per document</p></li>
-<li><p>find-invalid-bracket feature</p></li>
-<li><p>almost word level inverse pdf search</p></li>
-<li><p>complete file names in graphic including macros</p></li>
-<li><p>improved BibTeX auto calling</p></li>
-<li><p>more methods available for scripting </p></li>
-<li><p>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
-</ul>
-<h2 id="SECTIONNEW24">0.8 Version 2.3 -> Version 2.4</h2>
-<ul>
-<li><p>new build system which allows easier combination of serveral commands</p></li>
-<li><p>support many new tools: xelatex, lualatex, biber, latexmk, texindy</p></li>
-<li><p>embedded pdf viewer</p></li>
-<li><p>bookmark manager and persistent bookmarks</p></li>
-<li><p>inline grammar checking using LanguageTool</p></li>
-<li><p>basic syntax highlighting for lua and for dtx files</p></li>
-<li><p>biblatex support</p></li>
-<li><p>citation API to insert citations from other applications (JabRef plugin available)</p></li>
-<li><p>table autoformating</p></li>
-<li><p>improved appearance</p></li>
-<li><p>update checker</p></li>
-<li><p>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</p></li>
-<li><p>crash protection</p></li>
-<li><p>many small improvements</p></li>
-<li><p>several bug fixes</p></li>
 
-</ul>
+
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
 <p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advancde options" in the lower left corner.</p>
 <h2 id="SECTION01">1.1 Configuring the editor</h2>
@@ -301,9 +311,21 @@ Since the internal structure of the dictionaries is complex (e.g. contains rules
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TeXstudio.<br>
 Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 </p>
-<h2 id="SECTION041">1.4.3 Configuring latex syntax checker</h2>
+<h2 id="SECTION041">1.4.3 Configuring the latex syntax checker</h2>
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br></p>
+<h2 id="SECTION044">1.4.4 Configuring the grammar checker</h2>
+<p>The grammar checker is based on the standard http API of <a href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate installation of LanguageTool and java.
+
+<p>Once LanguageTool is installed, you can try it by starting the LanguageTool standalone application, and start TeXstudio afterward.  LanguageTool then creates  a locally running server at the address http://localhost:8081/ and TeXstudio automatically connects to it at startup. When the connection is established, all typed paragraphs are send to LT and after a short delay the possible grammar errors are highlighted.  
+
+<p>To automatically start LanguageTool with TeXstudio, you need to enter the path to LT jar in the grammar page of the config dialog. If the java executable is not in the default PATH, you also need to set the path to it there.
+
+<p>In the advanced config mode, you can also mark certain LT rules as "special" whose matches will then be highlighted in a different/customizable way. This can be useful to do a stylistic analysis, e.g. by creating a own rule in LT highlighting all verbs or all adverbs.
+
+<p>Independent from LanguageTool, TeXstudio also checks for repeated and bad (imprecise/slang) words. The repetition check looks several words behind and marks repetition of short words in the immediate surrounding and repetition of long words up to 10 words before. These distances and lengths can be changed on the advanced grammar config page.
+
+
 <h2 id="SECTION040">1.5 Configuring the autocompletion</h2>
 <p>
 TeXstudio has taken up completion word list from kile which extended the number of known commands for completion considerably.
@@ -603,8 +625,9 @@ To access the document these objects are introduced:
   <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>  
   <tr><td>triggerMatches </td>	<td> Matches of the regular trigger expression, if the script was called by an editor <a href="#sectionTriggers"> trigger</a>.</td></tr>  
   <tr><td> triggerId </td>	<td> Numeric id of the trigger, if the script was called by an event <a href="#sectionTriggers"> trigger</a>. </td></tr>  
-  
-  
+  <tr><td> include(script) </td>	<td> Includes another script. Can be a filename or the name of a macro. </td></tr>  
+  <tr><td> pdfs </td>	<td> List of all open, internal pdf viewers . </td></tr>  
+    
   <tr><th colspan=2>Editor object</th></tr>
   <tr>
   	<td> editor.search(searchFor, [options], [scope], [callback]) </td>
