@@ -601,6 +601,8 @@ To access the document these objects are introduced:
   <tr><td> hasReadPrivileges() </td>	<td> Checks if the script has read privileges </td></tr>
   <tr><td> hasWritePrivileges() </td>	<td> Checks if the script has write privileges </td></tr>
   <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>  
+  <tr><td>triggerMatches </td>	<td> Matches of the regular trigger expression, if the script was called by an editor <a href="#sectionTriggers"> trigger</a>.</td></tr>  
+  <tr><td> triggerId </td>	<td> Numeric id of the trigger, if the script was called by an event <a href="#sectionTriggers"> trigger</a>. </td></tr>  
   
   
   <tr><th colspan=2>Editor object</th></tr>
@@ -1072,7 +1074,7 @@ Additionally the following special trigger terms (without parentheses) can be us
 <tr><td>?after-typeset</td><td>A latex-like command has ended</td></tr>
 <tr><td>?after-command-run</td><td>A command run has ended (e.g. a compile command that calls latex twice and opens the viewer, will trigger this event once, but after-typeset twice)</td></tr>
 </table>
-<p>Multiple of theses special triggers can be combined by | symbols.
+<p>Multiple of these special triggers can be combined by | symbols.
 
 <!-- Deprecated:? <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>-->
 <h2 id="SECTION34">4.6 Pstricks support</h2>
