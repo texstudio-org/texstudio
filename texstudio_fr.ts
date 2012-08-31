@@ -65,11 +65,11 @@
     </message>
     <message>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio contient du code issu de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (et Jérôme Laurens)</translation>
     </message>
     <message>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utilise des icones du projet Crystal (LGPL) du thème Oxygen (CC-BY-SA 3.0).</translation>
     </message>
 </context>
 <context>
@@ -2306,7 +2306,8 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%&lt;/b&gt; : nom de fichier sans extension ; &lt;b&gt;@&lt;/b&gt; : numéro de ligne ; &lt;b&gt;?[sélecteur][caractère terminal]&lt;/b&gt; : nom de fichier formaté
+</translation>
     </message>
     <message>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
@@ -2315,40 +2316,46 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;i&gt;Sélecteurs :&lt;/i&gt; une combinaison de &lt;b&gt;a&lt;/b&gt; : chemin absolu, &lt;!--&lt;i&gt;r&lt;/i&gt; : chemin relativf, --&gt;&lt;b&gt;m&lt;/b&gt; : base du nom de fichier sans extension,&lt;b&gt;e&lt;/b&gt; : extension&lt;br /&gt;
+préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document maître (inclut le deux-points)&lt;br /&gt;
+&lt;i&gt;Caractère terminaux :&lt;/i&gt; &lt;b&gt;)&lt;/b&gt; : termine le sélecteur. Les caractères suivants terminent le sélecteur et ont des significations supplémentaires :&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt; : insère dans des guillemets, &lt;b&gt;.&lt;/b&gt; (point) ajoute un point à la fin, (espace) : ajoute un espace à la fin&lt;br /&gt;
+&lt;i&gt;Exemples :&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: nom de fichier avec chemin absolu complet et extension, entourés de guillemets, &lt;b&gt;?e)&lt;/b&gt; extension seule sans point (p. ex. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; nom de fichier sans extension, entouré de guillemets (identique à &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nom de fichier avec extension (p.ex. exemple.tex)</translation>
     </message>
     <message>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; et &lt;b&gt;??&lt;/b&gt; deviennent : %, @ et ?
+</translation>
     </message>
     <message>
         <source>Additional Search Paths:</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de chemins additionnels</translation>
     </message>
     <message>
         <source>PDF Viewer</source>
-        <translation type="unfinished">Afficheur PDF</translation>
+        <translation>Afficheur PDF</translation>
     </message>
     <message>
         <source>Log File</source>
-        <translation type="unfinished">Fichier log</translation>
+        <translation>Fichier log</translation>
     </message>
     <message>
         <source>Commands ($PATH)</source>
-        <translation type="unfinished"></translation>
+        <translation>Commandes ($PATH)</translation>
     </message>
     <message>
         <source>Search Path for Logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de chemins pour les logs</translation>
     </message>
     <message>
         <source>Search Path for PDFs</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de chemins pour les PDFs</translation>
     </message>
     <message>
         <source>Search Path for Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de chemins pour les commandes</translation>
     </message>
 </context>
 <context>
@@ -3968,7 +3975,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Horloge</translation>
     </message>
 </context>
 <context>
@@ -4499,11 +4506,11 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur fenêtré</translation>
     </message>
     <message>
         <source>Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficheur embarqué</translation>
     </message>
 </context>
 <context>
@@ -5253,7 +5260,7 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     <name>QFoldPanel</name>
     <message>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation>Développer tout</translation>
     </message>
 </context>
 <context>
@@ -8333,20 +8340,21 @@ included document in %1</source>
     </message>
     <message>
         <source>Ma&amp;cros</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Macros</translation>
     </message>
     <message>
         <source>Normal Mode (current master document: </source>
-        <translation type="unfinished"></translation>
+        <translation>Mode normal (document maître actuel : </translation>
     </message>
     <message>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Un fichier de restauration après un arrêt brutal, issu de %1, a été trouvé pour « %2 ».
+Voulez-vous le restaurer ?</translation>
     </message>
     <message>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de l&apos;ouverture du fichier de restauration « %1 »</translation>
     </message>
 </context>
 <context>
@@ -8857,7 +8865,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous réellement supprimer la macro en cours ?</translation>
     </message>
 </context>
 <context>
@@ -9233,11 +9241,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Current Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Document en cours</translation>
     </message>
     <message>
         <source>Open Documents</source>
-        <translation type="unfinished">Documents ouverts</translation>
+        <translation>Documents ouverts</translation>
     </message>
 </context>
 <context>
