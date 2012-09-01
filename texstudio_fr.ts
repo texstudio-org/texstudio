@@ -2331,7 +2331,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     </message>
     <message>
         <source>Additional Search Paths:</source>
-        <translation>Recherche de chemins additionnels</translation>
+        <translation>Recherche de chemins additionnels :</translation>
     </message>
     <message>
         <source>PDF Viewer</source>
@@ -8354,7 +8354,7 @@ Voulez-vous le restaurer ?</translation>
     </message>
     <message>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation>Échec de l&apos;ouverture du fichier de restauration « %1 »</translation>
+        <translation>Échec de l&apos;ouverture du fichier de restauration « %1 ».</translation>
     </message>
 </context>
 <context>
@@ -8448,10 +8448,10 @@ If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if 
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
         <translation>Si « Afficher toutes les phrases » est sélectionné, toutes les phrases sont affichées.
-Si « Longueur minimale des phrases » est sélectionné, les phrases sont affichées si elles contiennent un minimum de caractères. (par ex. « un test » compte 7 caractères)
-Si « Longueur minimale des mots (un) » est sélectionné, les phrases sont affichées si un mot contient un minimum de caractères. (par ex. « un test » compte 4 caractères)
-Si « Longueur minimale des mots (tous) » est sélectionné, les phrases sont affichées si tous leurs mots contiennent un minimum de caractères. (par ex. « un test » compte 1 caractère)
-Si « Ignorer complètement les mots plus courts » est sélectionné, les mots plus courts sont ignorés.
+Si « Longueur minimale des phrases » est sélectionné, les phrases sont affichées si elles contiennent un minimum de caractères. (par ex. « un test » compte 7 caractères).
+Si « Longueur minimale des mots (un) » est sélectionné, les phrases sont affichées si un mot contient un minimum de caractères. (par ex. « un test » compte 4 caractères).
+Si « Longueur minimale des mots (tous) » est sélectionné, les phrases sont affichées si tous leurs mots contiennent un minimum de caractères. (par ex. « un test » compte 1 caractère).
+Si « Ignorer complètement les mots plus courts » est sélectionné, les mots plus courts sont ignorés
 (par ex. avec une longueur 3, la phrase « juste un test » rendra « juste test », tandis que d&apos;autres options sépareraient en « juste un&quot;, « un test&quot;, même si aucune de ces phrases n&apos;est affichée).</translation>
     </message>
     <message>
