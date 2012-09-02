@@ -316,6 +316,7 @@ unix {
         utilities/thesaurus.png \
         utilities/latexhelp.html \
         utilities/wizard_figure.png \
+	utilities/block_selection.png \
 	texstudio_fr.qm \
 	texstudio_de.qm \
 	texstudio_it.qm \
@@ -338,6 +339,7 @@ unix {
         templates/template_Scrlttr2.tex \
         templates/template_Scrreprt.tex \
         utilities/usermanual_en.html \
+	utilities/usermanual.css \
         utilities/usermanual_fr.html \
         utilities/en_GB.aff \
         utilities/en_GB.dic \
