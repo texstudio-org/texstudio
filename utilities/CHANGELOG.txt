@@ -1,5 +1,25 @@
 (you may also want to check the usermanual)
 
+TexMakerX 2.3 -> TeXstudio 2.4  SVN 3255
+-----------------------------------------
+
+- new build system which allows easier combination of several commands
+- support many new tools: xelatex, lualatex, biber, latexmk, texindy
+- embedded pdf viewer
+- bookmark manager and persistent bookmarks
+- inline grammar checking using LanguageTool
+- basic syntax highlighting for lua and for dtx files
+- biblatex support
+- citation API to insert citations from other applications (JabRef plugin available)
+- table autoformating
+- improved appearance
+- update checker
+- extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events
+- crash protection
+- many small improvements
+- several bug fixes
+
+
 TexMakerX 2.2 -> TeXstudio 2.3  SVN 2459
 -----------------------------------------
 - list of commands accepting \ref/\cite-references can be changed
