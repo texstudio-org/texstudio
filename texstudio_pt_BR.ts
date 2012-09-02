@@ -36,7 +36,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="33"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio contém código de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) e SyncTeX (por Jerome Laurens)</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="34"/>
@@ -56,7 +56,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utiliza ícones do Crystal Project (LGPL) e o tema de ícones Oxygen (CC-BY-SA 3.0).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -4469,7 +4469,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="PDFDocks.cpp" line="911"/>
         <source>Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Relógio</translation>
     </message>
     <message>
         <location filename="PDFDocks.cpp" line="928"/>
@@ -5040,12 +5040,12 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="PDFDocument.cpp" line="1966"/>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador em Janela Independente</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="1969"/>
         <source>Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador Integrado</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2023"/>
@@ -9620,12 +9620,13 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
         <location filename="texmaker.cpp" line="1569"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Um arquivo de recuperação de falha de %1 foi encontrado para &quot;%2&quot;.
+Você deseja restaurá-lo?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1575"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao abrir arquivo de recuperação &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3949"/>
