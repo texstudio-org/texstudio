@@ -317,6 +317,7 @@ unix {
         utilities/latexhelp.html \
         utilities/wizard_figure.png \
 	utilities/block_selection.png \
+	utilities/spellcheck_menu.png \
 	texstudio_fr.qm \
 	texstudio_de.qm \
 	texstudio_it.qm \
