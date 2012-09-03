@@ -554,9 +554,12 @@ exists(./.svn/entries){
     SOURCES += svn_revision.cpp
   }
 } else {
-  win32: system(echo const char * TEXSTUDIO_SVN_VERSION = 0; > svn_revision.cpp)
-  else: system(echo \"const char * TEXSTUDIO_SVN_VERSION = 0;\" > svn_revision.cpp)
+  !exists(./svn_revision.cpp){
+    win32: system(echo const char * TEXSTUDIO_SVN_VERSION = 0; > svn_revision.cpp)
+    else: system(echo \"const char * TEXSTUDIO_SVN_VERSION = 0;\" > svn_revision.cpp)
+  }
   SOURCES += svn_revision.cpp
+
 }
 
 # moved to the end because it seems to destroy the precompiled header
