@@ -1,6 +1,6 @@
 (you may also want to check the usermanual)
 
-TexMakerX 2.3 -> TeXstudio 2.4  SVN 3255
+TeXstudio 2.3 -> TeXstudio 2.4  SVN 3255
 -----------------------------------------
 
 - new build system which allows easier combination of several commands
