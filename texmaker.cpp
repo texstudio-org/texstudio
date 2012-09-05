@@ -3501,6 +3501,21 @@ void Texmaker::InsertCitation(const QString &text) {
 	QString command, value;
 	LatexParser::ContextType context = latexParser.findContext(line, cursorCol, command, value);
 
+	// Workaround: findContext yields Citation for \cite{..}|\n, but cursorCol is beyond the line,
+	// which causes a crash when determining the insertCol later on.
+	if (context == LatexParser::Citation && cursorCol == line.length() && cursorCol > 0) cursorCol--;
+
+	// if cursor is directly behind a cite command, isert into that command
+	if (context != LatexParser::Citation && cursorCol > 0) {
+		LatexParser::ContextType prevContext = LatexParser::Unknown;
+		prevContext = latexParser.findContext(line, cursorCol-1, command, value);
+		if (prevContext == LatexParser::Citation) {
+			cursorCol--;
+			context = prevContext;
+		}
+	}
+
+
 	int insertCol = -1;
 	if (context == LatexParser::Command && latexParser.possibleCommands["%cite"].contains(command)) {
 		insertCol = line.indexOf('{', cursorCol)+1;
@@ -3511,8 +3526,8 @@ void Texmaker::InsertCitation(const QString &text) {
 		} else if (line.at(cursorCol-1) == '{' || line.at(cursorCol-1) == ',') {
 			insertCol = cursorCol;
 		} else {
-			int nextComma = line.indexOf(',', c.columnNumber());
-			int closingBracket = line.indexOf('}', c.columnNumber());
+			int nextComma = line.indexOf(',', cursorCol);
+			int closingBracket = line.indexOf('}', cursorCol);
 			if (nextComma >= 0 && (closingBracket == -1 || closingBracket > nextComma)) {
 				insertCol = nextComma+1;
 			} else if (closingBracket >= 0) {
