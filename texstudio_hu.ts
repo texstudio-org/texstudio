@@ -53,11 +53,11 @@
     </message>
     <message>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio kódot tartalmaz az alábbi programokból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) és SyncTeX (Jerome Laurens)</translation>
     </message>
     <message>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio használja a Crystal Project (LGPL) ikonjait, valamint az Oxygen ikontémát (CC-BY-SA 3.0).</translation>
     </message>
 </context>
 <context>
@@ -170,10 +170,6 @@
         <translation>&amp;Vegyes</translation>
     </message>
     <message>
-        <source>&lt;new file&gt;</source>
-        <translation type="obsolete">&lt;új fájl&gt;</translation>
-    </message>
-    <message>
         <source>Insert in File:</source>
         <translation>Beszúrás fájlban:</translation>
     </message>
@@ -273,10 +269,6 @@
         <translation>&lt;ismeretlen&gt;</translation>
     </message>
     <message>
-        <source>Quickbuild</source>
-        <translation type="obsolete">Gyorsfordítás</translation>
-    </message>
-    <message>
         <source>Default Compiler</source>
         <translation>Alapértelmezett fordító</translation>
     </message>
@@ -314,92 +306,8 @@
 támogatott</translation>
     </message>
     <message>
-        <source>compile &amp; view</source>
-        <translation type="obsolete">fordítás és megjelenítés</translation>
-    </message>
-    <message>
-        <source>Postscipt chain</source>
-        <translation type="obsolete">Postscipt lánc</translation>
-    </message>
-    <message>
-        <source>DVI chain</source>
-        <translation type="obsolete">DVI lánc</translation>
-    </message>
-    <message>
-        <source>PDF chain</source>
-        <translation type="obsolete">PDF lánc</translation>
-    </message>
-    <message>
-        <source>DVI-PDF-chain</source>
-        <translation type="obsolete">DVI-PDF lánc</translation>
-    </message>
-    <message>
-        <source>DVI-PS-PDF-chain</source>
-        <translation type="obsolete">DVI-PS-PDF lánc</translation>
-    </message>
-    <message>
-        <source>asy-DVI-chain</source>
-        <translation type="obsolete">asy-DVI lánc</translation>
-    </message>
-    <message>
-        <source>asy-PDF-chain</source>
-        <translation type="obsolete">asy-PDF lánc</translation>
-    </message>
-    <message>
-        <source>Use pdflatex</source>
-        <translation type="obsolete">pdflatex használata</translation>
-    </message>
-    <message>
-        <source>Use latex</source>
-        <translation type="obsolete">latex használata</translation>
-    </message>
-    <message>
-        <source>Use xelatex</source>
-        <translation type="obsolete">xelatex használata</translation>
-    </message>
-    <message>
-        <source>Use lualatex</source>
-        <translation type="obsolete">lualatex használata</translation>
-    </message>
-    <message>
-        <source>Use latexmk</source>
-        <translation type="obsolete">latexmk használata</translation>
-    </message>
-    <message>
-        <source>Use PDF viewer</source>
-        <translation type="obsolete">PDF megjelenítő használata</translation>
-    </message>
-    <message>
-        <source>Use DVI viewer</source>
-        <translation type="obsolete">DVI megjelenítő használata</translation>
-    </message>
-    <message>
-        <source>Use postscript viewer</source>
-        <translation type="obsolete">Postsrcip megjelenítő használata</translation>
-    </message>
-    <message>
-        <source>Use internal PDF viewer</source>
-        <translation type="obsolete">Belső PDF megjelenítő használata</translation>
-    </message>
-    <message>
-        <source>Use external PDF viewer</source>
-        <translation type="obsolete">Külső PDF megjelenítő használata</translation>
-    </message>
-    <message>
         <source>PDF Viewer</source>
         <translation>PDF megjelenítő</translation>
-    </message>
-    <message>
-        <source>Use bibtex</source>
-        <translation type="obsolete">bibtex használata</translation>
-    </message>
-    <message>
-        <source>Use bibtex8</source>
-        <translation type="obsolete">bibtex8 használata</translation>
-    </message>
-    <message>
-        <source>Use biber</source>
-        <translation type="obsolete">biber használata</translation>
     </message>
     <message>
         <source>PS Chain</source>
@@ -456,10 +364,6 @@ támogatott</translation>
     <message>
         <source>Default Index Tool</source>
         <translation>Alapértelmezett indexelés</translation>
-    </message>
-    <message>
-        <source>Use internal PDF viewer embedded in TeXstudio</source>
-        <translation type="obsolete">A TeXstudioba épített belső PDF néző használata</translation>
     </message>
     <message>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
@@ -620,29 +524,6 @@ támogatott</translation>
     <message>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Speciális karakterek&lt;/span&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </source>
-        <translation type="obsolete">&lt;b&gt;%&lt;/b&gt;: fájlnév kiterjesztés nélkül &lt;b&gt;@&lt;/b&gt;: sor száma </translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;?&lt;/b&gt; followed by &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: extended filename; prepend &lt;i&gt;c:&lt;/i&gt; for current file instead of master file</source>
-        <translation type="obsolete">&lt;b&gt;?&lt;/b&gt;-t követő &lt;i&gt;a&lt;/i&gt;,&lt;!--&lt;i&gt;r&lt;/i&gt;,--&gt;&lt;i&gt;m&lt;/i&gt;,&lt;i&gt;e&lt;/i&gt;,&lt;i&gt;&quot;&lt;/i&gt;, ,&lt;i&gt;)&lt;/i&gt;: kiterjesztett fájlnév; elejéhez fűzött &lt;i&gt;c:&lt;/i&gt; jelenlegi fájl a mesterfájl helyett</translation>
-    </message>
-    <message>
-        <source>&lt;i&gt;a&lt;/i&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;i&gt;m&lt;/i&gt;: basefile name without extension,&lt;i&gt;e&lt;/i&gt;: extension&lt;br /&gt;
-&lt;i&gt;&quot;&lt;/i&gt;: enclose with &quot;..&quot;, . (point): ends placeholder with a point, (space): ends placeholder and add a space, &lt;i&gt;)&lt;/i&gt;: ends placeholder &lt;br /&gt;
-examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just the extension (without leading point), &lt;br /&gt;
-?m&quot; (filename without extension, identical to %) ?me (filename with extension like example.tex)</source>
-        <translation type="obsolete">&lt;i&gt;a&lt;/i&gt;: abszolút útvonal, &lt;!--&lt;i&gt;r&lt;/i&gt;: relatív útvonal, --&gt;&lt;i&gt;m&lt;/i&gt;: bázisfájl neve kiterjesztés nélkül, &lt;i&gt;e&lt;/i&gt;: kiterjesztés&lt;br /&gt;
-&lt;i&gt;&quot;&lt;/i&gt;: bezárás &quot;..&quot;-lel, (pont):lezárja a helyfoglalót ponttal, (szóköz): lezárja a helyfoglalót és hozzáad egy szóközt, &lt;i&gt;)&lt;/i&gt;: lezárja a helyfoglalót&lt;br /&gt;
-példák: ?ame&quot;: teljes abszolút fájlnév &quot;-ekbe zárva, ?e) csak a kiterjesztés (pont nélkül), &lt;br /&gt;
-?m&quot; (fájlnév kiterjesztés nélkül, megegyezik a %-lel) ?me (fájlnév kiterjesztéssel mint pelda.tex)</translation>
-    </message>
-    <message>
-        <source>%%, @@ or ?? become: %, @ or ?
-</source>
-        <translation type="obsolete">%%, @@ vagy ?? ezekké válik: %, @ or ?</translation>
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
@@ -1649,25 +1530,6 @@ options again to only view the most common settings.</source>
         <translation>&lt;b&gt;%&lt;/b&gt;: fájlnév kiterjesztés nélkül &lt;b&gt;@&lt;/b&gt;: sor száma; &lt;b&gt;?[választó][végjel]&lt;/b&gt;: formázott fájnév</translation>
     </message>
     <message>
-        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
-prepend &lt;b&gt;c&lt;/b&gt; for current file instead of master file&lt;br /&gt;
-&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
-&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
-&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
-&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
-        <translation type="obsolete">&lt;i&gt;Választások:&lt;/i&gt; a következők kombinációja &lt;b&gt;a&lt;/b&gt;: abszolút út, &lt;!--&lt;i&gt;r&lt;/i&gt;: relatív út, --&gt;&lt;b&gt;m&lt;/b&gt;: fájlnév kiterjesztés nélkül,&lt;b&gt;e&lt;/b&gt;: kiterjesztés&lt;br /&gt;
-prepend &lt;b&gt;c&lt;/b&gt; a jelenlegi- a mesterfájl helyett&lt;br /&gt;
-&lt;i&gt;Végjelek:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: zárja a választást. A következő további jelentéssel is bíró karakterek zárják a választást&lt;br /&gt;
-&lt;b&gt;&quot;&lt;/b&gt;: idézőjel bezárása, &lt;b&gt;.&lt;/b&gt; (pont) pontot rak a végére, (szóköz): szóközt rak a végére&lt;br /&gt;
-&lt;i&gt;Példák:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: teljes abszolút fájlnév idézőjelbe rakva, &lt;b&gt;?e)&lt;/b&gt; csak a kiterjesztés a pont nélkül (pl. tex), &lt;br /&gt;
-&lt;b&gt;?m&quot;&lt;/b&gt; idézőjelbe rakott fájlnév kiterjesztés nélkül (úgy, mint &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; fájlnév kiterjesztéssel (pl. pelda.tex)</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;??&lt;/b&gt; become: %, @ or ?
-</source>
-        <translation type="obsolete">&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; és &lt;b&gt;??&lt;/b&gt; lesz: %, @ vagy ?</translation>
-    </message>
-    <message>
         <source>Additional Search Paths:</source>
         <translation>További útkeresés:</translation>
     </message>
@@ -1702,12 +1564,17 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;i&gt;Választások:&lt;/i&gt; a következők kombinációja &lt;b&gt;a&lt;/b&gt;: abszolút út, &lt;!--&lt;i&gt;r&lt;/i&gt;: relatív út, --&gt;&lt;b&gt;m&lt;/b&gt;: fájlnév kiterjesztés nélkül,&lt;b&gt;e&lt;/b&gt;: kiterjesztés&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalmazva a kettőspontot)&lt;br /&gt;
+&lt;i&gt;Végjelek:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: zárja a választást. A következő további jelentéssel is bíró karakterek zárják a választást&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: idézőjel bezárása, &lt;b&gt;.&lt;/b&gt; (pont) pontot rak a végére, (szóköz): szóközt rak a végére&lt;br /&gt;
+&lt;i&gt;Példák:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: teljes abszolút fájlnév idézőjelbe rakva, &lt;b&gt;?e)&lt;/b&gt; csak a kiterjesztés a pont nélkül (pl. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; idézőjelbe rakott fájlnév kiterjesztés nélkül (úgy, mint &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; fájlnév kiterjesztéssel (pl. pelda.tex)</translation>
     </message>
     <message>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; és &lt;b&gt;?? &lt;/b&gt; lesz: %, @ vagy ?</translation>
     </message>
 </context>
 <context>
@@ -2516,10 +2383,6 @@ Missing \includegraphics options.</source>
         <translation>Opciók definiálása a \includegraphics[options]{file} számára</translation>
     </message>
     <message>
-        <source>Identifier, which is used to reference the label; e.g. using \ref{thisLabel}</source>
-        <translation type="obsolete">Címkehivatkozás azonosítója, például \ref{thisLabel}</translation>
-    </message>
-    <message>
         <source>Caption for display next to the image</source>
         <translation>A képfelirat megjelenítése a kép mellett</translation>
     </message>
@@ -2912,7 +2775,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Óra</translation>
     </message>
 </context>
 <context>
@@ -3324,7 +3187,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation>Az &quot;%1&quot; nevű fájl nem található, talán törölve lett</translation>
+        <translation>A(z) &quot;%1&quot; nevű fájl nem található, talán törölve lett.</translation>
     </message>
     <message>
         <source>Open PDF</source>
@@ -3421,11 +3284,11 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
     </message>
     <message>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenítő ablakban</translation>
     </message>
     <message>
         <source>Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Beágyazott megjelenítő</translation>
     </message>
 </context>
 <context>
@@ -4736,10 +4599,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
         <translation>Beállítások</translation>
     </message>
     <message>
-        <source>First order word</source>
-        <translation type="obsolete">Elsőrendű szó</translation>
-    </message>
-    <message>
         <source>Second Order Words</source>
         <translation>Másodrendű szó</translation>
     </message>
@@ -4796,19 +4655,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek</trans
     <message>
         <source>Generating random text...</source>
         <translation>Véletlen szöveg létrehozása...</translation>
-    </message>
-    <message>
-        <source>ignore case</source>
-        <translation type="obsolete">Eset mellőzése</translation>
-    </message>
-    <message>
-        <source>punctation</source>
-        <translatorcomment>???</translatorcomment>
-        <translation type="obsolete">pontozás</translation>
-    </message>
-    <message>
-        <source>LaTeX input</source>
-        <translation type="obsolete">LaTeX bemenet</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -5098,16 +4944,6 @@ Megbízik a parancsfájlban?</translation>
 </context>
 <context>
     <name>SpellerUtility</name>
-    <message>
-        <source>Broken dictionary detected:
-%1
-
-Missing .aff file. This dictionary will not be loaded.</source>
-        <translation type="obsolete">Törött szótár:
-%1
-
-Hiányzó .aff fájl. A szótárt így nem lehet betölteni.</translation>
-    </message>
     <message>
         <source>Missing .aff file:
 %1</source>
@@ -5933,10 +5769,6 @@ Hiányzó .aff fájl. A szótárt így nem lehet betölteni.</translation>
         <translation>Tezaurusz betöltése nem lehetséges</translation>
     </message>
     <message>
-        <source>&lt;current file&gt;</source>
-        <translation type="obsolete">&lt;jelenlegi fájl&gt;</translation>
-    </message>
-    <message>
         <source>Labels:</source>
         <translation>Címkék:</translation>
     </message>
@@ -5963,10 +5795,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>A fájlt menteni és fordítani kell a napló megtekintése előtt</translation>
     </message>
     <message>
-        <source>Log File not found !</source>
-        <translation type="obsolete">A naplófájl nem található!</translation>
-    </message>
-    <message>
         <source>No LaTeX errors detected !</source>
         <translation>Nincs LaTeX hiba!</translation>
     </message>
@@ -5981,10 +5809,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
     <message>
         <source>File not found</source>
         <translation>A fájl nem található</translation>
-    </message>
-    <message>
-        <source>Normal Mode (current master document :</source>
-        <translation type="obsolete">Normál mód (jelenlegi mesterdokumentum: </translation>
     </message>
     <message>
         <source>Master Document</source>
@@ -6383,20 +6207,8 @@ Megbízik a leírásban?</translation>
         <translation>Fel&amp;használó</translation>
     </message>
     <message>
-        <source>&amp;Quick</source>
-        <translation type="obsolete">&amp;Gyors</translation>
-    </message>
-    <message>
         <source>&amp;Compile</source>
         <translation>&amp;Fordítás</translation>
-    </message>
-    <message>
-        <source>View &amp;Dvi</source>
-        <translation type="obsolete">&amp;Dvi megjelenítése</translation>
-    </message>
-    <message>
-        <source>Dvi-&gt;PS</source>
-        <translation type="obsolete">Dvi-&gt;PS</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
@@ -6538,10 +6350,6 @@ included document in %1</source>
     <message>
         <source>Edit &amp;Macros...</source>
         <translation>Makrók &amp;szerkesztése...</translation>
-    </message>
-    <message>
-        <source>&amp;Macros</source>
-        <translation type="obsolete">&amp;Makrók</translation>
     </message>
     <message>
         <source>Yes, try to recover</source>
@@ -6808,16 +6616,17 @@ included document in %1</source>
     </message>
     <message>
         <source>Ma&amp;cros</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Makrók</translation>
     </message>
     <message>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Úgy tűnik, a(z) &quot;%1&quot; fájl a(z) &quot;%2&quot; fájl helyreállított változata.
+Kicseréljük vele?</translation>
     </message>
     <message>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) &quot;%1&quot; helyreállított fájl betöltése meghiúsult.</translation>
     </message>
 </context>
 <context>
@@ -6996,10 +6805,6 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <translation>Szűrő</translation>
     </message>
     <message>
-        <source>Determines of the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation type="obsolete">Meghatározza, hogy az egész dokumentum, a kijelölés vagy az egész fejezet legyen-e elemezve.</translation>
-    </message>
-    <message>
         <source>Whole document</source>
         <translation>Egész dokumentum</translation>
     </message>
@@ -7050,40 +6855,12 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
 <context>
     <name>ThesaurusDialog</name>
     <message>
-        <source>replace</source>
-        <translation type="obsolete">Csere</translation>
-    </message>
-    <message>
-        <source>lookup</source>
-        <translation type="obsolete">Kikeresés</translation>
-    </message>
-    <message>
-        <source>starts with ...</source>
-        <translation type="obsolete">Ezzel kezdődik...</translation>
-    </message>
-    <message>
-        <source>contains ...</source>
-        <translation type="obsolete">Tartalmazza...</translation>
-    </message>
-    <message>
-        <source>cancel</source>
-        <translation type="obsolete">Mégsem</translation>
-    </message>
-    <message>
         <source>Thesaurus</source>
         <translation>Tezaurusz</translation>
     </message>
     <message>
         <source>&lt;all&gt;</source>
         <translation>&lt;mind&gt;</translation>
-    </message>
-    <message>
-        <source>add own word</source>
-        <translation type="obsolete">saját szó hozzáadása</translation>
-    </message>
-    <message>
-        <source>remove own word</source>
-        <translation type="obsolete">saját szó eltávolítása</translation>
     </message>
     <message>
         <source>New Word:</source>
@@ -7264,7 +7041,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     </message>
     <message>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tényleg törli az aktuális makrót?</translation>
     </message>
 </context>
 <context>
@@ -7588,14 +7365,6 @@ The html files are located in the %1 directory.</source>
     <message>
         <source>Scope:</source>
         <translation>Hatókör:</translation>
-    </message>
-    <message>
-        <source>current document</source>
-        <translation type="obsolete">Jelenlegi dokumentum</translation>
-    </message>
-    <message>
-        <source>open documents</source>
-        <translation type="obsolete">Nyitott dokumentumok</translation>
     </message>
     <message>
         <source>Find:</source>
