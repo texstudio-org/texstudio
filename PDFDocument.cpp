@@ -2403,7 +2403,9 @@ void PDFDocument::reload(bool fillCache)
 							
 		pdfWidget->setDocument(document);
 		pdfWidget->show();
-		pdfWidget->setFocus();
+
+		if (!embeddedMode)
+			pdfWidget->setFocus();
 		
 		// set page viewer only once
 		int maxDigits = 1 + floor(log10(pdfWidget->realNumPages()));
