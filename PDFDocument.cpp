@@ -1181,14 +1181,17 @@ void PDFWidget::adjustSize()
 	if (pageSize != size()){
 		PDFScrollArea *scrollArea=getScrollArea();
 		qreal jumpTo=-1;
+
+		QSize p = scrollArea->viewport()->size();
+
 		if(scrollArea && scrollArea->getContinuous()){
 			if(scrollArea->verticalScrollBar()->maximum()>0){
-				jumpTo=1.0*scrollArea->verticalScrollBar()->value()/scrollArea->verticalScrollBar()->maximum();
+				jumpTo=1.0*scrollArea->verticalScrollBar()->value()/(scrollArea->verticalScrollBar()->maximum()+p.height());
 			}
 		}
 		resize(pageSize);
 		if(jumpTo>=0){
-			scrollArea->verticalScrollBar()->setValue(qRound(jumpTo*scrollArea->verticalScrollBar()->maximum())); // correct position after resize
+			scrollArea->verticalScrollBar()->setValue(qRound(jumpTo*(scrollArea->verticalScrollBar()->maximum()+p.height()))); // correct position after resize
 		}
 	}
 }
