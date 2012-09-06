@@ -175,7 +175,7 @@ void BuildManager::initDefaultCommandNames(){
 	
 	descriptionList.clear();
 	descriptionList<< tr("PdfLaTeX") << tr("LaTeX") << tr("XeLaTeX") << tr("LuaLaTeX") << tr("Latexmk");
-	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs://lualatex" << "txs:///latexmk","",true,descriptionList);
+	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs:///lualatex" << "txs:///latexmk","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<<tr("PDF Viewer") << tr("DVI Viewer") << tr("PS Viewer") << tr("Internal PDF Viewer (Windowed)") << tr("Internal PDF Viewer (Embedded)") << tr("External PDF Viewer");
 	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
