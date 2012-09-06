@@ -4,7 +4,6 @@
 #include <QNetworkReply>
 #include <QMutex>
 
-QRegExp UpdateChecker::rxVersion("(\\d+)(?:\\.(\\d+))+");
 UpdateChecker * UpdateChecker::m_Instance = 0;
 
 UpdateChecker::UpdateChecker() :
@@ -16,13 +15,8 @@ UpdateChecker::UpdateChecker() :
 // compares two versions strings
 // Meaning of result: v1 [result] v2, e.g. v1 Older than v2
 UpdateChecker::VersionCompareResult UpdateChecker::versionCompare(const QString &v1, const QString &v2) {
-	if (!rxVersion.exactMatch(v1)) return Invalid;
-	QStringList v1parts = rxVersion.capturedTexts();
-	v1parts.removeAt(0); // first element is complete string
-
-	if (!rxVersion.exactMatch(v2)) return Invalid;
-	QStringList v2parts = rxVersion.capturedTexts();
-	v2parts.removeAt(0); // first element is complete string
+	QStringList v1parts = v1.split('.');
+	QStringList v2parts = v2.split('.');
 
 	for (int i=v1parts.count(); i<v2parts.count(); i++) {
 		v1parts.append("0");
@@ -32,8 +26,11 @@ UpdateChecker::VersionCompareResult UpdateChecker::versionCompare(const QString 
 	}
 
 	for (int i=0; i<v1parts.count(); i++) {
-		int n1 = v1parts.at(i).toInt();
-		int n2 = v2parts.at(i).toInt();
+		bool ok;
+		int n1 = v1parts.at(i).toInt(&ok);
+		if (!ok) return Invalid;
+		int n2 = v2parts.at(i).toInt(&ok);
+		if (!ok) return Invalid;
 		if (n1 < n2) return Lower;
 		else if (n1 > n2) return Higher;
 	}
@@ -96,7 +93,9 @@ void UpdateChecker::parseData(const QByteArray &data) {
 		if (nodes.count() == 1) {
 			QDomElement latestRelease = nodes.at(0).toElement();
 
-			VersionCompareResult res = versionCompare(latestRelease.attribute("value"), TXSVERSION);
+			m_latestVersion = latestRelease.attribute("value");
+
+			VersionCompareResult res = versionCompare(m_latestVersion, TXSVERSION);
 			if (res == Invalid) {
 				if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
 				return;
