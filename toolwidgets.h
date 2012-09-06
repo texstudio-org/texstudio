@@ -101,6 +101,7 @@ private slots:
 	void copyAllMessages();
 	void copyAllMessagesWithLineNumbers();
 	void showMessageInLog();
+	void copySearchResult();
 };
 
 class SearchTreeDelegate: public QItemDelegate {

@@ -2344,6 +2344,7 @@ void Texmaker::editCopy() {
 	if ((!currentEditor() || !currentEditor()->hasFocus()) &&
 	              outputView->childHasFocus() ) {
 		outputView->copy();
+		return;
 	}
 	if (!currentEditorView()) return;
 	currentEditorView()->editor->copy();

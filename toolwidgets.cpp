@@ -328,10 +328,20 @@ void OutputViewWidget::insertMessageLine(const QString &message){
 	OutputTextEdit->insertLine(message);
 }
 void OutputViewWidget::copy(){
-	if (tabbedLogView && OutputLayout->currentIndex() == LAYOUT_PAGE_ERRORS)
-		copyMessage();
-	else
-		OutputLogTextEdit->copy();
+	if (tabbedLogView) {
+		switch (OutputLayout->currentIndex()) {
+		case LAYOUT_PAGE_MESSAGES: OutputTextEdit->copy(); break;
+		case LAYOUT_PAGE_LOG: OutputLogTextEdit->copy(); break;
+		case LAYOUT_PAGE_ERRORS: copyMessage(); break;
+		case LAYOUT_PAGE_SEARCH: copySearchResult(); break;
+		}
+	} else if (OutputLogTextEdit->hasFocus())
+		OutputLogTextEdit->copy(); 
+	else if (OutputTextEdit->hasFocus())
+		OutputTextEdit->copy(); 
+	else if (OutputTree->hasFocus())
+		copySearchResult();
+	else copyMessage();
 }
 
 void OutputViewWidget::resetMessages(bool noTabChange){
@@ -429,6 +439,10 @@ void OutputViewWidget::showMessageInLog(){
 	gotoLogEntry(curMessage.row());
 }
 
+void OutputViewWidget::copySearchResult(){
+	QApplication::clipboard()->setText(OutputTree->currentIndex().data(Qt::DisplayRole).toString());
+}
+
 
 void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument* doc){
 	SearchInfo search;
@@ -449,7 +463,11 @@ int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
         return searchResultModel->getNextSearchResultColumn(text,col);
 }
 bool OutputViewWidget::childHasFocus(){
-	return OutputLogTextEdit->hasFocus() || (tabbedLogView?OutputTable2->hasFocus():OutputTable->hasFocus());
+	return OutputLogTextEdit->hasFocus() 
+	       || (tabbedLogView?OutputTable2->hasFocus():OutputTable->hasFocus())
+	       || OutputTextEdit->hasFocus()
+	       || OutputTree->hasFocus();
+	
 }
 
 void OutputViewWidget::changeEvent(QEvent *event){
