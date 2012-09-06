@@ -16,6 +16,7 @@
 #include "structureview_t.h"
 #include "tablemanipulation_t.h"
 #include "syntaxcheck_t.h"
+#include "updatechecker_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+.?");
@@ -72,7 +73,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new LatexEditorViewBenchmark(edView,level==TL_ALL)
 		<< new StructureViewTest(edView,edView->document,level==TL_ALL)
 		<< new TableManipulationTest(editor)
-		<< new SyntaxCheckTest(edView);
+		<< new SyntaxCheckTest(edView)
+		<< new UpdateCheckerTest(level==TL_ALL);
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";

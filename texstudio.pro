@@ -119,7 +119,8 @@ HEADERS += texmaker.h \
     qmetautils.h \
     updatechecker.h \
     usermacro.h \
-    dblclickmenubar.h
+    dblclickmenubar.h \
+    tests/updatechecker_t.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \

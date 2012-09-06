@@ -14,7 +14,7 @@
 	<word id="test/failedmessage" format="txs-test-fail">\*\*\* THERE SEEM TO BE FAILED TESTS! \*\*\*</word>
 	<word id="test/passed" format="txs-test-pass">PASS</word>
 	<word id="test/debug" format="txs-test-qdebug">QDEBUG</word>
-	<word id="test/warn" format="txs-test-warn">QWARN</word>
+	<word id="test/warn" format="txs-test-warn">WARNING</word>
 	<word id="test/skippedsummary" format="txs-test-warn">[1-9][0-9]* skipped</word>
 	<word id="test/failedsummary" format="txs-test-fail">[1-9][0-9]* failed</word>
 
