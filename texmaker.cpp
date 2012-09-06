@@ -4219,6 +4219,10 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (embedded) autoClose = ! ol.contains("no-auto-close");                  //Don't close the viewer, if the corresponding document is closed
 	else autoClose = ol.contains("auto-close");                                //Close the viewer, if the corresponding document is closed
 	
+	bool focus = 0; //1: always, 0: auto, -1: never
+	if (ol.contains("focus")) focus = 1;
+	else if (ol.contains("no-focus")) focus = -1;
+	
 	if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
 	
 	//embedded/windowed are mutual exclusive
@@ -4270,8 +4274,9 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
 	foreach (PDFDocument* viewer, oldPDFs) {
-		viewer->loadFile(pdfFile, master);
-		int pg = viewer->syncFromSource(getCurrentFileName(), ln , true);
+		bool focusViewer = (focus == 1) || (focus == 0 && !viewer->embeddedMode);
+		viewer->loadFile(pdfFile, master, focusViewer);
+		int pg = viewer->syncFromSource(getCurrentFileName(), ln , focusViewer);
 		viewer->fillRenderCache(pg);
 		
 		if (preserveDuplicates) break;
