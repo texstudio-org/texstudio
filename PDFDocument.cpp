@@ -2756,9 +2756,6 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 				raise();
 				activateWindow();
 				if (isMinimized()) showNormal();
-			}
-			if (!embeddedMode) {
-				// only ok if windowed, in embedded mode we would steal the focus from the editor
 				pdfWidget->setFocus();
 			}
 			syncToSourceBlock = false;
