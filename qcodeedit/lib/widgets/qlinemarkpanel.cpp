@@ -248,6 +248,9 @@ void QLineMarkPanel::contextMenuEvent(QContextMenuEvent *e)
 		return;
 	}
 
+	int line=editor()->document()->lineNumber(editor()->verticalOffset()+e->y());
+	if (line>-1) emit contextMenuRequested(line, e->globalPos());
+
 	/*
 	QTextBlock b;
 	QMarker *m = editor()->marker();

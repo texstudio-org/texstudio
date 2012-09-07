@@ -44,6 +44,7 @@ class QCE_EXPORT QLineMarkPanel : public QPanel
 signals:
 		void toolTipRequested(int line, int markID);
 		void lineClicked(int line);
+		void contextMenuRequested(int line, QPoint globalPos);
 		
 protected:
 		virtual bool event(QEvent *e);

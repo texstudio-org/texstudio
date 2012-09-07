@@ -376,6 +376,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
 	connect(lineMarkPanel,SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
+	connect(lineMarkPanel,SIGNAL(contextMenuRequested(int,QPoint)),this,SLOT(lineMarkContextMenuRequested(int,QPoint)));
 	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
@@ -589,18 +590,19 @@ void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
 }
 
 void LatexEditorView::removeBookmark(QDocumentLineHandle *dlh,int bookmarkNumber){
-    if(!dlh)
-        return;
-    int rmid=bookMarkId(bookmarkNumber);
-    if(hasBookmark(dlh,bookmarkNumber))
-        document->removeMark(dlh,rmid);
+	if(!dlh)
+		return;
+	int rmid=bookMarkId(bookmarkNumber);
+	if(hasBookmark(dlh,bookmarkNumber)) {
+		document->removeMark(dlh,rmid);
+		emit bookmarkRemoved(dlh);
+	}
 }
 
 void LatexEditorView::removeBookmark(int lineNr,int bookmarkNumber){
-    int rmid=bookMarkId(bookmarkNumber);
-    if(document->line(lineNr).hasMark(rmid))
-        document->line(lineNr).removeMark(rmid);
+	removeBookmark(document->line(lineNr).handle(), bookmarkNumber);
 }
+
 void LatexEditorView::addBookmark(int lineNr,int bookmarkNumber){
     int rmid=bookMarkId(bookmarkNumber);
     if (bookmarkNumber>=0)
@@ -621,11 +623,12 @@ bool LatexEditorView::hasBookmark(QDocumentLineHandle *dlh,int bookmarkNumber){
     return m_marks.contains(rmid);
 }
 
-bool LatexEditorView::toggleBookmark(int bookmarkNumber) {
+bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line) {
+	if (!line.isValid()) line = editor->cursor().line();
 	int rmid=bookMarkId(bookmarkNumber);
-	if (editor->cursor().line().hasMark(rmid)) {
-		editor->cursor().line().removeMark(rmid);
-        emit bookmarkRemoved(editor->cursor().line().handle());
+	if (line.hasMark(rmid)) {
+		line.removeMark(rmid);
+		emit bookmarkRemoved(line.handle());
         return false;
 	}
     if (bookmarkNumber>=0){
@@ -637,13 +640,13 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber) {
     }
     for (int i=-1; i<10; i++) {
         int rmid=bookMarkId(i);
-        if(editor->cursor().line().hasMark(rmid)){
-            editor->cursor().line().removeMark(rmid);
-            emit bookmarkRemoved(editor->cursor().line().handle());
+		if(line.hasMark(rmid)){
+			line.removeMark(rmid);
+			emit bookmarkRemoved(line.handle());
         }
     }
-	editor->cursor().line().addMark(rmid);
-    emit bookmarkAdded(editor->cursor().line().handle(),bookmarkNumber);
+	line.addMark(rmid);
+	emit bookmarkAdded(line.handle(),bookmarkNumber);
 	editor->ensureCursorVisible();
     return true;
 }
@@ -2034,5 +2037,49 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 void LatexEditorView::bibtexSectionFound(QString bibId, QString content){
     Q_UNUSED(bibId)
 	QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(lastPos)), content);
+}
+
+void LatexEditorView::lineMarkContextMenuRequested(int lineNumber, QPoint globalPos) {
+	if (!document) return;
+
+	QDocumentLine line(document->line(lineNumber));
+	QMenu menu(this);
+
+	for (int i=-1; i<10; i++) {
+		int rmid=bookMarkId(i);
+		if(line.hasMark(rmid)){
+			QAction *act =  new QAction(tr("Remove Bookmark"), &menu);
+			act->setData(-2);
+			menu.addAction(act);
+			menu.addSeparator();
+			break;
+		}
+	}
+
+	QAction *act = new QAction(QIcon(":/images/lbook.png"),tr("Unnamed Bookmark"), &menu);
+	act->setData(-1);
+	menu.addAction(act);
+
+	for (int i=0; i<10; i++) {
+		QAction *act = new QAction(QIcon(QString(":/images/lbook%1.png").arg(i)), tr("Bookmark")+QString(" %1").arg(i), &menu);
+		act->setData(i);
+		menu.addAction(act);
+	}
+
+	act = menu.exec(globalPos);
+	if (act) {
+		int bookmarkNumber = act->data().toInt();
+		if (bookmarkNumber == -2) {
+			for (int i=-1; i<10; i++) {
+				int rmid=bookMarkId(i);
+				if(line.hasMark(rmid)){
+					removeBookmark(line.handle(), i);
+					return;
+				}
+			}
+		} else {
+			toggleBookmark(bookmarkNumber, line);
+		}
+	}
 }
 

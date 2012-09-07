@@ -158,7 +158,7 @@ public slots:
 	void jumpChangePositionForward();
 	
 	void jumpToBookmark(int bookmarkNumber);
-	bool toggleBookmark(int bookmarkNumber);
+	bool toggleBookmark(int bookmarkNumber, QDocumentLine line = QDocumentLine());
 	
 	void foldEverything(bool unFold);
 	void foldLevel(bool unFold, int level);
@@ -206,6 +206,8 @@ signals:
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
+private slots:
+	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 };
 
 
