@@ -318,6 +318,23 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine){
 }
 
 
+QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine){
+	if (context->argumentCount() != 2) return engine->undefinedValue();
+	ScriptObject* sc = qobject_cast<ScriptObject*>(engine->globalObject().toQObject());
+	REQUIRE_RET(sc, engine->undefinedValue());
+	
+	TimeoutWrapper *timeout = new TimeoutWrapper();
+	timeout->fun = context->argument(0);
+	QTimer::singleShot(context->argument(1).toInt32(), timeout, SLOT(run()));
+	
+	return engine->undefinedValue();
+}
+
+void TimeoutWrapper::run(){
+	fun.call();
+	deleteLater();
+}
+
 scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
 {
 	engine=new QScriptEngine(this);
@@ -425,6 +442,8 @@ void scriptengine::run(){
 	engine->globalObject().setProperty("triggerId", engine->newVariant(triggerId));
 
 	engine->globalObject().setProperty("include", engine->newFunction(include));
+
+	engine->globalObject().setProperty("setTimeout", engine->newFunction(setTimeout));
 	
 	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
