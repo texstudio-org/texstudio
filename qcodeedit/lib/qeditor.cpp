@@ -5058,10 +5058,10 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			if (txt.isEmpty())
 				return;
 
-			bool slow = txt.size() > 20*1024;
+			bool slow = txt.size() > 5*1024;
 			if (slow) emit slowOperationStarted();
 			
-            bool macroing = isMirrored();
+			bool macroing = isMirrored();
 
 			if ( macroing )
 				m_doc->beginMacro();
@@ -5071,24 +5071,28 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			//	m_cursor.removeSelectedText();
 			//}
 
-			insertText(m_cursor, txt);
-
-			if ( atPlaceholder() ) // need new evaluation, because insert operation might have changed things
-			{
-				PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
-				QString baseText = ph.cursor.selectedText();
-
-				QKeyEvent ev(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier); // just a dummy to be able to pass something reasonable to affect() - currently unused
-				for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+			if ( !macroing && m_doc->lineCount() == 1 && m_doc->line(0).length() == 0)
+				setText(txt, true);
+			else {
+				insertText(m_cursor, txt);
+	
+				if ( atPlaceholder() ) // need new evaluation, because insert operation might have changed things
 				{
-					QString s = ph.affector ?  ph.affector->affect(&ev, baseText, m_curPlaceHolder, phm) : baseText;
-					ph.mirrors[phm].replaceSelectedText(s);
+					PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];
+					QString baseText = ph.cursor.selectedText();
+	
+					QKeyEvent ev(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier); // just a dummy to be able to pass something reasonable to affect() - currently unused
+					for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+					{
+						QString s = ph.affector ?  ph.affector->affect(&ev, baseText, m_curPlaceHolder, phm) : baseText;
+						ph.mirrors[phm].replaceSelectedText(s);
+					}
 				}
-			}
-
-			for ( int i = 0; i < m_mirrors.count(); ++i )
-			{
-				insertText(m_mirrors[i], txt);
+	
+				for ( int i = 0; i < m_mirrors.count(); ++i )
+				{
+					insertText(m_mirrors[i], txt);
+				}
 			}
 
 			if ( macroing )
