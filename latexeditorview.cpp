@@ -357,7 +357,8 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	lineMarkPanelAction=codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	lineNumberPanel=new QLineNumberPanel;
 	lineNumberPanelAction=codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);;
-	lineFoldPanelAction=codeeditor->addPanel(new QFoldPanel, QCodeEdit::West, false);
+	QFoldPanel *foldPanel = new QFoldPanel;
+	lineFoldPanelAction=codeeditor->addPanel(foldPanel, QCodeEdit::West, false);
 	lineChangePanelAction=codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
 	
 	statusPanel=new QStatusPanel;
@@ -377,6 +378,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
 	connect(lineMarkPanel,SIGNAL(toolTipRequested(int,int)),this,SLOT(lineMarkToolTip(int,int)));
 	connect(lineMarkPanel,SIGNAL(contextMenuRequested(int,QPoint)),this,SLOT(lineMarkContextMenuRequested(int,QPoint)));
+	connect(foldPanel, SIGNAL(contextMenuRequested(int,QPoint)),this,SLOT(foldContextMenuRequested(int,QPoint)));
 	connect(editor,SIGNAL(hovered(QPoint)),this,SLOT(mouseHovered(QPoint)));
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
@@ -2079,6 +2081,39 @@ void LatexEditorView::lineMarkContextMenuRequested(int lineNumber, QPoint global
 			}
 		} else {
 			toggleBookmark(bookmarkNumber, line);
+		}
+	}
+}
+
+void LatexEditorView::foldContextMenuRequested(int lineNumber, QPoint globalPos) {
+	Q_UNUSED(lineNumber);
+
+	QMenu menu;
+	QAction *act = new QAction(tr("Collapse All"), &menu);
+	act->setData(-5);
+	menu.addAction(act);
+	for (int i=1; i<=4; i++) {
+		act = new QAction(QString(tr("Collapse Level %1")).arg(i), &menu);
+		act->setData(-i);
+		menu.addAction(act);
+	}
+	menu.addSeparator();
+	act = new QAction(tr("Expand All"), &menu);
+	act->setData(5);
+	menu.addAction(act);
+	for (int i=1; i<=4; i++) {
+		act = new QAction(QString(tr("Expand Level %1")).arg(i), &menu);
+		act->setData(i);
+		menu.addAction(act);
+	}
+
+	act = menu.exec(globalPos);
+	if (act) {
+		int level = act->data().toInt();
+		if (qAbs(level)<5) {
+			foldLevel(level>0, qAbs(level));
+		} else {
+			foldEverything(level>0);
 		}
 	}
 }

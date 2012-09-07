@@ -208,6 +208,7 @@ signals:
 	void searchBibtexSection(QString file,QString bibId);
 private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
+	void foldContextMenuRequested(int lineNumber, QPoint globalPos);
 };
 
 

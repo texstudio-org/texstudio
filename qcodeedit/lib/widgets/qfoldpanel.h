@@ -40,7 +40,10 @@ class QCE_EXPORT QFoldPanel : public QPanel
 		virtual ~QFoldPanel();
 		
 		virtual QString type() const;
-		
+
+	signals:
+		void contextMenuRequested(int line, QPoint globalPos);
+
 	protected:
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void contextMenuEvent(QContextMenuEvent *e);
