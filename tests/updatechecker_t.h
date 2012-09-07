@@ -1,5 +1,6 @@
 #ifndef UPDATECHECKER_T_H
 #define UPDATECHECKER_T_H
+#ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"
 #include "updatechecker.h"
@@ -67,5 +68,5 @@ private:
 	bool allTests;
 };
 
-
+#endif
 #endif // UPDATECHECKER_T_H
