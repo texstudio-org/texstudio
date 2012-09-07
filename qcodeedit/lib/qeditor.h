@@ -213,8 +213,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		QList<QEditorInputBindingInterface*> inputBindings() const;
 		
-		bool isCursorVisible() const;
+		Q_INVOKABLE bool isCursorVisible() const;
 		QDocumentCursor cursor() const;
+		Q_PROPERTY(QDocumentCursor cursor READ cursor WRITE setCursor DESIGNABLE false STORED false);
 		QDocumentCursorHandle* cursorHandle() const;
 		
 		Q_INVOKABLE int cursorMirrorCount() const;

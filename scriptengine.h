@@ -52,6 +52,14 @@ public slots:
 private:
 	QScriptEngine* engine;
 };
-	
+
+
+class TimeoutWrapper: public QObject{
+	Q_OBJECT
+public:
+	QScriptValue fun;
+public slots:
+	void run();
+};
 
 #endif // SCRIPTENGINE_H
