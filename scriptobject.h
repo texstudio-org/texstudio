@@ -54,11 +54,11 @@ public slots:
 	
 #ifndef QT_NO_DEBUG
 	void crash_assert();
+#endif
 	void crash_sigsegv();
 	void crash_sigfpe();
 	void crash_stack();
 	void crash_loop();
-#endif
 	
 	bool hasReadPrivileges();
 	bool hasWritePrivileges();

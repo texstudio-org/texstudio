@@ -27,19 +27,32 @@ bool ScriptObject::confirmWarning(const QString& message){ return txsConfirmWarn
 void ScriptObject::debug(const QString& message){ qDebug() << message; }
 
 #ifndef QT_NO_DEBUG
-void ScriptObject::crash_assert(){Q_ASSERT(false);}
-void ScriptObject::crash_sigsegv(){char *c = 0; *c = 'A';}
+void ScriptObject::crash_assert(){
+	Q_ASSERT(false);
+}
+#endif
+
+void ScriptObject::crash_sigsegv(){ 
+	if (!confirmWarning("Do you want to let txs crash with a SIGSEGV?")) return; 
+	char *c = 0; *c = 'A';
+}
 int global0 = 0;
-void ScriptObject::crash_sigfpe(){int x = 1 / global0;  Q_UNUSED(x);}
-void ScriptObject::crash_stack(){ int temp = global0; crash_stack(); Q_UNUSED(temp);}
+void ScriptObject::crash_sigfpe(){
+	if (!confirmWarning("Do you want to let txs crash with a SIGFPE?")) return; 
+	int x = 1 / global0;  Q_UNUSED(x);
+}
+void ScriptObject::crash_stack(){ 
+	if (!confirmWarning("Do you want to let txs crash with a stack overflow?")) return; 
+	int temp = global0; crash_stack(); Q_UNUSED(temp);
+}
 void ScriptObject::crash_loop(){ 
+	if (!confirmWarning("Do you want to let txs freeze with an endless loop?")) return; 
 	register int a = 1, b = 2, c = 3, d = 4;
 	while (1) {
 		void * x = malloc(16); free(x);  
 		Q_ASSERT(a == 1); Q_ASSERT(b == 2); Q_ASSERT(c == 3); Q_ASSERT(d == 4); //make sure, no register suddenly change
 	}; 
 }
-#endif
 
 ProcessX* ScriptObject::system(const QString& commandline){
 	if (!buildManager || !needWritePrivileges("system",commandline))
