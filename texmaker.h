@@ -314,6 +314,7 @@ protected slots:
 	void InsertTextCompletion();
 	void InsertTag(const QString &Entity, int dx=0, int dy=0);
 	void InsertCitation(const QString &text);
+	void InsertFormula(const QString &formula);
 	void InsertSymbol(QTableWidgetItem *item);
 	void InsertSymbolPressed(QTableWidgetItem *item);
 	void InsertXmlTag(QListWidgetItem *item);	
@@ -349,6 +350,7 @@ protected slots:
 	void QuickLetter();
 	void QuickDocument();
 	void QuickGraphics(const QString &graphicsFile = QString());
+	void QuickMath();
 	
 	bool checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master);
 	void runInternalPdfViewer(const QFileInfo& master, const QString& options);

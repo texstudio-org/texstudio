@@ -29,6 +29,7 @@
 #include "tabbingdialog.h"
 #include "letterdialog.h"
 #include "quickdocumentdialog.h"
+#include "mathassistant.h"
 #include "usermenudialog.h"
 #include "usertooldialog.h"
 #include "aboutdialog.h"
@@ -820,7 +821,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "tabbing",tr("Quick T&abbing..."), SLOT(QuickTabbing()));
 	newManagedAction(menu, "array",tr("Quick &Array..."), SLOT(QuickArray()));
 	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()), QKeySequence(), ":images/image.png");
-	
+#ifdef Q_OS_WIN
+	if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
+		newManagedAction(menu, "math",tr("Math Assistant..."), SLOT(QuickMath()));
+	}
+#endif
 
 	menu=newManagedMenu("main/bibliography",tr("&Bibliography"));
 	if (!bibtexEntryActions) {
@@ -921,15 +926,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"));
 	fullscreenModeAction->setCheckable(true);
-#if (QT_VERSION >= 0x040600)
-	connect(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()), Qt::UniqueConnection);
-	connect(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()), Qt::UniqueConnection);
-#else
-	disconnect(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
-	disconnect(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
-	connect(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
-	connect(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
-#endif
+	connectUnique(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
+	connectUnique(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
 
 	menu->addSeparator();
 	QMenu *hlMenu = newManagedMenu(menu, "highlighting", tr("Highlighting"));
@@ -1651,12 +1649,7 @@ void Texmaker::updateUserToolMenu(){
 #include "QMetaMethod"
 void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QList<QVariant>& args){
 	REQUIRE(act);
-#if QT_VERSION >= 0x040600
-	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()),Qt::UniqueConnection);
-#else
-	disconnect(act, SIGNAL(triggered()), this, SLOT(relayToEditorSlot()));
-	connect(act, SIGNAL(triggered()), SLOT(relayToEditorSlot()));
-#endif
+	connectUnique(act, SIGNAL(triggered()), this, SLOT(relayToEditorSlot()));
 	act->setProperty("primarySlot", QString(SLOT(relayToEditorSlot())));
 	QByteArray signature = createMethodSignature(methodName, args);
 	if (!args.isEmpty())
@@ -3562,6 +3555,47 @@ void Texmaker::InsertCitation(const QString &text) {
 	}
 }
 
+void Texmaker::InsertFormula(const QString &formula) {
+	if (!currentEditorView()) return;
+
+	QString fm = formula;
+	QDocumentCursor cur = currentEditorView()->editor->cursor();
+
+	//TODO: Is there a more elegant solution to determine if the cursor is inside a math environment.
+	QDocumentLine dl = cur.line();
+	int col = cur.columnNumber();
+	QList<int> mathFormats = QList<int>() << m_formats->id("numbers") << m_formats->id("math-keyword");
+	int mathDelimiter = m_formats->id("math-delimiter");
+	mathFormats.removeAll(0); // keep only valid entries in list
+	if (mathFormats.contains(dl.getFormatAt(col))) {     // inside math
+		fm = fm.mid(1, fm.length()-2);                   // removes surrounding $...$
+	} else if (dl.getFormatAt(col) == mathDelimiter) {   // on delimiter
+		while (col>0 && dl.getFormatAt(col-1) == mathDelimiter) col--;
+		if (mathFormats.contains(dl.getFormatAt(col))) { // was an end-delimiter
+			cur.setColumnNumber(col);
+			currentEditorView()->editor->setCursor(cur);
+			fm = fm.mid(1, fm.length()-2);               // removes surrounding $...$
+		} else {
+			//TODO is terhe a better way than hard coding? Since there is no difference in the formats between
+			//start and end tags. \[|\] is hard identify without.
+			QString editorFormula = dl.text().mid(col);
+			if (editorFormula.startsWith("\\[")) {
+				col+=2;
+				currentEditorView()->editor->setCursor(cur);
+				fm = fm.mid(1, fm.length()-2);           // removes surrounding $...$
+			} else if (editorFormula.startsWith("$")) {
+				col+=1;
+				currentEditorView()->editor->setCursor(cur);
+				fm = fm.mid(1, fm.length()-2);           // removes surrounding $...$
+			} else {
+				qDebug() << "Unknown math formula tag. Giving up trying to locate formula boundaries.";
+			}
+		}
+	}
+
+	InsertTag(fm, fm.length());
+}
+
 void Texmaker::InsertSymbolPressed(QTableWidgetItem *) {
 	mb=QApplication::mouseButtons();
 }
@@ -3864,6 +3898,13 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	cur.endEditBlock();
 	
 	delete graphicsDlg;
+}
+
+void Texmaker::QuickMath() {
+#ifdef Q_OS_WIN
+	connectUnique(MathAssistant::instance(), SIGNAL(formulaReceived(QString)), this, SLOT(InsertFormula(QString)));
+	MathAssistant::instance()->exec();
+#endif
 }
 
 void Texmaker::QuickTabbing() {
