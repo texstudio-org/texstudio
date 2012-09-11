@@ -3,6 +3,8 @@
 #include "smallUsefulFunctions.h"
 #include "QMutex"
 
+#ifndef NO_CRASH_HANDLER
+
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_64
 #define CPU_IS_X86
@@ -898,83 +900,6 @@ QString getLastCrashInformation(bool& wasLoop){
 
 
 
-//==================GUARDIAN==================
-
-Guardian * guardian = 0;
-bool running = true;
-volatile int mainEventLoopTicks = 0;
-volatile bool undoRecovering = false;
-void Guardian::run(){
-	int lastTick = mainEventLoopTicks;
-	int errors = 0;
-	while (running) {
-		int slowOperationWait = slowOperations * 15;
-		do {
-			sleep(4);
-			slowOperationWait -= 1;
-		} while (slowOperationWait >= 0);
-		
-		if (undoRecovering) {
-			undoRecovering = false;
-			errors = 1;
-			undoMainThreadRecoveringFromOutside();
-			continue;
-		}
-		if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) continue;
-#ifdef Q_WS_WIN
-		if (IsDebuggerPresent()) continue;
-#endif
-		if (lastTick == mainEventLoopTicks) errors++;
-		else errors = 0;
-		lastTick = mainEventLoopTicks;
-		if (errors >= 10) {
-			fprintf(stderr, "Main thread in trouble\n");
-			int repetitions = 0;
-			while (lastTick == mainEventLoopTicks && !recoverMainThreadFromOutside()) {
-				msleep(50);
-				repetitions ++;
-				if (repetitions > 50) break;  //give up for now
-			}
-			if (repetitions < 50) //recovered
-				errors = 0;
-			//if (repetitions < 50) return; the crash handler can't be debugged, if this thread continues calling it
-		}
-	}
-	guardian = 0;
-}
-
-void Guardian::summon(){
-	if (guardian) return;
-	if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) return;
-	guardian = new Guardian();
-	guardian->start();
-}
-
-void Guardian::calm(){
-	mainEventLoopTicks++;
-}
-
-void Guardian::shutdown(){
-	running = false;
-}
-
-void Guardian::continueEndlessLoop(){
-	undoRecovering = true;
-}
-
-
-Guardian* Guardian::instance(){
-	return guardian;
-}
-
-void Guardian::slowOperationStarted(){
-	slowOperations++;
-}
-
-void Guardian::slowOperationEnded(){
-	slowOperations--;
-	if (slowOperations < 0) slowOperations = 0;
-}
 
 
 
@@ -983,8 +908,7 @@ void Guardian::slowOperationEnded(){
 
 
 
-
-
+///CPU Information
 
 
 #ifdef CPU_CONTEXT_TYPE
@@ -1065,4 +989,104 @@ bool SimulatedCPU::stackWalk(){
 	pc-=CALL_INSTRUCTION_SIZE;
 //	fprintf(stderr, "%p (at %p), %p (at %p), %p\n", *(char**)(frame),frame, *(char**)(stack), stack, pc);
 	return frame >= stack && frame && stack;
+}
+
+
+
+#else
+ // defined NO_CRASH_HANDLER
+ 
+
+void print_backtrace(const QString& message){}
+void registerCrashHandler(int mode){}
+QString getLastCrashInformation(bool & wasLoop){return "";}
+
+
+
+#endif
+
+
+
+
+
+//==================GUARDIAN==================
+
+Guardian * guardian = 0;
+bool running = true;
+volatile int mainEventLoopTicks = 0;
+volatile bool undoRecovering = false;
+void Guardian::run(){
+#ifndef NO_CRASH_HANDLER
+	int lastTick = mainEventLoopTicks;
+	int errors = 0;
+	while (running) {
+		int slowOperationWait = slowOperations * 15;
+		do {
+			sleep(4);
+			slowOperationWait -= 1;
+		} while (slowOperationWait >= 0);
+		
+		if (undoRecovering) {
+			undoRecovering = false;
+			errors = 1;
+			undoMainThreadRecoveringFromOutside();
+			continue;
+		}
+		if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) continue;
+#ifdef Q_WS_WIN
+		if (IsDebuggerPresent()) continue;
+#endif
+		if (lastTick == mainEventLoopTicks) errors++;
+		else errors = 0;
+		lastTick = mainEventLoopTicks;
+		if (errors >= 10) {
+			fprintf(stderr, "Main thread in trouble\n");
+			int repetitions = 0;
+			while (lastTick == mainEventLoopTicks && !recoverMainThreadFromOutside()) {
+				msleep(50);
+				repetitions ++;
+				if (repetitions > 50) break;  //give up for now
+			}
+			if (repetitions < 50) //recovered
+				errors = 0;
+			//if (repetitions < 50) return; the crash handler can't be debugged, if this thread continues calling it
+		}
+	}
+	guardian = 0;
+#endif
+}
+
+void Guardian::summon(){
+#ifndef NO_CRASH_HANDLER
+	if (guardian) return;
+	if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) return;
+	guardian = new Guardian();
+	guardian->start();
+#endif
+}
+
+void Guardian::calm(){
+	mainEventLoopTicks++;
+}
+
+void Guardian::shutdown(){
+	running = false;
+}
+
+void Guardian::continueEndlessLoop(){
+	undoRecovering = true;
+}
+
+
+Guardian* Guardian::instance(){
+	return guardian;
+}
+
+void Guardian::slowOperationStarted(){
+	slowOperations++;
+}
+
+void Guardian::slowOperationEnded(){
+	slowOperations--;
+	if (slowOperations < 0) slowOperations = 0;
 }

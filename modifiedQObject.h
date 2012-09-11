@@ -2,7 +2,7 @@
 #define MODIFIDIEDQOBJECT_H
 
 
-
+#ifndef NO_CRASH_HANDLER
 
 
 #ifndef QT_NO_DEBUG
@@ -38,6 +38,8 @@
 void txs_assert(const char *assertion, const char *file, int line);
 void txs_assert_x(const char *where, const char *assertion, const char *file, int line);
 
+
+#endif
 
 #include <QObject>
 

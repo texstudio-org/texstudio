@@ -526,6 +526,11 @@ isEmpty(NO_POPPLER_PREVIEW) {
     DEFINES += NO_POPPLER_PREVIEW
     message("Internal pdf previewer disabled as you wish.")
 }
+!isEmpty(NO_CRASH_HANDLER) { 
+    DEFINES += NO_CRASH_HANDLER
+    message("Internal crash handler disabled as you wish.")
+}
+
 
 # ###############################
 # add files to svn if team is set
