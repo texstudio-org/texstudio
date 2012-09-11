@@ -5,22 +5,30 @@
 
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_64
+#define CPU_IS_X86
 #elif (defined(ppc) || defined(__ppc__))
 #define CPU_IS_PPC
+#elif (defined(arm) || defined(__arm__))
+#define CPU_IS_ARM
 #else
 #define CPU_IS_32
+#define CPU_IS_X86
 #endif
+
+
 
 //===========================Abstract CPU model==========================
 
 //platfom independent implementation of assembler instructions 
 //(use case: before changing eip, the old eip must be pushed in the correct way on the stack, otherwise the 
 //           backtrace doesn't show the function that actually crashed)
-#define CALL_INSTRUCTION_SIZE 0
 struct SimulatedCPU {
-	char * pc; //e.g. eip
-	char * frame; //e.g. ebp
-	char * stack; //e.g. esp
+	char * pc; //e.g. eip, r15
+	char * frame; //e.g. ebp, r11
+	char * stack; //e.g. esp, r13
+#ifdef CPU_IS_ARM
+	char * returnTo; //lr/r14
+#endif
 	
 	inline void push(char * value){
 		stack -= sizeof(void*); 
@@ -35,33 +43,17 @@ struct SimulatedCPU {
 	inline void jmp(char * value){
 		pc = value;
 	}
-	inline void call(char * value){
-		push(pc + CALL_INSTRUCTION_SIZE);
-		jmp(value);
-	}
-	inline void ret(){
-		pc = pop();
-	}
-	inline void enter(int size){
-		push(frame);
-		frame = stack;
-		stack -= size;
-	}
-	inline void leave(){
-		stack = frame;
-		frame = pop();
-		ret();
-	}
+
+	inline void call(char * value);
+	inline void ret();
+	inline void enter(int size);
+	inline void leave();
 	
+
 	void set_all(void* context);
 	void get_all(void* context);
 
-	bool stackWalk(){
-		leave();
-		pc-=CALL_INSTRUCTION_SIZE;
-	//	fprintf(stderr, "%p (at %p), %p (at %p), %p\n", *(char**)(frame),frame, *(char**)(stack), stack, pc);
-		return frame >= stack && frame && stack;
-	}
+	bool stackWalk();
 	void unwindStack(){
 		SimulatedCPU temp = *this;
 		int frames = 0; 
@@ -74,6 +66,9 @@ struct SimulatedCPU {
 };
 #ifdef CPU_CONTEXT_TYPE
 #undef CPU_CONTEXT_TYPE
+#endif
+#ifdef RETURNTO_FROM_UCONTEXT
+#undef RETURNTO_FROM_UCONTEXT
 #endif
 
 //===========================STACK TRACE PRINTING=========================
@@ -454,16 +449,26 @@ SAFE_INT lastErrorWasLoop = 0;
 #include "signal.h"
 #include "ucontext.h"
 #include "sys/ucontext.h"
+#include "pthread.h"
+
 #define USE_SIGNAL_HANDLER
 #ifdef CPU_IS_64
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RIP]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RSP]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RBP]
-#else
+#elif defined(CPU_IS_32)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EIP]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_ESP]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EBP]
+#elif defined(CPU_IS_ARM)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_pc
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_fp
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_lr
+#else
+#error Unknown cpu architecture
 #endif
+
 #define SIGMYHANG SIGRTMIN + 4             //signal send to the main thread, if the guardian detects an endless loop
 #define SIGMYHANG_CONTINUE SIGRTMIN + 5    //signal send to the main thread, if the endless loop should be continued
 #endif
@@ -548,7 +553,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 
 		char *addr = (char*)(si->si_addr);
 		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
-		if (ptrdistance(addr, minstack) < 1024) type = SIGMYSTACKSEGV;
+		if (type == SIGSEGV && ptrdistance(addr, minstack) < 1024) type = SIGMYSTACKSEGV;
 	}
 	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE || !ccontext) {
 		print_backtrace(signalIdToName(type));
@@ -973,6 +978,15 @@ void Guardian::slowOperationEnded(){
 
 
 
+
+
+
+
+
+
+
+
+
 #ifdef CPU_CONTEXT_TYPE
 
 void SimulatedCPU::set_all(void *ccontext) {
@@ -980,6 +994,9 @@ void SimulatedCPU::set_all(void *ccontext) {
 	this->pc = (char*)PC_FROM_UCONTEXT(context);
 	this->frame = (char*)FRAME_FROM_UCONTEXT(context);
 	this->stack = (char*)STACK_FROM_UCONTEXT(context);
+#ifdef RETURNTO_FROM_UCONTEXT
+	this->returnTo = (char*)RETURNTO_FROM_UCONTEXT(context);
+#endif
 //	for (int i=0;i<sizeof(context->uc_mcontext.gregs) / sizeof(context->uc_mcontext.gregs[0]);i++)
 //		fprintf(stderr, "Regs: %i: %p\n", i, context->uc_mcontext.gregs[i]);
 }
@@ -988,6 +1005,64 @@ void SimulatedCPU::get_all(void *ccontext) {
 	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
 	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
 	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
+#ifdef RETURNTO_FROM_UCONTEXT
+	*(char**)(&RETURNTO_FROM_UCONTEXT(context)) = this->returnTo;
+#endif
 }
 
 #endif
+
+//todo: fix CALL_INSTRUCTION_SIZE 
+//(should be the size of the call instruction. 
+//however, since the call instruction is in the signal handler and not actually part of the program, 0 might be the more correct value)
+#define CALL_INSTRUCTION_SIZE 0
+#if defined(CPU_IS_X86) || defined(CPU_IS_PPC)
+//TODO: check ppc
+void SimulatedCPU::call(char * value){
+	push(pc + CALL_INSTRUCTION_SIZE);
+	jmp(value);
+}
+void SimulatedCPU::ret(){
+	pc = pop();
+}
+void SimulatedCPU::enter(int size){
+	push(frame);
+	frame = stack;
+	stack -= size;
+}
+void SimulatedCPU::leave(){
+	stack = frame;
+	frame = pop();
+	ret();
+}
+#elif defined(CPU_IS_ARM)
+void SimulatedCPU::call(char * value){   //bl
+	returnTo = pc + CALL_INSTRUCTION_SIZE;
+	jmp(value);
+}
+void SimulatedCPU::ret(){
+	pc = returnTo;
+}
+void SimulatedCPU::enter(int size){
+	push(returnTo);
+	push(frame);
+	frame = stack + 4;
+	stack -= size;
+}
+void SimulatedCPU::leave(){
+	stack = frame - 4;
+	frame = pop();
+	returnTo = pop();
+	ret();
+}
+#else
+#error Unknown cpu architecture
+#endif	
+
+
+bool SimulatedCPU::stackWalk(){
+	leave();
+	pc-=CALL_INSTRUCTION_SIZE;
+//	fprintf(stderr, "%p (at %p), %p (at %p), %p\n", *(char**)(frame),frame, *(char**)(stack), stack, pc);
+	return frame >= stack && frame && stack;
+}
