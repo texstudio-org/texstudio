@@ -120,7 +120,8 @@ HEADERS += texmaker.h \
     updatechecker.h \
     usermacro.h \
     dblclickmenubar.h \
-    tests/updatechecker_t.h
+    tests/updatechecker_t.h \
+    mathassistant.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -205,7 +206,8 @@ SOURCES += main.cpp \
     cleandialog.cpp \
     qmetautils.cpp \
     updatechecker.cpp \
-    dblclickmenubar.cpp
+    dblclickmenubar.cpp \
+    mathassistant.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \

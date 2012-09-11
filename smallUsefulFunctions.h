@@ -120,6 +120,8 @@ bool hasAtLeastQt(int major, int minor);
 QString getRelativeBaseNameToPath(const QString & file,QString basepath);
 QString getPathfromFilename(const QString &compFile);
 
+bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method);
+
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
 enum {

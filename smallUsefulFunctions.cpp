@@ -1077,6 +1077,17 @@ QString getPathfromFilename(const QString &compFile){
 	return dir;
 }
 
+// convenience function for unique connections independent of the Qt version
+bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method) {
+#if QT_VERSION >= 0x040600
+	return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
+#else
+	disconnect(sender, signal, receiver, method);
+	return connect(sender, signal, receiver, method);
+#endif
+}
+
+
 QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	//copied and modified from texworks
 	if (enc == "utf-8 unicode") return QTextCodec::codecForName("UTF-8");
