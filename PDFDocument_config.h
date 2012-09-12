@@ -8,6 +8,8 @@ struct PDFDocumentConfig{
 	bool windowMaximized;
 	QByteArray windowState;
 
+	int cacheSizeMB;
+
 	int dpi;
 	int scaleOption;
 	int scale;
