@@ -79,6 +79,7 @@ public:
 	Poppler::Document* loadDocument(const QString& fileName, int &errorType, bool foreceLoad=false);
 	void setDocument(const QByteArray& data,Poppler::Document *docPointer);
 	void stopRendering();
+	void setCacheSize(int megabyte);
 	void fillCache(int pg=-1);
 	qreal getResLimit();
 

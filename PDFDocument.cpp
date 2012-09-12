@@ -2364,6 +2364,7 @@ void PDFDocument::reload(bool fillCache)
 	}
 	
 	renderManager = new PDFRenderManager(this);
+	renderManager->setCacheSize(globalConfig->cacheSizeMB);
 	int errorType;
 	QFileInfo fi(curFile);
 	QDateTime lastModified=fi.lastModified();

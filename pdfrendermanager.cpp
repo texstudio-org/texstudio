@@ -13,10 +13,10 @@
 
 #include "pdfrendermanager.h"
 #include "smallUsefulFunctions.h"
+#include <QtCore/qmath.h>
 
 const int kMaxPageZoom=1000000;
 const qreal kMaxDpiForFullPage=500.0;
-const int kMaxCachedPages=100;
 
 PDFQueue::PDFQueue(QObject *parent): QObject(parent){
 #if QT_VERSION < 0x040400
@@ -64,7 +64,7 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 	document=0;
 	currentTicket=0;
 	queueAdministration->stopped=false;
-	renderedPages.setMaxCost(kMaxCachedPages);
+	renderedPages.setMaxCost(512); // will be overwritten by config
     mFillCacheMode=true;
 }
 
@@ -79,6 +79,10 @@ void PDFRenderManager::stopRendering(){
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
 	document=0;
 	cachedNumPages = 0;
+}
+
+void PDFRenderManager::setCacheSize(int megabyte) {
+	renderedPages.setMaxCost(megabyte);
 }
 
 Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &errorType, bool foreceLoad){
@@ -278,10 +282,8 @@ void PDFRenderManager::addToCache(QImage img,int pageNr,int ticket){
 					pageNr=pageNr+kMaxPageZoom;
 				CachePixmap *image=new CachePixmap(QPixmap::fromImage(img));
 				image->setRes(info.xres,info.x,info.y);
-				int cost=qRound(info.xres*info.xres/10000.0);
-				if(cost<1)
-				    cost=1;
-				renderedPages.insert(pageNr,image,cost);
+				int sizeInMB=qCeil(image->width()*image->height()*image->depth()/8388608.0);
+				renderedPages.insert(pageNr,image,sizeInMB);
 			}
 			if(info.obj){
 				if(info.x>-1 && info.y>-1 && info.w>-1 && info.h>-1 && !(info.xres>kMaxDpiForFullPage))
