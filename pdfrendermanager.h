@@ -90,6 +90,8 @@ private:
 	bool checkDuplicate(int &ticket,RecInfo &info);
 	void enqueue(RenderCommand cmd,bool priority);
 
+	void reduceCacheFilling(double fraction);
+
 	Poppler::Document *document;
 	int cachedNumPages;
 
