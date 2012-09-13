@@ -67,6 +67,7 @@ void MathAssistant::processError(QProcess::ProcessError err)
 }
 
 void MathAssistant::processFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+	Q_UNUSED(exitCode);
 	if (exitStatus != QProcess::NormalExit) {
 		txsCritical(tr("TexTablet crashed."));
 	}
