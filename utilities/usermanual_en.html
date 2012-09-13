@@ -286,6 +286,57 @@ User commands can be defined here by "adding" them. Each user command has  a nam
 User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
 Alternatively a command can be directly selected through the file system.
 <p><IMG src="doc21.png" border="1" alt="Configure user commands from known commands"></p>
+
+<h2 id="SECTION02a1">1.3.1 Advanced configuration of the build system</h2>
+
+<p>If you enable the advanced options, you can configure the build system in more details.
+
+<p>Every txs-command is a list of external programs/latex-commands and other txs-commands to call. An external program can be called with its usual command line, while a txs-command with id "foobar" is called by txs:///foobar. <br>
+The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next). 
+
+<p>Each of these txs-command has a unique id, which is shown as tooltip of the displayed name for "normal" commands and in the edit box for user commands. Some important commands are usual: txs:///quick (Build & View, the old quickbuild), txs:///compile (Default compiler), txs:///view (Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex), txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External pdf viewer).
+
+<p>For example, in a typical build configuration you might call txs:///quick by pressing F1, which calls txs:///compile, which first calls txs:///pdflatex that calls the actual pdflatey, and then calls txs:///view, which calls txs:///view-pdf, which calls txs:///view-pdf-internal, which displays the pdf.
+
+<p>There is  no difference between commands defined as command on the command config page, commands defined as build on the build config page, or commands defined as user commands. They are just separated in the GUI to simplify the interface.<br>
+This also means that you can change every command as you want, ignoring its old definition (you could even change its id, when editing the ini file.).
+
+<p>There are however three always defined internal commands, which can only be called and not modified:<br><br>
+
+<table>
+<tr><td>txs:///internal-pdf-viewer</td><td>Opens the internal viewer for the current document</td></tr>
+<tr><td>txs:///view-log</td><td>Views the log file for the current document</td></tr>
+<tr><td>txs:///conditionally-recompile-bibliography</td><td>Checks if the bib files have been modified, and calls txs:///recompile-bibliography, iff that is the case</td></tr>
+</table>
+
+<p>The internal pdf viewer  also accepts the following options (txs:///internal-pdf-viewer) to modify its behaviour:<br><br>
+
+<table>
+<tr><td>--embedded</td><td>Opens the viewer embedded</td></tr>
+<tr><td>--windowed</td><td>Opens the viewer windowed  (default if no option is given)</td></tr>
+<tr><td>--close-(all|windowed|embedded)</td><td>Close all open viewers, or just viewers of a specific kind</td></tr>
+<tr><td>--preserve-existing</td><td>Does not change any existing viewers (i.e. always opens a new one)</td></tr>
+<tr><td>--preserve-(embedded|windowed)</td><td>Does not change any existing embedded/windowed viewers</td></tr>
+<tr><td>--preserve-duplicates</td><td>Only opens the pdf in the first opened viewer</td></tr>
+<tr><td>--(no-)auto-close</td><td>If the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
+<tr><td>--(no-)focus</td><td>If the viewer should be focused, when it is opened (default: focus iff windowed)</td></tr>
+</table>
+
+<p>It is also possible to modify the arguments of called subcommands with argument modifiers or  by adding a new argument . These modifiers are passed through called lists, so it will always change the arguments of the finally called program, even if the directly called subcommand is just a wrapper around another command:<br><br>
+
+<table>
+<tr><td>txs:///foobar --xyz</td><td>This will add the xyz option</td></tr>
+<tr><td>txs:///foobar[--xyz=123]</td><td>This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar)</td></tr>
+<tr><td>txs:///foobar{--xyz=123}</td><td>This will remove --xyz=123 from the foobar command line, ignoring xyz options with other values<td></td></tr>
+<tr><td>txs:///foobar{--xyz}</td><td>This will remove any --xyz option from the foobar command line, regardless of its value</td></tr>
+<tr><td>txs:///foobar{}</td><td>This will remove all options from the foobar command line, leaving only the name of the executable</td></tr>
+
+</table>
+
+<p>
+Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
+ 
+
 <h2 id="SECTION030">1.4 Configuring some general issues</h2>
 <p>This panel allows the setting of some general aspects.</p>
 <ul>
@@ -1489,3 +1540,4 @@ println("\\end{"+env+"}")
 </pre>
 </p>
 </body></html>
+
