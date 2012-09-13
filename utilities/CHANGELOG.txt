@@ -1,5 +1,10 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.3 -> TeXstudio 2.4.1  SVN ????
+-----------------------------------------
+- several bug fixes (crashes, compilation, focus, ...)
+- experimental support for TexTablet on Windows 7
+
 TeXstudio 2.3 -> TeXstudio 2.4  SVN 3255
 -----------------------------------------
 
