@@ -2615,6 +2615,9 @@ void PDFDocument::search(bool backwards, bool incremental){
 		for (pageIdx = firstPage; pageIdx != lastPage; pageIdx += deltaPage) {
 			if(pageIdx < 0 || pageIdx >= pdfWidget->realNumPages())
 				return;
+
+			statusBar()->showMessage(tr("Searching for")+QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx), 1000);
+
 			page = document->page(pageIdx);
 			if(!page)
 				return;
