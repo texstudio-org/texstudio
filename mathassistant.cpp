@@ -19,13 +19,9 @@ void MathAssistant::exec() {
 	QApplication::clipboard()->clear();
 
 	//TODO This is the default installation path of TexTablet. Make it configurabe.
-	QString texTablet = "C:\\Program Files (x86)\\Microsoft\\TexTablet\\TeXTablet.exe";
+	QString texTablet = QCoreApplication::applicationDirPath() + "/TexTablet/TeXTablet.exe";
 	if (!QFileInfo(texTablet).exists()) {
-		QString msg = QString(tr(
-			"TexTablet not found. This is required for the math assistant to work.<br>"
-			"Go to<a href='%1'>TexTablet website</a><br>"
-			"or directly <a href='%2'>download TexTablet installer</a>."
-			)).arg("http://www.doc.ic.ac.uk/~sl203/?id=39").arg("http://www.doc.ic.ac.uk/~sl203/content/TexTablet/TexTabletSetup.msi");
+		QString msg = QString(tr("TexTablet not found."));
 		QMessageBox msgBox;
 		msgBox.setWindowTitle(tr("Math Assistant"));
 		msgBox.setTextFormat(Qt::RichText);
