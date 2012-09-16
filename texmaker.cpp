@@ -823,7 +823,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()), QKeySequence(), ":images/image.png");
 #ifdef Q_OS_WIN
 	if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
-		newManagedAction(menu, "math",tr("Math Assistant..."), SLOT(QuickMath()));
+		newManagedAction(menu, "math",tr("Math Assistant..."), SLOT(QuickMath()), QKeySequence(), ":images/TexTablet.png");
 	}
 #endif
 

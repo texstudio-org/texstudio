@@ -217,7 +217,7 @@
         <file>completion/hyperref.cwl</file>
         <file>completion/ifpdf.cwl</file>
         <file>completion/ifthen.cwl</file>
-	<file>completion/ifxetex.cwl</file>
+        <file>completion/ifxetex.cwl</file>
         <file>completion/import.cwl</file>
         <file>completion/jurabib.cwl</file>
         <file>completion/latex-209.cwl</file>
@@ -234,9 +234,9 @@
         <file>completion/manyfoot.cwl</file>
         <file>completion/marvosym.cwl</file>
         <file>completion/mathtools.cwl</file>
-	<file>completion/mdframed.cwl</file>
+        <file>completion/mdframed.cwl</file>
         <file>completion/mdwlist.cwl</file>
-	<file>completion/menukeys.cwl</file>
+        <file>completion/menukeys.cwl</file>
         <file>completion/microtype.cwl</file>
         <file>completion/multicol.cwl</file>
         <file>completion/multido.cwl</file>
@@ -352,6 +352,7 @@
         <file>images/repeat-compile-off.png</file>
         <file>images/windowed-viewer.png</file>
         <file>images/embedded-viewer.png</file>
+		<file>images/TexTablet.png</file>
         <file>completion/cleveref.cwl</file>
         <file>completion/parskip.cwl</file>
         <file>completion/xy.cwl</file>
