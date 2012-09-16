@@ -211,11 +211,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	symbolMostused.clear();
 	setupDockWidgets();
 
-#ifdef Q_OS_MAC
-	new DblClickMenuBar(); // make menu bar default by not assigning to any parent - trying to fix bug 3559432
-#else
 	setMenuBar(new DblClickMenuBar());
-#endif
 	setupMenus();
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
