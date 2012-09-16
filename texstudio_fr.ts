@@ -71,6 +71,10 @@
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
         <translation>TeXstudio utilise des icones du projet Crystal (LGPL) du thème Oxygen (CC-BY-SA 3.0).</translation>
     </message>
+    <message>
+        <source>TeXstudio uses TexTablet (Author: Steven Lovegrove)</source>
+        <translation>TeXstudio utilise TexTablet (auteur : Steven Lovegrove)</translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -2296,7 +2300,7 @@ leur usage en les activant ici.</translation>
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
         <translation>Vous avez activé les options avancées. Ceci permet une
-configuration fine deTXS. Pour ne voir que les réglages
+configuration fine de TXS. Pour ne voir que les réglages
 de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
@@ -2356,6 +2360,14 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     <message>
         <source>Search Path for Commands</source>
         <translation>Recherche de chemins pour les commandes</translation>
+    </message>
+    <message>
+        <source>Cache Size:</source>
+        <translation>Taille du cache:</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
     </message>
 </context>
 <context>
@@ -3810,6 +3822,34 @@ la commande \caption n&apos;est pas valide.</translation>
         <source>Go to Definition</source>
         <translation>Aller à la définition</translation>
     </message>
+    <message>
+        <source>Remove Bookmark</source>
+        <translation>&amp;Supprimer le signet</translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation>Signet sans nom</translation>
+    </message>
+    <message>
+        <source>Bookmark</source>
+        <translation>Signet</translation>
+    </message>
+    <message>
+        <source>Collapse All</source>
+        <translation>Réduire tout</translation>
+    </message>
+    <message>
+        <source>Collapse Level %1</source>
+        <translation>Réduire le niveau %1</translation>
+    </message>
+    <message>
+        <source>Expand All</source>
+        <translation>Développer tout</translation>
+    </message>
+    <message>
+        <source>Expand Level %1</source>
+        <translation>Développer le niveau %1</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -3879,6 +3919,25 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>Quick Letter</source>
         <translation>Assistant lettre</translation>
+    </message>
+</context>
+<context>
+    <name>MathAssistant</name>
+    <message>
+        <source>TexTablet not found. This is required for the math assistant to work.&lt;br&gt;Go to&lt;a href=&apos;%1&apos;&gt;TexTablet website&lt;/a&gt;&lt;br&gt;or directly &lt;a href=&apos;%2&apos;&gt;download TexTablet installer&lt;/a&gt;.</source>
+        <translation type="obsolete">TexTablet introuvable. Cet outil est nécessaire à l&apos;assistant mathématique. Rendez-vous sur le &lt;a href=&apos;%1&apos;&gt;site de la TexTablet&lt;/a&gt;&lt;br&gt; ou &lt;a href=&apos;%2&apos;&gt;téléchargez l&apos;installateur de la TexTablet&lt;/a&gt; directement.</translation>
+    </message>
+    <message>
+        <source>Math Assistant</source>
+        <translation>Assistant mathématique</translation>
+    </message>
+    <message>
+        <source>TexTablet crashed.</source>
+        <translation>Arrêt brutal de la TexTablet.</translation>
+    </message>
+    <message>
+        <source>TexTablet not found.</source>
+        <translation>TexTablet introuvable.</translation>
     </message>
 </context>
 <context>
@@ -4511,6 +4570,10 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     <message>
         <source>Embedded Viewer</source>
         <translation>Afficheur embarqué</translation>
+    </message>
+    <message>
+        <source>Searching for</source>
+        <translation>Cherche</translation>
     </message>
 </context>
 <context>
@@ -5260,7 +5323,7 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     <name>QFoldPanel</name>
     <message>
         <source>Expand All</source>
-        <translation>Développer tout</translation>
+        <translation type="obsolete">Développer tout</translation>
     </message>
 </context>
 <context>
@@ -8356,6 +8419,10 @@ Voulez-vous le restaurer ?</translation>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>Échec de l&apos;ouverture du fichier de restauration « %1 ».</translation>
     </message>
+    <message>
+        <source>Math Assistant...</source>
+        <translation>Assistant mathématique...</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -9132,7 +9199,7 @@ Les fichiers html sont situés dans le répertoire %1.</translation>
     </message>
     <message>
         <source>Input file not found.</source>
-        <translation>Fichier importé non trouvé.</translation>
+        <translation>Fichier importé introuvable.</translation>
     </message>
     <message>
         <source>  Running this command: </source>
