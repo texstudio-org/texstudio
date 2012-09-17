@@ -700,7 +700,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// include,input ////
 			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
 			
-			if (latexParser.includeCommands.contains(cmd)) {
+            if (latexParser.possibleCommands["%include"].contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->title=name;
 				QString fname=findFileName(name);
@@ -2261,7 +2261,7 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bo
     //patch lines for new commands (ref,def, etc)
     LatexParser& latexParser = LatexParser::getInstance();
     QStringList categories;
-    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics" << "%file" << "%bibliography";
+    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include";
     QStringList newCmds;
     foreach(const QString elem,categories){
         QStringList cmds=ltxCommands.possibleCommands[elem].values();

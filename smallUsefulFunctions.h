@@ -162,7 +162,7 @@ public:
 	QSet<QString> mathStopCommands;
     //QSet<QString> tabularEnvirons;
     //QSet<QString> fileCommands;
-	QSet<QString> includeCommands;
+    //QSet<QString> includeCommands;
     //QSet<QString> usepackageCommands;
 	QSet<QString> customCommands;
     //QSet<QString> graphicsIncludeCommands;

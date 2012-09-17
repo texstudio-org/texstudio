@@ -92,7 +92,7 @@ void LatexParser::init(){
 	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
     //tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
     //fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
-	includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
+    //includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
     //graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
     //usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 
@@ -111,6 +111,7 @@ void LatexParser::init(){
     possibleCommands["%bibliography"] << "\\bibliography";
     possibleCommands["%file"] << "\\include" << "\\input" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
     possibleCommands["%ref"] << "\\ref" << "\\pageref";
+    possibleCommands["%include"] << "\\include" << "\\input";
 }
 
 int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
@@ -1526,6 +1527,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                         package.possibleCommands["%definition"] << rxCom.cap(1);
                     }
                     valid.remove('d');
+                }
+                if(valid.contains('i')){ // include like command
+                    if(res>-1){
+                        package.possibleCommands["%include"] << rxCom.cap(1);
+                    }
+                    valid.remove('i');
                 }
                 if(valid.contains('l')){ // label command
                     if(res>-1){
