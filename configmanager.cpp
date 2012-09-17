@@ -1635,10 +1635,10 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit &Macros..."), SLOT(editMacros()));
 	}
 	// update quote replacement
-	static const char * open[6] = {"",  "``", "\"<", "\"`", "\\og ",  "\">"};
-	static const char * close[6] = {"", "''", "\">", "\"'", "\\fg{}", "\"<"};
-	if (replaceQuotes >= 1 && replaceQuotes < 6) {
-        completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, open[replaceQuotes], "", "(?language:latex)(?<=\\s|[(:]|^)\""));
+	static const char * open[7] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{"};
+	static const char * close[7] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"};
+	if (replaceQuotes >= 1 && replaceQuotes < 7) {
+		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, open[replaceQuotes], "", "(?language:latex)(?<=\\s|[(:]|^)\""));
 		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, close[replaceQuotes], "", "(?language:latex)(?<=\\S)\""));
 	}
 }
