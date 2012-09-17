@@ -78,6 +78,14 @@ environments in smallUsefulFunctions.cpp)
 			<start parenthesis="verb*$i:open" parenthesisWeight="20" format="keyword">\\verb\*\$i</start>
 			<stop parenthesis="verb*$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
 		</context>
+		<context id="lstinline$i" format="verbatim">
+			<start parenthesis="lstinline$i:open" parenthesisWeight="20" format="keyword">\\lstinline\$i</start>
+			<stop parenthesis="lstinline$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
+		<context id="lstinlineOption$i" format="verbatim">
+			<start parenthesis="lstinlineOption$i:open" parenthesisWeight="20" format="keyword">\\lstinline\[[^\]]*\]\$i</start>
+			<stop parenthesis="lstinlineOption$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
 		</body>
 	</foreach>
 
