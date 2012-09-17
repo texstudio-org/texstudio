@@ -212,6 +212,7 @@
         <file>completion/float.cwl</file>
         <file>completion/fontspec.cwl</file>
         <file>completion/geometry.cwl</file>
+	<file>completion/glossaries.cwl</file>
         <file>completion/glosstex.cwl</file>
         <file>completion/graphicx.cwl</file>
         <file>completion/hyperref.cwl</file>
