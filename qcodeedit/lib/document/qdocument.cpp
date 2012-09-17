@@ -5930,6 +5930,7 @@ QDocument::LineEnding QDocumentPrivate::m_defaultLineEnding = QDocument::Conserv
 QDocumentPrivate::QDocumentPrivate(QDocument *d)
  : 	m_doc(d),
 	m_editCursor(0),
+	m_drawCursorBold(true),
 	m_deleting(false),
 	m_delayedUpdateBlocks(0),
 	m_lastGroupId(-1),
@@ -6446,37 +6447,38 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	// draw cursor(s)
 	p->setPen(repForeground);	
 	foreach(QDocumentCursor cur, QList<QDocumentCursorHandle*>() << cxt.cursors << cxt.extra){
-	    if (!cur.line().isHidden()){
-		if(cxt.blinkingCursor){
-		    if(m_overwrite && !cur.hasSelection()){
-			p->setPen(Qt::NoPen);
-			QColor col=repForeground;
-			col.setAlpha(160);
-			QBrush brush(col);
-			p->setBrush(brush);
-			QPoint pt=cur.documentPosition();
-			QDocumentCursor curHelper(cur,false);
-			curHelper.movePosition(1);
-			QPoint pt2=curHelper.documentPosition();
-			int wt;
-			if(pt.y()==pt2.y()){
-			    wt=pt2.x()-pt.x();
-			}else{
-			    wt=textWidth(0," ");
+		if (!cur.line().isHidden()){
+			if(cxt.blinkingCursor){
+				if(m_overwrite && !cur.hasSelection()){
+					p->setPen(Qt::NoPen);
+					QColor col=repForeground;
+					col.setAlpha(160);
+					QBrush brush(col);
+					p->setBrush(brush);
+					QPoint pt=cur.documentPosition();
+					QDocumentCursor curHelper(cur,false);
+					curHelper.movePosition(1);
+					QPoint pt2=curHelper.documentPosition();
+					int wt;
+					if(pt.y()==pt2.y()){
+						wt=pt2.x()-pt.x();
+					}else{
+						wt=textWidth(0," ");
+					}
+					QPoint curHt(wt,QDocumentPrivate::m_lineSpacing-1);
+					p->drawRect(pt.x(),pt.y(),curHt.x(),curHt.y());
+				}else{
+					QPoint pt=cur.documentPosition();
+					QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
+					p->drawLine(pt,pt+curHt);
+					if (m_drawCursorBold) {
+						pt.setX(pt.x()+1);
+						p->drawLine(pt,pt+curHt);
+					}
+				}
 			}
-			QPoint curHt(wt,QDocumentPrivate::m_lineSpacing-1);
-			p->drawRect(pt.x(),pt.y(),curHt.x(),curHt.y());
-		    }else{
-			QPoint pt=cur.documentPosition();
-			QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
-			p->drawLine(pt,pt+curHt);
-			pt.setX(pt.x()+1);
-			p->drawLine(pt,pt+curHt);
-		    }
 		}
-	    }
 	}
-
 }
 
 QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS, int maxLineWidth, int maxWrap) const{
@@ -6555,7 +6557,12 @@ void QDocumentPrivate::setHardLineWrap(bool wrap)
 }
 void QDocumentPrivate::setLineWidthConstraint(bool wrap)
 {
-    m_lineWidthConstraint=wrap;
+	m_lineWidthConstraint=wrap;
+}
+
+void QDocumentPrivate::setCursorBold(bool bold)
+{
+	m_drawCursorBold = bold;
 }
 
 

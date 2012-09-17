@@ -5145,6 +5145,12 @@ void QEditor::addCursorMirror(const QDocumentCursor& c)
 	m_mirrors.last().setAutoErasable(false);
 }
 
+void QEditor::setCursorBold(bool bold)
+{
+	if (m_doc)
+		m_doc->impl()->setCursorBold(bold);
+}
+
 /*!
 	\internal
 	\brief Copy the selection to the clipboard

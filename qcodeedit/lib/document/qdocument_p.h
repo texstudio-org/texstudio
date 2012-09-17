@@ -135,6 +135,7 @@ class QCE_EXPORT QDocumentPrivate
 		void setWidth(int width);
 		void setHardLineWrap(bool wrap);
 		void setLineWidthConstraint(bool wrap);
+		void setCursorBold(bool bold);
 		
 		void emitFormatsChanged();
 		void emitContentsChanged();
@@ -206,6 +207,7 @@ class QCE_EXPORT QDocumentPrivate
 		QDocument *m_doc;
 		QUndoStack m_commands;
 		QDocumentCursor *m_editCursor;
+		bool m_drawCursorBold;
 		
 		bool m_deleting;
 		QStack<QDocumentCommandBlock*> m_macros;

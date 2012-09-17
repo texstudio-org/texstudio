@@ -870,6 +870,7 @@ void LatexEditorView::updateSettings(){
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);;
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);
+	editor->setCursorBold(config->boldCursor);
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
 	lineNumberPanelAction->setChecked(config->showlinemultiples!=0);
 	lineFoldPanelAction->setChecked(config->folding);

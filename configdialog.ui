@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
-            <height>600</height>
+            <width>475</width>
+            <height>517</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -760,8 +760,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>226</width>
-               <height>137</height>
+               <width>202</width>
+               <height>124</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1350,8 +1350,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>865</width>
-            <height>626</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1480,6 +1480,22 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                <widget class="QCheckBox" name="checkBoxLineState">
                 <property name="text">
                  <string>Show Line Change State</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxBoldCursor">
+                <property name="toolTip">
+                 <string>Draw cursor as a thick line</string>
+                </property>
+                <property name="text">
+                 <string>Bold Cursor</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -2181,8 +2197,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
