@@ -232,8 +232,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		//find context of cursor
 		QString line=cursor.line().text();
 		context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
-		static const QStringList inputTokens = QStringList() << "\\input" << "\\include" << "\\includeonly";
-		if( (context==LatexParser::Command || context==LatexParser::Option) && inputTokens.contains(ctxCommand)){
+        //static const QStringList inputTokens = QStringList() << "\\input" << "\\include" << "\\includeonly";
+        LatexParser ltxCommands=LatexParser::getInstance();
+        if( (context==LatexParser::Command || context==LatexParser::Option) && ltxCommands.possibleCommands["%include"].contains(ctxCommand)){
 			QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(ctxValue),contextMenu);
 			act->setData(ctxValue);
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));

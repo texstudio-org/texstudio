@@ -219,8 +219,8 @@
 \Huge
 \hyphenation{words}
 \i
-\include{file}
-\input{file}
+\include{file}#i
+\input{file}#i
 \includegraphics[options]{name}
 \includegraphics[scale=%<1%>]{%<file%>}#*
 \includegraphics{name}
