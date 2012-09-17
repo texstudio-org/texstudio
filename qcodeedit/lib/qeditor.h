@@ -528,6 +528,7 @@ public slots:
 		void clearCursorMirrors();
 		void addCursorMirror(const QDocumentCursor& c);
 
+		void setCursorBold(bool bold);
 
 		QString cutBuffer;
 

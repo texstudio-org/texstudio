@@ -392,6 +392,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true, &pseudoDialog->checkBoxAutoCompleteParens);
 	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, -1);
 	registerOption("Editor/Cursor Surrounding Lines", &editorConfig->cursorSurroundLines, 5);
+	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);
 	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false);
