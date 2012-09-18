@@ -304,7 +304,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	connectWithAdditionalArguments(&documents, SIGNAL(masterDocumentChanged(LatexDocument*)), this, "runScripts", QList<QVariant>() << Macro::ST_MASTER_CHANGED);
 	connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
 	connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
-	
 }
 
 
@@ -1683,6 +1682,17 @@ void Texmaker::relayToOwnSlot(){
 }
 
 void Texmaker::autoRunScripts(){
+	int minor = 0;
+#if (QT_VERSION >= 0x040900) 
+	minor = 9
+#elif (QT_VERSION >= 0x040800) 
+	minor = 8;
+#elif (QT_VERSION >= 0x040700) 
+	minor = 7;
+#endif
+	if (!hasAtLeastQt(4,minor)) 
+		txsWarning(tr("%1 has been compiled with qt%2, but is running with qt%3.\nPlease get the correct runtime library (e.g. .dll or .so files).\nOtherwise there might be random errors, like a crashing PDF viewer.")
+		           .arg(TEXSTUDIO).arg(QString("4.%1").arg(minor)).arg(qVersion()));
 	runScripts(Macro::ST_TXS_START); 
 }
 
