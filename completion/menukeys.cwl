@@ -15,7 +15,7 @@
 \tab
 \esc
 \ctrl
-\alt
+\Alt
 \AltGr
 \cmd
 \Space
