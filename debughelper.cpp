@@ -17,7 +17,9 @@
 #define CPU_IS_X86
 #endif
 
-
+#if (defined(__unix__) || defined(unix) || defined(__linux__) || defined(linux) || defined(Q_WS_MACX))
+#define OS_IS_UNIX_LIKE
+#endif
 
 //===========================Abstract CPU model==========================
 
@@ -83,7 +85,7 @@ void print_message(const char* title, const char *where, const char *assertion, 
 #endif
 }
 
-#if defined(unix) || defined(Q_WS_MACX)
+#if defined(OS_IS_UNIX_LIKE)
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -428,10 +430,10 @@ void print_backtrace(const char* message){
 
 
 
-#ifdef Q_WS_WIN
-#define SAFE_INT int
-#else
+#ifdef OS_IS_UNIX_LIKE
 #define SAFE_INT volatile sig_atomic_t
+#else
+#define SAFE_INT int
 #endif
 
 SAFE_INT crashHandlerType = 1;
@@ -851,12 +853,16 @@ void undoMainThreadRecoveringFromOutside(){
 
 
 #if !defined(USE_SIGNAL_HANDLER) && !defined(Q_WS_WIN)
+#warning Unrecognized OS. Crash handler will be disabled.
+
 bool recoverMainThreadFromOutside(){
 	fprintf(stderr, "Main thread locks frozen\n");
 	return true;
 }
 
 void undoMainThreadRecoveringFromOutside(){}
+QString getLastCrashInformationInternal(){return "unknown (os unsupported by crash handler)";}
+void registerCrashHandler(int mode){}
 #endif
 
 

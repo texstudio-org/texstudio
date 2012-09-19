@@ -663,14 +663,15 @@ bool BuildManager::hasCommandLine(const QString& program){
 	return false;
 }
 
-#ifdef Q_WS_MACX
+#if defined(Q_WS_MACX)
+
 QString getCommandLineViewDvi(){ return "open %.dvi > /dev/null"; }
 QString getCommandLineViewPs(){ return "open %.ps > /dev/null"; }
 QString getCommandLineViewPdfExternal(){ return "open %.pdf > /dev/null"; }
 QString getCommandLineGhostscript(){ return ""; }
-#endif
 
-#ifdef Q_WS_WIN
+#elif defined(Q_WS_WIN)
+
 QString getCommandLineViewDvi(){ 
 	const QString yapOptions = " -1 -s @?\"c:ame \"?am.dvi\"";
 	QString def=W32_FileAssociation(".dvi");
@@ -755,9 +756,9 @@ QString getCommandLineGhostscript(){
 		return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"";
 	return "";
 }
-#endif
 
-#ifdef Q_WS_X11
+#elif defined(Q_WS_X11)
+
 // xdvi %.dvi  -sourceposition @:%.tex
 // kdvi "file:%.dvi#src:@ %.tex"
 QString getCommandLineViewDvi(){
@@ -782,6 +783,16 @@ QString getCommandLineViewPdfExternal(){
 	};
 }
 QString getCommandLineGhostscript(){ return ""; }
+
+#else
+
+#warning Unrecognized OS. Default viewers will probably be wrong
+
+QString getCommandLineViewDvi(){ return "xdvi %.dvi > /dev/null"; }
+QString getCommandLineViewPs(){ return "gv %.ps > /dev/null"; }
+QString getCommandLineViewPdfExternal(){ return "xpdf %.pdf > /dev/null"; }
+QString getCommandLineGhostscript(){ return ""; }
+
 #endif
 
 
