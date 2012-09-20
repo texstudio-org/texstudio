@@ -1682,17 +1682,13 @@ void Texmaker::relayToOwnSlot(){
 }
 
 void Texmaker::autoRunScripts(){
-	int minor = 0;
-#if (QT_VERSION >= 0x040900) 
-	minor = 9
-#elif (QT_VERSION >= 0x040800) 
-	minor = 8;
-#elif (QT_VERSION >= 0x040700) 
-	minor = 7;
-#endif
-	if (!hasAtLeastQt(4,minor)) 
-		txsWarning(tr("%1 has been compiled with qt%2, but is running with qt%3.\nPlease get the correct runtime library (e.g. .dll or .so files).\nOtherwise there might be random errors, like a crashing PDF viewer.")
-		           .arg(TEXSTUDIO).arg(QString("4.%1").arg(minor)).arg(qVersion()));
+	QStringList vers = QString(QT_VERSION_STR).split('.');
+	Q_ASSERT(vers.length() >= 2);
+	int major = vers.at(0).toInt();
+	int minor = vers.at(1).toInt();
+	if (!hasAtLeastQt(major,minor))
+		txsWarning(tr("%1 has been compiled with Qt %2, but is running with Qt %3.\nPlease get the correct runtime library (e.g. .dll or .so files).\nOtherwise there might be random errors and crashes.")
+				   .arg(TEXSTUDIO).arg(QT_VERSION_STR).arg(qVersion()));
 	runScripts(Macro::ST_TXS_START); 
 }
 
