@@ -2176,8 +2176,10 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 				static_cast<QComboBox*>(cmdWidget)->addItem(elem);
             }
 			static_cast<QComboBox*>(cmdWidget)->setEditable(false);
-            int i=cmd.metaSuggestionList.indexOf(cmd.getPrettyCommand());
+#ifndef QT_NO_DEBUG
+			int i=cmd.metaSuggestionList.indexOf(cmd.getPrettyCommand());
             Q_ASSERT(i>=0);
+#endif
             //static_cast<QComboBox*>(w)->setEditText();
         }else{
 			static_cast<QComboBox*>(cmdWidget)->addItems(cmd.metaSuggestionList);
