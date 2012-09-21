@@ -353,6 +353,7 @@
         <file>images/repeat-compile-off.png</file>
         <file>images/windowed-viewer.png</file>
         <file>images/embedded-viewer.png</file>
+		<file>images/separator.png</file>
 		<file>images/TexTablet.png</file>
         <file>completion/cleveref.cwl</file>
         <file>completion/parskip.cwl</file>

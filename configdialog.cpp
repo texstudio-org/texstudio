@@ -770,7 +770,9 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 	else {
 		//if(acts[i]->data().isValid()){
 		QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text().replace("&",""));
-		if (!acts[i]->isSeparator()){
+		if (acts[i]->isSeparator()) {
+			twi->setIcon(0,QIcon(":/images/separator.png"));
+		} else {
 			if(!acts[i]->icon().isNull()) twi->setIcon(0,acts[i]->icon());
 			else twi->setIcon(0,QIcon(":/images/appicon.png"));
 		}
