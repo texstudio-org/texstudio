@@ -2015,8 +2015,12 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text().replace("&","")
 			                                         << managedMenuShortcuts.value(acts[i]->objectName()+"0", QKeySequence())
 			                                         << acts[i]->shortcut().toString(QKeySequence::NativeText));
-			twi->setIcon(0,acts[i]->icon());
-			if (!acts[i]->isSeparator()) twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+			if (!acts[i]->isSeparator()) {
+				twi->setIcon(0,acts[i]->icon());
+				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
+			} else {
+				twi->setIcon(0,QIcon(":/images/separator.png"));
+			}
 			twi->setData(0,Qt::UserRole,acts[i]->objectName());
 			if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
 		}
@@ -2540,10 +2544,12 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 		else {
 			subAdvanced |= !acts[i]->data().isValid();
 			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << acts[i]->data().toString() << prettySlotName(acts[i]));
-			twi->setIcon(0,acts[i]->icon());
 			if (!acts[i]->isSeparator()) {
+				twi->setIcon(0,acts[i]->icon());
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 				twi->setCheckState(0,acts[i]->isVisible() ? Qt::Checked : Qt::Unchecked);
+			} else {
+				twi->setIcon(0, QIcon(":/images/separator.png"));
 			}
 			twi->setData(2, Qt::UserRole, acts[i]->property("originalSlot").isValid()?acts[i]->property("originalSlot").toString():twi->text(2));
 			if (manipulatedMenus.contains(acts[i]->objectName())) {
