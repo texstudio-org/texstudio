@@ -807,7 +807,7 @@ void PDFScrollArea::updateScrollBars(){
 	} else {
 		vbar->setRange(0,((pdf->pseudoNumPages() + pdf->gridCols() - 1)/ pdf->gridCols()) * pdf->gridRowHeight() - p.height());
 	}
-	vbar->setPageStep(p.height());
+	vbar->setPageStep(pdf->gridRowHeight());
 	updateWidgetPosition();
 
 }
