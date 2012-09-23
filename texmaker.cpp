@@ -886,6 +886,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::ALT+Qt::Key_PageUp << Qt::CTRL+Qt::Key_Tab);
 	newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::ALT+Qt::Key_PageDown << Qt::CTRL+Qt::SHIFT+Qt::Key_Tab);
 	newManagedMenu(menu, "documents",tr("Open Documents"));
+
+	newManagedAction(menu, "focuseditor", tr("Focus Editor"), SLOT(focusEditor()), QList<QKeySequence>() << Qt::ALT+Qt::Key_Left);
+	newManagedAction(menu, "focusviewer", tr("Focus Viewer"), SLOT(focusViewer()), QList<QKeySequence>() << Qt::ALT+Qt::Key_Right);
 	
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",leftPanel->toggleViewAction());
@@ -5135,6 +5138,40 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 		sl << (ed->fileName().isEmpty() ? tr("untitled") : ed->name().replace("&", "&&"));
 	}
 	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
+}
+
+void Texmaker::focusEditor(){
+	if (currentEditorView())
+		currentEditorView()->setFocus();
+}
+
+void Texmaker::focusViewer(){
+	QList<PDFDocument*> viewers = PDFDocument::documentList();
+	if (viewers.isEmpty()) return;
+
+	if (viewers.count() > 1 && currentEditorView()) {
+		// try: PDF for current file
+		QFileInfo currentFile = currentEditorView()->getDocument()->getFileInfo();
+		foreach (PDFDocument* viewer, viewers) {
+			if (viewer->getMasterFile() == currentFile) {
+				viewer->widget()->setFocus();
+				return;
+			}
+		}
+		// try: PDF for master file
+		LatexDocument *masterDoc = documents.getMasterDocumentForDoc(0);
+		if (masterDoc) {
+			QFileInfo masterFile = masterDoc->getFileInfo();
+			foreach (PDFDocument* viewer, viewers) {
+				if (viewer->getMasterFile() == masterFile) {
+					viewer->widget()->setFocus();
+					return;
+				}
+			}
+		}
+	}
+	// fall back to first
+	viewers.at(0)->widget()->setFocus();
 }
 
 void Texmaker::viewCloseSomething(){

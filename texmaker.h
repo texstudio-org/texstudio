@@ -397,6 +397,9 @@ protected slots:
 	void gotoOpenDocument();
 	void updateOpenDocumentMenu(bool localChange=false);
 	
+	void focusEditor();
+	void focusViewer();
+
 	void viewCloseSomething();
 	void setFullScreenMode();
 	void viewAlignWindows();
