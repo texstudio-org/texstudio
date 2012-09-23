@@ -884,7 +884,7 @@ void Texmaker::setupMenus() {
 	//---view---
 	menu=newManagedMenu("main/view",tr("&View"));
 	newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::ALT+Qt::Key_PageUp << Qt::CTRL+Qt::Key_Tab);
-	newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::ALT+Qt::Key_PageDown << Qt::CTRL+Qt::SHIFT+Qt::Key_Backtab);
+	newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::ALT+Qt::Key_PageDown << Qt::CTRL+Qt::SHIFT+Qt::Key_Tab);
 	newManagedMenu(menu, "documents",tr("Open Documents"));
 	
 	menu->addSeparator();
