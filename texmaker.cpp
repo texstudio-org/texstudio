@@ -4859,7 +4859,7 @@ void Texmaker::GeneralOptions() {
 					addEnvironmentToDom(doc,i.key(),envMode);
 				}
 			}
-			QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+			QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
 			m_languages->addLanguage(m_lang);
 			
 			newLaTeX = m_lang.d;
@@ -6621,7 +6621,7 @@ void Texmaker::findMissingBracket(){
 void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,LatexDocument *doc){
 	if (!doc) {
 		if (!currentEditor()) return;
-		doc=dynamic_cast<LatexDocument*>(currentEditor()->document());
+		doc=qobject_cast<LatexDocument*>(currentEditor()->document());
 	}
 	if (!doc) return;
 	QStringList curPaths;
@@ -6962,7 +6962,7 @@ void Texmaker::updateHighlighting(){
 		QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
 		addEnvironmentToDom(doc,i.key(),envMode);
 	}
-	QNFADefinition::load(doc,&m_lang,dynamic_cast<QFormatScheme*>(m_formats));
+	QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
 	m_languages->addLanguage(m_lang);
 	
 	newLaTeX = m_lang.d;
