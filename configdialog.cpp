@@ -332,8 +332,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	refreshLastUpdateTime();
 
 	//pageditor
-	QFontDatabase fdb;
-	ui.comboBoxFont->addItems(fdb.families());
+	populateComboBoxFont(false);
+	connect(ui.checkBoxShowOnlyMonospacedFonts, SIGNAL(toggled(bool)), this, SLOT(populateComboBoxFont(bool)));
 
 	ui.comboBoxEncoding->addItem("UTF-8");
 	foreach(int mib, QTextCodec::availableMibs()) {
@@ -804,6 +804,25 @@ void ConfigDialog::updateCheckNow() {
 
 void ConfigDialog::refreshLastUpdateTime() {
 	ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
+}
+
+void ConfigDialog::populateComboBoxFont(bool onlyMonospaced) {
+	QString currentFont = ui.comboBoxFont->currentText();
+	ui.comboBoxFont->clear();
+	QFontDatabase fdb;
+	if (onlyMonospaced) {
+		foreach(const QString &font, fdb.families()) {
+			if (fdb.isFixedPitch(font)) {
+				ui.comboBoxFont->addItem(font);
+			}
+		}
+	} else {
+		ui.comboBoxFont->addItems(fdb.families());
+	}
+	// restore font setting if possible
+	int idx = ui.comboBoxFont->findText(currentFont);
+	if (idx>=0) ui.comboBoxFont->setCurrentIndex(idx);
+
 }
 
 void ConfigDialog::custEnvAddLine(){
