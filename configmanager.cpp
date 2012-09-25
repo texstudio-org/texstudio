@@ -1164,10 +1164,10 @@ bool ConfigManager::execConfigDialog() {
 	connect(confDlg->ui.checkBoxShowAllMenus, SIGNAL(toggled(bool)), SLOT(toggleVisibleTreeItems(bool)));
 	toggleVisibleTreeItems(false);
 	connect(confDlg->ui.latexTree,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(latexTreeItemChanged(QTreeWidgetItem*,int)));
-	QAction* act = new QAction(tr("insert new menu item (before)"), confDlg->ui.latexTree);
+	QAction* act = new QAction(tr("Insert New Menu Item (before)"), confDlg->ui.latexTree);
 	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewItem()));
 	confDlg->ui.latexTree->addAction(act);
-	act = new QAction(tr("insert new sub menu (before)"), confDlg->ui.latexTree);
+	act = new QAction(tr("Insert New Sub Menu (before)"), confDlg->ui.latexTree);
 	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewMenuItem()));
 	confDlg->ui.latexTree->addAction(act);
 	confDlg->ui.latexTree->setContextMenuPolicy(Qt::ActionsContextMenu);

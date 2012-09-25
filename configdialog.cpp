@@ -23,6 +23,8 @@
 const QString ShortcutDelegate::addRowButton="<internal: add row>";
 const QString ShortcutDelegate::deleteRowButton="<internal: delete row>";
 
+static const QString nameSeparator = "separator";
+
 ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
 	addItem(tr("<default>"));
 	addItem(tr("<none>"));
@@ -415,7 +417,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 
 	// custom toolbars
 	connect(ui.comboBoxToolbars,SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
-	ui.listCustomToolBar->setIconSize(QSize(96, 96));
+	ui.listCustomToolBar->setIconSize(QSize(22, 22));
 	ui.listCustomToolBar->setViewMode(QListView::ListMode);
 	ui.listCustomToolBar->setMovement(QListView::Snap);
 	ui.listCustomToolBar->setDragDropMode(QAbstractItemView::InternalMove);
@@ -674,10 +676,11 @@ void ConfigDialog::toolbarChanged(int toolbar){
 		QAction* act=menuParent->findChild<QAction*>(actName);
 		QListWidgetItem *item;
 		if (act) {
-			QIcon i = act->icon().pixmap(20,20);
+			QIcon i = act->icon().pixmap(22,22);
 			item=new QListWidgetItem(i,act->text().replace("&",""));
 		} else item=new QListWidgetItem(actName);
 		item->setData(Qt::UserRole,actName);
+		if (actName == nameSeparator) item->setIcon(QIcon(":/images/separator.png"));
 		ui.listCustomToolBar->addItem(item);
 	}
 	oldToolbarIndex = toolbar;
@@ -736,7 +739,8 @@ void ConfigDialog::checkToolbarMoved(){
 
 void ConfigDialog::customContextMenuRequested(const QPoint &p){
 	QMenu menu;
-	menu.addAction(tr("Load other icon"),this, SLOT(loadOtherIcon()));
+	menu.addAction(tr("Load Other Icon"), this, SLOT(loadOtherIcon()));
+	menu.addAction(tr("Insert Separator"), this, SLOT(insertSeparator()));
 	menu.exec(ui.listCustomToolBar->mapToGlobal(p));
 }
 
@@ -755,6 +759,15 @@ void ConfigDialog::loadOtherIcon(){
 	}
 }
 
+void ConfigDialog::insertSeparator(){
+	int row = ui.listCustomToolBar->currentRow();
+	if (row<0) return;
+	ui.listCustomToolBar->insertItem(row, nameSeparator);
+	ui.listCustomToolBar->item(row)->setData(Qt::UserRole, nameSeparator);
+	ui.listCustomToolBar->item(row)->setIcon(QIcon(":/images/separator.png"));
+	customizableToolbars[ui.comboBoxToolbars->currentIndex()].insert(row, nameSeparator);
+}
+
 void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy){
 	if (!menu) return;
 	QList<QAction *> acts=menu->actions();
@@ -766,22 +779,23 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 		parent=twi;
 	}
 	for (int i=0; i<acts.size(); i++)
-		if (acts[i]->menu()) populatePossibleActions(parent, acts[i]->menu(),keepHierarchy);
-	else {
-		//if(acts[i]->data().isValid()){
-		QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text().replace("&",""));
-		if (acts[i]->isSeparator()) {
-			twi->setIcon(0,QIcon(":/images/separator.png"));
+		if (acts[i]->menu()) {
+			populatePossibleActions(parent, acts[i]->menu(),keepHierarchy);
 		} else {
-			if(!acts[i]->icon().isNull()) twi->setIcon(0,acts[i]->icon());
-			else twi->setIcon(0,QIcon(":/images/appicon.png"));
-		}
-		twi->setToolTip(0,acts[i]->text());
-		if (acts[i]->isSeparator()) twi->setData(0,Qt::UserRole,"separator");
-		else twi->setData(0,Qt::UserRole,acts[i]->objectName());
-		if (parent) parent->addChild(twi);
-		else ui.treePossibleToolbarActions->addTopLevelItem(twi);
-		}
+			//if(acts[i]->data().isValid()){
+			QTreeWidgetItem* twi = new QTreeWidgetItem(parent,QStringList() << acts[i]->text().replace("&",""));
+			if (acts[i]->isSeparator()) {
+				twi->setIcon(0,QIcon(":/images/separator.png"));
+			} else {
+				if(!acts[i]->icon().isNull()) twi->setIcon(0,acts[i]->icon());
+				else twi->setIcon(0,QIcon(":/images/appicon.png"));
+			}
+			twi->setToolTip(0,acts[i]->text());
+			if (acts[i]->isSeparator()) twi->setData(0,Qt::UserRole, nameSeparator);
+			else twi->setData(0,Qt::UserRole,acts[i]->objectName());
+			if (parent) parent->addChild(twi);
+			else ui.treePossibleToolbarActions->addTopLevelItem(twi);
+	}
 }
 
 void ConfigDialog::updateCheckNow() {
