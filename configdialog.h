@@ -133,6 +133,8 @@ private slots:
 	void updateCheckNow();
 	void refreshLastUpdateTime();
 
+	void populateComboBoxFont(bool onlyMonospaced);
+
 	void custEnvAddLine();
 	void custEnvRemoveLine();
 	void custSyntaxAddLine();
