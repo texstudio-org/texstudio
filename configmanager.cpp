@@ -922,6 +922,11 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	QSettings *config= saveName.isEmpty()?persistentConfig:(new QSettings(saveName, QSettings::IniFormat));
 	config->setValue("IniMode",true);
 	
+	config->beginGroup("version");
+	config->setValue("written_by_TXS_version", TXSVERSION);
+	config->setValue("written_by_TXS_SVNversion", getSimplifiedSVNVersion());
+	config->endGroup();
+
 	config->beginGroup("texmaker");
 
 	buildManager->saveSettings(*config); //save first, so it can set managed properties
