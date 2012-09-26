@@ -3,6 +3,16 @@
 #include "qdocumentline.h"
 #include <QMutex>
 
+extern const char* TEXSTUDIO_SVN_VERSION;
+
+int getSimplifiedSVNVersion(QString svnVersion) {
+	int cutoff = svnVersion.indexOf(QRegExp("[^0-9]"));
+	if (cutoff < 0)
+		return svnVersion.toInt();
+	else
+		return svnVersion.left(cutoff).toInt();
+}
+
 bool txsConfirm(const QString &message){
 	return QMessageBox::question(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
 }

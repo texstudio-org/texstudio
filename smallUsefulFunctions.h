@@ -19,12 +19,16 @@
 #define TXSVERSION "2.4"
 #define TXSVERSION_NUMERIC 0x020400
 
+extern const char* TEXSTUDIO_SVN_VERSION;
+
 struct CommandArgument {
 	bool isOptional;
 	int number;
 	QString value;
 };
 Q_DECLARE_METATYPE( CommandArgument )
+
+int getSimplifiedSVNVersion(QString svnVersion = TEXSTUDIO_SVN_VERSION);
 
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);

@@ -397,6 +397,20 @@ private slots:
 		QEQUAL(ret, out);
 		QEQUAL(retCmd, outCmd);
 	}
+	void test_getSimplifiedSVNVersion_data(){
+		QTest::addColumn<QString>("versionString");
+		QTest::addColumn<int>("out");
+
+		QTest::newRow("plain") << "1314" << 1314;
+		QTest::newRow("modified") << "1314M" << 1314;
+		QTest::newRow("mixed") << "1314:1315" << 1314;
+		QTest::newRow("unknown") << "Unknown" << 0;
+	}
+	void test_getSimplifiedSVNVersion(){
+		QFETCH(QString, versionString);
+		QFETCH(int, out);
+		QEQUAL(getSimplifiedSVNVersion(versionString), out);
+	}
 };
 
 
