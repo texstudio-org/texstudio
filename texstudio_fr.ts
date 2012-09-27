@@ -73,7 +73,11 @@
     </message>
     <message>
         <source>TeXstudio uses TexTablet (Author: Steven Lovegrove)</source>
-        <translation>TeXstudio utilise TexTablet (auteur : Steven Lovegrove)</translation>
+        <translation type="obsolete">TeXstudio utilise TexTablet (auteur : Steven Lovegrove)</translation>
+    </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
+        <translation>TeXstudio utilise TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</translation>
     </message>
 </context>
 <context>
@@ -1122,7 +1126,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     </message>
     <message>
         <source>Load other icon</source>
-        <translation>Charger une autre icône</translation>
+        <translation type="obsolete">Charger une autre icône</translation>
     </message>
     <message>
         <source>Select a File</source>
@@ -2369,6 +2373,30 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <source> MB</source>
         <translation> MB</translation>
     </message>
+    <message>
+        <source>Package csquotes: \enquote{  }</source>
+        <translation>Package csquotes : \enquote{  }</translation>
+    </message>
+    <message>
+        <source>Draw cursor as a thick line</source>
+        <translation>Curseur épais</translation>
+    </message>
+    <message>
+        <source>Bold Cursor</source>
+        <translation>Curseur en gras</translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Fonts</source>
+        <translation>Afficher seulement des fiontes à chasse fixe</translation>
+    </message>
+    <message>
+        <source>Load Other Icon</source>
+        <translation>Charger une autre icône</translation>
+    </message>
+    <message>
+        <source>Insert Separator</source>
+        <translation>Insérer un séparateur</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2848,11 +2876,11 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     </message>
     <message>
         <source>insert new menu item (before)</source>
-        <translation>insérer une nouvelle entrée de menu (avant)</translation>
+        <translation type="obsolete">insérer une nouvelle entrée de menu (avant)</translation>
     </message>
     <message>
         <source>insert new sub menu (before)</source>
-        <translation>insérer un nouveau sous-menu (avant)</translation>
+        <translation type="obsolete">insérer un nouveau sous-menu (avant)</translation>
     </message>
     <message>
         <source>eqref</source>
@@ -3201,6 +3229,14 @@ Voulez-vous supprimer ces macros ?</translation>
     <message>
         <source>Restore Default</source>
         <translation>Restaurer les réglages par défauts</translation>
+    </message>
+    <message>
+        <source>Insert New Menu Item (before)</source>
+        <translation>Insérer (avant) une nouvelle entrée de menu</translation>
+    </message>
+    <message>
+        <source>Insert New Sub Menu (before)</source>
+        <translation>Insérer (avant) un nouveau sous-menu</translation>
     </message>
 </context>
 <context>
@@ -6585,6 +6621,37 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
 </context>
 <context>
+    <name>TemplateSelector</name>
+    <message>
+        <source>Edit</source>
+        <translation>Édition</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Suppression</translation>
+    </message>
+    <message>
+        <source>You can not edit built-in templates.</source>
+        <translation>Vous ne pouvez pas modifier les modèles intégrés.</translation>
+    </message>
+    <message>
+        <source>Please Confirm</source>
+        <translation>Veuillez confirmer</translation>
+    </message>
+    <message>
+        <source>Are you sure to delete the following template?</source>
+        <translation>Êtes-vous sûr de vouloir supprimer définitivement le modèle ?</translation>
+    </message>
+    <message>
+        <source>You do not have permission to remove this file.</source>
+        <translation>Vous n&apos;avez pas les droits nécessaires pour supprimer ce fichier.</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation>Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Normal Mode</source>
@@ -7224,27 +7291,27 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
-        <translation>Confirmer</translation>
+        <translation type="obsolete">Confirmer</translation>
     </message>
     <message>
         <source>Are you sure to remove that template permanently ?</source>
-        <translation>Éliminer le modèle définitivement ?</translation>
+        <translation type="obsolete">Éliminer le modèle définitivement ?</translation>
     </message>
     <message>
         <source>You do not have permission to remove this file.</source>
-        <translation>Vous n&apos;avez pas les droits nécessaires pour supprimer ce fichier.</translation>
+        <translation type="obsolete">Vous n&apos;avez pas les droits nécessaires pour supprimer ce fichier.</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
-        <translation>Impossible de supprimer les modèles intégrés.</translation>
+        <translation type="obsolete">Impossible de supprimer les modèles intégrés.</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation>Impossible de modifier les modèles intégrés.</translation>
+        <translation type="obsolete">Impossible de modifier les modèles intégrés.</translation>
     </message>
     <message>
         <source>Templates</source>
-        <translation>Modèles</translation>
+        <translation type="obsolete">Modèles</translation>
     </message>
     <message>
         <source>All files</source>
@@ -8423,6 +8490,46 @@ Voulez-vous le restaurer ?</translation>
         <source>Math Assistant...</source>
         <translation>Assistant mathématique...</translation>
     </message>
+    <message>
+        <source>%1 has been compiled with qt%2, but is running with qt%3.
+Please get the correct runtime library (e.g. .dll or .so files).
+Otherwise there might be random errors, like a crashing PDF viewer.</source>
+        <translation type="obsolete">%1 a été compilé avec qt%2, mais est lancé avec qt%3.
+Veuillez vous procurer la bibliothèque d&apos;exécution correcte (sous forme de fichiers .dll ou .so par exemple).
+Sans quoi il pourrait y avoir des erreurs aléatoires, telles qu&apos;un arrêt brutal de l&apos;afficheur PDF.</translation>
+    </message>
+    <message>
+        <source>%1 has been compiled with Qt %2, but is running with Qt %3.
+Please get the correct runtime library (e.g. .dll or .so files).
+Otherwise there might be random errors and crashes.</source>
+        <translation>%1 a été compilé avec Qt%2, mais est lancé avec Qt%3.
+Veuillez vous procurer la bibliothèque d&apos;exécution ad hoc (fichiers .dll ou .so par exemple).
+Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</translation>
+    </message>
+    <message>
+        <source>Focus Editor</source>
+        <translation>Focus sur l&apos;éditeur</translation>
+    </message>
+    <message>
+        <source>Focus Viewer</source>
+        <translation>Focus sur l&apos;afficheur</translation>
+    </message>
+    <message>
+        <source>Select LaTeX Template</source>
+        <translation>Sélectionner un modèle LaTeX</translation>
+    </message>
+    <message>
+        <source>File not found:</source>
+        <translation>Fichier introuvable :</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation>Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation>Sélectionner un modèle de tableau</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -9345,6 +9452,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Dialog</source>
         <translation>Dialogue</translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation>Auteur :</translation>
+    </message>
+    <message>
+        <source>AuthorLabel</source>
+        <translation>LabelAuteur</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation>Date :</translation>
+    </message>
+    <message>
+        <source>DateLabel</source>
+        <translation>LabelDate</translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation>Version :</translation>
+    </message>
+    <message>
+        <source>VersionLabel</source>
+        <translation>LabelVersion</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation>Description :</translation>
     </message>
 </context>
 </TS>
