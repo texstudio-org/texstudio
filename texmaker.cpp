@@ -1768,60 +1768,24 @@ void Texmaker::fileMakeTemplate() {
 	}
 }
 
-void Texmaker::templateRemove(){
-	QStringList templates=findResourceFiles("templates/","template_*.tex");
-	int len=templates.size();
-	if(templateSelectorDialog->ui.listWidget->currentRow()>=len){
-		if(QMessageBox::question(this,tr("Please Confirm"), tr("Are you sure to remove that template permanently ?"),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes){
-			QString f_real=userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len);
-			userTemplatesList.removeAt(templateSelectorDialog->ui.listWidget->currentRow()-len);
-			templateSelectorDialog->ui.listWidget->takeItem(templateSelectorDialog->ui.listWidget->currentRow());
-			QFile file(f_real);
-			if(!file.remove()) QMessageBox::warning(this,tr("Error"), tr("You do not have permission to remove this file."));
-		}
-	} else QMessageBox::warning(this,tr("Error"), tr("You can not remove built-in templates."));
-	
-}
-
-void Texmaker::templateEdit(){
-	QStringList templates=findResourceFiles("templates/","template_*.tex");
-	int len=templates.size();
-	if(templateSelectorDialog->ui.listWidget->currentRow()>=len){
-		load(userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len),false);
-		templateSelectorDialog->close();
-	} else QMessageBox::warning(this,tr("Error"), tr("You can not edit built-in templates."));
+void Texmaker::templateEdit(const QString &fname){
+	load(fname, false);
 }
 
 void Texmaker::fileNewFromTemplate() {
 	// select Template
-	QString f_real;
-	if(!templateSelectorDialog) {
-		templateSelectorDialog=new templateselector(this,tr("Templates"));
-		QAction *act=new QAction(tr("Edit"),this);
-		connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
-		templateSelectorDialog->ui.listWidget->addAction(act);
-		act=new QAction(tr("Remove"),this);
-		connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
-		templateSelectorDialog->ui.listWidget->addAction(act);
-	}
-	QStringList templates=findResourceFiles("templates/","template_*.tex");
-	int len=templates.size();
-	templates << userTemplatesList;
-	templates.replaceInStrings(QRegExp("(^|^.*/)(template_)?"),"");
-	templates.replaceInStrings(QRegExp(".tex$"),"");
-	templateSelectorDialog->ui.listWidget->clear();
-	templateSelectorDialog->ui.listWidget->insertItems(0,templates);
-	
-	if(templateSelectorDialog->exec()){
-		if(templateSelectorDialog->ui.listWidget->currentRow()<len){
-			f_real="templates/template_"+templateSelectorDialog->ui.listWidget->currentItem()->text()+".tex";
-			f_real=findResourceFile(f_real);
-		}else {
-			f_real=userTemplatesList.at(templateSelectorDialog->ui.listWidget->currentRow()-len);
+	TemplateSelector dialog("template_*.tex", tr("Select LaTeX Template"), this);
+	connect(&dialog, SIGNAL(editTemplateRequest(QString)), this, SLOT(templateEdit(QString)));
+
+	if(dialog.exec()){
+		QString fname = dialog.selectedTemplateFile();
+		QFile file(fname);
+		if (!file.exists()) {
+			txsWarning(tr("File not found:")+QString("\n%1").arg(fname));
+			return;
 		}
-		QFile file(f_real);
 		if (!file.open(QIODevice::ReadOnly)) {
-			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+			txsWarning(tr("You do not have read permission to this file:")+QString("\n%1").arg(fname));
 			return;
 		}
 		//set up new editor with template
@@ -1868,31 +1832,20 @@ void Texmaker::insertTableTemplate() {
 	QDocumentCursor c=m_edit->cursor();
 	if(!LatexTables::inTableEnv(c))
 		return;
-	// select Template
-	if(!templateSelectorDialog) {
-		templateSelectorDialog=new templateselector(this,tr("Templates"));
-		QAction *act=new QAction(tr("Edit"),this);
-		connect(act,SIGNAL(triggered()),this,SLOT(templateEdit()));
-		templateSelectorDialog->ui.listWidget->addAction(act);
-		act=new QAction(tr("Remove"),this);
-		connect(act,SIGNAL(triggered()),this,SLOT(templateRemove()));
-		templateSelectorDialog->ui.listWidget->addAction(act);
-	}
-    QStringList templates=findResourceFiles("templates/","tabletemplate_*.js",QStringList(configManager.configBaseDir));
-	templates.replaceInStrings(QRegExp("(^|^.*/)(tabletemplate_)?"),"");
-	templates.replaceInStrings(QRegExp(".js$"),"");
-	templateSelectorDialog->ui.listWidget->clear();
-	templateSelectorDialog->ui.listWidget->insertItems(0,templates);
-	
-	if(templateSelectorDialog->exec()){
-        QListWidgetItem *currentItem = templateSelectorDialog->ui.listWidget->currentItem();
-        if (currentItem == 0) return;
 
-        QString f_real="templates/tabletemplate_"+currentItem->text()+".js";
-        f_real=findResourceFile(f_real,false,QStringList(configManager.configBaseDir));
-		QFile file(f_real);
+	// select Template
+	TemplateSelector dialog("tabletemplate_*.js", tr("Select Table Template"), this, QStringList(configManager.configBaseDir));
+	connect(&dialog, SIGNAL(editTemplateRequest(QString)), this, SLOT(templateEdit(QString)));
+
+	if(dialog.exec()){
+		QString fname = dialog.selectedTemplateFile();
+		QFile file(fname);
+		if (!file.exists()) {
+			txsWarning(tr("File not found:")+QString("\n%1").arg(fname));
+			return;
+		}
 		if (!file.open(QIODevice::ReadOnly)) {
-			QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
+			txsWarning(tr("You do not have read permission to this file:")+QString("\n%1").arg(fname));
 			return;
 		}
 		QString tableDef=LatexTables::getSimplifiedDef(c);
@@ -1951,7 +1904,7 @@ void Texmaker::insertTableTemplate() {
 			}
 			tableContent<<elems;
 		}
-		LatexTables::generateTableFromTemplate(currentEditorView(),f_real,tableDef,tableContent,env);
+		LatexTables::generateTableFromTemplate(currentEditorView(),fname,tableDef,tableContent,env);
     }
 }
 

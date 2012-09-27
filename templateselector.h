@@ -16,16 +16,29 @@
 
 #include "ui_templateselector.h"
 
-class templateselector : public QDialog  {
+class TemplateSelector : public QDialog  {
 	Q_OBJECT
 public:
-	templateselector(QWidget *parent=0, QString name="");
-	~templateselector();
+	TemplateSelector(QString filter, QString name="", QWidget *parent=0, QStringList additionalSearchPaths = QStringList());
+	~TemplateSelector();
+	QString selectedTemplateFile() const;
 	Ui::templateSelectorDialog ui;
-
+signals:
+	void editTemplateRequest(const QString &fname);
 
 private slots:
+	void addTemplateFiles();
 	void on_listWidget_itemDoubleClicked(QListWidgetItem* item);
+	void showInfo(QListWidgetItem *currentItem, QListWidgetItem *previousItem);
+	void editTemplate();
+	void removeTemplate();
+
+private:
+	bool getTemplateMetaData(const QString &file, QHash<QString, QString> &metaData) const;
+	QString mFilter;
+	QStringList mAdditonalSearchPaths;
+
+	static const int FileNameRole;
 };
 
 #endif // TEMPLATESELECTOR_H

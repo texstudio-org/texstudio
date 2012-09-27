@@ -162,7 +162,7 @@ private:
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
-	templateselector *templateSelectorDialog;
+	TemplateSelector *templateSelectorDialog;
 	
 	//tools
 	usercodelist symbolMostused;
@@ -438,8 +438,7 @@ protected slots:
 	void showPreview(const QDocumentCursor& c, bool addToList);
 	void showPreviewQueue();
 	
-	void templateRemove();
-	void templateEdit();
+	void templateEdit(const QString &fname);
 	
 	void fileReloaded();
 	void fileInConflict();

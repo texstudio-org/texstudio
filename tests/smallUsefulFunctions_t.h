@@ -411,6 +411,34 @@ private slots:
 		QFETCH(int, out);
 		QEQUAL(getSimplifiedSVNVersion(versionString), out);
 	}
+	void test_minimalJsonParse_data(){
+		QTest::addColumn<QString>("jsonData");
+		QTest::addColumn<bool>("retVal");
+		QTest::addColumn<QStringList>("keys");
+		QTest::addColumn<QStringList>("vals");
+
+		QTest::newRow("empty") << "" << true << QStringList() << QStringList();
+		QTest::newRow("empty") << "{}" << true << QStringList() << QStringList();
+		QTest::newRow("single") << " { \"key\"  : \"val\" } " << true << (QStringList() << "key") << (QStringList() << "val");
+		QTest::newRow("two") << "{\"key\":\"val\",\"key2\":\"val2\"} " << true << (QStringList() << "key" << "key2") << (QStringList() << "val" << "val2");
+		QTest::newRow("escapedQoute") << "{\"key\":\"val\\\"more\"}" << true << (QStringList() << "key") << (QStringList() << "val\"more");
+		QTest::newRow("missingClose") << "{\"key\":\"val\"" << false << (QStringList() << "key") << (QStringList() << "val");
+		QTest::newRow("missingQuote1") << "{key:\"val\"}" << false << QStringList() << QStringList();
+		QTest::newRow("missingQuote2") << "{\"key:\"val\"}" << false << QStringList() << QStringList();
+		QTest::newRow("missingQuote3") << "{key\":\"val\"}" << false << QStringList() << QStringList();
+	}
+	void test_minimalJsonParse(){
+		QFETCH(QString, jsonData);
+		QFETCH(bool, retVal);
+		QFETCH(QStringList, keys);
+		QFETCH(QStringList, vals);
+
+		QHash<QString, QString> data;
+		QEQUAL(minimalJsonParse(jsonData, data), retVal);
+		for (int i=0; i<keys.count(); i++) {
+			QEQUAL2(data[keys[i]], vals[i], QString("for key: %1").arg(keys[i]));
+		}
+	}
 };
 
 

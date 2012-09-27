@@ -1,3 +1,11 @@
+var metaData = {
+"Title"       : "Plain tabular",
+"Description" : "Format table using a plain tabular environment.", 
+"Author"      : "Jan Sundermeyer",
+"Date"        : "4.9.2011",
+"Version"     : "1.0"
+}
+
 function print(str){
 cursor.insertText(str)
 }
