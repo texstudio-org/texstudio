@@ -96,8 +96,14 @@ public:
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
 			//remove current text for correct case
 			if(completer->forcedRef){
-				while(!cursor.atLineEnd() && cursor.nextChar()!='}')
+				QString line = cursor.line().text();
+				int col = cursor.columnNumber();
+				bool missingCloseBracket = (findClosingBracket(line, col) < 0);
+				while(!cursor.atLineEnd() && cursor.nextChar()!='}'
+					   && !(cursor.nextChar().isSpace() && missingCloseBracket)) // spaces are allowed in labels and should be deleted, however we stop deleting at spaces if the closing bracket is missing. otherwise it deletes the complete line.
+				{
 					cursor.deleteChar();
+				}
 				if(cursor.nextChar()=='}')
 					cursor.deleteChar();
 			}

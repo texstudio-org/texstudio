@@ -137,20 +137,4 @@ bool TemplateSelector::getTemplateMetaData(const QString &file, QHash<QString, Q
 									  // easy to extract var metaData = {}
 	}
 	return minimalJsonParse(jsonData, metaData);
-
-	/*
-	QString line = f.readLine().trimmed();
-	while (line.startsWith("//")) {
-		int sep = line.indexOf(':');
-		QString tag = line.mid(2,sep-2).trimmed().toLower();
-		QString content = line.mid(sep+1).trimmed();
-
-		if (metaData.contains(tag)) {
-			metaData[tag] = metaData[tag] + ' ' + content;
-		} else {
-			metaData[tag] = content;
-		}
-		line = f.readLine().trimmed();
-	}
-	return true;*/
 }
