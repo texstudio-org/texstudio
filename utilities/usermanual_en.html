@@ -460,6 +460,16 @@ This is a more interactive approach than choosing svn revisions directly via a m
 A dialogue gives a selection of templates.</p>
 <p><IMG src="template.png" border="1" alt="Templates"></p>
 <p>New templates can be added by using the command "File/Make Template" on a opened document which you like to have has a template.
+You can assign meta data to the created template by creating a file in the same folder, but with extension ".meta" instead of ".tex". Its content is in JSON format:
+<pre>
+{
+"Title"       : "",
+"Description" : "Beamer class for presentations.", 
+"Author"      : "TXS built-in",
+"Date"        : "17.8.2009",
+"Version"     : "1.0"
+}
+</pre>
 User added templates can be edited or deleted by using the context menu in the template selection dialogue.
 Built-in templates can not be changed.</p>
 <h2 id="SECTION13">2.3 Structure of a document</h2>
@@ -1481,11 +1491,21 @@ A number of templates are predefined by txs:
 c&amp;d\\ \hline
 \end{tabular}
 </pre>
-<p>These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.
-<br>
-The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.<br>
-The template itself is a javascript (see above) with some prefined variables which contain the whole table.
-The new table is just placed as replacement of the old one, using information from that variables.
+<p>These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.<p>
+<h3>4.14.1 Creating table templates</h3>
+
+<p>The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.</p>
+<p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formating. Example:</p>
+<pre>
+var metaData = {
+"Title"       : "Colored rows",
+"Description" : "Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.", 
+"Author"      : "Jan Sundermeyer",
+"Date"        : "4.9.2011",
+"Version"     : "1.0"
+}
+</pre>
+<p>The template itself is a javascript (see above) with some prefined variables which contain the whole table. The new table is just placed as replacement of the old one, using information from that variables.
 3 variables are given:
 <ul>
 <li>def   the simplified table definition without any formatting (i.e. ll instead of |l|l|)</li>

@@ -1088,6 +1088,56 @@ QString getPathfromFilename(const QString &compFile){
 	return dir;
 }
 
+// minimal json parser
+// only supports strings as values, i.e.
+// { "key1" : "val1", "key2" : "val2"}
+// This is just a quick solution. If more complexity is requires, one should resort to QJson or the JSON support in Qt 5
+bool minimalJsonParse(const QString &text, QHash<QString, QString> &map) {
+	int len = text.length();
+	int col = text.indexOf('{');
+	while (true) {
+		QString key;
+		QString val;
+		int startStr, endStr;
+		startStr = text.indexOf('"', col+1);
+		if (startStr < 0) return true;
+		endStr = startStr;
+		while (endStr >= 0) {
+			endStr = text.indexOf('"',endStr+1);
+			if (text.at(endStr-1) != '\\') break;
+		}
+		if (endStr < 0) return false;
+		key = text.mid(startStr+1, endStr-startStr-1); // +1 / -1 outer removes qoutes
+		key.replace("\\\"", "\"");
+
+		col = endStr +1;
+		while (col < len && text.at(col).isSpace()) col++;
+		if (col >= len || (text.at(col)) != ':') return false;
+		col++;
+		while (col < len && text.at(col).isSpace()) col++;
+
+		if (col >= len || (text.at(col)) != '"') return false;
+		startStr = col;
+		endStr = startStr;
+		while (endStr >= 0) {
+			endStr = text.indexOf('"',endStr+1);
+			if (text.at(endStr-1) != '\\') break;
+		}
+		if (endStr < 0) return false;
+		val = text.mid(startStr+1, endStr-startStr-1); // +1 / -1 outer removes qoutes
+		val.replace("\\\"", "\"");
+		map[key] = val;
+
+		col = endStr +1;
+		while (col < len && text.at(col).isSpace()) col++;
+		if (col >= len) return false;
+		if (text.at(col) == '}') return true;
+		if (text.at(col) != ',') return false;
+	}
+	return true;
+}
+
+
 // convenience function for unique connections independent of the Qt version
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method) {
 #if QT_VERSION >= 0x040600

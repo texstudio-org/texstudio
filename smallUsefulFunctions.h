@@ -124,6 +124,8 @@ bool hasAtLeastQt(int major, int minor);
 QString getRelativeBaseNameToPath(const QString & file,QString basepath);
 QString getPathfromFilename(const QString &compFile);
 
+bool minimalJsonParse(const QString &text, QHash<QString, QString> &map);
+
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method);
 
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);

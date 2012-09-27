@@ -1,3 +1,11 @@
+var metaData = {
+"Title"       : "Fully framed, first bold",
+"Description" : "First line of the table is bold to mark headings.", 
+"Author"      : "Jan Sundermeyer",
+"Date"        : "17.9.2011",
+"Version"     : "1.0.1"
+}
+
 function print(str){
 cursor.insertText(str)
 }
