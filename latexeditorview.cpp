@@ -1650,8 +1650,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			if (!missingIDs.isEmpty()) {
 				tooltip = "<b>" + tr("Citation missing") + ":</b><br>" + missingIDs.join("<br>");
 
-				foreach (const QString &id, missingIDs)
-					if (id.at(id.length()-1).isSpace()) {
+				foreach (const QString &id, missingIDs) 
+					if (!id.isEmpty() && id[id.length()-1].isSpace()) {
 						tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("One ore more ids end with space. Trailing spaces are not ignored by BibTeX."));
 						break;
 					}
