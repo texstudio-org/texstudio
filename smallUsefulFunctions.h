@@ -94,6 +94,7 @@ inline bool isCommandChar(const QChar &c) { return c.isLetter() || c=='*'; }
 int getCommand(const QString &line, QString &outCmd, int pos=0);
 QList< CommandArgument > getCommandOptions(const QString &line, int pos=0, int *posBehind=0);
 
+QString trimLeft(const QString &s);
 
 // find token (e.g. \label \input \section and return content (\section{content})
 QString findToken(const QString &line,const QString &token);
