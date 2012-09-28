@@ -1619,76 +1619,59 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	case LatexParser::Citation:
 		if (bibTeXIds) {
             QString tooltip(tr("Citation correct (reading ...)"));
-			QStringList bibIDs;
-            // get value at cursor point ...
-            int col_start=cursor.columnNumber();
-            if(col_start>=line.length())
-                col_start=line.length()-1;
-            int col_stop=col_start;
+			QString bibID;
+			// get bibID at cursor
+			qDebug() << value;
+			int col_start=cursor.columnNumber();
+			if(col_start>=line.length())
+				col_start=line.length()-1;
+			if (QString("{,}").contains(line[col_start])) break;
 
-            QString eow="{,";
-            while(col_start>=0 && !eow.contains(line.at(col_start)))
-                col_start--;
-            eow="},";
-            while(col_stop<line.length() && !eow.contains(line.at(col_stop)))
-                col_stop++;
-            value=line.mid(col_start+1,col_stop-col_start-1);
+			int col_stop=col_start;
+			QString eow="{,";
+			while(col_start>=0 && !eow.contains(line[col_start]))
+				col_start--;
+			eow="},";
+			while(col_stop<line.length() && !eow.contains(line[col_stop]))
+				col_stop++;
+			bibID = trimLeft(line.mid(col_start+1,col_stop-col_start-1));
 
-			foreach (const QString &cit, value.split(',')) {
-				//trim left (left spaces are ignored by \cite, right space not)
-				int j;
-				for (j=0; j<cit.length();j++)
-					if (cit[j]!=' ' && cit[j]!='\t' && cit[j]!='\r' && cit[j]!='\n') break;
-				bibIDs.append(cit.mid(j));
-			}
-			QStringList missingIDs;
-			foreach (const QString &id, bibIDs) {
-				if (!bibTeXIds->contains(id)) {
-					missingIDs.append(id);
+			if (!bibTeXIds->contains(bibID)) {
+				tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
+
+				if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
+					tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
+				}
+			} else {
+				if (document->parent->bibItems.contains(bibID)) {
+					// by bibitem defined citation
+					tooltip.clear();
+					QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
+					QDocumentLineHandle *mLine=result.keys().first();
+					int l=mLine->line();
+					LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
+					if (mLine->document()!=editor->document()) {
+						doc=document->parent->findDocument(mLine->document());
+						if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+					}
+					if (doc)
+						tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
+				} else {
+					// read entry in bibtex file
+					if (!bibReader) {
+						bibReader=new bibtexReader(this);
+						connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
+						connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+						bibReader->start();
+					}
+					QString file=document->parent->findFileFromBibId(bibID);
+					lastPos=pos;
+					if(!file.isEmpty())
+						emit searchBibtexSection(file,bibID);
+					return;
 				}
 			}
-			if (!missingIDs.isEmpty()) {
-				tooltip = "<b>" + tr("Citation missing") + ":</b><br>" + missingIDs.join("<br>");
-
-				foreach (const QString &id, missingIDs) 
-					if (!id.isEmpty() && id[id.length()-1].isSpace()) {
-						tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("One ore more ids end with space. Trailing spaces are not ignored by BibTeX."));
-						break;
-					}
-            }else{
-                if(document->parent->bibItems.contains(value)){
-                    // by bibitem defined citation
-                    tooltip.clear();
-                    QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(value);
-                    QDocumentLineHandle *mLine=result.keys().first();
-                    int l=mLine->line();
-                    LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
-                    if(mLine->document()!=editor->document()){
-                        doc=document->parent->findDocument(mLine->document());
-                        if(doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-                    }
-                    if(doc)
-                        tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
-                    /*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-                        tooltip+=mLine->document()->line(i).text();
-                        if(i<l+2) tooltip+="\n";
-                    }*/
-                }else{
-                    // read entry in bibtex file
-                    if(!bibReader){
-                        bibReader=new bibtexReader(this);
-                        connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
-                        connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-                        bibReader->start();
-                    }
-                    QString file=document->parent->findFileFromBibId(value);
-                    lastPos=pos;
-                    if(!file.isEmpty())
-                        emit searchBibtexSection(file,value);
-                    return;
-                }
-            }
-            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
 		break;
 	default:
@@ -1696,6 +1679,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	}
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
+
 bool LatexEditorView::closeSomething(){
 	if (completer->close()) return true;
 	if (gotoLinePanel->isVisible()) {

@@ -571,8 +571,13 @@ bool localAwareLessThan(const QString &s1, const QString &s2) {
 	return QString::localeAwareCompare(s1,s2)<0;
 }
 
-
-
+// removes whitespace from the beginning of the string
+QString trimLeft(const QString &s) {
+	int j;
+	for (j=0; j<s.length();j++)
+		if (s[j]!=' ' && s[j]!='\t' && s[j]!='\r' && s[j]!='\n') break;
+	return s.mid(j);
+}
 
 
 QString findToken(const QString &line,const QString &token){
