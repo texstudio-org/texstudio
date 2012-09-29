@@ -7449,7 +7449,7 @@ void Texmaker::checkLatexInstall(){
 	result="which pdflatex: "+buffer+"\n\n";
 #endif
 	buffer.clear();
-	cmd+=" -v";
+    cmd+=" -version";
 	// run pdflatex
 	runCommand(cmd, &buffer);
 	result+="PDFLATEX: "+cmd+"\n";
