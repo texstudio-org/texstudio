@@ -10,6 +10,49 @@
 #include <QtTest/QtTest>
 TableManipulationTest::TableManipulationTest(QEditor* editor): ed(editor){}
 
+void TableManipulationTest::splitColDef_data(){
+	QTest::addColumn<QString>("def");
+	QTest::addColumn<QString>("splittedDef"); // for simplicity use a single string instead of a QStringList and '-' as separator
+
+	QTest::newRow("one col") << "l" << "l";
+	QTest::newRow("few cols") << "lrrc" << "l-r-r-c";
+	QTest::newRow("hrows") << "l|rr|c" << "l-|r-r-|c";
+	QTest::newRow("allHrows") << "|l|r|" << "|l-|r|";
+	QTest::newRow("supportedChars") << "lcrsSp" << "l-c-r-s-S-p";
+	QTest::newRow("atOperator") << "l@{someText}r" << "l-@{someText}r";
+	QTest::newRow("repetion") << "*{3}{lr}" << "l-r-l-r-l-r";
+	QTest::newRow("block") << "p{width}l" << "p{width}-l";
+	QTest::newRow("option") << "rs[key=val]l" << "r-s[key=val]-l";
+}
+
+void TableManipulationTest::splitColDef(){
+	QFETCH(QString, def);
+	QFETCH(QString, splittedDef);
+
+	QEQUAL(LatexTables::splitColDef(def).join("-"), splittedDef);
+}
+
+void TableManipulationTest::simplifyColDef_data(){
+	// for simplicity use a single string instead of a QStringList and '-' as separator
+	QTest::addColumn<QString>("def");
+	QTest::addColumn<QString>("simplified");
+
+	QTest::newRow("hline") << "|l-|r-r-|c|" << "l-r-r-c";
+	QTest::newRow("atOperator") << "l-@{someText}r" << "l-r";
+	QTest::newRow("block") << "p{width}-l" << "p-l";
+	QTest::newRow("option") << "r-s[key=val]-l" << "r-s-l";
+}
+
+void TableManipulationTest::simplifyColDef(){
+	QFETCH(QString, def);
+	QFETCH(QString, simplified);
+
+	QStringList res = def.split('-');
+	LatexTables::simplifyColDefs(res);
+
+	QEQUAL(res.join("-"), simplified);
+}
+
 void TableManipulationTest::addCol_data(){
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("row");

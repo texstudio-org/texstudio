@@ -11,6 +11,10 @@ class TableManipulationTest: public QObject{
 	private:
 		QEditor *ed;
 	private slots:
+		void splitColDef_data();
+		void splitColDef();
+		void simplifyColDef_data();
+		void simplifyColDef();
 		void addCol_data();
 		void addCol();
 		void addRow_data();
