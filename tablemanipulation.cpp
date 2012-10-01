@@ -910,6 +910,10 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 			alignTokens.append("l");
 	}
 	
+	bool oneLinePerCell = ConfigManager::getInstance()->getOption("TableAutoformat/One Line Per Cell").toBool();
+	QString colSep = " & ";
+	if (oneLinePerCell) colSep = " &\n"+rowIndent;
+
 	int pos = 0;
 	for (int col=0; col<alignTokens.length(); col++) {
 		// col width detection
@@ -944,11 +948,12 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 					int startCol = tl->multiColStart(col);
 					Q_ASSERT(startCol>=0);
 					cl[row].append(tl->colText(startCol, width+(pos-multiColStarts[row]), tl->multiColAlign(startCol)));
-					if (col < alignTokens.length()-1) cl[row].append(" & ");
+					if (col < alignTokens.length()-1) cl[row].append(colSep);
+
 					multiColStarts[row]=-1;
 				} else if (tl->multiColState(col) == LatexTableLine::MCNone) {
 					cl[row].append(tl->colText(col, width, align));
-					if (col < alignTokens.length()-1) cl[row].append(" & ");
+					if (col < alignTokens.length()-1) cl[row].append(colSep);
 				}
 			}
 		}
