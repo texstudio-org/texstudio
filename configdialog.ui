@@ -1360,8 +1360,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>646</width>
-            <height>547</height>
+            <width>863</width>
+            <height>632</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1676,6 +1676,51 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 <property name="text">
                  <string>Show preview as tooltip on formulas in editor</string>
                 </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="gbTableAutoformat">
+             <property name="title">
+              <string>Table Autoformating</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_60">
+                <property name="text">
+                 <string>Special Commands:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="leTableFormatingSpecialCommands"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_61">
+                <property name="text">
+                 <string>Special Commands Position:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="cbTableFormatingSpecialCommandPos">
+                <item>
+                 <property name="text">
+                  <string>Behind Line Break</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Separate Line (No Indent)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Separate Line (Indented to First Column)</string>
+                 </property>
+                </item>
                </widget>
               </item>
              </layout>

@@ -106,7 +106,11 @@ public:
 
 	bool useEscForClosingLog;
 	int replaceQuotes; //0: none, 1: ``..'', 2: \"< \"> 3: \"`..\"' , 4: \\og..\\fg{} 5: \"> \"<
-	
+
+	// table autoformat
+	QString tableAutoFormatSpecialCommands; // colon separated
+	int tableAutoFormatSpecialCommandPos;
+
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE};
 	enum AutoPreviewMode {AP_NEVER = 0, AP_PREVIOUSLY = 1};

@@ -93,6 +93,7 @@ private:
 	LatexTableLine * parseNextLine(const QString &text, int &startCol);
 
 	QStringList metaLineCommands;
+	int metaLineCommandPos;
 	QList<LatexTableLine *> lines;
 	QStringList parseErrors;
 };
