@@ -717,5 +717,53 @@ void TableManipulationTest::getDef(){
 
 }
 
+void TableManipulationTest::parseTableLine_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("startCol");
+	QTest::addColumn<int>("behindCol");
+	QTest::addColumn<QString>("metaCommands");
+	QTest::addColumn<QString>("lineText");
+	QTest::addColumn<QString>("lineBreakOption");
+
+	QTest::newRow("simple")
+		<< "Row1 \\\\ Row2"
+		<< 0 << 7
+		<< "" << "Row1" << "";
+	QTest::newRow("simple2")
+		<< "Row1 \\\\ Row2"
+		<< 7 << 12
+		<< "" << "Row2" << "";
+	QTest::newRow("simple3")
+		<< "Row 1 & Col 2 \\\\ Row 2 & Col 2"
+		<< 0 << 16
+		<< "" << "Row 1 & Col 2" << "";
+	QTest::newRow("lineBreakOption")
+		<< "Row1 \\\\[1ex] Row2"
+		<< 0 << 12
+		<< "" << "Row1" << "[1ex]";
+	QTest::newRow("metaCommand")
+		<< "\\hline Row1 \\\\ Row2"
+		<< 0 << 14
+		<< "\\hline" << "Row1" << "";
+}
+
+void TableManipulationTest::parseTableLine(){
+	QFETCH(QString, text);
+	QFETCH(int, startCol);
+	QFETCH(int, behindCol);
+	QFETCH(QString, metaCommands);
+	QFETCH(QString, lineText);
+	QFETCH(QString, lineBreakOption);
+
+	LatexTableModel model(this);
+	LatexTableLine *ltl = model.parseNextLine(text, startCol);
+	if (ltl) {
+		QEQUAL(startCol, behindCol);
+		QEQUAL(ltl->toMetaLine(), metaCommands);
+		QEQUAL(ltl->toColLine(), lineText);
+		QEQUAL(ltl->toLineBreakOption(), lineBreakOption);
+	}
+}
+
 #endif
 

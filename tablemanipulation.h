@@ -44,6 +44,7 @@ public:
 	
 	void setMetaLine(const QString line) {metaLine = line;}
 	void setColLine(const QString line);
+	void setLineBreakOption(const QString opt) {lineBreakOption = opt;}
 	
 	int colWidth(int col) const { return cols.at(col).length(); }
 	int colCount() const { return cols.count(); }
@@ -52,6 +53,7 @@ public:
 	int multiColStart(int col) { for (;col>=0;col--) if (mcFlag.at(col)==MCStart) return col; return -1; }
 	QString toMetaLine() const { return metaLine; }
 	QString toColLine() const { return colLine; }
+	QString toLineBreakOption() const { return lineBreakOption; }
 	QString colText(int col) const { return cols.at(col); }
 	QString colText(int col, int width, const QChar &alignment);
 	
@@ -60,6 +62,7 @@ private:
 	
 	QString colLine;
 	QString metaLine;
+	QString lineBreakOption;
 	
 	QStringList cols;
 	QList<MultiColFlag> mcFlag;
@@ -70,6 +73,10 @@ Q_DECLARE_METATYPE(LatexTableLine::MultiColFlag)
 
 class LatexTableModel : public QAbstractTableModel {
 	Q_OBJECT
+
+#ifndef QT_NO_DEBUG
+	friend class TableManipulationTest;
+#endif
 public:
 	LatexTableModel(QObject *parent = 0);
 	
@@ -83,7 +90,10 @@ public:
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 	
 private:
+	LatexTableLine * parseNextLine(const QString &text, int &startCol);
+
 	QStringList metaLineCommands;
 	QList<LatexTableLine *> lines;
+	QStringList parseErrors;
 };
 #endif // TABLEMANIPULATION_H
