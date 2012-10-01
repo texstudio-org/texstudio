@@ -3,6 +3,7 @@
 #include "qdocumentline.h"
 #include "smallUsefulFunctions.h"
 #include "scriptengine.h"
+#include "configmanager.h"
 
 QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular";
 QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx";
@@ -781,16 +782,20 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	
 	QString result = beginPart + '\n';
 	for (int i=0; i<content.count(); i++) {
-		result.append(indentation + content.at(i));
+		result.append(indentation + content.at(i) +'\n');
 	}
 	result.append(indentation + endPart);
 	cur.replaceSelectedText(result);
 }
 
-LatexTableModel::LatexTableModel(QObject *parent) : QAbstractTableModel(parent)
+LatexTableModel::LatexTableModel(QObject *parent) : QAbstractTableModel(parent), metaLineCommandPos(0)
 {
-	// these commands appear on separate lines
-	metaLineCommands = QStringList() << "\\hline" << "\\cline" << "\\intertext" << "\\shortintertext";
+	ConfigManagerInterface *cfg = ConfigManager::getInstance();
+	if (cfg) {
+		metaLineCommands = cfg->getOption("TableAutoformat/Special Commands").toString().split(',');
+		metaLineCommandPos = cfg->getOption("TableAutoformat/Special Command Position").toInt();
+	}
+
 }
 
 // parses text up to the end of the next line. Returns column after the line in startCol
@@ -823,6 +828,7 @@ LatexTableLine * LatexTableModel::parseNextLine(const QString &text, int &startC
 
 	// ceck for meta line commands at beginning of line
 	bool recheck = true;
+
 	while (line.startsWith("\\") && recheck) {
 		recheck = false;
 		foreach (const QString &cmd, metaLineCommands) {
@@ -952,8 +958,31 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 	QStringList ret;
 	for (int row=0; row<lines.count(); row++) {
 		QString ml = lines.at(row)->toMetaLine();
-		if (!ml.isEmpty()) ret.append(ml+"\n");
-		if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + " \\\\" +lines.at(row)->toLineBreakOption()+ "\n");
+		QString lineTerm = " \\\\" +lines.at(row)->toLineBreakOption();
+		switch (metaLineCommandPos) {
+			// keep in sync with options configdialog.ui
+		case 0: // Behind line break
+			if (!ml.isEmpty()) {
+				if (row == 0) {
+					ret.append(rowIndent + ml);
+				} else {
+					ret.last().append(" " + ml);
+				}
+			}
+			if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + lineTerm);
+			break;
+		case 1: // separate line (no indent)
+			if (!ml.isEmpty())      ret.append(ml);
+			if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + lineTerm);
+			break;
+		case 2: // separate line (indent to first col)
+			if (!ml.isEmpty())      ret.append(rowIndent + ml);
+			if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + lineTerm);
+			break;
+		default:
+			Q_ASSERT("Invalid metaLineCommand pos");
+		}
+
 	}
 	return ret;
 }

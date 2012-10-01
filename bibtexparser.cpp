@@ -26,7 +26,7 @@ void BibTeXFileInfo::parse(QByteArray& data){
 		enum BibTeXState {BTS_IN_SPACE,  //searches the first @, ignore everything before it
 						  BTS_IN_TYPE,   //read until bracket ( or { e.g in @article{, reset if @comment
 						  BTS_IN_ID,     //read everything until bracket close or , and ignore whitespace, reset when = or "
-						  BTS_IN_ENTRY}; //read balanced bracket until all are closed, then reset
+						  BTS_IN_DATA_KEY}; //read balanced bracket until all are closed, then reset
 		enum BibTeXState state=BTS_IN_SPACE;
 		const char* comment="comment\0"; const char* COMMENT="COMMENT\0";
 		int typeLen = 0;
@@ -63,13 +63,13 @@ void BibTeXFileInfo::parse(QByteArray& data){
 						if (c==',' || c==bracketClose) {
 							if (!curID.isEmpty())
 								ids.append(curID); //**found id**
-							state=BTS_IN_ENTRY;
+							state=BTS_IN_DATA_KEY;
 						} else if (c=='=' || c=='"')
-							state=BTS_IN_ENTRY; //@string or @preamble (don't cite that)
+							state=BTS_IN_DATA_KEY; //@string or @preamble (don't cite that)
 						else curID+=c;
 					}
 					break;
-				case BTS_IN_ENTRY:
+				case BTS_IN_DATA_KEY:
 					if (c==bracketOpen) bracketBalance++;
 					else if (c==bracketClose) {
 						bracketBalance--;
