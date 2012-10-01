@@ -110,6 +110,7 @@ public:
 	// table autoformat
 	QString tableAutoFormatSpecialCommands; // colon separated
 	int tableAutoFormatSpecialCommandPos;
+	bool tableAutoFormatOneLinePerCell;
 
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE};

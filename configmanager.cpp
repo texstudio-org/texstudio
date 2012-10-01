@@ -445,6 +445,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
 	registerOption("TableAutoformat/Special Command Position", &tableAutoFormatSpecialCommandPos, 0, &pseudoDialog->cbTableFormatingSpecialCommandPos);
+	registerOption("TableAutoformat/One Line Per Cell", &tableAutoFormatOneLinePerCell, false, &pseudoDialog->cbTableFormatingOneLinePerCell);
 
 	//grammar
 	registerOption("Grammar/Long Repetition Check", &grammarCheckerConfig->longRangeRepetitionCheck, true, &pseudoDialog->checkBoxGrammarRepetitionCheck);
