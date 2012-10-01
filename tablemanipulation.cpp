@@ -581,6 +581,7 @@ QStringList LatexTables::splitColDef(QString def){
 	QString multiplier_str;
 	QString before_multiplier_str;
 	int curl=0;
+	int sqrBracket=0;
 	QString col;
 	for(int i=0;i<def.length();i++){
 		QChar ch=def.at(i);
@@ -637,7 +638,16 @@ QStringList LatexTables::splitColDef(QString def){
 			inDef=true;
 		if(ch=='{')
 			curl++;
-		if(ch.isLetter() && !inAt && !inDef && curl==0){
+		if(ch=='s' || ch=='S') {
+
+		}
+		if(ch=='[')
+			sqrBracket++;
+		if(ch==']')
+			sqrBracket--;
+		if((ch.isLetter() || ch==']') && !inAt && !inDef && curl==0 && sqrBracket==0){
+			if ((ch=='s' || ch=='S') && i+1<def.length() && def.at(i+1)=='[')
+				continue;
 			if((i+1<def.length()) && def.at(i+1)=='{'){
 				appendDef=true;
 			}else{
@@ -656,7 +666,7 @@ QStringList LatexTables::splitColDef(QString def){
 	return result;
 }
 
-// removes an @{} sequence form colDef
+// removes an @{} sequence form colDef, removes vertical lines '|', removes parameters in curly and square brackets
 void LatexTables::simplifyColDefs(QStringList &colDefs) {
 	for (int i=0; i<colDefs.count(); i++) {
 		QString colDef = colDefs.at(i);
@@ -670,6 +680,10 @@ void LatexTables::simplifyColDefs(QStringList &colDefs) {
 			} else {
 				colDef="l"; // fall back
 			}
+		} else if(colDef.length() >= 2 && colDef.at(1) == '{') {
+			colDef = colDef.at(0);
+		} else if(colDef.length() >= 2 && colDef.at(1) == '[') {
+			colDef = colDef.at(0);
 		}
 		colDefs.replace(i, colDef);
 	}
