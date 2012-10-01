@@ -487,15 +487,13 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//interfaces
 	registerOption("GUI/Style", &modernStyle, false, &pseudoDialog->comboBoxInterfaceModernStyle);
 #ifdef Q_WS_X11
-	useTexmakerPalette = true;
 	interfaceFontFamily = "<later>";
 	interfaceStyle="<later>";
 #else
-	useTexmakerPalette = false;
 	interfaceFontFamily=QApplication::font().family();
 	interfaceStyle="";
 #endif
-	registerOption("GUI/Texmaker Palette", &useTexmakerPalette, useTexmakerPalette, &pseudoDialog->checkBoxUseTexmakerPalette);
+	registerOption("GUI/Texmaker Palette", &useTexmakerPalette, false, &pseudoDialog->checkBoxUseTexmakerPalette);
 	registerOption("GUI/Use System Theme", &useSystemTheme, true, &pseudoDialog->checkBoxUseSystemTheme);
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
