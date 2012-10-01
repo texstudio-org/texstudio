@@ -33,6 +33,8 @@ class TableManipulationTest: public QObject{
 		void splitCol();
 		void getDef_data();
 		void getDef();
+		void parseTableLine_data();
+		void parseTableLine();
 };
 
 #endif

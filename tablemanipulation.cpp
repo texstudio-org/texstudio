@@ -793,33 +793,69 @@ LatexTableModel::LatexTableModel(QObject *parent) : QAbstractTableModel(parent)
 	metaLineCommands = QStringList() << "\\hline" << "\\cline" << "\\intertext" << "\\shortintertext";
 }
 
-// input everything between \begin{} and \end{}
-void LatexTableModel::setContent(const QString &text) {
-	QStringList sourceLines(text.split("\\\\"));
-	for (int i=0; i<sourceLines.count(); i++) {
-		QString pre;
-		QString line = sourceLines.at(i).trimmed();
-		
-		if (i==sourceLines.count()-1 && line.isEmpty()) break; // last empty line
-		
-		bool recheck = true;
-		while (line.startsWith("\\") && recheck) {
-			recheck = false;
-			foreach (const QString &cmd, metaLineCommands) {
-				if (line.startsWith(cmd)) {
-					int behind;
-					getCommandOptions(line, cmd.length(), &behind);
-					pre.append(line.left(behind));
-					
-					line = line.mid(behind).trimmed();
-					recheck = true;
-					break;
-				}
+// parses text up to the end of the next line. Returns column after the line in startCol
+// return value is 0 in case of error
+LatexTableLine * LatexTableModel::parseNextLine(const QString &text, int &startCol) {
+	QString pre;
+	QString line;
+	QString lineBreakOption;
+
+	int endCol = text.indexOf("\\\\", startCol);
+	if (endCol < 0) {
+		line = text.mid(startCol).trimmed();
+		endCol = text.length();
+	} else {
+		line = text.mid(startCol, endCol-startCol).trimmed();
+		endCol += 2; // now behind "\\"
+
+		// check for line break with option, e.g. \\[1em]
+		if (endCol < text.length()-1 && text[endCol] == '[') {
+			int startOpt = endCol;
+			int endOpt = findClosingBracket(text, endCol, '[', ']');
+			if (endOpt < 0) {
+				txsWarning("Could not parse table code: Missing closing bracket: \\[");
+				return 0;
+			}
+			lineBreakOption = text.mid(startOpt, endOpt-startOpt+1).trimmed();
+			endCol = endOpt+1;
+		}
+	}
+
+	// ceck for meta line commands at beginning of line
+	bool recheck = true;
+	while (line.startsWith("\\") && recheck) {
+		recheck = false;
+		foreach (const QString &cmd, metaLineCommands) {
+			if (line.startsWith(cmd)) {
+				int behind;
+				getCommandOptions(line, cmd.length(), &behind);
+				pre.append(line.left(behind));
+
+				line = line.mid(behind).trimmed();
+				recheck = true;
+				break;
 			}
 		}
-		LatexTableLine *ltl = new LatexTableLine(this);
-		if (!pre.isEmpty()) ltl->setMetaLine(pre);
-		if (!line.isEmpty()) ltl->setColLine(line);
+	}
+
+	startCol = endCol;
+
+	LatexTableLine *ltl = new LatexTableLine(this);
+	if (!pre.isEmpty()) ltl->setMetaLine(pre);
+	if (!line.isEmpty()) ltl->setColLine(line);
+	if (!lineBreakOption.isEmpty()) ltl->setLineBreakOption(lineBreakOption);
+	return ltl;
+}
+
+
+
+
+// input everything between \begin{} and \end{}
+void LatexTableModel::setContent(const QString &text) {
+	int col = 0;
+	while (col >= 0 && col < text.length()) {
+		LatexTableLine * ltl = parseNextLine(text, col);
+		if (!ltl) break;
 		lines.append(ltl);
 	}
 	
@@ -917,7 +953,7 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 	for (int row=0; row<lines.count(); row++) {
 		QString ml = lines.at(row)->toMetaLine();
 		if (!ml.isEmpty()) ret.append(ml+"\n");
-		if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + " \\\\\n");
+		if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + " \\\\" +lines.at(row)->toLineBreakOption()+ "\n");
 	}
 	return ret;
 }
@@ -933,6 +969,7 @@ LatexTableLine::LatexTableLine(QObject *parent) : QObject(parent) {
 }
 
 void LatexTableLine::setColLine(const QString line) {
+	colLine = line;
 	int start = 0;
 	for (int i=0; i<line.length(); i++) {
 		if (line.at(i) == '&' && (i==0 || line.at(i-1)!='\\')) { // real col delimiter
