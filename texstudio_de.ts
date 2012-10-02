@@ -71,6 +71,10 @@
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
         <translation>TeXstudio verwendet Icons von dem Crystal Project (LGPL) uund dem Oxygen Iconset (CC-BY-SA 3.0).</translation>
     </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
+        <translation>TeXstudio verwendet TexTablet (MIT Lizenz, Copyright (c) 2012 Steven Lovegrove)</translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -702,7 +706,7 @@
     </message>
     <message>
         <source>Load other icon</source>
-        <translation>Lade anderes Icon</translation>
+        <translation type="obsolete">Lade anderes Icon</translation>
     </message>
     <message>
         <source>Select a File</source>
@@ -2322,6 +2326,66 @@ Wenn &lt;b&gt;c:&lt;/b&gt; vorangestellt wird (inkl. Doppelpunkt), wird die aktu
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; und &lt;b&gt;??&lt;/b&gt; werden ersetzt durch: %, @ oder ?</translation>
     </message>
+    <message>
+        <source>Package csquotes: \enquote{  }</source>
+        <translation>Paket csquotes: \enquote{  }</translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Fonts</source>
+        <translation>Nur Schriften mit fester Zeichenbreite anzeigen</translation>
+    </message>
+    <message>
+        <source>Draw cursor as a thick line</source>
+        <translation>Cursor als breite Linie darstellen</translation>
+    </message>
+    <message>
+        <source>Bold Cursor</source>
+        <translation>Fetter Cursor</translation>
+    </message>
+    <message>
+        <source>Table Autoformating</source>
+        <translation>Tabellen-Autoformatierung</translation>
+    </message>
+    <message>
+        <source>Special Commands:</source>
+        <translation>Spezielle Befehle:</translation>
+    </message>
+    <message>
+        <source>Special Commands Position:</source>
+        <translation>Position der speziellen Befehle:</translation>
+    </message>
+    <message>
+        <source>Behind Line Break</source>
+        <translation>Am Zeilenende</translation>
+    </message>
+    <message>
+        <source>Separate Line (No Indent)</source>
+        <translation>In neuer Zeile</translation>
+    </message>
+    <message>
+        <source>Separate Line (Indented to First Column)</source>
+        <translation>In neuer Zeile (eingerückt)</translation>
+    </message>
+    <message>
+        <source>One Line Per Cell</source>
+        <translation>Eine Zeile pro Tabellenzelle</translation>
+    </message>
+    <message>
+        <source>Cache Size:</source>
+        <translation>Cache-Größe:</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Load Other Icon</source>
+        <translation>Anderes Icon laden</translation>
+    </message>
+    <message>
+        <source>Insert Separator</source>
+        <translation>Trenner einfügen</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2705,11 +2769,11 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     </message>
     <message>
         <source>insert new menu item (before)</source>
-        <translation>Füge ein neues Menüelement hinzu (davor)</translation>
+        <translation type="obsolete">Füge ein neues Menüelement hinzu (davor)</translation>
     </message>
     <message>
         <source>insert new sub menu (before)</source>
-        <translation>Füge ein neues Untermenü dazu (davor)</translation>
+        <translation type="obsolete">Füge ein neues Untermenü dazu (davor)</translation>
     </message>
     <message>
         <source>eqref</source>
@@ -3054,6 +3118,25 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     <message>
         <source>Restore Default</source>
         <translation>Setze auf Vorgabe zurück</translation>
+    </message>
+    <message>
+        <source>Insert New Menu Item (before)</source>
+        <translation>Menüeintrag einfügen (davor)</translation>
+    </message>
+    <message>
+        <source>Insert New Sub Menu (before)</source>
+        <translation>Unermenü einfügen (davor)</translation>
+    </message>
+</context>
+<context>
+    <name>CursorHistory</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished">Zurück</translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished">Nächste</translation>
     </message>
 </context>
 <context>
@@ -3640,7 +3723,7 @@ Fehlender \caption Kommando.</translation>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation>Ein oder mehrere Ids enden mit Leerzeichen. Nachfolgende Leerzeichen werden von BibTeX nicht ignoriert.</translation>
+        <translation type="obsolete">Ein oder mehrere Ids enden mit Leerzeichen. Nachfolgende Leerzeichen werden von BibTeX nicht ignoriert.</translation>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
@@ -3653,6 +3736,38 @@ Fehlender \caption Kommando.</translation>
     <message>
         <source>Go to Definition</source>
         <translation>Springe zur Definition</translation>
+    </message>
+    <message>
+        <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
+        <translation>Die BibTeX ID endet mit einem Leerzeichen. Leerzeichen am Ende werden von BibTeX nicht ingoriert.</translation>
+    </message>
+    <message>
+        <source>Remove Bookmark</source>
+        <translation>Lesezeichen entfernen</translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation>Unbenanntes Lesezeichen</translation>
+    </message>
+    <message>
+        <source>Bookmark</source>
+        <translation>Lesezeichen</translation>
+    </message>
+    <message>
+        <source>Collapse All</source>
+        <translation>Alle einklappen</translation>
+    </message>
+    <message>
+        <source>Collapse Level %1</source>
+        <translation>Ebene %1 einklappen</translation>
+    </message>
+    <message>
+        <source>Expand All</source>
+        <translation>Alle ausklappen</translation>
+    </message>
+    <message>
+        <source>Expand Level %1</source>
+        <translation>Ebene %1 ausklappen</translation>
     </message>
 </context>
 <context>
@@ -3723,6 +3838,21 @@ Fehlender \caption Kommando.</translation>
     <message>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+</context>
+<context>
+    <name>MathAssistant</name>
+    <message>
+        <source>TexTablet not found.</source>
+        <translation>TexTablet nicht gefunden.</translation>
+    </message>
+    <message>
+        <source>Math Assistant</source>
+        <translation>Formel-Assistent</translation>
+    </message>
+    <message>
+        <source>TexTablet crashed.</source>
+        <translation>TexTablet ist abgestürzt.</translation>
     </message>
 </context>
 <context>
@@ -4352,6 +4482,10 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <message>
         <source>Embedded Viewer</source>
         <translation>Eingebundener PDF Betrachter</translation>
+    </message>
+    <message>
+        <source>Searching for</source>
+        <translation>Suche nach</translation>
     </message>
 </context>
 <context>
@@ -5092,7 +5226,7 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
     <name>QFoldPanel</name>
     <message>
         <source>Expand All</source>
-        <translation>Alle Ausklappen</translation>
+        <translation type="obsolete">Alle Ausklappen</translation>
     </message>
 </context>
 <context>
@@ -6348,6 +6482,37 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
 </context>
 <context>
+    <name>TemplateSelector</name>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Enfernen</translation>
+    </message>
+    <message>
+        <source>You can not edit built-in templates.</source>
+        <translation>Integrierte Templates können nicht editiert werden.</translation>
+    </message>
+    <message>
+        <source>Please Confirm</source>
+        <translation>Bestätigen</translation>
+    </message>
+    <message>
+        <source>Are you sure to delete the following template?</source>
+        <translation>Soll die folgende Vorlage wirklich gelöscht werden?</translation>
+    </message>
+    <message>
+        <source>You do not have permission to remove this file.</source>
+        <translation>Sie haben keine Erlaubnis diese Datei zu entfernen.</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation>Sie haben keine Erlaubnis diese Datei zu entfernen:</translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Structure</source>
@@ -6471,11 +6636,11 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
-        <translation>Sie können integrierte Templates nicht entfernen.</translation>
+        <translation type="obsolete">Sie können integrierte Templates nicht entfernen.</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation>Sie können integrierte Templates nicht editieren.</translation>
+        <translation type="obsolete">Sie können integrierte Templates nicht editieren.</translation>
     </message>
     <message>
         <source>Can&apos;t load Thesaurus Database</source>
@@ -6583,7 +6748,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>You do not have read permission to this file.</source>
-        <translation>Dir fehlen die nötigen Rechte, um die Datei zu lesen.</translation>
+        <translation>Sie besitzen nicht die nötigen Rechte um diese Datei zu lesen.</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -7109,19 +7274,19 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <source>Please Confirm</source>
-        <translation>Bestätigen</translation>
+        <translation type="obsolete">Bestätigen</translation>
     </message>
     <message>
         <source>Are you sure to remove that template permanently ?</source>
-        <translation>Sind Sie sicher, dass Sie das Template endgültig entfernen möchten ?</translation>
+        <translation type="obsolete">Sind Sie sicher, dass Sie das Template endgültig entfernen möchten ?</translation>
     </message>
     <message>
         <source>You do not have permission to remove this file.</source>
-        <translation>Sie haben keine Erlaubnis diese Datei zu entfernen.</translation>
+        <translation type="obsolete">Sie haben keine Erlaubnis diese Datei zu entfernen.</translation>
     </message>
     <message>
         <source>Templates</source>
-        <translation>Templates</translation>
+        <translation type="obsolete">Templates</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -8161,6 +8326,42 @@ Soll das Dokument damit wiederhergestellt werden?</translation>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>Sicherheitskopie &quot;%1&quot; konnte nicht geöffnet werden.</translation>
     </message>
+    <message>
+        <source>Math Assistant...</source>
+        <translation>Formel-Assistent...</translation>
+    </message>
+    <message>
+        <source>Focus Editor</source>
+        <translation>Focus auf Editor</translation>
+    </message>
+    <message>
+        <source>Focus Viewer</source>
+        <translation>Fokus auf Betrachter</translation>
+    </message>
+    <message>
+        <source>%1 has been compiled with Qt %2, but is running with Qt %3.
+Please get the correct runtime library (e.g. .dll or .so files).
+Otherwise there might be random errors and crashes.</source>
+        <translation>%1 wurde mit Qt %2 compiliert, läuft aber unter Qt %3.
+Bitte benutzen sie die passende Laufzeitbibliotheken (.dll oder .so Dateien).
+Andernfalls können Fehler und Programmabstürze auftreten.</translation>
+    </message>
+    <message>
+        <source>Select LaTeX Template</source>
+        <translation>LaTeX Vorlage auswählen</translation>
+    </message>
+    <message>
+        <source>File not found:</source>
+        <translation>Datei nicht gefunden:</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation>Sie besitzen nicht die nötigen Rechte um diese Datei zu lesen:</translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation>Tabellenvorlage auswählen</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -9036,6 +9237,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Dialog</source>
         <translation>Dialog</translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation>Autor:</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation>Datum:</translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation>Version:</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation>Beschreibung:</translation>
     </message>
 </context>
 </TS>
