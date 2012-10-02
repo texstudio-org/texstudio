@@ -38,7 +38,7 @@
        <item row="0" column="1">
         <widget class="QLabel" name="lbAuthor">
          <property name="text">
-          <string>AuthorLabel</string>
+          <string notr="true">AuthorLabel</string>
          </property>
         </widget>
        </item>
@@ -52,7 +52,7 @@
        <item row="1" column="1">
         <widget class="QLabel" name="lbDate">
          <property name="text">
-          <string>DateLabel</string>
+          <string notr="true">DateLabel</string>
          </property>
         </widget>
        </item>
@@ -66,7 +66,7 @@
        <item row="2" column="1">
         <widget class="QLabel" name="lbVersion">
          <property name="text">
-          <string>VersionLabel</string>
+          <string notr="true">VersionLabel</string>
          </property>
         </widget>
        </item>

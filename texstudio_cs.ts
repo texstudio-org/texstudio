@@ -71,6 +71,10 @@
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -638,7 +642,7 @@
     </message>
     <message>
         <source>Load other icon</source>
-        <translation>Nahrát jinou ikonu</translation>
+        <translation type="obsolete">Nahrát jinou ikonu</translation>
     </message>
     <message>
         <source>Select a File</source>
@@ -2218,6 +2222,66 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Search Path for Commands</source>
         <translation>Prohledávaná cesta pro příkazy</translation>
     </message>
+    <message>
+        <source>Package csquotes: \enquote{  }</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Fonts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw cursor as a thick line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bold Cursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Autoformating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Commands:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Commands Position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Behind Line Break</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate Line (No Indent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate Line (Indented to First Column)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One Line Per Cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cache Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Other Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Separator</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2685,11 +2749,11 @@ Chcete je odstranit?</translation>
     </message>
     <message>
         <source>insert new menu item (before)</source>
-        <translation>Vložit novou položku nabídky (před)</translation>
+        <translation type="obsolete">Vložit novou položku nabídky (před)</translation>
     </message>
     <message>
         <source>insert new sub menu (before)</source>
-        <translation>Vložit novou podřízenou položku nabídky (před)</translation>
+        <translation type="obsolete">Vložit novou podřízenou položku nabídky (před)</translation>
     </message>
     <message>
         <source>Add</source>
@@ -2876,6 +2940,25 @@ hcete je odstranit?</translation>
     <message>
         <source>Restore Default</source>
         <translation>Obnovit výchozí</translation>
+    </message>
+    <message>
+        <source>Insert New Menu Item (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert New Sub Menu (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CursorHistory</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished">Zpět</translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished">Vpřed</translation>
     </message>
 </context>
 <context>
@@ -3458,7 +3541,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation>Jedno nebo více ID končí mezerou. Mezery na konci nejsou BibTeXem přehlíženy.</translation>
+        <translation type="obsolete">Jedno nebo více ID končí mezerou. Mezery na konci nejsou BibTeXem přehlíženy.</translation>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
@@ -3471,6 +3554,38 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Go to Definition</source>
         <translation>Jít na definici</translation>
+    </message>
+    <message>
+        <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation type="unfinished">Nepojmenovaná záložka</translation>
+    </message>
+    <message>
+        <source>Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse Level %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand All</source>
+        <translation type="unfinished">Rozbalit vše</translation>
+    </message>
+    <message>
+        <source>Expand Level %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3541,6 +3656,21 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Cancel</source>
         <translation>Zrušit</translation>
+    </message>
+</context>
+<context>
+    <name>MathAssistant</name>
+    <message>
+        <source>TexTablet not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Math Assistant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TexTablet crashed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4170,6 +4300,10 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Embedded Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Searching for</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4917,7 +5051,7 @@ to ke ztrátě dat.
     <name>QFoldPanel</name>
     <message>
         <source>Expand All</source>
-        <translation>Rozbalit vše</translation>
+        <translation type="obsolete">Rozbalit vše</translation>
     </message>
 </context>
 <context>
@@ -6165,6 +6299,37 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
 </context>
 <context>
+    <name>TemplateSelector</name>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Upravit</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <source>You can not edit built-in templates.</source>
+        <translation type="unfinished">Nemůžete upravit vestavěné předlohy.</translation>
+    </message>
+    <message>
+        <source>Please Confirm</source>
+        <translation type="unfinished">Potvrďte, prosím</translation>
+    </message>
+    <message>
+        <source>Are you sure to delete the following template?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have permission to remove this file.</source>
+        <translation type="unfinished">Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Structure</source>
@@ -6288,11 +6453,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
-        <translation>Nemůžete odstranit vestavěné předlohy.</translation>
+        <translation type="obsolete">Nemůžete odstranit vestavěné předlohy.</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation>Nemůžete upravit vestavěné předlohy.</translation>
+        <translation type="obsolete">Nemůžete upravit vestavěné předlohy.</translation>
     </message>
     <message>
         <source>Can&apos;t load Thesaurus Database</source>
@@ -6926,19 +7091,19 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Please Confirm</source>
-        <translation>Potvrďte, prosím</translation>
+        <translation type="obsolete">Potvrďte, prosím</translation>
     </message>
     <message>
         <source>Are you sure to remove that template permanently ?</source>
-        <translation>Jste si jist, že chcete předlohu odstranit natrvalo?</translation>
+        <translation type="obsolete">Jste si jist, že chcete předlohu odstranit natrvalo?</translation>
     </message>
     <message>
         <source>You do not have permission to remove this file.</source>
-        <translation>Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
+        <translation type="obsolete">Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
     </message>
     <message>
         <source>Templates</source>
-        <translation>Předlohy</translation>
+        <translation type="obsolete">Předlohy</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -7936,6 +8101,40 @@ Do you want to restore it?</source>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Math Assistant...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 has been compiled with Qt %2, but is running with Qt %3.
+Please get the correct runtime library (e.g. .dll or .so files).
+Otherwise there might be random errors and crashes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select LaTeX Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File not found:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -8837,6 +9036,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Dialog</source>
         <translation>Dialog</translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

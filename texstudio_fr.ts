@@ -2397,6 +2397,34 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <source>Insert Separator</source>
         <translation>Insérer un séparateur</translation>
     </message>
+    <message>
+        <source>Table Autoformating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Commands:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Commands Position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Behind Line Break</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate Line (No Indent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate Line (Indented to First Column)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One Line Per Cell</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3240,6 +3268,17 @@ Voulez-vous supprimer ces macros ?</translation>
     </message>
 </context>
 <context>
+    <name>CursorHistory</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished">Arrière</translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished">Avant</translation>
+    </message>
+</context>
+<context>
     <name>EditorConfig</name>
     <message>
         <source>Font</source>
@@ -3844,7 +3883,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation>Une ou plusieurs clés se terminent par un espace. Ces espaces ne sont pas ignorés par BibTeX.</translation>
+        <translation type="obsolete">Une ou plusieurs clés se terminent par un espace. Ces espaces ne sont pas ignorés par BibTeX.</translation>
     </message>
     <message>
         <source>Citation correct (reading ...)</source>
@@ -3885,6 +3924,10 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>Expand Level %1</source>
         <translation>Développer le niveau %1</translation>
+    </message>
+    <message>
+        <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9459,7 +9502,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>AuthorLabel</source>
-        <translation>LabelAuteur</translation>
+        <translation type="obsolete">LabelAuteur</translation>
     </message>
     <message>
         <source>Date:</source>
@@ -9467,7 +9510,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>DateLabel</source>
-        <translation>LabelDate</translation>
+        <translation type="obsolete">LabelDate</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -9475,7 +9518,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>VersionLabel</source>
-        <translation>LabelVersion</translation>
+        <translation type="obsolete">LabelVersion</translation>
     </message>
     <message>
         <source>Description:</source>

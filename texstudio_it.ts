@@ -59,6 +59,10 @@
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -587,10 +591,6 @@
     <message>
         <source>Browse program</source>
         <translation type="obsolete">Esplora programma</translation>
-    </message>
-    <message>
-        <source>Load other icon</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select a File</source>
@@ -1727,6 +1727,66 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <source>Search Path for Commands</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Package csquotes: \enquote{  }</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Fonts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Draw cursor as a thick line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bold Cursor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Autoformating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Commands:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special Commands Position:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Behind Line Break</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate Line (No Indent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Separate Line (Indented to First Column)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One Line Per Cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cache Size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Other Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Separator</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2043,14 +2103,6 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>insert new menu item (before)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>insert new sub menu (before)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>eqref</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2229,6 +2281,25 @@ Do you want to remove them?</source>
     </message>
     <message>
         <source>Restore Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert New Menu Item (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert New Sub Menu (before)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CursorHistory</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2769,10 +2840,6 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>One ore more ids end with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Citation correct (reading ...)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2782,6 +2849,38 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Go to Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unnamed Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse Level %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand Level %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2853,6 +2952,21 @@ Invalid \caption command.</source>
     <message>
         <source>Cancel</source>
         <translation>Annulla</translation>
+    </message>
+</context>
+<context>
+    <name>MathAssistant</name>
+    <message>
+        <source>TexTablet not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Math Assistant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TexTablet crashed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3457,6 +3571,10 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     </message>
     <message>
         <source>Embedded Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Searching for</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4157,13 +4275,6 @@ result in data loss.
     <message>
         <source>untitled</source>
         <translation>senza titolo</translation>
-    </message>
-</context>
-<context>
-    <name>QFoldPanel</name>
-    <message>
-        <source>Expand All</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5322,6 +5433,37 @@ Do you trust this script?</source>
     </message>
 </context>
 <context>
+    <name>TemplateSelector</name>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished">Edita</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Rimuovi</translation>
+    </message>
+    <message>
+        <source>You can not edit built-in templates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please Confirm</source>
+        <translation type="unfinished">Conferma</translation>
+    </message>
+    <message>
+        <source>Are you sure to delete the following template?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have permission to remove this file.</source>
+        <translation type="unfinished">Non hai i permessi per rimuovere questo file.</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Normal Mode</source>
@@ -5849,27 +5991,23 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>Please Confirm</source>
-        <translation>Conferma</translation>
+        <translation type="obsolete">Conferma</translation>
     </message>
     <message>
         <source>Are you sure to remove that template permanently ?</source>
-        <translation>Sicuro di voler rimuovere il template definitivamente ?</translation>
+        <translation type="obsolete">Sicuro di voler rimuovere il template definitivamente ?</translation>
     </message>
     <message>
         <source>You do not have permission to remove this file.</source>
-        <translation>Non hai i permessi per rimuovere questo file.</translation>
+        <translation type="obsolete">Non hai i permessi per rimuovere questo file.</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
-        <translation>Non puoi rimuovere i template.</translation>
-    </message>
-    <message>
-        <source>You can not edit built-in templates.</source>
-        <translation></translation>
+        <translation type="obsolete">Non puoi rimuovere i template.</translation>
     </message>
     <message>
         <source>Templates</source>
-        <translation>Templates</translation>
+        <translation type="obsolete">Templates</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -6924,6 +7062,40 @@ Do you want to restore it?</source>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Math Assistant...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 has been compiled with Qt %2, but is running with Qt %3.
+Please get the correct runtime library (e.g. .dll or .so files).
+Otherwise there might be random errors and crashes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select LaTeX Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File not found:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -7729,6 +7901,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Dialog</source>
         <translation>Dialogo</translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
