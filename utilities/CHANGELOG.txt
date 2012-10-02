@@ -8,6 +8,7 @@ TeXstudio 2.3 -> TeXstudio 2.4.1  SVN ????
 - checking for the correct version of the runtime library
 - more context menus (fold panel, bookmark panel)
 - optionally more bold cursor
+- line operations: move up/down, duplicate
 - several bug fixes (crashes, compilation, focus, ...)
 
 

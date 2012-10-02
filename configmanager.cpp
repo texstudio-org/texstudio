@@ -821,6 +821,8 @@ QSettings* ConfigManager::readSettings() {
 	aliases.insert("main/tools/makeindex", "main/tools/commands/makeindex");
 	aliases.insert("main/tools/metapost", "main/tools/commands/metapost");
 	aliases.insert("main/tools/asymptote", "main/tools/commands/asymptote");
+	aliases.insert("main/edit/eraseLine", "main/edit/lineoperations/eraseLine");
+	aliases.insert("main/edit/eraseEndLine", "main/edit/lineoperations/eraseEndLine");
 
 	int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
