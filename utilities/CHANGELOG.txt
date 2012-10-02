@@ -2,12 +2,17 @@
 
 TeXstudio 2.3 -> TeXstudio 2.4.1  SVN ????
 -----------------------------------------
+- insertion of handwritten equations (Windows 7 only, using TexTablet)
+- improved table-code formating, including options to specify the desired format
+- metadata support in LaTeX templates and table templates
+- checking for the correct version of the runtime library
+- more context menus (fold panel, bookmark panel)
+- optionally more bold cursor
 - several bug fixes (crashes, compilation, focus, ...)
-- experimental support for TexTablet on Windows 7
+
 
 TeXstudio 2.3 -> TeXstudio 2.4  SVN 3255
 -----------------------------------------
-
 - new build system which allows easier combination of several commands
 - support many new tools: xelatex, lualatex, biber, latexmk, texindy
 - embedded pdf viewer
