@@ -616,9 +616,14 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
-	newManagedAction(menu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
-	newManagedAction(menu,"eraseEndLine",tr("Erase until E&nd of Line"), SLOT(editEraseEndLine()), (QList<QKeySequence>()<< Qt::AltModifier+Qt::Key_K));
-	
+
+	submenu = newManagedMenu(menu, "lineoperations", tr("&Line Operations"));
+	newManagedAction(submenu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
+	newManagedAction(submenu,"eraseEndLine",tr("Erase until E&nd of Line"), SLOT(editEraseEndLine()), (QList<QKeySequence>()<< Qt::AltModifier+Qt::Key_K));
+	newManagedAction(submenu,"moveLineUp",tr("Move Line &Up"), SLOT(editMoveLineUp()));
+	newManagedAction(submenu,"moveLineDown",tr("Move Line &Down"), SLOT(editMoveLineDown()));
+	newManagedAction(submenu,"duplicateLine",tr("Duplicate Line"), SLOT(editDuplicateLine()));
+
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
 	newManagedEditorAction(submenu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
@@ -2366,8 +2371,52 @@ void Texmaker::editEraseEndLine() {
     QDocumentCursor c = currentEditorView()->editor->cursor();
     c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
     currentEditorView()->editor->setCursor(c);
-    currentEditorView()->editor->cut();
+	currentEditorView()->editor->cut();
 }
+void Texmaker::editMoveLineUp() {
+	if (!currentEditorView()) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	if (c.lineNumber() <= 0) return;
+	QString lineText = c.line().text();
+	int col = c.columnNumber();
+	c.beginEditBlock();
+	c.clearSelection();
+	c.eraseLine();
+	c.movePosition(1,QDocumentCursor::PreviousLine);
+	c.movePosition(1,QDocumentCursor::StartOfLine);
+	c.insertText(lineText+"\n");
+	c.movePosition(1,QDocumentCursor::PreviousLine);
+	c.setColumnNumber(col);
+	c.endEditBlock();
+	currentEditorView()->editor->setCursor(c);
+}
+void Texmaker::editMoveLineDown() {
+	if (!currentEditorView()) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	if (c.lineNumber() >= c.document()->lineCount()-1) return;
+	QString lineText = c.line().text();
+	int col = c.columnNumber();
+	c.beginEditBlock();
+	c.clearSelection();
+	c.movePosition(1,QDocumentCursor::StartOfLine);
+	c.eraseLine();
+	c.movePosition(1,QDocumentCursor::EndOfLine);
+	c.insertText("\n"+lineText);
+	c.setColumnNumber(col);
+	c.endEditBlock();
+	currentEditorView()->editor->setCursor(c);
+}
+void Texmaker::editDuplicateLine() {
+	if (!currentEditorView()) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	if (c.lineNumber() >= c.document()->lineCount()-1) return;
+	c.beginEditBlock();
+	c.clearSelection();
+	c.movePosition(1,QDocumentCursor::EndOfLine);
+	c.insertText("\n"+c.line().text());
+	c.endEditBlock();
+}
+
 void Texmaker::editEraseWordCmdEnv(){
 	if (!currentEditorView()) return;
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();

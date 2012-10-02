@@ -256,7 +256,10 @@ protected slots:
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
 	void editEraseLine();
-    void editEraseEndLine();
+	void editEraseEndLine();
+	void editMoveLineUp();
+	void editMoveLineDown();
+	void editDuplicateLine();
 	void editEraseWordCmdEnv();
 	void editGotoDefinition();
 	void editSpell();
