@@ -7005,7 +7005,7 @@ void QDocumentPrivate::updateFormatCache()
 		Q_ASSERT(!f.kerning());
 		f.setWeight(fmt.weight);
 		f.setItalic(fmt.italic);
-		if ( !fmt.fontFamily.isEmpty() ){
+        if ( !fmt.fontFamily.isEmpty() && !(fmt.fontFamily=="<default>")){
 			f.setFamily(fmt.fontFamily);
 			m_fixedPitch = false;
 		}
