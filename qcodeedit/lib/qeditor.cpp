@@ -4450,14 +4450,30 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
 			if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
 			     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
-			     m_placeHolders[i].cursor.selectedText().startsWith(text) ) {
-			autoOverridePlaceHolder = true;
-			if (m_placeHolders[i].cursor.selectedText() == text) removePlaceHolder(i);
-		}
+			     (m_placeHolders[i].cursor.selectedText().startsWith(text)))
+			{
+				autoOverridePlaceHolder = true;
+				if (m_placeHolders[i].cursor.selectedText() == text) removePlaceHolder(i);
+			}
 		if (autoOverridePlaceHolder) {
 			for (int i=0; i<text.length(); i++)
 				c.deleteChar();
 		}
+		// remove placeholder when typing closing bracket at the end of a placeholder
+		// e.g. \textbf{[ph]|} and typing '}'
+		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+			if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+			    m_placeHolders[i].cursor.columnNumber() == c.columnNumber() &&
+			    (text.at(0)=='}' || text.at(0)==']') &&
+			    c.nextChar()==text.at(0))
+			{
+				QChar cc = text.at(0);
+				QChar oc = (cc=='}') ? '{' : '[';
+				if (findOpeningBracket(c.line().text(), c.columnNumber()-1, oc, cc) < m_placeHolders[i].cursor.anchorColumnNumber()) {
+					removePlaceHolder(i);
+					c.deleteChar();
+				}
+			}
 	}
 	
 	//prepare for auto bracket insertion
