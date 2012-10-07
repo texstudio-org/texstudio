@@ -341,9 +341,9 @@ QString InsertGraphics::getCode() const {
 		QString imgpath=info.absolutePath();
 		QFileInfo texFileInfo = masterTexFile.exists() ? masterTexFile : texFile;
 		QString texpath=texFileInfo.absolutePath();
-		if(imgpath.startsWith(texpath)){
+		if(imgpath.startsWith(texpath) && !texpath.isEmpty()){
 			// make relative with "./"
-			imgpath=imgpath.mid(texpath.length()+1);
+			imgpath=imgpath.mid(texpath.length()+((texpath.endsWith('/') || texpath.endsWith(QDir::separator()))?0:1));
 			if(!imgpath.isEmpty())
 				imgpath="./"+imgpath+"/";
 			fname=imgpath+info.completeBaseName();
@@ -355,7 +355,7 @@ QString InsertGraphics::getCode() const {
 				if(imgpath.startsWith(path)){
 					fname="../";
 					if (imgpath.length()>path.length())
-						fname+=imgpath.mid(path.length()+1)+"/";
+						fname+=imgpath.mid(path.length()+((path.endsWith('/') || path.endsWith(QDir::separator())) ?0:1))+"/";
 					fname+=info.completeBaseName();
 				}
 			}
