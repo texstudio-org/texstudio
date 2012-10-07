@@ -1524,6 +1524,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	
 	//load it otherwise
 	if (!QFile::exists(f_real)) return 0;
+	QFile file(f_real);
+	if (!file.open(QIODevice::ReadOnly)) {
+		QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
+		return 0;
+	}
+	file.close();
+
 	bool bibTeXmodified=documents.bibTeXFilesModified;
 	
 	LatexDocument *doc=new LatexDocument(this);
@@ -1536,14 +1543,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		edit->document->setEditorView(edit);
 		documents.addDocument(edit->document);
 	} else edit->document->setEditorView(edit);
-	
-	QFile file(f_real);
-	if (!file.open(QIODevice::ReadOnly)) {
-		QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to this file."));
-		return 0;
-	}
-	file.close();
-	
+		
 	if (edit->editor->fileInfo().suffix()!="tex")
 		m_languages->setLanguage(edit->editor, f_real);
 	
