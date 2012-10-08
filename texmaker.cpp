@@ -195,14 +195,16 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 		connect(EditorView, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
+
+	cursorHistory = new CursorHistory(&documents);
 	
 	QLayout* centralLayout= new QHBoxLayout(centralFrame);
 	centralLayout->setSpacing(0);
 	centralLayout->setMargin(0);
 	centralLayout->addWidget(centralToolBar);
-    splitter=new QSplitter(Qt::Horizontal);
-    centralLayout->addWidget(splitter);
-    splitter->addWidget(EditorView);
+	splitter=new QSplitter(Qt::Horizontal);
+	centralLayout->addWidget(splitter);
+	splitter->addWidget(EditorView);
 	
 	setCentralWidget(centralFrame);
 	
@@ -282,7 +284,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	filters << tr("PDF files")+" (*.pdf)";
 	filters << tr("All files")+" (*)";
 	fileFilters = filters.join(";;");
-    selectedFileFilter=filters.first();
+	selectedFileFilter=filters.first();
 
 	
 	//setup autosave timer
@@ -627,7 +629,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
 	newManagedEditorAction(submenu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
-    newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
+	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
 	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext");
 	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev");
 	newManagedEditorAction(submenu,"findcount",tr("&Count"), "findCount");
@@ -641,19 +643,23 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
+
 	newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, ":/images/goto.png");
 	newManagedEditorAction(submenu,"lastchange",tr("Previous Change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
 	newManagedEditorAction(submenu,"nextchange",tr("Next Change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
 	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",Qt::CTRL+Qt::Key_Up,"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
+	submenu->addSeparator();
+	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Back"), SLOT(goBack()), QKeySequence(), ":/images/back.png"));
+	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Forward"), SLOT(goForward()), QKeySequence() , ":/images/forward.png"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"jumpToBookmark",Qt::CTRL+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
 	submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
-    newManagedEditorAction(submenu,QString("bookmark"),tr("Unnamed Bookmark"),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_B,"",QList<QVariant>() <<-1);
+	newManagedEditorAction(submenu,QString("bookmark"),tr("Unnamed Bookmark"),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_B,"",QList<QVariant>() <<-1);
 	for (int i=0; i<=9; i++)
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
@@ -766,14 +772,14 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
 	submenu->addSeparator();
 	newManagedAction(submenu, "viewdvi",tr("View &DVI"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
-    newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
-    newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
+	newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
+	newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
 	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy",tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
 	submenu->addSeparator();
-    newManagedAction(submenu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
-    newManagedAction(submenu, "asymptote",tr("&Asymptote"), SLOT(commandFromAction()))->setData(BuildManager::CMD_ASY);
+	newManagedAction(submenu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
+	newManagedAction(submenu, "asymptote",tr("&Asymptote"), SLOT(commandFromAction()))->setData(BuildManager::CMD_ASY);
 
 	submenu=newManagedMenu(menu, "user",tr("&User", "menu"));
 	updateUserToolMenu();
@@ -962,7 +968,7 @@ void Texmaker::setupMenus() {
 
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-    newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
+	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
 	
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
@@ -1248,9 +1254,9 @@ void Texmaker::editorTabChanged(int index){
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
-    //documents.aboutToUpdateLayout();
-    documents.move(from,to);
-    //documents.updateLayout();
+	//documents.aboutToUpdateLayout();
+	documents.move(from,to);
+	//documents.updateLayout();
 	updateOpenDocumentMenu(false);
 }
 
@@ -1376,8 +1382,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(gotoDefinition()),this,SLOT(editGotoDefinition()));
 	connect(edit, SIGNAL(syncPDFRequested()), this, SLOT(syncPDFViewer()));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
-    connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
-    connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)) ,this,SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
+	connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
+	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)) ,this,SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
@@ -1436,9 +1442,10 @@ QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &ex
 	return documents.getAbsoluteFilePath(relName, extension);
 }
 
-bool Texmaker::FileAlreadyOpen(QString f, bool checkTemporaryNames) {
+bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
 	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
+	saveCurrentCursorToHistory();
 	EditorView->setCurrentWidget(edView);
 	edView->editor->setFocus();
 	return true;
@@ -1935,6 +1942,7 @@ void Texmaker::fileOpen() {
 void Texmaker::fileRestoreSession(bool showProgress){
 	fileCloseAll();
 
+	cursorHistory->setInsertionEnabled(false);
 	QProgressDialog progress(this);
 	if (showProgress) {
 		progress.setMaximum(configManager.sessionFilesToRestore.size());
@@ -1969,7 +1977,8 @@ void Texmaker::fileRestoreSession(bool showProgress){
 	if (showProgress) {
 		progress.setValue(progress.maximum());
 	}
-	FileAlreadyOpen(configManager.sessionCurrent);
+	FocusEditorForFile(configManager.sessionCurrent);
+	cursorHistory->setInsertionEnabled(true);
 }
 
 void Texmaker::fileSave() {
@@ -3110,6 +3119,7 @@ void Texmaker::clickedOnBookmark(QListWidgetItem *item){
     if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
     QString fn=item->data(Qt::UserRole).toString();
     int lineNr=item->data(Qt::UserRole+1).toInt();
+    saveCurrentCursorToHistory();
     QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
     LatexDocument *doc=documents.findDocumentFromName(fn);
     if(!doc){
@@ -3301,6 +3311,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 			if (!edView) return;
 			//entry is now invalid
 		} else lineNr=LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
+		saveCurrentCursorToHistory();
 		EditorView->setCurrentWidget(edView);
 		edView->editor->setFocus();
 		edView->editor->setCursorPosition(lineNr,1);
@@ -3309,6 +3320,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		
 	case StructureEntry::SE_INCLUDE:
 	case StructureEntry::SE_BIBTEX:{
+		saveCurrentCursorToHistory();
 		QString defaultExt=entry->type==StructureEntry::SE_BIBTEX?".bib":".tex";
 		openExternalFile(entry->title,defaultExt,entry->document);
 		break;
@@ -4176,6 +4188,7 @@ void Texmaker::createLabelFromAction()
 		label = "sec:";
 	}
 
+	saveCurrentCursorToHistory();
 	EditorView->setCurrentWidget(edView);
 	edView->editor->setFocus();
 	edView->editor->setCursorPosition(lineNr,pos);
@@ -4977,6 +4990,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	
 	if (line!=-1){
 		QApplication::processEvents();
+		saveCurrentCursorToHistory();
 		gotoLine(line, col);
 		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
@@ -5379,7 +5393,8 @@ void Texmaker::dropEvent(QDropEvent *event) {
 	QList<QUrl> uris=event->mimeData()->urls();
 	
 	QStringList imageFormats = InsertGraphics::imageFormats();
-	
+	saveCurrentCursorToHistory();
+
 	bool alreadyMovedCursor = false;
 	for (int i=0; i<uris.length(); i++) {
 		QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
@@ -5564,6 +5579,7 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 	{
 		QDocumentCursor c=currentEditor()->cursor();
 		int col=c.columnNumber();
+		saveCurrentCursorToHistory();
 		gotoLine(lineNumber);
 		col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
 		currentEditor()->setCursorPosition(lineNumber,col);
@@ -5588,7 +5604,7 @@ void Texmaker::gotoLine(int line, int col) {
 	}
 }
 void Texmaker::gotoLocation(int line, const QString &fileName){
-	if (!FileAlreadyOpen(fileName, true))
+	if (!FocusEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	gotoLine(line);
 }
@@ -5596,7 +5612,7 @@ void Texmaker::gotoLocation(int line, const QString &fileName){
 void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	if (logEntryNumber<0 || logEntryNumber>=outputView->getLogModel()->count()) return;
 	QString fileName = outputView->getLogModel()->at(logEntryNumber).file;
-	if (!FileAlreadyOpen(fileName, true))
+	if (!FocusEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	//get line
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
@@ -5608,6 +5624,7 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 bool Texmaker::gotoLogEntryAt(int newLineNumber) {
 	//goto line
 	if (newLineNumber<0) return false;
+	saveCurrentCursorToHistory();
 	gotoLine(newLineNumber);
 	//find error number
 	QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
@@ -5643,7 +5660,7 @@ bool Texmaker::gotoMark(bool backward, int id) {
 }
 
 void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord){
-	if (!FileAlreadyOpen(fileName, true))
+	if (!FocusEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	gotoLine(line);
 	Q_ASSERT(currentEditor());
@@ -5722,6 +5739,35 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 		if (isMinimized()) showNormal();
 	}
 	
+}
+
+void Texmaker::goBack() {
+	QDocumentCursor currentCur;
+	if (currentEditorView()) currentCur = currentEditorView()->editor->cursor();
+	setGlobalCursor(cursorHistory->back(currentCur));
+}
+
+void Texmaker::goForward() {
+	QDocumentCursor currentCur;
+	if (currentEditorView()) currentCur = currentEditorView()->editor->cursor();
+	setGlobalCursor(cursorHistory->forward(currentCur));
+}
+
+void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
+	if (c.isValid()) {
+		LatexDocument *doc = qobject_cast<LatexDocument*>(c.document());
+		if (doc && doc->getEditorView()) {
+			LatexEditorView *edView = doc->getEditorView();
+			EditorView->setCurrentWidget(edView);
+			edView->editor->setFocus();
+			edView->editor->setCursor(c);
+		}
+	}
+}
+
+void Texmaker::saveCurrentCursorToHistory() {
+	if (!currentEditorView()) return;
+	cursorHistory->insertPos(currentEditorView()->editor->cursor());
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {

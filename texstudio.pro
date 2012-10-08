@@ -121,7 +121,8 @@ HEADERS += texmaker.h \
     usermacro.h \
     dblclickmenubar.h \
     tests/updatechecker_t.h \
-    mathassistant.h
+    mathassistant.h \
+	cursorhistory.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -207,7 +208,8 @@ SOURCES += main.cpp \
     qmetautils.cpp \
     updatechecker.cpp \
     dblclickmenubar.cpp \
-    mathassistant.cpp
+    mathassistant.cpp \
+	cursorhistory.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \

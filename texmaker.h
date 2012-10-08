@@ -20,6 +20,7 @@
 #include "buildmanager.h"
 #include "codesnippet.h"
 #include "configmanager.h"
+#include "cursorhistory.h"
 #include "latexlog.h"
 #include "latexdocument.h"
 #include "latexeditorview.h"
@@ -102,7 +103,7 @@ private:
 	void setupDockWidgets();
 	void setupToolBars();
 	void createStatusBar();
-	bool FileAlreadyOpen(QString f, bool checkTemporaryNames = false);
+	bool FocusEditorForFile(QString f, bool checkTemporaryNames = false);
 	bool closeAllFilesAsking(); //asks the user and close all files
 	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
@@ -145,6 +146,8 @@ private:
 	QToolButton *statusTbLanguage;
 	QActionGroup *spellLanguageActions;
 	
+	CursorHistory *cursorHistory;
+
 	//settings
 	ConfigManager configManager;
 public:
@@ -433,6 +436,11 @@ protected slots:
 	bool gotoMark(bool backward, int id=-1);
 	void syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
 	
+	void goBack();
+	void goForward();
+	void setGlobalCursor(const QDocumentCursor &c);
+	void saveCurrentCursorToHistory();
+
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const PreviewSource& source);
 	void clearPreview();
