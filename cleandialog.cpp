@@ -6,6 +6,8 @@
 QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,ilg,toc,ind,out,blg";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
 
+static const int AbsFilePathRole = Qt::UserRole;
+
 CleanDialog::CleanDialog(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::CleanDialog)
@@ -14,7 +16,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 
 	ConfigManager::getInstance()->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);
 
-	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp("[0-9a-z_]*(,[0-9a-z_]*)*"), this);
+	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp("([0-9a-z_]+.)*[0-9a-z_]+(,([0-9a-z_]+.)*[0-9a-z_]+)*"), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
@@ -28,6 +30,8 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	ui->pbResetExtensions->setIcon(getRealIcon("undo"));
 
 	connect(ui->pbResetExtensions, SIGNAL(clicked()), SLOT(resetExtensions()));
+	connect(ui->cbScope, SIGNAL(currentIndexChanged(int)), SLOT(updateFilesToRemove()));
+	connect(ui->leExtensions, SIGNAL(editingFinished()), SLOT(updateFilesToRemove()));
 	connect(ui->buttonBox, SIGNAL(accepted()), SLOT(onAccept()));
 	connect(ui->buttonBox, SIGNAL(rejected()), SLOT(onReject()));
 }
@@ -59,6 +63,8 @@ bool CleanDialog::checkClean(const LatexDocuments &docs) {
 		somethingToClean = true;
 	}
 
+	if (somethingToClean)
+		updateFilesToRemove();
 	return somethingToClean;
 }
 
@@ -67,52 +73,8 @@ void CleanDialog::resetExtensions() {
 }
 
 void CleanDialog::onAccept() {
-
-	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
-		if (extList.contains("tex")) {
-		txsWarning("For your own safety clean will not delete *.tex files.");
-		extList.removeAll("tex");
-	}
-		currentExtensions = extList.join(",");
-
-	int scope = ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
-	switch (scope) {
-	case Project:
-		{
-			QStringList filterList;
-			foreach (const QString &ext, extList) filterList << "*." + ext;
-
-			removeFromDir(QFileInfo(masterFile).absoluteDir(), filterList);
-		}
-		break;
-	case CurrentTexFile:
-		{
-			QFileInfo fi(currentTexFile);
-			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
-			foreach(const QString& ext, extList)
-				//qDebug() << basename + "." + ext;
-				QFile::remove(basename + "." + ext);
-		}
-		break;
-	case CurrentFileFolder:
-		{
-			QStringList filterList;
-			foreach (const QString &ext, extList) filterList << "*." + ext;
-
-			removeFromDir(QFileInfo(currentTexFile).absoluteDir(), filterList);
-		}
-		break;
-	case OpenTexFiles:
-		{
-			foreach(const QString& finame, openTexFiles){
-				QFileInfo fi(finame);
-				QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
-				foreach(const QString& ext, extList)
-					//qDebug() << basename + "." + ext;
-					QFile::remove(basename + "." + ext);
-			}
-		}
-		break;
+	for (int i=0; i<ui->lwFiles->count(); i++) {
+		QFile::remove(ui->lwFiles->item(i)->data(AbsFilePathRole).toString());
 	}
 	accept();
 }
@@ -121,14 +83,87 @@ void CleanDialog::onReject() {
 	reject();
 }
 
-void CleanDialog::removeFromDir(const QDir &dir, const QStringList &extensionFilter, bool recursive) {
+void CleanDialog::updateFilesToRemove() {
+	Scope scope = (Scope) ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
+	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
+		if (extList.contains("tex")) {
+		txsWarning("For your own safety clean will not delete *.tex files.");
+		extList.removeAll("tex");
+	}
+	currentExtensions = extList.join(",");
+	ui->leExtensions->setText(currentExtensions);
+
+	QStringList files;
+	files << filesToRemove(scope, extList);
+	ui->lwFiles->clear();
+
+	foreach (const QString &absName, files) {
+		QFileInfo f(absName);
+		QListWidgetItem *item = new QListWidgetItem(f.fileName());
+		item->setData(AbsFilePathRole, absName);
+		item->setToolTip(absName);
+		ui->lwFiles->addItem(item);
+	}
+}
+
+QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringList &extensionFilter) {
+	QStringList files;
+	switch (scope) {
+	case Project:
+		{
+			QStringList filterList;
+			foreach (const QString &ext, extensionFilter) filterList << "*." + ext;
+			files << filesToRemoveFromDir(QFileInfo(masterFile).absoluteDir(), filterList);
+		}
+		break;
+	case CurrentTexFile:
+		{
+			QFileInfo fi(currentTexFile);
+			QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
+			foreach(const QString& ext, extensionFilter) {
+				QFileInfo f(basename + "." + ext);
+				if (f.exists())
+					files << f.absoluteFilePath();
+			}
+		}
+		break;
+	case CurrentFileFolder:
+		{
+			QStringList filterList;
+			foreach (const QString &ext, extensionFilter) filterList << "*." + ext;
+			files << filesToRemoveFromDir(QFileInfo(currentTexFile).absoluteDir(), filterList);
+		}
+		break;
+	case OpenTexFiles:
+		{
+			foreach(const QString& finame, openTexFiles){
+				QFileInfo fi(finame);
+				QString basename=fi.absolutePath()+"/"+fi.completeBaseName();
+				foreach(const QString& ext, extensionFilter) {
+					QFileInfo f(basename + "." + ext);
+					if (f.exists())
+						files << f.absoluteFilePath();
+				}
+			}
+		}
+		break;
+	case None:
+		break;
+	}
+	return files;
+}
+
+QStringList CleanDialog::filesToRemoveFromDir(const QDir &dir, const QStringList &extensionFilter, bool recursive) {
+	QStringList files;
 	foreach (const QFileInfo &fi, dir.entryInfoList(extensionFilter, QDir::Files)) {
-		//qDebug() << fi.absoluteFilePath();
-		QFile::remove(fi.absoluteFilePath());
+		files << fi.absoluteFilePath();
 	}
 	if (recursive) {
 		foreach (const QFileInfo &fi, dir.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
-			removeFromDir(fi.absoluteFilePath(), extensionFilter, recursive);
+			files << filesToRemoveFromDir(fi.absoluteFilePath(), extensionFilter, recursive);
 		}
 	}
+	return files;
 }
+
+

@@ -19,6 +19,7 @@ public:
 	bool checkClean(const LatexDocuments &docs);
 
 private slots:
+	void updateFilesToRemove();
 	void resetExtensions();
 	void onAccept();
 	void onReject();
@@ -34,7 +35,8 @@ private:
 	QString currentTexFile;
 	QStringList openTexFiles;
 
-	void removeFromDir(const QDir &dir, const QStringList &extensionFilter, bool recursive=true);
+	QStringList filesToRemove(CleanDialog::Scope scope, const QStringList &extensionFilter);
+	QStringList filesToRemoveFromDir(const QDir &dir, const QStringList &extensionFilter, bool recursive=true);
 };
 
 #endif // CLEANDIALOG_H
