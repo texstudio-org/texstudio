@@ -559,6 +559,10 @@
         <source>Current File Folder</source>
         <translation>Nynější souborová složka</translation>
     </message>
+    <message>
+        <source>Files to Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -2954,11 +2958,11 @@ hcete je odstranit?</translation>
     <name>CursorHistory</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished">Zpět</translation>
+        <translation type="obsolete">Zpět</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation type="unfinished">Vpřed</translation>
+        <translation type="obsolete">Vpřed</translation>
     </message>
 </context>
 <context>
@@ -4304,6 +4308,14 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Searching for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8133,6 +8145,34 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <source>Select Table Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Line Operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Line &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Line &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have read permission to the file %1.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

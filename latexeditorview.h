@@ -87,10 +87,10 @@ public:
 	
 	Q_INVOKABLE void closeCompleter();
 	Q_INVOKABLE void removeBookmark(int lineNr,int bookmarkNumber);
-    void removeBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
+	void removeBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
 	Q_INVOKABLE void addBookmark(int lineNr,int bookmarkNumber);
 	Q_INVOKABLE bool hasBookmark(int lineNr,int bookmarkNumber);
-    bool hasBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
+	bool hasBookmark(QDocumentLineHandle *dlh,int bookmarkNumber);
 	
 	QList<QDocumentCursor> autoPreviewCursor;
 
@@ -110,7 +110,7 @@ private:
 	verbatimFormat, wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
-    static QList<int> formatsList;
+	static QList<int> formatsList;
 	
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;
