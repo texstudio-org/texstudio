@@ -652,7 +652,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
 	submenu->addSeparator();
 	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Back"), SLOT(goBack()), Qt::ALT+Qt::Key_Left, ":/images/back.png"));
-	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right , ":/images/forward.png"));
+	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right, ":/images/forward.png"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -1379,8 +1379,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
-	connect(edit, SIGNAL(gotoDefinition()),this,SLOT(editGotoDefinition()));
-	connect(edit, SIGNAL(syncPDFRequested()), this, SLOT(syncPDFViewer()));
+	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)),this,SLOT(editGotoDefinition(QDocumentCursor)));
+	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
 	connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
 	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)) ,this,SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
@@ -2539,10 +2539,11 @@ void Texmaker::editEraseWordCmdEnv(){
 	currentEditorView()->editor->setCursor(cursor);
 }
 
-void Texmaker::editGotoDefinition(){
+void Texmaker::editGotoDefinition(QDocumentCursor c) {
 	if (!currentEditorView())	return;
-	QDocumentCursor c=currentEditor()->cursor();
+	if (!c.isValid()) c=currentEditor()->cursor();
 	QString command, value;
+	saveCurrentCursorToHistory();
 	switch (latexParser.findContext(c.line().text(), c.columnNumber(), command, value)) {
 	case LatexParser::Reference:
 		currentEditorView()->gotoToLabel(value);
@@ -6193,10 +6194,10 @@ void Texmaker::cursorPositionChanged(){
 	model->setHighlightedEntry(newSection);
 	if(!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
-	syncPDFViewer(false);
+	syncPDFViewer(currentEditor()->cursor(), false);
 }
 
-void Texmaker::syncPDFViewer(bool inForeground) {
+void Texmaker::syncPDFViewer(QDocumentCursor cur, bool inForeground) {
 #ifndef NO_POPPLER_PREVIEW
 	if(PDFDocument::documentList().isEmpty() && inForeground) {
 		// open new viewer, if none exists
@@ -6206,8 +6207,10 @@ void Texmaker::syncPDFViewer(bool inForeground) {
 	}
 
 	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-		if (inForeground || viewer->followCursor())
-			viewer->syncFromSource(getCurrentFileName(), currentLine, false);
+		if (inForeground || viewer->followCursor()) {
+			int lineNumber = cur.isValid() ? cur.lineNumber() : currentLine;
+			viewer->syncFromSource(getCurrentFileName(), lineNumber, false);
+		}
 		if (inForeground) {
 			viewer->raise();
 		}

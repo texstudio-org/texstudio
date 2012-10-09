@@ -3079,6 +3079,21 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 /*!
 	\internal
 */
+void QEditor::keyReleaseEvent(QKeyEvent *e)
+{
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		if ( b->keyReleaseEvent(e, this) )
+			return;
+
+	// currently the editor is doing nothing on KeyRelease
+
+	foreach ( QEditorInputBindingInterface *b, m_bindings )
+		b->postKeyReleaseEvent(e, this);
+}
+
+/*!
+	\internal
+*/
 void QEditor::inputMethodEvent(QInputMethodEvent* e)
 {
 	foreach ( QEditorInputBindingInterface *b, m_bindings )

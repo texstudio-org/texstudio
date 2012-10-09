@@ -59,8 +59,10 @@ public:
 	}
 	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
+	virtual bool keyReleaseEvent(QKeyEvent *event, QEditor *editor);
 	virtual bool mousePressEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool mouseReleaseEvent(QMouseEvent *event, QEditor *editor);
+	virtual bool mouseMoveEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
 	friend class LatexEditorView;
@@ -71,7 +73,6 @@ private:
 	QString lastSpellCheckedWord;
 	
 	QPoint lastMousePress;
-	
 };
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
@@ -122,10 +123,23 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		}
 		//		for (int i=0;i<LatexEditorView::completer)
 		
+	} else {
+		if (event->key() == Qt::Key_Control) {
+			editor->setMouseTracking(true);
+		}
 	}
 	if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
 		LatexEditorView::hideTooltipWhenLeavingLine=-1;
 		QToolTip::hideText();
+	}
+	return false;
+}
+
+bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
+	if (event->key() == Qt::Key_Control) {
+		editor->setMouseTracking(false);
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+		edView->removeLinkOverlay();
 	}
 	return false;
 }
@@ -141,12 +155,20 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 		int distanceSqr = (event->pos().x() - lastMousePress.x())*(event->pos().x() - lastMousePress.x()) + (event->pos().y() - lastMousePress.y())*(event->pos().y() - lastMousePress.y());
 		if (distanceSqr > 4) // allow the user to accidentially move the mouse a bit
 			return false;
-		if (!editor->languageDefinition()) return false;
-		if (editor->languageDefinition()->language() != "(La)TeX") 
-			return false;
+
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
 		if (!edView) return false;
-		edView->emitSyncPDF();
+		QDocumentCursor cursor = editor->cursorForPosition(editor->mapToContents(event->pos()));
+
+		if (edView->hasLinkOverlay()) {
+			emit edView->gotoDefinition(cursor);
+			return true;
+		}
+
+		if (!editor->languageDefinition()) return false;
+		if (editor->languageDefinition()->language() != "(La)TeX")
+			return false;
+		emit edView->syncPDFRequested(cursor);
 		return true;
 	}
 	return false;
@@ -314,12 +336,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 
 		if (context == LatexParser::Citation || context == LatexParser::Reference) {
 			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
-			edView->connect(act, SIGNAL(triggered()), edView, SIGNAL(gotoDefinition()));
+			act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
+			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
 			contextMenu->addAction(act);
 		}
 
 		QAction *act = new QAction(LatexEditorView::tr("Go to PDF"), contextMenu);
-		edView->connect(act, SIGNAL(triggered()), edView, SIGNAL(syncPDFRequested()));
+		act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
+		edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitSyncPDFFromAction()));
 		contextMenu->addAction(act);
 	}
 
@@ -333,6 +357,19 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	return true;
 }
 
+bool DefaultInputBinding::mouseMoveEvent(QMouseEvent *event, QEditor *editor) {
+	if(event->modifiers() == Qt::ControlModifier) {
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+		QDocumentCursor cursor = editor->cursorForPosition(editor->mapToContents(event->pos()));
+		edView->checkForLinkOverlay(cursor);
+	} else {
+		qDebug() << "Should never be reached.";
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+		edView->removeLinkOverlay();
+	}
+	return false;
+}
+
 DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 
 
@@ -343,7 +380,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),config(aconfig),bibReader(0) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),config(aconfig),bibReader(0),linkOverlayActive(false) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -482,6 +519,53 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 		CodeSnippet s("\\begin{"+macro+"}");
 		s.insert(editor);
 	} else CodeSnippet(macro).insert(editor);
+}
+
+void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
+	if (cursor.atBlockEnd()) {
+		removeLinkOverlay();
+		return;
+	}
+
+	bool validPosition = cursor.isValid() && cursor.line().isValid();
+	if (validPosition) {
+		LatexParser::ContextType context = LatexParser::Unknown;
+		QString ctxCommand, ctxValue;
+		QString line=cursor.line().text();
+		context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
+		if (context == LatexParser::Reference) {
+			if (!linkOverlayActive) setLinkOverlay(cursor);
+		} else {
+			if (linkOverlayActive) removeLinkOverlay();
+		}
+	} else {
+		if (linkOverlayActive) removeLinkOverlay();
+	}
+}
+
+void LatexEditorView::setLinkOverlay(QDocumentCursor cur) {
+	linkOverlayLine = cur.line();
+
+	QString text = linkOverlayLine.text();
+	int col = cur.columnNumber();
+	int from = findOpeningBracket(text, col);
+	int to = findClosingBracket(text, col);
+	if (from<0 || to<0)
+		return;
+	from +=1; to -= 1; // leave out brackets
+	linkOverlayActive = true;
+	linkOverlay = QFormatRange(from, to-from+1, QDocument::formatFactory()->id("link"));
+	linkOverlayLine.addOverlay(linkOverlay);
+	linkOverlayStoredCursor = editor->viewport()->cursor();
+	editor->viewport()->setCursor(Qt::PointingHandCursor);
+}
+
+void LatexEditorView::removeLinkOverlay() {
+	if (linkOverlayActive) {
+		linkOverlayActive = false;
+		linkOverlayLine.removeOverlay(linkOverlay);
+		editor->viewport()->setCursor(linkOverlayStoredCursor);
+	}
 }
 
 void LatexEditorView::temporaryHighlight(QDocumentCursor cur) {
@@ -971,8 +1055,22 @@ void LatexEditorView::emitChangeDiff(){
 	emit changeDiff(pt);
 }
 
-void LatexEditorView::emitSyncPDF() {
-	emit syncPDFRequested();
+void LatexEditorView::emitGotoDefinitionFromAction() {
+	QDocumentCursor c;
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		c = act->data().value<QDocumentCursor>();
+	}
+	emit gotoDefinition(c);
+}
+
+void LatexEditorView::emitSyncPDFFromAction() {
+	QDocumentCursor c;
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		c = act->data().value<QDocumentCursor>();
+	}
+	emit syncPDFRequested(c);
 }
 
 void LatexEditorView::lineMarkClicked(int line) {
@@ -982,7 +1080,7 @@ void LatexEditorView::lineMarkClicked(int line) {
 	for (int i=-1; i<10; i++)
 		if (l.hasMark(bookMarkId(i))) {
 			l.removeMark(bookMarkId(i));
-            emit bookmarkRemoved(l.handle());
+			emit bookmarkRemoved(l.handle());
 			return;
 		}
 	// remove error marks
@@ -1002,7 +1100,7 @@ void LatexEditorView::lineMarkClicked(int line) {
 	for (int i=1; i<=10; i++) {
 		if (editor->document()->findNextMark(bookMarkId(i%10))<0) {
 			l.addMark(bookMarkId(i%10));
-            emit bookmarkAdded(l.handle(),i);
+			emit bookmarkAdded(l.handle(),i);
 			return;
 		}
 	}

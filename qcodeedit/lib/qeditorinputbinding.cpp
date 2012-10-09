@@ -225,6 +225,20 @@ void QEditorInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor)
 	Q_UNUSED(editor)
 }
 
+bool QEditorInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor)
+{
+	Q_UNUSED(event)
+	Q_UNUSED(editor)
+
+	return false;
+}
+
+void QEditorInputBinding::postKeyReleaseEvent(QKeyEvent *event, QEditor *editor)
+{
+	Q_UNUSED(event)
+	Q_UNUSED(editor)
+}
+
 bool QEditorInputBinding::inputMethodEvent(QInputMethodEvent* event, QEditor *editor)
 {
 	Q_UNUSED(event)

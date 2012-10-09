@@ -105,6 +105,9 @@ class QCE_EXPORT QEditorInputBinding : public QEditorInputBindingInterface
 		virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
 		virtual void postKeyPressEvent(QKeyEvent *event, QEditor *editor);
 		
+		virtual bool keyReleaseEvent(QKeyEvent *event, QEditor *editor);
+		virtual void postKeyReleaseEvent(QKeyEvent *event, QEditor *editor);
+
 		virtual bool inputMethodEvent(QInputMethodEvent* event, QEditor *editor);
 		virtual void postInputMethodEvent(QInputMethodEvent *event, QEditor *editor);
 		
