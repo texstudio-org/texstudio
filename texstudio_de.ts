@@ -5538,7 +5538,7 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
     </message>
     <message>
         <source>align-ampersand</source>
-        <translation>Richte &quot;ampersand&quot; aus</translation>
+        <translation>Ausrichtungstrennzeichen (&amp;&amp;)</translation>
     </message>
     <message>
         <source>wordRepetition</source>
