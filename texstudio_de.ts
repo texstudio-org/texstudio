@@ -623,6 +623,10 @@
         <source>Current File Folder</source>
         <translation>Ordner der aktuellen Datei</translation>
     </message>
+    <message>
+        <source>Files to Delete</source>
+        <translation>Zu löschende Dateien</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -3132,11 +3136,11 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     <name>CursorHistory</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished">Zurück</translation>
+        <translation type="obsolete">Zurück</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation type="unfinished">Nächste</translation>
+        <translation type="obsolete">Nächste</translation>
     </message>
 </context>
 <context>
@@ -4486,6 +4490,14 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <message>
         <source>Searching for</source>
         <translation>Suche nach</translation>
+    </message>
+    <message>
+        <source>Alt+Left</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Alt+Right</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -8361,6 +8373,42 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
     <message>
         <source>Select Table Template</source>
         <translation>Tabellenvorlage auswählen</translation>
+    </message>
+    <message>
+        <source>&amp;Line Operations</source>
+        <translation>&amp;Zeilen</translation>
+    </message>
+    <message>
+        <source>Move Line &amp;Up</source>
+        <translation>Zeile nach &amp;oben schieben</translation>
+    </message>
+    <message>
+        <source>Move Line &amp;Down</source>
+        <translation>Zeile nach &amp;unten schieben</translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation>Zeile &amp;duplizieren</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="obsolete">Zurück</translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="obsolete">Vor</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to the file %1.</source>
+        <translation>Sie besitzen nicht die nötigen Rechte um diese Datei zu lesen\n%1</translation>
+    </message>
+    <message>
+        <source>Go Back</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <source>Go Forward</source>
+        <translation>Vor</translation>
     </message>
 </context>
 <context>

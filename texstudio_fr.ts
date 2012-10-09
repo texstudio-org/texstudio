@@ -663,6 +663,10 @@
         <source>Current File Folder</source>
         <translation>Répertoire du fichier en cours</translation>
     </message>
+    <message>
+        <source>Files to Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -3271,11 +3275,11 @@ Voulez-vous supprimer ces macros ?</translation>
     <name>CursorHistory</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished">Arrière</translation>
+        <translation type="obsolete">Arrière</translation>
     </message>
     <message>
         <source>Forward</source>
-        <translation type="unfinished">Avant</translation>
+        <translation type="obsolete">Avant</translation>
     </message>
 </context>
 <context>
@@ -4653,6 +4657,14 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     <message>
         <source>Searching for</source>
         <translation>Cherche</translation>
+    </message>
+    <message>
+        <source>Alt+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Right</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8572,6 +8584,34 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     <message>
         <source>Select Table Template</source>
         <translation>Sélectionner un modèle de tableau</translation>
+    </message>
+    <message>
+        <source>&amp;Line Operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Line &amp;Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Line &amp;Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have read permission to the file %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

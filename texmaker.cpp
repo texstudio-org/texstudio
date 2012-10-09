@@ -651,8 +651,8 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",Qt::CTRL+Qt::Key_Up,"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
 	submenu->addSeparator();
-	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Back"), SLOT(goBack()), Qt::ALT+Qt::Key_Left, ":/images/back.png"));
-	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right, ":/images/forward.png"));
+	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), Qt::ALT+Qt::Key_Left, ":/images/back.png"));
+	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right, ":/images/forward.png"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
