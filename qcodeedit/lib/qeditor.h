@@ -460,6 +460,7 @@ public slots:
 		virtual void timerEvent(QTimerEvent *e);
 		
 		virtual void keyPressEvent(QKeyEvent *e);
+		virtual void keyReleaseEvent(QKeyEvent *);
 	public:
 		virtual void inputMethodEvent(QInputMethodEvent* e);
 		

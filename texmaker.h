@@ -264,7 +264,7 @@ protected slots:
 	void editMoveLineDown();
 	void editDuplicateLine();
 	void editEraseWordCmdEnv();
-	void editGotoDefinition();
+	void editGotoDefinition(QDocumentCursor c = QDocumentCursor());
 	void editSpell();
 	void editThesaurus(int line=-1,int col=-1);
 	void editChangeLineEnding();
@@ -458,7 +458,7 @@ protected slots:
 	void jumpToSearch(QDocument* doc,int lineNumber);
 	
 	void cursorPositionChanged();
-	void syncPDFViewer(bool inForeground = true);
+	void syncPDFViewer(QDocumentCursor cur, bool inForeground = true);
 	//	void treeWidgetChanged();
 	
 	bool generateMirror(bool setCur=false);

@@ -38,6 +38,9 @@ class QEditorInputBindingInterface
 		
 		virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor) = 0;
 		virtual void postKeyPressEvent(QKeyEvent *event, QEditor *editor) = 0;
+
+		virtual bool keyReleaseEvent(QKeyEvent *event, QEditor *editor) = 0;
+		virtual void postKeyReleaseEvent(QKeyEvent *event, QEditor *editor) = 0;
 		
 		virtual bool inputMethodEvent(QInputMethodEvent* event, QEditor *editor) = 0;
 		virtual void postInputMethodEvent(QInputMethodEvent *event, QEditor *editor) = 0;

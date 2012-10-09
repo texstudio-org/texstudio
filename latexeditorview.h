@@ -133,6 +133,11 @@ private:
 	bibtexReader *bibReader;
 	QPoint lastPos;
 
+	bool linkOverlayActive;
+	QDocumentLine linkOverlayLine;
+	QFormatRange linkOverlay;
+	QCursor linkOverlayStoredCursor;
+
 	QList<QPair<QDocumentLine, QFormatRange> > tempHighlightQueue;
 
 	static QStringList checkedLanguages; // languages for online checking
@@ -144,7 +149,8 @@ private slots:
 	void openPackageDocumentation();
 	void openPackageDocumentationError();
 	void emitChangeDiff();
-	void emitSyncPDF();
+	void emitGotoDefinitionFromAction();
+	void emitSyncPDFFromAction();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket);
@@ -179,6 +185,11 @@ public slots:
 	void paste();
 	void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0);
 
+	void checkForLinkOverlay(QDocumentCursor cursor);
+	void setLinkOverlay(QDocumentCursor cur);
+	void removeLinkOverlay();
+	bool hasLinkOverlay() { return linkOverlayActive; }
+
 	void temporaryHighlight(QDocumentCursor cur);
 	void removeTemporaryHighlight();
 
@@ -199,10 +210,10 @@ signals:
 	void thesaurus(int line,int col);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
-	void gotoDefinition();
-	void syncPDFRequested();
-    void bookmarkRemoved(QDocumentLineHandle *dlh);
-    void bookmarkAdded(QDocumentLineHandle *dlh,int nr);
+	void gotoDefinition(QDocumentCursor c);
+	void syncPDFRequested(QDocumentCursor c);
+	void bookmarkRemoved(QDocumentLineHandle *dlh);
+	void bookmarkAdded(QDocumentLineHandle *dlh,int nr);
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
