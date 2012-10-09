@@ -929,8 +929,14 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	config->setValue("IniMode",true);
 	
 	config->beginGroup("version");
+	// updated on every access
 	config->setValue("written_by_TXS_version", TXSVERSION);
 	config->setValue("written_by_TXS_SVNversion", getSimplifiedSVNVersion());
+	// written just the very first time
+	if (!config->value("created_by_TXS_version").isValid())
+		config->setValue("created_by_TXS_version", TXSVERSION);
+	if (!config->value("created_by_TXS_SVNversion").isValid())
+		config->setValue("created_by_TXS_SVNversion", getSimplifiedSVNVersion());
 	config->endGroup();
 
 	config->beginGroup("texmaker");
