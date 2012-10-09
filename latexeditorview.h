@@ -137,6 +137,7 @@ private:
 	QDocumentLine linkOverlayLine;
 	QFormatRange linkOverlay;
 	QCursor linkOverlayStoredCursor;
+	LatexParser::ContextType linkOverlayContext;
 
 	QList<QPair<QDocumentLine, QFormatRange> > tempHighlightQueue;
 
@@ -186,9 +187,10 @@ public slots:
 	void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0);
 
 	void checkForLinkOverlay(QDocumentCursor cursor);
-	void setLinkOverlay(QDocumentCursor cur);
+	void setLinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType context);
 	void removeLinkOverlay();
 	bool hasLinkOverlay() { return linkOverlayActive; }
+	QString getLinkText();
 
 	void temporaryHighlight(QDocumentCursor cur);
 	void removeTemporaryHighlight();
