@@ -665,7 +665,7 @@
     </message>
     <message>
         <source>Files to Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers à supprimer</translation>
     </message>
 </context>
 <context>
@@ -2403,31 +2403,31 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     </message>
     <message>
         <source>Table Autoformating</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto-formatage du tableau</translation>
     </message>
     <message>
         <source>Special Commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Commandes spéciales :</translation>
     </message>
     <message>
         <source>Special Commands Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Position des commandes spéciales :</translation>
     </message>
     <message>
         <source>Behind Line Break</source>
-        <translation type="unfinished"></translation>
+        <translation>Avant un changement de ligne</translation>
     </message>
     <message>
         <source>Separate Line (No Indent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Séparer les lignes (pas de retrait)</translation>
     </message>
     <message>
         <source>Separate Line (Indented to First Column)</source>
-        <translation type="unfinished"></translation>
+        <translation>Séparer les lignes (retrait jusqu&apos;à la 1re colonne)</translation>
     </message>
     <message>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Une ligne par cellule</translation>
     </message>
 </context>
 <context>
@@ -3931,7 +3931,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;identifiant BibTeX se termine par un espace. De tels espaces ne sont pas ignorés par BibTeX.</translation>
     </message>
 </context>
 <context>
@@ -4660,11 +4660,11 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     </message>
     <message>
         <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Alt+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Droite</translation>
     </message>
 </context>
 <context>
@@ -8587,31 +8587,31 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     </message>
     <message>
         <source>&amp;Line Operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Opérations sur les &amp;lignes</translation>
     </message>
     <message>
         <source>Move Line &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer à la ligne &amp;précédente</translation>
     </message>
     <message>
         <source>Move Line &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer à la ligne &amp;suivante</translation>
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliquer la ligne</translation>
     </message>
     <message>
         <source>Go Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la position précédente</translation>
     </message>
     <message>
         <source>Go Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la position suivante</translation>
     </message>
     <message>
         <source>You do not have read permission to the file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous n&apos;avez pas le droit de lecture sur le fichier %1.</translation>
     </message>
 </context>
 <context>
