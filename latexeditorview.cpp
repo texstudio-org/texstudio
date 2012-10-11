@@ -573,6 +573,7 @@ void LatexEditorView::setLinkOverlay(const QDocumentCursor &cur, LatexParser::Co
 	linkOverlayLine = cur.line();
 	linkOverlay = newOverlay;
 	linkOverlayLine.addOverlay(linkOverlay);
+	editor->viewport()->update(); // immediately apply the overlay
 	linkOverlayContext = context;
 	linkOverlayStoredCursor = editor->viewport()->cursor();
 	editor->viewport()->setCursor(Qt::PointingHandCursor);
@@ -582,6 +583,7 @@ void LatexEditorView::removeLinkOverlay() {
 	if (linkOverlayActive) {
 		linkOverlayActive = false;
 		linkOverlayLine.removeOverlay(linkOverlay);
+		editor->viewport()->update(); // immediately apply the overlay
 		editor->viewport()->setCursor(linkOverlayStoredCursor);
 	}
 }
