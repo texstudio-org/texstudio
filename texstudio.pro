@@ -122,7 +122,7 @@ HEADERS += texmaker.h \
     dblclickmenubar.h \
     tests/updatechecker_t.h \
     mathassistant.h \
-	cursorhistory.h
+    cursorhistory.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -209,7 +209,7 @@ SOURCES += main.cpp \
     updatechecker.cpp \
     dblclickmenubar.cpp \
     mathassistant.cpp \
-	cursorhistory.cpp
+    cursorhistory.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
@@ -235,13 +235,15 @@ FORMS += structdialog.ui \
     userquickdialog.ui \
     PDFDocument.ui \
     cleandialog.ui
-TRANSLATIONS += texstudio_fr.ts \
+TRANSLATIONS += texstudio_cs.ts \
     texstudio_de.ts \
-    texstudio_it.ts \
-    texstudio_cs.ts \
+    texstudio_es.ts \
+    texstudio_fr.ts \
     texstudio_hu.ts \
+    texstudio_it.ts \
     texstudio_pt_BR.ts \
-    texstudio_uk.ts
+    texstudio_uk.ts \
+    texstudio_zh_CN.ts
 
 # ###############################
 win32:RC_FILE = win.rc

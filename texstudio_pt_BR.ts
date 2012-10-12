@@ -1583,7 +1583,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location filename="configdialog.ui" line="1073"/>
         <location filename="configdialog.cpp" line="402"/>
-        <location filename="configmanager.cpp" line="1111"/>
+        <location filename="configmanager.cpp" line="1117"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -2740,7 +2740,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation type="obsolete">Somente uma resposta permitida</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1112"/>
+        <location filename="configmanager.cpp" line="1118"/>
         <source>Basic Key Mapping</source>
         <translation>Mapa Básico do Teclado</translation>
     </message>
@@ -3498,12 +3498,12 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation>depois da palavra</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1054"/>
-        <location filename="configmanager.cpp" line="1055"/>
-        <location filename="configmanager.cpp" line="1206"/>
-        <location filename="configmanager.cpp" line="1208"/>
-        <location filename="configmanager.cpp" line="1480"/>
-        <location filename="configmanager.cpp" line="1491"/>
+        <location filename="configmanager.cpp" line="1060"/>
+        <location filename="configmanager.cpp" line="1061"/>
+        <location filename="configmanager.cpp" line="1212"/>
+        <location filename="configmanager.cpp" line="1214"/>
+        <location filename="configmanager.cpp" line="1486"/>
+        <location filename="configmanager.cpp" line="1497"/>
         <source>default</source>
         <translation>padrão</translation>
     </message>
@@ -3516,13 +3516,13 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation type="obsolete">Interno</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1105"/>
+        <location filename="configmanager.cpp" line="1111"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1133"/>
-        <location filename="configmanager.cpp" line="2052"/>
+        <location filename="configmanager.cpp" line="1139"/>
+        <location filename="configmanager.cpp" line="2058"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nenhum&gt;</translation>
     </message>
@@ -3535,49 +3535,49 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation type="obsolete">Inserir novo submenu (antes)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1178"/>
+        <location filename="configmanager.cpp" line="1184"/>
         <source>Insert New Menu Item (before)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1181"/>
+        <location filename="configmanager.cpp" line="1187"/>
         <source>Insert New Sub Menu (before)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1199"/>
+        <location filename="configmanager.cpp" line="1205"/>
         <source>Latex/Math menus</source>
         <translation>Latex/Mat menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1200"/>
+        <location filename="configmanager.cpp" line="1206"/>
         <source>All menus</source>
         <translation>Todos os menus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1201"/>
+        <location filename="configmanager.cpp" line="1207"/>
         <source>Special Tags</source>
         <translation>Etiquetas Especiais</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1306"/>
+        <location filename="configmanager.cpp" line="1312"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Você tem habilitada a substituição automática de aspas. Todavia existem macros com as sequências (?&lt;=\s|^) ou (?language:latex)(?&lt;=\S) que irão sobrescrevê-las.
 Deseja removê-las?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2216"/>
+        <location filename="configmanager.cpp" line="2222"/>
         <source>Configure</source>
         <translation>Configurar</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2223"/>
+        <location filename="configmanager.cpp" line="2229"/>
         <source>Select Program</source>
         <translation>Selecionar Programa</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2230"/>
+        <location filename="configmanager.cpp" line="2236"/>
         <source>Restore Default</source>
         <translation>Restaurar Padrão</translation>
     </message>
@@ -3594,39 +3594,39 @@ Do you want to remove them?</source>
 Deseja removê-las?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1543"/>
+        <location filename="configmanager.cpp" line="1549"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <oldsource>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall </oldsource>
         <translation>Para utilizar plenamente o visualizador de pdf interno, synctex deve estar ativado.  TeXstudio deve ativá-lo agora?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1557"/>
+        <location filename="configmanager.cpp" line="1563"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>&apos;Documento Mestre&apos; Recente %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1560"/>
+        <location filename="configmanager.cpp" line="1566"/>
         <source>Recent File %1</source>
         <translation>Arquivo Recente %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1561"/>
+        <location filename="configmanager.cpp" line="1567"/>
         <source>Open first non-open file</source>
         <translation>Abrir o primeiro arquivo &apos;não aberto&apos;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1562"/>
+        <location filename="configmanager.cpp" line="1568"/>
         <source>&amp;* Open all files</source>
         <oldsource>Open all files</oldsource>
         <translation>&amp;* Abrir todos os arquivos</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1572"/>
+        <location filename="configmanager.cpp" line="1578"/>
         <source>Master Document: </source>
         <translation>Documento Mestre: </translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2053"/>
+        <location filename="configmanager.cpp" line="2059"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;padrão&gt;</translation>
     </message>
@@ -3635,12 +3635,12 @@ Deseja removê-las?</translation>
         <translation type="obsolete">&lt;desconhecido&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2316"/>
+        <location filename="configmanager.cpp" line="2322"/>
         <source>Add</source>
         <translation>Adiconar</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2370"/>
+        <location filename="configmanager.cpp" line="2376"/>
         <source>Browse program</source>
         <translation>Selecionar Programa</translation>
     </message>
@@ -4290,77 +4290,77 @@ O assistente não suporta comandos</translation>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="latexeditorview.cpp" line="227"/>
-        <location filename="latexeditorview.cpp" line="1499"/>
+        <location filename="latexeditorview.cpp" line="234"/>
+        <location filename="latexeditorview.cpp" line="1524"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>pressionar shift =&gt; ocultar sugestões</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="233"/>
+        <location filename="latexeditorview.cpp" line="240"/>
         <source>always ignore</source>
         <translation>ignorar sempre</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="248"/>
+        <location filename="latexeditorview.cpp" line="255"/>
         <source>New BibTeX Entry %1</source>
         <translation>Nova entrada BibTeX %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="260"/>
+        <location filename="latexeditorview.cpp" line="267"/>
         <source>Open %1</source>
         <translation>Abrir %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="267"/>
+        <location filename="latexeditorview.cpp" line="274"/>
         <source>Open package documentation</source>
         <translation>Abrir documentação do pacote</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="312"/>
+        <location filename="latexeditorview.cpp" line="319"/>
         <source>use yours</source>
         <translation>usar os seus</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="316"/>
+        <location filename="latexeditorview.cpp" line="323"/>
         <source>use other&apos;s</source>
         <translation>usar de outros</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="327"/>
+        <location filename="latexeditorview.cpp" line="334"/>
         <source>Thesaurus...</source>
         <translation>Sinônimos...</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="338"/>
+        <location filename="latexeditorview.cpp" line="345"/>
         <source>Go to Definition</source>
         <translation>Ir para Definição</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="344"/>
+        <location filename="latexeditorview.cpp" line="351"/>
         <source>Go to PDF</source>
         <translation>Ir para PDF</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1687"/>
+        <location filename="latexeditorview.cpp" line="1712"/>
         <source>label missing!</source>
         <translation>rótulo inexistente!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1689"/>
-        <location filename="latexeditorview.cpp" line="1711"/>
+        <location filename="latexeditorview.cpp" line="1714"/>
+        <location filename="latexeditorview.cpp" line="1736"/>
         <source>label multiple times defined!</source>
         <translation>rótulo definido várias vezes!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1697"/>
-        <location filename="latexeditorview.cpp" line="1753"/>
+        <location filename="latexeditorview.cpp" line="1722"/>
+        <location filename="latexeditorview.cpp" line="1778"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome do arquivo: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="1714"/>
+        <location filename="latexeditorview.cpp" line="1739"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%n referência para este rótulo</numerusform>
@@ -4368,47 +4368,47 @@ O assistente não suporta comandos</translation>
         </translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1719"/>
+        <location filename="latexeditorview.cpp" line="1744"/>
         <source>Citation correct (reading ...)</source>
         <translation>Citação correta (lendo ...)</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1741"/>
+        <location filename="latexeditorview.cpp" line="1766"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2137"/>
+        <location filename="latexeditorview.cpp" line="2162"/>
         <source>Remove Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2145"/>
+        <location filename="latexeditorview.cpp" line="2170"/>
         <source>Unnamed Bookmark</source>
         <translation type="unfinished">Marcador sem Rótulo</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2150"/>
+        <location filename="latexeditorview.cpp" line="2175"/>
         <source>Bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2176"/>
+        <location filename="latexeditorview.cpp" line="2201"/>
         <source>Collapse All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2180"/>
+        <location filename="latexeditorview.cpp" line="2205"/>
         <source>Collapse Level %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2185"/>
+        <location filename="latexeditorview.cpp" line="2210"/>
         <source>Expand All</source>
         <translation type="unfinished">Expandir Todos</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2189"/>
+        <location filename="latexeditorview.cpp" line="2214"/>
         <source>Expand Level %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4417,12 +4417,12 @@ O assistente não suporta comandos</translation>
         <translation type="obsolete">Citação correta</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1738"/>
+        <location filename="latexeditorview.cpp" line="1763"/>
         <source>Citation missing</source>
         <translation>Citação faltando</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1741"/>
+        <location filename="latexeditorview.cpp" line="1766"/>
         <source>Warning:</source>
         <translation>Alerta:</translation>
     </message>
@@ -10063,7 +10063,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>Não alertar novamente.</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1647"/>
+        <location filename="configmanager.cpp" line="1653"/>
         <source>Edit &amp;Macros...</source>
         <translation>Editar &amp;Macros...</translation>
     </message>
