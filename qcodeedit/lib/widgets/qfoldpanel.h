@@ -46,6 +46,7 @@ class QCE_EXPORT QFoldPanel : public QPanel
 
 	protected:
 		virtual void mousePressEvent(QMouseEvent *e);
+		virtual void mouseMoveEvent(QMouseEvent *e);
 		virtual void contextMenuEvent(QContextMenuEvent *e);
 		virtual bool paint(QPainter *p, QEditor *e);
 		bool event(QEvent *e);

@@ -96,6 +96,31 @@ void QFoldPanel::mousePressEvent(QMouseEvent *e)
 
 }
 
+void QFoldPanel::mouseMoveEvent(QMouseEvent *e)
+{
+	if ( !editor() || !editor()->languageDefinition())
+	{
+		QPanel::mouseMoveEvent(e);
+		return;
+	}
+
+	QDocument *doc = editor()->document();
+	QLanguageDefinition *def = editor()->languageDefinition();
+
+	int ln = mapRectPosToLine(e->pos());
+	if ( ln != -1 ){
+		QDocumentLine b = doc->line(ln);
+		qDebug() << "draw2";
+
+		if ( !b.hasFlag(QDocumentLine::CollapsedBlockStart)  ) {
+			// draw
+			qDebug() << "draw";
+		}
+	} else
+		QPanel::mouseMoveEvent(e);
+
+}
+
 void QFoldPanel::contextMenuEvent(QContextMenuEvent *e)
 {
 	if (!editor() || !editor()->languageDefinition()) {
