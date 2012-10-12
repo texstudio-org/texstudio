@@ -302,7 +302,7 @@ unix {
         utilities/doc19.png \
         utilities/doc2.png \
         utilities/doc20.png \
-	utilities/doc21.png \
+        utilities/doc21.png \
         utilities/doc3.png \
         utilities/doc4.png \
         utilities/doc5.png \
@@ -317,8 +317,8 @@ unix {
         utilities/configure_general.png \
         utilities/configure_shortcuts.png \
         utilities/configure_svn.png \
-	utilities/configure_build.png \
-	utilities/compile_toolbar.png \
+        utilities/configure_build.png \
+        utilities/compile_toolbar.png \
         utilities/template.png \
         utilities/thesaurus.png \
         utilities/latexhelp.html \
@@ -357,6 +357,10 @@ unix {
 	utilities/dictionaries/fr_FR.dic \
 	utilities/dictionaries/de_DE.aff \
 	utilities/dictionaries/de_DE.dic \
+	utilities/dictionaries/hu_HU.aff \
+	utilities/dictionaries/hu_HU.dic \
+	utilities/dictionaries/pt_BR.aff \
+	utilities/dictionaries/pt_BR.dic \
 	utilities/dictionaries/de.badWords \
 	utilities/dictionaries/de.stopWords \
 	utilities/dictionaries/de.stopWords.level2 \
