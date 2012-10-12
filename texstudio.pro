@@ -349,20 +349,22 @@ unix {
         utilities/usermanual_en.html \
 	utilities/usermanual.css \
         utilities/usermanual_fr.html \
-        utilities/en_GB.aff \
-        utilities/en_GB.dic \
-        utilities/en_US.aff \
-        utilities/en_US.dic \
-        utilities/fr_FR.aff \
-        utilities/fr_FR.dic \
-        utilities/de_DE.aff \
-        utilities/de_DE.dic \
-        utilities/de.stopWords \
-        utilities/en.stopWords \
-        utilities/fr.stopWords \
-        utilities/th_en_US_v2.dat \
-        utilities/th_fr_FR_v2.dat \
-        utilities/th_de_DE_v2.dat \
+	utilities/dictionaries/en_GB.aff \
+	utilities/dictionaries/en_GB.dic \
+	utilities/dictionaries/en_US.aff \
+	utilities/dictionaries/en_US.dic \
+	utilities/dictionaries/fr_FR.aff \
+	utilities/dictionaries/fr_FR.dic \
+	utilities/dictionaries/de_DE.aff \
+	utilities/dictionaries/de_DE.dic \
+	utilities/dictionaries/de.badWords \
+	utilities/dictionaries/de.stopWords \
+	utilities/dictionaries/de.stopWords.level2 \
+	utilities/dictionaries/en.stopWords \
+	utilities/dictionaries/fr.stopWords \
+	utilities/dictionaries/th_en_US_v2.dat \
+	utilities/dictionaries/th_fr_FR_v2.dat \
+	utilities/dictionaries/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt
