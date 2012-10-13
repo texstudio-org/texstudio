@@ -62,6 +62,7 @@ public:
 	virtual bool keyReleaseEvent(QKeyEvent *event, QEditor *editor);
 	virtual bool mousePressEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool mouseReleaseEvent(QMouseEvent *event, QEditor *editor);
+	virtual bool mouseDoubleClickEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool mouseMoveEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
@@ -73,6 +74,7 @@ private:
 	QString lastSpellCheckedWord;
 	
 	QPoint lastMousePress;
+	bool isDoubleClick;  // event sequence of a double click: press, release, double click, release - this is true on the second release
 };
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
@@ -146,11 +148,19 @@ bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
 
 bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
 	Q_UNUSED(editor)
+	qDebug() << "press";
+
 	lastMousePress = event->pos();
 	return false;
 }
 
 bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor) {
+	if (isDoubleClick) {
+		isDoubleClick = false;
+		return false;
+	}
+	isDoubleClick = false;
+
 	if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton) {
 		int distanceSqr = (event->pos().x() - lastMousePress.x())*(event->pos().x() - lastMousePress.x()) + (event->pos().y() - lastMousePress.y())*(event->pos().y() - lastMousePress.y());
 		if (distanceSqr > 4) // allow the user to accidentially move the mouse a bit
@@ -178,6 +188,13 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 		emit edView->syncPDFRequested(cursor);
 		return true;
 	}
+	return false;
+}
+
+bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *editor) {
+	Q_UNUSED(event);
+	Q_UNUSED(event);
+	isDoubleClick = true;
 	return false;
 }
 
