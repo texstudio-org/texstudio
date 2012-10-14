@@ -704,6 +704,7 @@ void LatexEditorView::jumpChangePositionForward() {
 void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
 	int markLine=editor->document()->findNextMark(bookMarkId(bookmarkNumber),editor->cursor().line().lineNumber(),editor->cursor().line().lineNumber()-1);
 	if (markLine>=0) {
+		emit saveCurrentCursorToHistoryRequested();
 		editor->setCursorPosition(markLine,0);
 		editor->setFocus();
 	}
