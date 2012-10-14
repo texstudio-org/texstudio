@@ -1,14 +1,17 @@
 (you may also want to check the usermanual)
 
-TeXstudio 2.3 -> TeXstudio 2.4.1  SVN ????
+TeXstudio 2.3 -> TeXstudio 2.5  SVN ????
 -----------------------------------------
+- cursor history (go back/forward)
+- references and included file names become links on Ctrl+MouseOver
 - insertion of handwritten equations (Windows 7 only, using TexTablet)
 - improved table-code formating, including options to specify the desired format
 - metadata support in LaTeX templates and table templates
 - checking for the correct version of the runtime library
 - more context menus (fold panel, bookmark panel)
-- optionally more bold cursor
+- optionally more bold cursor for better visibility
 - line operations: move up/down, duplicate
+- windows installer: add possibility to associate .tex files with TXS
 - several bug fixes (crashes, compilation, focus, ...)
 
 
