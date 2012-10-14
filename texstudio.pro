@@ -243,6 +243,7 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_it.ts \
     texstudio_pt_BR.ts \
     texstudio_uk.ts \
+    texstudio_ja.ts \
     texstudio_zh_CN.ts
 
 # ###############################
@@ -330,6 +331,7 @@ unix {
 	texstudio_it.qm \
 	texstudio_cs.qm \
 	texstudio_hu.qm \
+	texstudio_ja.qm \
 	texstudio_pt_BR.qm \
         qt_fr.qm \
         qt_de.qm \
