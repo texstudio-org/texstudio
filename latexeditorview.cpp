@@ -170,14 +170,20 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 		QDocumentCursor cursor = editor->cursorForPosition(editor->mapToContents(event->pos()));
 
 		if (edView->hasLinkOverlay()) {
-			if (edView->linkOverlayContext == LatexParser::Reference) {
+			LinkOverlay lo = edView->getLinkOverlay();
+			switch (lo.type) {
+			case LinkOverlay::RefOverlay:
 				emit edView->gotoDefinition(cursor);
 				return true;
-			} else {
-				// TODO distinguish better. works in the current situation because we only have link overlays for references and includes
-				// (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%include"].contains(ctxCommand)
-				edView->openFile(edView->getLinkText());
+			case LinkOverlay::FileOverlay:
+				edView->openFile(lo.text());
 				return true;
+			case LinkOverlay::UsepackageOverlay:
+				// todo: open texdoc
+				edView->openPackageDocumentation(lo.text());
+				return true;
+			case LinkOverlay::Invalid:
+				break;
 			}
 		}
 
@@ -192,7 +198,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 
 bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *editor) {
 	Q_UNUSED(event);
-	Q_UNUSED(event);
+	Q_UNUSED(editor);
 	isDoubleClick = true;
 	return false;
 }
@@ -386,7 +392,7 @@ bool DefaultInputBinding::mouseMoveEvent(QMouseEvent *event, QEditor *editor) {
 		QDocumentCursor cursor = editor->cursorForPosition(editor->mapToContents(event->pos()));
 		edView->checkForLinkOverlay(cursor);
 	} else {
-		qDebug() << "Should never be reached.";
+		// reached for example when Ctrl+Shift is pressed
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
 		edView->removeLinkOverlay();
 	}
@@ -403,7 +409,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),config(aconfig),bibReader(0),linkOverlayActive(false) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),config(aconfig),bibReader(0) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -556,57 +562,43 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 		QString ctxCommand, ctxValue;
 		QString line=cursor.line().text();
 		context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
-		if (context == LatexParser::Reference
-				|| (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%include"].contains(ctxCommand)))
-		{
-			setLinkOverlay(cursor, context);
+		if (context == LatexParser::Reference) {
+			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::RefOverlay));
+		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%include"].contains(ctxCommand)) {
+			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::FileOverlay));
+		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%usepackage"].contains(ctxCommand)) {
+			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UsepackageOverlay));
 		} else {
-			if (linkOverlayActive) removeLinkOverlay();
+			if (linkOverlay.isValid()) removeLinkOverlay();
 		}
 	} else {
-		if (linkOverlayActive) removeLinkOverlay();
+		if (linkOverlay.isValid()) removeLinkOverlay();
 	}
 }
 
-void LatexEditorView::setLinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType context) {
-
-	QString text = cur.line().text();
-	int col = cur.columnNumber();
-	int from = findOpeningBracket(text, col);
-	int to = findClosingBracket(text, col);
-	if (from<0 || to<0)
-		return;
-	from +=1; to -= 1; // leave out brackets
-	QFormatRange newOverlay(from, to-from+1, QDocument::formatFactory()->id("link"));
-	if (linkOverlayActive) {
-		if (cur.line() == linkOverlayLine && newOverlay == linkOverlay) {
+void LatexEditorView::setLinkOverlay(const LinkOverlay & overlay) {
+	if (linkOverlay.isValid()) {
+		if (overlay == linkOverlay) {
 			return; // same overlay
 		} else {
 			removeLinkOverlay();
 		}
 	}
-	linkOverlayActive = true;
-	linkOverlayLine = cur.line();
-	linkOverlay = newOverlay;
-	linkOverlayLine.addOverlay(linkOverlay);
+
+	linkOverlay = overlay;
+	linkOverlay.docLine.addOverlay(linkOverlay.formatRange);
 	editor->viewport()->update(); // immediately apply the overlay
-	linkOverlayContext = context;
 	linkOverlayStoredCursor = editor->viewport()->cursor();
 	editor->viewport()->setCursor(Qt::PointingHandCursor);
 }
 
 void LatexEditorView::removeLinkOverlay() {
-	if (linkOverlayActive) {
-		linkOverlayActive = false;
-		linkOverlayLine.removeOverlay(linkOverlay);
+	if (linkOverlay.isValid()) {
+		linkOverlay.docLine.removeOverlay(linkOverlay.formatRange);
+		linkOverlay = LinkOverlay();
 		editor->viewport()->update(); // immediately apply the overlay
 		editor->viewport()->setCursor(linkOverlayStoredCursor);
 	}
-}
-
-QString LatexEditorView::getLinkText() {
-	if (!hasLinkOverlay()) return QString();
-	return linkOverlayLine.text().mid(linkOverlay.offset, linkOverlay.length);
 }
 
 void LatexEditorView::temporaryHighlight(QDocumentCursor cur) {
@@ -1067,17 +1059,20 @@ void LatexEditorView::openExternalFile(){
 		emit openFile(name);
 }
 
-void LatexEditorView::openPackageDocumentation(){
-	QAction *act = qobject_cast<QAction*>(sender());
-	QString packageName = act->data().toString();
-	if (!packageName.isEmpty()) {
+void LatexEditorView::openPackageDocumentation(QString package){
+	if (package.isEmpty()) {
+		QAction *act = qobject_cast<QAction*>(sender());
+		if (!act) return;
+		package = act->data().toString();
+	}
+	if (!package.isEmpty()) {
 		QStringList args;
-		args << "--view" << packageName;
+		args << "--view" << package;
 		QProcess proc(this);
 		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
 		proc.start("texdoc", args);
 		if (!proc.waitForFinished(2000)) {
-			txsWarning("texdoc took too long to open the package documentation");
+			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
 			return;
 		}
 	}
@@ -2241,4 +2236,49 @@ void LatexEditorView::foldContextMenuRequested(int lineNumber, QPoint globalPos)
 		}
 	}
 }
+
+LinkOverlay::LinkOverlay(const LinkOverlay &o) {
+	type = o.type;
+	if (o.isValid()) {
+		docLine = o.docLine;
+		context = o.context;
+		formatRange = o.formatRange;
+	}
+}
+
+LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ctx, LinkOverlay::LinkOverlayType ltype) :
+	type(ltype), context(ctx)
+{
+	if (type == Invalid) return;
+
+	int from, to;
+
+	if (type == UsepackageOverlay) {
+		QDocumentCursor c(cur);
+		c.movePosition(1, QDocumentCursor::StartOfWord);
+		from = c.columnNumber();
+		c.movePosition(1, QDocumentCursor::EndOfWord);
+		to = c.columnNumber()-1;
+		if (from<0 || to<0 || to<=from)
+			return;
+	} else {
+		// link everything between {}
+		QString text = cur.line().text();
+		int col = cur.columnNumber();
+		from = findOpeningBracket(text, col);
+		to = findClosingBracket(text, col);
+		if (from<0 || to<0)
+			return;
+		from +=1; to -= 1; // leave out brackets
+	}
+
+	formatRange = QFormatRange(from, to-from+1, QDocument::formatFactory()->id("link"));
+	docLine = cur.line();
+}
+
+QString LinkOverlay::text() const {
+	if (!isValid()) return QString();
+	return docLine.text().mid(formatRange.offset, formatRange.length);
+}
+
 
