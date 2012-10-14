@@ -326,17 +326,19 @@ unix {
         utilities/wizard_figure.png \
 	utilities/block_selection.png \
 	utilities/spellcheck_menu.png \
-	texstudio_fr.qm \
-	texstudio_de.qm \
-	texstudio_it.qm \
 	texstudio_cs.qm \
+	texstudio_de.qm \
+	texstudio_es.qm \
+	texstudio_fr.qm \
 	texstudio_hu.qm \
 	texstudio_ja.qm \
 	texstudio_pt_BR.qm \
-        qt_fr.qm \
-        qt_de.qm \
-        qt_hu.qm \
+	texstudio_zh_CN.qm \
         qt_cs.qm \
+        qt_de.qm \
+        qt_fr.qm \
+        qt_hu.qm \
+        qt_zh.qm \
         templates/template_Article.tex \
         templates/template_Beamer.tex \
         templates/template_Book.tex \
