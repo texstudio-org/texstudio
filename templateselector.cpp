@@ -127,8 +127,6 @@ bool TemplateSelector::getTemplateMetaData(const QString &file, QHash<QString, Q
 		}
 		jsonData = f.readLine();
 		int col = jsonData.indexOf(QRegExp("\\s*var\\s+metaData\\s+=\\s+\\{"));
-		qDebug() << jsonData.indexOf(QRegExp("\\s*var\\s+metaData\\s+=\\s+"));
-		qDebug() << jsonData.indexOf(QRegExp("\\s*var\\s+metaData\\s+=\\s+\\{"));
 		if (col < 0) return false;
 		jsonData = jsonData.mid(col);
 		QString all = f.readAll();
