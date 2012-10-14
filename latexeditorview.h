@@ -233,6 +233,7 @@ signals:
 	void syncPDFRequested(QDocumentCursor c);
 	void bookmarkRemoved(QDocumentLineHandle *dlh);
 	void bookmarkAdded(QDocumentLineHandle *dlh,int nr);
+	void saveCurrentCursorToHistoryRequested();
 	
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
