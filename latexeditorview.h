@@ -32,6 +32,24 @@ class SpellerUtility;
 class SpellerManager;
 class DefaultInputBinding;
 class LatexEditorViewConfig;
+
+struct LinkOverlay {
+	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UsepackageOverlay};
+	// for simpler access everything is public - only access for reading
+	LinkOverlayType type;
+	QDocumentLine docLine;
+	QFormatRange formatRange;
+	LatexParser::ContextType context;
+
+	LinkOverlay() : type(Invalid) {}
+	LinkOverlay(const LinkOverlay &o);
+	LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ctx, LinkOverlayType ltype);
+
+	bool isValid() const { return type != Invalid; }
+	bool operator ==(const LinkOverlay& o) const { return (docLine == o.docLine) && (formatRange == o.formatRange); }
+	QString text() const;
+};
+
 class LatexEditorView : public QWidget  {
 	Q_OBJECT
 public:
@@ -133,11 +151,8 @@ private:
 	bibtexReader *bibReader;
 	QPoint lastPos;
 
-	bool linkOverlayActive;
-	QDocumentLine linkOverlayLine;
-	QFormatRange linkOverlay;
+	LinkOverlay linkOverlay;
 	QCursor linkOverlayStoredCursor;
-	LatexParser::ContextType linkOverlayContext;
 
 	QList<QPair<QDocumentLine, QFormatRange> > tempHighlightQueue;
 
@@ -147,7 +162,7 @@ private:
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
-	void openPackageDocumentation();
+	void openPackageDocumentation(QString package = QString());
 	void openPackageDocumentationError();
 	void emitChangeDiff();
 	void emitGotoDefinitionFromAction();
@@ -187,11 +202,13 @@ public slots:
 	void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0);
 
 	void checkForLinkOverlay(QDocumentCursor cursor);
-	void setLinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType context);
+	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
+	const LinkOverlay & getLinkOverlay() const { return linkOverlay; }
+private:
+	void setLinkOverlay(const LinkOverlay &overlay);
 	void removeLinkOverlay();
-	bool hasLinkOverlay() { return linkOverlayActive; }
-	QString getLinkText();
 
+public slots:
 	void temporaryHighlight(QDocumentCursor cur);
 	void removeTemporaryHighlight();
 

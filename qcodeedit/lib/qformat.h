@@ -166,10 +166,10 @@ struct QFormatRange
 	 : offset(o), length(l), format(f)
 	{}
 	
-	inline bool operator == (const QFormatRange& o)
+	inline bool operator == (const QFormatRange& o) const
 	{ return (offset == o.offset) && (length == o.length) && (format == o.format); }
 	
-	inline bool operator != (const QFormatRange& o)
+	inline bool operator != (const QFormatRange& o) const
 	{ return (offset != o.offset) || (length != o.length) || (format != o.format); }
 	
 	int offset;
