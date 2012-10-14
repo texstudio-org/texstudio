@@ -148,7 +148,6 @@ bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
 
 bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
 	Q_UNUSED(editor)
-	qDebug() << "press";
 
 	lastMousePress = event->pos();
 	return false;
@@ -1761,7 +1760,6 @@ void LatexEditorView::mouseHovered(QPoint pos){
             QString tooltip(tr("Citation correct (reading ...)"));
 			QString bibID;
 			// get bibID at cursor
-			qDebug() << value;
 			int col_start=cursor.columnNumber();
 			if(col_start>=line.length())
 				col_start=line.length()-1;
