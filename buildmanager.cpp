@@ -180,8 +180,8 @@ void BuildManager::initDefaultCommandNames(){
 	descriptionList<<tr("PDF Viewer") << tr("DVI Viewer") << tr("PS Viewer") << tr("Internal PDF Viewer (Windowed)") << tr("Internal PDF Viewer (Embedded)") << tr("External PDF Viewer");
 	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<< tr("Internal PDF Viewer (Windowed)") << tr("Internal PDF Viewer (Embedded)")  << tr("External PDF Viewer");
-	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external","",true,descriptionList);
+	descriptionList<< tr("Internal PDF Viewer (Embedded)") << tr("Internal PDF Viewer (Windowed)")  << tr("External PDF Viewer");
+	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
 	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
@@ -852,10 +852,10 @@ void BuildManager::readSettings(QSettings &settings){
 				if (import.startsWith(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER)) {
 					import.remove(0, DEPRECACTED_TMX_INTERNAL_PDF_VIEWER.length()+1);
 					cmd.commandLine = import;
-					commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL;
+					commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
 				} else {
 					cmd.commandLine = import;
-					commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL;
+					commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
 				}
 			} else cmd.commandLine = import;
 		}
