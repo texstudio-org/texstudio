@@ -502,6 +502,7 @@ void Texmaker::setupDockWidgets(){
 		outputView->setAllowedAreas(Qt::AllDockWidgetAreas);
 		outputView->setFeatures(QDockWidget::DockWidgetClosable);
 		outputView->setTabbedLogView(configManager.tabbedLogView);
+		outputView->hide();
 		addDockWidget(Qt::BottomDockWidgetArea,outputView);
 		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
 		connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
