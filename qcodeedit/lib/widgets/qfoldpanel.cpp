@@ -49,6 +49,8 @@ QFoldPanel::QFoldPanel(QWidget *p)
 {
 	setFixedWidth(12);
 	setObjectName("foldPanel");
+	setMouseTracking(true);
+	m_lastMouseLine = -1;
 }
 
 /*!
@@ -96,6 +98,31 @@ void QFoldPanel::mousePressEvent(QMouseEvent *e)
 
 }
 
+void QFoldPanel::mouseMoveEvent(QMouseEvent *e)
+{
+	if ( !editor() || !editor()->languageDefinition() )
+	{
+		QPanel::mousePressEvent(e);
+		return;
+	}
+
+	int ln = mapRectPosToLine(e->pos());
+	if (ln != m_lastMouseLine){
+		m_lastMouseLine = ln;
+		repaint();
+	} else
+		QPanel::mousePressEvent(e);
+	m_lastMouseLine = ln;
+}
+
+void QFoldPanel::leaveEvent(QEvent *)
+{
+	if (m_lastMouseLine > -1) {
+		m_lastMouseLine = -1;
+		repaint();
+	}
+}
+
 /*!
 
 */
@@ -130,22 +157,31 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 	bool bVisible = false; //,
 	//	inCursorBlock = false;
 
+	int endHighlightLineNr = -1;
+
 	int pos,
 		max = doc->lines(),
 		ls = doc->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
+
+	int xMid = 6,
+		iconSize = 9,
+		yIconOffset = (ls - iconSize) / 2;
 	
 	pos = - contentsY;
 
 	//qDebug("beg pos : %i", pos);
 
+	p->save();
+	QPen linePen(QColor(128,0,128));
+	linePen.setWidth(3);
+	linePen.setCapStyle(Qt::FlatCap);
+	p->setPen(linePen);
+
 	QFoldedLineIterator fli = def->foldedLineIterator(doc);
 
-	bool oldFolding=false;
-
-	for (; fli.lineNr<max; ++fli)
-	{
+	for (; fli.lineNr<max; ++fli) {
 		if ( pos > pageBottom )
 			break;
 
@@ -156,107 +192,68 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 			//problems: slow (but O(n) like the paint method is anyways), doesn't work if panel is hidden
 			//pro: simple, doesn't correct invalid, but invisible folding (e.g. like folding that is only temporary invalid, until the user writes a closing bracket; otherwise writing $$ would expand every folded $-block)
 			doc->correctFolding(fli.lineNr, doc->lines()); //this will again call paint
-			return true;
+			break;
 		}
 
-		if ( line.isHidden() )
-		{
+		if ( line.isHidden() ) {
 			continue;
 		}
 
 		int len = ls * line.lineSpan();
 
-//		bool oldFolding = !fli.openParentheses.empty() && fli.openParentheses.first().line!=fli.lineNr;
-
 		bVisible = ((pos + len) >= 0);
 
-		if ( fli.open )
-		{
-			if ( line.hasFlag(QDocumentLine::CollapsedBlockStart) )
-			{
-				// outermost block folded : none of the opening is actually opened
-				int bound = (ls - 8) / 2;
-				int mid = pos + len - ls / 6;
+		if (bVisible) {
 
-				if ( bVisible )
-				{
+			if ( fli.open ) {
+				if ( line.hasFlag(QDocumentLine::CollapsedBlockStart) ) {
+
+					 // line above icon
+					int topLineEnd = yIconOffset-1;
+					if (topLineEnd > 0 && fli.lineNr <= endHighlightLineNr)
+						p->drawLine(xMid, pos, xMid, pos + topLineEnd);
+
 					// draw icon
-
-					if ( bound > 0 && oldFolding )
-					{
-						p->drawLine(7, pos, 7, pos + bound);
-					}
-
-					if ( fli.close )
-					{
-						p->drawLine(7, pos + 8 + bound, 7, mid);
-						p->drawLine(7, mid, 12, mid);
-					}
-
 					m_lines << fli.lineNr;
-					m_rects << drawIcon(p, e, 3, pos + bound, true);
-				}
+					m_rects << drawIcon(p, e, 2, pos + yIconOffset, true, fli.lineNr == m_lastMouseLine);
 
-				int firstParenthesisPos = fli.openParentheses.size() - fli.open;
-				const FoldedParenthesis firstParenthesis = fli.openParentheses[firstParenthesisPos];
+					 // line below icon
+					int bottomLineStart = yIconOffset + iconSize + 1;
+					if (bottomLineStart < len && fli.lineNr < endHighlightLineNr)
+						p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
+				} else {
+					// line above icon
+					int topLineEnd = yIconOffset;
+					if (topLineEnd > 0 && fli.lineNr <= endHighlightLineNr)
+						p->drawLine(xMid, pos, xMid, pos + topLineEnd);
 
-				while (fli.lineNr<doc->lines() &&
-				       firstParenthesisPos<fli.openParentheses.size() &&
-				       fli.openParentheses[firstParenthesisPos] == firstParenthesis){
-					if (fli.lineNr < doc->lines()-1 && !doc->line(fli.lineNr+1).isHidden()) {
-						if ( bVisible )
-							p->drawLine(7, pos + 8 + bound, 7, pos + len);
-						break;
-					}
-					++fli;
-				}
-
-				if ( bVisible && !fli.openParentheses.empty() )
-				{
-					if ( fli.close )
-						p->drawLine(7, mid, 7, pos + len);
-					else
-						p->drawLine(7, pos + 8 + bound, 7, pos + len);
-				}
-			} else {
-				if ( bVisible )
-				{
-					int bound = (ls - 8) / 2;
-
-					if ( oldFolding && bound > 0 )
-						p->drawLine(7, pos, 7, pos + bound);
-
+					// draw icon
 					m_lines << fli.lineNr;
-					m_rects << drawIcon(p, e, 3, pos + bound, false);
+					m_rects << drawIcon(p, e, 2, pos + yIconOffset, false, fli.lineNr == m_lastMouseLine);
+					if (fli.lineNr == m_lastMouseLine) {
+						QFoldedLineIterator findEnd = fli;
+						findEnd.incrementUntilBlockEnd();
+						endHighlightLineNr = findEnd.lineNr;
+					}
 
+					// line below icon
+					int bottomLineStart = yIconOffset + iconSize;
+					if ( bottomLineStart > len && fli.lineNr < endHighlightLineNr)
+						p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
+				}
+			} else if (fli.lineNr <= endHighlightLineNr) {
+				if ( fli.lineNr == endHighlightLineNr ) {
 					int mid = pos + len - ls / 6;
-
-					if ( fli.close )
-						p->drawLine(7, mid, 12, mid);
-
-					if ( bound > 0 )
-						p->drawLine(7, pos + 8 + bound, 7, pos + len);
+					p->drawLine(xMid, pos, xMid, mid); // line ending here
+				} else {
+					p->drawLine(xMid, pos, xMid, pos + len); // line continues
 				}
-			}
-		} else if ( (oldFolding) && bVisible ) {
-			if ( fli.close )
-			{
-				int mid = pos + len - ls / 6;
-
-				p->drawLine(7, pos, 7, mid);
-				p->drawLine(7, mid, 12, mid);
-
-				if ( !fli.openParentheses.empty() )
-					p->drawLine(7, pos, 7, pos + len);
-			} else  {
-				p->drawLine(7, pos, 7, pos + len);
 			}
 		}
-
 		pos += len;
-		oldFolding=!fli.openParentheses.empty();
 	}
-	
+
+	p->restore();
 	return true;
 }
 
@@ -312,23 +309,47 @@ int QFoldPanel::mapRectPosToLine(const QPoint& p){
 
 
 QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
-							int x, int y, bool toExpand)
+							int x, int y, bool toExpand, bool highlight)
 {
-	QRect symbolRect(x, y, 8, 8);
+	QRect symbolRect(x, y, 9, 9);
 
-	//p->save();
-	//p->setRenderHint(QPainter::Antialiasing);
-	p->drawRect(symbolRect);
-	//p->restore();
+	p->save();
 
+	p->setRenderHint(QPainter::Antialiasing);
+
+	if (toExpand) {
+		// rightarrow
+		QPainterPath path;
+		path.moveTo(x+2,y);
+		path.lineTo(x+2,y+9);
+		path.lineTo(x+7,y+4.5);
+		path.lineTo(x+2,y);
+
+		p->fillPath(path,  highlight ? QColor(128,0,128) : QColor(96,96,96));
+	} else {
+		// downarrow
+		QPainterPath path;
+		path.moveTo(x,y+2);
+		path.lineTo(x+9,y+2);
+		path.lineTo(x+4.5,y+7);
+		path.lineTo(x,y+2);
+
+		p->fillPath(path,  highlight ? QColor(128,0,128) : QColor(160,160,160));
+	}
+	/*
+
+	p->fillRect(symbolRect, highlight ? QColor(128,0,128) : QColor(160,160,160));
+
+	p->setPen(Qt::white);
 	if ( toExpand )
 	{
 		p->drawLine(x + 2, y + 4, x + 6, y + 4);
 		p->drawLine(x + 4, y + 2, x + 4, y + 6);
 	} else {
 		p->drawLine(x + 2, y + 4, x + 6, y + 4);
-	}
+	}*/
 
+	p->restore();
 	return symbolRect;
 }
 
