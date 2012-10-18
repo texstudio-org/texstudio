@@ -336,6 +336,7 @@ unix {
 	texstudio_zh_CN.qm \
         qt_cs.qm \
         qt_de.qm \
+        qt_ja.qm \
         qt_fr.qm \
         qt_hu.qm \
         qt_zh.qm \
