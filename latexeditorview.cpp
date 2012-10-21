@@ -527,7 +527,7 @@ void LatexEditorView::paste(){
 	}
 }
 
-void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int triggerId){
+void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int triggerId, bool allowWrite){
 	if (macro.isEmpty()) return;
 	if (macro.left(8)=="%SCRIPT\n"){
 		scriptengine* eng = new scriptengine();
@@ -536,7 +536,7 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 		eng->triggerId = triggerId;
 		if (this) eng->setEditorView(this);
 		macro=macro.remove(0,8);
-		eng->setScript(macro);
+        eng->setScript(macro,allowWrite);
 		eng->run();
 		if (!eng->globalObject) delete eng;
 		else QObject::connect(reinterpret_cast<QObject*>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));

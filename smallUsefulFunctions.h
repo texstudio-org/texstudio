@@ -122,7 +122,7 @@ QToolButton* comboToolButtonFromAction(QAction* action);
 //check if the run-time qt version is higher than the given version (e.g. 4,3)
 bool hasAtLeastQt(int major, int minor);
 
-QString getRelativeBaseNameToPath(const QString & file,QString basepath);
+QString getRelativeBaseNameToPath(const QString & file, QString basepath, bool baseFile=false);
 QString getPathfromFilename(const QString &compFile);
 
 bool minimalJsonParse(const QString &text, QHash<QString, QString> &map);

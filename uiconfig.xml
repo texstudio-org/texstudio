@@ -109,7 +109,24 @@
   </menu>
 
   <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.png);;All files (*.*)%)}"/>
-  <insert id="include" text="\include{file}" insert="\include{%(TeX files (*.tex);;All files (*.*)%)}"/>
+  <insert id="include" text="\include{file}" insert="%SCRIPT&#10;
+  fnOld=editor.fileName();
+  fileChooser.setDir(fnOld);
+  fileChooser.setFilter(&quot;(TeX files (*.tex);;All files (*.*)&quot;);
+  fileChooser.exec();
+  fn=fileChooser.fileName();
+  fe=fileExists(fn);
+  fnRel=app.getRelativeFileName(fn,fnOld);
+  txt=cursor.selectedText();
+  cursor.removeSelectedText();
+  cursor.insertText(&quot;\\include{&quot;+fnRel+&quot;}&quot;);
+  if(!fe){
+	app.fileNew();
+	newEditor = documentManager.currentDocument.editorView.editor;
+	newEditor.write(txt);
+	//newEditor.setFileName(fn)
+	newEditor.save(fn);
+  }"/>
   <insert id="input" text="\input{file}" insert="\input{%(TeX files (*.tex);;All files (*.*)%)}"/>
 
   <separator/>

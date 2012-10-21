@@ -335,7 +335,7 @@ void TimeoutWrapper::run(){
 	deleteLater();
 }
 
-scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0)
+scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0),m_allowWrite(false)
 {
 	engine=new QScriptEngine(this);
 	qScriptRegisterQObjectMetaType<QDocument*>(engine);
@@ -383,8 +383,9 @@ scriptengine::~scriptengine(){
 	//don't delete globalObject, it has either been destroyed in run, or by another script
 }
 
-void scriptengine::setScript(const QString& script){
+void scriptengine::setScript(const QString& script,bool allowWrite){
 	m_script=script;
+    m_allowWrite=allowWrite;
 }
 void scriptengine::setEditorView(LatexEditorView *edView){
 	REQUIRE(edView);
@@ -418,6 +419,9 @@ template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialo
 void scriptengine::run(){
 	if (globalObject) delete globalObject;
 	globalObject = new ScriptObject(m_script,buildManager,app);
+    if(m_allowWrite){
+        globalObject->registerAllowedWrite();
+    }
 	QScriptValue globalValue = engine->newQObject(globalObject);
 	globalValue.setPrototype(engine->globalObject());
 	engine->setGlobalObject(globalValue);

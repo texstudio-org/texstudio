@@ -194,6 +194,11 @@ bool ScriptObject::hasReadPrivileges(){
 	
 }
 
+bool ScriptObject::fileExists(const QString& fn){
+    QFileInfo fi(fn);
+    return fi.exists();
+}
+
 bool ScriptObject::hasWritePrivileges(){
 	if (writeSecurityMode == 0) 
 		return false;
@@ -209,6 +214,13 @@ QByteArray ScriptObject::getScriptHash(){
 		scriptHash = QCryptographicHash::hash(script.toLatin1(), QCryptographicHash::Sha1).toHex();
 	return scriptHash;
 }
+
+void ScriptObject::registerAllowedWrite(){
+    QByteArray hash=getScriptHash();
+    if(!privilegedWriteScripts.contains(hash))
+        privilegedWriteScripts.append(hash);
+}
+
 
 bool ScriptObject::needWritePrivileges(const QString& fn, const QString& param){
 	if (writeSecurityMode == 0) return false;

@@ -41,6 +41,7 @@ public:
 	bool backgroundScript;
 	
 	QByteArray getScriptHash();
+    void registerAllowedWrite();
 signals:
 
 public slots:
@@ -62,6 +63,8 @@ public slots:
 	
 	bool hasReadPrivileges();
 	bool hasWritePrivileges();
+
+    bool fileExists(const QString& fn);
 	
 	ProcessX* system(const QString& commandline);
 		
