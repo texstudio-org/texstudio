@@ -70,6 +70,7 @@ void TemplateSelector::on_listWidget_itemDoubleClicked(QListWidgetItem* /*item*/
 }
 
 void TemplateSelector::showInfo(QListWidgetItem *currentItem,QListWidgetItem *previousItem) {
+	Q_UNUSED(currentItem);
 	Q_UNUSED(previousItem);
 
 	QHash<QString, QString> metaData;
