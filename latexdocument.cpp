@@ -203,10 +203,10 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	mRefItem.remove(dlh);
 	if(mMentionedBibTeXFiles.remove(dlh))
 		bibTeXFilesNeedsUpdate=true;
-    if (mBibItem.contains(dlh)) {
-        mBibItem.remove(dlh);
-        bibTeXFilesNeedsUpdate=true;
-    }
+	if (mBibItem.contains(dlh)) {
+		mBibItem.remove(dlh);
+		bibTeXFilesNeedsUpdate=true;
+	}
 
 	QStringList commands=mUserCommandList.values(dlh);
 	foreach(QString elem,commands){
@@ -229,16 +229,16 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	int linenr = indexOf(dlh);
 	if (linenr==-1) linenr=lines();
 
-    // check if line contains bookmark
-    if(edView){
-        for(int i=-1;i<10;i++){
-            if(edView->hasBookmark(dlh,i)){
-                emit bookmarkRemoved(dlh);
-                edView->removeBookmark(dlh,i);
-                break;
-            }
-        }
-    }
+	// check if line contains bookmark
+	if(edView){
+		for(int i=-1;i<10;i++){
+			if(edView->hasBookmark(dlh,i)){
+				emit bookmarkRemoved(dlh);
+				edView->removeBookmark(dlh,i);
+				break;
+			}
+		}
+	}
 	
 	QList<StructureEntry*> categories=QList<StructureEntry*>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
 	foreach (StructureEntry* sec, categories) {
@@ -255,7 +255,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		}
 	}
 
-	LatexParser& latexParser = LatexParser::getInstance();	
+	LatexParser& latexParser = LatexParser::getInstance();
 	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
 	
 	QList<StructureEntry*> ls;
@@ -292,7 +292,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	bool completerNeedsUpdate=false;
 	bool bibTeXFilesNeedsUpdate=false;
-    bool bibItemsChanged=false;
+	bool bibItemsChanged=false;
 	
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
 	
@@ -328,10 +328,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
-        //update bookmarks
-        if(edView && edView->hasBookmark(i,-1)){
-            emit bookmarkLineUpdated(i);
-        }
+		//update bookmarks
+		if(edView && edView->hasBookmark(i,-1)){
+			emit bookmarkLineUpdated(i);
+		}
 
 		QString curLine = line(i).text(); //TODO: use this instead of s
 		QVector<int> fmts=line(i).getFormats();
@@ -361,8 +361,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		mRefItem.remove(dlh);
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
-        if(mBibItem.remove(dlh))
-            bibTeXFilesNeedsUpdate=true;
+		if(mBibItem.remove(dlh))
+			bibTeXFilesNeedsUpdate=true;
 		
 		removedUsepackages << mUsepackageList.values(dlh);
 		if (mUsepackageList.remove(dlh)>0) completerNeedsUpdate = true;
@@ -410,7 +410,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		//// magic comment
 		s=curLine;
-        l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);
+		l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
 			bool reuse=false;
@@ -436,7 +436,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		////Ref
 		//for reference counting (can be placed in command options as well ...
-        foreach(QString cmd,latexParser.possibleCommands["%ref"]){
+		foreach(QString cmd,latexParser.possibleCommands["%ref"]){
 			QString name;
 			cmd.append('{');
 			int start=0;
@@ -452,7 +452,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		}
 		//// label ////
 		//TODO: Use label from dynamical reference checker
-        foreach(QString cmd,latexParser.possibleCommands["%label"]){
+		foreach(QString cmd,latexParser.possibleCommands["%label"]){
 			QString name;
 			cmd.append('{');
 			int start=0;
@@ -506,7 +506,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			int offset=totalLength-curLine.length(); //TODO?? (line was commented out, with todo before)
 			//// newcommand ////
 			//TODO: handle optional arguments
-            if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
+			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*\\[(\\d+)\\](\\[.+\\])?");
 				int options=0;
@@ -550,7 +550,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				if(rx.indexIn(remainder)>-1){
 					QString name=rx.cap(1);
 					QString optionStr=rx.cap(2);
-                    //qDebug()<< name << ":"<< optionStr;
+					//qDebug()<< name << ":"<< optionStr;
 					int options=optionStr.mid(1).toInt(); //returns 0 if conversion fails
 					ltxCommands.possibleCommands["user"].insert(name);
 					addedUserCommands << name;
@@ -589,7 +589,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				continue;
 			}
 			//// newtheorem ////
-            if (cmd=="\\newtheorem" || cmd=="\\newtheorem*" || cmd=="\\declaretheorem") {
+			if (cmd=="\\newtheorem" || cmd=="\\newtheorem*" || cmd=="\\declaretheorem") {
 				completerNeedsUpdate=true;
 				QStringList lst;
 				lst << "\\begin{"+name+"}" << "\\end{"+name+"}";
@@ -602,61 +602,61 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				continue;
 			}
-            //// newcounter ////
-            if (cmd=="\\newcounter") {
-                completerNeedsUpdate=true;
-                QStringList lst;
-                lst << "\\the"+name ;
-                foreach(const QString& elem,lst){
-                    mUserCommandList.insert(line(i).handle(),elem);
-                    ltxCommands.possibleCommands["user"].insert(elem);
-                    if(!removedUserCommands.removeAll(elem)){
-                        addedUserCommands << elem;
-                    }
-                }
-                continue;
-            }
-            /// bibitem ///
-            if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
-                if(!name.isEmpty()){
-                    ReferencePair elem;
-                    elem.name=name;
-                    elem.start=optionStart;
-                    mBibItem.insert(line(i).handle(),elem);
-                    bibItemsChanged=true;
-                    continue;
-                }
-            }
+			//// newcounter ////
+			if (cmd=="\\newcounter") {
+				completerNeedsUpdate=true;
+				QStringList lst;
+				lst << "\\the"+name ;
+				foreach(const QString& elem,lst){
+					mUserCommandList.insert(line(i).handle(),elem);
+					ltxCommands.possibleCommands["user"].insert(elem);
+					if(!removedUserCommands.removeAll(elem)){
+						addedUserCommands << elem;
+					}
+				}
+				continue;
+			}
+			/// bibitem ///
+			if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
+				if(!name.isEmpty()){
+					ReferencePair elem;
+					elem.name=name;
+					elem.start=optionStart;
+					mBibItem.insert(line(i).handle(),elem);
+					bibItemsChanged=true;
+					continue;
+				}
+			}
 			///usepackage
-            if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
-		completerNeedsUpdate=true;
-		QStringList packagesHelper=name.split(",");
-                if(cmd.endsWith("theme")){ // special treatment for  \usetheme
-                    QString preambel=cmd;
-                    preambel.remove(0,4);
-                    preambel.prepend("beamer");
-                    packagesHelper.replaceInStrings(QRegExp("^"),preambel);
-                }
-		QStringList packages;
-		foreach(const QString& elem,packagesHelper)
-		    if(latexParser.packageAliases.contains(elem))
-			packages << latexParser.packageAliases.values(elem);
-		else
-		    packages << elem;
+			if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
+				completerNeedsUpdate=true;
+				QStringList packagesHelper=name.split(",");
+				if(cmd.endsWith("theme")){ // special treatment for  \usetheme
+					QString preambel=cmd;
+					preambel.remove(0,4);
+					preambel.prepend("beamer");
+					packagesHelper.replaceInStrings(QRegExp("^"),preambel);
+				}
+				QStringList packages;
+				foreach(const QString& elem,packagesHelper)
+					if(latexParser.packageAliases.contains(elem))
+						packages << latexParser.packageAliases.values(elem);
+					else
+						packages << elem;
 
-		foreach(const QString& elem,packages){
-		    if(!removedUsepackages.removeAll(elem))
-			addedUsepackages << elem;
-		    mUsepackageList.insertMulti(dlh,elem);
-		}
-		continue;
-	    }
-	    //// bibliography ////
-            if (latexParser.possibleCommands["%bibliography"].contains(cmd)) {
+				foreach(const QString& elem,packages){
+					if(!removedUsepackages.removeAll(elem))
+						addedUsepackages << elem;
+					mUsepackageList.insertMulti(dlh,elem);
+				}
+				continue;
+			}
+			//// bibliography ////
+			if (latexParser.possibleCommands["%bibliography"].contains(cmd)) {
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				foreach(const QString& elem,bibs){ //latex doesn't seem to allow any spaces in file names
-					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem,getAbsoluteFilePath(elem,"bib")));					
+					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem,getAbsoluteFilePath(elem,"bib")));
 					if (oldBibs.removeAll(elem) == 0)
 						bibTeXFilesNeedsUpdate = true;
 				}
@@ -700,13 +700,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// include,input ////
 			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
 			
-            if (latexParser.possibleCommands["%include"].contains(cmd)) {
+			if (latexParser.possibleCommands["%include"].contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->title=name;
 				QString fname=findFileName(name);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
 				if(dc)	dc->setMasterDocument(this);
-				newInclude->valid = dc; 
+				newInclude->valid = dc;
 				newInclude->setLine(line(i).handle(), i);
 				newInclude->columnNumber = offset;
 				flatStructure << newInclude;
@@ -737,8 +737,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
 	
 	const QList<StructureEntry*> categories=
-	              QList<StructureEntry*>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
-		
+			QList<StructureEntry*>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
+
 	for (int i=categories.size()-1;i>=0;i--) {
 		StructureEntry *cat = categories[i];
 		if (cat->children.isEmpty() == (cat->parent == 0)) continue;
@@ -762,7 +762,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	emit structureUpdated(this,newSection);
 
-	StructureEntry* se;	
+	StructureEntry* se;
 	foreach(se,MapOfTodo.values())
 		delete se;
 	
@@ -787,8 +787,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
 
-    if(bibItemsChanged)
-        parent->updateBibFiles(false);
+	if(bibItemsChanged)
+		parent->updateBibFiles(false);
 	
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
@@ -883,17 +883,17 @@ int LatexDocument::countRefs(const QString& name){
 }
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getBibItems(const QString& name){
-    QHash<QDocumentLineHandle*,int> result;
-    foreach(const LatexDocument *elem,getListOfDocs()){
-        QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
-        for (it = elem->mBibItem.constBegin(); it != elem->mBibItem.constEnd(); ++it){
-            ReferencePair rp=it.value();
-            if(rp.name==name){
-                result.insert(it.key(),rp.start);
-            }
-        }
+  QHash<QDocumentLineHandle*,int> result;
+  foreach(const LatexDocument *elem,getListOfDocs()){
+    QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+    for (it = elem->mBibItem.constBegin(); it != elem->mBibItem.constEnd(); ++it){
+      ReferencePair rp=it.value();
+      if(rp.name==name){
+        result.insert(it.key(),rp.start);
+      }
     }
-    return result;
+  }
+  return result;
 }
 
 
@@ -1017,7 +1017,7 @@ QStringList LatexDocument::refItems() const{
 }
 
 QStringList LatexDocument::bibItems() const{
-    return someItems(mBibItem);
+	return someItems(mBibItem);
 }
 
 void LatexDocument::updateRefsLabels(const QString& ref){
@@ -1106,7 +1106,7 @@ template <typename T> inline int hintedIndexOf (const QList<T*>& list, const T* 
 	if (hint < 2) return list.indexOf(const_cast<T*>(elem));
 	int backward = hint, forward = hint + 1;
 	for (;backward >= 0 && forward < list.size();
-	     backward--, forward++) {
+			 backward--, forward++) {
 		if (list[backward] == elem) return backward;
 		if (list[forward] == elem) return forward;
 	}
@@ -1169,12 +1169,12 @@ StructureEntry* StructureEntryIterator::next(){
 }
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
-       iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
-       iconWarning(getRealIcon("warning")), m_singleMode(false){
-	mHighlightIndex=QModelIndex();
-	iconSection.resize(LatexParser::getInstance().structureCommands.count());
-	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-		iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
+  iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
+  iconWarning(getRealIcon("warning")), m_singleMode(false){
+  mHighlightIndex=QModelIndex();
+  iconSection.resize(LatexParser::getInstance().structureCommands.count());
+  for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
+    iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -1362,11 +1362,11 @@ StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & i
 }
 
 /*!
-	Returns an associated SE_LABEL entry for a structure element if one exists, otherwise 0.
-	TODO: currently association is checked, by checking, if the label is on the same line or on the next.
-	This is not necessarily correct. It fails if:
-	 - there are multiple labels on one line (always the first label is chosen)
-	 - the label is more than one line after the entry (label not detected)
+ Returns an associated SE_LABEL entry for a structure element if one exists, otherwise 0.
+ TODO: currently association is checked, by checking, if the label is on the same line or on the next.
+ This is not necessarily correct. It fails if:
+  - there are multiple labels on one line (always the first label is chosen)
+  - the label is more than one line after the entry (label not detected)
 */
 StructureEntry *LatexDocumentsModel::labelForStructureEntry(const StructureEntry *entry)
 {
@@ -1426,7 +1426,7 @@ void LatexDocumentsModel::structureLost(LatexDocument* document){
 
 void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 	REQUIRE(se);
-	if (!se->parent) 
+	if (!se->parent)
 		beginRemoveRows(QModelIndex(),row,row); // remove from root (documents)
 	else {
 		if(row<0) row=se->getRealParentRow();
@@ -1469,15 +1469,15 @@ void LatexDocumentsModel::setSingleDocMode(bool singleMode){
 }
 
 void LatexDocumentsModel::moveDocs(int from,int to){ //work only for adjacent elements !!!
-    Q_ASSERT(abs(from-to)==1);
-    StructureEntry *se=documents.documents.at(from)->baseStructure;
-    changePersistentIndex(index(se),createIndex(to,0,se));
-    se=documents.documents.at(to)->baseStructure;
-    changePersistentIndex(index(se),createIndex(from,0,se));
+  Q_ASSERT(abs(from-to)==1);
+  StructureEntry *se=documents.documents.at(from)->baseStructure;
+  changePersistentIndex(index(se),createIndex(to,0,se));
+  se=documents.documents.at(to)->baseStructure;
+  changePersistentIndex(index(se),createIndex(from,0,se));
 }
 
 bool LatexDocumentsModel::getSingleDocMode(){
-	return m_singleMode;
+  return m_singleMode;
 }
 
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
@@ -1530,7 +1530,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 			elem->recheckRefsLabels();
 		}
 		int row=documents.indexOf(document);
-        //qDebug()<<document->getFileName()<<row;
+		//qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
 		if(model->getSingleDocMode()){
 			row=0;
@@ -1588,10 +1588,10 @@ QList<LatexDocument*> LatexDocuments::getDocuments() const{
 }
 
 void LatexDocuments::move(int from, int to){
-    model->layoutAboutToBeChanged();
-    model->moveDocs(from,to);
-    documents.move(from,to);
-    model->layoutChanged();
+  model->layoutAboutToBeChanged();
+  model->moveDocs(from,to);
+  documents.move(from,to);
+  model->layoutChanged();
 }
 
 QString LatexDocuments::getCurrentFileName() {
@@ -1668,7 +1668,7 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 	if (checkTemporaryNames)
 		foreach (LatexDocument* document, documents)
 			if (document->getFileName().isEmpty() &&
-			              document->getTemporaryFileName().compare(fnorm,cs)==0)
+					document->getTemporaryFileName().compare(fnorm,cs)==0)
 				return document;
 	
 	//check for relative file names
@@ -1703,59 +1703,59 @@ bool LatexDocuments::singleMode(){
 }
 
 void LatexDocuments::updateBibFiles(bool updateFiles){
-	mentionedBibTeXFiles.clear();
-    QSet<QString> newBibItems;
-	foreach (LatexDocument* doc, documents) {
-        if(updateFiles){
-            QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
-            QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
-            for (; it != itend; ++it){
-                if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
-                mentionedBibTeXFiles << it.value().absolute;
-            }
-        }
-        newBibItems.unite(QSet<QString>::fromList(doc->bibItems()));
-	}
-	
-	bool changed=false;
+  mentionedBibTeXFiles.clear();
+  QSet<QString> newBibItems;
+  foreach (LatexDocument* doc, documents) {
     if(updateFiles){
-        for (int i=0; i<mentionedBibTeXFiles.count();i++){
-            QString &fileName=mentionedBibTeXFiles[i];
-            QFileInfo fi(fileName);
-            if (!fi.isReadable()) continue; //ups...
-            if (!bibTeXFiles.contains(fileName))
-                bibTeXFiles.insert(fileName,BibTeXFileInfo());
-            BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-            if (bibTex.loadIfModified(fileName))
-                changed = true;
-            if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
-                //handle obscure bib tex feature, a just line containing "link fileName"
-                mentionedBibTeXFiles.append(bibTex.linksTo);
-        }
+      QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
+      QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
+      for (; it != itend; ++it){
+        if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
+        mentionedBibTeXFiles << it.value().absolute;
+      }
     }
-    if (changed || (newBibItems!=bibItems)) {
-		allBibTeXIds.clear();
-        bibItems=newBibItems;
-		for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
-			foreach (const QString& s, it.value().ids)
-				allBibTeXIds << s;
-        allBibTeXIds.unite(bibItems);
-		for (int i=0;i<documents.size();i++)
-			if (documents[i]->getEditorView())
-				documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
-		bibTeXFilesModified=true;
+    newBibItems.unite(QSet<QString>::fromList(doc->bibItems()));
+  }
+
+  bool changed=false;
+  if(updateFiles){
+    for (int i=0; i<mentionedBibTeXFiles.count();i++){
+      QString &fileName=mentionedBibTeXFiles[i];
+      QFileInfo fi(fileName);
+      if (!fi.isReadable()) continue; //ups...
+      if (!bibTeXFiles.contains(fileName))
+        bibTeXFiles.insert(fileName,BibTeXFileInfo());
+      BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
+      if (bibTex.loadIfModified(fileName))
+        changed = true;
+      if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
+        //handle obscure bib tex feature, a just line containing "link fileName"
+        mentionedBibTeXFiles.append(bibTex.linksTo);
     }
+  }
+  if (changed || (newBibItems!=bibItems)) {
+    allBibTeXIds.clear();
+    bibItems=newBibItems;
+    for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
+      foreach (const QString& s, it.value().ids)
+        allBibTeXIds << s;
+    allBibTeXIds.unite(bibItems);
+    for (int i=0;i<documents.size();i++)
+      if (documents[i]->getEditorView())
+        documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
+    bibTeXFilesModified=true;
+  }
 }
 
 QString LatexDocuments::findFileFromBibId(const QString& bibId)
 {
-    QStringList keys=bibTeXFiles.keys();
-    foreach(const QString key,keys){
-        if(bibTeXFiles.value(key).ids.contains(bibId)){
-            return key;
-        }
+  QStringList keys=bibTeXFiles.keys();
+  foreach(const QString key,keys){
+    if(bibTeXFiles.value(key).ids.contains(bibId)){
+      return key;
     }
-    return QString();
+  }
+  return QString();
 }
 
 void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
@@ -1796,7 +1796,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 		for (int i=0;i<se->children.size();i++){
 			StructureEntry* c = se->children[i];
 			if (c->type != StructureEntry::SE_SECTION && c->type != StructureEntry::SE_INCLUDE) continue;
-			if (c->getRealLineNumber() < linenr) 
+			if (c->getRealLineNumber() < linenr)
 				updateParentVector(parent_level, c);
 			start = i;
 			break;
@@ -1808,8 +1808,8 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 			for (int i=start;i<oldChildren.size();i++)
 				mergeStructure(oldChildren[i], parent_level, flatStructure, linenr, count);
 		}
-	} else {		
-		//se is within or after the region 
+	} else {
+		//se is within or after the region
 		// => insert flatStructure.first() before se or replace se with it (don't insert after since there might be another "se" to replace)
 		while (!flatStructure.isEmpty() && se->getRealLineNumber() >= flatStructure.first()->getRealLineNumber() ) {
 			if (se->getRealLineNumber() == flatStructure.first()->getRealLineNumber()) {
@@ -1820,9 +1820,9 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 				delete flatStructure.takeFirst();
 				emit updateElement(se);
 				moveToAppropiatePositionWithSignal(parent_level, se);
-			//	qDebug()<<"a"<<se->children.size() << ":"<<se->title<<" von "<<linenr<<count;
+				//	qDebug()<<"a"<<se->children.size() << ":"<<se->title<<" von "<<linenr<<count;
 				QList<StructureEntry*> oldChildren = se->children;
-				foreach (StructureEntry* next, oldChildren) 
+				foreach (StructureEntry* next, oldChildren)
 					mergeStructure(next, parent_level, flatStructure, linenr, count);
 				return;
 			}
@@ -1839,7 +1839,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 				removeElementWithSignal(se);
 				delete se;
 				for (int i=1;i<parent_level.size();i++)
-					if (parent_level[i] == se) 
+					if (parent_level[i] == se)
 						parent_level[i] = parent_level[i-1];
 				foreach (StructureEntry* next, oldChildren)
 					mergeStructure(next, parent_level, flatStructure, linenr, count);
@@ -1851,7 +1851,7 @@ void LatexDocument::mergeStructure(StructureEntry* se, QVector<StructureEntry*> 
 		moveToAppropiatePositionWithSignal(parent_level, se);
 		QList<StructureEntry*> oldChildren = se->children;
 		foreach (StructureEntry* c, oldChildren)
-			moveToAppropiatePositionWithSignal(parent_level, c); 
+			moveToAppropiatePositionWithSignal(parent_level, c);
 		
 	}
 	
@@ -1899,7 +1899,7 @@ void LatexDocument::moveElementWithSignal(StructureEntry* se, StructureEntry* pa
 
 void LatexDocument::updateParentVector(QVector<StructureEntry*> &parent_level, StructureEntry* se){
 	REQUIRE(se);
-	if (se->type == StructureEntry::SE_DOCUMENT_ROOT || se->type == StructureEntry::SE_INCLUDE) 
+	if (se->type == StructureEntry::SE_DOCUMENT_ROOT || se->type == StructureEntry::SE_INCLUDE)
 		parent_level.fill(baseStructure);
 	else if (se->type == StructureEntry::SE_SECTION)
 		for (int j=se->level+1;j<parent_level.size();j++)
@@ -1929,9 +1929,9 @@ StructureEntry* LatexDocument::moveToAppropiatePositionWithSignal(QVector<Struct
 	}
 
 	int newPos = newParent->children.size();
-	if (newParent->children.size() > 0 && 
-	    newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber()) 
-		newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, LessThanRealLineNumber()) - newParent->children.begin();		
+	if (newParent->children.size() > 0 &&
+			newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
+		newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, LessThanRealLineNumber()) - newParent->children.begin();
 	
 	
 	//qDebug() << "auto insert at " << newPos;
@@ -1964,7 +1964,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = false;
 	}
 	
-    if (name.toLower() == "spellcheck") {
+	if (name.toLower() == "spellcheck") {
 		QString lang=val;
 		lang.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
 		mSpellingLanguage = QLocale(lang);
@@ -1979,19 +1979,19 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
  } else if (type == "texroot") {
   se->valid = true;
  */
-    } else if (name.toLower() == "encoding") {
-		QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
-		if (!codec) {
-			se->tooltip = tr("Invalid codec");
-			return;
-		}
-		setCodec(codec);
-		se->valid = true;
-	} else {
-		se->tooltip = tr("Unknown magic comment");
-		return;
-	}
-	se->valid = true;
+  } else if (name.toLower() == "encoding") {
+    QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
+    if (!codec) {
+      se->tooltip = tr("Invalid codec");
+      return;
+    }
+    setCodec(codec);
+    se->valid = true;
+  } else {
+    se->tooltip = tr("Unknown magic comment");
+    return;
+  }
+  se->valid = true;
 }
 
 
@@ -2126,7 +2126,7 @@ const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocumen
 				}
 			}
 			if (result == d) break;
-		}	
+		}
 	if(deleteVisitedDocs)
 		delete visitedDocs;
 	return result;
@@ -2159,20 +2159,20 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 			continue;
 		elem.append(".cwl");
 		if(!filtered.contains(elem)){
-            if(!elem.isEmpty())
+			if(!elem.isEmpty())
 				filtered << elem;
 		}
 	}
 	if(!filtered.isEmpty()){
 		LatexParser cmds;
-        //QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
-        foreach(QString elem,filtered){
-            LatexPackage pck=parent->cachedPackages.value(elem);
-            cmds.possibleCommands=pck.possibleCommands;
-            ltxCommands.substract(cmds);
-            foreach(const QString& elem,pck.completionWords)
-                mCompleterWords.remove(elem);
-        }
+		//QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
+		foreach(QString elem,filtered){
+			LatexPackage pck=parent->cachedPackages.value(elem);
+			cmds.possibleCommands=pck.possibleCommands;
+			ltxCommands.substract(cmds);
+			foreach(const QString& elem,pck.completionWords)
+				mCompleterWords.remove(elem);
+		}
 		//recheck syntax of ALL documents ...
 		update=true;
 	}
@@ -2181,10 +2181,10 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	foreach(QString elem,added){
 		elem.append(".cwl");
 		if(!filtered.contains(elem)){
-            if(parent->cachedPackages.contains(elem)){
-                filtered << elem;
-                continue;
-            }
+			if(parent->cachedPackages.contains(elem)){
+				filtered << elem;
+				continue;
+			}
 			QString fn=findResourceFile("completion/"+elem,false,QStringList(config->importedCwlBaseDir));
 			if(!fn.isEmpty())
 				filtered << elem;
@@ -2195,24 +2195,24 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	}
 	if(!filtered.isEmpty()){
 		LatexParser cmds;
-        foreach(QString elem,filtered){
-            LatexPackage pck;
-            if(parent->cachedPackages.contains(elem)){
-                pck=parent->cachedPackages.value(elem);
-            }else{
-                pck=loadCwlFile(elem,config);
-                if(pck.packageName!="<notFound>"){
-                    parent->cachedPackages.insert(elem,pck); // cache package
-                }else{
-                    LatexPackage zw;
-                    zw.packageName=elem;
-                    parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
-                }
-            }
-            cmds.possibleCommands=pck.possibleCommands;
-            ltxCommands.append(cmds);
-            mCompleterWords.unite(pck.completionWords.toSet());
-        }
+		foreach(QString elem,filtered){
+			LatexPackage pck;
+			if(parent->cachedPackages.contains(elem)){
+				pck=parent->cachedPackages.value(elem);
+			}else{
+				pck=loadCwlFile(elem,config);
+				if(pck.packageName!="<notFound>"){
+					parent->cachedPackages.insert(elem,pck); // cache package
+				}else{
+					LatexPackage zw;
+					zw.packageName=elem;
+					parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
+				}
+			}
+			cmds.possibleCommands=pck.possibleCommands;
+			ltxCommands.append(cmds);
+			mCompleterWords.unite(pck.completionWords.toSet());
+		}
 		//recheck syntax of ALL documents ...
 		update=true;
 	}
@@ -2252,29 +2252,29 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bo
 	// user commands
 	QStringList commands=mUserCommandList.values();
 	foreach(QString elem,commands){
-        if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
-            int i=elem.indexOf("{");
-            if(i>=0) elem=elem.left(i);
-        }
+		if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
+			int i=elem.indexOf("{");
+			if(i>=0) elem=elem.left(i);
+		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
-    //patch lines for new commands (ref,def, etc)
-    LatexParser& latexParser = LatexParser::getInstance();
-    QStringList categories;
-    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include";
-    QStringList newCmds;
-    foreach(const QString elem,categories){
-        QStringList cmds=ltxCommands.possibleCommands[elem].values();
-        foreach(const QString cmd,cmds){
-            if(!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate){
-                newCmds << cmd;
-                latexParser.possibleCommands[elem]<< cmd;
-            }
-        }
-    }
-    if(!newCmds.isEmpty()){
-        patchLinesContaining(newCmds);
-    }
+	//patch lines for new commands (ref,def, etc)
+	LatexParser& latexParser = LatexParser::getInstance();
+	QStringList categories;
+	categories<< "%ref" << "%label" << "%definition" << "%cite" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include";
+	QStringList newCmds;
+	foreach(const QString elem,categories){
+		QStringList cmds=ltxCommands.possibleCommands[elem].values();
+		foreach(const QString cmd,cmds){
+			if(!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate){
+				newCmds << cmd;
+				latexParser.possibleCommands[elem]<< cmd;
+			}
+		}
+	}
+	if(!newCmds.isEmpty()){
+		patchLinesContaining(newCmds);
+	}
 	
 	if(update){
 		foreach(LatexDocument* elem,getListOfDocs()){
@@ -2293,18 +2293,18 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 	foreach(const QString& elem,files){
 		if(loadedFiles.contains(elem))
 			continue;
-        if(parent->cachedPackages.contains(elem)){
-            zw=parent->cachedPackages.value(elem);
-        }else{
-            zw=loadCwlFile(elem,completerConfig);
-            if(zw.packageName!="<notFound>"){
-                parent->cachedPackages.insert(elem,zw); // cache package
-            }else{
-                LatexPackage zw;
-                zw.packageName=elem;
-                parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
-            }
-        }
+		if(parent->cachedPackages.contains(elem)){
+			zw=parent->cachedPackages.value(elem);
+		}else{
+			zw=loadCwlFile(elem,completerConfig);
+			if(zw.packageName!="<notFound>"){
+				parent->cachedPackages.insert(elem,zw); // cache package
+			}else{
+				LatexPackage zw;
+				zw.packageName=elem;
+				parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
+			}
+		}
 		if(zw.packageName=="<notFound>"){
 			emit importPackage(elem);
 		} else {
@@ -2392,7 +2392,7 @@ void LatexDocument::updateMagicCommentScripts(){
 				if (lt.endsWith("TXS-SCRIPT-END") || !(lt.isEmpty() || lt.startsWith("%"))  ) break;
 				lt.remove(0,1);
 				newMacro.tag += lt + "\n";
-				if (trigger.exactMatch(lt)) 
+				if (trigger.exactMatch(lt))
 					newMacro.trigger = trigger.cap(2).trimmed();
 			}
 			
@@ -2444,17 +2444,17 @@ void LatexDocuments::lineGrammarChecked(const void* doc,const void* line,int lin
 }
 
 void LatexDocument::patchLinesContaining(const QStringList cmds){
-    foreach(LatexDocument *elem,getListOfDocs()){
-        // search all cmds in all lines, patch line if cmd is found
-        for (int i=0;i<elem->lines();i++){
-            QString text=elem->line(i).text();
-            foreach(const QString cmd,cmds){
-                if(text.contains(cmd)){
-                    //elem->patchStructure(i,1);
-                    patchStructure(i,1);
-                    break;
-                }
-            }
+  foreach(LatexDocument *elem,getListOfDocs()){
+    // search all cmds in all lines, patch line if cmd is found
+    for (int i=0;i<elem->lines();i++){
+      QString text=elem->line(i).text();
+      foreach(const QString cmd,cmds){
+        if(text.contains(cmd)){
+          //elem->patchStructure(i,1);
+          patchStructure(i,1);
+          break;
         }
+      }
     }
+  }
 }
