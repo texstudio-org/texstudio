@@ -18,7 +18,7 @@ public:
 	scriptengine(QObject *parent=0);
 	~scriptengine();
 	void run();
-	void setScript(const QString& script);
+    void setScript(const QString& script, bool allowWrite=false);
 	void setEditorView(LatexEditorView* edView);
 
 	static BuildManager* buildManager;
@@ -35,6 +35,7 @@ protected:
 	QPointer<LatexEditorView> m_editorView;
 	QPointer<QEditor> m_editor;
 	QString m_script;
+    bool m_allowWrite;
 };
 
 #include "universalinputdialog.h"

@@ -1443,6 +1443,9 @@ QString Texmaker::getCurrentFileName() {
 QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	return documents.getAbsoluteFilePath(relName, extension);
 }
+QString Texmaker::getRelativeFileName(const QString & file,QString basepath){
+    return getRelativeBaseNameToPath(file,basepath,true);
+}
 
 bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
 	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
@@ -3696,14 +3699,16 @@ void Texmaker::callToolButtonAction(){
 }
 
 void Texmaker::InsertFromAction() {
-	if (!currentEditorView())	return;
+    LatexEditorView *edView=currentEditorView();
+    if (!edView)	return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action)	{
 		if(completer->isVisible())
 			completer->close();
-		QDocumentCursor c = currentEditorView()->editor->cursor();
+        /*QDocumentCursor c = currentEditorView()->editor->cursor();
 		CodeSnippet cs=CodeSnippet(action->data().toString());
-		cs.insertAt(currentEditorView()->editor,&c);
+        cs.insertAt(currentEditorView()->editor,&c);*/
+        edView->insertMacro(action->data().toString(),QRegExp(),0,true);
 		outputView->setMessage(CodeSnippet(action->whatsThis()).lines.join("\n"));
 	}
 }

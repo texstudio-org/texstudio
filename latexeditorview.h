@@ -199,7 +199,7 @@ public slots:
 	void clearOverlays();
 	void updateLtxCommands();
 	void paste();
-	void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0);
+    void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0, bool allowWrite=false);
 
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
