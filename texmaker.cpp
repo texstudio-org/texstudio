@@ -441,8 +441,12 @@ void Texmaker::setupDockWidgets(){
 		bookmarksWidget->clear();
 		for(int i=0;i<configManager.bookmarkList.count();i++){
 			bookmark=configManager.bookmarkList.at(i).toStringList();
-			QString fn=bookmark.takeFirst();
-			int lineNr=bookmark.takeFirst().toInt();
+			QString fn;
+			if (!bookmark.isEmpty())
+				fn = bookmark.takeFirst();
+			int lineNr=0;
+			if (!bookmark.isEmpty())
+				lineNr = bookmark.takeFirst().toInt();
 			int bookmarkNumber=-1;
 			if(!bookmark.isEmpty()){
 				bool ok;
@@ -452,7 +456,9 @@ void Texmaker::setupDockWidgets(){
 				else
 					bookmark.removeFirst();
 			}
-			QString text=bookmark.takeFirst();
+			QString text;
+			if (!bookmark.isEmpty())
+				text = bookmark.takeFirst();
 			QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
 			item->setData(Qt::UserRole,fn);
 			item->setData(Qt::UserRole+1,lineNr);
@@ -4457,7 +4463,7 @@ void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool 
 		if (program == "latex") viewer = BuildManager::CMD_VIEW_DVI, compiler = BuildManager::CMD_LATEX;
 		else if (program == "xelatex") compiler = BuildManager::CMD_XELATEX;
 		else if (program == "luatex" || program == "lualatex") compiler = BuildManager::CMD_LUALATEX;
-		else ; //pdflatex
+		//else {} // pdflatex (default)
 		
 		if (cmdId == "quick") *result = BuildManager::chainCommands(compiler, viewer);
 		else if (cmdId == "compile") *result = compiler;
