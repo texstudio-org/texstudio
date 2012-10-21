@@ -1705,7 +1705,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 				if (!line.contains("%")){
 					//add placeholders to brackets like () to (%<..%>)
 					const QString brackets = "{}[]()<>";
-					int lastOpen = -1, openType;
+					int lastOpen = -1, openType = -1;
 					for (int i = 0; i < line.size(); i++) {
 						int index = brackets.indexOf(line[i]);
 						if (index>=0) {
