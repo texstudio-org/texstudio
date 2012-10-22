@@ -238,7 +238,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 					// line below icon
 					int bottomLineStart = yIconOffset + iconSize;
-					if ( bottomLineStart > len && fli.lineNr < endHighlightLineNr)
+					if ( bottomLineStart < len && fli.lineNr < endHighlightLineNr)
 						p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
 				}
 			} else if (fli.lineNr <= endHighlightLineNr) {
