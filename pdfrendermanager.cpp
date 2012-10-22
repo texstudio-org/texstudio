@@ -85,30 +85,30 @@ void PDFRenderManager::setCacheSize(int megabyte) {
 	renderedPages.setMaxCost(megabyte);
 }
 
-Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &errorType, bool foreceLoad){
+Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, Error &error, bool foreceLoad){
 	renderedPages.clear();
 	QFile f(fileName);
 	if (!f.open(QFile::ReadOnly)) {
-		errorType = 1;
+		error = FileOpenFailed;
 		return 0;
 	}
 	
 	queueAdministration->documentData = f.readAll();
 	if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
 	    !foreceLoad) {
-		errorType = 4;
+		error = FileIncomplete;
 		return 0;
 	}
 	document = Poppler::Document::loadFromData(queueAdministration->documentData);
 	if (!document) {
-		errorType = 2;
+		error = PopplerError;
 		return 0;
 	}
 	
 	if (document->isLocked()) {
 		delete document;
 		document = 0;
-		errorType = 2;
+		error = FileLocked;
 		return 0;
 	}
 
@@ -124,7 +124,7 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 		queueAdministration->renderQueues[i]->setDocument(doc);
 		if (!doc) {
 			Q_ASSERT(false);			
-			errorType = 4;
+			error = FileIncomplete;
 			return 0;
 		}
 		doc->setRenderBackend(Poppler::Document::SplashBackend);
@@ -135,7 +135,7 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, int &
 	}
 	mFillCacheMode=true;
 
-	errorType = 0;
+	error = NoError;
 	return document;
 }
 

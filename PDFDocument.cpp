@@ -2359,24 +2359,24 @@ void PDFDocument::reload(bool fillCache)
 	
 	renderManager = new PDFRenderManager(this);
 	renderManager->setCacheSize(globalConfig->cacheSizeMB);
-	int errorType;
+	PDFRenderManager::Error error = PDFRenderManager::NoError;
 	QFileInfo fi(curFile);
 	QDateTime lastModified=fi.lastModified();
 	qint64 filesize=fi.size();
-	document = renderManager->loadDocument(curFile, errorType);
-	while( errorType==4 && curFileSize==filesize && curFileLastModified==lastModified){
+	document = renderManager->loadDocument(curFile, error);
+	while( error==PDFRenderManager::FileIncomplete && curFileSize==filesize && curFileLastModified==lastModified){
 		QMessageBox::StandardButton button=txsConfirmWarning(
 					tr("%1\ndoes not look like a valid PDF document.\n\nEither the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?").arg(curFile),
 					(QMessageBox::Yes|QMessageBox::No|QMessageBox::Retry));
 		switch (button) {
 			case QMessageBox::Retry:
-				document = renderManager->loadDocument(curFile, errorType);
+				document = renderManager->loadDocument(curFile, error);
 				break;
-			case QMessageBox::Ok:
-				document = renderManager->loadDocument(curFile, errorType,true);
+			case QMessageBox::Yes:
+				document = renderManager->loadDocument(curFile, error,true);
 				break;
 			default:
-				errorType=5;
+				error=PDFRenderManager::FileIncompleteAbort;
 		}
 	}
 
@@ -2384,17 +2384,18 @@ void PDFDocument::reload(bool fillCache)
 	curFileLastModified=lastModified;
 
 	if (!document) {
-		switch (errorType) {
-		case 1: statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
-		case 2: statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
-		case 3: statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;			
-		case 4: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete. Trying again in 2 seconds.").arg(curFile)); break;
-		case 5: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete.").arg(curFile)); break;
+		switch (error) {
+		case PDFRenderManager::NoError: break;
+		case PDFRenderManager::FileOpenFailed:      statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
+		case PDFRenderManager::PopplerError:        statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::FileLocked:          statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
+		case PDFRenderManager::FileIncomplete:      statusBar()->showMessage(tr("PDF file \"%1\" is incomplete. Trying again in 2 seconds.").arg(curFile)); break;
+		case PDFRenderManager::FileIncompleteAbort: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete.").arg(curFile)); break;
 		}
 		delete renderManager;
 		renderManager = 0;
 		pdfWidget->hide();
-		if(errorType==4)
+		if(error==PDFRenderManager::FileIncomplete)
 		    reloadWhenIdle();
 	} else {
 		if (reloadTimer) reloadTimer->stop();
