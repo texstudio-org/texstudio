@@ -43,7 +43,7 @@ class PDFDock : public QDockWidget
 	Q_OBJECT
 
 public:
-	PDFDock(PDFDocument *doc = 0);
+	explicit PDFDock(PDFDocument *doc = 0);
 	virtual ~PDFDock();
 
 	void setPage(int page);
@@ -73,7 +73,7 @@ class PDFOutlineDock : public PDFDock
 	Q_OBJECT
 
 public:
-	PDFOutlineDock(PDFDocument *doc = 0);
+	explicit PDFOutlineDock(PDFDocument *doc = 0);
 	virtual ~PDFOutlineDock();
 
 public slots:
@@ -97,7 +97,7 @@ class PDFDockTreeWidget : public QTreeWidget
 	Q_OBJECT
 
 public:
-	PDFDockTreeWidget(QWidget* parent);
+	explicit PDFDockTreeWidget(QWidget* parent);
 	virtual ~PDFDockTreeWidget();
 
 	virtual QSize sizeHint() const;
@@ -109,7 +109,7 @@ class PDFInfoDock : public PDFDock
 	Q_OBJECT
 
 public:
-	PDFInfoDock(PDFDocument *doc = 0);
+	explicit PDFInfoDock(PDFDocument *doc = 0);
 	~PDFInfoDock();
 
 public slots:
@@ -127,14 +127,14 @@ class PDFDockListView : public QListView
 {
 	Q_OBJECT
 public:
-	PDFDockListView(QWidget *parent = 0);
+	explicit PDFDockListView(QWidget *parent = 0);
 	virtual QSize sizeHint() const;
 };
 class PDFDockListWidget : public QListWidget
 {
 	Q_OBJECT
 public:
-	PDFDockListWidget(QWidget *parent = 0);
+	explicit PDFDockListWidget(QWidget *parent = 0);
 	virtual QSize sizeHint() const;
 };
 
@@ -142,7 +142,7 @@ class PDFOverviewModel: public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	PDFOverviewModel(QObject *parent=0);
+	explicit PDFOverviewModel(QObject *parent=0);
 	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
 	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;		
 	void setDocument(PDFDocument* doc);
@@ -159,7 +159,7 @@ class PDFFontsDock : public PDFDock
 	Q_OBJECT
 
 public:
-	PDFFontsDock(PDFDocument *doc = 0);
+	explicit PDFFontsDock(PDFDocument *doc = 0);
 	~PDFFontsDock();
 
 public slots:
@@ -188,7 +188,7 @@ class PDFBaseSearchDock : public QDockWidget{
 	Q_OBJECT
 	//TODO: some how merge this with the qce search panel
 public:
-	PDFBaseSearchDock(PDFDocument* doc = 0);
+	explicit PDFBaseSearchDock(PDFDocument* doc = 0);
 
 	QString getSearchText() const;
 	bool hasFlagCaseSensitive() const;
@@ -226,7 +226,7 @@ private:
 class PDFSearchDock : public PDFBaseSearchDock {
 	Q_OBJECT
 public:
-	PDFSearchDock(PDFDocument* doc = 0);
+	explicit PDFSearchDock(PDFDocument* doc = 0);
 
 	bool hasFlagSync() const;
 private:
@@ -239,7 +239,7 @@ class PDFScrollArea : public QAbstractScrollArea
 	Q_OBJECT
 
 public:
-	PDFScrollArea(QWidget *parent = NULL);
+	explicit PDFScrollArea(QWidget *parent = NULL);
 	void setPDFWidget(PDFWidget* widget);
 	void ensureVisible(int x, int y, int xmargin=50, int ymargin=50);
 	void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy);
@@ -277,7 +277,7 @@ class PDFOverviewDock : public PDFDock
 	Q_OBJECT
 
 public:
-	PDFOverviewDock(PDFDocument *doc = 0);
+	explicit PDFOverviewDock(PDFDocument *doc = 0);
 	virtual ~PDFOverviewDock();
 
 public slots:
@@ -306,7 +306,7 @@ class PDFClockDock: public PDFDock
 	Q_OBJECT
 
 public:
-	PDFClockDock(PDFDocument *parent = NULL);
+	explicit PDFClockDock(PDFDocument *parent = 0);
 	virtual ~PDFClockDock();
 
 protected slots:

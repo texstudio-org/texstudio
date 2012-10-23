@@ -114,11 +114,11 @@ class PDFWidget : public QLabel
 	Q_OBJECT
 
 public:
-    PDFWidget(bool embedded=false);
+	explicit PDFWidget(bool embedded=false);
 	virtual ~PDFWidget();
 	
 	void setDocument(Poppler::Document *doc);
-    void setPDFDocument(PDFDocument *docu);
+	void setPDFDocument(PDFDocument *docu);
 
 	void saveState(); // used when toggling full screen mode
 	void restoreState();
@@ -296,7 +296,7 @@ private:
 
 class PDFSearchResult {
 public:
-	PDFSearchResult(const PDFDocument* pdfdoc = NULL, int page = -1, QRectF rect = QRectF())
+	explicit PDFSearchResult(const PDFDocument* pdfdoc = NULL, int page = -1, QRectF rect = QRectF())
 		: doc(pdfdoc), pageIdx(page), selRect(rect)
 	{ }
 
@@ -317,7 +317,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 	Q_PROPERTY(QString fileName READ fileName)
 
 public:
-    PDFDocument(PDFDocumentConfig* const pdfConfig,bool embedded=false);
+	explicit PDFDocument(PDFDocumentConfig* const pdfConfig,bool embedded=false);
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
