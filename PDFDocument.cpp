@@ -2025,7 +2025,7 @@ void PDFDocument::init(bool embedded)
 	connect(toolBar, SIGNAL(orientationChanged(Qt::Orientation)), this, SLOT(updateToolBarForOrientation(Qt::Orientation)));
 	updateToolBarForOrientation(toolBar->orientation());
 
-	pageLabel = new QLabel();
+	pageLabel = new QLabel(statusBar());
 	statusBar()->addPermanentWidget(pageLabel);
 	pageLabel->setFont(statusBar()->font());
 
@@ -2046,7 +2046,7 @@ void PDFDocument::init(bool embedded)
 	}
 	scaleButton->addActions(scaleActions->actions());
 
-	QToolButton *buttonZoomOut = new QToolButton();
+	QToolButton *buttonZoomOut = new QToolButton(statusBar());
 	buttonZoomOut->setIcon(getRealIcon("zoom-out"));
 	buttonZoomOut->setToolTip(tr("Zoom Out"));
 	statusBar()->addPermanentWidget(buttonZoomOut);
@@ -2066,7 +2066,7 @@ void PDFDocument::init(bool embedded)
 	//connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
 	connect(zoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(zoomSliderChange(int)));
 
-	QToolButton *buttonZoomIn = new QToolButton();
+	QToolButton *buttonZoomIn = new QToolButton(statusBar());
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
 	buttonZoomIn->setToolTip(tr("Zoom In"));
 	statusBar()->addPermanentWidget(buttonZoomIn);
