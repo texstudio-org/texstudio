@@ -807,9 +807,13 @@ void PDFScrollArea::updateScrollBars(){
 	} else {
 		vbar->setRange(0,((pdf->pseudoNumPages() + pdf->gridCols() - 1)/ pdf->gridCols()) * pdf->gridRowHeight() - p.height());
 	}
-	vbar->setPageStep(pdf->gridRowHeight());
-	updateWidgetPosition();
 
+	if (pdf->getScaleOption() == kFitWindow) {
+		vbar->setPageStep(pdf->gridRowHeight()); // use grid height instead of viewport height here to move exactly one page
+	} else {
+		vbar->setPageStep(p.height());
+	}
+	updateWidgetPosition();
 }
 
 
