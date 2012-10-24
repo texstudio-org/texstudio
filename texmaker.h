@@ -156,7 +156,6 @@ public:
 private:
 	QStringList struct_level;
 	
-	QStringList userTemplatesList;
 	qreal pdfSplitterRel;
 	
 	SpellerManager spellerManager;

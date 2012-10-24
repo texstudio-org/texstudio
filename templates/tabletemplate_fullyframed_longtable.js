@@ -1,5 +1,5 @@
 var metaData = {
-"Title"       : "Longtable",
+"Name"        : "Longtable",
 "Description" : "Format table using the longtable environonment.", 
 "Author"      : "Jan Sundermeyer",
 "Date"        : "4.9.2011",

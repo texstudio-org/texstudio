@@ -469,11 +469,11 @@ This is a more interactive approach than choosing svn revisions directly via a m
 <p>For new documents, templates can be used by using the command "File/New from template".
 A dialogue gives a selection of templates.</p>
 <p><IMG src="template.png" border="1" alt="Templates"></p>
-<p>New templates can be added by using the command "File/Make Template" on a opened document which you like to have has a template.
-You can assign meta data to the created template by creating a file in the same folder, but with extension ".meta" instead of ".tex". Its content is in JSON format:
+<p>New templates can be added by using the command "File/Make Template" on a opened document which you like to have has a template. User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
+<p>Meta data is stored in JSON format in a separate file with same name, but extension ".json" instead of ".tex". Currently the following entries are supported:
 <pre>
 {
-"Title"       : "",
+"Name"        : "Beamer",
 "Description" : "Beamer class for presentations.", 
 "Author"      : "TXS built-in",
 "Date"        : "17.8.2009",
@@ -1508,7 +1508,7 @@ c&amp;d\\ \hline
 <p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formating. Example:</p>
 <pre>
 var metaData = {
-"Title"       : "Colored rows",
+"Name"       : "Colored rows",
 "Description" : "Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.", 
 "Author"      : "Jan Sundermeyer",
 "Date"        : "4.9.2011",

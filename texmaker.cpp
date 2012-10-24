@@ -1805,7 +1805,6 @@ void Texmaker::fileMakeTemplate() {
 			out << templateDialog.generateMetaData();
 			file.close();
 		}
-		// if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
 	}
 }
 
@@ -2836,7 +2835,6 @@ void Texmaker::ReadSettings() {
 	QuickDocumentDialog::registerOptions(configManager);
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
-	configManager.registerOption("User/Templates",&userTemplatesList);
 	configManager.registerOption("PDFSplitter",&pdfSplitterRel,0.5);
 	
 	configManager.buildManager=&buildManager;
