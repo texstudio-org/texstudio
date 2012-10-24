@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="texmaker.qrc">:/images/webpublish.png</pixmap>
+      <pixmap resource="texstudio.qrc">:/images/webpublish.png</pixmap>
      </property>
     </widget>
    </item>
@@ -303,7 +303,7 @@ p, li { white-space: pre-wrap; }
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="texmaker.qrc">
+        <iconset resource="texstudio.qrc">
          <normaloff>:/images/classic/fileopen.png</normaloff>:/images/classic/fileopen.png</iconset>
        </property>
       </widget>
@@ -390,7 +390,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>messagetextEdit</tabstop>
  </tabstops>
  <resources>
-  <include location="texmaker.qrc"/>
+  <include location="texstudio.qrc"/>
  </resources>
  <connections/>
 </ui>

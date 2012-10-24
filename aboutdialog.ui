@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>532</width>
+    <width>520</width>
     <height>620</height>
    </rect>
   </property>
@@ -16,6 +16,9 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <item>
       <spacer>
        <property name="orientation">
@@ -35,7 +38,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="texmaker.qrc">:/images/splash.png</pixmap>
+        <pixmap resource="texstudio.qrc">:/images/splash.png</pixmap>
        </property>
       </widget>
      </item>
@@ -97,7 +100,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="texmaker.qrc"/>
+  <include location="texstudio.qrc"/>
  </resources>
  <connections>
   <connection>

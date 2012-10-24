@@ -84,7 +84,7 @@ then
   make install
   echo "Compilation and installation done"
   echo "Icons and desktop file can be found in the $PREFIX/share/texstudio directory"
-  # set the -spec option, if necessary. Ex : qmake -unix -spec linux-g++ PREFIX=$PREFIX texmaker.pro
+  # set the -spec option, if necessary. Ex : qmake -unix -spec linux-g++ PREFIX=$PREFIX texstudio.pro
   exit 0
 fi
 
