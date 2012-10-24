@@ -68,7 +68,7 @@
         <string/>
        </property>
        <property name="icon" >
-        <iconset resource="texmaker.qrc" >:/images/fileopen.png</iconset>
+        <iconset resource="texstudio.qrc" >:/images/fileopen.png</iconset>
        </property>
        <property name="iconSize" >
         <size>
@@ -126,7 +126,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="texmaker.qrc" />
+  <include location="texstudio.qrc" />
  </resources>
  <connections>
   <connection>

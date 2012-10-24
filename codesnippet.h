@@ -2,7 +2,6 @@
 #define CODESNIPPET_H
 
 #include "mostQtHeaders.h"
-//#include "texmaker.h"
 
 class QDocumentCursor;
 class QEditor;
