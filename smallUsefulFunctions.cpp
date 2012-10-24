@@ -1144,6 +1144,33 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map) {
 }
 
 
+QString formatJsonStringParam(const QString &id, const QString &val, int minIdWidth) {
+	QString s = enquoteStr(id);
+	while (s.length() < minIdWidth) s += ' ';
+	s += " : " + enquoteStr(val);
+	return s;
+}
+
+QString enquoteStr(const QString &s) {
+	QString res = s;
+	res.replace('"', "\\\"");
+	res.prepend('"');
+	res.append('"');
+	return res;
+}
+
+QString dequoteStr(const QString &s) {
+	QString res = s;
+	if (res.endsWith('"') && !res.endsWith("\\\""))
+		res.remove(res.length()-1, 1);
+	if (res.startsWith('"'))
+		res.remove(0, 1);
+	res.replace("\\\"", "\"");
+	return res;
+}
+
+
+
 // convenience function for unique connections independent of the Qt version
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method) {
 #if QT_VERSION >= 0x040600

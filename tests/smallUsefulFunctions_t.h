@@ -439,6 +439,27 @@ private slots:
 			QEQUAL2(data[keys[i]], vals[i], QString("for key: %1").arg(keys[i]));
 		}
 	}
+
+	void test_enquoteDequoteString_data(){
+		QTest::addColumn<QString>("in");
+		QTest::addColumn<QString>("out");
+
+		QTest::newRow("empty") << "" << "\"\"";
+		QTest::newRow("plain") << "plain" << "\"plain\"";
+		QTest::newRow("insideQuote") << "inside \"quote" << "\"inside \\\"quote\"";
+		QTest::newRow("startQuote") << "\"startQuote" << "\"\\\"startQuote\"";
+		QTest::newRow("endQuote") << "endQuote\"" << "\"endQuote\\\"\"";
+	}
+	void test_enquoteDequoteString(){
+		QFETCH(QString, in);
+		QFETCH(QString, out);
+
+		QString quoted = enquoteStr(in);
+		QEQUAL2(quoted, out, "while enqouting");
+		QString unquoted = dequoteStr(quoted);
+		QEQUAL2(unquoted, in, "while dequoting");
+	}
+
 };
 
 
