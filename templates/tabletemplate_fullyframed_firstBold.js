@@ -1,5 +1,5 @@
 var metaData = {
-"Title"       : "Fully framed, first bold",
+"Name"        : "Fully framed, first bold",
 "Description" : "First line of the table is bold to mark headings.", 
 "Author"      : "Jan Sundermeyer",
 "Date"        : "17.9.2011",

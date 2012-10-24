@@ -1,5 +1,5 @@
 var metaData = {
-"Title"       : "Plain tabularx",
+"Name"        : "Plain tabularx",
 "Description" : "Format table using a plain tabularx environment.", 
 "Author"      : "Jan Sundermeyer",
 "Date"        : "4.9.2011",

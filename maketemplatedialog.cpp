@@ -43,7 +43,7 @@ void MakeTemplateDialog::tryAccept()
 QString MakeTemplateDialog::generateMetaData()
 {
 	QString s = "{\n";
-	s += formatJsonStringParam("Title", ui->leName->text(), 13) + ",\n";
+	s += formatJsonStringParam("Name", ui->leName->text(), 13) + ",\n";
 	s += formatJsonStringParam("Author", ui->leAuthor->text(), 13) + ",\n";
 	s += formatJsonStringParam("Date", QDate::currentDate().toString(Qt::SystemLocaleShortDate), 13) + ",\n";
 	s += formatJsonStringParam("Version", ui->leVersion->text(), 13) + ",\n";

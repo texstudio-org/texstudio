@@ -1,5 +1,5 @@
 var metaData = {
-"Title"       : "Plain tabular",
+"Name"        : "Plain tabular",
 "Description" : "Format table using a plain tabular environment.", 
 "Author"      : "Jan Sundermeyer",
 "Date"        : "4.9.2011",

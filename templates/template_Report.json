@@ -1,5 +1,5 @@
 {
-"Title"       : "Report",
+"Name"        : "Report",
 "Description" : "Default LaTeX class for reports.", 
 "Author"      : "TXS built-in",
 "Date"        : "17.8.2009",
