@@ -1399,6 +1399,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)) ,this,SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
 	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
+	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));

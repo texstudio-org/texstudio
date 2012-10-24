@@ -237,6 +237,7 @@ signals:
 	
 	void mouseBackPressed();
 	void mouseForwardPressed();
+	void cursorChangeByMouse();
 
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);

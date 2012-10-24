@@ -73,7 +73,7 @@ private:
 	QMenu* contextMenu;
 	QString lastSpellCheckedWord;
 	
-	QPoint lastMousePress;
+	QPoint lastMousePressLeft;
 	bool isDoubleClick;  // event sequence of a double click: press, release, double click, release - this is true on the second release
 };
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
@@ -147,19 +147,26 @@ bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
 }
 
 bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
-	Q_UNUSED(editor)
+	LatexEditorView *edView = 0;
 
-	if (event->button() == Qt::XButton1) {
-		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+	switch (event->button()) {
+	case Qt::XButton1:
+		edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
 		emit edView->mouseBackPressed();
 		return true;
-	} else if (event->button() == Qt::XButton2) {
-		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+	case Qt::XButton2:
+		edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
 		emit edView->mouseForwardPressed();
 		return true;
+	case Qt::LeftButton:
+		edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+		emit edView->cursorChangeByMouse();
+		lastMousePressLeft = event->pos();
+		return false;
+	default:
+		return false;
 	}
 
-	lastMousePress = event->pos();
 	return false;
 }
 
@@ -171,7 +178,8 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 	isDoubleClick = false;
 
 	if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton) {
-		int distanceSqr = (event->pos().x() - lastMousePress.x())*(event->pos().x() - lastMousePress.x()) + (event->pos().y() - lastMousePress.y())*(event->pos().y() - lastMousePress.y());
+		// Ctrl+LeftClick
+		int distanceSqr = (event->pos().x() - lastMousePressLeft.x())*(event->pos().x() - lastMousePressLeft.x()) + (event->pos().y() - lastMousePressLeft.y())*(event->pos().y() - lastMousePressLeft.y());
 		if (distanceSqr > 4) // allow the user to accidentially move the mouse a bit
 			return false;
 
