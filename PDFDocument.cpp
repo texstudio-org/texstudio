@@ -675,6 +675,24 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	clickedLink = NULL;
 	clickedAnnotation = 0;
 	
+	switch (event->button()) {
+	case Qt::LeftButton:
+		break; // all cases handled below
+	case Qt::XButton1:
+		goBack();
+		return;
+	case Qt::XButton2:
+		goForward();
+		return;
+	default:
+		return;
+	}
+
+	if (event->button() == Qt::XButton1) {
+		goBack();
+		return;
+	}
+
 	if (event->button() != Qt::LeftButton) {
 		QWidget::mousePressEvent(event);
 		return;

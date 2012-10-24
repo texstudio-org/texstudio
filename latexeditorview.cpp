@@ -149,6 +149,16 @@ bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
 bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor){
 	Q_UNUSED(editor)
 
+	if (event->button() == Qt::XButton1) {
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+		emit edView->mouseBackPressed();
+		return true;
+	} else if (event->button() == Qt::XButton2) {
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+		emit edView->mouseForwardPressed();
+		return true;
+	}
+
 	lastMousePress = event->pos();
 	return false;
 }
