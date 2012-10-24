@@ -126,6 +126,10 @@ QString getRelativeBaseNameToPath(const QString & file, QString basepath, bool b
 QString getPathfromFilename(const QString &compFile);
 
 bool minimalJsonParse(const QString &text, QHash<QString, QString> &map);
+// generates a string in the format "id"  : "val", where the colon is at least a position minIdWidth+2 (filling with spaces)
+QString formatJsonStringParam(const QString &id, const QString &val, int minIdWidth = 0);
+QString enquoteStr(const QString &s);
+QString dequoteStr(const QString &s);
 
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method);
 

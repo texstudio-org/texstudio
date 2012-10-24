@@ -10,7 +10,6 @@
  ***************************************************************************/
 
 #include "templateselector.h"
-
 #include "smallUsefulFunctions.h"
 
 const int TemplateSelector::FileNameRole = Qt::UserRole;
@@ -104,7 +103,13 @@ void TemplateSelector::removeTemplate() {
 								 ,QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes) {
 			ui.listWidget->takeItem(ui.listWidget->currentRow());
 			QFile file(fname);
-			if(!file.remove()) txsCritical(tr("You do not have permission to remove this file."));
+			if(!file.remove()) txsCritical(tr("You do not have permission to remove this file.")+"\n"+fname);
+			QFileInfo fi(fname);
+			QFileInfo metafi(fi.dir(), fi.baseName()+".json");
+			if (metafi.exists()) {
+				file.setFileName(metafi.absoluteFilePath());
+				if(!file.remove()) txsCritical(tr("You do not have permission to remove this file.")+"\n"+fname);
+			}
 		}
 	}
 }
@@ -113,8 +118,12 @@ bool TemplateSelector::getTemplateMetaData(const QString &file, QHash<QString, Q
 	QString jsonData;
 
 	if (file.endsWith(".tex")) {
-		QFile f(file.left(file.length()-3)+"meta");
-		if (!f.exists()) return false;
+		QFile f(file.left(file.length()-3)+"json");
+		if (!f.exists()) {
+			f.setFileName(file.left(file.length()-3)+"meta"); // in a very early version of meta data .meta was used instead of .json
+			if (!f.exists())
+				return false;
+		}
 		if (!f.open(QIODevice::ReadOnly)) {
 			txsWarning(tr("You do not have read permission to this file:")+QString("\n%1").arg(file));
 			return false;

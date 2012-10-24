@@ -30,6 +30,8 @@
 #include "letterdialog.h"
 #include "quickdocumentdialog.h"
 #include "mathassistant.h"
+#include "maketemplatedialog.h"
+#include "templatemanager.h"
 #include "usermenudialog.h"
 #include "usertooldialog.h"
 #include "aboutdialog.h"
@@ -250,6 +252,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	LatexEditorView::setCompleter(completer);
 	completer->updateAbbreviations();
 	
+	TemplateManager::setUserTemplateDir(configManager.configBaseDir + "templates/user/");
+	TemplateManager::ensureUserTemplateDirExists();
+	TemplateManager::checkForOldUserTemplates();
+
 	if (configManager.sessionRestore) {
 		fileRestoreSession(false);
 		ToggleRememberAct->setChecked(true);
@@ -1770,24 +1776,36 @@ void Texmaker::fileMakeTemplate() {
 	if (!currentEditorView())
 		return;
 	
-	// select a directory/filepath
-	QString currentDir=configManager.configBaseDir;
-	
-	// get a file name
-	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,tr("TeX files")+" (*.tex)");
-	if (!fn.isEmpty()) {
-		int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
-		int lastpoint=fn.lastIndexOf(".");
-		if (lastpoint <= lastsep) //if both aren't found or point is in directory name
-			fn.append(".tex");
+	MakeTemplateDialog templateDialog(TemplateManager::getUserTemplateDir());
+	if (templateDialog.exec()) {
 		// save file
+		QString fn = templateDialog.suggestedFile();
+		if (!fn.endsWith(".tex")) {
+			qDebug() << "unexpected template file ending, aborted writing of template";
+			return;
+		}
+
 		QString old_name=currentEditor()->fileName();
 		QTextCodec *mCodec=currentEditor()->getFileCodec();
 		currentEditor()->setFileCodec(QTextCodec::codecForName("utf-8"));
 		currentEditor()->save(fn);
 		currentEditor()->setFileName(old_name);
 		currentEditor()->setFileCodec(mCodec);
-		if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
+
+		// save metaData
+		QFileInfo fi(fn);
+		fn = fi.absoluteFilePath();
+		fn.remove(fn.lastIndexOf('.'), 4);
+		fn.append(".json");
+		QFile file(fn);
+		if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+			txsInformation(tr("Could not write template meta data:") + "\n" + fn);
+		} else {
+			QTextStream out(&file);
+			out << templateDialog.generateMetaData();
+			file.close();
+		}
+		// if(!userTemplatesList.contains(fn)) userTemplatesList.append(fn);
 	}
 }
 
@@ -1797,7 +1815,7 @@ void Texmaker::templateEdit(const QString &fname){
 
 void Texmaker::fileNewFromTemplate() {
 	// select Template
-	TemplateSelector dialog("template_*.tex", tr("Select LaTeX Template"), this);
+	TemplateSelector dialog("*.tex", tr("Select LaTeX Template"), this, QStringList(TemplateManager::getUserTemplateDir()));
 	connect(&dialog, SIGNAL(editTemplateRequest(QString)), this, SLOT(templateEdit(QString)));
 
 	if(dialog.exec()){

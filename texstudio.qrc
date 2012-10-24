@@ -306,29 +306,29 @@
         <file>images/qcodeedit/replaceup.png</file>
         <file>images/qcodeedit/replacedown.png</file>
         <file>templates/template_Article.tex</file>
-        <file>templates/template_Article.meta</file>
+        <file>templates/template_Article.json</file>
         <file>templates/template_Article(French).tex</file>
-        <file>templates/template_Article(French).meta</file>
+        <file>templates/template_Article(French).json</file>
         <file>templates/template_Beamer.tex</file>
-        <file>templates/template_Beamer.meta</file>
+        <file>templates/template_Beamer.json</file>
         <file>templates/template_Book.tex</file>
-        <file>templates/template_Book.meta</file>
+        <file>templates/template_Book.json</file>
         <file>templates/template_HA-prosper.tex</file>
-        <file>templates/template_HA-prosper.meta</file>
+        <file>templates/template_HA-prosper.json</file>
         <file>templates/template_Letter.tex</file>
-        <file>templates/template_Letter.meta</file>
+        <file>templates/template_Letter.json</file>
         <file>templates/template_Prosper.tex</file>
-        <file>templates/template_Prosper.meta</file>
+        <file>templates/template_Prosper.json</file>
         <file>templates/template_Report.tex</file>
-        <file>templates/template_Report.meta</file>
+        <file>templates/template_Report.json</file>
         <file>templates/template_Scrartcl.tex</file>
-        <file>templates/template_Scrartcl.meta</file>
+        <file>templates/template_Scrartcl.json</file>
         <file>templates/template_Scrbook.tex</file>
-        <file>templates/template_Scrbook.meta</file>
+        <file>templates/template_Scrbook.json</file>
         <file>templates/template_Scrlttr2.tex</file>
-        <file>templates/template_Scrlttr2.meta</file>
+        <file>templates/template_Scrlttr2.json</file>
         <file>templates/template_Scrreprt.tex</file>
-        <file>templates/template_Scrreprt.meta</file>
+        <file>templates/template_Scrreprt.json</file>
         <file>images/masterdoc.png</file>
         <file>images/qcodeedit/replaceall.png</file>
         <file>images/qcodeedit/count.png</file>

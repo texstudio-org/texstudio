@@ -122,7 +122,9 @@ HEADERS += texmaker.h \
     dblclickmenubar.h \
     tests/updatechecker_t.h \
     mathassistant.h \
-    cursorhistory.h
+    cursorhistory.h \
+    maketemplatedialog.h \
+    templatemanager.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -209,7 +211,9 @@ SOURCES += main.cpp \
     updatechecker.cpp \
     dblclickmenubar.cpp \
     mathassistant.cpp \
-    cursorhistory.cpp
+    cursorhistory.cpp \
+    maketemplatedialog.cpp \
+    templatemanager.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
@@ -234,7 +238,8 @@ FORMS += structdialog.ui \
     findGlobalDialog.ui \
     userquickdialog.ui \
     PDFDocument.ui \
-    cleandialog.ui
+    cleandialog.ui \
+    maketemplatedialog.ui
 TRANSLATIONS += texstudio_cs.ts \
     texstudio_de.ts \
     texstudio_es.ts \
