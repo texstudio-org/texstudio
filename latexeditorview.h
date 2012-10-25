@@ -173,6 +173,8 @@ private slots:
 	void triggeredThesaurus();
 	void reloadSpeller();
 	void changeSpellingLanguage(const QLocale &loc);
+	void copyImageFromAction();
+	void saveImageFromAction();
 public slots:
 	void cleanBib();
 	

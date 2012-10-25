@@ -277,7 +277,7 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 					}
 				}
 			}
-			doc->line(i).removeCookie(2);
+			doc->line(i).removeCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		}
 	}
 }
@@ -579,7 +579,7 @@ void diffMerge(LatexDocument *doc){
 					}
 				}
 			}
-			doc->line(i).removeCookie(2);
+			doc->line(i).removeCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		}
 	}
 }

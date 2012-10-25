@@ -228,6 +228,42 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
 	else cursor=editor->cursor();
 	LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+
+	// check for context menu on preview picture
+	QRect pictRect = cursor.line().getCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS).toRect();
+	if (pictRect.isValid()) {
+		QPoint posInDocCoordinates(event->pos().x() + edView->editor->horizontalOffset(), event->pos().y() + edView->editor->verticalOffset());
+		if (pictRect.contains(posInDocCoordinates)) {
+			// get removePreviewAction
+			// ok, this is not an ideal way of doing it because (i) it has to be in the baseActions (at least we Q_ASSERT this) and (ii) the iteration over the baseActions
+			// Alternatives: 1) include configmanager and use ConfigManager->getInstance()->getManagedAction() - Disadvantage: additional dependency
+			//               2) explicitly pass it to the editorView (like the base actions, but separate) - Disadvantage: code overhead
+			//               3) Improve the concept of base actions:
+			//                    LatexEditorView::addContextAction(QAction); called when creating the editorView
+			//                    LatexEditorView::getContextAction(QString); used here to populate the menu
+			bool removePreviewActionFound = false;
+			foreach(QAction *act, baseActions) {
+				if (act->objectName().endsWith("removePreviewLatex")) {
+					act->setData(posInDocCoordinates);
+					contextMenu->addAction(act);
+					removePreviewActionFound = true;
+					break;
+				}
+			}
+			Q_ASSERT(removePreviewActionFound);
+
+
+			QVariant vPixmap = cursor.line().getCookie(QDocumentLine::PICTURE_COOKIE);
+			if (vPixmap.isValid()) {
+				(contextMenu->addAction("Copy Image", edView, SLOT(copyImageFromAction())))->setData(vPixmap);
+				(contextMenu->addAction("Save Image As...", edView, SLOT(saveImageFromAction())))->setData(vPixmap);
+			}
+			contextMenu->exec(event->globalPos());
+			return true;
+		}
+	}
+
+	// normal context menu
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
 	LatexParser::ContextType context = LatexParser::Unknown;
 	QString ctxCommand, ctxValue;
@@ -2085,6 +2121,32 @@ void LatexEditorView::changeSpellingLanguage(const QLocale &loc) {
 	    } else if (spellerManager->hasSimilarSpeller(loc.name(), &sim)) {
 		setSpeller(sim);
 	}
+}
+
+void LatexEditorView::copyImageFromAction() {
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (!act) return;
+
+	QPixmap pm = act->data().value<QPixmap>();
+	if (!pm.isNull()) {
+		QApplication::clipboard()->setImage(pm.toImage());
+	}
+}
+
+void LatexEditorView::saveImageFromAction() {
+	static QString lastSaveDir;
+
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (!act) return;
+
+	QPixmap pm = act->data().value<QPixmap>();
+
+	QString fname = QFileDialog::getSaveFileName(this , tr("Save Preview Image"), lastSaveDir, tr("Images")+" (*.png *.jpg)");
+	if (fname.isEmpty()) return;
+
+	QFileInfo fi(fname);
+	lastSaveDir = fi.absolutePath();
+	pm.save(fname);
 }
 
 
