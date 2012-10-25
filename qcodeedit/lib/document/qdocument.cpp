@@ -6330,7 +6330,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			int ph = h->getPictureCookieHeight();
 
 			pseudoWrap = ph/m_lineSpacing;
-			p->drawPixmap((cxt.width - pm.width())/2, m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2, pm);
+			int x = (cxt.width - pm.width())/2;
+			int y = m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2;
+			p->drawPixmap(x, y, pm);
+			h->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x, y+pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
 		}
 
 		bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);

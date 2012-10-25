@@ -5948,6 +5948,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 		for (int l = source.fromLine; l <= toLine; l++ )
 			if (doc->line(l).getCookie(QDocumentLine::PICTURE_COOKIE).isValid()) {
 				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE);
+				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
 				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
 				doc->adjustWidth(l);
 			}
@@ -5958,19 +5959,32 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 	previewEquation=false;
 }
 
-void Texmaker::clearPreview(){
+void Texmaker::clearPreview() {
 	QEditor* edit = currentEditor();
 	if (!edit) return;
-	int i,t;
-	if (edit->cursor().hasSelection()) {
-		i = edit->cursor().selectionStart().lineNumber();
-		t = edit->cursor().selectionEnd().lineNumber();
+
+	int startLine = 0;
+	int endLine = 0;
+
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act && act->data().isValid()) {
+		// inline preview context menu supplies the calling point in doc coordinates as data
+		startLine = edit->lineAtPosition(act->data().toPoint()).lineNumber();
+		// slight performance penalty for use of lineNumber(), which is not stictly necessary because
+		// we convert it back to a QDocumentLine, but easier to handle together with the other cases
+		endLine = startLine;
+		act->setData(QVariant());
+	} else if (edit->cursor().hasSelection()) {
+		startLine = edit->cursor().selectionStart().lineNumber();
+		endLine = edit->cursor().selectionEnd().lineNumber();
 	} else {
-		i = edit->cursor().lineNumber();
-		t = i;
+		startLine = edit->cursor().lineNumber();
+		endLine = startLine;
 	}
-	for (; i<=t; i++){
-		edit->document()->line(i).removeCookie(42);
+
+	for (int i=startLine; i<=endLine; i++){
+		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
+		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
 		edit->document()->adjustWidth(i);
 		for (int j=currentEditorView()->autoPreviewCursor.size()-1;j>=0;j--)
 			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
