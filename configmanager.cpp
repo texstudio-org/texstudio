@@ -230,9 +230,11 @@ bool ManagedProperty::readFromObject(const QObject* w){
 		case PT_INT:    READ_FROM_OBJECT(int, comboBox->currentIndex())
 		case PT_STRING: READ_FROM_OBJECT(QString, comboBox->currentText())
 		case PT_STRINGLIST:{
-			QString oldvalue = ((QStringList*)storage)->first();
+			QString oldvalue;
+			if (!((QStringList*)storage)->isEmpty())
+				oldvalue = ((QStringList*)storage)->first();
 			*((QStringList*)storage) = QStringList(comboBox->currentText());
-			return oldvalue != ((QStringList*)storage)->first();
+			return oldvalue != comboBox->currentText();
 		}
 		default:
 			Q_ASSERT(false);

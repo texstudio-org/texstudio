@@ -339,6 +339,7 @@ void ThesaurusDialog::addUserWordClicked(){
 	uid.addVariable(&word, tr("New Word:"));
 	uid.addVariable(&categories, tr("Category:"))->setEditable(true);
 	if (!uid.exec()) return;
+	if (categories.isEmpty()) return;
 	QString category = categories.first();
 	QStringList &sl = thesaurus->userWords[category.toLower()];
 	if (sl.contains(word)) return;
