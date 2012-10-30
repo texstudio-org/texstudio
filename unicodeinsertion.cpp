@@ -6,10 +6,34 @@ QString unicodePointToString(unsigned int u){
 	return QString::fromUcs4(&u, 1);
 }
 
+QString unicodePointToUtf8Hex(unsigned int u){
+	return unicodePointToString(u).toUtf8().toHex();
+}
+
+QLineEditWithMetaText::QLineEditWithMetaText(QWidget* parent): QLineEdit(parent){
+
+}
+
+void QLineEditWithMetaText::setMetaText(const QString& s){
+	metaText = s;
+	update();
+}
+
+void QLineEditWithMetaText::paintEvent ( QPaintEvent * ev){
+	QLineEdit::paintEvent(ev);
+	if (metaText.isEmpty()) return;
+	QPainter p(this);
+	QFontMetrics fm(font());
+	p.setPen(QApplication::palette().windowText().color().lighter(50));
+	p.drawText(width()-fm.width(metaText)-5, (height() + fm.height()) / 2 - 2, metaText);
+
+}
+
+
 UnicodeInsertion::UnicodeInsertion(QWidget* parent): QWidget(parent)
 {
 	QLayout* lay = new QVBoxLayout();
-	edit=new QLineEdit(this);
+	edit=new QLineEditWithMetaText(this);
 	table=new QTableWidget(this);
 	QFontMetrics fm(QApplication::font());
 	int bw = (fm.maxWidth()+1), bh= qMax(fm.height(),fm.lineSpacing())+1;
@@ -64,6 +88,11 @@ void UnicodeInsertion::editChanged(const QString& newText){
 	else base=10;
 
 	unsigned int c = QString(nt).toUInt(0,base);
+
+	QString utf8 = c <= 0x7f ? "" : QString(", utf-8: %1").arg(unicodePointToUtf8Hex(c));
+	if (base == 16) edit->setMetaText(QString("%1 (cp: %2%3)").arg(unicodePointToString(c)).arg(c).arg(utf8));
+	else edit->setMetaText(QString("%1 (cp: 0x%2%3)").arg(unicodePointToString(c)).arg(c, 0, 16).arg(utf8));
+
 	setTableText(0,8,unicodePointToString(c));
 	for (int i=0;i<base;i++)
 		setTableText(2,i,unicodePointToString(c*base+i));
@@ -85,3 +114,5 @@ void UnicodeInsertion::tableCellDoubleClicked(int r, int c){
 	insertCharacter(table->item(0,8)->text()); //tricky, double click is reported as single click - double click and the single click sets the edit box (4.6.3 on debian)
 	close();
 }
+
+
