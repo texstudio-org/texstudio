@@ -3,13 +3,24 @@
 
 #include "mostQtHeaders.h"
 
+
+class QLineEditWithMetaText: public QLineEdit{
+	Q_OBJECT
+public:
+	QLineEditWithMetaText(QWidget* parent);
+	void setMetaText(const QString& s);
+protected:
+	QString metaText;
+	virtual void paintEvent ( QPaintEvent * ev);
+};
+
 class UnicodeInsertion : public QWidget
 {
 	Q_OBJECT
 public:
 	UnicodeInsertion(QWidget* parent);
 private:
-	QLineEdit* edit;
+	QLineEditWithMetaText* edit;
 	QTableWidget* table;
 
 	void setTableText(int r, int c, const QString& s);
@@ -25,5 +36,7 @@ public: signals:
 	void insertCharacter(const QString& c);
 
 };
+
+
 
 #endif // UNICODEINSERTION_H
