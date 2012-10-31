@@ -460,6 +460,30 @@ private slots:
 		QEQUAL2(unquoted, in, "while dequoting");
 	}
 
+	void test_replaceFileExtension_data(){
+		QTest::addColumn<bool>("appendIfNoExtension");
+		QTest::addColumn<QString>("file");
+		QTest::addColumn<QString>("ext");
+		QTest::addColumn<QString>("result");
+
+		QTest::newRow("noExtension") << false << "c:/test" << "log" << QString();
+		QTest::newRow("noExtensionAdd") << true << "c:/test" << "log" << "c:/test.log";
+		QTest::newRow("simple") << false << "c:/test.tex" << "log" << "c:/test.log";
+		QTest::newRow("relative") << false << "../dir/test.tex" << "log" << "../dir/test.log";
+		QTest::newRow("doubleExtSrc") << false << "test.synctex.gz" << "log" << "test.log";
+		QTest::newRow("doubleExtTarget") << false << "test.tex" << "synctex.gz" << "test.synctex.gz";
+		QTest::newRow("dotExt") << false << "test.tex" << ".log" << "test.log";
+		QTest::newRow("dotExtAdd") << true << "c:/test" << ".log" << "c:/test.log";
+	}
+	void test_replaceFileExtension() {
+		QFETCH(bool, appendIfNoExtension);
+		QFETCH(QString, file);
+		QFETCH(QString, ext);
+		QFETCH(QString, result);
+
+		QEQUAL(replaceFileExtension(file, ext, appendIfNoExtension), result);
+	}
+
 };
 
 

@@ -124,7 +124,8 @@ HEADERS += texmaker.h \
     mathassistant.h \
     cursorhistory.h \
     maketemplatedialog.h \
-    templatemanager.h
+    templatemanager.h \
+    templatemanager_p.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -213,7 +214,8 @@ SOURCES += main.cpp \
     mathassistant.cpp \
     cursorhistory.cpp \
     maketemplatedialog.cpp \
-    templatemanager.cpp
+    templatemanager.cpp \
+    templatemanager_p.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \

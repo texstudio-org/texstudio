@@ -212,7 +212,7 @@
         <file>completion/float.cwl</file>
         <file>completion/fontspec.cwl</file>
         <file>completion/geometry.cwl</file>
-	<file>completion/glossaries.cwl</file>
+        <file>completion/glossaries.cwl</file>
         <file>completion/glosstex.cwl</file>
         <file>completion/graphicx.cwl</file>
         <file>completion/hyperref.cwl</file>
@@ -305,30 +305,6 @@
         <file>tags/tikz_tags.xml</file>
         <file>images/qcodeedit/replaceup.png</file>
         <file>images/qcodeedit/replacedown.png</file>
-        <file>templates/template_Article.tex</file>
-        <file>templates/template_Article.json</file>
-        <file>templates/template_Article(French).tex</file>
-        <file>templates/template_Article(French).json</file>
-        <file>templates/template_Beamer.tex</file>
-        <file>templates/template_Beamer.json</file>
-        <file>templates/template_Book.tex</file>
-        <file>templates/template_Book.json</file>
-        <file>templates/template_HA-prosper.tex</file>
-        <file>templates/template_HA-prosper.json</file>
-        <file>templates/template_Letter.tex</file>
-        <file>templates/template_Letter.json</file>
-        <file>templates/template_Prosper.tex</file>
-        <file>templates/template_Prosper.json</file>
-        <file>templates/template_Report.tex</file>
-        <file>templates/template_Report.json</file>
-        <file>templates/template_Scrartcl.tex</file>
-        <file>templates/template_Scrartcl.json</file>
-        <file>templates/template_Scrbook.tex</file>
-        <file>templates/template_Scrbook.json</file>
-        <file>templates/template_Scrlttr2.tex</file>
-        <file>templates/template_Scrlttr2.json</file>
-        <file>templates/template_Scrreprt.tex</file>
-        <file>templates/template_Scrreprt.json</file>
         <file>images/masterdoc.png</file>
         <file>images/qcodeedit/replaceall.png</file>
         <file>images/qcodeedit/count.png</file>
@@ -365,18 +341,14 @@
         <file>images/repeat-compile-off.png</file>
         <file>images/windowed-viewer.png</file>
         <file>images/embedded-viewer.png</file>
-		<file>images/separator.png</file>
-		<file>images/TexTablet.png</file>
+        <file>images/separator.png</file>
+        <file>images/TexTablet.png</file>
+        <file>images/user-identity.png</file>
         <file>completion/cleveref.cwl</file>
         <file>completion/parskip.cwl</file>
         <file>completion/xy.cwl</file>
         <file>completion/xetex.cwl</file>
         <file>completion/upgreek.cwl</file>
-        <file>templates/tabletemplate_fullyframed_firstBold.js</file>
-        <file>templates/tabletemplate_fullyframed_longtable.js</file>
-        <file>templates/tabletemplate_plain_tabular.js</file>
-        <file>templates/tabletemplate_plain_tabularx.js</file>
-        <file>templates/tabletemplate_rowcolors_tabular.js</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>

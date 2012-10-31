@@ -66,6 +66,8 @@ bool isFileRealWritable(const QString& filename);
 bool isExistingFileRealWritable(const QString& filename);
 //adds QDir::separator() if the path end not with it
 QString ensureTrailingDirSeparator(const QString& dirPath);
+// replaces "somdir/file.ext" to "somedir/file.newext"
+QString replaceFileExtension(const QString& filename, const QString& newExtension, bool appendIfNoExt=false);
 
 
 //returns kde version 0,3,4

@@ -45,9 +45,10 @@ QString MakeTemplateDialog::generateMetaData()
 	QString s = "{\n";
 	s += formatJsonStringParam("Name", ui->leName->text(), 13) + ",\n";
 	s += formatJsonStringParam("Author", ui->leAuthor->text(), 13) + ",\n";
-	s += formatJsonStringParam("Date", QDate::currentDate().toString(Qt::SystemLocaleShortDate), 13) + ",\n";
+	s += formatJsonStringParam("Date", QDate::currentDate().toString(Qt::ISODate), 13) + ",\n";
 	s += formatJsonStringParam("Version", ui->leVersion->text(), 13) + ",\n";
-	s += formatJsonStringParam("Description", ui->leDescription->toPlainText(), 13) + "\n"; // last entry does not have colon
+	s += formatJsonStringParam("Description", ui->leDescription->toPlainText(), 13) + ",\n";
+	s += formatJsonStringParam("License", ui->leLicense->text(), 13) + "\n"; // last entry does not have colon
 	s += "}";
 	return s;
 }
