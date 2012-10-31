@@ -383,6 +383,20 @@ QString ensureTrailingDirSeparator(const QString& dirPath){
 	return dirPath+"/";
 }
 
+QString replaceFileExtension(const QString& filename, const QString& newExtension, bool appendIfNoExt) {
+	QFileInfo fi(filename);
+	QString ext = newExtension.startsWith('.') ? newExtension.mid(1) : newExtension;
+	if (fi.suffix().isEmpty()) {
+		if (appendIfNoExt)
+			return filename + '.' + ext;
+		else
+			return QString();
+	}
+
+	return filename.left(filename.length()-fi.completeSuffix().length()) + ext;
+}
+
+
 
 int x11desktop_env() {
 	// 0 : no kde ; 3: kde ; 4 : kde4 ;

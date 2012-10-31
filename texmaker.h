@@ -25,7 +25,6 @@
 #include "latexdocument.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
-#include "templateselector.h"
 //#include "symbollistwidget.h"
 #include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
@@ -165,7 +164,6 @@ private:
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
-	TemplateSelector *templateSelectorDialog;
 	
 	//tools
 	usercodelist symbolMostused;

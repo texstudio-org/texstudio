@@ -13,32 +13,56 @@
 #define TEMPLATESELECTOR_H
 
 #include "mostQtHeaders.h"
-
+#include "templatemanager.h"
 #include "ui_templateselector.h"
+
+// a label to show pixmaps. It shinks the pixmap if necessary to fit it into the available space.
+// but it does not magnify it if more space is available
+class PreviewLabel : public QLabel {
+	Q_OBJECT
+public:
+	explicit PreviewLabel(QWidget *parent=0): QLabel(parent) { setScaledPixmap(QPixmap()); }
+	void setScaledPixmap(const QPixmap &pm);
+protected:
+	virtual void resizeEvent(QResizeEvent *event);
+private:
+	void setPixmapWithResizing(const QPixmap &pm);
+	QPixmap currentPixmap;
+};
+
 
 class TemplateSelector : public QDialog  {
 	Q_OBJECT
 public:
-	TemplateSelector(QString filter, QString name="", QWidget *parent=0, QStringList additionalSearchPaths = QStringList());
+	explicit TemplateSelector(QString name="", QWidget *parent=0);
 	~TemplateSelector();
-	QString selectedTemplateFile() const;
-	Ui::templateSelectorDialog ui;
+
+	TemplateHandle selectedTemplate() const;
+	void addRessource(AbstractTemplateRessource *res);
 signals:
-	void editTemplateRequest(const QString &fname);
+	void editTemplateRequest(TemplateHandle th);
+	void editTemplateInfoRequest(TemplateHandle th);
 
 private slots:
 	void addTemplateFiles();
-	void on_listWidget_itemDoubleClicked(QListWidgetItem* item);
-	void showInfo(QListWidgetItem *currentItem, QListWidgetItem *previousItem);
+	void showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *previousItem);
+	void templatesTreeContextMenu(QPoint point);
+
+	void on_templatesTree_doubleClicked(const QModelIndex& index);
+
 	void editTemplate();
+	void editTemplateInfo();
 	void removeTemplate();
+	void openTemplateLocation();
 
 private:
-	bool getTemplateMetaData(const QString &file, QHash<QString, QString> &metaData) const;
-	QString mFilter;
-	QStringList mAdditonalSearchPaths;
+	QString orDefault(const QString &val, const QString &defaultIfValEmpty) const { return (val.isEmpty()) ? defaultIfValEmpty : val; }
 
-	static const int FileNameRole;
+	Ui::templateSelectorDialog ui;
+	PreviewLabel *previewLabel;
+
+	static const int TemplateHandleRole;
+	static const int RessourceRole;
 };
 
 #endif // TEMPLATESELECTOR_H

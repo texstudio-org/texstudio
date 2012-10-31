@@ -112,7 +112,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	bookmarksWidget=0;
 	
 	outputView=0;
-	templateSelectorDialog=0;
 	
 	qRegisterMetaType<LatexParser>();
 	latexParser.importCwlAliases();
@@ -252,7 +251,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	LatexEditorView::setCompleter(completer);
 	completer->updateAbbreviations();
 	
-	TemplateManager::setUserTemplateDir(configManager.configBaseDir + "templates/user/");
+	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
 	TemplateManager::ensureUserTemplateDirExists();
 	TemplateManager::checkForOldUserTemplates();
 
@@ -1779,7 +1778,7 @@ void Texmaker::fileMakeTemplate() {
 	if (!currentEditorView())
 		return;
 	
-	MakeTemplateDialog templateDialog(TemplateManager::getUserTemplateDir());
+	MakeTemplateDialog templateDialog(TemplateManager::userTemplateDir());
 	if (templateDialog.exec()) {
 		// save file
 		QString fn = templateDialog.suggestedFile();
@@ -1816,12 +1815,10 @@ void Texmaker::templateEdit(const QString &fname){
 }
 
 void Texmaker::fileNewFromTemplate() {
-	// select Template
-	TemplateSelector dialog("*.tex", tr("Select LaTeX Template"), this, QStringList(TemplateManager::getUserTemplateDir()));
-	connect(&dialog, SIGNAL(editTemplateRequest(QString)), this, SLOT(templateEdit(QString)));
-
-	if(dialog.exec()){
-		QString fname = dialog.selectedTemplateFile();
+	TemplateManager tmplMgr;
+	connectUnique(&tmplMgr, SIGNAL(editRequested(QString)), this, SLOT(templateEdit(QString)));
+	if (tmplMgr.latexTemplateDialogExec()) {
+		QString fname = tmplMgr.selectedTemplateFile();
 		QFile file(fname);
 		if (!file.exists()) {
 			txsWarning(tr("File not found:")+QString("\n%1").arg(fname));
@@ -1877,11 +1874,10 @@ void Texmaker::insertTableTemplate() {
 		return;
 
 	// select Template
-	TemplateSelector dialog("tabletemplate_*.js", tr("Select Table Template"), this, QStringList(configManager.configBaseDir));
-	connect(&dialog, SIGNAL(editTemplateRequest(QString)), this, SLOT(templateEdit(QString)));
-
-	if(dialog.exec()){
-		QString fname = dialog.selectedTemplateFile();
+	TemplateManager tmplMgr;
+	connectUnique(&tmplMgr, SIGNAL(editRequested(QString)), this, SLOT(templateEdit(QString)));
+	if (tmplMgr.tableTemplateDialogExec()) {
+		QString fname = tmplMgr.selectedTemplateFile();
 		QFile file(fname);
 		if (!file.exists()) {
 			txsWarning(tr("File not found:")+QString("\n%1").arg(fname));
