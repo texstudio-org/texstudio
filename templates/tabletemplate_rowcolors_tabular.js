@@ -1,6 +1,6 @@
 var metaData = {
 "Name"        : "Colored rows",
-"Description" : "Formats the table using alternate colors for rows. <br> <code>\usepackage[table]{xcolor}</code> is necessary.", 
+"Description" : "Formats the table using alternate colors for rows. <br> <code>\\usepackage[table]{xcolor}</code> is necessary.", 
 "Author"      : "Jan Sundermeyer",
 "Date"        : "4.9.2011",
 "Version"     : "1.0"
