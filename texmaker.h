@@ -71,7 +71,7 @@ public:
 	bool tobemaximized,tobefullscreen;
 	
 public slots:
-	LatexEditorView* load(const QString &f , bool asProject = false);
+    LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 	
@@ -172,7 +172,7 @@ private:
 	Q_INVOKABLE LatexEditorView *currentEditorView() const;
 	Q_INVOKABLE QEditor* currentEditor() const;
 	void configureNewEditorView(LatexEditorView *edit);
-	void configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster=false);
+    void configureNewEditorViewEnd(LatexEditorView *edit,bool asMaster=false, bool hidden = false);
 	LatexEditorView* getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
 	
 	QAction *fullscreenModeAction;
@@ -286,6 +286,8 @@ protected slots:
 	
 	void editorTabContextMenu(const QPoint& point);
 
+    void addDocToLoad(QString filename);
+
 private slots:	
 	void ReadSettings();
 	void SaveSettings(const QString& configName="");
@@ -301,7 +303,7 @@ protected slots:
 	void CloseEditorTab(int tab);
 	void EditorTabMoved(int from,int to);
 	
-	void updateStructure(bool initial=false);
+    void updateStructure(bool initial=false, LatexDocument *doc = 0);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
     void clickedOnBookmark(QListWidgetItem *item);
@@ -421,7 +423,7 @@ protected slots:
 	
 	void SetMostUsedSymbols(QTableWidgetItem* item);
 	
-	void updateCompleter();
+    void updateCompleter(LatexEditorView *edView = 0);
 	void completerNeedsUpdate();
 	void needUpdatedCompleter();
 	

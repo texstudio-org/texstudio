@@ -89,6 +89,8 @@ public:
 	Q_PROPERTY(QString fileName READ getFileName);
 	Q_PROPERTY(QFileInfo fileInfo READ getFileInfo);
 	Q_PROPERTY(LatexEditorView* editorView READ getEditorView);
+
+    bool isHidden();
 	
 	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
@@ -286,11 +288,12 @@ public:
 	LatexDocument* masterDocument;
 	LatexDocument* currentDocument;
 	QList<LatexDocument*> documents;
+    QList<LatexDocument*> hiddenDocuments;
 	
 	LatexDocuments();
 	~LatexDocuments();
-	void addDocument(LatexDocument* document);
-	void deleteDocument(LatexDocument* document);
+    void addDocument(LatexDocument* document, bool hidden = false);
+    void deleteDocument(LatexDocument* document, bool hidden = false);
     void move(int from,int to);
 	Q_INVOKABLE void setMasterDocument(LatexDocument* document);
 	Q_INVOKABLE LatexDocument* getCurrentDocument() const;
@@ -332,9 +335,11 @@ public:
 	int indentationInStructure;
 
 	QHash<QString,LatexPackage> cachedPackages;
+    void addDocToLoad(QString filename);
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
+    void docToLoad(QString filename);
 private slots:
 	void bibTeXFilesNeedUpdate();
 public slots:

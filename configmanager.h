@@ -130,6 +130,7 @@ public:
 	QString sessionMaster;
 	QString sessionCurrent;
 	bool parseBibTeX, parseMaster;
+    bool autoLoadChildren;
 
         //autosave
         int autosaveEveryMinutes;

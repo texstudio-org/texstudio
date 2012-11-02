@@ -127,6 +127,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 	connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
+    if(configManager.autoLoadChildren)
+        connect(&documents, SIGNAL(docToLoad(QString)),this,SLOT(addDocToLoad(QString)));
 	grammarCheckThread.start();
 	
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
@@ -1418,7 +1420,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 }
 
 //complete the new editor view configuration (edit->document is set)
-void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDoc){
+void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDoc,bool hidden){
 	REQUIRE(edit->document);
 	//patch Structure
 	//disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int))); // force order of contentsChange update
@@ -1435,13 +1437,15 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 	connect(edit,SIGNAL(saveCurrentCursorToHistoryRequested()),this,SLOT(saveCurrentCursorToHistory()));
 	
-	EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
-	updateOpenDocumentMenu(false);
-	EditorView->setCurrentWidget(edit);
-	
-	edit->editor->setFocus();
-	UpdateCaption();
-	NewDocumentStatus();
+    if(!hidden){
+        EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
+        updateOpenDocumentMenu(false);
+        EditorView->setCurrentWidget(edit);
+
+        edit->editor->setFocus();
+        UpdateCaption();
+        NewDocumentStatus();
+    }
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames){
@@ -1492,7 +1496,7 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
   }
 }
 
-LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
+LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) {
 	QString f_real=f;
 #ifdef Q_WS_WIN
 	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
@@ -1518,12 +1522,26 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 		return 0;
 	}
 
-	raise();
+    if(!hidden)
+        raise();
 	
 	//test is already opened
 	LatexEditorView* existingView = getEditorViewFromFileName(f_real);
 	if (existingView) {
 		if (asProject) documents.setMasterDocument(existingView->document);
+        if(existingView->document->isHidden()){
+            qDebug()<<"hidden doc";
+            documents.deleteDocument(existingView->document,true);
+            documents.addDocument(existingView->document,false);
+            EditorView->insertTab( -1,existingView, "?bug?");
+            updateOpenDocumentMenu(false);
+            EditorView->setCurrentWidget(existingView);
+            updateStructure(false,existingView->document);
+            existingView->editor->setFocus();
+            UpdateCaption();
+            NewDocumentStatus();
+            return existingView;
+        }
 		EditorView->setCurrentWidget(existingView);
 		return existingView;
 	} else {
@@ -1552,7 +1570,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (!QFile::exists(f_real)) return 0;
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
-		QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
+        if(!hidden)
+            QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
 		return 0;
 	}
 	file.close();
@@ -1567,7 +1586,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	if (!edit->document) {
 		edit->document=doc;
 		edit->document->setEditorView(edit);
-		documents.addDocument(edit->document);
+        documents.addDocument(edit->document,hidden);
 	} else edit->document->setEditorView(edit);
 
 	if (edit->editor->fileInfo().suffix()!="tex")
@@ -1581,12 +1600,14 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	
 	edit->document->setEditorView(edit); //update file name (if document didn't exist)
 	
-	configureNewEditorViewEnd(edit,asProject);
+    configureNewEditorViewEnd(edit,asProject,hidden);
 	
 	//check for svn conflict
-	checkSVNConflicted();
+    if(!hidden){
+        checkSVNConflicted();
 	
-	MarkCurrentFileAsRecent();
+        MarkCurrentFileAsRecent();
+    }
 	
 	
 	
@@ -1595,22 +1616,24 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	
 	edit->updateLtxCommands();
 	
-	if (QFile::exists(f_real + ".recover.bak~")
-			&& QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
-		if (txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString()).arg(f_real))){
-			QFile f(f_real + ".recover.bak~");
-			if (f.open(QFile::ReadOnly)) {
-				QByteArray ba = f.readAll();
-				QString recovered = QTextCodec::codecForMib(MIB_UTF8)->toUnicode(ba); //TODO: chunk loading?
-				edit->document->setText(recovered, true);
-			} else txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
-		}
-	}
+    if(!hidden){
+        if (QFile::exists(f_real + ".recover.bak~")
+                && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
+            if (txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString()).arg(f_real))){
+                QFile f(f_real + ".recover.bak~");
+                if (f.open(QFile::ReadOnly)) {
+                    QByteArray ba = f.readAll();
+                    QString recovered = QTextCodec::codecForMib(MIB_UTF8)->toUnicode(ba); //TODO: chunk loading?
+                    edit->document->setText(recovered, true);
+                } else txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
+            }
+        }
+
+    }
 	
-	
-	
-	updateStructure(true);
-	ShowStructure();
+    updateStructure(true,doc);
+    if(!hidden)
+        ShowStructure();
 	restoreBookmarks(edit);
 	
 	if (asProject) documents.setMasterDocument(edit->document);
@@ -1626,17 +1649,19 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject) {
 	
 	
 #ifndef Q_WS_MACX
-	if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
-		show();
-		if (windowState()==Qt::WindowMinimized)
-			setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-		show();
-		raise();
-		QApplication::setActiveWindow(this);
-		activateWindow();
-		setFocus();
-		edit->editor->setFocus();
-	}
+    if(!hidden){
+        if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
+            show();
+            if (windowState()==Qt::WindowMinimized)
+                setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+            show();
+            raise();
+            QApplication::setActiveWindow(this);
+            activateWindow();
+            setFocus();
+            edit->editor->setFocus();
+        }
+    }
 	//raise();
 	//#ifdef Q_WS_WIN
 	//        if (IsIconic (this->winId())) ShowWindow(this->winId(), SW_RESTORE);
@@ -3119,11 +3144,12 @@ void Texmaker::ShowStructure() {
 	leftPanel->setCurrentWidget(structureTreeView);
 }
 
-void Texmaker::updateStructure(bool initial) {
+void Texmaker::updateStructure(bool initial,LatexDocument *doc) {
 	// collect user define tex commands for completer
 	// initialize List
-	if (!currentEditorView() || !currentEditorView()->document) return;
-	LatexDocument* doc = currentEditorView()->document;
+    if ((!currentEditorView() || !currentEditorView()->document) && !doc) return;
+    if(!doc)
+        doc = currentEditorView()->document;
 	if(initial){
 		int len=doc->lineCount();
 		doc->patchStructure(0,len);
@@ -3133,10 +3159,10 @@ void Texmaker::updateStructure(bool initial) {
 		updateUserMacros();
 	}
 	else {
-		currentEditorView()->document->updateStructure();
+        doc->updateStructure();
 	}
 	
-	updateCompleter();
+    updateCompleter(doc->getEditorView());
 	cursorPositionChanged();
 	
 	//structureTreeView->reset();
@@ -5504,12 +5530,13 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 	if(changed) MostUsedSymbolWidget->SetUserPage(symbolMostused);
 }
 
-void Texmaker::updateCompleter() {
+void Texmaker::updateCompleter(LatexEditorView* edView) {
 	QSet<QString> words;
 	
 	if (configManager.parseBibTeX) documents.updateBibFiles();
 	
-	LatexEditorView* edView=currentEditorView();
+    if(!edView)
+        edView=currentEditorView();
 	
 	QList<LatexDocument*> docs;
 	if(edView && edView->document){
@@ -7611,3 +7638,7 @@ void Texmaker::checkLatexInstall(){
 	currentEditorView()->editor->setText(result, false);
 }
 
+void Texmaker::addDocToLoad(QString filename){
+    //qDebug()<<"fname:"<<filename;
+    load(filename,false,true);
+}
