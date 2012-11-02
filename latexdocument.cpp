@@ -70,6 +70,9 @@ LatexEditorView *LatexDocument::getEditorView() const{
 QString LatexDocument::getFileName() const{
 	return fileName;
 }
+bool LatexDocument::isHidden(){
+    return parent->hiddenDocuments.contains(this);
+}
 QFileInfo LatexDocument::getFileInfo() const{
 	return fileInfo;
 }
@@ -156,7 +159,7 @@ void LatexDocument::clearStructure() {
 		}
 	}
 #ifndef QT_NO_DEBUG
-	Q_ASSERT(StructureContent.isEmpty());
+    //Q_ASSERT(StructureContent.isEmpty());
 #endif
 	baseStructure=0;
 	
@@ -282,6 +285,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		QStringList files=mUsepackageList.values();
 		updateCompletionFiles(files,updateSyntaxCheck);
 	}
+
 }
 
 void LatexDocument::patchStructure(int linenr, int count) {
@@ -325,6 +329,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	QStringList removedUsepackages;
 	QStringList addedUsepackages;
 	QStringList removedUserCommands,addedUserCommands;
+    QStringList lstFilesToLoad;
 	
 	//TODO: This assumes one command per line, which is not necessary true
 	for (int i=linenr; i<linenr+count; i++) {
@@ -705,7 +710,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newInclude->title=name;
 				QString fname=findFileName(name);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
-				if(dc)	dc->setMasterDocument(this);
+                if(dc)	dc->setMasterDocument(this);
+                else {
+                    lstFilesToLoad << fname;
+                    //parent->addDocToLoad(fname);
+                }
+
 				newInclude->valid = dc;
 				newInclude->setLine(line(i).handle(), i);
 				newInclude->columnNumber = offset;
@@ -734,34 +744,35 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	}//for each line handle
 	
 	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
-	mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
-	
-	const QList<StructureEntry*> categories=
-			QList<StructureEntry*>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
+    if(!isHidden()){
+        mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
 
-	for (int i=categories.size()-1;i>=0;i--) {
-		StructureEntry *cat = categories[i];
-		if (cat->children.isEmpty() == (cat->parent == 0)) continue;
-		if (cat->children.isEmpty()) removeElementWithSignal(cat);
-		else insertElementWithSignal(baseStructure, 0, cat);
-	}
-	
-	//update appendix change
-	if(oldLine!=mAppendixLine){
-		updateAppendix(oldLine,mAppendixLine);
-	}
-	
-	// rehighlight current cursor position
-	StructureEntry *newSection=0;
-	if(edView){
-		int i=edView->editor->cursor().lineNumber();
-		if(i>=0) {
-			newSection=findSectionForLine(i);
-		}
-	}
-	
-	emit structureUpdated(this,newSection);
+        const QList<StructureEntry*> categories=
+                QList<StructureEntry*>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
 
+        for (int i=categories.size()-1;i>=0;i--) {
+            StructureEntry *cat = categories[i];
+            if (cat->children.isEmpty() == (cat->parent == 0)) continue;
+            if (cat->children.isEmpty()) removeElementWithSignal(cat);
+            else insertElementWithSignal(baseStructure, 0, cat);
+        }
+
+        //update appendix change
+        if(oldLine!=mAppendixLine){
+            updateAppendix(oldLine,mAppendixLine);
+        }
+
+        // rehighlight current cursor position
+        StructureEntry *newSection=0;
+        if(edView){
+            int i=edView->editor->cursor().lineNumber();
+            if(i>=0) {
+                newSection=findSectionForLine(i);
+            }
+        }
+
+        emit structureUpdated(this,newSection);
+    }
 	StructureEntry* se;
 	foreach(se,MapOfTodo.values())
 		delete se;
@@ -807,9 +818,12 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	
 #ifndef QT_NO_DEBUG
-	checkForLeak();
+    if(!isHidden())
+        checkForLeak();
 #endif
-	
+    foreach(QString fname,lstFilesToLoad){
+        parent->addDocToLoad(fname);
+    }
 	
 }
 
@@ -937,14 +951,14 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visited
 	QList<LatexDocument *>listOfDocs;
 	bool deleteVisitedDocs=false;
 	if(parent->masterDocument){
-		listOfDocs=parent->documents;
+        listOfDocs=parent->getDocuments();
 	}else{
 		LatexDocument *master=this;
 		if(!visitedDocs){
 			visitedDocs=new QSet<LatexDocument*>();
 			deleteVisitedDocs=true;
 		}
-		foreach(LatexDocument *elem,parent->documents){ // check children
+        foreach(LatexDocument *elem,parent->getDocuments()){ // check children
 			if(elem!=master && elem->masterDocument!=master) continue;
 			if(visitedDocs && !visitedDocs->contains(elem)){
 				listOfDocs << elem;
@@ -1489,8 +1503,12 @@ LatexDocuments::~LatexDocuments(){
 	delete model;
 }
 
-void LatexDocuments::addDocument(LatexDocument* document){
-	documents.append(document);
+void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
+    if(hidden){
+        hiddenDocuments.append(document);
+    }else{
+        documents.append(document);
+    }
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
 	connect(document,SIGNAL(structureLost(LatexDocument*)),model,SLOT(structureLost(LatexDocument*)));
 	connect(document,SIGNAL(structureUpdated(LatexDocument*,StructureEntry*)),model,SLOT(structureUpdated(LatexDocument*,StructureEntry*)));
@@ -1508,10 +1526,12 @@ void LatexDocuments::addDocument(LatexDocument* document){
 			if (edView) edView->documentContentChanged(0,edView->editor->document()->lines());
 		}
 	}
-	model->structureUpdated(document,0);
+    if(!hidden)
+        model->structureUpdated(document,0);
 }
-void LatexDocuments::deleteDocument(LatexDocument* document){
-	emit aboutToDeleteDocument(document);
+void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
+    if(!hidden)
+        emit aboutToDeleteDocument(document);
 	LatexEditorView *view=document->getEditorView();
 	if(view)
 		view->closeCompleter();
@@ -1524,11 +1544,15 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 				elem->setMasterDocument(0);
 			}
 		}
-		document->setMasterDocument(0);
+        //document->setMasterDocument(0);
 		//recheck labels in all open documents connected to this document
 		foreach(LatexDocument* elem,lstOfDocs){
 			elem->recheckRefsLabels();
 		}
+        if(hidden){
+            hiddenDocuments.removeAll(document);
+            return;
+        }
 		int row=documents.indexOf(document);
 		//qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
@@ -1550,6 +1574,10 @@ void LatexDocuments::deleteDocument(LatexDocument* document){
 		if (view) delete view;
 		delete document;
 	} else {
+        if(hidden){
+            hiddenDocuments.removeAll(document);
+            return;
+        }
 		document->setFileName(document->getFileName());
 		model->resetAll();
 		document->clearAppendix();
@@ -1584,7 +1612,8 @@ LatexDocument* LatexDocuments::getMasterDocument() const{
 	return masterDocument;
 }
 QList<LatexDocument*> LatexDocuments::getDocuments() const{
-	return documents;
+    QList<LatexDocument*> docs=documents+hiddenDocuments;
+    return docs;
 }
 
 void LatexDocuments::move(int from, int to){
@@ -1633,14 +1662,16 @@ QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QStri
 }
 
 LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName){
-	foreach(LatexDocument *doc,documents){
+    QList<LatexDocument*> docs=getDocuments();
+    foreach(LatexDocument *doc,docs){
 		if(doc->getFileName()==fileName) return doc;
 	}
 	return 0;
 }
 
 LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc){
-	foreach(LatexDocument *doc,documents){
+    QList<LatexDocument*> docs=getDocuments();
+    foreach(LatexDocument *doc,docs){
 		LatexEditorView *edView=doc->getEditorView();
 		if(edView && edView->editor->document()==qDoc) return doc;
 	}
@@ -1661,7 +1692,8 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 #else
 	Qt::CaseSensitivity cs = Qt::CaseSensitive;
 #endif
-	foreach (LatexDocument* document, documents)
+    QList<LatexDocument*> docs=getDocuments();
+    foreach (LatexDocument* document, docs)
 		if (document->getFileName().compare(fnorm,cs)==0)
 			return document;
 	
@@ -1681,13 +1713,13 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 		else return 0;
 	}
 	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
-	foreach (LatexDocument* document, documents)
+    foreach (LatexDocument* document, docs)
 		if (document->getFileInfo().exists() && document->getFileInfo()==fi)
 			return document;
 	
 	//check for canonical file path (unnecessary in qt 4.5)
 	fnorm = fi.canonicalFilePath();
-	foreach (LatexDocument* document, documents)
+    foreach (LatexDocument* document, docs)
 		if (document->getFileInfo().canonicalFilePath().compare(fnorm,cs)==0)
 			return document;
 	
@@ -1756,6 +1788,10 @@ QString LatexDocuments::findFileFromBibId(const QString& bibId)
     }
   }
   return QString();
+}
+
+void LatexDocuments::addDocToLoad(QString filename){
+    emit docToLoad(filename);
 }
 
 void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){
@@ -2069,7 +2105,8 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 	//update Master/Child relations
 	//remove old settings ...
 	doc->setMasterDocument(0);
-	foreach(LatexDocument* elem,this->documents){
+    QList<LatexDocument*> docs=getDocuments();
+    foreach(LatexDocument* elem,docs){
 		if(elem->getMasterDocument()==doc){
 			elem->setMasterDocument(0);
 			elem->recheckRefsLabels();
@@ -2078,7 +2115,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 	
 	//check whether document is child of other docs
 	QString fname=doc->getFileName();
-	foreach(LatexDocument* elem,this->documents){
+    foreach(LatexDocument* elem,docs){
 		if(elem==doc)
 			continue;
 		QStringList includedFiles=elem->includedFiles();
@@ -2089,7 +2126,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 	}
 	
 	// check for already open child documents (included in this file)
-	QStringList includedFiles=doc->includedFiles();
+    QStringList includedFiles=doc->includedFiles();
 	foreach(const QString& fname,includedFiles){
 		LatexDocument* child=this->findDocumentFromName(fname);
 		if(child){
