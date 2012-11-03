@@ -129,6 +129,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
     if(configManager.autoLoadChildren)
         connect(&documents, SIGNAL(docToLoad(QString)),this,SLOT(addDocToLoad(QString)));
+
+    connect(&documents, SIGNAL(docToHide(LatexEditorView *)),this,SLOT(removeFromEditor(LatexEditorView *)));
 	grammarCheckThread.start();
 	
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
@@ -7641,4 +7643,10 @@ void Texmaker::checkLatexInstall(){
 void Texmaker::addDocToLoad(QString filename){
     //qDebug()<<"fname:"<<filename;
     load(filename,false,true);
+}
+
+void Texmaker::removeFromEditor(LatexEditorView *edView){
+    int i=EditorView->indexOf(edView);
+    if(i>=0)
+        EditorView->removeTab(i);
 }
