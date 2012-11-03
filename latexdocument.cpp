@@ -1995,39 +1995,44 @@ bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QSt
   Formats the StructureEntry and modifies the document according to the MagicComment contents
   */
 void LatexDocument::parseMagicComment(const QString &name, const QString &val, StructureEntry* se) {
-	if (name.isEmpty()) {
-		se->tooltip = QString();
-		se->valid = false;
-	}
-	
-	if (name.toLower() == "spellcheck") {
-		QString lang=val;
-		lang.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
-		mSpellingLanguage = QLocale(lang);
-		if (mSpellingLanguage.language() == QLocale::C) {
-			se->tooltip = tr("Invalid language format");
-			return;
-		}
-		emit spellingLanguageChanged(mSpellingLanguage);
-		
-		se->valid = true;
-		/* TODO: set master document
- } else if (type == "texroot") {
-  se->valid = true;
- */
-  } else if (name.toLower() == "encoding") {
-    QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
-    if (!codec) {
-      se->tooltip = tr("Invalid codec");
-      return;
+    if (name.isEmpty()) {
+        se->tooltip = QString();
+        se->valid = false;
     }
-    setCodec(codec);
+
+    if (name.toLower() == "spellcheck") {
+        QString lang=val;
+        lang.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
+        mSpellingLanguage = QLocale(lang);
+        if (mSpellingLanguage.language() == QLocale::C) {
+            se->tooltip = tr("Invalid language format");
+            return;
+        }
+        emit spellingLanguageChanged(mSpellingLanguage);
+
+        se->valid = true;
+        // TODO: set master document
+    } else if ((name.toLower() == "texroot")||(name.toLower() == "root")){
+        QString fname=findFileName(val);
+        LatexDocument* dc=parent->findDocumentFromName(fname);
+        if(dc)	setMasterDocument(dc);
+        else {
+            parent->addDocToLoad(fname);
+        }
+        se->valid = true;
+    } else if (name.toLower() == "encoding") {
+        QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
+        if (!codec) {
+            se->tooltip = tr("Invalid codec");
+            return;
+        }
+        setCodec(codec);
+        se->valid = true;
+    } else {
+        se->tooltip = tr("Unknown magic comment");
+        return;
+    }
     se->valid = true;
-  } else {
-    se->tooltip = tr("Unknown magic comment");
-    return;
-  }
-  se->valid = true;
 }
 
 
