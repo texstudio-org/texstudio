@@ -336,10 +336,12 @@ public:
 
 	QHash<QString,LatexPackage> cachedPackages;
     void addDocToLoad(QString filename);
+    void hideDocInEditor(LatexEditorView *edView);
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
     void docToLoad(QString filename);
+    void docToHide(LatexEditorView *edView);
 private slots:
 	void bibTeXFilesNeedUpdate();
 public slots:

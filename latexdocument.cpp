@@ -1538,21 +1538,41 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
 	if (document!=masterDocument) {
 		// get list of all affected documents
 		QList<LatexDocument*> lstOfDocs=document->getListOfDocs();
-		// set document.masterdocument = 0
-		foreach(LatexDocument* elem,lstOfDocs){
-			if(elem->getMasterDocument()==document){
-				elem->setMasterDocument(0);
-			}
-		}
-        //document->setMasterDocument(0);
-		//recheck labels in all open documents connected to this document
-		foreach(LatexDocument* elem,lstOfDocs){
-			elem->recheckRefsLabels();
-		}
+        // count open related (child/parent) documents
+        int n=0;
+        foreach(LatexDocument* elem,lstOfDocs){
+            if(!elem->isHidden())
+                n++;
+        }
         if(hidden){
             hiddenDocuments.removeAll(document);
             return;
         }
+        if(n>1){ // at least one related document will be open after removal
+            hiddenDocuments.append(document);
+        }else{
+            /*
+            // set document.masterdocument = 0
+            foreach(LatexDocument* elem,lstOfDocs){
+                if(elem->getMasterDocument()==document){
+                    elem->setMasterDocument(0);
+                }
+            }
+            //document->setMasterDocument(0);
+            //recheck labels in all open documents connected to this document
+            foreach(LatexDocument* elem,lstOfDocs){
+                elem->recheckRefsLabels();
+            }*/
+            // no open document remains, remove all others as well
+            foreach(LatexDocument* elem,lstOfDocs){
+                if(elem->isHidden()){
+                    hiddenDocuments.removeAll(elem);
+                    delete elem->getEditorView();
+                    delete elem;
+                }
+            }
+        }
+
 		int row=documents.indexOf(document);
 		//qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
@@ -1571,6 +1591,10 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
 			model->removeElementFinished();
 		}
 		//model->resetAll();
+        if(n>1) {// don't remove document, stays hidden instead
+            hideDocInEditor(document->getEditorView());
+            return;
+        }
 		if (view) delete view;
 		delete document;
 	} else {
@@ -1792,6 +1816,9 @@ QString LatexDocuments::findFileFromBibId(const QString& bibId)
 
 void LatexDocuments::addDocToLoad(QString filename){
     emit docToLoad(filename);
+}
+void LatexDocuments::hideDocInEditor(LatexEditorView *edView){
+    emit docToHide(edView);
 }
 
 void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElements,int linenr,int count){

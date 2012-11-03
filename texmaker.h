@@ -287,6 +287,7 @@ protected slots:
 	void editorTabContextMenu(const QPoint& point);
 
     void addDocToLoad(QString filename);
+    void removeFromEditor(LatexEditorView *edView);
 
 private slots:	
 	void ReadSettings();
