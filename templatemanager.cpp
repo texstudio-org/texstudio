@@ -85,7 +85,6 @@ bool TemplateManager::tableTemplateDialogExec() {
 	TemplateSelector dialog(tr("Select Table Template"));
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	qDebug() << builtinTemplateDir();
 	LocalTableTemplateRessource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images/user-identity.png"));
 	LocalTableTemplateRessource builtinTemplates(builtinTemplateDir(), "Builtin", this, QIcon(":/images/appicon.png"));
 	dialog.addRessource(&userTemplates);
