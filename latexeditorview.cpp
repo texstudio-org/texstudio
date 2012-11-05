@@ -197,8 +197,10 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 				edView->openFile(lo.text());
 				return true;
 			case LinkOverlay::UsepackageOverlay:
-				// todo: open texdoc
 				edView->openPackageDocumentation(lo.text());
+				return true;
+			case LinkOverlay::BibFileOverlay:
+				edView->openFile(lo.text().append(".bib"));
 				return true;
 			case LinkOverlay::Invalid:
 				break;
@@ -622,6 +624,8 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::FileOverlay));
 		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%usepackage"].contains(ctxCommand)) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UsepackageOverlay));
+		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%bibliography"].contains(ctxCommand)) {
+			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::BibFileOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
 		}
@@ -2334,11 +2338,20 @@ LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ct
 
 	int from, to;
 
-	if (type == UsepackageOverlay) {
+	if (type == UsepackageOverlay || type == BibFileOverlay) {
+		// link one of the colon separated options
 		QDocumentCursor c(cur);
-		c.movePosition(1, QDocumentCursor::StartOfWord);
+		QString startDelims = "{, \t\n";
+		while (!c.atLineStart() && !startDelims.contains(c.previousChar())) {
+			c.movePosition(1, QDocumentCursor::PreviousCharacter);
+		}
 		from = c.columnNumber();
-		c.movePosition(1, QDocumentCursor::EndOfWord);
+
+		c = cur;
+		QString endDelims = "}, \t\n";
+		while (!c.atLineEnd() && !endDelims.contains(c.nextChar())) {
+			c.movePosition(1, QDocumentCursor::NextCharacter);
+		}
 		to = c.columnNumber()-1;
 		if (from<0 || to<0 || to<=from)
 			return;
