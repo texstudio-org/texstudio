@@ -112,7 +112,9 @@ public:
 	
 	QList<QDocumentCursor> autoPreviewCursor;
 
-    static int bookMarkId(int bookmarkNumber);
+	static int bookMarkId(int bookmarkNumber);
+
+	static void selectOptionInLatexArg(QDocumentCursor &cur);
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
