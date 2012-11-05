@@ -347,6 +347,22 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
+		// bibliography command
+		if ( (context==LatexParser::Command || context==LatexParser::Option) && ltxCommands.possibleCommands["%bibliography"].contains(ctxCommand)) {
+			QAction *act = new QAction(LatexEditorView::tr("Open Bibliography"),contextMenu);
+			QString bibFile;
+			if (context == LatexParser::Option) {
+				QDocumentCursor c(cursor);
+				LatexEditorView::selectOptionInLatexArg(c);
+				bibFile = c.selectedText() + ".bib";
+			} else {
+				// context==LatexParser::Command -> open first entry in arg list.
+				bibFile = ctxValue.split(',').first() + ".bib";
+			}
+			act->setData(bibFile);
+			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
+			contextMenu->addAction(act);
+		}
 		//package help
 		if( (context==LatexParser::Command || context==LatexParser::Option) && ctxCommand=="\\usepackage"){
 			QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
@@ -656,6 +672,19 @@ void LatexEditorView::removeLinkOverlay() {
 		linkOverlay = LinkOverlay();
 		editor->viewport()->update(); // immediately apply the overlay
 		editor->viewport()->setCursor(linkOverlayStoredCursor);
+	}
+}
+
+void LatexEditorView::selectOptionInLatexArg(QDocumentCursor &cur) {
+	QString startDelims = "[{, \t\n";
+	int startCol = cur.columnNumber();
+	while (!cur.atLineStart() && !startDelims.contains(cur.previousChar())) {
+		cur.movePosition(1, QDocumentCursor::PreviousCharacter);
+	}
+	cur.setColumnNumber(startCol, QDocumentCursor::KeepAnchor);
+	QString endDelims = "]}, \t\n";
+	while (!cur.atLineEnd() && !endDelims.contains(cur.nextChar())) {
+		cur.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	}
 }
 
@@ -2341,17 +2370,8 @@ LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ct
 	if (type == UsepackageOverlay || type == BibFileOverlay) {
 		// link one of the colon separated options
 		QDocumentCursor c(cur);
-		QString startDelims = "{, \t\n";
-		while (!c.atLineStart() && !startDelims.contains(c.previousChar())) {
-			c.movePosition(1, QDocumentCursor::PreviousCharacter);
-		}
-		from = c.columnNumber();
-
-		c = cur;
-		QString endDelims = "}, \t\n";
-		while (!c.atLineEnd() && !endDelims.contains(c.nextChar())) {
-			c.movePosition(1, QDocumentCursor::NextCharacter);
-		}
+		LatexEditorView::selectOptionInLatexArg(c);
+		from = c.anchorColumnNumber();
 		to = c.columnNumber()-1;
 		if (from<0 || to<0 || to<=from)
 			return;
