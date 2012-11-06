@@ -345,8 +345,6 @@ public:
 
 	const QSharedPointer<Poppler::Document> & popplerDoc() const
 	{
-		// TODO: for safety, maybe don't pass out the pointer directly,
-		// but only QSharedPointer<Poppler::Document>
 		return document;
 	}
 	
