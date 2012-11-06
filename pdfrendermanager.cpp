@@ -61,7 +61,6 @@ PDFRenderManager::PDFRenderManager(QObject *parent) :
 		connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));
 		queueAdministration->renderQueues.append(renderQueue);
 	}
-	document=0;
 	currentTicket=0;
 	queueAdministration->stopped=false;
 	renderedPages.setMaxCost(512); // will be overwritten by config
@@ -77,7 +76,7 @@ void PDFRenderManager::stopRendering(){
 	lstOfReceivers.clear();
 	queueAdministration->stopped=true;
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
-	document=0;
+	document.clear();
 	cachedNumPages = 0;
 }
 
@@ -85,47 +84,51 @@ void PDFRenderManager::setCacheSize(int megabyte) {
 	renderedPages.setMaxCost(megabyte);
 }
 
-Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, Error &error, bool foreceLoad){
+QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &fileName, Error &error, bool foreceLoad){
 	renderedPages.clear();
 	QFile f(fileName);
 	if (!f.open(QFile::ReadOnly)) {
 		error = FileOpenFailed;
-		return 0;
+		return QSharedPointer<Poppler::Document>();
 	}
 	
 	queueAdministration->documentData = f.readAll();
 	if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
 	    !foreceLoad) {
 		error = FileIncomplete;
-		return 0;
+		return QSharedPointer<Poppler::Document>();
 	}
-	document = Poppler::Document::loadFromData(queueAdministration->documentData);
-	if (!document) {
+
+	Poppler::Document *docPtr;
+	docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
+	if (!docPtr) {
 		error = PopplerError;
-		return 0;
+		return QSharedPointer<Poppler::Document>();
 	}
 	
-	if (document->isLocked()) {
-		delete document;
-		document = 0;
+	if (docPtr->isLocked()) {
+		delete docPtr;
+		docPtr = 0;
 		error = FileLocked;
-		return 0;
+		return QSharedPointer<Poppler::Document>();
 	}
 
-	cachedNumPages = document->numPages();
+	cachedNumPages = docPtr->numPages();
 
-	document->setRenderBackend(Poppler::Document::SplashBackend);
-	document->setRenderHint(Poppler::Document::Antialiasing);
-	document->setRenderHint(Poppler::Document::TextAntialiasing);
+	docPtr->setRenderBackend(Poppler::Document::SplashBackend);
+	docPtr->setRenderHint(Poppler::Document::Antialiasing);
+	docPtr->setRenderHint(Poppler::Document::TextAntialiasing);
 
 
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
+		// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
 		Poppler::Document *doc=Poppler::Document::loadFromData(queueAdministration->documentData);
-		queueAdministration->renderQueues[i]->setDocument(doc);
+		QSharedPointer<Poppler::Document> spDoc(doc);
+		queueAdministration->renderQueues[i]->setDocument(spDoc);
 		if (!doc) {
-			Q_ASSERT(false);			
+			Q_ASSERT(false);
 			error = FileIncomplete;
-			return 0;
+			return QSharedPointer<Poppler::Document>();
 		}
 		doc->setRenderBackend(Poppler::Document::SplashBackend);
 		doc->setRenderHint(Poppler::Document::Antialiasing);
@@ -136,11 +139,12 @@ Poppler::Document* PDFRenderManager::loadDocument(const QString &fileName, Error
 	mFillCacheMode=true;
 
 	error = NoError;
+	document = QSharedPointer<Poppler::Document>(docPtr);
 	return document;
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,double xres, double yres, int x, int y, int w, int h,bool cache,bool priority,Poppler::Page::Rotation rotate){
-	if (!document) return QPixmap();
+	if (document.isNull()) return QPixmap();
 	if (pageNr < 0 || pageNr >= cachedNumPages) return QPixmap();
 	RecInfo info;
 	info.obj=obj;
@@ -161,7 +165,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	if(!priority && renderedPages.contains(pageNr))
 	    enqueueCmd=false;
 	// return best guess/cached at once, refine later
-	Poppler::Page *page=document->page(pageNr);
+	Poppler::Page *page=document.data()->page(pageNr);
 	if(!page)
 	    return QPixmap();
 	CachePixmap img;
@@ -315,7 +319,7 @@ qreal PDFRenderManager::getResLimit(){
 }
 
 void PDFRenderManager::fillCache(int pg){
-	if (!document) return;
+	if (document.isNull()) return;
 	QSet<int> renderedPage;
 	foreach(RecInfo elem,lstOfReceivers){
 		if(elem.cache)

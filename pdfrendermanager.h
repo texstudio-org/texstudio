@@ -79,8 +79,7 @@ public:
 	enum Error {NoError, FileOpenFailed, PopplerError, FileLocked, FileIncomplete, FileIncompleteAbort };
 
 	QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true,bool priority=false,Poppler::Page::Rotation rotate=Poppler::Page::Rotate0);
-	Poppler::Document* loadDocument(const QString& fileName, Error &error, bool foreceLoad=false);
-	void setDocument(const QByteArray& data,Poppler::Document *docPointer);
+	QSharedPointer<Poppler::Document> loadDocument(const QString& fileName, Error &error, bool foreceLoad=false);
 	void stopRendering();
 	void setCacheSize(int megabyte);
 	void fillCache(int pg=-1);
@@ -96,7 +95,7 @@ private:
 
 	void reduceCacheFilling(double fraction);
 
-	Poppler::Document *document;
+	QSharedPointer<Poppler::Document> document;
 	int cachedNumPages;
 
 	QCache<int,CachePixmap> renderedPages;

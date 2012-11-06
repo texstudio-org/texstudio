@@ -125,8 +125,8 @@ void PDFOutlineDock::changeLanguage()
 void PDFOutlineDock::fillInfo()
 {
 	tree->clear();
-	if (!document || !document->popplerDoc()) return;
-	const QDomDocument *toc = document->popplerDoc()->toc();
+	if (!document || document->popplerDoc().isNull()) return;
+	const QDomDocument *toc = document->popplerDoc().data()->toc();
 	if (toc) {
 		fillToc(*toc, tree, 0);
 		connect(tree, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
@@ -189,8 +189,11 @@ PDFInfoDock::~PDFInfoDock()
 void PDFInfoDock::fillInfo()
 {
 	list->clear();
-	if (!document || !document->popplerDoc()) return;
-	Poppler::Document *doc = document->popplerDoc();
+	if (!document) return;
+	QSharedPointer<Poppler::Document> spDoc(document->popplerDoc());
+	if (spDoc.isNull()) return;
+
+	const Poppler::Document *doc = spDoc.data();
 	QStringList keys = doc->infoKeys();
 	QStringList dateKeys;
 	dateKeys << "CreationDate";
@@ -246,7 +249,7 @@ PDFOverviewModel::PDFOverviewModel(QObject *parent)
 }
 
 int PDFOverviewModel::rowCount ( const QModelIndex & parent ) const{
-	if (!document||!document->popplerDoc()) return 0;
+	if (!document||document->popplerDoc().isNull()) return 0;
 	if (parent.isValid()) return 0;
 	if(!document->widget()) return 0;
 	return document->widget()->realNumPages();
@@ -273,7 +276,7 @@ void PDFOverviewModel::setDocument(PDFDocument* doc){
 	beginResetModel();
 	document = doc;
 	if (!doc) { endResetModel(); return; }
-	if (!doc->widget() || !doc->popplerDoc()) document = 0;
+	if (!doc->widget() || document->popplerDoc().isNull()) document = 0;
 	cache.clear();
 	endResetModel();
 }
@@ -331,9 +334,10 @@ void PDFFontsDock::setHorizontalHeaderLabels()
 
 void PDFFontsDock::fillInfo()
 {
-	if (!document || !document->popplerDoc()) return;
+	if (!document) return;
+	QSharedPointer<Poppler::Document> spDoc(document->popplerDoc());
 	if (!scannedFonts) {
-		fonts = document->popplerDoc()->fonts();
+		fonts = spDoc.data()->fonts();
 		scannedFonts = true;
 	}
 	table->clearContents();
@@ -942,7 +946,7 @@ void PDFClockDock::setInterval(int interval){
 
 
 void PDFClockDock::paintEvent(QPaintEvent * event){
-	if (!document || !document->popplerDoc() || !document->widget()) {
+	if (!document || document->popplerDoc().isNull() || !document->widget()) {
 		PDFDock::paintEvent(event);
 		return;
 	}

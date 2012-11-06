@@ -39,7 +39,7 @@ public:
 	~PDFRenderEngine();
 
 	QByteArray tempData;
-	void setDocument(Poppler::Document *doc);
+	void setDocument(const QSharedPointer<Poppler::Document> &doc);
 signals:
 	void sendImage(QImage image,int page,int ticket);
 
@@ -49,7 +49,7 @@ protected:
 	void run();
 
 private:
-	Poppler::Document	*document;
+	QSharedPointer<Poppler::Document> document;
 	int cachedNumPages;
 	PDFQueue *queue;
 
