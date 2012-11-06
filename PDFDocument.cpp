@@ -409,7 +409,7 @@ PDFWidget::PDFWidget(bool embedded)
 
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	//setFocusPolicy(Qt::StrongFocus);
+	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
 	setScaledContents(true);
 	setMouseTracking(true);
 
