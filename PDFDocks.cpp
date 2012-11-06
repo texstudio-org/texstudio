@@ -641,7 +641,7 @@ PDFScrollArea::PDFScrollArea(QWidget *parent)
 	viewport()->setBackgroundRole(QPalette::NoRole);
 	verticalScrollBar()->setSingleStep(20);
 	horizontalScrollBar()->setSingleStep(20);
-	setFocusPolicy(Qt::NoFocus);
+	setFocusPolicy(Qt::StrongFocus);
 }
 
 void PDFScrollArea::setPDFWidget(PDFWidget* widget){
