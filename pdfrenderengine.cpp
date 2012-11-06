@@ -32,7 +32,7 @@ PDFRenderEngine::~PDFRenderEngine(){
 
 void PDFRenderEngine::setDocument(const QSharedPointer<Poppler::Document> &doc){
 	document = doc;
-	cachedNumPages = (document.isNull()) ? 0 : document.data()->numPages();
+	cachedNumPages = (document.isNull()) ? 0 : document->numPages();
 }
 
 
@@ -92,7 +92,7 @@ void PDFRenderEngine::run(){
 		
 		// render Image
 		if(!document.isNull() && command.pageNr >= 0 && command.pageNr < cachedNumPages){
-			Poppler::Page *page=document.data()->page(command.pageNr);
+			Poppler::Page *page=document->page(command.pageNr);
 			if(page){
 				QImage image=page->renderToImage(command.xres, command.yres,
 												 command.x, command.y, command.w, command.h,command.rotate);

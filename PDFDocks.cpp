@@ -126,7 +126,7 @@ void PDFOutlineDock::fillInfo()
 {
 	tree->clear();
 	if (!document || document->popplerDoc().isNull()) return;
-	const QDomDocument *toc = document->popplerDoc().data()->toc();
+	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
 		fillToc(*toc, tree, 0);
 		connect(tree, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
@@ -337,7 +337,7 @@ void PDFFontsDock::fillInfo()
 	if (!document) return;
 	QSharedPointer<Poppler::Document> spDoc(document->popplerDoc());
 	if (!scannedFonts) {
-		fonts = spDoc.data()->fonts();
+		fonts = spDoc->fonts();
 		scannedFonts = true;
 	}
 	table->clearContents();
@@ -641,6 +641,7 @@ PDFScrollArea::PDFScrollArea(QWidget *parent)
 	viewport()->setBackgroundRole(QPalette::NoRole);
 	verticalScrollBar()->setSingleStep(20);
 	horizontalScrollBar()->setSingleStep(20);
+	setFocusPolicy(Qt::NoFocus);
 }
 
 void PDFScrollArea::setPDFWidget(PDFWidget* widget){

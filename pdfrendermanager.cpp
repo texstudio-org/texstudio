@@ -165,7 +165,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr,QObject *obj,const char *rec,
 	if(!priority && renderedPages.contains(pageNr))
 	    enqueueCmd=false;
 	// return best guess/cached at once, refine later
-	Poppler::Page *page=document.data()->page(pageNr);
+	Poppler::Page *page=document->page(pageNr);
 	if(!page)
 	    return QPixmap();
 	CachePixmap img;
