@@ -117,7 +117,7 @@ public:
 	explicit PDFWidget(bool embedded=false);
 	virtual ~PDFWidget();
 	
-	void setDocument(Poppler::Document *doc);
+	void setDocument(const QSharedPointer<Poppler::Document> &doc);
 	void setPDFDocument(PDFDocument *docu);
 
 	void saveState(); // used when toggling full screen mode
@@ -229,7 +229,7 @@ private:
 
 	PDFScrollArea* getScrollArea();
 	
-	Poppler::Document	*document;
+	QSharedPointer<Poppler::Document> document;
 	//QList<int> pages;
 	Poppler::Link		*clickedLink;
 	Poppler::Annotation	*clickedAnnotation;
@@ -343,8 +343,10 @@ public:
 		return scanner != NULL;
 	}
 
-	Poppler::Document *popplerDoc()
+	const QSharedPointer<Poppler::Document> & popplerDoc() const
 	{
+		// TODO: for safety, maybe don't pass out the pointer directly,
+		// but only QSharedPointer<Poppler::Document>
 		return document;
 	}
 	
@@ -435,7 +437,7 @@ private:
 	QFileInfo masterFile, lastSyncSourceFile;
 	int lastSyncLineNumber;
 
-	Poppler::Document	*document;
+	QSharedPointer<Poppler::Document> document;
 	
 	PDFWidget	*pdfWidget;
 	PDFScrollArea	*scrollArea;

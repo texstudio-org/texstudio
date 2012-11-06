@@ -22,19 +22,17 @@ RenderCommand::RenderCommand(int p,double xr,double yr,int x,int y,int w, int h)
 PDFRenderEngine::PDFRenderEngine(QObject *parent,PDFQueue *mQueue) :
        SafeThread(parent), cachedNumPages(0)
 {
-	document=0;
 	queue=mQueue;
 	queue->ref();
 }
 
 PDFRenderEngine::~PDFRenderEngine(){
 	wait();
-	delete document;
 }
 
-void PDFRenderEngine::setDocument(Poppler::Document *doc){
+void PDFRenderEngine::setDocument(const QSharedPointer<Poppler::Document> &doc){
 	document = doc;
-	cachedNumPages = document->numPages();
+	cachedNumPages = (document.isNull()) ? 0 : document.data()->numPages();
 }
 
 
@@ -93,8 +91,8 @@ void PDFRenderEngine::run(){
 			break;
 		
 		// render Image
-		if(document && command.pageNr >= 0 && command.pageNr < cachedNumPages){
-			Poppler::Page *page=document->page(command.pageNr);
+		if(!document.isNull() && command.pageNr >= 0 && command.pageNr < cachedNumPages){
+			Poppler::Page *page=document.data()->page(command.pageNr);
 			if(page){
 				QImage image=page->renderToImage(command.xres, command.yres,
 												 command.x, command.y, command.w, command.h,command.rotate);
