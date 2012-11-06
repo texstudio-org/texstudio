@@ -409,7 +409,7 @@ PDFWidget::PDFWidget(bool embedded)
 
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	setFocusPolicy(Qt::StrongFocus);
+	//setFocusPolicy(Qt::StrongFocus);
 	setScaledContents(true);
 	setMouseTracking(true);
 
@@ -485,7 +485,7 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
 	if(!document.isNull()){
-		docPages=document.data()->numPages();
+		docPages=document->numPages();
 		setSinglePageStep(globalConfig->singlepagestep);
 	}else
 		docPages=0;
@@ -707,7 +707,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		int pageNr;
 		mapToScaledPosition(event->pos(), pageNr, scaledPos);
 		if (pageNr>=0 && pageNr < realNumPages()) 
-			page=document.data()->page(pageNr);
+			page=document->page(pageNr);
 		if (page) {
 			// check for click in link
 			foreach (Poppler::Link* link, page->links()) {
@@ -747,7 +747,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		int pageNr;
 		mapToScaledPosition(event->pos(), pageNr, scaledPos);
 		if (pageNr>=0 && pageNr < realNumPages()) 
-			page=document.data()->page(pageNr);
+			page=document->page(pageNr);
 		if (page) {
 			foreach (Poppler::Annotation* annon, page->annotations()) 
 				if (annon->boundary().contains(scaledPos)) {
@@ -837,7 +837,7 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination& dest)
 void PDFWidget::goToDestination(const QString& destName)
 {
 	if (document.isNull()) return;
-	const Poppler::LinkDestination *dest = document.data()->linkDestination(destName);
+	const Poppler::LinkDestination *dest = document->linkDestination(destName);
 	if (dest)
 		goToDestination(*dest);
 }
@@ -1149,7 +1149,7 @@ void PDFWidget::updateCursor(const QPoint& pos)
 	mapToScaledPosition(pos, pageNr, scaledPos);
 	if (pageNr<0 || pageNr >= realNumPages()) return;
 	// check for link
-	page=document.data()->page(pageNr);
+	page=document->page(pageNr);
 	if(!page)
 	    return;
 	foreach (Poppler::Link* link, page->links()) {
@@ -1774,7 +1774,7 @@ QRect PDFWidget::pageRect(int page) const{
 	QRect grect;
 	if (realPageIndex == 0) grect = gridPageRect(page + getPageOffset());
 	else grect = gridPageRect(page - realPageIndex);
-	Poppler::Page* p = document.data()->page(page);
+	Poppler::Page* p = document->page(page);
 	if (!p) 
 		return grect;
 	int realSizeW =  dpi * scaleFactor / 72.0 * p->pageSizeF().width();
@@ -1797,7 +1797,7 @@ QSizeF PDFWidget::maxPageSizeF() const{
 	if(!maxPageSize.isValid()){
 	    for(int page=0;page<docPages;page++){
 		//if (page < 0 || page >= numPages()) continue;
-		Poppler::Page *popplerPage=document.data()->page(page);
+		Poppler::Page *popplerPage=document->page(page);
 		if (!popplerPage) break;
 		if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
 		if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
@@ -2622,7 +2622,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 
 			statusBar()->showMessage(tr("Searching for")+QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx), 1000);
 
-			page = document.data()->page(pageIdx);
+			page = document->page(pageIdx);
 			if(!page)
 				return;
 
@@ -2689,7 +2689,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 			
 			QString word;
 			if (!document.isNull() && pageIndex >= 0 && pageIndex < pdfWidget->realNumPages()) {
-				Poppler::Page* pagecontent = document.data()->page(pageIndex);
+				Poppler::Page* pagecontent = document->page(pageIndex);
 				if (pagecontent) {
 					word = pagecontent->text(QRectF(pos,pos).adjusted(-35,-10,35,10));
 					if (word.contains("\n")) word = word.split("\n")[word.split("\n").size()/2];
