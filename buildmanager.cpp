@@ -1685,6 +1685,7 @@ void ProcessX::onError(ProcessError error){
 }
 
 void ProcessX::onFinished(int error){
+	if (cmd.contains("AcroRd32.exe") && error==1) error=0; // fix for Adobe Reader: It returns 1 on success
 	if (error){
 		emit processNotification(tr("Process exited with error(s)"));
 		readFromStandardError(true);
