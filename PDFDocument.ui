@@ -813,9 +813,6 @@
    <property name="toolTip">
     <string>Previously shown page</string>
    </property>
-   <property name="shortcut">
-    <string>Alt+Left</string>
-   </property>
   </action>
   <action name="actionForward">
    <property name="text">
@@ -823,9 +820,6 @@
    </property>
    <property name="toolTip">
     <string>Next shown page</string>
-   </property>
-   <property name="shortcut">
-    <string>Alt+Right</string>
    </property>
   </action>
   <action name="actionToggleEmbedded">

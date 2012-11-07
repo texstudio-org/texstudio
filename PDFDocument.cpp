@@ -1944,10 +1944,14 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-    if(!embedded){
-        connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
-        connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
-    }
+	if(!embedded){
+		connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
+		connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
+		// in embedded mode this would lead to an ambigous shortcut overload with forward/back actions of the cursor history
+		// TODO: it might be possible to allow these shortcuts even in embedded mode if use proper shortcut contexts
+		connect((new QShortcut(Qt::ALT | Qt::Key_Left, this)), SIGNAL(activated()), actionBack, SLOT(trigger()));
+		connect((new QShortcut(Qt::ALT | Qt::Key_Right, this)), SIGNAL(activated()), actionForward, SLOT(trigger()));
+	}
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
 	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
