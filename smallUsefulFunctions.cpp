@@ -1513,7 +1513,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 					lastCommand=word;
 					inReferenz=true;
 				}
-				if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty()) {
+				if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty()||word=="\\begin"||word=="\\end") {
 					lastCommand=word;
 				}
 				break;
