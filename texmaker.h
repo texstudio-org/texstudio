@@ -449,6 +449,7 @@ protected slots:
 	void showPreview(const QDocumentCursor& c);
 	void showPreview(const QDocumentCursor& c, bool addToList);
 	void showPreviewQueue();
+    void showImgPreview(const QString& fname);
 	
 	void templateEdit(const QString &fname);
 	

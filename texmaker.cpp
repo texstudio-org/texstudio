@@ -1394,6 +1394,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(showMarkTooltipForLogMessage(QList<int>)),this,SLOT(showMarkTooltipForLogMessage(QList<int>)));
 	connect(edit, SIGNAL(needCitation(const QString&)),this,SLOT(InsertBibEntry(const QString&)));
 	connect(edit, SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
+    connect(edit, SIGNAL(showImgPreview(QString)),this,SLOT(showImgPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)),this,SLOT(showPreview(QDocumentCursor)));
 	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)),this,SLOT(editGotoDefinition(QDocumentCursor)));
 	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
@@ -6015,6 +6016,32 @@ void Texmaker::clearPreview() {
 					currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i)
 				currentEditorView()->autoPreviewCursor.removeAt(j);
 	}
+}
+
+void Texmaker::showImgPreview(const QString& fname){
+    QString imageName=fname;
+    QFileInfo fi(fname);
+    if(!fi.exists()){
+        imageName=fname+".png";
+        fi.setFile(imageName);
+    }
+    if(!fi.exists()){
+        imageName=fname+".jpg";
+        fi.setFile(imageName);
+    }
+    if(fi.exists()){
+        QPoint p;
+        //if(previewEquation)
+            p=currentEditorView()->getHoverPosistion();
+        //else
+        //    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+        QRect screen = QApplication::desktop()->screenGeometry();
+        QPixmap img(imageName);
+        int w=img.width();
+        if(w>screen.width()) w=screen.width()-2;
+        QToolTip::showText(p, QString("<img src=\""+imageName+"\" width=%1 />").arg(w), 0);
+        LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+    }
 }
 
 void Texmaker::showPreview(const QString& text){
