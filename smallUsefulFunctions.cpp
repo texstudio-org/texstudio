@@ -1043,6 +1043,8 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			return Reference;
         else if (possibleCommands["%cite"].contains(command))
 			return Citation;
+        else if (possibleCommands["%graphics"].contains(command))
+            return Graphics;
 		else return Option;
 	default: return Unknown;
 	}

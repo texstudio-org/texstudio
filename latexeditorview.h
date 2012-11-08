@@ -229,6 +229,7 @@ signals:
 	void needCitation(const QString& id);//request a new citation 
 	void showPreview(const QString& text);
 	void showPreview(const QDocumentCursor& c);
+    void showImgPreview(const QString& fileName);
 	void openFile(const QString& name);
 	void thesaurus(int line,int col);
 	void changeDiff(QPoint pt);

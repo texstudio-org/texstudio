@@ -1895,6 +1895,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
 		break;
+    case LatexParser::Graphics:
+        if(config->toolTipPreview){
+            QString fname=getDocument()->getAbsoluteFilePath(value,"");
+            m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+            emit showImgPreview(fname);
+        }
+        break;
 	default:
 		QToolTip::hideText();
 	}
