@@ -3180,18 +3180,16 @@ void Texmaker::clickedOnBookmark(QListWidgetItem *item){
   if(!doc){
     LatexEditorView* edView=load(fn);
     if (!edView) return;
-    edView->editor->setFocus();
-    edView->editor->setCursorPosition(lineNr,1);
+	gotoLine(lineNr,0,edView);
     dlh=edView->editor->document()->line(lineNr).handle();
     item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
   }else{
     LatexEditorView* edView=doc->getEditorView();
     EditorView->setCurrentWidget(edView);
-    edView->editor->setFocus();
     if(doc->indexOf(dlh)>=0){
-      edView->editor->setCursorPosition(dlh->line(),1);
+	  gotoLine(lineNr,0,edView);
     }else{
-      edView->editor->setCursorPosition(lineNr,1);
+	  gotoLine(lineNr,0,edView);
       dlh=doc->line(lineNr).handle();
       item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
     }
@@ -3260,7 +3258,7 @@ void Texmaker::bookmarkDeleted(QDocumentLineHandle* dlh){
     //int lineNr=item->data(Qt::UserRole+1).toInt();
     QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
     if(dlh_item==dlh){
-      int row=bookmarksWidget->row(item);
+	  int row=bookmarksWidget->row(item);
       bookmarksWidget->takeItem(row);
       return;
     }
@@ -3368,8 +3366,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		} else lineNr=LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
 		saveCurrentCursorToHistory();
 		EditorView->setCurrentWidget(edView);
-		edView->editor->setFocus();
-		edView->editor->setCursorPosition(lineNr,1);
+		gotoLine(lineNr,0,edView);
 		break;
 	}
 		
@@ -4247,8 +4244,7 @@ void Texmaker::createLabelFromAction()
 
 	saveCurrentCursorToHistory();
 	EditorView->setCurrentWidget(edView);
-	edView->editor->setFocus();
-	edView->editor->setCursorPosition(lineNr,pos);
+	gotoLine(lineNr,pos,edView);
 
 	InsertTag(QString("\\label{%1}").arg(label),7);
 	QDocumentCursor cur(edView->editor->cursor());
@@ -5654,11 +5650,14 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 	currentEditorView()->temporaryHighlight(highlight);
 }
 
-void Texmaker::gotoLine(int line, int col) {
-	if (currentEditorView() && line>=0)	{
-		currentEditorView()->editor->setCursorPosition(line,col);
-		currentEditorView()->editor->ensureCursorVisibleSurrounding();
-		currentEditorView()->editor->setFocus();
+void Texmaker::gotoLine(int line, int col, LatexEditorView *edView) {
+	if (!edView)
+		edView = currentEditorView(); // default
+
+	if (edView && line>=0)	{
+		edView->editor->setCursorPosition(line,col);
+		edView->editor->ensureCursorVisibleSurrounding();
+		edView->editor->setFocus();
 	}
 }
 void Texmaker::gotoLocation(int line, const QString &fileName){
