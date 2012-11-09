@@ -106,7 +106,7 @@ void UpdateChecker::parseData(const QByteArray &data) {
 					"Current version: %1<br>"
 					"Latest version: %2<br><br>"
 					"You can download it from the <a href='%3'>TeXstudio website</a>."
-					)).arg(TXSVERSION).arg(latestRelease.attribute("version")).arg("http://texstudio.sourceforge.net");
+					)).arg(TXSVERSION).arg(m_latestVersion).arg("http://texstudio.sourceforge.net");
 				QMessageBox msgBox;
 				msgBox.setWindowTitle(tr("TeXstudio Update"));
 				msgBox.setTextFormat(Qt::RichText);
