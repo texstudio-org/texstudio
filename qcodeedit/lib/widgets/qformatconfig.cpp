@@ -82,7 +82,16 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->verticalHeader()->setDefaultSectionSize(21);  // creates too high cells by default. TODO: use default height of a combobox instead of hard coding
 #endif
 	m_table->setShowGrid(false);
+
+#ifndef Q_OS_MAC
+	// workaround for bug: cell widgets not scrolling on OSX when stylesheet is set:
+	// https://bugreports.qt-project.org/browse/QTBUG-26674
+	// https://bugreports.qt-project.org/browse/QTBUG-25180
+	// https://bugreports.qt-project.org/browse/QTBUG-25148
+	// https://sourceforge.net/p/texstudio/bugs/615/
+	// https://sourceforge.net/p/texstudio/bugs/630/
 	m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
+#endif
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
 			m_table, SLOT  ( clearSelection() ) );
