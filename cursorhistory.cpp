@@ -15,7 +15,7 @@
 CursorHistory::CursorHistory(LatexDocuments *docs) :
 	QObject(docs), m_backAction(0), m_forwardAction(0), m_maxLength(30), m_insertionEnabled(true)
 {
-	//connect(docs, SIGNAL(aboutToDeleteDocument(LatexDocument*)), this, SLOT(documentClosed(QObject*)));
+	connect(docs, SIGNAL(aboutToDeleteDocument(LatexDocument*)), this, SLOT(aboutToDeleteDoc(LatexDocument*)));
 	currentEntry = history.end();
 }
 
@@ -134,10 +134,7 @@ QDocumentCursor CursorHistory::forward(const QDocumentCursor &currentCursor) {
 	return currentPos();
 }
 
-void CursorHistory::documentClosed(QObject *obj) {
-	LatexDocument *doc = qobject_cast<LatexDocument*>(obj);
-	if (!doc) return;
-
+void CursorHistory::aboutToDeleteDoc(LatexDocument *doc) {
 	// remove all entries with document from list.
 	for (CursorPosList::iterator it = history.begin(); it != history.end(); ++it) {
 		if ( (*it).doc() == doc ) {

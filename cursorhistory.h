@@ -62,7 +62,7 @@ public slots:
 	QDocumentCursor forward(const QDocumentCursor &currentCursor = QDocumentCursor());
 
 private slots:
-	void documentClosed(QObject *doc);
+	void aboutToDeleteDoc(LatexDocument *doc);
 	void lineDeleted(QDocumentLineHandle *dlh);
 
 private:
