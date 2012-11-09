@@ -1632,6 +1632,10 @@ prepend &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalmazva a k
         <source>Insert Separator</source>
         <translation>Elválasztó jel beszúrása</translation>
     </message>
+    <message>
+        <source>Automatically load included files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2134,9 +2138,6 @@ Szeretné azokat eltávolítani?</translation>
         <source>Insert New Sub Menu (before)</source>
         <translation>Új almenü beszúrása (elé)</translation>
     </message>
-</context>
-<context>
-    <name>CursorHistory</name>
 </context>
 <context>
     <name>EditorConfig</name>
@@ -2721,6 +2722,18 @@ Invalid \caption command.</source>
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation>A texdoc túl sokáig próbálta megnyitni az alábbi csomag dokumentációját:</translation>
     </message>
+    <message>
+        <source>Open Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Preview Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2826,6 +2839,10 @@ Invalid \caption command.</source>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
         <translation>Ezzel a névvel már létezik egy sablon. Felülírja?</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3438,11 +3455,11 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
     </message>
     <message>
         <source>Alt+Left</source>
-        <translation>Alt+Balra</translation>
+        <translation type="obsolete">Alt+Balra</translation>
     </message>
     <message>
         <source>Alt+Right</source>
-        <translation>Alt+Jobbra</translation>
+        <translation type="obsolete">Alt+Jobbra</translation>
     </message>
 </context>
 <context>
@@ -4151,9 +4168,6 @@ Fel kellene szabadítania némi helyet és újra meg kellene próbálni a menté
         <source>untitled</source>
         <translation>névtelen</translation>
     </message>
-</context>
-<context>
-    <name>QFoldPanel</name>
 </context>
 <context>
     <name>QFormatConfig</name>
@@ -5303,7 +5317,7 @@ Megbízik a parancsfájlban?</translation>
 From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?If not, they will not be available via the Make Template dialog.</source>
-        <translation>A Texstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
+        <translation type="obsolete">A Texstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
 Mostantól a sablonok át lesznek helyezve a(z)
 %1
 helyre. A Texstudionak át kellene oda helyezni a többi sablont is? Ha nem, azok a sablonok nem lesznek elérhetőek  Sablon készítése dialógusban.</translation>
@@ -5331,12 +5345,48 @@ fájlt nem lehet eltávolítani.</translation>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
         <translation>Vannak még el nem mozgatott sablonok. A Texstudio fejezze be monitorozásukat?</translation>
     </message>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Latex Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished">Felhasználó</translation>
+    </message>
+    <message>
+        <source>User created template files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Builtin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic template files shipped with TeXstudio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation type="unfinished">Táblázat sablon kiválasztása</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished">Nincs jogosultsága olvasni az alábbi fájlt:</translation>
+    </message>
 </context>
 <context>
     <name>TemplateSelector</name>
     <message>
         <source>Edit</source>
-        <translation>Szerkesztés</translation>
+        <translation type="obsolete">Szerkesztés</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -5344,7 +5394,7 @@ fájlt nem lehet eltávolítani.</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation>Beépített sablonok nem szerkeszthetők.</translation>
+        <translation type="obsolete">Beépített sablonok nem szerkeszthetők.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -5360,7 +5410,47 @@ fájlt nem lehet eltávolítani.</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
+        <translation type="obsolete">Nincs jogosultsága olvasni az alábbi fájlt:</translation>
+    </message>
+    <message>
+        <source>No Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;No Name&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished">Verzió</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Template Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This template cannot be edited.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open location:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6843,7 +6933,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
     </message>
     <message>
         <source>Select LaTeX Template</source>
-        <translation>LaTeX sablon kiválasztása</translation>
+        <translation type="obsolete">LaTeX sablon kiválasztása</translation>
     </message>
     <message>
         <source>File not found:</source>
@@ -6855,7 +6945,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
     </message>
     <message>
         <source>Select Table Template</source>
-        <translation>Táblázat sablon kiválasztása</translation>
+        <translation type="obsolete">Táblázat sablon kiválasztása</translation>
     </message>
     <message>
         <source>&amp;Line Operations</source>
@@ -7688,15 +7778,19 @@ The html files are located in the %1 directory.</source>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Dátum:</translation>
+        <translation type="obsolete">Dátum:</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Verzió:</translation>
+        <translation type="obsolete">Verzió:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Leírás:</translation>
+        <translation type="obsolete">Leírás:</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
     </message>
 </context>
 </TS>

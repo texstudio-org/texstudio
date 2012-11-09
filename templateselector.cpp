@@ -228,7 +228,7 @@ void TemplateSelector::openTemplateLocation() {
 	TemplateHandle th = selectedTemplate();
 	QString url = "file:///"+QFileInfo(th.file()).absolutePath();
 	if (!QDesktopServices::openUrl(QUrl(url))) {
-		txsCritical(tr("Could not open location")+QString("\n%1").arg(url));
+		txsCritical(tr("Could not open location:")+QString("\n%1").arg(url));
 	}
 }
 

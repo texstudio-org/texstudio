@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
-        <translation>Copyright (c) (TexMaker originel) 2004-2010 par Pascal Brachet&lt;br&gt;</translation>
+        <translation type="obsolete">Copyright (c) (TexMaker originel) 2004-2010 par Pascal Brachet&lt;br&gt;</translation>
     </message>
     <message>
         <source>About TeXstudio</source>
@@ -61,11 +61,11 @@
     </message>
     <message>
         <source>Home site of original Texmaker:</source>
-        <translation>Site du Texmaker original :</translation>
+        <translation type="obsolete">Site du Texmaker original :</translation>
     </message>
     <message>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
-        <translation>TeXstudio contient du code issu de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (et Jérôme Laurens)</translation>
+        <translation type="obsolete">TeXstudio contient du code issu de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (et Jérôme Laurens)</translation>
     </message>
     <message>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
@@ -77,7 +77,15 @@
     </message>
     <message>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
-        <translation>TeXstudio utilise TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</translation>
+        <translation type="obsolete">TeXstudio utilise TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</translation>
+    </message>
+    <message>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
+        <translation>TeXstudio contient du code issu de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) et SyncTeX (et Jérôme Laurens).</translation>
+    </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
+        <translation>TeXstudio utilise TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</translation>
     </message>
 </context>
 <context>
@@ -2429,6 +2437,10 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <source>One Line Per Cell</source>
         <translation>Une ligne par cellule</translation>
     </message>
+    <message>
+        <source>Automatically load included files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3933,6 +3945,22 @@ la commande \caption n&apos;est pas valide.</translation>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>L&apos;identifiant BibTeX se termine par un espace. De tels espaces ne sont pas ignorés par BibTeX.</translation>
     </message>
+    <message>
+        <source>Open Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Preview Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -4002,6 +4030,46 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <source>Quick Letter</source>
         <translation>Assistant lettre</translation>
+    </message>
+</context>
+<context>
+    <name>MakeTemplateDialog</name>
+    <message>
+        <source>Make Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a template from the current file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished">Auteur</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A template with the given name already exists.
+Do you want to overwrite it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4659,12 +4727,8 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
         <translation>Cherche</translation>
     </message>
     <message>
-        <source>Alt+Left</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Alt+Right</source>
-        <translation>Alt+Droite</translation>
+        <translation type="obsolete">Alt+Droite</translation>
     </message>
 </context>
 <context>
@@ -6676,10 +6740,67 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
 </context>
 <context>
+    <name>TemplateManager</name>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying template from
+%1
+to
+%2
+failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File
+%1
+ could not be removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Latex Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished">Utilisateur</translation>
+    </message>
+    <message>
+        <source>User created template files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Builtin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic template files shipped with TeXstudio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation type="unfinished">Sélectionner un modèle de tableau</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished">Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
+    </message>
+</context>
+<context>
     <name>TemplateSelector</name>
     <message>
         <source>Edit</source>
-        <translation>Édition</translation>
+        <translation type="obsolete">Édition</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -6687,7 +6808,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation>Vous ne pouvez pas modifier les modèles intégrés.</translation>
+        <translation type="obsolete">Vous ne pouvez pas modifier les modèles intégrés.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -6703,7 +6824,47 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation>Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
+        <translation type="obsolete">Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
+    </message>
+    <message>
+        <source>No Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;No Name&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Template Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This template cannot be edited.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open location:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8571,7 +8732,7 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     </message>
     <message>
         <source>Select LaTeX Template</source>
-        <translation>Sélectionner un modèle LaTeX</translation>
+        <translation type="obsolete">Sélectionner un modèle LaTeX</translation>
     </message>
     <message>
         <source>File not found:</source>
@@ -8583,7 +8744,7 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     </message>
     <message>
         <source>Select Table Template</source>
-        <translation>Sélectionner un modèle de tableau</translation>
+        <translation type="obsolete">Sélectionner un modèle de tableau</translation>
     </message>
     <message>
         <source>&amp;Line Operations</source>
@@ -8612,6 +8773,10 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     <message>
         <source>You do not have read permission to the file %1.</source>
         <translation>Vous n&apos;avez pas le droit de lecture sur le fichier %1.</translation>
+    </message>
+    <message>
+        <source>Could not write template meta data:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9546,7 +9711,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Date:</source>
-        <translation>Date :</translation>
+        <translation type="obsolete">Date :</translation>
     </message>
     <message>
         <source>DateLabel</source>
@@ -9554,7 +9719,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Version:</source>
-        <translation>Version :</translation>
+        <translation type="obsolete">Version :</translation>
     </message>
     <message>
         <source>VersionLabel</source>
@@ -9562,7 +9727,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Description:</source>
-        <translation>Description :</translation>
+        <translation type="obsolete">Description :</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">0,7 {1?}</translation>
     </message>
 </context>
 </TS>

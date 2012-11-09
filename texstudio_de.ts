@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
-        <translation>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</translation>
+        <translation type="obsolete">Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</translation>
     </message>
     <message>
         <source>About TeXstudio</source>
@@ -61,11 +61,11 @@
     </message>
     <message>
         <source>Home site of original Texmaker:</source>
-        <translation>Homepage des original Texmaker:</translation>
+        <translation type="obsolete">Homepage des original Texmaker:</translation>
     </message>
     <message>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
-        <translation>TeXstudio verwendet Code von Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) und SyncTeX (von Jerome Laurens)</translation>
+        <translation type="obsolete">TeXstudio verwendet Code von Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) und SyncTeX (von Jerome Laurens)</translation>
     </message>
     <message>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
@@ -73,7 +73,15 @@
     </message>
     <message>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
-        <translation>TeXstudio verwendet TexTablet (MIT Lizenz, Copyright (c) 2012 Steven Lovegrove)</translation>
+        <translation type="obsolete">TeXstudio verwendet TexTablet (MIT Lizenz, Copyright (c) 2012 Steven Lovegrove)</translation>
+    </message>
+    <message>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
+        <translation>TeXstudio verwendet Code von Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) und SyncTeX (von Jerome Laurens).</translation>
+    </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
+        <translation>TeXstudio verwendet TexTablet (MIT Lizenz, Copyright (c) 2012 Steven Lovegrove).</translation>
     </message>
 </context>
 <context>
@@ -2390,6 +2398,10 @@ Wenn &lt;b&gt;c:&lt;/b&gt; vorangestellt wird (inkl. Doppelpunkt), wird die aktu
         <source>Insert Separator</source>
         <translation>Trenner einfügen</translation>
     </message>
+    <message>
+        <source>Automatically load included files</source>
+        <translation>Eingebundene Dateien automatisch laden</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3773,6 +3785,22 @@ Fehlender \caption Kommando.</translation>
         <source>Expand Level %1</source>
         <translation>Ebene %1 ausklappen</translation>
     </message>
+    <message>
+        <source>Open Bibliography</source>
+        <translation>Bibliographie öffnen</translation>
+    </message>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation>texdoc brauchte zu lang um die Paketdokumentation zu öffnen:</translation>
+    </message>
+    <message>
+        <source>Save Preview Image</source>
+        <translation>Vorschaubild speichern</translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation>Bilder</translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -3842,6 +3870,46 @@ Fehlender \caption Kommando.</translation>
     <message>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+</context>
+<context>
+    <name>MakeTemplateDialog</name>
+    <message>
+        <source>Make Template</source>
+        <translation>Vorlage erzeugen</translation>
+    </message>
+    <message>
+        <source>Create a template from the current file.</source>
+        <translation>Vorlage aus aktueller Datei erzeugen.</translation>
+    </message>
+    <message>
+        <source>Meta Data</source>
+        <translation>Informationen</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation>Autor</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation>Lizenz</translation>
+    </message>
+    <message>
+        <source>A template with the given name already exists.
+Do you want to overwrite it?</source>
+        <translation>Es existiert bereits eine Vorlage mit dem angegebenen Namen. Soll diese überschrieben werden?</translation>
     </message>
 </context>
 <context>
@@ -4490,14 +4558,6 @@ Entweder ist die Datei fehlerhaft oder sie wird gerade generiert. Sie können na
     <message>
         <source>Searching for</source>
         <translation>Suche nach</translation>
-    </message>
-    <message>
-        <source>Alt+Left</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Alt+Right</source>
-        <translation></translation>
     </message>
 </context>
 <context>
@@ -6494,10 +6554,71 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
 </context>
 <context>
+    <name>TemplateManager</name>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation>TeXstudio hat Benutzervorlagen in einem veralteten Verzeichnis gefunden.
+Ab dieser Version werden Benutzervorlagen in folgendem Verzeichnis gespeichert:
+%1
+Sollen die existierenden Vorlagen dorthin verschoben werden? Nur in diesem Fall
+ können die Vorlagen weiter aus TeXstudio heraus benutzt werden.</translation>
+    </message>
+    <message>
+        <source>Copying template from
+%1
+to
+%2
+failed.</source>
+        <translation>Das Kopieren einer Vorlage von %1 nach %2 ist fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>File
+%1
+ could not be removed.</source>
+        <translation>Datei %1 konnte nicht entfernt werden.</translation>
+    </message>
+    <message>
+        <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
+        <translation>Es existieren noch nicht verschobene Vorlagen. Soll TeXstudio aufhören diese zu überwachen?</translation>
+    </message>
+    <message>
+        <source>Select Latex Template</source>
+        <translation>LaTeX Vorlage auswählen</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Benutzerdefiniert</translation>
+    </message>
+    <message>
+        <source>User created template files</source>
+        <translation>Benutzerdefinierte Vorlagen</translation>
+    </message>
+    <message>
+        <source>Builtin</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <source>Basic template files shipped with TeXstudio.</source>
+        <translation>Grundlegende Vorlagen, die mit TeXstudio ausgeliefert werden.</translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation>Tabellenvorlage auswählen</translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation>Sie haben nicht die Berechtigung die folgende Datei zu lesen:</translation>
+    </message>
+</context>
+<context>
     <name>TemplateSelector</name>
     <message>
         <source>Edit</source>
-        <translation>Bearbeiten</translation>
+        <translation type="obsolete">Bearbeiten</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -6505,7 +6626,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation>Integrierte Templates können nicht editiert werden.</translation>
+        <translation type="obsolete">Integrierte Templates können nicht editiert werden.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -6521,7 +6642,51 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation>Sie haben keine Erlaubnis diese Datei zu entfernen:</translation>
+        <translation type="obsolete">Sie haben keine Erlaubnis diese Datei zu entfernen:</translation>
+    </message>
+    <message>
+        <source>No Preview</source>
+        <translation>Keine Vorschau</translation>
+    </message>
+    <message>
+        <source>&lt;No Name&gt;</source>
+        <translation>&lt;Kein Name&gt;</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation>Lizenz</translation>
+    </message>
+    <message>
+        <source>Edit Template</source>
+        <translation>Vorlage bearbeiten</translation>
+    </message>
+    <message>
+        <source>Edit Template Info</source>
+        <translation>Informationen bearbeiten</translation>
+    </message>
+    <message>
+        <source>Open Template Location</source>
+        <translation>Speicherort öffen</translation>
+    </message>
+    <message>
+        <source>This template cannot be edited.</source>
+        <translation>Diese Vorlage kann nicht bearbeitet werden.</translation>
+    </message>
+    <message>
+        <source>Could not open location</source>
+        <translation type="obsolete">Speicherort konnte nicht geöffnet werden.</translation>
+    </message>
+    <message>
+        <source>Could not open location:</source>
+        <translation>Speicherort konnte nicht geöffnet werden:</translation>
     </message>
 </context>
 <context>
@@ -8360,7 +8525,7 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
     </message>
     <message>
         <source>Select LaTeX Template</source>
-        <translation>LaTeX Vorlage auswählen</translation>
+        <translation type="obsolete">LaTeX Vorlage auswählen</translation>
     </message>
     <message>
         <source>File not found:</source>
@@ -8372,7 +8537,7 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
     </message>
     <message>
         <source>Select Table Template</source>
-        <translation>Tabellenvorlage auswählen</translation>
+        <translation type="obsolete">Tabellenvorlage auswählen</translation>
     </message>
     <message>
         <source>&amp;Line Operations</source>
@@ -8409,6 +8574,10 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
     <message>
         <source>Go Forward</source>
         <translation>Vor</translation>
+    </message>
+    <message>
+        <source>Could not write template meta data:</source>
+        <translation>Vorlageninformationen konnen nicht gespeichert werden:</translation>
     </message>
 </context>
 <context>
@@ -9292,15 +9461,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Date:</source>
-        <translation>Datum:</translation>
+        <translation type="obsolete">Datum:</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation type="obsolete">Version:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Beschreibung:</translation>
+        <translation type="obsolete">Beschreibung:</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
     </message>
 </context>
 </TS>
