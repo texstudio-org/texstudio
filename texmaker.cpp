@@ -617,7 +617,7 @@ void Texmaker::setupMenus() {
 	newManagedEditorAction(menu, "print",tr("Print..."), "print", Qt::CTRL+Qt::Key_P);
 	
 	menu->addSeparator();
-	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q);
+	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q)->setMenuRole(QAction::QuitRole);
 	
 	//edit
 	menu=newManagedMenu("main/edit",tr("&Edit"));
@@ -982,7 +982,7 @@ void Texmaker::setupMenus() {
 
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png");
+	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png")->setMenuRole(QAction::PreferencesRole);
 	
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
@@ -1000,7 +1000,7 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall",tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
-	newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,":/images/appicon.png");
+	newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,":/images/appicon.png")->setMenuRole(QAction::AboutRole);
 	
 	//additional elements for development
 	
@@ -1378,7 +1378,7 @@ QEditor* Texmaker::currentEditor() const{
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	REQUIRE(m_languages);REQUIRE(edit->codeeditor);
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-	//EditorView->setCurrentWidget(edit);
+	//EditorView->setCurrentEditor(edit);
 	
 	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 	
@@ -1441,7 +1441,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
     if(!hidden){
         EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
         updateOpenDocumentMenu(false);
-        EditorView->setCurrentWidget(edit);
+		EditorView->setCurrentEditor(edit);
 
         edit->editor->setFocus();
         UpdateCaption();
@@ -1536,14 +1536,14 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
             documents.addDocument(existingView->document,false);
             EditorView->insertTab( -1,existingView, "?bug?");
             updateOpenDocumentMenu(false);
-            EditorView->setCurrentWidget(existingView);
+			EditorView->setCurrentEditor(existingView);
             updateStructure(false,existingView->document);
             existingView->editor->setFocus();
             UpdateCaption();
             NewDocumentStatus();
             return existingView;
         }
-		EditorView->setCurrentWidget(existingView);
+		EditorView->setCurrentEditor(existingView);
 		return existingView;
 	} else {
 		// find closed master doc
