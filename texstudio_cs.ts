@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
-        <translation>Autorské právo (c) (původní TexMaker) 2004-2010 Pascal Brachet&lt;br&gt;</translation>
+        <translation type="obsolete">Autorské právo (c) (původní TexMaker) 2004-2010 Pascal Brachet&lt;br&gt;</translation>
     </message>
     <message>
         <source>About TeXstudio</source>
@@ -61,18 +61,18 @@
     </message>
     <message>
         <source>Home site of original Texmaker:</source>
-        <translation>Stránky původního Texmakeru:</translation>
-    </message>
-    <message>
-        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Stránky původního Texmakeru:</translation>
     </message>
     <message>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2286,6 +2286,10 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Insert Separator</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Automatically load included files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3591,6 +3595,22 @@ Neplatný příkaz \caption.</translation>
         <source>Expand Level %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Preview Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -3660,6 +3680,46 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Cancel</source>
         <translation>Zrušit</translation>
+    </message>
+</context>
+<context>
+    <name>MakeTemplateDialog</name>
+    <message>
+        <source>Make Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a template from the current file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Název</translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished">Autor</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A template with the given name already exists.
+Do you want to overwrite it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4308,14 +4368,6 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Searching for</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+Right</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6311,10 +6363,67 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
 </context>
 <context>
+    <name>TemplateManager</name>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying template from
+%1
+to
+%2
+failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File
+%1
+ could not be removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Latex Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished">Uživatel</translation>
+    </message>
+    <message>
+        <source>User created template files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Builtin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic template files shipped with TeXstudio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemplateSelector</name>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Upravit</translation>
+        <translation type="obsolete">Upravit</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -6322,7 +6431,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation type="unfinished">Nemůžete upravit vestavěné předlohy.</translation>
+        <translation type="obsolete">Nemůžete upravit vestavěné předlohy.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -6337,7 +6446,43 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <translation type="unfinished">Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
     </message>
     <message>
-        <source>You do not have read permission to this file:</source>
+        <source>No Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;No Name&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Template Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This template cannot be edited.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open location:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8132,19 +8277,11 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select LaTeX Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File not found:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select Table Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8173,6 +8310,10 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <source>You do not have read permission to the file %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9082,16 +9223,8 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
     </message>
 </context>
 </TS>

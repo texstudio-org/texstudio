@@ -16,15 +16,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copyright (c) (original TexMaker) 2004-2010 by Pascal Brachet&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>html conversion: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -33,10 +25,6 @@
     </message>
     <message>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -56,11 +44,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Home site of original Texmaker:</source>
+        <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
+        <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1811,6 +1803,10 @@ options again to only view the most common settings.</source>
         <source>Basic Key Mapping</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Automatically load included files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2888,6 +2884,22 @@ The wizard does not support command </source>
         <source>Expand Level %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Preview Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -2957,6 +2969,46 @@ The wizard does not support command </source>
     <message>
         <source>Paper Size</source>
         <translation>Tamaño del papel</translation>
+    </message>
+</context>
+<context>
+    <name>MakeTemplateDialog</name>
+    <message>
+        <source>Make Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a template from the current file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished">Autor</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A template with the given name already exists.
+Do you want to overwrite it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3483,19 +3535,11 @@ The wizard does not support command </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Next shown page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5454,10 +5498,67 @@ Do you trust this script?</source>
     </message>
 </context>
 <context>
+    <name>TemplateManager</name>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying template from
+%1
+to
+%2
+failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File
+%1
+ could not be removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Latex Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User created template files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Builtin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basic template files shipped with TeXstudio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Table Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have read permission to this file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemplateSelector</name>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">Editar</translation>
+        <translation type="obsolete">Editar</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -5465,7 +5566,7 @@ Do you trust this script?</source>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
-        <translation type="unfinished">No puedes editar las plantillas internas preestablecidas.</translation>
+        <translation type="obsolete">No puedes editar las plantillas internas preestablecidas.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -5480,7 +5581,43 @@ Do you trust this script?</source>
         <translation type="unfinished">No tienes permiso para eliminar este archivo.</translation>
     </message>
     <message>
-        <source>You do not have read permission to this file:</source>
+        <source>No Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;No Name&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Template Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Template Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This template cannot be edited.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open location:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6864,19 +7001,11 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select LaTeX Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File not found:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select Table Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7150,6 +7279,10 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>I tried to die, but nothing happened.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7964,16 +8097,8 @@ The html files are located in the %1 directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
     </message>
 </context>
 </TS>
