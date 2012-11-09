@@ -1,6 +1,6 @@
 (you may also want to check the usermanual)
 
-TeXstudio 2.5 -> TeXstudio 2.5.1
+TeXstudio 2.5 -> TeXstudio 2.5.1  SVN 3445
 -----------------------------------------
 - improved fold panel
 - new template system
