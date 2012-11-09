@@ -165,17 +165,6 @@
      <attribute name="headerVisible">
       <bool>false</bool>
      </attribute>
-     <column>
-      <property name="text">
-       <string>1</string>
-      </property>
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-     </column>
     </widget>
    </item>
   </layout>
