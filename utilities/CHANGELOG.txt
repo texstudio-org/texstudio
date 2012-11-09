@@ -1,5 +1,18 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.5 -> TeXstudio 2.5.1
+-----------------------------------------
+- improved fold panel
+- new template system
+- added support for forward/backward mouse buttons in editor and viewer
+- context menu for inline preview (allows copying of preview image)
+- option to load all included files in order to have a complete
+ref/commands overview
+- added "Open"-context menu entry and link overlay for \bibliography{} commands
+- show image preview on hover over graphic name
+- several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)
+
+
 TeXstudio 2.4 -> TeXstudio 2.5  SVN 3378
 -----------------------------------------
 - cursor history (go back/forward)
