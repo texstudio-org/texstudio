@@ -172,7 +172,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	// TAB WIDGET EDITEUR
 	documents.indentationInStructure=configManager.indentationInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
-    documents.autoLoadDocuments=configManager.autoLoadChildren;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 	connect(&documents,SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
 	
@@ -1634,6 +1633,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
     }
 	
     updateStructure(true,doc);
+
     if(!hidden)
         ShowStructure();
 	restoreBookmarks(edit);
@@ -6058,6 +6058,7 @@ void Texmaker::showImgPreview(const QString& fname){
 }
 
 void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
+    Q_UNUSED(page);
     QPoint p;
     //if(previewEquation)
         p=currentEditorView()->getHoverPosistion();

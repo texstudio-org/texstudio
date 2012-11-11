@@ -219,6 +219,12 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		updateSyntaxCheck=true;
 	}
 	mUserCommandList.remove(dlh);
+
+    QStringList removeIncludes=mIncludedFilesList.values(dlh);
+    if(mIncludedFilesList.remove(dlh)>0){
+        parent->removeDocs(removeIncludes);
+        parent->updateMasterSlaveRelations(this);
+    }
 	
 	QStringList removedUsepackages;
 	removedUsepackages << mUsepackageList.values(dlh);
@@ -365,6 +371,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				updateRefsLabels(rp.name);
 		}
 		mRefItem.remove(dlh);
+        QStringList removedIncludes=mIncludedFilesList.values(dlh);
+        mIncludedFilesList.remove(dlh);
+
 		if (mUserCommandList.remove(dlh)>0) completerNeedsUpdate = true;
 		if(mBibItem.remove(dlh))
 			bibTeXFilesNeedsUpdate=true;
@@ -708,7 +717,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.possibleCommands["%include"].contains(cmd)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->title=name;
+                removedIncludes.removeAll(name);
 				QString fname=findFileName(name);
+                mIncludedFilesList.insert(line(i).handle(),fname);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
                 if(dc)	dc->setMasterDocument(this);
                 else {
@@ -741,6 +752,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if (!oldBibs.isEmpty())
 			bibTeXFilesNeedsUpdate = true; //file name removed
 		
+        if(!removedIncludes.isEmpty()){
+            parent->removeDocs(removedIncludes);
+            parent->updateMasterSlaveRelations(this);
+        }
 	}//for each line handle
 	
 	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
@@ -803,7 +818,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
-	
+
 	if(updateSyntaxCheck) {
 		foreach(LatexDocument* elem,getListOfDocs()){
 			//getEditorView()->reCheckSyntax();//todo: signal
@@ -824,7 +839,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
     foreach(QString fname,lstFilesToLoad){
         parent->addDocToLoad(fname);
     }
-	
 }
 
 #ifndef QT_NO_DEBUG
@@ -1814,6 +1828,22 @@ QString LatexDocuments::findFileFromBibId(const QString& bibId)
   return QString();
 }
 
+void LatexDocuments::removeDocs(QStringList removeIncludes){
+    foreach(QString fname,removeIncludes){
+        LatexDocument* dc=findDocumentFromName(fname);
+        if(dc && dc->isHidden()){
+            QStringList toremove=dc->includedFiles();
+            dc->setMasterDocument(0);
+            hiddenDocuments.removeAll(dc);
+            qDebug()<<fname;
+            delete dc->getEditorView();
+            delete dc;
+            if(!toremove.isEmpty())
+                removeDocs(toremove);
+        }
+    }
+}
+
 void LatexDocuments::addDocToLoad(QString filename){
     emit docToLoad(filename);
 }
@@ -2153,7 +2183,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 		QStringList includedFiles=elem->includedFiles();
 		if(includedFiles.contains(fname)){
 			doc->setMasterDocument(elem);
-			break;
+            break;
 		}
 	}
 	
@@ -2392,7 +2422,7 @@ QString LatexDocument::getMagicComment(const QString& name) {
 	while (iter.hasNext()) {
 		StructureEntry *se = iter.next();
 		splitMagicComment(se->title, seName, val);
-		if (seName==name)
+        if (seName.toLower()==name.toLower())
 			return val;
 	}
 	return QString();
