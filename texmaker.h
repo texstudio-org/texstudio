@@ -289,6 +289,8 @@ protected slots:
     void addDocToLoad(QString filename);
     void removeFromEditor(LatexEditorView *edView);
 
+    void moveCursorTodlh();
+
 private slots:	
 	void ReadSettings();
 	void SaveSettings(const QString& configName="");

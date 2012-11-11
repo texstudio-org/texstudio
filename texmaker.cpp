@@ -5871,6 +5871,11 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
+    if (entry->type==StructureEntry::SE_MAGICCOMMENT) {
+        QMenu menu;
+        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
+        menu.exec(structureTreeView->mapToGlobal(point));
+    }
 }
 
 void Texmaker::structureContextMenuCloseDocument(){
@@ -7663,4 +7668,20 @@ void Texmaker::removeFromEditor(LatexEditorView *edView){
     int i=EditorView->indexOf(edView);
     if(i>=0)
         EditorView->removeTab(i);
+}
+void Texmaker::moveCursorTodlh(){
+    QAction *act = qobject_cast<QAction *>(sender());
+    if (!act) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
+    LatexDocument *doc=entry->document;
+    QDocumentLineHandle *dlh=entry->getLineHandle();
+    LatexEditorView* edView=doc->getEditorView();
+    if(edView){
+        saveCurrentCursorToHistory();
+        EditorView->setCurrentEditor(edView);
+        int lineNr=-1;
+        if((lineNr=doc->indexOf(dlh))>=0){
+            gotoLine(lineNr,0,edView);
+        }
+    }
 }
