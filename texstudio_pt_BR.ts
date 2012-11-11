@@ -54,7 +54,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utiliza TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -707,7 +707,7 @@
     <message>
         <location filename="cleandialog.ui" line="88"/>
         <source>Files to Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos a Excluir</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="49"/>
@@ -1121,7 +1121,7 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location filename="configdialog.ui" line="1210"/>
         <source>Package csquotes: \enquote{  }</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote csquotes: \enquote{  }</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1230"/>
@@ -1132,57 +1132,57 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location filename="configdialog.ui" line="1323"/>
         <source>Show Only Monospaced Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostras Apenas Fontes Mono Espaçadas</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1330"/>
         <source>Automatically load included files</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar automaticamente arquivos incluídos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1509"/>
         <source>Draw cursor as a thick line</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenhar o cursor como uma linha grossa</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1512"/>
         <source>Bold Cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor em Negrito</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1694"/>
         <source>Table Autoformating</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoformatação de Tabelas</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1700"/>
         <source>Special Commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos Especiais:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1710"/>
         <source>Special Commands Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Posição para Comandos Especiais:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1718"/>
         <source>Behind Line Break</source>
-        <translation type="unfinished"></translation>
+        <translation>Após Quebra de Linha</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1723"/>
         <source>Separate Line (No Indent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Linha Separada (Sem Recuo)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1728"/>
         <source>Separate Line (Indented to First Column)</source>
-        <translation type="unfinished"></translation>
+        <translation>Linha Separada (Recuo para Primeira Coluna)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1736"/>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma Linha por Célula</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1911"/>
@@ -1412,12 +1412,12 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location filename="configdialog.ui" line="2923"/>
         <source>Cache Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamnaho do Cache:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2933"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2978"/>
@@ -2614,12 +2614,12 @@ Personalizado</translation>
     <message>
         <location filename="configdialog.cpp" line="745"/>
         <source>Load Other Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar Outro Ícone</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="746"/>
         <source>Insert Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir Separador</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="897"/>
@@ -3544,12 +3544,12 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
     <message>
         <location filename="configmanager.cpp" line="1187"/>
         <source>Insert New Menu Item (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir Novo Ítem de Menu (antes)</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1190"/>
         <source>Insert New Sub Menu (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inseri Novo Submenu (antes)</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1208"/>
@@ -4320,7 +4320,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="352"/>
         <source>Open Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Bibliografia</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="368"/>
@@ -4355,7 +4355,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="1163"/>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="unfinished"></translation>
+        <translation>texdoc levou muito tempo abrindo a documentação para o pacote:</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="1811"/>
@@ -4392,52 +4392,52 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="1864"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>BibTeX ID terminando com espaço. Espaços finais não são ignorados por BibTeX.</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2184"/>
         <source>Save Preview Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar Imagem da Visualização</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2184"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagens</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2293"/>
         <source>Remove Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover Marcador</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2301"/>
         <source>Unnamed Bookmark</source>
-        <translation type="unfinished">Marcador sem Rótulo</translation>
+        <translation>Marcador sem Rótulo</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2306"/>
         <source>Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcador</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2332"/>
         <source>Collapse All</source>
-        <translation type="unfinished"></translation>
+        <translation>Recolher Todos</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2336"/>
         <source>Collapse Level %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Recolher Nível %1</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2341"/>
         <source>Expand All</source>
-        <translation type="unfinished">Expandir Todos</translation>
+        <translation>Expandir Todos</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2345"/>
         <source>Expand Level %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir Nível %1</translation>
     </message>
     <message>
         <source>Citation correct</source>
@@ -4557,48 +4557,49 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="maketemplatedialog.ui" line="14"/>
         <source>Make Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar Modelo</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="20"/>
         <source>Create a template from the current file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar um modelo com o arquivo atual.</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="27"/>
         <source>Meta Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Metadados</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="33"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="43"/>
         <source>Author</source>
-        <translation type="unfinished">Autor</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="53"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="63"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="77"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licença</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.cpp" line="36"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Um modelo com o nome fornecido já existe.
+Você deseja substituí-lo?</translation>
     </message>
 </context>
 <context>
@@ -4606,17 +4607,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="mathassistant.cpp" line="24"/>
         <source>TexTablet not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>TexTablet não encontrado.</translation>
     </message>
     <message>
         <location filename="mathassistant.cpp" line="26"/>
         <source>Math Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>Mat Assistente</translation>
     </message>
     <message>
         <location filename="mathassistant.cpp" line="68"/>
         <source>TexTablet crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>TexTablet travou.</translation>
     </message>
 </context>
 <context>
@@ -5340,7 +5341,7 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location filename="PDFDocument.cpp" line="2627"/>
         <source>Searching for</source>
-        <translation type="unfinished"></translation>
+        <translation>Pesquisando por</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="2665"/>
@@ -7867,7 +7868,11 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio encontrou modelos criados pelo usuários em localização obsoleta.
+Agora os modelos são armazenados em
+%1
+TeXstudio deve mover os modelos para a nova localização?
+Se não, eles não estarão disponíveis via o diálogo &quot;Criar Modelo&quot;.</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="47"/>
@@ -7876,56 +7881,62 @@ If not, they will not be available via the Make Template dialog.</source>
 to
 %2
 failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiando modelos de
+%1
+para
+%2
+falhou.</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="50"/>
         <source>File
 %1
  could not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo
+%1
+ não pode ser removido.</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="57"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Existem ainda modelos não realocados.TeXstudio deve parar de monitorá-los?</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="66"/>
         <source>Select Latex Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Modelo LaTeX</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="69"/>
         <location filename="templatemanager.cpp" line="88"/>
         <source>User</source>
-        <translation type="unfinished">Usuário</translation>
+        <translation>Usuário</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="70"/>
         <source>User created template files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de Modelos criados pelo usuário.</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="72"/>
         <source>Builtin</source>
-        <translation type="unfinished"></translation>
+        <translation>Predefinidos</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="73"/>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modelos básicos fornecidos com TeXstudio.</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="85"/>
         <source>Select Table Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Modelo de Tabela</translation>
     </message>
     <message>
         <location filename="templatemanager_p.cpp" line="65"/>
         <location filename="templatemanager_p.cpp" line="98"/>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Você não possui permissão de leitura para este arquivo:</translation>
     </message>
 </context>
 <context>
@@ -7937,7 +7948,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="175"/>
         <source>Remove</source>
-        <translation type="unfinished">Remover</translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
@@ -7946,70 +7957,70 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="31"/>
         <source>No Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem Visualização</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="144"/>
         <source>&lt;No Name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Sem Nome&gt;</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="147"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="148"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="149"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licença</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="173"/>
         <source>Edit Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar Modelo</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="174"/>
         <source>Edit Template Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar Informação do Modelo</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="178"/>
         <source>Open Template Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Localização do Modelo</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="185"/>
         <location filename="templateselector.cpp" line="195"/>
         <location filename="templateselector.cpp" line="205"/>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este modelo não pode ser editado.</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="210"/>
         <source>Please Confirm</source>
-        <translation type="unfinished">Por Favor Confirmar</translation>
+        <translation>Por Favor Confirmar</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="210"/>
         <source>Are you sure to delete the following template?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente remover o modelo?</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="217"/>
         <location filename="templateselector.cpp" line="222"/>
         <source>You do not have permission to remove this file.</source>
-        <translation type="unfinished">Você não tem permissão para remover este arquivo.</translation>
+        <translation>Você não tem permissão para remover este arquivo.</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="231"/>
         <source>Could not open location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível abrir a localização:</translation>
     </message>
 </context>
 <context>
@@ -8455,7 +8466,7 @@ failed.</source>
     <message>
         <location filename="texmaker.cpp" line="636"/>
         <source>&amp;Line Operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Operações com &amp;Linhas</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="637"/>
@@ -8470,17 +8481,17 @@ failed.</source>
     <message>
         <location filename="texmaker.cpp" line="639"/>
         <source>Move Line &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover Linha &amp;Acima</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="640"/>
         <source>Move Line &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover Linha A&amp;baixo</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="641"/>
         <source>Duplicate Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicar Linha</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="644"/>
@@ -8557,12 +8568,12 @@ failed.</source>
     <message>
         <location filename="texmaker.cpp" line="668"/>
         <source>Go Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Voltar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="669"/>
         <source>Go Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Avançar</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="671"/>
@@ -9183,7 +9194,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="850"/>
         <source>Math Assistant...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mat Assistente...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="905"/>
@@ -9208,12 +9219,12 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="915"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Foco no Editor</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="916"/>
         <source>Focus Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Foco no Visualizador</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="922"/>
@@ -9824,7 +9835,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location filename="texmaker.cpp" line="1830"/>
         <source>Could not write template meta data:</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível escrever os metadados do modelo:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1990"/>
@@ -10042,7 +10053,7 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
     <message>
         <location filename="texmaker.cpp" line="1575"/>
         <source>You do not have read permission to the file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você não possui permissão de leitura para o arquivo %1.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1623"/>
@@ -10061,19 +10072,21 @@ Você deseja restaurá-lo?</translation>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 foi compilado com Qt %2, mas está sendo executado com Qt %3.
+Por favor obtenha as bibliotecas corretas (e.g. dll ou arquivos so).
+De outro modo podem ocorrer falhas ou erros aleatórios.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1850"/>
         <location filename="texmaker.cpp" line="1909"/>
         <source>File not found:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo não encontrado:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="1854"/>
         <location filename="texmaker.cpp" line="1913"/>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Você não possui permissão de leitura para este arquivo:</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="4082"/>
@@ -11317,12 +11330,12 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="templateselector.ui" line="66"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="templateselector.ui" line="170"/>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
 </context>
 </TS>
