@@ -3338,7 +3338,8 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 	if (!entry->document) return;
 	
 	if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
-	
+
+    LatexDocument *doc=entry->document;
 	switch (entry->type){
 	case StructureEntry::SE_DOCUMENT_ROOT:
 		if (entry->document->getEditorView())
@@ -3349,10 +3350,20 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		
 	case StructureEntry::SE_OVERVIEW:
 		break;
-		
+    case StructureEntry::SE_MAGICCOMMENT:
+        if(entry->valid){
+            QString s=entry->title;
+            QString name;
+            QString val;
+            doc->splitMagicComment(s, name, val);
+            if ((name.toLower() == "texroot")||(name.toLower() == "root")){
+                    QString fname=doc->findFileName(val);
+                    load(fname);
+                    break;
+            }
+        }
 	case StructureEntry::SE_SECTION:
-	case StructureEntry::SE_MAGICCOMMENT:
-	case StructureEntry::SE_TODO:
+    case StructureEntry::SE_TODO:
 	case StructureEntry::SE_LABEL:{
 		int lineNr=-1;
 		mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;

@@ -159,6 +159,10 @@ public:
 	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
 	
 	void updateMagicCommentScripts();
+    bool splitMagicComment(const QString &comment, QString &name, QString &val);
+
+    QString findFileName(QString fname);
+    bool fileExits(QString fname);
 	
 private:
 	QString fileName; //absolute
@@ -190,8 +194,7 @@ private:
 	
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
-	bool fileExits(QString fname);
-	QString findFileName(QString fname);
+
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void mergeStructure(StructureEntry* se, QVector<StructureEntry*> &parent_level, QList<StructureEntry*>& flatStructure, const int linenr, const int count);
 	
@@ -203,7 +206,6 @@ private:
 	void updateParentVector(QVector<StructureEntry*> &parent_level, StructureEntry* se);
 	StructureEntry* moveToAppropiatePositionWithSignal(QVector<StructureEntry*> &parent_level, StructureEntry* se);
 	
-	bool splitMagicComment(const QString &comment, QString &name, QString &val);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry* se);
 	
 	void gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck);
