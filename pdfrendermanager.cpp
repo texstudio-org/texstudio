@@ -49,13 +49,17 @@ void CachePixmap::setRes(qreal res, int x, int y){
 	this->resolution=res;
 }
 
-PDFRenderManager::PDFRenderManager(QObject *parent) :
+PDFRenderManager::PDFRenderManager(QObject *parent,int limitQueues) :
        QObject(parent), cachedNumPages(0)
 {
 	queueAdministration=new PDFQueue();
-	queueAdministration->num_renderQueues=2;
-	if(QThread::idealThreadCount()>2)
-		queueAdministration->num_renderQueues=QThread::idealThreadCount();
+    if(limitQueues>0){
+        queueAdministration->num_renderQueues=limitQueues;
+    }else{
+        queueAdministration->num_renderQueues=2;
+        if(QThread::idealThreadCount()>2)
+            queueAdministration->num_renderQueues=QThread::idealThreadCount();
+    }
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
 		PDFRenderEngine *renderQueue=new PDFRenderEngine(0,queueAdministration);
 		connect(renderQueue,SIGNAL(sendImage(QImage,int,int)),this,SLOT(addToCache(QImage,int,int)));

@@ -335,6 +335,7 @@ public:
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
+    bool autoLoadDocuments;
 
 	QHash<QString,LatexPackage> cachedPackages;
     void addDocToLoad(QString filename);

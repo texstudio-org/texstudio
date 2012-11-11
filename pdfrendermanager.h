@@ -73,7 +73,7 @@ class PDFRenderManager : public QObject
 {
 	Q_OBJECT
 public:
-	explicit PDFRenderManager(QObject *parent);
+    explicit PDFRenderManager(QObject *parent, int limitQueues=-1);
 	~PDFRenderManager();
 
 	enum Error {NoError, FileOpenFailed, PopplerError, FileLocked, FileIncomplete, FileIncompleteAbort };
