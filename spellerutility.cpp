@@ -118,6 +118,7 @@ void SpellerUtility::addToIgnoreList(QString toIgnore) {
 		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
+	emit ignoredWordAdded(word);
 }
 void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
 	QByteArray encodedString;

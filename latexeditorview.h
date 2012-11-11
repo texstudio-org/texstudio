@@ -196,6 +196,7 @@ public slots:
 	void spellCheckingAlwaysIgnore();
 	void addListToContextMenu(const QStringList& list, bool italic, const char* action);
 	void spellCheckingListSuggestions();
+	void spellRemoveMarkers(const QString& newIgnoredWord);
 	void mouseHovered(QPoint pos);
 	bool closeSomething();
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
