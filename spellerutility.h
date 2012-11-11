@@ -32,6 +32,7 @@ public:
 signals:
 	void aboutToDelete();
 	void dictionaryLoaded();
+	void ignoredWordAdded(const QString& newlyIgnoredWord);
 private:
 	SpellerUtility(QString name);
 	~SpellerUtility();

@@ -983,9 +983,11 @@ bool LatexEditorView::setSpeller(const QString &name) {
 
 	if (speller) {
 		disconnect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
+		disconnect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	}
 	speller = su;
 	connect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
+	connect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	emit spellerChanged(name);
 	
 	if (document) {
@@ -1586,17 +1588,6 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 	if (speller && editor && editor->cursor().hasSelection() && (editor->cursor().selectedText()==defaultInputBinding->lastSpellCheckedWord)) {
 		QString newToIgnore = editor->cursor().selectedText();
 		speller->addToIgnoreList(newToIgnore);
-		//documentContentChanged(editor->cursor().lineNumber(),1);
-		for (int i=0; i<editor->document()->lines(); i++) {
-			QList<QFormatRange> li=editor->document()->line(i).getOverlays(SpellerUtility::spellcheckErrorFormat);
-			QString curLineText=editor->document()->line(i).text();
-			for (int j=0; j<li.size(); j++)
-				if (curLineText.mid(li[j].offset,li[j].length)==newToIgnore){
-					editor->document()->line(i).removeOverlay(li[j]);
-					editor->document()->line(i).setFlag(QDocumentLine::LayoutDirty,true);
-				}
-		}
-		editor->viewport()->update();
 	}
 }
 void LatexEditorView::addListToContextMenu(const QStringList& list, bool italic, const char* action){
@@ -1630,6 +1621,20 @@ void LatexEditorView::spellCheckingListSuggestions() {
 		//    contextMenu->close();
 		contextMenu->show();
 	}
+}
+void LatexEditorView::spellRemoveMarkers(const QString& newIgnoredWord){
+	REQUIRE(editor);
+	//documentContentChanged(editor->cursor().lineNumber(),1);
+	for (int i=0; i<editor->document()->lines(); i++) {
+		QList<QFormatRange> li=editor->document()->line(i).getOverlays(SpellerUtility::spellcheckErrorFormat);
+		QString curLineText=editor->document()->line(i).text();
+		for (int j=0; j<li.size(); j++)
+			if (latexToPlainWord(curLineText.mid(li[j].offset,li[j].length))==newIgnoredWord){
+				editor->document()->line(i).removeOverlay(li[j]);
+				editor->document()->line(i).setFlag(QDocumentLine::LayoutDirty,true);
+			}
+	}
+	editor->viewport()->update();
 }
 
 void LatexEditorView::closeCompleter(){
