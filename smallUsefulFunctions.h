@@ -145,6 +145,7 @@ enum {
 	
 };
 
+QString getImageAsText(const QPixmap &AImage);
 
 class LatexParser{
 public:

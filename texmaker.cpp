@@ -172,6 +172,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	// TAB WIDGET EDITEUR
 	documents.indentationInStructure=configManager.indentationInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
+    documents.autoLoadDocuments=configManager.autoLoadChildren;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 	connect(&documents,SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
 	
@@ -6038,7 +6039,37 @@ void Texmaker::showImgPreview(const QString& fname){
         if(w>screen.width()) w=screen.width()-2;
         QToolTip::showText(p, QString("<img src=\""+imageName+"\" width=%1 />").arg(w), 0);
         LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+    }else{
+        // pdf ?
+        imageName=fname+".pdf";
+        fi.setFile(imageName);
+        if(fi.exists()){
+            //render pdf preview
+            PDFRenderManager *renderManager=new PDFRenderManager(this,1);
+            PDFRenderManager::Error error = PDFRenderManager::NoError;
+            QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error);
+            if(error==PDFRenderManager::NoError){
+                renderManager->renderToImage(0,this,"showImgPreviewFinished",20,20,-1,-1,-1,-1,false,true);
+            }else{
+                delete renderManager;
+            }
+        }
     }
+}
+
+void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
+    QPoint p;
+    //if(previewEquation)
+        p=currentEditorView()->getHoverPosistion();
+    //else
+    //    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+    QRect screen = QApplication::desktop()->screenGeometry();
+    int w=pm.width();
+    if(w>screen.width()) w=screen.width()-2;
+    QToolTip::showText(p, QString("%1").arg(getImageAsText(pm)), 0);
+    LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+    PDFRenderManager* renderManager = qobject_cast<PDFRenderManager*>(sender());
+    delete renderManager;
 }
 
 void Texmaker::showPreview(const QString& text){

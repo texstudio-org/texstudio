@@ -2,6 +2,7 @@
 #include "latexcompleter_config.h"
 #include "qdocumentline.h"
 #include <QMutex>
+#include <QBuffer>
 
 extern const char* TEXSTUDIO_SVN_VERSION;
 
@@ -1851,4 +1852,12 @@ SafeThread::SafeThread(QObject* parent):QThread(parent), crashed(false){}
 void SafeThread::wait(unsigned long time){
 	if (crashed) return;
 	QThread::wait(time);
+}
+
+QString getImageAsText(const QPixmap &AImage) {
+    QByteArray ba;
+    QBuffer buffer(&ba);
+    buffer.open(QIODevice::WriteOnly);
+    AImage.save(&buffer, "PNG");
+    return QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64()));
 }
