@@ -6974,15 +6974,21 @@ void Texmaker::findWordRepetions(){
 	QGridLayout *layout = new QGridLayout;
 	layout->setColumnStretch(1, 1);
 	layout->setColumnStretch(0, 1);
+	QComboBox *cb = new QComboBox(dlg);
+	cb->addItems(QStringList() << "spellingMistake" << "wordRepetition" << "wordRepetitionLongRange"<< "badWord" << "grammarMistake" << "grammarMistakeSpecial1" << "grammarMistakeSpecial2" << "grammarMistakeSpecial3" << "grammarMistakeSpecial4");
+	cb->setCurrentIndex(1);
+	cb->setObjectName("kind");
+	cb->setEditable(true); //so people can search for other things as well
 	QPushButton *btNext= new QPushButton(tr("&Find Next"), dlg);
 	btNext->setObjectName("next");
 	QPushButton *btPrev= new QPushButton(tr("&Find Previous"), dlg);
 	btPrev->setObjectName("prev");
 	QPushButton *btClose= new QPushButton(tr("&Close"), dlg);
 	btClose->setObjectName("close");
-	layout->addWidget(btNext,0,0);
-	layout->addWidget(btPrev,0,1);
-	layout->addWidget(btClose,0,2);
+	layout->addWidget(cb,0,0);
+	layout->addWidget(btNext,0,1);
+	layout->addWidget(btPrev,0,2);
+	layout->addWidget(btClose,0,3);
 	dlg->setLayout(layout);
 	connect(btNext,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
 	connect(btPrev,SIGNAL(clicked()),this,SLOT(findNextWordRepetion()));
@@ -6999,7 +7005,8 @@ void Texmaker::findNextWordRepetion(){
 	if (!currentEditorView()) return;
 	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int);
 	OverlaySearch overlaySearch = backward?&QDocumentLine::getLastOverlayBetween:&QDocumentLine::getFirstOverlayBetween;
-	int overlayType = QDocument::formatFactory()->id("wordRepetition");
+	QComboBox* kind = mButton->parent()->findChild<QComboBox*>("kind");
+	int overlayType = QDocument::formatFactory()->id(kind ? kind->currentText() : "wordRepetition");
 	QDocumentCursor cur = currentEditor()->cursor();
 	if (cur.hasSelection()){
 		if (backward) cur = cur.selectionStart();
