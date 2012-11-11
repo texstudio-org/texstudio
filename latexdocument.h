@@ -185,6 +185,7 @@ private:
 	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
+    QMultiHash<QDocumentLineHandle*,QString> mIncludedFilesList;
 	
 	QSet<QString> mCompleterWords; // local list of completer words
 	
@@ -335,10 +336,10 @@ public:
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
-    bool autoLoadDocuments;
 
 	QHash<QString,LatexPackage> cachedPackages;
     void addDocToLoad(QString filename);
+    void removeDocs(QStringList removeIncludes);
     void hideDocInEditor(LatexEditorView *edView);
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
