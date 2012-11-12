@@ -1311,13 +1311,8 @@ void Texmaker::NewDocumentStatus() {
 		if (!edView) return;
 	}
 	QEditor * ed = edView->editor;
-	if (ed->isContentModified()) {
-		actSave->setEnabled(true);
-		EditorView->setTabIcon(index,getRealIcon("modified"));
-	} else {
-		actSave->setEnabled(false);
-		EditorView->setTabIcon(index,QIcon(":/images/empty.png"));
-	}
+	actSave->setEnabled(ed->isContentModified() || ed->fileName().isEmpty());
+	EditorView->setTabIcon(index, ed->isContentModified() ? getRealIcon("modified") : QIcon(":/images/empty.png"));
 	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
 	tabText.replace("&", "&&");
 	if (EditorView->tabText(index) != tabText) {
@@ -1357,7 +1352,7 @@ void Texmaker::NewDocumentLineEnding(){
 
 void Texmaker::updateUndoRedoStatus() {
 	if (currentEditor()) {
-		actSave->setEnabled(!currentEditor()->document()->isClean());
+		actSave->setEnabled(!currentEditor()->document()->isClean() || currentEditor()->fileName().isEmpty());
 		actUndo->setEnabled(currentEditor()->document()->canUndo());
 		actRedo->setEnabled(currentEditor()->document()->canRedo());
 	} else {
@@ -2606,11 +2601,9 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 		currentEditorView()->gotoToLabel(value);
 		break;
 	case LatexParser::Citation:
-		// value does not work, if cite command contains multiple entries.
-		c.movePosition(1, QDocumentCursor::StartOfWord);
-		c.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
-		//qDebug() << c.selectedText();
-		currentEditorView()->gotoToBibItem(c.selectedText());
+		value = getOptionItem(c.line().text(), c.columnNumber(), true);
+		qDebug() << value;
+		currentEditorView()->gotoToBibItem(value);
 		break;
 
 	default:; //TODO: Jump to command definition and in bib files
