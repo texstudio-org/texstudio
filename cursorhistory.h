@@ -53,6 +53,7 @@ public:
 	QAction *backAction() { return m_backAction; }
 	QAction *forwardAction() {return m_forwardAction; }
 	void clear();
+	int count() { return history.count(); }
 
 	void debugPrint();
 signals:
@@ -60,6 +61,7 @@ signals:
 public slots:
 	QDocumentCursor back(const QDocumentCursor &currentCursor = QDocumentCursor());
 	QDocumentCursor forward(const QDocumentCursor &currentCursor = QDocumentCursor());
+
 
 private slots:
 	void aboutToDeleteDoc(LatexDocument *doc);

@@ -75,6 +75,10 @@ public slots:
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 	
+	void fuzzCursorHistory();
+	void fuzzBackForward();
+
+
 protected:
 	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
 	Q_INVOKABLE inline QMenu* newManagedMenu(const QString &id,const QString &text){ return configManager.newManagedMenu(id,text); }
