@@ -36,7 +36,7 @@ bool CursorHistory::insertPos(QDocumentCursor cur, bool deleteBehindCurrent) {
 		currentEntry++;
 		currentEntry = history.erase(currentEntry, history.end());
 	}
-	if (currentEntry == history.end()) currentEntry--;
+	if (currentEntry == history.end() && currentEntry != history.begin()) currentEntry--;
 
 	// do not insert neighboring duplicates
 	if (currentEntryValid() && (*currentEntry).equals(pos)) {
@@ -50,7 +50,11 @@ bool CursorHistory::insertPos(QDocumentCursor cur, bool deleteBehindCurrent) {
 	}
 
 	if (history.count() >= m_maxLength) {
-		history.removeFirst();
+		if (currentEntry == history.begin()) {
+			history.removeLast();
+		} else {
+			history.removeFirst();
+		}
 	}
 
 	currentEntry++;
@@ -145,6 +149,7 @@ void CursorHistory::aboutToDeleteDoc(LatexDocument *doc) {
 			removeEntry(it);
 		}
 	}
+
 	updateNavActions();
 }
 
@@ -176,6 +181,7 @@ void CursorHistory::updateNavActions()
 }
 
 void CursorHistory::removeEntry(CursorPosList::iterator &it) {
+	Q_ASSERT(it != history.end());
 	if (currentEntry == it) {
 		currentEntry = nextValidEntry(currentEntry);
 	}
