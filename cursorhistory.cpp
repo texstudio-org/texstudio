@@ -185,6 +185,7 @@ void CursorHistory::removeEntry(CursorPosList::iterator &it) {
 	if (currentEntry == it) {
 		currentEntry = nextValidEntry(currentEntry);
 	}
+	Q_ASSERT(currentEntry != it);
 	it = history.erase(it);
 }
 
@@ -203,6 +204,7 @@ void CursorHistory::validate() {
 		if (!(*it).isValid()) {
 			if (it == currentEntry) currentEntry++;
 			qDebug() << "removed invalid cursorHistory entry" << (*it).doc()->getFileName();
+			Q_ASSERT(currentEntry != it);
 			it = history.erase(it);
 		} else {
 			++it;
@@ -218,7 +220,9 @@ CursorPosList::iterator CursorHistory::prevValidEntry(const CursorPosList::itera
 		if ((*it).isValid()) {
 			return it;
 		}
+		bool moveCurrent = (currentEntry == it);
 		it = history.erase(it);
+		if (moveCurrent) currentEntry = it;
 	}
 	Q_ASSERT(0);
 	return history.end(); // never reached
@@ -233,7 +237,9 @@ CursorPosList::iterator CursorHistory::nextValidEntry(const CursorPosList::itera
 		if ((*it).isValid()) {
 			return it;
 		}
+		bool moveCurrent = (currentEntry == it);
 		it = history.erase(it);
+		if (moveCurrent) currentEntry = it;
 	}
 	Q_ASSERT(0);
 	return history.end(); // never reached
