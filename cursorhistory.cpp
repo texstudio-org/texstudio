@@ -142,12 +142,12 @@ QDocumentCursor CursorHistory::forward(const QDocumentCursor &currentCursor) {
 
 void CursorHistory::aboutToDeleteDoc(LatexDocument *doc) {
 	// remove all entries with document from list.
-	for (CursorPosList::iterator it = history.begin(); it != history.end(); ++it) {
+	for (CursorPosList::iterator it = history.begin(); it != history.end(); ) {
 		if ( (*it).doc() == doc ) {
 			if (currentEntry == it)
 				currentEntry = nextValidEntry(currentEntry);
 			removeEntry(it);
-		}
+		} else ++it;
 	}
 
 	updateNavActions();
