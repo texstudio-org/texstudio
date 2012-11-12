@@ -2438,8 +2438,12 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>Une ligne par cellule</translation>
     </message>
     <message>
+        <source>automatically load included files</source>
+        <translation type="obsolete">Charger automatiquement les fichiers inclus</translation>
+    </message>
+    <message>
         <source>Automatically load included files</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger automatiquement les fichiers inclus</translation>
     </message>
 </context>
 <context>
@@ -3946,20 +3950,20 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>L&apos;identifiant BibTeX se termine par un espace. De tels espaces ne sont pas ignorés par BibTeX.</translation>
     </message>
     <message>
-        <source>Open Bibliography</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="unfinished"></translation>
+        <translation>texdoc met trop de temps à ouvrir la documentation du package :</translation>
     </message>
     <message>
         <source>Save Preview Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer l&apos;image de prévisualisation</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images</translation>
+    </message>
+    <message>
+        <source>Open Bibliography</source>
+        <translation>Ouvrir la bibliographie</translation>
     </message>
 </context>
 <context>
@@ -4036,40 +4040,41 @@ la commande \caption n&apos;est pas valide.</translation>
     <name>MakeTemplateDialog</name>
     <message>
         <source>Make Template</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Créer un modèle</translation>
     </message>
     <message>
         <source>Create a template from the current file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un modèle (à partir du &amp;fichier en cours).</translation>
     </message>
     <message>
         <source>Meta Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Métadonnées</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished">Auteur</translation>
+        <translation>Auteur</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Description</translation>
     </message>
     <message>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Un modèle avec ce nom existe déjà.
+Voulez-vous l&apos;écraser ?</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation>Licence</translation>
     </message>
 </context>
 <context>
@@ -6745,9 +6750,11 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
         <source>TeXstudio found user templates in deprecated locations.
 From now on user templates are hosted at
 %1
-Should TeXstudio move the existing user templates there?
-If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+Should TeXstudio move the existing user templates there?If not, they will not be available via the Make Template dialog.</source>
+        <translation type="obsolete">TeXstudio a trouvé des modèles personnels à des emplacements obsolètes.
+À partir de maintenant, les modèles personnels sont stockés ici :
+%1.
+TeXstudio doit-il déplacer les mmodèles personnels ici ? Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un modèle ».</translation>
     </message>
     <message>
         <source>Copying template from
@@ -6755,45 +6762,63 @@ If not, they will not be available via the Make Template dialog.</source>
 to
 %2
 failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>La copie de modèle de :
+%1
+à :
+%2
+a échoué.</translation>
     </message>
     <message>
         <source>File
 %1
  could not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier :
+%1
+n&apos;a pas pu être supprimé.</translation>
     </message>
     <message>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Il y a encore des modèles non déplacés. TeXstudio doit-il cesser de les prendre en compte ?</translation>
+    </message>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation>TeXstudio a trouvé des modèles personnels à des emplacements obsolètes.
+Désomais, les modèles personnels sont stockés ici :
+%1.
+TeXstudio doit-il déplacer les mmodèles personnels ici ?
+Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un modèle ».</translation>
     </message>
     <message>
         <source>Select Latex Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner un modèle LaTeX</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished">Utilisateur</translation>
+        <translation>Utilisateur</translation>
     </message>
     <message>
         <source>User created template files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers de modèles créés par l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Builtin</source>
-        <translation type="unfinished"></translation>
+        <translation>Intégré</translation>
     </message>
     <message>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers de modèles basiques chargés par TeXstudio.</translation>
     </message>
     <message>
         <source>Select Table Template</source>
-        <translation type="unfinished">Sélectionner un modèle de tableau</translation>
+        <translation>Sélectionner un modèle de tableau</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished">Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
+        <translation>Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
     </message>
 </context>
 <context>
@@ -6828,43 +6853,47 @@ failed.</source>
     </message>
     <message>
         <source>No Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas d&apos;aperçu</translation>
     </message>
     <message>
         <source>&lt;No Name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Sans nom&gt;</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Date</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <source>Edit Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier le modèle</translation>
     </message>
     <message>
         <source>Edit Template Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier les propriétés du modèle</translation>
     </message>
     <message>
         <source>Open Template Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le dossier des modèles</translation>
     </message>
     <message>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce modèle ne peut pas être modifié.</translation>
+    </message>
+    <message>
+        <source>Could not open location</source>
+        <translation type="obsolete">Impossilbe d&apos;ouvrir le dossier</translation>
     </message>
     <message>
         <source>Could not open location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossilbe d&apos;ouvrir le dossier :</translation>
     </message>
 </context>
 <context>
@@ -7559,7 +7588,7 @@ failed.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandonner</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>No document open</source>
@@ -7609,7 +7638,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
-        <translation>Le générateur de texte aléatoire a besoin de texte. Ouvrez un fichier.</translation>
+        <translation>Le générateur de texte aléatoire construits de nouveaux textes à partir de mots existants si bien que vous avez besoin d&apos;ouvrir quelques fichiers texte.</translation>
     </message>
     <message>
         <source>File must be saved and compiling before you can view the log</source>
@@ -8776,7 +8805,7 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     </message>
     <message>
         <source>Could not write template meta data:</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;écrire les métadonnées du modèle :</translation>
     </message>
 </context>
 <context>
@@ -9731,7 +9760,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">0,7 {1?}</translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 </TS>
