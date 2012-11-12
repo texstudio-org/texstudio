@@ -2601,9 +2601,12 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 		currentEditorView()->gotoToLabel(value);
 		break;
 	case LatexParser::Citation:
-		value = getOptionItem(c.line().text(), c.columnNumber(), true);
-		qDebug() << value;
-		currentEditorView()->gotoToBibItem(value);
+		// value does not work, if cite command contains multiple entries.
+		// TODO: this does not work for citation keys containing e.g. dots like "cite.name" -> make a proper options parser
+		c.movePosition(1, QDocumentCursor::StartOfWord);
+		c.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+		//qDebug() << c.selectedText();
+		currentEditorView()->gotoToBibItem(c.selectedText());
 		break;
 
 	default:; //TODO: Jump to command definition and in bib files
