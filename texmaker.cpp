@@ -6054,6 +6054,7 @@ void Texmaker::showImgPreview(const QString& fname){
 }
 
 void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
+    if (!currentEditorView()) return;
     Q_UNUSED(page);
     QPoint p;
     //if(previewEquation)
