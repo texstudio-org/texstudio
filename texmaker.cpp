@@ -5812,6 +5812,42 @@ void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
 	}
 }
 
+void Texmaker::fuzzBackForward(){
+	int rep = random() % (1+cursorHistory->count());
+	for (int j = 0; j < rep; j++) goBack();
+	rep = random() % (1+cursorHistory->count());
+	for (int j = 0; j < rep; j++) goForward();
+}
+
+void Texmaker::fuzzCursorHistory(){
+	QString fillText;
+	for (int i = 0; i < 100; i++)
+		fillText += "\n" + QString("foobar abc xyz").repeated(random() % 100);
+	for (int i = 0; i < 100; i++) {
+		if (!documents.documents.isEmpty()) {
+			if (random() % 1000 < 500) documents.deleteDocument(documents.documents[random() % documents.documents.length()]);
+			fuzzBackForward();
+		}
+		if (!documents.documents.isEmpty()) {
+			QApplication::processEvents();
+			if (random() % 1000 < 500) documents.deleteDocument(documents.documents[random() % documents.documents.length()]);
+			fuzzBackForward();
+		}
+		fileNew();
+		currentEditor()->setText(fillText);
+		QApplication::processEvents();
+		int rep = random() % 100;
+		for (int j = 0; j < rep; j++) {
+			EditorView->setCurrentIndex(EditorView->count());
+			int l =  random() % currentEditor()->document()->lineCount();
+			int c = random() % (currentEditor()->document()->line(l).length()+100);
+			currentEditor()->setCursor(currentEditor()->document()->cursor(l, c, random() % 100, random() % 100));
+			saveCurrentCursorToHistory();
+			fuzzBackForward();
+		}
+	}
+}
+
 void Texmaker::saveCurrentCursorToHistory() {
 	if (!currentEditorView()) return;
 	cursorHistory->insertPos(currentEditorView()->editor->cursor());
