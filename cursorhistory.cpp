@@ -27,9 +27,10 @@ bool CursorHistory::insertPos(QDocumentCursor cur, bool deleteBehindCurrent) {
 	if (!cur.isValid()) return false;
 
 	CursorPosition pos(cur);
-	connectUnique(pos.doc(), SIGNAL(destroyed(QObject*)),this,SLOT(documentClosed(QObject*)));
+	connectUnique(pos.doc(), SIGNAL(destroyed(QObject*)), this, SLOT(documentClosed(QObject*)));
 	// TODO destroyed() may be duplicate to aboutToDeleteDocument() - needs more testing. anyway it does not harm
-	connectUnique(pos.doc(), SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
+	connectUnique(pos.doc(), SIGNAL(lineDeleted(QDocumentLineHandle*)), this, SLOT(lineDeleted(QDocumentLineHandle*)));
+	connectUnique(pos.doc(), SIGNAL(lineRemoved(QDocumentLineHandle*)), this, SLOT(lineDeleted(QDocumentLineHandle*)));
 
 	if (deleteBehindCurrent && currentEntry != history.end()) {
 		currentEntry++;
