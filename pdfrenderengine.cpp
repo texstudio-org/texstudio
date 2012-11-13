@@ -53,7 +53,6 @@ void PDFRenderEngine::run(){
 				}else{
 				    queue->mCommands.prepend(command);
 				    queue->mCommandsAvailable.release();
-                    qDebug()<<"render";
 				}
 				queue->mQueueLock.unlock();
 				if(leave){
