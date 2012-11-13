@@ -227,10 +227,12 @@
         <file>completion/latex-l2tabu.cwl</file>
         <file>completion/latex-mathsymbols.cwl</file>
         <file>completion/layout.cwl</file>
+        <file>completion/libertine.cwl</file>
         <file>completion/listings.cwl</file>
         <file>completion/logsys.cwl</file>
         <file>completion/longtable.cwl</file>
         <file>completion/lscape.cwl</file>
+        <file>completion/ltxtable.cwl</file>
         <file>completion/luatex.cwl</file>
         <file>completion/manyfoot.cwl</file>
         <file>completion/marvosym.cwl</file>
@@ -246,9 +248,11 @@
         <file>completion/nicefrac.cwl</file>
         <file>completion/multimedia.cwl</file>
         <file>completion/nomencl.cwl</file>
+        <file>completion/paracol.cwl</file>
         <file>completion/pdfpages.cwl</file>
         <file>completion/pgfcore.cwl</file>
         <file>completion/pgf.cwl</file>
+        <file>completion/pgfplots.cwl</file>
         <file>completion/pifont.cwl</file>
         <file>completion/psfrag.cwl</file>
         <file>completion/pst-3d.cwl</file>

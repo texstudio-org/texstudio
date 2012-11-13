@@ -4,6 +4,7 @@
 \begin{longtable}{preamble}#\tabular
 \caption*{text}
 \endfirstfoot#/longtable
+\endlastfoot#/longtable
 \endfirsthead#/longtable
 \endfoot#/longtable
 \endhead#/longtable
