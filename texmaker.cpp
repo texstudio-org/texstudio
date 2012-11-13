@@ -695,7 +695,7 @@ void Texmaker::setupMenus() {
 	lineEndingGroup->addAction(act);
 	
 	
-	newManagedAction(menu,"encoding",tr("Setup Encoding..."),SLOT(editSetupEncoding()));
+	newManagedAction(menu,"encoding",tr("Setup Encoding..."),SLOT(editSetupEncoding()))->setMenuRole(QAction::NoRole); // with the default "QAction::TextHeuristicRole" this was interperted as Preferences on OSX
 	newManagedAction(menu,"unicodeChar",tr("Insert Unicode Character..."),SLOT(editInsertUnicode()), Qt::ALT + Qt::CTRL + Qt::Key_U);
 	
 	
@@ -5813,13 +5813,16 @@ void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
 }
 
 void Texmaker::fuzzBackForward(){
+#ifdef NOT_DEFINED__FUZZER_NEEDED_ONLY_FOR_DEBUGGING_RANDOM_CRASH_OF_CURSOR_HISTORY
 	int rep = random() % (1+cursorHistory->count());
 	for (int j = 0; j < rep; j++) goBack();
 	rep = random() % (1+cursorHistory->count());
 	for (int j = 0; j < rep; j++) goForward();
+#endif
 }
 
 void Texmaker::fuzzCursorHistory(){
+#ifdef NOT_DEFINED__FUZZER_NEEDED_ONLY_FOR_DEBUGGING_RANDOM_CRASH_OF_CURSOR_HISTORY
 	QString fillText;
 	for (int i = 0; i < 100; i++)
 		fillText += "\n" + QString("foobar abc xyz").repeated(random() % 100);
@@ -5846,6 +5849,7 @@ void Texmaker::fuzzCursorHistory(){
 			fuzzBackForward();
 		}
 	}
+#endif
 }
 
 void Texmaker::saveCurrentCursorToHistory() {
