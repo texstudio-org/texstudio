@@ -1,8 +1,14 @@
+texstudio (2.5.1) natty; urgency=low
+
+  * 2.5.1 bug fix release 
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 15 Nov 2012 00:00:00 +0200
+
 texstudio (2.5) natty; urgency=low
 
   * 2.5 release 
 
- -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 03 Sep 2012 19:19:28 +0200
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 17 Oct 2012 00:00:00 +0200
 
 texstudio (2.4) natty; urgency=low
 
