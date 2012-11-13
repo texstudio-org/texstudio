@@ -202,6 +202,11 @@ public:
 	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths;
 	
 	QString findFile(const QString& baseName, const QString& searchPaths);
+    void addPreviewFileName(QString fn){
+        if(!previewFileNames.contains(fn))
+            previewFileNames.append(fn);
+    }
+
 private:
 	QStringList previewFileNames;
 	QMap<QString, PreviewSource> previewFileNameToSource;
