@@ -866,7 +866,17 @@ bool LatexEditorView::gotoToLabel(const QString& label){
 	QDocumentLine line(result.keys().first());
 	int ln=line.lineNumber();
 	if (ln<0) return false;
-	editor->setCursorPosition(ln, line.text().indexOf("\\label{"+label) + 7);
+	int col = 0;
+	foreach (const QString &cmd, LatexParser::getInstance().possibleCommands["%label"]) {
+		col = line.text().indexOf(cmd+"{"+label);
+		if (col >= 0) {
+			col += cmd.length()+1;
+			break;
+		}
+	}
+	Q_ASSERT(col >= 0);
+	if (col < 0) col = 0;
+	editor->setCursorPosition(ln, col);
 	editor->ensureCursorVisible();
 	return true;
 }
@@ -878,7 +888,17 @@ bool LatexEditorView::gotoToBibItem(const QString &bibId) {
 	QDocumentLine line(result.keys().first());
 	int ln=line.lineNumber();
 	if (ln<0) return false;
-	editor->setCursorPosition(ln, line.text().indexOf("\\bibitem{"+bibId) + 9);
+	int col = 0;
+	foreach (const QString &cmd, LatexParser::getInstance().possibleCommands["%bibitem"]) {
+		col = line.text().indexOf(cmd+"{"+bibId);
+		if (col >= 0) {
+			col += cmd.length()+1;
+			break;
+		}
+	}
+	Q_ASSERT(col >= 0);
+	if (col < 0) col = 0;
+	editor->setCursorPosition(ln, col);
 	editor->ensureCursorVisible();
 	return true;
 }
@@ -1820,17 +1840,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
 			QDocumentLineHandle *mLine=result.keys().first();
 			int l=mLine->line();
-            LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
+			LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
 			if(mLine->document()!=editor->document()){
-                doc=document->parent->findDocument(mLine->document());
+				doc=document->parent->findDocument(mLine->document());
 				if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
 			}
-            if(doc)
-                mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
-            /*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
+			if(doc)
+				mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
+			/*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
 				mText+=mLine->document()->line(i).text();
 				if(i<l+2) mText+="\n";
-            }*/
+			}*/
 		}
 		QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
 		break;
@@ -1845,7 +1865,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		break;
 	case LatexParser::Citation:
 		if (bibTeXIds) {
-            QString tooltip(tr("Citation correct (reading ...)"));
+			QString tooltip(tr("Citation correct (reading ...)"));
 			QString bibID;
 			// get bibID at cursor
 			int col_start=cursor.columnNumber();
