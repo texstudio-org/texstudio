@@ -6104,7 +6104,14 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
     QRect screen = QApplication::desktop()->screenGeometry();
     int w=pm.width();
     if(w>screen.width()) w=screen.width()-2;
+#if QT_VERSION >= 0x040700
     QToolTip::showText(p, QString("%1").arg(getImageAsText(pm)), 0);
+#else
+    QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
+    pm.save(tempPath+"txs_preview.png","PNG");
+    buildManager.addPreviewFileName(tempPath+"txs_preview.png");
+    QToolTip::showText(p, QString("<img src=\""+tempPath+"txs_preview.png\" width=%1 />").arg(w), 0);
+#endif
     LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
     PDFRenderManager* renderManager = qobject_cast<PDFRenderManager*>(sender());
     delete renderManager;
