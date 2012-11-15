@@ -65,15 +65,15 @@
     </message>
     <message>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio používá ikony Crystal Project (LGPL) a motiv ikon Oxygen (CC-BY-SA 3.0).</translation>
     </message>
     <message>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio obsahuje kód z Hunspell (GPL), QtCreator (GPL, autorské právo (C) Nokia), KILE (GPL) a SyncTeX (od Jeromeho Laurense).</translation>
     </message>
     <message>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio používá TexTablet (licence MIT, autorské právo (c) 2012 Steven Lovegrove).</translation>
     </message>
 </context>
 <context>
@@ -561,7 +561,7 @@
     </message>
     <message>
         <source>Files to Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory ke smazání</translation>
     </message>
 </context>
 <context>
@@ -2228,67 +2228,67 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
     </message>
     <message>
         <source>Package csquotes: \enquote{  }</source>
-        <translation type="unfinished"></translation>
+        <translation>Balíček csquotes: \enquote{  }</translation>
     </message>
     <message>
         <source>Show Only Monospaced Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat pouze neproporcionální písma</translation>
     </message>
     <message>
         <source>Draw cursor as a thick line</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreslit ukazovátko jako tlustou čáru</translation>
     </message>
     <message>
         <source>Bold Cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Tučné ukazovátko</translation>
     </message>
     <message>
         <source>Table Autoformating</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatické formátování tabulky</translation>
     </message>
     <message>
         <source>Special Commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní příkazy:</translation>
     </message>
     <message>
         <source>Special Commands Position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poloha zvláštních příkazů:</translation>
     </message>
     <message>
         <source>Behind Line Break</source>
-        <translation type="unfinished"></translation>
+        <translation>Za zalomením řádku</translation>
     </message>
     <message>
         <source>Separate Line (No Indent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddělit řádek (bez odsazení)</translation>
     </message>
     <message>
         <source>Separate Line (Indented to First Column)</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddělit řádek (odsazeno k prvnímu sloupci)</translation>
     </message>
     <message>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeden řádek na buňku</translation>
     </message>
     <message>
         <source>Cache Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost vyrovnávací paměti:</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <source>Load Other Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrát jinou ikonu</translation>
     </message>
     <message>
         <source>Insert Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit oddělovač</translation>
     </message>
     <message>
         <source>Automatically load included files</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky nahrát zahrnuté soubory</translation>
     </message>
 </context>
 <context>
@@ -2951,11 +2951,11 @@ hcete je odstranit?</translation>
     </message>
     <message>
         <source>Insert New Menu Item (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit novou položku nabídky (před)</translation>
     </message>
     <message>
         <source>Insert New Sub Menu (before)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit novou podřízenou položku nabídky (před)</translation>
     </message>
 </context>
 <context>
@@ -3565,51 +3565,51 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation>ID BibTeXu končí mezerou. Mezery na konci nejsou BibTeXem přehlíženy.</translation>
     </message>
     <message>
         <source>Remove Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit záložku</translation>
     </message>
     <message>
         <source>Unnamed Bookmark</source>
-        <translation type="unfinished">Nepojmenovaná záložka</translation>
+        <translation>Nepojmenovaná záložka</translation>
     </message>
     <message>
         <source>Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Záložka</translation>
     </message>
     <message>
         <source>Collapse All</source>
-        <translation type="unfinished"></translation>
+        <translation>Složit vše</translation>
     </message>
     <message>
         <source>Collapse Level %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Složit úroveň %1</translation>
     </message>
     <message>
         <source>Expand All</source>
-        <translation type="unfinished">Rozbalit vše</translation>
+        <translation>Rozbalit vše</translation>
     </message>
     <message>
         <source>Expand Level %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit úroveň %1</translation>
     </message>
     <message>
         <source>Open Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít bibliografii</translation>
     </message>
     <message>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="unfinished"></translation>
+        <translation>Texdocu trvalo příliš dlouho otevření dokumentace pro balíček:</translation>
     </message>
     <message>
         <source>Save Preview Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit obrázek náhledu</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázky</translation>
     </message>
 </context>
 <context>
@@ -3686,55 +3686,56 @@ Neplatný příkaz \caption.</translation>
     <name>MakeTemplateDialog</name>
     <message>
         <source>Make Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit předlohu</translation>
     </message>
     <message>
         <source>Create a template from the current file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit předlohu z nynějšího souboru.</translation>
     </message>
     <message>
         <source>Meta Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Popisná data</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished">Autor</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verze</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Popis</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Předloha se zadaným názvem již existuje.
+Chcete ji přepsat?</translation>
     </message>
 </context>
 <context>
     <name>MathAssistant</name>
     <message>
         <source>TexTablet not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>TexTablet nenalezen.</translation>
     </message>
     <message>
         <source>Math Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocník pro matematický režim</translation>
     </message>
     <message>
         <source>TexTablet crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>TexTablet spadl.</translation>
     </message>
 </context>
 <context>
@@ -3831,7 +3832,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodiny</translation>
     </message>
 </context>
 <context>
@@ -4360,15 +4361,15 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Okenní prohlížeč</translation>
     </message>
     <message>
         <source>Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložený prohlížeč</translation>
     </message>
     <message>
         <source>Searching for</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání</translation>
     </message>
 </context>
 <context>
@@ -6366,11 +6367,15 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <name>TemplateManager</name>
     <message>
         <source>TeXstudio found user templates in deprecated locations.
-From now on user templates are hosted at
+>From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio nalezlo uživatelské předlohy v odmítnutých umístěních.
+Od nynějška jsou uživatelské předlohy hostěny na
+%1
+Má tam TeXstudio přemístit stávající uživatelské předlohy?
+Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
     </message>
     <message>
         <source>Copying template from
@@ -6378,45 +6383,51 @@ If not, they will not be available via the Make Template dialog.</source>
 to
 %2
 failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírování předlohy z
+%1
+do
+%2
+se nezdařilo.</translation>
     </message>
     <message>
         <source>File
 %1
  could not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor
+%1
+se nepodařilo odstranit.</translation>
     </message>
     <message>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stále ještě tu jsou nepřesunuté předlohy. Má je TeXstudio přestat sledovat?</translation>
     </message>
     <message>
         <source>Select Latex Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat Latexovou předlohu</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished">Uživatel</translation>
+        <translation>Uživatel</translation>
     </message>
     <message>
         <source>User created template files</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelem vytvořené soubory předloh</translation>
     </message>
     <message>
         <source>Builtin</source>
-        <translation type="unfinished"></translation>
+        <translation>Vestavěné</translation>
     </message>
     <message>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Základní soubory předloh dodávané s TeXstudiem.</translation>
     </message>
     <message>
         <source>Select Table Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat tabulkovou předlohu</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemáte oprávnění pro čtení tohoto souboru:</translation>
     </message>
 </context>
 <context>
@@ -6427,7 +6438,7 @@ failed.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Odstranit</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>You can not edit built-in templates.</source>
@@ -6435,55 +6446,55 @@ failed.</source>
     </message>
     <message>
         <source>Please Confirm</source>
-        <translation type="unfinished">Potvrďte, prosím</translation>
+        <translation>Potvrďte, prosím</translation>
     </message>
     <message>
         <source>Are you sure to delete the following template?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete smazat následující předlohu?</translation>
     </message>
     <message>
         <source>You do not have permission to remove this file.</source>
-        <translation type="unfinished">Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
+        <translation>Nemáte žádné oprávnění pro odstranění tohoto souboru.</translation>
     </message>
     <message>
         <source>No Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádný náhled</translation>
     </message>
     <message>
         <source>&lt;No Name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Bez názvu&gt;</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verze</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <source>Edit Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit předlohu</translation>
     </message>
     <message>
         <source>Edit Template Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit informace o předloze</translation>
     </message>
     <message>
         <source>Open Template Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít umístění předlohy</translation>
     </message>
     <message>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuto předlohu nelze upravovat.</translation>
     </message>
     <message>
         <source>Could not open location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se otevřít umístění:</translation>
     </message>
 </context>
 <context>
@@ -8252,69 +8263,72 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     <message>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor s obnovou po pádu %1 byl nalezen pro &quot;%2&quot;.
+Chcete jej obnovit?</translation>
     </message>
     <message>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se otevřít obnovovací soubor &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Math Assistant...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocník pro matematický režim...</translation>
     </message>
     <message>
         <source>Focus Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaměřit editor</translation>
     </message>
     <message>
         <source>Focus Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaměřit prohlížeč</translation>
     </message>
     <message>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 byl přeložen s Qt %2, ale běží s Qt %3.
+Získejte, prosím, správnou běhovou knihovnu (např. soubory dll, nebo tak podobně).
+V opačném případě by se mohly objevit náhodné chyby a pády.</translation>
     </message>
     <message>
         <source>File not found:</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor nenalezen:</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemáte oprávnění pro čtení tohoto souboru:</translation>
     </message>
     <message>
         <source>&amp;Line Operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Řá&amp;dkové operace</translation>
     </message>
     <message>
         <source>Move Line &amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Posunout řádek &amp;nahoru</translation>
     </message>
     <message>
         <source>Move Line &amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Posunout řádek &amp;dolů</translation>
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdvojit řádek</translation>
     </message>
     <message>
         <source>Go Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Jít zpět</translation>
     </message>
     <message>
         <source>Go Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Jít vpřed</translation>
     </message>
     <message>
         <source>You do not have read permission to the file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemáte oprávnění pro čtení souboru %1.</translation>
     </message>
     <message>
         <source>Could not write template meta data:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se zapsat popisná data k předloze:</translation>
     </message>
 </context>
 <context>
@@ -8805,7 +8819,7 @@ Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při sp
     </message>
     <message>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete smazat nynější makro?</translation>
     </message>
 </context>
 <context>
@@ -9220,11 +9234,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
 </context>
 </TS>
