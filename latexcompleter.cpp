@@ -1260,8 +1260,13 @@ void LatexCompleter::cursorPositionChanged() {
 void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	if (helpIndices.empty()) return;
 	QToolTip::hideText();
-	if (!config->tooltipHelp) return;
 	if (!index.isValid()) return;
+    if(forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
+        QString fn=workingDir+QDir::separator()+listModel->words[index.row()].word;
+        emit showImagePreview(fn);
+        return;
+    }
+    if (!config->tooltipHelp) return;
 	if (index.row() < 0 || index.row()>=listModel->words.size()) return;
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
 	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
@@ -1308,7 +1313,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
             LatexDocument *document=qobject_cast<LatexDocument *>(editor->document());
             if(!bibReader){
                 bibReader=new bibtexReader(this);
-                connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
+                connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
                 connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
                 bibReader->start();
             }
@@ -1392,8 +1397,7 @@ void LatexCompleter::editorDestroyed() {
 	editor=0;
 }
 
-void LatexCompleter::bibtexSectionFound(QString bibId, QString content){
-	Q_UNUSED(bibId);
+void LatexCompleter::bibtexSectionFound(QString content){
 	showTooltip(content);
 }
 

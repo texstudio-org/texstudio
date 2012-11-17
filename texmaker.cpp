@@ -84,6 +84,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	bibTypeActions = 0;
 	highlightLanguageActions = 0;
 	runningPDFCommands = 0;
+    completerPreview=false;
 	
 	ReadSettings();
 	
@@ -249,6 +250,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	
 	completer=new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
+    connect(completer,SIGNAL(showImagePreview(QString)),this,SLOT(showImgPreview(QString)));
+    connect(this,SIGNAL(ImgPreview(QString)),completer,SLOT(bibtexSectionFound(QString)));
 	updateCompleter();
 	LatexEditorView::setCompleter(completer);
 	completer->updateAbbreviations();
@@ -3423,14 +3426,12 @@ void Texmaker::NormalCompletion() {
 	case LatexParser::Citation:
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
 		break;
-	case LatexParser::Option:
-		if(latexParser.possibleCommands["%graphics"].contains(command)){
-			QString fn=documents.getCompileFileName();
-			QFileInfo fi(fn);
-			completer->setWorkPath(fi.absolutePath());
-			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
-			break;
-		} else {}; //fall through
+    case LatexParser::Graphics:
+        {QString fn=documents.getCompileFileName();
+        QFileInfo fi(fn);
+        completer->setWorkPath(fi.absolutePath());
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
+        break;
 	default:
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
@@ -6053,17 +6054,32 @@ void Texmaker::clearPreview() {
 }
 
 void Texmaker::showImgPreview(const QString& fname){
+    completerPreview=(sender()==completer); // completer needs signal as answer
     QString imageName=fname;
     QFileInfo fi(fname);
-    if(!fi.exists()){
-        imageName=fname+".png";
-        fi.setFile(imageName);
-    }
-    if(!fi.exists()){
-        imageName=fname+".jpg";
-        fi.setFile(imageName);
-    }
+    QString suffix;
+    QStringList suffixList;
+    suffixList<<"jpg"<<"png"<<"pdf";
     if(fi.exists()){
+        if(!suffixList.contains(fi.suffix()))
+                return;
+        suffix=fi.suffix();
+    }
+
+    if(suffix.isEmpty()){
+        foreach(QString elem,suffixList){
+            imageName=fname+elem;
+            fi.setFile(imageName);
+            if(fi.exists()){
+                suffix=elem;
+                break;
+            }
+        }
+    }
+
+    suffixList.clear();
+    suffixList<<"jpg"<<"png";
+    if(suffixList.contains(suffix)){
         QPoint p;
         //if(previewEquation)
             p=currentEditorView()->getHoverPosistion();
@@ -6073,22 +6089,23 @@ void Texmaker::showImgPreview(const QString& fname){
         QPixmap img(imageName);
         int w=img.width();
         if(w>screen.width()) w=screen.width()-2;
-        QToolTip::showText(p, QString("<img src=\""+imageName+"\" width=%1 />").arg(w), 0);
-        LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
-    }else{
-        // pdf ?
-        imageName=fname+".pdf";
-        fi.setFile(imageName);
-        if(fi.exists()){
-            //render pdf preview
-            PDFRenderManager *renderManager=new PDFRenderManager(this,1);
-            PDFRenderManager::Error error = PDFRenderManager::NoError;
-            QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error);
-            if(error==PDFRenderManager::NoError){
-                renderManager->renderToImage(0,this,"showImgPreviewFinished",20,20,-1,-1,-1,-1,false,true);
-            }else{
-                delete renderManager;
-            }
+        QString text=QString("<img src=\""+imageName+"\" width=%1 />").arg(w);
+        if(completerPreview){
+            emit ImgPreview(text);
+        }else{
+            QToolTip::showText(p, text, 0);
+            LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+        }
+    }
+    if(suffix=="pdf"){
+        //render pdf preview
+        PDFRenderManager *renderManager=new PDFRenderManager(this,1);
+        PDFRenderManager::Error error = PDFRenderManager::NoError;
+        QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error);
+        if(error==PDFRenderManager::NoError){
+            renderManager->renderToImage(0,this,"showImgPreviewFinished",20,20,-1,-1,-1,-1,false,true);
+        }else{
+            delete renderManager;
         }
     }
 }
@@ -6104,15 +6121,21 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
     QRect screen = QApplication::desktop()->screenGeometry();
     int w=pm.width();
     if(w>screen.width()) w=screen.width()-2;
+    QString text;
 #if QT_VERSION >= 0x040700
-    QToolTip::showText(p, QString("%1").arg(getImageAsText(pm)), 0);
+    text= QString("%1").arg(getImageAsText(pm));
 #else
     QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
     pm.save(tempPath+"txs_preview.png","PNG");
     buildManager.addPreviewFileName(tempPath+"txs_preview.png");
-    QToolTip::showText(p, QString("<img src=\""+tempPath+"txs_preview.png\" width=%1 />").arg(w), 0);
+    text=QString("<img src=\""+tempPath+"txs_preview.png\" width=%1 />").arg(w);
 #endif
-    LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+    if(completerPreview){
+        emit ImgPreview(text);
+    }else{
+        QToolTip::showText(p, text, 0);
+        LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
+    }
     PDFRenderManager* renderManager = qobject_cast<PDFRenderManager*>(sender());
     delete renderManager;
 }

@@ -71,6 +71,7 @@ public:
 signals:
 	void setDirectoryForCompletion(QString fn);
 	void searchBibtexSection(QString file,QString bibId);
+    void showImagePreview(QString fn);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
@@ -113,7 +114,7 @@ private slots:
 	void changeView(int pos);
 	void listClicked(QModelIndex index);
 	void directoryLoaded(QString dn,QSet<QString> content);
-	void bibtexSectionFound(QString bibId, QString content);
+    void bibtexSectionFound(QString content);
 };
 
 #endif

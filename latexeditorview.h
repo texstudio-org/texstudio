@@ -221,7 +221,7 @@ public slots:
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);
 	void updateGrammarOverlays();
 	
-	void bibtexSectionFound(QString bibId,QString content);
+    void bibtexSectionFound(QString content);
 public:
 	static void setGrammarOverlayDisabled(int type, bool show);
 signals:
