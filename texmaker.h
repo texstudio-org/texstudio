@@ -549,7 +549,7 @@ protected:
 	
 	void restoreBookmarks(LatexEditorView *edView);
 	
-	
+    bool completerPreview;
 	
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
@@ -576,6 +576,7 @@ signals:
 	void infoFileSaved(const QString& filename);
 	void infoFileClosed();
 	void infoAfterTypeset();
+    void ImgPreview(const QString& fn);
 };
 
 Q_DECLARE_METATYPE(Texmaker*)

@@ -1906,7 +1906,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 					// read entry in bibtex file
 					if (!bibReader) {
 						bibReader=new bibtexReader(this);
-						connect(bibReader,SIGNAL(sectionFound(QString,QString)),this,SLOT(bibtexSectionFound(QString,QString)));
+                        connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
 						connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
 						bibReader->start();
 					}
@@ -2301,8 +2301,7 @@ BracketInvertAffector* BracketInvertAffector::instance(){
 	return inverterSingleton;
 }
 
-void LatexEditorView::bibtexSectionFound(QString bibId, QString content){
-    Q_UNUSED(bibId)
+void LatexEditorView::bibtexSectionFound(QString content){
 	QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(lastPos)), content);
 }
 

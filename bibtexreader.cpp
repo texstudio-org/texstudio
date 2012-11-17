@@ -37,5 +37,5 @@ void bibtexReader::searchSection(QString file, QString bibId){
         }
     } while (!line.isNull());
     if(!result.isEmpty())
-        emit sectionFound(bibId,result);
+        emit sectionFound(result);
 }
