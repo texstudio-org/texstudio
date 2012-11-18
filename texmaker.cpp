@@ -1495,6 +1495,17 @@ void Texmaker::restoreBookmarks(LatexEditorView *edView){
   }
 }
 
+LatexEditorView *Texmaker::editorViewForLabel(LatexDocument *doc, const QString &label) {
+	// doc can be any document, in which the label is valid
+	REQUIRE_RET(doc, 0);
+	QMultiHash<QDocumentLineHandle*,int> result = doc->getLabels(label);
+	if (result.count() <= 0) return 0;
+	QDocumentLine line(result.keys().first());
+	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(line.document());
+	REQUIRE_RET(targetDoc, 0);
+	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
+}
+
 LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) {
 	QString f_real=f;
 #ifdef Q_WS_WIN
@@ -2602,8 +2613,15 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 	saveCurrentCursorToHistory();
 	switch (latexParser.findContext(c.line().text(), c.columnNumber(), command, value)) {
 	case LatexParser::Reference:
-		currentEditorView()->gotoToLabel(value);
+	{
+		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), value);
+		REQUIRE(edView);
+		if (edView != currentEditorView()) {
+			EditorView->setCurrentEditor(edView);
+		}
+		edView->gotoToLabel(value);
 		break;
+	}
 	case LatexParser::Citation:
 		// value does not work, if cite command contains multiple entries.
 		// TODO: this does not work for citation keys containing e.g. dots like "cite.name" -> make a proper options parser
