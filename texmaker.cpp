@@ -1529,7 +1529,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 	if (existingView) {
 		if (asProject) documents.setMasterDocument(existingView->document);
         if(existingView->document->isHidden()){
-            qDebug()<<"hidden doc";
             documents.deleteDocument(existingView->document,true);
             documents.addDocument(existingView->document,false);
             EditorView->insertTab( -1,existingView, "?bug?");
@@ -1556,11 +1555,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 			doc->setLineEnding(edit->editor->document()->originalLineEnding());
 			doc->setEditorView(edit); //update file name (if document didn't exist)
 			
-			configureNewEditorViewEnd(edit,true);
+            configureNewEditorViewEnd(edit,!hidden,hidden);
 			//edit->document->initStructure();
 			//updateStructure(true);
-			ShowStructure();
-			restoreBookmarks(edit);
+            if(!hidden){
+                ShowStructure();
+                restoreBookmarks(edit);
+            }
 			return edit;
 		}
 	}

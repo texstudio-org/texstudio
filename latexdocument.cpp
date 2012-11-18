@@ -1627,8 +1627,13 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
 void LatexDocuments::setMasterDocument(LatexDocument* document){
 	if (document==masterDocument) return;
 	if (masterDocument!=0 && masterDocument->getEditorView()==0){
-		documents.removeAll(masterDocument);
-		delete masterDocument;
+        QString fn=masterDocument->getFileName();
+        addDocToLoad(fn);
+        LatexDocument *doc=masterDocument;
+        masterDocument=0;
+        deleteDocument(doc);
+        //documents.removeAll(masterDocument);
+        //delete masterDocument;
 	}
 	masterDocument=document;
 	if (masterDocument!=0) {
