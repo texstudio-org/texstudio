@@ -551,6 +551,8 @@ protected:
 	
     bool completerPreview;
 	
+	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
+
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;
