@@ -95,6 +95,7 @@ inline bool isCommandChar(const QChar &c) { return c.isLetter() || c=='*'; }
 // returns the position of the first non-whitespace at or after pos
 int getCommand(const QString &line, QString &outCmd, int pos=0);
 QList< CommandArgument > getCommandOptions(const QString &line, int pos=0, int *posBehind=0);
+QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace=false);
 
 QString trimLeft(const QString &s);
 
