@@ -527,8 +527,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	
 	int foundCount = 0;
 
-	if (m_editor && all && !hasOption(Prompt)) 
+    if (m_editor && all && !hasOption(Prompt)){
+        m_editor->document()->beginMacro();
 		m_editor->document()->beginDelayedUpdateBlock();
+    }
 	
 	m_cursor.setColumnMemory(false);
 	QDocumentCursor lastSelection;
@@ -643,6 +645,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	if ( m_editor && all ) {
 		if (!hasOption(Prompt)) {
 			m_editor->document()->endDelayedUpdateBlock();
+            m_editor->document()->endMacro();
 			if (!hasOption(Silent)){
 				m_editor->setCursor(lastSelection);
 				m_editor->ensureCursorVisibleSurrounding();
