@@ -1019,9 +1019,9 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		if (rerunnable || latexCompiler){
 			LatexCompileResult result = LCR_NORMAL;
 			emit latexCompiled(&result);
-			if (result == LCR_NORMAL) continue;
-			if (!rerunnable || result == LCR_ERROR) return false;
-			if (remainingReRunCount <= 0) return false;
+			if (result == LCR_ERROR) return false;
+			if (result == LCR_NORMAL || !rerunnable) continue;
+			if (remainingReRunCount <= 0) return false; //aborting, since the rerun failed, so there is an error
 			if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) { runCommand(CMD_BIBLIOGRAPHY, mainFile, mainFile, 0); remainingReRunCount--;}
 			REQUIRE_RET(result == LCR_RERUN || result == LCR_RERUN_WITH_BIBLIOGRAPHY, false);
 			remainingReRunCount--;
