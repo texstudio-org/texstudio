@@ -741,6 +741,51 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 	return options;
 }
 
+// returns the item at pos in a colon separated list of options (empty on colon
+// e.g. getParamItem("{one, two, three}", 7) returns "two"
+QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace) {
+	REQUIRE_RET(pos <= line.length(), QString());
+	int start;
+	int curlCount = 0;
+	int squareCount = 0;
+	QString openDelim(",{[");
+	if (stopAtWhiteSpace) openDelim += " \t\n\r";
+	for (start = pos; start > 0; start--) {
+		QChar c = line.at(start-1);
+		if (c == '}' && openDelim.contains('{')) curlCount++;
+		if (c == '{') {
+			if (curlCount-- <= 0) break;
+			else continue;
+		}
+		if (c == ']' && openDelim.contains('[')) squareCount++;
+		if (c == '[') {
+			if (squareCount-- <= 0) break;
+			else continue;
+		}
+		if (openDelim.contains(c)) break;
+	}
+	int end = pos;
+	QString closeDelim(",]}");
+	if (stopAtWhiteSpace) closeDelim += " \t\n\r";
+	curlCount = 0;
+	squareCount = 0;
+	for (end = pos; end < line.length(); end++) {
+		QChar c = line.at(end);
+		if (c == '{' && closeDelim.contains('}')) curlCount++;
+		if (c == '}') {
+			if (curlCount-- <= 0) break;
+			else continue;
+		}
+		if (c == '[' && closeDelim.contains(']')) squareCount++;
+		if (c == ']') {
+			if (squareCount-- <= 0) break;
+			else continue;
+		}
+		if (closeDelim.contains(c)) break;
+	}
+	return line.mid(start, end-start);
+}
+
 
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){	
 	const QFontMetrics &fm = parent->fontMetrics();

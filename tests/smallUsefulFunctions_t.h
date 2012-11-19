@@ -484,6 +484,51 @@ private slots:
 		QEQUAL(replaceFileExtension(file, ext, appendIfNoExtension), result);
 	}
 
+	void test_getParamItem_data() {
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<int>("pos");
+		QTest::addColumn<bool>("stopAtWhiteSpace");
+		QTest::addColumn<QString>("result");
+
+		QTest::newRow("singleStart") << "\\section{Single}" << 9 << false << "Single";
+		QTest::newRow("singleMid") << "\\section{Single}" << 11 << false << "Single";
+		QTest::newRow("singleEnd") << "\\section{Single}" << 15 << false << "Single";
+
+		QTest::newRow("singleSpaced") << "\\section{With Space}" << 9 << false << "With Space";
+		QTest::newRow("singleSpaceStop") << "\\section{With Space}" << 9 << true << "With";
+		QTest::newRow("singleSpaceStop2") << "\\section{With Space}" << 16 << true << "Space";
+
+		QTest::newRow("optArg") << "\\caption[short]{long}" << 9 << false << "short";
+		QTest::newRow("optArg") << "\\caption[short]{long}" << 11 << false << "short";
+		QTest::newRow("optArg") << "\\caption[short]{long}" << 14 << false << "short";
+
+		QTest::newRow("firstListParam") << "\\cmd{one, two, three}" << 5 << false << "one";
+		QTest::newRow("secondListParam") << "\\cmd{one, two, three}" << 10 << false << " two";
+		QTest::newRow("secondListParam2") << "\\cmd{one, two, three}" << 10 << true << "two";
+		QTest::newRow("thirdListParam") << "\\cmd{one, two, three}" << 16 << true << "three";
+
+		QTest::newRow("internalArg") << "\\cmd{an \\internal[opt]{cmd}}" << 6 << false << "an \\internal[opt]{cmd}";
+		QTest::newRow("internalArg2") << "\\cmd{an \\internal[opt]{cmd}}" << 12 << true << "\\internal[opt]{cmd}";
+		QTest::newRow("internalArg3") << "{\\cmd{an \\internal[opt]{cmd}} end}" << 33 << false << "\\cmd{an \\internal[opt]{cmd}} end";
+
+		// Behavior for pos outside of a parameter is not part of the specification and subject to later change.
+		// The following tests just document the current behavior.
+		QTest::newRow("outside") << "\\section{Single}" << 8 << false << "\\section{Single}";
+		QTest::newRow("outsideEnd") << "\\section{Single}" << 16 << false << "\\section{Single}";
+		QTest::newRow("betweenArg") << "\\caption[short]{long}" << 15 << false << "\\caption[short]{long}";
+		QTest::newRow("betweenColonAndSpaceArg") << "\\cmd{one, two}" << 9 << false << " two";
+		QTest::newRow("betweenColonAndSpaceArg") << "\\cmd{one, two}" << 9 << true << "";
+	}
+
+	void test_getParamItem() {
+		QFETCH(QString, line);
+		QFETCH(int, pos);
+		QFETCH(bool, stopAtWhiteSpace);
+		QFETCH(QString, result);
+
+		QEQUAL(getParamItem(line, pos, stopAtWhiteSpace), result);
+	}
+
 };
 
 
