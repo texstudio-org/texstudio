@@ -653,6 +653,9 @@ QSettings* ConfigManager::readSettings() {
 			fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
 			              << "/usr/share/hunspell" << "/usr/share/myspell" ;
 #endif
+#ifdef Q_OS_MAC
+			fallBackPaths << "/Applications/texstudio.app/Contents/Resources";
+#endif
 			dic=findResourceFile(QString(QLocale::system().name())+".dic", true, temp, fallBackPaths);
 			if (dic=="") spell_dic=findResourceFile("en_US.dic", true, temp, fallBackPaths);
 			if (dic=="") spell_dic=findResourceFile("en_GB.dic", true, temp, fallBackPaths);
