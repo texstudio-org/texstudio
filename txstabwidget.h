@@ -13,6 +13,9 @@ public:
 	void moveTab(int from,int to);
 
 	QList<LatexEditorView *> editors() const;
+
+	bool containsEditor(LatexEditorView *edView) const;
+
 	LatexEditorView* currentEditorView() const;
 
 	void setCurrentEditor(LatexEditorView *edView);

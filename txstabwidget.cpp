@@ -43,6 +43,12 @@ QList<LatexEditorView *> TxsTabWidget::editors() const {
 	return list;
 }
 
+bool TxsTabWidget::containsEditor(LatexEditorView *edView) const
+{
+	if (!edView) return false;
+	return (indexOf(edView)>=0);
+}
+
 LatexEditorView *TxsTabWidget::currentEditorView() const {
 	return qobject_cast<LatexEditorView *>(currentWidget());
 }
@@ -51,7 +57,15 @@ void TxsTabWidget::setCurrentEditor(LatexEditorView *edView) {
 	if (currentWidget() == edView)
 		return;
 
-	REQUIRE(indexOf(edView)>=0);
+	if (indexOf(edView)<0) {
+		// catch calls in which editor is not a member tab.
+		// TODO: such calls are deprecated as bad practice. We should avoid them in the long run. For the moment the fallback to do nothing is ok.
+		qDebug() << "Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget";
+#ifndef QT_NO_DEBUG
+		txsWarning("Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget");
+#endif
+		return;
+	}
 	setCurrentWidget(edView);
 }
 
