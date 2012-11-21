@@ -2040,6 +2040,9 @@ void PDFDocument::init(bool embedded)
 	connect(toolBar, SIGNAL(orientationChanged(Qt::Orientation)), this, SLOT(updateToolBarForOrientation(Qt::Orientation)));
 	updateToolBarForOrientation(toolBar->orientation());
 
+
+
+
 	pageLabel = new QLabel(statusBar());
 	statusBar()->addPermanentWidget(pageLabel);
 	pageLabel->setFont(statusBar()->font());
@@ -2078,8 +2081,7 @@ void PDFDocument::init(bool embedded)
 	//zoomSlider->setTickPosition(QSlider::TicksBelow);
 	statusBar()->addPermanentWidget(zoomSlider);
 
-	//connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
-	connect(zoomSlider, SIGNAL(sliderMoved(int)), this, SLOT(zoomSliderChange(int)));
+	connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
 
 	QToolButton *buttonZoomIn = new QToolButton(statusBar());
 	buttonZoomIn->setIcon(getRealIcon("zoom-in"));
