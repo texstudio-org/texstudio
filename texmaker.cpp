@@ -1437,7 +1437,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit,SIGNAL(saveCurrentCursorToHistoryRequested()),this,SLOT(saveCurrentCursorToHistory()));
 	
     if(!hidden){
-        EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
+		EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
         updateOpenDocumentMenu(false);
 		EditorView->setCurrentEditor(edit);
 
@@ -1468,6 +1468,7 @@ bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
 	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
 	saveCurrentCursorToHistory();
+	if (!EditorView->containsEditor(edView)) return false;
 	EditorView->setCurrentEditor(edView);
 	edView->editor->setFocus();
 	return true;
