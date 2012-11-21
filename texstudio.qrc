@@ -353,6 +353,8 @@
         <file>completion/xy.cwl</file>
         <file>completion/xetex.cwl</file>
         <file>completion/upgreek.cwl</file>
+        <file>images/syncSource.png</file>
+        <file>images/syncViewer.png</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>

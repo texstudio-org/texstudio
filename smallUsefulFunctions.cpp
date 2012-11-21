@@ -843,6 +843,20 @@ QToolButton* comboToolButtonFromAction(QAction* action){
 	return button;
 }
 
+QToolButton* createToolButtonForAction(QAction* action) {
+	QToolButton *tb = new QToolButton();
+	if (!action->icon().isNull())
+		tb->setIcon(action->icon());
+	else
+		tb->setText(action->text());
+	tb->setToolTip(action->toolTip());
+	tb->setCheckable(action->isCheckable());
+	tb->setChecked(action->isChecked());
+	tb->connect(tb, SIGNAL(clicked(bool)), action, SLOT(setChecked(bool)));
+	tb->connect(action, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
+	return tb;
+}
+
 bool hasAtLeastQt(int major, int minor){
 	QStringList vers=QString(qVersion()).split('.');
 	if (vers.count()<2) return false;

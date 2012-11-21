@@ -121,6 +121,8 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int 
 //find the tool button which contains a given action
 QToolButton* comboToolButtonFromAction(QAction* action);
 
+QToolButton* createToolButtonForAction(QAction* action);
+
 
 //check if the run-time qt version is higher than the given version (e.g. 4,3)
 bool hasAtLeastQt(int major, int minor);

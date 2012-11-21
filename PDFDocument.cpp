@@ -1973,6 +1973,9 @@ void PDFDocument::init(bool embedded)
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(QIcon(":/images/build.png"));
 
+	actionCursor_follows_scrolling->setIcon(QIcon(":/images/syncSource.png"));
+	actionScrolling_follows_cursor->setIcon(QIcon(":/images/syncViewer.png"));
+
 	if (embedded) {
 		actionToggleEmbedded->setIcon(QIcon(":/images/windowed-viewer.png"));
 		actionToggleEmbedded->setToolTip(tr("Windowed Viewer"));
@@ -2040,7 +2043,14 @@ void PDFDocument::init(bool embedded)
 	connect(toolBar, SIGNAL(orientationChanged(Qt::Orientation)), this, SLOT(updateToolBarForOrientation(Qt::Orientation)));
 	updateToolBarForOrientation(toolBar->orientation());
 
+	QToolButton *tbCursorFollowsScrolling = createToolButtonForAction(actionCursor_follows_scrolling);
+	statusBar()->addPermanentWidget(tbCursorFollowsScrolling);
+	QToolButton *tbScrollingFollowsCursor = createToolButtonForAction(actionScrolling_follows_cursor);
+	statusBar()->addPermanentWidget(tbScrollingFollowsCursor);
 
+	QLabel *lbMessage = new QLabel();
+	connect(statusBar(), SIGNAL(messageChanged(QString)), lbMessage, SLOT(setText(QString)));
+	statusBar()->addPermanentWidget(lbMessage, 1);
 
 
 	pageLabel = new QLabel(statusBar());
@@ -2053,7 +2063,7 @@ void PDFDocument::init(bool embedded)
 	scaleButton->setAutoRaise(true);
 	scaleButton->setMinimumWidth(statusBar()->fontMetrics().width("OOOOOO"));
 	scaleButton->setText("100%");
-	statusBar()->addPermanentWidget(scaleButton,0);
+	statusBar()->addPermanentWidget(scaleButton);
 	QList<int> levels = QList<int>() << 25 << 50 << 75 << 100 << 150 << 200 << 300 << 400;
 	QActionGroup *scaleActions = new QActionGroup(scaleButton);
 	foreach (int level, levels) {
