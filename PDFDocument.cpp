@@ -2049,6 +2049,7 @@ void PDFDocument::init(bool embedded)
 	statusBar()->addPermanentWidget(tbScrollingFollowsCursor);
 
 	QLabel *lbMessage = new QLabel();
+	lbMessage->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 	connect(statusBar(), SIGNAL(messageChanged(QString)), lbMessage, SLOT(setText(QString)));
 	statusBar()->addPermanentWidget(lbMessage, 1);
 
