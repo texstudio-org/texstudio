@@ -49,6 +49,7 @@
 #include "grammarcheck.h"
 #include "qmetautils.h"
 #include "updatechecker.h"
+#include "help.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -1000,6 +1001,7 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/help",tr("&Help"));
 	newManagedAction(menu, "latexreference",tr("LaTeX Reference..."), SLOT(LatexHelp()), 0,":/images/help.png");
 	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
+	newManagedAction(menu, "texdocdialog", tr("Texdoc..."), SLOT(TexdocHelp()));
 	
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall",tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
@@ -4831,6 +4833,25 @@ void Texmaker::UserManualHelp() {
 		QMessageBox::warning(this,tr("Error"),tr("File not found"));
 	else if (!QDesktopServices::openUrl("file:///"+latexHelp))
 		QMessageBox::warning(this,tr("Error"),tr("Could not open browser"));
+}
+
+void Texmaker::TexdocHelp() {
+	QString selection;
+	QStringList packages;
+	if (currentEditorView()) {
+		selection = currentEditorView()->editor->cursor().selectedText();
+		// TODO is there a better way to get the used packages than using the .cwl files and removing cwls for native commands
+		packages = currentEditorView()->document->parent->cachedPackages.keys();
+		packages.replaceInStrings(".cwl", "");
+		packages.removeAll("latex-209");
+		packages.removeAll("latex-dev");
+		packages.removeAll("latex-l2tabu");
+		packages.removeAll("latex-document");
+		packages.removeAll("latex-mathsymbols");
+		packages.removeAll("tex");
+	}
+
+	Help::instance()->execTexdocDialog(packages, selection);
 }
 
 void Texmaker::HelpAbout() {

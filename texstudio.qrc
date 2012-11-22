@@ -355,6 +355,7 @@
         <file>completion/upgreek.cwl</file>
         <file>images/syncSource.png</file>
         <file>images/syncViewer.png</file>
+        <file>images/warning_16.png</file>
     </qresource>
     <qresource prefix="/classic">
         <file>images/classic/filenew.png</file>

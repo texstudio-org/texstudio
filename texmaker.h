@@ -400,6 +400,7 @@ protected slots:
 	/////
 	void LatexHelp();
 	void UserManualHelp();
+	void TexdocHelp();
 	void HelpAbout();
 	
 	void GeneralOptions();
