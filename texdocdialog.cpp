@@ -14,8 +14,8 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 			break;
 		}
 	}
-	packageNameValidator = new QRegExpValidator(QRegExp("[0-9a-zA-Z\\-\\.]*"),0);
-	ui->cbPackages->lineEdit()->setValidator(packageNameValidator);
+	packageNameValidator.setRegExp(QRegExp("[0-9a-zA-Z\\-\\.]*"));
+	ui->cbPackages->lineEdit()->setValidator(&packageNameValidator);
 	ui->cbPackages->setMaxVisibleItems(15);
 
 	checkTimer.setSingleShot(true);
@@ -47,7 +47,7 @@ void TexdocDialog::setPreferredPackage(const QString &package)
 	int index = ui->cbPackages->findText(package);
 	int dummyPos = 0;
 	QString pkgName = package; // copy because valitdate may modify it
-	if (index < 0 && QValidator::Acceptable == packageNameValidator->validate(pkgName, dummyPos)) {
+	if (index < 0 && QValidator::Acceptable == packageNameValidator.validate(pkgName, dummyPos)) {
 		ui->cbPackages->addItem(package);
 		index = ui->cbPackages->findText(package);
 	}
