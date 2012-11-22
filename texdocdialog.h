@@ -28,7 +28,7 @@ private slots:
 
 private:
 	Ui::TexdocDialog *ui;
-	QRegExpValidator *packageNameValidator;
+	QRegExpValidator packageNameValidator;
 	QAbstractButton *okButton;
 	QTimer checkTimer;
 	QString lastDocRequest;
