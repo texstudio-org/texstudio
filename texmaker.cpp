@@ -1001,7 +1001,7 @@ void Texmaker::setupMenus() {
 	menu=newManagedMenu("main/help",tr("&Help"));
 	newManagedAction(menu, "latexreference",tr("LaTeX Reference..."), SLOT(LatexHelp()), 0,":/images/help.png");
 	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
-	newManagedAction(menu, "texdocdialog", tr("Texdoc..."), SLOT(TexdocHelp()));
+	newManagedAction(menu, "texdocdialog", tr("Packages Help..."), SLOT(TexdocHelp()));
 	
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall",tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
