@@ -5847,6 +5847,7 @@ void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
 			EditorView->setCurrentEditor(edView);
 			edView->editor->setFocus();
 			edView->editor->setCursor(c);
+			edView->editor->ensureCursorVisibleSurrounding();
 		}
 	}
 }
