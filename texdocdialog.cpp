@@ -14,7 +14,7 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 			break;
 		}
 	}
-	packageNameValidator = new QRegExpValidator(QRegExp("[0-9a-zA-Z\\-\\.]*"));
+	packageNameValidator = new QRegExpValidator(QRegExp("[0-9a-zA-Z\\-\\.]*"),0);
 	ui->cbPackages->lineEdit()->setValidator(packageNameValidator);
 	ui->cbPackages->setMaxVisibleItems(15);
 
