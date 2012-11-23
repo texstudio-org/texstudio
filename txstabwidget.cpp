@@ -3,7 +3,7 @@
 #include "smallUsefulFunctions.h"
 
 TxsTabWidget::TxsTabWidget(QWidget *parent) :
-		QTabWidget(parent)
+	QTabWidget(parent)
 {
 	setFocusPolicy(Qt::ClickFocus);
 	setContextMenuPolicy(Qt::PreventContextMenu);
@@ -20,7 +20,7 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	}
 }
 
-void TxsTabWidget::moveTab(int from,int to){
+void TxsTabWidget::moveTab(int from,int to) {
 	int cur = currentIndex();
 	QString text=tabText(from);
 	QWidget *wdg=widget(from);
@@ -43,8 +43,7 @@ QList<LatexEditorView *> TxsTabWidget::editors() const {
 	return list;
 }
 
-bool TxsTabWidget::containsEditor(LatexEditorView *edView) const
-{
+bool TxsTabWidget::containsEditor(LatexEditorView *edView) const{
 	if (!edView) return false;
 	return (indexOf(edView)>=0);
 }
@@ -69,7 +68,6 @@ void TxsTabWidget::setCurrentEditor(LatexEditorView *edView) {
 	setCurrentWidget(edView);
 }
 
-
 void TxsTabWidget::gotoNextDocument() {
 	if (count() <= 1) return;
 	int cPage = currentIndex() + 1;
@@ -84,4 +82,15 @@ void TxsTabWidget::gotoPrevDocument() {
 	else setCurrentIndex(cPage);
 }
 
+void TxsTabWidget::removeEditor(LatexEditorView *edView) {
+	int i = indexOf(edView);
+	if(i >= 0)
+		removeTab(i);
+}
+
+void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent) {
+	Q_ASSERT(edView);
+	insertTab(pos, edView, "?bug?");
+	if (asCurrent) setCurrentEditor(edView);
+}
 
