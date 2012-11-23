@@ -13,11 +13,9 @@ public:
 	void moveTab(int from,int to);
 
 	QList<LatexEditorView *> editors() const;
-
 	bool containsEditor(LatexEditorView *edView) const;
 
 	LatexEditorView* currentEditorView() const;
-
 	void setCurrentEditor(LatexEditorView *edView);
 
 signals:
@@ -25,6 +23,9 @@ signals:
 	void tabBarContextMenuRequested(QPoint point);
 
 public slots:
+	void insertEditor(LatexEditorView *edView, int pos=-1 /*append*/, bool asCurrent=true);
+	void removeEditor(LatexEditorView *edView);
+
 	void gotoNextDocument();
 	void gotoPrevDocument();
 };

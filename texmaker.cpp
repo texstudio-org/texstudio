@@ -132,7 +132,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
     if(configManager.autoLoadChildren)
         connect(&documents, SIGNAL(docToLoad(QString)),this,SLOT(addDocToLoad(QString)));
 
-    connect(&documents, SIGNAL(docToHide(LatexEditorView *)),this,SLOT(removeFromEditor(LatexEditorView *)));
 	grammarCheckThread.start();
 	
 	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
@@ -189,16 +188,17 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	centralToolBar->setMovable(false);
 	centralToolBar->setIconSize(QSize(16,16));
 	
-	EditorView=new TxsTabWidget(centralFrame);
-	EditorView->setFocus();
+	EditorTabs=new TxsTabWidget(centralFrame);
+	EditorTabs->setFocus();
 
-	connect(EditorView, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(editorTabContextMenu(QPoint)));
-	connect(EditorView, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));
+	connect(&documents, SIGNAL(docToHide(LatexEditorView *)), EditorTabs, SLOT(removeEditor(LatexEditorView *)));
+	connect(EditorTabs, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(editorTabContextMenu(QPoint)));
+	connect(EditorTabs, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));
 	if (hasAtLeastQt(4,5)){
-		EditorView->setProperty("tabsClosable",true);
-		EditorView->setProperty("movable",true);
-		connect(EditorView, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
-		connect(EditorView, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
+		EditorTabs->setProperty("tabsClosable",true);
+		EditorTabs->setProperty("movable",true);
+		connect(EditorTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
+		connect(EditorTabs, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
 
 	cursorHistory = new CursorHistory(&documents);
@@ -209,7 +209,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	centralLayout->addWidget(centralToolBar);
 	splitter=new QSplitter(Qt::Horizontal);
 	centralLayout->addWidget(splitter);
-	splitter->addWidget(EditorView);
+	splitter->addWidget(EditorTabs);
 	
 	setCentralWidget(centralFrame);
 	
@@ -563,7 +563,7 @@ void Texmaker::updateToolBarMenu(const QString& menuName){
 					
 					if (menuName == "main/view/documents") {
 						//workaround to select the current document
-						int index = EditorView->currentIndex();
+						int index = EditorTabs->currentIndex();
 						if (index >= 0 && index < combo->menu()->actions().size())
 							combo->setDefaultAction(combo->menu()->actions()[index]);
 					}
@@ -1280,13 +1280,13 @@ void Texmaker::EditorTabMoved(int from,int to){
 }
 
 void Texmaker::CloseEditorTab(int tab) {
-	int cur=EditorView->currentIndex();
-	int total=EditorView->count();
-	EditorView->setCurrentIndex(tab);
+	int cur=EditorTabs->currentIndex();
+	int total=EditorTabs->count();
+	EditorTabs->setCurrentIndex(tab);
 	fileClose();
 	if (cur>tab) cur--;//removing moves to left
-	if (total!=EditorView->count() && cur!=tab)//if user clicks cancel stay in clicked editor
-		EditorView->setCurrentIndex(cur);
+	if (total!=EditorTabs->count() && cur!=tab)//if user clicks cancel stay in clicked editor
+		EditorTabs->setCurrentIndex(cur);
 }
 void Texmaker::showMarkTooltipForLogMessage(QList<int> errors){
 	if (!currentEditorView()) return;
@@ -1304,12 +1304,12 @@ void Texmaker::showMarkTooltipForLogMessage(QList<int> errors){
 void Texmaker::NewDocumentStatus() {
 	LatexEditorView* edView = currentEditorView();
 	if (!edView) return;
-	int index=EditorView->currentIndex();
+	int index=EditorTabs->currentIndex();
 	if (qobject_cast<QEditor*>(sender()) && edView->editor!=sender()){
 		edView=0;
-		for (int i=0;i<EditorView->count();i++)
-			if (qobject_cast<LatexEditorView*>(EditorView->widget(i))->editor==sender()){
-				edView=	qobject_cast<LatexEditorView*>(EditorView->widget(i));
+		for (int i=0;i<EditorTabs->count();i++)
+			if (qobject_cast<LatexEditorView*>(EditorTabs->widget(i))->editor==sender()){
+				edView=	qobject_cast<LatexEditorView*>(EditorTabs->widget(i));
 				index=i;
 				break;
 			}
@@ -1317,11 +1317,11 @@ void Texmaker::NewDocumentStatus() {
 	}
 	QEditor * ed = edView->editor;
 	actSave->setEnabled(ed->isContentModified() || ed->fileName().isEmpty());
-	EditorView->setTabIcon(index, ed->isContentModified() ? getRealIcon("modified") : QIcon(":/images/empty.png"));
+	EditorTabs->setTabIcon(index, ed->isContentModified() ? getRealIcon("modified") : QIcon(":/images/empty.png"));
 	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
 	tabText.replace("&", "&&");
-	if (EditorView->tabText(index) != tabText) {
-		EditorView->setTabText(index, tabText);
+	if (EditorTabs->tabText(index) != tabText) {
+		EditorTabs->setTabText(index, tabText);
 		updateOpenDocumentMenu(true);
 	}
 	// child ?
@@ -1331,7 +1331,7 @@ void Texmaker::NewDocumentStatus() {
 	if(masterDoc!=doc){
 		tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
 	}
-	EditorView->setTabToolTip(index, tooltip);
+	EditorTabs->setTabToolTip(index, tooltip);
 	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
 	else statusLabelEncoding->setText("unknown");
 }
@@ -1368,7 +1368,7 @@ void Texmaker::updateUndoRedoStatus() {
 }
 
 LatexEditorView *Texmaker::currentEditorView() const {
-	return EditorView->currentEditorView();
+	return EditorTabs->currentEditorView();
 }
 QEditor* Texmaker::currentEditor() const{
 	LatexEditorView* edView = currentEditorView();
@@ -1378,7 +1378,6 @@ QEditor* Texmaker::currentEditor() const{
 void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	REQUIRE(m_languages);REQUIRE(edit->codeeditor);
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-	//EditorView->setCurrentEditor(edit);
 	
 	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 	
@@ -1438,15 +1437,14 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 	connect(edit,SIGNAL(saveCurrentCursorToHistoryRequested()),this,SLOT(saveCurrentCursorToHistory()));
 	
-    if(!hidden){
-		EditorView->insertTab(reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1,edit, "?bug?");
-        updateOpenDocumentMenu(false);
-		EditorView->setCurrentEditor(edit);
+	if(!hidden){
+		EditorTabs->insertEditor(edit, reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1);
+		updateOpenDocumentMenu(false);
 
-        edit->editor->setFocus();
-        UpdateCaption();
-        NewDocumentStatus();
-    }
+		edit->editor->setFocus();
+		UpdateCaption();
+		NewDocumentStatus();
+	}
 }
 
 LatexEditorView* Texmaker::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames){
@@ -1470,8 +1468,8 @@ bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
 	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
 	saveCurrentCursorToHistory();
-	if (!EditorView->containsEditor(edView)) return false;
-	EditorView->setCurrentEditor(edView);
+	if (!EditorTabs->containsEditor(edView)) return false;
+	EditorTabs->setCurrentEditor(edView);
 	edView->editor->setFocus();
 	return true;
 }
@@ -1545,16 +1543,15 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
         if(existingView->document->isHidden()){
             documents.deleteDocument(existingView->document,true);
             documents.addDocument(existingView->document,false);
-            EditorView->insertTab( -1,existingView, "?bug?");
+			EditorTabs->insertEditor(existingView);
             updateOpenDocumentMenu(false);
-			EditorView->setCurrentEditor(existingView);
             updateStructure(false,existingView->document);
             existingView->editor->setFocus();
             UpdateCaption();
             NewDocumentStatus();
             return existingView;
         }
-		EditorView->setCurrentEditor(existingView);
+		EditorTabs->setCurrentEditor(existingView);
 		return existingView;
 	} else {
 		// find closed master doc
@@ -2138,8 +2135,8 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 			}
 		}
 		
-		EditorView->setTabText(EditorView->currentIndex(),currentEditor()->name().replace("&","&&"));
-		EditorView->setTabToolTip(EditorView->currentIndex(), currentEditor()->fileName());
+		EditorTabs->setTabText(EditorTabs->currentIndex(),currentEditor()->name().replace("&","&&"));
+		EditorTabs->setTabToolTip(EditorTabs->currentIndex(), currentEditor()->fileName());
 		updateOpenDocumentMenu(true);
 		if (currentEditor()->fileInfo().suffix()!="tex")
 			m_languages->setLanguage(currentEditor(), fn);
@@ -2156,16 +2153,16 @@ void Texmaker::fileSaveAll() {
 void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 	//LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 	//temp=currentEditorView();
-	REQUIRE(EditorView);
+	REQUIRE(EditorTabs);
 
 	LatexEditorView *currentEdView = currentEditorView();
 
-	foreach (LatexEditorView *edView, EditorView->editors()) {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		REQUIRE(edView->editor);
 
 		if (edView->editor->fileName().isEmpty()){
 			if ((alsoUnnamedFiles || (alwaysCurrentFile && edView==currentEdView) ) ) {
-				EditorView->setCurrentEditor(edView);
+				EditorTabs->setCurrentEditor(edView);
 				fileSaveAs();
 			} else if (!edView->document->getTemporaryFileName().isEmpty())
 				edView->editor->saveCopy(edView->document->getTemporaryFileName());
@@ -2188,7 +2185,7 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 	}
 
 	if (currentEditorView() != currentEdView)
-		EditorView->setCurrentEditor(currentEdView);
+		EditorTabs->setCurrentEditor(currentEdView);
 	//UpdateCaption();
 }
 
@@ -2620,7 +2617,7 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), value);
 		REQUIRE(edView);
 		if (edView != currentEditorView()) {
-			EditorView->setCurrentEditor(edView);
+			EditorTabs->setCurrentEditor(edView);
 		}
 		edView->gotoToLabel(value);
 		break;
@@ -2736,7 +2733,7 @@ void Texmaker::editInsertUnicode(){
 void Texmaker::editIndentSection() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorView->setCurrentEditor(entry->document->getEditorView());
+	EditorTabs->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	
 	// replace list
@@ -2765,7 +2762,7 @@ void Texmaker::editIndentSection() {
 void Texmaker::editUnIndentSection() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorView->setCurrentEditor(entry->document->getEditorView());
+	EditorTabs->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	
 	QStringList m_replace;
@@ -2796,7 +2793,7 @@ void Texmaker::editSectionCopy() {
 	// called by action
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorView->setCurrentEditor(entry->document->getEditorView());
+	EditorTabs->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionCopy(sel.startLine+1,sel.endLine);
 }
@@ -2805,7 +2802,7 @@ void Texmaker::editSectionCut() {
 	// called by action
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorView->setCurrentEditor(entry->document->getEditorView());
+	EditorTabs->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionCut(sel.startLine+1,sel.endLine);
 	//UpdateStructure();
@@ -2838,7 +2835,7 @@ void Texmaker::editSectionCut(int startingLine, int endLine) {
 void Texmaker::editSectionPasteBefore() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorView->setCurrentEditor(entry->document->getEditorView());
+	EditorTabs->setCurrentEditor(entry->document->getEditorView());
 	editSectionPasteBefore(entry->getRealLineNumber());
 	//UpdateStructure();
 }
@@ -2846,7 +2843,7 @@ void Texmaker::editSectionPasteBefore() {
 void Texmaker::editSectionPasteAfter() {
 	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorView->setCurrentEditor(entry->document->getEditorView());
+	EditorTabs->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel=entry->document->sectionSelection(entry);
 	editSectionPasteAfter(sel.endLine);
 	//UpdateStructure();
@@ -3058,7 +3055,7 @@ void Texmaker::SaveSettings(const QString& configName) {
 		//always store session for manual reload
 		QStringList curFiles;//store in order
 		QList<QVariant> firstLines,curCols,curRows;
-		foreach (LatexEditorView *edView, EditorView->editors()) {
+		foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			curFiles.append(edView->editor->fileName());
 			curCols.append(edView->editor->cursor().columnNumber());
 			curRows.append(edView->editor->cursor().lineNumber());
@@ -3203,7 +3200,7 @@ void Texmaker::clickedOnBookmark(QListWidgetItem *item){
     item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
   }else{
     LatexEditorView* edView=doc->getEditorView();
-	EditorView->setCurrentEditor(edView);
+	EditorTabs->setCurrentEditor(edView);
     if(doc->indexOf(dlh)>=0){
 	  gotoLine(lineNr,0,edView);
     }else{
@@ -3362,7 +3359,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 	switch (entry->type){
 	case StructureEntry::SE_DOCUMENT_ROOT:
 		if (entry->document->getEditorView())
-			EditorView->setCurrentEditor(entry->document->getEditorView());
+			EditorTabs->setCurrentEditor(entry->document->getEditorView());
 		else
 			load(entry->document->getFileName());
 		break;
@@ -3394,7 +3391,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 			//entry is now invalid
 		} else lineNr=LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
 		saveCurrentCursorToHistory();
-		EditorView->setCurrentEditor(edView);
+		EditorTabs->setCurrentEditor(edView);
 		gotoLine(lineNr,0,edView);
 		break;
 	}
@@ -4270,7 +4267,7 @@ void Texmaker::createLabelFromAction()
 	}
 
 	saveCurrentCursorToHistory();
-	EditorView->setCurrentEditor(edView);
+	EditorTabs->setCurrentEditor(edView);
 	gotoLine(lineNr,pos,edView);
 
 	InsertTag(QString("\\label{%1}").arg(label),7);
@@ -4673,7 +4670,7 @@ void Texmaker::GenerateRandomText(){
 	}
 	
 	QStringList allLines;
-	foreach (LatexEditorView *edView, EditorView->editors())
+	foreach (LatexEditorView *edView, EditorTabs->editors())
 		allLines << edView->editor->document()->textLines();
 	RandomTextGenerator generator(this, allLines);
 	generator.exec();
@@ -4754,7 +4751,7 @@ void Texmaker::DisplayLatexError() {
 	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
 	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
 	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	foreach (LatexEditorView *edView, EditorView->editors()) {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		edView->editor->document()->removeMarks(errorMarkID);
 		edView->editor->document()->removeMarks(warningMarkID);
 		edView->editor->document()->removeMarks(badboxMarkID);
@@ -4808,7 +4805,7 @@ void Texmaker::ClearMarkers(){
 	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
 	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
 	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	foreach (LatexEditorView *edView, EditorView->editors()) {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		edView->editor->document()->removeMarks(errorMarkID);
 		edView->editor->document()->removeMarks(warningMarkID);
 		edView->editor->document()->removeMarks(badboxMarkID);
@@ -4915,7 +4912,7 @@ void Texmaker::GeneralOptions() {
 		buildManager.clearPreviewPreambleCache();//possible changed latex command / preview behaviour
 		
 		if (currentEditorView()) {
-			foreach (LatexEditorView *edView, EditorView->editors()) {
+			foreach (LatexEditorView *edView, EditorTabs->editors()) {
 				edView->updateSettings();
 				if(updateHighlighting){
 					if(configManager.editorConfig->realtimeChecking){
@@ -4984,7 +4981,7 @@ void Texmaker::GeneralOptions() {
 				marks[i].color = Qt::transparent;
 		// update all docuemnts views as spellcheck may be different
 		QEditor::setEditOperations(configManager.editorKeys,true);
-		foreach (LatexEditorView *edView, EditorView->editors()) {
+		foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			QEditor* ed = edView->editor;
 			//if (customEnvironmentChanged) ed->highlight();
 			if (ed->languageDefinition() == oldLaTeX) {
@@ -5208,31 +5205,31 @@ void Texmaker::ToggleMode() {
 ////////////////// VIEW ////////////////
 void Texmaker::gotoNextDocument() {
 	// TODO check: can we have managed action connecting to the EditorView slot directly? Then we could remove this slot
-	EditorView->gotoNextDocument();
+	EditorTabs->gotoNextDocument();
 }
 
 void Texmaker::gotoPrevDocument() {
 	// TODO check: can we have managed action connecting to the EditorView slot directly? Then we could remove this slot
-	EditorView->gotoPrevDocument();
+	EditorTabs->gotoPrevDocument();
 }
 
 void Texmaker::gotoOpenDocument(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	REQUIRE(act);
 	int doc = act->data().toInt();
-	EditorView->setCurrentIndex(doc);
+	EditorTabs->setCurrentIndex(doc);
 }
 void Texmaker::updateOpenDocumentMenu(bool localChange){
 	QEditor* ed = currentEditor();
 	//if (!ed) return;
 	if (localChange) {
-		QString id = "doc"+QString::number(EditorView->currentIndex());
+		QString id = "doc"+QString::number(EditorTabs->currentIndex());
 		QMenu* menu = configManager.getManagedMenu("main/view/documents");
 		configManager.newManagedAction(menu, id, ed->fileName().isEmpty() ? tr("untitled") : ed->name().replace("&","&&"), SLOT(gotoOpenDocument()));
 		return;
 	}
 	QStringList sl;
-	foreach (LatexEditorView *edView, EditorView->editors()) {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		sl << (edView->editor->fileName().isEmpty() ? tr("untitled") : edView->editor->name().replace("&", "&&"));
 	}
 	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
@@ -5451,8 +5448,8 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 		outputView->resetMessagesAndLog();
 	} else {
 		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
-		int pos=EditorView->currentIndex();
-		EditorView->moveTab(pos,0);
+		int pos=EditorTabs->currentIndex();
+		EditorTabs->moveTab(pos,0);
 	}
 
 	updateMasterDocumentCaption();
@@ -5844,7 +5841,7 @@ void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
 		LatexDocument *doc = qobject_cast<LatexDocument*>(c.document());
 		if (doc && doc->getEditorView()) {
 			LatexEditorView *edView = doc->getEditorView();
-			EditorView->setCurrentEditor(edView);
+			EditorTabs->setCurrentEditor(edView);
 			edView->editor->setFocus();
 			edView->editor->setCursor(c);
 			edView->editor->ensureCursorVisibleSurrounding();
@@ -5960,7 +5957,7 @@ void Texmaker::structureContextMenuCloseDocument(){
 	if (!entry) return;
 	LatexDocument* document = entry->document;
 	if (!document) return;
-	if (document->getEditorView()) CloseEditorTab(EditorView->indexOf(document->getEditorView()));
+	if (document->getEditorView()) CloseEditorTab(EditorTabs->indexOf(document->getEditorView()));
 	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
 }
 void Texmaker::structureContextMenuSwitchMasterDocument(){
@@ -5971,7 +5968,7 @@ void Texmaker::structureContextMenuSwitchMasterDocument(){
 	else if (document->getFileName()!="") documents.setMasterDocument(document);
 	else if (document->getEditorView()) { //we have to save the document before
 		documents.setMasterDocument(0);
-		EditorView->setCurrentEditor(document->getEditorView());
+		EditorTabs->setCurrentEditor(document->getEditorView());
 		ToggleMode();
 	}
 }
@@ -6315,7 +6312,7 @@ void Texmaker::editorTabContextMenu(const QPoint &point) {
 	if (point.isNull()) return;
 
 	QMenu *documentsMenu = getManagedMenu("main/view/documents");
-	documentsMenu->exec(EditorView->mapToGlobal(point));
+	documentsMenu->exec(EditorTabs->mapToGlobal(point));
 }
 
 void Texmaker::MostUsedSymbolsTriggered(bool direct){
@@ -6376,8 +6373,8 @@ void Texmaker::editFindGlobal(){
 			editors << currentEditorView()->editor;
 			break;
 		case 1:
-			foreach (LatexEditorView *edView, EditorView->editors())
-			for(int i=0;i<EditorView->count();i++){
+			foreach (LatexEditorView *edView, EditorTabs->editors())
+			for(int i=0;i<EditorTabs->count();i++){
 				editors << edView->editor;
 			}
 			break;
@@ -7150,7 +7147,7 @@ void Texmaker::moveDocumentToFront(){
 }
 
 void Texmaker::moveDocumentToEnd(){
-	moveDocumentToDest(EditorView->count()-1);
+	moveDocumentToDest(EditorTabs->count()-1);
 }
 
 void Texmaker::moveDocumentToDest(int dest){
@@ -7158,7 +7155,7 @@ void Texmaker::moveDocumentToDest(int dest){
 	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
 	int cur = documents.documents.indexOf(entry->document);
 	if (cur < 0) return;
-	EditorView->moveTab(cur, dest);
+	EditorTabs->moveTab(cur, dest);
 	EditorTabMoved(cur, dest);
 }
 
@@ -7255,7 +7252,7 @@ void Texmaker::updateHighlighting(){
 	
 	newLaTeX = m_lang.d;
 	Q_ASSERT(oldLaTeX != newLaTeX);
-	foreach (LatexEditorView *edView, EditorView->editors()) {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		QEditor* ed = edView->editor;
 		//if (customEnvironmentChanged) ed->highlight();
 		if (ed->languageDefinition() == oldLaTeX) {
@@ -7651,11 +7648,11 @@ void Texmaker::recoverFromCrash(){
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 	
 	//hide editor views in case the error occured during drawing
-	foreach (LatexEditorView *edView, txsInstance->EditorView->editors())
+	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors())
 		edView->hide();
 	
 	//save recover information
-	foreach (LatexEditorView *edView, txsInstance->EditorView->editors()) {
+	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors()) {
 		QEditor* ed = edView ? edView->editor : 0;
 		if (ed && ed->isContentModified() && !ed->fileName().isEmpty())
 			ed->saveEmergencyBackup(ed->fileName()+".recover.bak~");
@@ -7692,7 +7689,7 @@ void Texmaker::recoverFromCrash(){
 
 	//print edit history
 	int i=0;
-	foreach (LatexEditorView *edView, txsInstance->EditorView->editors()) {
+	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors()) {
 		Q_ASSERT(edView);
 		if (!edView) continue;
 
@@ -7715,7 +7712,7 @@ void Texmaker::recoverFromCrash(){
 	}
 	
 	//restore editor views
-	foreach (LatexEditorView *edView, txsInstance->EditorView->editors())
+	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors())
 		edView->show();
 	
 	while (!programStopped) {
@@ -7809,11 +7806,6 @@ void Texmaker::addDocToLoad(QString filename){
     load(filename,false,true);
 }
 
-void Texmaker::removeFromEditor(LatexEditorView *edView){
-    int i=EditorView->indexOf(edView);
-    if(i>=0)
-        EditorView->removeTab(i);
-}
 void Texmaker::moveCursorTodlh(){
     QAction *act = qobject_cast<QAction *>(sender());
     if (!act) return;
@@ -7823,7 +7815,7 @@ void Texmaker::moveCursorTodlh(){
     LatexEditorView* edView=doc->getEditorView();
     if(edView){
         saveCurrentCursorToHistory();
-        EditorView->setCurrentEditor(edView);
+		EditorTabs->setCurrentEditor(edView);
         int lineNr=-1;
         if((lineNr=doc->indexOf(dlh))>=0){
             gotoLine(lineNr,0,edView);

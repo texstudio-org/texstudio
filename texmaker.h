@@ -121,7 +121,7 @@ private:
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 	
 	//gui
-	TxsTabWidget *EditorView;
+	TxsTabWidget *EditorTabs;
 	QSplitter *splitter;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
@@ -290,10 +290,9 @@ protected slots:
 	
 	void editorTabContextMenu(const QPoint& point);
 
-    void addDocToLoad(QString filename);
-    void removeFromEditor(LatexEditorView *edView);
+	void addDocToLoad(QString filename);
 
-    void moveCursorTodlh();
+	void moveCursorTodlh();
 
 private slots:	
 	void ReadSettings();
