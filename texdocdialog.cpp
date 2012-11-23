@@ -5,7 +5,8 @@
 TexdocDialog::TexdocDialog(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::TexdocDialog),
-	okButton(0)
+	okButton(0),
+	packageNameValidator(this)
 {
 	ui->setupUi(this);
 	foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
