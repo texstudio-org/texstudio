@@ -67,7 +67,7 @@ public:
 	
 	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension=""); //treats the path relative to the compiled .tex file
-    Q_INVOKABLE QString getRelativeFileName(const QString & file,QString basepath); //provide function for scripts
+    Q_INVOKABLE QString getRelativeFileName(const QString & file, QString basepath, bool keepSuffix=false); //provide function for scripts
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
 	
@@ -349,6 +349,8 @@ protected slots:
 	void EditorSpellerChanged(const QString &name);
 	void ChangeEditorSpeller();
 	void InsertSpellcheckMagicComment();
+    void addMagicRoot();
+    void addMagicCoding();
 	
 	void QuickTabular();
 	void QuickArray();

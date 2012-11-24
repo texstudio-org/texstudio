@@ -1123,7 +1123,7 @@ QString LatexParser::cutComment(const QString& text){
 	return text.left(LatexParser::commentStart(text)); // remove comments
 }
 
-QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool baseFile){
+QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool baseFile,bool keepSuffix){
 	basepath.replace(QDir::separator(),"/");
 	if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
 	
@@ -1160,7 +1160,9 @@ QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool bas
 	
 	if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
 	
-	return path+fi.completeBaseName();
+    if(keepSuffix)
+        return path+filename;
+    return path+fi.completeBaseName();
 }
 
 QString getPathfromFilename(const QString &compFile){

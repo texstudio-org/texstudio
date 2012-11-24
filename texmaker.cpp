@@ -793,7 +793,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "remHLine",tr("Remove \\hline","table"), SLOT(remHLineCB()));
 	newManagedAction(submenu, "insertTableTemplate",tr("Remodel Table Using Template","table"), SLOT(insertTableTemplate()));
 	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
-	
+    submenu=newManagedMenu(menu, "magicComments",tr("Add magic comments ..."));
+    newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
+    newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(InsertSpellcheckMagicComment()));
+    newManagedAction(submenu, "addMagicCoding", tr("Insert document coding as TeX comment"), SLOT(addMagicCoding()));
+
 	menu=newManagedMenu("main/math",tr("&Math"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(InsertFromAction())));
 	//wizards
@@ -1411,8 +1415,8 @@ QString Texmaker::getCurrentFileName() {
 QString Texmaker::getAbsoluteFilePath(const QString & relName, const QString &extension){
 	return documents.getAbsoluteFilePath(relName, extension);
 }
-QString Texmaker::getRelativeFileName(const QString & file,QString basepath){
-	return getRelativeBaseNameToPath(file,basepath,true);
+QString Texmaker::getRelativeFileName(const QString & file,QString basepath,bool keepSuffix){
+    return getRelativeBaseNameToPath(file,basepath,true,keepSuffix);
 }
 
 bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
@@ -4058,6 +4062,22 @@ void Texmaker::InsertSpellcheckMagicComment() {
 		}
 		currentEditorView()->document->updateMagicComment("spellcheck", name, true);
 	}
+}
+
+void Texmaker::addMagicRoot() {
+    if (currentEditorView()) {
+        LatexDocument *doc=currentEditorView()->getDocument();
+        if(!doc) return;
+        QString name=doc->getTopMasterDocument()->getFileName();
+        name=getRelativeFileName(name,doc->getFileName(),true);
+        currentEditorView()->document->updateMagicComment("root", name, true);
+    }
+}
+void Texmaker::addMagicCoding() {
+    if (currentEditorView()) {
+        QString name=currentEditor()->getFileCodec()->name();
+        currentEditorView()->document->updateMagicComment("encoding", name, true);
+    }
 }
 
 ///////////////TOOLS////////////////////
