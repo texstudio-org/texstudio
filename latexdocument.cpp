@@ -1666,11 +1666,11 @@ void LatexDocuments::move(int from, int to){
   model->layoutChanged();
 }
 
-QString LatexDocuments::getCurrentFileName() {
+QString LatexDocuments::getCurrentFileName() const {
 	if (!currentDocument) return "";
 	return currentDocument->getFileName();
 }
-QString LatexDocuments::getCompileFileName(){
+QString LatexDocuments::getCompileFileName() const {
 	if (masterDocument)
 		return masterDocument->getFileName();
 	if (!currentDocument)
@@ -1689,7 +1689,7 @@ QString LatexDocuments::getCompileFileName(){
 		curDocFile=masterDoc->getFileName();
 	return curDocFile;
 }
-QString LatexDocuments::getTemporaryCompileFileName(){
+QString LatexDocuments::getTemporaryCompileFileName() const {
 	QString temp = getCompileFileName();
 	if (!temp.isEmpty()) return temp;
 	if (masterDocument) return masterDocument->getTemporaryFileName();
@@ -1697,7 +1697,7 @@ QString LatexDocuments::getTemporaryCompileFileName(){
 	return "";
 }
 
-QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension){
+QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension) const {
 	QString s=relName;
 	QString ext = extension;
 	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
@@ -1712,7 +1712,7 @@ QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QStri
 	return  compilePath+s;
 }
 
-LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName){
+LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName) const {
     QList<LatexDocument*> docs=getDocuments();
     foreach(LatexDocument *doc,docs){
 		if(doc->getFileName()==fileName) return doc;
@@ -1720,7 +1720,7 @@ LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName){
 	return 0;
 }
 
-LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc){
+LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc) const {
     QList<LatexDocument*> docs=getDocuments();
     foreach(LatexDocument *doc,docs){
 		LatexEditorView *edView=doc->getEditorView();
@@ -1729,7 +1729,7 @@ LatexDocument* LatexDocuments::findDocument(const QDocument *qDoc){
 	return 0;
 }
 
-LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkTemporaryNames){
+LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkTemporaryNames) const {
 	if (fileName=="") return 0;
 	if (checkTemporaryNames) {
 		LatexDocument* temp = findDocument(fileName, false);
@@ -1781,7 +1781,7 @@ void LatexDocuments::settingsRead(){
 	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
 		model->iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
 }
-bool LatexDocuments::singleMode(){
+bool LatexDocuments::singleMode() const {
 	return !masterDocument;
 }
 
