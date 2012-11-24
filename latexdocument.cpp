@@ -1675,8 +1675,16 @@ QString LatexDocuments::getCompileFileName(){
 		return masterDocument->getFileName();
 	if (!currentDocument)
 		return "";
+    // check for magic comment
+    QString curDocFile=currentDocument->getMagicComment("root");
+    if(curDocFile.isEmpty())
+        curDocFile=currentDocument->getMagicComment("texroot");
+    if(!curDocFile.isEmpty()){
+        return currentDocument->findFileName(curDocFile);
+    }
+    //
 	const LatexDocument* masterDoc=currentDocument->getTopMasterDocument();
-	QString curDocFile = currentDocument->getFileName();
+    curDocFile = currentDocument->getFileName();
 	if(masterDoc)
 		curDocFile=masterDoc->getFileName();
 	return curDocFile;
