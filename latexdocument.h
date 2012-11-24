@@ -309,18 +309,18 @@ public:
 	
 	Q_INVOKABLE LatexDocument *getMasterDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
 	
-	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opened
-	Q_INVOKABLE QString getCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
-	Q_INVOKABLE QString getTemporaryCompileFileName(); //returns the absolute file name of the file to be compiled (master or current)
-	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="");
+	Q_INVOKABLE QString getCurrentFileName() const; //returns the absolute file name of the current file or "" if none is opened
+	Q_INVOKABLE QString getCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getTemporaryCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="") const;
 	
-	Q_INVOKABLE LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false);
-	Q_INVOKABLE LatexDocument* findDocument(const QDocument *qDoc);
-	Q_INVOKABLE LatexDocument* findDocumentFromName(const QString& fileName);
+	Q_INVOKABLE LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false) const;
+	Q_INVOKABLE LatexDocument* findDocument(const QDocument *qDoc) const;
+	Q_INVOKABLE LatexDocument* findDocumentFromName(const QString& fileName) const;
 	
 	void settingsRead();
 	
-	Q_INVOKABLE bool singleMode();
+	Q_INVOKABLE bool singleMode() const;
 	
 	//support for included BibTeX-files
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
