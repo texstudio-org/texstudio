@@ -1,6 +1,5 @@
 #include "bookmarks.h"
 #include "latexdocument.h"
-#include "configmanager.h"
 
 Bookmarks::Bookmarks(const LatexDocuments *docs, QObject *parent) :
 	QObject(parent)
