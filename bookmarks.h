@@ -30,7 +30,6 @@ public slots:
 	void restoreBookmarks(LatexEditorView *edView);
 	void updateBookmarks(LatexEditorView *edView);
 
-	
 protected slots:
 	void clickedOnBookmark(QListWidgetItem *item);
 	void moveBookmarkUp();
