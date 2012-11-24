@@ -18,6 +18,7 @@
 
 #include "bibtexparser.h"
 #include "buildmanager.h"
+#include "bookmarks.h"
 #include "codesnippet.h"
 #include "configmanager.h"
 #include "cursorhistory.h"
@@ -129,7 +130,6 @@ private:
 	QString hiddenLeftPanelWidgets;
 	
 	QTreeView *structureTreeView;
-	QListWidget *bookmarksWidget;
 	LatexParser latexParser;
 public:
 	LatexDocuments documents;
@@ -164,6 +164,7 @@ private:
 	SpellerManager spellerManager;
 	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
+	Bookmarks *bookmarks;
 	
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
@@ -312,15 +313,8 @@ protected slots:
     void updateStructure(bool initial=false, LatexDocument *doc = 0);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
-    void clickedOnBookmark(QListWidgetItem *item);
 	void editRemovePlaceHolders();
-    void moveBookmarkUp();
-    void moveBookmarkDown();
-    void removeBookmark();
-    void removeAllBookmarks();
-    void updateLineWithBookmark(int lineNr);
-    void updateBookmarks(LatexEditorView *edView);
-	
+
 	void NormalCompletion();
 	void InsertEnvironmentCompletion();
 	void InsertTextCompletion();
@@ -499,8 +493,6 @@ protected slots:
 	
 	void toggleGrammar(int type);
 
-    void bookmarkDeleted(QDocumentLineHandle* dlh);
-    void bookmarkAdded(QDocumentLineHandle* dlh,int nr);
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);

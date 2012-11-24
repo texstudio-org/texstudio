@@ -127,7 +127,8 @@ HEADERS += texmaker.h \
     templatemanager.h \
     templatemanager_p.h \
     texdocdialog.h \
-    help.h
+    help.h \
+    bookmarks.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -219,7 +220,8 @@ SOURCES += main.cpp \
     templatemanager.cpp \
     templatemanager_p.cpp \
     texdocdialog.cpp \
-    help.cpp
+    help.cpp \
+    bookmarks.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
