@@ -2037,9 +2037,23 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 			if (lastpoint <= lastsep) //if both aren't found or point is in directory name
 				fn.append(fileExt.cap(1));
 		}
-		if (getEditorViewFromFileName(fn) && getEditorViewFromFileName(fn) != currentEditorView())
-			if (!txsConfirmWarning(tr("You are trying to save the file under the name %1, but a file with this name is already open.\n TeXstudio does not support multiple instances of the same file.\nAre you sure you want to continue?").arg(fn)))
+		if (getEditorViewFromFileName(fn) && getEditorViewFromFileName(fn) != currentEditorView()) {
+			// trying to save with same name as another already existing file
+			LatexEditorView *otherEdView = getEditorViewFromFileName(fn);
+			if (!otherEdView->document->isClean()) {
+				txsWarning(tr("Saving under the name\n"
+							  "%1\n"
+							  "is currently not possible because a modified verrsion of a file\n"
+							  "with this name is open in TeXstudio. You have to save or close\n"
+							  "this other file before you can overwrite it.").arg(fn));
 				return;
+			}
+			// other editor does not contain unsaved changes, so it can be closed
+			LatexEditorView *currentEdView = currentEditorView();
+			EditorTabs->setCurrentEditor(otherEdView);
+			fileClose();
+			EditorTabs->setCurrentEditor(currentEdView);
+		}
 		
 		// save file
 		currentEditor()->save(fn);
