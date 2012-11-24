@@ -111,8 +111,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	
 	leftPanel=0;
 	structureTreeView=0;
-	bookmarksWidget=0;
-	
 	outputView=0;
 	
 	qRegisterMetaType<LatexParser>();
@@ -202,7 +200,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	}
 
 	cursorHistory = new CursorHistory(&documents);
-	
+	bookmarks = new Bookmarks(&documents, this);
+
 	QLayout* centralLayout= new QHBoxLayout(centralFrame);
 	centralLayout->setSpacing(0);
 	centralLayout->setMargin(0);
@@ -435,54 +434,13 @@ void Texmaker::setupDockWidgets(){
 		
 		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), ":/images/structure.png");
 	} else leftPanel->setWidgetText(structureTreeView,tr("Structure"));
-	if(!bookmarksWidget){
-		bookmarksWidget=new QListWidget(this);
-		bookmarksWidget->setAlternatingRowColors(true);
-		bookmarksWidget->setStyleSheet(
-					"QListWidget::item {"
-					"padding: 4px;"
-					"border-bottom: 1px solid palette(dark); }"
-					"QListWidget::item:selected {"
-					"color: palette(highlighted-text);"
-					"background-color: palette(highlight); }");
-		connect(bookmarksWidget, SIGNAL(itemPressed(QListWidgetItem*)), SLOT(clickedOnBookmark(QListWidgetItem *))); //single click
+	if(!leftPanel->widget("bookmarks")) {
+		QListWidget *bookmarksWidget = bookmarks->widget();
+		connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
+		connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
 		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), ":/images/bookmarks.png");
-		// read bookmarks
-		QStringList bookmark;
-		bookmarksWidget->clear();
-		for(int i=0;i<configManager.bookmarkList.count();i++){
-			bookmark=configManager.bookmarkList.at(i).toStringList();
-			QString fn;
-			if (!bookmark.isEmpty())
-				fn = bookmark.takeFirst();
-			int lineNr=0;
-			if (!bookmark.isEmpty())
-				lineNr = bookmark.takeFirst().toInt();
-			int bookmarkNumber=-1;
-			if(!bookmark.isEmpty()){
-				bool ok;
-				bookmarkNumber=bookmark.first().toInt(&ok);
-				if(!ok)
-					bookmarkNumber=-1;
-				else
-					bookmark.removeFirst();
-			}
-			QString text;
-			if (!bookmark.isEmpty())
-				text = bookmark.takeFirst();
-			QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
-			item->setData(Qt::UserRole,fn);
-			item->setData(Qt::UserRole+1,lineNr);
-			item->setData(Qt::UserRole+3,bookmarkNumber);
-			LatexDocument *doc=documents.findDocumentFromName(fn);
-			if(doc && lineNr<doc->lineCount() && lineNr>=0) {
-				QDocumentLineHandle *dlh=doc->line(lineNr).handle();
-				item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-			}else{
-				item->setData(Qt::UserRole+2,0);
-			}
-		}
-	} else leftPanel->setWidgetText(bookmarksWidget,tr("Bookmarks"));
+		bookmarks->setBookmarks(configManager.bookmarkList);
+	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 	
 	addSymbolGrid("operators", "math1.png",tr("Operator symbols"));
 	addSymbolGrid("relation", "hi16-action-math1.png",tr("Relation symbols"));
@@ -1035,12 +993,6 @@ void Texmaker::setupMenus() {
 	newManagedAction(structureTreeView,"UnIndentSection",tr("Unindent Section"), SLOT(editUnIndentSection()));
 	connect(structureTreeView,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(StructureContextMenu(QPoint)));
 	
-	bookmarksWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
-	newManagedAction(bookmarksWidget,"moveMarkUp",tr("Move Up"),SLOT(moveBookmarkUp()));
-	newManagedAction(bookmarksWidget,"moveMarkDown",tr("Move Down"),SLOT(moveBookmarkDown()));
-	newManagedAction(bookmarksWidget,"removeOneMark",tr("Remove"),SLOT(removeBookmark()));
-	newManagedAction(bookmarksWidget,"removeAllMark",tr("Remove All"),SLOT(removeAllBookmarks()));
-	
 	configManager.updateRecentFiles(true);
 	
 	configManager.modifyMenuContents();
@@ -1396,8 +1348,8 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)),this,SLOT(editGotoDefinition(QDocumentCursor)));
 	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
-	connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)) ,this,SLOT(bookmarkDeleted(QDocumentLineHandle*)));
-	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)) ,this,SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
+	connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle*)));
+	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
 	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
@@ -1431,8 +1383,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit->document,SIGNAL(updateCompleter()),this,SLOT(completerNeedsUpdate()));
 	connect(edit->editor,SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 	connect(edit->document,SIGNAL(importPackage(QString)),this,SLOT(importPackage(QString)));
-	//connect(edit->document, SIGNAL(bookmarkRemoved(int)),this,SLOT(lineWithBookmarkRemoved(int)));
-	connect(edit->document, SIGNAL(bookmarkLineUpdated(int)),this,SLOT(updateLineWithBookmark(int)));
+	connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
 	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 	connect(edit,SIGNAL(saveCurrentCursorToHistoryRequested()),this,SLOT(saveCurrentCursorToHistory()));
@@ -1474,28 +1425,6 @@ bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
 	return true;
 }
 ///////////////////FILE//////////////////////////////////////
-void Texmaker::restoreBookmarks(LatexEditorView *edView){
-  LatexDocument *doc=edView->document;
-  if(!doc)
-    return;
-  // go trough bookmarks
-  for(int i=0;i<bookmarksWidget->count();i++){
-    QListWidgetItem *item=bookmarksWidget->item(i);
-    QString fn=item->data(Qt::UserRole).toString();
-    if(doc->getFileName()!=fn)
-      continue;
-    int lineNr=item->data(Qt::UserRole+1).toInt();
-    int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
-    edView->addBookmark(lineNr,bookmarkNumber);
-    QDocumentLineHandle *dlh=doc->line(lineNr).handle();
-    if(!dlh)
-      continue;
-    item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-    item->text()=dlh->text();
-    item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
-  }
-}
-
 LatexEditorView *Texmaker::editorViewForLabel(LatexDocument *doc, const QString &label) {
 	// doc can be any document, in which the label is valid
 	REQUIRE_RET(doc, 0);
@@ -1571,7 +1500,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 			//updateStructure(true);
             if(!hidden){
                 ShowStructure();
-                restoreBookmarks(edit);
+				bookmarks->restoreBookmarks(edit);
             }
 			return edit;
 		}
@@ -1646,7 +1575,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 
     if(!hidden)
         ShowStructure();
-	restoreBookmarks(edit);
+	bookmarks->restoreBookmarks(edit);
 	
 	if (asProject) documents.setMasterDocument(edit->document);
 	
@@ -2191,7 +2120,7 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
-	updateBookmarks(currentEditorView());
+	bookmarks->updateBookmarks(currentEditorView());
 	QFileInfo fi = currentEditorView()->document->getFileInfo();
 
 repeatAfterFileSavingFailed:
@@ -3067,27 +2996,8 @@ void Texmaker::SaveSettings(const QString& configName) {
 		config->setValue("Files/Session/firstLines",firstLines);
 		config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
 		config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
-		// save bookmarks
-		QStringList bookmark;
-		QList<QVariant> bookmarkList;
-		for(int i=0;i<bookmarksWidget->count();i++){
-			bookmark.clear();
-			QListWidgetItem *item=bookmarksWidget->item(i);
-			QString fn=item->data(Qt::UserRole).toString();
-			int lineNr=item->data(Qt::UserRole+1).toInt();
-			int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
-			QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-			LatexDocument *doc=documents.findDocumentFromName(fn);
-			if(doc && doc->indexOf(dlh)>=0) {
-				lineNr=dlh->line();
-			}
-			bookmark<<fn;
-			bookmark<<QString::number(lineNr);
-			bookmark<<QString::number(bookmarkNumber);
-			bookmark<<item->text();
-			bookmarkList<<bookmark;
-		}
-		config->setValue("Files/Bookmarks",bookmarkList);
+
+		config->setValue("Files/Bookmarks", bookmarks->getBookmarks());
 	}
 	
 	
@@ -3185,169 +3095,6 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc) {
 	//structureTreeView->reset();
 }
 
-void Texmaker::clickedOnBookmark(QListWidgetItem *item){
-  if (QApplication::mouseButtons()==Qt::RightButton) return; // avoid jumping to line if contextmenu is called
-  QString fn=item->data(Qt::UserRole).toString();
-  int lineNr=item->data(Qt::UserRole+1).toInt();
-  saveCurrentCursorToHistory();
-  QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-  LatexDocument *doc=documents.findDocumentFromName(fn);
-  if(!doc){
-    LatexEditorView* edView=load(fn);
-    if (!edView) return;
-	gotoLine(lineNr,0,edView);
-    dlh=edView->editor->document()->line(lineNr).handle();
-    item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-  }else{
-    LatexEditorView* edView=doc->getEditorView();
-	EditorTabs->setCurrentEditor(edView);
-    if(doc->indexOf(dlh)>=0){
-	  gotoLine(lineNr,0,edView);
-    }else{
-	  gotoLine(lineNr,0,edView);
-      dlh=doc->line(lineNr).handle();
-      item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-    }
-  }
-}
-
-void Texmaker::moveBookmarkUp(){
-  QListWidgetItem *item=bookmarksWidget->currentItem();
-  if(!item) return;
-  int row=bookmarksWidget->row(item);
-  if(row<=0) return;
-  bookmarksWidget->takeItem(row);
-  bookmarksWidget->insertItem(row-1,item);
-  bookmarksWidget->setCurrentRow(row-1);
-}
-void Texmaker::moveBookmarkDown(){
-  QListWidgetItem *item=bookmarksWidget->currentItem();
-  if(!item) return;
-  int row=bookmarksWidget->row(item);
-  if(row<0) return;
-  if(row==bookmarksWidget->count()-1) return;
-  bookmarksWidget->takeItem(row);
-  bookmarksWidget->insertItem(row+1,item);
-  bookmarksWidget->setCurrentRow(row+1);
-}
-void Texmaker::removeBookmark(){
-  int row=bookmarksWidget->currentRow();
-  if(row<0) return;
-  QListWidgetItem *item=bookmarksWidget->takeItem(row);
-  QString fn=item->data(Qt::UserRole).toString();
-  int lineNr=item->data(Qt::UserRole+1).toInt();
-  int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
-  QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-  LatexDocument *doc=documents.findDocumentFromName(fn);
-  if(!doc) return;
-  LatexEditorView* edView=doc->getEditorView();
-  if(dlh)
-    edView->removeBookmark(dlh,bookmarkNumber);
-  else{
-    edView->removeBookmark(lineNr,bookmarkNumber);
-  }
-}
-void Texmaker::removeAllBookmarks(){
-  while(bookmarksWidget->count()>0){
-    QListWidgetItem *item=bookmarksWidget->takeItem(0);
-    QString fn=item->data(Qt::UserRole).toString();
-    int lineNr=item->data(Qt::UserRole+1).toInt();
-    int bookmarkNumber=item->data(Qt::UserRole+3).toInt();
-    QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-    LatexDocument *doc=documents.findDocumentFromName(fn);
-    if(!doc) return;
-    LatexEditorView* edView=doc->getEditorView();
-    if(dlh)
-      edView->removeBookmark(dlh,bookmarkNumber);
-    else{
-      edView->removeBookmark(lineNr,bookmarkNumber);
-    }
-  }
-}
-
-void Texmaker::bookmarkDeleted(QDocumentLineHandle* dlh){
-  QString text=documents.currentDocument->getFileInfo().fileName();
-  QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
-  foreach(QListWidgetItem *item,lst){
-    //QString fn=item->data(Qt::UserRole).toString();
-    //int lineNr=item->data(Qt::UserRole+1).toInt();
-    QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-    if(dlh_item==dlh){
-	  int row=bookmarksWidget->row(item);
-      bookmarksWidget->takeItem(row);
-      return;
-    }
-  }
-}
-void Texmaker::bookmarkAdded(QDocumentLineHandle* dlh,int nr){
-  LatexDocument *doc=qobject_cast<LatexDocument*> (dlh->document());
-
-  QString text=documents.currentDocument->getFileInfo().fileName();
-  text+="\n"+dlh->text().trimmed();
-  QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
-  item->setData(Qt::UserRole,doc->getFileName());
-  item->setData(Qt::UserRole+1,dlh->line());
-  item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-  item->setData(Qt::UserRole+3,nr);
-  int lineNr=dlh->line();
-  lineNr = lineNr>1 ? lineNr-2 : 0;
-  if (!currentEditorView()) return;
-  item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
-}
-
-void Texmaker::updateLineWithBookmark(int lineNr){
-  LatexDocument *doc=qobject_cast<LatexDocument*> (sender());
-  if(!doc)
-    return;
-  QString text=doc->getFileInfo().fileName();
-  QDocumentLineHandle *dlh=doc->line(lineNr).handle();
-  QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
-  foreach(QListWidgetItem *item,lst){
-    QDocumentLineHandle *dlh_item=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-    if(dlh_item==dlh){
-      QString text=doc->getFileInfo().fileName();
-      text+="\n"+dlh->text().trimmed();
-      item->setText(text);
-      lineNr = lineNr>1 ? lineNr-2 : 0;
-      LatexDocument *doc=currentEditorView()->document;
-      item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4),true,true,60));
-      return;
-    }
-  }
-  // no bookmark found, add one (why)
-  /*
-     text=doc->getFileInfo().fileName();
-     text+="\n"+dlh->text().trimmed();
-     QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
-     item->setData(Qt::UserRole,documents.currentDocument->getFileName());
-     item->setData(Qt::UserRole+1,lineNr);
-     item->setData(Qt::UserRole+2,qVariantFromValue(dlh));
-     lineNr = lineNr>1 ? lineNr-2 : 0;
-     text.clear();
-     for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
-         QString ln=doc->line(i).text().trimmed();
-         if(ln.length()>40)
-             ln=ln.left(40)+"...";
-         text+=ln+"\n";
-     }
-     item->setToolTip(text);
-     */
-}
-
-void Texmaker::updateBookmarks(LatexEditorView *edView){
-  if(!edView)
-    return;
-  LatexDocument *doc=edView->document;
-  QString text=doc->getFileInfo().fileName();
-  QList<QListWidgetItem*> lst=bookmarksWidget->findItems(text,Qt::MatchStartsWith);
-  foreach(QListWidgetItem *item,lst){
-    QDocumentLineHandle *dlh=qvariant_cast<QDocumentLineHandle*>(item->data(Qt::UserRole+2));
-    int lineNr=doc->indexOf(dlh);
-    item->setData(Qt::UserRole+1,lineNr);
-    item->setData(Qt::UserRole+2,0);
-  }
-}
-
 void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 	const StructureEntry* entry = LatexDocumentsModel::indexToStructureEntry(index);
 	if (!entry) return;
@@ -3390,8 +3137,6 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 			if (!edView) return;
 			//entry is now invalid
 		} else lineNr=LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
-		saveCurrentCursorToHistory();
-		EditorTabs->setCurrentEditor(edView);
 		gotoLine(lineNr,0,edView);
 		break;
 	}
@@ -3412,6 +3157,7 @@ void Texmaker::editRemovePlaceHolders(){
 		currentEditor()->removePlaceHolder(i);
 	currentEditor()->viewport()->update();
 }
+
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
@@ -4266,8 +4012,6 @@ void Texmaker::createLabelFromAction()
 		label = "sec:";
 	}
 
-	saveCurrentCursorToHistory();
-	EditorTabs->setCurrentEditor(edView);
 	gotoLine(lineNr,pos,edView);
 
 	InsertTag(QString("\\label{%1}").arg(label),7);
@@ -5075,7 +4819,6 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	
 	if (line!=-1){
 		QApplication::processEvents();
-		saveCurrentCursorToHistory();
 		gotoLine(line, col);
 		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
@@ -5659,7 +5402,6 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 	{
 		QDocumentCursor c=currentEditor()->cursor();
 		int col=c.columnNumber();
-		saveCurrentCursorToHistory();
 		gotoLine(lineNumber);
 		col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
 		currentEditor()->setCursorPosition(lineNumber,col);
@@ -5677,15 +5419,21 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 }
 
 void Texmaker::gotoLine(int line, int col, LatexEditorView *edView) {
+	bool changeCurrentEditor = (edView != currentEditorView());
 	if (!edView)
 		edView = currentEditorView(); // default
 
-	if (edView && line>=0)	{
-		edView->editor->setCursorPosition(line,col);
-		edView->editor->ensureCursorVisibleSurrounding();
-		edView->editor->setFocus();
-	}
+	if (!edView || line<0) return;
+
+	saveCurrentCursorToHistory();
+
+	if (changeCurrentEditor)
+		EditorTabs->setCurrentEditor(edView);
+	edView->editor->setCursorPosition(line,col);
+	edView->editor->ensureCursorVisibleSurrounding();
+	edView->editor->setFocus();
 }
+
 void Texmaker::gotoLocation(int line, const QString &fileName){
 	if (!FocusEditorForFile(fileName, true))
 		if (!load(fileName)) return;
@@ -5707,7 +5455,6 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 bool Texmaker::gotoLogEntryAt(int newLineNumber) {
 	//goto line
 	if (newLineNumber<0) return false;
-	saveCurrentCursorToHistory();
 	gotoLine(newLineNumber);
 	//find error number
 	QDocumentLineHandle* lh=currentEditorView()->editor->document()->line(newLineNumber).handle();
@@ -7814,8 +7561,6 @@ void Texmaker::moveCursorTodlh(){
     QDocumentLineHandle *dlh=entry->getLineHandle();
     LatexEditorView* edView=doc->getEditorView();
     if(edView){
-        saveCurrentCursorToHistory();
-		EditorTabs->setCurrentEditor(edView);
         int lineNr=-1;
         if((lineNr=doc->indexOf(dlh))>=0){
             gotoLine(lineNr,0,edView);
