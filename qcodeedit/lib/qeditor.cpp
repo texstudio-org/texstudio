@@ -4801,14 +4801,15 @@ void QEditor::ensureCursorVisible(int surrounding)
 		ylen = viewport()->height(),
 		yend = ypos + ls;
 
-	if ( ypos - surroundingHeight < yval ) // cursor above
+	if ( ypos - surroundingHeight < yval ) {// cursor above
 		verticalScrollBar()->setValue(ypos / ls - surrounding);
-	else if ( yend + surroundingHeight > (yval + ylen ) ) // cursor below
+	} else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
 		if (ypos > (yval + ylen) ) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
 			verticalScrollBar()->setValue(ypos / ls - surrounding);
 		} else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
 			verticalScrollBar()->setValue(1 + (yend - ylen) / ls + surrounding);
 		}
+	}
 
 	int xval = horizontalOffset(),
 		xlen = viewport()->width(),
