@@ -111,21 +111,25 @@
   <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.png);;All files (*.*)%)}"/>
   <insert id="include" text="\include{file}" insert="%SCRIPT&#10;
   fnOld=editor.fileName();
+  fnMaster=documentManager.getTemporaryCompileFileName();
   fileChooser.setDir(fnOld);
   fileChooser.setFilter(&quot;(TeX files (*.tex);;All files (*.*)&quot;);
   fileChooser.exec();
   fn=fileChooser.fileName();
-  fe=fileExists(fn);
-  fnRel=app.getRelativeFileName(fn,fnOld);
+  fnAbs=documentManager.getAbsoluteFilePath(fn,fnOld,&quot;&quot;)
+  fe=fileExists(fnAbs);
+  fnRel=app.getRelativeFileName(fnAbs,fnOld);
   txt=cursor.selectedText();
   cursor.removeSelectedText();
   cursor.insertText(&quot;\\include{&quot;+fnRel+&quot;}&quot;);
   if(!fe){
 	app.fileNew();
 	newEditor = documentManager.currentDocument.editorView.editor;
+	fnMaster=app.getRelativeFileName(fnMaster,fnAbs);
+	preamble=&quot;% !TeX root=&quot;+fnMaster+&quot;\n&quot;
+	newEditor.write(preamble)
 	newEditor.write(txt);
-	//newEditor.setFileName(fn)
-	newEditor.save(fn);
+	newEditor.save(fnAbs);
   }"/>
   <insert id="input" text="\input{file}" insert="\input{%(TeX files (*.tex);;All files (*.*)%)}"/>
 
