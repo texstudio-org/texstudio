@@ -1697,19 +1697,23 @@ QString LatexDocuments::getTemporaryCompileFileName() const {
 	return "";
 }
 
+QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &baseDir, const QString &extension) const {
+    QString s=relName;
+    QString ext = extension;
+    if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
+    if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
+    QFileInfo fi(s);
+    if (!fi.isRelative()) return s;
+    if (baseDir.isEmpty()) return s; //what else can we do?
+    QString compilePath=QFileInfo(baseDir).absolutePath();
+    if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
+        compilePath+=QDir::separator();
+    return  compilePath+s;
+}
+
 QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension) const {
-	QString s=relName;
-	QString ext = extension;
-	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
-	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
-	QFileInfo fi(s);
-	if (!fi.isRelative()) return s;
 	QString compileFileName=getTemporaryCompileFileName();
-	if (compileFileName.isEmpty()) return s; //what else can we do?
-	QString compilePath=QFileInfo(compileFileName).absolutePath();
-	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
-		compilePath+=QDir::separator();
-	return  compilePath+s;
+    return  getAbsoluteFilePath(relName,compileFileName,extension);
 }
 
 LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName) const {

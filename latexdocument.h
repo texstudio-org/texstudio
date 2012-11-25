@@ -313,6 +313,7 @@ public:
 	Q_INVOKABLE QString getCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
 	Q_INVOKABLE QString getTemporaryCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="") const;
+    Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &baseDir, const QString &extension) const;
 	
 	Q_INVOKABLE LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false) const;
 	Q_INVOKABLE LatexDocument* findDocument(const QDocument *qDoc) const;
