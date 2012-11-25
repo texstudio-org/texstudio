@@ -311,6 +311,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation>Déplace vers le haut</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Déplace vers le bas</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Supprime</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation>Supprime tout</translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
@@ -3491,6 +3510,13 @@ Continuer tout de même ?</translation>
     <message>
         <source>Long range word repetition. Distance %1</source>
         <translation>Longue plage de répétition de mot. Distance %1</translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation>texdoc met trop de temps à ouvrir la documentation du package :</translation>
     </message>
 </context>
 <context>
@@ -6897,6 +6923,21 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
 </context>
 <context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation>Aide sur les packages (texdoc)</translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation>Package :</translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation>Aucune documentation disponible</translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Normal Mode</source>
@@ -7979,7 +8020,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>Vous essayez de sauvegarder le fichier sous le nom %1, mais un fichier du même nom est déjà ouvert.
+        <translation type="obsolete">Vous essayez de sauvegarder le fichier sous le nom %1, mais un fichier du même nom est déjà ouvert.
 TeXstudio n&apos;accepte pas d&apos;instances multiples d&apos;un même fichier.
 Êtes-vous certain de vouloir continuer ?</translation>
     </message>
@@ -8606,15 +8647,15 @@ included document in %1</source>
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Déplace vers le haut</translation>
+        <translation type="obsolete">Déplace vers le haut</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Déplace vers le bas</translation>
+        <translation type="obsolete">Déplace vers le bas</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation>Supprimer tout</translation>
+        <translation type="obsolete">Supprimer tout</translation>
     </message>
     <message>
         <source>Insert Label</source>
@@ -8806,6 +8847,32 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     <message>
         <source>Could not write template meta data:</source>
         <translation>Impossible d&apos;écrire les métadonnées du modèle :</translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation>Aide sur les packages...</translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation>Ajouter des commentaires magiques...</translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation>Insérer le nom du document maître en commentaire magique</translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation>Insérer le codage d&apos;entrée du document maître en commentaire magique</translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified verrsion of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation>Enregistrer sous le nom
+%1
+est actuellement impossible car une version modifiée d&apos;un fichier avec ce nom est ouvert dans TeXstudio. Vous devez enregistrer ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
 </context>
 <context>
