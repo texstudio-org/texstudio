@@ -2043,7 +2043,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 			if (!otherEdView->document->isClean()) {
 				txsWarning(tr("Saving under the name\n"
 							  "%1\n"
-							  "is currently not possible because a modified verrsion of a file\n"
+                              "is currently not possible because a modified version of a file\n"
 							  "with this name is open in TeXstudio. You have to save or close\n"
 							  "this other file before you can overwrite it.").arg(fn));
 				return;
