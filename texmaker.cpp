@@ -5237,9 +5237,11 @@ void Texmaker::pdfClosed(){
       pdfSplitterRel=1.0*last/sum;
     }
   }
+#ifdef Q_OS_MAC
   //workaround to restore mac menubar
   menuBar()->setNativeMenuBar(false);
   menuBar()->setNativeMenuBar(true);
+#endif
 #endif
 }
 
