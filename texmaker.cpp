@@ -49,6 +49,7 @@
 #include "grammarcheck.h"
 #include "qmetautils.h"
 #include "updatechecker.h"
+#include "session.h"
 #include "help.h"
 
 #ifndef QT_NO_DEBUG
@@ -439,7 +440,6 @@ void Texmaker::setupDockWidgets(){
 		connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
 		connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
 		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), ":/images/bookmarks.png");
-		bookmarks->setBookmarks(configManager.bookmarkList);
 	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 	
 	addSymbolGrid("operators", "math1.png",tr("Operator symbols"));
@@ -548,7 +548,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen");
 	
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open &Recent")); //only create the menu here, actions are created by config manager
-	newManagedAction(menu, "restoresession",tr("Restore Previous Session"), SLOT(fileRestoreSession()));
+
+	submenu = newManagedMenu(menu, "session", tr("Session"));
+	newManagedAction(submenu, "loadsession", tr("Load Session..."), SLOT(fileLoadSession()));
+	newManagedAction(submenu, "savesession", tr("Save Session..."), SLOT(fileSaveSession()));
+	newManagedAction(submenu, "restoresession",tr("Restore Previous Session"), SLOT(fileRestoreSession()));
 	
 	menu->addSeparator();
 	actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
@@ -1937,45 +1941,18 @@ void Texmaker::fileOpen() {
 }
 
 void Texmaker::fileRestoreSession(bool showProgress){
-	fileCloseAll();
 
-	cursorHistory->setInsertionEnabled(false);
-	QProgressDialog progress(this);
-	if (showProgress) {
-		progress.setMaximum(configManager.sessionFilesToRestore.size());
-		progress.setCancelButton(0);
-		progress.setMinimumDuration(3000);
-		progress.setLabel(new QLabel());
-	}
-
-	for (int i=0; i<configManager.sessionFilesToRestore.size(); i++){
-
-		if (showProgress) {
-			progress.setValue(i);
-			//progress.setLabelText(QString(tr("Restoring session:\n%1")).arg(QFileInfo(configManager.sessionFilesToRestore[i]).fileName()));
-			progress.setLabelText(QFileInfo(configManager.sessionFilesToRestore[i]).fileName());
+	QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
+	Session s;
+	if (f.exists()) {
+		if (!s.load(f.filePath())) {
+			txsCritical(tr("Loading of last session failed."));
 		}
-		LatexEditorView* edView=load(configManager.sessionFilesToRestore[i], configManager.sessionFilesToRestore[i]==configManager.sessionMaster);
-		if(edView){
-			int row=configManager.sessionCurRowsToRestore.value(i,QVariant(0)).toInt();
-			int col=configManager.sessionCurColsToRestore.value(i,0).toInt();
-			if(row>=edView->document->lineCount()){
-				row=0;
-				col=0;
-			}else{
-				if(edView->document->line(row).length()<col){
-					col=0;
-				}
-			}
-			edView->editor->setCursorPosition(row,col);
-			edView->editor->scrollToFirstLine(configManager.sessionFirstLinesToRestore.value(i,0).toInt());
-		}
+	} else {
+		// fallback to loading from the config (import the session saved by TXS <= 2.5.1)
+		s.load(configManager);
 	}
-	if (showProgress) {
-		progress.setValue(progress.maximum());
-	}
-	FocusEditorForFile(configManager.sessionCurrent);
-	cursorHistory->setInsertionEnabled(true);
+	restoreSession(s, showProgress);
 }
 
 void Texmaker::fileSave() {
@@ -2274,6 +2251,108 @@ void Texmaker::fileOpenFirstNonOpen(){
 void Texmaker::fileOpenRecentProject() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (action) load(action->data().toString(),true);
+}
+
+void Texmaker::fileLoadSession() {
+	QString openDir = QDir::homePath();
+	if (currentEditorView()) {
+		LatexDocument *doc = currentEditorView()->document;
+		if (doc->getMasterDocument()) {
+			openDir = doc->getMasterDocument()->getFileInfo().path();
+		} else {
+			openDir = doc->getFileInfo().path();
+		}
+	}
+	QString fn = QFileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*.txss)");
+	if (fn.isNull()) return;
+
+	Session s;
+	if (!s.load(fn)) {
+		txsCritical(tr("Loading of session failed."));
+		return;
+	}
+
+	restoreSession(s);
+}
+
+void Texmaker::fileSaveSession() {
+	QString openDir = QDir::homePath();
+	if (currentEditorView()) {
+		LatexDocument *doc = currentEditorView()->document;
+		if (doc->getMasterDocument()) {
+			openDir = replaceFileExtension(doc->getMasterDocument()->getFileName(), "txss");
+		} else {
+			openDir = replaceFileExtension(doc->getFileName(), "txss");
+		}
+	}
+
+	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*.txss)");
+	if (fn.isNull()) return;
+	if (getCurrentSession().save(fn))
+		txsCritical(tr("Saving of session failed."));
+}
+
+void Texmaker::restoreSession(const Session &s, bool showProgress) {
+	fileCloseAll();
+
+	cursorHistory->setInsertionEnabled(false);
+	QProgressDialog progress(this);
+	if (showProgress) {
+		progress.setMaximum(s.files().size());
+		progress.setCancelButton(0);
+		progress.setMinimumDuration(3000);
+		progress.setLabel(new QLabel());
+	}
+
+	bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
+
+	for (int i=0; i<s.files().size(); i++) {
+		FileInSession f = s.files().at(i);
+
+		if (showProgress) {
+			progress.setValue(i);
+			progress.setLabelText(QFileInfo(f.fileName).fileName());
+		}
+		LatexEditorView* edView=load(f.fileName, f.fileName==s.masterFile());
+		if (edView) {
+			int line = f.cursorLine;
+			int col = f.cursorCol;
+			if (line >= edView->document->lineCount()) {
+				line = 0;
+				col = 0;
+			} else {
+				if (edView->document->line(line).length() < col) {
+					col = 0;
+				}
+			}
+			edView->editor->setCursorPosition(line, col);
+			edView->editor->scrollToFirstLine(f.firstLine);
+		}
+	}
+	if (showProgress) {
+		progress.setValue(progress.maximum());
+	}
+	FocusEditorForFile(s.currentFile());
+	cursorHistory->setInsertionEnabled(true);
+}
+
+Session Texmaker::getCurrentSession() {
+	Session s;
+
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		FileInSession f;
+		f.fileName = edView->editor->fileName();
+		f.cursorLine = edView->editor->cursor().lineNumber();
+		f.cursorCol = edView->editor->cursor().columnNumber();
+		f.firstLine = edView->editor->getFirstVisibleLine();
+		s.addFile(f);
+	}
+	s.setMasterFile(documents.singleMode()?"":documents.masterDocument->getFileName());
+	s.setCurrentFile(currentEditorView()?currentEditor()->fileName():"");
+
+	s.setBookmarks(bookmarks->getBookmarks());
+
+	return s;
 }
 
 void Texmaker::MarkCurrentFileAsRecent(){
@@ -2999,26 +3078,12 @@ void Texmaker::SaveSettings(const QString& configName) {
 		config->setValue("Geometries/MainwindowY", y());
 		
 		config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
-		//always store session for manual reload
-		QStringList curFiles;//store in order
-		QList<QVariant> firstLines,curCols,curRows;
-		foreach (LatexEditorView *edView, EditorTabs->editors()) {
-			curFiles.append(edView->editor->fileName());
-			curCols.append(edView->editor->cursor().columnNumber());
-			curRows.append(edView->editor->cursor().lineNumber());
-			firstLines.append(edView->editor->getFirstVisibleLine());
-		}
-		config->setValue("Files/Session/Files",curFiles);
-		config->setValue("Files/Session/curCols",curCols);
-		config->setValue("Files/Session/curRows",curRows);
-		config->setValue("Files/Session/firstLines",firstLines);
-		config->setValue("Files/Session/CurrentFile",currentEditorView()?currentEditor()->fileName():"");
-		config->setValue("Files/Session/MasterFile",documents.singleMode()?"":documents.masterDocument->getFileName());
 
-		config->setValue("Files/Bookmarks", bookmarks->getBookmarks());
+		Session s = getCurrentSession();
+		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath());
 	}
-	
-	
+
+
 	for(int i=0;i<struct_level.count();i++)
 		config->setValue("Structure/Structure Level "+QString::number(i+1),struct_level[i]);
 	
