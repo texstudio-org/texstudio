@@ -2853,6 +2853,7 @@ int PDFDocument::scaleToZoomSliderPos(qreal scale) {
 
 void PDFDocument::zoomSliderChange(int pos)
 {
+	qDebug() << "zmove" << pos;
 	if (pos >-10 && pos < 10) {
 		pos = 0;
 		zoomSlider->setValue(pos);
@@ -2881,7 +2882,10 @@ void PDFDocument::showScale(qreal scale)
 {
 	QString scaleString = QString("%1%").arg(ROUND(scale * 100.0));
 	scaleButton->setText(scaleString);
+	zoomSlider->blockSignals(true);
+	// don't emit value changed: This is only used to update the value. It does not initiate changes
 	zoomSlider->setValue(scaleToZoomSliderPos(scale));
+	zoomSlider->blockSignals(false);
 }
 
 
