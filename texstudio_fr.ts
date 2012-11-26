@@ -8870,9 +8870,57 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
 is currently not possible because a modified verrsion of a file
 with this name is open in TeXstudio. You have to save or close
 this other file before you can overwrite it.</source>
-        <translation>Enregistrer sous le nom
+        <translation type="obsolete">Enregistrer sous le nom
 %1
 est actuellement impossible car une version modifiée d&apos;un fichier avec ce nom est ouvert dans TeXstudio. Vous devez enregistrer ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation>Session</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>Charger une session...</translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation>Enregistrer une session...</translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation>Le chargement de la dernière session a échoué.</translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation>Enregistrer sous le nom
+%1
+est actuellement impossible car une version modifiée d&apos;un fichier
+avec ce nom est ouvert dans TeXstudio. Vous devez enregistrer
+ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation>Charger une session</translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation>Session TeXstudio</translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation>Le chargement de la session a échoué.</translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation>Enregistrer une session</translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
+        <translation>L&apos;enregistrement de la session a échoué.</translation>
     </message>
 </context>
 <context>
