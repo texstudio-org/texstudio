@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1367,7 +1367,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>646</width>
+            <width>863</width>
             <height>655</height>
            </rect>
           </property>
@@ -1458,7 +1458,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                    <number>2</number>
                   </property>
                   <property name="maximum">
-                   <number>10</number>
+                   <number>32</number>
                   </property>
                   <property name="value">
                    <number>4</number>
