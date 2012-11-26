@@ -38,7 +38,7 @@
 #include "PDFDocument.h"
 #include <QSplitter>
 #include <QSplashScreen>
-
+#include "session.h"
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
@@ -58,6 +58,7 @@ enum SVNSTATUS {
 
 class UserMenuDialog;
 class GrammarCheck;
+
 class Texmaker : public QMainWindow {
 	Q_OBJECT
 	
@@ -211,6 +212,12 @@ protected slots:
 	void fileOpenAllRecent();
 	void fileOpenFirstNonOpen();
 	void fileOpenRecentProject();
+	void fileLoadSession();
+	void fileSaveSession();
+private slots:
+	void restoreSession(const Session &s, bool showProgress = true);
+	Session getCurrentSession();
+protected slots:
 	void MarkCurrentFileAsRecent();
 private slots:
 	void fileCheckin(QString filename="");
@@ -554,7 +561,6 @@ public:
 	Q_INVOKABLE int getVersion() const;
 	
 	static void recoverFromCrash();
-	
 	
 public slots:
 	void threadCrashed();

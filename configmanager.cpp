@@ -365,13 +365,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Recent Files", &recentFilesList);
 	registerOption("Files/Recent Project Files", &recentProjectList);
 	registerOption("Files/RestoreSession", &sessionRestore);
-	registerOption("Files/Session/Files", &sessionFilesToRestore);
-	registerOption("Files/Session/curRows", &sessionCurRowsToRestore);
-	registerOption("Files/Session/curCols", &sessionCurColsToRestore);
-	registerOption("Files/Session/firstLines", &sessionFirstLinesToRestore);
-	registerOption("Files/Session/CurrentFile", &sessionCurrent);
-	registerOption("Files/Session/MasterFile", &sessionMaster);
-	registerOption("Files/Bookmarks", &bookmarkList);
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
