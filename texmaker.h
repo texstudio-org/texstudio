@@ -427,6 +427,7 @@ protected slots:
 	
 	QObject* newPdfPreviewer(bool embedded=false);
 	void pdfClosed();
+	void restoreMacMenuBar();
 	
 	void masterDocumentChanged(LatexDocument * doc);
 	void aboutToDeleteDocument(LatexDocument * doc);
