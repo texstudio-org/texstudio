@@ -5237,11 +5237,15 @@ void Texmaker::pdfClosed(){
       pdfSplitterRel=1.0*last/sum;
     }
   }
+  QTimer::singleShot(100, this, SLOT(restoreMacMenuBar()));
+#endif
+}
+
+void Texmaker::restoreMacMenuBar(){
 #ifdef Q_OS_MAC
   //workaround to restore mac menubar
   menuBar()->setNativeMenuBar(false);
   menuBar()->setNativeMenuBar(true);
-#endif
 #endif
 }
 
