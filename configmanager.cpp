@@ -1887,6 +1887,11 @@ void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
 	QStringList m = i.value().toStringList();
 	//qDebug() << id << ": ===> " << m.join(", ");
 	QAction * act = menuParent->findChild<QAction*>(id);
+	QMenu* mainMenu = 0;
+	if (!act) {
+		mainMenu = menuParent->findChild<QMenu*>(id);
+		if (mainMenu) act = mainMenu->menuAction();
+	}
 	bool  newlyCreated = false;
 	if (!act && m.value(3, "") != "") {
 		newlyCreated = true;
@@ -1931,8 +1936,8 @@ void ConfigManager::modifyMenuContent(QStringList& ids, const QString& id){
 	}
 	if (!act) return;
 	bool visible = !(m.value(2,"visible")=="hidden");
-	if (modifyMenuContentsFirstCall && !newlyCreated && visible && act->text() == m.first() && act->data() == m.at(1))
-		manipulatedMenus.remove(act->objectName());
+	if (modifyMenuContentsFirstCall && !newlyCreated && visible && act->text() == m.first() && act->data().toString() == m.at(1))
+		manipulatedMenus.remove(mainMenu ? mainMenu->objectName() : act->objectName());
 	act->setText(m.first());
 	act->setData(m.at(1));
 	act->setVisible(visible);
@@ -2544,10 +2549,18 @@ void ConfigManager::moveCommand(int dir, int atRow){
 QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu) {
 	if (!menu) return 0;
 	static QStringList relevantMenus = QStringList() << "main/tools" << "main/latex" << "main/math";
+	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title()));
 	bool advanced = false;
 	if (parent) advanced = parent->data(0, Qt::UserRole+2).toBool();
-	if (!parent && !relevantMenus.contains(menu->objectName())) advanced = true;
-	QTreeWidgetItem* menuitem= new QTreeWidgetItem(parent, QStringList(menu->title()));
+	else {
+		menuitem->setData(0,Qt::UserRole,menu->objectName());
+		if (manipulatedMenus.contains(menu->objectName())) {
+			QFont bold = menuitem->font(0);
+			bold.setBold(true);
+			for (int j=0;j<3;j++) menuitem->setFont(j, bold);
+		}
+		if (!relevantMenus.contains(menu->objectName())) advanced = true;
+	}
 	if (advanced) { superAdvancedItems << menuitem; menuitem->setData(0,Qt::UserRole+2, true); }
 	menuitem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
 	menuitem->setCheckState(0, menu->menuAction() && menu->menuAction()->isVisible() ? Qt::Checked : Qt::Unchecked);
