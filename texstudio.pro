@@ -356,17 +356,7 @@ unix {
         qt_fr.qm \
         qt_hu.qm \
         qt_zh.qm \
-        templates/template_Article.tex \
-        templates/template_Beamer.tex \
-        templates/template_Book.tex \
-        templates/template_HA-prosper.tex \
-        templates/template_Letter.tex \
-        templates/template_Prosper.tex \
-        templates/template_Report.tex \
-        templates/template_Scrartcl.tex \
-        templates/template_Scrbook.tex \
-        templates/template_Scrlttr2.tex \
-        templates/template_Scrreprt.tex \
+        $$files(templates/*) \
         utilities/usermanual_en.html \
 	utilities/usermanual.css \
         utilities/usermanual_fr.html \
