@@ -259,6 +259,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation>Felfelé mozgat</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Lefelé mozgat</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Eltávolítás</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation>Mindent eltávolít</translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -1634,7 +1653,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalmazva a k
     </message>
     <message>
         <source>Automatically load included files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalmazott fájlok automatikus betöltése</translation>
     </message>
 </context>
 <context>
@@ -2335,6 +2354,13 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
 </context>
 <context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation>A texdoc túl sokáig próbálta megnyitni az alábbi csomag dokumentációját:</translation>
+    </message>
+</context>
+<context>
     <name>InsertGraphics</name>
     <message>
         <source>File</source>
@@ -2436,11 +2462,12 @@ The wizard does not support command </source>
     <message>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation>Értelmezhetetlen grafikus kód: hiányzó \includegraphics opciók</translation>
+        <translation>Értelmezhetetlen grafikus kód:
+Hiányzó \includegraphics opciók.</translation>
     </message>
     <message>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Opciók definiálása a \includegraphics[options]{file} számára</translation>
+        <translation>Opciók definiálása a \includegraphics[options]{file} számára.</translation>
     </message>
     <message>
         <source>Caption for display next to the image</source>
@@ -2724,15 +2751,15 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Open Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliográfia megnyitása</translation>
     </message>
     <message>
         <source>Save Preview Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézet mentése</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Képek</translation>
     </message>
 </context>
 <context>
@@ -2842,7 +2869,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licenc</translation>
     </message>
 </context>
 <context>
@@ -3452,14 +3479,6 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
     <message>
         <source>Searching for</source>
         <translation>Keresés</translation>
-    </message>
-    <message>
-        <source>Alt+Left</source>
-        <translation type="obsolete">Alt+Balra</translation>
-    </message>
-    <message>
-        <source>Alt+Right</source>
-        <translation type="obsolete">Alt+Jobbra</translation>
     </message>
 </context>
 <context>
@@ -4128,7 +4147,8 @@ to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
         <translation>A(z) %1 fájl írása meghiúsult a korábbi tartalom törlése után.
 
-Lehet, hogy a fájl megsérült! Meg kellene próbálnia máshová menteni. Előfordulhat, hogy a lemez sérült, vagy nincs rajta szabad hely.</translation>
+Lehet, hogy a fájl megsérült! Meg kellene próbálnia máshová menteni.
+Előfordulhat, hogy a lemez sérült, vagy nincs rajta szabad hely.</translation>
     </message>
     <message>
         <source>Only part of the file could be written:
@@ -4139,7 +4159,8 @@ to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
         <translation>A(z) %1 fájl írása csak részben sikerült.
 
-Lehet, hogy a fájl megsérült! Meg kellene próbálnia máshová menteni. Előfordulhat, hogy a lemez sérült, vagy nincs rajta szabad hely.</translation>
+Lehet, hogy a fájl megsérült! Meg kellene próbálnia máshová menteni.
+Előfordulhat, hogy a lemez sérült, vagy nincs rajta szabad hely.</translation>
     </message>
     <message>
         <source>There seems to be not enough space to save the file at
@@ -5313,16 +5334,6 @@ Megbízik a parancsfájlban?</translation>
 <context>
     <name>TemplateManager</name>
     <message>
-        <source>TeXstudio found user templates in deprecated locations.
-From now on user templates are hosted at
-%1
-Should TeXstudio move the existing user templates there?If not, they will not be available via the Make Template dialog.</source>
-        <translation type="obsolete">A Texstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
-Mostantól a sablonok át lesznek helyezve a(z)
-%1
-helyre. A Texstudionak át kellene oda helyezni a többi sablont is? Ha nem, azok a sablonok nem lesznek elérhetőek  Sablon készítése dialógusban.</translation>
-    </message>
-    <message>
         <source>Copying template from
 %1
 to
@@ -5351,50 +5362,46 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>A Texstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
+Mostantól a sablonok át lesznek helyezve a(z)
+%1
+helyre. A Texstudionak át kellene oda helyezni a többi sablont is?
+Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógusban.</translation>
     </message>
     <message>
         <source>Select Latex Template</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX sablon kiválasztása</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished">Felhasználó</translation>
+        <translation>Felhasználó</translation>
     </message>
     <message>
         <source>User created template files</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználói sablonfájlok</translation>
     </message>
     <message>
         <source>Builtin</source>
-        <translation type="unfinished"></translation>
+        <translation>Beépített</translation>
     </message>
     <message>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXStudio beépített sablonfájljai.</translation>
     </message>
     <message>
         <source>Select Table Template</source>
-        <translation type="unfinished">Táblázat sablon kiválasztása</translation>
+        <translation>Táblázat sablon kiválasztása</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished">Nincs jogosultsága olvasni az alábbi fájlt:</translation>
+        <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
     </message>
 </context>
 <context>
     <name>TemplateSelector</name>
     <message>
-        <source>Edit</source>
-        <translation type="obsolete">Szerkesztés</translation>
-    </message>
-    <message>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
-    </message>
-    <message>
-        <source>You can not edit built-in templates.</source>
-        <translation type="obsolete">Beépített sablonok nem szerkeszthetők.</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -5409,48 +5416,59 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Nincs jogosultsága törölni a fájlt.</translation>
     </message>
     <message>
-        <source>You do not have read permission to this file:</source>
-        <translation type="obsolete">Nincs jogosultsága olvasni az alábbi fájlt:</translation>
-    </message>
-    <message>
         <source>No Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs előnézet</translation>
     </message>
     <message>
         <source>&lt;No Name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Nincs név&gt;</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished">Verzió</translation>
+        <translation>Verzió</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licenc</translation>
     </message>
     <message>
         <source>Edit Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Sablon szerkesztése</translation>
     </message>
     <message>
         <source>Edit Template Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Sablon-információ szerkesztése</translation>
     </message>
     <message>
         <source>Open Template Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Sablon megnyitása</translation>
     </message>
     <message>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez a sablon nem szerkeszthető.</translation>
     </message>
     <message>
         <source>Could not open location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem nyitható meg:</translation>
+    </message>
+</context>
+<context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation>Súgó csomagok (Texdoc)</translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation>Csomag:</translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation>Dokumentáció nem elérhető</translation>
     </message>
 </context>
 <context>
@@ -6278,14 +6296,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>A TeXstudio névjegye...</translation>
     </message>
     <message>
-        <source>You are trying to save the file under the name %1, but a file with this name is already open.
- TeXstudio does not support multiple instances of the same file.
-Are you sure you want to continue?</source>
-        <translation>A(z) %1 nevű fájlt próbálja menteni, de ilyen nevű fájl már meg van nyitva.
-A TeXstudio nem támogatja ezt 
-Biztos, hogy folytatni akarja?</translation>
-    </message>
-    <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TeXstudio változat anélkül lett fordítva.</translation>
@@ -6789,18 +6799,6 @@ included document in %1</source>
         <translation>Beillesztés utána</translation>
     </message>
     <message>
-        <source>Move Up</source>
-        <translation>Felfelé mozgat</translation>
-    </message>
-    <message>
-        <source>Move Down</source>
-        <translation>Lefelé mozgat</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <translation>Mindent eltávolít</translation>
-    </message>
-    <message>
         <source>Insert Label</source>
         <translation>Címke beszúrása</translation>
     </message>
@@ -6932,20 +6930,12 @@ Kérem, telepítse a megfelelő lib fájlokat (pl. dll vagy .so fájlokat)
 Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</translation>
     </message>
     <message>
-        <source>Select LaTeX Template</source>
-        <translation type="obsolete">LaTeX sablon kiválasztása</translation>
-    </message>
-    <message>
         <source>File not found:</source>
         <translation>A fájl nem található:</translation>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
         <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
-    </message>
-    <message>
-        <source>Select Table Template</source>
-        <translation type="obsolete">Táblázat sablon kiválasztása</translation>
     </message>
     <message>
         <source>&amp;Line Operations</source>
@@ -6978,6 +6968,71 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
     <message>
         <source>Could not write template meta data:</source>
         <translation>A sablon meta adata nem írható:</translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation>Munkamenet</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>Munkamenet betöltése...</translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation>Munkamenet mentése...</translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation>Mágikus megjegyzések hozzáadása ...</translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation>Gyökér dokumentum nevének beszúrása TeX megjegyzésként</translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation>Dokumentum kódolás beszúrása TeX megjegyzésként</translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation>Súgó csomagok...</translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation>Utolsó munkamenet betöltése meghiúsult.</translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation>A(z)
+%1
+nevű fájl mentése nem lehetséges, mert ilyen nevű fájl
+módosult változata már meg van nyitva a TeXStudioban.
+El kellene menteni, vagy be kellene zárni a másik fájlt.
+</translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation>Munkamenet betöltése</translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation>TeXstudio munkafolyamat</translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation>Munkamenet betöltése meghiúsult.</translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation>Munkamenet mentése</translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
+        <translation>Munkamenet mentése meghiúsult.</translation>
     </message>
 </context>
 <context>
@@ -7775,22 +7830,6 @@ The html files are located in the %1 directory.</source>
     <message>
         <source>Author:</source>
         <translation>Szerző:</translation>
-    </message>
-    <message>
-        <source>Date:</source>
-        <translation type="obsolete">Dátum:</translation>
-    </message>
-    <message>
-        <source>Version:</source>
-        <translation type="obsolete">Verzió:</translation>
-    </message>
-    <message>
-        <source>Description:</source>
-        <translation type="obsolete">Leírás:</translation>
-    </message>
-    <message>
-        <source>1</source>
-        <translation type="unfinished">1</translation>
     </message>
 </context>
 </TS>
