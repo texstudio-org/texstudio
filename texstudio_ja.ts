@@ -275,6 +275,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation type="unfinished">上へ移動</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation type="unfinished">下へ移動</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">削除</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished">全て削除</translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>Biber</source>
@@ -2352,6 +2371,13 @@ Are you sure you want to undo all changes?</source>
     <message>
         <source>Word repetition. Distance %1</source>
         <translation>単語の繰り返し。間隔 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5495,6 +5521,21 @@ failed.</source>
     </message>
 </context>
 <context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Cut</source>
@@ -5983,7 +6024,7 @@ Do you want to keep it running? This may cause data corruption.</source>
     </message>
     <message>
         <source>Move Up</source>
-        <translation>上へ移動</translation>
+        <translation type="obsolete">上へ移動</translation>
     </message>
     <message>
         <source>BibTeX</source>
@@ -6243,7 +6284,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <source>Remove All</source>
-        <translation>全て削除</translation>
+        <translation type="obsolete">全て削除</translation>
     </message>
     <message>
         <source>Remove Row</source>
@@ -6556,7 +6597,7 @@ included document in %1</source>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>ファイルを%1の名前で保存しようとしていますが、この名前のファイルはすでに開かれています。
+        <translation type="obsolete">ファイルを%1の名前で保存しようとしていますが、この名前のファイルはすでに開かれています。
  TeXstudioは同じ名前の複数インスタンスをサポートしていません。
 本当に続けますか?</translation>
     </message>
@@ -6674,7 +6715,7 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
     </message>
     <message>
         <source>Move Down</source>
-        <translation>下へ移動</translation>
+        <translation type="obsolete">下へ移動</translation>
     </message>
     <message>
         <source>SVN Conflict!</source>
@@ -7112,6 +7153,66 @@ Do you want to keep the program running? This may cause data corruption.</source
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished">TXSプロファイル</translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7934,7 +8035,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 </TS>

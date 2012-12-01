@@ -279,6 +279,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Rimuovi</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
@@ -2484,6 +2503,13 @@ Sei sicuro di voler annullare i cambiamenti?</translation>
     </message>
     <message>
         <source>Long range word repetition. Distance %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5598,6 +5624,21 @@ failed.</source>
     </message>
 </context>
 <context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Normal Mode</source>
@@ -6583,12 +6624,6 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You are trying to save the file under the name %1, but a file with this name is already open.
- TeXstudio does not support multiple instances of the same file.
-Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
@@ -7075,18 +7110,6 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Move Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Move Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Insert Label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7252,6 +7275,66 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <source>Could not write template meta data:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8066,7 +8149,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 </TS>

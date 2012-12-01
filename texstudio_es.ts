@@ -279,6 +279,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Remuover</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -2500,6 +2519,13 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
     </message>
     <message>
         <source>Bad word</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5622,6 +5648,21 @@ failed.</source>
     </message>
 </context>
 <context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Cut</source>
@@ -6957,18 +6998,6 @@ failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Move Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Move Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Insert language as TeX comment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7006,12 +7035,6 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You are trying to save the file under the name %1, but a file with this name is already open.
- TeXstudio does not support multiple instances of the same file.
-Are you sure you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7283,6 +7306,66 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <source>Could not write template meta data:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8098,7 +8181,7 @@ The html files are located in the %1 directory.</source>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 </TS>
