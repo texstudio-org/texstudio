@@ -30,7 +30,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="33"/>
         <source>html conversion: </source>
-        <translation>conversão html: </translation>
+        <translation>Conversão html: </translation>
     </message>
     <message>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens)</source>
@@ -368,22 +368,22 @@
     <message>
         <location filename="bookmarks.cpp" line="28"/>
         <source>Move Up</source>
-        <translation type="unfinished">Mover Acima</translation>
+        <translation>Mover Acima</translation>
     </message>
     <message>
         <location filename="bookmarks.cpp" line="31"/>
         <source>Move Down</source>
-        <translation type="unfinished">Mover Abaixo</translation>
+        <translation>Mover Abaixo</translation>
     </message>
     <message>
         <location filename="bookmarks.cpp" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished">Remover</translation>
+        <translation>Remover</translation>
     </message>
     <message>
         <location filename="bookmarks.cpp" line="37"/>
         <source>Remove All</source>
-        <translation type="unfinished">Remover Todos</translation>
+        <translation>Remover Todos</translation>
     </message>
 </context>
 <context>
@@ -2663,7 +2663,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="configdialog.cpp" line="411"/>
         <source>Preview</source>
-        <translation>Visualizar</translation>
+        <translation>Visualização</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="412"/>
@@ -3937,7 +3937,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location filename="help.cpp" line="41"/>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="unfinished">texdoc levou muito tempo abrindo a documentação para o pacote:</translation>
+        <translation>texdoc levou muito tempo abrindo a documentação para o pacote:</translation>
     </message>
 </context>
 <context>
@@ -8060,17 +8060,17 @@ falhou.</translation>
     <message>
         <location filename="texdocdialog.ui" line="14"/>
         <source>Packages Help (Texdoc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentação dos Pacotes (Texdoc)</translation>
     </message>
     <message>
         <location filename="texdocdialog.ui" line="55"/>
         <source>Package:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote:</translation>
     </message>
     <message>
         <location filename="texdocdialog.cpp" line="86"/>
         <source>No Documentation Available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhuma Documentação Disponível</translation>
     </message>
 </context>
 <context>
@@ -8354,17 +8354,17 @@ falhou.</translation>
     <message>
         <location filename="texmaker.cpp" line="552"/>
         <source>Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessão</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="553"/>
         <source>Load Session...</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar Sessão...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="554"/>
         <source>Save Session...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar Sessão...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="555"/>
@@ -8880,7 +8880,7 @@ falhou.</translation>
     <message>
         <location filename="texmaker.cpp" line="970"/>
         <source>Packages Help...</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentação dos Pacotes...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="7523"/>
@@ -9259,17 +9259,17 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location filename="texmaker.cpp" line="800"/>
         <source>Add magic comments ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar comentários mágicos...</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="801"/>
         <source>Insert root document name as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir o nome do documento raiz como comentário TeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="803"/>
         <source>Insert document coding as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir codificação do documento como comentário TeX</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="805"/>
@@ -10172,7 +10172,7 @@ De outro modo podem ocorrer falhas ou erros aleatórios.</translation>
     <message>
         <location filename="texmaker.cpp" line="1949"/>
         <source>Loading of last session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregamento da última sessão falhou.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2021"/>
@@ -10181,33 +10181,37 @@ De outro modo podem ocorrer falhas ou erros aleatórios.</translation>
 is currently not possible because a modified version of a file
 with this name is open in TeXstudio. You have to save or close
 this other file before you can overwrite it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar sob o nome
+%1
+não é possível pois uma versão modificada de um arquivo
+com este nome está aberta em TeXstudio. Você tem que
+salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2266"/>
         <source>Load Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar Sessão</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2266"/>
         <location filename="texmaker.cpp" line="2289"/>
         <source>TeXstudio Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessão TeXstudio</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2271"/>
         <source>Loading of session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregamento da sessão falhou.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2289"/>
         <source>Save Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar Sessão</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2292"/>
         <source>Saving of session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvamento da sessão falhou.</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="3936"/>
@@ -11165,7 +11169,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="webpublishdialog.ui" line="221"/>
         <source>Create an index page ?</source>
-        <translation>Criar um apágina de índice?</translation>
+        <translation>Criar uma página de índice?</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="228"/>
