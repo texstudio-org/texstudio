@@ -307,6 +307,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation>Bewege hoch</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation>Bewege runter</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entferne</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation>Entferne alle</translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
@@ -3348,6 +3367,13 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <source>Long range word repetition. Distance %1</source>
         <translation>Wortwiederholung über große Distanz. Distanz %1</translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation>texdoc brauchte zu lang,um die Paketdokumentation zu öffnen:</translation>
     </message>
 </context>
 <context>
@@ -6690,6 +6716,21 @@ failed.</source>
     </message>
 </context>
 <context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation>Paketdokumentation (Texdoc)</translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation>Paket </translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation>Keine Dokumentation verfügbar</translation>
+    </message>
+</context>
+<context>
     <name>Texmaker</name>
     <message>
         <source>Structure</source>
@@ -7776,7 +7817,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>Sie versuchen eine Datei unter dem Namen &quot;%1&quot; zu speichrn, aber eine Datei dieses Namens ist bereits in TeXstudio geöffnet.
+        <translation type="obsolete">Sie versuchen eine Datei unter dem Namen &quot;%1&quot; zu speichrn, aber eine Datei dieses Namens ist bereits in TeXstudio geöffnet.
 TeXstudio unterstützt keine mehrfachen Instanzen der gleichen Datei.
 SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
@@ -8382,15 +8423,15 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Bewege hoch</translation>
+        <translation type="obsolete">Bewege hoch</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Bewege runter</translation>
+        <translation type="obsolete">Bewege runter</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation>Entferne alle</translation>
+        <translation type="obsolete">Entferne alle</translation>
     </message>
     <message>
         <source>Insert Label</source>
@@ -8578,6 +8619,66 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
     <message>
         <source>Could not write template meta data:</source>
         <translation>Vorlageninformationen konnen nicht gespeichert werden:</translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation>Sitzung</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>Lade Sitzung ...</translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation>Speichere Sitzung ...</translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation>Füge spezielle Kommentare hinzu ...</translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation>Füge Dokumentename des Hauptdokuments als Kommentar ein</translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation>Füge Zeichenkodierung des Dokumentes als TeX Kommentar ein</translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation>Pakethilfe ...</translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation>Das Laden der letzten Sitzung ist fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation>Speichern unter dem Namen %1 ist zur Zeit nicht möglich, da eine veränderte Version einer Datei gleichen Namens in TeXstudio geöffnet ist. Die andere Datei muss gespeichert oder geschlossen werden bevor sie überschrieben werden kann.</translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation>Lade Sitzung</translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation>TeXstudio Sitzung</translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation>Das Laden der Sitzung ist fehlgeschlagen.</translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation>Speichere Sitzung</translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
+        <translation>Das Speichern der Sitzung ist fehlgeschlagen.</translation>
     </message>
 </context>
 <context>
@@ -9473,7 +9574,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 </TS>

@@ -299,6 +299,25 @@
     </message>
 </context>
 <context>
+    <name>Bookmarks</name>
+    <message>
+        <source>Move Up</source>
+        <translation type="unfinished">Posunout nahoru</translation>
+    </message>
+    <message>
+        <source>Move Down</source>
+        <translation type="unfinished">Posunout dolů</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished">Odstranit vše</translation>
+    </message>
+</context>
+<context>
     <name>BuildManager</name>
     <message>
         <source>Dvi Viewer</source>
@@ -3161,6 +3180,13 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Long range word repetition. Distance %1</source>
         <translation>Opakování slov s dlouhým dosahem. Vzdálenost %1</translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>texdoc took too long to open the documentation for the package:</source>
+        <translation type="unfinished">Texdocu trvalo příliš dlouho otevření dokumentace pro balíček:</translation>
     </message>
 </context>
 <context>
@@ -6367,11 +6393,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <name>TemplateManager</name>
     <message>
         <source>TeXstudio found user templates in deprecated locations.
->From now on user templates are hosted at
+&gt;From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation>TeXstudio nalezlo uživatelské předlohy v odmítnutých umístěních.
+        <translation type="obsolete">TeXstudio nalezlo uživatelské předlohy v odmítnutých umístěních.
 Od nynějška jsou uživatelské předlohy hostěny na
 %1
 Má tam TeXstudio přemístit stávající uživatelské předlohy?
@@ -6428,6 +6454,14 @@ se nepodařilo odstranit.</translation>
     <message>
         <source>You do not have read permission to this file:</source>
         <translation>Nemáte oprávnění pro čtení tohoto souboru:</translation>
+    </message>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6495,6 +6529,21 @@ se nepodařilo odstranit.</translation>
     <message>
         <source>Could not open location:</source>
         <translation>Nepodařilo se otevřít umístění:</translation>
+    </message>
+</context>
+<context>
+    <name>TexdocDialog</name>
+    <message>
+        <source>Packages Help (Texdoc)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Documentation Available</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7584,7 +7633,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
  TeXstudio does not support multiple instances of the same file.
 Are you sure you want to continue?</source>
-        <translation>Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
+        <translation type="obsolete">Pokoušíte se o uložení souboru pod názvem %1, ale soubor s tímto názvem je již otevřen.
 TeXstudio nepodporuje více případů téhož souboru.
 Jste si jistý, že chcete pokračovat?</translation>
     </message>
@@ -8149,15 +8198,15 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     </message>
     <message>
         <source>Move Up</source>
-        <translation>Posunout nahoru</translation>
+        <translation type="obsolete">Posunout nahoru</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation>Posunout dolů</translation>
+        <translation type="obsolete">Posunout dolů</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation>Odstranit vše</translation>
+        <translation type="obsolete">Odstranit vše</translation>
     </message>
     <message>
         <source>Insert Label</source>
@@ -8329,6 +8378,66 @@ V opačném případě by se mohly objevit náhodné chyby a pády.</translation
     <message>
         <source>Could not write template meta data:</source>
         <translation>Nepodařilo se zapsat popisná data k předloze:</translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add magic comments ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert root document name as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert document coding as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Packages Help...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of last session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving under the name
+%1
+is currently not possible because a modified version of a file
+with this name is open in TeXstudio. You have to save or close
+this other file before you can overwrite it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TeXstudio Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading of session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving of session failed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9238,7 +9347,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>1</source>
-        <translation>1</translation>
+        <translation type="obsolete">1</translation>
     </message>
 </context>
 </TS>
