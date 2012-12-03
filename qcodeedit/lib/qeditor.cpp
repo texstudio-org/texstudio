@@ -1802,7 +1802,7 @@ void QEditor::getCursorPosition(int &line, int &index)
 */
 bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
     bool above;
-    return getPositionBelowCursor(offset,width,height,above);
+	return getPositionBelowCursor(offset,width,height,above);
 }
 
 bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height,bool& above){
@@ -4998,6 +4998,32 @@ QRect QEditor::cursorRect(const QDocumentCursor& c) const
 {
 	return lineRect(c.lineNumber());
 }
+
+/*!
+	\return the area covered by the cursor (in widget coordinates)
+*/
+QRect QEditor::cursorMircoFocusRect() const
+{
+	QDocumentCursor c(m_cursor, false);
+	QDocumentLine line=c.line();
+	if (!c.isValid()) return QRect();
+	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return QRect();
+
+	int left;
+	int top;
+	int temp;
+	getPanelMargins(&left,&top,&temp,&temp);
+
+	top += lineRect(m_cursor.lineNumber()).top();
+	QPoint p = line.cursorToDocumentOffset(c.columnNumber());
+	left += p.x();
+	top += p.y();
+
+	int width = 1; // TODO adapt for bold cursor and overwrite cursor
+	int height = document()->getLineSpacing();
+	return QRect(left, top, width, height);
+}
+
 /*!
 	\brief creates a valid QMimeData object depending on the selection
 */
@@ -5220,6 +5246,33 @@ void QEditor::scrollContentsBy(int dx, int dy)
 
 	if (dy != 0)
 		emit visibleLinesChanged();
+}
+
+QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
+	switch(property) {
+	case Qt::ImMicroFocus:
+		return cursorMircoFocusRect();
+	case Qt::ImFont:
+		// TODO find out correct value: qtextcontol uses the following
+		//return QVariant(d->cursor.charFormat().font());
+		return QVariant();
+	case Qt::ImCursorPosition:
+		// TODO find out correct value: qtextcontol uses the following
+		//return QVariant(d->cursor.position() - block.position());
+		return QVariant();
+	case Qt::ImSurroundingText:
+		return QVariant(cursor().line().text());
+	case Qt::ImCurrentSelection:
+		return QVariant(cursor().selectedText());
+	case Qt::ImMaximumTextLength:
+		return QVariant(); // No limit.
+	case Qt::ImAnchorPosition:
+		// TODO find out correct value: qtextcontol uses the following
+		//return QVariant(qBound(0, d->cursor.anchor() - block.position(), block.length()));
+		return QVariant();
+	default:
+		return QVariant();
+	}
 }
 
 /*!

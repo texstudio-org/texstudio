@@ -1,4 +1,4 @@
-	/****************************************************************************
+/****************************************************************************
 **
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
@@ -231,6 +231,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual QRect lineRect(int line) const;
 		virtual QRect lineRect(const QDocumentLine& l) const;
 		virtual QRect cursorRect(const QDocumentCursor& c) const;
+		virtual QRect cursorMircoFocusRect() const;
+
 		
 		virtual int getFirstVisibleLine();
 		virtual int getLastVisibleLine();
@@ -494,6 +496,8 @@ public slots:
 		virtual QMimeData* createMimeDataFromSelection() const;
 		
 		virtual void scrollContentsBy(int dx, int dy);
+
+		virtual QVariant inputMethodQuery(Qt::InputMethodQuery property) const;
 	public:
 		virtual void insertFromMimeData(const QMimeData *d);
 
