@@ -356,7 +356,44 @@ unix {
         qt_fr.qm \
         qt_hu.qm \
         qt_zh.qm \
-        $$files(templates/*) \
+	templates/tabletemplate_fullyframed_firstBold.js \
+	templates/tabletemplate_fullyframed_firstBold.png \
+	templates/tabletemplate_fullyframed_longtable.js \
+	templates/tabletemplate_fullyframed_longtable.png \
+	templates/tabletemplate_plain_tabular.js \
+	templates/tabletemplate_plain_tabular.png \
+	templates/tabletemplate_plain_tabularx.js \
+	templates/tabletemplate_plain_tabularx.png \
+	templates/tabletemplate_rowcolors_tabular.js \
+	templates/tabletemplate_rowcolors_tabular.png \
+	templates/template_Article(French).json \
+	templates/template_Article(French).tex \
+	templates/template_Article.json \
+	templates/template_Article.png \
+	templates/template_Article.tex \
+	templates/template_Beamer.json \
+	templates/template_Beamer.tex \
+	templates/template_Book.json \
+	templates/template_Book.tex \
+	templates/template_HA-prosper.json \
+	templates/template_HA-prosper.tex \
+	templates/template_Letter.json \
+	templates/template_Letter.png \
+	templates/template_Letter.tex \
+	templates/template_Prosper.json \
+	templates/template_Prosper.tex \
+	templates/template_Report.json \
+	templates/template_Report.png \
+	templates/template_Report.tex \
+	templates/template_Scrartcl.json \
+	templates/template_Scrartcl.png \
+	templates/template_Scrartcl.tex \
+	templates/template_Scrbook.json \
+	templates/template_Scrbook.tex \
+	templates/template_Scrlttr2.json \
+	templates/template_Scrlttr2.tex \
+	templates/template_Scrreprt.json \
+	templates/template_Scrreprt.tex \
         utilities/usermanual_en.html \
 	utilities/usermanual.css \
         utilities/usermanual_fr.html \
