@@ -213,6 +213,7 @@ protected slots:
 	void fileOpenFirstNonOpen();
 	void fileOpenRecentProject();
 	void fileLoadSession();
+	void loadSession(const QString &fileName);
 	void fileSaveSession();
 private slots:
 	void restoreSession(const Session &s, bool showProgress = true);
