@@ -1021,7 +1021,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 			emit latexCompiled(&result);
 			if (result == LCR_ERROR) return false;
 			if (result == LCR_NORMAL || !rerunnable) continue;
-			if (remainingReRunCount <= 0) return false; //aborting, since the rerun failed, so there is an error
+			if (remainingReRunCount <= 0) continue; //do not abort since the rerun condition might have been trigged accidentally
 			if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) { runCommand(CMD_BIBLIOGRAPHY, mainFile, mainFile, 0); remainingReRunCount--;}
 			REQUIRE_RET(result == LCR_RERUN || result == LCR_RERUN_WITH_BIBLIOGRAPHY, false);
 			remainingReRunCount--;
