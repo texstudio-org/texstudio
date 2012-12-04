@@ -2253,6 +2253,15 @@ void Texmaker::fileOpenRecentProject() {
 	if (action) load(action->data().toString(),true);
 }
 
+void Texmaker::loadSession(const QString &fileName) {
+	Session s;
+	if (!s.load(fileName)) {
+		txsCritical(tr("Loading of session failed."));
+		return;
+	}
+	restoreSession(s);
+}
+
 void Texmaker::fileLoadSession() {
 	QString openDir = QDir::homePath();
 	if (currentEditorView()) {
@@ -2265,14 +2274,7 @@ void Texmaker::fileLoadSession() {
 	}
 	QString fn = QFileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
-
-	Session s;
-	if (!s.load(fn)) {
-		txsCritical(tr("Loading of session failed."));
-		return;
-	}
-
-	restoreSession(s);
+	loadSession(fn);
 }
 
 void Texmaker::fileSaveSession() {
@@ -4900,9 +4902,13 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	foreach(const QString& fileToLoad,filesToLoad){
 		QFileInfo ftl(fileToLoad);
 		if (fileToLoad != "") {
-			if (ftl.exists())
-				load(fileToLoad, activateMasterMode);
-			else if (ftl.absoluteDir().exists()) {
+			if (ftl.exists()) {
+				if (ftl.suffix() == Session::fileExtension()) {
+					loadSession(ftl.filePath());
+				} else {
+					load(fileToLoad, activateMasterMode);
+				}
+			} else if (ftl.absoluteDir().exists()) {
 				fileNew(ftl.absoluteFilePath());
 				if (activateMasterMode) {
 					if (documents.singleMode()) ToggleMode(); //will save the new file
@@ -5345,12 +5351,7 @@ void Texmaker::dropEvent(QDropEvent *event) {
 			}
 			QuickGraphics(uris.at(i).toLocalFile());
 		} else if (fi.suffix() == Session::fileExtension()) {
-			Session s;
-			if (!s.load(fi.filePath())) {
-				txsCritical(tr("Loading of session failed."));
-			} else {
-				restoreSession(s);
-			}
+			loadSession(fi.filePath());
 		} else
 			load(fi.filePath());
 	}
