@@ -2263,7 +2263,7 @@ void Texmaker::fileLoadSession() {
 			openDir = doc->getFileInfo().path();
 		}
 	}
-	QString fn = QFileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*.txss)");
+	QString fn = QFileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
 
 	Session s;
@@ -2280,13 +2280,13 @@ void Texmaker::fileSaveSession() {
 	if (currentEditorView()) {
 		LatexDocument *doc = currentEditorView()->document;
 		if (doc->getMasterDocument()) {
-			openDir = replaceFileExtension(doc->getMasterDocument()->getFileName(), "txss");
+			openDir = replaceFileExtension(doc->getMasterDocument()->getFileName(), Session::fileExtension());
 		} else {
-			openDir = replaceFileExtension(doc->getFileName(), "txss");
+			openDir = replaceFileExtension(doc->getFileName(), Session::fileExtension());
 		}
 	}
 
-	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*.txss)");
+	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
 	if (getCurrentSession().save(fn))
 		txsCritical(tr("Saving of session failed."));
@@ -5344,6 +5344,13 @@ void Texmaker::dropEvent(QDropEvent *event) {
 				alreadyMovedCursor = true;
 			}
 			QuickGraphics(uris.at(i).toLocalFile());
+		} else if (fi.suffix() == Session::fileExtension()) {
+			Session s;
+			if (!s.load(fi.filePath())) {
+				txsCritical(tr("Loading of session failed."));
+			} else {
+				restoreSession(s);
+			}
 		} else
 			load(fi.filePath());
 	}
