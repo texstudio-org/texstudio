@@ -18,6 +18,9 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="texcurly:close" parenthesisWeight="00">\\}</sequence>
 	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
 	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
+
+	<sequence parenthesis="foldcomment:open" parenthesisWeight="00" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
+	<sequence parenthesis="foldcomment:close" parenthesisWeight="00" format="magicComment">%[\ \t]*END_FOLD</sequence>
 	
 	<!-- ========================= SWEAVE ====================== -->
 
