@@ -35,12 +35,16 @@ public:
 	void setBookmarks(const QList<QVariant> &bookmarkList) { m_bookmarks = bookmarkList; }
 	QList<QVariant> bookmarks() const { return m_bookmarks; }
 
+	static QString fileExtension() { return m_fileExtension; }
+
 private:
 	QList<FileInSession> m_files;
 	QString m_masterFile;
 	QString m_currentFile;
 
 	QList<QVariant> m_bookmarks;
+
+	static QString m_fileExtension;
 };
 
 #endif // SESSION_H

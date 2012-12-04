@@ -3,6 +3,8 @@
 #include "smallUsefulFunctions.h"
 #include "mostQtHeaders.h"
 
+QString Session::m_fileExtension = "txss";
+
 Session::Session(const Session &s)
 {
 	m_files.append(s.m_files);
