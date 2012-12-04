@@ -1,5 +1,16 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.5.1 -> TeXstudio 2.5.2
+-----------------------------------------
+- new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
+- increased maximum possible tab width to 32
+- fix basic input method support
+- fix missing templates on linux and Mac OS X
+- fix vanishing menu bar on Mac OS X
+- fix crash when saving as an already open file
+- fix viewer might change size because of long status messages
+
+
 TeXstudio 2.5 -> TeXstudio 2.5.1  SVN 3445
 -----------------------------------------
 - improved fold panel
