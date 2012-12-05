@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>Default Compiler</source>
-        <translation>Standardübersetzer</translation>
+        <translation>Standardcompiler</translation>
     </message>
     <message>
         <source>Default Viewer</source>
@@ -561,7 +561,7 @@
     </message>
     <message>
         <source>Compile &amp; View</source>
-        <translation>Kompilieren &amp; Anzeigen</translation>
+        <translation>Kompilieren &amp; Anzeigen (mit ausgewählten Standardprogrammen)</translation>
     </message>
     <message>
         <source>Build &amp; View</source>
