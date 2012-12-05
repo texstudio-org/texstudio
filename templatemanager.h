@@ -54,7 +54,7 @@ public:
 
 	static void setConfigBaseDir(const QString &dir) { configBaseDir = dir; }
 	static QString userTemplateDir() { return configBaseDir + "templates/user/"; }
-	static QString builtinTemplateDir() { return QCoreApplication::applicationDirPath()+"/templates/"; }
+	static QString builtinTemplateDir();
 	static bool ensureUserTemplateDirExists();
 	static void checkForOldUserTemplates();
 

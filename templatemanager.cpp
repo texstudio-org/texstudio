@@ -11,6 +11,18 @@ TemplateManager::TemplateManager(QObject *parent) :
 {
 }
 
+QString TemplateManager::builtinTemplateDir()
+{
+#ifdef Q_OS_MAC
+	return "/Applications/texstudio.app/Contents/Resources/";
+#endif
+#ifdef Q_OS_WIN
+	return QCoreApplication::applicationDirPath()+"/templates/";
+#else
+	return "/usr/local/share/texstudio/";
+#endif
+}
+
 bool TemplateManager::ensureUserTemplateDirExists() {
 	QDir d(userTemplateDir());
 	if (!d.exists()) {
