@@ -9,6 +9,7 @@ TeXstudio 2.5.1 -> TeXstudio 2.5.2
 - fix vanishing menu bar on Mac OS X
 - fix crash when saving as an already open file
 - fix viewer might change size because of long status messages
+- changed shortcuts for next/prev document to Ctrl+PgDown/Up
 
 
 TeXstudio 2.5 -> TeXstudio 2.5.1  SVN 3445
