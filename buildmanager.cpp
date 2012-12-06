@@ -585,6 +585,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			if (cmd.startsWith(TXS_CMD_PREFIX) && internalCommands.contains(cmd.left(space))) {
 				res.commands << CommandToRun(cmd + " " + parameters);
 				res.commands.last().parentCommand = res.commands.last().command;
+				if (user) res.commands.last().flags |= RCF_CHANGE_PDF;
 				continue;
 			}
 			
@@ -634,7 +635,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			for (int i=0; i<newPart.size(); i++)
 				if (newPart[i].parentCommand.isEmpty()) {
 					newPart[i].parentCommand = cmdName;
-					if (user) newPart[i].flags |= RCF_SHOW_STDOUT;
+					if (user) {
+						newPart[i].flags |= RCF_SHOW_STDOUT;
+						newPart[i].flags |= RCF_CHANGE_PDF;
+					}
 				}
 			
 			if (splitted.size() == 1)
@@ -960,19 +964,19 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	for (int i=0;i<expansion.commands.size();i++){
 		latexCompiled |= expansion.commands[i].flags & RCF_COMPILES_TEX;
 		pdfChanged |= expansion.commands[i].flags & RCF_CHANGE_PDF;
-        if(buffer)
-            expansion.commands[i].flags|=RCF_WAITFORFINISHED; // don't let buffer be destroyed before command is finished
+		if(buffer || i != expansion.commands.size() - 1)
+				expansion.commands[i].flags|=RCF_WAITFORFINISHED; // don't let buffer be destroyed before command is finished
 	}
 	if (latexCompiled) {
 		ExpandedCommands temp = expandCommandLine(CMD_INTERNAL_PRE_COMPILE, options);
 		for (int i=temp.commands.size()-1;i>=0;i--) expansion.commands.prepend(temp.commands[i]);
 	}
 
-
+	bool asyncPdf = !(expansion.commands.last().flags & RCF_WAITFORFINISHED) && (expansion.commands.last().flags & RCF_CHANGE_PDF);
 	
-	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
+	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	bool result = runCommandInternal(expansion, mainFile, buffer);
-	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged);
+	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	return result;
 }
 
@@ -989,9 +993,14 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		if (singleInstance && runningCommands.contains(cur.command)) continue;
 		bool latexCompiler = cur.flags & RCF_COMPILES_TEX;
 		bool lastCommandToRun = i == commands.size()-1;
-        bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance) || cur.flags & RCF_WAITFORFINISHED;
+		bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance) || cur.flags & RCF_WAITFORFINISHED;
 		
 		ProcessX* p = newProcessInternal(cur.command, mainFile, singleInstance);
+		p->subCommandName = cur.parentCommand;
+		p->subCommandPrimary = expandedCommands.primaryCommand;
+		p->subCommandFlags = cur.flags;
+		connect(p, SIGNAL(finished(int)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
+
 		REQUIRE_RET(p, false);
 		
 		p->setStdoutBuffer(buffer);
@@ -1008,8 +1017,6 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 				p->deleteLater();
 				return false;
 			}
-		
-		emit endRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 		
         if (waitForCommand) {
             p->waitForFinished();
@@ -1033,6 +1040,13 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 	}
 	return true;
 }
+
+void BuildManager::emitEndRunningSubCommandFromProcessX(int){
+	ProcessX *p = qobject_cast<ProcessX*>(sender());
+	REQUIRE(p);
+	emit endRunningSubCommand(p, p->subCommandPrimary, p->subCommandName, p->subCommandFlags);
+}
+
 
 ProcessX* BuildManager::firstProcessOfDirectExpansion(const QString& command, const QFileInfo& mainFile, const QFileInfo& currentFile, int currentLine){
 	ExpandingOptions options(mainFile, currentFile, currentLine);
@@ -1444,7 +1458,6 @@ bool BuildManager::testAndRunInternalCommand(const QString& cmd, const QFileInfo
 	}
 	return false;
 }
-
 
 QString BuildManager::findFile(const QString& defaultName, const QString& searchPaths){
 	//TODO: merge with findResourceFile

@@ -170,6 +170,7 @@ private slots:
 	void conversionPreviewCompleted(int status); 
 	void commandLineRequestedDefault(const QString& cmdId, QString* result, bool * user);
 	void runInternalCommandThroughProcessX();
+	void emitEndRunningSubCommandFromProcessX(int);
 private:
 	bool testAndRunInternalCommand(const QString& cmd, const QFileInfo& mainFile);
 signals:
@@ -180,11 +181,12 @@ signals:
 	void runInternalCommand(const QString& cmdId, const QFileInfo& mainfile, const QString& options);
 	
 	void latexCompiled(LatexCompileResult* rerun);
-	void beginRunningCommands(const QString& commandMain, bool latex, bool pdf);
+	void beginRunningCommands(const QString& commandMain, bool latex, bool pdf, bool asyncPdf);
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
-	void endRunningCommands(const QString& commandMain, bool latex, bool pdf);
+	void endRunningCommands(const QString& commandMain, bool latex, bool pdf, bool asyncPdf);
 private:
+
 	void initDefaultCommandNames();
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
 	CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
@@ -259,11 +261,14 @@ private slots:
 	void readFromStandardOutput();
 	void readFromStandardError(bool force=false);
 private:
+	friend class BuildManager;
 	QString cmd;
 	QString file;
 	bool isStarted, ended, stderrEnabled, stdoutEnabled, stdoutEnabledOverrideOn;
 	QString *stdoutBuffer;
 	QStringList overriddenEnvironment;
+	QString subCommandName, subCommandPrimary;
+	RunCommandFlags subCommandFlags;
 #ifdef PROFILE_PROCESSES
 	QTime time;
 #endif

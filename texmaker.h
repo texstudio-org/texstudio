@@ -183,7 +183,7 @@ private:
 	
 	QAction *fullscreenModeAction;
 	
-	int runningPDFCommands;
+	int runningPDFCommands, runningPDFAsyncCommands;
 
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction* act, const char* slot, const QList<QVariant>& args);
@@ -374,10 +374,10 @@ protected slots:
 private slots:	
 	void runInternalCommand(const QString& cmd, const QFileInfo& master, const QString& options);
 	void commandLineRequested(const QString& cmdId, QString* result, bool*);
-	void beginRunningCommand(const QString& commandMain, bool latex, bool pdf);
+	void beginRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async);
 	void beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
 	void endRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags);
-	void endRunningCommand(const QString& commandMain, bool latex, bool pdf);
+	void endRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async);
 	
 	
 	bool runCommand(const QString& commandline, QString* buffer = 0);

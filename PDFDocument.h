@@ -354,7 +354,7 @@ public:
 	bool followCursor() const;
 	PDFRenderManager *renderManager;
 
-	static bool isCompiling;
+	static bool isCompiling, isMaybeCompiling;
 	bool embeddedMode;
 	bool autoClose;
 	
