@@ -304,7 +304,7 @@ protected slots:
 	void moveCursorTodlh();
 
 private slots:	
-	void ReadSettings();
+	void ReadSettings(bool reread=false);
 	void SaveSettings(const QString& configName="");
 	
 protected slots:	
