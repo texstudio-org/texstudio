@@ -6820,9 +6820,11 @@ void Texmaker::loadProfile(){
 				}
 				continue;
 			    }
-			    if(key.startsWith("texmaker/Tools/Commands/user")){
-				//config->findChildren
-				   continue;
+                if((key=="texmaker/Tools/User Order")||(key=="texmaker/Tools/Display Name")){
+                    // logic assumes that the user command name is exclusive
+                    QStringList order=config->value(key).toStringList()<<profile->value(key).toStringList();
+                    config->setValue(key,order);
+                    continue;
 			    }
 			    config->setValue(key,profile->value(key));
 			}
