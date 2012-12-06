@@ -29,7 +29,7 @@ public:
 	ConfigManager(QObject *parent=0);
 	~ConfigManager();
 
-	QSettings* readSettings();
+	QSettings* readSettings(bool reread=false);
 	QSettings* saveSettings(const QString& saveName="");
 
 	bool execConfigDialog();

@@ -549,7 +549,7 @@ ConfigManager::~ConfigManager(){
 	if (persistentConfig) delete persistentConfig;
 }
 
-QSettings* ConfigManager::readSettings() {
+QSettings* ConfigManager::readSettings(bool reread) {
 	//load config
 	QSettings *config = persistentConfig;
 	bool importTexmakerSettings = false;
@@ -758,27 +758,28 @@ QSettings* ConfigManager::readSettings() {
 	}
 	
 	//user macros
-	if (config->value("Macros/0").isValid()) {
+	if(!reread){
+	    if (config->value("Macros/0").isValid()) {
 		for (int i=0; i<1000; i++) {
-			QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
-			if (ls.isEmpty()) break;
-			completerConfig->userMacro.append(Macro(ls));
+		    QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
+		    if (ls.isEmpty()) break;
+		    completerConfig->userMacro.append(Macro(ls));
 		}
 		for (int i=0; i < keyReplace.size(); i++) {
-			completerConfig->userMacro.append(Macro(
-												  tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
-												  keyReplaceBeforeWord[i].replace("%", "%%"),
-												  "",
-												  "(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i])
-												  ));
-			completerConfig->userMacro.append(Macro(
-												  tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
-												  keyReplaceAfterWord[i].replace("%", "%%"),
-												  "",
-												  "(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i])
-												  ));
+		    completerConfig->userMacro.append(Macro(
+							  tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
+							  keyReplaceBeforeWord[i].replace("%", "%%"),
+							  "",
+							  "(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i])
+							  ));
+		    completerConfig->userMacro.append(Macro(
+							  tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
+							  keyReplaceAfterWord[i].replace("%", "%%"),
+							  "",
+							  "(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i])
+							  ));
 		}
-	} else {
+	    } else {
 		// try importing old macros
 		QStringList userTags = config->value("User/Tags").toStringList();
 		QStringList userNames = config->value("User/TagNames").toStringList();
@@ -788,21 +789,21 @@ QSettings* ConfigManager::readSettings() {
 		while (userTriggers.size()<userTags.size()) userTriggers << "";
 
 		for (int i=0; i < keyReplace.size(); i++) {
-			userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
-			userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
-			userAbbrevs.append("");
-			userTriggers.append("(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
+		    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
+		    userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
+		    userAbbrevs.append("");
+		    userTriggers.append("(?language:latex)(?<=\\s|^)"+QRegExp::escape(keyReplace[i]));
 
-			userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
-			userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
-			userAbbrevs.append("");
-			userTriggers.append("(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i]));
+		    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
+		    userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
+		    userAbbrevs.append("");
+		    userTriggers.append("(?language:latex)(?<=\\S)"+QRegExp::escape(keyReplace[i]));
 		}
 
 		for (int i=0;i<userTags.size();i++)
-			completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
+		    completerConfig->userMacro.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
+	    }
 	}
-	
 	//menu shortcuts
 	QMap<QString, QString> aliases = QMap<QString, QString>();
 	// key and value may be a full command or a prefix only

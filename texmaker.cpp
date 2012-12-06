@@ -2903,7 +2903,7 @@ void Texmaker::editSectionPasteBefore(int line) {
 
 
 /////////////// CONFIG ////////////////////
-void Texmaker::ReadSettings() {
+void Texmaker::ReadSettings(bool reread) {
 	QuickDocumentDialog::registerOptions(configManager);
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
@@ -2912,7 +2912,7 @@ void Texmaker::ReadSettings() {
 	configManager.buildManager=&buildManager;
 	scriptengine::buildManager=&buildManager;
 	scriptengine::app=this;
-	QSettings *config=configManager.readSettings();
+	QSettings *config=configManager.readSettings(reread);
 	completionBaseCommandsUpdated=true;
 	
 	config->beginGroup("texmaker");
@@ -6812,12 +6812,24 @@ void Texmaker::loadProfile(){
 		if(profile && config){
 			QStringList keys = profile->allKeys();
 			foreach(const QString& key,keys){
-				config->setValue(key,profile->value(key));
+			    //special treatment for macros/usercommands
+			    if(key.startsWith("texmaker/Macros")){
+				QStringList ls = profile->value(key).toStringList();
+				if (!ls.isEmpty()){
+				    configManager.completerConfig->userMacro.append(Macro(ls));
+				}
+				continue;
+			    }
+			    if(key.startsWith("texmaker/Tools/Commands/user")){
+				//config->findChildren
+				   continue;
+			    }
+			    config->setValue(key,profile->value(key));
 			}
 		}
 		delete profile;
 		delete config;
-		ReadSettings();
+		ReadSettings(true);
 	}
 }
 
