@@ -1393,7 +1393,8 @@ void BuildManager::dvi2psPreviewCompleted(int status){
 	ProcessX* p2=qobject_cast<ProcessX*> (sender());
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
-	ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]",p2->getFile());
+	QString filePs = parseExtendedCommandLine("?am.ps", p2->getFile()).first();
+	ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]",filePs);
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
 	connect(p3,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
@@ -1405,6 +1406,7 @@ void BuildManager::conversionPreviewCompleted(int status){
 	if (!p2) return;
 	// put image in preview
 	QString processedFile=p2->getFile();
+	if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex",processedFile).first();
 	QString fn=parseExtendedCommandLine("?am)1.png",processedFile).first();
 	if(QFileInfo(fn).exists())
 		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
