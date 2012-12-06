@@ -62,6 +62,7 @@ const int kPDFHighlightDuration = 2000;
 
 static PDFDocumentConfig* globalConfig = 0;
 bool PDFDocument::isCompiling = false;
+bool PDFDocument::isMaybeCompiling = false;
 
 static const int GridBorder = 5;
 //====================Zoom utils==========================
@@ -2390,10 +2391,15 @@ void PDFDocument::reload(bool fillCache)
 	QDateTime lastModified=fi.lastModified();
 	qint64 filesize=fi.size();
 	document = renderManager->loadDocument(curFile, error);
-	while( error==PDFRenderManager::FileIncomplete && curFileSize==filesize && curFileLastModified==lastModified){
-		QMessageBox::StandardButton button=txsConfirmWarning(
-					tr("%1\ndoes not look like a valid PDF document.\n\nEither the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?").arg(curFile),
-					(QMessageBox::Yes|QMessageBox::No|QMessageBox::Retry));
+	while( error==PDFRenderManager::FileIncomplete
+				 && curFileSize==filesize
+				 && curFileLastModified==lastModified){
+		QMessageBox::StandardButton button=
+				isMaybeCompiling ?
+					QMessageBox::No
+				: txsConfirmWarning(
+						tr("%1\ndoes not look like a valid PDF document.\n\nEither the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?").arg(curFile),
+						(QMessageBox::Yes|QMessageBox::No|QMessageBox::Retry));
 		switch (button) {
 			case QMessageBox::Retry:
 				document = renderManager->loadDocument(curFile, error);

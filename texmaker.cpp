@@ -85,7 +85,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	biblatexEntryActions = 0;
 	bibTypeActions = 0;
 	highlightLanguageActions = 0;
-	runningPDFCommands = 0;
+	runningPDFCommands = runningPDFAsyncCommands = 0;
     completerPreview=false;
 	
 	ReadSettings();
@@ -487,10 +487,10 @@ void Texmaker::setupDockWidgets(){
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
 		
-		connect(&buildManager, SIGNAL(beginRunningCommands(QString,bool,bool)), SLOT(beginRunningCommand(QString,bool,bool)));
+		connect(&buildManager, SIGNAL(beginRunningCommands(QString,bool,bool,bool)), SLOT(beginRunningCommand(QString,bool,bool,bool)));
 		connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
 		connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
-		connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), SLOT(endRunningCommand(QString,bool,bool)));
+		connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool,bool)), SLOT(endRunningCommand(QString,bool,bool,bool)));
 		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(ViewLogOrReRun(LatexCompileResult*)));
 		connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo,QString)), SLOT(runInternalCommand(QString,QFileInfo,QString)));
 		connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequested(QString,QString*,bool*)));
@@ -4379,11 +4379,13 @@ void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool 
 	} else if (cmdId == "quick" && checkProgramPermission(program, cmdId, master)) *result = program;
 }
 
-void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf){
+void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async){
 	if (pdf) {
 		runningPDFCommands++;
+		if (async && pdf) runningPDFAsyncCommands++;
 #ifndef NO_POPPLER_PREVIEW
 		PDFDocument::isCompiling = true;
+		PDFDocument::isMaybeCompiling |= runningPDFAsyncCommands > 0;
 #endif
 		
 		if (configManager.autoCheckinAfterSave) {
@@ -4422,9 +4424,16 @@ void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, con
 		else
 			txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName + ":\n" + p->getCommandLine()));
 	}
+	if ((flags & RCF_CHANGE_PDF)  && !(flags & RCF_WAITFORFINISHED) && (runningPDFAsyncCommands > 0)) {
+		runningPDFAsyncCommands--;
+#ifndef NO_POPPLER_PREVIEW
+		if (runningPDFAsyncCommands <= 0) PDFDocument::isMaybeCompiling = false;
+#endif
+	}
+
 }
 
-void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf){
+void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async){
 	Q_UNUSED(commandMain)
 	Q_UNUSED(pdf)
 	if (pdf) {
