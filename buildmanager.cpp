@@ -739,21 +739,22 @@ QString getCommandLineViewPdfExternal(){
 	return "";
 }
 QString getCommandLineGhostscript(){
+	const QString gsArgs = " \"?am.ps\"";
 	QString livePath = getTeXLiveBinPath();
 	if (!livePath.isEmpty()){
 		if (QFileInfo(livePath+"rungs.exe").exists())
-			return "\""+livePath+"rungs.exe\"";
+			return "\""+livePath+"rungs.exe\"" + gsArgs;
 		if (QFileInfo(livePath+"rungs.bat").exists()) //tl 2008 (?)
-			return "\""+livePath+"rungs.bat\"";
+			return "\""+livePath+"rungs.bat\"" + gsArgs;
 	}
 	QString dll=findGhostscriptDLL().replace("gsdll32.dll","gswin32c.exe",Qt::CaseInsensitive);
-	if (dll.endsWith("gswin32c.exe")) return "\""+dll+"\"";
+	if (dll.endsWith("gswin32c.exe")) return "\""+dll+"\"" + gsArgs;
 	else if (QFileInfo("C:/Program Files/gs/gs8.64/bin/gswin32c.exe").exists())  //old behaviour
-		return "\"C:/Program Files/gs/gs8.64/bin/gswin32c.exe\"";
+		return "\"C:/Program Files/gs/gs8.64/bin/gswin32c.exe\"" + gsArgs;
 	else if (QFileInfo("C:/Program Files/gs/gs8.63/bin/gswin32c.exe").exists())  //old behaviour
-		return "\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"";
+		return "\"C:/Program Files/gs/gs8.63/bin/gswin32c.exe\"" + gsArgs;
 	else if (QFileInfo("C:/Program Files/gs/gs8.61/bin/gswin32c.exe").exists())
-		return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"";
+		return "\"C:/Program Files/gs/gs8.61/bin/gswin32c.exe\"" + gsArgs;
 	return "";
 }
 
