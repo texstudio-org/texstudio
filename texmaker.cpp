@@ -6814,6 +6814,7 @@ void Texmaker::saveProfile(){
 void Texmaker::loadProfile(){
 	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TXS Profile","filter")+"(*.txsprofile *.tmxprofile);;"+tr("All files")+" (*)");  //*.tmxprofile for compatibility - may be removed later
+    bool macro=false;
 	if(QFileInfo(fname).isReadable()){
 		SaveSettings();
 		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
@@ -6826,6 +6827,7 @@ void Texmaker::loadProfile(){
 				QStringList ls = profile->value(key).toStringList();
 				if (!ls.isEmpty()){
 				    configManager.completerConfig->userMacro.append(Macro(ls));
+                    macro=true;
 				}
 				continue;
 			    }
@@ -6841,6 +6843,8 @@ void Texmaker::loadProfile(){
 		delete profile;
 		delete config;
 		ReadSettings(true);
+        if(macro)
+            updateUserMacros();
 	}
 }
 
