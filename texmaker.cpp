@@ -5506,7 +5506,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	
 	if (!LatexCompleter::hasHelpfile()) {
 		QFile f(findResourceFile("latexhelp.html"));
-		if (!f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
+		if (!f.exists() || !f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
 		else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
 	}
 	
