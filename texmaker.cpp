@@ -316,7 +316,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
   connectWithAdditionalArguments(this, SIGNAL(infoFileClosed()), this, "runScripts", QList<QVariant>() << Macro::ST_FILE_CLOSED);
   connectWithAdditionalArguments(&documents, SIGNAL(masterDocumentChanged(LatexDocument*)), this, "runScripts", QList<QVariant>() << Macro::ST_MASTER_CHANGED);
   connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
-  connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
+  connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool,bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
 }
 
 
