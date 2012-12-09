@@ -6815,6 +6815,7 @@ void Texmaker::loadProfile(){
 	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TXS Profile","filter")+"(*.txsprofile *.tmxprofile);;"+tr("All files")+" (*)");  //*.tmxprofile for compatibility - may be removed later
     bool macro=false;
+    bool userCommand=false;
 	if(QFileInfo(fname).isReadable()){
 		SaveSettings();
 		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
@@ -6823,18 +6824,19 @@ void Texmaker::loadProfile(){
 			QStringList keys = profile->allKeys();
 			foreach(const QString& key,keys){
 			    //special treatment for macros/usercommands
-			    if(key.startsWith("texmaker/Macros")){
-				QStringList ls = profile->value(key).toStringList();
-				if (!ls.isEmpty()){
-				    configManager.completerConfig->userMacro.append(Macro(ls));
-                    macro=true;
-				}
-				continue;
+                if(key.startsWith("texmaker/Macros")){
+                    QStringList ls = profile->value(key).toStringList();
+                    if (!ls.isEmpty()){
+                        configManager.completerConfig->userMacro.append(Macro(ls));
+                        macro=true;
+                    }
+                    continue;
 			    }
-		if((key=="texmaker/Tools/User Order")||(key=="texmaker/Tools/Display Names")){
+                if((key=="texmaker/Tools/User Order")||(key=="texmaker/Tools/Display Names")){
                     // logic assumes that the user command name is exclusive
                     QStringList order=config->value(key).toStringList()<<profile->value(key).toStringList();
                     config->setValue(key,order);
+                    userCommand=true;
                     continue;
 			    }
 			    config->setValue(key,profile->value(key));
@@ -6845,6 +6847,8 @@ void Texmaker::loadProfile(){
 		ReadSettings(true);
         if(macro)
             updateUserMacros();
+        if(userCommand)
+            updateUserToolMenu();
 	}
 }
 
