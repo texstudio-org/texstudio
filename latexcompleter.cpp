@@ -824,6 +824,8 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
     }
     for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
+        if(baseCommands.contains(str))
+            continue;
         CompletionWord cw(str);
         if(completionType==CT_COMMANDS){
             cw.index=qHash(str);
