@@ -108,9 +108,10 @@ public:
 	Q_INVOKABLE QSet<QString> userCommandList() const{
 		return mUserCommandList.values().toSet();
 	}
-	Q_INVOKABLE QSet<QString> additionalCommandsList() const{
+    Q_INVOKABLE QSet<QString> additionalCommandsList();
+    /*{
 		return mCompleterWords;
-	}
+    }*/
 	void updateRefsLabels(const QString& ref);
 	void recheckRefsLabels();
 	Q_INVOKABLE int countLabels(const QString& name);
@@ -188,6 +189,7 @@ private:
     QMultiHash<QDocumentLineHandle*,QString> mIncludedFilesList;
 	
 	QSet<QString> mCompleterWords; // local list of completer words
+    QSet<QString> mCWLFiles;
 	
 	QLocale mSpellingLanguage; // default/not specified: QLocale::c()
 	

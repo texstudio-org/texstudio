@@ -5424,7 +5424,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 }
 
 void Texmaker::updateCompleter(LatexEditorView* edView) {
-	QSet<QString> words;
+    QSet<QString> words;
 	
 	if (configManager.parseBibTeX) documents.updateBibFiles();
 	
@@ -5436,7 +5436,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		// determine from which docs data needs to be collected
 		docs=edView->document->getListOfDocs();
 		// collect user commands and references
-		foreach(const LatexDocument* doc,docs){
+        foreach(LatexDocument* doc,docs){
 			words.unite(doc->userCommandList());
 			words.unite(doc->additionalCommandsList());
 		}

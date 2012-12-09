@@ -2286,8 +2286,9 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 			LatexPackage pck=parent->cachedPackages.value(elem);
 			cmds.possibleCommands=pck.possibleCommands;
 			ltxCommands.substract(cmds);
-			foreach(const QString& elem,pck.completionWords)
-				mCompleterWords.remove(elem);
+            /*foreach(const QString& elem,pck.completionWords)
+                mCompleterWords.remove(elem);*/
+            mCWLFiles.remove(elem);
 		}
 		//recheck syntax of ALL documents ...
 		update=true;
@@ -2315,10 +2316,12 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 			LatexPackage pck;
 			if(parent->cachedPackages.contains(elem)){
 				pck=parent->cachedPackages.value(elem);
+                mCWLFiles.insert(elem);
 			}else{
 				pck=loadCwlFile(elem,config);
 				if(pck.packageName!="<notFound>"){
 					parent->cachedPackages.insert(elem,pck); // cache package
+                    mCWLFiles.insert(elem);
 				}else{
 					LatexPackage zw;
 					zw.packageName=elem;
@@ -2327,7 +2330,7 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 			}
 			cmds.possibleCommands=pck.possibleCommands;
 			ltxCommands.append(cmds);
-			mCompleterWords.unite(pck.completionWords.toSet());
+            //mCompleterWords.unite(pck.completionWords.toSet());
 		}
 		//recheck syntax of ALL documents ...
 		update=true;
@@ -2343,10 +2346,18 @@ void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &remove
 	}
 }
 
+QSet<QString> LatexDocument::additionalCommandsList(){
+    LatexPackage pck;
+    QStringList loadedFiles,files;
+    files=mCWLFiles.toList();
+    gatherCompletionFiles(files,loadedFiles,pck);
+    return pck.completionWords.toSet();
+}
+
 void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bool forceLabelUpdate){
 	// remove
-	LatexEditorView *edView=getEditorView();
-	LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
+    //LatexEditorView *edView=getEditorView();
+    //LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
 	bool update=forceUpdate;
 	
 	//recheck syntax of ALL documents ...
@@ -2356,11 +2367,13 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bo
 		if(!files.at(i).endsWith(".cwl"))
 			files[i]=files[i]+".cwl";
 	}
-	files.append(completerConfig->getLoadedFiles());
+    //files.append(completerConfig->getLoadedFiles());
 	gatherCompletionFiles(files,loadedFiles,pck);
 	update=true;
 	
-	completerConfig->words=pck.completionWords;
+    //completerConfig->words=pck.completionWords;
+    //mCompleterWords=pck.completionWords.toSet();
+    mCWLFiles=loadedFiles.toSet();
 	ltxCommands.optionCommands=pck.optionCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
