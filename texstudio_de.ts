@@ -4467,19 +4467,19 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>&amp;About TeXstudio...</source>
-        <translation>Über TeXstudio</translation>
+        <translation>Über TeXstudio...</translation>
     </message>
     <message>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation>&quot;%1&quot; konnte nicht gefunden werden. Vielleicht wurde die Datei gelöscht?</translation>
+        <translation>&quot;%1&quot; konnte nicht gefunden werden. Möglicherweise wurde die Datei gelöscht.</translation>
     </message>
     <message>
         <source>Open PDF</source>
-        <translation>&amp;Öffne PDF...</translation>
+        <translation>PDF öffnen</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation>&amp;Drucken...</translation>
+        <translation>Drucken</translation>
     </message>
     <message>
         <source>&amp;Print...</source>
