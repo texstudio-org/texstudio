@@ -5150,11 +5150,15 @@ void QDocumentCursorHandle::deleteChar()
 
 	if ( !atLineEnd() )
 	{
+		int charCount = 1;
+		if (m_begOffset >= 0 && m_begOffset + 1 < l.length() && l.text().at(m_begOffset).isHighSurrogate() && l.text().at(m_begOffset + 1).isLowSurrogate())
+			charCount = 2;
+
 		command = new QDocumentEraseCommand(
 											m_begLine,
 											m_begOffset,
 											m_begLine,
-											m_begOffset + 1,
+											m_begOffset + charCount,
 											m_doc
 										);
 
@@ -5189,9 +5193,13 @@ void QDocumentCursorHandle::deletePreviousChar()
 
 	if ( !atLineStart() )
 	{
+		int charCount = 1;
+		if (m_begOffset >= 2 && m_begOffset <= l.length() && l.text().at(m_begOffset - 1).isLowSurrogate() && l.text().at(m_begOffset - 2).isHighSurrogate())
+			charCount = 2;
+
 		command = new QDocumentEraseCommand(
 											m_begLine,
-											m_begOffset - 1,
+											m_begOffset - charCount,
 											m_begLine,
 											m_begOffset,
 											m_doc
