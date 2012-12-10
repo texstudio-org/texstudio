@@ -6815,7 +6815,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>TeXstudio a trouvé des modèles personnels à des emplacements obsolètes.
 Désomais, les modèles personnels sont stockés ici :
 %1.
-TeXstudio doit-il déplacer les mmodèles personnels ici ?
+TeXstudio doit-il y déplacer les modèles personnels existants ?
 Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un modèle ».</translation>
     </message>
     <message>
@@ -8298,7 +8298,7 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>No, run the default command</source>
-        <translation>No, lancer la compilation par défaut</translation>
+        <translation>Non, lancer la commande par défaut</translation>
     </message>
     <message>
         <source>&amp;User</source>
@@ -8348,11 +8348,11 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
-        <translation>Oui, toujours lancer la compilation de remplacement</translation>
+        <translation>Oui, toujours lancer la commande de remplacement</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overridden command</source>
-        <translation>Oui, autoriser tous les documents à utiliser la compilation de remplacement</translation>
+        <translation>Oui, autoriser tous les documents à utiliser la commande de remplacement</translation>
     </message>
     <message>
         <source>TeXstudio Emergency</source>
