@@ -3,6 +3,7 @@
 TeXstudio 2.5.1 -> TeXstudio 2.5.2
 -----------------------------------------
 - new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
+- add support to display CJK and Cyrillic in PDF viewer
 - increased maximum possible tab width to 32
 - fix basic input method support
 - fix missing templates on linux and Mac OS X
@@ -10,6 +11,7 @@ TeXstudio 2.5.1 -> TeXstudio 2.5.2
 - fix crash when saving as an already open file
 - fix viewer might change size because of long status messages
 - changed shortcuts for next/prev document to Ctrl+PgDown/Up
+- several small corrections
 
 
 TeXstudio 2.5 -> TeXstudio 2.5.1  SVN 3445
