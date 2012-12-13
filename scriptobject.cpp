@@ -51,7 +51,7 @@ void ScriptObject::crash_loop(){
 	register int a = 1, b = 2, c = 3, d = 4;
 #endif
 	while (1) {
-		void * x = malloc(16); free(x);  
+		void * x = malloc(16); free(x);
 		Q_ASSERT(a == 1); Q_ASSERT(b == 2); Q_ASSERT(c == 3); Q_ASSERT(d == 4); //make sure, no register suddenly change
 	}; 
 }
