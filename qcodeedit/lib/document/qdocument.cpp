@@ -1965,8 +1965,6 @@ void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 	for (QFoldedLineIterator fli = ld->foldedLineIterator(this);
 	     fli.line.isValid();
 	     ++fli){
-		if (fli.collapsedBlockStart)
-			blockStartList << QPair<int,int>(fli.lineNr, fli.open);
 		if (fli.collapsedBlockEnd){
 			Q_ASSERT(!blockStartList.empty());
 			int c=fli.close;
@@ -1980,6 +1978,8 @@ void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 			}
 			if (c>0 && !blockStartList.empty()) blockStartList.last().second-=c;
 		}
+		if (fli.collapsedBlockStart)
+			blockStartList << QPair<int,int>(fli.lineNr, fli.open);
 	}
 	for (int i=0;i<blockStartList.size();i++)
 		m_impl->m_hidden.insertMulti(blockStartList[i].first,lines()-1-blockStartList[i].first);

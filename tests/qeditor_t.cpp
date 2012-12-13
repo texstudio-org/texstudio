@@ -206,6 +206,33 @@ void QEditorTest::foldedText_data(){
 		<< "uncomment"
 		<< "0\n1{\n%2}\n3}\n4\n"
 		<< (QList<int>() << 2 << 3);
+
+	QTest::newRow("last section folded commenting")
+		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n\\section{4}\n4\n"
+		<< (QList<int>() << 0 << 2 << 4 << 6)
+		<< (QList<int>() << 1 << 3 << 5 << 7 << 8)
+		<< 6 << 0 << 7 << 1
+		<< "comment"
+		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n%\\section{4}\n%4\n"
+		<< (QList<int>() << 1 << 3 << 5 << 6 << 7 << 8);
+
+	QTest::newRow("last section folded indent")
+		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n\\section{4}\n4\n"
+		<< (QList<int>() << 0 << 2 << 4 << 6)
+		<< (QList<int>() << 1 << 3 << 5 << 7 << 8)
+		<< 6 << 0 << 7 << 1
+		<< "indent"
+		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n\t\\section{4}\n\t4\n"
+		<< (QList<int>() << 1 << 3 << 5 << 7 << 8);
+
+	QTest::newRow("last section folded unindent")
+		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n\t\\section{4}\n\t4\n"
+		<< (QList<int>() << 0 << 2 << 4 << 6)
+		<< (QList<int>() << 1 << 3 << 5 << 7 << 8)
+		<< 6 << 0 << 7 << 1
+		<< "unindent"
+		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n\\section{4}\n4\n"
+		<< (QList<int>() << 1 << 3 << 5 << 7 << 8);
 }
 //checks if block-commands (e.g indent, comment) work with folded text
 void QEditorTest::foldedText(){
