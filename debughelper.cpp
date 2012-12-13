@@ -514,14 +514,9 @@ SAFE_INT lastErrorWasLoop = 0;
 volatile sig_atomic_t lastCrashSignal = 0;
 #define SIGMYSTACKSEGV 123
 
-#ifdef Q_WS_MACX
-#define LAST_POSSIBLE_TXS_ADDRESS ( ( (char*)&isAddressInTeXstudio) + 0x800000 )
-#else
-#define LAST_POSSIBLE_TXS_ADDRESS (&_etext)
-extern int LAST_POSSIBLE_TXS_ADDRESS;
-//perhaps always use __etext? (did work on linux)
-#endif
-
+#define LAST_POSSIBLE_TXS_ADDRESS ( ( (char*)&isAddressInTeXstudio) + 0x900000 )
+//do not use etext, since it behaves funny (e.g. becomes 0 when including sys/ptrace)
+//#define LAST_POSSIBLE_TXS_ADDRESS (&_etext)
 
 CPU_CONTEXT_TYPE lastLoopContext;
 
@@ -1012,6 +1007,77 @@ QString getLastCrashInformation(bool & wasLoop){return "";}
 #endif
 
 
+#ifdef HAS_DEBUGGER_PRESENT
+#undef HAS_DEBUGGER_PRESENT
+#endif
+
+
+#ifdef Q_WS_WIN
+#define HAS_DEBUGGER_PRESENT
+#else
+#ifndef  QT_NO_DEBUG
+#define HAS_DEBUGGER_PRESENT
+#include <sys/ptrace.h>
+//from http://stackoverflow.com/questions/3596781/detect-if-gdb-is-running
+int gdb_check()
+{
+  int pid = fork();
+  int status;
+  int res;
+
+  if (pid == -1)
+    {
+      perror("fork");
+      return -1;
+    }
+
+  if (pid == 0)
+    {
+      int ppid = getppid();
+      /* Child */
+      if (ptrace(PTRACE_ATTACH, ppid, NULL, NULL) == 0)
+        {
+          /* Wait for the parent to stop and continue it */
+          waitpid(ppid, NULL, 0);
+          ptrace(PTRACE_CONT, ppid, NULL, NULL);
+
+          /* Detach */
+          ptrace(PTRACE_DETACH, ppid, NULL, NULL);
+
+          /* We were the tracers, so gdb is not present */
+          res = 0;
+        }
+      else
+        {
+          /* Trace failed so gdb is present */
+          res = 1;
+        }
+      _Exit(res);
+    }
+  else
+    {
+      waitpid(pid, &status, 0);
+      res = WEXITSTATUS(status);
+    }
+  return res;
+}
+
+int _debugger_present = -1;
+bool IsDebuggerPresent()
+{
+  if (-1 == _debugger_present)
+    _debugger_present = gdb_check();
+  if (_debugger_present == 1)  {
+    fprintf(stderr, "debugger detected: no recovering\n\n");
+    fflush(stderr);
+  }
+  return _debugger_present == 1;
+}
+
+#endif
+#endif
+
+
 
 
 
@@ -1039,14 +1105,14 @@ void Guardian::run(){
 			continue;
 		}
 		if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) continue;
-#ifdef Q_WS_WIN
-		if (IsDebuggerPresent()) continue;
-#endif
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
 		lastTick = mainEventLoopTicks;
 		if (errors >= 10) {
 			fprintf(stderr, "Main thread in trouble\n");
+#ifdef HAS_DEBUGGER_PRESENT
+			if (IsDebuggerPresent()) return;
+#endif
 			int repetitions = 0;
 			while (lastTick == mainEventLoopTicks && !recoverMainThreadFromOutside()) {
 				msleep(50);
@@ -1096,3 +1162,5 @@ void Guardian::slowOperationEnded(){
 	slowOperations--;
 	if (slowOperations < 0) slowOperations = 0;
 }
+
+
