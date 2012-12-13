@@ -281,18 +281,29 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 				if (useCurrentFile) command=command.mid(2);
 				bool absPath = command.startsWith('a');
 				//check only sane commands
-				if (command=="ame") command=QDir::toNativeSeparators(selectedFile.absoluteFilePath());
+				if (command=="ame")
+					command=QDir::toNativeSeparators(selectedFile.absoluteFilePath());
 				else if (command=="am") {
 					command=QDir::toNativeSeparators(selectedFile.absoluteFilePath());
 					if (selectedFile.suffix()!="") command.chop(1+selectedFile.suffix().length());
 				} else if (command=="a") {
 					command=QDir::toNativeSeparators(selectedFile.absolutePath());
 					if (!command.endsWith(QDir::separator())) command+=QDir::separator();
+				} else if (command=="rme")
+					command=QDir::toNativeSeparators(mainFile.dir().relativeFilePath(selectedFile.absoluteFilePath()));
+				else if (command=="rm"){
+					command=QDir::toNativeSeparators(mainFile.dir().relativeFilePath(selectedFile.absoluteFilePath()));
+					if (selectedFile.suffix()!="") command.chop(1+selectedFile.suffix().length());
+				} else if (command=="r"){
+					command=QDir::toNativeSeparators(mainFile.dir().relativeFilePath(selectedFile.absolutePath()));
+					if (command=="") command=".";
+					if (!command.endsWith(QDir::separator())) command+=QDir::separator();
 				} else if (command=="me") command=selectedFile.fileName();
 				else if (command=="m") command=selectedFile.completeBaseName();
 				else if (command=="e") command=selectedFile.suffix();
+				else if (command.isEmpty() && !commandRem.isEmpty()); //empty search
 				else continue; //invalid command
-				//TODO: relative paths rme, rm, re
+
 				command.append(commandRem);
 				switch (endMode) {
 				case 2:
@@ -311,17 +322,18 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 				else {
 					QDir dir(QFileInfo(mainFile).absoluteDir());
 					if (command.contains("/")) command = command.mid(command.lastIndexOf("/")+1);
+					if (command.contains(QDir::separator())) command = command.mid(command.lastIndexOf(QDir::separator())+1);
 					QStringList commands = QDir(dir).entryList(QStringList() << command.trimmed(), QDir::Files);
 					QString mid;
 					if (absPath) {
-						mid = dir.canonicalPath();
-						if (!mid.endsWith('/')) mid+="/";
+						mid = QDir::toNativeSeparators(dir.canonicalPath());
+						if (!mid.endsWith('/') && !mid.endsWith(QDir::separator())) mid += QDir::separator();
 					}
-					QStringList temp = result;
+					QStringList oldCommands = result;
 					result.clear();
-					for (int i=0;i<temp.size();i++)
+					for (int i=0;i<oldCommands.size();i++)
 						for (int j=0;j<commands.size();j++)
-							result.append(temp[i]+mid+commands[j]);
+							result.append(oldCommands[i]+mid+commands[j]);
 				}
 			}
 		} else add=str.at(i);
