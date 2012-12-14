@@ -650,7 +650,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
-        <translation>&lt;i&gt;Selectors:&lt;/i&gt; 以下の組み合わせ &lt;b&gt;a&lt;/b&gt;: 絶対パス、&lt;!--&lt;i&gt;r&lt;/i&gt;: 相対パス、 --&gt;&lt;b&gt;m&lt;/b&gt;: 拡張子なしのベースファイル名、&lt;b&gt;e&lt;/b&gt;: 拡張子&lt;br /&gt;
+        <translation type="obsolete">&lt;i&gt;Selectors:&lt;/i&gt; 以下の組み合わせ &lt;b&gt;a&lt;/b&gt;: 絶対パス、&lt;!--&lt;i&gt;r&lt;/i&gt;: 相対パス、 --&gt;&lt;b&gt;m&lt;/b&gt;: 拡張子なしのベースファイル名、&lt;b&gt;e&lt;/b&gt;: 拡張子&lt;br /&gt;
 追加 &lt;b&gt;c:&lt;/b&gt; マスターファイルの代わりの（コロンを含む）現在のファイル&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: selectorの終端。次の文字は追加の意味を持ちselectorを終わらせます&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: 二重引用符で閉じる、 &lt;b&gt;.&lt;/b&gt; （ドット）最後にドットを追加、 （空白）: 最後に空白を追加&lt;br /&gt;
@@ -1674,6 +1674,15 @@ them here.</source>
     </message>
     <message>
         <source>Automatically load included files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
+&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
