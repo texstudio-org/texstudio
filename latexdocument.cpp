@@ -2368,7 +2368,7 @@ void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bo
 			files[i]=files[i]+".cwl";
 	}
     //files.append(completerConfig->getLoadedFiles());
-	gatherCompletionFiles(files,loadedFiles,pck);
+    gatherCompletionFiles(files,loadedFiles,pck);
 	update=true;
 	
     //completerConfig->words=pck.completionWords;
@@ -2422,7 +2422,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 	foreach(const QString& elem,files){
 		if(loadedFiles.contains(elem))
 			continue;
-		if(parent->cachedPackages.contains(elem)){
+        if(parent->cachedPackages.contains(elem)){
 			zw=parent->cachedPackages.value(elem);
 		}else{
 			zw=loadCwlFile(elem,completerConfig);
@@ -2533,6 +2533,9 @@ void LatexDocument::updateMagicCommentScripts(){
 
 }
 
+QStringList LatexDocument::containedPackages(){
+    return mUsepackageList.values();
+}
 
 bool LatexDocument::containsPackage(const QString& name){
 	return mUsepackageList.keys(name).count()>0;

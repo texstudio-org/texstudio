@@ -33,6 +33,17 @@ void LatexStyleParser::run(){
 		mFilesLock.lock();
 		QString fn=mFiles.dequeue();
 		mFilesLock.unlock();
+        QString topPackage="";
+        if(fn.contains('#')){
+            QStringList lst=fn.split('#');
+            if(!lst.isEmpty())
+                topPackage=lst.takeFirst();
+            if(!lst.isEmpty())
+                fn=lst.last();
+        }else{
+            topPackage=fn;
+            topPackage.chop(4);
+        }
 		QString fullName=kpsewhich(fn); // find file
 		if(fullName.isEmpty())
 		    continue;
@@ -99,9 +110,12 @@ void LatexStyleParser::run(){
 			elem=elem.mid(9);
 			QString fn=findResourceFile("completion/"+elem+".cwl",false,QStringList(baseDir));
 			if(fn.isEmpty()){
-				elem=kpsewhich(elem+".sty");
-                if(!elem.isEmpty())
+                QString hlp=kpsewhich(elem+".sty");
+                if(!hlp.isEmpty()){
+                    if(!topPackage.isEmpty())
+                        elem=topPackage+"#"+elem+".sty";
                     addFile(elem);
+                }
 			}
 		}
 		
@@ -118,6 +132,8 @@ void LatexStyleParser::run(){
 				out << elem << "\n";
 			    }
 			}
+            if(!topPackage.isEmpty() && topPackage!=baseName)
+                baseName=topPackage+"#"+baseName;
 			emit scanCompleted(baseName);
 		    }
 		}
@@ -352,15 +368,15 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
     // replace tex env def by latex commands
     QStringList zw=args.filter(QRegExp("\\\\end.+"));
     foreach(const QString& elem,zw){
-	QString begin=elem;
-	begin.remove(1,3);
-	int i=args.indexOf(begin);
-	if(i!=-1){
-	    QString env=begin.mid(1,begin.length()-3);
-	    args.replace(i,"\\begin{"+env+"}");
-	    i=args.indexOf(elem);
-	    args.replace(i,"\\end{"+env+"}");
-	}
+        QString begin=elem;
+        begin.remove(1,3);
+        int i=args.indexOf(begin);
+        if(i!=-1){
+            QString env=begin.mid(1,begin.length()-3);
+            args.replace(i,"\\begin{"+env+"}");
+            i=args.indexOf(elem);
+            args.replace(i,"\\end{"+env+"}");
+        }
     }
 
     return args;

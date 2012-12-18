@@ -7075,12 +7075,19 @@ void Texmaker::importPackage(QString name){
 }
 
 void Texmaker::packageScanCompleted(QString name){
+    QStringList lst=name.split('#');
+    QString baseName=name;
+    if(lst.size()>1){
+        baseName=lst.first();
+        name=lst.last();
+    }
 	foreach(LatexDocument *doc,documents.documents){
-		if(doc->containsPackage(name)){
-			QStringList added(name);
+        if(doc->containsPackage(baseName)){
+            QStringList lst=doc->containedPackages();
 			documents.cachedPackages.remove(name+".cwl");
-			QStringList removed;
-			doc->updateCompletionFiles(added,removed,false);
+            //QStringList removed;
+            //doc->updateCompletionFiles(added,removed,false);
+            doc->updateCompletionFiles(lst,false);
 		}
 	}
 }
