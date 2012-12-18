@@ -62,6 +62,8 @@ public:
 	
 	LatexDocument* document;
 	
+	QDateTime lastUsageTime;
+
 	QEditor * getEditor() const { return editor; }
 	LatexDocument* getDocument() const { return document; } 
 	Q_PROPERTY(QEditor* editor READ getEditor);

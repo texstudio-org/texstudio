@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
-            <height>600</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -125,16 +125,6 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxInterfaceStyle">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="sizePolicy">
@@ -145,16 +135,6 @@
                 </property>
                 <property name="text">
                  <string>Font:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1" colspan="2">
-               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
                 </property>
                </widget>
               </item>
@@ -171,16 +151,6 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="1" colspan="2">
-               <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
               <item row="8" column="0">
                <widget class="QLabel" name="label_9">
                 <property name="sizePolicy">
@@ -194,35 +164,11 @@
                 </property>
                </widget>
               </item>
-              <item row="8" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxLanguage">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_14">
                 <property name="text">
                  <string>Color Scheme:</string>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
-                <item>
-                 <property name="text">
-                  <string>Classic</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Modern</string>
-                 </property>
-                </item>
                </widget>
               </item>
               <item row="7" column="2">
@@ -267,7 +213,71 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="2">
+              <item row="7" column="3">
+               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
+                <property name="text">
+                 <string>MRU Document Chooser</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="3">
+               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1" colspan="3">
+               <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxLanguage">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
+                <item>
+                 <property name="text">
+                  <string>Classic</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Modern</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxInterfaceStyle">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2" colspan="2">
                <widget class="QCheckBox" name="checkBoxUseSystemTheme">
                 <property name="text">
                  <string>Use System Theme Icons</string>
@@ -1370,7 +1380,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>865</width>
+            <width>835</width>
             <height>750</height>
            </rect>
           </property>
