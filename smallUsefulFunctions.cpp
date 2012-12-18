@@ -1640,7 +1640,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	QFile tagsfile(fn);
 	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
 		QString line;
-        QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.+)\\}");
+        QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
         QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
 		rxCom.setMinimal(true);
 		QStringList keywords;
