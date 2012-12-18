@@ -19,7 +19,10 @@ QString TemplateManager::builtinTemplateDir()
 #ifdef Q_OS_WIN
 	return QCoreApplication::applicationDirPath()+"/templates/";
 #else
-	return "/usr/local/share/texstudio/";
+#if !defined(PREFIX)
+#define PREFIX ""
+#endif
+    return PREFIX"/share/texstudio/";
 #endif
 }
 
