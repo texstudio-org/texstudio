@@ -1758,6 +1758,9 @@ void QEditor::setCursor(const QDocumentCursor& c)
 	m_cursor.setAutoErasable(false);
 	clearCursorMirrors();
 
+	if (m_cursor.columnNumber() > m_cursor.line().length())
+		m_cursor.setColumnNumber(m_cursor.line().length());
+
 	if ( m_curPlaceHolder >=0 && m_curPlaceHolder < m_placeHolders.count() )
 	{
 		const PlaceHolder& ph = m_placeHolders[m_curPlaceHolder];

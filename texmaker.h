@@ -58,6 +58,7 @@ enum SVNSTATUS {
 
 class UserMenuDialog;
 class GrammarCheck;
+class FileSelector;
 
 class Texmaker : public QMainWindow {
 	Q_OBJECT
@@ -125,6 +126,7 @@ private:
 	//gui
 	TxsTabWidget *EditorTabs;
 	QSplitter *splitter;
+	QFrame *centralFrame;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
@@ -210,6 +212,10 @@ protected slots:
 	void fileExit();
 	void fileOpenRecent();
 	void fileOpenAllRecent();
+	void fileRecentList();
+	void fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column);
+	void viewDocumentList();
+	void viewDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column);
 	void fileOpenFirstNonOpen();
 	void fileOpenRecentProject();
 	void fileLoadSession();
@@ -513,6 +519,7 @@ protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
+	virtual void resizeEvent(QResizeEvent *e);
 	
 	Qt::MouseButtons mb;
 	
@@ -540,6 +547,8 @@ protected:
 	
 	QString fileFilters;
 	QString selectedFileFilter;
+
+	QWeakPointer<FileSelector> fileSelector;
 	
 	bool runBibliographyIfNecessaryEntered;
 	

@@ -62,8 +62,8 @@ public:
 	QString interfaceFontFamily;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
-	bool tabbedLogView;
-	bool newLeftPanelLayout;
+	bool tabbedLogView, newLeftPanelLayout;
+	bool mruDocumentChooser;
 	bool configShowAdvancedOptions, configRiddled;
 	bool centralVisible;
 	bool showLineNumbersInStructure;

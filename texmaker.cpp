@@ -51,6 +51,7 @@
 #include "updatechecker.h"
 #include "session.h"
 #include "help.h"
+#include "fileselector.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -86,7 +87,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	bibTypeActions = 0;
 	highlightLanguageActions = 0;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
-    completerPreview=false;
+	completerPreview=false;
 	
 	ReadSettings();
 	
@@ -175,7 +176,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 	connect(&documents,SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
 	
-	QFrame *centralFrame=new QFrame(this);
+	centralFrame=new QFrame(this);
 	centralFrame->setLineWidth(0);
 	centralFrame->setFrameShape(QFrame::NoFrame);
 	centralFrame->setFrameShadow(QFrame::Plain);
@@ -881,6 +882,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "prevdocument",tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::CTRL+Qt::Key_PageUp << Qt::CTRL+Qt::SHIFT+Qt::Key_Tab);
 	newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::CTRL+Qt::Key_PageDown << Qt::CTRL+Qt::Key_Tab);
 	newManagedMenu(menu, "documents",tr("Open Documents"));
+	newManagedAction(menu, "documentlist",tr("List Of Open Documents"), SLOT(viewDocumentList()));
 
 	newManagedAction(menu, "focuseditor", tr("Focus Editor"), SLOT(focusEditor()), QList<QKeySequence>() << Qt::ALT+Qt::CTRL+Qt::Key_Left);
 	newManagedAction(menu, "focusviewer", tr("Focus Viewer"), SLOT(focusViewer()), QList<QKeySequence>() << Qt::ALT+Qt::CTRL+Qt::Key_Right);
@@ -1229,6 +1231,7 @@ void Texmaker::editorTabChanged(int index){
 		updateToolBarMenu("main/view/documents");
 	if (currentEditorView()) {
 		EditorSpellerChanged(currentEditorView()->getSpeller());
+		currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 	}
 }
 
@@ -2238,6 +2241,77 @@ void Texmaker::fileOpenRecent() {
 void Texmaker::fileOpenAllRecent() {
 	foreach (const QString& s, configManager.recentFilesList)
 		load(s);
+}
+void Texmaker::fileRecentList(){
+	if (fileSelector) fileSelector.data()->deleteLater();
+	fileSelector = new FileSelector(this);
+	fileSelector.data()->setVisible(true);
+
+	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
+	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
+
+	QResizeEvent temp(size(), size());
+	resizeEvent(&temp);
+}
+
+void Texmaker::fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
+	if (!load(doc)) return;
+	if (lineNr < 0) return;
+	REQUIRE(currentEditor());
+	currentEditor()->setCursorPosition(lineNr, column);
+}
+
+bool mruEditorViewLessThan(const LatexEditorView* e1, const LatexEditorView* e2)
+{
+		return e1->lastUsageTime > e2->lastUsageTime;
+}
+
+void Texmaker::viewDocumentList(){
+	if (fileSelector) fileSelector.data()->deleteLater();
+	fileSelector = new FileSelector(this);
+	fileSelector.data()->setVisible(true);
+
+	QStringList sl;
+	LatexEditorView *curEdView = currentEditorView();
+	int curIndex = 0;
+	QList<LatexEditorView*> editors = EditorTabs->editors();
+
+	if (configManager.mruDocumentChooser) {
+		qSort(editors.begin(), editors.end(), mruEditorViewLessThan);
+		if (editors.size() > 1)
+			if (editors.first() == currentEditorView())
+				curIndex = 1;
+	}
+
+	int i = 0;
+	foreach (LatexEditorView *edView, editors){
+		sl << (edView->editor->fileName().isEmpty() ? tr("untitled") : edView->editor->name());
+		if (!configManager.mruDocumentChooser && edView == curEdView) curIndex = i;
+		i++;
+	}
+
+	fileSelector.data()->init(sl, curIndex);
+	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(viewDocumentOpenFromChoosen(QString,int,int,int)));
+
+	QResizeEvent temp(size(), size());
+	resizeEvent(&temp);
+}
+
+void Texmaker::viewDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
+	if (duplicate < 0) return;
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		QString  name = edView->editor->fileName().isEmpty() ? tr("untitled") : edView->editor->name();
+		if (name == doc) {
+			duplicate -= 1;
+			if (duplicate < 0) {
+				EditorTabs->setCurrentWidget(edView);
+				if (lineNr >= 0)
+					edView->editor->setCursorPosition(lineNr, column);
+				edView->setFocus();
+				return;
+			}
+		}
+	}
 }
 
 void Texmaker::fileOpenFirstNonOpen(){
@@ -4436,6 +4510,7 @@ void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, con
 void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async){
 	Q_UNUSED(commandMain)
 	Q_UNUSED(pdf)
+	Q_UNUSED(async);
 	if (pdf) {
 		runningPDFCommands--;
 #ifndef NO_POPPLER_PREVIEW
@@ -5128,6 +5203,10 @@ void Texmaker::focusViewer(){
 }
 
 void Texmaker::viewCloseSomething(){
+	if (fileSelector){
+		fileSelector.data()->deleteLater();
+		return;
+	}
 	if (buildManager.waitingForProcess()) {
 		buildManager.killCurrentProcess();
 		return;
@@ -5382,6 +5461,15 @@ void Texmaker::changeEvent(QEvent *e) {
 	default:
 		break;
 	}
+}
+
+void Texmaker::resizeEvent(QResizeEvent *e){
+	if (fileSelector) {
+		QSize s = centralFrame->size();
+		QPoint p = centralFrame->geometry().topLeft();
+		fileSelector.data()->setGeometry(s.width() / 4 + p.x(), s.height() / 4 + p.y(), s.width() / 2, s.height() / 2);
+	}
+	QMainWindow::resizeEvent(e);
 }
 
 //***********************************

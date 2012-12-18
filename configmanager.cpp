@@ -505,7 +505,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Interface/Config Riddled", &configRiddled, false);	
 	registerOption("LogView/Tabbed", &tabbedLogView, true, &pseudoDialog->checkBoxTabbedLogView);
 	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
-	
+	registerOption("Interface/MRU Document Chooser", &mruDocumentChooser, false, &pseudoDialog->checkBoxMRUDocumentChooser);
+
 	//language
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 	
@@ -1555,7 +1556,7 @@ void ConfigManager::activateInternalViewer(bool activated){
 
 void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 	QMenu* recentMenu = getManagedMenu("main/file/openrecent");
-	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+3)) {
+	if (alwaysRecreateMenuItems || (recentMenu->actions().count()!=maxRecentFiles+maxRecentProjects+4)) {
 		QList<QAction*> actions=recentMenu->actions(); //recentMenu->clear() doesn't seem to delete the actions (why?)
 		for (int i = 0; i< actions.count(); i++)
 			recentMenu->removeAction(actions[i]); //neccessary or it crashes
@@ -1564,6 +1565,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 		recentMenu->addSeparator();
 		for (int i = 0; i < maxRecentFiles; ++i)
 			newOrLostOldManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
+		newOrLostOldManagedAction(recentMenu, "list", tr("File list"), SLOT(fileRecentList()));
 		newOrLostOldManagedAction(recentMenu, "firstFile", tr("Open first non-open file"), SLOT(fileOpenFirstNonOpen()));
 		newOrLostOldManagedAction(recentMenu, "allFiles", tr("&* Open all files"), SLOT(fileOpenAllRecent()));
 	}
