@@ -4847,8 +4847,7 @@ void Texmaker::GeneralOptions() {
 					if(configManager.editorConfig->realtimeChecking){
 						edView->updateLtxCommands();
 						edView->documentContentChanged(0,edView->document->lines());
-						QStringList lst;
-						edView->document->updateCompletionFiles(lst,false,true);
+                        edView->document->updateCompletionFiles(false,true);
 					}else{
 						edView->clearOverlays();
 					}
@@ -7171,11 +7170,8 @@ void Texmaker::packageScanCompleted(QString name){
     }
 	foreach(LatexDocument *doc,documents.documents){
         if(doc->containsPackage(baseName)){
-            QStringList lst=doc->containedPackages();
 			documents.cachedPackages.remove(name+".cwl");
-            //QStringList removed;
-            //doc->updateCompletionFiles(added,removed,false);
-            doc->updateCompletionFiles(lst,false);
+            doc->updateCompletionFiles(false);
 		}
 	}
 }
