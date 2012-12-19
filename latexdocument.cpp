@@ -288,8 +288,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		emit updateCompleter();
 	
 	if(!removedUsepackages.isEmpty() || updateSyntaxCheck){
-		QStringList files=mUsepackageList.values();
-		updateCompletionFiles(files,updateSyntaxCheck);
+        updateCompletionFiles(updateSyntaxCheck);
 	}
 
 }
@@ -806,8 +805,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
 		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
-		QStringList files=mUsepackageList.values();
-		updateCompletionFiles(files,forceUpdate);
+        updateCompletionFiles(forceUpdate);
 	}
 	
 	if (bibTeXFilesNeedsUpdate)
@@ -2264,88 +2262,6 @@ QStringList LatexDocument::includedFiles(){
 	return result;
 }
 
-void LatexDocument::updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate){
-	// remove
-	QStringList filtered;
-	LatexEditorView *edView=getEditorView();
-	LatexCompleterConfig *config=edView->getCompleter()->getConfig();
-	bool update=forceUpdate;
-	foreach(QString elem,removed){
-		if(!mUsepackageList.keys(elem).isEmpty())
-			continue;
-		elem.append(".cwl");
-		if(!filtered.contains(elem)){
-			if(!elem.isEmpty())
-				filtered << elem;
-		}
-	}
-	if(!filtered.isEmpty()){
-		LatexParser cmds;
-		//QStringList removedWords=loadCwlFiles(filtered,&cmds,config);
-		foreach(QString elem,filtered){
-			LatexPackage pck=parent->cachedPackages.value(elem);
-			cmds.possibleCommands=pck.possibleCommands;
-			ltxCommands.substract(cmds);
-            /*foreach(const QString& elem,pck.completionWords)
-                mCompleterWords.remove(elem);*/
-            mCWLFiles.remove(elem);
-		}
-		//recheck syntax of ALL documents ...
-		update=true;
-	}
-	// add
-	filtered.clear();
-	foreach(QString elem,added){
-		elem.append(".cwl");
-		if(!filtered.contains(elem)){
-			if(parent->cachedPackages.contains(elem)){
-				filtered << elem;
-				continue;
-			}
-			QString fn=findResourceFile("completion/"+elem,false,QStringList(config->importedCwlBaseDir));
-			if(!fn.isEmpty())
-				filtered << elem;
-			else {
-				emit importPackage(elem);
-			}
-		}
-	}
-	if(!filtered.isEmpty()){
-		LatexParser cmds;
-		foreach(QString elem,filtered){
-			LatexPackage pck;
-			if(parent->cachedPackages.contains(elem)){
-				pck=parent->cachedPackages.value(elem);
-                mCWLFiles.insert(elem);
-			}else{
-				pck=loadCwlFile(elem,config);
-				if(pck.packageName!="<notFound>"){
-					parent->cachedPackages.insert(elem,pck); // cache package
-                    mCWLFiles.insert(elem);
-				}else{
-					LatexPackage zw;
-					zw.packageName=elem;
-					parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
-				}
-			}
-			cmds.possibleCommands=pck.possibleCommands;
-			ltxCommands.append(cmds);
-            //mCompleterWords.unite(pck.completionWords.toSet());
-		}
-		//recheck syntax of ALL documents ...
-		update=true;
-	}
-	if(update){
-		foreach(LatexDocument* elem,getListOfDocs()){
-			LatexEditorView *edView=elem->getEditorView();
-			if(edView){
-				edView->updateLtxCommands();
-				edView->reCheckSyntax();
-			}
-		}
-	}
-}
-
 QSet<QString> LatexDocument::additionalCommandsList(){
     LatexPackage pck;
     QStringList loadedFiles,files;
@@ -2354,10 +2270,9 @@ QSet<QString> LatexDocument::additionalCommandsList(){
     return pck.completionWords.toSet();
 }
 
-void LatexDocument::updateCompletionFiles(QStringList &files,bool forceUpdate,bool forceLabelUpdate){
-	// remove
-    //LatexEditorView *edView=getEditorView();
-    //LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
+void LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate){
+
+    QStringList files=mUsepackageList.values();
 	bool update=forceUpdate;
 	
 	//recheck syntax of ALL documents ...

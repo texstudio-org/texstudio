@@ -150,8 +150,7 @@ public:
 	
 	Q_INVOKABLE bool containsPackage(const QString& name);
     Q_INVOKABLE QStringList containedPackages();
-	void updateCompletionFiles(QStringList &added,QStringList &removed,bool forceUpdate);
-    void updateCompletionFiles(QStringList &files,bool forceUpdate, bool forceLabelUpdate=false);
+    void updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate=false);
 	
 	QLocale spellingLanguage() const {
 		return mSpellingLanguage;
