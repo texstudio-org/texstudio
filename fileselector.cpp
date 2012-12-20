@@ -34,6 +34,12 @@ void FileSelector::init(const QStringList& files, int current){
 	}
 }
 
+void FileSelector::setCentered(const QRect& rect){
+	QSize s = rect.size();
+	QPoint p = rect.topLeft();
+	setGeometry(s.width() / 4 + p.x(), s.height() / 4 + p.y(), s.width() / 2, s.height() / 2);
+}
+
 void FileSelector::filterChanged(const QString& newFilter){
 	QString nf = newFilter;
 	if (newFilter.contains(':') && QRegExp(".*:[0-9; ]*").exactMatch(newFilter))

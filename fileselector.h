@@ -9,6 +9,7 @@ class FileSelector : public QWidget
 public:
 	explicit FileSelector(QWidget *parent = 0);
 	void init(const QStringList& files, int current);
+	void setCentered(const QRect& rect);
 signals:
 	void fileChoosen(const QString& name, int duplicate, int lineNr, int column);
 private slots:
