@@ -1015,7 +1015,7 @@ QString getLastCrashInformation(bool & wasLoop){return "";}
 #ifdef Q_WS_WIN
 #define HAS_DEBUGGER_PRESENT
 #else
-#ifndef  QT_NO_DEBUG
+#if (!defined(QT_NO_DEBUG) && defined(Q_OS_LINUX))
 #define HAS_DEBUGGER_PRESENT
 #include <sys/ptrace.h>
 //from http://stackoverflow.com/questions/3596781/detect-if-gdb-is-running
