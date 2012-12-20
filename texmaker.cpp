@@ -2245,13 +2245,11 @@ void Texmaker::fileOpenAllRecent() {
 void Texmaker::fileRecentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(this);
+	fileSelector.data()->setCentered(centralFrame->geometry());
 	fileSelector.data()->setVisible(true);
 
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
-
-	QResizeEvent temp(size(), size());
-	resizeEvent(&temp);
 }
 
 void Texmaker::fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
@@ -2269,6 +2267,7 @@ bool mruEditorViewLessThan(const LatexEditorView* e1, const LatexEditorView* e2)
 void Texmaker::viewDocumentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(this);
+	fileSelector.data()->setCentered(centralFrame->geometry());
 	fileSelector.data()->setVisible(true);
 
 	QStringList sl;
@@ -2293,8 +2292,6 @@ void Texmaker::viewDocumentList(){
 	fileSelector.data()->init(sl, curIndex);
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(viewDocumentOpenFromChoosen(QString,int,int,int)));
 
-	QResizeEvent temp(size(), size());
-	resizeEvent(&temp);
 }
 
 void Texmaker::viewDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
@@ -5463,11 +5460,8 @@ void Texmaker::changeEvent(QEvent *e) {
 }
 
 void Texmaker::resizeEvent(QResizeEvent *e){
-	if (fileSelector) {
-		QSize s = centralFrame->size();
-		QPoint p = centralFrame->geometry().topLeft();
-		fileSelector.data()->setGeometry(s.width() / 4 + p.x(), s.height() / 4 + p.y(), s.width() / 2, s.height() / 2);
-	}
+	if (fileSelector)
+		fileSelector.data()->setCentered(centralFrame->geometry());
 	QMainWindow::resizeEvent(e);
 }
 
