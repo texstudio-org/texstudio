@@ -10,6 +10,10 @@ Session::Session(const Session &s)
 	m_files.append(s.m_files);
 	m_masterFile = s.m_masterFile;
 	m_currentFile = s.m_currentFile;
+
+	m_bookmarks = s.m_bookmarks;
+	m_pdfFile = s.m_pdfFile;
+	m_pdfEmbedded = s.m_pdfEmbedded;
 }
 
 bool Session::load(const QString &file) {
@@ -34,6 +38,11 @@ bool Session::load(const QString &file) {
 	m_masterFile = s.value("MasterFile").toString();
 	m_currentFile = s.value("CurrentFile").toString();
 	m_bookmarks = s.value("Bookmarks").value<QList<QVariant> >();
+	s.endGroup();
+
+	s.beginGroup("InternalPDFViewer");
+	m_pdfFile = s.value("File").toString();
+	m_pdfEmbedded = s.value("Embedded").toBool();
 	s.endGroup();
 	return true;
 }
@@ -81,8 +90,13 @@ bool Session::save(const QString &file) const {
 	s.setValue("MasterFile", m_masterFile);
 	s.setValue("CurrentFile", m_currentFile);
 	s.setValue("Bookmarks", m_bookmarks);
-
 	s.endGroup();
+
+	s.beginGroup("InternalPDFViewer");
+	s.setValue("File", m_pdfFile);
+	s.setValue("Embedded", m_pdfEmbedded);
+	s.endGroup();
+
 	return true;
 }
 

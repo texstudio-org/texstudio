@@ -2361,7 +2361,7 @@ void Texmaker::fileSaveSession() {
 
 	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
-	if (getCurrentSession().save(fn))
+	if (!getCurrentSession().save(fn))
 		txsCritical(tr("Saving of session failed."));
 }
 
@@ -2407,6 +2407,10 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 	}
 	FocusEditorForFile(s.currentFile());
 	cursorHistory->setInsertionEnabled(true);
+
+	if (!s.PDFFile().isEmpty()) {
+		runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded()?"--embedded":"--windowed");
+	}
 }
 
 Session Texmaker::getCurrentSession() {
@@ -2424,6 +2428,12 @@ Session Texmaker::getCurrentSession() {
 	s.setCurrentFile(currentEditorView()?currentEditor()->fileName():"");
 
 	s.setBookmarks(bookmarks->getBookmarks());
+
+	if (!PDFDocument::documentList().isEmpty()) {
+		PDFDocument *doc = PDFDocument::documentList().at(0);
+		s.setPDFEmbedded(doc->embeddedMode);
+		s.setPDFFile(doc->fileName());
+	}
 
 	return s;
 }
