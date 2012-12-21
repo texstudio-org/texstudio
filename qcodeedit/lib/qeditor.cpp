@@ -5166,7 +5166,9 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			if (slow) emit slowOperationEnded();
 		}
 
-		ensureCursorVisible();
+		// ensureCursorVisible();
+		// TH: see https://sourceforge.net/p/texstudio/bugs/659/ 3.)
+		ensureCursorVisibleSurrounding();
 		setFlag(CursorOn, true);
 
 		emitCursorPositionChanged();
