@@ -37,14 +37,24 @@ public:
 
 	static QString fileExtension() { return m_fileExtension; }
 
+	void setPDFFile(const QString &pdf) { m_pdfFile = pdf; }
+	QString PDFFile() const { return m_pdfFile; }
+
+	void setPDFEmbedded(bool b) { m_pdfEmbedded = b; }
+	bool PDFEmbedded() const { return m_pdfEmbedded; }
+
+
 private:
+	static QString m_fileExtension;
+
 	QList<FileInSession> m_files;
 	QString m_masterFile;
 	QString m_currentFile;
 
 	QList<QVariant> m_bookmarks;
 
-	static QString m_fileExtension;
+	QString m_pdfFile;
+	bool m_pdfEmbedded;
 };
 
 #endif // SESSION_H
