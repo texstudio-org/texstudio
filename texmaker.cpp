@@ -6337,8 +6337,7 @@ void Texmaker::editFindGlobal(){
 			editors << currentEditorView()->editor;
 			break;
 		case 1:
-			foreach (LatexEditorView *edView, EditorTabs->editors())
-			for(int i=0;i<EditorTabs->count();i++){
+			foreach (LatexEditorView *edView, EditorTabs->editors()) {
 				editors << edView->editor;
 			}
 			break;
