@@ -258,8 +258,18 @@ void TableManipulationTest::remRow_data(){
 
 	QTest::newRow("rem row, multi rows in one line 3")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
-		<< 2 << 6
+		<< 2 << 0
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, multi rows in one line 4")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 4
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\n\\end{tabular}\n";
+
+	QTest::newRow("rem row, multi rows in one line 3")
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+		<< 2 << 5
+		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem row, multi rows in one line 4")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
