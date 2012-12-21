@@ -2253,6 +2253,7 @@ void Texmaker::fileRecentList(){
 }
 
 void Texmaker::fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
+	Q_UNUSED(duplicate);
 	if (!load(doc)) return;
 	if (lineNr < 0) return;
 	REQUIRE(currentEditor());
