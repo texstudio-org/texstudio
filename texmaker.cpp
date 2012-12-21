@@ -4516,7 +4516,6 @@ void Texmaker::endRunningSubCommand(ProcessX* p, const QString& commandMain, con
 
 void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async){
 	Q_UNUSED(commandMain)
-	Q_UNUSED(pdf)
 	Q_UNUSED(async);
 	if (pdf) {
 		runningPDFCommands--;
