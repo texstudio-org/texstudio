@@ -37,7 +37,23 @@ void FileSelector::init(const QStringList& files, int current){
 void FileSelector::setCentered(const QRect& rect){
 	QSize s = rect.size();
 	QPoint p = rect.topLeft();
-	setGeometry(s.width() / 4 + p.x(), s.height() / 4 + p.y(), s.width() / 2, s.height() / 2);
+
+
+	int fsw = s.width() / 2;
+	int scrollbarwidth = 50; //value that works on my computer...
+	/*if (list->verticalScrollBar()) {
+		QStyleOptionSlider sos;
+		sos.initFrom(list->verticalScrollBar());
+		scrollbarwidth = qAbs(list->verticalScrollBar()->style()->subControlRect(QStyle::CC_ScrollBar, &sos,  QStyle::SC_ScrollBarGroove, list->verticalScrollBar()).width());
+	}*/
+	QFontMetrics fm = list->fontMetrics();
+	for (int i=0;i<rawFiles.size();i++)
+		fsw = qMax(fsw, fm.width(rawFiles[i]) + scrollbarwidth );
+	fsw = qMin(fsw, s.width());
+
+	setMinimumWidth(fsw); //set geometry alone leads to a too small window
+
+	setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 4 + p.y(), fsw, s.height() / 2);
 }
 
 void FileSelector::filterChanged(const QString& newFilter){
@@ -45,11 +61,20 @@ void FileSelector::filterChanged(const QString& newFilter){
 	if (newFilter.contains(':') && QRegExp(".*:[0-9; ]*").exactMatch(newFilter))
 		nf = newFilter.left(newFilter.lastIndexOf(':'));
 
+	QStringList filterList = nf.split(" ");
+
 	QPair<QString, int> oldFile = currentFile();
 	list->clear();
-	foreach (const QString& s, rawFiles)
-		if (s.contains(nf, Qt::CaseInsensitive))
-			list->addItem(s);
+	foreach (const QString& s, rawFiles) {
+		bool skip = false;
+		foreach (const QString& tf, filterList)
+			if (!s.contains(tf, Qt::CaseInsensitive)) {
+				skip = true;
+				break;
+			}
+		if (skip) continue;
+		list->addItem(s);
+	}
 
 	if (oldFile.second >= 0) {
 		for (int i=0;i<list->count();i++)
