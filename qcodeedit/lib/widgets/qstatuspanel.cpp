@@ -119,13 +119,26 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	const int ls = QDocument::getLineSpacing();
 	const int ascent = fm.ascent() + 3;
 
-	s = tr("Line : %1 Visual column : %2 Text column : %3")
+	s = tr("Line : %1 Column : %2")
 			.arg(c->lineNumber() + 1)
-			.arg(c->visualColumnNumber())
-			.arg(c->columnNumber());
+			.arg(c->visualColumnNumber());
+
+	if (c->hasSelection()) {
+		s += "  ";
+		if (c->anchorLineNumber() == c->lineNumber())
+			s += tr("Selected : %1").arg(qAbs(c->anchorColumnNumber() - c->columnNumber()));
+		else {
+			QDocumentCursor ss = c->selectionStart(), se = c->selectionEnd();
+			int chars = ss.line().length() - ss.columnNumber() + se.columnNumber();
+			for (int i=ss.lineNumber()+1;i<se.lineNumber();i++)
+				chars += ss.document()->line(i).length();
+			s += tr("Selected : %1 Lines: %2").arg(chars).arg(se.lineNumber() - ss.lineNumber() + 1);
+		}
+	}
 
 	p->drawText(xpos, ascent, s);
 	xpos += fm.width(s) + 10;
+
 
 	int sz = qMin(height(), _mod.height());
 	QString timeDiff;
