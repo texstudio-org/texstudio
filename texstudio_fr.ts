@@ -2478,6 +2478,10 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
 &lt;i&gt;Exemples :&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: nom de fichier avec chemin absolu complet et extension, entourés de guillemets, &lt;b&gt;?e)&lt;/b&gt; extension seule sans point (p. ex. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; nom de fichier sans extension, entouré de guillemets (identique à &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nom de fichier avec extension (p.ex. exemple.tex), &lt;b&gt;?*.aux&lt;/b&gt; : tous les fichiers .aux files du répertoire courant</translation>
     </message>
+    <message>
+        <source>MRU Document Chooser</source>
+        <translation>Sélection des documents les plus récemment utilisés</translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3318,6 +3322,10 @@ Voulez-vous supprimer ces macros ?</translation>
     <message>
         <source>Insert New Sub Menu (before)</source>
         <translation>Insérer (avant) un nouveau sous-menu</translation>
+    </message>
+    <message>
+        <source>File list</source>
+        <translation>Liste des fichiers</translation>
     </message>
 </context>
 <context>
@@ -6018,7 +6026,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <name>QStatusPanel</name>
     <message>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
-        <translation>Ligne : %1 Colonne visuelle: %2 Colonne texte : %3</translation>
+        <translation type="obsolete">Ligne : %1 Colonne visuelle: %2 Colonne texte : %3</translation>
     </message>
     <message>
         <source>(%1 min %2 s ago)</source>
@@ -6035,6 +6043,18 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <source>Conflict</source>
         <translation>Conflit</translation>
+    </message>
+    <message>
+        <source>Line : %1 Column : %2</source>
+        <translation>Ligne : %1 Colonne : %2</translation>
+    </message>
+    <message>
+        <source>Selected : %1</source>
+        <translation>Sélectionné : %1</translation>
+    </message>
+    <message>
+        <source>Selected : %1 Lines: %2</source>
+        <translation>Sélectionné : %1 Lignes : %2</translation>
     </message>
 </context>
 <context>
@@ -8935,6 +8955,10 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <source>Saving of session failed.</source>
         <translation>L&apos;enregistrement de la session a échoué.</translation>
+    </message>
+    <message>
+        <source>List Of Open Documents</source>
+        <translation>Liste des documents ouverts</translation>
     </message>
 </context>
 <context>
