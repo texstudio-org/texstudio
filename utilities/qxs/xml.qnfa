@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="XML" extensions="xml;qnfa;qxm;qxf;ui;htm;html" defaultLineMark="" >
+<QNFA language="XML" extensions="xml;qnfa;qxm;qxf;ui;htm;html;php" defaultLineMark="" >
 	<context id="comment" format="comment" >
 		<start parenthesis="xmlcomment:open" indent="1" fold="1">&lt;!--</start>
 		<stop parenthesis="xmlcomment:close" indent="1" fold="1">--&gt;</stop>
