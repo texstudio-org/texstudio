@@ -5057,12 +5057,20 @@ void Texmaker::executeTests(const QStringList &args){
 		if (!currentEditorView() || !currentEditorView()->editor)
 			QMessageBox::critical(0,"wtf?","test failed",QMessageBox::Ok);
 		if (allTests) configManager.debugLastFullTestRun=myself.lastModified();
-		QString result=TestManager::execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor, &buildManager);
+
+		TestManager testManager;
+		connect(&testManager, SIGNAL(newMessage(QString)), this, SLOT(showTestProgress(QString)));
+		QString result = testManager.execute(allTests?TestManager::TL_ALL:TestManager::TL_FAST, currentEditorView(),currentEditorView()->codeeditor,currentEditorView()->editor, &buildManager);
 		m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
 		currentEditorView()->editor->setText(result, false);
 		configManager.debugLastFileModification=QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 	}
 #endif
+}
+
+void Texmaker::showTestProgress(const QString &message) {
+	outputView->insertMessageLine(message);
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
 }
 
 void Texmaker::generateAddtionalTranslations(){

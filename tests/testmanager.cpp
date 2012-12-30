@@ -79,6 +79,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";
 	for (int i=0; i <tests.size();i++){
+		emit newMessage(tests[i]->metaObject()->className());
 		QString res=performTest(tests[i]);
 		tr+=res;
 		if (!res.contains(", 0 failed, 0 skipped")) allPassed=false;
