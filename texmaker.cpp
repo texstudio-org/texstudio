@@ -1166,10 +1166,17 @@ void Texmaker::createStatusBar() {
 	statusTbLanguage->setText(spellerManager.defaultSpellerName());
 	status->addPermanentWidget(statusTbLanguage,0);
 	
+	statusTbEncoding = new QToolButton(status);
+	statusTbEncoding->setToolTip(tr("Encoding"));
+	statusTbEncoding->setPopupMode(QToolButton::InstantPopup);
+	statusTbEncoding->setAutoRaise(true);
+	statusTbEncoding->setMinimumWidth(status->fontMetrics().width("OOOOOOO"));
+	connect(statusTbEncoding, SIGNAL(clicked()), this, SLOT(editSetupEncoding()));
+	statusTbEncoding->setText("unknown");
+	status->addPermanentWidget(statusTbEncoding,0);
+
 	statusLabelMode=new QLabel(status);
 	statusLabelProcess=new QLabel(status);
-	statusLabelEncoding=new QLabel(status);
-	status->addPermanentWidget(statusLabelEncoding,0);
 	status->addPermanentWidget(statusLabelProcess,0);
 	status->addPermanentWidget(statusLabelMode,0);
 	for (int i=1; i<=3; i++) {
@@ -1295,8 +1302,8 @@ void Texmaker::NewDocumentStatus() {
 		tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
 	}
 	EditorTabs->setTabToolTip(index, tooltip);
-	if (currentEditorView()->editor->getFileCodec()) statusLabelEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
-	else statusLabelEncoding->setText("unknown");
+	if (currentEditorView()->editor->getFileCodec()) statusTbEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
+	else statusTbEncoding->setText("unknown");
 }
 
 void Texmaker::NewDocumentLineEnding(){

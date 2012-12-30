@@ -149,8 +149,9 @@ private:
 	QAction *ToggleAct, *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 	
-	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelEncoding;
+	QLabel *statusLabelMode, *statusLabelProcess;
 	QToolButton *statusTbLanguage;
+	QToolButton *statusTbEncoding;
 	QActionGroup *spellLanguageActions;
 	
 	CursorHistory *cursorHistory;
