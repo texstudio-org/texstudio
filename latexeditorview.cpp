@@ -619,7 +619,7 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 		macro=macro.remove(0,1);
 		CodeSnippet s("\\begin{"+macro+"}");
 		s.insert(editor);
-	} else CodeSnippet(macro).insert(editor);
+	} else CodeSnippet(macro, false).insert(editor);
 }
 
 void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {

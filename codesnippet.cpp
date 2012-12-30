@@ -74,7 +74,7 @@ void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, C
 bool CodeSnippet::autoReplaceCommands=true;
 bool CodeSnippet::debugDisableAutoTranslate = false;
 
-CodeSnippet::CodeSnippet(const QString &newWord) {
+CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 	QString realNewWord=newWord;
 	// \begin magic
 	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>" ||
@@ -160,14 +160,18 @@ CodeSnippet::CodeSnippet(const QString &newWord) {
 				placeHolders.last().append(tempPlaceholder);
 			//	foundDescription = true;
 				break;
-			case 'n': case '\n':
-				if (currentChar.toAscii() == '\n') { curLine += "%"; word += "%";}
-				lines.append(curLine);
-				placeHolders.append(QList<CodeSnippetPlaceHolder>());
-				curLine.clear();
-				firstLine = false;
-				//curLine+="\n";
-				break;	
+			case '\n':
+				curLine += "%"; word += "%";
+				// no break
+			case 'n':
+				if (currentChar.toAscii() == '\n' || replacePercentNewline) {
+					lines.append(curLine);
+					placeHolders.append(QList<CodeSnippetPlaceHolder>());
+					curLine.clear();
+					firstLine = false;
+					//curLine+="\n";
+					break;
+				}
 			default: // escape was not an escape character ...
 				curLine+='%';
 				curLine+=currentChar;
