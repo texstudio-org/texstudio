@@ -7,12 +7,15 @@ class LatexEditorView;
 class QCodeEdit;
 class QEditor;
 class BuildManager;
-class TestManager{
-private:
-	static QString performTest(QObject* obj);
+class TestManager : public QObject {
+	Q_OBJECT
 public:
 	enum TestLevel {TL_ALL, TL_FAST/*, TL_NONE*/};
-	static QString execute(TestLevel level, LatexEditorView *edView, QCodeEdit* codeedit, QEditor* editor, BuildManager* buildManager);
+	QString execute(TestLevel level, LatexEditorView *edView, QCodeEdit* codeedit, QEditor* editor, BuildManager* buildManager);
+signals:
+	void newMessage(const QString &m);
+private:
+	QString performTest(QObject* obj);
 };
 
 #endif

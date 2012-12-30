@@ -103,6 +103,7 @@ protected:
 	
 private slots:
 	void updateToolBarMenu(const QString& menuName);
+	void showTestProgress(const QString &message);
 private:
 	void executeTests(const QStringList &args);
 	void generateAddtionalTranslations();
