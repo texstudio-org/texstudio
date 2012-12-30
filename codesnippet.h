@@ -22,7 +22,7 @@ class CodeSnippet
 public:
 	CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1),usageCount(0),index(0),snippetLength(0) {}
 	CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders),usageCount(cw.usageCount),index(cw.index),snippetLength(cw.snippetLength),name(cw.name) {}
-	CodeSnippet(const QString &newWord);
+	CodeSnippet(const QString &newWord, bool replacePercentNewline = true);
 	bool operator< (const CodeSnippet &cw) const;
 	bool operator== (const CodeSnippet &cw) const;
 
