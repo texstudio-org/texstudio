@@ -2859,12 +2859,10 @@ int PDFDocument::scaleToZoomSliderPos(qreal scale) {
 
 void PDFDocument::zoomSliderChange(int pos)
 {
-	qDebug() << "zmove" << pos;
 	if (pos >-10 && pos < 10) {
 		pos = 0;
 		zoomSlider->setValue(pos);
 	}
-	//widget()->fixedScale(zoomSliderPosToScale(pos));
 	widget()->zoom(zoomSliderPosToScale(pos));
 }
 
