@@ -44,6 +44,7 @@
 #include <QDomElement>
 #include <QDomDocument>
 
+#include "qdocument.h"
 
 #define QFORMAT_VERSION "1.0"
 
@@ -103,6 +104,7 @@ QFormatScheme::QFormatScheme(const QString& f, QObject *p)
 */
 QFormatScheme::~QFormatScheme()
 {
+	QDocument::formatSchemeDeleted(this);
 }
 
 /*!

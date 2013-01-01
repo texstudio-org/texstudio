@@ -285,7 +285,7 @@ class QCE_EXPORT QDocument : public QObject
 		void setFormatScheme(QFormatScheme *f);
 		QColor getBackground() const;
 		QColor getForeground() const;
-		
+
 		int getNextGroupId();
 		void releaseGroupId(int groupId);
 		void clearMatches(int groupId);
@@ -317,9 +317,10 @@ class QCE_EXPORT QDocument : public QObject
 
 		static QFormatScheme* defaultFormatScheme();
 		static void setDefaultFormatScheme(QFormatScheme *f);
+		static void formatScheme(QFormatScheme *f);
+		static void formatSchemeDeleted(QFormatScheme *f);
 		
-		static QFormatScheme* formatFactory();
-		static void setFormatFactory(QFormatScheme *f);
+		int getFormatId(const QString& id);
 		
 		static int screenColumn(const QChar *d, int l, int tabStop, int column = 0);
 		static QString screenable(const QChar *d, int l, int tabStop, int column = 0);

@@ -1741,22 +1741,23 @@ void QDocument::setDefaultFormatScheme(QFormatScheme *f)
 	QDocumentPrivate::m_defaultFormatScheme = f;
 }
 
-/*!
-	\deprecated
-	\brief Compatibility alias for defaultFormatScheme()
-*/
-QFormatScheme* QDocument::formatFactory()
-{
-	return defaultFormatScheme();
+void QDocument::formatSchemeDeleted(QFormatScheme *f){
+	if ( QDocumentPrivate::m_defaultFormatScheme == f)
+		QDocumentPrivate::m_defaultFormatScheme = 0;
+
+	foreach ( QDocumentPrivate *d, QDocumentPrivate::m_documents )
+	{
+		if ( d->m_formatScheme == f )
+			d->setFormatScheme(QDocumentPrivate::m_defaultFormatScheme);
+	}
 }
 
-/*!
-	\deprecated
-	\brief Compatibility alias for setDefaultFormatScheme()
-*/
-void QDocument::setFormatFactory(QFormatScheme *f)
-{
-	setDefaultFormatScheme(f);
+int QDocument::getFormatId(const QString& id){
+	if (!m_impl) return 0;
+	QFormatScheme *scheme = formatScheme();
+	if (!scheme) scheme = QDocument::defaultFormatScheme();
+	if (!scheme) return 0;
+	return scheme->id(id);
 }
 
 /*!
@@ -6143,12 +6144,15 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		//qDebug("clear");
 	}
 
+	QFormatScheme* scheme = m_formatScheme;
+	if (!scheme) scheme = QDocument::defaultFormatScheme();
+	if (!scheme) return;
 
 	QBrush bg,
 		base = cxt.palette.base(),
 		selbg = cxt.palette.highlight(),
 		//alternate = QLineMarksInfoCenter::instance()->markType("current").color;
-		alternate = QDocument::formatFactory()->format("current").toTextCharFormat().background(); //current line
+		alternate = scheme->format("current").toTextCharFormat().background(); //current line
 
 
 	QColor repBackground = m_doc->getBackground();
@@ -6844,7 +6848,7 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
 {
-	bool updateFont = m_formatScheme != f;
+	bool updateFont = m_formatScheme != f && f;
 	m_formatScheme = f;
 	if (updateFont) 
 		setFont(*m_font, true);

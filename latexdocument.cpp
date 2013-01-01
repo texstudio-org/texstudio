@@ -325,7 +325,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	findStructureEntryBefore(iter_bibTeX,MapOfBibtex,linenr,count);
 	
 	LatexParser& latexParser = LatexParser::getInstance();
-	int verbatimFormat=QDocument::formatFactory()->id("verbatim");
+	int verbatimFormat=getFormatId("verbatim");
 	bool updateSyntaxCheck=false;
 	
 	QList<StructureEntry*> flatStructure;
@@ -991,9 +991,9 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visited
 
 void LatexDocument::recheckRefsLabels(){
 	// get occurences (refs)
-	int referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
-	int referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
-	int referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
+	int referenceMultipleFormat=getFormatId("referenceMultiple");
+	int referencePresentFormat=getFormatId("referencePresent");
+	int referenceMissingFormat=getFormatId("referenceMissing");
 	
 	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 	for(it=mLabelItem.constBegin();it!=mLabelItem.constEnd();++it){
@@ -1048,9 +1048,9 @@ QStringList LatexDocument::bibItems() const{
 
 void LatexDocument::updateRefsLabels(const QString& ref){
 	// get occurences (refs)
-	int referenceMultipleFormat=QDocument::formatFactory()->id("referenceMultiple");
-	int referencePresentFormat=QDocument::formatFactory()->id("referencePresent");
-	int referenceMissingFormat=QDocument::formatFactory()->id("referenceMissing");
+	int referenceMultipleFormat=getFormatId("referenceMultiple");
+	int referencePresentFormat=getFormatId("referencePresent");
+	int referenceMissingFormat=getFormatId("referenceMissing");
 	
 	int cnt=countLabels(ref);
 	QMultiHash<QDocumentLineHandle*,int> occurences=getLabels(ref);

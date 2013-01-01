@@ -540,7 +540,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	updateSettings();
-	SynChecker.verbatimFormat=QDocument::formatFactory()->id("verbatim");
+	SynChecker.verbatimFormat=editor->document()->getFormatId("verbatim");
 	SynChecker.setLtxCommands(LatexParser::getInstance());
 	SynChecker.start();
     unclosedEnv.id=-1;
@@ -690,6 +690,7 @@ void LatexEditorView::selectOptionInLatexArg(QDocumentCursor &cur) {
 
 void LatexEditorView::temporaryHighlight(QDocumentCursor cur) {
 	if (!cur.hasSelection()) return;
+	REQUIRE(editor->document());
 
 	QDocumentLine docLine(cur.selectionStart().line());
 	if (cur.endLineNumber() != cur.startLineNumber()) {
@@ -698,7 +699,7 @@ void LatexEditorView::temporaryHighlight(QDocumentCursor cur) {
 		cur.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 	}
 
-	QFormatRange highlight(cur.startColumnNumber(), cur.endColumnNumber()-cur.startColumnNumber(), QDocument::formatFactory()->id("search"));
+	QFormatRange highlight(cur.startColumnNumber(), cur.endColumnNumber()-cur.startColumnNumber(), editor->document()->getFormatId("search"));
 	docLine.addOverlay(highlight);
 	tempHighlightQueue.append(QPair<QDocumentLine, QFormatRange>(docLine, highlight));
 	QTimer::singleShot(1000, this, SLOT(removeTemporaryHighlight()));
@@ -1123,6 +1124,7 @@ void LatexEditorView::updateSettings(){
 void LatexEditorView::updateFormatSettings(){
 	static bool formatsLoaded = false;
 	if (!formatsLoaded) {
+		REQUIRE(QDocument::defaultFormatScheme());
 #define F(n) &n##Format, #n, 
 		const void * formats[] = {F(environment)
 		                          F(referenceMultiple) F(referencePresent) F(referenceMissing)
@@ -1142,7 +1144,7 @@ void LatexEditorView::updateFormatSettings(){
 		const void ** temp = formats;
 		while (*temp) {
 			int * c = (static_cast<int*>(const_cast<void*>(*temp)));
-			*c = QDocument::formatFactory()->id(QString(static_cast<const char*>(*(temp+1))));
+			*c = QDocument::defaultFormatScheme()->id(QString(static_cast<const char*>(*(temp+1))));
 			Q_ASSERT(c != 0);
 			temp+=2;
 		}
@@ -1360,7 +1362,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	}
 	
 	// checking
-	if (!QDocument::formatFactory()) return;
+	if (!QDocument::defaultFormatScheme()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if(!editor->languageDefinition())
 	    return;
@@ -1559,7 +1561,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		//TODO: should be handled by qce to be consistent (with syntax check and search)
 		if (!editor->document()->getFixedPitch() && editor->flag(QEditor::LineWrap)) {
 			bool updateWrapping = false;
-			QFormatScheme* ff = QDocument::formatFactory();
+			QFormatScheme* ff = QDocument::defaultFormatScheme();
+			REQUIRE(ff);
 			updateWrapping |= addedOverlaySpellCheckError && ff->format(SpellerUtility::spellcheckErrorFormat).widthChanging();
 			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
 			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
@@ -2417,7 +2420,8 @@ LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ct
 		from +=1; to -= 1; // leave out brackets
 	}
 
-	formatRange = QFormatRange(from, to-from+1, QDocument::formatFactory()->id("link"));
+	REQUIRE(QDocument::defaultFormatScheme());
+	formatRange = QFormatRange(from, to-from+1, QDocument::defaultFormatScheme()->id("link"));
 	docLine = cur.line();
 }
 
