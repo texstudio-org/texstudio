@@ -1220,7 +1220,7 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
 	
 	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
-	confDlg->fmConfig->addScheme("",QDocument::formatFactory());
+	confDlg->fmConfig->addScheme("",QDocument::defaultFormatScheme());
 	
 	// custom higlighting
 	{

@@ -118,7 +118,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	qRegisterMetaType<LatexParser>();
 	latexParser.importCwlAliases();
 	
-	QDocument::setFormatFactory(m_formats);
+	QDocument::setDefaultFormatScheme(m_formats);
 	SpellerUtility::spellcheckErrorFormat = m_formats->id("spellingMistake");
 	
 	qRegisterMetaType<QList<LineInfo> >();
@@ -7110,7 +7110,7 @@ void Texmaker::findNextWordRepetion(){
 	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int);
 	OverlaySearch overlaySearch = backward?&QDocumentLine::getLastOverlayBetween:&QDocumentLine::getFirstOverlayBetween;
 	QComboBox* kind = mButton->parent()->findChild<QComboBox*>("kind");
-	int overlayType = QDocument::formatFactory()->id(kind ? kind->currentText() : "wordRepetition");
+	int overlayType = currentEditorView()->document->getFormatId(kind ? kind->currentText() : "wordRepetition");
 	QDocumentCursor cur = currentEditor()->cursor();
 	if (cur.hasSelection()){
 		if (backward) cur = cur.selectionStart();

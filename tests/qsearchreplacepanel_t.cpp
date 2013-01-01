@@ -19,7 +19,9 @@ class QSearchReplacePanelProtectedBreaker: public QSearchReplacePanel{
 
 //must return void to be able to use QEQUAL,...
 void getHighlightedSelectionIntern(QEditor* ed, int &minLine, int& minCol, int& maxLine, int& maxCol, const QString& message){
-	int f=QDocument::formatFactory()->id("selection");	
+	Q_ASSERT (ed && ed->document());
+	if (!(ed && ed->document())) return;
+	int f = ed->document()->getFormatId("selection");
 	minLine=-1;
 	maxLine=-1;
 	int minRight = -1;

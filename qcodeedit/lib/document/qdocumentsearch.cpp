@@ -76,8 +76,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 	QDocument* d= currentDocument();
 	if ( !d || !d->lines()) return;
 
-	QFormatScheme *f = d->formatScheme() ? d->formatScheme() : QDocument::formatFactory();
-	int sid = f ? f->id("search") : 0;
+	int sid = d->getFormatId("search");
 	
 	if ( !sid ) {
 		qWarning("Highlighting of search matches disabled due to unavailability of a format scheme.");
@@ -196,8 +195,7 @@ void QDocumentSearch::clearMatches()
 	if ( !doc )
 		return;
 
-	QFormatScheme *f = doc->formatScheme() ? doc->formatScheme() : QDocument::formatFactory();
-	int sid = f ? f->id("search") : 0;
+	int sid = doc->getFormatId("search");
 
 	foreach (QDocumentLineHandle* h, m_highlights)
 		QDocumentLine(h).clearOverlays(sid);
@@ -217,8 +215,7 @@ void QDocumentSearch::clearReplacements(){
 	if ( !doc )
 		return;
 
-	QFormatScheme *f = doc->formatScheme() ? doc->formatScheme() : QDocument::formatFactory();
-	int sid = f ? f->id("replacement") : 0;
+	int sid = doc->getFormatId("replacement");
 
 	foreach (QDocumentLineHandle* l, m_highlightedReplacements)
 		QDocumentLine(l).clearOverlays(sid);
@@ -772,8 +769,8 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 void QDocumentSearch::updateReplacementOverlays(){
 	if (m_newReplacementOverlays.isEmpty()) return;
 	QDocument* d = m_cursor.document();
-	QFormatScheme *f = d ? d->formatScheme() : QDocument::formatFactory();
-	int rid = f ? f->id("replacement") : 0;
+	if (!d) return;
+	int rid = d->getFormatId("replacement");
 	if (!d || !hasOption(HighlightReplacements) || !rid)  { 
 		m_newReplacementOverlays.clear();
 		return;
@@ -878,8 +875,9 @@ void QDocumentSearch::highlightSelection(const QDocumentCursor& subHighlightScop
 	if (hasOption(Silent))
 		return;
 
-	QFormatScheme *f = m_editor->document()->formatScheme() ? m_editor->document()->formatScheme() : QDocument::formatFactory();
-	int sid = f ? f->id("selection") : 0;
+	if (!m_editor || !m_editor->document()) return;
+
+	int sid = m_editor->document()->getFormatId("selection");
 	if (!sid) return;
 
 	int begLine, endLine, begCol, endCol;
