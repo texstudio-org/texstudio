@@ -112,7 +112,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Center</source>
@@ -721,7 +721,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Appearance</source>
@@ -3434,7 +3434,7 @@ Voulez-vous supprimer ces macros ?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Select Encoding for</source>
@@ -3467,7 +3467,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Select a File</source>
@@ -3573,7 +3573,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Insert Graphics</source>
@@ -4077,7 +4077,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Quick Letter</source>
@@ -5064,7 +5064,7 @@ Reprendre du début ?</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <source>&amp;Undo</source>
@@ -6046,15 +6046,31 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>Line : %1 Column : %2</source>
-        <translation>Ligne : %1 Colonne : %2</translation>
+        <translation type="obsolete">Ligne : %1 Colonne : %2</translation>
     </message>
     <message>
         <source>Selected : %1</source>
-        <translation>Sélectionné : %1</translation>
+        <translation type="obsolete">Sélectionné : %1</translation>
     </message>
     <message>
         <source>Selected : %1 Lines: %2</source>
-        <translation>Sélectionné : %1 Lignes : %2</translation>
+        <translation type="obsolete">Sélectionné : %1 Lignes : %2</translation>
+    </message>
+    <message>
+        <source>Line: %1</source>
+        <translation>Ligne : %1</translation>
+    </message>
+    <message>
+        <source>Column: %1</source>
+        <translation>Colonne : %1</translation>
+    </message>
+    <message>
+        <source>Selected: %1</source>
+        <translation>Sélectionné : %1</translation>
+    </message>
+    <message>
+        <source>Lines: %1</source>
+        <translation>Lignes : %1</translation>
     </message>
 </context>
 <context>
@@ -6161,7 +6177,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Quick Start</source>
@@ -6307,7 +6323,7 @@ Faites-vous confiance à ce script ?</translation>
     </message>
     <message>
         <source>No, abort the call</source>
-        <translation>Non, abandonner l&apos;appel à ce script</translation>
+        <translation>Non, interrompre l&apos;appel à ce script</translation>
     </message>
     <message>
         <source>The current script has requested to enter privileged mode and read the following value:
@@ -6633,7 +6649,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -6734,7 +6750,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Center</source>
@@ -6785,7 +6801,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Spacing</source>
@@ -8139,11 +8155,11 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
     </message>
     <message>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <source>Insert language as TeX comment</source>
-        <translation>Insérer le langage comme un commentaire TeX</translation>
+        <translation>Insérer le langage en tant que commentaire TeX</translation>
     </message>
     <message>
         <source>Language</source>
@@ -8960,6 +8976,10 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
         <source>List Of Open Documents</source>
         <translation>Liste des documents ouverts</translation>
     </message>
+    <message>
+        <source>Encoding</source>
+        <translation>Codage d&apos;entrée</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -9262,7 +9282,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Add Own Word</source>
@@ -9326,7 +9346,7 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>LaTeX Content</source>
@@ -9515,7 +9535,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abandon</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>(the commands must be separated by &apos;|&apos;)</source>
