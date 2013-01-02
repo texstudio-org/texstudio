@@ -12,7 +12,9 @@ MakeTemplateDialog::MakeTemplateDialog(QString templateDir, QWidget *parent) :
 	connect(ui->buttonBox, SIGNAL(accepted()), SLOT(tryAccept()));
 	connect(ui->buttonBox, SIGNAL(rejected()), SLOT(reject()));
 
+	ui->leAuthor->setText(getUserName());
 	ui->leVersion->setText("1.0");
+	ui->cbLicense->clearEditText();
 }
 
 MakeTemplateDialog::~MakeTemplateDialog()
@@ -48,7 +50,7 @@ QString MakeTemplateDialog::generateMetaData()
 	s += formatJsonStringParam("Date", QDate::currentDate().toString(Qt::ISODate), 13) + ",\n";
 	s += formatJsonStringParam("Version", ui->leVersion->text(), 13) + ",\n";
 	s += formatJsonStringParam("Description", ui->leDescription->toPlainText(), 13) + ",\n";
-	s += formatJsonStringParam("License", ui->leLicense->text(), 13) + "\n"; // last entry does not have colon
+	s += formatJsonStringParam("License", ui->cbLicense->currentText(), 13) + "\n"; // last entry does not have colon
 	s += "}";
 	return s;
 }

@@ -79,7 +79,54 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QLineEdit" name="leLicense"/>
+       <widget class="QComboBox" name="cbLicense">
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <item>
+         <property name="text">
+          <string notr="true">Public Domain</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Creative Commons CC BY</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Creative Commons CC BY-SA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Creative Commons CC BY-ND</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Creative Commons CC BY-NC</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Creative Commons CC BY-NC-SA</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Creative Commons CC BY-NC-ND</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">GNU Free Documentation License</string>
+         </property>
+        </item>
+       </widget>
       </item>
      </layout>
     </widget>
