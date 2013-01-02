@@ -112,6 +112,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	static QPixmap _warn(":/warning.png"), _mod(":/save.png");
 
 	QString s;
+	QString spacing("    ");
 	int xpos = 10;
 	QDocumentCursorHandle* c = e->cursorHandle();
 	const QFontMetrics fm(fontMetrics());
@@ -119,20 +120,19 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	const int ls = QDocument::getLineSpacing();
 	const int ascent = fm.ascent() + 3;
 
-	s = tr("Line : %1 Column : %2")
-			.arg(c->lineNumber() + 1)
-			.arg(c->visualColumnNumber());
+	s = tr("Line: %1").arg(c->lineNumber() + 1);
+	s += spacing + tr("Column: %1").arg(c->visualColumnNumber());
 
 	if (c->hasSelection()) {
-		s += "  ";
 		if (c->anchorLineNumber() == c->lineNumber())
-			s += tr("Selected : %1").arg(qAbs(c->anchorColumnNumber() - c->columnNumber()));
+			s += spacing + tr("Selected: %1").arg(qAbs(c->anchorColumnNumber() - c->columnNumber()));
 		else {
 			QDocumentCursor ss = c->selectionStart(), se = c->selectionEnd();
 			int chars = ss.line().length() - ss.columnNumber() + se.columnNumber();
 			for (int i=ss.lineNumber()+1;i<se.lineNumber();i++)
 				chars += ss.document()->line(i).length();
-			s += tr("Selected : %1 Lines: %2").arg(chars).arg(se.lineNumber() - ss.lineNumber() + 1);
+			s += spacing + tr("Selected: %1").arg(chars);
+			s += spacing + tr("Lines: %1").arg(se.lineNumber() - ss.lineNumber() + 1);
 		}
 	}
 
