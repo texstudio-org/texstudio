@@ -67,6 +67,14 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
 #endif
 }
 
+QString getUserName() {
+#ifdef Q_WS_WIN
+	return QString(qgetenv("USERNAME"));
+#else
+	return QString(qgetenv("USER"));
+#endif
+}
+
 
 
 #ifdef Q_WS_MAC

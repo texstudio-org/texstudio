@@ -41,6 +41,7 @@ void txsCritical(const QString& message);
 //void txs_assert(const char *assertion, const char *file, int line);
 
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
+QString getUserName();
 
 class LatexCompleterConfig;
 
