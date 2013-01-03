@@ -118,7 +118,7 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	return result;
 }
 
-void LatexDocument::clearStructure() {
+void LatexDocument::initClearStructure() {
 	mUserCommandList.clear();
 	mLabelItem.clear();
 	mBibItem.clear();
@@ -126,64 +126,31 @@ void LatexDocument::clearStructure() {
 	mMentionedBibTeXFiles.clear();
 	
 	mAppendixLine=0;
-	
-	if(baseStructure){
-		emit structureUpdated(this,0);
-		
-		if (!magicCommentList->parent) delete magicCommentList;
-		if (!labelList->parent) delete labelList;
-		if (!todoList->parent) delete todoList;
-		if (!bibTeXList->parent) delete bibTeXList;
-		if (!blockList->parent) delete blockList;
-		int row=parent->documents.indexOf(this);
-		
-		if(parent->model->getSingleDocMode()){
-			if(parent->currentDocument==this){
-				removeElement(baseStructure,0);
-				delete baseStructure;
-				removeElementFinished();
-			}else{
-				LatexDocument *doc=parent->currentDocument;
-				parent->currentDocument=this;
-				parent->updateStructure();
-				removeElement(baseStructure,0);
-				delete baseStructure;
-				removeElementFinished();
-				parent->currentDocument=doc;
-				parent->updateStructure();
-			}
-		}else{
-			removeElement(baseStructure,row);
-			delete baseStructure;
-			removeElementFinished();
-		}
-	}
-#ifndef QT_NO_DEBUG
-    //Q_ASSERT(StructureContent.isEmpty());
-#endif
-	baseStructure=0;
-	
-}
 
-void LatexDocument::initStructure(){
-	clearStructure();
+
+	emit structureUpdated(this,0);
+
+	const int CATCOUNT = 5;
+	StructureEntry* categories[CATCOUNT] = {magicCommentList, labelList, todoList, bibTeXList, blockList};
+	for (int i=0; i<CATCOUNT;i++)
+		if (categories[i]->parent == baseStructure) {
+			removeElementWithSignal(categories[i]);
+			foreach (StructureEntry* se, categories[i]->children)
+				delete se;
+			categories[i]->children.clear();
+		}
+
+	for (int i=0;i<baseStructure->children.length();i++) {
+		StructureEntry* temp = baseStructure->children[i];
+		removeElementWithSignal(temp);
+		delete temp;
+	}
 	
-	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	baseStructure->title=fileName;
-	magicCommentList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-	magicCommentList->title=tr("MAGIC_COMMENTS");
-	labelList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-	labelList->title=tr("LABELS");
-	todoList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-	todoList->title=tr("TODO");
-	bibTeXList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-	bibTeXList->title=tr("BIBLIOGRAPHY");
-	blockList = new StructureEntry(this,StructureEntry::SE_OVERVIEW);
-	blockList->title=tr("BLOCKS");
 }
 
 void LatexDocument::updateStructure() {
-	initStructure();
+	initClearStructure();
 	
 	patchStructure(0, lineCount());
 	
