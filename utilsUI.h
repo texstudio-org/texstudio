@@ -18,4 +18,7 @@ QToolButton* comboToolButtonFromAction(QAction* action);
 
 QToolButton* createToolButtonForAction(QAction* action);
 
+// opens a selection dialog and inserts the selected file(s) or path into widget
+bool browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath = QDir::homePath(), bool list = false);
+
 #endif // UTILSUI_H
