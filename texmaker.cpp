@@ -31,6 +31,7 @@
 #include "quickdocumentdialog.h"
 #include "mathassistant.h"
 #include "maketemplatedialog.h"
+#include "templateselector.h"
 #include "templatemanager.h"
 #include "usermenudialog.h"
 #include "usertooldialog.h"
@@ -1716,9 +1717,9 @@ void Texmaker::runScripts(int trigger){
 			insertUserTag(configManager.completerConfig->userMacro[i].tag, trigger);
 }
 
-void Texmaker::fileNew(QString fileName) {
-	LatexDocument *doc=new LatexDocument();
-	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+void Texmaker::fileNewInternal(QString fileName) {
+	LatexDocument *doc = new LatexDocument(this);
+	LatexEditorView *edit = new LatexEditorView (0, configManager.editorConfig, doc);
 	if (configManager.newFileEncoding)
 		edit->editor->setFileCodec(configManager.newFileEncoding);
 	else
@@ -1727,14 +1728,17 @@ void Texmaker::fileNew(QString fileName) {
 	edit->editor->setFileName(fileName);
 
 	configureNewEditorView(edit);
-	
-	edit->document=doc;
+
+	edit->document = doc;
 	edit->document->setEditorView(edit);
 	documents.addDocument(edit->document);
 
 	configureNewEditorViewEnd(edit);
 	edit->updateLtxCommands();
-	
+}
+
+void Texmaker::fileNew(QString fileName) {
+	fileNewInternal(fileName);
 	emit infoNewFile();
 }
 
@@ -1801,8 +1805,29 @@ void Texmaker::templateEdit(const QString &fname){
 void Texmaker::fileNewFromTemplate() {
 	TemplateManager tmplMgr;
 	connectUnique(&tmplMgr, SIGNAL(editRequested(QString)), this, SLOT(templateEdit(QString)));
-	if (tmplMgr.latexTemplateDialogExec()) {
-		QString fname = tmplMgr.selectedTemplateFile();
+
+	TemplateSelector *dialog = tmplMgr.createLatexTemplateDialog();
+	if (!dialog->exec()) return;
+
+	TemplateHandle th = dialog->selectedTemplate();
+	if (!th.isValid()) return;
+
+	if (dialog->createInFolder()) {
+		th.createInFolder(dialog->creationFolder());
+		if (th.isMultifile()) {
+			QDir dir(dialog->creationFolder());
+			foreach (const QString &f, th.filesToOpen()) {
+				QFileInfo fi(dir, f);
+				if (fi.exists() && fi.isFile())
+					load(fi.absoluteFilePath());
+			}
+		} else {
+			QDir dir(dialog->creationFolder());
+			QFileInfo fi(dir, QFileInfo(th.file()).fileName());
+			load(fi.absoluteFilePath());
+		}
+	} else {
+		QString fname = th.file();
 		QFile file(fname);
 		if (!file.exists()) {
 			txsWarning(tr("File not found:")+QString("\n%1").arg(fname));
@@ -1812,23 +1837,11 @@ void Texmaker::fileNewFromTemplate() {
 			txsWarning(tr("You do not have read permission to this file:")+QString("\n%1").arg(fname));
 			return;
 		}
+
 		//set up new editor with template
-		LatexDocument *doc=new LatexDocument(this);
-		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
-		if (configManager.newFileEncoding)
-			edit->editor->setFileCodec(configManager.newFileEncoding);
-		else
-			edit->editor->setFileCodec(QTextCodec::codecForName("utf-8"));
-		
-		configureNewEditorView(edit);
-		
-		edit->document=doc;
-		edit->document->setEditorView(edit);
-		documents.addDocument(edit->document);
-		
-		configureNewEditorViewEnd(edit);
-		edit->updateLtxCommands();
-		
+		fileNewInternal();
+		LatexEditorView *edit = currentEditorView();
+
 		QString mTemplate;
 		QTextStream in(&file);
 		in.setCodec(QTextCodec::codecForMib(MIB_UTF8));
@@ -1844,9 +1857,10 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->setCursorPosition(0,0);
 		edit->editor->nextPlaceHolder();
 		edit->editor->ensureCursorVisibleSurrounding();
-		
+
 		emit infoNewFromTemplate();
 	}
+	delete dialog;
 }
 
 void Texmaker::insertTableTemplate() {

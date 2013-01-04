@@ -39,6 +39,17 @@ QString getUserName() {
 #endif
 }
 
+QString getUserDocumentFolder() {
+#ifdef Q_WS_WIN
+	// typically "C:/Documents and Settings/Username/My Documents"
+	QSettings settings(QSettings::UserScope, "Microsoft", "Windows");
+	settings.beginGroup("CurrentVersion/Explorer/Shell Folders");
+	return settings.value("Personal").toString();
+#else
+	return QDir::homePath();
+#endif
+}
+
 QStringList findResourceFiles(const QString& dirName, const QString& filter, QStringList additionalPreferredPaths) {
 	QStringList searchFiles;
 	QString dn = dirName;

@@ -1,4 +1,5 @@
 #include "templatemanager_p.h"
+#include "JlCompress.h"
 #include "smallUsefulFunctions.h"
 
 /*** TemplateHandle **********************************************************/
@@ -21,12 +22,44 @@ QPixmap TemplateHandle::previewImage() const { return (m_tmpl) ? m_tmpl->preview
 QString TemplateHandle::file() const         { return (m_tmpl) ? m_tmpl->file() : QString(); }
 bool TemplateHandle::isEditable() const      { return (m_tmpl) ? m_tmpl->isEditable() : false; }
 
+bool TemplateHandle::isMultifile() const     { return (m_tmpl) ? m_tmpl->isMultifile() : false; }
+
+bool TemplateHandle::createInFolder(const QString &path) const { return (m_tmpl) ? m_tmpl->createInFolder(path) : false; }
+QStringList TemplateHandle::filesToOpen() const { return (m_tmpl) ? m_tmpl->filesToOpen() : QStringList(); }
+
 void TemplateHandle::setTmpl(Template *tmpl) {
 	if ( m_tmpl ) m_tmpl->deref(this);
 	m_tmpl = tmpl;
 	if ( m_tmpl ) m_tmpl->ref(this);
 }
 
+/*** Template ****************************************************************/
+
+bool Template::createInFolder(const QString &path) {
+	QDir dir(path);
+	if (!dir.exists()) {
+		bool created = dir.mkpath(".");
+		if (!created) return false;
+	} else {
+		QStringList entries = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
+		if (!entries.isEmpty()) {
+			bool ok = txsConfirmWarning("The target folder is not empty. It is recommended to instantiate "
+							  "in new folders. Otherwise existing files may be overwritten. "
+							  "Do you wish to use this folder anyway?");
+			if (!ok) return false;
+		}
+	}
+
+	if (!isMultifile()) {
+		QFileInfo fi(file());
+		QFileInfo target(dir, fi.fileName());
+		return QFile::copy(file(), target.absoluteFilePath());
+	} else {
+		bool success = !JlCompress::extractDir(file(), dir.absolutePath()).isEmpty();
+		return success;
+	}
+	return false;
+}
 
 /*** LocalFileTemplate *******************************************************/
 
@@ -36,6 +69,16 @@ QDate LocalFileTemplate::date() const {
 	if (!d.isValid())
 		d = QDate::fromString(metaData["Date"], Qt::SystemLocaleShortDate);
 	return d;
+}
+
+QStringList LocalFileTemplate::filesToOpen() const {
+	QStringList files;
+	foreach (const QString &f, metaData["FilesToOpen"].split(";")) {
+		QString ft(f.trimmed());
+		if (!ft.isEmpty())
+			files << ft;
+	}
+	return files;
 }
 
 LocalFileTemplate::LocalFileTemplate(QString mainfile) : m_mainfile(mainfile), m_editable(false) {}
@@ -152,5 +195,6 @@ void LocalFileTemplateRessource::update() {
 			m_templates.append(lft);
 	}
 }
+
 
 

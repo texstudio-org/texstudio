@@ -17,6 +17,9 @@ public:
 	virtual QPixmap previewImage() const { return QPixmap(); }
 	virtual QString file() const { return QString(); }
 	virtual bool isEditable() const { return false; }
+	virtual bool isMultifile() const { return file().endsWith(".zip"); }
+	bool createInFolder(const QString &path);
+	virtual QStringList filesToOpen() const { return QStringList(); }
 
 	void ref(TemplateHandle *th) {
 		handles.append(th);
@@ -26,7 +29,7 @@ public:
 		//qDebug() << handles.size() << "<" << th->file() << this;
 		handles.removeOne(th); }
 
-	private:
+private:
 	QList<TemplateHandle *> handles;
 };
 
@@ -43,6 +46,7 @@ public:
 	virtual QPixmap previewImage() const { return QPixmap(imageFile()); }
 	virtual QString file() const { return m_mainfile; }
 	virtual bool isEditable() const { return m_editable; }
+	virtual QStringList filesToOpen() const;
 
 protected:
 	LocalFileTemplate(QString mainfile);
@@ -108,7 +112,7 @@ class LocalLatexTemplateRessource : public LocalFileTemplateRessource {
 	Q_OBJECT
 public:
 	LocalLatexTemplateRessource(QString path, QString name, QObject *parent, QIcon icon)
-		: LocalFileTemplateRessource(path, QStringList() << "*.tex", name, parent, icon) { update(); }
+		: LocalFileTemplateRessource(path, QStringList() << "*.tex" << "*.zip", name, parent, icon) { update(); }
 protected:
 	virtual LocalFileTemplate* createTemplate(QString file) { return new LocalLatexTemplate(file); }
 };

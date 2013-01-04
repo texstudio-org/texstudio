@@ -42,8 +42,6 @@ void PreviewLabel::setPixmapWithResizing(const QPixmap &pm) {
 }
 
 
-
-
 TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 	: QDialog(parent) {
 	setModal(true);
@@ -55,6 +53,7 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 		// TODO is there a more elegant way to replace the label?
 		gl->removeWidget(ui.previewLabelDummy);
 		delete ui.previewLabelDummy;
+
 		previewLabel = new PreviewLabel(this);
 		previewLabel->setFrameShape(QFrame::Box);
 		previewLabel->setFrameShadow(QFrame::Plain);
@@ -71,29 +70,22 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 	connect(ui.templatesTree, SIGNAL(customContextMenuRequested(QPoint)), SLOT(templatesTreeContextMenu(QPoint)));
 	connect(ui.templatesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(showInfo(QTreeWidgetItem*,QTreeWidgetItem*)));
 
+	ui.lePath->setText(getUserDocumentFolder());
+
+	connect(ui.rbCreateInFolder, SIGNAL(toggled(bool)), ui.lePath, SLOT(setEnabled(bool)));
+	connect(ui.rbCreateInFolder, SIGNAL(toggled(bool)), ui.btPath, SLOT(setEnabled(bool)));
+	connect(ui.rbCreateInFolder, SIGNAL(toggled(bool)), this, SLOT(checkTargetPath()));
+	connect(ui.lePath, SIGNAL(textChanged(QString)), this, SLOT(checkTargetPath()));
+	ui.warningIcon->hide();
+	ui.warningText->hide();
+	QString warnTooltip = tr("It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.");
+	ui.warningIcon->setToolTip(warnTooltip);
+	ui.warningText->setToolTip(warnTooltip);
+
 	showInfo(0,0);
 }
 
 TemplateSelector::~TemplateSelector() {
-}
-
-void TemplateSelector::addTemplateFiles() {
-	// works for table templates and latex templates
-	QRegExp rxTemplate("(^|^.*/)(table)?(template_)?");
-	QRegExp rxSuffix(".(tex|js)$");
-
-	//QStringList files=findResourceFiles("templates/", mFilter, mAdditonalSearchPaths);
-
-	/*
-	foreach(const QString &file, files) {
-		QString title = file;
-		title.replace(rxTemplate, "");
-		title.replace(rxSuffix, "");
-		QListWidgetItem *item = new QListWidgetItem(title);
-
-		item->setData(FileNameRole, file);
-		ui.listWidget->addItem(item);
-	}*/
 }
 
 void TemplateSelector::addRessource(AbstractTemplateRessource *res)
@@ -121,11 +113,35 @@ TemplateHandle TemplateSelector::selectedTemplate() const {
 	return ui.templatesTree->currentItem()->data(0, TemplateHandleRole).value<TemplateHandle>();
 }
 
+bool TemplateSelector::createInFolder() const {
+	return ui.rbCreateInFolder->isChecked();
+}
+
+QString TemplateSelector::creationFolder() const {
+	return ui.lePath->text();
+}
+
 void TemplateSelector::on_templatesTree_doubleClicked(const QModelIndex& /*item*/) {
 	QPushButton *pbOk = ui.buttonBox->button(QDialogButtonBox::Ok);
 	Q_ASSERT(pbOk);
 	if (pbOk->isEnabled())
 		accept();
+}
+
+void TemplateSelector::on_btPath_clicked() {
+	browse(ui.lePath, tr("Select Target Folder"), "/");
+}
+
+void TemplateSelector::checkTargetPath() {
+	bool showWarning = false;
+	if (ui.rbCreateInFolder->isChecked()) {
+		QDir dir(ui.lePath->text());
+		if (dir.exists()) {
+			showWarning = !dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files).isEmpty();
+		}
+	}
+	ui.warningIcon->setVisible(showWarning);
+	ui.warningText->setVisible(showWarning);
 }
 
 void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *previousItem) {
@@ -148,7 +164,14 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *pr
 		ui.lbVersion->setText(tr("Version")+": "+th.version());
 		ui.lbLicense->setText(tr("License")+": "+th.license());
 		ui.lbAuthorTag->setVisible(true);
-		previewLabel->setScaledPixmap(th.previewImage());
+		previewLabel->setScaledPixmap(QPixmap(th.previewImage()));
+
+		if (th.isMultifile()) {
+			ui.rbCreateInFolder->setChecked(true);
+			ui.rbCreateInEditor->setEnabled(false);
+		} else {
+			ui.rbCreateInEditor->setEnabled(true);
+		}
 	} else {
 		AbstractTemplateRessource *res = (currentItem) ? (currentItem->data(0, RessourceRole).value<AbstractTemplateRessource *>()) : 0;
 		// if !res the currentItem is invalid

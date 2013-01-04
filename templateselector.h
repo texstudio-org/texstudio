@@ -38,23 +38,25 @@ public:
 	~TemplateSelector();
 
 	TemplateHandle selectedTemplate() const;
+	bool createInFolder() const;
+	QString creationFolder() const;
 	void addRessource(AbstractTemplateRessource *res);
 signals:
 	void editTemplateRequest(TemplateHandle th);
 	void editTemplateInfoRequest(TemplateHandle th);
 
 private slots:
-	void addTemplateFiles();
 	void showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *previousItem);
 	void templatesTreeContextMenu(QPoint point);
 
 	void on_templatesTree_doubleClicked(const QModelIndex& index);
+	void on_btPath_clicked();
+	void checkTargetPath();
 
 	void editTemplate();
 	void editTemplateInfo();
 	void removeTemplate();
 	void openTemplateLocation();
-
 private:
 	QString orDefault(const QString &val, const QString &defaultIfValEmpty) const { return (val.isEmpty()) ? defaultIfValEmpty : val; }
 

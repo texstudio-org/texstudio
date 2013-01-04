@@ -21,6 +21,8 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 
 QString getUserName();
 
+QString getUserDocumentFolder();
+
 QStringList findResourceFiles(const QString& dirName, const QString& filter, QStringList additionalPreferredPaths = QStringList());
 //returns the real name of a resource file
 QString findResourceFile(const QString& fileName, bool allowOverride = false, QStringList additionalPreferredPaths = QStringList(), QStringList additionalFallbackPaths = QStringList());

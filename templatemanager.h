@@ -4,6 +4,7 @@
 #include "mostQtHeaders.h"
 
 class Template;
+class TemplateSelector;
 
 class TemplateHandle {
 public:
@@ -25,6 +26,9 @@ public:
 	QPixmap previewImage() const;
 	QString file() const;
 	bool isEditable() const;
+	bool isMultifile() const;
+	bool createInFolder(const QString &path) const;
+	QStringList filesToOpen() const;
 private:
 	void setTmpl(Template *tmpl);
 	Template * m_tmpl; // only write via setTmpl()
@@ -58,7 +62,8 @@ public:
 	static bool ensureUserTemplateDirExists();
 	static void checkForOldUserTemplates();
 
-	bool latexTemplateDialogExec();
+	TemplateSelector * createLatexTemplateDialog();
+	TemplateHandle latexTemplateDialogExec();
 	bool tableTemplateDialogExec();
 	QString selectedTemplateFile() { return selectedFile; }
 
@@ -74,5 +79,13 @@ private:
 	static QString configBaseDir;
 	QString selectedFile;
 };
+
+class LatexTemplateManager : public TemplateManager
+{
+	Q_OBJECT
+public:
+	explicit LatexTemplateManager(QObject *parent = 0);
+};
+
 
 #endif // TEMPLATEMANAGER_H
