@@ -1,0 +1,66 @@
+\section{QuaZipFileInfo Struct Reference}
+\label{structQuaZipFileInfo}\index{QuaZipFileInfo@{QuaZipFileInfo}}
+
+
+Information about a file inside archive.  
+
+
+
+
+{\ttfamily \#include $<$quazipfileinfo.h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QString {\bf name}\label{structQuaZipFileInfo_a16ac323965deccf0232bfae69d933a84}
+
+\begin{DoxyCompactList}\small\item\em File name. \end{DoxyCompactList}\item 
+quint16 {\bf versionCreated}\label{structQuaZipFileInfo_a52f3f1d960ebaa2acbc2a86458fa3e6e}
+
+\begin{DoxyCompactList}\small\item\em Version created by. \end{DoxyCompactList}\item 
+quint16 {\bf versionNeeded}\label{structQuaZipFileInfo_a8b73982808bded49e88e624a65e1a94f}
+
+\begin{DoxyCompactList}\small\item\em Version needed to extract. \end{DoxyCompactList}\item 
+quint16 {\bf flags}\label{structQuaZipFileInfo_a56d36f777e4fc892c71e22d080622e2c}
+
+\begin{DoxyCompactList}\small\item\em General purpose flags. \end{DoxyCompactList}\item 
+quint16 {\bf method}\label{structQuaZipFileInfo_af5c1bbda7f5dec2c358e7a543564de4c}
+
+\begin{DoxyCompactList}\small\item\em Compression method. \end{DoxyCompactList}\item 
+QDateTime {\bf dateTime}\label{structQuaZipFileInfo_ad6993d099436813a27fd31aebe42911a}
+
+\begin{DoxyCompactList}\small\item\em Last modification date and time. \end{DoxyCompactList}\item 
+quint32 {\bf crc}\label{structQuaZipFileInfo_aceee045c9ebce0b9724f40d342bc99ea}
+
+\begin{DoxyCompactList}\small\item\em CRC. \end{DoxyCompactList}\item 
+quint32 {\bf compressedSize}\label{structQuaZipFileInfo_af6116eaac1f36b2a4b3a6a39851a85cc}
+
+\begin{DoxyCompactList}\small\item\em Compressed file size. \end{DoxyCompactList}\item 
+quint32 {\bf uncompressedSize}\label{structQuaZipFileInfo_a0eb908e1b1ea637d1f1f4d6aa31db07f}
+
+\begin{DoxyCompactList}\small\item\em Uncompressed file size. \end{DoxyCompactList}\item 
+quint16 {\bf diskNumberStart}\label{structQuaZipFileInfo_aa70157fdc2bd8de10405055b4233050b}
+
+\begin{DoxyCompactList}\small\item\em Disk number start. \end{DoxyCompactList}\item 
+quint16 {\bf internalAttr}\label{structQuaZipFileInfo_a36e681a93b041617addee78cb939c93d}
+
+\begin{DoxyCompactList}\small\item\em Internal file attributes. \end{DoxyCompactList}\item 
+quint32 {\bf externalAttr}\label{structQuaZipFileInfo_afeb65ffdacc4fc0ba7848d4b37f62ecf}
+
+\begin{DoxyCompactList}\small\item\em External file attributes. \end{DoxyCompactList}\item 
+QString {\bf comment}\label{structQuaZipFileInfo_adc2aad7bbd87ce3415e2a19851266bfc}
+
+\begin{DoxyCompactList}\small\item\em Comment. \end{DoxyCompactList}\item 
+QByteArray {\bf extra}\label{structQuaZipFileInfo_affc7b097de2c3c2ef5801c60f96adc72}
+
+\begin{DoxyCompactList}\small\item\em Extra field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Information about a file inside archive. 
+
+Call \doxyref{QuaZip::getCurrentFileInfo()}{p.}{classQuaZip_a9c91a53ed4c2038e153c64bdc097ebe8} or \doxyref{QuaZipFile::getFileInfo()}{p.}{classQuaZipFile_ad3f5807329321be21b12c1ba5798b359} to fill this structure. 
+
+The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+quazip/quazipfileinfo.h\end{DoxyCompactItemize}

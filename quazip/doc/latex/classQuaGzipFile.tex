@@ -1,0 +1,57 @@
+\section{QuaGzipFile Class Reference}
+\label{classQuaGzipFile}\index{QuaGzipFile@{QuaGzipFile}}
+
+
+Collaboration diagram for QuaGzipFile:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=144pt]{classQuaGzipFile__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries QuaGzipFile} (QObject $\ast$parent)\label{classQuaGzipFile_a13996f5db660c4a29645f8d208b9ca6b}
+
+\item 
+{\bfseries QuaGzipFile} (const QString \&fileName, QObject $\ast$parent=NULL)\label{classQuaGzipFile_ac7f7703bda9c6169c001aa15641bb2ea}
+
+\item 
+void {\bfseries setFileName} (const QString \&fileName)\label{classQuaGzipFile_a253fbaf410a3d4ae0a719505c5525149}
+
+\item 
+QString {\bfseries getFileName} () const \label{classQuaGzipFile_a9a0954a1db1fcf2aeba0530239bce71c}
+
+\item 
+virtual bool {\bfseries isSequential} () const \label{classQuaGzipFile_ae97f4e15d86c965c156df33d00318176}
+
+\item 
+virtual bool {\bfseries open} (QIODevice::OpenMode mode)\label{classQuaGzipFile_a1d560babdfff3a3441d704099a5bc1e4}
+
+\item 
+virtual bool {\bfseries open} (int fd, QIODevice::OpenMode mode)\label{classQuaGzipFile_adf5a954bb9bfda2d33cd336a213e2549}
+
+\item 
+virtual bool {\bfseries flush} ()\label{classQuaGzipFile_ab745f345b727c81abbc3eb5af4dca844}
+
+\item 
+virtual void {\bfseries close} ()\label{classQuaGzipFile_a273205350b1235a242a1eb5cbf586434}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual qint64 {\bfseries readData} (char $\ast$data, qint64 maxSize)\label{classQuaGzipFile_a9eab41b46367e63e0c269c42ca883d82}
+
+\item 
+virtual qint64 {\bfseries writeData} (const char $\ast$data, qint64 maxSize)\label{classQuaGzipFile_a6dd09d41d8a51c96b0f2134eff37f676}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+quazip/quagzipfile.h\item 
+quazip/quagzipfile.cpp\end{DoxyCompactItemize}
