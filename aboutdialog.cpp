@@ -11,7 +11,7 @@
 
 #include "aboutdialog.h"
 
-#include "smallUsefulFunctions.h"
+#include "utilsVersion.h"
 extern const char* TEXSTUDIO_SVN_VERSION;
 
 #ifdef QT_NO_DEBUG
