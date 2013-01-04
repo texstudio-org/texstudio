@@ -77,23 +77,34 @@ void TemplateManager::checkForOldUserTemplates() {
 	}
 }
 
-bool TemplateManager::latexTemplateDialogExec() {
+TemplateSelector * TemplateManager::createLatexTemplateDialog() {
+	TemplateSelector *dialog = new TemplateSelector(tr("Select Latex Template"));
+	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
+	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
+	LocalLatexTemplateRessource *userTemplates = new LocalLatexTemplateRessource(userTemplateDir(), tr("User"), dialog, QIcon(":/images/user-identity.png"));
+	userTemplates->setDescription(tr("User created template files"));
+	userTemplates->setEditable(true);
+	LocalLatexTemplateRessource *builtinTemplates = new LocalLatexTemplateRessource(builtinTemplateDir(), tr("Builtin"), dialog, QIcon(":/images/appicon.png"));
+	builtinTemplates->setDescription(tr("Basic template files shipped with TeXstudio."));
+	dialog->addRessource(userTemplates);
+	dialog->addRessource(builtinTemplates);
+	return dialog;
+}
+
+TemplateHandle TemplateManager::latexTemplateDialogExec() {
 	TemplateSelector dialog(tr("Select Latex Template"));
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	LocalLatexTemplateRessource userTemplates(userTemplateDir(), tr("User"), this, QIcon(":/images/user-identity.png"));
-	userTemplates.setDescription(tr("User created template files"));
-	userTemplates.setEditable(true);
-	LocalLatexTemplateRessource builtinTemplates(builtinTemplateDir(), tr("Builtin"), this, QIcon(":/images/appicon.png"));
-	builtinTemplates.setDescription(tr("Basic template files shipped with TeXstudio."));
-	dialog.addRessource(&userTemplates);
-	dialog.addRessource(&builtinTemplates);
+	LocalLatexTemplateRessource *userTemplates = new LocalLatexTemplateRessource(userTemplateDir(), tr("User"), this, QIcon(":/images/user-identity.png"));
+	userTemplates->setDescription(tr("User created template files"));
+	userTemplates->setEditable(true);
+	LocalLatexTemplateRessource *builtinTemplates = new LocalLatexTemplateRessource(builtinTemplateDir(), tr("Builtin"), this, QIcon(":/images/appicon.png"));
+	builtinTemplates->setDescription(tr("Basic template files shipped with TeXstudio."));
+	dialog.addRessource(userTemplates);
+	dialog.addRessource(builtinTemplates);
 
 	bool ok = dialog.exec();
-	if (ok) {
-		selectedFile = dialog.selectedTemplate().file();
-	}
-	return ok;
+	return (ok) ? dialog.selectedTemplate() : TemplateHandle();
 }
 
 bool TemplateManager::tableTemplateDialogExec() {
