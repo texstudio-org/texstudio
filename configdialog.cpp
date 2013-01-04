@@ -534,33 +534,6 @@ void ConfigDialog::comboBoxWithPathHighlighted(const QString& newText){
 }
 
 
-bool ConfigDialog::browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath, bool list){
-	QLineEdit* le = qobject_cast<QLineEdit*>(w);
-	QComboBox* cb = qobject_cast<QComboBox*>(w);
-	REQUIRE_RET(le || cb, false);
-	QString oldpath = le?le->text():cb->currentText();
-	QString path = oldpath;
-#ifdef Q_WS_WIN
-	QString pathSep = ";";
-#else
-	QString pathSep = ":";
-#endif
-	if (list && !path.isEmpty()) path = path.split(pathSep).last();
-	if (path.startsWith('"')) path.remove(0,1);
-	if (path.endsWith('"')) path.chop(1);
-	if (path.isEmpty()) path = startPath;
-	if (extension == "/") path = QFileDialog::getExistingDirectory(this, title, path);
-	else path = QFileDialog::getOpenFileName(this,title,path,extension,0,QFileDialog::DontResolveSymlinks);
-	if (!path.isEmpty()) {
-		if (!list) path.replace(QString("\\"),QString("/"));
-		else if (!oldpath.isEmpty()) path = oldpath + pathSep + path;
-		if (le) le->setText(path);
-		if (cb) cb->setEditText(path);
-		return true;
-	}
-	return false;
-}
-
 void ConfigDialog::browseThesaurus() {
 	browse(ui.comboBoxThesaurusFileName,tr("Browse thesaurus database"),"Database (*.dat)");
 }
