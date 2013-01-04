@@ -486,21 +486,26 @@ This is a more interactive approach than choosing svn revisions directly via a m
 <p>For new documents, templates can be used by using the command "File/New from template".
 A dialogue gives a selection of templates.</p>
 <p><IMG src="template.png" border="1" alt="Templates"></p>
-<p>New templates can be added by using the command "File/Make Template" on a opened document which you like to have has a template. User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
-<p>Meta data is stored in JSON format in a separate file with same name, but extension ".json" instead of ".tex". Currently the following entries are supported:</p>
-<pre>
-{
-"Name"        : "Beamer",
-"Description" : "Beamer class for presentations.", 
-"Author"      : "TXS built-in",
-"Date"        : "17.8.2009",
-"Version"     : "1.0",
-"License"     : "Public Domain"
-}
-</pre>
-<p>You can add a preview image next to the ".tex" file. Again, it must have the same name, but extension ".png" instead of ".tex".</p>
+<p>You can either create a new editor document from the template or create it as file(s) on disk and open these in the editor. The former option is not available for multi-file templates.</p>
+<p>New templates can be created by using the command "File/Make Template" on a opened document which you like to have has a template. Note that this dialog currently does not support the full capabilities of the template system. In particular you cannot supply a preview image or create a multi-file template with it. You'll have to do this manually (see the <a href="#SECTION12aa">template format</a>).</p>
 <p>User added templates can be edited or deleted by using the context menu in the template selection dialogue.
 Built-in templates can not be changed.</p>
+<p>User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
+<h3 id="SECTION12aa">2.2.2.1 The Template Format</h3>
+<p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all files in a zip achive. Optionally, meta data is stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported:</p>
+<pre>
+{
+"Name"        : "Book",
+"Author"      : "TXS built-in",
+"Date"        : "04.01.2013",
+"Version"     : "1.1",
+"Description" : "Default LaTeX class for books using separate files for each chapter.",
+"License"     : "Public Domain",
+"FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
+}
+</pre>
+<p>FilesToOpen only has an effect for mutli-file documents. You may add a preview image next to the template file. Again, it must have the same name, but extension ".png".</p>
+
 <h2 id="SECTION13">2.3 Structure of a document</h2>
 <p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box in the tool bar :</p>
 <p><IMG src="doc3.png" border="1" alt="Sectioning"></p>
