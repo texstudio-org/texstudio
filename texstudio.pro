@@ -70,8 +70,11 @@ HEADERS += texmaker.h \
     hunspell/filemgr.hxx \
     hunspell/hunzip.hxx \
     hunspell/w_char.hxx \
+    hunspell/replist.hxx \
     qcodeedit/lib/qeditorinputbinding.h \
     qcodeedit/lib/qeditorinputbindinginterface.h \
+    qcodeedit/lib/qformat.h \
+    qcodeedit/lib/qnfa/xml2qnfa.h \
     randomtextgenerator.h \
     templateselector.h \
     bibtexdialog.h \
@@ -85,24 +88,21 @@ HEADERS += texmaker.h \
     latexdocument.h \
     unicodeinsertion.h \
     universalinputdialog.h \
-    hunspell/replist.hxx \
     scriptengine.h \
     insertgraphics.h \
     txstabwidget.h \
     configmanagerinterface.h \
-    qcodeedit/lib/qformat.h \
     modifiedQObject.h \
     mostQtHeaders.h \
-    qcodeedit/lib/qnfa/xml2qnfa.h \
     tablemanipulation.h \
     syntaxcheck.h \
     tests/latexcompleter_t.h \
+    tests/qdocumentline_t.h \
     userquickdialog.h \
     PDFDocument.h \
     PDFDocks.h \
     synctex_parser_utils.h \
     synctex_parser.h \
-    tests/qdocumentline_t.h \
     latexstyleparser.h \
     pdfrenderengine.h \
     pdfrendermanager.h \
@@ -131,9 +131,9 @@ HEADERS += texmaker.h \
     bookmarks.h \
     session.h \
     fileselector.h \
-	utilsUI.h \
-	utilsSystem.h \
-	utilsVersion.h
+    utilsUI.h \
+    utilsSystem.h \
+    utilsVersion.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -182,6 +182,7 @@ SOURCES += main.cpp \
     hunspell/hunzip.cxx \
     encodingdialog.cpp \
     qcodeedit/lib/qeditorinputbinding.cpp \
+    qcodeedit/lib/qformat.cpp \
     randomtextgenerator.cpp \
     templateselector.cpp \
     bibtexdialog.cpp \
@@ -201,14 +202,13 @@ SOURCES += main.cpp \
     tablemanipulation.cpp \
     syntaxcheck.cpp \
     tests/latexcompleter_t.cpp \
+    tests/qdocumentline_t.cpp \
     userquickdialog.cpp \
     PDFDocument.cpp \
     PDFDocks.cpp \
-    tests/qdocumentline_t.cpp \
     latexstyleparser.cpp \
     pdfrenderengine.cpp \
     pdfrendermanager.cpp \
-    qcodeedit/lib/qformat.cpp \
     scriptobject.cpp \
     directoryreader.cpp \
     diff/diff_match_patch.cpp \
@@ -229,8 +229,8 @@ SOURCES += main.cpp \
     bookmarks.cpp \
     session.cpp \
     fileselector.cpp \
-	utilsUI.cpp \
-	utilsSystem.cpp
+    utilsUI.cpp \
+    utilsSystem.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
@@ -522,6 +522,42 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 
 # ###############################
 
+# ##########QUAZIP###############
+DEFINES += QUAZIP_STATIC
+INCLUDEPATH += quazip/quazip
+DEPENDPATH += quazip/quazip
+
+# Input
+HEADERS += quazip/quazip/zip.h \
+    quazip/quazip/unzip.h \
+    quazip/quazip/quazipnewinfo.h \
+    quazip/quazip/quazipfileinfo.h \
+    quazip/quazip/quazipfile.h \
+    quazip/quazip/quazipdir.h \
+    quazip/quazip/quazip_global.h \
+    quazip/quazip/quazip.h \
+    quazip/quazip/quaziodevice.h \
+    quazip/quazip/quagzipfile.h \
+    quazip/quazip/quacrc32.h \
+    quazip/quazip/quachecksum32.h \
+    quazip/quazip/quaadler32.h \
+    quazip/quazip/JlCompress.h \
+    quazip/quazip/ioapi.h \
+    quazip/quazip/crypt.h
+SOURCES += quazip/quazip/zip.c \
+    quazip/quazip/unzip.c \
+    quazip/quazip/quazipnewinfo.cpp \
+    quazip/quazip/quazipfile.cpp \
+    quazip/quazip/quazipdir.cpp \
+    quazip/quazip/quazip.cpp \
+    quazip/quazip/quaziodevice.cpp \
+    quazip/quazip/quagzipfile.cpp \
+    quazip/quazip/quacrc32.cpp \
+    quazip/quazip/quaadler32.cpp \
+    quazip/quazip/qioapi.cpp \
+    quazip/quazip/JlCompress.cpp
+
+# ###############################
 
 
 debug{
