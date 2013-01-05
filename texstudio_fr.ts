@@ -4088,11 +4088,11 @@ la commande \caption n&apos;est pas valide.</translation>
     <name>MakeTemplateDialog</name>
     <message>
         <source>Make Template</source>
-        <translation>&amp;Créer un modèle</translation>
+        <translation>Créer un modèle</translation>
     </message>
     <message>
         <source>Create a template from the current file.</source>
-        <translation>Créer un modèle (à partir du &amp;fichier en cours).</translation>
+        <translation>Créer un modèle (à partir du fichier en cours).</translation>
     </message>
     <message>
         <source>Meta Data</source>
@@ -6074,6 +6074,28 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     </message>
 </context>
 <context>
+    <name>QuaGzipFile</name>
+    <message>
+        <source>Opening gzip for both reading and writing is not supported</source>
+        <translation>Ouvrir des fichiers gzip à la fois en lecture et en écriture n&apos;est pas supporté</translation>
+    </message>
+    <message>
+        <source>You can open a gzip either for reading or for writing. Which is it?</source>
+        <translation>Vous pouvez ouvrir un fichier gzip soit en lecture, soit en écriture. Quel mode souhaitez-vous ?</translation>
+    </message>
+    <message>
+        <source>Could not gzopen() file</source>
+        <translation>Impossible d&apos;ouvrir le fichier gzip</translation>
+    </message>
+</context>
+<context>
+    <name>QuaZipFilePrivate</name>
+    <message>
+        <source>ZIP/UNZIP API error %1</source>
+        <translation>Erreur API ZIP/UNZIP %1</translation>
+    </message>
+</context>
+<context>
     <name>QuickDocumentDialog</name>
     <message>
         <source>Class Options</source>
@@ -6970,6 +6992,14 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <source>Could not open location:</source>
         <translation>Impossilbe d&apos;ouvrir le dossier :</translation>
+    </message>
+    <message>
+        <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
+        <translation>Il est conseillé de ne pas instancier de modèles dans un nouveau répertoire, sans quoi des fichiers existants pourraient être écrasés.</translation>
+    </message>
+    <message>
+        <source>Select Target Folder</source>
+        <translation>Sélectionner un répertoire cible</translation>
     </message>
 </context>
 <context>
@@ -9934,6 +9964,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>1</source>
         <translation type="obsolete">1</translation>
+    </message>
+    <message>
+        <source>Create in Folder:</source>
+        <translation>Créer dans le répertoire :</translation>
+    </message>
+    <message>
+        <source>Create in Editor</source>
+        <translation>Créer dans l&apos;éditeur</translation>
+    </message>
+    <message>
+        <source>Target folder not empty.</source>
+        <translation>Le répertoire cible n&apos;est pas vide.</translation>
     </message>
 </context>
 </TS>
