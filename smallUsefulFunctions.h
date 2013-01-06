@@ -93,6 +93,7 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
 enum {
 	MIB_LATIN1 = 4,
+	MIB_WINDOWS1252 = 2252,
 	MIB_UTF8 = 106,
 	MIB_UTF16BE = 1013,
 	MIB_UTF16LE = 1014

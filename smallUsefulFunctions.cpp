@@ -962,16 +962,19 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 	QTextCodec* guess = 0;
 	int sure = 1;
 	if (size>0) {
-		char prev=str[0];
-		int good=0;int bad=0;
+		unsigned char prev=str[0];
+		int goodUtf8=0;int badUtf8=0;
+		int badIso1 = 0;
 		int utf16le=0, utf16be = 0;
+		if (prev >= 0x80 && prev <= 0x9F) badIso1++;
 		for (int i=1;i<size;i++) {
-			char cur = str[i];
+			unsigned char cur = str[i];
+			if (cur >= 0x80 && cur <= 0x9F) badIso1++;
 			if ((cur & 0xC0) == 0x80) {
-				if ((prev & 0xC0) == 0xC0) good++;
-				else if ((prev & 0x80) == 0x00) bad++;
+				if ((prev & 0xC0) == 0xC0) goodUtf8++;
+				else if ((prev & 0x80) == 0x00) badUtf8++;
 			} else {
-				if ((prev & 0xC0) == 0xC0) bad++;
+				if ((prev & 0xC0) == 0xC0) badUtf8++;
 				//if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
 				if (prev==0) {
 					if ((i & 1) == 1) utf16be++;
@@ -982,15 +985,16 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 		}
 		// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
 		if (utf16le > utf16be) {
-			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) guess = QTextCodec::codecForName("UTF-16LE");
+			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) guess = QTextCodec::codecForMib(MIB_UTF16LE);
 		} else {
-			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) guess = QTextCodec::codecForName("UTF-16BE");
+			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) guess = QTextCodec::codecForMib(MIB_UTF16BE);
 		}
 		if (!guess){
-			if (good > 10*bad) guess = QTextCodec::codecForName("UTF-8");
+			if (goodUtf8 > 10*badUtf8) guess = QTextCodec::codecForMib(MIB_UTF8);
 			else {
-				guess = QTextCodec::codecForName("ISO-8859-1");
-				if (bad == 0) sure = 0;
+				if (badIso1 > 0) guess = QTextCodec::codecForMib(MIB_WINDOWS1252);
+				else guess = QTextCodec::codecForMib(MIB_LATIN1);
+				if (badUtf8 == 0) sure = 0;
 			}
 		}
 	}
