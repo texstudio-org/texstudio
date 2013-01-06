@@ -1194,6 +1194,9 @@ void Texmaker::createStatusBar() {
 		connect(act, SIGNAL(triggered()), this, SLOT(changeTextCodec()));
 	}
 	act = new QAction(statusTbEncoding);
+	act->setSeparator(true);
+	statusTbEncoding->addAction(act);
+	act = new QAction(statusTbEncoding);
 	act->setText(tr("More Encodings..."));
 	statusTbEncoding->addAction(act);
 	connect(act, SIGNAL(triggered()), this, SLOT(editSetupEncoding()));
