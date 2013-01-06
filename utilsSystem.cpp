@@ -1,5 +1,11 @@
 #include "utilsSystem.h"
 
+#ifdef Q_WS_MAC
+#include <CoreFoundation/CFURL.h>
+#include <CoreFoundation/CFBundle.h>
+#endif
+
+
 int getSimplifiedSVNVersion(QString svnVersion) {
 	int cutoff = svnVersion.indexOf(QRegExp("[^0-9]"));
 	if (cutoff < 0)
@@ -27,6 +33,8 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
 	freeBytes = freeBytesToCaller.QuadPart;
 	return true;
 #else
+	Q_UNUSED(path);
+	Q_UNUSED(freeBytes);
 	return false;
 #endif
 }

@@ -3,12 +3,6 @@
 #include "qdocumentline.h"
 #include <QBuffer>
 
-
-#ifdef Q_WS_MAC
-#include <CoreFoundation/CFURL.h>
-#include <CoreFoundation/CFBundle.h>
-#endif
-
 const QString CommonEOW=QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
 const QString Punctation="!():\"?,.;-";
 const QString EscapedChars="%&_";
