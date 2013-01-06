@@ -865,7 +865,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     </message>
     <message>
         <source>Show Whitespace</source>
-        <translation>Afficher espaces</translation>
+        <translation>Afficher les espaces</translation>
     </message>
     <message>
         <source>Tab space:</source>
@@ -2024,7 +2024,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <source>Maximal Characters:</source>
-        <translation>Nb de caractères maximal :</translation>
+        <translation>Nombre maximal de caractères :</translation>
     </message>
     <message>
         <source>No Line Wrap</source>
@@ -2418,7 +2418,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     </message>
     <message>
         <source>Show Only Monospaced Fonts</source>
-        <translation>Afficher seulement des fiontes à chasse fixe</translation>
+        <translation>Afficher seulement des fontes à chasse fixe</translation>
     </message>
     <message>
         <source>Load Other Icon</source>
