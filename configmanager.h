@@ -39,6 +39,7 @@ public:
 	static QTextCodec* newFileEncoding;
 	QString newFileEncodingName;
 	bool autodetectLoadedFile;
+	QStringList commonEncodings;
 
 	QHash<int, int> editorKeys;
 	QSet<int> editorAvailableOperations;
