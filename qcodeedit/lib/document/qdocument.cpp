@@ -1741,17 +1741,6 @@ void QDocument::setDefaultFormatScheme(QFormatScheme *f)
 	QDocumentPrivate::m_defaultFormatScheme = f;
 }
 
-void QDocument::formatSchemeDeleted(QFormatScheme *f){
-	if ( QDocumentPrivate::m_defaultFormatScheme == f)
-		QDocumentPrivate::m_defaultFormatScheme = 0;
-
-	foreach ( QDocumentPrivate *d, QDocumentPrivate::m_documents )
-	{
-		if ( d->m_formatScheme == f )
-			d->setFormatScheme(QDocumentPrivate::m_defaultFormatScheme);
-	}
-}
-
 int QDocument::getFormatId(const QString& id){
 	if (!m_impl) return 0;
 	QFormatScheme *scheme = formatScheme();
