@@ -9010,6 +9010,18 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
         <source>Encoding</source>
         <translation>Codage d&apos;entrée</translation>
     </message>
+    <message>
+        <source>More...</source>
+        <translation type="obsolete">Davantage...</translation>
+    </message>
+    <message>
+        <source>Insert encoding as TeX comment</source>
+        <translation>Insérer le codage d&apos;entrée en tant que commentaire TeX</translation>
+    </message>
+    <message>
+        <source>More Encodings...</source>
+        <translation>Plus de codages...</translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
