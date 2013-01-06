@@ -1156,6 +1156,7 @@ void Texmaker::createStatusBar() {
 	connect(status, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
 	status->addPermanentWidget(messageArea, 1);
 	
+	// language
 	statusTbLanguage = new QToolButton(status);
 	statusTbLanguage->setToolTip(tr("Language"));
 	statusTbLanguage->setPopupMode(QToolButton::InstantPopup);
@@ -1167,14 +1168,42 @@ void Texmaker::createStatusBar() {
 	statusTbLanguage->setText(spellerManager.defaultSpellerName());
 	status->addPermanentWidget(statusTbLanguage,0);
 	
+	// encoding
 	statusTbEncoding = new QToolButton(status);
 	statusTbEncoding->setToolTip(tr("Encoding"));
+	statusTbEncoding->setText(tr("Encoding")+ "  ");
 	statusTbEncoding->setPopupMode(QToolButton::InstantPopup);
 	statusTbEncoding->setAutoRaise(true);
-	statusTbEncoding->setMinimumWidth(status->fontMetrics().width("OOOOOOO"));
-	connect(statusTbEncoding, SIGNAL(clicked()), this, SLOT(editSetupEncoding()));
-	statusTbEncoding->setText("unknown");
+	statusTbEncoding->setMinimumWidth(status->fontMetrics().width("OOOOO"));
+
+	QSet<int> encodingMibs;
+	foreach (const QString& s, configManager.commonEncodings) {
+		QTextCodec *codec = QTextCodec::codecForName(s.toLocal8Bit());
+		if (!codec) continue;
+		encodingMibs.insert(codec->mibEnum());
+	}
+	foreach (int mib, encodingMibs) {
+		QAction *act = new QAction(statusTbEncoding);
+		act->setText(QTextCodec::codecForMib(mib)->name());
+		act->setData(mib);
+		statusTbEncoding->addAction(act);
+		connect(act, SIGNAL(triggered()), this, SLOT(changeTextCodec()));
+	}
+	act = new QAction(statusTbEncoding);
+	act->setText(tr("More..."));
+	statusTbEncoding->addAction(act);
+	connect(act, SIGNAL(triggered()), this, SLOT(editSetupEncoding()));
+	act = new QAction(statusTbEncoding);
+	act->setSeparator(true);
+	statusTbEncoding->addAction(act);
+
+	act = new QAction(statusTbEncoding);
+	act->setText(tr("Insert encoding as TeX comment"));
+	statusTbEncoding->addAction(act);
+	connect(act, SIGNAL(triggered()), this, SLOT(addMagicCoding()));
+
 	status->addPermanentWidget(statusTbEncoding,0);
+
 
 	statusLabelMode=new QLabel(status);
 	statusLabelProcess=new QLabel(status);
@@ -1303,8 +1332,8 @@ void Texmaker::NewDocumentStatus() {
 		tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
 	}
 	EditorTabs->setTabToolTip(index, tooltip);
-	if (currentEditorView()->editor->getFileCodec()) statusTbEncoding->setText(currentEditorView()->editor->getFileCodec()->name());
-	else statusTbEncoding->setText("unknown");
+	if (currentEditorView()->editor->getFileCodec()) statusTbEncoding->setText(currentEditorView()->editor->getFileCodec()->name()+"  ");
+	else statusTbEncoding->setText(tr("Encoding")+"  ");
 }
 
 void Texmaker::NewDocumentLineEnding(){
@@ -4209,6 +4238,18 @@ void Texmaker::createLabelFromAction()
 	edView->editor->setCursor(cur);
 }
 
+void Texmaker::changeTextCodec() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	bool ok;
+	int mib = action->data().toInt(&ok);
+	if (!ok) return;
+	if (!currentEditorView()) return;
+
+	currentEditorView()->editor->setFileCodec(QTextCodec::codecForMib(mib));
+	UpdateCaption();
+}
+
 void Texmaker::EditorSpellerChanged(const QString &name) {
 	foreach (QAction *act, statusTbLanguage->actions()) {
 		if (act->data().toString() == name) {
@@ -4248,6 +4289,8 @@ void Texmaker::InsertSpellcheckMagicComment() {
 		currentEditorView()->document->updateMagicComment("spellcheck", name, true);
 	}
 }
+
+
 
 void Texmaker::addMagicRoot() {
     if (currentEditorView()) {
