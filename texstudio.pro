@@ -381,6 +381,7 @@ unix {
 	templates/template_Beamer.json \
 	templates/template_Beamer.tex \
 	templates/template_Book.json \
+	templates/template_Book.png \
 	templates/template_Book.zip \
 	templates/template_HA-prosper.json \
 	templates/template_HA-prosper.tex \
