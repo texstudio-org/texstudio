@@ -1095,6 +1095,7 @@ void LatexEditorView::updateSettings(){
 	editor->setFlag(QEditor::WeakIndent,config->weakindent);
 	editor->setFlag(QEditor::ReplaceTabs,config->indentWithSpaces);
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
+	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);;
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);

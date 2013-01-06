@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -776,8 +776,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>850</width>
-               <height>137</height>
+               <width>858</width>
+               <height>124</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1380,8 +1380,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>835</width>
-            <height>750</height>
+            <width>863</width>
+            <height>678</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1580,7 +1580,14 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <bool>false</bool>
              </property>
              <layout class="QGridLayout" columnstretch="0,1,1,1">
-              <item row="8" column="0">
+              <item row="3" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
+                <property name="text">
+                 <string>Show help as tooltip on text in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
                <widget class="QLabel" name="label_24">
                 <property name="text">
                  <string>Auto Save All Files:</string>
@@ -1590,7 +1597,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="7" column="0">
                <widget class="QLabel" name="label_23">
                 <property name="text">
                  <string>Maximal Characters:</string>
@@ -1614,7 +1621,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="7" column="1">
                <widget class="QSpinBox" name="spinBoxWrapLineWidth">
                 <property name="minimum">
                  <number>20</number>
@@ -1624,7 +1631,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
+              <item row="9" column="1">
                <widget class="QComboBox" name="comboBoxAutoSave">
                 <item>
                  <property name="text">
@@ -1653,7 +1660,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </item>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="QComboBox" name="comboBoxLineWrap">
                 <item>
                  <property name="text">
@@ -1677,17 +1684,10 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </item>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="label_41">
                 <property name="text">
                  <string>Line Wrapping:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
-                <property name="text">
-                 <string>Show help as tooltip on text in editor</string>
                 </property>
                </widget>
               </item>
@@ -1695,6 +1695,13 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                <widget class="QCheckBox" name="checkBoxToolTipPreview">
                 <property name="text">
                  <string>Show preview as tooltip on formulas in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="checkBoxSmoothScrolling">
+                <property name="text">
+                 <string>Smooth Scrolling</string>
                 </property>
                </widget>
               </item>
@@ -2279,8 +2286,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
