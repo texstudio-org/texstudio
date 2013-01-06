@@ -353,14 +353,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	
 	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
-	
-
-	qDebug() << QTextCodec::codecForName("cp1252")->mibEnum();
-	qDebug() << QTextCodec::codecForName("cp1252")->name();
-	qDebug() << QTextCodec::codecForName("cp1252")->aliases();
-	qDebug() << QTextCodec::codecForName("ISO-8859-1")->mibEnum();
-	qDebug() << QTextCodec::codecForName("ISO-8859-1")->name();
-	qDebug() << QTextCodec::codecForName("ISO-8859-1")->aliases();
 
 	//beginRegisterGroup("texmaker");
 	//files
