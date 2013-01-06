@@ -9022,6 +9022,10 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
         <source>More Encodings...</source>
         <translation>Plus de codages...</translation>
     </message>
+    <message>
+        <source>Encoding Aliases: </source>
+        <translation>Alias de ce codage d&apos;entrée : </translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
