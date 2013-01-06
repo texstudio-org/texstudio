@@ -39,6 +39,10 @@
 #include "qreliablefilewatch.h"
 #include "smallUsefulFunctions.h"
 
+#if QT_VERSION >= 0x040600
+#include <QPropertyAnimation>
+#endif
+
 #ifdef Q_WS_MACX
 #include <QSysInfo>
 #endif
@@ -4803,15 +4807,35 @@ void QEditor::ensureCursorVisible(int surrounding)
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
+	int ytarget = -1;
 
 	if ( ypos - surroundingHeight < yval ) {// cursor above
-		verticalScrollBar()->setValue(ypos / ls - surrounding);
+		ytarget = ypos / ls - surrounding;
 	} else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
 		if (ypos > (yval + ylen) ) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
-			verticalScrollBar()->setValue(ypos / ls - surrounding);
+			ytarget = ypos / ls - surrounding;
 		} else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
-			verticalScrollBar()->setValue(1 + (yend - ylen) / ls + surrounding);
+			ytarget = 1 + (yend - ylen) / ls + surrounding;
 		}
+	}
+
+	if (ytarget >= 0) {
+#if QT_VERSION >= 0x040600
+		if (flag(QEditor::SmoothScrolling)) {
+			QPropertyAnimation *animation = new QPropertyAnimation(this);
+			animation->setStartValue(verticalScrollBar()->value());
+			animation->setEndValue(ypos / ls - surrounding);
+			animation->setTargetObject(verticalScrollBar());
+			animation->setPropertyName("value");
+			animation->setDuration(300);
+			animation->setEasingCurve(QEasingCurve::InOutQuart);
+			animation->start(QAbstractAnimation::DeleteWhenStopped);
+		} else {
+			verticalScrollBar()->setValue(ytarget);
+		}
+#else
+		verticalScrollBar()->setValue(ytarget);
+#endif
 	}
 
 	int xval = horizontalOffset(),
