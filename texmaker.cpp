@@ -1339,8 +1339,23 @@ void Texmaker::NewDocumentStatus() {
 		tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
 	}
 	EditorTabs->setTabToolTip(index, tooltip);
-	if (currentEditorView()->editor->getFileCodec()) statusTbEncoding->setText(currentEditorView()->editor->getFileCodec()->name()+"  ");
-	else statusTbEncoding->setText(tr("Encoding")+"  ");
+	if (currentEditorView()->editor->getFileCodec()) {
+		QTextCodec *codec = currentEditorView()->editor->getFileCodec();
+		statusTbEncoding->setText(codec->name()+"  ");
+		QStringList aliases;
+		foreach (const QByteArray& b, codec->aliases()) {
+			aliases << QString(b);
+		}
+		if (!aliases.isEmpty()) {
+			statusTbEncoding->setToolTip(tr("Encoding Aliases: ") + aliases.join(", "));
+		} else {
+			statusTbEncoding->setToolTip(tr("Encoding"));
+		}
+	}
+	else {
+		statusTbEncoding->setText(tr("Encoding")+"  ");
+		statusTbEncoding->setToolTip(tr("Encoding"));
+	}
 }
 
 void Texmaker::NewDocumentLineEnding(){
