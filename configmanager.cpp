@@ -354,12 +354,19 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
 	
-	
+
+	qDebug() << QTextCodec::codecForName("cp1252")->mibEnum();
+	qDebug() << QTextCodec::codecForName("cp1252")->name();
+	qDebug() << QTextCodec::codecForName("cp1252")->aliases();
+	qDebug() << QTextCodec::codecForName("ISO-8859-1")->mibEnum();
+	qDebug() << QTextCodec::codecForName("ISO-8859-1")->name();
+	qDebug() << QTextCodec::codecForName("ISO-8859-1")->aliases();
+
 	//beginRegisterGroup("texmaker");
 	//files
 	registerOption("Files/New File Encoding", &newFileEncodingName, "utf-8", &pseudoDialog->comboBoxEncoding); //check
 	registerOption("Files/Auto Detect Encoding Of Loaded Files", &autodetectLoadedFile, true, &pseudoDialog->checkBoxAutoDetectOnLoad);
-	registerOption("Common Encodings", &commonEncodings, QStringList() << "UTF-8" << "ISO-8859-1" << "cp1252");
+	registerOption("Common Encodings", &commonEncodings, QStringList() << "UTF-8" << "ISO-8859-1" << "windows-1252" << "Apple Roman");
 	//recent files
 	registerOption("Files/Max Recent Files", &maxRecentFiles, 5, &pseudoDialog->spinBoxMaxRecentFiles);
 	registerOption("Files/Max Recent Projects", &maxRecentProjects, 3, &pseudoDialog->spinBoxMaxRecentProjects);
