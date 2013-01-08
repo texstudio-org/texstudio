@@ -146,6 +146,7 @@ public:
 	void importCwlAliases();
 	void clear();
 	static QTextCodec* QTextCodecForLatexName(QString str);
+	static QStringList latexNamesForTextCodec(const QTextCodec *codec);
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 	
 	static LatexParser& getInstance();
