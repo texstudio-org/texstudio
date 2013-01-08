@@ -2,20 +2,32 @@
 EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 		QDialog(parent), edit(editor) {
 	setupUi(this);
+	encodings->setSelectionBehavior(QAbstractItemView::SelectRows);
+	encodings->setRowCount(QTextCodec::availableMibs().size());
+	int row = 0;
 	foreach(const int mib, QTextCodec::availableMibs()) {
-		QString name = QTextCodec::codecForMib(mib)->name();
+		QTextCodec *codec = QTextCodec::codecForMib(mib);
+		QString name = codec->name();
 		foreach(const QByteArray ba, QTextCodec::codecForMib(mib)->aliases())
 		    name+=" / " + ba;
-		QListWidgetItem* it = new QListWidgetItem(name, encodings);
+		QTableWidgetItem* it = new QTableWidgetItem(name);
 		it->setData(Qt::UserRole, mib);
-		if (mib==edit->getFileCodec()->mibEnum()) encodings->setCurrentItem(it);
 		if (mib==0 || mib==4 /*latin1*/ || mib==106 /*utf-8*/ || mib==1013 || mib==1014 /*utf16be+le*/) {
 			QFont font=QApplication::font();
 			font.setBold(true);
 			it->setFont(font);
 		}
+		encodings->setItem(row, 0, it);
+		if (mib==edit->getFileCodec()->mibEnum()) encodings->setCurrentItem(it);
+		it = new QTableWidgetItem(LatexParser::latexNamesForTextCodec(codec).join(" or "));
+		it->setData(Qt::UserRole, mib);
+		encodings->setItem(row, 1, it);
+		row++;
 	}
-	label->setText(tr("Select Encoding for")+" \""+edit->fileName()+"\"");
+	encodings->resizeColumnsToContents();
+	encodings->resizeRowsToContents();
+	encodings->setFocus();
+	label->setText(tr("Select Encoding for")+" \""+ QDir::toNativeSeparators(edit->fileName())+"\"");
 	if (!QFileInfo(edit->fileName()).exists()) reload->setEnabled(false);
 }
 
