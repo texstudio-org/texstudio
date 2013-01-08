@@ -841,7 +841,7 @@
 <context>
     <name>CodeSnippet</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="+1444"/>
+        <location filename="smallUsefulFunctions.cpp" line="+1510"/>
         <location line="+1"/>
         <source>something</source>
         <translation>quelque chose</translation>
@@ -4020,7 +4020,8 @@ Voulez-vous supprimer ces macros ?</translation>
     <name>EncodingDialog</name>
     <message>
         <location filename="encodingdialog.ui" line="+14"/>
-        <source>Setup Encoding</source>
+        <source>Select File Encoding</source>
+        <oldsource>Setup Encoding</oldsource>
         <translation>Sélectionner le codage d&apos;entrée</translation>
     </message>
     <message>
@@ -4029,12 +4030,29 @@ Voulez-vous supprimer ces macros ?</translation>
         <translation>Étiquette de texte</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+28"/>
         <source>Change To</source>
         <translation>Changer pour</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+42"/>
+        <source>File Encoding</source>
+        <translation>Codage d&apos;entrée du fichier</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>\inputenc Parameter</source>
+        <translation>Option du package inputenc</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>The codec names as \inputenc expects them. The names are only given for reference.
+You have to make sure yourself that the file encoding and the value passed to \inputenc match together.</source>
+        <translation>Les noms de codage d&apos;entrée tel que le package inputenc les attend, donnés seulement à titre indicatif.
+Vous devez vous assurer que le codage d&apos;entrée du fichier et l&apos;option passée au package inputenc concordent.</translation>
+    </message>
+    <message>
+        <location line="-71"/>
         <source>View With</source>
         <translation>Afficher avec</translation>
     </message>
@@ -4049,9 +4067,9 @@ Voulez-vous supprimer ces macros ?</translation>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="encodingdialog.cpp" line="+18"/>
+        <location filename="encodingdialog.cpp" line="+30"/>
         <source>Select Encoding for</source>
-        <translation>Sélectionner le codage pour</translation>
+        <translation>Sélectionner le codage d&apos;entrée pour</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -4066,7 +4084,7 @@ Continuer tout de même ?</translation>
 These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
         <translation>Le document a été modifié.
-Ces changements seront perdus s&apos;il est rouvert avec le nouveau codage.d&apos;entrée
+Ces changements seront perdus s&apos;il est rouvert avec le nouveau codage.d&apos;entrée.
 Continuer tout de même ?</translation>
     </message>
 </context>
@@ -4116,7 +4134,7 @@ Continuer tout de même ?</translation>
     <message>
         <location line="+12"/>
         <source>Select the line you want to go to :</source>
-        <translation>Selectionner la ligne où aller :</translation>
+        <translation>Selectionner la ligne à atteindre :</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -4139,7 +4157,7 @@ Continuer tout de même ?</translation>
     <message>
         <location line="+26"/>
         <source>G&amp;o</source>
-        <translation>A&amp;ller</translation>
+        <translation>A&amp;tteindre</translation>
     </message>
 </context>
 <context>
@@ -4819,7 +4837,7 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <location line="+30"/>
         <source>OK</source>
-        <translation></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -8769,7 +8787,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+6"/>
         <source>Setup Encoding...</source>
-        <translation>Codage des caractères...</translation>
+        <translation>Codage d&apos;entrée...</translation>
     </message>
     <message>
         <location line="+114"/>
@@ -10917,7 +10935,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location line="-8"/>
         <source>More Encodings...</source>
-        <translation>Plus de codages...</translation>
+        <translation>Plus de codages d&apos;entrée...</translation>
     </message>
     <message>
         <location line="+150"/>
