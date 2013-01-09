@@ -5319,9 +5319,6 @@ void Texmaker::viewCloseSomething(){
 	if (completer && completer->isVisible() && completer->close())
 		return;
 	if(windowState()==Qt::WindowFullScreen){
-		stateFullScreen=saveState(1);
-		setWindowState(Qt::WindowNoState);
-		restoreState(windowstate,0);
 		fullscreenModeAction->setChecked(false);
 		return;
 	}
