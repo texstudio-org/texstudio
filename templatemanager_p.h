@@ -7,7 +7,7 @@
 // Abstract base class for templates
 class Template {
 public:
-	~Template() { foreach (TemplateHandle *th, handles) { th->setTmpl(0); } }
+	virtual ~Template() { foreach (TemplateHandle *th, handles) { th->setTmpl(0); } }
 	virtual QString name() const { return QString(); }
 	virtual QString description() const { return QString(); }
 	virtual QString author() const { return QString(); }
