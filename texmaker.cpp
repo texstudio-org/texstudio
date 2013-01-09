@@ -5319,6 +5319,9 @@ void Texmaker::viewCloseSomething(){
 	if (completer && completer->isVisible() && completer->close())
 		return;
 	if(windowState()==Qt::WindowFullScreen){
+		stateFullScreen=saveState(1);
+		setWindowState(Qt::WindowNoState);
+		restoreState(windowstate,0);
 		fullscreenModeAction->setChecked(false);
 		return;
 	}
@@ -5348,12 +5351,18 @@ void Texmaker::viewCloseSomething(){
 void Texmaker::setFullScreenMode() {
 	if(!fullscreenModeAction->isChecked()) {
 		stateFullScreen=saveState(1);
-		setWindowState(Qt::WindowNoState);
+		showNormal();
 		restoreState(windowstate,0);
+#if QT_VERSION < 0x040701
+		setUnifiedTitleAndToolBarOnMac(true);
+#endif
 	}
 	else {
 		windowstate=saveState(0);
-		setWindowState(Qt::WindowFullScreen);
+#if QT_VERSION < 0x040701
+		setUnifiedTitleAndToolBarOnMac(false); //prevent crash, see https://bugreports.qt-project.org/browse/QTBUG-16274?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
+#endif
+		showFullScreen();
 		restoreState(stateFullScreen,1);
 	}
 }
