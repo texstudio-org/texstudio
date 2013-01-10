@@ -280,7 +280,7 @@ int x11desktop_env() {
 
 // detect a retina macbook: one of the screens has to have retina resolution
 bool isRetinaMac() {
-#if Q_OS_MAC
+#ifdef Q_OS_MAC
 	QDesktopWidget *desktop = QApplication::desktop();
 	for (int i=0; i<desktop->screenCount(); i++) {
 		QRect r = desktop->screenGeometry(i).size();
