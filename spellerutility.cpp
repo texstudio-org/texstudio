@@ -248,7 +248,7 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString* bestName){
 
 	QList<QString> keys = dictFiles.keys();
 	for (int i=0;i<keys.length();i++)
-		if (QString::compare(keys[i], name, Qt::CaseInsensitive)) {
+		if (0==QString::compare(keys[i], name, Qt::CaseInsensitive)) {
 			*bestName = keys[i];
 			return true;
 		}
@@ -259,7 +259,7 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString* bestName){
 	if (!bestName->contains('-')) return false;
 	
 	for (int i=0;i<keys.length();i++)
-		if (QString::compare(keys[i], *bestName, Qt::CaseInsensitive)) {
+		if (0==QString::compare(keys[i], *bestName, Qt::CaseInsensitive)) {
 			*bestName = keys[i];
 			return true;
 		}
