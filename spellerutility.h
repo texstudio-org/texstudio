@@ -60,11 +60,12 @@ public:
 	void setIgnoreFilePrefix(const QString &ignoreFilePrefix);
 	QString dictPath();
 	void setDictPath(const QString &dictPath);
+
 	QStringList availableDicts();
 	static QStringList dictNamesForDir(const QString &dir);
 
 	bool hasSpeller(const QString &name);
-	bool hasSimilarSpeller(const QString &name, QString* bestName);
+	bool hasSimilarSpeller(const QString &name, QString &bestName);
 	SpellerUtility *getSpeller(QString name);
 
 	QString defaultSpellerName();
