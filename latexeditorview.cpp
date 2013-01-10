@@ -2185,9 +2185,7 @@ void LatexEditorView::changeSpellingLanguage(const QLocale &loc) {
 	QString sim;
 	if (spellerManager->hasSpeller(loc.name())) {
 		setSpeller(loc.name());
-	    } else  if (spellerManager->hasSpeller(loc.name().replace("_", "-"))) {
-		setSpeller(loc.name().replace("_", "-"));
-	    } else if (spellerManager->hasSimilarSpeller(loc.name(), &sim)) {
+	} else if (spellerManager->hasSimilarSpeller(loc.name(), sim)) {
 		setSpeller(sim);
 	}
 }
