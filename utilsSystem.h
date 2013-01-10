@@ -46,6 +46,8 @@ QString getPathfromFilename(const QString &compFile);
 //returns kde version 0,3,4
 int x11desktop_env();
 
+bool isRetinaMac();
+
 //check if the run-time qt version is higher than the given version (e.g. 4,3)
 bool hasAtLeastQt(int major, int minor);
 
