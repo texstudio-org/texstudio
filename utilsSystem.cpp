@@ -283,9 +283,9 @@ bool isRetinaMac() {
 #ifdef Q_OS_MAC
 	QDesktopWidget *desktop = QApplication::desktop();
 	for (int i=0; i<desktop->screenCount(); i++) {
-		QRect r = desktop->screenGeometry(i).size();
-		if (r.size() == QSize(2560, 1600)) return true; // 13" RMBP
-		if (r.size() == QSize(2880, 1800)) return true; // 15" RMBP
+		QSize s = desktop->screenGeometry(i).size();
+		if (s == QSize(2560, 1600)) return true; // 13" RMBP
+		if (s == QSize(2880, 1800)) return true; // 15" RMBP
 	}
 #endif
 	return false;
