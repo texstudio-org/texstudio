@@ -243,34 +243,38 @@ bool SpellerManager::hasSpeller(const QString &name) {
 	return dictFiles.contains(name);
 }
 
-bool SpellerManager::hasSimilarSpeller(const QString &name, QString* bestName){
-	REQUIRE_RET(bestName, false);
-
+bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
 	QList<QString> keys = dictFiles.keys();
-	for (int i=0;i<keys.length();i++)
-		if (0==QString::compare(keys[i], name, Qt::CaseInsensitive)) {
-			*bestName = keys[i];
-			return true;
-		}
-	
-	*bestName = name;
-	bestName->replace("_", "-");
 
-	if (!bestName->contains('-')) return false;
-	
-	for (int i=0;i<keys.length();i++)
-		if (0==QString::compare(keys[i], *bestName, Qt::CaseInsensitive)) {
-			*bestName = keys[i];
+	// case insensitive match
+	for (int i=0;i<keys.length();i++) {
+		if (0==QString::compare(keys[i], name, Qt::CaseInsensitive)) {
+			bestName = keys[i];
 			return true;
 		}
+	}
 	
-	*bestName = bestName->left(bestName->indexOf('-'));
-	for (int i=0;i<keys.length();i++)
-		if (keys[i].startsWith(*bestName, Qt::CaseInsensitive)) {
-			*bestName = keys[i];
+	bestName = name;
+	if (bestName.contains("_"))
+		bestName.replace("_", "-");
+	if (!bestName.contains('-')) return false;
+
+	// matich also with "_" -> "-" replacement
+	for (int i=0;i<keys.length();i++) {
+		if (0==QString::compare(keys[i], bestName, Qt::CaseInsensitive)) {
+			bestName = keys[i];
 			return true;
 		}
-	return false;	
+	}
+
+	// match only part before "_" or "-"
+	bestName = bestName.left(bestName.indexOf('-'));
+	for (int i=0;i<keys.length();i++)
+		if (keys[i].startsWith(bestName, Qt::CaseInsensitive)) {
+			bestName = keys[i];
+			return true;
+		}
+	return false;
 }
 
 /*!
