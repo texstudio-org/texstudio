@@ -2263,7 +2263,8 @@ void LatexEditorViewConfig::settingsChanged(){
 	if (!QFontInfo(f).fixedPitch()) hackDisableFixedPitch = false; //won't be enabled anyways
 	else hackDisableFixedPitch = lettersHaveDifferentWidth;
 	hackDisableWidthCache = sameLettersHaveDifferentWidth;
-	hackDisableLineCache = false;
+
+	hackDisableLineCache = isRetinaMac();
 	hackRenderingMode = 0; //always use qce, best tested
 	
 	lastFontFamily = fontFamily;

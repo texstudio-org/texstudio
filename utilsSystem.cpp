@@ -278,6 +278,19 @@ int x11desktop_env() {
 	return 0;
 }
 
+// detect a retina macbook: one of the screens has to have retina resolution
+bool isRetinaMac() {
+#if Q_OS_MAC
+	QDesktopWidget *desktop = QApplication::desktop();
+	for (int i=0; i<desktop->screenCount(); i++) {
+		QRect r = desktop->screenGeometry(i).size();
+		if (r.size() == QSize(2560, 1600)) return true; // 13" RMBP
+		if (r.size() == QSize(2880, 1800)) return true; // 15" RMBP
+	}
+#endif
+	return false;
+}
+
 bool hasAtLeastQt(int major, int minor){
 	QStringList vers=QString(qVersion()).split('.');
 	if (vers.count()<2) return false;
