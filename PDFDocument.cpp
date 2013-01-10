@@ -2371,6 +2371,9 @@ void PDFDocument::fillRenderCache(int pg){
 
 void PDFDocument::reload(bool fillCache)
 {
+	static bool isReloading = false;
+	if (isReloading) return;
+	isReloading = true;
 	QApplication::setOverrideCursor(Qt::WaitCursor);
 
 	if (scanner != NULL) {
@@ -2456,6 +2459,7 @@ void PDFDocument::reload(bool fillCache)
 	}
 
 	QApplication::restoreOverrideCursor();
+	isReloading = false;
 }
 
 void PDFDocument::reloadWhenIdle()
