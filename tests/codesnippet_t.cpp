@@ -557,6 +557,55 @@ void CodeSnippetTest::nestedInsert(){
 	ed->clearPlaceHolders();
 }
 
+void CodeSnippetTest::insertPlaceholderModes_data() {
+	QTest::addColumn<QString>("insertText");
+	QTest::addColumn<CodeSnippet::PlaceholderMode>("phMode");
+	QTest::addColumn<QString>("expectedText");
+	QTest::addColumn<CP>("expectedCursor");
+
+	QTest::newRow("Active") << "\\textbf{%<bold%>}" << CodeSnippet::PlacehodersActive << "\\textbf{bold}" << CP(0,8,12);
+	QTest::newRow("Plain") << "\\textbf{%<bold%>}" << CodeSnippet::PlaceholdersToPlainText << "\\textbf{bold}" << CP(0,13);
+	QTest::newRow("Removed") << "\\textbf{%<bold%>}" << CodeSnippet::PlaceholdersRemoved << "\\textbf{}" << CP(0,8);
+
+	QTest::newRow("Active2") << "\\insertgraphics[%<options%>]{%<file%>}" << CodeSnippet::PlacehodersActive << "\\insertgraphics[options]{file}" << CP(0,16,23);
+	QTest::newRow("Plain2") << "\\insertgraphics[%<options%>]{%<file%>}" << CodeSnippet::PlaceholdersToPlainText << "\\insertgraphics[options]{file}" << CP(0,30);
+	QTest::newRow("Removed2") << "\\insertgraphics[%<options%>]{%<file%>}" << CodeSnippet::PlaceholdersRemoved << "\\insertgraphics[]{}" << CP(0,16);
+
+	QTest::newRow("MultilineActive") << "\\begin{itemize}\n%<item%>\n\\end{itemize}" << CodeSnippet::PlacehodersActive << "\\begin{itemize}\n\titem\n\\end{itemize}" << CP(1,1,5);
+	QTest::newRow("MultilinePlain") << "\\begin{itemize}\n%<item%>\n\\end{itemize}" << CodeSnippet::PlaceholdersToPlainText << "\\begin{itemize}\n\titem\n\\end{itemize}" << CP(2,13);
+	QTest::newRow("MultilineRemoved") << "\\begin{itemize}\n%<item%>\n\\end{itemize}" << CodeSnippet::PlaceholdersRemoved << "\\begin{itemize}\n\t\n\\end{itemize}" << CP(1,1);
+}
+
+void CodeSnippetTest::insertPlaceholderModes() {
+	QFETCH(QString, insertText);
+	QFETCH(CodeSnippet::PlaceholderMode, phMode);
+	QFETCH(QString, expectedText);
+	QFETCH(CP, expectedCursor);
+
+	ed->setText("", false);
+	QDocumentCursor cur = ed->cursor();
+
+	qDebug() << expectedText;
+
+	CodeSnippet(insertText).insertAt(ed, &cur, phMode);
+	QEQUAL(ed->text(), expectedText);
+
+	if (phMode == CodeSnippet::PlacehodersActive) {
+		QList<int> placeholderPositions;
+		int pos = -1;
+		while (true) {
+			pos = insertText.indexOf("%<", pos+1);
+			if (pos < 0) break;
+			placeholderPositions << pos;
+		}
+		QEQUAL(ed->placeHolderCount(), placeholderPositions.count());
+		// TODO check actual positions
+	} else {
+		QEQUAL(ed->placeHolderCount(), 0);
+	}
+	expectedCursor.compareWithCursor(ed->cursor());
+}
+
 void CodeSnippetTest::undoRedo_data(){
 	QTest::addColumn<QString>("insertText1");
 	QTest::addColumn<CP>("expCursor1");

@@ -225,11 +225,37 @@ void CodeSnippet::insert(QEditor* editor){
 	QDocumentCursor c=editor->cursor();
 	insertAt(editor,&c);
 }
-void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders, bool byCompleter) const{
+void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode, bool byCompleter) const{
 	if (lines.empty()||!editor||!cursor) return;
 	
+	int phrmCursorLine = -1;
+	int phrmCursorOffset = -1;
+	int phrmCursorLineRemovedChars = 0;
+
+	QString line;
+	// construct text
+	if (placeholderMode == PlaceholdersRemoved) {
+		for (int l=0; l<lines.count(); l++) {
+			QString ln = lines[l];
+			for (int i=placeHolders[l].count()-1; i>=0; i--) {
+				ln.remove(placeHolders[l][i].offset, placeHolders[l][i].length);
+			}
+			line.append(ln);
+			if (l < lines.count()-1)
+				line.append("\n");
+
+			if (phrmCursorOffset == -1 && placeHolders[l].count() >> 0) {
+				// set cursor in place of first placeholder
+				phrmCursorLine = l;
+				phrmCursorLineRemovedChars = lines[l].length() - ln.length();
+				phrmCursorOffset = placeHolders[l][0].offset;
+			}
+		}
+	} else {
+		line=lines.join("\n");
+	}
+
 	//find filechooser escape %(   %)
-	QString line=lines.join("\n");
 	QRegExp rx("%\\((.+)%\\)");
 	int pos=rx.indexIn(line,0);
 	if(pos>-1){
@@ -247,7 +273,6 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			line.replace(rx,getRelativeBaseNameToPath(fn,path));
 		} else return;
 	}
-
 
 	QString savedSelection;
 	bool alwaysSelect = false;
@@ -367,8 +392,8 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 		}
 	}
 
-
 	Q_ASSERT(placeHolders.size()==lines.count());
+	bool usePlaceholders = (placeholderMode == PlacehodersActive);
 	if (usePlaceholders) {
 		//check if there actually are placeholders to insert
 		usePlaceholders=false;
@@ -407,28 +432,40 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePla
 			}
 		}
 	}
-	//place cursor/add \end
-	if (cursorOffset!=-1) {
-		int realAnchorOffset=anchorOffset; //will be moved to the right if text is already inserted on this line
-		if (cursorLine>0) {
-			if (cursorLine>=lines.size()) return;
-			if (!selector.movePosition(cursorLine,QDocumentCursor::Down,QDocumentCursor::MoveAnchor))
+
+
+	//place cursor
+	int curOffset = cursorOffset;
+	int anchOffset = anchorOffset;
+	int cursLine = cursorLine;
+	if (placeholderMode == PlaceholdersRemoved) {
+		curOffset = phrmCursorOffset;
+		anchOffset = phrmCursorOffset;
+		cursLine = phrmCursorLine;
+	}
+
+	if (curOffset != -1) {
+		int realAnchorOffset = anchOffset; //will be moved to the right if text is already inserted on this line
+		if (cursLine > 0) {
+			if (cursLine >= lines.size()) return;
+			if (!selector.movePosition(cursLine, QDocumentCursor::Down, QDocumentCursor::MoveAnchor))
 				return;
 			//if (editor->flag(QEditor::AutoIndent))
-			realAnchorOffset += selector.line().length()-lines[cursorLine].length();
-			if (cursorLine + 1 == lines.size())
-				realAnchorOffset-=lastLineRemainingLength;
+			realAnchorOffset += selector.line().length() - (lines[cursLine].length() - phrmCursorLineRemovedChars);
+			if (cursLine + 1 == lines.size())
+				realAnchorOffset -= lastLineRemainingLength;
 		} else realAnchorOffset += baseLineIndent;
 		selector.setColumnNumber(realAnchorOffset);
-		bool ok=true;
-		if (cursorOffset>anchorOffset) 
-			ok=selector.movePosition(cursorOffset-anchorOffset,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
-		else if (cursorOffset<anchorOffset)
-			ok=selector.movePosition(anchorOffset-cursorOffset,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		bool ok = true;
+		if (curOffset > anchOffset)
+			ok = selector.movePosition(curOffset - anchOffset, QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+		else if (curOffset < anchOffset)
+			ok=selector.movePosition(anchOffset-curOffset, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
-	} else if (autoSelectPlaceholder!=-1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this moves the cursor to that placeholder
-	else {
+	} else if (autoSelectPlaceholder!=-1) {
+		editor->setPlaceHolder(autoSelectPlaceholder, true); //this moves the cursor to that placeholder
+	} else {
 		editor->setCursor(*cursor); //place after insertion
 		return;
 	}
