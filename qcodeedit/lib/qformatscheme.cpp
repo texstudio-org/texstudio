@@ -174,6 +174,8 @@ void QFormatScheme::save(const QString& f) const
 */
 void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
 {
+	if (!elem.hasAttributes() && !elem.hasChildNodes()) return;
+
 	if ( elem.attribute("version") < QFORMAT_VERSION )
 	{
 		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
@@ -317,8 +319,10 @@ void QFormatScheme::save(QDomElement& elem) const
 */
 void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 {
+	if (s.childKeys().isEmpty() && s.childGroups().isEmpty()) return;
+
 	QString version = s.value("version").toString();
-	
+
 	if ( version < QFORMAT_VERSION )
 	{
 		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
