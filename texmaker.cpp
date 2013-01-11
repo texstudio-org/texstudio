@@ -3172,6 +3172,7 @@ void Texmaker::ReadSettings(bool reread) {
 				uint key;
 				int length,usage;
 
+				conf->usage.clear();
 				while (!in.atEnd()) {
 					in >> key >> length >> usage;
 					if(usage>0){
