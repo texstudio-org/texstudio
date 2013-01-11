@@ -502,17 +502,20 @@ public:
 		CompletionWord cw=v.value<CompletionWord>();
 		if (cw.lines.empty()||cw.placeHolders.empty()) return;
 		QFont fNormal=option.font;
-		QFont fItalic=option.font;
-		fItalic.setItalic(true);
+		QFont fPlHolder=option.font;
+		//fPlHolder.setItalic(true);
+		QColor normalColor, plHolderColor;
 		if ((QStyle::State_HasFocus | QStyle::State_Selected) & option.state) {
-			//painter->setBackground(option.palette.brush(QPalette::Highlight));
 			painter->fillRect(option.rect,option.palette.brush(QPalette::Highlight));
-			painter->setPen(option.palette.color(QPalette::HighlightedText));
+			normalColor = option.palette.color(QPalette::HighlightedText);
 		} else {
-			//painter->setBackground(option.palette.brush(QPalette::Base));
 			painter->fillRect(option.rect,option.palette.brush(QPalette::Base));//doesn't seem to be necessary
-			painter->setPen(option.palette.color(QPalette::Text));
+			normalColor = option.palette.color(QPalette::Text);
 		}
+		painter->setPen(normalColor);
+		plHolderColor = normalColor;
+		plHolderColor.setAlpha(128);
+
 		QRect r=option.rect;
 		r.setLeft(r.left()+2);
 		bool drawPlaceholder = !cw.placeHolders.empty();
@@ -525,18 +528,20 @@ public:
 			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine);
 		else {
 			QFontMetrics fmn(fNormal);
-			QFontMetrics fmi(fItalic);
+			QFontMetrics fmi(fPlHolder);
 			int p=0;
 			for (int i=0; i<cw.placeHolders[0].size(); i++) {
 				QString temp=firstLine.mid(p,cw.placeHolders[0][i].offset-p);
 				painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
 				r.setLeft(r.left()+fmn.width(temp));
 				temp=firstLine.mid(cw.placeHolders[0][i].offset,cw.placeHolders[0][i].length);
-				painter->setFont(fItalic);
+				painter->setFont(fPlHolder);
+				painter->setPen(plHolderColor);
 				painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
 				r.setLeft(r.left()+fmi.width(temp)+1);
 				p=cw.placeHolders[0][i].offset+cw.placeHolders[0][i].length;
 				painter->setFont(fNormal);
+				painter->setPen(normalColor);
 				if (p>firstLine.length()) break;
 			}
 			painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine.mid(p));
