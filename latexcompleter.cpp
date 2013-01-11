@@ -515,7 +515,7 @@ public:
 		}
 		QRect r=option.rect;
 		r.setLeft(r.left()+2);
-		bool drawPlaceholder = cw.placeHolders.empty();
+		bool drawPlaceholder = !cw.placeHolders.empty();
 		QString firstLine=cw.lines[0];
 		if (!cw.getName().isEmpty()) {
 			drawPlaceholder = false;
