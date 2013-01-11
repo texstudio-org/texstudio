@@ -3160,26 +3160,27 @@ void Texmaker::ReadSettings(bool reread) {
 	config->endGroup();
 	
 	// read usageCount from file of its own.
-	LatexCompleterConfig *conf=configManager.completerConfig;
-	QFile file(configManager.configBaseDir+"wordCount.usage");
-	if(file.open(QIODevice::ReadOnly)){
-		QDataStream in(&file);
-		quint32 magicNumer,version;
-		in >>  magicNumer >> version;
-		if (magicNumer==(quint32)0xA0B0C0D0 && version==1){
-			in.setVersion(QDataStream::Qt_4_0);
-			uint key;
-			int length,usage;
-			
-			while (!in.atEnd()) {
-				in >> key >> length >> usage;
-				if(usage>0){
-					conf->usage.insert(key,qMakePair(length,usage));
+	if (!reread) {
+		LatexCompleterConfig *conf=configManager.completerConfig;
+		QFile file(configManager.configBaseDir+"wordCount.usage");
+		if(file.open(QIODevice::ReadOnly)){
+			QDataStream in(&file);
+			quint32 magicNumer,version;
+			in >>  magicNumer >> version;
+			if (magicNumer==(quint32)0xA0B0C0D0 && version==1){
+				in.setVersion(QDataStream::Qt_4_0);
+				uint key;
+				int length,usage;
+
+				while (!in.atEnd()) {
+					in >> key >> length >> usage;
+					if(usage>0){
+						conf->usage.insert(key,qMakePair(length,usage));
+					}
 				}
 			}
 		}
 	}
-
 
 	documents.settingsRead();
 	
