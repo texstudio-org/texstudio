@@ -26,6 +26,8 @@ public:
 	bool operator< (const CodeSnippet &cw) const;
 	bool operator== (const CodeSnippet &cw) const;
 
+	enum PlaceholderMode { PlacehodersActive, PlaceholdersToPlainText, PlaceholdersRemoved };
+
 	QString word,sortWord;
 	QStringList lines; 
 	//TODO: Multirow selection
@@ -38,7 +40,7 @@ public:
 	int snippetLength;
 
 	void insert(QEditor* editor);
-    void insertAt(QEditor* editor, QDocumentCursor* cursor, bool usePlaceholders=true,bool byCompleter=false) const;
+	void insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode=PlacehodersActive, bool byCompleter=false) const;
 
 	void setName(const QString& newName);
 	QString getName();
@@ -53,4 +55,5 @@ private:
 };
 
 Q_DECLARE_METATYPE(CodeSnippet);
+Q_DECLARE_METATYPE(CodeSnippet::PlaceholderMode);
 #endif // CODESNIPPET_H
