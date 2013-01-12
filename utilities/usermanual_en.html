@@ -1485,6 +1485,7 @@ cwl files are used by the completer to propose possible commands and by the synt
 <table>
 <tr><th>Classifier</th><th>Meaning</th></tr>
   <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker may be followed by other classifications.</td></tr>
+  <tr><td>S</td><td>do not show in completer at all. This marker may be followed by other classifications.</td></tr>
   <tr><td>m</td><td>valid only in math environment</td></tr>
   <tr><td>t</td><td>valid only in tabular environment (or similar)</td></tr>
   <tr><td>T</td><td>valid only in tabbing environment</td></tr>
@@ -1493,8 +1494,9 @@ cwl files are used by the completer to propose possible commands and by the synt
   <tr><td>c</td><td>this command declares a citation like "\cite{key}"</td></tr>
   <tr><td>l</td><td>this command declares a label like "\label{key}"</td></tr>
   <tr><td>d</td><td>this command declares a definition command like "\newcommand{cmd}{def}"</td></tr>
-  <tr><td>g</td><td>this command declares a include graphcs command like "\includegraphics{file}"</td></tr>
-  <tr><td>u</td><td>this command declares a used package like "\usepackage{package}"</td></tr>
+  <tr><td>g</td><td>this command declares an include graphics command like "\includegraphics{file}"</td></tr>
+  <tr><td>i</td><td>this command declares an include file command like "\include{file}"</td></tr>
+  <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
