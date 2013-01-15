@@ -59,6 +59,7 @@ public:
 	}
 	
 	virtual bool keyPressEvent(QKeyEvent *event, QEditor *editor);
+	virtual void postKeyPressEvent(QKeyEvent *event, QEditor *editor);
 	virtual bool keyReleaseEvent(QKeyEvent *event, QEditor *editor);
 	virtual bool mousePressEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool mouseReleaseEvent(QMouseEvent *event, QEditor *editor);
@@ -136,6 +137,15 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	}
 	return false;
 }
+
+void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor) {
+	if (event->text() == ",") {
+		LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
+		Q_ASSERT(view);
+		emit view->colonTyped();
+	}
+}
+
 
 bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
 	if (event->key() == Qt::Key_Control) {
