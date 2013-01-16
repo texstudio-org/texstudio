@@ -2354,11 +2354,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 	}
 	if (alert) {
 		raise();
-		if (globalConfig->windowMaximized) {
-			showMaximized();
-		} else {
-			showNormal();
-		}
+		unminimize();
 		setFocus();
 		if (scrollArea) scrollArea->setFocus();
 	}
@@ -2556,6 +2552,18 @@ void PDFDocument::tileWindows(){
 
 void PDFDocument::stackWindows(){
 	arrangeWindows(false);
+}
+
+void PDFDocument::unminimize(){
+	if (isMinimized()) {
+		if (globalConfig->windowMaximized) {
+			showMaximized();
+		} else {
+			showNormal();
+		}
+	} else {
+		show();
+	}
 }
 
 void PDFDocument::arrangeWindows(bool tile){
@@ -2787,13 +2795,9 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
 			if (activatePreview) {
-				if (globalConfig->windowMaximized)
-					showMaximized();
-				else
-					showNormal();
+				unminimize();
 				raise();
 				activateWindow();
-				if (isMinimized()) showNormal();
 				pdfWidget->setFocus();
 			}
 			syncToSourceBlock = false;

@@ -396,6 +396,7 @@ private slots:
 	void closeSomething();
 	void tileWindows();
 	void stackWindows();
+	void unminimize();
 	void arrangeWindows(bool tile);
 	void updateToolBarForOrientation(Qt::Orientation orientation);
 
