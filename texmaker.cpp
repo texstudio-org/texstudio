@@ -2799,7 +2799,7 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 	case LatexParser::Reference:
 	{
 		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), value);
-		REQUIRE(edView);
+		if (!edView) return;
 		if (edView != currentEditorView()) {
 			EditorTabs->setCurrentEditor(edView);
 		}
