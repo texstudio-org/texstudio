@@ -1543,13 +1543,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					QStringList citations=lr.word.split(",");
 					int pos=lr.wordStartIndex;
 					foreach ( const QString &cit, citations) {
-						QString rcit =  cit;
-						//trim left (left spaces are ignored by \cite, right space not)
-						for (int j=0; j<cit.length();j++)
-							if (cit[j]!=' ' && cit[j]!='\t' && cit[j]!='\r' && cit[j]!='\n'){
-								if (j!=0) rcit=cit.mid(j);
-								break;
-							}
+						QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
 						//check and highlight
 						if (bibTeXIds->contains(rcit))
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
