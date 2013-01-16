@@ -196,7 +196,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 			REQUIRE(treeWidget->topLevelItem(1)->childCount()>=1);
 			QTreeWidgetItem* editorKeys = treeWidget->topLevelItem(1)->child(0);
 			REQUIRE(editorKeys);
-			if (!li.empty() && li.first() && (li.first()->parent() != editorKeys || isBasicEditorKey(index))) {
+			if (!li.empty() && li.first()) {
 				QString duplicate=li.first()->text(0);//model->data(model->index(mil[0].row(),0,mil[0].parent()),Qt::DisplayRole).toString();
 				if (txsConfirmWarning(QString(ConfigDialog::tr("The shortcut <%1> is already assigned to the command:")).arg(value) +"\n"+duplicate+"\n\n"+ConfigDialog::tr("Do you wish to remove the old assignment and bind the shortcut to the new command?"))) {
 					//model->setData(mil[0],"",Qt::DisplayRole);
