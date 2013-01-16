@@ -34,7 +34,7 @@ class DefaultInputBinding;
 class LatexEditorViewConfig;
 
 struct LinkOverlay {
-	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UsepackageOverlay, BibFileOverlay};
+	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay};
 	// for simpler access everything is public - only access for reading
 	LinkOverlayType type;
 	QDocumentLine docLine;
