@@ -2808,11 +2808,25 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 	}
 	case LatexParser::Citation:
 	{
-		QString bibID = getParamItem(c.line().text(), c.columnNumber()).trimmed();
-		currentEditorView()->gotoToBibItem(bibID);
+		QString bibID = trimLeft(getParamItem(c.line().text(), c.columnNumber()));
+		// try local \bibitems
+		bool found = currentEditorView()->gotoToBibItem(bibID);
+		if (found) break;
+		// try bib files
+		QString bibFile = documents.findFileFromBibId(bibID);
+		if (!FocusEditorForFile(bibFile))
+			if (!load(bibFile)) return;
+		int line = currentEditorView()->document->findLineRegExp("@\\w+{\\s*"+bibID, 0, Qt::CaseSensitive, true, true);
+		if (line < 0) {
+			line = currentEditorView()->document->findLineContaining(bibID); // fallback in case the above regexp does not reflect the most general case
+			if (line < 0) return;
+		}
+		int col = currentEditorView()->document->line(line).text().indexOf(bibID);
+		if (col<0) col = 0;
+		gotoLine(line, col);
 		break;
 	}
-	default:; //TODO: Jump to command definition and in bib files
+	default:; //TODO: Jump to command definition
 	}
 }
 
