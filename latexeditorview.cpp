@@ -212,6 +212,9 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 			case LinkOverlay::BibFileOverlay:
 				edView->openFile(lo.text().append(".bib"));
 				return true;
+			case LinkOverlay::CiteOverlay:
+				emit edView->gotoDefinition(cursor);
+				return true;
 			case LinkOverlay::Invalid:
 				break;
 			}
@@ -652,6 +655,8 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UsepackageOverlay));
 		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%bibliography"].contains(ctxCommand)) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::BibFileOverlay));
+		} else if (context==LatexParser::Citation) {
+			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::CiteOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
 		}
@@ -2405,7 +2410,7 @@ LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ct
 
 	int from, to;
 
-	if (type == UsepackageOverlay || type == BibFileOverlay) {
+	if (type == UsepackageOverlay || type == BibFileOverlay || type == CiteOverlay) {
 		// link one of the colon separated options
 		QDocumentCursor c(cur);
 		LatexEditorView::selectOptionInLatexArg(c);
