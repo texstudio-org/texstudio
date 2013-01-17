@@ -8,9 +8,10 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	setFocusPolicy(Qt::ClickFocus);
 	setContextMenuPolicy(Qt::PreventContextMenu);
 
-	QTabBar *tb = new QTabBar();
+	ChangeAwareTabBar *tb = new ChangeAwareTabBar();
 	tb->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
+	connect(tb, SIGNAL(currentTabAboutToChange(int,int)), this, SLOT(currentTabAboutToChange(int,int)));
 	setTabBar(tb);
 
 	if (hasAtLeastQt(4,5)){
@@ -82,6 +83,14 @@ void TxsTabWidget::gotoPrevDocument() {
 	else setCurrentIndex(cPage);
 }
 
+void TxsTabWidget::currentTabAboutToChange(int from, int to) {
+	LatexEditorView *edFrom = qobject_cast<LatexEditorView *>(widget(from));
+	LatexEditorView *edTo = qobject_cast<LatexEditorView *>(widget(from));
+	REQUIRE(edFrom);
+	REQUIRE(edTo);
+	emit editorAboutToChangeByTabClick(edFrom, edTo);
+}
+
 void TxsTabWidget::removeEditor(LatexEditorView *edView) {
 	int i = indexOf(edView);
 	if(i >= 0)
@@ -94,3 +103,15 @@ void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent
 	if (asCurrent) setCurrentEditor(edView);
 }
 
+
+
+void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event) {
+	if (event->button() == Qt::LeftButton) {
+		int toIndex = tabAt(event->pos());
+		if (toIndex >= 0) {
+			qDebug() << currentIndex() << toIndex;
+			emit currentTabAboutToChange(currentIndex(), toIndex);
+		}
+	}
+	QTabBar::mousePressEvent(event);
+}
