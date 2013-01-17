@@ -22,6 +22,7 @@ public:
 	~TexdocDialog();
 
 private slots:
+	void searchTermChanged(const QString &text);
 	void delayedCheckDocAvailable(const QString &package);
 	void checkDockAvailable();
 	void updateDocAvailableInfo(const QString &package, bool available);
@@ -29,7 +30,7 @@ private slots:
 private:
 	Ui::TexdocDialog *ui;
 	QRegExpValidator packageNameValidator;
-	QAbstractButton *okButton;
+	QAbstractButton *openButton;
 	QTimer checkTimer;
 	QString lastDocRequest;
 };
