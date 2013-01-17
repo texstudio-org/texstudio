@@ -1,17 +1,18 @@
 #include "texdocdialog.h"
 #include "ui_texdocdialog.h"
 #include "help.h"
+#include "latexpackages.h"
 
 TexdocDialog::TexdocDialog(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::TexdocDialog),
 	packageNameValidator(this),
-	okButton(0)
+	openButton(0)
 {
 	ui->setupUi(this);
 	foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
 		if (ui->buttonBox->buttonRole(bt) == QDialogButtonBox::AcceptRole) {
-			okButton = bt;
+			openButton = bt;
 			break;
 		}
 	}
@@ -21,7 +22,7 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 
 	checkTimer.setSingleShot(true);
 	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
-	connect(ui->cbPackages, SIGNAL(editTextChanged(QString)), SLOT(delayedCheckDocAvailable(QString)));
+	connect(ui->cbPackages, SIGNAL(editTextChanged(QString)), SLOT(searchTermChanged(QString)));
 	connect(Help::instance(), SIGNAL(texdocAvailableReply(QString,bool)), SLOT(updateDocAvailableInfo(QString, bool)));
 
 	updateDocAvailableInfo("", false); // initially disable warning message
@@ -30,6 +31,12 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 TexdocDialog::~TexdocDialog()
 {
 	delete ui;
+}
+
+void TexdocDialog::searchTermChanged(const QString &text)
+{
+	ui->lbShortDescription->setText(LatexPackages::instance()->shortDescription(text));
+	delayedCheckDocAvailable(text);
 }
 
 void TexdocDialog::setPackageNames(const QStringList &packages)
@@ -82,7 +89,7 @@ void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available
 
 	bool showWarning = !package.isEmpty() && !available;
 
-	if (okButton) okButton->setEnabled(available);
+	if (openButton) openButton->setEnabled(available);
 	ui->lbInfo->setText(showWarning ? tr("No Documentation Available") : "");
 	ui->lbWarnIcon->setVisible(showWarning);
 }

@@ -133,7 +133,8 @@ HEADERS += texmaker.h \
     fileselector.h \
     utilsUI.h \
     utilsSystem.h \
-    utilsVersion.h
+    utilsVersion.h \
+    latexpackages.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -230,7 +231,8 @@ SOURCES += main.cpp \
     session.cpp \
     fileselector.cpp \
     utilsUI.cpp \
-    utilsSystem.cpp
+    utilsSystem.cpp \
+    latexpackages.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
