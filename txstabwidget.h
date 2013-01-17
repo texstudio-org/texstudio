@@ -21,6 +21,7 @@ public:
 signals:
 	void tabMoved(int from,int to);
 	void tabBarContextMenuRequested(QPoint point);
+	void editorAboutToChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 
 public slots:
 	void insertEditor(LatexEditorView *edView, int pos=-1 /*append*/, bool asCurrent=true);
@@ -28,6 +29,21 @@ public slots:
 
 	void gotoNextDocument();
 	void gotoPrevDocument();
+
+private slots:
+	void currentTabAboutToChange(int from, int to);
+};
+
+class ChangeAwareTabBar : public QTabBar
+{
+Q_OBJECT
+public:
+
+signals:
+	void currentTabAboutToChange(int from, int to);
+
+protected:
+	virtual void mousePressEvent(QMouseEvent *event);
 };
 
 #endif // TXSTABWIDGET_H

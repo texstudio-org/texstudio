@@ -326,7 +326,8 @@ protected slots:
 	void editorTabChanged(int index);
 	void CloseEditorTab(int tab);
 	void EditorTabMoved(int from,int to);
-	
+	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
+
     void updateStructure(bool initial=false, LatexDocument *doc = 0);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
@@ -462,6 +463,7 @@ protected slots:
 	void goForward();
 	void setGlobalCursor(const QDocumentCursor &c);
 	void saveCurrentCursorToHistory();
+	void saveEditorCursorToHistory(LatexEditorView *edView);
 
 	void previewLatex();
 	void previewAvailable(const QString& imageFile, const PreviewSource& source);

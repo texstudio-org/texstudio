@@ -202,6 +202,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 		connect(EditorTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 		connect(EditorTabs, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
+	connect(EditorTabs, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView*,LatexEditorView*)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView*,LatexEditorView*)));
 
 	cursorHistory = new CursorHistory(&documents);
 	bookmarks = new Bookmarks(&documents, this);
@@ -1284,6 +1285,11 @@ void Texmaker::EditorTabMoved(int from,int to){
 	documents.move(from,to);
 	//documents.updateLayout();
 	updateOpenDocumentMenu(false);
+}
+
+void Texmaker::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo) {
+	Q_UNUSED(edTo);
+	saveEditorCursorToHistory(edFrom);
 }
 
 void Texmaker::CloseEditorTab(int tab) {
@@ -5972,8 +5978,12 @@ void Texmaker::fuzzCursorHistory(){
 }
 
 void Texmaker::saveCurrentCursorToHistory() {
-	if (!currentEditorView()) return;
-	cursorHistory->insertPos(currentEditorView()->editor->cursor());
+	saveEditorCursorToHistory(currentEditorView());
+}
+
+void Texmaker::saveEditorCursorToHistory(LatexEditorView *edView) {
+	if (!edView) return;
+	cursorHistory->insertPos(edView->editor->cursor());
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {
