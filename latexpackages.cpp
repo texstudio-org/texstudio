@@ -4,12 +4,9 @@
 LatexPackages * LatexPackages::m_Instance = 0;
 
 LatexPackages::LatexPackages() :
-	QObject(0)
+	QObject(0), m_dataSource(None)
 {
-	QTime t;
-	t.start();
-	loadPackageList(":/utilities/packageList");
-	qDebug() << t.elapsed();
+	loadStaticPackageList(":/utilities/packageList");
 }
 
 LatexPackages *LatexPackages::instance() {
@@ -21,7 +18,11 @@ LatexPackages *LatexPackages::instance() {
 	return m_Instance;
 }
 
-bool LatexPackages::loadPackageList(const QString &file) {
+LatexPackages::DataSource LatexPackages::dataSource() {
+	return m_dataSource;
+}
+
+bool LatexPackages::loadStaticPackageList(const QString &file) {
 	if (file.isEmpty()) return false;
 	packages.reserve(3000);
 
@@ -32,11 +33,14 @@ bool LatexPackages::loadPackageList(const QString &file) {
 		QString line = f.readLine().trimmed();
 		if (line.startsWith('#')) continue;
 		int sep = line.indexOf(':');
-		if (sep<0)
-			packages.insert(line, QString());
-		else
-			packages.insert(line.left(sep), line.mid(sep+1));
+		if (sep<0) {
+			packages.insert(line, LatexPackageInfo(line));
+		} else {
+			QString name = line.left(sep);
+			packages.insert(name, LatexPackageInfo(name, line.mid(sep+1)));
+		}
 	}
+	m_dataSource = Static;
 	return true;
 }
 
@@ -45,5 +49,5 @@ bool LatexPackages::packageExists(const QString& name) {
 }
 
 QString LatexPackages::shortDescription(const QString& name) {
-	return packages[name];
+	return packages[name].shortDescription;
 }
