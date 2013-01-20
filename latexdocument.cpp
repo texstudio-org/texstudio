@@ -260,6 +260,18 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 
 }
 
+// workaround to prevent false command recognition in definitions:
+// Example: In \newcommand{\seeref}[1]{\ref{(see #1)}} the argument of \ref is not actually a label.
+// Using this function we detect this case.
+// TODO: a more general solution should make this dependent on if the command is inside a definition.
+// However this requires a restructuring of the patchStructure. It would also allow categorizing
+// the redefined command, e.g. as "%ref"
+inline bool isDefinitionArgument(const QString &arg) {
+	// equivalent to checking the regexp #[0-9], but faster:
+	int pos = arg.indexOf("#");
+	return (pos >= 0 && pos<arg.length()-1 && arg[pos+1].isDigit());
+}
+
 void LatexDocument::patchStructure(int linenr, int count) {
 	
 	if (!baseStructure) return;
@@ -422,7 +434,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			int start=0;
 			do{
 				name=findToken(curLine,cmd,start);
-				if(!name.isEmpty()){
+				if(!name.isEmpty() && !isDefinitionArgument(name)){
 					ReferencePair elem;
 					elem.name=name;
 					elem.start=start;
@@ -438,7 +450,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			int start=0;
 			do{
 				name=findToken(curLine,cmd,start);
-				if(!name.isEmpty()){
+				if(!name.isEmpty() && !isDefinitionArgument(name)){
 					ReferencePair elem;
 					elem.name=name;
 					elem.start=start;
@@ -598,7 +610,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 			/// bibitem ///
 			if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
-				if(!name.isEmpty()){
+				if(!name.isEmpty() && !isDefinitionArgument(name)){
 					ReferencePair elem;
 					elem.name=name;
 					elem.start=optionStart;
@@ -680,7 +692,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// include,input ////
 			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
 			
-			if (latexParser.possibleCommands["%include"].contains(cmd)) {
+			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->title=name;
                 removedIncludes.removeAll(name);
@@ -718,7 +730,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		if (!oldBibs.isEmpty())
 			bibTeXFilesNeedsUpdate = true; //file name removed
 		
-        if(!removedIncludes.isEmpty()){
+		if(!removedIncludes.isEmpty()){
             parent->removeDocs(removedIncludes);
             parent->updateMasterSlaveRelations(this);
         }
