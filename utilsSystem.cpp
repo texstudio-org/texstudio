@@ -287,7 +287,7 @@ bool isRetinaMac() {
 	if (firstCall) {
 		firstCall = false;
 		QProcess process;
-		process.start("texdoc", QStringList() << "-l" << "graphicx");
+		process.start("sysctl", QStringList() << "-n" << "hw.model");
 		process.waitForFinished(1000);
 		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
 		QRegExp rx("MacBookPro([0-9]*)");
