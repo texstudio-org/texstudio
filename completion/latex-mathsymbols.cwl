@@ -60,6 +60,7 @@
 \chi#m
 \circ#m
 \clubsuit#m
+\colon#m
 \cong#m
 \coprod#m
 \cos#m
@@ -151,6 +152,7 @@
 \ll#m
 \lmoustache#m
 \ln#m
+\lnot#m
 \log#m
 \Longleftarrow#m
 \longleftarrow#m
