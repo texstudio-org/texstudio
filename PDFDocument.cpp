@@ -885,15 +885,15 @@ void PDFWidget::doLink(const Poppler::Link *link)
 			const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse*>(link);
 			Q_ASSERT(browse != NULL);
 			QUrl url = QUrl::fromEncoded(browse->url().toAscii());
-			if (url.scheme() == "file") {
-                PDFDocument *doc = getPDFDocument();
+			if (url.scheme() == "file" || url.scheme().isEmpty() /*i.e. is relative */) {
+				PDFDocument *doc = getPDFDocument();
 				if (doc) {
 					QFileInfo fi(QFileInfo(doc->fileName()).canonicalPath(), url.toLocalFile());
-					url = QUrl::fromLocalFile(fi.canonicalFilePath());
+					url = QUrl::fromLocalFile(fi.absoluteFilePath());
 				}
 			}
 			if (!QDesktopServices::openUrl(url))
-				QMessageBox::warning(this,tr("Error"),tr("Could not open browser"));
+				QMessageBox::warning(this,tr("Error"),tr("Could not open link:")+"\n"+url.toString());
 		}
 		break;
 		// unsupported link types:
