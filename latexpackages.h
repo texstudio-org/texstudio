@@ -33,13 +33,20 @@ private:
 	LatexPackages();
 	LatexPackages(const LatexPackages &);
 	LatexPackages& operator=(const LatexPackages &);
-
-	bool loadStaticPackageList(const QString& file);
-
 	static LatexPackages * m_Instance;
 
+private slots:
+	bool loadStaticPackageList(const QString& file);
+	bool queryPackageList();
+	void queryReadData();
+	void queryReadError();
+	void queryPackageListCompleted(int exitCode);
+	void queryError(QProcess::ProcessError error);
+
+private:
 	QHash<QString, LatexPackageInfo> packages; // name, short description
 	DataSource m_dataSource;
+	QString m_queryData;
 };
 
 #endif // LATEXPACKAGES_H

@@ -42,5 +42,7 @@
 	<string>texstudio</string>
 	<key>CFBundleName</key>
 	<string>texstudio</string>
+	<key>AppleMagnifiedMode</key>
+	<false/>
 </dict>
 </plist>
