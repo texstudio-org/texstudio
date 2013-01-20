@@ -278,15 +278,25 @@ int x11desktop_env() {
 	return 0;
 }
 
-// detect a retina macbook: one of the screens has to have retina resolution
+// detect a retina macbook via the model identifier
+// http://support.apple.com/kb/HT4132?viewlocale=en_US&locale=en_US
 bool isRetinaMac() {
 #ifdef Q_OS_MAC
-	QDesktopWidget *desktop = QApplication::desktop();
-	for (int i=0; i<desktop->screenCount(); i++) {
-		QSize s = desktop->screenGeometry(i).size();
-		if (s == QSize(2560, 1600)) return true; // 13" RMBP
-		if (s == QSize(2880, 1800)) return true; // 15" RMBP
+	static bool firstCall = true;
+	static bool isRetina = false;
+	if (firstCall) {
+		firstCall = false;
+		QProcess process;
+		process.start("texdoc", QStringList() << "-l" << "graphicx");
+		process.waitForFinished(1000);
+		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
+		QRegExp rx("MacBookPro([0-9]*)");
+		int num = rx.cap(1).toInt();
+		qDebug() << num;
+		if (num>=10) // compatibility with future MacBookPros. Assume they are also retina.
+			isRetina = true;
 	}
+	return isRetina;
 #endif
 	return false;
 }
