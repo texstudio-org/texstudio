@@ -33,6 +33,7 @@
 \begin{figure*}
 \begin{figure*}[placement]
 \begin{filecontents}
+\begin{filecontents*}
 \begin{flushleft}
 \begin{flushright}
 \begin{footnotesize}
