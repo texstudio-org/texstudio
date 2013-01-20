@@ -472,7 +472,7 @@
 \usepackage{package}
 \vdots
 \vector(xslope,yslope){length}#*/picture
-\verb
+\verb|%<text%>|
 \vline
 \vspace*{length}
 \vspace{length}
