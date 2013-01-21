@@ -314,7 +314,7 @@ QEditor::QEditor(QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -332,7 +332,7 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -353,7 +353,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
+		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -375,7 +375,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0)
+	mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -4822,14 +4822,19 @@ void QEditor::ensureCursorVisible(int surrounding)
 	if (ytarget >= 0) {
 #if QT_VERSION >= 0x040600
 		if (flag(QEditor::SmoothScrolling)) {
-			QPropertyAnimation *animation = new QPropertyAnimation(this);
-			animation->setStartValue(verticalScrollBar()->value());
-			animation->setEndValue(ypos / ls - surrounding);
-			animation->setTargetObject(verticalScrollBar());
-			animation->setPropertyName("value");
-			animation->setDuration(300);
-			animation->setEasingCurve(QEasingCurve::InOutQuart);
-			animation->start(QAbstractAnimation::DeleteWhenStopped);
+			if (!m_scrollAnimation) {
+				m_scrollAnimation = new QPropertyAnimation(this);
+			}
+			if (m_scrollAnimation->state() == QAbstractAnimation::Running) {
+				m_scrollAnimation->stop();
+			}
+			m_scrollAnimation->setStartValue(verticalScrollBar()->value());
+			m_scrollAnimation->setEndValue(ypos / ls - surrounding);
+			m_scrollAnimation->setTargetObject(verticalScrollBar());
+			m_scrollAnimation->setPropertyName("value");
+			m_scrollAnimation->setDuration(300);
+			m_scrollAnimation->setEasingCurve(QEasingCurve::InOutQuart);
+			m_scrollAnimation->start();
 		} else {
 			verticalScrollBar()->setValue(ytarget);
 		}
