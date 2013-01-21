@@ -38,6 +38,11 @@ class QMimeData;
 class QTextCodec;
 class QActionGroup;
 
+#if QT_VERSION >= 0x040600
+class QPropertyAnimation;
+#endif
+
+
 class QReliableFileWatch;
 
 class QDocumentLineHandle;
@@ -626,6 +631,10 @@ public slots:
 		int m_cursorSurroundingLines;
 		
 		int m_LineWidth;
+
+#if QT_VERSION >= 0x040600
+		QPropertyAnimation *m_scrollAnimation;
+#endif
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);
