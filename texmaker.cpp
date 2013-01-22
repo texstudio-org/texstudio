@@ -1912,9 +1912,9 @@ void Texmaker::fileNewFromTemplate() {
 		edit->editor->setFlag(QEditor::AutoIndent,false);
 		toInsert.insert(edit->editor);
 		edit->editor->setFlag(QEditor::AutoIndent,flag);
-		edit->editor->setCursorPosition(0,0);
+		edit->editor->setCursorPosition(0,0, false);
 		edit->editor->nextPlaceHolder();
-		edit->editor->ensureCursorVisibleSurrounding();
+		edit->editor->ensureCursorVisible(QEditor::KeepSurrounding);
 
 		emit infoNewFromTemplate();
 	}
@@ -5745,13 +5745,13 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 		int col=c.columnNumber();
 		gotoLine(lineNumber);
 		col=outputView->getNextSearchResultColumn(c.line().text() ,col+1);
-		currentEditor()->setCursorPosition(lineNumber,col);
-		currentEditor()->ensureCursorVisibleSurrounding();
+		currentEditor()->setCursorPosition(lineNumber,col,false);
+		currentEditor()->ensureCursorVisible(QEditor::Navigation);
 	} else {
 		gotoLocation(lineNumber, doc->getFileName().size()?doc->getFileName():qobject_cast<LatexDocument*>(doc)->getTemporaryFileName());
 		int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
-		currentEditor()->setCursorPosition(lineNumber,col);
-		currentEditor()->ensureCursorVisibleSurrounding();
+		currentEditor()->setCursorPosition(lineNumber,col,false);
+		currentEditor()->ensureCursorVisible(QEditor::Navigation);
 		outputView->showSearchResults();
 	}
 	QDocumentCursor highlight = currentEditor()->cursor();
@@ -5770,8 +5770,8 @@ void Texmaker::gotoLine(int line, int col, LatexEditorView *edView) {
 
 	if (changeCurrentEditor)
 		EditorTabs->setCurrentEditor(edView);
-	edView->editor->setCursorPosition(line,col);
-	edView->editor->ensureCursorVisibleSurrounding();
+	edView->editor->setCursorPosition(line,col,false);
+	edView->editor->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ShowLine); //TODO different calls of gotoLine may want different moveFlags
 	edView->editor->setFocus();
 }
 
@@ -5896,8 +5896,8 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 			highlight.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
 			highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 		}
-		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol);
-		currentEditor()->ensureCursorVisibleSurrounding();
+		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol,false);
+		currentEditor()->ensureCursorVisible(QEditor::Navigation);
 	} else {
 		highlight.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 	}
@@ -5929,10 +5929,12 @@ void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
 		LatexDocument *doc = qobject_cast<LatexDocument*>(c.document());
 		if (doc && doc->getEditorView()) {
 			LatexEditorView *edView = doc->getEditorView();
+			QEditor::MoveFlags mflags = QEditor::KeepSurrounding | QEditor::ShowLine;
+			if (edView == currentEditorView()) mflags |= QEditor::Animated;
 			EditorTabs->setCurrentEditor(edView);
 			edView->editor->setFocus();
-			edView->editor->setCursor(c);
-			edView->editor->ensureCursorVisibleSurrounding();
+			edView->editor->setCursor(c, false);
+			edView->editor->ensureCursorVisible(mflags);
 		}
 	}
 }

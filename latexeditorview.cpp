@@ -871,7 +871,6 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line) {
     }
 	line.addMark(rmid);
 	emit bookmarkAdded(line.handle(),bookmarkNumber);
-	editor->ensureCursorVisible();
     return true;
 }
 
@@ -892,8 +891,8 @@ bool LatexEditorView::gotoToLabel(const QString& label){
 	}
 	Q_ASSERT(col >= 0);
 	if (col < 0) col = 0;
-	editor->setCursorPosition(ln, col);
-	editor->ensureCursorVisible();
+	editor->setCursorPosition(ln, col, false);
+	editor->ensureCursorVisible(QEditor::Navigation);
 	return true;
 }
 
@@ -914,8 +913,8 @@ bool LatexEditorView::gotoToBibItem(const QString &bibId) {
 	}
 	Q_ASSERT(col >= 0);
 	if (col < 0) col = 0;
-	editor->setCursorPosition(ln, col);
-	editor->ensureCursorVisible();
+	editor->setCursorPosition(ln, col, false);
+	editor->ensureCursorVisible(QEditor::Navigation);
 	return true;
 }
 

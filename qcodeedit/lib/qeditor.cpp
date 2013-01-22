@@ -1751,8 +1751,11 @@ QDocumentCursorHandle* QEditor::cursorHandle() const
 
 /*!
 	\brief Set the document cursor
+	\param moveView: If disabled, no check is made that the new new cursor position position is visible.
+		   In this case you take over responsibility to call ensureCursorVisible later on
+
 */
-void QEditor::setCursor(const QDocumentCursor& c)
+void QEditor::setCursor(const QDocumentCursor& c, bool moveView)
 {
 	repaintCursor();
 
@@ -1780,7 +1783,9 @@ void QEditor::setCursor(const QDocumentCursor& c)
 
 	setFlag(CursorOn, true);
 	repaintCursor();
-	ensureCursorVisible();
+	if (moveView) {
+		ensureCursorVisible();
+	}
 
 	updateMicroFocus();
 }
@@ -1789,10 +1794,13 @@ void QEditor::setCursor(const QDocumentCursor& c)
 	\brief Set the cursor
 	\param line document line to move the cursor to (start at zero)
 	\param index column index of the new cursor (start at zero)
+	\param moveView: If disabled, no check is made that the new cursor position is visible.
+		   In this case you take over responsibility to call ensureCursorVisible later on
+
 */
-void QEditor::setCursorPosition(int line, int index)
+void QEditor::setCursorPosition(int line, int index, bool moveView)
 {
-	setCursor(QDocumentCursor(m_doc, line, index));
+	setCursor(QDocumentCursor(m_doc, line, index), moveView);
 }
 
 /*!
@@ -2226,8 +2234,10 @@ QDocumentCursor QEditor::cursorForPosition(const QPoint& p) const
 
 /*!
 	\brief Set the cursor to that nearest to a given viewport position
+	\param moveView: If disabled, no check is made that the cursor is visible.
+		   In this case you take over responsibility to call ensureCursorVisible later on
 */
-void QEditor::setCursorPosition(const QPoint& p)
+void QEditor::setCursorPosition(const QPoint& p, bool moveView)
 {
 	//qDebug("cursor for : (%i, %i)", p.x(), p.y());
 
@@ -2235,7 +2245,7 @@ void QEditor::setCursorPosition(const QPoint& p)
 
 	if ( c.isValid() )
 	{
-		setCursor(c);
+		setCursor(c, moveView);
 	}
 }
 
@@ -4789,7 +4799,7 @@ bool QEditor::isCursorVisible() const
 /*!
 	\brief Ensure that the current cursor is visible
 */
-void QEditor::ensureCursorVisible(int surrounding)
+void QEditor::ensureCursorVisible(MoveFlags mflags)
 {
 	if ( !isVisible() )
 	{
@@ -4798,6 +4808,7 @@ void QEditor::ensureCursorVisible(int surrounding)
 	}	
 	
 	QPoint pos = m_cursor.documentPosition();
+	int surrounding = (mflags&KeepSurrounding) ? m_cursorSurroundingLines : 0;
 
 	const int ls = document()->getLineSpacing();
 
@@ -4821,7 +4832,7 @@ void QEditor::ensureCursorVisible(int surrounding)
 
 	if (ytarget >= 0) {
 #if QT_VERSION >= 0x040600
-		if (flag(QEditor::SmoothScrolling)) {
+		if (flag(QEditor::SmoothScrolling) && mflags&Animated) {
 			if (!m_scrollAnimation) {
 				m_scrollAnimation = new QPropertyAnimation(this);
 			}
@@ -4858,13 +4869,11 @@ void QEditor::ensureCursorVisible(int surrounding)
 	}
 	
 	setFlag(EnsureVisible, false);
-}
 
-void QEditor::ensureCursorVisibleSurrounding(bool showLine){
-	ensureCursorVisible(m_cursorSurroundingLines);
-	if (showLine && m_cursor.line().isHidden())
+	if ((mflags&ShowLine) && m_cursor.line().isHidden())
 		document()->expandParents(m_cursor.lineNumber());
 }
+
 
 /*!
 	\brief ensure that a given line is visible by updating scrollbars if needed
@@ -5195,9 +5204,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			if (slow) emit slowOperationEnded();
 		}
 
-		// ensureCursorVisible();
-		// TH: see https://sourceforge.net/p/texstudio/bugs/659/ 3.)
-		ensureCursorVisibleSurrounding();
+		ensureCursorVisible(KeepSurrounding);
 		setFlag(CursorOn, true);
 
 		emitCursorPositionChanged();

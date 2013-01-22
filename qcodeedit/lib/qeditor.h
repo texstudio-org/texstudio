@@ -108,7 +108,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			
 			Accessible		= 0xfffff000
 		};
-		
+		Q_DECLARE_FLAGS(State, EditFlag)
+
 		enum EditOperation{
 			NoOperation = 0,
 			Invalid = -1,
@@ -175,7 +176,17 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			UnindentSelection
 		};
 
-		Q_DECLARE_FLAGS(State, EditFlag)
+		enum MoveFlagsEnum {
+			NoFlags = 0x0000,
+			Animated = 0x0001,
+			KeepSurrounding = 0x0002,
+			ShowLine = 0x0004,
+
+			// semantic abbreviations
+			Navigation = Animated | KeepSurrounding | ShowLine
+		};
+		Q_DECLARE_FLAGS(MoveFlags, MoveFlagsEnum)
+
 		/*
 		struct PlaceHolder
 		{
@@ -382,7 +393,7 @@ public slots:
 		void removeInputBinding(QEditorInputBindingInterface *b);
 		void setInputBinding(QEditorInputBindingInterface *b);
 		
-		void setCursor(const QDocumentCursor& c);
+		void setCursor(const QDocumentCursor& c, bool moveView = true);
 		
 		void setLanguageDefinition(QLanguageDefinition *d);
 		
@@ -454,8 +465,7 @@ public slots:
 		void setContentClean(bool y);
 		
 		void emitCursorPositionChanged();
-		void ensureCursorVisible(int surrounding = 0);
-		void ensureCursorVisibleSurrounding(bool showLine = true);
+		void ensureCursorVisible(MoveFlags mflags = NoFlags);
 		
 		virtual void setContentModified(bool y);
 
@@ -529,9 +539,9 @@ public slots:
 		QDocumentCursor cursorForPosition(const QPoint& p) const;
 		
 		void setClipboardSelection();
-		void setCursorPosition(const QPoint& p);
+		void setCursorPosition(const QPoint& p, bool moveView = true);
 		
-		void setCursorPosition(int line, int index);
+		void setCursorPosition(int line, int index, bool moveView = true);
 		void getCursorPosition(int &line, int &index);
 		bool getPositionBelowCursor(QPoint& offset, int width, int height,bool &above);
 		bool getPositionBelowCursor(QPoint& offset, int width=0, int height=0);
@@ -637,7 +647,8 @@ public slots:
 #endif
 };
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State);
+Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State)
+Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::MoveFlags)
 
 inline bool QEditor::atPlaceholder() {
 	return m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
