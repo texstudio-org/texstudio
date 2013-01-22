@@ -109,7 +109,6 @@ void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event) {
 	if (event->button() == Qt::LeftButton) {
 		int toIndex = tabAt(event->pos());
 		if (toIndex >= 0) {
-			qDebug() << currentIndex() << toIndex;
 			emit currentTabAboutToChange(currentIndex(), toIndex);
 		}
 	}
