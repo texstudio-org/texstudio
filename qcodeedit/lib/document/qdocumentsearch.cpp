@@ -593,8 +593,8 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				
 				if ( m_editor && !hasOption(Silent)) {
 					if (!all || hasOption(Prompt)) {
-						m_editor->setCursor(m_cursor);
-						m_editor->ensureCursorVisibleSurrounding();
+						m_editor->setCursor(m_cursor, false);
+						m_editor->ensureCursorVisible(QEditor::Navigation);
 					} else lastSelection = m_cursor;
 				}
 				
@@ -644,8 +644,8 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			m_editor->document()->endDelayedUpdateBlock();
             m_editor->document()->endMacro();
 			if (!hasOption(Silent)){
-				m_editor->setCursor(lastSelection);
-				m_editor->ensureCursorVisibleSurrounding();
+				m_editor->setCursor(lastSelection, false);
+				m_editor->ensureCursorVisible(QEditor::Navigation);
 			}
 		}
 	}

@@ -630,8 +630,8 @@ void QSearchReplacePanel::closeEvent(QCloseEvent *)
 	if ( m_search )
 	{
 		if (isVisible() && editor() && m_search->lastReplacedPosition().isValid()) {
-			editor()->setCursor(m_search->lastReplacedPosition());
-			editor()->ensureCursorVisibleSurrounding();
+			editor()->setCursor(m_search->lastReplacedPosition(), false);
+			editor()->ensureCursorVisible(QEditor::Navigation);
 		}
 		//m_search->highlightSelection(false);
 		m_search->setOption(QDocumentSearch::HighlightAll, false);
