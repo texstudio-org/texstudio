@@ -486,7 +486,7 @@ void Texmaker::setupDockWidgets(){
 		outputView->setTabbedLogView(configManager.tabbedLogView);
 		outputView->hide();
 		addDockWidget(Qt::BottomDockWidgetArea,outputView);
-		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLocation(int,const QString&)));
+		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLine(int,const QString&)));
 		connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 		connect(outputView,SIGNAL(tabChanged(int)),this,SLOT(tabChanged(int)));
 		connect(outputView,SIGNAL(jumpToSearch(QDocument*,int)),this,SLOT(jumpToSearch(QDocument*,int)));
@@ -2820,16 +2820,19 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 		if (found) break;
 		// try bib files
 		QString bibFile = documents.findFileFromBibId(bibID);
-		if (!FocusEditorForFile(bibFile))
+		LatexEditorView* edView = getEditorViewFromFileName(bibFile);
+		if (!edView) {
 			if (!load(bibFile)) return;
-		int line = currentEditorView()->document->findLineRegExp("@\\w+{\\s*"+bibID, 0, Qt::CaseSensitive, true, true);
+			edView = currentEditorView();
+		}
+		int line = edView->document->findLineRegExp("@\\w+{\\s*"+bibID, 0, Qt::CaseSensitive, true, true);
 		if (line < 0) {
-			line = currentEditorView()->document->findLineContaining(bibID); // fallback in case the above regexp does not reflect the most general case
+			line = edView->document->findLineContaining(bibID); // fallback in case the above regexp does not reflect the most general case
 			if (line < 0) return;
 		}
-		int col = currentEditorView()->document->line(line).text().indexOf(bibID);
+		int col = edView->document->line(line).text().indexOf(bibID);
 		if (col<0) col = 0;
-		gotoLine(line, col);
+		gotoLine(line, col, edView);
 		break;
 	}
 	default:; //TODO: Jump to command definition
@@ -3394,13 +3397,15 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		int lineNr=-1;
 		mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
 		LatexEditorView* edView=entry->document->getEditorView();
+		QEditor::MoveFlags mflags = QEditor::Navigation;
 		if (!entry->document->getEditorView()){
 			lineNr=entry->getRealLineNumber();
 			edView=load(entry->document->getFileName());
 			if (!edView) return;
+			mflags &= ~QEditor::Animated;
 			//entry is now invalid
 		} else lineNr=LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
-		gotoLine(lineNr,0,edView);
+		gotoLine(lineNr,0,edView, mflags);
 		break;
 	}
 		
@@ -4238,9 +4243,11 @@ void Texmaker::createLabelFromAction()
 	// find editor and line nr
 	mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
 	LatexEditorView* edView=entry->document->getEditorView();
+	QEditor::MoveFlags mflags = QEditor::Navigation;
 	if (!edView){
 		edView=load(entry->document->getFileName());
 		if (!edView) return;
+		mflags &= ~QEditor::Animated;
 		//entry is now invalid
 	}
 	int lineNr=entry->getRealLineNumber();
@@ -4275,7 +4282,7 @@ void Texmaker::createLabelFromAction()
 		label = "sec:";
 	}
 
-	gotoLine(lineNr,pos,edView);
+	gotoLine(lineNr,pos,edView,mflags);
 
 	InsertTag(QString("\\label{%1}").arg(label),7);
 	QDocumentCursor cur(edView->editor->cursor());
@@ -5124,7 +5131,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	
 	if (line!=-1){
 		QApplication::processEvents();
-		gotoLine(line, col);
+		gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
 		QTimer::singleShot(1000,currentEditor(),SLOT(ensureCursorVisible()));
 	}
 
@@ -5748,7 +5755,7 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 		currentEditor()->setCursorPosition(lineNumber,col,false);
 		currentEditor()->ensureCursorVisible(QEditor::Navigation);
 	} else {
-		gotoLocation(lineNumber, doc->getFileName().size()?doc->getFileName():qobject_cast<LatexDocument*>(doc)->getTemporaryFileName());
+		gotoLine(lineNumber, doc->getFileName().size()?doc->getFileName():qobject_cast<LatexDocument*>(doc)->getTemporaryFileName());
 		int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
 		currentEditor()->setCursorPosition(lineNumber,col,false);
 		currentEditor()->ensureCursorVisible(QEditor::Navigation);
@@ -5759,7 +5766,7 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 	currentEditorView()->temporaryHighlight(highlight);
 }
 
-void Texmaker::gotoLine(int line, int col, LatexEditorView *edView) {
+void Texmaker::gotoLine(int line, int col, LatexEditorView *edView, QEditor::MoveFlags mflags) {
 	bool changeCurrentEditor = (edView != currentEditorView());
 	if (!edView)
 		edView = currentEditorView(); // default
@@ -5768,17 +5775,24 @@ void Texmaker::gotoLine(int line, int col, LatexEditorView *edView) {
 
 	saveCurrentCursorToHistory();
 
-	if (changeCurrentEditor)
+	if (changeCurrentEditor) {
 		EditorTabs->setCurrentEditor(edView);
+		mflags &= ~QEditor::Animated;
+	}
 	edView->editor->setCursorPosition(line,col,false);
-	edView->editor->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ShowLine); //TODO different calls of gotoLine may want different moveFlags
+	edView->editor->ensureCursorVisible(mflags);
 	edView->editor->setFocus();
 }
 
-void Texmaker::gotoLocation(int line, const QString &fileName){
-	if (!FocusEditorForFile(fileName, true))
-		if (!load(fileName)) return;
-	gotoLine(line);
+bool Texmaker::gotoLine(int line, const QString &fileName){
+	LatexEditorView* edView = getEditorViewFromFileName(fileName, true);
+	QEditor::MoveFlags mflags = QEditor::Navigation;
+	if (!edView) {
+		if (!load(fileName)) return false;
+		mflags &= ~QEditor::Animated;
+	}
+	gotoLine(line, 0, edView, mflags);
+	return true;
 }
 
 void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
@@ -5897,7 +5911,7 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 			highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 		}
 		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol,false);
-		currentEditor()->ensureCursorVisible(QEditor::Navigation);
+		currentEditor()->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ExpandFold);
 	} else {
 		highlight.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 	}
@@ -5929,7 +5943,7 @@ void Texmaker::setGlobalCursor(const QDocumentCursor &c) {
 		LatexDocument *doc = qobject_cast<LatexDocument*>(c.document());
 		if (doc && doc->getEditorView()) {
 			LatexEditorView *edView = doc->getEditorView();
-			QEditor::MoveFlags mflags = QEditor::KeepSurrounding | QEditor::ShowLine;
+			QEditor::MoveFlags mflags = QEditor::KeepSurrounding | QEditor::ExpandFold;
 			if (edView == currentEditorView()) mflags |= QEditor::Animated;
 			EditorTabs->setCurrentEditor(edView);
 			edView->editor->setFocus();

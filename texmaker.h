@@ -452,8 +452,8 @@ protected slots:
 	
 	void tabChanged(int i);
 	
-	void gotoLine(int line, int col=0, LatexEditorView *edView = 0);  // line is 0 based
-	void gotoLocation(int line, const QString &fileName);  //0 based, absolute file name
+	void gotoLine(int line, int col=0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation);  // line is 0 based
+	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id=-1);

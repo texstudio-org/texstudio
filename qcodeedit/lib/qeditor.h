@@ -180,10 +180,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			NoFlags = 0x0000,
 			Animated = 0x0001,
 			KeepSurrounding = 0x0002,
-			ShowLine = 0x0004,
+			ExpandFold = 0x0004,
 
 			// semantic abbreviations
-			Navigation = Animated | KeepSurrounding | ShowLine
+			Navigation = Animated | KeepSurrounding | ExpandFold
 		};
 		Q_DECLARE_FLAGS(MoveFlags, MoveFlagsEnum)
 
