@@ -4870,7 +4870,7 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 	
 	setFlag(EnsureVisible, false);
 
-	if ((mflags&ShowLine) && m_cursor.line().isHidden())
+	if ((mflags&ExpandFold) && m_cursor.line().isHidden())
 		document()->expandParents(m_cursor.lineNumber());
 }
 
