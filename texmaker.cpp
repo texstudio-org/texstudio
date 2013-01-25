@@ -7029,8 +7029,12 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 			break;
 	}
 	
-	if(!loaded)
-		txsWarning(tr("Sorry, I couldn't find the file \"%1\"").arg(name));
+	if(!loaded) {
+		if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(name))) {
+			Q_ASSERT(curPaths.count()>0);
+			fileNew(getAbsoluteFilePath(curPaths[0]+name, defaultExt));
+		}
+	}
 }
 
 
