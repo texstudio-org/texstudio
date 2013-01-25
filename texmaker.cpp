@@ -1331,8 +1331,7 @@ void Texmaker::NewDocumentStatus() {
 	QEditor * ed = edView->editor;
 	actSave->setEnabled(ed->isContentModified() || ed->fileName().isEmpty());
 	EditorTabs->setTabIcon(index, ed->isContentModified() ? getRealIcon("modified") : QIcon(":/images/empty.png"));
-	QString tabText = ed->fileName().isEmpty() ? tr("untitled") : ed->name();
-	tabText.replace("&", "&&");
+	QString tabText = edView->displayName().replace("&", "&&");
 	if (EditorTabs->tabText(index) != tabText) {
 		EditorTabs->setTabText(index, tabText);
 		updateOpenDocumentMenu(true);
@@ -2203,8 +2202,8 @@ void Texmaker::fileClose() {
 repeatAfterFileSavingFailed:
 	if (currentEditorView()->editor->isContentModified()) {
 		switch (QMessageBox::warning(this, TEXSTUDIO,
-																 tr("The document contains unsaved work. "
-																		"Do you want to save it before closing?"),
+																 tr("The document \"%1\" contains unsaved work. "
+																		"Do you want to save it before closing?").arg(currentEditorView()->displayName()),
 																 tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
 																 0,
 																 2)) {
@@ -2250,8 +2249,8 @@ bool Texmaker::closeAllFilesAsking(){
 repeatAfterFileSavingFailed:
 		if (currentEditorView()->editor->isContentModified()) {
 			switch (QMessageBox::warning(this, TEXSTUDIO,
-																	 tr("The document contains unsaved work. "
-																			"Do you want to save it before closing?"),
+																	 tr("The document \"%1\" contains unsaved work. "
+																			"Do you want to save it before closing?").arg(currentEditorView()->displayName()),
 																	 tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
 																	 0,
 																	 2)) {
@@ -2363,7 +2362,7 @@ void Texmaker::viewDocumentList(){
 
 	int i = 0;
 	foreach (LatexEditorView *edView, editors){
-		sl << (edView->editor->fileName().isEmpty() ? tr("untitled") : edView->editor->name());
+		sl << edView->displayName();
 		if (!configManager.mruDocumentChooser && edView == curEdView) curIndex = i;
 		i++;
 	}
@@ -2378,7 +2377,7 @@ void Texmaker::viewDocumentList(){
 void Texmaker::viewDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
 	if (duplicate < 0) return;
 	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		QString  name = edView->editor->fileName().isEmpty() ? tr("untitled") : edView->editor->name();
+		QString  name = edView->displayName();
 		if (name == doc) {
 			duplicate -= 1;
 			if (duplicate < 0) {
@@ -4485,11 +4484,16 @@ bool Texmaker::checkProgramPermission(const QString& program, const QString& cmd
 	if (id.contains("=")) return false;
 	static QStringList individualProgramWhiteList; configManager.registerOption("Tools/Individual Program Whitelist", &individualProgramWhiteList, QStringList());
 	if (!id.isEmpty() && individualProgramWhiteList.contains(id+"="+program)) return true;
-	int t = QMessageBox::question(0, TEXSTUDIO,
-																tr("The document %1 want to override the command %2 with %3.\nDo you trust this document?").arg(master?master->getFileName():"").arg(cmdId).arg(program),
-																tr("Yes, always run the overridden command"),
-																tr("Yes, allow all documents to use the overridden command"),
-																tr("No, run the default command"), 0, 2);
+	int t = QMessageBox::warning(0, TEXSTUDIO,
+																tr("The document \"%1\" wants to override the command \"%2\" with \"%3\".\n\n"
+																	 "Do you want to allow and run the new, overriding command?\n\n"
+																	 "(a) Allow the new command for this document (only if you trust this document)\n"
+																	 "(b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)\n"
+																	 "(c) Don't use the command \"%3\" and run the default \"%2\" command"
+																	 ).arg(master?master->getFileName():"").arg(cmdId).arg(program),
+																tr("(a) allow for this document"),
+																tr("(b) allow for all documents"),
+																tr("(c) use the default command"), 0, 2);
 	if (t == 2) return false;
 	if (t == 1) {
 		programWhiteList.append(program);
@@ -5289,12 +5293,12 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 		int idx = EditorTabs->currentIndex();
 		QString id = "doc"+QString::number(idx);
 		QMenu* menu = configManager.getManagedMenu("main/view/documents");
-		configManager.newManagedAction(menu, id, ed->fileName().isEmpty() ? tr("untitled") : ed->name().replace("&","&&"), SLOT(gotoOpenDocument()))->setData(idx);
+		configManager.newManagedAction(menu, id, currentEditorView()->displayName().replace("&","&&"), SLOT(gotoOpenDocument()))->setData(idx);
 		return;
 	}
 	QStringList sl;
 	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		sl << (edView->editor->fileName().isEmpty() ? tr("untitled") : edView->editor->name().replace("&", "&&"));
+		sl << (currentEditorView()->displayName().replace("&", "&&"));
 	}
 	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
 }
