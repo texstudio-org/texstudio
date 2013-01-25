@@ -7900,7 +7900,7 @@ void Texmaker::slowOperationEnded(){
 }
 
 void Texmaker::checkLatexInstall(){
-	fileNew();
+	fileNew(tr("System Report"));
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 
 	QString result;
