@@ -2696,7 +2696,7 @@ void PDFDocument::loadSyncData()
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
 		QString synctexName = QFile::decodeName(synctex_scanner_get_synctex(scanner));
-		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(synctexName), 3000);
+		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(QDir::toNativeSeparators(synctexName)), 3000);
 	}
 }
 
