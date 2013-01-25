@@ -773,6 +773,10 @@ void LatexEditorView::viewActivated(){
 	if (!LatexEditorView::completer) return;
 }
 
+QString LatexEditorView::displayName() const{
+	return (!editor || editor->fileName().isEmpty() ? tr("untitled") : editor->name());
+}
+
 
 void LatexEditorView::complete(int flags) {
 	if (!LatexEditorView::completer) return;
