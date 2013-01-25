@@ -5287,9 +5287,8 @@ void Texmaker::gotoOpenDocument(){
 	EditorTabs->setCurrentIndex(doc);
 }
 void Texmaker::updateOpenDocumentMenu(bool localChange){
-	QEditor* ed = currentEditor();
-	//if (!ed) return;
 	if (localChange) {
+		Q_ASSERT(currentEditorView());
 		int idx = EditorTabs->currentIndex();
 		QString id = "doc"+QString::number(idx);
 		QMenu* menu = configManager.getManagedMenu("main/view/documents");
@@ -5298,7 +5297,7 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 	}
 	QStringList sl;
 	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		sl << (currentEditorView()->displayName().replace("&", "&&"));
+		sl << (edView->displayName().replace("&", "&&"));
 	}
 	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
 }
