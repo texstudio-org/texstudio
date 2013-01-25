@@ -85,7 +85,7 @@ void TxsTabWidget::gotoPrevDocument() {
 
 void TxsTabWidget::currentTabAboutToChange(int from, int to) {
 	LatexEditorView *edFrom = qobject_cast<LatexEditorView *>(widget(from));
-	LatexEditorView *edTo = qobject_cast<LatexEditorView *>(widget(from));
+	LatexEditorView *edTo = qobject_cast<LatexEditorView *>(widget(to));
 	REQUIRE(edFrom);
 	REQUIRE(edTo);
 	emit editorAboutToChangeByTabClick(edFrom, edTo);
