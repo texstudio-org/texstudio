@@ -1578,7 +1578,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 			act->setVisible(true);
 			QString temp = recentProjectList.at(i);
 			temp.replace("&", "&&");
-			act->setText(tr("Master Document: ")+(i<=13?QString("&%1 ").arg((char)('M'+i)):"")+ temp);
+			act->setText(tr("Master Document: ")+(i<=13?QString("&%1 ").arg((char)('M'+i)):"")+ QDir::toNativeSeparators(temp));
 			act->setData(recentProjectList.at(i));
 		} else act->setVisible(false);
 	}
@@ -1597,7 +1597,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems) {
 			else if (i+1 <= 47+4) schar = i+1 + '{' - 48;
 			QString temp = recentFilesList.at(i);
 			temp.replace("&","&&");
-			act->setText((schar?QString("&%1 ").arg(schar):"")+temp);
+			act->setText((schar?QString("&%1 ").arg(schar):"")+QDir::toNativeSeparators(temp));
 			act->setData(recentFilesList.at(i));
 		} else act->setVisible(false);
 	}

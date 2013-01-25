@@ -1210,7 +1210,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 			return QVariant(entry->tooltip);
 		}
 		if (entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
-			return QVariant(entry->document->getFileName());
+			return QVariant(QDir::toNativeSeparators(entry->document->getFileName()));
 		}
 		if (entry->type==StructureEntry::SE_SECTION) {
 			QString tooltip(entry->title);

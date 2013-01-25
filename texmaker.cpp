@@ -1239,7 +1239,7 @@ void Texmaker::UpdateCaption() {
 	if (!currentEditorView())	{
 		title=TEXSTUDIO;
 	} else {
-		title="Document : "+getCurrentFileName();
+		title="Document : "+QDir::toNativeSeparators(getCurrentFileName());
 		if (currentEditorView()->editor) {
 			NewDocumentStatus();
 			NewDocumentLineEnding();
@@ -1339,7 +1339,7 @@ void Texmaker::NewDocumentStatus() {
 	// child ?
 	LatexDocument *doc=edView->document;
 	LatexDocument *masterDoc=doc->getTopMasterDocument();
-	QString tooltip=ed->fileName();
+	QString tooltip=QDir::toNativeSeparators(ed->fileName());
 	if(masterDoc!=doc){
 		tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
 	}
@@ -2141,7 +2141,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 		}
 		
 		EditorTabs->setTabText(EditorTabs->currentIndex(),currentEditor()->name().replace("&","&&"));
-		EditorTabs->setTabToolTip(EditorTabs->currentIndex(), currentEditor()->fileName());
+		EditorTabs->setTabToolTip(EditorTabs->currentIndex(), QDir::toNativeSeparators(currentEditor()->fileName()));
 		updateOpenDocumentMenu(true);
 		if (currentEditor()->fileInfo().suffix()!="tex")
 			m_languages->setLanguage(currentEditor(), fn);
