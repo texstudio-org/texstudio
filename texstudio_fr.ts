@@ -9486,29 +9486,29 @@ Do you want to allow and run the new, overriding command?
 (a) Allow the new command for this document (only if you trust this document)
 (b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) Don&apos;t use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation>Le document &quot;%1&quot; veut remplacer la compilation &quot;%2&quot; par &quot;%3&quot;.
+        <translation>Le document « %1 » veut remplacer la compilation « %2 » par « %3 ».
 
 Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
 
-(a) Autoriser la nouvelle compilation pour ce document (à choisir seulement si vous faites confiance à ce document) ?
-(b) Autoriser la nouvelle compilation pour tous les documents (à choisir seulement si vous faites suffisamment confiance à la nouvelle compilation pour accepter qu&apos;elle traite n&apos;importe quel document) ?
-(c) Ne pas utiliser la compilation &quot;%3&quot; et lancer la compilation par défaut &quot;%2&quot;. </translation>
+(a) autoriser la nouvelle compilation pour ce document (à choisir seulement si vous faites confiance à ce document)
+(b) autoriser la nouvelle compilation pour tous les documents (à choisir seulement si vous faites suffisamment confiance à la nouvelle compilation pour accepter qu&apos;elle traite n&apos;importe quel document)
+(c) ne pas utiliser la compilation « %3 » et lancer la compilation par défaut « %2 »</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>(a) allow for this document</source>
-        <translatorcomment>(a) Autoriser pour ce document</translatorcomment>
+        <translatorcomment>(a) autoriser pour ce document</translatorcomment>
         <translation>(a) Autoriser pour ce document</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(b) allow for all documents</source>
-        <translation>(b) Autoriser pour tous les documents</translation>
+        <translation>(b) autoriser pour tous les documents</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(c) use the default command</source>
-        <translation>(c) Utiliser la compilation par défaut</translation>
+        <translation>(c) utiliser la compilation par défaut</translation>
     </message>
     <message>
         <location line="+1519"/>
