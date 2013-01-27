@@ -2283,7 +2283,7 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 		icon.addFile(":/images/repeat-compile.png", QSize(), QIcon::Normal, QIcon::On);
 		icon.addFile(":/images/repeat-compile-off.png", QSize(), QIcon::Normal, QIcon::Off);
 		pb->setIcon(icon);
-		pb->setToolTip("Repeat contained compilation commands");
+		pb->setToolTip(tr("Repeat contained compilation commands"));
 		pb->setCheckable(true);
 		pb->setChecked(cmd.rerunCompiler);
 		assignNameWidget(pb, nameWidget);
