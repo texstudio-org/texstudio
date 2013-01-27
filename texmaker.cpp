@@ -6922,9 +6922,76 @@ bool Texmaker::generateMirror(bool setCur){
 				qSwap(searchWord,inhibitor);
 				step=-1;
 			}
-			int startLine=cursor.lineNumber();
-			//int startCol=cursor.columnNumber();
-			int endLine=doc->findLineContaining(searchWord,startLine+step,Qt::CaseSensitive,backward);
+            int ln=cursor.lineNumber();
+            int col=cursor.columnNumber();
+            bool finished=false;
+            int nested=0;
+            int colSearch=0;
+            int colInhibit=0;
+            if(step<0)
+                line=line.left(col);
+            while(!finished){
+                if(step>0){
+                    //forward search
+                    colSearch=line.indexOf(searchWord,col);
+                    colInhibit=line.indexOf(inhibitor,col);
+                }else{
+                    //backward search
+                    colSearch=line.lastIndexOf(searchWord);
+                    colInhibit=line.lastIndexOf(inhibitor);
+                }
+                if(colSearch<0 && colInhibit<0){
+                    ln+=step;
+                    if(doc->lines()<=ln || ln<0)
+                        break;
+                    line=doc->line(ln).text();
+                    col=0;
+                }
+                if(colSearch>=0 && colInhibit>=0){
+                    if(colSearch*step<colInhibit*step){
+                        if(nested==0){
+                            finished=true;
+                        }
+                        nested--;
+                        col=colSearch+1;
+                        if(step<0)
+                            line=line.left(colSearch);
+                    }else{
+                        if(step>0){
+                            col=colInhibit+1;
+                        }else {
+                            line=line.left(colInhibit);
+                        }
+                        nested++;
+                    }
+                }else{
+                    if(colSearch>=0){
+                        nested--;
+                        if(nested<0)
+                            finished=true;
+                        if(step>0){
+                            col=colSearch+1;
+                        }else{
+                            line=line.left(colSearch);
+                        }
+                    }
+                    if(colInhibit>=0){
+                        nested++;
+                        if(step>0){
+                            col=colInhibit+1;
+                        }else{
+                            line=line.left(colInhibit);
+                        }
+                    }
+                }
+            }
+            if(finished){
+                line=doc->line(ln).text();
+                int start=colSearch;
+                int offset=searchWord.indexOf("{");
+                ph.mirrors << currentEditor()->document()->cursor(ln,start+offset+1,ln,start+searchWord.length()-1);
+            }
+            /*int endLine=doc->findLineContaining(searchWord,startLine+step,Qt::CaseSensitive,backward);
 			int inhibitLine=doc->findLineContaining(inhibitor,startLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
 			while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
 				endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
@@ -6935,7 +7002,7 @@ bool Texmaker::generateMirror(bool setCur){
 				int start=line.indexOf(searchWord);
 				int offset=searchWord.indexOf("{");
 				ph.mirrors << currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
-			}
+            }*/
 			currentEditor()->addPlaceHolder(ph);
 			currentEditor()->setPlaceHolder(currentEditor()->placeHolderCount()-1);
 			if(setCur)
