@@ -995,12 +995,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</oldsource>
-        <translation type="unfinished">&lt;i&gt;Seletores:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nome do arquivo sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão&lt;br /&gt;
+        <translation type="unfinished">&lt;i&gt;Seletores:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nome do arquivo sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão, &lt;b&gt;r&lt;/b&gt;: caminho relativo ao arquivo mestre, &lt;b&gt;*&lt;/b&gt;: todos os arquivos obedecendo ao padrão&lt;br /&gt;
 anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mestre&lt;br /&gt;
 &lt;i&gt;Caracteres de encerramento:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: encerra seletor. Os seguintes caracteres encerram o seletor e têm significado adicional&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: entre aspas, &lt;b&gt;.&lt;/b&gt; (ponto) adiciona um ponto ao fim, (espaço): adiciona um espaço ao fim&lt;br /&gt;
-&lt;i&gt;Examplos:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: nome de arquivo completo entre aspas, &lt;b&gt;?e)&lt;/b&gt; somente a extensão sem ponto final (e.g. tex), &lt;br /&gt;
-&lt;b&gt;?m&quot;&lt;/b&gt; nome do arquivo entre aspas sem extensão (idêntico a &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nome do arquivo com extensão (e.g.example.tex)</translation>
+&lt;i&gt;Exemplos:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: nome de arquivo completo entre aspas, &lt;b&gt;?e)&lt;/b&gt; somente a extensão sem ponto final (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; nome do arquivo entre aspas sem extensão (idêntico a &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nome do arquivo com extensão (e.g.example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: todos os arquivos auxiliares no diretório atual</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -1175,7 +1175,7 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location line="+179"/>
         <source>Smooth Scrolling</source>
-        <translation type="unfinished"></translation>
+        <translation>Rolagem Suave</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1826,7 +1826,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location line="-1477"/>
         <source>MRU Document Chooser</source>
-        <translation type="unfinished"></translation>
+        <translation>Seletor de Documento MRU</translation>
     </message>
     <message>
         <location line="+1074"/>
@@ -3609,7 +3609,7 @@ Deseja removê-las?</translation>
     <message>
         <location line="+255"/>
         <source>File list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de Arquivos</translation>
     </message>
     <message>
         <location line="+661"/>
@@ -3629,7 +3629,7 @@ Deseja removê-las?</translation>
     <message>
         <location line="+42"/>
         <source>Repeat contained compilation commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Repetir comandos de compilaçao assinalados</translation>
     </message>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
@@ -3808,7 +3808,7 @@ Deseja removê-las?</translation>
         <location filename="encodingdialog.ui" line="+14"/>
         <source>Select File Encoding</source>
         <oldsource>Setup Encoding</oldsource>
-        <translation type="unfinished">Configurar Codificação</translation>
+        <translation>Selecionar Codificação para Arquivo</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -3823,18 +3823,19 @@ Deseja removê-las?</translation>
     <message>
         <location line="+42"/>
         <source>File Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Codificação do Arquivo</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>inputenc Parameter</source>
-        <translation type="unfinished"></translation>
+        <translation>Parâmetro inputenc</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation type="unfinished"></translation>
+        <translation>O nome da codificação como esperado pelo pacote inputenc. Os nomes são fornecidos como referência.
+Você deve assegurar que a codificação do arquivo e o valor passado para o pacote inputenc são correspondentes.</translation>
     </message>
     <message>
         <location line="-71"/>
@@ -4419,7 +4420,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+319"/>
         <source>untitled</source>
-        <translation type="unfinished"></translation>
+        <translation>sem título</translation>
     </message>
     <message>
         <location line="+429"/>
@@ -5628,7 +5629,7 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location line="+0"/>
         <source>Could not open link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível abrir o link:</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -7003,23 +7004,23 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="+123"/>
         <source>Line: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Linha: %1</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Column: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Coluna: %1</translation>
     </message>
     <message>
         <location line="+4"/>
         <location line="+6"/>
         <source>Selected: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionado: %1</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Lines: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Linhas: %1</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -7047,17 +7048,17 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="quazip/quazip/quagzipfile.cpp" line="+36"/>
         <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Abertura simultânea de gzip para leitura e escrita não é suportado</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Você pode abrir gzip para leitura ou para escrita. Qual a escolha?</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível executar gzopen() arquivo</translation>
     </message>
 </context>
 <context>
@@ -7065,7 +7066,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="quazip/quazip/quazipfile.cpp" line="+217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ZIP/UNZIP API erro %1</translation>
     </message>
 </context>
 <context>
@@ -8086,12 +8087,12 @@ falhou.</translation>
     <message>
         <location line="+50"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>É recomendado criar modelos em uma nova pasta. Caso contrário, arquivos existentes podem ser sobrescritos.</translation>
     </message>
     <message>
         <location line="+51"/>
         <source>Select Target Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Pasta de Destino</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -8172,12 +8173,12 @@ falhou.</translation>
     <message>
         <location line="+33"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>description text</source>
-        <translation type="unfinished"></translation>
+        <translation>texto de descrição</translation>
     </message>
     <message>
         <location filename="texdocdialog.cpp" line="+93"/>
@@ -8878,7 +8879,7 @@ falhou.</translation>
     <message>
         <location line="+7206"/>
         <source>System Report</source>
-        <translation type="unfinished"></translation>
+        <translation>Relatório do Sistema</translation>
     </message>
     <message>
         <source>Next error</source>
@@ -10314,7 +10315,7 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
     <message>
         <location line="-1519"/>
         <source>List Of Open Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de Documentos Abertos</translation>
     </message>
     <message>
         <location line="+287"/>
@@ -10323,28 +10324,28 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
         <location line="+4"/>
         <location line="+1"/>
         <source>Encoding</source>
-        <translation type="unfinished">Codificação</translation>
+        <translation>Codificação</translation>
     </message>
     <message>
         <location line="-161"/>
         <source>More Encodings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mais Codificações...</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Insert encoding as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir codificação como comentário TeX</translation>
     </message>
     <message>
         <location line="+146"/>
         <source>Encoding Aliases: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nome da Codificação</translation>
     </message>
     <message>
         <location line="+850"/>
         <location line="+47"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>O documento &quot;%1&quot; contém trabalho não salvo. Deseja salvar o trabalho antes de fechá-lo?</translation>
     </message>
     <message>
         <location line="+190"/>
@@ -10370,22 +10371,28 @@ Do you want to allow and run the new, overriding command?
 (a) Allow the new command for this document (only if you trust this document)
 (b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) Don&apos;t use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"></translation>
+        <translation>O documento &quot;%1&quot; deseja sobrescrever o comando &quot;%2&quot; com &quot;%3&quot;.
+
+Voce deseja permitir e executar o novo comando?
+
+(a) Permitir o novo comando para este documento (somente se você confia neste documento)
+(b) Permitir o novo comando ser utilizado para todos os documentos (somente se você confia no novo comando para atuar em qualquer documento)
+(c) Não utilizar o comando &quot;%3&quot; e executar o comando padrão &quot;%2</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>(a) allow for this document</source>
-        <translation type="unfinished"></translation>
+        <translation>(a) permitir para este documento</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(b) allow for all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>(b) permitir para todos os documentos</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(c) use the default command</source>
-        <translation type="unfinished"></translation>
+        <translation>(c) utilize o comando padrão</translation>
     </message>
     <message>
         <location line="+174"/>
@@ -10425,7 +10432,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location line="+3"/>
         <source>Move document to &amp;front</source>
-        <translation>Mover documento para o &amp;frente</translation>
+        <translation>Mover documento para a &amp;frente</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -10498,7 +10505,8 @@ Do you want to allow and run the new, overriding command?
         <location line="+222"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo &quot;%1&quot; não existe.
+Deseja criá-lo?</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -11634,17 +11642,17 @@ The html files are located in the %1 directory.</source>
     <message>
         <location line="+107"/>
         <source>Create in Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar na Pasta:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Create in Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar no Editor</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Target folder not empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasta de destino não vazia</translation>
     </message>
     <message>
         <source>1</source>
