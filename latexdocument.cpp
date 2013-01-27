@@ -380,7 +380,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		
 		//// TODO marker
 		QString s=curLine;
-		int l=s.indexOf("%TODO");
+        int l=s.indexOf("%todo",0,Qt::CaseInsensitive);
 		if (l>=0) {
 			s=s.mid(l+6,s.length());
 			bool reuse=false;
