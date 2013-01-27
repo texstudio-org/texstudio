@@ -2323,6 +2323,14 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
 &lt;i&gt;Příklady:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: doplnit absolutní název souboru uzavřený v dvojitých uvozovkách, &lt;b&gt;?e)&lt;/b&gt; pouze přípona bez tečky na začátku (např. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; název souboru v dvojitých uvozovkách bez přípony (totéž co &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; název souboru s příponou (např.example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: všechny soubory .aux v nynějším adresáři</translation>
     </message>
+    <message>
+        <source>MRU Document Chooser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Smooth Scrolling</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -2990,6 +2998,14 @@ hcete je odstranit?</translation>
         <source>Insert New Sub Menu (before)</source>
         <translation>Vložit novou podřízenou položku nabídky (před)</translation>
     </message>
+    <message>
+        <source>File list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Repeat contained compilation commands</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CursorHistory</name>
@@ -3094,7 +3110,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Setup Encoding</source>
-        <translation>Nastavit kódování znaků</translation>
+        <translation type="obsolete">Nastavit kódování znaků</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -3115,6 +3131,23 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <source>Cancel</source>
         <translation>Zrušit</translation>
+    </message>
+    <message>
+        <source>Select File Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File Encoding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>inputenc Parameter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The codec names as the inputenc package expects them. The names are only given for reference.
+You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3650,6 +3683,10 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Images</source>
         <translation>Obrázky</translation>
+    </message>
+    <message>
+        <source>untitled</source>
+        <translation type="unfinished">Bez názvu</translation>
     </message>
 </context>
 <context>
@@ -4558,11 +4595,15 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Could not open browser</source>
-        <translation>Nepodařilo se otevřít prohlížeč</translation>
+        <translation type="obsolete">Nepodařilo se otevřít prohlížeč</translation>
     </message>
     <message>
         <source>Go to Source</source>
         <translation>Jít na zdrojový text</translation>
+    </message>
+    <message>
+        <source>Could not open link:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5643,7 +5684,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <name>QStatusPanel</name>
     <message>
         <source>Line : %1 Visual column : %2 Text column : %3</source>
-        <translation>Řádek: %1 Viditelný sloupec: %2 Textový sloupec: %3</translation>
+        <translation type="obsolete">Řádek: %1 Viditelný sloupec: %2 Textový sloupec: %3</translation>
     </message>
     <message>
         <source>(%1 min %2 s ago)</source>
@@ -5660,6 +5701,44 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <source>Conflict</source>
         <translation>Rozpor</translation>
+    </message>
+    <message>
+        <source>Line: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selected: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lines: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaGzipFile</name>
+    <message>
+        <source>Opening gzip for both reading and writing is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can open a gzip either for reading or for writing. Which is it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not gzopen() file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZipFilePrivate</name>
+    <message>
+        <source>ZIP/UNZIP API error %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6471,15 +6550,11 @@ se nepodařilo odstranit.</translation>
     </message>
     <message>
         <source>TeXstudio found user templates in deprecated locations.
->From now on user templates are hosted at
+From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation>TeXstudio nalezlo uživatelské předlohy v odmítnutých umístěních.
-Od nynějška jsou uživatelské předlohy hostěny na
-%1
-Má tam TeXstudio přemístit stávající uživatelské předlohy?
-Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6548,6 +6623,14 @@ Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
         <source>Could not open location:</source>
         <translation>Nepodařilo se otevřít umístění:</translation>
     </message>
+    <message>
+        <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Target Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TexdocDialog</name>
@@ -6562,6 +6645,14 @@ Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
     <message>
         <source>No Documentation Available</source>
         <translation>Není dostupná žádná dokumentace</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>description text</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6808,7 +6899,7 @@ Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
     </message>
     <message>
         <source>The document contains unsaved work. Do you want to save it before closing?</source>
-        <translation>Dokument byl změněn, a tak obsahuje neuloženou práci. Chcete ji před ukončením programu uložit?</translation>
+        <translation type="obsolete">Dokument byl změněn, a tak obsahuje neuloženou práci. Chcete ji před ukončením programu uložit?</translation>
     </message>
     <message>
         <source>Save and Close</source>
@@ -7322,7 +7413,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>untitled</source>
-        <translation>Bez názvu</translation>
+        <translation type="obsolete">Bez názvu</translation>
     </message>
     <message>
         <source>Please Confirm</source>
@@ -7637,7 +7728,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
-        <translation>Promiňte, ale nepodařilo se najít soubor &quot;%1&quot;</translation>
+        <translation type="obsolete">Promiňte, ale nepodařilo se najít soubor &quot;%1&quot;</translation>
     </message>
     <message>
         <source>&amp;Configure TeXstudio...</source>
@@ -7923,12 +8014,12 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     <message>
         <source>The document %1 want to override the command %2 with %3.
 Do you trust this document?</source>
-        <translation>Dokument %1 chce potlačit příkaz %2 s %3.
+        <translation type="obsolete">Dokument %1 chce potlačit příkaz %2 s %3.
 Věříte tomuto dokumentu?</translation>
     </message>
     <message>
         <source>No, run the default command</source>
-        <translation>Ne, spustit výchozí příkaz</translation>
+        <translation type="obsolete">Ne, spustit výchozí příkaz</translation>
     </message>
     <message>
         <source>Reached beginning of text.</source>
@@ -7945,11 +8036,11 @@ Věříte tomuto dokumentu?</translation>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
-        <translation>Ano, vždy spustit potlačený příkaz</translation>
+        <translation type="obsolete">Ano, vždy spustit potlačený příkaz</translation>
     </message>
     <message>
         <source>Yes, allow all documents to use the overridden command</source>
-        <translation>Ano, všem dokumentům použít potlačený příkaz</translation>
+        <translation type="obsolete">Ano, všem dokumentům použít potlačený příkaz</translation>
     </message>
     <message>
         <source>TeXstudio Emergency</source>
@@ -8460,6 +8551,61 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     <message>
         <source>Saving of session failed.</source>
         <translation>Uložení sezení se nezdařilo.</translation>
+    </message>
+    <message>
+        <source>List Of Open Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <translation type="unfinished">Kódování znaků</translation>
+    </message>
+    <message>
+        <source>More Encodings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert encoding as TeX comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encoding Aliases: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
+
+Do you want to allow and run the new, overriding command?
+
+(a) Allow the new command for this document (only if you trust this document)
+(b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
+(c) Don&apos;t use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(a) allow for this document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(b) allow for all documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(c) use the default command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file &quot;%1&quot; does not exist.
+Do you want to create it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System Report</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9370,6 +9516,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>1</source>
         <translation type="obsolete">1</translation>
+    </message>
+    <message>
+        <source>Create in Folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create in Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target folder not empty.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
