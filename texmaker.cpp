@@ -4487,9 +4487,9 @@ bool Texmaker::checkProgramPermission(const QString& program, const QString& cmd
 	int t = QMessageBox::warning(0, TEXSTUDIO,
 																tr("The document \"%1\" wants to override the command \"%2\" with \"%3\".\n\n"
 																	 "Do you want to allow and run the new, overriding command?\n\n"
-																	 "(a) Allow the new command for this document (only if you trust this document)\n"
-																	 "(b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)\n"
-																	 "(c) Don't use the command \"%3\" and run the default \"%2\" command"
+																	 "(a) Yes, allow the new command for this document (only if you trust this document)\n"
+																	 "(b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)\n"
+																	 "(c) No, do not use the command \"%3\" and run the default \"%2\" command"
 																	 ).arg(master?master->getFileName():"").arg(cmdId).arg(program),
 																tr("(a) allow for this document"),
 																tr("(b) allow for all documents"),
