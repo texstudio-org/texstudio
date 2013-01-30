@@ -95,6 +95,7 @@ public:
 	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles();
 	const QMultiHash<QDocumentLineHandle*,FileNamePair>& mentionedBibTeXFiles() const;
+    QStringList listOfMentionedBibTeXFiles() const;
 	QSet<QString> lastCompiledBibTeXFiles;
 	
 	QList<Macro> localMacros;
@@ -116,6 +117,7 @@ public:
 	void recheckRefsLabels();
 	Q_INVOKABLE int countLabels(const QString& name);
 	Q_INVOKABLE int countRefs(const QString& name);
+    Q_INVOKABLE bool bibIdValid(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getBibItems(const QString& name);

@@ -1059,24 +1059,29 @@ LatexCompleter* LatexEditorView::getCompleter(){
 	return LatexEditorView::completer;
 }
 
+void LatexEditorView::updateCitationFormats(){
+    Q_ASSERT(bibTeXIds);
+    for (int i=0; i<editor->document()->lines(); i++) {
+        QList<QFormatRange> li=editor->document()->line(i).getOverlays();
+        QString curLineText=editor->document()->line(i).text();
+        for (int j=0; j<li.size(); j++)
+            if (li[j].format == citationPresentFormat || li[j].format == citationMissingFormat){
+                //int newFormat=bibTeXIds->contains(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
+                int newFormat=document->bibIdValid(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
+                if (newFormat!=li[j].format) {
+                    editor->document()->line(i).removeOverlay(li[j]);
+                    li[j].format=newFormat;
+                    editor->document()->line(i).addOverlay(li[j]);
+                }
+            }
+    }
+}
+
 void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
 	bibTeXIds=newIds;
-	
-	Q_ASSERT(bibTeXIds);
-	for (int i=0; i<editor->document()->lines(); i++) {
-		QList<QFormatRange> li=editor->document()->line(i).getOverlays();
-		QString curLineText=editor->document()->line(i).text();
-		for (int j=0; j<li.size(); j++)
-			if (li[j].format == citationPresentFormat || li[j].format == citationMissingFormat){
-				int newFormat=bibTeXIds->contains(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
-				if (newFormat!=li[j].format) {
-					editor->document()->line(i).removeOverlay(li[j]);
-					li[j].format=newFormat;
-					editor->document()->line(i).addOverlay(li[j]);
-				}
-			}
-	}
+    updateCitationFormats();
 }
+
 int LatexEditorView::bookMarkId(int bookmarkNumber) {
     if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
     else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
@@ -1553,7 +1558,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					foreach ( const QString &cit, citations) {
 						QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
 						//check and highlight
-						if (bibTeXIds->contains(rcit))
+                        //if (bibTeXIds->contains(rcit))
+                        if(document->bibIdValid(rcit))
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
 						else
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
@@ -1898,7 +1904,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 				col_stop++;
 			bibID = trimLeft(line.mid(col_start+1,col_stop-col_start-1));
 
-			if (!bibTeXIds->contains(bibID)) {
+            //if (!bibTeXIds->contains(bibID)) {
+            if(!document->bibIdValid(bibID)) {
 				tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
 
 				if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {

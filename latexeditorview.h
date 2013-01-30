@@ -87,6 +87,7 @@ public:
 	static void setCompleter(LatexCompleter* newCompleter);
 	static LatexCompleter* getCompleter();
 	void setBibTeXIds(QSet<QString>* newIds);
+    void updateCitationFormats();
 	
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;

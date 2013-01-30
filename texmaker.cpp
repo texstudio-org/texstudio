@@ -5697,12 +5697,18 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	}
 	if (configManager.parseBibTeX){
 		QStringList bibIds;
-		for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
-			if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])){
-				qDebug("BibTeX-File %s not loaded",documents.mentionedBibTeXFiles[i].toLatin1().constData());
+
+        QStringList collected_mentionedBibTeXFiles;
+        foreach(const LatexDocument* doc,docs){
+            collected_mentionedBibTeXFiles<<doc->listOfMentionedBibTeXFiles();
+        }
+
+        for (int i=0; i<collected_mentionedBibTeXFiles.count();i++){
+            if (!documents.bibTeXFiles.contains(collected_mentionedBibTeXFiles[i])){
+                qDebug("BibTeX-File %s not loaded",collected_mentionedBibTeXFiles[i].toLatin1().constData());
 				continue; //wtf?s
 			}
-			BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
+            BibTeXFileInfo& bibTex=documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
 			//automatic use of cite commands
 			foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
