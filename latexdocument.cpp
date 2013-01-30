@@ -800,6 +800,15 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 	if(bibItemsChanged)
 		parent->updateBibFiles(false);
+
+    // force update on citation overlays
+    if(bibItemsChanged||bibTeXFilesNeedsUpdate){
+        // needs probably done asynchronously as bibteFiles needs to be loaded first ...
+        foreach(LatexDocument* elem,getListOfDocs()){
+            if(elem->edView)
+                elem->edView->updateCitationFormats();
+        }
+    }
 	
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
