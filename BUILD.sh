@@ -21,12 +21,20 @@ readvalue() {
   if [ ! -n "$NEWVALUE" ]; then NEWVALUE=$2;  fi
 }
 
+readswitchy() {
+  readvalue "$1" $3;
+  OK=0
+  for option in $2; do
+    if [ "$NEWVALUE" = "$option" ]; then OK=1; fi
+  done
+  if [ "$OK" = 0 ]; then 
+  echo "invalid input, must be a value in \"$2\""
+  readswitchy "$1" "$2" "$3"
+  fi
+}
+
 readoption() {
-readvalue "$1 yes/no" $2;
-if [ ! "$NEWVALUE" = yes -a ! "$NEWVALUE" = no ]; then 
-echo "invalid input, must be yes/no/"
-readoption "$1" $2
-fi
+readswitchy "$1 (yes/no)" "yes no" $2;
 }
 
 #ask
@@ -39,14 +47,16 @@ if [ "$SYSTEM" = 1 ]; then
 fi
 readvalue "Enter path to QT4 (e.g. /usr/lib/qt4, you can leave it empty if qmake is in PATH)" $QTDIR;
 QTDIR=$NEWVALUE
-readoption "Do you want to use the internal pdf viewer (requires the Poppler library)? yes/no" yes;
+readoption "Do you want to use the internal pdf viewer (requires the Poppler library)?" yes;
 OPTION_PDFVIEWER=$NEWVALUE
 if [ "$OPTION_PDFVIEWER" = yes ]; then
-readoption "Do you want to use the video player in pdf files (requires the Phonon library)? yes/no" no;
+readoption "Do you want to use the video player in pdf files (requires the Phonon library)?" no;
 OPTION_PHONON=$NEWVALUE
 else
 OPTION_PHONON=no
 fi
+readswitchy "Do you want to build a debug or release version?" "debug release d r deb rel" debug; 
+OPTION_DEBUG=$NEWVALUE
 
 if [ ! -f $QTDIR/bin/qmake ]; then 
 echo "Warning, QT path may be invalid"
@@ -68,6 +78,8 @@ fi
 TXSCOMPILEOPTIONS=$@
 if [ "$OPTION_PDFVIEWER" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_POPPLER_PREVIEW=true"; fi
 if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON=true"; fi
+case "$OPTION_DEBUG" in r|rel|release) TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS  CONFIG-=debug CONFIG-=debug_and_release CONFIG+=release";; esac
+
 
 
 PATH=$QTDIR/bin:$PATH
