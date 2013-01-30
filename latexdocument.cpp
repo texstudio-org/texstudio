@@ -83,6 +83,14 @@ QMultiHash<QDocumentLineHandle*,FileNamePair>& LatexDocument::mentionedBibTeXFil
 const QMultiHash<QDocumentLineHandle*,FileNamePair>& LatexDocument::mentionedBibTeXFiles() const{
 	return mMentionedBibTeXFiles;
 }
+QStringList LatexDocument::listOfMentionedBibTeXFiles() const{
+    QStringList result;
+    foreach(FileNamePair fnp,mMentionedBibTeXFiles.values()){
+        result<<fnp.absolute;
+    }
+
+    return result;
+}
 
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
 	QDocumentSelection result;
@@ -885,6 +893,17 @@ int LatexDocument::countRefs(const QString& name){
 		result+=items.count(name);
 	}
 	return result;
+}
+
+bool LatexDocument::bibIdValid(const QString& name){
+    bool result=false;
+    QStringList collected_mentionedBibTeXFiles;
+    foreach(const LatexDocument* doc,getListOfDocs()){
+        collected_mentionedBibTeXFiles<<doc->listOfMentionedBibTeXFiles();
+    }
+    QString fn=parent->findFileFromBibId(name);
+    result=collected_mentionedBibTeXFiles.contains(fn);
+    return result;
 }
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getBibItems(const QString& name){
