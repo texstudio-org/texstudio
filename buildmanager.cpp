@@ -143,7 +143,7 @@ BuildManager::~BuildManager() {
 void BuildManager::initDefaultCommandNames(){
 	REQUIRE (commands.isEmpty());
 	
-	//id, platform-independent command, display name, command line
+	//id, platform-independent command, display name, arguments
 	registerCommand("latex",       "latex",        "LaTeX",       "-src -interaction=nonstopmode %.tex", "Tools/Latex");
 	registerCommand("pdflatex",    "pdflatex",     "PdfLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "Tools/Pdflatex");
 	registerCommand("xelatex",     "xelatex",      "XeLaTeX",     "-synctex=1 -interaction=nonstopmode %.tex", "");
@@ -159,8 +159,8 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux")); 
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
-	registerCommand("texindy",     "texindy",      "Texindy", "");
-	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "");
+	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
+	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
