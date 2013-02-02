@@ -251,7 +251,9 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	if (it == languages.constEnd()) { 
 		LanguageGrammarData lgd;
 		lgd.stopWords = readWordList(config.wordlistsDir+"/"+cr.language+".stopWords");
+		lgd.stopWords.unite(readWordList(config.wordlistsDir+"/"+cr.language+".stopWordsUser"));
 		lgd.badWords = readWordList(config.wordlistsDir+"/"+cr.language+".badWords");
+		lgd.badWords.unite(readWordList(config.wordlistsDir+"/"+cr.language+".badWordsUser"));
 		languages.insert(cr.language, lgd);
 		it = languages.constFind(cr.language);
 	}
