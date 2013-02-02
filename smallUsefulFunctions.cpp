@@ -104,7 +104,8 @@ int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool de
 				if (singleQuoteChar) break;	 //no word's with two '' => output
 				else singleQuoteChar=true;   //but accept one
 			} else if (cur=='.') {
-				i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
+				if (i>0 && line.at(i-1).isLetter())
+					i++; //take '.' into word, so that abbreviations, at least German ones, are checked correctly
 				break;
 			} else if (CommonEOW.indexOf(cur)>=0 && !inOption) {
 				break;
