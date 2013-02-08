@@ -4237,9 +4237,12 @@ void Texmaker::createLabelFromAction()
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
 	StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
-	if (!entry) return;
+	if (!entry || !entry->document) return;
 
 	// find editor and line nr
+	int lineNr=entry->getRealLineNumber();
+	int level = entry->level;
+
 	mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
 	LatexEditorView* edView=entry->document->getEditorView();
 	QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
@@ -4249,15 +4252,15 @@ void Texmaker::createLabelFromAction()
 		mflags &= ~QEditor::Animated;
 		//entry is now invalid
 	}
-	int lineNr=entry->getRealLineNumber();
+	REQUIRE(edView->getDocument());
 
-	//qDebug() << entry->level << latexParser.structureCommands[entry->level];
+	if (lineNr < 0) return; //not found. (document was closed)
 
 	// find column position after structure command
-	QString lineText = entry->document->line(lineNr).text();
-	int pos = lineText.indexOf(latexParser.structureCommands[entry->level]);
+	QString lineText = edView->getDocument()->line(lineNr).text();
+	int pos = lineText.indexOf(latexParser.structureCommands[level]);
 	if (pos>=0) {
-		pos += latexParser.structureCommands[entry->level].length();
+		pos += latexParser.structureCommands[level].length();
 		// workaround for starred commands: \section*{Cap}
 		if ((lineText.length() > pos+1) && lineText.at(pos) == '*') pos++;
 	} else {
