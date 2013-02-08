@@ -1404,9 +1404,11 @@ StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & i
 */
 StructureEntry *LatexDocumentsModel::labelForStructureEntry(const StructureEntry *entry)
 {
-	StructureEntryIterator iter(entry->document->baseStructure);
+	REQUIRE_RET(entry && entry->document,0 );
 	QDocumentLineHandle *dlh = entry->getLineHandle();
+	if (!dlh) return 0;
 	QDocumentLineHandle *nextDlh = dlh->next();
+	StructureEntryIterator iter(entry->document->baseStructure);
 
 	while (iter.hasNext()){
 		StructureEntry *se = iter.next();
