@@ -3396,7 +3396,7 @@ void Texmaker::clickedOnStructureEntry(const QModelIndex & index){
 		int lineNr=-1;
 		mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
 		LatexEditorView* edView=entry->document->getEditorView();
-		QEditor::MoveFlags mflags = QEditor::Navigation;
+		QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
 		if (!entry->document->getEditorView()){
 			lineNr=entry->getRealLineNumber();
 			edView=load(entry->document->getFileName());
@@ -4242,7 +4242,7 @@ void Texmaker::createLabelFromAction()
 	// find editor and line nr
 	mDontScrollToItem = entry->type!=StructureEntry::SE_SECTION;
 	LatexEditorView* edView=entry->document->getEditorView();
-	QEditor::MoveFlags mflags = QEditor::Navigation;
+	QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
 	if (!edView){
 		edView=load(entry->document->getFileName());
 		if (!edView) return;

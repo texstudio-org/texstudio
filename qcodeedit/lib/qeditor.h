@@ -181,9 +181,11 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			Animated = 0x0001,
 			KeepSurrounding = 0x0002,
 			ExpandFold = 0x0004,
+			AllowScrollToTop = 0x0008,
 
 			// semantic abbreviations
-			Navigation = Animated | KeepSurrounding | ExpandFold
+			Navigation = Animated | KeepSurrounding | ExpandFold,
+			NavigationToHeader = Animated | KeepSurrounding | ExpandFold | AllowScrollToTop
 		};
 		Q_DECLARE_FLAGS(MoveFlags, MoveFlagsEnum)
 

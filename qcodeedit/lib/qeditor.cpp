@@ -4823,7 +4823,7 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 	if ( ypos - surroundingHeight < yval ) {// cursor above
 		ytarget = ypos / ls - surrounding;
 	} else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
-		if (ypos > (yval + ylen) ) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
+		if (ypos > (yval + ylen) && (mflags & AllowScrollToTop)) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
 			ytarget = ypos / ls - surrounding;
 		} else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
 			ytarget = 1 + (yend - ylen) / ls + surrounding;
@@ -4840,7 +4840,7 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 				m_scrollAnimation->stop();
 			}
 			m_scrollAnimation->setStartValue(verticalScrollBar()->value());
-			m_scrollAnimation->setEndValue(ypos / ls - surrounding);
+			m_scrollAnimation->setEndValue(ytarget);
 			m_scrollAnimation->setTargetObject(verticalScrollBar());
 			m_scrollAnimation->setPropertyName("value");
 			m_scrollAnimation->setDuration(300);
