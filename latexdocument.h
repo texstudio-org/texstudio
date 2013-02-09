@@ -117,7 +117,8 @@ public:
 	void recheckRefsLabels();
 	Q_INVOKABLE int countLabels(const QString& name);
 	Q_INVOKABLE int countRefs(const QString& name);
-    Q_INVOKABLE bool bibIdValid(const QString& name);
+	Q_INVOKABLE bool bibIdValid(const QString& name);
+	Q_INVOKABLE QString findFileFromBibId(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getBibItems(const QString& name);
@@ -332,8 +333,7 @@ public:
 	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
 	QSet<QString> bibItems; // direct defined bibitems
 	QSet<QString> allBibTeXIds;
-    void updateBibFiles(bool updateFiles=true);
-	Q_INVOKABLE QString findFileFromBibId(const QString& bibId);
+	void updateBibFiles(bool updateFiles=true);
 	
 	void updateStructure();
 	void updateMasterSlaveRelations(LatexDocument *doc);

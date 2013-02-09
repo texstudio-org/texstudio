@@ -1325,7 +1325,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
                 connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
                 bibReader->start();
             }
-            QString file=document->parent->findFileFromBibId(value);
+            QString file=document->findFileFromBibId(value);
             if(!file.isEmpty())
                 emit searchBibtexSection(file,value);
             return;
