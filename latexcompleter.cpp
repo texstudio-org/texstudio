@@ -1492,28 +1492,49 @@ void Macro::init(const QString& nname, const QString& ntag, const QString& nabbr
 
 	triggers |= ST_REGEX;
 	
-	if (realtrigger.startsWith("(?language:")) {
-		const int langlen = strlen("(?language:");
-		int paren = 1, bracket = 0, i=langlen;
-		for (; i < realtrigger.length() && paren; i++) {
-			switch (realtrigger[i].unicode()) {
-			case '(': if (!bracket) paren++; break;
-			case ')': if (!bracket) paren--; break;
-			case '[': bracket = 1; break;
-			case ']': bracket = 0; break;
-			case '\\': i++; break;
+	int lastLen;
+	do {
+		lastLen = realtrigger.length();
+		if (realtrigger.startsWith("(?language:")) {
+			const int langlen = strlen("(?language:");
+			int paren = 1, bracket = 0, i=langlen;
+			for (; i < realtrigger.length() && paren; i++) {
+				switch (realtrigger[i].unicode()) {
+				case '(': if (!bracket) paren++; break;
+				case ')': if (!bracket) paren--; break;
+				case '[': bracket = 1; break;
+				case ']': bracket = 0; break;
+				case '\\': i++; break;
+				}
 			}
+			triggerLanguage = realtrigger.mid(langlen, i - langlen - 1);
+			triggerLanguage.replace("latex", "\\(La\\)TeX");
+			realtrigger.remove(0,i);
 		}
-		triggerLanguage = realtrigger.mid(langlen, i - langlen - 1);
-		triggerLanguage.replace("latex", "\\(La\\)TeX");
-		realtrigger.remove(0,i);
-	}
-	
+
+		if (realtrigger.startsWith("(?highlighted-as:")) {
+			int closing = realtrigger.indexOf(")");
+			triggerFormatsUnprocessed = realtrigger.mid(17, closing - 17).replace(',', '|').replace(" ",""); //handle later, when the formats are loaded
+			realtrigger.remove(0, closing+1);
+		}
+	} while (lastLen != realtrigger.length());
+
 	if (realtrigger.startsWith("(?<=")) {
 		triggerLookBehind = true;
 		realtrigger.remove(1,3); //qregexp doesn't support look behind, but we can emulate it by removing the first capture
 	}
 	triggerRegex = QRegExp("(?:"+realtrigger+")$"); // (?: non capturing)
+}
+
+void Macro::initTriggerFormats(){
+	QFormatScheme *fs = QDocument::defaultFormatScheme();
+	REQUIRE(fs);
+	foreach (const QString& f,	triggerFormatsUnprocessed.split('|')) {
+		int fid = fs->id(f);
+		if ( fid > 0)
+			triggerFormats << fid;
+	}
+	triggerFormatsUnprocessed.clear();
 }
 
 QStringList Macro::toStringList() const {

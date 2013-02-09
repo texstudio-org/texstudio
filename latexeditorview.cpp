@@ -91,11 +91,18 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (!event->text().isEmpty()) {
 		Q_ASSERT(completerConfig); 
 		QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : 0;
-		QString prev = editor->cursor().selectionStart().line().text().mid(0, editor->cursor().selectionStart().columnNumber())+event->text(); //TODO: optimize
+		QDocumentLine line = editor->cursor().selectionStart().line();
+		int column = editor->cursor().selectionStart().columnNumber();
+		QString prev = line.text().mid(0, column)+event->text(); //TODO: optimize
 		for (int i=0;i<completerConfig->userMacro.size();i++) {
 			const Macro& m = completerConfig->userMacro[i];			
 			if (m.trigger.isEmpty() || !(m.triggers & Macro::ST_REGEX)) continue;
 			if (!m.triggerLanguage.isEmpty() && !m.triggerLanguages.contains(language)) 
+				continue;
+			if (!m.triggerFormatsUnprocessed.isEmpty()) const_cast<Macro&>(completerConfig->userMacro[i]).initTriggerFormats();
+			if (!m.triggerFormats.isEmpty() && (
+					 (!m.triggerFormats.contains(line.getFormatAt(column)) &&
+						!(column > 0 && m.triggerFormats.contains(line.getFormatAt(column-1)))))) //two checks, so it works at beginning and end of an environment
 				continue;
 			QRegExp& r = const_cast<QRegExp&>(m.triggerRegex);//a const qregexp doesn't exist
 			if (r.indexIn(prev)!=-1){

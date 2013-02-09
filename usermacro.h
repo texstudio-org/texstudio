@@ -27,6 +27,10 @@ struct Macro{
 	QList<QLanguageDefinition*> triggerLanguages;
 	SpecialTriggers triggers;	
 	
+	QString triggerFormatsUnprocessed;
+	QList<int> triggerFormats;
+	void initTriggerFormats();
+
 	LatexDocument* document;
 };
 

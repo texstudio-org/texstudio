@@ -1195,7 +1195,8 @@ This will add to all selected coordinate pairs the offset of the first pair whic
 <p>In its simplest form, the trigger is simply a text, which is replaced by the macro. 
 E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
 As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
-You can also prepend the pseudo expression "(?language:...)" to only activate the macro in documents of a specify language (like the language "latex").<br>
+You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
+Another such prependable option is <code>(?highlighted-as:..)</code> to restrict a macro to certain, highlighted environments.  (e.g. with <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code> the macro is only activated within the math mode). The possible values correspond to the list on the syntax highlighting config page. <br>
 Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
 <table>
 <tr><td>?txs-start</td><td>TeXstudio is started.</td></tr>
