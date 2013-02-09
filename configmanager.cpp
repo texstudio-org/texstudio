@@ -471,7 +471,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	//build commands
 	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
-	registerOption("Tools/Show Log After Compiling", &showLogAfterCompiling, true, &pseudoDialog->checkBoxShowLog);
+	registerOption("Tools/Show Messages When Compiling", &showMessagesWhenCompiling, true, &pseudoDialog->checkBoxShowMessagesOnCompile);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 

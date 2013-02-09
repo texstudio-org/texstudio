@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>746</width>
-            <height>600</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -671,6 +671,9 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
           <bool>true</bool>
          </property>
          <layout class="QFormLayout" name="formLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
             <property name="toolTip">
@@ -682,16 +685,13 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBoxShowLog">
+           <widget class="QCheckBox" name="checkBoxShowMessagesOnCompile">
             <property name="text">
-             <string>Show log after compiling if there are errors</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
+             <string>Show messages when starting compiling</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
+          <item row="2" column="0">
            <widget class="QCheckBox" name="checkBoxSingleInstanceViewer">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -782,7 +782,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>226</width>
+               <width>850</width>
                <height>137</height>
               </rect>
              </property>
@@ -2322,8 +2322,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3171,8 +3171,6 @@ them here.</string>
   <tabstop>btSelectThesaurusFileName</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
   <tabstop>checkBoxRunAfterBibTeXChange</tabstop>
-  <tabstop>checkBoxShowLog</tabstop>
-  <tabstop>checkBoxSingleInstanceViewer</tabstop>
   <tabstop>comboBoxShowStdout</tabstop>
   <tabstop>spinBoxRerunLatex</tabstop>
   <tabstop>shortcutTree</tabstop>

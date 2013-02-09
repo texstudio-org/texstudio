@@ -4604,8 +4604,8 @@ void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool 
 			}
 		}
 	}
-	if (latex) outputView->resetMessagesAndLog();//log to old (whenever latex is called)
-	else outputView->resetMessages();
+	if (latex) outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
+	else outputView->resetMessages(!configManager.showMessagesWhenCompiling);
 	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
 
