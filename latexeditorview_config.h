@@ -18,6 +18,7 @@ public:
 	bool boldCursor;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking;
+	bool hideNonTextSpellingErrors, hideNonTextGrammarErrors;
 	QString fontFamily;
 	int fontSize;
 	int lineSpacingPercent;

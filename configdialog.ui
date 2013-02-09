@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1086,16 +1086,29 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
        <property name="spacing">
         <number>6</number>
        </property>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="1" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string>Editor</string>
          </property>
          <layout class="QGridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelFamily">
-            <property name="text">
-             <string>Font Family:</string>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxFont">
+            <property name="editable">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1108,22 +1121,6 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
              <number>12</number>
             </property>
            </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelEncoding">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Default Font Encoding:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
           <item row="6" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxAutoIndent">
@@ -1157,78 +1154,23 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSize">
-            <property name="text">
-             <string>Font Size:</string>
+          <item row="2" column="1" colspan="4">
+           <widget class="QSpinBox" name="spinBoxLineSpacingPercent">
+            <property name="suffix">
+             <string>%</string>
             </property>
-           </widget>
-          </item>
-          <item row="4" column="1" colspan="4">
-           <widget class="QCheckBox" name="checkBoxFolding">
-            <property name="text">
-             <string>Folding</string>
+            <property name="minimum">
+             <number>100</number>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxFont">
-            <property name="editable">
+            <property name="maximum">
+             <number>500</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+            <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="text">
-             <string>Indentation Mode:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_39">
-            <property name="text">
-             <string>Replace Double Quotes:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1" colspan="4">
-           <widget class="QComboBox" name="comboBoxReplaceQuotes">
-            <item>
-             <property name="text">
-              <string>No Replacement</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>English Quotes:  `` ''</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>French Quotes:  &quot;&lt; &quot;&gt;</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>German Quotes:  &quot;` &quot;'</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>French Quotes (babel): \og \fg{}</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Reverse French Quotes: &quot;&gt; &quot;&lt;</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Package csquotes: \enquote{  }</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item row="8" column="1" colspan="4">
@@ -1281,6 +1223,86 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
             </layout>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="text">
+             <string>Font Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Line Spacing:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
+            <property name="toolTip">
+             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
+            </property>
+            <property name="text">
+             <string>Auto Detect Encoding of Loaded Files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxReplaceQuotes">
+            <item>
+             <property name="text">
+              <string>No Replacement</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>English Quotes:  `` ''</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>French Quotes:  &quot;&lt; &quot;&gt;</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>German Quotes:  &quot;` &quot;'</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>French Quotes (babel): \og \fg{}</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reverse French Quotes: &quot;&gt; &quot;&lt;</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Package csquotes: \enquote{  }</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxShowOnlyMonospacedFonts">
+            <property name="text">
+             <string>Show Only Monospaced Fonts</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_39">
+            <property name="text">
+             <string>Replace Double Quotes:</string>
+            </property>
+           </widget>
+          </item>
           <item row="8" column="0">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
@@ -1297,74 +1319,75 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
             </property>
            </widget>
           </item>
-          <item row="3" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
-            <property name="toolTip">
-             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelEncoding">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
-             <string>Auto Detect Encoding of Loaded Files</string>
+             <string>Default Font Encoding:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Line Spacing:</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="4">
-           <widget class="QSpinBox" name="spinBoxLineSpacingPercent">
-            <property name="suffix">
-             <string>%</string>
-            </property>
-            <property name="minimum">
-             <number>100</number>
-            </property>
-            <property name="maximum">
-             <number>500</number>
-            </property>
-            <property name="singleStep">
-             <number>10</number>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxShowOnlyMonospacedFonts">
-            <property name="text">
-             <string>Show Only Monospaced Fonts</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0" colspan="3">
+          <item row="10" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxAutoLoad">
             <property name="text">
              <string>Automatically load included files</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Indentation Mode:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="4">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
+             <string>Folding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFamily">
+            <property name="text">
+             <string>Font Family:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxEncoding"/>
+          </item>
+          <item row="9" column="2" colspan="3">
+           <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
+            <property name="text">
+             <string>Hide grammar errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
+            <property name="text">
+             <string>Hide spelling errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
          </layout>
         </widget>
-       </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -2292,8 +2315,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
