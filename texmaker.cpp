@@ -2818,7 +2818,7 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
 		bool found = currentEditorView()->gotoToBibItem(bibID);
 		if (found) break;
 		// try bib files
-		QString bibFile = documents.findFileFromBibId(bibID);
+		QString bibFile = currentEditorView()->document->findFileFromBibId(bibID);
 		LatexEditorView* edView = getEditorViewFromFileName(bibFile);
 		if (!edView) {
 			if (!load(bibFile)) return;

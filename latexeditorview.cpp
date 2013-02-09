@@ -1954,7 +1954,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
 						bibReader->start();
 					}
-					QString file=document->parent->findFileFromBibId(bibID);
+					QString file=document->findFileFromBibId(bibID);
 					lastPos=pos;
 					if(!file.isEmpty())
 						emit searchBibtexSection(file,bibID);

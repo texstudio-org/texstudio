@@ -906,14 +906,18 @@ int LatexDocument::countRefs(const QString& name){
 }
 
 bool LatexDocument::bibIdValid(const QString& name){
-    bool result=false;
-    QStringList collected_mentionedBibTeXFiles;
-    foreach(const LatexDocument* doc,getListOfDocs()){
-        collected_mentionedBibTeXFiles<<doc->listOfMentionedBibTeXFiles();
-    }
-    QString fn=parent->findFileFromBibId(name);
-    result=collected_mentionedBibTeXFiles.contains(fn);
-    return result;
+	return !findFileFromBibId(name).isEmpty();
+}
+
+QString LatexDocument::findFileFromBibId(const QString& bibId){
+  QStringList collected_mentionedBibTeXFiles;
+  foreach(const LatexDocument* doc,getListOfDocs())
+      collected_mentionedBibTeXFiles<<doc->listOfMentionedBibTeXFiles();
+  const QMap<QString, BibTeXFileInfo>& bibtexfiles = parent->bibTeXFiles;
+  foreach (const QString& file, collected_mentionedBibTeXFiles)
+    if (bibtexfiles.value(file).ids.contains(bibId))
+      return file;
+  return QString();
 }
 
 QMultiHash<QDocumentLineHandle*,int> LatexDocument::getBibItems(const QString& name){
@@ -1842,16 +1846,6 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
   }
 }
 
-QString LatexDocuments::findFileFromBibId(const QString& bibId)
-{
-  QStringList keys=bibTeXFiles.keys();
-  foreach(const QString key,keys){
-    if(bibTeXFiles.value(key).ids.contains(bibId)){
-      return key;
-    }
-  }
-  return QString();
-}
 
 void LatexDocuments::removeDocs(QStringList removeIncludes){
     foreach(QString fname,removeIncludes){
