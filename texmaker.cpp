@@ -174,6 +174,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 
 	// TAB WIDGET EDITEUR
 	documents.indentationInStructure=configManager.indentationInStructure;
+	documents.indentIncludesInStructure=configManager.indentIncludesInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 	connect(&documents,SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
@@ -4988,6 +4989,12 @@ void Texmaker::GeneralOptions() {
 			if (m_formats->modified)
 				QDocument::setFont(QDocument::font(), true);
 			UpdateCaption();
+
+			if (documents.indentIncludesInStructure!=configManager.indentIncludesInStructure) {
+				documents.indentIncludesInStructure = configManager.indentIncludesInStructure;
+				foreach (LatexDocument* doc, documents.documents)
+					updateStructure(false, doc);
+			}
 		}
 		if (oldReplaceQuotes != configManager.replaceQuotes)
 			updateUserMacros();

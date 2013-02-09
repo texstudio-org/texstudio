@@ -69,6 +69,7 @@ public:
 	bool centralVisible;
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
+	bool indentIncludesInStructure;
 	
 	//update
 	bool autoUpdateCheck;
