@@ -340,6 +340,7 @@ public:
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
+	bool indentIncludesInStructure; //pointer! those above should be changed as well
 
 	QHash<QString,LatexPackage> cachedPackages;
     void addDocToLoad(QString filename);

@@ -344,15 +344,17 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	                                      "main/latex/spacing/newline" << "separator" <<
 	                                      "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
 	
+	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
+
 	registerOption("ToolBar/CentralVisible", &centralVisible, true);
 	registerOption("StructureView/ShowLinenumbers", &showLineNumbersInStructure, false);
 	registerOption("StructureView/Indentation", &indentationInStructure, -1);
+	registerOption("StructureView/IndentIncludes", &indentIncludesInStructure, false, &pseudoDialog->checkBoxIndentIncludesInStructureTree);
 	
 	enviromentModes << "verbatim" << "numbers";
 	
 	
 	
-	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
 
 	//beginRegisterGroup("texmaker");
 	//files

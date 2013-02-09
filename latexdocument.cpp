@@ -702,6 +702,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			
 			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
+				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
 				newInclude->title=name;
                 removedIncludes.removeAll(name);
 				QString fname=findFileName(name);
@@ -1523,6 +1524,7 @@ bool LatexDocumentsModel::getSingleDocMode(){
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
 	showLineNumbersInStructure=false;
 	indentationInStructure=-1;
+	indentIncludesInStructure=0;
 }
 
 LatexDocuments::~LatexDocuments(){
@@ -2011,7 +2013,8 @@ void LatexDocument::moveElementWithSignal(StructureEntry* se, StructureEntry* pa
 
 void LatexDocument::updateParentVector(QVector<StructureEntry*> &parent_level, StructureEntry* se){
 	REQUIRE(se);
-	if (se->type == StructureEntry::SE_DOCUMENT_ROOT || se->type == StructureEntry::SE_INCLUDE)
+	if (se->type == StructureEntry::SE_DOCUMENT_ROOT
+			|| (se->type == StructureEntry::SE_INCLUDE && parent && !parent->indentIncludesInStructure))
 		parent_level.fill(baseStructure);
 	else if (se->type == StructureEntry::SE_SECTION)
 		for (int j=se->level+1;j<parent_level.size();j++)
