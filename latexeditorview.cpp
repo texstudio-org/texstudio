@@ -690,6 +690,15 @@ void LatexEditorView::removeLinkOverlay() {
 	}
 }
 
+bool LatexEditorView::isNonTextFormat(int format){
+	if (format <= 0) return false;
+	return format == numbersFormat
+			|| format == verbatimFormat
+			|| format == pictureFormat
+			|| format == sweaveFormat
+			|| format == math_DelimiterFormat;
+}
+
 void LatexEditorView::selectOptionInLatexArg(QDocumentCursor &cur) {
 	QString startDelims = "[{, \t\n";
 	int startCol = cur.columnNumber();
@@ -732,8 +741,7 @@ void LatexEditorView::removeTemporaryHighlight() {
 
 
 void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError>& errors){
-	QDocumentLine line = document->line(lineNr);
-
+	QDocumentLine line = document->line(lineNr);	
 	foreach (const int f, grammarFormats)
 		line.clearOverlays(f); 
 	foreach (const GrammarError& error, errors) {
@@ -745,7 +753,9 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 			if (grammarFormatsDisabled[index]) continue;
 			f = grammarFormats[index];
 		}
-		line.addOverlay(QFormatRange(error.offset,error.length,f));	
+		if (config->hideNonTextGrammarErrors && (isNonTextFormat(line.getFormatAt(error.offset)) || isNonTextFormat(error.offset+error.length-1)))
+			continue;
+		line.addOverlay(QFormatRange(error.offset,error.length,f));
 	}
 }
 
@@ -1093,7 +1103,8 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 }
 
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
-           LatexEditorView::verbatimFormat, LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format;
+    LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
+    LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::sweaveFormat, LatexEditorView::math_DelimiterFormat;
 int LatexEditorView::syntaxErrorFormat;
 int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
 
@@ -1151,19 +1162,20 @@ void LatexEditorView::updateFormatSettings(){
 		REQUIRE(QDocument::defaultFormatScheme());
 #define F(n) &n##Format, #n, 
 		const void * formats[] = {F(environment)
-		                          F(referenceMultiple) F(referencePresent) F(referenceMissing)
-		                          F(citationPresent) F(citationMissing)
-		                          &syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
-		                          F(structure)
-		                          F(verbatim)
-		                          &deleteFormat, "diffDelete",
-		                          &insertFormat, "diffAdd",
-		                          &replaceFormat, "diffReplace",
-		                          F(wordRepetition) F(wordRepetitionLongRange) F(badWord) 
-		                          F(grammarMistake)
-		                          F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
-		                         0, 0
-		                        };
+															F(referenceMultiple) F(referencePresent) F(referenceMissing)
+															F(citationPresent) F(citationMissing)
+															&syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
+															F(structure)
+															&deleteFormat, "diffDelete",
+															&insertFormat, "diffAdd",
+															&replaceFormat, "diffReplace",
+															F(wordRepetition) F(wordRepetitionLongRange) F(badWord)
+															F(grammarMistake)
+															F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
+															F(numbers) F(verbatim) F(picture) F(sweave)
+															&math_DelimiterFormat, "math-delimiter",
+															0, 0
+														 };
 #undef F
 		const void ** temp = formats;
 		while (*temp) {
@@ -1569,7 +1581,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				addedOverlayCitation = true;
 			}
 			if (status==LatexReader::NW_COMMENT) break;
-			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller && !speller->check(lr.word) ) {
+			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller
+					&& (!config->hideNonTextSpellingErrors || (!isNonTextFormat(line.getFormatAt(lr.wordStartIndex)) && !isNonTextFormat(line.getFormatAt(lr.index-1)) ))
+					&& !speller->check(lr.word) ) {
 				if(lr.word.endsWith('.')) lr.index--;
 				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,SpellerUtility::spellcheckErrorFormat));
 				addedOverlaySpellCheckError = true;

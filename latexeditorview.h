@@ -131,7 +131,8 @@ private:
 	QPoint m_point;
 	
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
-	verbatimFormat, wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format;
+	wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
+	numbersFormat, verbatimFormat, pictureFormat, sweaveFormat, math_DelimiterFormat;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
 	static QList<int> formatsList;
@@ -216,7 +217,7 @@ public slots:
 private:
 	void setLinkOverlay(const LinkOverlay &overlay);
 	void removeLinkOverlay();
-
+	bool isNonTextFormat(int format);
 public slots:
 	void temporaryHighlight(QDocumentCursor cur);
 	void removeTemporaryHighlight();
@@ -225,9 +226,10 @@ public slots:
 	void lineGrammarChecked(const void* doc, const void* line, int lineNr, const QList<GrammarError>& errors);
 	void updateGrammarOverlays();
 	
-    void bibtexSectionFound(QString content);
+	void bibtexSectionFound(QString content);
 public:
 	static void setGrammarOverlayDisabled(int type, bool show);
+
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(QList<int> logMessages);
