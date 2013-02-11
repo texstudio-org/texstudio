@@ -1378,7 +1378,7 @@ void LatexCompleter::showTooltip(QString topic){
     lLabel.setFrameStyle(QFrame::StyledPanel);
     lLabel.setAlignment(Qt::AlignLeft);
     lLabel.setIndent(1);
-    lLabel.setWordWrap(true);
+    //lLabel.setWordWrap(true);
     lLabel.ensurePolished();
     lLabel.setText(topic);
     lLabel.adjustSize();
@@ -1393,11 +1393,46 @@ void LatexCompleter::showTooltip(QString topic){
     if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic, list);//-90
     else {
         //list->mapToGlobal
-        QPoint tt=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()-lineHeight));
-        if(lineY>tt.y()){
-            tt.setY(lineY-lLabel.height()-lineHeight-5);
+        QPoint tt2=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()-lineHeight));
+        // check if text left from list would fit
+        qDebug()<<tt2.x();
+        bool reCalc=false;
+        if(tt2.x()<0){
+            //determine max usable width
+            int w=list->mapToGlobal(QPoint(0, r.top()-lineHeight)).x();
+            if(screen.width()-tt.x()>w){
+                w=screen.width()-tt.x();
+                tt2=tt;
+            }else{
+                reCalc=true;
+            }
+            // shorten text to fit textwidth
+            QStringList lTopic=topic.split("\n");
+            int maxLength=0;
+            QString maxLine;
+            foreach(const QString elem,lTopic){
+                if(elem.length()>maxLength){
+                    maxLength= elem.length();
+                    maxLine=elem;
+                }
+            }
+            while(textWidthInPixels>w && maxLength>10){
+                maxLength--;
+                lLabel.setText(maxLine.left(maxLength));
+                lLabel.adjustSize();
+                textWidthInPixels=lLabel.width()+10;
+            }
+            for(int i=0;i<lTopic.count();i++){
+                lTopic[i]=lTopic[i].left(maxLength);
+            }
+            topic=lTopic.join("\n");
         }
-        QToolTip::showText(tt, topic, list,QRect(-300,-200,300,600));
+        if(reCalc)
+            tt2=list->mapToGlobal(QPoint(-textWidthInPixels, r.top()-lineHeight));
+        if(lineY>tt2.y()){
+            tt2.setY(lineY-lLabel.height()-lineHeight-5);
+        }
+        QToolTip::showText(tt2, topic, list,QRect(-300,-200,300,600));
     }
 }
 
