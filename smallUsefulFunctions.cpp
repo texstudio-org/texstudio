@@ -1583,3 +1583,66 @@ QString getImageAsText(const QPixmap &AImage) {
     AImage.save(&buffer, "PNG");
     return QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64()));
 }
+
+void showTooltipLimited(QPoint tt,QString topic,int width){
+    topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
+    QRect screen = QApplication::desktop()->availableGeometry();
+    // estimate width of coming tooltip
+    // rather dirty code
+    QLabel lLabel(0,Qt::ToolTip);
+    lLabel.setFont(QToolTip::font());
+    lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
+    lLabel.setFrameStyle(QFrame::StyledPanel);
+    lLabel.setAlignment(Qt::AlignLeft);
+    lLabel.setIndent(1);
+    //lLabel.setWordWrap(true);
+    //lLabel.ensurePolished();
+    lLabel.setText(topic);
+    lLabel.adjustSize();
+
+
+    int textWidthInPixels = lLabel.width()+10; // +10 good guess
+
+    if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic);//-90
+    else {
+        //list->mapToGlobal
+        QPoint tt2(tt.x()-textWidthInPixels-width, tt.y());
+
+        // check if text left from list would fit
+        bool reCalc=false;
+        if(tt2.x()<0){
+            //determine max usable width
+            int w=tt.x()-width;
+            if(screen.width()-tt.x()>w){
+                w=screen.width()-tt.x();
+                tt2=tt;
+            }else{
+                reCalc=true;
+            }
+            // shorten text to fit textwidth
+            QStringList lTopic=topic.split("\n");
+            int maxLength=0;
+            QString maxLine;
+            foreach(const QString elem,lTopic){
+                if(elem.length()>maxLength){
+                    maxLength= elem.length();
+                    maxLine=elem;
+                }
+            }
+            while(textWidthInPixels>w && maxLength>10){
+                maxLength--;
+                lLabel.setText(maxLine.left(maxLength));
+                lLabel.adjustSize();
+                textWidthInPixels=lLabel.width()+10;
+            }
+            for(int i=0;i<lTopic.count();i++){
+                lTopic[i]=lTopic[i].left(maxLength);
+            }
+            topic=lTopic.join("\n");
+        }
+        if(reCalc){
+            tt2.setX(tt.x()-textWidthInPixels-width);
+        }
+        QToolTip::showText(tt2, topic);
+    }
+}

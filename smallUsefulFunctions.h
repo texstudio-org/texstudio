@@ -101,6 +101,7 @@ enum {
 };
 
 QString getImageAsText(const QPixmap &AImage);
+void showTooltipLimited(QPoint tt,QString topic,int width=0);
 
 class LatexParser{
 public:

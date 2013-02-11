@@ -1359,12 +1359,14 @@ void LatexCompleter::showTooltip(QString topic){
     topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
     QRect r = list->visualRect(index);
     QDocumentCursor c=editor->cursor();
-    QRect screen = QApplication::desktop()->availableGeometry();
+    //QRect screen = QApplication::desktop()->availableGeometry();
     int lineHeight=c.line().document()->getLineSpacing();
     QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
-    int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
+    //int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
     // estimate width of coming tooltip
     // rather dirty code
+    showTooltipLimited(tt,topic,list->width());
+    /*
     QLabel lLabel(0,Qt::ToolTip);
 #if QT_VERSION >= 0x040400
     lLabel.setForegroundRole(QPalette::ToolTipText);
@@ -1378,8 +1380,9 @@ void LatexCompleter::showTooltip(QString topic){
     lLabel.setFrameStyle(QFrame::StyledPanel);
     lLabel.setAlignment(Qt::AlignLeft);
     lLabel.setIndent(1);
+    lLabel.setFont(QToolTip::font());
     //lLabel.setWordWrap(true);
-    lLabel.ensurePolished();
+    //lLabel.ensurePolished();
     lLabel.setText(topic);
     lLabel.adjustSize();
 
@@ -1433,7 +1436,7 @@ void LatexCompleter::showTooltip(QString topic){
             tt2.setY(lineY-lLabel.height()-lineHeight-5);
         }
         QToolTip::showText(tt2, topic, list,QRect(-300,-200,300,600));
-    }
+    }*/
 }
 
 void LatexCompleter::editorDestroyed() {
