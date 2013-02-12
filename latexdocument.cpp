@@ -84,12 +84,10 @@ const QMultiHash<QDocumentLineHandle*,FileNamePair>& LatexDocument::mentionedBib
 	return mMentionedBibTeXFiles;
 }
 QStringList LatexDocument::listOfMentionedBibTeXFiles() const{
-    QStringList result;
-    foreach(FileNamePair fnp,mMentionedBibTeXFiles.values()){
-        result<<fnp.absolute;
-    }
-
-    return result;
+  QStringList result;
+  foreach(const FileNamePair& fnp,mMentionedBibTeXFiles.values())
+    result<<fnp.absolute;
+  return result;
 }
 
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){

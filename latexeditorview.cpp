@@ -1757,7 +1757,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 	}
 	foreach (const int f, grammarFormats){
-		fr = cursor.line().getOverlayAt(cursor.columnNumber(), f); 
+		fr = cursor.line().getOverlayAt(cursor.columnNumber(), f);
 		if (fr.length>0 && fr.format==f) {
 			QVariant var=l.getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE);
 			if (var.isValid()){
@@ -1788,11 +1788,10 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	// do rest
 	QString command, value;
 	QString topic;
-	QStringList MathEnvirons;
 	int i,first,last;
 	int id_first;
-    bool forward=true;
-    QStringList strngLst;
+	bool forward=true;
+	QStringList strngLst;
 	QVector<QParenthesis> parens;
 	switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
 	case LatexParser::Unknown:
@@ -1829,33 +1828,32 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
 	case LatexParser::Command:
-        forward= (command=="\\begin");
+		forward= (command=="\\begin");
 		if (command=="\\begin" || command=="\\end")
 			command="\\begin{"+value+"}";
 		
-        //MathEnvirons << "equation" << "math" << "displaymath" << "eqnarray" << "eqnarray*";
-        strngLst=document->ltxCommands.environmentAliases.values(value);
-        if(strngLst.contains("math")&&config->toolTipPreview){
-            QString text;
-            if(forward){
+		strngLst=document->ltxCommands.environmentAliases.values(value);
+		if(strngLst.contains("math") && config->toolTipPreview){
+			QString text;
+			if(forward){
 				// find closing
 				int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
 				text=command+"\n";
 				for(int i=cursor.lineNumber()+1;i<endingLine;i++){
 					text=text+editor->document()->line(i).text()+"\n";
 				}
-                text+="\\end{"+value+"}";
-            }else{
-                int endingLine=editor->document()->findLineContaining(QString("\\begin{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,true);
-                text="\\end{"+value+"}";
-                for(int i=cursor.lineNumber()-1;i>endingLine;i--){
-                    text=editor->document()->line(i).text()+"\n"+text;
-                }
+				text+="\\end{"+value+"}";
+			}else{
+				int endingLine=editor->document()->findLineContaining(QString("\\begin{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,true);
+				text="\\end{"+value+"}";
+				for(int i=cursor.lineNumber()-1;i>endingLine;i--){
+					text=editor->document()->line(i).text()+"\n"+text;
+				}
 
-                text="\\begin{"+value+"}"+text;
-            }
-            m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-            emit showPreview(text);
+				text="\\begin{"+value+"}"+text;
+			}
+			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+			emit showPreview(text);
 		} else {
 			if(config->toolTipHelp){
 				topic=completer->lookupWord(command);
@@ -1891,9 +1889,9 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			if(doc)
 				mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
 			/*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-				mText+=mLine->document()->line(i).text();
-				if(i<l+2) mText+="\n";
-			}*/
+		mText+=mLine->document()->line(i).text();
+		if(i<l+2) mText+="\n";
+	 }*/
 		}
 		QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
 		break;
@@ -1925,8 +1923,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 				col_stop++;
 			bibID = trimLeft(line.mid(col_start+1,col_stop-col_start-1));
 
-            //if (!bibTeXIds->contains(bibID)) {
-            if(!document->bibIdValid(bibID)) {
+			//if (!bibTeXIds->contains(bibID)) {
+			if(!document->bibIdValid(bibID)) {
 				tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
 
 				if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
@@ -1950,9 +1948,9 @@ void LatexEditorView::mouseHovered(QPoint pos){
 					// read entry in bibtex file
 					if (!bibReader) {
 						bibReader=new bibtexReader(this);
-                        connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
+						connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
 						connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-						bibReader->start();
+						bibReader->start(); //The thread is started but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
 					}
 					QString file=document->findFileFromBibId(bibID);
 					lastPos=pos;
@@ -1964,13 +1962,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
 		break;
-    case LatexParser::Graphics:
-        if(config->toolTipPreview){
-            QString fname=getDocument()->getAbsoluteFilePath(value,"");
-            m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-            emit showImgPreview(fname);
-        }
-        break;
+	case LatexParser::Graphics:
+		if(config->toolTipPreview){
+			QString fname=getDocument()->getAbsoluteFilePath(value,"");
+			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+			emit showImgPreview(fname);
+		}
+		break;
 	default:
 		QToolTip::hideText();
 	}
