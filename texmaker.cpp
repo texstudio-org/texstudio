@@ -1424,6 +1424,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)),this,SLOT(editGotoDefinition(QDocumentCursor)));
 	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
 	connect(edit, SIGNAL(openFile(QString)),this,SLOT(openExternalFile(QString)));
+	connect(edit, SIGNAL(openFile(QString,QString)),this,SLOT(openExternalFile(QString,QString)));
 	connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle*)));
 	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
 	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
@@ -7113,9 +7114,10 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 	}
 	
 	if(!loaded) {
-		if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(name))) {
-			Q_ASSERT(curPaths.count()>0);
-			fileNew(getAbsoluteFilePath(curPaths[0]+name, defaultExt));
+		Q_ASSERT(curPaths.count()>0);
+		QFileInfo fi(getAbsoluteFilePath(curPaths[0]+name, defaultExt));
+		if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
+			fileNew(fi.absoluteFilePath());
 		}
 	}
 }

@@ -217,7 +217,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 				edView->openPackageDocumentation(lo.text());
 				return true;
 			case LinkOverlay::BibFileOverlay:
-				edView->openFile(lo.text().append(".bib"));
+				edView->openFile(lo.text(), "bib");
 				return true;
 			case LinkOverlay::CiteOverlay:
 				emit edView->gotoDefinition(cursor);
