@@ -2072,11 +2072,11 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 	QString currentDir=QDir::homePath();
 	if (fileName.isEmpty()) {
 		if (currentEditor()->fileInfo().isFile()) {
-			currentDir = currentEditor()->fileInfo().absolutePath();
+			currentDir = currentEditor()->fileInfo().absoluteFilePath();
 		} else if (!configManager.lastDocument.isEmpty()) {
 			QFileInfo fi(configManager.lastDocument);
 			if (fi.exists() && fi.isReadable())
-				currentDir=fi.absolutePath();
+				currentDir=fi.absoluteFilePath();
 		}
 	} else {
 		currentDir = fileName;
