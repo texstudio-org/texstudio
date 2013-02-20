@@ -58,8 +58,8 @@ void ThesaurusDatabaseType::load(QFile& file){
 		int currentBufferLength = buffer->length();
 		line = stream.readLine();
 		int firstSplitter = line.indexOf('|');
-		if (firstSplitter > 0) {
-			if (line.startsWith("-|") || line.startsWith("(")){
+        if (firstSplitter >= 0) {
+            if (line.startsWith("-|") || line.startsWith("(") || line.startsWith("|")){
 				buffer->append(line.mid(firstSplitter+1));
 				thesaurus.insert(key, ThesaurusDatabaseType::TinyStringRef(currentBufferLength, buffer->length() - currentBufferLength));
 				//using TinyStringRef instead of QString reduces the memory usage (with German thesaurus) by 4mb without any noticable performance decrease (it could even be faster, because the buffer fits better in the cache).
