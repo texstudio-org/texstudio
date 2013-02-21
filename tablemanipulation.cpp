@@ -7,6 +7,7 @@
 
 QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular";
 QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx";
+QStringList LatexTables::mathTables = QStringList() << "align" << "array" << "matrix" << "bmatrix" << "pmatrix" << "vmatrix" << "Vmatrix";
 
 void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 	QDocumentCursor cur(c);
@@ -767,14 +768,15 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	int index = text.indexOf("\\begin{")+6;
 	int cellsStart;
 	QList<CommandArgument> args = getCommandOptions(text, index, &cellsStart);
-	if (args.count() < 2) return;
+	if (args.count() < 1) return;
 	QString tableType = args.at(0).value;
 	
-	
-	
-	// assume alignment in second arg except for the following environments (which have it in the third one)
 	QString alignment;
-	if (tabularNames.contains(tableType)) {
+	if (args.count() < 2 && mathTables.contains(tableType)) {
+		alignment = "l"; // may be more. But thats caught by the fallback (filling with additional "l").
+	}
+	// assume alignment in second arg except for the following environments (which have it in the third one)
+	else if (tabularNames.contains(tableType)) {
 		alignment = args.at(1).value;
 	} else if (tabularNamesWithOneOption.contains(tableType)) {
 		if (args.count()<3) alignment = ""; // incomplete definition -> fall back to defaults
