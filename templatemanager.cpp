@@ -14,7 +14,11 @@ TemplateManager::TemplateManager(QObject *parent) :
 QString TemplateManager::builtinTemplateDir()
 {
 #ifdef Q_OS_MAC
-	return "/Applications/texstudio.app/Contents/Resources/";
+    QString fn="/Applications/texstudio.app/Contents/Resources/";
+    if(!QFile(fn).isReadable()){ // fallback if program is not packaged as app (e.g. debug build )
+        fn=QCoreApplication::applicationDirPath()+"/templates/";
+    }
+    return fn;
 #endif
 #ifdef Q_OS_WIN
 	return QCoreApplication::applicationDirPath()+"/templates/";
@@ -22,7 +26,11 @@ QString TemplateManager::builtinTemplateDir()
 #if !defined(PREFIX)
 #define PREFIX ""
 #endif
-    return PREFIX"/share/texstudio/";
+    QString fn=PREFIX"/share/texstudio/";
+    if(!QFile(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
+        fn=QCoreApplication::applicationDirPath()+"/templates/";
+    }
+    return fn;
 #endif
 }
 
