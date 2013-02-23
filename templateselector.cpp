@@ -128,6 +128,13 @@ void TemplateSelector::on_templatesTree_doubleClicked(const QModelIndex& /*item*
 		accept();
 }
 
+void TemplateSelector::hideFolderSelection(){
+    ui.rbCreateInFolder->hide();
+    ui.rbCreateInEditor->hide();
+    ui.lePath->hide();
+    ui.btPath->hide();
+}
+
 void TemplateSelector::on_btPath_clicked() {
 	browse(ui.lePath, tr("Select Target Folder"), "/");
 }

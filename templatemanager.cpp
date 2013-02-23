@@ -117,6 +117,7 @@ TemplateHandle TemplateManager::latexTemplateDialogExec() {
 
 bool TemplateManager::tableTemplateDialogExec() {
 	TemplateSelector dialog(tr("Select Table Template"));
+    dialog.hideFolderSelection();
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
 	LocalTableTemplateRessource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images/user-identity.png"));

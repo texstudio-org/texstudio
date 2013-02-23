@@ -41,6 +41,7 @@ public:
 	bool createInFolder() const;
 	QString creationFolder() const;
 	void addRessource(AbstractTemplateRessource *res);
+    void hideFolderSelection();
 signals:
 	void editTemplateRequest(TemplateHandle th);
 	void editTemplateInfoRequest(TemplateHandle th);
