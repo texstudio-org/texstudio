@@ -1979,6 +1979,25 @@ void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 	m_impl->emitFormatsChanged();
 }
 
+QList<int> QDocument::foldedLines() {
+	QList<int> lines;
+	QLanguageDefinition *ld = languageDefinition();
+	if (ld) {
+		QFoldedLineIterator fli = ld->foldedLineIterator(this);
+		for (; fli.lineNr<this->lineCount(); ++fli) {
+			if (fli.collapsedBlockStart) lines << fli.lineNr;
+		}
+	}
+	return lines;
+}
+
+void QDocument::foldLines(const QList<int> &lines) {
+	// TODO: can we speed this up by iterating over the lines? To do so, we probably need to assume/check that lines are ordered
+	foreach (int l, lines) {
+		foldBlockAt(false, l);
+	}
+}
+
 void QDocument::adjustWidth(int line){
 	if (m_impl) m_impl->adjustWidth(line);
 }

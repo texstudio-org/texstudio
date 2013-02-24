@@ -796,6 +796,25 @@ QString LatexParser::cutComment(const QString& text){
 	return text.left(LatexParser::commentStart(text)); // remove comments
 }
 
+QString intListToStr(const QList<int> &ints) {
+	QString s = "";
+	foreach (int i, ints) {
+		s.append(QString::number(i)+',');
+	}
+	if (s.length()>0)
+		s.remove(s.length()-1, 1); // remove last ','
+	return s;
+}
+
+QList<int> strToIntList(const QString &s) {
+	QList<int> ints;
+	bool ok;
+	foreach (const QString &si, s.split(',')) {
+		int i = si.toInt(&ok);
+		if (ok) ints << i;
+	}
+	return ints;
+}
 
 // minimal json parser
 // only supports strings as values, i.e.

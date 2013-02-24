@@ -32,6 +32,7 @@ bool Session::load(const QString &file) {
 		f.cursorLine = s.value("Line", 0).toInt();
 		f.cursorCol = s.value("Col", 0).toInt();
 		f.firstLine = s.value("FirstLine", 0).toInt();
+		f.foldedLines = strToIntList(s.value("FoldedLines").toString());
 		m_files.append(f);
 		s.endGroup();
 	}
@@ -85,6 +86,7 @@ bool Session::save(const QString &file) const {
 		s.setValue("Line", m_files[i].cursorLine);
 		s.setValue("Col", m_files[i].cursorCol);
 		s.setValue("FirstLine", m_files[i].firstLine);
+		s.setValue("FoldedLines", intListToStr(m_files[i].foldedLines)); // saving as string is not very elegant, but at least human-readable (QList<int> would result in a byte stream - after adding it as a metatype)
 		s.endGroup();
 	}
 	s.setValue("MasterFile", m_masterFile);
