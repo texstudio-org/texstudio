@@ -80,8 +80,8 @@ QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp,
 // add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc,const QString& EnvironName,const QString& EnvironMode);
 
-
-
+QString intListToStr(const QList<int> &ints);
+QList<int> strToIntList(const QString &s);
 
 bool minimalJsonParse(const QString &text, QHash<QString, QString> &map);
 // generates a string in the format "id"  : "val", where the colon is at least a position minIdWidth+2 (filling with spaces)

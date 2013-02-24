@@ -2482,6 +2482,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 			}
 			edView->editor->setCursorPosition(line, col);
 			edView->editor->scrollToFirstLine(f.firstLine);
+			edView->document->foldLines(f.foldedLines);
 		}
 	}
 	if (showProgress) {
@@ -2504,6 +2505,7 @@ Session Texmaker::getCurrentSession() {
 		f.cursorLine = edView->editor->cursor().lineNumber();
 		f.cursorCol = edView->editor->cursor().columnNumber();
 		f.firstLine = edView->editor->getFirstVisibleLine();
+		f.foldedLines = edView->document->foldedLines();
 		s.addFile(f);
 	}
 	s.setMasterFile(documents.singleMode()?"":documents.masterDocument->getFileName());

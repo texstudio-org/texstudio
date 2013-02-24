@@ -8,6 +8,7 @@ struct FileInSession {
 	int cursorLine;
 	int cursorCol;
 	int firstLine;
+	QList<int> foldedLines;
 };
 
 Q_DECLARE_METATYPE(FileInSession)
