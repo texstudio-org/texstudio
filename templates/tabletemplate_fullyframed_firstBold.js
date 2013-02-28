@@ -12,11 +12,11 @@ cursor.insertText(str)
 function println(str){
 cursor.insertText(str+"\n")
 }
-var arDef=def.split("");
+//var arDef=def.split("");
 if(env=="tabularx"){
-  println("\\begin{tabularx}{\\linewidth}{|"+arDef.join("|")+"|}")
+  println("\\begin{tabularx}{\\linewidth}{|"+defSplit.join("|")+"|}")
 }else{
-    println("\\begin{"+env+"}{|"+arDef.join("|")+"|}")
+    println("\\begin{"+env+"}{|"+defSplit.join("|")+"|}")
 }
 println("\\hline")
 for(var i=0;i<tab.length;i++){

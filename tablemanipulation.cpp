@@ -709,6 +709,11 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView,QString temp
 	QString envDef="var env=\""+env+"\"\n";
 	//tabular column definition
 	QString templateDef="var def=\""+def+"\"\n";
+    //tabular column definition, split
+    QString templateDefSplit="var defSplit=[";
+    QStringList lst=splitColDef(def);
+    templateDefSplit+="\""+lst.join("\",\"")+"\"";
+    templateDefSplit+="]\n";
 	//tabular content as js array
 	QString tableDef="var tab=[\n";
 	for(int i=0;i<table.size();i++){
@@ -728,6 +733,7 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView,QString temp
 	//join js parts
 	templateText.prepend(tableDef);
 	templateText.prepend(envDef);
+    templateText.prepend(templateDefSplit);
 	templateText.prepend(templateDef);
 	//generate tabular in editor
 	executeScript(templateText,edView);

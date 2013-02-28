@@ -1,9 +1,9 @@
 var metaData = {
-"Name"        : "Longtable",
+"Name"        : "Longtable, fully framed",
 "Description" : "Format table using the longtable environonment.", 
 "Author"      : "Jan Sundermeyer",
-"Date"        : "4.9.2011",
-"Version"     : "1.0"
+"Date"        : "28.2.2013",
+"Version"     : "1.1"
 }
 
 function print(str){
@@ -12,8 +12,8 @@ cursor.insertText(str)
 function println(str){
 cursor.insertText(str+"\n")
 }
-var arDef=def.split("")
-println("\\begin{longtable}{|"+arDef.join("|")+"|}")
+//var arDef=def.split("")
+println("\\begin{longtable}{|"+defSplit.join("|")+"|}")
 println("\\hline")
 for(var i=0;i<tab.length;i++){
 	var line=tab[i];
