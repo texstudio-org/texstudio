@@ -1953,7 +1953,7 @@ void Texmaker::insertTableTemplate() {
 		QStringList values;
 		QList<int> starts;
 		QString env;
-		tableText.remove("\n");
+        //tableText.remove("\n");
 		tableText.remove("\\hline");
 		if(tableText.startsWith("\\begin")){
 			LatexParser::resolveCommandOptions(tableText,0,values,&starts);
@@ -1980,15 +1980,19 @@ void Texmaker::insertTableTemplate() {
 		QStringList lines=tableText.split("\\\\");
 		QList<QStringList> tableContent;
 		foreach(QString line,lines){
-			line=line.simplified();
-			if(line.isEmpty())
+            //line=line.simplified();
+            if(line.isEmpty() || line=="\n")
 				continue;
 			QStringList elems=line.split(QRegExp("&"));
-			QList<QString>::iterator i;
-			for(i=elems.begin();i!=elems.end();i++){
+            if(elems.count()>0){
+                if(elems[0].startsWith("\n"))
+                    elems[0]=elems[0].mid(1);
+            }
+            //QList<QString>::iterator i;
+            /*for(i=elems.begin();i!=elems.end();i++){
 				QString elem=*i;
-				*i=elem.simplified();
-			}
+                *i=elem.simplified();
+            }*/
 			
 			// handle \& correctly
 			for(int i=elems.size()-1;i>=0;i--){

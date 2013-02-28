@@ -723,6 +723,8 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView,QString temp
 			QString str=*it;
 			str.replace("\\","\\\\");
 			str.replace("\"","\\\"");
+            str.replace("\n","\\n");
+            str.replace("\t","\\t");
 			*it=str;
 		}
 		tableDef+="[\""+lst.join("\",\"")+"\"]";
