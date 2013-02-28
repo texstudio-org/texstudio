@@ -1556,6 +1556,7 @@ var metaData = {
 3 variables are given:
 <ul>
 <li>def   the simplified table definition without any formatting (i.e. ll instead of |l|l|)</li>
+<li>defSplit   the table definition split by column (array=l,l,p{2cm})</li>
 <li>env   the actual enviroment name of the old table like "tabular" or "longtable"</li>
 <li>tab   the actual table. It is a list of lines, each line is a list of columsn which contains the cell content as string</li>
 </ul>
@@ -1590,11 +1591,10 @@ cursor.insertText(str)
 function println(str){
 cursor.insertText(str+"\n")
 }
-var arDef=def.split("");
 if(env=="tabularx"){
-  println("\\begin{tabularx}{\\linewidth}{|"+arDef.join("|")+"|}")
+  println("\\begin{tabularx}{\\linewidth}{|"+defSplit.join("|")+"|}")
 }else{
-    println("\\begin{"+env+"}{|"+arDef.join("|")+"|}")
+    println("\\begin{"+env+"}{|"+defSplit.join("|")+"|}")
 }
 println("\\hline")
 for(var i=0;i&lt;tab.length;i++){
