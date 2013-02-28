@@ -2341,9 +2341,22 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QFileInfo& masterFi
 
 void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert)
 {
-	this->masterFile = masterFile;
-	setCurrentFile(fileName);
-	reload(false);
+    // check if the file is already loaded
+    bool fileAlreadyLoaded=(this->masterFile == masterFile);
+    fileAlreadyLoaded=fileAlreadyLoaded && (curFileUnnormalized == fileName);
+    if(fileAlreadyLoaded){
+        // check size and modifcation date
+        QFileInfo fi(curFile);
+        QDateTime lastModified=fi.lastModified();
+        qint64 filesize=fi.size();
+        fileAlreadyLoaded=fileAlreadyLoaded && (lastModified==curFileLastModified);
+        fileAlreadyLoaded=fileAlreadyLoaded && (filesize==curFileSize);
+    }
+    if(!fileAlreadyLoaded){
+        this->masterFile = masterFile;
+        setCurrentFile(fileName);
+        reload(false);
+    }
 
 	if (watcher) {
 		const QStringList files = watcher->files();
