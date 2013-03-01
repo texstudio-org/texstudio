@@ -408,7 +408,19 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
 			contextMenu->addAction(act);
 		}
-		
+        // help for any "known" command
+        if( context==LatexParser::Command){
+            QString package=edView->document->parent->findPackageByCommand(ctxCommand);
+            package.chop(4);
+            if(!package.isEmpty()){
+                QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
+                act->setText(act->text().append(QString(" (%1)").arg(package)));
+                act->setData(package);
+                edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
+                contextMenu->addAction(act);
+            }
+        }
+
 		//resolve differences
 		if (edView){
 			QList<int> fids;

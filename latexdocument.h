@@ -346,6 +346,7 @@ public:
     void addDocToLoad(QString filename);
     void removeDocs(QStringList removeIncludes);
     void hideDocInEditor(LatexEditorView *edView);
+    QString findPackageByCommand(const QString command);
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);

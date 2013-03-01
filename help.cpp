@@ -50,7 +50,8 @@ void Help::texdocAvailableRequest(const QString &package)
 		return;
 
 	QStringList args;
-	args << "--print-only" << package;
+    //args << "--print-only" << package;
+    args << "-v"; // --print-only does not exist in texlive 2012, actual is response is not used either ...
 	QProcess *proc = new QProcess(this);
 	proc->setProperty("package", package);
 	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
