@@ -1233,15 +1233,35 @@ void LatexEditorView::openPackageDocumentation(QString package){
 		package = act->data().toString();
 	}
 	if (!package.isEmpty()) {
-		QStringList args;
-		args << "--view" << package;
-		QProcess proc(this);
-		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
-		proc.start("texdoc", args);
-		if (!proc.waitForFinished(2000)) {
-			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
-			return;
-		}
+        if(config->texdocHelpInInternalViewer){
+            QStringList args;
+            args << "--list" << "--machine" << package;
+            QProcess proc(this);
+            //connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
+            proc.start("texdoc", args);
+            if (!proc.waitForFinished(2000)) {
+                txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
+                return;
+            }
+            QString output=proc.readAllStandardOutput();
+            QStringList lst=output.split("\n");
+            output=lst.first();
+            output=output.simplified();
+            lst=output.split(" ");
+            output=lst.at(2);
+            //qDebug()<<output;
+            emit openInternalDocViewer(output);
+        }else{
+            QStringList args;
+            args << "--view" << package;
+            QProcess proc(this);
+            connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
+            proc.start("texdoc", args);
+            if (!proc.waitForFinished(2000)) {
+                txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
+                return;
+            }
+        }
 	}
 }
 

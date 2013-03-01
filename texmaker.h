@@ -516,6 +516,8 @@ protected slots:
 	
 	void toggleGrammar(int type);
 
+    void openInternalDocViewer(QString package);
+
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);

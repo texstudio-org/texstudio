@@ -1431,6 +1431,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
 	connect(edit, SIGNAL(colonTyped()), this, SLOT(NormalCompletion()));
+    connect(edit, SIGNAL(openInternalDocViewer(QString)),this,SLOT(openInternalDocViewer(QString)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
@@ -8050,4 +8051,8 @@ void Texmaker::moveCursorTodlh(){
             gotoLine(lineNr,0,edView);
         }
     }
+}
+
+void Texmaker::openInternalDocViewer(QString package){
+    runInternalCommand("txs:///view-pdf-internal", QFileInfo(package), "--embedded");
 }
