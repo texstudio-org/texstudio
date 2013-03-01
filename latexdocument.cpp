@@ -2510,3 +2510,20 @@ void LatexDocument::patchLinesContaining(const QStringList cmds){
     }
   }
 }
+
+QString LatexDocuments::findPackageByCommand(const QString command){
+    // go through all cached packages (cwl) and find command in one of them
+    QString result;
+    foreach(const QString key,cachedPackages.keys()){
+        const LatexPackage pck=cachedPackages.value(key);
+        foreach(const QString envs,pck.possibleCommands.keys()){
+            if(pck.possibleCommands.value(envs).contains(command)){
+                result=key; //pck.packageName;
+                break;
+            }
+        }
+        if(!result.isEmpty())
+            break;
+    }
+    return result;
+}
