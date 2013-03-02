@@ -1,9 +1,11 @@
+#ifndef NO_CRASH_HANDLER
+
 #include "debughelper.h"
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
-#include "QMutex"
-
-#ifndef NO_CRASH_HANDLER
+#include "execinfo.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_64
@@ -56,6 +58,7 @@ struct SimulatedCPU {
 
 	void set_all(void* context);
 	void get_all(void* context);
+	void set_from_real();
 
 	bool stackWalk();
 	void unwindStack(){
@@ -67,7 +70,20 @@ struct SimulatedCPU {
 		else frames = frames - 100;
 		while (frames > 0) { this->leave(); frames--; }
 	}	
+
+	int backtrace(void ** array, int size) {
+		if (!pc || !frame) return 0;
+		for (int i=0;i<size;i++)
+			array[i] = 0;
+		int i = 0;
+		do {
+			array[i] = pc;
+			i++;
+		} while (stackWalk() && i < size);
+		return i;
+	}
 };
+
 #ifdef CPU_CONTEXT_TYPE
 #undef CPU_CONTEXT_TYPE
 #endif
@@ -76,162 +92,14 @@ struct SimulatedCPU {
 #endif
 
 //===========================STACK TRACE PRINTING=========================
-void print_message(const char* title, const char *where, const char *assertion, const char *file, int line, const char* end){
+
 #ifdef Q_WS_WIN
-	qDebug("%s %s at %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
-#else
-	fprintf(stderr, "%s %s at %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
-	qDebug("%s %s at  %s in %s: %i\r\n%s", title, assertion, where, file, line, end);
-#endif
-}
-
-#if defined(OS_IS_UNIX_LIKE)
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include "execinfo.h"
-/*
-void print_backtrace_with_gdb(){ //from http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace
-	//carefully, might crash the X server
-	char pid_buf[30];
-	sprintf(pid_buf, "%d", getpid());
-	char name_buf[512];
-	name_buf[readlink("/proc/self/exe", name_buf, 511)]=0;
-	int child_pid = fork();
-	if (!child_pid) {
-		dup2(2,1); // redirect output to stderr
-		fprintf(stdout,"stack trace for %s pid=%s\n",name_buf,pid_buf);
-		execlp("gdb", "gdb", "--batch", "-n", "-ex", "thread", "-ex", "bt", name_buf, pid_buf, NULL);
-		abort(); // If gdb failed to start 
-	} else {
-		waitpid(child_pid,NULL,0);
-	}
-}*/
-
-
-void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){ //http://stackoverflow.com/questions/3151779/how-its-better-to-invoke-gdb-from-program-to-print-its-stacktrace/4611112#4611112
-	print_message(title, where, assertion, file, line,"");
-
-	void *trace[48];
-	int trace_size = backtrace(trace, 48);
-	char** messages = backtrace_symbols(trace, trace_size);
-	for (int i=1; i<trace_size; ++i)
-		printf("[bt] %s\n", messages[i]);
-	
-	
-	char filename[] = "/tmp/texstudioXXXX_backtrace.txt";
-	static int count = 1;
-	snprintf(filename, sizeof(filename), "/tmp/texstudio_backtrace%i.txt", count);
-	
-	FILE* f = fopen(filename, "w");
-	if (!f) return;
-	fprintf(f, "%s %s at %s in %s: %i\r\n", title, assertion, where, file, line);
-	for (int i=1; i<trace_size; ++i)
-		fprintf(f,"[bt] %s\n", messages[i]);
-	fclose(f);
-}
-
-
-#elif defined(Q_WS_WIN)
 #include <QSysInfo>
 #include "windows.h"
 
 //from wine
 //dbghelp.h
 typedef BOOL WINAPI (*SymInitializeFunc)(HANDLE, PCSTR, BOOL);
-typedef PVOID WINAPI (*SymFunctionTableAccess64Func)(HANDLE, DWORD64);
-typedef DWORD64 WINAPI (*SymGetModuleBase64Func)(HANDLE, DWORD64);
-typedef enum
-{
-	AddrMode1616,
-	AddrMode1632,
-	AddrModeReal,
-	AddrModeFlat
-} ADDRESS_MODE;
-//
-// New KDHELP structure for 64 bit system support.
-// This structure is preferred in new code.
-//
-typedef struct _KDHELP64 {
-	
-	//
-	// address of kernel thread object, as provided in the
-	// WAIT_STATE_CHANGE packet.
-	//
-	DWORD64   Thread;
-	
-	//
-	// offset in thread object to pointer to the current callback frame
-	// in kernel stack.
-	//
-	DWORD   ThCallbackStack;
-	
-	//
-	// offset in thread object to pointer to the current callback backing
-	// store frame in kernel stack.
-	//
-	DWORD   ThCallbackBStore;
-	
-	//
-	// offsets to values in frame:
-	//
-	// address of next callback frame
-	DWORD   NextCallback;
-	
-	// address of saved frame pointer (if applicable)
-	DWORD   FramePointer;
-	
-	
-	//
-	// Address of the kernel function that calls out to user mode
-	//
-	DWORD64   KiCallUserMode;
-	
-	//
-	// Address of the user mode dispatcher function
-	//
-	DWORD64   KeUserCallbackDispatcher;
-	
-	//
-	// Lowest kernel mode address
-	//
-	DWORD64   SystemRangeStart;
-	
-	DWORD64  Reserved[8];
-	
-} KDHELP64, *PKDHELP64;
-
-typedef struct _tagADDRESS64 {
-	DWORD64       Offset;
-	WORD          Segment;
-	ADDRESS_MODE  Mode;
-} ADDRESS64, *LPADDRESS64;
-
-typedef struct _STACKFRAME64
-{
-	ADDRESS64   AddrPC;
-	ADDRESS64   AddrReturn;
-	ADDRESS64   AddrFrame;
-	ADDRESS64   AddrStack;
-	ADDRESS64   AddrBStore;
-	PVOID       FuncTableEntry;
-	DWORD64     Params[4];
-	BOOL        Far;
-	BOOL        Virtual;
-	DWORD64     Reserved[3];
-	KDHELP64    KdHelp;
-} STACKFRAME64, *LPSTACKFRAME64;
-
-typedef BOOL (CALLBACK *PREAD_PROCESS_MEMORY_ROUTINE64)(HANDLE, DWORD64, PVOID, DWORD, PDWORD);
-typedef PVOID (CALLBACK *PFUNCTION_TABLE_ACCESS_ROUTINE64)(HANDLE, DWORD64);
-typedef DWORD64 (CALLBACK *PGET_MODULE_BASE_ROUTINE64)(HANDLE, DWORD64);
-typedef DWORD64 (CALLBACK *PTRANSLATE_ADDRESS_ROUTINE64)(HANDLE, HANDLE, LPADDRESS64);
-typedef BOOL WINAPI (*StackWalk64Func)(DWORD, HANDLE, HANDLE, LPSTACKFRAME64, PVOID,
-                                       PREAD_PROCESS_MEMORY_ROUTINE64,
-                                       PFUNCTION_TABLE_ACCESS_ROUTINE64,
-                                       PGET_MODULE_BASE_ROUTINE64,
-                                       PTRANSLATE_ADDRESS_ROUTINE64);
 
 typedef struct _IMAGEHLP_SYMBOL64
 {
@@ -255,31 +123,33 @@ typedef struct _IMAGEHLP_LINE64
 typedef BOOL WINAPI (*SymGetSymFromAddr64Func)(HANDLE, DWORD64, PDWORD64, PIMAGEHLP_SYMBOL64);
 typedef BOOL WINAPI (*SymGetLineFromAddr64Func)(HANDLE, DWORD64, PDWORD, PIMAGEHLP_LINE64);
 
-QMutex backtraceMutex;
-
-
 #define CPU_CONTEXT_TYPE CONTEXT
 #define LOAD_FUNCTION(name, ansiname) static name##Func name = (name##Func)GetProcAddress(dbghelp, ansiname);
 #define LOAD_FUNCTIONREQ(name, ansiname) LOAD_FUNCTION(name,ansiname) if (!name) return "failed to load function: " #name;
 
-QString initDebugHelp(){
-	static HMODULE dbghelp = 0;
-	if (dbghelp != 0) return ""; //don't call syminitialize twice
+HMODULE dbghelp = 0;
+
+bool loadDbgHelp(){
+	if (dbghelp != 0) return true;
 	dbghelp = LoadLibraryA("dbghelp.dll");
-	if (!dbghelp) return "failed to load dbghelp.dll";
+	return dbghelp;
+}
+
+bool initDebugHelp(){
+	if (dbghelp != 0) return true; //don't call syminitialize twice
+	if (!loadDbgHelp()) return false;
 
 	LOAD_FUNCTIONREQ(SymInitialize, "SymInitialize");
 
 	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0)?GetCurrentProcess():(HANDLE)GetCurrentProcessId(), 0, true))
-		return "Failed to initialize SymInitialize " + QString::number(GetLastError());
-	return "";
+		return false;
+	return true;
 }
 
-QString lookUpAddresses(const QList<DWORD64>& stackFrames){
-	QStringList result(initDebugHelp());
-
-	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
-	if (!dbghelp) return "failed to load dbghelp.dll";
+QStringList backtrace_symbols_win(void** addr, int size){
+	if (!initDebugHelp())
+		if (dbghelp) return "Failed to initialize SymInitialize " + QString::number(GetLastError());
+		else return "Failed to load dbghelp";
 
 	LOAD_FUNCTIONREQ(SymGetSymFromAddr64, "SymGetSymFromAddr64");
 	LOAD_FUNCTION(SymGetLineFromAddr64, "SymGetLineFromAddr64");
@@ -287,7 +157,8 @@ QString lookUpAddresses(const QList<DWORD64>& stackFrames){
 	HANDLE process = GetCurrentProcess();
 
 	_IMAGEHLP_SYMBOL64* symbol = (_IMAGEHLP_SYMBOL64*)malloc(sizeof(_IMAGEHLP_SYMBOL64) + 256);
-	for (int i=0;i<stackFrames.size();i++) {
+	QStringList res;
+	for (int i=0;i<size;i++) {
 		DWORD64 displacement = 0;
 		DWORD displacement32 = 0;
 		ZeroMemory(symbol, sizeof(_IMAGEHLP_SYMBOL64));
@@ -296,12 +167,12 @@ QString lookUpAddresses(const QList<DWORD64>& stackFrames){
 
 		_IMAGEHLP_LINE64 line;
 
-		QString cur = QString::number(stackFrames[i], 16)+": ";
+		QString cur;
 
-		if ((*SymGetSymFromAddr64)(process, stackFrames[i], &displacement, symbol))
-			cur += QString::fromLocal8Bit(symbol->Name)+"+"+QString::number(displacement);
+		if ((*SymGetSymFromAddr64)(process, (DWORD64)addr[i], &displacement, symbol))
+			cur = QString::fromLocal8Bit(symbol->Name)+"+"+QString::number(displacement);
 		else
-			cur += "??? error: " + QString::number(GetLastError());
+			cur = "??? error: " + QString::number(GetLastError());
 
 
 		if (SymGetLineFromAddr64) {
@@ -309,121 +180,64 @@ QString lookUpAddresses(const QList<DWORD64>& stackFrames){
 				cur += " in " + QString::fromLocal8Bit(line.FileName)+":"+QString::number(line.LineNumber);
 		}
 
-		result << cur;
+		res << cur;
 	}
-	return result.join("\r\n");
+	return res;
 }
 
+QString temporaryFileNameFormat(){
+	return QDir::tempPath() + QString("/texstudio_backtrace%1.txt");
+}
 
-//from http://jpassing.com/2008/03/12/walking-the-stack-of-the-current-thread/
-//     http://www.codeproject.com/Articles/11132/Walking-the-callstack
-//alternative: __builtin_return_address, but it is said to not work so well
-QString getBacktrace(){
-	if (!backtraceMutex.tryLock()) return "locked";
-	
-	//init crap
-	HANDLE process =  GetCurrentProcess();
-	HANDLE thread = GetCurrentThread();
-	
-	QStringList result(initDebugHelp());
-
-	CONTEXT context;
-	ZeroMemory( &context, sizeof( CONTEXT ) );
-	STACKFRAME64 stackFrame;
-#if (defined(x86_64) || defined(__x86_64__))
-	RtlCaptureContext( &context );
 #else
-	// Those three registers are enough.
-geteip:
-	context.Eip = (DWORD)&&geteip;
-	__asm__(
-	"mov %%ebp, %0\n"
-	"mov %%esp, %1"
-	: "=r"(context.Ebp), "=r"(context.Esp));
+QString temporaryFileNameFormat(){
+	return "/tmp/texstudio_backtrace%1.txt";
+}
+QStringList backtrace_symbols_win(void**, int){
+	return QStringList();
+}
+
 #endif
-	ZeroMemory( &stackFrame, sizeof( stackFrame ) );
-#ifdef CPU_IS_64
-	DWORD machineType           = IMAGE_FILE_MACHINE_AMD64;
-	stackFrame.AddrPC.Offset    = context.Rip;
-	stackFrame.AddrPC.Mode      = AddrModeFlat;
-	stackFrame.AddrFrame.Offset = context.Rbp;//changed from rsp. correctly?
-	stackFrame.AddrFrame.Mode   = AddrModeFlat;
-	stackFrame.AddrStack.Offset = context.Rsp;
-	stackFrame.AddrStack.Mode   = AddrModeFlat;
+
+
+
+void print_backtrace(const SimulatedCPU& state, const QString& message){
+#ifdef Q_WS_WIN
+	qDebug(qPrintable(message));
+#define PRINT(...) do { qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__);  } while (0)
 #else
-	DWORD machineType           = IMAGE_FILE_MACHINE_I386;
-	stackFrame.AddrPC.Offset    = context.Eip;
-	stackFrame.AddrPC.Mode      = AddrModeFlat;
-	stackFrame.AddrFrame.Offset = context.Ebp;
-	stackFrame.AddrFrame.Mode   = AddrModeFlat;
-	stackFrame.AddrStack.Offset = context.Esp;
-	stackFrame.AddrStack.Mode   = AddrModeFlat;
-	/* #elif _M_IA64
-    MachineType                 = IMAGE_FILE_MACHINE_IA64;
-    StackFrame.AddrPC.Offset    = Context.StIIP;
-    StackFrame.AddrPC.Mode      = AddrModeFlat;
-    StackFrame.AddrFrame.Offset = Context.IntSp;
-    StackFrame.AddrFrame.Mode   = AddrModeFlat;
-    StackFrame.AddrBStore.Offset= Context.RsBSP;
-    StackFrame.AddrBStore.Mode  = AddrModeFlat;
-    StackFrame.AddrStack.Offset = Context.IntSp;
-    StackFrame.AddrStack.Mode   = AddrModeFlat;
-  #else
-    #error "Unsupported platform"*/
+	fprintf(stderr, "%s\n", qPrintable(message));
+	qDebug(qPrintable(message));
+#define PRINT(...) do { fprintf(stderr, __VA_ARGS__); qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__); } while (0)
 #endif
-	
-	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
-	if (!dbghelp) return "failed to load dbghelp.dll";
+	static int count = 0;
+	count++;
+	FILE* logFile = fopen(qPrintable(temporaryFileNameFormat().arg(count)), "w");
+	PRINT("%s\n", qPrintable(message));
 
-	LOAD_FUNCTIONREQ(StackWalk64, "StackWalk64");
-	LOAD_FUNCTIONREQ(SymGetModuleBase64, "SymGetModuleBase64");
-	LOAD_FUNCTIONREQ(SymFunctionTableAccess64, "SymFunctionTableAccess64");
+	void *trace[48];
+	SimulatedCPU copystate = state;
+	int size = copystate.backtrace(trace, 48);
+	//size = backtrace(trace, 48);
 
-	//get stackframes
-	QList<DWORD64> stackFrames;
-	while ((*StackWalk64)(machineType, process, thread, &stackFrame, &context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0))
-		stackFrames << stackFrame.AddrPC.Offset;
-	
-	result << lookUpAddresses(stackFrames);
-
-	backtraceMutex.unlock();
-	
-	return result.join("\r\n");
-}
-
-void print_backtrace(const char* title, const char *where, const char *assertion, const char *file, int line){
-	print_message(title, where, assertion, file, line,"Prepare to print backtrace:\n");
-	QString bt = getBacktrace();
-	static int count = 1;
-	QFile tf(QDir::tempPath() + QString("/texstudio_backtrace%1.txt").arg(count++));
-	if (tf.open(QFile::WriteOnly)){
-		tf.write(QString("%1 %2 in %3: %4\r\n").arg(title).arg(assertion).arg(file).arg(line).toLocal8Bit());
-		tf.write(bt.toLocal8Bit());
-		tf.close();
-	};
-	qDebug() << bt;
-	fprintf(stderr, "%s\r\n", qPrintable(bt));
-}
-
-
-
-#else //unknown os/mac
-void print_backtrace(const char* title, const char *where, const char * assertion, const char * file, int line){
-	fprintf(stderr, "Unknown OS");
-}
+	char** messages = backtrace_symbols(trace, size);
+	QStringList additionalMessages;
+#ifdef Q_WS_WIN
+	additionalMessages = backtrace_win(trace, size);
 #endif
+	for (int i=0; i<size; ++i) {
+		if (i >= additionalMessages.size()) PRINT("[bt] %s\n", messages[i]);
+		else PRINT("[bt] %p %s %s\n", trace[i], messages[i], qPrintable(additionalMessages[i]));
+	}
+
+	if (logFile) fclose(logFile);
+}
 
 void print_backtrace(const QString& message){
-	print_backtrace(message.toLocal8Bit().data(),"","","",0);
+	SimulatedCPU cpu;
+	cpu.set_from_real();
+	print_backtrace(cpu, message);
 }
-
-void print_backtrace(const char* message){
-	print_backtrace(message,"","","",0);
-}
-
-
-
-
 
 
 //===========================CRASH HANDLER==============================
@@ -431,6 +245,8 @@ void print_backtrace(const char* message){
 
 
 #ifdef OS_IS_UNIX_LIKE
+#include "unistd.h"
+#include "sys/wait.h"
 #define SAFE_INT volatile sig_atomic_t
 #else
 #define SAFE_INT int
@@ -439,6 +255,7 @@ void print_backtrace(const char* message){
 SAFE_INT crashHandlerType = 1;
 SAFE_INT lastErrorWasAssert = 0;
 SAFE_INT lastErrorWasLoop = 0;
+volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
 
 #define CRASH_HANDLER_RECOVER 1
 #define CRASH_HANDLER_PRINT_BACKTRACE 2
@@ -549,6 +366,13 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 	if (ccontext) {
 		cpu.set_all(ccontext);
 		if (cpu.frame == 0) cpu.frame = cpu.stack;
+
+		if (type == SIGSEGV && sigSegvRecoverReturnAddress) {
+			cpu.jmp((char*)sigSegvRecoverReturnAddress);
+			sigSegvRecoverReturnAddress = 0;
+			cpu.get_all(ccontext);
+			return;
+		}
 
 		char *addr = (char*)(si->si_addr);
 		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
@@ -724,14 +548,24 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 
 	if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
 	
+	if ((t == EXCEPTION_ACCESS_VIOLATION || t == EXCEPTION_STACK_OVERFLOW)
+	    && sigSegvRecoverReturnAddress) {
+		SimulatedCPU cpu;
+		cpu.set_all(ExceptionInfo->ContextRecord);
+		cpu.jmp((char*)sigSegvRecoverReturnAddress);
+		sigSegvRecoverReturnAddress = 0;
+		cpu.get_all(ExceptionInfo->ContextRecord);
+		return;
+	}
+
 	//if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) print_backtrace("");
 
 	lastErrorWasAssert = 0;
 	lastErrorWasLoop = 0;
-              
-  if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE){
-      print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode));
-  }
+
+	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE){
+		print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode));
+	}
 
 
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
@@ -877,12 +711,12 @@ void txs_assert(const char *assertion, const char *file, int line){
 }
 
 void txs_assert_x(const char *where, const char *assertion, const char *file, int line){
-	print_message("Assertion failure: ", where, assertion,  file, line, "Prepare to print backtrace:\r\n");
-	print_backtrace("Assertion failure (repeated): ", where, assertion, file, line);
+	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
+	print_backtrace(lastAssert);
 
 	lastErrorWasAssert = 1;
-	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
 	recover();
+
 	//won't be called:
 	qt_assert(assertion, file, line);
 	exit(1);
@@ -934,8 +768,37 @@ void SimulatedCPU::get_all(void *ccontext) {
 	*(char**)(&RETURNTO_FROM_UCONTEXT(context)) = this->returnTo;
 #endif
 }
+void SimulatedCPU::set_from_real(){
+	this->pc = 0;
+	this->frame = 0;
+	this->stack = 0;
+#ifdef CPU_IS_X86
+#ifdef CPU_IS_32
+	__asm__(
+	"mov %%ebp, %0\n"
+	"mov %%esp, %1"
+	: "=r"(frame), "=r"(stack));
+#elif defined(CPU_IS_64)
+	__asm__(
+	"mov %%rbp, %0\n"
+	"mov %%rsp, %1"
+	: "=r"(frame), "=r"(stack));
+#else
+#error Unknown x86 cpu architecture
+#endif
+#elif defined(CPU_IS_ARM)
+	__asm__( //otherway around in the mov?
+	"mov %[fp], fp\n"
+	"mov %[sp], sp\n"
+	"mov %[lr], lr\n"
+	: [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
+#endif
+	geteip:
+	this->pc = (char*)&&geteip;
+}
 
 #endif
+
 
 //todo: fix CALL_INSTRUCTION_SIZE 
 //(should be the size of the call instruction. 
@@ -956,9 +819,17 @@ void SimulatedCPU::enter(int size){
 	stack -= size;
 }
 void SimulatedCPU::leave(){
+	sigSegvRecoverReturnAddress = &&recover;
 	stack = frame;
 	frame = pop();
 	ret();
+recover:
+	if (sigSegvRecoverReturnAddress == 0) {
+		frame = 0;
+		stack = 0;
+		pc = 0;
+	}
+	sigSegvRecoverReturnAddress = 0;
 }
 #elif defined(CPU_IS_ARM)
 void SimulatedCPU::call(char * value){   //bl
