@@ -178,7 +178,7 @@ public:
 		return true;
 	}
 	
-	bool completeCommonPrefix(){
+    bool completeCommonPrefix(bool reducedRange=false){
 		QString my_curWord=getCurWord();
 		if (my_curWord.isEmpty()) return false;
 		if (!completer) return false;
@@ -190,23 +190,26 @@ public:
 		const QList<CompletionWord> &words=completer->listModel->getWords();
 		// filter list for longest common characters
 		if (words.count()>1) {
-			QString myResult=words.first().word;
-			int my_start=my_curWord.length();
-			my_curWord=completer->listModel->getLastWord().word;
-			
-			for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
-				if (myResult[j]!=my_curWord[j]) {
-					myResult=myResult.left(j);
-				}
-			}
-			
-			removeRightWordPart();
-			insertText(myResult.right(myResult.length()-my_start));
-			//maxWritten+=myResult.length()-my_start; insert text already adapt maxWritten
-			completer->filterList(getCurWord(),getMostUsed());
-			if (!completer->list->currentIndex().isValid())
-				select(completer->list->model()->index(0,0,QModelIndex()));
-			return true;
+            QString myResult=words.first().word;
+            int my_start=my_curWord.length();
+            my_curWord=completer->listModel->getLastWord().word;
+
+            if(reducedRange &&words.count()>10){
+                my_curWord=words.at(10).word;
+            }
+            for (int j=my_start; (j<my_curWord.length()&&j<myResult.length()); j++) {
+                if (myResult[j]!=my_curWord[j]) {
+                    myResult=myResult.left(j);
+                }
+            }
+
+            removeRightWordPart();
+            insertText(myResult.right(myResult.length()-my_start));
+            //maxWritten+=myResult.length()-my_start; insert text already adapt maxWritten
+            completer->filterList(getCurWord(),getMostUsed());
+            if (!completer->list->currentIndex().isValid())
+                select(completer->list->model()->index(0,0,QModelIndex()));
+            return true;
 		} else {
 			if(showMostUsed==1) return false;
 			insertCompletedWord();
@@ -298,7 +301,7 @@ public:
 			if (ind.isValid()) select(ind);
 			return true;
 		}  else if (event->key()==Qt::Key_Tab) {
-			return completeCommonPrefix();
+            return completeCommonPrefix(true);
 		}  else if (event->key()==Qt::Key_Space && event->modifiers()==Qt::ShiftModifier) {
 			//showMostUsed=!showMostUsed;
 			//handled=true;
