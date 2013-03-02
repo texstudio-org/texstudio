@@ -1260,7 +1260,8 @@ void LatexEditorView::openPackageDocumentation(QString package){
                 lst=output.split(" ");
                 if(lst.count()>2){
                     output=lst.at(2);
-                    emit openInternalDocViewer(output,command);
+                    if(output.endsWith(".pdf"))
+                        emit openInternalDocViewer(output,command);
                 }
             }
         }else{
