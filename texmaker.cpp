@@ -102,7 +102,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	t->start(3000);
 
 
-	
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
 	setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -1996,7 +1995,7 @@ void Texmaker::insertTableTemplate() {
             }*/
 			
 			// handle \& correctly
-			for(int i=elems.size()-1;i>=0;i--){
+			for(int i=elems.size()-1;i>=0;--i){
 				if(elems.at(i).endsWith("\\")){
 					QString add=elems.at(i)+elems.at(i+1);
 					elems.replace(i,add);
@@ -7147,9 +7146,9 @@ void Texmaker::saveProfile(){
 void Texmaker::loadProfile(){
 	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TXS Profile","filter")+"(*.txsprofile *.tmxprofile);;"+tr("All files")+" (*)");  //*.tmxprofile for compatibility - may be removed later
-	bool macro=false;
-	bool userCommand=false;
 	if(QFileInfo(fname).isReadable()){
+		bool macro=false;
+		bool userCommand=false;
 		SaveSettings();
 		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
 		QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");

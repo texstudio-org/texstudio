@@ -311,7 +311,7 @@ void OutputViewWidget::loadLogFile(const QString &logname, const QString & compi
 		OutputTable2->resizeRowsToContents();	
 		
 		selectLogEntry(0,false);
-	}
+	} else txsWarning(tr("Failed to load log file \"%1\"").arg(logname));
 }
 bool OutputViewWidget::logPresent(){
 	return logpresent;
