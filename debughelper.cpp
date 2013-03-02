@@ -1,12 +1,10 @@
-#ifndef NO_CRASH_HANDLER
-
 #include "debughelper.h"
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
 #include "execinfo.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#ifndef NO_CRASH_HANDLER
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_64
 #define CPU_IS_X86
@@ -890,6 +888,8 @@ QString getLastCrashInformation(bool & wasLoop){return "";}
 #define HAS_DEBUGGER_PRESENT
 #include <sys/ptrace.h>
 //from http://stackoverflow.com/questions/3596781/detect-if-gdb-is-running
+
+#ifndef NO_CRASH_HANDLER
 int gdb_check()
 {
   int pid = fork();
@@ -944,7 +944,7 @@ bool IsDebuggerPresent()
   }
   return _debugger_present == 1;
 }
-
+#endif
 #endif
 #endif
 

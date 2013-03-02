@@ -191,6 +191,7 @@ public:
 	explicit PDFBaseSearchDock(PDFDocument* doc = 0);
 
 	QString getSearchText() const;
+    void setSearchText(QString text);
 	bool hasFlagCaseSensitive() const;
 
 	virtual void setFocus();

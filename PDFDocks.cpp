@@ -547,6 +547,10 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 QString PDFBaseSearchDock::getSearchText() const{
 	return leFind->text();
 }
+void PDFBaseSearchDock::setSearchText(QString text){
+    leFind->setText(text);
+}
+
 bool PDFBaseSearchDock::hasFlagCaseSensitive() const{
 	return cbCase->isChecked();
 }

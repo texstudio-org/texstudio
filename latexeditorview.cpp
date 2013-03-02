@@ -415,7 +415,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
             if(!package.isEmpty()){
                 QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
                 act->setText(act->text().append(QString(" (%1)").arg(package)));
-                act->setData(package);
+                act->setData(package+"#"+ctxCommand);
                 edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
                 contextMenu->addAction(act);
             }
@@ -1227,11 +1227,17 @@ void LatexEditorView::openExternalFile(){
 }
 
 void LatexEditorView::openPackageDocumentation(QString package){
+    QString command;
 	if (package.isEmpty()) {
 		QAction *act = qobject_cast<QAction*>(sender());
 		if (!act) return;
 		package = act->data().toString();
 	}
+    if(package.contains("#")){
+        int i=package.indexOf("#");
+        command=package.mid(i+1);
+        package=package.left(i);
+    }
 	if (!package.isEmpty()) {
         if(config->texdocHelpInInternalViewer){
             QStringList args;
@@ -1245,12 +1251,15 @@ void LatexEditorView::openPackageDocumentation(QString package){
             }
             QString output=proc.readAllStandardOutput();
             QStringList lst=output.split("\n");
-            output=lst.first();
-            output=output.simplified();
-            lst=output.split(" ");
-            output=lst.at(2);
-            //qDebug()<<output;
-            emit openInternalDocViewer(output);
+            if(lst.count()>0){
+                output=lst.first();
+                output=output.simplified();
+                lst=output.split(" ");
+                if(lst.count()>2){
+                    output=lst.at(2);
+                    emit openInternalDocViewer(output,command);
+                }
+            }
         }else{
             QStringList args;
             args << "--view" << package;
