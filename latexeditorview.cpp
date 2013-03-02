@@ -1238,6 +1238,9 @@ void LatexEditorView::openPackageDocumentation(QString package){
         command=package.mid(i+1);
         package=package.left(i);
     }
+    // replace some package denominations
+    if(package=="latex-document"||package=="latex-dev")
+        package="latex2e";
 	if (!package.isEmpty()) {
         if(config->texdocHelpInInternalViewer){
             QStringList args;
