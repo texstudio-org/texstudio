@@ -96,11 +96,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	static int crashHandlerType = 1;
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
 
-	registerCrashHandler(crashHandlerType);
+    registerCrashHandler(crashHandlerType);
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(3000);
-
 
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -330,7 +329,7 @@ Texmaker::~Texmaker(){
 
 	programStopped = true;
 
-	Guardian::shutdown();
+    Guardian::shutdown();
 	
 	delete MapForSymbols;
 	if(latexStyleParser){
@@ -1430,16 +1429,16 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
 	connect(edit, SIGNAL(colonTyped()), this, SLOT(NormalCompletion()));
-    connect(edit, SIGNAL(openInternalDocViewer(QString)),this,SLOT(openInternalDocViewer(QString)));
+    connect(edit, SIGNAL(openInternalDocViewer(QString,QString)),this,SLOT(openInternalDocViewer(QString,QString)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
 	connect(edit->editor,SIGNAL(fileAutoReloading(QString)),this,SLOT(fileAutoReloading(QString)));
 	
-	if (Guardian::instance()) { // Guardian is not yet there when this is called at program startup
+    if (Guardian::instance()) { // Guardian is not yet there when this is called at program startup
 		connect(edit->editor,SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
 		connect(edit->editor,SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
-	}
+    }
 	connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int)));
 	
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(EditorSpellerChanged(QString)));
@@ -2297,7 +2296,7 @@ bool Texmaker::canCloseNow(){
 		spellerManager.unloadAll();  //this saves the ignore list
 	}
 	programStopped = true;
-	Guardian::shutdown();
+    Guardian::shutdown();
 	return accept;
 }
 void Texmaker::closeEvent(QCloseEvent *e) {
@@ -5172,7 +5171,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	}
 #endif
 
-	if (realCmdLine) Guardian::summon();
+    if (realCmdLine) Guardian::summon();
 }
 
 void Texmaker::executeTests(const QStringList &args){
@@ -7855,8 +7854,7 @@ QThread* lastCrashedThread = 0;
 void recover(){
 	Texmaker::recoverFromCrash();
 }
-
-void Texmaker::recoverFromCrash(){	
+void Texmaker::recoverFromCrash(){
 	bool wasLoop;
 	QString name = getLastCrashInformation(wasLoop);
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
@@ -8052,6 +8050,14 @@ void Texmaker::moveCursorTodlh(){
     }
 }
 
-void Texmaker::openInternalDocViewer(QString package){
+void Texmaker::openInternalDocViewer(QString package,const QString command){
     runInternalCommand("txs:///view-pdf-internal", QFileInfo(package), "--embedded");
+    QList<PDFDocument*> pdfs = PDFDocument::documentList();
+    if(pdfs.count()>0){
+        PDFDocument* pdf=pdfs.first();
+        pdf->goToPage(0);
+        pdf->doFindDialog(command);
+        if(!command.isEmpty())
+            pdf->doFindAgain();
+    }
 }

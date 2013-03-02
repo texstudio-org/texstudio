@@ -255,7 +255,7 @@ signals:
 
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
-    void openInternalDocViewer(QString package);
+    void openInternalDocViewer(QString package,QString command="");
 private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 	void foldContextMenuRequested(int lineNumber, QPoint globalPos);

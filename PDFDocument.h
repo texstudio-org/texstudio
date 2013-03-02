@@ -368,7 +368,7 @@ public slots:
 	void reload(bool fillCache=true);
 	void fillRenderCache(int pg=-1);
 	void sideBySide();
-	void doFindDialog();
+    void doFindDialog(const QString command="");
 	void doFindAgain();
 	void goToSource();
 	void toggleFullScreen(const bool fullscreen);

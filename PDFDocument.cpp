@@ -3128,10 +3128,12 @@ void PDFDocument::dropEvent(QDropEvent *event)
 	}
 }
 
-void PDFDocument::doFindDialog()
+void PDFDocument::doFindDialog(const QString command)
 {
 	dwSearch->show();
 	dwSearch->setFocus();
+    if(!command.isEmpty())
+        dwSearch->setSearchText(command);
 }
 
 void PDFDocument::doFindAgain()
