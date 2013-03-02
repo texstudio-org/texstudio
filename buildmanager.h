@@ -8,7 +8,7 @@ class ProcessX;
 struct PreviewSource{
 	QString text;
 	int fromLine, toLine;
-	PreviewSource(){}
+	PreviewSource(): fromLine(0), toLine(0){}
 	PreviewSource(const QString& text, int fromLine, int toLine):
 	       text(text), fromLine(fromLine), toLine(toLine){}
 };
@@ -70,11 +70,13 @@ struct CommandInfo {
     }
 private:
 	friend class BuildManager;
-    QString baseName;
+	QString baseName;
 	GuessCommandLineFunc guessFunc;
 	QString deprecatedConfigName;
-	
+public:
 	static QString getProgramName(const QString& commandLine);
+	static QString getProgramNameUnquoted(const QString& commandLine);
+private:
 	QString getProgramName() const;
 };
 

@@ -95,6 +95,13 @@ QString CommandInfo::getProgramName(const QString& commandLine){
 	return cmdStr.mid(0, p);
 }
 
+QString CommandInfo::getProgramNameUnquoted(const QString& commandLine){
+	QString cmdStr = getProgramName(commandLine);
+	if (cmdStr.startsWith('"') && cmdStr.endsWith('"'))
+		cmdStr = cmdStr.mid(1, cmdStr.length()-2);
+	return cmdStr;
+}
+
 QString CommandInfo::getProgramName() const{
 	return getProgramName(commandLine);
 }
@@ -663,11 +670,37 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 	return res;
 }
 
+bool similarCommandInList(const QString& cmd, const QStringList& list){
+	if (list.contains(cmd)) return true;
+	//compare the executable base name with all base names in the list
+	//(could be made faster by caching the list base names, but it is not really an issue)
+	QString fullCmd = CommandInfo::getProgramNameUnquoted(cmd).replace(QDir::separator(), '/');
+#ifdef Q_OS_WIN
+	fullCmd = fullCmd.toLower();
+	if (fullCmd.endsWith(".exe")) fullCmd = fullCmd.left(fullListCmd.length()-4);
+#endif
+	int lastPathSep = fullCmd.lastIndexOf('/');
+	QString relCmd = lastPathSep < 0 ? fullCmd : fullCmd.mid(lastPathSep+1);
+	foreach (const QString& listCmd, list) {
+		QString fullListCmd = CommandInfo::getProgramNameUnquoted(listCmd).replace(QDir::separator(), '/');
+#ifdef Q_OS_WIN
+		fullListCmd = fullListCmd.toLower();
+		if (fullListCmd.endsWith(".exe")) fullListCmd = fullListCmd.left(fullListCmd.length()-4);
+#endif
+		if (fullCmd == fullListCmd) return true;
+		int lastPathSepListCmd = fullListCmd.lastIndexOf('/');
+		QString relListCmd = lastPathSepListCmd < 0 ? fullListCmd : fullListCmd.mid(lastPathSepListCmd+1);
+		if (lastPathSep < 0 || lastPathSepListCmd < 0) //do not compare relative, if both are absolute paths
+			if (relCmd == relListCmd) return true;
+	}
+	return false;
+}
+
 RunCommandFlags BuildManager::getSingleCommandFlags(const QString& subcmd) const{
 	int result = 0;
-	if (latexCommands.contains(subcmd)) result |= RCF_COMPILES_TEX; 
-	if (rerunnableCommands.contains(subcmd)) result |= RCF_RERUNNABLE; 
-	if (pdfCommands.contains(subcmd)) result |= RCF_CHANGE_PDF;
+	if (similarCommandInList(subcmd, latexCommands)) result |= RCF_COMPILES_TEX;
+	if (similarCommandInList(subcmd, pdfCommands)) result |= RCF_CHANGE_PDF;
+	if (rerunnableCommands.contains(subcmd)) result |= RCF_RERUNNABLE;
 	if (stdoutCommands.contains(subcmd)) result |= RCF_SHOW_STDOUT;
 	if (viewerCommands.contains(subcmd)) result |= RCF_SINGLE_INSTANCE;
 	return (RunCommandFlags)(result);
