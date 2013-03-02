@@ -17,7 +17,7 @@ class ConfigManager;
 
 class Session {
 public:
-	Session() {}
+	Session(): m_pdfEmbedded(false) {}
 	Session(const Session &s);
 
 	bool load(const QString &file);

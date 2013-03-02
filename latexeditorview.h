@@ -41,7 +41,7 @@ struct LinkOverlay {
 	QFormatRange formatRange;
 	LatexParser::ContextType context;
 
-	LinkOverlay() : type(Invalid) {}
+	LinkOverlay() : type(Invalid), context(LatexParser::Unknown) {}
 	LinkOverlay(const LinkOverlay &o);
 	LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ctx, LinkOverlayType ltype);
 

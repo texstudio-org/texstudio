@@ -1982,7 +1982,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 						bibReader=new bibtexReader(this);
 						connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
 						connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-						bibReader->start(); //The thread is started but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
+						bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
 					}
 					QString file=document->findFileFromBibId(bibID);
 					lastPos=pos;
