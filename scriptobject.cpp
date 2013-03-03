@@ -66,6 +66,7 @@ ProcessX* ScriptObject::system(const QString& commandline){
 		p = buildManager->newProcessInternal(commandline, QFileInfo()); //use internal, so people can pass | to sh
 	if (!p) return 0;
 	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
+	QMetaObject::invokeMethod(reinterpret_cast<QObject*>(app), "connectSubCommand", Q_ARG(ProcessX*, p), Q_ARG(bool, true));
 	p->startCommand();
 	p->waitForStarted();
 	return p;
