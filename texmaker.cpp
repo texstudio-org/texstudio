@@ -4614,6 +4614,13 @@ void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool 
 	else outputView->resetMessages(!configManager.showMessagesWhenCompiling);
 	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
+void Texmaker::connectSubCommand(ProcessX* p, bool showStdoutLocally){
+	connect(p, SIGNAL(standardErrorRead(QString)), outputView, SLOT(insertMessageLine(QString)));
+	if (p->showStdout()) {
+		p->setShowStdout((configManager.showStdoutOption == 2) || (showStdoutLocally && configManager.showStdoutOption == 1));
+		connect(p, SIGNAL(standardOutputRead(QString)), outputView, SLOT(insertMessageLine(QString)));
+	}
+}
 
 void Texmaker::beginRunningSubCommand(ProcessX* p, const QString& commandMain, const QString& subCommand, const RunCommandFlags& flags){
 	if (commandMain != subCommand)
@@ -4621,12 +4628,7 @@ void Texmaker::beginRunningSubCommand(ProcessX* p, const QString& commandMain, c
 	if (flags & RCF_COMPILES_TEX)
 		ClearMarkers();
 	//outputView->resetMessages();
-	
-	connect(p, SIGNAL(standardErrorRead(QString)), outputView, SLOT(insertMessageLine(QString)));
-	if (p->showStdout()) {
-		p->setShowStdout((configManager.showStdoutOption == 2) || ((RCF_SHOW_STDOUT & flags) && configManager.showStdoutOption == 1));
-		connect(p, SIGNAL(standardOutputRead(QString)), outputView, SLOT(insertMessageLine(QString)));
-	}
+	connectSubCommand(p, (RCF_SHOW_STDOUT & flags));
 }
 
 
