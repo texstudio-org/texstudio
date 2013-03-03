@@ -410,12 +410,15 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		}
         // help for any "known" command
         if( context==LatexParser::Command){
-            QString package=edView->document->parent->findPackageByCommand(ctxCommand);
+            QString command=ctxCommand;
+            if(ctxCommand=="\\begin"||ctxCommand=="\\end")
+                command=ctxCommand+"{"+ctxValue+"}";
+            QString package=edView->document->parent->findPackageByCommand(command);
             package.chop(4);
             if(!package.isEmpty()){
                 QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
                 act->setText(act->text().append(QString(" (%1)").arg(package)));
-                act->setData(package+"#"+ctxCommand);
+                act->setData(package+"#"+command);
                 edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
                 contextMenu->addAction(act);
             }
