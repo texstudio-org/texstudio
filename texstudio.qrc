@@ -186,6 +186,7 @@
         <file>completion/class-beamer.cwl</file>
         <file>completion/class-book.cwl</file>
         <file>completion/class-letter.cwl</file>
+        <file>completion/class-moderncv.cwl</file>
         <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
         <file>completion/class-scrlttr2.cwl</file>
         <file>completion/color.cwl</file>
@@ -289,6 +290,7 @@
         <file>completion/tocbibind.cwl</file>
         <file>completion/tocloft.cwl</file>
         <file>completion/todonotes.cwl</file>
+        <file>completion/txs.cwl</file>
         <file>completion/ulem.cwl</file>
         <file>completion/units.cwl</file>
         <file>completion/url.cwl</file>

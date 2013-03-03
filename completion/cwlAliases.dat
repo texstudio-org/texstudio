@@ -62,3 +62,7 @@ latex-document
 latex-mathsymbols
 tex
 graphicx
+moderncv:
+class-moderncv
+geometry
+babel

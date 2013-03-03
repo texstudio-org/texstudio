@@ -5,7 +5,7 @@ CONFIG += qt precompile_header uitools
 exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
-    script  
+    script
 !isEmpty(PHONON){
     QT += phonon
     DEFINES += PHONON
@@ -275,14 +275,14 @@ TRANSLATIONS += texstudio_cs.ts \
 win32:RC_FILE = win.rc
 
 # ##############################
-macx { 
+macx {
     # make sure that the documentation is right
     config += unix
-    
+
     # #universal tiger
     CONFIG += link_prl \
         x86_64
-    
+
     # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
@@ -293,7 +293,7 @@ macx {
 }
 
 # ###############################
-unix:!macx { 
+unix:!macx {
     isEmpty( PREFIX ):PREFIX = /usr
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
@@ -311,7 +311,7 @@ unix:!macx {
 }
 
 # ##########UNIX + MACX###############
-unix { 
+unix {
     UI_DIR = .ui
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
@@ -390,6 +390,12 @@ unix {
 	templates/template_Letter.json \
 	templates/template_Letter.png \
 	templates/template_Letter.tex \
+        templates/template_Moderncv_French.json \
+        templates/template_Moderncv_French.png \
+        templates/template_Moderncv_French.tex \
+        templates/template_Moderncv.json \
+        templates/template_Moderncv.png \
+        templates/template_Moderncv.tex \
 	templates/template_Prosper.json \
 	templates/template_Prosper.tex \
 	templates/template_Report.json \
@@ -566,7 +572,7 @@ SOURCES += quazip/quazip/zip.c \
 debug{
     message(Creating debug version)
     CONFIG -= release
-    
+
     SOURCES += tests/testmanager.cpp \
         tests/testutil.cpp \
         tests/qcetestutil.cpp \
@@ -606,31 +612,31 @@ macx:LIBS += -framework CoreFoundation
 
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
-isEmpty(NO_POPPLER_PREVIEW) { 
-    unix:!macx { 
+isEmpty(NO_POPPLER_PREVIEW) {
+    unix:!macx {
         INCLUDEPATH += /usr/include/poppler/qt4
         LIBS += -L/usr/lib \
             -lpoppler-qt4 \
             -lz
     }
-    macx { 
+    macx {
         INCLUDEPATH += /usr/local/include/poppler/qt4
         LIBS += -L/usr/lib \
             -L/usr/local/lib \
             -lpoppler-qt4 \
             -lz
     }
-    win32 { 
+    win32 {
 	INCLUDEPATH  += ./include_win32
 	LIBS += ./zlib1.dll \
 	    ./libpoppler-qt4.dll \
     }
 }
-!isEmpty(NO_POPPLER_PREVIEW) { 
+!isEmpty(NO_POPPLER_PREVIEW) {
     DEFINES += NO_POPPLER_PREVIEW
     message("Internal pdf previewer disabled as you wish.")
 }
-!isEmpty(NO_CRASH_HANDLER) { 
+!isEmpty(NO_CRASH_HANDLER) {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
 }
@@ -638,14 +644,14 @@ isEmpty(NO_POPPLER_PREVIEW) {
 
 # ###############################
 # add files to svn if team is set
-CONFIG(team):!CONFIG(build_pass) { 
+CONFIG(team):!CONFIG(build_pass) {
     SVNPREPATH = ./
     SVNPATH = /.svn/text-base/
     SVNEXT = .svn-base
     ALLFILES = $${HEADERS}
     ALLFILES += $${SOURCES}
     ALLFILES += $${FORMS}
-    for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) { 
+    for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
         warning($${filename} not contained in svn base will be added)
         system(svn add $${filename})
     }
@@ -659,7 +665,7 @@ exists(./.svn/entries){
     LIBS += svn_revision.o
   } else: {
     svn_revision.target = svn_revision.cpp
-    svn_revision.depends = .svn/entries  
+    svn_revision.depends = .svn/entries
     svn_revision.commands = echo \"const char* TEXSTUDIO_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
     QMAKE_EXTRA_TARGETS += svn_revision
     !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
@@ -675,11 +681,9 @@ exists(./.svn/entries){
 }
 
 # moved to the end because it seems to destroy the precompiled header
-SOURCES+=synctex_parser_utils.c synctex_parser.c 
+SOURCES+=synctex_parser_utils.c synctex_parser.c
 
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
 QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
 
 QMAKE_LFLAGS += -rdynamic
-
-
