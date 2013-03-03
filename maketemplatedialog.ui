@@ -84,13 +84,8 @@
          <bool>true</bool>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>1</number>
         </property>
-        <item>
-         <property name="text">
-          <string notr="true">Public Domain</string>
-         </property>
-        </item>
         <item>
          <property name="text">
           <string notr="true">Creative Commons CC BY</string>
@@ -124,6 +119,16 @@
         <item>
          <property name="text">
           <string notr="true">GNU Free Documentation License</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>LaTeX Project Public License (LPPL)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">Public Domain</string>
          </property>
         </item>
        </widget>
