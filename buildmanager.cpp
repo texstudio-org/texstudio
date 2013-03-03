@@ -677,7 +677,7 @@ bool similarCommandInList(const QString& cmd, const QStringList& list){
 	QString fullCmd = CommandInfo::getProgramNameUnquoted(cmd).replace(QDir::separator(), '/');
 #ifdef Q_OS_WIN
 	fullCmd = fullCmd.toLower();
-	if (fullCmd.endsWith(".exe")) fullCmd = fullCmd.left(fullListCmd.length()-4);
+	if (fullCmd.endsWith(".exe")) fullCmd = fullCmd.left(fullCmd.length()-4);
 #endif
 	int lastPathSep = fullCmd.lastIndexOf('/');
 	QString relCmd = lastPathSep < 0 ? fullCmd : fullCmd.mid(lastPathSep+1);
