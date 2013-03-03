@@ -291,7 +291,6 @@
         <file>completion/tocbibind.cwl</file>
         <file>completion/tocloft.cwl</file>
         <file>completion/todonotes.cwl</file>
-        <file>completion/txs.cwl</file>
         <file>completion/ulem.cwl</file>
         <file>completion/units.cwl</file>
         <file>completion/url.cwl</file>
