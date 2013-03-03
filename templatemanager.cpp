@@ -27,11 +27,9 @@ QString TemplateManager::builtinTemplateDir()
 #define PREFIX ""
 #endif
     QString fn=PREFIX"/share/texstudio/";
-    qDebug()<<fn;
     if(!QDir(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
         fn=QCoreApplication::applicationDirPath()+"/templates/";
     }
-    qDebug()<<fn;
     return fn;
 #endif
 }
