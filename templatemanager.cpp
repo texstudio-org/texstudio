@@ -15,7 +15,7 @@ QString TemplateManager::builtinTemplateDir()
 {
 #ifdef Q_OS_MAC
     QString fn="/Applications/texstudio.app/Contents/Resources/";
-    if(!QFile(fn).isReadable()){ // fallback if program is not packaged as app (e.g. debug build )
+    if(!QDir(fn).isReadable()){ // fallback if program is not packaged as app (e.g. debug build )
         fn=QCoreApplication::applicationDirPath()+"/templates/";
     }
     return fn;
@@ -28,7 +28,7 @@ QString TemplateManager::builtinTemplateDir()
 #endif
     QString fn=PREFIX"/share/texstudio/";
     qDebug()<<fn;
-    if(!QFile(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
+    if(!QDir(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
         fn=QCoreApplication::applicationDirPath()+"/templates/";
     }
     qDebug()<<fn;
