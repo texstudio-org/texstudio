@@ -26,11 +26,13 @@ QString TemplateManager::builtinTemplateDir()
 #if !defined(PREFIX)
 #define PREFIX ""
 #endif
+#ifndef Q_OS_MAC
     QString fn=PREFIX"/share/texstudio/";
     if(!QDir(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
         fn=QCoreApplication::applicationDirPath()+"/templates/";
     }
     return fn;
+#endif
 #endif
 }
 
