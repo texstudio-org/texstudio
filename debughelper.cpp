@@ -122,7 +122,7 @@ typedef BOOL WINAPI (*SymGetLineFromAddr64Func)(HANDLE, DWORD64, PDWORD, PIMAGEH
 
 #define CPU_CONTEXT_TYPE CONTEXT
 #define LOAD_FUNCTION(name, ansiname) static name##Func name = (name##Func)GetProcAddress(dbghelp, ansiname);
-#define LOAD_FUNCTIONREQ(name, ansiname) LOAD_FUNCTION(name,ansiname) if (!name) return "failed to load function: " #name;
+#define LOAD_FUNCTIONREQRET(name, ansiname, result) LOAD_FUNCTION(name,ansiname) if (!name) return result;
 
 HMODULE dbghelp = 0;
 
@@ -136,7 +136,7 @@ bool initDebugHelp(){
 	if (dbghelp != 0) return true; //don't call syminitialize twice
 	if (!loadDbgHelp()) return false;
 
-	LOAD_FUNCTIONREQ(SymInitialize, "SymInitialize");
+	LOAD_FUNCTIONREQRET(SymInitialize, "SymInitialize", false);
 
 	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0)?GetCurrentProcess():(HANDLE)GetCurrentProcessId(), 0, true))
 		return false;
@@ -149,7 +149,7 @@ QStringList backtrace_symbols_win(void** addr, int size){
 		else return QStringList("Failed to load dbghelp");
 	}
 
-	LOAD_FUNCTIONREQ(SymGetSymFromAddr64, "SymGetSymFromAddr64");
+	LOAD_FUNCTIONREQRET(SymGetSymFromAddr64, "SymGetSymFromAddr64", QStringList("Failed to load SymGetSymFromAddr64"));
 	LOAD_FUNCTION(SymGetLineFromAddr64, "SymGetLineFromAddr64");
 
 	HANDLE process = GetCurrentProcess();
