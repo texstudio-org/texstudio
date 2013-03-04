@@ -669,7 +669,7 @@ QString LatexParser::removeOptionBrackets(const QString &option) {
 int LatexParser::findContext(QString &line,int &column) const{
 	if(line.isEmpty())
 		return 0;
-	QString eow="\\[]{} ";
+    QString eow="\\[]{} $";
 	int i=column;
 	if(i>=line.length())
 		i=line.length()-1;

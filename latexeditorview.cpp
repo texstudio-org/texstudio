@@ -1242,8 +1242,12 @@ void LatexEditorView::openPackageDocumentation(QString package){
         package=package.left(i);
     }
     // replace some package denominations
-    if(package=="latex-document"||package=="latex-dev")
+    if(package=="latex-document"||package=="latex-dev"||package=="latex-mathsymbols")
         package="latex2e";
+    if(package=="class-scrartcl,scrreprt,scrbook")
+        package="scrartcl";
+    if(package.startsWith("class-"))
+        package=package.mid(6);
 	if (!package.isEmpty()) {
         if(config->texdocHelpInInternalViewer){
             QStringList args;
