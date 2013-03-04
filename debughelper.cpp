@@ -145,7 +145,7 @@ bool initDebugHelp(){
 
 QStringList backtrace_symbols_win(void** addr, int size){
 	if (!initDebugHelp()){
-		if (dbghelp) return QStringList("Failed to initialize SymInitialize " + QString::number(GetLastError()));
+		if (dbghelp) return QStringList(QString("Failed to initialize SymInitialize ") + QString::number(GetLastError()));
 		else return QStringList("Failed to load dbghelp");
 	}
 
