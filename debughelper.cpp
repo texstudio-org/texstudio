@@ -1,7 +1,6 @@
 #include "debughelper.h"
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
-#include "execinfo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef NO_CRASH_HANDLER
@@ -145,9 +144,10 @@ bool initDebugHelp(){
 }
 
 QStringList backtrace_symbols_win(void** addr, int size){
-	if (!initDebugHelp())
-		if (dbghelp) return "Failed to initialize SymInitialize " + QString::number(GetLastError());
-		else return "Failed to load dbghelp";
+	if (!initDebugHelp()){
+		if (dbghelp) return QStringList("Failed to initialize SymInitialize " + QString::number(GetLastError()));
+		else return QStringList("Failed to load dbghelp");
+	}
 
 	LOAD_FUNCTIONREQ(SymGetSymFromAddr64, "SymGetSymFromAddr64");
 	LOAD_FUNCTION(SymGetLineFromAddr64, "SymGetLineFromAddr64");
@@ -174,7 +174,7 @@ QStringList backtrace_symbols_win(void** addr, int size){
 
 
 		if (SymGetLineFromAddr64) {
-			if ((*SymGetLineFromAddr64)(process, stackFrames[i], &displacement32, &line))
+			if ((*SymGetLineFromAddr64)(process, (DWORD64)addr[i], &displacement32, &line))
 				cur += " in " + QString::fromLocal8Bit(line.FileName)+":"+QString::number(line.LineNumber);
 		}
 
@@ -188,6 +188,7 @@ QString temporaryFileNameFormat(){
 }
 
 #else
+#include "execinfo.h"
 QString temporaryFileNameFormat(){
 	return "/tmp/texstudio_backtrace%1.txt";
 }
@@ -217,15 +218,17 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 	SimulatedCPU copystate = state;
 	int size = copystate.backtrace(trace, 48);
 	//size = backtrace(trace, 48);
-
-	char** messages = backtrace_symbols(trace, size);
-	QStringList additionalMessages;
 #ifdef Q_WS_WIN
-	additionalMessages = backtrace_win(trace, size);
+	QStringList additionalMessages = backtrace_symbols_win(trace, size);
+	char** messages = 0;
+#else
+	QStringList additionalMessages;
+	char** messages = backtrace_symbols(trace, size);
 #endif
 	for (int i=0; i<size; ++i) {
-		if (i >= additionalMessages.size()) PRINT("[bt] %s\n", messages[i]);
-		else PRINT("[bt] %p %s %s\n", trace[i], messages[i], qPrintable(additionalMessages[i]));
+		const char * message = messages ? messages[i] : "";
+		if (i >= additionalMessages.size()) PRINT("[bt] %s\n", message);
+		else PRINT("[bt] %p %s %s\n", trace[i], message, qPrintable(additionalMessages[i]));
 	}
 
 	if (logFile) fclose(logFile);
@@ -546,14 +549,14 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 
 	if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
 	
-	if ((t == EXCEPTION_ACCESS_VIOLATION || t == EXCEPTION_STACK_OVERFLOW)
+	if ((ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW)
 	    && sigSegvRecoverReturnAddress) {
 		SimulatedCPU cpu;
 		cpu.set_all(ExceptionInfo->ContextRecord);
 		cpu.jmp((char*)sigSegvRecoverReturnAddress);
 		sigSegvRecoverReturnAddress = 0;
 		cpu.get_all(ExceptionInfo->ContextRecord);
-		return;
+		return EXCEPTION_CONTINUE_EXECUTION;
 	}
 
 	//if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) print_backtrace("");
