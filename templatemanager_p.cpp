@@ -108,7 +108,9 @@ bool LocalLatexTemplate::readMetaData() {
 		txsWarning(TemplateManager::tr("You do not have read permission to this file:")+QString("\n%1").arg(f.fileName()));
 		return false;
 	}
-	return minimalJsonParse(f.readAll(), metaData);
+	QTextStream in(&f);
+	in.setCodec("UTF-8");
+	return minimalJsonParse(in.readAll(), metaData);
 }
 
 bool LocalLatexTemplate::saveMetaData() {
@@ -117,6 +119,7 @@ bool LocalLatexTemplate::saveMetaData() {
 		return false;
 
 	QTextStream out(&f);
+	out.setCodec("UTF-8");
 	out << "{\n";
 	bool first = true;
 	foreach (const QString &key, metaData.keys()) {

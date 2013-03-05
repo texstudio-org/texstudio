@@ -1850,6 +1850,7 @@ void Texmaker::fileMakeTemplate() {
 			txsInformation(tr("Could not write template meta data:") + "\n" + fn);
 		} else {
 			QTextStream out(&file);
+			out.setCodec("UTF-8");
 			out << templateDialog.generateMetaData();
 			file.close();
 		}
@@ -8056,6 +8057,7 @@ void Texmaker::openInternalDocViewer(QString package,const QString command){
     runInternalCommand("txs:///view-pdf-internal", QFileInfo(package), "--embedded");
     QList<PDFDocument*> pdfs = PDFDocument::documentList();
     if(pdfs.count()>0){
+		pdfs[0]->raise();
         PDFDocument* pdf=pdfs.first();
         pdf->goToPage(0);
         pdf->doFindDialog(command);
