@@ -211,6 +211,12 @@ void TemplateSelector::templatesTreeContextMenu(QPoint point) {
 
 void TemplateSelector::editTemplate() {
 	TemplateHandle th = selectedTemplate();
+	if (th.isMultifile()) {
+		txsInformation("Editing of multi-file templates is not supported.\n"
+					   "Please open the template location and unzip the\n"
+					   "template to edit individual files.");
+		return;
+	}
 	if (!th.isEditable()) {
 		txsCritical(tr("This template cannot be edited."));
 		return;
