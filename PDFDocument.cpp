@@ -1642,16 +1642,21 @@ void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) //
 	scaleOption = kFixedMag;
 	emit changedScaleOption(scaleOption);
 
+	double zoomStepFactor = globalConfig->zoomStepFactor;
+	if (zoomStepFactor > 10) zoomStepFactor = 10;
+	if (zoomStepFactor < 1.001) zoomStepFactor = 1.001;
+
+
 	QPoint globalPos = mapToGlobal(clickPos);
 	if (dir > 0 && scaleFactor < kMaxScaleFactor) {
-		scaleFactor *= sqrt(2.0);
+		scaleFactor *= zoomStepFactor;
 		if (fabs(scaleFactor - ROUND(scaleFactor)) < 0.01)
 			scaleFactor = ROUND(scaleFactor);
 		if (scaleFactor > kMaxScaleFactor)
 			scaleFactor = kMaxScaleFactor;
 	}
 	else if (dir < 0 && scaleFactor > kMinScaleFactor) {
-		scaleFactor /= sqrt(2.0);
+		scaleFactor /= zoomStepFactor;
 		if (fabs(scaleFactor - ROUND(scaleFactor)) < 0.01)
 			scaleFactor = ROUND(scaleFactor);
 		if (scaleFactor < kMinScaleFactor)

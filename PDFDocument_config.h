@@ -14,6 +14,7 @@ struct PDFDocumentConfig{
 	int scaleOption;
 	int scale;
 
+	double zoomStepFactor;
 
 	int magnifierSize, magnifierShape;
 	bool magnifierBorder;
