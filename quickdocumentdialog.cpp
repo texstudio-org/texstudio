@@ -29,7 +29,7 @@ qreal convertLatexLengthToMetre(const qreal& length, const QString& unit){
 //options for the configmanager
 QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherEncodingList, QuickDocumentDialog::otherOptionsList;
 QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::author;
-bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package;
+bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package, QuickDocumentDialog::graphicx_package;
 double geometryPageWidth, geometryPageHeight, geometryMarginLeft, geometryMarginRight, geometryMarginTop, geometryMarginBottom;
 QString geometryPageWidthUnit, geometryPageHeightUnit, geometryMarginLeftUnit, geometryMarginRightUnit, geometryMarginTopUnit, geometryMarginBottomUnit;
 bool geometryPageWidthEnabled, geometryPageHeightEnabled, geometryMarginLeftEnabled, geometryMarginRightEnabled, geometryMarginTopEnabled, geometryMarginBottomEnabled;
@@ -100,6 +100,8 @@ QString QuickDocumentDialog::getNewDocumentText(){
 		tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxIDX->isChecked())
 		tag+=QString("\\usepackage{makeidx}\n");
+	if (ui.checkBoxGraphicx->isChecked())
+		tag+=QString("\\usepackage{graphicx}\n");
 
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
 	    ui.checkBoxGeometryPageHeight->isChecked() ||
@@ -138,6 +140,7 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface& configManager)
 	configManager.registerOption("Quick/Encoding",&document_encoding, "latin1");
 	configManager.registerOption("Quick/AMS",&ams_packages, true);
 	configManager.registerOption("Quick/MakeIndex",&makeidx_package, false);
+	configManager.registerOption("Quick/graphicx",&graphicx_package, true);
 	configManager.registerOption("Quick/Author",&author, "");
 
 	configManager.registerOption("Quick/Geometry Page Width",&geometryPageWidth, 0.0f);
@@ -228,6 +231,7 @@ void QuickDocumentDialog::Init() {
 	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
 	configManagerInterface->linkOptionToDialogWidget(&ams_packages, ui.checkBoxAMS);
 	configManagerInterface->linkOptionToDialogWidget(&makeidx_package, ui.checkBoxIDX);
+	configManagerInterface->linkOptionToDialogWidget(&graphicx_package, ui.checkBoxGraphicx);
 	configManagerInterface->linkOptionToDialogWidget(&author, ui.lineEditAuthor);
 
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
