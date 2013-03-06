@@ -44,14 +44,35 @@ void Help::viewTexdoc(QString package)
 	}
 }
 
+
+bool Help::isMiktexTexdoc() {
+	static bool firstQuery = true;
+	static bool isMiktexTexdoc = false;
+	if (firstQuery) {
+		firstQuery = false;
+		QProcess proc;
+		proc.start("texdoc --version");
+		proc.waitForFinished(1000);
+		QString answer = QString(proc.readAll());
+		isMikexTexdoc = answer.startsWith("MiKTeX");
+	}
+	return isMiktexTexdoc;
+}
+
 void Help::texdocAvailableRequest(const QString &package)
 {
 	if (package.isEmpty())
 		return;
 
 	QStringList args;
-    //args << "--print-only" << package;
-    args << "-v"; // --print-only does not exist in texlive 2012, actual is response is not used either ...
+	if (isMiktexTexdoc()) {
+		args << "--print-only" << package;
+	} else {
+		args << "-v"; // --print-only does not exist in texlive 2012, actual is response is not used either ...
+		// TODO: not the right option: don't open the viewer here
+		// There seems to be no option yielding only the would be called command
+		// Alternative: texdoc --list -M and parse the first line for the package name
+	}
 	QProcess *proc = new QProcess(this);
 	proc->setProperty("package", package);
 	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
