@@ -8,6 +8,8 @@ class Help : public QObject
 	Q_OBJECT
 public:
 	static Help *instance();
+
+	bool isMiktexTexdoc();
 	
 signals:
 	void texdocAvailableReply(const QString &package, bool available);
