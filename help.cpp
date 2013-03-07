@@ -44,19 +44,17 @@ void Help::viewTexdoc(QString package)
 	}
 }
 
+int Help::texDocSystem=0;
 
 bool Help::isMiktexTexdoc() {
-	static bool firstQuery = true;
-	static bool isMiktexTexdoc = false;
-	if (firstQuery) {
-		firstQuery = false;
+    if (!texDocSystem) {
 		QProcess proc;
 		proc.start("texdoc --version");
 		proc.waitForFinished(1000);
 		QString answer = QString(proc.readAll());
-		isMikexTexdoc = answer.startsWith("MiKTeX");
+        texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
 	}
-	return isMiktexTexdoc;
+    return (texDocSystem==1);
 }
 
 void Help::texdocAvailableRequest(const QString &package)
