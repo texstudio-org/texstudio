@@ -721,9 +721,13 @@ void ConfigDialog::customContextMenuRequested(const QPoint &p){
 }
 
 void ConfigDialog::loadOtherIcon(){
+	QListWidgetItem *item=ui.listCustomToolBar->currentItem();
+	if (!item) {
+		txsWarning(tr("You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item."));
+		return;
+	}
 	QString fn = QFileDialog::getOpenFileName(this,tr("Select a File"),"",tr("Images (*.png *.xpm *.jpg *.bmp *.svg)"));
 	if(!fn.isEmpty()){
-		QListWidgetItem *item=ui.listCustomToolBar->currentItem();
 		item->setIcon(QIcon(fn));
 		replacedIconsOnMenus->insert(item->data(Qt::UserRole).toString(),fn);
 		ui.listCustomToolBar->reset();
