@@ -47,6 +47,14 @@
 	<word format="keyword" caseSensitive="false">split</word>
 	<word format="keyword" caseSensitive="false">range[.] switch</word>
 	<sequence format="keyword" caseSensitive="false">young[.] range[.] switch</sequence>
-	<word format="extra-keyword">[.]</word>
+	
+	
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>[.]%</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">[.][{]</sequence>
+	<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">[.][}]</sequence>
+	<word format="extra-keyword" ambiguous="true">[.]</word>
 </QNFA>
 
