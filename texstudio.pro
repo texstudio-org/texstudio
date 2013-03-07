@@ -659,13 +659,13 @@ CONFIG(team):!CONFIG(build_pass) {
 OTHER_FILES += universalinputdialog.*
 
 
-exists(./.svn/entries){
+exists(./.svn/entries)|exists(./.svn/wc.db){
   win32: {
     QMAKE_PRE_LINK += \"$${PWD}/svn_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += svn_revision.o
   } else: {
     svn_revision.target = svn_revision.cpp
-    svn_revision.depends = .svn/entries
+    svn_revision.depends = .svn/entries .svn/wc.db  # storage of information changed from entries to wc.db in SVN 1.7, entries is kept for compatibility with earlier versions
     svn_revision.commands = echo \"const char* TEXSTUDIO_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
     QMAKE_EXTRA_TARGETS += svn_revision
     !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
