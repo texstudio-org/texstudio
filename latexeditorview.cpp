@@ -44,6 +44,8 @@
 #include "scriptengine.h"
 #include "diffoperations.h"
 
+#include "help.h"
+
 QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
 
 //------------------------------Default Input Binding--------------------------------
@@ -1251,7 +1253,13 @@ void LatexEditorView::openPackageDocumentation(QString package){
 	if (!package.isEmpty()) {
         if(config->texdocHelpInInternalViewer){
             QStringList args;
-            args << "--list" << "--machine" << package;
+            if(Help::isMiktexTexdoc()){
+                args << "--list-only";
+            }
+            else {
+                args << "--list" << "--machine";
+            }
+            args << package;
             QProcess proc(this);
             //connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
             proc.start("texdoc", args);
