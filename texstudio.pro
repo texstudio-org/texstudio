@@ -665,7 +665,11 @@ exists(./.svn/entries)|exists(./.svn/wc.db){
     LIBS += svn_revision.o
   } else: {
     svn_revision.target = svn_revision.cpp
-    svn_revision.depends = .svn/entries .svn/wc.db  # storage of information changed from entries to wc.db in SVN 1.7, entries is kept for compatibility with earlier versions
+    exists(./.svn/wc.db){
+      svn_revision.depends = .svn/entries .svn/wc.db  # storage of information changed from entries to wc.db in SVN 1.7, entries is kept for compatibility with earlier versions
+    }else{
+      svn_revision.depends = .svn/entries
+    }
     svn_revision.commands = echo \"const char* TEXSTUDIO_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
     QMAKE_EXTRA_TARGETS += svn_revision
     !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
