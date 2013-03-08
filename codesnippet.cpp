@@ -31,6 +31,8 @@ inline void translatePlaceholder(const QString& content, QString& curLine, CodeS
 
 
 void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, CodeSnippetPlaceHolder& ph){
+    if(i>=snippet.length())
+        return; // avoid possible crash
 	QString tmpPlaceHolderContent;
 	ph.offset = curLine.length();
 	ph.length = 0;
