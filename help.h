@@ -9,7 +9,7 @@ class Help : public QObject
 public:
 	static Help *instance();
 
-    bool isMiktexTexdoc();
+    static bool isMiktexTexdoc();
     static int texDocSystem;
 	
 signals:
