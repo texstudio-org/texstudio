@@ -1268,17 +1268,26 @@ void LatexEditorView::openPackageDocumentation(QString package){
                 return;
             }
             QString output=proc.readAllStandardOutput();
-            QStringList lst=output.split("\n");
-            if(lst.count()>0){
-                output=lst.first();
-                output=output.simplified();
-                lst=output.split(" ");
-                if(lst.count()>2){
-                    output=lst.at(2);
-                    if(output.endsWith(".pdf"))
-                        emit openInternalDocViewer(output,command);
-                }
-            }
+	    if(Help::isMiktexTexdoc()){
+		QStringList lst=output.split("\r\n");
+		for(int i=0;i<lst.count();i++){
+		    output=lst.at(i);
+		    if(output.endsWith(".pdf"))
+			emit openInternalDocViewer(output,command);
+		}
+	    }else{
+		QStringList lst=output.split("\n");
+		if(lst.count()>0){
+		    output=lst.first();
+		    output=output.simplified();
+		    lst=output.split(" ");
+		    if(lst.count()>2){
+			output=lst.at(2);
+			if(output.endsWith(".pdf"))
+			    emit openInternalDocViewer(output,command);
+		    }
+		}
+	    }
         }else{
             QStringList args;
             args << "--view" << package;
