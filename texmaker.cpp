@@ -4909,6 +4909,15 @@ void Texmaker::TexdocHelp() {
 		selection = currentEditorView()->editor->cursor().selectedText();
 		// TODO is there a better way to get the used packages than using the .cwl files and removing cwls for native commands
 		packages = currentEditorView()->document->parent->cachedPackages.keys();
+        // remove empty packages whicjh probably do not exist
+        QMutableStringListIterator it(packages);
+        while (it.hasNext()) {
+            QString elem=it.next();
+            LatexPackage ltxPackage=currentEditorView()->document->parent->cachedPackages.value(elem);
+            if(ltxPackage.completionWords.isEmpty())
+                it.remove();;
+        }
+
 		packages.replaceInStrings(".cwl", "");
 		packages.removeAll("latex-209");
 		packages.removeAll("latex-dev");
