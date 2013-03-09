@@ -1116,6 +1116,12 @@ void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
     updateCitationFormats();
 }
 
+bool LatexEditorView::containsBibTeXId(QString id){
+    if(!bibTeXIds)
+        return false;
+    return bibTeXIds->contains(id);
+}
+
 int LatexEditorView::bookMarkId(int bookmarkNumber) {
     if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
     else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));

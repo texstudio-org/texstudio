@@ -905,7 +905,16 @@ int LatexDocument::countRefs(const QString& name){
 }
 
 bool LatexDocument::bibIdValid(const QString& name){
-	return !findFileFromBibId(name).isEmpty();
+    bool result=!findFileFromBibId(name).isEmpty();
+    if(!result){
+        foreach(const LatexDocument* doc,getListOfDocs()){
+             if(doc->getEditorView()->containsBibTeXId(name)){
+                 result=true;
+                 break;
+             }
+        }
+    }
+    return result;
 }
 
 QString LatexDocument::findFileFromBibId(const QString& bibId){
