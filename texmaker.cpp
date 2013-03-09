@@ -1445,7 +1445,6 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	edit->setSpellerManager(&spellerManager);
 	edit->setSpeller("<default>");
 	
-	edit->setBibTeXIds(&documents.allBibTeXIds);
 }
 
 //complete the new editor view configuration (edit->document is set)
@@ -5748,11 +5747,13 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 			bibIds<<bibTex.ids;
 		}
 		//handle bibitem definitions
-		bibIds<<documents.bibItems.toList();
+        foreach(const LatexDocument* doc,docs){
+            bibIds<<doc->bibItems();
+        }
 		//automatic use of cite commands
 		foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
 			QString temp=citeCommand+"{%1}";
-			foreach (const QString &value, documents.bibItems)
+            foreach (const QString &value, bibIds)
 				words.insert(temp.arg(value));
 		}
 		completer->setAdditionalWords(bibIds.toSet(),CT_CITATIONS);

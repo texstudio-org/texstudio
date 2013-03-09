@@ -86,7 +86,6 @@ public:
 	
 	static void setCompleter(LatexCompleter* newCompleter);
 	static LatexCompleter* getCompleter();
-	void setBibTeXIds(QSet<QString>* newIds);
     bool containsBibTeXId(QString id);
 
     void updateCitationFormats();
@@ -146,7 +145,6 @@ private:
 	SpellerUtility* speller;
 	bool useDefaultSpeller;
 	static LatexCompleter* completer;
-	QSet<QString>* bibTeXIds;
 	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
 	int curChangePos;
 	
