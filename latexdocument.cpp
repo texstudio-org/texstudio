@@ -908,11 +908,24 @@ bool LatexDocument::bibIdValid(const QString& name){
     bool result=!findFileFromBibId(name).isEmpty();
     if(!result){
         foreach(const LatexDocument* doc,getListOfDocs()){
-             if(doc->getEditorView()->containsBibTeXId(name)){
+             //if(doc->getEditorView()->containsBibTeXId(name)){
+            if(doc->bibItems().contains(name)){
                  result=true;
                  break;
              }
         }
+    }
+    return result;
+}
+
+bool LatexDocument::isBibItem(const QString& name){
+    bool result=false;
+    foreach(const LatexDocument* doc,getListOfDocs()){
+         //if(doc->getEditorView()->containsBibTeXId(name)){
+        if(doc->bibItems().contains(name)){
+             result=true;
+             break;
+         }
     }
     return result;
 }
@@ -1063,7 +1076,7 @@ QStringList LatexDocument::refItems() const{
 }
 
 QStringList LatexDocument::bibItems() const{
-	return someItems(mBibItem);
+    return someItems(mBibItem);
 }
 
 void LatexDocument::updateRefsLabels(const QString& ref){
@@ -1812,7 +1825,6 @@ bool LatexDocuments::singleMode() const {
 
 void LatexDocuments::updateBibFiles(bool updateFiles){
   mentionedBibTeXFiles.clear();
-  QSet<QString> newBibItems;
   foreach (LatexDocument* doc, documents) {
     if(updateFiles){
       QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
@@ -1822,7 +1834,6 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
         mentionedBibTeXFiles << it.value().absolute;
       }
     }
-    newBibItems.unite(QSet<QString>::fromList(doc->bibItems()));
   }
 
   bool changed=false;
@@ -1841,6 +1852,7 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
         mentionedBibTeXFiles.append(bibTex.linksTo);
     }
   }
+  /*
   if (changed || (newBibItems!=bibItems)) {
     allBibTeXIds.clear();
     bibItems=newBibItems;
@@ -1852,7 +1864,7 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
       if (documents[i]->getEditorView())
         documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
     bibTeXFilesModified=true;
-  }
+  }*/
 }
 
 

@@ -518,7 +518,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),bibTeXIds(0),curChangePos(-1),config(aconfig),bibReader(0) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),curChangePos(-1),config(aconfig),bibReader(0) {
 	Q_ASSERT(config);
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
@@ -1094,13 +1094,11 @@ LatexCompleter* LatexEditorView::getCompleter(){
 }
 
 void LatexEditorView::updateCitationFormats(){
-    Q_ASSERT(bibTeXIds);
     for (int i=0; i<editor->document()->lines(); i++) {
         QList<QFormatRange> li=editor->document()->line(i).getOverlays();
         QString curLineText=editor->document()->line(i).text();
         for (int j=0; j<li.size(); j++)
             if (li[j].format == citationPresentFormat || li[j].format == citationMissingFormat){
-                //int newFormat=bibTeXIds->contains(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
                 int newFormat=document->bibIdValid(curLineText.mid(li[j].offset,li[j].length))?citationPresentFormat:citationMissingFormat;
                 if (newFormat!=li[j].format) {
                     editor->document()->line(i).removeOverlay(li[j]);
@@ -1111,15 +1109,8 @@ void LatexEditorView::updateCitationFormats(){
     }
 }
 
-void LatexEditorView::setBibTeXIds(QSet<QString>* newIds){
-	bibTeXIds=newIds;
-    updateCitationFormats();
-}
-
 bool LatexEditorView::containsBibTeXId(QString id){
-    if(!bibTeXIds)
-        return false;
-    return bibTeXIds->contains(id);
+    return document->bibIdValid(id);
 }
 
 int LatexEditorView::bookMarkId(int bookmarkNumber) {
@@ -1646,20 +1637,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				addedOverlayReference = true;
 			}
 			if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
-				if (bibTeXIds) {
 					QStringList citations=lr.word.split(",");
 					int pos=lr.wordStartIndex;
 					foreach ( const QString &cit, citations) {
 						QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
 						//check and highlight
-                        //if (bibTeXIds->contains(rcit))
                         if(document->bibIdValid(rcit))
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
 						else
 							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
 						pos+=cit.length()+1;
 					}
-				}
 				addedOverlayCitation = true;
 			}
 			if (status==LatexReader::NW_COMMENT) break;
@@ -1980,62 +1968,61 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
 	case LatexParser::Citation:
-		if (bibTeXIds) {
-			QString tooltip(tr("Citation correct (reading ...)"));
-			QString bibID;
-			// get bibID at cursor
-			int col_start=cursor.columnNumber();
-			if(col_start>=line.length())
-				col_start=line.length()-1;
-			if (QString("{,}").contains(line[col_start])) break;
+    {
+        QString tooltip(tr("Citation correct (reading ...)"));
+        QString bibID;
+        // get bibID at cursor
+        int col_start=cursor.columnNumber();
+        if(col_start>=line.length())
+            col_start=line.length()-1;
+        if (QString("{,}").contains(line[col_start])) break;
 
-			int col_stop=col_start;
-			QString eow="{,";
-			while(col_start>=0 && !eow.contains(line[col_start]))
-				col_start--;
-			eow="},";
-			while(col_stop<line.length() && !eow.contains(line[col_stop]))
-				col_stop++;
-			bibID = trimLeft(line.mid(col_start+1,col_stop-col_start-1));
+        int col_stop=col_start;
+        QString eow="{,";
+        while(col_start>=0 && !eow.contains(line[col_start]))
+            col_start--;
+        eow="},";
+        while(col_stop<line.length() && !eow.contains(line[col_stop]))
+            col_stop++;
+        bibID = trimLeft(line.mid(col_start+1,col_stop-col_start-1));
 
-			//if (!bibTeXIds->contains(bibID)) {
-			if(!document->bibIdValid(bibID)) {
-				tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
+        if(!document->bibIdValid(bibID)) {
+            tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
 
-				if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
-					tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
-				}
-			} else {
-				if (document->parent->bibItems.contains(bibID)) {
-					// by bibitem defined citation
-					tooltip.clear();
-					QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
-					QDocumentLineHandle *mLine=result.keys().first();
-					int l=mLine->line();
-					LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
-					if (mLine->document()!=editor->document()) {
-						doc=document->parent->findDocument(mLine->document());
-						if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-					}
-					if (doc)
-						tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
-				} else {
-					// read entry in bibtex file
-					if (!bibReader) {
-						bibReader=new bibtexReader(this);
-						connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
-						connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-						bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
-					}
-					QString file=document->findFileFromBibId(bibID);
-					lastPos=pos;
-					if(!file.isEmpty())
-						emit searchBibtexSection(file,bibID);
-					return;
-				}
-			}
-			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
-		}
+            if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
+                tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
+            }
+        } else {
+            if (document->isBibItem(bibID)) {
+                // by bibitem defined citation
+                tooltip.clear();
+                QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
+                QDocumentLineHandle *mLine=result.keys().first();
+                int l=mLine->line();
+                LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
+                if (mLine->document()!=editor->document()) {
+                    doc=document->parent->findDocument(mLine->document());
+                    if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                }
+                if (doc)
+                    tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
+            } else {
+                // read entry in bibtex file
+                if (!bibReader) {
+                    bibReader=new bibtexReader(this);
+                    connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
+                    connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+                    bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
+                }
+                QString file=document->findFileFromBibId(bibID);
+                lastPos=pos;
+                if(!file.isEmpty())
+                    emit searchBibtexSection(file,bibID);
+                return;
+            }
+        }
+        QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
+    }
 		break;
 	case LatexParser::Graphics:
 		if(config->toolTipPreview){
