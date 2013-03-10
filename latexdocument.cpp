@@ -702,8 +702,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
 				newInclude->title=name;
-                removedIncludes.removeAll(name);
-				QString fname=findFileName(name);
+                QString fname=findFileName(name);
+                removedIncludes.removeAll(fname);
                 mIncludedFilesList.insert(line(i).handle(),fname);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
                 if(dc)	dc->setMasterDocument(this);
@@ -716,6 +716,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				newInclude->setLine(line(i).handle(), i);
 				newInclude->columnNumber = offset;
 				flatStructure << newInclude;
+                updateSyntaxCheck=true;
 				continue;
 			}
 			//// all sections ////
@@ -816,8 +817,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if(updateSyntaxCheck) {
 		foreach(LatexDocument* elem,getListOfDocs()){
 			//getEditorView()->reCheckSyntax();//todo: signal
-			if(elem->edView)
+            if(elem->edView){
+                elem->edView->updateLtxCommands();
 				elem->edView->reCheckSyntax();
+            }
 		}
 	}
 	
@@ -2277,15 +2280,14 @@ LatexDocument* LatexDocument::getTopMasterDocument(){
 }
 
 QStringList LatexDocument::includedFiles(){
-	QStringList result;
-	foreach(const StructureEntry* se,baseStructure->children){
-		if(se->type==StructureEntry::SE_INCLUDE){
-			QString fname=findFileName(se->title);
-			if(!fname.isEmpty())
-				result << fname;
-		}
-	}
-	return result;
+    QStringList helper=mIncludedFilesList.values();
+    QStringList result;
+    foreach(const QString elem,helper){
+        if(!elem.isEmpty() && !result.contains(elem))
+            result<<elem;
+    }
+
+    return result;
 }
 
 QSet<QString> LatexDocument::additionalCommandsList(){
