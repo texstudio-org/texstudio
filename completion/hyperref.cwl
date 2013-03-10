@@ -27,7 +27,7 @@
 \autoref*{label}#r
 \ref*{label}#r
 \pageref*{label}#r
-
+\thispdfpagelabel
 \pdfstringdef{macroname}{TEXstring}
 \pdfbookmark[level]{text}{name}
 \currentpdfbookmark{text}{name}
