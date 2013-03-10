@@ -7,17 +7,18 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     stopped=false;
     kpseWhichCmd=kpsecmd;
     mFiles.clear();
-    //check if texdef is present
-#ifndef Q_WS_WIN
+    //check if pdflatex is present
+//#ifndef Q_WS_WIN
     texdefDir=kpsecmd.left(kpsecmd.length()-9);
     QProcess myProc(0);
-    myProc.start(texdefDir+"texdef");
+    //myProc.start(texdefDir+"texdef");
+    myProc.start(texdefDir+"pdflatex -v");
     myProc.waitForFinished();
-    texdefMode=(myProc.exitCode()==1);
-#else
-    texdefMode=false;
+    texdefMode=(myProc.exitCode()==0);
+//#else
+//    texdefMode=false;
     //miktex always has a texdef.exe present even if texdef is not installed or no working perl is present. Furthermore the call from txs does not seem to work properly with miktex
-#endif
+//#endif
 }
 
 void LatexStyleParser::stop(){
@@ -54,10 +55,11 @@ void LatexStyleParser::run(){
 
         if(texdefMode){
             QStringList appendList;
-            QStringList texdefResults=readPackageTexDef(fn); // parse package(s) by texdef as well for indirectly defined commands
+            //QStringList texdefResults=readPackageTexDef(fn); // parse package(s) by texdef as well for indirectly defined commands
+            QStringList texdefResults=readPackageTracing(fn);
             texdefResults.sort();
             // add only additional commands to results
-            if(!results.isEmpty() && !texdefResults.isEmpty()){
+            if( !results.isEmpty() && !texdefResults.isEmpty()){
                 QStringList::const_iterator texdefIterator;
                 QStringList::const_iterator resultsIterator=results.constBegin();
                 QString result=*resultsIterator;
@@ -99,6 +101,9 @@ void LatexStyleParser::run(){
                         //qDebug()<<td;
                     }
                 }
+            }else{
+                if(results.isEmpty())
+                    results<<texdefResults;
             }
             results<<appendList;
         }
@@ -379,5 +384,76 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
         }
     }
 
+    return args;
+}
+
+QStringList LatexStyleParser::readPackageTracing(QString fn){
+    if(!fn.endsWith(".sty"))
+    return QStringList();
+
+    fn.chop(4);
+
+    QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
+    QTemporaryFile *tf=new QTemporaryFile(tempPath + "XXXXXX.tex");
+    if (!tf) return QStringList();
+    tf->open();
+
+    QTextStream out(tf);
+    out << "\\documentclass{article}\n";
+    out << "\\tracingonline=1\n";
+    out << "\\tracingassigns=1\n";
+    out << "\\usepackage{"<<fn<<"}\n";
+    out << "\\tracingassigns=0\n";
+    out << "\\begin{document}\n";
+    out << "\\end{document}";
+    tf->close();
+
+
+    QProcess myProc(0);
+    //add exec search path
+    if(!texdefDir.isEmpty()){
+        QStringList env = QProcess::systemEnvironment();
+        if(env.contains("SHELL=/bin/bash")){
+            env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1:"+texdefDir);
+            myProc.setEnvironment(env);
+        }
+    }
+    QStringList args;
+    QString result;
+    args<<"-draftmode"<<"-interaction=nonstopmode" << tf->fileName();
+    myProc.start(texdefDir+"pdflatex",args);
+    args.clear();
+    myProc.waitForFinished();
+    if(myProc.exitCode()!=0)
+        return QStringList();
+
+    result=myProc.readAllStandardOutput();
+    QStringList lines=result.split('\n');
+
+    foreach(const QString elem,lines){
+        if(elem.endsWith("=undefined}")){
+            if(elem.startsWith("{into ")  && !elem.contains("@")){
+                QString zw=elem.mid(6);
+                zw.chop(11);
+                args<<zw+"#S";
+            }
+        }
+    }
+
+    // replace tex env def by latex commands
+    QStringList zw=args.filter(QRegExp("\\\\end.+"));
+    foreach(const QString& elem,zw){
+        QString begin=elem;
+        begin.remove(1,3);
+        int i=args.indexOf(begin);
+        if(i!=-1){
+            QString env=begin.mid(1,begin.length()-3);
+            args.replace(i,"\\begin{"+env+"}");
+            i=args.indexOf(elem);
+            args.replace(i,"\\end{"+env+"}");
+        }
+    }
+
+    delete tf;
     return args;
 }

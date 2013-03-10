@@ -20,6 +20,7 @@ protected:
 
     QStringList readPackage(QString fn);
     QStringList readPackageTexDef(QString fn);
+    QStringList readPackageTracing(QString fn);
     QString kpsewhich(QString name);
 
 signals:
