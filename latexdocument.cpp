@@ -495,7 +495,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			curLine.replace(0,1,' ');
 		}
 		int totalLength=curLine.length();
-		while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
+        while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
 			//update offset
 			//store optional arguments []
 			
@@ -505,6 +505,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// newcommand ////
 			//TODO: handle optional arguments
 			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
+                if(name.isEmpty()){ //special treament if argument is not in brackets
+                    QString test=remainder.simplified();
+                    test.remove(' ');
+                    if(test.startsWith('\\')){
+                       int i=getCommand(remainder,name);
+                       remainder=remainder.mid(i);
+                    }else{
+                        continue;
+                    }
+                }
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*\\[(\\d+)\\](\\[.+\\])?");
 				int options=0;
