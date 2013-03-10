@@ -42,7 +42,7 @@ void LatexParser::init(){
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
     possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
-    possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" << "\\DeclareMathSymbol" <<"\\newlength" << "\\DeclareRobustCommand";
+    possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" << "\\DeclareMathSymbol" <<"\\newlength" << "\\DeclareRobustCommand" << "\\let";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
     possibleCommands["%graphics"] << "\\includegraphics";
     possibleCommands["%bibitem"]<< "\\bibitem";
@@ -409,6 +409,8 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 }
 
 bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart){
+    // true means that a command is found, with or without arguments ...
+    // otherwise a command before the interesting command leads to quiting the loop
 	outName="";
 	outArg="";
 	remainder="";
@@ -428,10 +430,13 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
                 if(values.size()>0){
                     first=values.takeFirst();
                     start=starts.takeFirst();
-                    if(first.startsWith('['))
-                        return false; //two options [..][...]
+                    if(first.startsWith('[')){
+                        remainder=line.mid(start+first.length()); //two options [..][...]
+                        return true;
+                    }
                 }else{
-                    return false; //no argument after option
+                    remainder=line.mid(start+first.length()); //no argument after option
+                    return true;
                 }
             }
             optionStart=start+1;
@@ -439,8 +444,10 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
             outName=LatexParser::removeOptionBrackets(first);
             return true;
         }
+        remainder=line.mid(tagStart+cmd.length());
+        return true;
     }
-	return false;
+    return false; // no command found
 }
 
 // returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
@@ -614,8 +621,11 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 	const QString BracketsOpen("[{");
 	const QString BracketsClose("]}");
 	int start=column;
-	int stop=-1;
+    int stop=-1;
 	int type;
+    // check if between command and options is located text or other command
+    int abort=line.indexOf(QRegExp("(\\s|\\\\)"),start+1);
+    //qDebug()<<abort;
 	while(start<line.length()){
 		// find first available bracket after position start
 		int found=-1;
@@ -628,6 +638,17 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 			}
 		}
 		if(type<0) break;
+        // check if only space between cmd and opening bracket
+        if(abort>0){
+            if((found-abort)>0){
+                QString test=line.mid(abort,found-abort);
+                test=test.simplified();
+                test.remove(' ');
+                if(!test.isEmpty())
+                    break;
+            }
+            abort=-1;
+        }
 		// check wether a word letter appears before (next command text ...)
 		if(stop>-1){
 			stop=line.indexOf(QRegExp("\\S+"),start);
