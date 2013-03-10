@@ -400,10 +400,16 @@ QStringList LatexStyleParser::readPackageTracing(QString fn){
 
     QTextStream out(tf);
     out << "\\documentclass{article}\n";
+    out << "\\usepackage{filehook}\n";
+    out << "\\usepackage{currfile}\n";
+    out << "\\AtBeginOfEveryFile{\\message{^^Jentering file \\currfilename ^^J}}\n";
+    out << "\\AtEndOfEveryFile{\\message{^^Jleaving file \\currfilename ^^J}}\n";
     out << "\\tracingonline=1\n";
     out << "\\tracingassigns=1\n";
     out << "\\usepackage{"<<fn<<"}\n";
     out << "\\tracingassigns=0\n";
+    out << "\\AtBeginOfEveryFile{}\n";
+    out << "\\AtEndOfEveryFile{}\n";
     out << "\\begin{document}\n";
     out << "\\end{document}";
     tf->close();
@@ -430,12 +436,26 @@ QStringList LatexStyleParser::readPackageTracing(QString fn){
     result=myProc.readAllStandardOutput();
     QStringList lines=result.split('\n');
 
+    QStack<QString> stack;
     foreach(const QString elem,lines){
-        if(elem.endsWith("=undefined}")){
-            if(elem.startsWith("{into ")  && !elem.contains("@")){
-                QString zw=elem.mid(6);
+        if(elem.startsWith("entering file")){
+            QString name=elem.mid(14);
+            stack.push(name);
+            if(stack.size()==2){ // first level of include
+                args<<"#include:"+name;
+            }
+        }
+        if(elem.startsWith("leaving file")){
+            stack.pop();
+            if(stack.isEmpty())
+                break;
+        }
+        if(stack.size()==1 && elem.endsWith("=undefined}")){
+            if(elem.startsWith("{changing ")  && !elem.contains("@")){
+                QString zw=elem.mid(10);
                 zw.chop(11);
-                args<<zw+"#S";
+                if(!args.contains(zw+"#S"))
+                    args<<zw+"#S";
             }
         }
     }
