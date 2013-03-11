@@ -509,14 +509,10 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 		ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
 		return;
 	}
-	QString last = history.last();
-	if (last == str) 
-		return;
-	if (incremental && (last.startsWith(str) || str.startsWith(last)))
-		history.removeLast();
-	history.removeAll(str); //avoid dublets
-	history.append(str);
-	ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
+	if (!incremental && !history.contains(str)) {
+		history.append(str);
+		ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
+	}
 }
 	
 void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceAll, bool countOnly)
