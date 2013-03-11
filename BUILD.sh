@@ -57,6 +57,10 @@ OPTION_PHONON=no
 fi
 readswitchy "Do you want to build a debug or release version?" "debug release d r deb rel" debug; 
 OPTION_DEBUG=$NEWVALUE
+case "$OPTION_DEBUG" in
+  d|deb|debug) readoption "Do you want to include tests in the debug build?" yes; OPTION_TESTS=$NEWVALUE;;
+  *) OPTION_TESTS=yes;;
+esac
 
 if [ ! -f $QTDIR/bin/qmake ]; then 
 echo "Warning, QT path may be invalid"
@@ -78,8 +82,8 @@ fi
 TXSCOMPILEOPTIONS=$@
 if [ "$OPTION_PDFVIEWER" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_POPPLER_PREVIEW=true"; fi
 if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON=true"; fi
+if [ "$OPTION_TESTS" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_TESTS=true"; fi
 case "$OPTION_DEBUG" in r|rel|release) TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS  CONFIG-=debug CONFIG-=debug_and_release CONFIG+=release";; esac
-
 
 
 PATH=$QTDIR/bin:$PATH
@@ -111,4 +115,3 @@ then
 fi
 
 exit 0
-
