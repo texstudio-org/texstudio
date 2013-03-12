@@ -875,6 +875,7 @@ extern int ZEXPORT zipOpenNewFileInZip3 (file, filename, zipfi,
                                                                            !=size_extrafield_local)
                 err = ZIP_ERRNO;
 
+    memset(&zi->ci.stream, '\0', sizeof zi->ci.stream);
     zi->ci.stream.avail_in = (uInt)0;
     zi->ci.stream.avail_out = (uInt)Z_BUFSIZE;
     zi->ci.stream.next_out = zi->ci.buffered_data;

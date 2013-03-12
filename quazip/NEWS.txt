@@ -1,5 +1,12 @@
 QuaZIP changes
 
+* 2013-03-02 0.5.1
+        * Lots of QuaZipDir fixes, thanks to all bug reporters.
+        * Full Qt Creator support.
+        * MS VS 2010 Express support.
+        * Qt5 support (didn't need any source code changes anyway).
+        * Lots of minor bug fixes.
+
 * 2012-09-07 0.5
         * Added run_moc.bat files for building under Windows in case Qt
           integration is not available (e. g. VS 2008 Express).

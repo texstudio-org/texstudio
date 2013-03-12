@@ -3,6 +3,7 @@
 #include <QSet>
 #include <QSharedData>
 
+/// \cond internal
 class QuaZipDirPrivate: public QSharedData {
     friend class QuaZipDir;
 private:
@@ -20,6 +21,7 @@ private:
         QDir::SortFlags sort, TFileInfoList &result) const;
     inline QString simplePath() const {return QDir::cleanPath(dir);}
 };
+/// \endcond
 
 QuaZipDir::QuaZipDir(const QuaZipDir &that):
     d(that.d)
@@ -179,7 +181,10 @@ void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo> &from, QStringList &t
     }
 }
 
-// utility class to restore the current file
+/// \cond internal
+/**
+  An utility class to restore the current file.
+  */
 class QuaZipDirRestoreCurrent {
 public:
     inline QuaZipDirRestoreCurrent(QuaZip *zip):
@@ -192,7 +197,9 @@ private:
     QuaZip *zip;
     QString currentFile;
 };
+/// \endcond
 
+/// \cond internal
 class QuaZipDirComparator
 {
     private:
@@ -306,6 +313,8 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
         if (!name.startsWith(basePath))
             continue;
         QString relativeName = name.mid(baseLength);
+        if (relativeName.isEmpty())
+            continue;
         bool isDir = false;
         bool isReal = true;
         if (relativeName.contains('/')) {
@@ -352,6 +361,8 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
     QuaZipDir_convertInfoList(list, result);
     return true;
 }
+
+/// \endcond
 
 QList<QuaZipFileInfo> QuaZipDir::entryInfoList(const QStringList &nameFilters,
     QDir::Filters filters, QDir::SortFlags sort) const

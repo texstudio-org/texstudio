@@ -1,9 +1,9 @@
 This page provides general information on QuaZIP usage. See classes \doxyref{QuaZip}{p.}{classQuaZip} and \doxyref{QuaZipFile}{p.}{classQuaZipFile} for the detailed documentation on what can QuaZIP do and what it can not. Also, reading comments in the zip.h and unzip.h files (taken from the original ZIP/UNZIP package) is always a good idea too. After all, QuaZIP is just a wrapper with a few convenience extensions and reimplementations.
 
-\doxyref{QuaZip}{p.}{classQuaZip} is a class representing ZIP archive, \doxyref{QuaZipFile}{p.}{classQuaZipFile} represents a file inside archive and subclasses QIODevice as well. One limitation is that there can be only one instance of \doxyref{QuaZipFile}{p.}{classQuaZipFile} per QIODevice.\section{Terminology}\label{usage_terminology}
+\doxyref{QuaZip}{p.}{classQuaZip} is a class representing ZIP archive, \doxyref{QuaZipFile}{p.}{classQuaZipFile} represents a file inside archive and subclasses QIODevice as well. One limitation is that there can be only one instance of \doxyref{QuaZipFile}{p.}{classQuaZipFile} per \doxyref{QuaZip}{p.}{classQuaZip} instance, which kind of makes it confusing why there are two classes instead of one. This is actually no more than an API design mistake.\section{Terminology}\label{usage_terminology}
 \char`\"{}QuaZIP\char`\"{} means whole this library, while \char`\"{}QuaZip\char`\"{} (note the lower case) is just one class in it.
 
-\char`\"{}ZIP/UNZIP API\char`\"{} or \char`\"{}minizip\char`\"{} means the original API of the Gilles Vollant's ZIP/UNZIP package. It was slightly modified to better integrate with Qt.
+\char`\"{}ZIP/UNZIP API\char`\"{} or \char`\"{}minizip\char`\"{} means the original API of the Gilles Vollant's ZIP/UNZIP package. It was slightly modified to better integrate with Qt. These modifications are not source or binary compatible with the official minizip release, which means you can't just drop the newer minizip version into QuaZIP sources and make it work.
 
 \char`\"{}ZIP\char`\"{}, \char`\"{}ZIP archive\char`\"{} or \char`\"{}ZIP file\char`\"{} means any ZIP archive. Typically this is a plain file with \char`\"{}.zip\char`\"{} (or \char`\"{}.ZIP\char`\"{}) file name suffix, but it can also be any seekable QIODevice (say, QBuffer, but not QTcpSocket).
 

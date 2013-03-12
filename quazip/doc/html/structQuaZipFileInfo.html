@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -39,6 +39,7 @@
 </div>
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">QuaZipFileInfo Struct Reference</div>  </div>
@@ -52,6 +53,10 @@
 
 <p><a href="structQuaZipFileInfo-members.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QFile::Permissions&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipFileInfo.html#af87f96a64d7c02b002622f81d13accdb">getPermissions</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the file permissions.  <a href="#af87f96a64d7c02b002622f81d13accdb"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16ac323965deccf0232bfae69d933a84"></a><!-- doxytag: member="QuaZipFileInfo::name" ref="a16ac323965deccf0232bfae69d933a84" args="" -->
@@ -100,11 +105,34 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Information about a file inside archive. </p>
 <p>Call <a class="el" href="classQuaZip.html#a9c91a53ed4c2038e153c64bdc097ebe8" title="Retrieves information about the current file.">QuaZip::getCurrentFileInfo()</a> or <a class="el" href="classQuaZipFile.html#ad3f5807329321be21b12c1ba5798b359" title="Gets information about current file.">QuaZipFile::getFileInfo()</a> to fill this structure. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="af87f96a64d7c02b002622f81d13accdb"></a><!-- doxytag: member="QuaZipFileInfo::getPermissions" ref="af87f96a64d7c02b002622f81d13accdb" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QFile::Permissions QuaZipFileInfo::getPermissions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the file permissions. </p>
+<p>Returns the high 16 bits of external attributes converted to QFile::Permissions. </p>
+
+<p>References <a class="el" href="structQuaZipFileInfo.html#afeb65ffdacc4fc0ba7848d4b37f62ecf">externalAttr</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
 <li>quazip/<a class="el" href="quazipfileinfo_8h_source.html">quazipfileinfo.h</a></li>
+<li>quazip/quazipfileinfo.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 8 2012 13:05:33 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -3,6 +3,7 @@
 #define QUAZIO_INBUFSIZE 4096
 #define QUAZIO_OUTBUFSIZE 4096
 
+/// \cond internal
 class QuaZIODevicePrivate {
     friend class QuaZIODevice;
     QuaZIODevicePrivate(QIODevice *io);
@@ -82,6 +83,8 @@ int QuaZIODevicePrivate::doFlush(QString &error)
   return flushed;
 }
 
+/// \endcond
+
 // #define QUAZIP_ZIODEVICE_DEBUG_OUTPUT
 // #define QUAZIP_ZIODEVICE_DEBUG_INPUT
 #ifdef QUAZIP_ZIODEVICE_DEBUG_OUTPUT
@@ -114,6 +117,16 @@ QIODevice *QuaZIODevice::getIoDevice() const
 
 bool QuaZIODevice::open(QIODevice::OpenMode mode)
 {
+    if ((mode & QIODevice::Append) != 0) {
+        setErrorString(trUtf8("QIODevice::Append is not supported for"
+                    " QuaZIODevice"));
+        return false;
+    }
+    if ((mode & QIODevice::ReadWrite) == QIODevice::ReadWrite) {
+        setErrorString(trUtf8("QIODevice::ReadWrite is not supported for"
+                    " QuaZIODevice"));
+        return false;
+    }
     if ((mode & QIODevice::ReadOnly) != 0) {
         if (inflateInit(&d->zins) != Z_OK) {
             setErrorString(d->zins.msg);

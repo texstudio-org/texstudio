@@ -533,38 +533,9 @@ SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
 
 # ##########QUAZIP###############
 DEFINES += QUAZIP_STATIC
-INCLUDEPATH += quazip/quazip
-DEPENDPATH += quazip/quazip
 
 # Input
-HEADERS += quazip/quazip/zip.h \
-    quazip/quazip/unzip.h \
-    quazip/quazip/quazipnewinfo.h \
-    quazip/quazip/quazipfileinfo.h \
-    quazip/quazip/quazipfile.h \
-    quazip/quazip/quazipdir.h \
-    quazip/quazip/quazip_global.h \
-    quazip/quazip/quazip.h \
-    quazip/quazip/quaziodevice.h \
-    quazip/quazip/quagzipfile.h \
-    quazip/quazip/quacrc32.h \
-    quazip/quazip/quachecksum32.h \
-    quazip/quazip/quaadler32.h \
-    quazip/quazip/JlCompress.h \
-    quazip/quazip/ioapi.h \
-    quazip/quazip/crypt.h
-SOURCES += quazip/quazip/zip.c \
-    quazip/quazip/unzip.c \
-    quazip/quazip/quazipnewinfo.cpp \
-    quazip/quazip/quazipfile.cpp \
-    quazip/quazip/quazipdir.cpp \
-    quazip/quazip/quazip.cpp \
-    quazip/quazip/quaziodevice.cpp \
-    quazip/quazip/quagzipfile.cpp \
-    quazip/quazip/quacrc32.cpp \
-    quazip/quazip/quaadler32.cpp \
-    quazip/quazip/qioapi.cpp \
-    quazip/quazip/JlCompress.cpp
+include(quazip/quazip/quazip.pri)
 
 # ###############################
 

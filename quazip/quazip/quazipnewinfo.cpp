@@ -25,6 +25,30 @@ quazip/(un)zip.h files for details, basically it's zlib license.
 
 #include "quazipnewinfo.h"
 
+static void QuaZipNewInfo_setPermissions(QuaZipNewInfo *info,
+        QFile::Permissions perm, bool isDir)
+{
+    quint32 uPerm = isDir ? 0040000 : 0100000;
+    if ((perm & QFile::ReadOwner) != 0)
+        uPerm |= 0400;
+    if ((perm & QFile::WriteOwner) != 0)
+        uPerm |= 0200;
+    if ((perm & QFile::ExeOwner) != 0)
+        uPerm |= 0100;
+    if ((perm & QFile::ReadGroup) != 0)
+        uPerm |= 0040;
+    if ((perm & QFile::WriteGroup) != 0)
+        uPerm |= 0020;
+    if ((perm & QFile::ExeGroup) != 0)
+        uPerm |= 0010;
+    if ((perm & QFile::ReadOther) != 0)
+        uPerm |= 0004;
+    if ((perm & QFile::WriteOther) != 0)
+        uPerm |= 0002;
+    if ((perm & QFile::ExeOther) != 0)
+        uPerm |= 0001;
+    info->externalAttr = (info->externalAttr & ~0xFFFF0000u) | (uPerm << 16);
+}
 
 QuaZipNewInfo::QuaZipNewInfo(const QString& name):
   name(name), dateTime(QDateTime::currentDateTime()), internalAttr(0), externalAttr(0)
@@ -36,10 +60,12 @@ QuaZipNewInfo::QuaZipNewInfo(const QString& name, const QString& file):
 {
   QFileInfo info(file);
   QDateTime lm = info.lastModified();
-  if (!info.exists())
+  if (!info.exists()) {
     dateTime = QDateTime::currentDateTime();
-  else
+  } else {
     dateTime = lm;
+    QuaZipNewInfo_setPermissions(this, info.permissions(), info.isDir());
+  }
 }
 
 void QuaZipNewInfo::setFileDateTime(const QString& file)
@@ -48,4 +74,16 @@ void QuaZipNewInfo::setFileDateTime(const QString& file)
   QDateTime lm = info.lastModified();
   if (info.exists())
     dateTime = lm;
+}
+
+void QuaZipNewInfo::setFilePermissions(const QString &file)
+{
+    QFileInfo info = QFileInfo(file);
+    QFile::Permissions perm = info.permissions();
+    QuaZipNewInfo_setPermissions(this, perm, info.isDir());
+}
+
+void QuaZipNewInfo::setPermissions(QFile::Permissions permissions)
+{
+    QuaZipNewInfo_setPermissions(this, permissions, name.endsWith('/'));
 }

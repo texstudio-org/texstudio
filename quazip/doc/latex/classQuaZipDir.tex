@@ -205,7 +205,7 @@ Returns the list of the entries in the directory.
 \hline
 {\em filters} & The entry type filters, only Files and Dirs are accepted. \\
 \hline
-{\em sort} & Sorting mode (not supported yet). \\
+{\em sort} & Sorting mode (not supported yet).\\
 \hline
 \end{DoxyParams}
 
@@ -274,7 +274,7 @@ Returns {\ttfamily true} if the entry with the specified name exists.
 
 The ".." is considered to exist if the current directory is not root. The "." and "/" are considered to always exist. Paths starting with "/" are relative to the archive root, other paths are relative to the current dir. 
 
-References entryList(), filePath(), and isRoot().
+References QuaZip::convertCaseSensitivity(), entryList(), filePath(), and isRoot().
 
 \index{QuaZipDir@{QuaZipDir}!filePath@{filePath}}
 \index{filePath@{filePath}!QuaZipDir@{QuaZipDir}}

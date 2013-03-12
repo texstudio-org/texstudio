@@ -1,2 +1,2 @@
 TEMPLATE=subdirs
-SUBDIRS=quazip
+SUBDIRS=quazip qztest

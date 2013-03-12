@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -161,8 +161,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns information list about all files inside the archive.  <a href="#a7486af66bede8e131db0cd2e81881387"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae16edb5e08c25d01e088015d92ddbf41"></a><!-- doxytag: member="QuaZip::convertCaseSensitivity" ref="ae16edb5e08c25d01e088015d92ddbf41" args="(CaseSensitivity)" -->
-static Qt::CaseSensitivity&#160;</td><td class="memItemRight" valign="bottom"><b>convertCaseSensitivity</b> (<a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbe">CaseSensitivity</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static Qt::CaseSensitivity&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZip.html#a1d3fbd445a8e9d3449ded7371931c6b3">convertCaseSensitivity</a> (<a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbe">CaseSensitivity</a> cs)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the actual case sensitivity for the specified QuaZIP one.  <a href="#a1d3fbd445a8e9d3449ded7371931c6b3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d400b33a69412e9d419a484aaf476cd"></a><!-- doxytag: member="QuaZip::QuaZipPrivate" ref="a5d400b33a69412e9d419a484aaf476cd" args="" -->
@@ -324,6 +324,36 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a1d3fbd445a8e9d3449ded7371931c6b3"></a><!-- doxytag: member="QuaZip::convertCaseSensitivity" ref="a1d3fbd445a8e9d3449ded7371931c6b3" args="(CaseSensitivity cs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Qt::CaseSensitivity QuaZip::convertCaseSensitivity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbe">QuaZip::CaseSensitivity</a>&#160;</td>
+          <td class="paramname"><em>cs</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the actual case sensitivity for the specified QuaZIP one. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cs</td><td>The value to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>If CaseSensitivity::csDefault, then returns the default file name case sensitivity for the platform. Otherwise, just returns the appropriate value from the Qt::CaseSensitivity enum. </dd></dl>
+
+<p>References <a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbeac3cca8c0b976cf6397a28a5c84e75253">csDefault</a>, and <a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbead8d86b0c34203336cad09348cfa5356e">csSensitive</a>.</p>
+
+<p>Referenced by <a class="el" href="classQuaZipDir.html#aacb488fec6e951ac80e5d473534fee97">QuaZipDir::exists()</a>, and <a class="el" href="classQuaZip.html#a6c657bfcfccb59d728e0da24c677d899">setCurrentFile()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="abfa4e6018b2964a3d10a4c54e5ab3962"></a><!-- doxytag: member="QuaZip::open" ref="abfa4e6018b2964a3d10a4c54e5ab3962" args="(Mode mode, zlib_filefunc_def *ioApi=NULL)" -->
 <div class="memitem">
 <div class="memproto">
@@ -711,7 +741,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <p>Should be used only in <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a803a371910c2dc830d111e9ce5b58897" title="ZIP file is open for reading files inside it.">QuaZip::mdUnzip</a> mode.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classQuaZip.html#a339010b5566704ba3c9cafbfe848d8fb" title="Sets the codec used to encode/decode file names inside archive.">setFileNameCodec()</a>, <a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbe" title="Case sensitivity for the file names.">CaseSensitivity</a> </dd></dl>
 
-<p>References <a class="el" href="classQuaZip.html#a9783f8b4f39cd55e71e975aea78fd54a">getCurrentFileName()</a>, <a class="el" href="classQuaZip.html#a745488f9177bcec3cdb858587584e033">goToFirstFile()</a>, <a class="el" href="classQuaZip.html#aee6779b6cd338420c2e8c5655fa8ba97">goToNextFile()</a>, <a class="el" href="classQuaZip.html#adce46b942c341dbb5c851eadead65459ab26ce1a9c9e94f901dc2cf90fa5baa4b">MAX_FILE_NAME_LENGTH</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a803a371910c2dc830d111e9ce5b58897">mdUnzip</a>, and <a class="el" href="classQuaZipPrivate.html#aeb1d2d3263929b17d6b0608e35af2a88">QuaZipPrivate::unzFile_f</a>.</p>
+<p>References <a class="el" href="classQuaZip.html#a1d3fbd445a8e9d3449ded7371931c6b3">convertCaseSensitivity()</a>, <a class="el" href="classQuaZip.html#a9783f8b4f39cd55e71e975aea78fd54a">getCurrentFileName()</a>, <a class="el" href="classQuaZip.html#a745488f9177bcec3cdb858587584e033">goToFirstFile()</a>, <a class="el" href="classQuaZip.html#aee6779b6cd338420c2e8c5655fa8ba97">goToNextFile()</a>, <a class="el" href="classQuaZip.html#adce46b942c341dbb5c851eadead65459ab26ce1a9c9e94f901dc2cf90fa5baa4b">MAX_FILE_NAME_LENGTH</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a803a371910c2dc830d111e9ce5b58897">mdUnzip</a>, and <a class="el" href="classQuaZipPrivate.html#aeb1d2d3263929b17d6b0608e35af2a88">QuaZipPrivate::unzFile_f</a>.</p>
 
 <p>Referenced by <a class="el" href="classQuaZipFile.html#aed75bace51f2bb4c3e4f656ab4493aac">QuaZipFile::open()</a>.</p>
 
@@ -916,7 +946,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <li>quazip/quazip.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 8 2012 13:05:33 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

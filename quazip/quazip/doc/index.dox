@@ -7,19 +7,18 @@
  * \section overview Overview
  * 
  * QuaZIP is a simple C++ wrapper over <a
- * href="http://www.winimage.com/zLibDll/unzip.html">Gilles Vollant's ZIP/UNZIP
+ * href="http://www.winimage.com/zLibDll/minizip.html">Gilles Vollant's ZIP/UNZIP
  * package</a> that can be used to access ZIP archives. It uses <a
- * href="http://www.trolltech.com/products/qt/index.html">Trolltech's
- * Qt toolkit</a>.
+ * href="http://qt.digia.com/">the Qt toolkit</a>.
  *
  * If you do not know what Qt is, you have two options:
  * - Just forget about QuaZIP.
- * - Learn more about Qt by downloading it and/or reading excellent <a
- *   href="http://doc.trolltech.com/">official Qt documentation</a>
+ * - Learn more about Qt by downloading it and/or reading the excellent <a
+ *   href="http://qt-project.org/doc/">official Qt documentation</a>
  *
  * The choice is yours, but if you are really interested in
  * cross-platform (Windows/Linux/BSD/UNIX/Mac/Others) software
- * development, I would definitely recommend you the second choice ^_^
+ * development, I would definitely recommend you the latter ^_^
  *
  * QuaZIP allows you to access files inside ZIP archives using QIODevice
  * API, and - yes! - that means that you can also use QTextStream,
@@ -42,10 +41,11 @@
  * - hpux-acc (HP-UX 11.11)
  * - hpux-g++ (HP-UX 11.11)
  * - win32-g++ (MinGW)
- * - win32-msvc2008 (MS VS 2008 Express, Qt 4.8.1)
+ * - win32-msvc2010 (MS VS 2010 Express, Qt 4.8.4)
+ * - win32-msvc2010 (Qt Creator, Qt 5.0.1)
  * - some Symbian version, reportedly
  * 
- * No testing has been done on other systems. Of course, patches to
+ * No testing has been officially done on other systems. Of course, patches to
  * make it work on any platform that it currently does not work on are
  * always welcome!
  *
@@ -55,9 +55,10 @@
  *
  * \section Requirements
  *
- * Just <a href="http://www.zlib.org/">zlib</a> and Qt 4. Well, Qt 4
+ * Just <a href="http://www.zlib.org/">zlib</a> and Qt 4/5. Well, Qt 4
  * depends on zlib anyway, but you will need zlib headers to compile
- * QuaZIP.
+ * QuaZIP. With Qt5 sometimes you need the zlib library as well (on
+ * Windows, for example).
  *
  * \section building Building, testing and installing
  *
@@ -74,10 +75,11 @@ $ qmake [PREFIX=where-to-install]
 $ make
 \endverbatim
  *
- * Make sure that you have Qt 4 installed with all required headers and
- * utilities (not just library) and that you run qmake utility of the Qt
- * 4, not some other version you may have already installed (you may
- * need to type full path to qmake like /usr/local/qt4/bin/qmake).
+ * Make sure that you have Qt 4/5 installed with all required headers and
+ * utilities (that is, including the 'dev' or 'devel' package on Linux)
+ * and that you run qmake utility of the Qt 4, not some other version
+ * you may have already installed (you may need to type full path to
+ * qmake like /usr/local/qt4/bin/qmake).
  *
  * To reconfigure (with another PREFIX, for example), just run qmake
  * with appropriate arguments again.
@@ -92,29 +94,38 @@ $ qmake LIBS+=-L/usr/local/zlib/lib INCLUDEPATH+=/usr/local/zlib/include
  * (note abscence of "-I" before the include path and the presence of "-L"
  * before the lib path)
  *
+ * Also note that you may or may not need to define ZLIB_WINAPI (qmake
+ * DEFINES+=ZLIB_WINAPI) when linking to zlib on Windows, depending on
+ * how zlib was built (generally, if using zlibwapi.dll, this define is
+ * needed).
+ *
  * To install compiled library:
 \verbatim
 $ make install
 \endverbatim
  *
- * By default, QuaZIP compiles as a DLL, but you have other
+ * By default, QuaZIP compiles as a DLL/SO, but you have other
  * options:
  * - Just copy appropriate source files to your project and use them,
  * but you need to define QUAZIP_STATIC before including any QuaZIP
  * headers (best done as a compiler option). This will save you from
- * possile side effects of importing/exporting QuaZIP symbols.
+ * possible side effects of importing/exporting QuaZIP symbols.
  * - Compile it as a static library using CONFIG += staticlib qmake
  * option. QUAZIP_STATIC is defined automatically by qmake in this case.
  *
- * Binary compatibility isn't guaranteed even between minor releases,
- * but usually it's preserved, thanks to the Pimpl idiom.
+ * Binary compatibility is guaranteed between minor releases starting
+ * with version 0.5, thanks to the Pimpl idiom. That is, the next binary
+ * incompatible version will be 1.x, and if zip64 support is ever
+ * introduced, then there will be a build option to compile either as
+ * non-zip64 (binary compatible with the old releases) or as zip64
+ * (which will be binary incompatible due to different file size types).
  *
  * \section test Testing
  *
- * To check if QuaZIP's basic features work ok on your platform, you may
+ * To check if QuaZIP's basic features work OK on your platform, you may
  * wish to compile the test suite provided in test directory:
 \verbatim
-$ cd /wherever/quazip/source/is/quazip-x.y.z/test
+$ cd /wherever/quazip/source/is/quazip-x.y.z/qztest
 $ qmake
 $ make
 $ ./qztest
