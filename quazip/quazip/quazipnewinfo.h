@@ -51,6 +51,11 @@ struct QUAZIP_EXPORT QuaZipNewInfo {
   /// File internal attributes.
   quint16 internalAttr;
   /// File external attributes.
+  /**
+    The highest 16 bits contain Unix file permissions and type (dir or
+    file). The constructor QuaZipNewInfo(const QString&, const QString&)
+    takes permissions from the provided file.
+    */
   quint32 externalAttr;
   /// File comment.
   /** Will be encoded using QuaZip::getCommentCodec().
@@ -72,10 +77,10 @@ struct QUAZIP_EXPORT QuaZipNewInfo {
    **/
   QuaZipNewInfo(const QString& name);
   /// Constructs QuaZipNewInfo instance.
-  /** Initializes name with \a name and dateTime with timestamp of the
-   * file named \a file. If the \a file does not exists or its timestamp
+  /** Initializes name with \a name. Timestamp and permissions are taken
+   * from the specified file. If the \a file does not exists or its timestamp
    * is inaccessible (e. g. you do not have read permission for the
-   * directory file in), uses current date and time. Attributes are
+   * directory file in), uses current time and zero permissions. Other attributes are
    * initialized with zeros, comment and extra field with null values.
    * 
    * \sa setFileDateTime()
@@ -97,6 +102,20 @@ struct QUAZIP_EXPORT QuaZipNewInfo {
    * file is inaccessible).
    **/
   void setFileDateTime(const QString& file);
+  /// Sets the file permissions from the existing file.
+  /**
+    Takes permissions from the file and sets the high 16 bits of
+    external attributes. Uses QFileInfo to get permissions on all
+    platforms.
+    */
+  void setFilePermissions(const QString &file);
+  /// Sets the file permissions.
+  /**
+    Modifies the highest 16 bits of external attributes. The type part
+    is set to dir if the name ends with a slash, and to regular file
+    otherwise.
+    */
+  void setPermissions(QFile::Permissions permissions);
 };
 
 #endif

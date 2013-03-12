@@ -115,7 +115,15 @@ class QUAZIP_EXPORT QuaZip {
       csSensitive=1, ///< Case sensitive.
       csInsensitive=2 ///< Case insensitive.
     };
-    static Qt::CaseSensitivity convertCaseSensitivity(CaseSensitivity);
+    /// Returns the actual case sensitivity for the specified QuaZIP one.
+    /**
+      \param cs The value to convert.
+      \returns If CaseSensitivity::csDefault, then returns the default
+      file name case sensitivity for the platform. Otherwise, just
+      returns the appropriate value from the Qt::CaseSensitivity enum.
+      */
+    static Qt::CaseSensitivity convertCaseSensitivity(
+            CaseSensitivity cs);
   private:
     QuaZipPrivate *p;
     // not (and will not be) implemented

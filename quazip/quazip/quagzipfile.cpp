@@ -2,6 +2,7 @@
 
 #include "quagzipfile.h"
 
+/// \cond internal
 class QuaGzipFilePrivate {
     friend class QuaGzipFile;
     QString fileName;
@@ -31,6 +32,11 @@ bool QuaGzipFilePrivate::open(FileId id, QIODevice::OpenMode mode,
 {
     char modeString[2];
     modeString[0] = modeString[1] = '\0';
+    if ((mode & QIODevice::Append) != 0) {
+        error = QuaGzipFile::trUtf8("QIODevice::Append is not "
+                "supported for GZIP");
+        return false;
+    }
     if ((mode & QIODevice::ReadOnly) != 0
             && (mode & QIODevice::WriteOnly) != 0) {
         error = QuaGzipFile::trUtf8("Opening gzip for both reading"
@@ -52,6 +58,7 @@ bool QuaGzipFilePrivate::open(FileId id, QIODevice::OpenMode mode,
     }
     return true;
 }
+/// \endcond
 
 QuaGzipFile::QuaGzipFile():
 d(new QuaGzipFilePrivate())

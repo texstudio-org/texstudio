@@ -9,6 +9,11 @@ Information about a file inside archive.
 
 {\ttfamily \#include $<$quazipfileinfo.h$>$}
 
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QFile::Permissions {\bf getPermissions} () const 
+\begin{DoxyCompactList}\small\item\em Get the file permissions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -61,6 +66,25 @@ Information about a file inside archive.
 
 Call \doxyref{QuaZip::getCurrentFileInfo()}{p.}{classQuaZip_a9c91a53ed4c2038e153c64bdc097ebe8} or \doxyref{QuaZipFile::getFileInfo()}{p.}{classQuaZipFile_ad3f5807329321be21b12c1ba5798b359} to fill this structure. 
 
-The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\subsection{Member Function Documentation}
+\index{QuaZipFileInfo@{QuaZipFileInfo}!getPermissions@{getPermissions}}
+\index{getPermissions@{getPermissions}!QuaZipFileInfo@{QuaZipFileInfo}}
+\subsubsection[{getPermissions}]{\setlength{\rightskip}{0pt plus 5cm}QFile::Permissions QuaZipFileInfo::getPermissions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{structQuaZipFileInfo_af87f96a64d7c02b002622f81d13accdb}
+
+
+Get the file permissions. 
+
+Returns the high 16 bits of external attributes converted to QFile::Permissions. 
+
+References externalAttr.
+
+
+
+The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
 \item 
-quazip/quazipfileinfo.h\end{DoxyCompactItemize}
+quazip/quazipfileinfo.h\item 
+quazip/quazipfileinfo.cpp\end{DoxyCompactItemize}

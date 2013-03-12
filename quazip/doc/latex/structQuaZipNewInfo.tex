@@ -17,7 +17,11 @@ Information about a file to be created.
 {\bf QuaZipNewInfo} (const QString \&{\bf name}, const QString \&file)
 \begin{DoxyCompactList}\small\item\em Constructs \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} instance. \end{DoxyCompactList}\item 
 void {\bf setFileDateTime} (const QString \&file)
-\begin{DoxyCompactList}\small\item\em Sets the file timestamp from the existing file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the file timestamp from the existing file. \end{DoxyCompactList}\item 
+void {\bf setFilePermissions} (const QString \&file)
+\begin{DoxyCompactList}\small\item\em Sets the file permissions from the existing file. \end{DoxyCompactList}\item 
+void {\bf setPermissions} (QFile::Permissions permissions)
+\begin{DoxyCompactList}\small\item\em Sets the file permissions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,8 +32,7 @@ QDateTime {\bf dateTime}
 quint16 {\bf internalAttr}\label{structQuaZipNewInfo_a59ce9776c2ac7547ade8cb4c404c77ab}
 
 \begin{DoxyCompactList}\small\item\em File internal attributes. \end{DoxyCompactList}\item 
-quint32 {\bf externalAttr}\label{structQuaZipNewInfo_affd1a9700d302e1395bd04f0864da7d0}
-
+quint32 {\bf externalAttr}
 \begin{DoxyCompactList}\small\item\em File external attributes. \end{DoxyCompactList}\item 
 QString {\bf comment}
 \begin{DoxyCompactList}\small\item\em File comment. \end{DoxyCompactList}\item 
@@ -72,7 +75,7 @@ Initializes name with {\itshape name\/}, dateTime with current date and time. At
 
 Constructs \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} instance. 
 
-Initializes name with {\itshape name\/} and dateTime with timestamp of the file named {\itshape file\/}. If the {\itshape file\/} does not exists or its timestamp is inaccessible (e. g. you do not have read permission for the directory file in), uses current date and time. Attributes are initialized with zeros, comment and extra field with null values.
+Initializes name with {\itshape name\/}. Timestamp and permissions are taken from the specified file. If the {\itshape file\/} does not exists or its timestamp is inaccessible (e. g. you do not have read permission for the directory file in), uses current time and zero permissions. Other attributes are initialized with zeros, comment and extra field with null values.
 
 \begin{DoxySeeAlso}{See also}
 \doxyref{setFileDateTime()}{p.}{structQuaZipNewInfo_a2b18b554d056877a2f33ffb9d241ed85} 
@@ -110,6 +113,32 @@ This function does not change dateTime if some error occured (e. g. file is inac
 
 References dateTime.
 
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFilePermissions@{setFilePermissions}}
+\index{setFilePermissions@{setFilePermissions}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFilePermissions}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFilePermissions (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{file}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a08bee5211eb0b49da260c7a9e7a266b8}
+
+
+Sets the file permissions from the existing file. 
+
+Takes permissions from the file and sets the high 16 bits of external attributes. Uses QFileInfo to get permissions on all platforms. \index{QuaZipNewInfo@{QuaZipNewInfo}!setPermissions@{setPermissions}}
+\index{setPermissions@{setPermissions}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setPermissions}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setPermissions (
+\begin{DoxyParamCaption}
+\item[{QFile::Permissions}]{permissions}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_aed68dc20f7dc42b5056491cf3c1d2d20}
+
+
+Sets the file permissions. 
+
+Modifies the highest 16 bits of external attributes. The type part is set to dir if the name ends with a slash, and to regular file otherwise. 
+
+References name.
+
 
 
 \subsection{Member Data Documentation}
@@ -122,7 +151,7 @@ File name.
 
 This field holds file name inside archive, including path relative to archive root. 
 
-Referenced by QuaZipFile::open().
+Referenced by QuaZipFile::open(), and setPermissions().
 
 \index{QuaZipNewInfo@{QuaZipNewInfo}!dateTime@{dateTime}}
 \index{dateTime@{dateTime}!QuaZipNewInfo@{QuaZipNewInfo}}
@@ -134,6 +163,17 @@ File timestamp.
 This is the last file modification date and time. Will be stored in the archive central directory. It is a good practice to set it to the source file timestamp instead of archive creating time. Use \doxyref{setFileDateTime()}{p.}{structQuaZipNewInfo_a2b18b554d056877a2f33ffb9d241ed85} or \doxyref{QuaZipNewInfo(const QString\&, const QString\&)}{p.}{structQuaZipNewInfo_ad47cf11f4277edcb09a8ba2b2963f2a9}. 
 
 Referenced by QuaZipFile::open(), QuaZipNewInfo(), and setFileDateTime().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!externalAttr@{externalAttr}}
+\index{externalAttr@{externalAttr}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{externalAttr}]{\setlength{\rightskip}{0pt plus 5cm}quint32 {\bf QuaZipNewInfo::externalAttr}}\label{structQuaZipNewInfo_affd1a9700d302e1395bd04f0864da7d0}
+
+
+File external attributes. 
+
+The highest 16 bits contain Unix file permissions and type (dir or file). The constructor \doxyref{QuaZipNewInfo(const QString\&, const QString\&)}{p.}{structQuaZipNewInfo_ad47cf11f4277edcb09a8ba2b2963f2a9} takes permissions from the provided file. 
+
+Referenced by QuaZipFile::open().
 
 \index{QuaZipNewInfo@{QuaZipNewInfo}!comment@{comment}}
 \index{comment@{comment}!QuaZipNewInfo@{QuaZipNewInfo}}

@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -36,7 +36,7 @@
   </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="dir_297ce0e58b429f346182bca158c2b437.html">quazip</a>      </li>
+      <li class="navelem"><a class="el" href="dir_6b1d21316abab84c9bd8ed600604809a.html">quazip</a>      </li>
     </ul>
   </div>
 </div>
@@ -73,31 +73,34 @@
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027 <span class="preprocessor">#include &lt;QByteArray&gt;</span>
 <a name="l00028"></a>00028 <span class="preprocessor">#include &lt;QDateTime&gt;</span>
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;quazip_global.h&quot;</span>
-<a name="l00031"></a>00031 
-<a name="l00033"></a>00033 
-<a name="l00035"></a><a class="code" href="structQuaZipFileInfo.html">00035</a> <span class="keyword">struct </span>QUAZIP_EXPORT <a class="code" href="structQuaZipFileInfo.html" title="Information about a file inside archive.">QuaZipFileInfo</a> {
-<a name="l00037"></a><a class="code" href="structQuaZipFileInfo.html#a16ac323965deccf0232bfae69d933a84">00037</a>   QString <a class="code" href="structQuaZipFileInfo.html#a16ac323965deccf0232bfae69d933a84" title="File name.">name</a>;
-<a name="l00039"></a><a class="code" href="structQuaZipFileInfo.html#a52f3f1d960ebaa2acbc2a86458fa3e6e">00039</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a52f3f1d960ebaa2acbc2a86458fa3e6e" title="Version created by.">versionCreated</a>;
-<a name="l00041"></a><a class="code" href="structQuaZipFileInfo.html#a8b73982808bded49e88e624a65e1a94f">00041</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a8b73982808bded49e88e624a65e1a94f" title="Version needed to extract.">versionNeeded</a>;
-<a name="l00043"></a><a class="code" href="structQuaZipFileInfo.html#a56d36f777e4fc892c71e22d080622e2c">00043</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a56d36f777e4fc892c71e22d080622e2c" title="General purpose flags.">flags</a>;
-<a name="l00045"></a><a class="code" href="structQuaZipFileInfo.html#af5c1bbda7f5dec2c358e7a543564de4c">00045</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#af5c1bbda7f5dec2c358e7a543564de4c" title="Compression method.">method</a>;
-<a name="l00047"></a><a class="code" href="structQuaZipFileInfo.html#ad6993d099436813a27fd31aebe42911a">00047</a>   QDateTime <a class="code" href="structQuaZipFileInfo.html#ad6993d099436813a27fd31aebe42911a" title="Last modification date and time.">dateTime</a>;
-<a name="l00049"></a><a class="code" href="structQuaZipFileInfo.html#aceee045c9ebce0b9724f40d342bc99ea">00049</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#aceee045c9ebce0b9724f40d342bc99ea" title="CRC.">crc</a>;
-<a name="l00051"></a><a class="code" href="structQuaZipFileInfo.html#af6116eaac1f36b2a4b3a6a39851a85cc">00051</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#af6116eaac1f36b2a4b3a6a39851a85cc" title="Compressed file size.">compressedSize</a>;
-<a name="l00053"></a><a class="code" href="structQuaZipFileInfo.html#a0eb908e1b1ea637d1f1f4d6aa31db07f">00053</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#a0eb908e1b1ea637d1f1f4d6aa31db07f" title="Uncompressed file size.">uncompressedSize</a>;
-<a name="l00055"></a><a class="code" href="structQuaZipFileInfo.html#aa70157fdc2bd8de10405055b4233050b">00055</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#aa70157fdc2bd8de10405055b4233050b" title="Disk number start.">diskNumberStart</a>;
-<a name="l00057"></a><a class="code" href="structQuaZipFileInfo.html#a36e681a93b041617addee78cb939c93d">00057</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a36e681a93b041617addee78cb939c93d" title="Internal file attributes.">internalAttr</a>;
-<a name="l00059"></a><a class="code" href="structQuaZipFileInfo.html#afeb65ffdacc4fc0ba7848d4b37f62ecf">00059</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#afeb65ffdacc4fc0ba7848d4b37f62ecf" title="External file attributes.">externalAttr</a>;
-<a name="l00061"></a><a class="code" href="structQuaZipFileInfo.html#adc2aad7bbd87ce3415e2a19851266bfc">00061</a>   QString <a class="code" href="structQuaZipFileInfo.html#adc2aad7bbd87ce3415e2a19851266bfc" title="Comment.">comment</a>;
-<a name="l00063"></a><a class="code" href="structQuaZipFileInfo.html#affc7b097de2c3c2ef5801c60f96adc72">00063</a>   QByteArray <a class="code" href="structQuaZipFileInfo.html#affc7b097de2c3c2ef5801c60f96adc72" title="Extra field.">extra</a>;
-<a name="l00064"></a>00064 };
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="preprocessor">#endif</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;QFile&gt;</span>
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;quazip_global.h&quot;</span>
+<a name="l00032"></a>00032 
+<a name="l00034"></a>00034 
+<a name="l00036"></a><a class="code" href="structQuaZipFileInfo.html">00036</a> <span class="keyword">struct </span>QUAZIP_EXPORT <a class="code" href="structQuaZipFileInfo.html" title="Information about a file inside archive.">QuaZipFileInfo</a> {
+<a name="l00038"></a><a class="code" href="structQuaZipFileInfo.html#a16ac323965deccf0232bfae69d933a84">00038</a>   QString <a class="code" href="structQuaZipFileInfo.html#a16ac323965deccf0232bfae69d933a84" title="File name.">name</a>;
+<a name="l00040"></a><a class="code" href="structQuaZipFileInfo.html#a52f3f1d960ebaa2acbc2a86458fa3e6e">00040</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a52f3f1d960ebaa2acbc2a86458fa3e6e" title="Version created by.">versionCreated</a>;
+<a name="l00042"></a><a class="code" href="structQuaZipFileInfo.html#a8b73982808bded49e88e624a65e1a94f">00042</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a8b73982808bded49e88e624a65e1a94f" title="Version needed to extract.">versionNeeded</a>;
+<a name="l00044"></a><a class="code" href="structQuaZipFileInfo.html#a56d36f777e4fc892c71e22d080622e2c">00044</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a56d36f777e4fc892c71e22d080622e2c" title="General purpose flags.">flags</a>;
+<a name="l00046"></a><a class="code" href="structQuaZipFileInfo.html#af5c1bbda7f5dec2c358e7a543564de4c">00046</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#af5c1bbda7f5dec2c358e7a543564de4c" title="Compression method.">method</a>;
+<a name="l00048"></a><a class="code" href="structQuaZipFileInfo.html#ad6993d099436813a27fd31aebe42911a">00048</a>   QDateTime <a class="code" href="structQuaZipFileInfo.html#ad6993d099436813a27fd31aebe42911a" title="Last modification date and time.">dateTime</a>;
+<a name="l00050"></a><a class="code" href="structQuaZipFileInfo.html#aceee045c9ebce0b9724f40d342bc99ea">00050</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#aceee045c9ebce0b9724f40d342bc99ea" title="CRC.">crc</a>;
+<a name="l00052"></a><a class="code" href="structQuaZipFileInfo.html#af6116eaac1f36b2a4b3a6a39851a85cc">00052</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#af6116eaac1f36b2a4b3a6a39851a85cc" title="Compressed file size.">compressedSize</a>;
+<a name="l00054"></a><a class="code" href="structQuaZipFileInfo.html#a0eb908e1b1ea637d1f1f4d6aa31db07f">00054</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#a0eb908e1b1ea637d1f1f4d6aa31db07f" title="Uncompressed file size.">uncompressedSize</a>;
+<a name="l00056"></a><a class="code" href="structQuaZipFileInfo.html#aa70157fdc2bd8de10405055b4233050b">00056</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#aa70157fdc2bd8de10405055b4233050b" title="Disk number start.">diskNumberStart</a>;
+<a name="l00058"></a><a class="code" href="structQuaZipFileInfo.html#a36e681a93b041617addee78cb939c93d">00058</a>   quint16 <a class="code" href="structQuaZipFileInfo.html#a36e681a93b041617addee78cb939c93d" title="Internal file attributes.">internalAttr</a>;
+<a name="l00060"></a><a class="code" href="structQuaZipFileInfo.html#afeb65ffdacc4fc0ba7848d4b37f62ecf">00060</a>   quint32 <a class="code" href="structQuaZipFileInfo.html#afeb65ffdacc4fc0ba7848d4b37f62ecf" title="External file attributes.">externalAttr</a>;
+<a name="l00062"></a><a class="code" href="structQuaZipFileInfo.html#adc2aad7bbd87ce3415e2a19851266bfc">00062</a>   QString <a class="code" href="structQuaZipFileInfo.html#adc2aad7bbd87ce3415e2a19851266bfc" title="Comment.">comment</a>;
+<a name="l00064"></a><a class="code" href="structQuaZipFileInfo.html#affc7b097de2c3c2ef5801c60f96adc72">00064</a>   QByteArray <a class="code" href="structQuaZipFileInfo.html#affc7b097de2c3c2ef5801c60f96adc72" title="Extra field.">extra</a>;
+<a name="l00066"></a>00066 
+<a name="l00070"></a>00070   QFile::Permissions getPermissions() <span class="keyword">const</span>;
+<a name="l00071"></a>00071 };
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 8 2012 13:05:33 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

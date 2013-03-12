@@ -292,6 +292,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\quazipfileinfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\quazipnewinfo.cpp"
 				>
 			</File>

@@ -9,7 +9,9 @@
  *
  * QuaZip is a class representing ZIP archive, QuaZipFile represents a
  * file inside archive and subclasses QIODevice as well. One limitation
- * is that there can be only one instance of QuaZipFile per QIODevice.
+ * is that there can be only one instance of QuaZipFile per QuaZip
+ * instance, which kind of makes it confusing why there are two classes
+ * instead of one. This is actually no more than an API design mistake.
  *
  * \section terminology Terminology
  *
@@ -18,7 +20,10 @@
  *
  * "ZIP/UNZIP API" or "minizip" means the original API of the Gilles
  * Vollant's ZIP/UNZIP package. It was slightly modified to better
- * integrate with Qt.
+ * integrate with Qt. These modifications are not source or binary
+ * compatible with the official minizip release, which means you can't
+ * just drop the newer minizip version into QuaZIP sources and make it
+ * work.
  *
  * "ZIP", "ZIP archive" or "ZIP file" means any ZIP archive. Typically
  * this is a plain file with ".zip" (or ".ZIP") file name suffix, but it

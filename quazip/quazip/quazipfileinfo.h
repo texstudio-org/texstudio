@@ -26,6 +26,7 @@ quazip/(un)zip.h files for details, basically it's zlib license.
 
 #include <QByteArray>
 #include <QDateTime>
+#include <QFile>
 
 #include "quazip_global.h"
 
@@ -61,6 +62,12 @@ struct QUAZIP_EXPORT QuaZipFileInfo {
   QString comment;
   /// Extra field.
   QByteArray extra;
+  /// Get the file permissions.
+  /**
+    Returns the high 16 bits of external attributes converted to
+    QFile::Permissions.
+    */
+  QFile::Permissions getPermissions() const;
 };
 
 #endif

@@ -120,9 +120,8 @@ QList$<$ {\bf QuaZipFileInfo} $>$ {\bf getFileInfoList} () const
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static Qt::CaseSensitivity {\bfseries convertCaseSensitivity} ({\bf CaseSensitivity})\label{classQuaZip_ae16edb5e08c25d01e088015d92ddbf41}
-
-\end{DoxyCompactItemize}
+static Qt::CaseSensitivity {\bf convertCaseSensitivity} ({\bf CaseSensitivity} cs)
+\begin{DoxyCompactList}\small\item\em Returns the actual case sensitivity for the specified QuaZIP one. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -247,6 +246,33 @@ References close(), and isOpen().
 
 
 \subsection{Member Function Documentation}
+\index{QuaZip@{QuaZip}!convertCaseSensitivity@{convertCaseSensitivity}}
+\index{convertCaseSensitivity@{convertCaseSensitivity}!QuaZip@{QuaZip}}
+\subsubsection[{convertCaseSensitivity}]{\setlength{\rightskip}{0pt plus 5cm}Qt::CaseSensitivity QuaZip::convertCaseSensitivity (
+\begin{DoxyParamCaption}
+\item[{{\bf QuaZip::CaseSensitivity}}]{cs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [static]}}\label{classQuaZip_a1d3fbd445a8e9d3449ded7371931c6b3}
+
+
+Returns the actual case sensitivity for the specified QuaZIP one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cs} & The value to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If CaseSensitivity::csDefault, then returns the default file name case sensitivity for the platform. Otherwise, just returns the appropriate value from the Qt::CaseSensitivity enum. 
+\end{DoxyReturn}
+
+
+References csDefault, and csSensitive.
+
+
+
+Referenced by QuaZipDir::exists(), and setCurrentFile().
+
 \index{QuaZip@{QuaZip}!open@{open}}
 \index{open@{open}!QuaZip@{QuaZip}}
 \subsubsection[{open}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZip::open (
@@ -549,7 +575,7 @@ Should be used only in \doxyref{QuaZip::mdUnzip}{p.}{classQuaZip_a47e28d4116ee71
 \end{DoxySeeAlso}
 
 
-References getCurrentFileName(), goToFirstFile(), goToNextFile(), MAX\_\-FILE\_\-NAME\_\-LENGTH, mdUnzip, and QuaZipPrivate::unzFile\_\-f.
+References convertCaseSensitivity(), getCurrentFileName(), goToFirstFile(), goToNextFile(), MAX\_\-FILE\_\-NAME\_\-LENGTH, mdUnzip, and QuaZipPrivate::unzFile\_\-f.
 
 
 

@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -102,8 +102,10 @@
 : <a class="el" href="classQuaZipDir.html#a62306db3f4c0866930fa35c7348b84b3">QuaZipDir</a>
 </li>
 <li>close()
-: <a class="el" href="classQuaZipFile.html#a42a39b12619bccd3d419ee60bbb3fcf6">QuaZipFile</a>
+: <a class="el" href="classQuaZIODevice.html#ad27e447544d57f897316ee6f44535895">QuaZIODevice</a>
 , <a class="el" href="classQuaZip.html#a7a4323b73e12f3b4470109f200728f9f">QuaZip</a>
+, <a class="el" href="classQuaZipFile.html#a42a39b12619bccd3d419ee60bbb3fcf6">QuaZipFile</a>
+, <a class="el" href="classQuaGzipFile.html#a273205350b1235a242a1eb5cbf586434">QuaGzipFile</a>
 </li>
 <li>compressDir()
 : <a class="el" href="classJlCompress.html#a8708eafcadc5c192a1d492e784cfc98f">JlCompress</a>
@@ -113,6 +115,9 @@
 </li>
 <li>compressFiles()
 : <a class="el" href="classJlCompress.html#a9cdb92d29a94c6b13a718a3249685846">JlCompress</a>
+</li>
+<li>convertCaseSensitivity()
+: <a class="el" href="classQuaZip.html#a1d3fbd445a8e9d3449ded7371931c6b3">QuaZip</a>
 </li>
 <li>count()
 : <a class="el" href="classQuaZipDir.html#aa3f14665e3991351f4ef94ab8e0ab29d">QuaZipDir</a>
@@ -159,6 +164,10 @@
 <li>filter()
 : <a class="el" href="classQuaZipDir.html#abeee1810c7c1c1af93364081dbf70d38">QuaZipDir</a>
 </li>
+<li>flush()
+: <a class="el" href="classQuaGzipFile.html#ab745f345b727c81abbc3eb5af4dca844">QuaGzipFile</a>
+, <a class="el" href="classQuaZIODevice.html#a25f586eb564841b51c395fd17f1cc080">QuaZIODevice</a>
+</li>
 </ul>
 
 
@@ -194,7 +203,8 @@
 : <a class="el" href="classJlCompress.html#ab42422be913f817d7e04c1b1cd5d0156">JlCompress</a>
 </li>
 <li>getFileName()
-: <a class="el" href="classQuaZipFile.html#a6999362e70a5b2396fba5cfb30095ff9">QuaZipFile</a>
+: <a class="el" href="classQuaGzipFile.html#a9a0954a1db1fcf2aeba0530239bce71c">QuaGzipFile</a>
+, <a class="el" href="classQuaZipFile.html#a6999362e70a5b2396fba5cfb30095ff9">QuaZipFile</a>
 </li>
 <li>getFileNameCodec()
 : <a class="el" href="classQuaZip.html#a27b866aa2c75ea6f9c438cbb6e32b43c">QuaZip</a>
@@ -204,9 +214,13 @@
 </li>
 <li>getIoDevice()
 : <a class="el" href="classQuaZip.html#afd3ba12fe68748acbf8b7cc14a5a1c29">QuaZip</a>
+, <a class="el" href="classQuaZIODevice.html#ad63e7f1717c7d91b3c2c5ace908c98b7">QuaZIODevice</a>
 </li>
 <li>getMode()
 : <a class="el" href="classQuaZip.html#a129ceff04d28fb00531f7bf7f9329664">QuaZip</a>
+</li>
+<li>getPermissions()
+: <a class="el" href="structQuaZipFileInfo.html#af87f96a64d7c02b002622f81d13accdb">QuaZipFileInfo</a>
 </li>
 <li>getUnzFile()
 : <a class="el" href="classQuaZip.html#a3b78a652f296ff4a678a791e8294e642">QuaZip</a>
@@ -222,8 +236,8 @@
 : <a class="el" href="classQuaZip.html#a425043a4d7cc31e2fe2bba73d954f15c">QuaZip</a>
 </li>
 <li>getZipName()
-: <a class="el" href="classQuaZip.html#a4f7deef08ff40aeb1a7a04bcd7f228c2">QuaZip</a>
-, <a class="el" href="classQuaZipFile.html#a6f034a714aa94631367590de3f8f4e22">QuaZipFile</a>
+: <a class="el" href="classQuaZipFile.html#a6f034a714aa94631367590de3f8f4e22">QuaZipFile</a>
+, <a class="el" href="classQuaZip.html#a4f7deef08ff40aeb1a7a04bcd7f228c2">QuaZip</a>
 </li>
 <li>goToFirstFile()
 : <a class="el" href="classQuaZip.html#a745488f9177bcec3cdb858587584e033">QuaZip</a>
@@ -256,6 +270,8 @@
 </li>
 <li>isSequential()
 : <a class="el" href="classQuaZipFile.html#a64430ec50820c8096f963a7e5f53001f">QuaZipFile</a>
+, <a class="el" href="classQuaZIODevice.html#af2697f58c228741d3715801bf48a9a8b">QuaZIODevice</a>
+, <a class="el" href="classQuaGzipFile.html#ae97f4e15d86c965c156df33d00318176">QuaGzipFile</a>
 </li>
 </ul>
 
@@ -269,8 +285,11 @@
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
 <li>open()
-: <a class="el" href="classQuaZip.html#abfa4e6018b2964a3d10a4c54e5ab3962">QuaZip</a>
-, <a class="el" href="classQuaZipFile.html#a4c20c0ef00ae79c9a59eafe2906c9384">QuaZipFile</a>
+: <a class="el" href="classQuaGzipFile.html#a1d560babdfff3a3441d704099a5bc1e4">QuaGzipFile</a>
+, <a class="el" href="classQuaZip.html#abfa4e6018b2964a3d10a4c54e5ab3962">QuaZip</a>
+, <a class="el" href="classQuaZipFile.html#a2429ea59c77371d7af56d739db130b18">QuaZipFile</a>
+, <a class="el" href="classQuaZIODevice.html#a175446c18eb20c9aff6faf23f09cc67a">QuaZIODevice</a>
+, <a class="el" href="classQuaZipFile.html#aed75bace51f2bb4c3e4f656ab4493aac">QuaZipFile</a>
 </li>
 <li>operator!=()
 : <a class="el" href="classQuaZipDir.html#a6e60d858d05774c958215ee7741eceed">QuaZipDir</a>
@@ -298,6 +317,12 @@
 
 
 <h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
+<li>QuaGzipFile()
+: <a class="el" href="classQuaGzipFile.html#a709608207b41ca81d5beed2b34982809">QuaGzipFile</a>
+</li>
+<li>QuaZIODevice()
+: <a class="el" href="classQuaZIODevice.html#a8321ed35ee9b57cf9b1104912e236361">QuaZIODevice</a>
+</li>
 <li>QuaZip()
 : <a class="el" href="classQuaZip.html#a970e0f401c7cfd7a78e78572f758eec4">QuaZip</a>
 </li>
@@ -315,15 +340,17 @@
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>readData()
-: <a class="el" href="classQuaZipFile.html#aa1f2274e1579327855a17d67a9046ec2">QuaZipFile</a>
+: <a class="el" href="classQuaGzipFile.html#a9eab41b46367e63e0c269c42ca883d82">QuaGzipFile</a>
+, <a class="el" href="classQuaZIODevice.html#aa12b8bc9c923e543eda9ae22dbd1ecbb">QuaZIODevice</a>
+, <a class="el" href="classQuaZipFile.html#aa1f2274e1579327855a17d67a9046ec2">QuaZipFile</a>
 </li>
 <li>relativeFilePath()
 : <a class="el" href="classQuaZipDir.html#a2ae89c2b85786a0168656fc7a3faaf01">QuaZipDir</a>
 </li>
 <li>reset()
-: <a class="el" href="classQuaChecksum32.html#ad3f5db3c76b00069db9bda333cb49d57">QuaChecksum32</a>
+: <a class="el" href="classQuaCrc32.html#a3fe7ce6cb73512c963ffaabfbbc66363">QuaCrc32</a>
+, <a class="el" href="classQuaChecksum32.html#ad3f5db3c76b00069db9bda333cb49d57">QuaChecksum32</a>
 , <a class="el" href="classQuaAdler32.html#a2fe6ac9eb289bafda6a9fd20e6472ab5">QuaAdler32</a>
-, <a class="el" href="classQuaCrc32.html#a3fe7ce6cb73512c963ffaabfbbc66363">QuaCrc32</a>
 </li>
 </ul>
 
@@ -348,10 +375,14 @@
 : <a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85">QuaZipNewInfo</a>
 </li>
 <li>setFileName()
-: <a class="el" href="classQuaZipFile.html#a3732ca7704379d457b6a27db8837de95">QuaZipFile</a>
+: <a class="el" href="classQuaGzipFile.html#a253fbaf410a3d4ae0a719505c5525149">QuaGzipFile</a>
+, <a class="el" href="classQuaZipFile.html#a3732ca7704379d457b6a27db8837de95">QuaZipFile</a>
 </li>
 <li>setFileNameCodec()
 : <a class="el" href="classQuaZip.html#a339010b5566704ba3c9cafbfe848d8fb">QuaZip</a>
+</li>
+<li>setFilePermissions()
+: <a class="el" href="structQuaZipNewInfo.html#a08bee5211eb0b49da260c7a9e7a266b8">QuaZipNewInfo</a>
 </li>
 <li>setFilter()
 : <a class="el" href="classQuaZipDir.html#a779a43641f0f3802678e39c9acd1fddb">QuaZipDir</a>
@@ -365,6 +396,9 @@
 <li>setPath()
 : <a class="el" href="classQuaZipDir.html#ae82d06e43856414c30583205d337c111">QuaZipDir</a>
 </li>
+<li>setPermissions()
+: <a class="el" href="structQuaZipNewInfo.html#aed68dc20f7dc42b5056491cf3c1d2d20">QuaZipNewInfo</a>
+</li>
 <li>setSorting()
 : <a class="el" href="classQuaZipDir.html#ae43e9d717e3c4b1c0d4790cf558e7451">QuaZipDir</a>
 </li>
@@ -372,8 +406,8 @@
 : <a class="el" href="classQuaZipFile.html#ab7939a26d1e8de2f6aca54f49a12b980">QuaZipFile</a>
 </li>
 <li>setZipName()
-: <a class="el" href="classQuaZipFile.html#ac8109e9a5c19bea75982ff6986b5cb1e">QuaZipFile</a>
-, <a class="el" href="classQuaZip.html#aa80b661de1262af905d1677dbcb008cc">QuaZip</a>
+: <a class="el" href="classQuaZip.html#aa80b661de1262af905d1677dbcb008cc">QuaZip</a>
+, <a class="el" href="classQuaZipFile.html#ac8109e9a5c19bea75982ff6986b5cb1e">QuaZipFile</a>
 </li>
 <li>size()
 : <a class="el" href="classQuaZipFile.html#ad1a17cc690a01c3edfb82984c3a4c8f0">QuaZipFile</a>
@@ -407,12 +441,20 @@
 
 <h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>writeData()
-: <a class="el" href="classQuaZipFile.html#abd07949a6fcc2ef094d2be5398bc8e7c">QuaZipFile</a>
+: <a class="el" href="classQuaGzipFile.html#a6dd09d41d8a51c96b0f2134eff37f676">QuaGzipFile</a>
+, <a class="el" href="classQuaZipFile.html#abd07949a6fcc2ef094d2be5398bc8e7c">QuaZipFile</a>
+, <a class="el" href="classQuaZIODevice.html#aab23b6badbc3548eb71ca86bf6211902">QuaZIODevice</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_0x7e"></a>- ~ -</h3><ul>
+<li>~QuaGzipFile()
+: <a class="el" href="classQuaGzipFile.html#a1200bc76f36bb2e1991e1e0467befbf2">QuaGzipFile</a>
+</li>
+<li>~QuaZIODevice()
+: <a class="el" href="classQuaZIODevice.html#ab3524cef44c240c21e6b7680ee5f42de">QuaZIODevice</a>
+</li>
 <li>~QuaZip()
 : <a class="el" href="classQuaZip.html#af60a2d3930b90f3b25a3148baecad81e">QuaZip</a>
 </li>
@@ -424,7 +466,7 @@
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 8 2012 13:05:33 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

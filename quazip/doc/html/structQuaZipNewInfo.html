@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -61,6 +61,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs <a class="el" href="structQuaZipNewInfo.html" title="Information about a file to be created.">QuaZipNewInfo</a> instance.  <a href="#ad47cf11f4277edcb09a8ba2b2963f2a9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85">setFileDateTime</a> (const QString &amp;file)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file timestamp from the existing file.  <a href="#a2b18b554d056877a2f33ffb9d241ed85"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a08bee5211eb0b49da260c7a9e7a266b8">setFilePermissions</a> (const QString &amp;file)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file permissions from the existing file.  <a href="#a08bee5211eb0b49da260c7a9e7a266b8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#aed68dc20f7dc42b5056491cf3c1d2d20">setPermissions</a> (QFile::Permissions permissions)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file permissions.  <a href="#aed68dc20f7dc42b5056491cf3c1d2d20"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">name</a></td></tr>
@@ -70,9 +74,8 @@ Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59ce9776c2ac7547ade8cb4c404c77ab"></a><!-- doxytag: member="QuaZipNewInfo::internalAttr" ref="a59ce9776c2ac7547ade8cb4c404c77ab" args="" -->
 quint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a59ce9776c2ac7547ade8cb4c404c77ab">internalAttr</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">File internal attributes. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affd1a9700d302e1395bd04f0864da7d0"></a><!-- doxytag: member="QuaZipNewInfo::externalAttr" ref="affd1a9700d302e1395bd04f0864da7d0" args="" -->
-quint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#affd1a9700d302e1395bd04f0864da7d0">externalAttr</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">File external attributes. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">quint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#affd1a9700d302e1395bd04f0864da7d0">externalAttr</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">File external attributes.  <a href="#affd1a9700d302e1395bd04f0864da7d0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#ae24b1d38c3550b4724862ffcf8f20924">comment</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">File comment.  <a href="#ae24b1d38c3550b4724862ffcf8f20924"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab377a81c51cf495c7aeee4f19340a43f"></a><!-- doxytag: member="QuaZipNewInfo::extraLocal" ref="ab377a81c51cf495c7aeee4f19340a43f" args="" -->
@@ -134,7 +137,7 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div class="memdoc">
 
 <p>Constructs <a class="el" href="structQuaZipNewInfo.html" title="Information about a file to be created.">QuaZipNewInfo</a> instance. </p>
-<p>Initializes name with <em>name</em> and dateTime with timestamp of the file named <em>file</em>. If the <em>file</em> does not exists or its timestamp is inaccessible (e. g. you do not have read permission for the directory file in), uses current date and time. Attributes are initialized with zeros, comment and extra field with null values.</p>
+<p>Initializes name with <em>name</em>. Timestamp and permissions are taken from the specified file. If the <em>file</em> does not exists or its timestamp is inaccessible (e. g. you do not have read permission for the directory file in), uses current time and zero permissions. Other attributes are initialized with zeros, comment and extra field with null values.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85" title="Sets the file timestamp from the existing file.">setFileDateTime()</a> </dd></dl>
 
 <p>References <a class="el" href="structQuaZipNewInfo.html#aec7f3ac72c72a2e10b82ad64c2fa3453">dateTime</a>.</p>
@@ -171,6 +174,48 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
+<a class="anchor" id="a08bee5211eb0b49da260c7a9e7a266b8"></a><!-- doxytag: member="QuaZipNewInfo::setFilePermissions" ref="a08bee5211eb0b49da260c7a9e7a266b8" args="(const QString &amp;file)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuaZipNewInfo::setFilePermissions </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the file permissions from the existing file. </p>
+<p>Takes permissions from the file and sets the high 16 bits of external attributes. Uses QFileInfo to get permissions on all platforms. </p>
+
+</div>
+</div>
+<a class="anchor" id="aed68dc20f7dc42b5056491cf3c1d2d20"></a><!-- doxytag: member="QuaZipNewInfo::setPermissions" ref="aed68dc20f7dc42b5056491cf3c1d2d20" args="(QFile::Permissions permissions)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuaZipNewInfo::setPermissions </td>
+          <td>(</td>
+          <td class="paramtype">QFile::Permissions&#160;</td>
+          <td class="paramname"><em>permissions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the file permissions. </p>
+<p>Modifies the highest 16 bits of external attributes. The type part is set to dir if the name ends with a slash, and to regular file otherwise. </p>
+
+<p>References <a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">name</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="a2bdef01b6ac3326e48598e32bfa5fbe8"></a><!-- doxytag: member="QuaZipNewInfo::name" ref="a2bdef01b6ac3326e48598e32bfa5fbe8" args="" -->
 <div class="memitem">
@@ -186,7 +231,7 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>File name. </p>
 <p>This field holds file name inside archive, including path relative to archive root. </p>
 
-<p>Referenced by <a class="el" href="classQuaZipFile.html#a2429ea59c77371d7af56d739db130b18">QuaZipFile::open()</a>.</p>
+<p>Referenced by <a class="el" href="classQuaZipFile.html#a2429ea59c77371d7af56d739db130b18">QuaZipFile::open()</a>, and <a class="el" href="structQuaZipNewInfo.html#aed68dc20f7dc42b5056491cf3c1d2d20">setPermissions()</a>.</p>
 
 </div>
 </div>
@@ -205,6 +250,24 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>This is the last file modification date and time. Will be stored in the archive central directory. It is a good practice to set it to the source file timestamp instead of archive creating time. Use <a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85" title="Sets the file timestamp from the existing file.">setFileDateTime()</a> or <a class="el" href="structQuaZipNewInfo.html#ad47cf11f4277edcb09a8ba2b2963f2a9" title="Constructs QuaZipNewInfo instance.">QuaZipNewInfo(const QString&amp;, const QString&amp;)</a>. </p>
 
 <p>Referenced by <a class="el" href="classQuaZipFile.html#a2429ea59c77371d7af56d739db130b18">QuaZipFile::open()</a>, <a class="el" href="structQuaZipNewInfo.html#ad47cf11f4277edcb09a8ba2b2963f2a9">QuaZipNewInfo()</a>, and <a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85">setFileDateTime()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="affd1a9700d302e1395bd04f0864da7d0"></a><!-- doxytag: member="QuaZipNewInfo::externalAttr" ref="affd1a9700d302e1395bd04f0864da7d0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint32 <a class="el" href="structQuaZipNewInfo.html#affd1a9700d302e1395bd04f0864da7d0">QuaZipNewInfo::externalAttr</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>File external attributes. </p>
+<p>The highest 16 bits contain Unix file permissions and type (dir or file). The constructor <a class="el" href="structQuaZipNewInfo.html#ad47cf11f4277edcb09a8ba2b2963f2a9" title="Constructs QuaZipNewInfo instance.">QuaZipNewInfo(const QString&amp;, const QString&amp;)</a> takes permissions from the provided file. </p>
+
+<p>Referenced by <a class="el" href="classQuaZipFile.html#a2429ea59c77371d7af56d739db130b18">QuaZipFile::open()</a>.</p>
 
 </div>
 </div>
@@ -249,7 +312,7 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <li>quazip/quazipnewinfo.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 8 2012 13:05:33 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

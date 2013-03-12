@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -36,11 +36,11 @@
 </div>
 <div class="contents">
 <div class="textblock"><p>This page provides general information on QuaZIP usage. See classes <a class="el" href="classQuaZip.html" title="ZIP archive.">QuaZip</a> and <a class="el" href="classQuaZipFile.html" title="A file inside ZIP archive.">QuaZipFile</a> for the detailed documentation on what can QuaZIP do and what it can not. Also, reading comments in the zip.h and unzip.h files (taken from the original ZIP/UNZIP package) is always a good idea too. After all, QuaZIP is just a wrapper with a few convenience extensions and reimplementations.</p>
-<p><a class="el" href="classQuaZip.html" title="ZIP archive.">QuaZip</a> is a class representing ZIP archive, <a class="el" href="classQuaZipFile.html" title="A file inside ZIP archive.">QuaZipFile</a> represents a file inside archive and subclasses QIODevice as well. One limitation is that there can be only one instance of <a class="el" href="classQuaZipFile.html" title="A file inside ZIP archive.">QuaZipFile</a> per QIODevice.</p>
+<p><a class="el" href="classQuaZip.html" title="ZIP archive.">QuaZip</a> is a class representing ZIP archive, <a class="el" href="classQuaZipFile.html" title="A file inside ZIP archive.">QuaZipFile</a> represents a file inside archive and subclasses QIODevice as well. One limitation is that there can be only one instance of <a class="el" href="classQuaZipFile.html" title="A file inside ZIP archive.">QuaZipFile</a> per <a class="el" href="classQuaZip.html" title="ZIP archive.">QuaZip</a> instance, which kind of makes it confusing why there are two classes instead of one. This is actually no more than an API design mistake.</p>
 <h2><a class="anchor" id="terminology"></a>
 Terminology</h2>
 <p>"QuaZIP" means whole this library, while "QuaZip" (note the lower case) is just one class in it.</p>
-<p>"ZIP/UNZIP API" or "minizip" means the original API of the Gilles Vollant's ZIP/UNZIP package. It was slightly modified to better integrate with Qt.</p>
+<p>"ZIP/UNZIP API" or "minizip" means the original API of the Gilles Vollant's ZIP/UNZIP package. It was slightly modified to better integrate with Qt. These modifications are not source or binary compatible with the official minizip release, which means you can't just drop the newer minizip version into QuaZIP sources and make it work.</p>
 <p>"ZIP", "ZIP archive" or "ZIP file" means any ZIP archive. Typically this is a plain file with ".zip" (or ".ZIP") file name suffix, but it can also be any seekable QIODevice (say, QBuffer, but not QTcpSocket).</p>
 <p>"A file inside archive", "a file inside ZIP" or something like that means file either being read or written from/to some ZIP archive.</p>
 <h2><a class="anchor" id="error-handling"></a>
@@ -54,7 +54,7 @@ Error handling</h2>
 </ul>
 <p>I know that this is somewhat messy, but I could not find a better way to do all the error handling. </p>
 </div></div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 8 2012 13:05:33 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
