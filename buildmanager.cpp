@@ -444,9 +444,11 @@ QString getTeXLiveBinPath() {
 	//check for uninstall entry
 	foreach (const QString& baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
 		QSettings reg(baseKey+ "\\Software", QSettings::NativeFormat);
-		QString uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2010/UninstallString", "").toString();
-		if (uninstall.isEmpty()) uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2009/UninstallString", "").toString();
-		if (uninstall.isEmpty()) uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2008/UninstallString", "").toString();
+		QString uninstall;
+		for (int v=2013; v>2008; v--) {
+			uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2010/UninstallString", "").toString();
+			if (!uninstall.isEmpty()) break;
+		}
 		if (!uninstall.isEmpty()) {
 			int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
 			QString path = p>0?uninstall.left(p):"";
@@ -515,7 +517,7 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/";
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 			
-			for (int i=2012; i>=2007; i--) {
+			for (int i=2013; i>=2007; i--) {
 				//paths << QString("/usr/texbin MACTEX/TEXLIVE%i").arg(i); from texmaker comment
 				paths << QString("/usr/local/texlive/%i/bin/x86_64-darwin/").arg(i);
 				paths << QString("/usr/local/texlive/%i/bin/i386-darwin/").arg(i);
