@@ -43,7 +43,7 @@ bool Template::createInFolder(const QString &path) {
 	} else {
 		QStringList entries = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
 		if (!entries.isEmpty()) {
-			bool ok = txsConfirmWarning(tr("The target folder is not empty. It is recommended to instantiate "
+			bool ok = txsConfirmWarning(QCoreApplication::translate("TemplateManager", "The target folder is not empty. It is recommended to instantiate "
 							  "in new folders. Otherwise existing files may be overwritten. "
 							  "Do you wish to use this folder anyway?"));
 			if (!ok) return false;
