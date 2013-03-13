@@ -7887,6 +7887,12 @@ void Texmaker::recoverFromCrash(){
 		return;
 	}
 
+	static int nestedCrashes = 0;
+
+	nestedCrashes++;
+
+	if (nestedCrashes > 5) { qFatal("Forced kill after recovering failed after: %s\n", qPrintable(name)); exit(1); }
+
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 	
 	//hide editor views in case the error occured during drawing
@@ -7945,6 +7951,7 @@ void Texmaker::recoverFromCrash(){
 	
 	//fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb->result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
 	if (mb->result() == QMessageBox::DestructiveRole || (!wasLoop && mb->result() == QMessageBox::RejectRole)) {
+		qFatal("Killed on user request after error: %s\n", qPrintable(name));
 		exit(1);
 	}
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
@@ -7957,6 +7964,11 @@ void Texmaker::recoverFromCrash(){
 	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors())
 		edView->show();
 	
+	if (!programStopped)
+		QApplication::processEvents(QEventLoop::AllEvents);
+
+	nestedCrashes = 0; //assume it was successfully recovered if it gets this far
+
 	while (!programStopped) {
 		QApplication::processEvents(QEventLoop::AllEvents);
 		ThreadBreaker::msleep(1);
