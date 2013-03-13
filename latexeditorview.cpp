@@ -52,7 +52,7 @@ QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "T
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding():completerConfig(0),contextMenu(0) {}
+	DefaultInputBinding():completerConfig(0),contextMenu(0),isDoubleClick(false) {}
 	virtual QString id() const {
 		return "TXS::DefaultInputBinding";
 	}
@@ -122,7 +122,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 				}
 				
 				LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
-				Q_ASSERT(view);
+				REQUIRE_RET(view, true);
 				view->insertMacro(completerConfig->userMacro[i].tag, r, Macro::ST_REGEX);
 				//editor->insertText(c, completerConfig->userMacro[i].tag);
 				if (block) editor->document()->endMacro();
@@ -252,6 +252,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
 	else cursor=editor->cursor();
 	LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+	REQUIRE_RET(edView, false);
 
 	// check for context menu on preview picture
 	QRect pictRect = cursor.line().getCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS).toRect();
@@ -295,7 +296,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		QFormatRange fr;
 		//spell checking
 		
-		if (edView && edView->speller){
+		if (edView->speller){
 			int pos;
 			if (cursor.hasSelection()) pos = (cursor.columnNumber()+cursor.anchorColumnNumber()) / 2;
 			else pos = cursor.columnNumber();
