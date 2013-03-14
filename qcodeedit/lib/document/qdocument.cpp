@@ -177,11 +177,14 @@ static int PICTURE_BORDER = 2;
 
 
 inline static bool isWord(QChar c)
-{ return c.isLetterOrNumber(); } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
+{
+    QString extraChars="\\";
+    return c.isLetterOrNumber() || extraChars.contains(c);
+} // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
 inline static bool isDelimiter(QChar c)
 {
-    QString delimiters="(){}$+-/*,;.\\";
+    QString delimiters="(){}$+-/*,;.";
 	return delimiters.contains(c);
 }
 
