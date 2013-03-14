@@ -181,7 +181,7 @@ inline static bool isWord(QChar c)
 
 inline static bool isDelimiter(QChar c)
 {
-	QString delimiters="(){}$+-/*,;.";
+    QString delimiters="(){}$+-/*,;.\\";
 	return delimiters.contains(c);
 }
 
