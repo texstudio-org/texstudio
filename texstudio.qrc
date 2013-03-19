@@ -303,6 +303,12 @@
         <file>completion/xspace.cwl</file>
         <file>completion/xtab.cwl</file>
         <file>completion/yfonts.cwl</file>
+        <file>completion/cleveref.cwl</file>
+        <file>completion/parskip.cwl</file>
+        <file>completion/xy.cwl</file>
+        <file>completion/xetex.cwl</file>
+        <file>completion/upgreek.cwl</file>
+        <file>completion/harvard.cwl</file>
         <file>completion/cwlAliases.dat</file>
         <file>tags/asymptote_tags.xml</file>
         <file>tags/brackets_tags.xml</file>
@@ -350,11 +356,6 @@
         <file>images/separator.png</file>
         <file>images/TexTablet.png</file>
         <file>images/user-identity.png</file>
-        <file>completion/cleveref.cwl</file>
-        <file>completion/parskip.cwl</file>
-        <file>completion/xy.cwl</file>
-        <file>completion/xetex.cwl</file>
-        <file>completion/upgreek.cwl</file>
         <file>images/syncSource.png</file>
         <file>images/syncViewer.png</file>
         <file>images/warning_16.png</file>
