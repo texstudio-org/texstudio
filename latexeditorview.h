@@ -179,7 +179,7 @@ private slots:
 	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket);
 	void triggeredThesaurus();
 	void reloadSpeller();
-	void changeSpellingLanguage(const QLocale &loc);
+	void changeSpellingDict(const QString &name);
 	void copyImageFromAction();
 	void saveImageFromAction();
 public slots:

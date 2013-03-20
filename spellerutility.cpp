@@ -243,34 +243,36 @@ bool SpellerManager::hasSpeller(const QString &name) {
 	return dictFiles.contains(name);
 }
 
+bool match(QString &guess, const QList<QString> &keys) {
+	for (int i=0;i<keys.length();i++) {
+		if (0==QString::compare(keys[i], guess, Qt::CaseInsensitive)) {
+			guess = keys[i];
+			return true;
+		}
+	}
+}
+
 bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
+	if (name.length() < 2) return false;
+
 	QList<QString> keys = dictFiles.keys();
 
 	// case insensitive match
-	for (int i=0;i<keys.length();i++) {
-		if (0==QString::compare(keys[i], name, Qt::CaseInsensitive)) {
-			bestName = keys[i];
-			return true;
-		}
-	}
-	
 	bestName = name;
-	if (bestName.contains("_"))
+	if (match(bestName, keys)) return true;
+	
+	// match also with "_" -> "-" replacement
+	if (bestName.contains('_')) {
 		bestName.replace("_", "-");
-	if (!bestName.contains('-')) return false;
-
-	// matich also with "_" -> "-" replacement
-	for (int i=0;i<keys.length();i++) {
-		if (0==QString::compare(keys[i], bestName, Qt::CaseInsensitive)) {
-			bestName = keys[i];
-			return true;
-		}
+		if (match(bestName, keys)) return true;
 	}
 
-	// match only part before "_" or "-"
-	bestName = bestName.left(bestName.indexOf('-'));
+	// match only beginning to beginning of keys
+	bestName = name;
+	QString alternative = name;
+	alternative.replace("_", "-");
 	for (int i=0;i<keys.length();i++)
-		if (keys[i].startsWith(bestName, Qt::CaseInsensitive)) {
+		if (keys[i].startsWith(bestName, Qt::CaseInsensitive) || keys[i].startsWith(alternative)) {
 			bestName = keys[i];
 			return true;
 		}
