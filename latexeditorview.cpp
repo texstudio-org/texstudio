@@ -560,7 +560,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
 	connect(editor->document(),SIGNAL(lineDeleted(QDocumentLineHandle*)),this,SLOT(lineDeleted(QDocumentLineHandle*)));
 	
-	connect(doc, SIGNAL(spellingLanguageChanged(QLocale)), this, SLOT(changeSpellingLanguage(QLocale)));
+	connect(doc, SIGNAL(spellingDictChanged(QString)), this, SLOT(changeSpellingDict(QString)));
     connect(doc, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)),this,SIGNAL(bookmarkRemoved(QDocumentLineHandle*)));
     connect(doc, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)),this,SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)));
 	
@@ -2282,12 +2282,12 @@ void LatexEditorView::triggeredThesaurus(){
 	emit thesaurus(pt.x(),pt.y());
 }
 
-void LatexEditorView::changeSpellingLanguage(const QLocale &loc) {
-	QString sim;
-	if (spellerManager->hasSpeller(loc.name())) {
-		setSpeller(loc.name());
-	} else if (spellerManager->hasSimilarSpeller(loc.name(), sim)) {
-		setSpeller(sim);
+void LatexEditorView::changeSpellingDict(const QString &name) {
+	QString similarName;
+	if (spellerManager->hasSpeller(name)) {
+		setSpeller(name);
+	} else if (spellerManager->hasSimilarSpeller(name, similarName)) {
+		setSpeller(similarName);
 	}
 }
 

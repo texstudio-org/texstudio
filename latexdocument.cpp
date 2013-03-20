@@ -32,7 +32,6 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppen
 	mMentionedBibTeXFiles.clear();
 	masterDocument=0;
 	this->parent=0;
-	mSpellingLanguage=QLocale::c();
 }
 LatexDocument::~LatexDocument(){
 	if (!magicCommentList->parent) delete magicCommentList;
@@ -2112,14 +2111,8 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 	}
 
 	if (name.toLower() == "spellcheck") {
-		QString lang=val;
-		lang.replace("-", "_"); // QLocale expects "_". This is to stay compatible with texworks which uses "-"
-		mSpellingLanguage = QLocale(lang);
-		if (mSpellingLanguage.language() == QLocale::C) {
-			se->tooltip = tr("Invalid language format");
-			return;
-		}
-		emit spellingLanguageChanged(mSpellingLanguage);
+		mSpellingDictName = val;
+		emit spellingDictChanged(mSpellingDictName);
 		se->valid = true;
 	} else if ((name.toLower() == "texroot")||(name.toLower() == "root")){
 		QString fname=findFileName(val);

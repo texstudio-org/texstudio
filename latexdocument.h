@@ -156,8 +156,8 @@ public:
     Q_INVOKABLE QStringList containedPackages();
     void updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate=false);
 	
-	QLocale spellingLanguage() const {
-		return mSpellingLanguage;
+	QString spellingDictName() const {
+		return mSpellingDictName;
 	}
 	Q_INVOKABLE QString getMagicComment(const QString& name);
 	Q_INVOKABLE QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
@@ -195,7 +195,7 @@ private:
 	QSet<QString> mCompleterWords; // local list of completer words
     QSet<QString> mCWLFiles;
 	
-	QLocale mSpellingLanguage; // default/not specified: QLocale::c()
+	QString mSpellingDictName;
 	
 	QDocumentLineHandle *mAppendixLine;
 	
@@ -242,7 +242,7 @@ signals:
 	void updateBibTeXFiles();
 	void toBeChanged();
 	void importPackage(QString name);
-	void spellingLanguageChanged(const QLocale &lang);
+	void spellingDictChanged(const QString &name);
     void bookmarkLineUpdated(int lineNr);
 };
 
