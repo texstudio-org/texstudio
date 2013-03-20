@@ -152,6 +152,9 @@ public:
 	QDateTime debugLastFullTestRun;
 	#endif
 	
+    // disable usage of esc for closing fullscreen view
+    bool disableEscForClosingFullscreen;
+
 	//menus
 	QObject* menuParent; //lets assume there is only one
 	QMenuBar* menuParentsBar; //that's ugly, but faster as long as there is only one (both values could be extracted from the action's name)
