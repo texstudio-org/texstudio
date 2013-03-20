@@ -849,7 +849,12 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf){
 
 	scrollArea->goToPage(page);
 	
-	QPoint p = mapFromScaledPosition(page, QPointF( isnan(xinpdf)?0:xinpdf, isnan(yinpdf)?0:yinpdf));
+	if (isnan(xinpdf)) xinpdf = 0;
+	xinpdf = qBound<float>(0, xinpdf, 1);
+	if (isnan(yinpdf)) yinpdf = 0;
+	yinpdf = qBound<float>(0, yinpdf, 1);
+
+	QPoint p = mapFromScaledPosition(page, QPointF( xinpdf, yinpdf));
 	
 	if (!isnan(xinpdf)) 
 		scrollArea->horizontalScrollBar()->setValue(p.x());
