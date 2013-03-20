@@ -16,7 +16,8 @@ CleanDialog::CleanDialog(QWidget *parent) :
 
 	ConfigManager::getInstance()->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);
 
-	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp("([0-9a-z_]+.)*[0-9a-z_]+(,([0-9a-z_]+.)*[0-9a-z_]+)*"), this);
+	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;]";
+	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
