@@ -5378,13 +5378,7 @@ void Texmaker::viewCloseSomething(){
 	}
 	if (completer && completer->isVisible() && completer->close())
 		return;
-	if(windowState()==Qt::WindowFullScreen){
-		stateFullScreen=saveState(1);
-		setWindowState(Qt::WindowNoState);
-		restoreState(windowstate,0);
-		fullscreenModeAction->setChecked(false);
-		return;
-	}
+
 	if (textAnalysisDlg) {
 		textAnalysisDlg->close();
 		return;
@@ -5402,6 +5396,13 @@ void Texmaker::viewCloseSomething(){
       return;
     }
 #endif
+    if(windowState()==Qt::WindowFullScreen && !configManager.disableEscForClosingFullscreen){
+          stateFullScreen=saveState(1);
+          setWindowState(Qt::WindowNoState);
+          restoreState(windowstate,0);
+          fullscreenModeAction->setChecked(false);
+          return;
+    }
 	QTime ct = QTime::currentTime();
 	if (ct.second() % 5 != 0) return;
 	for (int i=2;i<63;i++) if (ct.minute() != i && ct.minute() % i  == 0) return;

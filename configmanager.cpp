@@ -372,6 +372,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
     registerOption("Files/Autoload",&autoLoadChildren,false, &pseudoDialog->checkBoxAutoLoad);
+
+    registerOption("Editor/UseEscForClosingFullscreen",&disableEscForClosingFullscreen,false,&pseudoDialog->checkBoxDisableEscForClosingfullscreen);
 	
 	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
