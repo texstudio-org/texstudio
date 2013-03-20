@@ -32,6 +32,8 @@
 	<string>texstudio.icns</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
