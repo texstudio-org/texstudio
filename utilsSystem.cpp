@@ -291,8 +291,9 @@ bool isRetinaMac() {
 		process.waitForFinished(1000);
 		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
 		QRegExp rx("MacBookPro([0-9]*)");
+        rx.indexIn(model);
 		int num = rx.cap(1).toInt();
-		qDebug() << num;
+        //qDebug() << num << model;
 		if (num>=10) // compatibility with future MacBookPros. Assume they are also retina.
 			isRetina = true;
 	}
