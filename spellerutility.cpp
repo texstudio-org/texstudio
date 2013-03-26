@@ -250,6 +250,7 @@ bool match(QString &guess, const QList<QString> &keys) {
 			return true;
 		}
 	}
+	return false;
 }
 
 bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
