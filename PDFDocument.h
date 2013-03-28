@@ -67,6 +67,7 @@ protected:
 private:
 	int oldshape;
 	int page;
+    int overScale;
 	qreal	scaleFactor;
 	qreal	parentDpi;
 	QPixmap	image;

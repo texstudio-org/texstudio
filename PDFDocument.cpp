@@ -221,6 +221,7 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 {
 	page = pageNr;
+    overScale= isRetinaMac() ? 2 : 1;
 	scaleFactor = scale * kMagFactor;
 	if (page <0) {
 		imagePage=-1;
@@ -232,7 +233,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 			PDFDocument *doc=parent->getPDFDocument();
 			QWidget* viewport = parent->parentWidget();
 			if (viewport != NULL && viewport->parentWidget() != NULL) {
-				qreal dpi = parentDpi * scaleFactor;
+                qreal dpi = parentDpi * scaleFactor;
 				QPoint tl = parent->mapFromParent(viewport->rect().topLeft());
 				QPoint br = parent->mapFromParent(viewport->rect().bottomRight());
 				tl -= visibleRect.topLeft();
@@ -242,17 +243,17 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				if (br.x() > visibleRect.width()) br.setX(visibleRect.width());
 				if (br.y() > visibleRect.height()) br.setY(visibleRect.height());
 				QSize  size = QSize(br.x() - tl.x(), br.y() - tl.y()) * kMagFactor;
-				QPoint loc = tl * kMagFactor;
+                QPoint loc = tl * kMagFactor;
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
 					//don't cache in rendermanager in order to reduce memory consumption
-					image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi, dpi, loc.x(), loc.y(), size.width(), size.height(),false,true);
+                    image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * overScale , dpi * overScale, loc.x() *overScale, loc.y()*overScale, size.width()*overScale, size.height()*overScale,false,true);
 				}
 				imagePage = page;
 				imageDpi = dpi;
 				imageLoc = loc;
 				imageSize = size;
 
-				mouseTranslate = rect().center() - imageLoc - (visibleRect.topLeft() /*- offset*/) * kMagFactor;
+                mouseTranslate = rect().center() - imageLoc - (visibleRect.topLeft() /*- offset*/) * kMagFactor;
 				
 			}
 		}
@@ -285,7 +286,9 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	drawFrame(&painter);
-	painter.drawPixmap(event->rect(), image, event->rect().translated(kMagFactor * pos() + mouseTranslate));
+    QRect tmpRect(event->rect().x()*overScale,event->rect().y()*overScale,event->rect().width()*overScale,event->rect().height()*overScale);
+
+    painter.drawPixmap(event->rect(), image, tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
 	
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
@@ -529,6 +532,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	drawFrame(&painter);
 
 	qreal newDpi = dpi * scaleFactor;
+    int overScale= isRetinaMac() ? 2 : 1;
+
 	QRect newRect = rect();
 	PDFDocument *doc=getPDFDocument();
 	if(!doc || !doc->renderManager)
@@ -539,10 +544,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 		if (gridx<=1 && gridy<=1) {
 			int pageNr=pages.first();
 			QRect drawTo = pageRect(pageNr);
-			image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor, dpi * scaleFactor,
-								      0,0, newRect.width(), newRect.height(),true,true);
+            image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor *overScale, dpi * scaleFactor*overScale,
+                                      0,0, newRect.width()*overScale, newRect.height()*overScale,true,true);
 			fillRectBorder(painter, drawTo, newRect);
-			painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
+            painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
 			if (pageNr==highlightPage && !highlightPath.isEmpty() ) {
 				painter.setRenderHint(QPainter::Antialiasing);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
@@ -551,7 +556,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.drawPath(highlightPath);
 			}
 			if (currentTool == kPresentation)
-				doc->renderManager->renderToImage(pageNr+1,this,"",dpi * scaleFactor, dpi * scaleFactor, 0,0, newRect.width(), newRect.height(),true,true);
+                doc->renderManager->renderToImage(pageNr+1,this,"",dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0,0, newRect.width() * overScale, newRect.height()*overScale,true,true);
 		} else {
 			QRect visRect=visibleRegion().boundingRect();
 			//image = QPixmap(newRect.width(), newRect.height());
@@ -591,12 +596,12 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				}
 				QPixmap temp = doc->renderManager->renderToImage(
 						pageNr,this,"setImage",
-						dpi * scaleFactor,
-						dpi * scaleFactor,
-						0,0,drawGrid.width(),drawGrid.height(),true,true);
+                        dpi * scaleFactor * overScale,
+                        dpi * scaleFactor * overScale,
+                        0,0,drawGrid.width()*overScale,drawGrid.height()*overScale,true,true);
 				if (drawGrid != basicGrid) 
 					fillRectBorder(painter, drawGrid, basicGrid);
-				painter.drawPixmap(drawGrid.left(), drawGrid.top(), temp);
+                painter.drawPixmap(QRect(drawGrid.left(), drawGrid.top(),temp.width()/overScale,temp.height()/overScale), temp);
 				if(pageNr==highlightPage){
 					if (!highlightPath.isEmpty()) {
 						painter.save();
