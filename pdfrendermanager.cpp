@@ -16,7 +16,7 @@
 #include <QtCore/qmath.h>
 
 const int kMaxPageZoom=1000000;
-const qreal kMaxDpiForFullPage=500.0;
+const qreal kMaxDpiForFullPage= isRetinaMac() ? 1000.0 : 500.0;
 
 PDFQueue::PDFQueue(QObject *parent): QObject(parent){
 #if QT_VERSION < 0x040400
