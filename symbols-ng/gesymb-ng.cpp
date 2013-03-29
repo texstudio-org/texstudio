@@ -25,6 +25,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QList>
+#include <QStringList>
 #include <QTemporaryFile>
 #include <QImage>
 
@@ -108,50 +109,39 @@ void writeImageComments(const Command &cmd, const QString &fileName)
     return;
   }
 
-  QString errorMsg;
-  int errorLine,errorColumn;
-  QDomDocument doc( "svg" );
+  QStringList fileContent;
+  QTextStream stream(&file);
+  QString line;
+  do {
+      line = stream.readLine();
+      if(!line.isNull())
+          fileContent<<line;
+  } while (!line.isNull());
 
-  if( !doc.setContent( &file,false, &errorMsg, &errorLine, &errorColumn) )
-  {
-    qDebug() << "could not find xml content";
-    qDebug() << errorMsg;
-    qDebug() << "line is " << errorLine;
-    qDebug() << "column is " << errorColumn;
-    file.close();
-    return;
-  }
   file.close();
 
-  // check root element
-  QDomElement root = doc.documentElement();
-  if( root.tagName() != "svg" ) {
-    qDebug() << "wrong format";
-    return;
-  }
-  QDomElement n=doc.createElement("title");
-  QDomNode cont=doc.createTextNode(cmd.latexCommand);
-  n.appendChild(cont);
-  //n.setNodeValue("test a");
-  root.appendChild(n);
-
-  n=doc.createElement("desc");
-  if( !unicodeCommandAsLatin1.isEmpty() ) {
-    n.setAttribute("CommandUnicode",unicodeCommandAsLatin1);
-    n.setAttribute("UnicodePackages",pkgListToString(cmd.unicodePackages));
-  }
-  if (!commentAsLatin1.isEmpty() ) {
-    n.setAttribute("Comment",commentAsLatin1);
-  }
-  n.setAttribute("Packages",pkgListToString(cmd.packages));
-  root.appendChild(n);
 
   //QFile file( fn );
   if( !file.open( QIODevice::WriteOnly ) )
   return;
 
   QTextStream ts( &file );
-  ts << doc.toString();
+  for(int i=0;i<fileContent.size();i++){
+      line=fileContent.at(i);
+      if(line.startsWith("<defs>")){
+          ts<<"<title>"<<cmd.latexCommand<<"</title>"<<"\n";
+          QString additional;
+          if (!commentAsLatin1.isEmpty() ) {
+              additional="Comment=\""+commentAsLatin1+"\" ";
+          }
+          if( !unicodeCommandAsLatin1.isEmpty() ) {
+              additional+="CommandUnicode=\""+unicodeCommandAsLatin1+"\" ";
+              additional+="UnicodePackages=\""+pkgListToString(cmd.unicodePackages)+"\" ";
+          }
+          ts<<"<desc "<<"Packages=\""<<pkgListToString(cmd.packages)<<"\" />\n";
+      }
+      ts<<line<<"\n";
+  }
 
   file.close();
    
