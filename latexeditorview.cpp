@@ -1998,7 +1998,11 @@ void LatexEditorView::mouseHovered(QPoint pos){
                 // by bibitem defined citation
                 tooltip.clear();
                 QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
+                if(result.keys().isEmpty())
+                    return;
                 QDocumentLineHandle *mLine=result.keys().first();
+                if(!mLine)
+                    return;
                 int l=mLine->line();
                 LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
                 if (mLine->document()!=editor->document()) {
