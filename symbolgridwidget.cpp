@@ -57,28 +57,75 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 	
 	for (int i = 0; i < fileNames.size(); ++i) {
 		QString iconName=fileNames.at(i);
-		QString fileName=findResourceFile("symbols/"+iconName);
+        QString fileName=findResourceFile("symbols-ng/"+iconName);
+        if(fileName.isEmpty())
+            fileName=findResourceFile("symbols/"+iconName);
 		QTableWidgetItem* item= new QTableWidgetItem();
-		QImage img=QImage(fileName);
+        QString Command,text;
+
+        if(fileName.endsWith("svg")){
+            QFile file( fileName );
+
+            if( !file.open( QIODevice::ReadOnly ) ){
+                qDebug() << "could not open file";
+                continue;
+            }
+
+            QString errorMsg;
+            int errorLine,errorColumn;
+            QDomDocument doc( "svg" );
+
+            if( !doc.setContent( &file,false, &errorMsg, &errorLine, &errorColumn) )
+            {
+                qDebug() << "could not find xml content";
+                qDebug() << errorMsg;
+                qDebug() << "line is " << errorLine;
+                qDebug() << "column is " << errorColumn;
+                file.close();
+                continue;
+            }
+            file.close();
+
+            // check root element
+            QDomElement root = doc.documentElement();
+            if( root.tagName() != "svg" ) {
+                qDebug() << "wrong format";
+                continue;
+            }
+
+            QDomNodeList nl=root.elementsByTagName("title");
+            if(!nl.isEmpty()){
+               QDomNode n=nl.at(0);
+               Command=n.toElement().text();
+            }
+            nl=root.elementsByTagName("desc");
+            if(!nl.isEmpty()){
+                QDomNode n=nl.at(0);
+                text=n.toElement().attribute("Packages");
+            }
+        }else{
+            QImage img=QImage(fileName);
+            Command=img.text("Command");
+            text = img.text("Packages");
+        }
 		item->setIcon(QIcon(fileName));
-		item->setText(img.text("Command"));
+        item->setText(Command);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		if(Map) {
 			item->setData(Qt::UserRole,Map->value(iconName,0).toInt());
-			Map->insert(img.text("Command"),0);
+            Map->insert(Command,0);
 		} else item->setData(Qt::UserRole,0);
 		item->setData(Qt::UserRole+2,iconName);
 		QString label;
 		QStringList args,pkgs;
 
-		label = tr("Command: ") + "<b>" + img.text("Command") + "</b>";
+        Command.replace("<","&lt;");
+        label = tr("Command: ") + "<b>" + Command + "</b>";
 
 		QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
 
 		args.clear();
 		pkgs.clear();
-
-		QString text = img.text("Packages");
 
 		if( rePkgs.indexIn(text) != -1 )
 		{
@@ -112,8 +159,11 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 {
 	if(!mLoadedSymbols){
 	    QStringList files;
-	    if(!mSymbolList.isEmpty() && !mSymbolList.startsWith("!"))
-		files=findResourceFiles("symbols/"+mSymbolList, "img*.png");
+        if(!mSymbolList.isEmpty() && !mSymbolList.startsWith("!")){
+            files=findResourceFiles("symbols-ng/"+mSymbolList, "img*.svg");
+            if(files.isEmpty()) // fallback
+                files=findResourceFiles("symbols/"+mSymbolList, "img*.png");
+        }
 
 	    QStringList fullNames;
 	    foreach (const QString& partName, files)

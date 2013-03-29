@@ -129,7 +129,9 @@ void writeImageComments(const Command &cmd, const QString &fileName)
   for(int i=0;i<fileContent.size();i++){
       line=fileContent.at(i);
       if(line.startsWith("<defs>")){
-          ts<<"<title>"<<cmd.latexCommand<<"</title>"<<"\n";
+	  QString Command=cmd.latexCommand;
+	  Command.replace("<","&lt;");
+          ts<<"<title>"<<Command<<"</title>"<<"\n";
           QString additional;
           if (!commentAsLatin1.isEmpty() ) {
               additional="Comment=\""+commentAsLatin1+"\" ";
