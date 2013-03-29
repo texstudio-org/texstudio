@@ -6771,6 +6771,8 @@ void Texmaker::svnUndo(bool redo){
 
 void Texmaker::svnPatch(QEditor *ed,QString diff){
 	QStringList lines;
+    for(int i=0;i<diff.length();i++)
+        qDebug()<<diff[i];
 	if(diff.contains("\r\n")){
 		lines=diff.split("\r\n");
 	}else{
@@ -6780,7 +6782,15 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 			lines=diff.split("\r");
 		}
 	}
-	for(int i=0;i<4;i++) lines.removeFirst();
+    for(int i=0;i<3;i++) lines.removeFirst();
+    if(lines.first().contains("@@")){
+        // workaround for bug on mac osx
+        int i=lines.first().indexOf("@@");
+        lines.first()=lines.first().mid(i);
+    }else{
+        lines.removeFirst();
+    }
+
 	QRegExp rx("@@ -(\\d+),(\\d+) \\+(\\d+),(\\d+)");
 	int cur_line;
 	bool atDocEnd=false;
