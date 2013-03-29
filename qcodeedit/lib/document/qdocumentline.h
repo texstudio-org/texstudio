@@ -115,18 +115,9 @@ class QCE_EXPORT QDocumentLine
 		
 		bool operator > (const QDocumentLine& l) const;
 		bool operator <= (const QDocumentLine& l) const;
-		
-		QDocumentLine& operator ++ ();
-		QDocumentLine& operator -- ();
-		
-		void operator ++ (int);
-		void operator -- (int);
-		
+			
 		QDocumentLine& operator = (const QDocumentLine& l);
-		
-		int lineNumber() const;
-		int position() const;
-		
+
 		QString text() const;
 		
 		int length() const;
@@ -149,10 +140,7 @@ class QCE_EXPORT QDocumentLine
 		bool hasFlag(State s) const;
 		bool hasAnyFlag(int s) const;
 		void setFlag(State s, bool y = true);
-		
-		QDocumentLine next() const;
-		QDocumentLine previous() const;
-		
+
 		QDocument* document() const;
 		
 		int xToCursor(int x) const;

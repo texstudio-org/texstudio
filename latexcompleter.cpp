@@ -36,12 +36,14 @@ public:
 	}
 	
 	QString getCurWord() {
+		if (!editor) return QString();
 		//QMessageBox::information(0,curLine.text().mid(curStart,editor->cursor().columnNumber()-curStart),"",0);
-		return curLine.text().mid(curStart,editor->cursor().columnNumber()-curStart);
+		return editor->text(curLineNumber).mid(curStart,editor->cursor().columnNumber()-curStart);
 	}
 	
 	// check if current cursor/placeholder is mirrored
 	bool isMirrored(){
+		if (!editor) return false;
 		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
 		{
 			PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
@@ -51,6 +53,7 @@ public:
 	}
 	
 	void insertText(const QString& text){
+		if (!editor) return;
 		maxWritten += text.length();
 		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
 			editor->document()->beginMacro();
@@ -86,6 +89,7 @@ public:
 	}
 	
 	bool insertCompletedWord() {
+		if (!editor) return false;
 		if (completer->list->isVisible() && maxWritten>=curStart && completer->list->currentIndex().isValid()) {
 			QDocumentCursor cursor=editor->cursor();
 			editor->document()->beginMacro();
@@ -150,6 +154,7 @@ public:
 	}
 	
 	void removeRightWordPart() {
+		if (!editor) return;
 		QDocumentCursor cursor=editor->cursor();
 		for (int i=maxWritten-cursor.columnNumber(); i>0; i--) cursor.deleteChar();
 		maxWritten=cursor.columnNumber();
@@ -219,6 +224,7 @@ public:
 	}	
 	
 	void simpleRestoreAutoOverride(const QString& written="????"){ //simple means without protecting the change from undo/redo
+		if (!editor) return;
 		if (!autoOverridenText.isEmpty() && !editor->isAutoOverrideText(written)) {
 			int curpos = editor->cursor().columnNumber();
 			if (curpos < maxWritten) {
@@ -269,7 +275,7 @@ public:
 				resetBinding();
 				return false;
 			}
-			editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()-1);
+			editor->setCursorPosition(curLineNumber,editor->cursor().columnNumber()-1);
 			if (editor->cursor().columnNumber()<=curStart) resetBinding();
 			handled=true;
 		} else if (event->key()==Qt::Key_Right) {
@@ -277,7 +283,7 @@ public:
 				resetBinding();
 				return false;
 			}
-			editor->setCursorPosition(curLine.lineNumber(),editor->cursor().columnNumber()+1);
+			editor->setCursorPosition(curLineNumber,editor->cursor().columnNumber()+1);
 			if (editor->cursor().columnNumber()>maxWritten) resetBinding();
 			handled=true;
 		} else if (event->key()==Qt::Key_Up) return selectDelta(-1);
@@ -416,7 +422,7 @@ public:
 	void cursorPositionChanged(QEditor* edit) {
 		if (edit!=editor) return; //should never happen
 		QDocumentCursor c=editor->cursor();
-		if (c.line()!=curLine || c.columnNumber()<curStart) resetBinding();
+		if (c.lineNumber()!=curLineNumber || c.columnNumber()<curStart) resetBinding();
 	}
 	
 	void setMostUsed(int mu,bool quiet=false){
@@ -449,7 +455,7 @@ public:
 			
 		}
 		active=false;
-		curLine=QDocumentLine(); //prevent crash if the editor is destroyed
+		editor=0;
 		if(completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())){
 			completer->complete(editor,LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
 		}
@@ -465,7 +471,7 @@ public:
 		curStart=start>0?start:0;
 		maxWritten=editor->cursor().columnNumber();
 		if (maxWritten<start) maxWritten=start;
-		curLine=editor->cursor().line();
+		curLineNumber=editor->cursor().lineNumber();
 		showAlways=forced;//curWord!="\\";
 		completer->filterList(getCurWord());
 		if (showAlways) {
@@ -489,7 +495,7 @@ private:
 	QEditorInputBindingInterface* oldBinding;
 	QString completionWord;
 	int curStart,maxWritten;
-	QDocumentLine curLine;
+	int curLineNumber;
 };
 
 CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
@@ -1301,7 +1307,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		} else {
 			QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
 			QDocumentLineHandle *mLine=result.keys().first();
-			int l=mLine->line();
+			int l=mLine->document()->indexOf(mLine);
 			if(mLine->document()!=editor->document()){
 				//LatexDocument *doc=document->parent->findDocument(mLine->document());
 				LatexDocument *doc=qobject_cast<LatexDocument *>(mLine->document());

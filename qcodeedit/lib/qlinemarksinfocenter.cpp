@@ -89,7 +89,7 @@ QLineMarkList QLineMarksInfoCenter::marks(const QString& file) const
 	foreach ( QLineMarkHandle m, m_lineMarks )
 	{
 		if ( !check || (m.file == file) )
-			l << QLineMark(file, m.line->line() + 1, m.mark);
+			l << QLineMark(file, m.line->document()->indexOf(m.line) + 1, m.mark);
 	}
 	
 	return l;
@@ -293,7 +293,7 @@ void QLineMarksInfoCenter::saveMarks(const QString& f)
 	
 	foreach ( QLineMarkHandle mark, m_lineMarks )
 	{
-		stream << mark.line->line() + 1;
+		stream << mark.line->document()->indexOf(mark.line) + 1;
 		stream << mark.file;
 		stream << QLineMarksInfoCenter::instance()->markTypeId(mark.mark);
 		//stream << mark;
@@ -605,7 +605,7 @@ void QLineMarksInfoCenter::lineDeleted(QDocumentLineHandle *h)
 	{
 		if ( h==i->line )
 		{
-			QLineMark mrk(i->file, i->line->line() + 1, i->mark);
+			QLineMark mrk(i->file, i->line->document()->indexOf(i->line) + 1, i->mark);
 			
 			i = m_lineMarks.erase(i);
 			
@@ -625,7 +625,7 @@ void QLineMarksInfoCenter::markChanged(const QString& f, QDocumentLineHandle *li
 {
 	QLineMarkHandle m(f, line, mark);
 	bool in = m_lineMarks.contains(m);
-	QLineMark mrk(f, line->line() + 1, mark);
+	QLineMark mrk(f, line->document()->indexOf(line) + 1, mark);
 	
 	if ( !on && in )
 	{

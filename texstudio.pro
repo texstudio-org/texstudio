@@ -134,7 +134,8 @@ HEADERS += texmaker.h \
     utilsUI.h \
     utilsSystem.h \
     utilsVersion.h \
-    latexpackages.h
+    latexpackages.h \
+    cursorposition.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -232,7 +233,8 @@ SOURCES += main.cpp \
     fileselector.cpp \
     utilsUI.cpp \
     utilsSystem.cpp \
-    latexpackages.cpp
+    latexpackages.cpp \
+    cursorposition.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc
 FORMS += structdialog.ui \
@@ -485,7 +487,7 @@ HEADERS += qcodeedit/lib/qce-config.h \
     qcodeedit/lib/widgets/qeditconfig.h \
     qcodeedit/lib/widgets/qformatconfig.h \
     qcodeedit/lib/widgets/qsimplecolorpicker.h \
-    qcodeedit/lib/widgets/qcalltip.h
+    qcodeedit/lib/widgets/qcalltip.h     
 SOURCES += qcodeedit/lib/qeditor.cpp \
     qcodeedit/lib/qeditorfactory.cpp \
     qcodeedit/lib/qcodeedit.cpp \

@@ -87,8 +87,9 @@ QList<QVariant> Bookmarks::getBookmarks() {
 		int bookmarkNumber = item->data(BookmarkNr).toInt();
 		QDocumentLineHandle *dlh = qvariant_cast<QDocumentLineHandle*>(item->data(DocLineHandle));
 		LatexDocument *doc = documents->findDocumentFromName(fn);
-		if(doc && doc->indexOf(dlh) >= 0) {
-			lineNr=dlh->line();
+		if(doc) {
+			int temp = doc->indexOf(dlh);
+			if (temp >= 0) lineNr = temp;
 		}
 		bookmark << fn;
 		bookmark << QString::number(lineNr);
@@ -121,10 +122,10 @@ void Bookmarks::bookmarkAdded(QDocumentLineHandle* dlh,int nr){
 	text+="\n"+dlh->text().trimmed();
 	QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
 	item->setData(FileName, doc->getFileName());
-	item->setData(LineNr, dlh->line());
+	item->setData(LineNr, doc->indexOf(dlh));
 	item->setData(DocLineHandle, qVariantFromValue(dlh));
 	item->setData(BookmarkNr, nr);
-	int lineNr=dlh->line();
+	int lineNr=doc->indexOf(dlh);
 	lineNr = lineNr>1 ? lineNr-2 : 0;
 	item->setToolTip(doc->exportAsHtml(doc->cursor(lineNr, 0, lineNr+4), true, true, 60));
 }

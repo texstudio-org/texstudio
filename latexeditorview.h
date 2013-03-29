@@ -16,6 +16,7 @@
 #include "syntaxcheck.h"
 #include "grammarcheck.h"
 #include "bibtexreader.h"
+#include "cursorposition.h"
 
 class QDocumentLineHandle;
 
@@ -75,6 +76,7 @@ public:
 	//Functions affecting the editor
 	
 	Q_INVOKABLE void complete(int flags);
+	bool gotoLineHandleAndSearchCommand(const QDocumentLineHandle* dlh, const QSet<QString>& searchFor, const QString& id);
 	Q_INVOKABLE bool gotoToLabel(const QString& label);
 	Q_INVOKABLE bool gotoToBibItem(const QString& bibId);
 	
@@ -145,7 +147,7 @@ private:
 	SpellerUtility* speller;
 	bool useDefaultSpeller;
 	static LatexCompleter* completer;
-	QList<QPair<QDocumentLineHandle*, int> > changePositions; //line, index
+	QList<CursorPosition> changePositions; //line, index
 	int curChangePos;
 	
 	LatexEditorViewConfig* config;

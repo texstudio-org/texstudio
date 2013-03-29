@@ -959,7 +959,7 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getBibItems(const QString& n
     QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
     for (it = elem->mBibItem.constBegin(); it != elem->mBibItem.constEnd(); ++it){
       ReferencePair rp=it.value();
-      if(rp.name==name){
+      if(rp.name==name && elem->indexOf(it.key()) >= 0){
         result.insert(it.key(),rp.start);
       }
     }
@@ -974,7 +974,7 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getLabels(const QString& nam
 		QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 		for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it){
 			ReferencePair rp=it.value();
-			if(rp.name==name){
+			if(rp.name==name && elem->indexOf(it.key()) >= 0){
 				result.insert(it.key(),rp.start);
 			}
 		}
@@ -988,7 +988,7 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(const QString& name)
 		QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
 		for (it = elem->mRefItem.constBegin(); it != elem->mRefItem.constEnd(); ++it){
 			ReferencePair rp=it.value();
-			if(rp.name==name){
+			if(rp.name==name && elem->indexOf(it.key()) >= 0){
 				result.insert(it.key(),rp.start);
 			}
 		}
@@ -1444,7 +1444,7 @@ StructureEntry *LatexDocumentsModel::labelForStructureEntry(const StructureEntry
 	REQUIRE_RET(entry && entry->document,0 );
 	QDocumentLineHandle *dlh = entry->getLineHandle();
 	if (!dlh) return 0;
-	QDocumentLineHandle *nextDlh = dlh->next();
+	QDocumentLineHandle *nextDlh = entry->document->line(entry->getRealLineNumber()+1).handle();
 	StructureEntryIterator iter(entry->document->baseStructure);
 
 	while (iter.hasNext()){
@@ -2428,7 +2428,7 @@ void LatexDocument::updateMagicComment(const QString &name, const QString &val, 
 	
 	QDocumentLineHandle* dlh = getMagicCommentLineHandle(name);
 	if(dlh) {
-		QDocumentCursor cur(this, dlh->line());
+		QDocumentCursor cur(this, indexOf(dlh));
 		cur.select(QDocumentCursor::LineUnderCursor);
 		cur.replaceSelectedText(line);
 	} else {

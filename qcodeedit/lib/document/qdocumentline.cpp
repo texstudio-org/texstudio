@@ -102,80 +102,6 @@ bool QDocumentLine::operator != (const QDocumentLine& l) const
 }
 
 /*!
-	\brief Comparision operator
-	
-	\note Line number based : avoid whenever possible
-*/
-bool QDocumentLine::operator < (const QDocumentLine& l) const
-{
-	return lineNumber() < l.lineNumber();
-}
-
-/*!
-	\brief Comparision operator
-	
-	\note Line number based : avoid whenever possible
-*/
-bool QDocumentLine::operator >= (const QDocumentLine& l) const
-{
-	return lineNumber() >= l.lineNumber();
-}
-
-/*!
-	\brief Comparision operator
-	
-	\note Line number based : avoid whenever possible
-*/
-bool QDocumentLine::operator > (const QDocumentLine& l) const
-{
-	return lineNumber() > l.lineNumber();
-}
-
-/*!
-	\brief Comparision operator
-	
-	\note Line number based : avoid whenever possible
-*/
-bool QDocumentLine::operator <= (const QDocumentLine& l) const
-{
-	return lineNumber() <= l.lineNumber();
-}
-
-/*!
-	\brief Iterate forward over the document
-*/
-QDocumentLine& QDocumentLine::operator ++ ()
-{
-	operator = (next());
-	return *this;
-}
-
-/*!
-	\brief Iterate backward over the document
-*/
-QDocumentLine& QDocumentLine::operator -- ()
-{
-	operator = (previous());
-	return *this;
-}
-
-/*!
-	\brief Iterate forward over the document
-*/
-void QDocumentLine::operator ++ (int)
-{
-	operator = (next());
-}
-
-/*!
-	\brief Iterate backward over the document
-*/
-void QDocumentLine::operator -- (int)
-{
-	operator = (previous());
-}
-
-/*!
 	\brief copy operator
 	
 	QDocumentLine objects are just wrappers around the "real" line data.
@@ -201,30 +127,6 @@ QDocumentLine& QDocumentLine::operator = (const QDocumentLine& l)
 QDocument* QDocumentLine::document() const
 {
 	return m_handle ? m_handle->document() : 0;
-}
-
-/*!
-	\return the line number of the line within the document
-	
-	Starts at 0, -1 for invalid lines.
-	
-	\note Avoid whenever possible : O(n) complexity, n being document size in lines
-	Prefer cursors over lines if you need to navigate within the document
-*/
-int QDocumentLine::lineNumber() const
-{
-	return m_handle ? m_handle->line() : -1;
-}
-
-/*!
-	\return the position of the line within the document
-	
-	\note This function is there for compatibility with QTextDocument & co
-	Avoid it whenever possible, it is ridiculously slow.
-*/
-int QDocumentLine::position() const
-{
-	return m_handle ? m_handle->position() : -1;
 }
 
 /*!
@@ -340,32 +242,6 @@ int QDocumentLine::nextNonSpaceChar(int pos) const
 int QDocumentLine::previousNonSpaceChar(int pos) const
 {
 	return m_handle ? m_handle->previousNonSpaceChar(pos) : -1;
-}
-
-/*!
-	\return The previous line
-	
-	\note Avoid using this function whenever possible, especially
-	inside loops or time-consuming processing : it is SLOW for big
-	documents as determination of the line number is O(n), n being
-	the total number of lines in the document
-*/
-QDocumentLine QDocumentLine::next() const
-{
-	return QDocumentLine(m_handle->next());
-}
-
-/*!
-	\return The next line
-	
-	\note Avoid using this function whenever possible, especially
-	inside loops or time-consuming processing : it is SLOW for big
-	documents as determination of the line number is O(n), n being
-	the total number of lines in the document
-*/
-QDocumentLine QDocumentLine::previous() const
-{
-	return QDocumentLine(m_handle->previous());
 }
 
 /*!

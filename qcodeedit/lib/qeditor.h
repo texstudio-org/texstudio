@@ -248,7 +248,6 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		virtual QRect cursorRect() const;
 		virtual QRect selectionRect() const;
 		virtual QRect lineRect(int line) const;
-		virtual QRect lineRect(const QDocumentLine& l) const;
 		virtual QRect cursorRect(const QDocumentCursor& c) const;
 		virtual QRect cursorMircoFocusRect() const;
 

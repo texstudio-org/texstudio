@@ -821,30 +821,30 @@ void LatexEditorView::complete(int flags) {
 void LatexEditorView::jumpChangePositionBackward() {
 	if (changePositions.size()==0) return;
 	for (int i=changePositions.size()-1; i>=0; i--)
-		if (!QDocumentLine(changePositions[i].first).isValid() || QDocumentLine(changePositions[i].first).lineNumber()<0) {
+		if (!changePositions[i].isValid()) {
 			changePositions.removeAt(i);
 			if (i<=curChangePos) curChangePos--;
 		}
 	if (curChangePos >= changePositions.size()-1) curChangePos = changePositions.size()-1;
 	else if (curChangePos>=0 && curChangePos < changePositions.size()-1) curChangePos++;
-	else if (editor->cursor().line().handle()==changePositions.first().first) curChangePos=1;
+	else if (editor->cursor().line().handle()==changePositions.first().dlh()) curChangePos=1;
 	else curChangePos=0;
 	if (curChangePos>=0 && curChangePos < changePositions.size())
-		editor->setCursorPosition(QDocumentLine(changePositions[curChangePos].first).lineNumber(),changePositions[curChangePos].second);
+		editor->setCursorPosition(changePositions[curChangePos].lineNumber(),changePositions[curChangePos].columnNumber());
 }
 void LatexEditorView::jumpChangePositionForward() {
 	for (int i=changePositions.size()-1; i>=0; i--)
-		if (!QDocumentLine(changePositions[i].first).isValid() || QDocumentLine(changePositions[i].first).lineNumber()<0) {
+		if (!changePositions[i].isValid()) {
 			changePositions.removeAt(i);
 			if (i<=curChangePos) curChangePos--;
 		}
 	if (curChangePos>0) {
 		curChangePos--;
-		editor->setCursorPosition(QDocumentLine(changePositions[curChangePos].first).lineNumber(),changePositions[curChangePos].second);
+		editor->setCursorPosition(changePositions[curChangePos].lineNumber(),changePositions[curChangePos].columnNumber());
 	}
 }
 void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
-	int markLine=editor->document()->findNextMark(bookMarkId(bookmarkNumber),editor->cursor().line().lineNumber(),editor->cursor().line().lineNumber()-1);
+	int markLine=editor->document()->findNextMark(bookMarkId(bookmarkNumber),editor->cursor().lineNumber(),editor->cursor().lineNumber()-1);
 	if (markLine>=0) {
 		emit saveCurrentCursorToHistoryRequested();
 		editor->setCursorPosition(markLine,0);
@@ -912,17 +912,14 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line) {
 	emit bookmarkAdded(line.handle(),bookmarkNumber);
     return true;
 }
-
-bool LatexEditorView::gotoToLabel(const QString& label){
-	int cnt=document->countLabels(label);
-	if (cnt==0) return false;
-	QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(label);
-	QDocumentLine line(result.keys().first());
-	int ln=line.lineNumber();
+bool LatexEditorView::gotoLineHandleAndSearchCommand(const QDocumentLineHandle* dlh, const QSet<QString>& searchFor, const QString& id){
+	if (!dlh) return false;
+	int ln=dlh->document()->indexOf(dlh);
 	if (ln<0) return false;
+	QString lineText = dlh->document()->line(ln).text();
 	int col = 0;
-	foreach (const QString &cmd, LatexParser::getInstance().possibleCommands["%label"]) {
-		col = line.text().indexOf(cmd+"{"+label);
+	foreach (const QString &cmd, searchFor) {
+		col = lineText.indexOf(cmd+"{"+id);
 		if (col >= 0) {
 			col += cmd.length()+1;
 			break;
@@ -933,28 +930,22 @@ bool LatexEditorView::gotoToLabel(const QString& label){
 	editor->setCursorPosition(ln, col, false);
 	editor->ensureCursorVisible(QEditor::Navigation);
 	return true;
+
+}
+
+bool LatexEditorView::gotoToLabel(const QString& label){
+	int cnt=document->countLabels(label);
+	if (cnt==0) return false;
+	QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(label);
+	if (result.isEmpty()) return false;
+	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%label"], label);
 }
 
 bool LatexEditorView::gotoToBibItem(const QString &bibId) {
 	// only supports local bibitems. BibTeX has to be handled on a higher level
 	QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibId);
 	if (result.isEmpty()) return false;
-	QDocumentLine line(result.keys().first());
-	int ln=line.lineNumber();
-	if (ln<0) return false;
-	int col = 0;
-	foreach (const QString &cmd, LatexParser::getInstance().possibleCommands["%bibitem"]) {
-		col = line.text().indexOf(cmd+"{"+bibId);
-		if (col >= 0) {
-			col += cmd.length()+1;
-			break;
-		}
-	}
-	Q_ASSERT(col >= 0);
-	if (col < 0) col = 0;
-	editor->setCursorPosition(ln, col, false);
-	editor->ensureCursorVisible(QEditor::Navigation);
-	return true;
+	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%bibitem"], bibId);
 }
 
 
@@ -1447,17 +1438,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		bool add=false;
 		if (changePositions.size()<=0) add=true;
 		else if (curChangePos<1) {
-			if (changePositions.first().first!=startline.handle()) add=true;
-			else changePositions.first().second=editor->cursor().columnNumber();
+			if (changePositions.first().dlh()!=startline.handle()) add=true;
+			else changePositions.first().setColumnNumber(editor->cursor().columnNumber());
 		} else if (curChangePos>=changePositions.size()-1) {
-			if (changePositions.last().first!=startline.handle()) add=true;
-			else changePositions.last().second=editor->cursor().columnNumber();
-		}  else if (changePositions[curChangePos].first==startline.handle()) changePositions[curChangePos].second=editor->cursor().columnNumber();
-		else if (changePositions[curChangePos+1].first==startline.handle()) changePositions[curChangePos+1].second=editor->cursor().columnNumber();
+			if (changePositions.last().dlh()!=startline.handle()) add=true;
+			else changePositions.last().setColumnNumber(editor->cursor().columnNumber());
+		}  else if (changePositions[curChangePos].dlh()==startline.handle()) changePositions[curChangePos].setColumnNumber(editor->cursor().columnNumber());
+		else if (changePositions[curChangePos+1].dlh()==startline.handle()) changePositions[curChangePos+1].setColumnNumber(editor->cursor().columnNumber());
 		else add=true;
 		if (add) {
 			curChangePos=-1;
-			changePositions.insert(0,QPair<QDocumentLineHandle*,int>(startline.handle(),editor->cursor().columnNumber()));
+			changePositions.insert(0,CursorPosition(editor->document()->cursor(linenr, editor->cursor().columnNumber())));
 			if (changePositions.size()>20) changePositions.removeLast();
 		}
 	}
@@ -1693,7 +1684,7 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle* l) {
 	QPair<int, int> p;
 	//QMessageBox::information(0,QString::number(nr),"",0);
 	for (int i=changePositions.size()-1; i>=0; i--)
-		if (changePositions[i].first==l)
+		if (changePositions[i].dlh()==l)
 			/*if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
    else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
    else  */ //creating a QDocumentLine with a deleted handle is not possible (it will modify the handle reference count which will trigger another delete event, leading to an endless loop)
@@ -1840,7 +1831,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	fr = cursor.line().getOverlayAt(cursor.columnNumber(),syntaxErrorFormat);
 	if (fr.length>0 && fr.format==syntaxErrorFormat) {
 		StackEnvironment env;
-		getEnv(l.lineNumber(),env);
+		getEnv(cursor.lineNumber(),env);
 		QString text=l.text();
 		if(!text.isEmpty()){
 			QString message=SynChecker.getErrorAt(l.handle(),cursor.columnNumber(),env);
@@ -1944,7 +1935,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		} else {
 			QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
 			QDocumentLineHandle *mLine=result.keys().first();
-			int l=mLine->line();
+			int l=mLine->document()->indexOf(mLine);
 			LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
 			if(mLine->document()!=editor->document()){
 				doc=document->parent->findDocument(mLine->document());
@@ -2003,7 +1994,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
                 QDocumentLineHandle *mLine=result.keys().first();
                 if(!mLine)
                     return;
-                int l=mLine->line();
+                int l=mLine->document()->indexOf(mLine);
                 LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
                 if (mLine->document()!=editor->document()) {
                     doc=document->parent->findDocument(mLine->document());

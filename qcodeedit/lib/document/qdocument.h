@@ -224,10 +224,8 @@ class QCE_EXPORT QDocument : public QObject
 		
 		int y(int line) const;
 		int lineNumber(int ypos, int *wrap = 0) const;
-		int y(const QDocumentLine& l) const;
 		
 		QRect lineRect(int line) const;
-		QRect lineRect(const QDocumentLine& l) const;
 		
 		QDocumentCursor* editCursor() const;
 		void setEditCursor(QDocumentCursor *c);
@@ -411,7 +409,8 @@ class QCE_EXPORT QDocument : public QObject
         void bookmarkRemoved(QDocumentLineHandle *dlh);
         void bookmarkAdded(QDocumentLineHandle *dlh,int nr);
 	public:
-		int indexOf(QDocumentLineHandle* h, int hint = -1);
+		int indexOf(const QDocumentLineHandle* h, int hint = -1) const;
+		int indexOf(const QDocumentLine& l, int hint = -1) const;
 	private:
 		QString m_leftOver;
 		QDocumentPrivate *m_impl;

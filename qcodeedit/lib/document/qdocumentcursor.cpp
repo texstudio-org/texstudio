@@ -410,16 +410,6 @@ QDocument* QDocumentCursor::document() const
 }
 
 /*!
-	\return the text position (within the whole document) at which this cursor is
-	
-	\note available for compat with QTextCursor and ridiculously slow : avoid whenever possible
-*/
-int QDocumentCursor::position() const
-{
-	return m_handle ? m_handle->position() : -1;
-}
-
-/*!
 	\return the text column of the anchor
 */
 int QDocumentCursor::anchorColumnNumber() const
@@ -625,11 +615,11 @@ void QDocumentCursor::moveTo(const QDocumentCursor &c, MoveMode m)
 	
 	\note Calls QDocumentLine::lineNumber() => SLOW : avoid whenever possible
 */
-void QDocumentCursor::moveTo(const QDocumentLine &l, int column, MoveMode m)
+/*void QDocumentCursor::moveTo(const QDocumentLine &l, int column, MoveMode m)
 {
 	if ( m_handle )
 		m_handle->moveTo(l.lineNumber(), column, m);
-}
+}*/
 
 /*!
 	\return the character at the position immediately after the cursor

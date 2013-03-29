@@ -110,8 +110,6 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		QPolygon documentRegion() const;
 		
-		int position() const;
-		
 		void shift(int offset);
 		void setPosition(int pos, int m);
 		bool movePosition(int offset, int op, const QDocumentCursor::MoveMode& m);
