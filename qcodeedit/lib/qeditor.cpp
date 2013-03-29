@@ -5012,27 +5012,6 @@ QRect QEditor::lineRect(int line) const
 }
 
 /*!
-	\overload
-
-	\note This function relies on QDocumentLine::lineNumber() so avoid
-	it whenever possible as it is much slower than providing a line number
-	directly.
-*/
-QRect QEditor::lineRect(const QDocumentLine& l) const
-{
-	//qFatal("bad practice...");
-
-	if ( !m_doc )
-		return QRect();
-
-	QRect r = m_doc->lineRect(l);
-	r.setWidth(viewport()->width());
-	r.translate(-horizontalOffset(), -verticalOffset());
-
-	return r;
-}
-
-/*!
 	\return The line rect of the given cursor
 */
 QRect QEditor::cursorRect(const QDocumentCursor& c) const

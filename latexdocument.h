@@ -118,7 +118,7 @@ public:
 	Q_INVOKABLE int countLabels(const QString& name);
 	Q_INVOKABLE int countRefs(const QString& name);
 	Q_INVOKABLE bool bibIdValid(const QString& name);
-    Q_INVOKABLE bool isBibItem(const QString& name);
+	Q_INVOKABLE bool isBibItem(const QString& name);
 	Q_INVOKABLE QString findFileFromBibId(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);

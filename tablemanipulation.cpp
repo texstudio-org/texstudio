@@ -431,7 +431,7 @@ QString LatexTables::getDef(QDocumentCursor &cur){
 				if(!opt.startsWith("{")||!opt.endsWith("}")) return QString();
 				opt=opt.mid(1);
 				opt.chop(1);
-				cur.moveTo(c.line(),pos+1);
+				cur.moveTo(c.lineNumber(),pos+1);
 				cur.movePosition(opt.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 			}
 		}

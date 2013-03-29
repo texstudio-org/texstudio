@@ -1437,8 +1437,12 @@ QDocumentLine QDocument::line(QDocumentConstIterator iterator) const
 }
 
 /*! \return Line number of an handle */
-int QDocument::indexOf(QDocumentLineHandle* h, int hint){
+int QDocument::indexOf(const QDocumentLineHandle* h, int hint) const{
 	return m_impl->indexOf(h, hint);
+}
+
+int QDocument::indexOf(const QDocumentLine& l, int hint) const{
+	return m_impl->indexOf(l.handle(), hint);
 }
 
 /*!
@@ -1513,21 +1517,6 @@ int QDocument::y(int ln) const
 }
 
 /*!
-	\overload
-
-	\return The Y document coordinate of a given line
-	\param l line object
-
-	\note Significantly slower than the line number based version.
-*/
-int QDocument::y(const QDocumentLine& l) const
-{
-	qDebug("bad perf...");
-
-	return y(l.lineNumber());
-}
-
-/*!
 	\return the rectangle (in document position) occupied by the line
 	\param line textual line number
 
@@ -1538,21 +1527,6 @@ QRect QDocument::lineRect(int line) const
 	const int yoff = y(line);
 
 	return (yoff != -1) ? QRect(0, yoff, width(), this->line(line).lineSpan() * m_impl->m_lineSpacing) : QRect();
-}
-
-/*!
-	\overload
-	\return the rectangle (in document position) occupied by the line
-
-	\note the width of the returned rectangle is the DOCUMENT's width
-	\note Significantly slower than the line number based version.
-*/
-QRect QDocument::lineRect(const QDocumentLine& l) const
-{
-	//return lineRect(l.lineNumber());
-	const int yoff = y(l);
-
-	return (yoff != -1) ? QRect(0, yoff, width(), m_impl->m_lineSpacing) : QRect();
 }
 
 /*!
@@ -2216,10 +2190,10 @@ int QDocumentLineHandle::length() const
 	return m_text.length();
 }
 
-int QDocumentLineHandle::line() const
+/*int QDocumentLineHandle::line() const
 {
 	return (m_doc && m_doc->impl()) ? m_doc->impl()->indexOf(this) : -1;
-}
+}*/
 
 int QDocumentLineHandle::position() const
 {
@@ -2299,16 +2273,6 @@ void QDocumentLineHandle::setFlag(int s, bool y) const
 		m_state |= s;
 	else
 		m_state &= ~s;
-}
-
-QDocumentLineHandle* QDocumentLineHandle::next() const
-{
-	return (m_doc && m_doc->impl()) ? m_doc->impl()->next(this) : 0;
-}
-
-QDocumentLineHandle* QDocumentLineHandle::previous() const
-{
-	return (m_doc && m_doc->impl()) ? m_doc->impl()->previous(this) : 0;
 }
 
 QList<int> QDocumentLineHandle::getBreaks(){
@@ -4374,16 +4338,6 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 	}
 
 	return poly;
-}
-
-int QDocumentCursorHandle::position() const
-{
-	if ( !m_doc )
-		return -1;
-
-	int pos = m_doc->line(m_begLine).position();
-
-	return (pos != -1) ? pos + m_begOffset : pos;
 }
 
 void QDocumentCursorHandle::shift(int offset)

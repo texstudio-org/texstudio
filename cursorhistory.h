@@ -15,24 +15,6 @@
 #include "mostQtHeaders.h"
 #include "latexdocument.h"
 
-class CursorPosition {
-public:
-	CursorPosition(QDocumentCursor c);
-
-	QDocumentCursor toCursor();
-	bool isValid();
-	bool equals(const CursorPosition &pos);
-	QDocument * doc() const {return m_doc;}
-	QDocumentLineHandle * dlh() const {return m_dlh;}
-	int oldLineNumber() const {return m_oldLineNumber;}
-	int columnNumber() const {return m_columnNumber;}
-private:
-	QDocument* m_doc;
-	QDocumentLineHandle *m_dlh;
-	int m_oldLineNumber;
-	int m_columnNumber;
-};
-
 typedef QLinkedList<CursorPosition> CursorPosList;
 
 class CursorHistory : public QObject

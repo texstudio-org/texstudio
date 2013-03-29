@@ -5843,7 +5843,7 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
 	if (!lh) return;
 	//goto
-	gotoLine(QDocumentLine(lh).lineNumber());
+	gotoLine(currentEditor()->document()->indexOf(lh));
 }
 
 bool Texmaker::gotoLogEntryAt(int newLineNumber) {
@@ -6212,7 +6212,7 @@ void Texmaker::clearPreview() {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act && act->data().isValid()) {
 		// inline preview context menu supplies the calling point in doc coordinates as data
-		startLine = edit->lineAtPosition(act->data().toPoint()).lineNumber();
+		startLine = edit->document()->indexOf(edit->lineAtPosition(act->data().toPoint()));
 		// slight performance penalty for use of lineNumber(), which is not stictly necessary because
 		// we convert it back to a QDocumentLine, but easier to handle together with the other cases
 		endLine = startLine;

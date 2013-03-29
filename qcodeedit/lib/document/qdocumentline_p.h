@@ -70,9 +70,9 @@ class QCE_EXPORT QDocumentLineHandle
 		int position() const;
 		
 		QString text() const;
-		
-		int line() const;
-		
+//private:
+//		int line() const;
+public:
 		int xToCursor(int x) const;
 		int cursorToX(int i) const;
 		int cursorToXNoLock(int i) const;
@@ -96,10 +96,7 @@ class QCE_EXPORT QDocumentLineHandle
 		void setFlag(int flag, bool y = true) const;
 		
 		QDocument* document() const;
-		
-		QDocumentLineHandle* next() const;
-		QDocumentLineHandle* previous() const;
-		
+
 		void updateWrap() const;
 		void updateWrapAndNotifyDocument(int ownLineNumber) const;
 		
@@ -215,6 +212,5 @@ class QCE_EXPORT QDocumentLineHandle
 
 Q_DECLARE_TYPEINFO(QDocumentLineHandle*, Q_PRIMITIVE_TYPE);
 Q_DECLARE_METATYPE(QDocumentLineHandle*)
-
 
 #endif // !_QDOCUMENT_LINE_P_H_

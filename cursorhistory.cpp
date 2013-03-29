@@ -258,31 +258,3 @@ void CursorHistory::debugPrint()
 }
 
 
-CursorPosition::CursorPosition(QDocumentCursor c) :
-	m_doc(0), m_dlh(0), m_oldLineNumber(0), m_columnNumber(0)
-{
-	if (c.isValid()) {
-		m_doc = qobject_cast<QDocument*>(c.document());
-		m_dlh = c.line().handle();
-		m_columnNumber = c.columnNumber();
-		m_oldLineNumber = c.lineNumber();
-	}
-}
-
-QDocumentCursor CursorPosition::toCursor() {
-	if (!m_doc) return QDocumentCursor();
-	// update line number
-	m_oldLineNumber = m_doc->indexOf(m_dlh, m_oldLineNumber);
-	return QDocumentCursor(m_doc, m_oldLineNumber, m_columnNumber);
-}
-
-bool CursorPosition::isValid() {
-	if (!m_doc) return false;
-	m_oldLineNumber = m_doc->indexOf(m_dlh, m_oldLineNumber);
-	return m_oldLineNumber >= 0;
-}
-
-bool CursorPosition::equals(const CursorPosition &pos) {
-	return (m_doc == pos.m_doc && m_dlh == pos.m_dlh && m_columnNumber == pos.m_columnNumber);
-}
-
