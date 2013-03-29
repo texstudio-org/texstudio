@@ -7906,6 +7906,9 @@ void Texmaker::recoverFromCrash(){
 
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 	
+	if (nestedCrashes <= 2)
+		print_backtrace(name);
+
 	//hide editor views in case the error occured during drawing
 	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors())
 		edView->hide();
@@ -7917,7 +7920,6 @@ void Texmaker::recoverFromCrash(){
 			ed->saveEmergencyBackup(ed->fileName()+".recover.bak~");
 	}
 	
-	print_backtrace(name);
 	
 	
 	QMessageBox * mb = new QMessageBox(); //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or continuing a paused loop can crash
