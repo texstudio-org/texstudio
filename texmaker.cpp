@@ -448,16 +448,17 @@ void Texmaker::setupDockWidgets(){
 		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), ":/images/bookmarks.png");
 	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 	
-	addSymbolGrid("operators", "math1.png",tr("Operator symbols"));
-	addSymbolGrid("relation", "hi16-action-math1.png",tr("Relation symbols"));
-	addSymbolGrid("arrows", "math2.png",tr("Arrow symbols"));
-	addSymbolGrid("delimiters","math4.png",tr("Delimiters"));
-	addSymbolGrid("greek", "math5.png",tr("Greek letters"));
-	addSymbolGrid("cyrillic", "hi16-action-math10.png",tr("Cyrillic letters"));
-	addSymbolGrid("misc-math", "math3.png",tr("Miscellaneous math symbols"));
-	addSymbolGrid("misc-text", "misc-symbols.png",tr("Miscellaneous text symbols"));
-	addSymbolGrid("wasysym", "misc-symbols-wasysym.png",tr("Miscellaneous text symbols (wasysym)"));
-	addSymbolGrid("special", "math-accent.png",tr("Accented letters"));
+    int cnt=modernStyle ? 11 : 1;
+    addSymbolGrid("operators", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Operator symbols"));
+    addSymbolGrid("relation", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Relation symbols"));
+    addSymbolGrid("arrows", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Arrow symbols"));
+    addSymbolGrid("delimiters",QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Delimiters"));
+    addSymbolGrid("greek", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Greek letters"));
+    addSymbolGrid("cyrillic", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Cyrillic letters"));
+    addSymbolGrid("misc-math", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Miscellaneous math symbols"));
+    addSymbolGrid("misc-text", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Miscellaneous text symbols"));
+    addSymbolGrid("wasysym", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Miscellaneous text symbols (wasysym)"));
+    addSymbolGrid("special", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Accented letters"));
 	
 	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
 	MostUsedSymbolWidget->loadSymbols(MapForSymbols->keys(),MapForSymbols);
