@@ -25,23 +25,7 @@
 
    <!-- insert stuff here    -->
 <symbolGroupName>operators</symbolGroupName>
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+
 <!-- arg math \pm  -->
 <commandDefinition>
    <latexCommand>\pm</latexCommand>
@@ -1004,6 +988,7 @@
    <package>
       <name>amsmath</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
@@ -1014,6 +999,7 @@
    <package>
       <name>amsmath</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
@@ -1024,6 +1010,7 @@
    <package>
       <name>amsmath</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
@@ -1034,9 +1021,7 @@
    <package>
       <name>amsmath</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 </symbols>
