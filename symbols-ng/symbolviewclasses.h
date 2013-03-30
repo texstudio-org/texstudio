@@ -30,6 +30,7 @@ struct Command{
    QString ImageCommand;
    QString comment;
    bool mathMode;
+   bool forcePNG;
    QList<Package> packages;
    QList<Package> unicodePackages;
    int referenceCount;

@@ -160,7 +160,7 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 	if(!mLoadedSymbols){
 	    QStringList files;
         if(!mSymbolList.isEmpty() && !mSymbolList.startsWith("!")){
-            files=findResourceFiles("symbols-ng/"+mSymbolList, "img*.svg");
+            files=findResourceFiles("symbols-ng/"+mSymbolList, "img*.*");
             if(files.isEmpty()) // fallback
                 files=findResourceFiles("symbols/"+mSymbolList, "img*.png");
         }

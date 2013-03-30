@@ -25,16 +25,7 @@
 
    <!-- insert stuff here    -->
 <symbolGroupName>special</symbolGroupName>
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{A}  -->
+
 <commandDefinition>
    <latexCommand>\"{A}</latexCommand>
    <unicodeCommand>Ä</unicodeCommand>
@@ -45,6 +36,7 @@
 <commandDefinition>
    <latexCommand>\H{A}</latexCommand>
    <unicodeCommand>A̋</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -80,6 +72,7 @@
 <commandDefinition>
    <latexCommand>\v{A}</latexCommand>
    <unicodeCommand>Ǎ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -94,6 +87,7 @@
 <commandDefinition>
    <latexCommand>\={A}</latexCommand>
    <unicodeCommand>Ā</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -133,6 +127,7 @@
 <commandDefinition>
    <latexCommand>\H{a}</latexCommand>
    <unicodeCommand>a̋</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -168,6 +163,7 @@
 <commandDefinition>
    <latexCommand>\v{a}</latexCommand>
    <unicodeCommand>ǎ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -175,6 +171,7 @@
 <commandDefinition>
    <latexCommand>\u{a}</latexCommand>
    <unicodeCommand>ă</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -182,6 +179,7 @@
 <commandDefinition>
    <latexCommand>\={a}</latexCommand>
    <unicodeCommand>ā</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -221,6 +219,7 @@
 <commandDefinition>
    <latexCommand>\u{C}</latexCommand>
    <unicodeCommand>C̆</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -242,6 +241,7 @@
 <commandDefinition>
    <latexCommand>\u{c}</latexCommand>
    <unicodeCommand>c̆</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -321,6 +321,7 @@
 <commandDefinition>
    <latexCommand>\H{E}</latexCommand>
    <unicodeCommand>Ế</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -328,6 +329,7 @@
 <commandDefinition>
    <latexCommand>\.{E}</latexCommand>
    <unicodeCommand>Ė</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -363,6 +365,7 @@
 <commandDefinition>
    <latexCommand>\u{E}</latexCommand>
    <unicodeCommand>Ĕ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -370,6 +373,7 @@
 <commandDefinition>
    <latexCommand>\={E}</latexCommand>
    <unicodeCommand>Ē</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -395,6 +399,7 @@
 <commandDefinition>
    <latexCommand>\H{e}</latexCommand>
    <unicodeCommand>ế</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -402,6 +407,7 @@
 <commandDefinition>
    <latexCommand>\.{e}</latexCommand>
    <unicodeCommand>ė</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -437,6 +443,7 @@
 <commandDefinition>
    <latexCommand>\u{e}</latexCommand>
    <unicodeCommand>ĕ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -444,6 +451,7 @@
 <commandDefinition>
    <latexCommand>\={e}</latexCommand>
    <unicodeCommand>ē</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -462,6 +470,7 @@
 <commandDefinition>
    <latexCommand>\c{G}</latexCommand>
    <unicodeCommand>Ģ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -469,6 +478,7 @@
 <commandDefinition>
    <latexCommand>\'{G}</latexCommand>
    <unicodeCommand>Ǵ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -476,6 +486,7 @@
 <commandDefinition>
    <latexCommand>\c{g}</latexCommand>
    <unicodeCommand>ģ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -483,6 +494,7 @@
 <commandDefinition>
    <latexCommand>\'{g}</latexCommand>
    <unicodeCommand>ǵ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -497,6 +509,7 @@
 <commandDefinition>
    <latexCommand>\H{I}</latexCommand>
    <unicodeCommand>I̋</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -518,6 +531,7 @@
 <commandDefinition>
    <latexCommand>\~{I}</latexCommand>
    <unicodeCommand>Ĩ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -532,6 +546,7 @@
 <commandDefinition>
    <latexCommand>\={I}</latexCommand>
    <unicodeCommand>Ī</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -543,6 +558,7 @@
       <name>fontenc</name>
       <arguments>T1</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -557,6 +573,7 @@
 <commandDefinition>
    <latexCommand>\H{\i}</latexCommand>
    <unicodeCommand>i̋</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -578,6 +595,7 @@
 <commandDefinition>
    <latexCommand>\~{\i}</latexCommand>
    <unicodeCommand>ĩ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -592,6 +610,7 @@
 <commandDefinition>
    <latexCommand>\={\i}</latexCommand>
    <unicodeCommand>ī</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -603,6 +622,7 @@
       <name>fontenc</name>
       <arguments>T1</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -610,6 +630,7 @@
 <commandDefinition>
    <latexCommand>\c{K}</latexCommand>
    <unicodeCommand>Ķ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -617,6 +638,7 @@
 <commandDefinition>
    <latexCommand>\c{k}</latexCommand>
    <unicodeCommand>ķ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -624,6 +646,7 @@
 <commandDefinition>
    <latexCommand>\c{L}</latexCommand>
    <unicodeCommand>Ļ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -638,6 +661,7 @@
 <commandDefinition>
    <latexCommand>\u{L}</latexCommand>
    <unicodeCommand>L̆</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -645,6 +669,7 @@
 <commandDefinition>
    <latexCommand>\v{L}</latexCommand>
    <unicodeCommand>Ľ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -659,6 +684,7 @@
 <commandDefinition>
    <latexCommand>\c{l}</latexCommand>
    <unicodeCommand>ļ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -673,6 +699,7 @@
 <commandDefinition>
    <latexCommand>\u{l}</latexCommand>
    <unicodeCommand>l̆</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -680,6 +707,7 @@
 <commandDefinition>
    <latexCommand>\v{l}</latexCommand>
    <unicodeCommand>ľ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -694,6 +722,7 @@
 <commandDefinition>
    <latexCommand>\c{N}</latexCommand>
    <unicodeCommand>Ņ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -722,6 +751,7 @@
 <commandDefinition>
    <latexCommand>\u{N}</latexCommand>
    <unicodeCommand>N̆</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -740,6 +770,7 @@
 <commandDefinition>
    <latexCommand>\c{n}</latexCommand>
    <unicodeCommand>ņ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -768,6 +799,7 @@
 <commandDefinition>
    <latexCommand>\u{n}</latexCommand>
    <unicodeCommand>n̆</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -828,6 +860,7 @@
 <commandDefinition>
    <latexCommand>\v{O}</latexCommand>
    <unicodeCommand>Ǒ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -835,6 +868,7 @@
 <commandDefinition>
    <latexCommand>\u{O}</latexCommand>
    <unicodeCommand>Ŏ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -842,6 +876,7 @@
 <commandDefinition>
    <latexCommand>\={O}</latexCommand>
    <unicodeCommand>Ō</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -867,6 +902,7 @@
       <name>fontenc</name>
       <arguments>T1</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -916,6 +952,7 @@
 <commandDefinition>
    <latexCommand>\v{o}</latexCommand>
    <unicodeCommand>ǒ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -923,6 +960,7 @@
 <commandDefinition>
    <latexCommand>\u{o}</latexCommand>
    <unicodeCommand>ŏ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -930,6 +968,7 @@
 <commandDefinition>
    <latexCommand>\={o}</latexCommand>
    <unicodeCommand>ō</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -955,6 +994,7 @@
       <name>fontenc</name>
       <arguments>T1</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
@@ -984,6 +1024,7 @@
 <commandDefinition>
    <latexCommand>\c{R}</latexCommand>
    <unicodeCommand>Ŗ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1005,6 +1046,7 @@
 <commandDefinition>
    <latexCommand>\c{r}</latexCommand>
    <unicodeCommand>ŗ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1129,6 +1171,7 @@
 <commandDefinition>
    <latexCommand>\mbox{T\hspace{-.5em}-}</latexCommand>
    <unicodeCommand>Ŧ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1154,6 +1197,7 @@
 <commandDefinition>
    <latexCommand>\v{t}</latexCommand>
    <unicodeCommand>ť</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1161,6 +1205,7 @@
 <commandDefinition>
    <latexCommand>\mbox{t\hspace{-.35em}-}</latexCommand>
    <unicodeCommand>ŧ̌</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1196,6 +1241,7 @@
 <commandDefinition>
    <latexCommand>\~{U}</latexCommand>
    <unicodeCommand>Ũ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1210,6 +1256,7 @@
 <commandDefinition>
    <latexCommand>\={U}</latexCommand>
    <unicodeCommand>Ū</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1228,6 +1275,7 @@
       <name>fontenc</name>
       <arguments>T1</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1263,6 +1311,7 @@
 <commandDefinition>
    <latexCommand>\~{u}</latexCommand>
    <unicodeCommand>ũ</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1277,6 +1326,7 @@
 <commandDefinition>
    <latexCommand>\={u}</latexCommand>
    <unicodeCommand>ū</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -1295,6 +1345,7 @@
       <name>fontenc</name>
       <arguments>T1</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->

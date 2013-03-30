@@ -84,7 +84,7 @@ QString pkgListToString(const QList<Package> &packages){
    return result;
 }
 
-void writeImageComments(const Command &cmd, const QString &fileName)
+void writeSVGComments(const Command &cmd, const QString &fileName)
 {
    QString unicodeCommandAsLatin1, commentAsLatin1;
    QString packagesarg, packages;
@@ -231,7 +231,7 @@ QString generateSVG(QString latexFile, int index, QString symbolGroupName) {
    }
 
    QString texcommand=QString("latex %1").arg(texfile);
-   QString dvipngcommand=QString("dvisvgm -e -b 4 -o %1 %2.dvi").arg(svgfile).arg(texfileWithoutSuffix);
+   QString dvipngcommand=QString("dvisvgm -e -o %1 %2.dvi").arg(svgfile).arg(texfileWithoutSuffix);
 
    qDebug() << texcommand;
    qDebug() << dvipngcommand;
@@ -252,6 +252,92 @@ QString generateSVG(QString latexFile, int index, QString symbolGroupName) {
    return svgfile;
 }
 
+void writeImageComments(const Command &cmd, const QString &fileName)
+{
+   
+   QImage image;
+   QString unicodeCommandAsLatin1, commentAsLatin1;
+   QString packagesarg, packages;
+   
+   if(!cmd.unicodeCommand.isEmpty()) {
+      unicodeCommandAsLatin1 = convertUTF8toLatin1String(cmd.unicodeCommand);
+   }
+   if(!cmd.comment.isEmpty()) {
+      commentAsLatin1 = convertUTF8toLatin1String(cmd.comment);
+   }
+
+   qDebug() << "fileName is " << fileName;
+   qDebug() << "Command is " << cmd.latexCommand;
+   qDebug() << "unicodeCommandAsLatin1 is " << unicodeCommandAsLatin1;
+   qDebug() << "commentAsLatin1 is " << commentAsLatin1;
+   qDebug() << "comment is " << cmd.comment; 
+   
+   if(image.load(fileName)) {
+      
+      image.setText("Command",cmd.latexCommand);    
+      if( !unicodeCommandAsLatin1.isEmpty() ) {
+	 image.setText("CommandUnicode",unicodeCommandAsLatin1);
+	 image.setText("UnicodePackages",pkgListToString(cmd.unicodePackages));
+      }
+      if (!commentAsLatin1.isEmpty() ) {
+	 image.setText("Comment",commentAsLatin1);
+      }
+      
+      image.setText("Packages",pkgListToString(cmd.packages));     
+      if(!image.save(fileName,"PNG")) {
+	 qDebug() << "Image " << fileName << " could not be saved";
+	 exit(1);
+      }
+   }
+   else {
+      qDebug() << "===writeComment=== ERROR " << fileName << "could not be loaded";
+   }
+   
+}
+
+QString generatePNG(QString latexFile, int index, QString symbolGroupName) {
+    
+   QString texfile, texfileWithoutSuffix,pngfile;
+   int latexret, dvipngret;
+
+   QTemporaryFile file("XXXXXX.tex");
+   file.setAutoRemove(false);
+   if (file.open()) {
+      QTextStream t(&file);
+      t.setCodec("UTF-8");
+      t << latexFile;
+      
+      texfile = file.fileName();
+      texfileWithoutSuffix = texfile.left(texfile.length() - 4);
+      pngfile = QString("img%1%2.png").arg(index,3,10,QChar('0')).arg(symbolGroupName);
+      qDebug() << texfile;
+      qDebug() << texfileWithoutSuffix;
+      qDebug() << pngfile;
+      
+      file.close();    
+   }
+
+   QString texcommand=QString("latex %1").arg(texfile);
+   QString dvipngcommand=QString("dvipng  --strict --picky --freetype -x 1440 -bg Transparent -D 600 -O -1.2in,-1.2in -T bbox -z 6 -o %1 %2.dvi").arg(pngfile).arg(texfileWithoutSuffix);
+
+   qDebug() << texcommand;
+   qDebug() << dvipngcommand;
+ 
+   latexret = system(texcommand.toLatin1());
+   dvipngret= system(dvipngcommand.toLatin1());
+   
+   if (latexret) {
+      qDebug() << "Error compiling the latex file";
+      return QString();
+   }
+   
+   if(dvipngret) { 
+      qDebug() << "Error producing the pngs";
+      return QString();
+   }
+   
+   return pngfile;
+}
 
 QString generateLatexFile(const Preamble &preamble, const Command &cmd)
 {
@@ -321,6 +407,7 @@ Command getCommandDefinition(const QDomElement &e, QList<Package> unicodePackage
    cmd.unicodePackages = unicodePackages;
    cmd.packages = getAllPackages(e);
    cmd.mathMode = e.firstChildElement("mathMode").text() == "true" ? true : false;
+   cmd.forcePNG = e.firstChildElement("forcePNG").text() == "true" ? true : false;
    cmd.comment = e.firstChildElement("comment").text();
    cmd.latexCommand = e.firstChildElement("latexCommand").text();
    cmd.unicodeCommand = e.firstChildElement("unicodeCommand").text();
@@ -431,9 +518,13 @@ int main(int argc, char** argv)
     for(int i=0; i < commands.count();i++) {
        content = generateLatexFile(preamble,commands[i]);
        qDebug() << content;
-       pngfile = generateSVG(content,i+1,symbolGroupName);
-       //readSVG(pngfile);
-       writeImageComments(commands[i],pngfile);
+       if(commands[i].forcePNG){
+	  pngfile = generatePNG(content,i+1,symbolGroupName);
+	  writeImageComments(commands[i],pngfile);
+       }else{
+	 pngfile = generateSVG(content,i+1,symbolGroupName);
+	 writeSVGComments(commands[i],pngfile);
+       }
        //readImageComments(pngfile);
     }
        

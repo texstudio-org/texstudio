@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE KileSymbolSources>
+<symbols>
+
+   <formatVersion major="0" minor ="22" />
+
+   <symbolGroupName>user</symbolGroupName>
+
+   <preamble>
+      <class>article</class>
+      <arguments>12pt</arguments>
+      <additional>\pagestyle{empty}
+		  \setlength{\parindent}{0cm}
+		  \usepackage[T1]{fontenc}
+      </additional>
+   </preamble>
+
+   <unicodeCommandPackages>
+      <package>
+         <name>inputenc</name>
+         <arguments>utf8</arguments>
+      </package>
+   </unicodeCommandPackages>
+
+   <!-- insert stuff here    -->
+<symbolGroupName>icons</symbolGroupName>
+
+<commandDefinition>
+   <latexCommand>\div</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\equiv</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\Rightarrow</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\{\}</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\lambda</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\CYRZH</latexCommand>
+   <unicodeCommand>Ж</unicodeCommand>
+   <package>
+      <name>inputenc</name>
+      <arguments>koi8-r</arguments>
+   </package>
+   <package>
+      <name>fontenc</name>
+      <arguments>T2C</arguments>
+   </package>
+   <package>
+      <name>mathtext</name>
+   </package>
+   <package>
+      <name>babel</name>
+      <arguments>russian</arguments>
+   </package>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\forall</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\checkmark</latexCommand>
+   <unicodeCommand>✓</unicodeCommand>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<commandDefinition>
+<latexCommand>\smiley</latexCommand>
+<package>
+<name>wasysym</name>
+</package>
+</commandDefinition>
+
+<commandDefinition>
+<latexCommand>\'{a}</latexCommand>
+</commandDefinition>
+
+</symbols>
