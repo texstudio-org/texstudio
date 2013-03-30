@@ -2046,16 +2046,17 @@ void Texmaker::fileSave() {
 	if (!currentEditor())
 		return;
 	
-	if (currentEditor()->fileName()=="" || !QFileInfo(currentEditor()->fileName()).exists())
+    if (currentEditor()->fileName()=="" || !QFileInfo(currentEditor()->fileName()).exists()){
+        removeDiffMarkers();// clean document from diff markers first
 		fileSaveAs(currentEditor()->fileName());
-	else {
+    } else {
 		/*QFile file( *filenames.find( currentEditorView() ) );
 	if ( !file.open( QIODevice::WriteOnly ) )
 	 {
 	 QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
 	 return;
 	 }*/
-
+        removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
@@ -2120,6 +2121,7 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 		}
 		
 		// save file
+        removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save(fn);
 		currentEditorView()->document->setEditorView(currentEditorView()); //update file name
 		MarkCurrentFileAsRecent();
@@ -2181,6 +2183,7 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 			//edView->editor->save();
 			//}
 		} else if (edView->editor->isContentModified() || edView->editor->isInConflict()){
+            removeDiffMarkers();// clean document from diff markers first
 			edView->editor->save(); //only save modified documents
 
 			if (edView->editor->fileName().endsWith(".bib")) {
@@ -6843,6 +6846,7 @@ void Texmaker::showOldRevisions(){
 		return;
 	
 	if(currentEditor()->isContentModified()){
+        removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save();
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
