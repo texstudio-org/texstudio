@@ -13,6 +13,9 @@
       <additional>\pagestyle{empty}
 		  \setlength{\parindent}{0cm}
 		  \usepackage[T1]{fontenc}
+		  \usepackage{xcolor}
+		  \setlength{\fboxsep}{1pt}
+		  \newcommand{\fb}[2][8pt]{\fcolorbox{black!60}{white}{\color{black!60}\makebox[#1][c]{#2}}}
       </additional>
    </preamble>
 
@@ -29,26 +32,31 @@
 <commandDefinition>
    <latexCommand>\div</latexCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\equiv</latexCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\Rightarrow</latexCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\{\}</latexCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\lambda</latexCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
@@ -69,11 +77,13 @@
       <name>babel</name>
       <arguments>russian</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\forall</latexCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
@@ -82,6 +92,7 @@
    <package>
       <name>amssymb</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
@@ -89,10 +100,99 @@
 <package>
 <name>wasysym</name>
 </package>
+<forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>
 <latexCommand>\'{a}</latexCommand>
+<forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- modern varian -->
+
+<commandDefinition>
+   <latexCommand>\fb{$\div$}</latexCommand>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\setlength{\fboxsep}{0pt}
+    \fcolorbox{black!60}{white}{%
+    \begin{minipage}[c][12pt][c]{7.5pt}%
+    \vspace*{1pt} \hspace*{1.5pt}\color{black!60}$\equiv$%
+    \end{minipage} %
+    }
+   </latexCommand>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\setlength{\fboxsep}{0pt}
+  \fcolorbox{black!60}{white}{%
+  \begin{minipage}[c][12pt][c]{7.5pt}%
+  \vspace*{1pt}\color{black!60}$\Rightarrow$%
+  \end{minipage} %
+  }
+  </latexCommand>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\fb[12pt]{$\{\}$}</latexCommand>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\fb{$\lambda$}</latexCommand>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\fb[10pt]{\CYRZH}</latexCommand>
+   <unicodeCommand>Ж</unicodeCommand>
+   <package>
+      <name>inputenc</name>
+      <arguments>koi8-r</arguments>
+   </package>
+   <package>
+      <name>fontenc</name>
+      <arguments>T2C</arguments>
+   </package>
+   <package>
+      <name>mathtext</name>
+   </package>
+   <package>
+      <name>babel</name>
+      <arguments>russian</arguments>
+   </package>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\fb{$\forall$}</latexCommand>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\fb{\bf\checkmark}</latexCommand>
+   <unicodeCommand>✓</unicodeCommand>
+   <package>
+      <name>amssymb</name>
+   </package>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+<latexCommand>\fb{\bf\smiley}</latexCommand>
+<package>
+<name>wasysym</name>
+</package>
+<forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+<latexCommand>\fb{\bf\'{a}}</latexCommand>
+<forcePNG>true</forcePNG>
 </commandDefinition>
 
 </symbols>

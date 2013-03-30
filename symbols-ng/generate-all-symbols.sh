@@ -3,6 +3,7 @@
 
 #GESYMBNG=$1
 GESYMBNG="../symbols-ng"
+SYMBOLS_all="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
 SYMBOLS="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
 #SYMBOLS="test"
 
@@ -37,7 +38,7 @@ echo "Generate symbols.qrc"
 rm ../symbols.qrc
 echo "<RCC>">../symbols.qrc
 echo "<qresource prefix=\"/\">">>../symbols.qrc
-for i in $SYMBOLS; do
+for i in $SYMBOLS_all; do
   ls -1 $i|xargs -i echo "<file>"symbols-ng/$i/{}"</file>" >> ../symbols.qrc
 done
 echo "</qresource>">>../symbols.qrc
