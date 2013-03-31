@@ -123,7 +123,8 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 		if(status==LatexReader::NW_COMMAND){
 			if(word=="\\begin"||word=="\\end"){
 				QStringList options;
-				ltxCommands->resolveCommandOptions(line,wordstart,options);
+                QList<int> starts;
+                ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
 				if(options.size()>0){
 					// adapt env stack
 					QString env=options.first();
@@ -141,7 +142,21 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 						if(env=="tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")){
 							// tabular env opened
 							// get cols !!!!
-							cols=LatexTables::getNumberOfColumns(options);
+                            if(((env=="tabu")||(env=="longtabu"))&&options.size()==1){ // special treatment as the env is rather not latex standard
+                                QString helper=line.mid(starts.first()+options.first().length());
+                                helper=helper.trimmed();
+                                if(helper.startsWith("to ")||helper.startsWith("spread ")){
+                                    int i=helper.indexOf("{");
+                                    if(i>-1){
+                                        QStringList options_zw;
+                                        ltxCommands->resolveCommandOptions(helper,i,options_zw);
+                                        if(!options_zw.isEmpty()){
+                                            options<<options_zw.first();
+                                        }
+                                    }
+                                }
+                            }
+                            cols=LatexTables::getNumberOfColumns(options);
 							tp.id=cols;
 						}
 						activeEnv.push(tp);
