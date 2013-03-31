@@ -347,6 +347,7 @@ protected slots:
 	void InsertFromAction();
 	void InsertBib();
 	void InsertStruct();
+    void CloseEnv();
 	
 	void InsertBibEntryFromAction();
 	void InsertBibEntry(const QString& id="");

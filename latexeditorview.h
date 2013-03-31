@@ -122,6 +122,7 @@ public:
 	static int bookMarkId(int bookmarkNumber);
 
 	static void selectOptionInLatexArg(QDocumentCursor &cur);
+    void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -152,9 +153,7 @@ private:
 	
 	LatexEditorViewConfig* config;
 	
-	void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
-	
-	SyntaxCheck SynChecker;
+    SyntaxCheck SynChecker;
 	Environment unclosedEnv;
 	
 	bibtexReader *bibReader;

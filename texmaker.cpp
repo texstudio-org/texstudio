@@ -728,7 +728,8 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "complete",tr("Complete"));
 	newManagedAction(submenu, "normal", tr("Normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
 	newManagedAction(submenu, "environment", tr("\\begin{ Completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
-	newManagedAction(submenu, "text", tr("Normal Text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
+    newManagedAction(submenu, "text", tr("Normal Text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
+    newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(CloseEnv()),Qt::ALT+Qt::Key_Return);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
@@ -8103,5 +8104,42 @@ void Texmaker::openInternalDocViewer(QString package,const QString command){
         pdf->doFindDialog(command);
         if(!command.isEmpty())
             pdf->doFindAgain();
+    }
+}
+
+void Texmaker::CloseEnv(){
+    LatexEditorView* edView=currentEditorView();
+    if(!edView)
+        return;
+    QEditor *m_edit=currentEditor();
+    if(!m_edit)
+        return;
+    QDocumentCursor cursor=m_edit->cursor();
+    StackEnvironment env;
+    edView->getEnv(cursor.lineNumber(),env);
+    LatexDocument *doc=edView->document;
+    int lineCount=doc->lineCount();
+    if(lineCount<1)
+        return;
+    StackEnvironment env_end;
+    QDocumentLineHandle *dlh=edView->document->line(lineCount-1).handle();
+    QVariant envVar=dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+    if(envVar.isValid())
+        env_end=envVar.value<StackEnvironment>();
+    else
+        return;
+
+    if(env.count()>0 && env_end.count()>0){
+        Environment mostRecentEnv=env.pop();
+        while(!env_end.isEmpty()){
+            Environment e=env_end.pop();
+            if(env_end.isEmpty()) // last env is for internal use only
+                break;
+            if(e==mostRecentEnv){ // found, now close it
+                QString txt="\\end{"+e.name+"}";
+                m_edit->insertText(txt);
+                break;
+            }
+        }
     }
 }
