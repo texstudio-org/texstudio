@@ -36,7 +36,9 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 		if(elem.operation==EQUAL){
 			lineNr+=elem.text.count("\n");
 			lineNr2+=elem.text.count("\n");
-			col=elem.text.length();
+            if(elem.text.count("\n")>0)
+                col=0;
+            col+=elem.text.length();
 			if(elem.text.lastIndexOf("\n")>=0)
 				col-=elem.text.lastIndexOf("\n")+1;
 		}
@@ -232,20 +234,21 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 		
 		if(var.isValid()){
 			DiffList lineData=var.value<DiffList>();
+            int offset=0;
 			for(int j=0;j<lineData.size();j++){
 				DiffOp op=lineData.at(j);
 				bool removeLine=false;
 				if(theirs){ //keep theirs
 					switch (op.type){
 					case DiffOp::Delete:
-						cur.moveTo(i,op.start);
+                        cur.moveTo(i,op.start+offset);
 						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 						cur.removeSelectedText();
 						break;
 					case DiffOp::Insert:
 						break;
 					case DiffOp::Replace:
-						cur.moveTo(i,op.start);
+                        cur.moveTo(i,op.start+offset);
 						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 						cur.insertText(op.text);
 						if(op.text.isEmpty() && cur.line().text().isEmpty()){
@@ -261,10 +264,11 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 					case DiffOp::Delete:
 						break;
 					case DiffOp::Insert:
-						cur.moveTo(i,op.start);
+                        cur.moveTo(i,op.start+offset);
 						removeLine=op.length==doc->line(i).length();
 						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
 						cur.removeSelectedText();
+                        offset=-op.length;
 						if(removeLine){
 							cur.deletePreviousChar();
 							i--;
