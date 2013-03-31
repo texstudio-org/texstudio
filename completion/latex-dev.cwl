@@ -124,7 +124,7 @@
 \raisebox{distance}[extendabove][extendbelow]{text}#*
 \raisebox{distance}[extendabove]{text}#*
 \raisebox{distance}{text}#*
-\newsavebox{\box}#*
+\newsavebox{\box}#*d
 # variables
 \belowcaptionskip#*
 \binoppenalty#*
