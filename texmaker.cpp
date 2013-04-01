@@ -5418,7 +5418,7 @@ void Texmaker::setFullScreenMode() {
 	if(!fullscreenModeAction->isChecked()) {
 		stateFullScreen=saveState(1);
 		showNormal();
-		restoreState(windowstate,0);
+        //restoreState(windowstate,0); // leads to crash on mac
 #if QT_VERSION < 0x040701
 		setUnifiedTitleAndToolBarOnMac(true);
 #endif
@@ -5429,7 +5429,7 @@ void Texmaker::setFullScreenMode() {
 		setUnifiedTitleAndToolBarOnMac(false); //prevent crash, see https://bugreports.qt-project.org/browse/QTBUG-16274?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
 #endif
 		showFullScreen();
-		restoreState(stateFullScreen,1);
+        //restoreState(stateFullScreen,1);
 	}
 }
 
