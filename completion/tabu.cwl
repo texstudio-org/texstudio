@@ -5,9 +5,9 @@
 \begin{tabu} to %<width%> {%<preamble%>}#\tabular
 \begin{tabu} spread %<width%> {%<preamble%>}#\tabular
 \end{tabu}
-\begin{longtabu}{preamble}#\tabular
-\begin{longtabu} to %<width%> {%<preamble%>}#\tabular
-\begin{longtabu} spread %<width%> {%<preamble%>}#\tabular
+\begin{longtabu}{preamble}#\tabular,longtable
+\begin{longtabu} to %<width%> {%<preamble%>}#\tabular,longtable
+\begin{longtabu} spread %<width%> {%<preamble%>}#\tabular,longtable
 \end{longtabu}
 \tabulinestyle{style}
 \usetabu{username}
