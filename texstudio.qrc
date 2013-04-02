@@ -284,6 +284,7 @@
         <file>completion/svninfo.cwl</file>
         <file>completion/svn-multi.cwl</file>
         <file>completion/tabularx.cwl</file>
+	<file>completion/tabu.cwl</file>
         <file>completion/tex.cwl</file>
         <file>completion/textcomp.cwl</file>
         <file>completion/theorem.cwl</file>
