@@ -6776,8 +6776,8 @@ void Texmaker::svnUndo(bool redo){
 
 void Texmaker::svnPatch(QEditor *ed,QString diff){
 	QStringList lines;
-    for(int i=0;i<diff.length();i++)
-        qDebug()<<diff[i];
+    //for(int i=0;i<diff.length();i++)
+    //   qDebug()<<diff[i];
 	if(diff.contains("\r\n")){
 		lines=diff.split("\r\n");
 	}else{
@@ -6787,30 +6787,41 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 			lines=diff.split("\r");
 		}
 	}
+    for(int i=0;i<lines.length();i++){
+        //workaround for svn bug
+        // at times it shows text@@ pos insted of text \n @@ ...
+        if(lines[i].contains("@@")){
+            int p=lines[i].indexOf("@@");
+            lines[i]=lines[i].mid(p);
+        }
+    }
     for(int i=0;i<3;i++) lines.removeFirst();
-    if(lines.first().contains("@@")){
-        // workaround for bug on mac osx
-        int i=lines.first().indexOf("@@");
-        lines.first()=lines.first().mid(i);
-    }else{
+    if(!lines.first().contains("@@")){
         lines.removeFirst();
     }
 
-	QRegExp rx("@@ -(\\d+),(\\d+) \\+(\\d+),(\\d+)");
+    QRegExp rx("@@ -(\\d+),(\\d+)\\s*\\+(\\d+),(\\d+)");
 	int cur_line;
 	bool atDocEnd=false;
 	QDocumentCursor c=ed->cursor();
 	foreach(const QString& elem,lines){
-		QChar ch=elem.at(0);
+        QChar ch=' ';
+        if(!elem.isEmpty()){
+            ch=elem.at(0);
+        }
 		if(ch=='@'){
 			if(rx.indexIn(elem)>-1){
-				cur_line=rx.cap(3).toInt();
+                cur_line=rx.cap(3).toInt();
 				c.moveTo(cur_line-1,0);
-			}
+            }else{
+                qDebug()<<"Bug";
+            }
 		}else{
 			if(ch=='-'){
 				atDocEnd=(c.lineNumber()==ed->document()->lineCount()-1);
-				c.eraseLine();
+                if(c.line().text()!=elem.mid(1))
+                    qDebug()<<"del:"<<c.line().text()<<elem;
+                c.eraseLine();
 				if(atDocEnd) c.deletePreviousChar();
 			}else{
 				if(ch=='+'){
@@ -6819,16 +6830,29 @@ void Texmaker::svnPatch(QEditor *ed,QString diff){
 						c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::MoveAnchor);
 						c.insertLine();
 					}
-					c.insertText(elem.right(elem.length()-1));
+                    c.insertText(elem.mid(1));
 					// if line contains \r, no further line break needed
 					if(!atDocEnd){
 						c.insertText("\n");
 					}
 				} else {
 					atDocEnd=(c.lineNumber()==ed->document()->lineCount()-1);
+                    int limit=5;
 					if(!atDocEnd){
-						c.movePosition(1,QDocumentCursor::NextLine,QDocumentCursor::MoveAnchor);
-						c.movePosition(1,QDocumentCursor::StartOfLine,QDocumentCursor::MoveAnchor);
+                        while((c.line().text()!=elem.mid(1))&&(limit>0)&&(c.lineNumber()<ed->document()->lineCount()-1)){
+                            qDebug()<<c.line().text()<<c.lineNumber()<<"<>"<<elem.mid(1);
+                            c.movePosition(1,QDocumentCursor::NextLine,QDocumentCursor::MoveAnchor);
+                            c.movePosition(1,QDocumentCursor::StartOfLine,QDocumentCursor::MoveAnchor);
+                            limit--;
+                            if(limit==0){
+                                qDebug()<<"failed";
+                            }
+                        }
+                        atDocEnd=(c.lineNumber()==ed->document()->lineCount()-1);
+                        if(!atDocEnd){
+                            c.movePosition(1,QDocumentCursor::NextLine,QDocumentCursor::MoveAnchor);
+                            c.movePosition(1,QDocumentCursor::StartOfLine,QDocumentCursor::MoveAnchor);
+                        }
 					}
 				}
 			}
