@@ -201,6 +201,7 @@
         <file>completion/enumerate.cwl</file>
         <file>completion/epigraph.cwl</file>
         <file>completion/epstopdf.cwl</file>
+	<file>completion/etoolbox.cwl</file>
         <file>completion/eurosym.cwl</file>
         <file>completion/fancybox.cwl</file>
         <file>completion/fancyhdr.cwl</file>
