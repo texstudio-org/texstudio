@@ -236,7 +236,8 @@ SOURCES += main.cpp \
     latexpackages.cpp \
     cursorposition.cpp
 RESOURCES += texstudio.qrc \
-    symbols.qrc
+    symbols.qrc \
+    completion.qrc
 FORMS += structdialog.ui \
     filechooser.ui \
     insertgraphics.ui \
