@@ -34,7 +34,8 @@ public:
 	int wordwrap; // 0 off, 1 soft wrap, 2 soft wrap fixed line width, 3 hard wrap fixed line width
 	bool toolTipPreview;
 	bool toolTipHelp;
-    bool texdocHelpInInternalViewer;
+	bool texdocHelpInInternalViewer;
+	bool silentReload;
 	
 	void settingsChanged();
 private:

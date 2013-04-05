@@ -1147,7 +1147,7 @@ void QEditor::fileChanged(const QString& file)
 		// -> result in undo/redo history loss, still ask confirmation ?
 		bool autoReload = true;
 
-		if ( canUndo() || canRedo() )
+		if ( (canUndo() || canRedo()) && !flag(SilentReloadOnExternalChanges) )
 		{
 			watcher()->removeWatch(QString(), this); //no duplicated questions
 			
@@ -1156,7 +1156,8 @@ void QEditor::fileChanged(const QString& file)
 										tr(
 											"%1\nhas been modified by another application.\n\n"
 											"Undo/Redo stack would be discarded by the auto-reload.\n"
-											"Do you wish to keep up to date by reloading the file?"
+											"Do you wish to keep up to date by reloading the file?\n\n"
+											"(Note: You can permanently enable silent reloading in the options.)"
 										).arg(fileName()),
 											QMessageBox::Yes
 										|
