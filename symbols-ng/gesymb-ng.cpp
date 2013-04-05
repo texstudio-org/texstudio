@@ -362,6 +362,8 @@ QString generateLatexFile(const Preamble &preamble, const Command &cmd)
    
    output += "\\begin{document}\n";
    output += '\n';
+   if(!cmd.forcePNG)
+     output += "\\special{dvisvgm:bbox 0 0}\n";
    cmdString = !cmd.ImageCommand.isEmpty() ? cmd.ImageCommand : cmd.latexCommand;
    output += cmd.mathMode ? QString("\\ensuremath{%1}\n").arg(cmdString) : QString("%1\n").arg(cmdString);
    output += '\n';
