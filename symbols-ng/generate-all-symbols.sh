@@ -3,6 +3,7 @@
 
 #GESYMBNG=$1
 GESYMBNG="../symbols-ng"
+BATIK="/home/sdm/Dokumente/Programmieren/texstudio/symbols-ng/batikConvert.sh"
 SYMBOLS_all="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
 SYMBOLS="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
 #SYMBOLS="test"
@@ -26,10 +27,10 @@ for i in $SYMBOLS; do
     mkdir $i
   fi
   cd generate
-  $GESYMBNG "../$i.xml" &> /dev/null
+  $GESYMBNG "../$i.xml" $BATIK &> log.txt
   mv img* "../$i"
   cd ..
-  rm -rf generate
+  #rm -rf generate
 
 done
 
