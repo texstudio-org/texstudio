@@ -28,6 +28,7 @@
 #include <QStringList>
 #include <QTemporaryFile>
 #include <QImage>
+#include <QCoreApplication>
 
 #include <iostream>
 #include <stdlib.h>
@@ -295,10 +296,10 @@ void writeImageComments(const Command &cmd, const QString &fileName)
    
 }
 
-QString generatePNG(QString latexFile, int index, QString symbolGroupName) {
+QString generatePNG(QString latexFile, int index, QString symbolGroupName,QString batikConvert) {
     
    QString texfile, texfileWithoutSuffix,pngfile;
-   int latexret, dvipngret;
+   int latexret, dvipngret,convertret;
 
    QTemporaryFile file("XXXXXX.tex");
    file.setAutoRemove(false);
@@ -318,13 +319,17 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName) {
    }
 
    QString texcommand=QString("latex %1").arg(texfile);
-   QString dvipngcommand=QString("dvipng  --strict --picky --freetype -x 1440 -bg Transparent -D 600 -O -1.2in,-1.2in -T bbox -z 6 -o %1 %2.dvi").arg(pngfile).arg(texfileWithoutSuffix);
+   QString dvipngcommand=QString("dvisvgm -e -o %1.svg %2.dvi").arg(texfileWithoutSuffix).arg(texfileWithoutSuffix);
+   QString convertCommand=QString("%1 %2.svg %3").arg(batikConvert).arg(texfileWithoutSuffix).arg(pngfile);
+   //QString dvipngcommand=QString("dvipng  --strict --picky --freetype -x 1440 -bg Transparent -D 600 -O -1.2in,-1.2in -T bbox -z 6 -o %1 %2.dvi").arg(pngfile).arg(texfileWithoutSuffix);
 
    qDebug() << texcommand;
    qDebug() << dvipngcommand;
+   qDebug() << convertCommand;
  
    latexret = system(texcommand.toLatin1());
    dvipngret= system(dvipngcommand.toLatin1());
+   convertret= system(convertCommand.toLatin1());
    
    if (latexret) {
       qDebug() << "Error compiling the latex file";
@@ -332,7 +337,12 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName) {
    }
    
    if(dvipngret) { 
-      qDebug() << "Error producing the pngs";
+      qDebug() << "Error producing the svg";
+      return QString();
+   }
+   
+   if(convertret) { 
+      qDebug() << "Error converting svg to png";
       return QString();
    }
    
@@ -362,8 +372,8 @@ QString generateLatexFile(const Preamble &preamble, const Command &cmd)
    
    output += "\\begin{document}\n";
    output += '\n';
-   if(!cmd.forcePNG)
-     output += "\\special{dvisvgm:bbox 0 0}\n";
+   //if(!cmd.forcePNG)
+   output += "\\special{dvisvgm:bbox 0 0}\n";
    cmdString = !cmd.ImageCommand.isEmpty() ? cmd.ImageCommand : cmd.latexCommand;
    output += cmd.mathMode ? QString("\\ensuremath{%1}\n").arg(cmdString) : QString("%1\n").arg(cmdString);
    output += '\n';
@@ -432,7 +442,7 @@ Command getCommandDefinition(const QDomElement &e, QList<Package> unicodePackage
 
 void usage(){
 
-   qDebug() << QString("usage: gesymb-ng mySymbols.xml");
+   qDebug() << QString("usage: gesymb-ng mySymbols.xml path/to/batikConvert");
    exit(1);
 }
 
@@ -444,10 +454,11 @@ int main(int argc, char** argv)
    QString symbolGroupName;
    QList<Package> unicodePkgList;
    
-   if(argc < 2){
+   if(argc < 3){
       usage();
    }
    QFile file( argv[1] );
+   QString batik=argv[2];
    
   if( !file.open( QIODevice::ReadOnly ) ){
     qDebug() << "could not open file";
@@ -521,7 +532,7 @@ int main(int argc, char** argv)
        content = generateLatexFile(preamble,commands[i]);
        qDebug() << content;
        if(commands[i].forcePNG){
-	  pngfile = generatePNG(content,i+1,symbolGroupName);
+	  pngfile = generatePNG(content,i+1,symbolGroupName,batik);
 	  writeImageComments(commands[i],pngfile);
        }else{
 	 pngfile = generateSVG(content,i+1,symbolGroupName);
