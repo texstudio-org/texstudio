@@ -1540,48 +1540,52 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 		return 0;
 	}
 
-    if(!hidden)
-        raise();
+	if(!hidden)
+		raise();
 	
 	//test is already opened
 	LatexEditorView* existingView = getEditorViewFromFileName(f_real);
+	LatexDocument *doc;
+	if (!existingView) {
+		doc = documents.findDocumentFromName(f_real);
+		if (doc) existingView = doc->getEditorView();
+	}
 	if (existingView) {
 		if (asProject) documents.setMasterDocument(existingView->document);
-        if(existingView->document->isHidden()){
-            documents.deleteDocument(existingView->document,true);
-            documents.addDocument(existingView->document,false);
+		if(existingView->document->isHidden()){
+			documents.deleteDocument(existingView->document,true);
+			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
-            updateOpenDocumentMenu(false);
-            updateStructure(false,existingView->document);
-            existingView->editor->setFocus();
-            UpdateCaption();
-            NewDocumentStatus();
-            return existingView;
-        }
+			updateOpenDocumentMenu(false);
+			updateStructure(false,existingView->document);
+			existingView->editor->setFocus();
+			UpdateCaption();
+			NewDocumentStatus();
+			return existingView;
+		}
 		EditorTabs->setCurrentEditor(existingView);
 		return existingView;
-	} else {
-		// find closed master doc
-		LatexDocument *doc=documents.findDocumentFromName(f_real);
-		if(doc){
-			LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
-			edit->document=doc;
-			edit->editor->setFileName(doc->getFileName());
-			disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
-			configureNewEditorView(edit);
-			
-			doc->setLineEnding(edit->editor->document()->originalLineEnding());
-			doc->setEditorView(edit); //update file name (if document didn't exist)
-			
-            configureNewEditorViewEnd(edit,!hidden,hidden);
-			//edit->document->initStructure();
-			//updateStructure(true);
-            if(!hidden){
-                ShowStructure();
-				bookmarks->restoreBookmarks(edit);
-            }
-			return edit;
+	}
+
+	// find closed master doc
+	if(doc){
+		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+		edit->document=doc;
+		edit->editor->setFileName(doc->getFileName());
+		disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
+		configureNewEditorView(edit);
+
+		doc->setLineEnding(edit->editor->document()->originalLineEnding());
+		doc->setEditorView(edit); //update file name (if document didn't exist)
+
+		configureNewEditorViewEnd(edit,!hidden,hidden);
+		//edit->document->initStructure();
+		//updateStructure(true);
+		if(!hidden){
+			ShowStructure();
+			bookmarks->restoreBookmarks(edit);
 		}
+		return edit;
 	}
 	
 	//load it otherwise
@@ -1596,7 +1600,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 
 	bool bibTeXmodified=documents.bibTeXFilesModified;
 	
-	LatexDocument *doc=new LatexDocument(this);
+	doc=new LatexDocument(this);
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
 	configureNewEditorView(edit);
 	

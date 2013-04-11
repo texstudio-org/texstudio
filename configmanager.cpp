@@ -271,6 +271,7 @@ bool ManagedProperty::readFromObject(const QObject* w){
 #undef READ_FROM_OBJECT
 
 QTextCodec* ConfigManager::newFileEncoding = 0;
+QString ConfigManager::iniFileOverride;
 
 QString getText(QWidget* w){
 	if (qobject_cast<QLineEdit*>(w)) return qobject_cast<QLineEdit*>(w)->text();
@@ -566,7 +567,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	bool importTexmakerSettings = false;
 	bool importTexMakerXSettings = false;
 	if (!config){
-		bool usbMode = isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texstudio.ini");
+		QString ini = iniFileOverride;
+		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath()+"/texstudio.ini";
+		bool usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
 		if (!usbMode)
 			if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini")) {
 				//import texmaker usb settings
@@ -580,7 +583,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 				importTexmakerSettings = true;
 			}
 		if (usbMode) {
-			config=new QSettings(QCoreApplication::applicationDirPath()+"/texstudio.ini",QSettings::IniFormat);
+			config=new QSettings(ini,QSettings::IniFormat);
 		} else {
 			config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
 			if (config->childGroups().empty()) {
