@@ -33,30 +33,35 @@
    <latexCommand>\div</latexCommand>
    <mathMode>true</mathMode>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\equiv</latexCommand>
    <mathMode>true</mathMode>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\Rightarrow</latexCommand>
    <mathMode>true</mathMode>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\{\}</latexCommand>
    <mathMode>true</mathMode>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\lambda</latexCommand>
    <mathMode>true</mathMode>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -78,12 +83,14 @@
       <arguments>russian</arguments>
    </package>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\forall</latexCommand>
    <mathMode>true</mathMode>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -93,6 +100,7 @@
       <name>amssymb</name>
    </package>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -101,11 +109,13 @@
 <name>wasysym</name>
 </package>
 <forcePNG>true</forcePNG>
+<iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
 <latexCommand>\'{a}</latexCommand>
 <forcePNG>true</forcePNG>
+<iconMode>true</iconMode>
 </commandDefinition>
 
 <!-- modern varian -->
@@ -113,6 +123,7 @@
 <commandDefinition>
    <latexCommand>\fb{$\div$}</latexCommand>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -124,6 +135,7 @@
     }
    </latexCommand>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -135,16 +147,19 @@
   }
   </latexCommand>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\fb[12pt]{$\{\}$}</latexCommand>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\fb{$\lambda$}</latexCommand>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -166,11 +181,13 @@
       <arguments>russian</arguments>
    </package>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
    <latexCommand>\fb{$\forall$}</latexCommand>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -180,6 +197,7 @@
       <name>amssymb</name>
    </package>
    <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
@@ -188,11 +206,13 @@
 <name>wasysym</name>
 </package>
 <forcePNG>true</forcePNG>
+<iconMode>true</iconMode>
 </commandDefinition>
 
 <commandDefinition>
 <latexCommand>\fb{\bf\'{a}}</latexCommand>
 <forcePNG>true</forcePNG>
+<iconMode>true</iconMode>
 </commandDefinition>
 
 </symbols>
