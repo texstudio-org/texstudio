@@ -173,6 +173,7 @@ public:
 	void removeManagedMenus();
 	void triggerManagedAction(const QString& id);
 	
+	static QString iniFileOverride;
 private:
 	void connectExtendedSlot(QAction* act, const QString& slot);
 	bool modifyMenuContentsFirstCall;

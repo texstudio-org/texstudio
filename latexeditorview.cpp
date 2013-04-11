@@ -920,12 +920,13 @@ bool LatexEditorView::gotoLineHandleAndSearchCommand(const QDocumentLineHandle* 
 	int col = 0;
 	foreach (const QString &cmd, searchFor) {
 		col = lineText.indexOf(cmd+"{"+id);
+		if (col < 0) col = lineText.indexOf(QRegExp(QRegExp::escape(cmd)+"\\[[^\\]{}()\\\\]+\\]\\{"+QRegExp::escape(id))); //for \command[options]{id}
 		if (col >= 0) {
 			col += cmd.length()+1;
 			break;
 		}
 	}
-	Q_ASSERT(col >= 0);
+	//Q_ASSERT(col >= 0);
 	if (col < 0) col = 0;
 	editor->setCursorPosition(ln, col, false);
 	editor->ensureCursorVisible(QEditor::Navigation);

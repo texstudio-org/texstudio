@@ -139,6 +139,8 @@ int main(int argc, char ** argv) {
 				cmdLine << "--page" << args[i];
 			else if ((cmdArgument == "-insert-cite" || cmdArgument == "--insert-cite") && (++i < args.count()))
 				cmdLine << "--insert-cite" << args[i];
+			else if (cmdArgument == "--ini-file" && (++i < args.count()))
+				ConfigManager::iniFileOverride = args[i];
 			else if (cmdArgument.startsWith("-"))
 				cmdLine << cmdArgument;			
 		} else
