@@ -372,8 +372,8 @@ QString generateLatexFile(const Preamble &preamble, const Command &cmd)
    
    output += "\\begin{document}\n";
    output += '\n';
-   //if(!cmd.forcePNG)
-   output += "\\special{dvisvgm:bbox 0 0}\n";
+   if(!cmd.iconMode)
+      output += "\\special{dvisvgm:bbox 0 0}\n";
    cmdString = !cmd.ImageCommand.isEmpty() ? cmd.ImageCommand : cmd.latexCommand;
    output += cmd.mathMode ? QString("\\ensuremath{%1}\n").arg(cmdString) : QString("%1\n").arg(cmdString);
    output += '\n';
@@ -420,6 +420,8 @@ Command getCommandDefinition(const QDomElement &e, QList<Package> unicodePackage
    cmd.packages = getAllPackages(e);
    cmd.mathMode = e.firstChildElement("mathMode").text() == "true" ? true : false;
    cmd.forcePNG = e.firstChildElement("forcePNG").text() == "true" ? true : false;
+   cmd.iconMode = e.firstChildElement("iconMode").text() == "true" ? true : false;
+   qDebug()<<cmd.iconMode;
    cmd.comment = e.firstChildElement("comment").text();
    cmd.latexCommand = e.firstChildElement("latexCommand").text();
    cmd.unicodeCommand = e.firstChildElement("unicodeCommand").text();

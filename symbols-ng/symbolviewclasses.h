@@ -31,6 +31,7 @@ struct Command{
    QString comment;
    bool mathMode;
    bool forcePNG;
+   bool iconMode;
    QList<Package> packages;
    QList<Package> unicodePackages;
    int referenceCount;
