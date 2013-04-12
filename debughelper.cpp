@@ -5,15 +5,23 @@
 #include <stdlib.h>
 #ifndef NO_CRASH_HANDLER
 #if (defined(x86_64) || defined(__x86_64__))
-#define CPU_IS_64
-#define CPU_IS_X86
+#define CPU_IS_X86_64
 #elif (defined(ppc) || defined(__ppc__))
 #define CPU_IS_PPC
 #elif (defined(arm) || defined(__arm__))
 #define CPU_IS_ARM
+#elif (defined(ia64) || defined(__ia64__))
+#define CPU_IS_IA64
+#elif (defined(mips) || defined(__mips__) || defined(mipsel) || defined(__mipsel__))
+#define CPU_IS_MIPS
+#elif (defined(sparc) || defined(__sparc__))
+#define CPU_IS_SPARC32
+#elif (defined(s390x) || defined(__s390x__))
+#define CPU_IS_S390_64
+#elif (defined(s390) || defined(__s390__) )
+#define CPU_IS_S390_31
 #else
-#define CPU_IS_32
-#define CPU_IS_X86
+#define CPU_IS_X86_32
 #endif
 
 #if (defined(__unix__) || defined(unix) || defined(__linux__) || defined(linux) || defined(Q_WS_MACX))
@@ -29,7 +37,7 @@ struct SimulatedCPU {
 	char * pc; //e.g. eip, r15
 	char * frame; //e.g. ebp, r11
 	char * stack; //e.g. esp, r13
-#ifdef CPU_IS_ARM
+#if defined(CPU_IS_ARM) || defined(CPU_IS_MIPS) || defined(CPU_IS_PPC) || defined(CPU_IS_SPARC32)
 	char * returnTo; //lr/r14
 #endif
 	
@@ -216,8 +224,13 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 
 	void *trace[48];
 	SimulatedCPU copystate = state;
-	int size = copystate.backtrace(trace, 48);
-	//size = backtrace(trace, 48);
+	int size;
+#if defined(CPU_IS_MIPS) || defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390) || defined(CPU_IS_390X)
+	size = backtrace(trace, 48); //always use standard backtrace on exotic architectures
+#else
+	size = copystate.backtrace(trace, 48);
+#endif
+
 #ifdef Q_WS_WIN
 	QStringList additionalMessages = backtrace_symbols_win(trace, size);
 	char** messages = 0;
@@ -274,19 +287,44 @@ volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump t
 #include "pthread.h"
 
 #define USE_SIGNAL_HANDLER
-#ifdef CPU_IS_64
+#ifdef CPU_IS_X86_64
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RIP]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RSP]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RBP]
-#elif defined(CPU_IS_32)
+#elif defined(CPU_IS_X86_32)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EIP]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_ESP]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EBP]
+#elif defined(CPU_IS_PPC)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[32]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[1]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[31] //not always used
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[34]
 #elif defined(CPU_IS_ARM)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_fp
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_lr
+#elif defined(CPU_IS_IA64)
+#define PC_FROM_UCONTEXT(context) (context)->_u._mc.sc_ip
+#define STACK_FROM_UCONTEXT(context) (context)->_u._mc.sc_gr[12] //is that register 12?
+#define FRAME_FROM_UCONTEXT(context) (context)->_u._mc.sc_cfm //does not really make sense
+#elif defined(CPU_IS_MIPS)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.pc
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[29]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[30]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[31]
+#elif defined(CPU_IS_SPARC32)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_nPC]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_O6]
+//todo: gwins-> might be 0. (first or last (context)->uc_mcontext.gwins[0].wbcnt-1 window?)
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gwins->wbuf[0].rw_in[6]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gwins->wbuf[0].rw_in[7]
+#elif defined(CPU_IS_S390_31) || defined(CPU_IS_S390_64)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.psw.addr
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[15]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[11]
+//#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[14]
 #else
 #error Unknown cpu architecture
 #endif
@@ -311,17 +349,19 @@ volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump t
 #endif
 
 // >= mac 10.5
-#ifdef CPU_IS_64
+#ifdef CPU_IS_X86_64
 #define PC_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(rip)
 #define STACK_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(rsp)
 #define FRAME_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(rbp)
 #elif defined(CPU_IS_PPC)
 #define PC_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).__srr0
 #error need ppc stack register name
-#else
+#elif defined(CPU_IS_X86_32)
 #define PC_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(eip)
 #define STACK_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(esp)
 #define FRAME_FROM_UCONTEXT(context) context->uc_mcontext->MAC_CONTEXT_PREFIXED(ss).MAC_CONTEXT_PREFIXED(ebp)
+#else
+#error Unsupported processor architecture
 #endif
 #define SIGMYHANG SIGUSR1             //signal send to the main thread, if the guardian detects an endless loop
 #define SIGMYHANG_CONTINUE SIGUSR2    //signal send to the main thread, if the endless loop should be continued
@@ -516,14 +556,16 @@ void recoverWithStackGuardianPage(){
 //EXCEPTION_ILLEGAL_INSTRUCTION
 //EXCEPTION_NONCONTINUABLE_EXCEPTION
 //EXCEPTION_PRIV_INSTRUCTION
-#ifdef CPU_IS_64
+#ifdef CPU_IS_X86_64
 #define PC_FROM_UCONTEXT(context) (context)->Rip
 #define FRAME_FROM_UCONTEXT(context) (context)->Rbp
 #define STACK_FROM_UCONTEXT(context) (context)->Rsp
-#else
+#elif defined(CPU_IS_X86_32)
 #define PC_FROM_UCONTEXT(context) (context)->Eip
 #define FRAME_FROM_UCONTEXT(context) (context)->Ebp
 #define STACK_FROM_UCONTEXT(context) (context)->Esp
+#else
+#error Unsupported processor architecture
 #endif
 
 
@@ -773,26 +815,57 @@ void SimulatedCPU::set_from_real(){
 	this->pc = 0;
 	this->frame = 0;
 	this->stack = 0;
-#ifdef CPU_IS_X86
-#ifdef CPU_IS_32
+#ifdef CPU_IS_X86_32
 	__asm__(
 	"mov %%ebp, %0\n"
 	"mov %%esp, %1"
 	: "=r"(frame), "=r"(stack));
-#elif defined(CPU_IS_64)
+#elif defined(CPU_IS_X86_64)
 	__asm__(
 	"mov %%rbp, %0\n"
 	"mov %%rsp, %1"
 	: "=r"(frame), "=r"(stack));
-#else
-#error Unknown x86 cpu architecture
-#endif
 #elif defined(CPU_IS_ARM)
-	__asm__( //otherway around in the mov?
+	__asm__( //otherway around in the mov than x86?
 	"mov %[fp], fp\n"
 	"mov %[sp], sp\n"
 	"mov %[lr], lr\n"
 	: [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
+#elif defined(CPU_IS_IA64)
+	__asm__(
+	"mov %0 = cfm\n"
+	"mov %1 = r12"
+	: "=r"(frame), "=r"(stack));
+#elif defined(CPU_IS_MIPS)
+	__asm__( //otherway around in the mov than x86?
+	"move %0, $30\n"
+	"move %1, $sp\n"
+	"move %2, $ra\n"
+	: "=r"(frame), "=r"(stack), "=r" (returnTo));
+#elif defined(CPU_IS_PPC)
+	__asm__( //otherway around in the mov than x86?
+	"mr %0, 31\n"
+	"mr %1, 1\n"
+	"mflr %2\n"
+	: "=r"(frame), "=r"(stack), "=r" (returnTo));
+#elif defined(CPU_IS_SPARC32)
+	__asm__(
+	"mova %icc, %i6, %0\n"
+	"mova %icc, %o6, %1\n"
+	"mova %icc, %i7, %2\n"
+	: "=r"(frame), "=r"(stack), "=r" (returnTo));
+#elif defined(CPU_IS_S390_31)
+	__asm__(
+	"LR %0, %r11\n"
+	"LR %1, %r15\n"
+	: "=r"(frame), "=r"(stack));
+#elif defined(CPU_IS_S390_64)
+	__asm__(
+	"LGR %0, %r11\n"
+	"LGR %1, %r15\n"
+	: "=r"(frame), "=r"(stack));
+#else
+#error Unknown processor architecture
 #endif
 	geteip:
 	this->pc = (char*)&&geteip;
@@ -805,7 +878,7 @@ void SimulatedCPU::set_from_real(){
 //(should be the size of the call instruction. 
 //however, since the call instruction is in the signal handler and not actually part of the program, 0 might be the more correct value)
 #define CALL_INSTRUCTION_SIZE 0
-#if defined(CPU_IS_X86) || defined(CPU_IS_PPC)
+#if defined(CPU_IS_X86_64) || defined (CPU_IS_X86_32)
 //TODO: check ppc
 void SimulatedCPU::call(char * value){
 	push(pc + CALL_INSTRUCTION_SIZE);
@@ -832,7 +905,8 @@ recover:
 	}
 	sigSegvRecoverReturnAddress = 0;
 }
-#elif defined(CPU_IS_ARM)
+#elif defined(CPU_IS_ARM) || defined(CPU_IS_MIPS)
+//todo: does this work on mips?
 void SimulatedCPU::call(char * value){   //bl
 	returnTo = pc + CALL_INSTRUCTION_SIZE;
 	jmp(value);
@@ -850,6 +924,41 @@ void SimulatedCPU::leave(){
 	stack = frame - 4;
 	frame = pop();
 	returnTo = pop();
+	ret();
+}
+#elif defined(CPU_IS_PPC)
+//see https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/LowLevelABI/110-64-bit_PowerPC_Function_Calling_Conventions/64bitPowerPC.html#//apple_ref/doc/uid/TP40002471-SW14
+void SimulatedCPU::call(char * value){   //bl
+	returnTo = pc + CALL_INSTRUCTION_SIZE;
+	jmp(value);
+}
+void SimulatedCPU::ret(){
+	pc = returnTo;
+}
+void SimulatedCPU::enter(int size){
+	//todo
+}
+void SimulatedCPU::leave(){
+	returnTo = *(char**)(stack+2*8);
+	stack = pop();
+	frame = stack; //??
+	ret();
+}
+#elif defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390) || defined(CPU_IS_390X)
+//not really implemented
+//not possible on SPARC? (as register windows are protected)
+void SimulatedCPU::call(char * value){   //bl
+	jmp(value);
+	//todo this should do an awful lot of register swapping/saving for IA64
+}
+void SimulatedCPU::ret(){
+	//pc = br0;
+	pc = 0;
+}
+void SimulatedCPU::enter(int size){
+
+}
+void SimulatedCPU::leave(){
 	ret();
 }
 #else
