@@ -349,7 +349,7 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#B200FF</foreground>
     </format>
-	    <format id="lua:comment" >
+    <format id="lua:comment" >
         <bold>false</bold>
         <italic>false</italic>
         <overline>false</overline>
@@ -357,5 +357,14 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#808080</foreground>
+    </format>
+    <format id="preedit" >
+        <bold>false</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <background>#FFFF00</background>
     </format>
 </QXF>

@@ -1119,7 +1119,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
     LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
     LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::sweaveFormat, LatexEditorView::math_DelimiterFormat;
-int LatexEditorView::syntaxErrorFormat;
+int LatexEditorView::syntaxErrorFormat,LatexEditorView::preEditFormat;
 int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
 
 QList<int> LatexEditorView::grammarFormats;
@@ -1162,6 +1162,7 @@ void LatexEditorView::updateSettings(){
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
 
 	SynChecker.setErrFormat(syntaxErrorFormat);
+    editor->m_preEditFormat=preEditFormat;
 	
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
@@ -1189,6 +1190,7 @@ void LatexEditorView::updateFormatSettings(){
 															F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
 															F(numbers) F(verbatim) F(picture) F(sweave)
 															&math_DelimiterFormat, "math-delimiter",
+                                                            &preEditFormat,"preedit",
 															0, 0
 														 };
 #undef F

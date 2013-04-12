@@ -375,6 +375,9 @@ public:
 		void save(const QString& filename);
 		bool saveCopy(const QString& filename);
 		void saveEmergencyBackup(const QString& filename);
+
+        bool preEditSet;
+        int preEditLineNumber,preEditColumnNumber,preEditLength,m_preEditFormat;
 public slots:
 		
 		virtual void print();
