@@ -107,6 +107,7 @@ public:
 	
 	static int syntaxErrorFormat;
 	static int deleteFormat,insertFormat,replaceFormat;
+    static int preEditFormat;
 	
 	void reCheckSyntax(int linenr=0, int count=-1);
 	

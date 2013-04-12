@@ -485,6 +485,8 @@ void QEditor::init(bool actions,QDocument *doc)
 	m_lastColumn=-2;
 	m_lastLine=-2;
 	m_hoverCount=-2;
+    preEditSet=false;
+    m_preEditFormat=0;
 
 	if ( m_defaultBinding )
 	{
@@ -3114,7 +3116,7 @@ void QEditor::keyReleaseEvent(QKeyEvent *e)
 */
 void QEditor::inputMethodEvent(QInputMethodEvent* e)
 {
-	foreach ( QEditorInputBindingInterface *b, m_bindings )
+    foreach ( QEditorInputBindingInterface *b, m_bindings )
 		if ( b->inputMethodEvent(e, this) )
 			return;
 
@@ -3125,9 +3127,28 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 		return;
 	}
 	*/
+    QString preEdit=e->preeditString();
+    if( !preEdit.isEmpty()){
+        int i=m_cursor.columnNumber();
+        m_cursor.insertText(preEdit);
+        m_cursor.line().addOverlay(QFormatRange(i,preEdit.length(),m_preEditFormat));
+        preEditSet=true;
+        preEditColumnNumber=i;
+        preEditLength=preEdit.length();
+        preEditLineNumber=m_cursor.lineNumber();
+    }
 
 	if ( e->commitString().count() ) {
 		m_cursor.beginEditBlock();
+        if(preEditSet){
+            preEditSet=false;
+            if(m_cursor.lineNumber()==preEditLineNumber &&
+               m_cursor.columnNumber()==preEditColumnNumber+preEditLength
+            ){
+                m_cursor.movePosition(preEditLength,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+                m_cursor.removeSelectedText();
+            }
+        }
 
 		m_cursor.insertText(e->commitString());
 #if (QT_VERSION < 0x040700) && (defined(Q_WS_MACX))
