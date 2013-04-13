@@ -579,11 +579,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(fileDiffMerge()));
 	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
 	newManagedAction(svnSubmenu, "declareresolved",tr("Declare Conflict Resolved"), SLOT(declareConflictResolved()));
-	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,":/images/go-next-diff.png");
-	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,":/images/go-previous-diff.png");
+    newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,"go-next-diff");
+    newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,"go-previous-diff");
 	
 	menu->addSeparator();
-	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, ":/images/fileclose.png");
+    newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, "fileclose");
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 	
 	menu->addSeparator();
@@ -631,15 +631,15 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
 
-	newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, ":/images/goto.png");
+    newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, "goto");
 	newManagedEditorAction(submenu,"lastchange",tr("Previous Change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
 	newManagedEditorAction(submenu,"nextchange",tr("Next Change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
 	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",Qt::CTRL+Qt::Key_Up,"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
 	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
 	submenu->addSeparator();
-	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), Qt::ALT+Qt::Key_Left, ":/images/back.png"));
-	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right, ":/images/forward.png"));
+    cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), Qt::ALT+Qt::Key_Left, "back"));
+    cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right, "forward"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -694,8 +694,8 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("&Go to"));
 	
-	newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, ":/images/errorprev.png", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
-	newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, ":/images/errornext.png", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
+    newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
+    newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
 	newManagedAction(submenu,"warningprev",tr("Previous Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
 	newManagedAction(submenu,"warningnext",tr("Next Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
 	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
@@ -740,9 +740,9 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, ":/images/build.png")->setData(BuildManager::CMD_QUICK);
-	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,":/images/compile.png")->setData(BuildManager::CMD_COMPILE);
-	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,":/images/viewer.png")->setData(BuildManager::CMD_VIEW);
+    newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, "build")->setData(BuildManager::CMD_QUICK);
+    newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,"compile")->setData(BuildManager::CMD_COMPILE);
+    newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_INDEX);
 
@@ -750,18 +750,18 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "commands",tr("&Commands", "menu"));
 	newManagedAction(submenu, "latexmk",tr("&Latexmk"), SLOT(commandFromAction()))->setData(BuildManager::CMD_LATEXMK);
 	submenu->addSeparator();
-	newManagedAction(submenu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), QKeySequence(), ":/images/latex.png")->setData(BuildManager::CMD_LATEX);
-	newManagedAction(submenu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), ":/images/pdflatex.png")->setData(BuildManager::CMD_PDFLATEX);
-	newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/xelatex.png")->setData(BuildManager::CMD_XELATEX);
-	newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), ":/images/lualatex.png")->setData(BuildManager::CMD_LUALATEX);
+    newManagedAction(submenu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), QKeySequence(), "latex")->setData(BuildManager::CMD_LATEX);
+    newManagedAction(submenu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), "pdflatex")->setData(BuildManager::CMD_PDFLATEX);
+    newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), "xelatex")->setData(BuildManager::CMD_XELATEX);
+    newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), "lualatex")->setData(BuildManager::CMD_LUALATEX);
 	submenu->addSeparator();
-	newManagedAction(submenu, "dvi2ps",tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvips.png")->setData(BuildManager::CMD_DVIPS);
-	newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/ps2pdf.png")->setData(BuildManager::CMD_PS2PDF);
-	newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), ":/images/dvipdf.png")->setData(BuildManager::CMD_DVIPDF);
+    newManagedAction(submenu, "dvi2ps",tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), "dvips")->setData(BuildManager::CMD_DVIPS);
+    newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), "ps2pdf")->setData(BuildManager::CMD_PS2PDF);
+    newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), "dvipdf")->setData(BuildManager::CMD_DVIPDF);
 	submenu->addSeparator();
-	newManagedAction(submenu, "viewdvi",tr("View &DVI"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewdvi.png")->setData(BuildManager::CMD_VIEW_DVI);
-	newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewps.png")->setData(BuildManager::CMD_VIEW_PS);
-	newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewpdf.png")->setData(BuildManager::CMD_VIEW_PDF);
+    newManagedAction(submenu, "viewdvi",tr("View &DVI"), SLOT(commandFromAction()), QKeySequence(), "viewdvi")->setData(BuildManager::CMD_VIEW_DVI);
+    newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), "viewps")->setData(BuildManager::CMD_VIEW_PS);
+    newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), "viewpdf")->setData(BuildManager::CMD_VIEW_PDF);
 	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy",tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
@@ -774,7 +774,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an Auxiliary Files..."), SLOT(CleanAll()));
 	menu->addSeparator();
-	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), ":/images/viewlog.png")->setData(BuildManager::CMD_VIEW_LOG);
+    newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
 	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
@@ -795,16 +795,16 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to Previous Label"), SLOT(editInsertRefToPrevLabel()));
 	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate Tables","table"));
-	newManagedAction(submenu, "addRow",tr("Add Row","table"), SLOT(addRowCB()),QKeySequence(),":/images/addRow.png");
-	newManagedAction(submenu, "addColumn",tr("Add Column","table"), SLOT(addColumnCB()),QKeySequence(),":/images/addCol.png");
-	newManagedAction(submenu, "removeRow",tr("Remove Row","table"), SLOT(removeRowCB()),QKeySequence(),":/images/remRow.png");
-	newManagedAction(submenu, "removeColumn",tr("Remove Column","table"), SLOT(removeColumnCB()),QKeySequence(),":/images/remCol.png");
-	newManagedAction(submenu, "cutColumn",tr("Cut Column","table"), SLOT(cutColumnCB()),QKeySequence(),":/images/cutCol.png");
-	newManagedAction(submenu, "pasteColumn",tr("Paste Column","table"), SLOT(pasteColumnCB()),QKeySequence(),":/images/pasteCol.png");
+    newManagedAction(submenu, "addRow",tr("Add Row","table"), SLOT(addRowCB()),QKeySequence(),"addRow");
+    newManagedAction(submenu, "addColumn",tr("Add Column","table"), SLOT(addColumnCB()),QKeySequence(),"addCol");
+    newManagedAction(submenu, "removeRow",tr("Remove Row","table"), SLOT(removeRowCB()),QKeySequence(),"remRow");
+    newManagedAction(submenu, "removeColumn",tr("Remove Column","table"), SLOT(removeColumnCB()),QKeySequence(),"remCol");
+    newManagedAction(submenu, "cutColumn",tr("Cut Column","table"), SLOT(cutColumnCB()),QKeySequence(),"cutCol");
+    newManagedAction(submenu, "pasteColumn",tr("Paste Column","table"), SLOT(pasteColumnCB()),QKeySequence(),"pasteCol");
 	newManagedAction(submenu, "addHLine",tr("Add \\hline","table"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("Remove \\hline","table"), SLOT(remHLineCB()));
 	newManagedAction(submenu, "insertTableTemplate",tr("Remodel Table Using Template","table"), SLOT(insertTableTemplate()));
-	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),":/images/alignCols.png");
+    newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),"alignCols");
     submenu=newManagedMenu(menu, "magicComments",tr("Add magic comments ..."));
     newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
     newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(InsertSpellcheckMagicComment()));
@@ -961,7 +961,7 @@ void Texmaker::setupMenus() {
 
 	//---options---
 	menu=newManagedMenu("main/options",tr("&Options"));
-	newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,":/images/configure.png")->setMenuRole(QAction::PreferencesRole);
+    newManagedAction(menu, "config",tr("&Configure TeXstudio..."), SLOT(GeneralOptions()), 0,"configure")->setMenuRole(QAction::PreferencesRole);
 	
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
@@ -974,13 +974,13 @@ void Texmaker::setupMenus() {
 	
 	//---help---
 	menu=newManagedMenu("main/help",tr("&Help"));
-	newManagedAction(menu, "latexreference",tr("LaTeX Reference..."), SLOT(LatexHelp()), 0,":/images/help.png");
-	newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,":/images/help.png");
+    newManagedAction(menu, "latexreference",tr("LaTeX Reference..."), SLOT(LatexHelp()), 0,"help");
+    newManagedAction(menu, "usermanual",tr("User Manual..."), SLOT(UserManualHelp()), 0,"help");
 	newManagedAction(menu, "texdocdialog", tr("Packages Help..."), SLOT(TexdocHelp()));
 	
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall",tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
-	newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,":/images/appicon.png")->setMenuRole(QAction::AboutRole);
+    newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,"appicon")->setMenuRole(QAction::AboutRole);
 	
 	//additional elements for development
 	
@@ -1063,7 +1063,7 @@ void Texmaker::setupToolBars() {
 				if (act) {
 					//Case 3: A normal QAction
 					if(act->icon().isNull())
-						act->setIcon(QIcon(":/images/appicon.png"));
+                        act->setIcon(QIcon("appicon"));
 					mtb.toolbar->addAction(act);
 				} else {
 					QMenu* menu=qobject_cast<QMenu*>(obj);

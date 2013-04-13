@@ -155,12 +155,32 @@ bool modernStyle;
 bool useSystemTheme;
 QString getRealIconFile(const QString& icon){
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
-	if (modernStyle && QFileInfo(":/modern/images/modern/"+icon).exists())
-		return ":/modern/images/modern/"+icon;
-	else if (!modernStyle && QFileInfo(":/classic/images/classic/"+icon).exists())
-		return ":/classic/images/classic/"+icon;
-	else if (QFileInfo(":/images/"+icon).exists())
-		return ":/images/"+icon;
+    if (QFileInfo(":/images-ng/"+icon+".svg").exists())
+        return ":/images-ng/"+icon+".svg";
+    if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
+        return ":/images-ng/"+icon+".svgz"; //voruebergehend
+    if (modernStyle){
+        if(QFileInfo(":/images-ng/modern/"+icon+".svg").exists())
+            return ":/images-ng/modern/"+icon+".svg";
+        if(QFileInfo(":/images-ng/modern/"+icon+".svgz").exists())
+            return ":/images-ng/modern/"+icon+".svgz";
+        if(QFileInfo(":/modern/images/modern/"+icon+".png").exists())
+            return ":/modern/images/modern/"+icon+".png";
+    }
+    if (!modernStyle){
+        if(QFileInfo(":/images-ng/classic/"+icon+".svg").exists())
+            return ":/images-ng/classic/"+icon+".svg";
+        if(QFileInfo(":/images-ng/classic/"+icon+".svgz").exists())
+            return ":/images-ng/classic/"+icon+".svgz";
+        if(QFileInfo(":/classic/images/classic/"+icon+".png").exists())
+            return ":/classic/images/classic/"+icon+".png";
+    }
+    if (QFileInfo(":/images-ng/"+icon+".svg").exists())
+        return ":/images-ng/"+icon+".svg";
+    if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
+        return ":/images-ng/"+icon+".svgz";
+    if (QFileInfo(":/images/"+icon+".png").exists())
+        return ":/images/"+icon+".png";
 	return icon;
 }
 
@@ -168,9 +188,10 @@ QIcon getRealIcon(const QString& icon){
 	if (icon.isEmpty()) return QIcon();
 	if (icon.startsWith(":/")) return QIcon(icon);
 #if QT_VERSION >= 0x040600
-	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
+    if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
 #endif
-	return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+    //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+    return QIcon(getRealIconFile(icon));
 }
 
 bool isFileRealWritable(const QString& filename) {
