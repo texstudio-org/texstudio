@@ -365,6 +365,6 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#FFFF00</background>
+        <background>#FFFF7F</background>
     </format>
 </QXF>
