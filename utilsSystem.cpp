@@ -154,34 +154,34 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 bool modernStyle;
 bool useSystemTheme;
 QString getRealIconFile(const QString& icon){
-	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
+    if (icon.isEmpty() || icon.startsWith(":/")) return icon;
     if (QFileInfo(":/images-ng/"+icon+".svg").exists())
-        return ":/images-ng/"+icon+".svg";
+	return ":/images-ng/"+icon+".svg";
     if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
-        return ":/images-ng/"+icon+".svgz"; //voruebergehend
+	return ":/images-ng/"+icon+".svgz"; //voruebergehend
     if (modernStyle){
-        if(QFileInfo(":/images-ng/modern/"+icon+".svg").exists())
-            return ":/images-ng/modern/"+icon+".svg";
-        if(QFileInfo(":/images-ng/modern/"+icon+".svgz").exists())
-            return ":/images-ng/modern/"+icon+".svgz";
-        if(QFileInfo(":/modern/images/modern/"+icon+".png").exists())
-            return ":/modern/images/modern/"+icon+".png";
+	if(QFileInfo(":/images-ng/modern/"+icon+".svg").exists())
+	    return ":/images-ng/modern/"+icon+".svg";
+	if(QFileInfo(":/images-ng/modern/"+icon+".svgz").exists())
+	    return ":/images-ng/modern/"+icon+".svgz";
+	if(QFileInfo(":/modern/images/modern/"+icon+".png").exists())
+	    return ":/modern/images/modern/"+icon+".png";
     }
     if (!modernStyle){
-        if(QFileInfo(":/images-ng/classic/"+icon+".svg").exists())
-            return ":/images-ng/classic/"+icon+".svg";
-        if(QFileInfo(":/images-ng/classic/"+icon+".svgz").exists())
-            return ":/images-ng/classic/"+icon+".svgz";
-        if(QFileInfo(":/classic/images/classic/"+icon+".png").exists())
-            return ":/classic/images/classic/"+icon+".png";
+	if(QFileInfo(":/images-ng/classic/"+icon+".svg").exists())
+	    return ":/images-ng/classic/"+icon+".svg";
+	if(QFileInfo(":/images-ng/classic/"+icon+".svgz").exists())
+	    return ":/images-ng/classic/"+icon+".svgz";
+	if(QFileInfo(":/classic/images/classic/"+icon+".png").exists())
+	    return ":/classic/images/classic/"+icon+".png";
     }
     if (QFileInfo(":/images-ng/"+icon+".svg").exists())
-        return ":/images-ng/"+icon+".svg";
+	return ":/images-ng/"+icon+".svg";
     if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
-        return ":/images-ng/"+icon+".svgz";
+	return ":/images-ng/"+icon+".svgz";
     if (QFileInfo(":/images/"+icon+".png").exists())
-        return ":/images/"+icon+".png";
-	return icon;
+	return ":/images/"+icon+".png";
+    return icon;
 }
 
 QIcon getRealIcon(const QString& icon){
@@ -312,9 +312,9 @@ bool isRetinaMac() {
 		process.waitForFinished(1000);
 		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
 		QRegExp rx("MacBookPro([0-9]*)");
-        rx.indexIn(model);
+	rx.indexIn(model);
 		int num = rx.cap(1).toInt();
-        //qDebug() << num << model;
+	//qDebug() << num << model;
 		if (num>=10) // compatibility with future MacBookPros. Assume they are also retina.
 			isRetina = true;
 	}
