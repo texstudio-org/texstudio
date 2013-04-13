@@ -43,22 +43,22 @@
   </menu>
 
   <menu id="listenvironment" text="&amp;List Environments">
-    <insert id="itemize" text="\begin{itemize}" insert="\begin{itemize}%n\item %|%n\end{itemize}" info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon=":/images/itemize.png"/>
-    <insert id="enumerate" text="\begin{enumerate}" insert="\begin{enumerate}%n\item %|%n\end{enumerate}" info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon=":/images/enumerate.png"/>
+    <insert id="itemize" text="\begin{itemize}" insert="\begin{itemize}%n\item %|%n\end{itemize}" info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon="itemize"/>
+    <insert id="enumerate" text="\begin{enumerate}" insert="\begin{enumerate}%n\item %|%n\end{enumerate}" info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon="enumerate"/>
     <insert id="description" text="\begin{description}" insert="\begin{description}%n\item[%&lt;label%>] %|%n\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%n\item %|%n\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
-    <insert id="item" text="\item" insert="\item " info="\item[label] Hello" icon=":/images/item.png" shortcut="Ctrl+Shift+I"/>
+    <insert id="item" text="\item" insert="\item " info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
   </menu>
   
 
   <menu id="fontstyles" text="Font St&amp;yles">
-    <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" icon=":/images/font_emph48.png" shortcut="Ctrl+Shift+E"/>
+    <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" icon="font_emph48" shortcut="Ctrl+Shift+E"/>
     <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
-    <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" icon=":/images/font_textsl48.png" shortcut="Ctrl+Shift+S"/>
+    <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" icon="font_textsl48" shortcut="Ctrl+Shift+S"/>
     <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="text_bold" shortcut="Ctrl+B"/>
-    <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" icon=":/images/font_texttt48.png" shortcut="Ctrl+Shift+T"/>
-    <insert id="textsc" text="Small Caps - \textsc" insert="\textsc{%|}" icon=":/images/font_textsc48.png" shortcut="Ctrl+Shift+C"/>
-    <insert id="textsf" text="Sans Serif - \textsf" insert="\textsf{%|}" icon=":/images/font_textsf48.png" shortcut="Ctrl+Shift+A"/>
+    <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" icon="font_texttt48" shortcut="Ctrl+Shift+T"/>
+    <insert id="textsc" text="Small Caps - \textsc" insert="\textsc{%|}" icon="font_textsc48" shortcut="Ctrl+Shift+C"/>
+    <insert id="textsf" text="Sans Serif - \textsf" insert="\textsf{%|}" icon="font_textsf48" shortcut="Ctrl+Shift+A"/>
     <insert id="underline" text="Underline - \underline" insert="\underline{%|}" icon="text_under"/>
   </menu>
 
@@ -92,20 +92,20 @@
     <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
     <insert id="smallskip" text="\smallskip" insert="\smallskip" info="The \smallskip command adds a 'small' vertical space."/>
-    <insert id="newline" text="New line - \\" insert="\\%n" info="The \newline command breaks the line right where it is." icon="newline.png" shortcut="Ctrl+Return"/>
+    <insert id="newline" text="New line - \\" insert="\\%n" info="The \newline command breaks the line right where it is." icon="newline" shortcut="Ctrl+Return"/>
   </menu>
   
   <menu id="accents" text="International &amp;Accents">
-    <insert id="1" text="\'{}" insert="\'{}" icon=":/images/accent1.png"/>
-    <insert id="2" text="\`{}" insert="\`{}" icon=":/images/accent2.png"/>
-    <insert id="3" text="\^{}" insert="\^{}" icon=":/images/accent3.png"/>
-    <insert id="4" text="\&quot;{}" insert="\&quot;{}" icon=":/images/accent4.png"/>
-    <insert id="5" text="\~{}" insert="\~{}" icon=":/images/accent5.png"/>
-    <insert id="6" text="\={}" insert="\={}" icon=":/images/accent6.png"/>
-    <insert id="7" text="\.{}" insert="\.{}" icon=":/images/accent7.png"/>
-    <insert id="8" text="\v{}" insert="\v{}" icon=":/images/accent8.png"/>
-    <insert id="9" text="\u{}" insert="\u{}" icon=":/images/accent9.png"/>
-    <insert id="10" text="\H{}" insert="\H{}" icon=":/images/accent10.png"/>
+    <insert id="1" text="\'{}" insert="\'{}" icon="accent1"/>
+    <insert id="2" text="\`{}" insert="\`{}" icon="accent2"/>
+    <insert id="3" text="\^{}" insert="\^{}" icon="accent3"/>
+    <insert id="4" text="\&quot;{}" insert="\&quot;{}" icon="accent4"/>
+    <insert id="5" text="\~{}" insert="\~{}" icon="accent5"/>
+    <insert id="6" text="\={}" insert="\={}" icon="accent6"/>
+    <insert id="7" text="\.{}" insert="\.{}" icon="accent7"/>
+    <insert id="8" text="\v{}" insert="\v{}" icon="accent8"/>
+    <insert id="9" text="\u{}" insert="\u{}" icon="accent9"/>
+    <insert id="10" text="\H{}" insert="\H{}" icon="accent10"/>
   </menu>
 
   <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.png);;All files (*.*)%)}"/>
@@ -152,16 +152,16 @@
 
 <menu id="main/math" text="&amp;Math">
   
-  <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode.png" shortcut="Ctrl+Shift+M"/>
+  <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
   <insert id="equation" text="Numbered equation \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
   <insert id="align" text="\begin{align}" insert="\begin{align}%n%|%n\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
   <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
-  <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript.png" shortcut="Ctrl+Shift+D"/>  
-  <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript.png" shortcut="Ctrl+Shift+U"/>  
-  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac.png" shortcut="Alt+Shift+F"/>    
-  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="dfrac.png" shortcut="Ctrl+Shift+F"/>  
-  <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="sqrt.png" shortcut="Ctrl+Shift+Q"/>  
+  <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
+  <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript" shortcut="Ctrl+Shift+U"/>  
+  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
+  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="dfrac" shortcut="Ctrl+Shift+F"/>  
+  <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
   <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
   <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%n%&lt;content%|%>%n\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
@@ -200,28 +200,28 @@
   </menu>
 
   <menu id="fontstyles" text="Math Font St&amp;yles">
-    <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon=":/images/font_mathrm.png"/>
-    <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon=":/images/font_mathit.png"/>
-    <insert id="mathbf" text="Bold - \mathbf{}" insert="\mathbf{%|}" icon=":/images/font_mathbf.png"/>
-    <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon=":/images/font_mathsf.png"/>
-    <insert id="mathtt" text="Typewriter - \mathtt{}" insert="\mathtt{%|}" icon=":/images/font_mathtt.png"/>
-    <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon=":/images/font_mathcal.png"/>
-    <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon=":/images/font_mathbb.png"/>
-    <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon=":/images/font_mathfrak.png"/>
+    <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon="font_mathrm"/>
+    <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon="font_mathit"/>
+    <insert id="mathbf" text="Bold - \mathbf{}" insert="\mathbf{%|}" icon="font_mathbf"/>
+    <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon="font_mathsf"/>
+    <insert id="mathtt" text="Typewriter - \mathtt{}" insert="\mathtt{%|}" icon="font_mathtt"/>
+    <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon="font_mathcal"/>
+    <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon="font_mathbb"/>
+    <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon="font_mathfrak"/>
   </menu>
 
   <menu id="fontaccent" text="Math &amp;Accents">
-    <insert id="acute" text="\acute{}" insert="\acute{%|}" icon=":/images/acute.png"/>
-    <insert id="grave" text="\grave{}" insert="\grave{%|}" icon=":/images/grave.png"/>
-    <insert id="tilde" text="\tilde{}" insert="\tilde{%|}" icon=":/images/tilde.png"/>
+    <insert id="acute" text="\acute{}" insert="\acute{%|}" icon="acute"/>
+    <insert id="grave" text="\grave{}" insert="\grave{%|}" icon="grave"/>
+    <insert id="tilde" text="\tilde{}" insert="\tilde{%|}" icon="tilde"/>
 
-    <insert id="bar" text="\bar{}" insert="\bar{%|}" icon=":/images/bar.png"/>
-    <insert id="vec" text="\vec{}" insert="\vec{%|}" icon=":/images/vec.png"/>
-    <insert id="hat" text="\hat{}" insert="\hat{%|}" icon=":/images/hat.png"/>
-    <insert id="check" text="\check{}" insert="\check{%|}" icon=":/images/check.png"/>
-    <insert id="breve" text="\breve{}" insert="\breve{%|}" icon=":/images/breve.png"/>
-    <insert id="dot" text="\dot{}" insert="\dot{%|}" icon=":/images/dot.png"/>
-    <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon=":/images/ddot.png"/>
+    <insert id="bar" text="\bar{}" insert="\bar{%|}" icon="bar"/>
+    <insert id="vec" text="\vec{}" insert="\vec{%|}" icon="vec"/>
+    <insert id="hat" text="\hat{}" insert="\hat{%|}" icon="hat"/>
+    <insert id="check" text="\check{}" insert="\check{%|}" icon="check"/>
+    <insert id="breve" text="\breve{}" insert="\breve{%|}" icon="breve"/>
+    <insert id="dot" text="\dot{}" insert="\dot{%|}" icon="dot"/>
+    <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon="ddot"/>
   </menu>
   
   <menu id="fontspaces" text="Math S&amp;paces">

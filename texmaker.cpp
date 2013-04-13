@@ -728,8 +728,8 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "complete",tr("Complete"));
 	newManagedAction(submenu, "normal", tr("Normal"), SLOT(NormalCompletion()),Qt::CTRL+Qt::Key_Space);
 	newManagedAction(submenu, "environment", tr("\\begin{ Completion"), SLOT(InsertEnvironmentCompletion()),Qt::CTRL+Qt::ALT+Qt::Key_Space);
-    newManagedAction(submenu, "text", tr("Normal Text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
-    newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(CloseEnv()),Qt::ALT+Qt::Key_Return);
+	newManagedAction(submenu, "text", tr("Normal Text"), SLOT(InsertTextCompletion()),Qt::SHIFT+Qt::ALT+Qt::Key_Space);
+	newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(CloseEnv()),Qt::ALT+Qt::Key_Return);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
@@ -740,9 +740,9 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-    newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, "build")->setData(BuildManager::CMD_QUICK);
-    newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,"compile")->setData(BuildManager::CMD_COMPILE);
-    newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
+	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, "build")->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,"compile")->setData(BuildManager::CMD_COMPILE);
+	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_INDEX);
 
@@ -750,18 +750,18 @@ void Texmaker::setupMenus() {
 	submenu=newManagedMenu(menu, "commands",tr("&Commands", "menu"));
 	newManagedAction(submenu, "latexmk",tr("&Latexmk"), SLOT(commandFromAction()))->setData(BuildManager::CMD_LATEXMK);
 	submenu->addSeparator();
-    newManagedAction(submenu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), QKeySequence(), "latex")->setData(BuildManager::CMD_LATEX);
-    newManagedAction(submenu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), "pdflatex")->setData(BuildManager::CMD_PDFLATEX);
-    newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), "xelatex")->setData(BuildManager::CMD_XELATEX);
-    newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), "lualatex")->setData(BuildManager::CMD_LUALATEX);
+	newManagedAction(submenu, "latex",tr("&LaTeX"), SLOT(commandFromAction()), QKeySequence(), "latex")->setData(BuildManager::CMD_LATEX);
+	newManagedAction(submenu, "pdflatex",tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), "pdflatex")->setData(BuildManager::CMD_PDFLATEX);
+	newManagedAction(submenu, "xelatex","&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), "xelatex")->setData(BuildManager::CMD_XELATEX);
+	newManagedAction(submenu, "lualatex","L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), "lualatex")->setData(BuildManager::CMD_LUALATEX);
 	submenu->addSeparator();
-    newManagedAction(submenu, "dvi2ps",tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), "dvips")->setData(BuildManager::CMD_DVIPS);
-    newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), "ps2pdf")->setData(BuildManager::CMD_PS2PDF);
-    newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), "dvipdf")->setData(BuildManager::CMD_DVIPDF);
+	newManagedAction(submenu, "dvi2ps",tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), "dvips")->setData(BuildManager::CMD_DVIPS);
+	newManagedAction(submenu, "ps2pdf",tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), "ps2pdf")->setData(BuildManager::CMD_PS2PDF);
+	newManagedAction(submenu, "dvipdf",tr("DV&I->PDF"), SLOT(commandFromAction()), QKeySequence(), "dvipdf")->setData(BuildManager::CMD_DVIPDF);
 	submenu->addSeparator();
-    newManagedAction(submenu, "viewdvi",tr("View &DVI"), SLOT(commandFromAction()), QKeySequence(), "viewdvi")->setData(BuildManager::CMD_VIEW_DVI);
-    newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), "viewps")->setData(BuildManager::CMD_VIEW_PS);
-    newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), "viewpdf")->setData(BuildManager::CMD_VIEW_PDF);
+	newManagedAction(submenu, "viewdvi",tr("View &DVI"), SLOT(commandFromAction()), QKeySequence(), "viewdvi")->setData(BuildManager::CMD_VIEW_DVI);
+	newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), "viewps")->setData(BuildManager::CMD_VIEW_PS);
+	newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), "viewpdf")->setData(BuildManager::CMD_VIEW_PDF);
 	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy",tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
@@ -774,7 +774,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an Auxiliary Files..."), SLOT(CleanAll()));
 	menu->addSeparator();
-    newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
+	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
 	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
@@ -795,20 +795,20 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "insertrefnextlabel",tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), Qt::ALT+Qt::CTRL+Qt::Key_R);
 	newManagedAction(menu, "insertrefprevlabel",tr("Insert \\ref to Previous Label"), SLOT(editInsertRefToPrevLabel()));
 	submenu=newManagedMenu(menu, "tabularmanipulation",tr("Manipulate Tables","table"));
-    newManagedAction(submenu, "addRow",tr("Add Row","table"), SLOT(addRowCB()),QKeySequence(),"addRow");
-    newManagedAction(submenu, "addColumn",tr("Add Column","table"), SLOT(addColumnCB()),QKeySequence(),"addCol");
-    newManagedAction(submenu, "removeRow",tr("Remove Row","table"), SLOT(removeRowCB()),QKeySequence(),"remRow");
-    newManagedAction(submenu, "removeColumn",tr("Remove Column","table"), SLOT(removeColumnCB()),QKeySequence(),"remCol");
-    newManagedAction(submenu, "cutColumn",tr("Cut Column","table"), SLOT(cutColumnCB()),QKeySequence(),"cutCol");
-    newManagedAction(submenu, "pasteColumn",tr("Paste Column","table"), SLOT(pasteColumnCB()),QKeySequence(),"pasteCol");
+	newManagedAction(submenu, "addRow",tr("Add Row","table"), SLOT(addRowCB()),QKeySequence(),"addRow");
+	newManagedAction(submenu, "addColumn",tr("Add Column","table"), SLOT(addColumnCB()),QKeySequence(),"addCol");
+	newManagedAction(submenu, "removeRow",tr("Remove Row","table"), SLOT(removeRowCB()),QKeySequence(),"remRow");
+	newManagedAction(submenu, "removeColumn",tr("Remove Column","table"), SLOT(removeColumnCB()),QKeySequence(),"remCol");
+	newManagedAction(submenu, "cutColumn",tr("Cut Column","table"), SLOT(cutColumnCB()),QKeySequence(),"cutCol");
+	newManagedAction(submenu, "pasteColumn",tr("Paste Column","table"), SLOT(pasteColumnCB()),QKeySequence(),"pasteCol");
 	newManagedAction(submenu, "addHLine",tr("Add \\hline","table"), SLOT(addHLineCB()));
 	newManagedAction(submenu, "remHLine",tr("Remove \\hline","table"), SLOT(remHLineCB()));
 	newManagedAction(submenu, "insertTableTemplate",tr("Remodel Table Using Template","table"), SLOT(insertTableTemplate()));
-    newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),"alignCols");
-    submenu=newManagedMenu(menu, "magicComments",tr("Add magic comments ..."));
-    newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
-    newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(InsertSpellcheckMagicComment()));
-    newManagedAction(submenu, "addMagicCoding", tr("Insert document coding as TeX comment"), SLOT(addMagicCoding()));
+	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()),QKeySequence(),"alignCols");
+	submenu=newManagedMenu(menu, "magicComments",tr("Add magic comments ..."));
+	newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
+	newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(InsertSpellcheckMagicComment()));
+	newManagedAction(submenu, "addMagicCoding", tr("Insert document coding as TeX comment"), SLOT(addMagicCoding()));
 
 	menu=newManagedMenu("main/math",tr("&Math"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(InsertFromAction())));
