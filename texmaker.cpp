@@ -78,7 +78,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	spellLanguageActions=0;
 	MapForSymbols=0;
 	currentLine=-1;
-	previewEquation=false;
 	svndlg=0;
 	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
@@ -6177,11 +6176,11 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_TOOLTIP||
-			previewEquation||
+			source.atCursor ||
 			(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
 			(source.fromLine < 0)) {
 		QPoint p;
-		if(previewEquation)
+		if(source.atCursor)
 			p=currentEditorView()->getHoverPosistion();
 		else
 			p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
@@ -6208,7 +6207,6 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
 		doc->adjustWidth(toLine);
 	}
-	previewEquation=false;
 }
 
 void Texmaker::clearPreview() {
@@ -6341,8 +6339,7 @@ void Texmaker::showPreview(const QString& text){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	previewEquation=true;
-	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1), documents.getCompileFileName(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec());
 }
 
 void Texmaker::showPreview(const QDocumentCursor& previewc){
@@ -6370,7 +6367,7 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
-	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber());
+	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
 	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
 	
 	if (!addToList)

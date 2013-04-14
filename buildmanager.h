@@ -8,9 +8,10 @@ class ProcessX;
 struct PreviewSource{
 	QString text;
 	int fromLine, toLine;
-	PreviewSource(): fromLine(0), toLine(0){}
-	PreviewSource(const QString& text, int fromLine, int toLine):
-	       text(text), fromLine(fromLine), toLine(toLine){}
+	bool atCursor;
+	PreviewSource(): fromLine(0), toLine(0), atCursor(false){}
+	PreviewSource(const QString& text, int fromLine, int toLine, bool atCursor):
+		   text(text), fromLine(fromLine), toLine(toLine), atCursor(atCursor) {}
 };
 
 enum LatexCompileResult {
