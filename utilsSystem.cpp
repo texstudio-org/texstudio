@@ -156,37 +156,41 @@ bool useSystemTheme;
 QString getRealIconFile(const QString& icon){
     if (icon.isEmpty() || icon.startsWith(":/")) return icon;
     if (QFileInfo(":/images-ng/"+icon+".svg").exists())
-	return ":/images-ng/"+icon+".svg";
+        return ":/images-ng/"+icon+".svg";
     if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
-	return ":/images-ng/"+icon+".svgz"; //voruebergehend
+        return ":/images-ng/"+icon+".svgz"; //voruebergehend
+    if (QFileInfo(":/symbols-ng/icons/"+icon+".svg").exists())
+        return ":/symbols-ng/icons/"+icon+".svg"; //voruebergehend
+    if (QFileInfo(":/symbols-ng/icons/"+icon+".png").exists())
+        return ":/symbols-ng/icons/"+icon+".png"; //voruebergehend
     if (modernStyle){
-	if(QFileInfo(":/images-ng/modern/"+icon+".svg").exists())
-	    return ":/images-ng/modern/"+icon+".svg";
-	if(QFileInfo(":/images-ng/modern/"+icon+".svgz").exists())
-	    return ":/images-ng/modern/"+icon+".svgz";
-	if(QFileInfo(":/modern/images/modern/"+icon+".png").exists())
-	    return ":/modern/images/modern/"+icon+".png";
+        if(QFileInfo(":/images-ng/modern/"+icon+".svg").exists())
+            return ":/images-ng/modern/"+icon+".svg";
+        if(QFileInfo(":/images-ng/modern/"+icon+".svgz").exists())
+            return ":/images-ng/modern/"+icon+".svgz";
+        if(QFileInfo(":/modern/images/modern/"+icon+".png").exists())
+            return ":/modern/images/modern/"+icon+".png";
     }
     if (!modernStyle){
-	if(QFileInfo(":/images-ng/classic/"+icon+".svg").exists())
-	    return ":/images-ng/classic/"+icon+".svg";
-	if(QFileInfo(":/images-ng/classic/"+icon+".svgz").exists())
-	    return ":/images-ng/classic/"+icon+".svgz";
-	if(QFileInfo(":/classic/images/classic/"+icon+".png").exists())
-	    return ":/classic/images/classic/"+icon+".png";
+        if(QFileInfo(":/images-ng/classic/"+icon+".svg").exists())
+            return ":/images-ng/classic/"+icon+".svg";
+        if(QFileInfo(":/images-ng/classic/"+icon+".svgz").exists())
+            return ":/images-ng/classic/"+icon+".svgz";
+        if(QFileInfo(":/classic/images/classic/"+icon+".png").exists())
+            return ":/classic/images/classic/"+icon+".png";
     }
     if (QFileInfo(":/images-ng/"+icon+".svg").exists())
-	return ":/images-ng/"+icon+".svg";
+        return ":/images-ng/"+icon+".svg";
     if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
-	return ":/images-ng/"+icon+".svgz";
+        return ":/images-ng/"+icon+".svgz";
     if (QFileInfo(":/images/"+icon+".png").exists())
-	return ":/images/"+icon+".png";
+        return ":/images/"+icon+".png";
     return icon;
 }
 
 QIcon getRealIcon(const QString& icon){
-	if (icon.isEmpty()) return QIcon();
-	if (icon.startsWith(":/")) return QIcon(icon);
+    if (icon.isEmpty()) return QIcon();
+    if (icon.startsWith(":/")) return QIcon(icon);
 #if QT_VERSION >= 0x040600
     if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
 #endif
@@ -197,171 +201,171 @@ QIcon getRealIcon(const QString& icon){
 bool isFileRealWritable(const QString& filename) {
 #ifdef Q_WS_WIN
 #if QT_VERSION >= 0x040700
-	//bug in 4.7 still present in 4.8.0
-	return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
-				  (!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
+    //bug in 4.7 still present in 4.8.0
+    return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
+                  (!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
 #else
-	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
-	return QFileInfo(filename).isWritable();
+    //thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
+    return QFileInfo(filename).isWritable();
 #endif
 #endif
-	QFile fi(filename);
-	bool result=false;
-	if (fi.exists()) result=fi.open(QIODevice::ReadWrite);
-	else {
-		result=fi.open(QIODevice::WriteOnly);
-		fi.remove();
-	}
-	return result;
+    QFile fi(filename);
+    bool result=false;
+    if (fi.exists()) result=fi.open(QIODevice::ReadWrite);
+    else {
+        result=fi.open(QIODevice::WriteOnly);
+        fi.remove();
+    }
+    return result;
 }
 
 bool isExistingFileRealWritable(const QString& filename) {
-	return QFileInfo(filename).exists() && isFileRealWritable(filename);
+    return QFileInfo(filename).exists() && isFileRealWritable(filename);
 }
 
 QString ensureTrailingDirSeparator(const QString& dirPath){
-	if (dirPath.endsWith("/")) return dirPath;
-	if (dirPath.endsWith(QDir::separator())) return dirPath;
+    if (dirPath.endsWith("/")) return dirPath;
+    if (dirPath.endsWith(QDir::separator())) return dirPath;
 #ifdef Q_WS_WIN
-	if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux
+    if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux
 #endif
-	return dirPath+"/";
+    return dirPath+"/";
 }
 
 QString replaceFileExtension(const QString& filename, const QString& newExtension, bool appendIfNoExt) {
-	QFileInfo fi(filename);
-	QString ext = newExtension.startsWith('.') ? newExtension.mid(1) : newExtension;
-	if (fi.suffix().isEmpty()) {
-		if (appendIfNoExt)
-			return filename + '.' + ext;
-		else
-			return QString();
-	}
+    QFileInfo fi(filename);
+    QString ext = newExtension.startsWith('.') ? newExtension.mid(1) : newExtension;
+    if (fi.suffix().isEmpty()) {
+        if (appendIfNoExt)
+            return filename + '.' + ext;
+        else
+            return QString();
+    }
 
-	return filename.left(filename.length()-fi.completeSuffix().length()) + ext;
+    return filename.left(filename.length()-fi.completeSuffix().length()) + ext;
 }
 
 QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool baseFile,bool keepSuffix){
-	basepath.replace(QDir::separator(),"/");
-	if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
+    basepath.replace(QDir::separator(),"/");
+    if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
 
-	QFileInfo fi(file);
-	QString filename = fi.fileName();
-	QString path = fi.path();
-	if (path.endsWith("/")) path=path.left(path.length()-1);
-	QStringList basedirs = basepath.split("/");
-	if(baseFile && !basedirs.isEmpty()) basedirs.removeLast();
-	QStringList dirs = path.split("/");
-	//QStringList basedirs = QStringList::split("/", basepath, false);
-	//QStringList dirs = QStringList::split("/", path, false);
+    QFileInfo fi(file);
+    QString filename = fi.fileName();
+    QString path = fi.path();
+    if (path.endsWith("/")) path=path.left(path.length()-1);
+    QStringList basedirs = basepath.split("/");
+    if(baseFile && !basedirs.isEmpty()) basedirs.removeLast();
+    QStringList dirs = path.split("/");
+    //QStringList basedirs = QStringList::split("/", basepath, false);
+    //QStringList dirs = QStringList::split("/", path, false);
 
-	int nDirs = dirs.count();
+    int nDirs = dirs.count();
 
-	while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
-		dirs.pop_front();
-		basedirs.pop_front();
-	}
+    while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
+        dirs.pop_front();
+        basedirs.pop_front();
+    }
 
-	if (nDirs != dirs.count()) {
-		path = dirs.join("/");
+    if (nDirs != dirs.count()) {
+        path = dirs.join("/");
 
-		if (basedirs.count() > 0) {
-			for (int j=0; j < basedirs.count(); ++j) {
-				path = "../" + path;
-			}
-		}
+        if (basedirs.count() > 0) {
+            for (int j=0; j < basedirs.count(); ++j) {
+                path = "../" + path;
+            }
+        }
 
-		//if (path.length()>0 && path.right(1) != "/") path = path + "/";
-	} else {
-		path = fi.path();
-	}
+        //if (path.length()>0 && path.right(1) != "/") path = path + "/";
+    } else {
+        path = fi.path();
+    }
 
-	if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
+    if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
 
-	if(keepSuffix)
-		return path+filename;
-	return path+fi.completeBaseName();
+    if(keepSuffix)
+        return path+filename;
+    return path+fi.completeBaseName();
 }
 
 QString getPathfromFilename(const QString &compFile){
-	if (compFile.isEmpty()) return "";
-	QString dir=QFileInfo(compFile).absolutePath();
-	if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
-	return dir;
+    if (compFile.isEmpty()) return "";
+    QString dir=QFileInfo(compFile).absolutePath();
+    if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
+    return dir;
 }
 
 int x11desktop_env() {
-	// 0 : no kde ; 3: kde ; 4 : kde4 ;
-	QString kdesession= ::getenv("KDE_FULL_SESSION");
-	QString kdeversion= ::getenv("KDE_SESSION_VERSION");
-	if (!kdeversion.isEmpty()) return 4;
-	if (!kdesession.isEmpty()) return 3;
-	return 0;
+    // 0 : no kde ; 3: kde ; 4 : kde4 ;
+    QString kdesession= ::getenv("KDE_FULL_SESSION");
+    QString kdeversion= ::getenv("KDE_SESSION_VERSION");
+    if (!kdeversion.isEmpty()) return 4;
+    if (!kdesession.isEmpty()) return 3;
+    return 0;
 }
 
 // detect a retina macbook via the model identifier
 // http://support.apple.com/kb/HT4132?viewlocale=en_US&locale=en_US
 bool isRetinaMac() {
 #ifdef Q_OS_MAC
-	static bool firstCall = true;
-	static bool isRetina = false;
-	if (firstCall) {
-		firstCall = false;
-		QProcess process;
-		process.start("sysctl", QStringList() << "-n" << "hw.model");
-		process.waitForFinished(1000);
-		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
-		QRegExp rx("MacBookPro([0-9]*)");
-	rx.indexIn(model);
-		int num = rx.cap(1).toInt();
-	//qDebug() << num << model;
-		if (num>=10) // compatibility with future MacBookPros. Assume they are also retina.
-			isRetina = true;
-	}
-	return isRetina;
+    static bool firstCall = true;
+    static bool isRetina = false;
+    if (firstCall) {
+        firstCall = false;
+        QProcess process;
+        process.start("sysctl", QStringList() << "-n" << "hw.model");
+        process.waitForFinished(1000);
+        QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
+        QRegExp rx("MacBookPro([0-9]*)");
+    rx.indexIn(model);
+        int num = rx.cap(1).toInt();
+    //qDebug() << num << model;
+        if (num>=10) // compatibility with future MacBookPros. Assume they are also retina.
+            isRetina = true;
+    }
+    return isRetina;
 #endif
-	return false;
+    return false;
 }
 
 bool hasAtLeastQt(int major, int minor){
-	QStringList vers=QString(qVersion()).split('.');
-	if (vers.count()<2) return false;
-	int ma=vers[0].toInt();
-	int mi=vers[1].toInt();
-	return (ma>major) || (ma==major && mi>=minor);
+    QStringList vers=QString(qVersion()).split('.');
+    if (vers.count()<2) return false;
+    int ma=vers[0].toInt();
+    int mi=vers[1].toInt();
+    return (ma>major) || (ma==major && mi>=minor);
 }
 
 // convenience function for unique connections independent of the Qt version
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method) {
 #if QT_VERSION >= 0x040600
-	return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
+    return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
 #else
-	disconnect(sender, signal, receiver, method);
-	return connect(sender, signal, receiver, method);
+    disconnect(sender, signal, receiver, method);
+    return connect(sender, signal, receiver, method);
 #endif
 }
 
 
 void ThreadBreaker::sleep(int s){
-	QThread::sleep(s);
+    QThread::sleep(s);
 }
 
 void ThreadBreaker::msleep(unsigned long ms)
 {
-	QThread::msleep(ms);
+    QThread::msleep(ms);
 };
 
 void ThreadBreaker::forceTerminate(QThread* t){
-	if (!t) t = QThread::currentThread();
-	t->setTerminationEnabled(true);
-	t->terminate();
+    if (!t) t = QThread::currentThread();
+    t->setTerminationEnabled(true);
+    t->terminate();
 }
 
 SafeThread::SafeThread():QThread(0),crashed(false){}
 SafeThread::SafeThread(QObject* parent):QThread(parent), crashed(false){}
 
 void SafeThread::wait(unsigned long time){
-	if (crashed) return;
-	QThread::wait(time);
+    if (crashed) return;
+    QThread::wait(time);
 }
 

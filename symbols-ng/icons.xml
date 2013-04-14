@@ -215,4 +215,210 @@
 <iconMode>true</iconMode>
 </commandDefinition>
 
+<commandDefinition>
+  <name>dot</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\dot{a}$</latexCommand>
+  <iconMode>true</iconMode>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+  <name>grave</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\grave{a}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>acute</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\acute{a}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>vec</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\vec{a}$</latexCommand>
+  <iconMode>true</iconMode>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+  <name>check</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\check{a}$</latexCommand>
+  <iconMode>true</iconMode>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+  <name>ddot</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\ddot{a}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>tilde</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\tilde{a}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>bar</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\bar{a}$</latexCommand>
+  <forcePNG>true</forcePNG>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>breve</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\breve{a}$</latexCommand>
+  <forcePNG>true</forcePNG>
+  <iconMode>true</iconMode>
+</commandDefinition>
+<commandDefinition>
+  <name>hat</name>
+  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
+    $\hat{a}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>accent1</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \'{a}</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>accent2</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \`{a}</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+<commandDefinition>
+  <name>accent3</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \^{a}</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+<commandDefinition>
+  <name>accent4</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \"{a}</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+<commandDefinition>
+  <name>accent5</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \~{a}</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+<commandDefinition>
+  <name>accent6</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \={a}</latexCommand>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+<commandDefinition>
+  <name>accent7</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \.{a}</latexCommand>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+<commandDefinition>
+  <name>accent8</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \v{a}</latexCommand>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+<commandDefinition>
+  <name>accent9</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \u{a}</latexCommand>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+  <name>accent10</name>
+  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
+    \H{a}</latexCommand>
+  <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<commandDefinition>
+   <name>PS</name>
+   <latexCommand>\fb{PS}</latexCommand>
+   <forcePNG>true</forcePNG>
+   <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathrm</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathrm{A}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathbf</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathbf{A}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathbb</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathbb{A}$</latexCommand>
+  <package>
+      <name>amssymb</name>
+   </package>
+   <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathsf</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathsf{A}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathtt</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathtt{A}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathit</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathit{A}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathcal</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathcal{A}$</latexCommand>
+  <iconMode>true</iconMode>
+</commandDefinition>
+
+<commandDefinition>
+  <name>font_mathfrak</name>
+  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
+    $\mathfrak{A}$</latexCommand>
+  <package>
+      <name>amssymb</name>
+   </package>
+   <iconMode>true</iconMode>
+</commandDefinition>
+
 </symbols>
