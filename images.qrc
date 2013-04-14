@@ -1,6 +1,10 @@
 <RCC>
 <qresource prefix="/">
+<file>images-ng/addCol.svg</file>
+<file>images-ng/addRow.svg</file>
+<file>images-ng/alignCols.svgz</file>
 <file>images-ng/application-exit.svgz</file>
+<file>images-ng/back.svg</file>
 <file>images-ng/badbox.svg</file>
 <file>images-ng/bookmark-new.svg</file>
 <file>images-ng/build.svgz</file>
@@ -18,6 +22,7 @@
 <file>images-ng/config_svn.svg</file>
 <file>images-ng/config_toolbars.svg</file>
 <file>images-ng/configure.svgz</file>
+<file>images-ng/cutCol.svg</file>
 <file>images-ng/dialog-error.svg</file>
 <file>images-ng/down.svgz</file>
 <file>images-ng/editcopy.svgz</file>
@@ -25,6 +30,9 @@
 <file>images-ng/editpaste.svgz</file>
 <file>images-ng/embedded-viewer.svg</file>
 <file>images-ng/enumerate.svgz</file>
+<file>images-ng/errornext.svg</file>
+<file>images-ng/errornext.svg.bak</file>
+<file>images-ng/errorprev.svg</file>
 <file>images-ng/error.svgz</file>
 <file>images-ng/fileclose.svgz</file>
 <file>images-ng/filenew.svgz</file>
@@ -37,10 +45,12 @@
 <file>images-ng/format-text-bold.svg</file>
 <file>images-ng/format-text-italic.svg</file>
 <file>images-ng/format-text-underline.svg</file>
+<file>images-ng/forward.svg</file>
 <file>images-ng/go-first.svg</file>
 <file>images-ng/go-last.svg</file>
 <file>images-ng/go-next.svg</file>
 <file>images-ng/go-previous.svg</file>
+<file>images-ng/goto.svg</file>
 <file>images-ng/help.svgz</file>
 <file>images-ng/home.svg</file>
 <file>images-ng/itemize.svgz</file>
@@ -48,8 +58,11 @@
 <file>images-ng/list-add.svgz</file>
 <file>images-ng/list-remove.svgz</file>
 <file>images-ng/modified.svgz</file>
+<file>images-ng/pasteCol.svg</file>
 <file>images-ng/preferences-system.svg</file>
 <file>images-ng/redo.svg</file>
+<file>images-ng/remCol.svg</file>
+<file>images-ng/remRow.svg</file>
 <file>images-ng/right.svgz</file>
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer.svg</file>
