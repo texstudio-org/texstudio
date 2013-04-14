@@ -539,7 +539,6 @@ protected:
 	
 	bool mCompleterNeedsUpdate;
 	
-	bool previewEquation;
 	int currentLine;
 	QBrush oldBackground;
 	bool mDontScrollToItem;
