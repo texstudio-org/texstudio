@@ -6161,12 +6161,7 @@ void Texmaker::previewLatex(){
 		mathFormats.removeAll(0); // keep only valid entries in list
 		while(col>0 && mathFormats.contains(dl.getFormatAt(col-1))) col --;
 		c.setColumnNumber(col);
-
-		QDocumentCursor orig, to;
-		c.getMatchingPair(orig, to, true);
-		if (!orig.hasSelection() || !to.hasSelection()) return;
-		QDocumentCursor::sort(orig, to);
-		previewc = QDocumentCursor(orig.selectionStart(), to.selectionEnd());
+		previewc = currentEditorView()->parenthizedTextSelection(c);
 	}
 	if (!previewc.hasSelection()) return;
 	

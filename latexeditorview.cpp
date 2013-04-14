@@ -1785,6 +1785,23 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
 	}
 }
 
+
+/*
+ * Extracts the math formula at the given cursor position including math delimiters.
+ * Current limitations: the cursor needs to be on one of the delimiters. This does
+ * not work for math environments
+ * Returns an empty string if there is no math formula.
+ */
+QString LatexEditorView::extractMath(QDocumentCursor cursor) {
+	if (!cursor.line().getFormatAt(cursor.columnNumber())==math_DelimiterFormat)
+		return QString();
+	int col = cursor.columnNumber();
+	while (col > 0 && cursor.line().getFormatAt(col-1)==math_DelimiterFormat) col--;
+	cursor.setColumnNumber(col);
+	return parenthizedTextSelection(cursor).selectedText();
+}
+
+
 void LatexEditorView::mouseHovered(QPoint pos){
 	// reimplement to what is necessary
 	
@@ -1846,83 +1863,51 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	
 	// do rest
 	QString command, value;
-	QString topic;
-	int i,first,last;
-	int id_first;
-	bool forward=true;
-	QStringList strngLst;
-	QVector<QParenthesis> parens;
+	QStringList envAliases;
 	switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
 	case LatexParser::Unknown:
-		if(cursor.nextChar()==QChar('$') && config->toolTipPreview){
-			i=cursor.columnNumber();
-			parens=l.parentheses();
-			first=i;
-			last=-1;
-			for(i=0;i<parens.size();i++){
-				if(parens[i].offset==first) {
-					last=i;
-					id_first=parens[i].id;
-					break;
-				}
+		if (config->toolTipPreview) {
+			QString command = extractMath(cursor);
+			if (!command.isEmpty()) {
+				m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
+				emit showPreview(command);
+			} else {
+				QToolTip::hideText();
 			}
-			if(last>-1){
-				if(parens[i].role&1){
-					last=-1;
-					for(;i<parens.size();i++){
-						if(parens[i].id==id_first && parens[i].role&2) {
-							last=parens[i].offset + parens[i].length;
-							break;
-						}
-					}
-					if(last>-1){
-						command=line.mid(first,last-first);
-						m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-						emit showPreview(command);
-					}
-				}
-			}
-		} else {
-			QToolTip::hideText();
 		}
 		break;
 	case LatexParser::Command:
-		forward= (command=="\\begin");
-		if (command=="\\begin" || command=="\\end")
-			command="\\begin{"+value+"}";
-		
-		strngLst=document->ltxCommands.environmentAliases.values(value);
-		if(strngLst.contains("math") && config->toolTipPreview){
-			QString text;
-			if(forward){
-				// find closing
-				int endingLine=editor->document()->findLineContaining(QString("\\end{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,false);
-				text=command+"\n";
-				for(int i=cursor.lineNumber()+1;i<endingLine;i++){
-					text=text+editor->document()->line(i).text()+"\n";
-				}
-				text+="\\end{"+value+"}";
-			}else{
-				int endingLine=editor->document()->findLineContaining(QString("\\begin{%1}").arg(value),cursor.lineNumber(),Qt::CaseSensitive,true);
-				text="\\end{"+value+"}";
-				for(int i=cursor.lineNumber()-1;i>endingLine;i--){
-					text=editor->document()->line(i).text()+"\n"+text;
-				}
+		// workaround: The latex parser returns "\" as command if the cursor is on the brackets of \[ or \]
+		// TODO: should be fixed in the parser itself
+		if (command == "\\") {
+			if (cursor.nextChar()=='[') command = "\\[";
+			else if (cursor.nextChar()==']') command = "\\]";
+		}
 
-				text="\\begin{"+value+"}"+text;
+		if (config->toolTipPreview) {
+			envAliases = document->ltxCommands.environmentAliases.values(value);
+			if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]") {
+				while (!cursor.atLineStart() && cursor.nextChar()!='\\') {
+					cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
+				}
+				QString text = parenthizedTextSelection(cursor).selectedText();
+				if (!text.isEmpty()) {
+					m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+					emit showPreview(text);
+				}
+			} else {
+				QToolTip::hideText();
 			}
-			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-			emit showPreview(text);
 		} else {
 			if(config->toolTipHelp){
-				topic=completer->lookupWord(command);
+				QString topic=completer->lookupWord(command);
 				if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			}
 		}
 		break;
 	case LatexParser::Environment:
 		if(config->toolTipHelp){
-			topic=completer->lookupWord("\\begin{"+value+"}");
+			QString topic=completer->lookupWord("\\begin{"+value+"}");
 			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 		}
 		break;
@@ -2272,6 +2257,22 @@ void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
 		QVariant result=prev.getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 		if(result.isValid())
 			env=result.value<StackEnvironment>();
+	}
+}
+
+/*
+ * If the cursor is at the border of a parenthesis, this returns a QDocumentCursor with a selection of the parenthized text.
+ * Otherwise, a default QDocumentCursor is returned.
+ */
+QDocumentCursor LatexEditorView::parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses) {
+	QDocumentCursor from, to;
+	cursor.getMatchingPair(from, to);
+	if (!from.hasSelection() || !to.hasSelection()) return QDocumentCursor();
+	QDocumentCursor::sort(from, to);
+	if (includeParentheses) {
+		return QDocumentCursor(from.selectionStart(), to.selectionEnd());
+	} else {
+		return QDocumentCursor(from.selectionStart(), to.selectionEnd());
 	}
 }
 

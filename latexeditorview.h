@@ -124,6 +124,7 @@ public:
 
 	static void selectOptionInLatexArg(QDocumentCursor &cur);
     void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
+	QDocumentCursor parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses=true);
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -220,6 +221,7 @@ private:
 	void setLinkOverlay(const LinkOverlay &overlay);
 	void removeLinkOverlay();
 	bool isNonTextFormat(int format);
+	QString extractMath(QDocumentCursor cursor);
 public slots:
 	void temporaryHighlight(QDocumentCursor cur);
 	void removeTemporaryHighlight();
