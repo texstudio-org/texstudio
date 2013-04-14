@@ -222,6 +222,7 @@ private:
 	void removeLinkOverlay();
 	bool isNonTextFormat(int format);
 	QString extractMath(QDocumentCursor cursor);
+	void showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos);
 public slots:
 	void temporaryHighlight(QDocumentCursor cur);
 	void removeTemporaryHighlight();

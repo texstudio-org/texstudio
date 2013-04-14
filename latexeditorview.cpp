@@ -1801,6 +1801,21 @@ QString LatexEditorView::extractMath(QDocumentCursor cursor) {
 	return parenthizedTextSelection(cursor).selectedText();
 }
 
+void LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos) {
+	QStringList envAliases = document->ltxCommands.environmentAliases.values(environment);
+	if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]") {
+		while (!cursor.atLineStart() && cursor.nextChar()!='\\') {
+			cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
+		}
+		QString text = parenthizedTextSelection(cursor).selectedText();
+		if (!text.isEmpty()) {
+			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+			emit showPreview(text);
+		}
+	} else {
+		QToolTip::hideText();
+	}
+}
 
 void LatexEditorView::mouseHovered(QPoint pos){
 	// reimplement to what is necessary
@@ -1863,7 +1878,6 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	
 	// do rest
 	QString command, value;
-	QStringList envAliases;
 	switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
 	case LatexParser::Unknown:
 		if (config->toolTipPreview) {
@@ -1885,19 +1899,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 
 		if (config->toolTipPreview) {
-			envAliases = document->ltxCommands.environmentAliases.values(value);
-			if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]") {
-				while (!cursor.atLineStart() && cursor.nextChar()!='\\') {
-					cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
-				}
-				QString text = parenthizedTextSelection(cursor).selectedText();
-				if (!text.isEmpty()) {
-					m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-					emit showPreview(text);
-				}
-			} else {
-				QToolTip::hideText();
-			}
+			showMathEnvPreview(cursor, command, value, pos);
 		} else {
 			if(config->toolTipHelp){
 				QString topic=completer->lookupWord(command);
@@ -1906,9 +1908,15 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
 	case LatexParser::Environment:
-		if(config->toolTipHelp){
-			QString topic=completer->lookupWord("\\begin{"+value+"}");
-			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		{
+			QString text;
+			if(config->toolTipHelp) {
+				QString text = completer->lookupWord("\\begin{"+value+"}");
+				if(!text.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
+			}
+			if (text.isEmpty() && config->toolTipPreview) {
+				showMathEnvPreview(cursor, command, value, pos);
+			}
 		}
 		break;
 	case LatexParser::Reference:
