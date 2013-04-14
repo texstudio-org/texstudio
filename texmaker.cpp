@@ -897,6 +897,8 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "structureview",leftPanel->toggleViewAction());
 	newManagedAction(menu, "outputview",outputView->toggleViewAction());
+    newManagedAction(menu, "enlargePDF",tr("Show embedded PDF large"),SLOT(enlargeEmbeddedPDFViewer()));
+    newManagedAction(menu, "shrinkPDF",tr("Show embedded PDF small"),SLOT(shrinkEmbeddedPDFViewer()));
 
 	newManagedAction(menu, "closesomething",tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
 	
@@ -4428,7 +4430,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (ol.contains("focus")) focus = 1;
 	else if (ol.contains("no-focus")) focus = -1;
 	
-	if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
+    if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
 	
 	//embedded/windowed are mutual exclusive
 	//no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
@@ -5539,6 +5541,8 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 		splitter->setSizes(sz);
 	}
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
+    connect(pdfviewerWindow, SIGNAL(triggeredEnlarge()), SLOT(enlargeEmbeddedPDFViewer()));
+    connect(pdfviewerWindow, SIGNAL(triggeredShrink()), SLOT(shrinkEmbeddedPDFViewer()));
 	connect(pdfviewerWindow, SIGNAL(triggeredManual()), SLOT(UserManualHelp()));
 	connect(pdfviewerWindow, SIGNAL(documentClosed()), SLOT(pdfClosed()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
@@ -8170,4 +8174,18 @@ void Texmaker::CloseEnv(){
             }
         }
     }
+}
+
+void Texmaker::enlargeEmbeddedPDFViewer(){
+    QList<PDFDocument*> oldPDFs = PDFDocument::documentList();
+    if(oldPDFs.isEmpty())
+        return;
+    PDFDocument* viewer=oldPDFs.first();
+    if(!viewer->embeddedMode)
+        return;
+    EditorTabs->hide();
+}
+
+void Texmaker::shrinkEmbeddedPDFViewer(){
+    EditorTabs->show();
 }

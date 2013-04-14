@@ -431,6 +431,8 @@ protected slots:
 	
 	void focusEditor();
 	void focusViewer();
+    void enlargeEmbeddedPDFViewer();
+    void shrinkEmbeddedPDFViewer();
 
 	void viewCloseSomething();
 	void setFullScreenMode();
