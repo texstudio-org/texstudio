@@ -5501,6 +5501,7 @@ void Texmaker::pdfClosed(){
   PDFDocument* from = qobject_cast<PDFDocument*>(sender());
   if(from){
     if(from->embeddedMode){
+      shrinkEmbeddedPDFViewer();
       QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
       int sum=0;
       int last=0;

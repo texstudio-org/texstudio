@@ -1,7 +1,6 @@
 <RCC>
 <qresource prefix="/">
 <file>images-ng/addCol.svg</file>
-<file>images-ng/address-book-new-2.svg</file>
 <file>images-ng/addRow.svg</file>
 <file>images-ng/alignCols.svgz</file>
 <file>images-ng/application-exit.svgz</file>
@@ -82,6 +81,7 @@
 <file>images-ng/undo.svg</file>
 <file>images-ng/up.svgz</file>
 <file>images-ng/viewer.svgz</file>
+<file>images-ng/view-fullscreen.svg</file>
 <file>images-ng/view-left-close.svg</file>
 <file>images-ng/warning.svgz</file>
 <file>images-ng/windowed-viewer.svgz</file>
