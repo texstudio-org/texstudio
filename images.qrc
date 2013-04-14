@@ -6,6 +6,9 @@
 <file>images-ng/application-exit.svgz</file>
 <file>images-ng/back.svg</file>
 <file>images-ng/badbox.svg</file>
+<file>images-ng/bookmark1.svgz</file>
+<file>images-ng/bookmark2.svgz</file>
+<file>images-ng/bookmark3.svgz</file>
 <file>images-ng/bookmark-new.svg</file>
 <file>images-ng/build.svgz</file>
 <file>images-ng/compile.svgz</file>
@@ -54,6 +57,16 @@
 <file>images-ng/help.svgz</file>
 <file>images-ng/home.svg</file>
 <file>images-ng/itemize.svgz</file>
+<file>images-ng/lbook0.svgz</file>
+<file>images-ng/lbook1.svgz</file>
+<file>images-ng/lbook2.svgz</file>
+<file>images-ng/lbook3.svgz</file>
+<file>images-ng/lbook4.svgz</file>
+<file>images-ng/lbook5.svgz</file>
+<file>images-ng/lbook6.svgz</file>
+<file>images-ng/lbook7.svgz</file>
+<file>images-ng/lbook8.svgz</file>
+<file>images-ng/lbook9.svgz</file>
 <file>images-ng/left.svgz</file>
 <file>images-ng/list-add.svgz</file>
 <file>images-ng/list-remove.svgz</file>
