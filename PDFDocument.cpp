@@ -1988,6 +1988,8 @@ void PDFDocument::init(bool embedded)
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
     actionTypeset->setIcon(getRealIcon("build"));
+    actionEnlargeViewer->setIcon(getRealIcon("view-left-close"));
+    actionShrinkViewer->setIcon(getRealIcon("embedded-viewer"));
 
     actionCursor_follows_scrolling->setIcon(getRealIcon("syncSource"));
     actionScrolling_follows_cursor->setIcon(getRealIcon("syncViewer"));
@@ -2003,8 +2005,11 @@ void PDFDocument::init(bool embedded)
     actionExternalViewer->setIcon(getRealIcon("viewpdf"));
 	if(embedded){
         actionTypeset->setVisible(false);
+        actionShrinkViewer->setVisible(false);
     }else{
         actionClose->setVisible(false);
+        actionEnlargeViewer->setVisible(false);
+        actionShrinkViewer->setVisible(false);
 	}
 
 	setContextMenuPolicy(Qt::NoContextMenu);
@@ -2126,7 +2131,8 @@ void PDFDocument::init(bool embedded)
 
 	connect(actionAbout_TW, SIGNAL(triggered()), SIGNAL(triggeredAbout()));
 	connect(actionUserManual, SIGNAL(triggered()), SIGNAL(triggeredManual()));
-
+    connect(actionEnlargeViewer, SIGNAL(triggered()), this ,SLOT(enlarge()));
+    connect(actionShrinkViewer, SIGNAL(triggered()), this , SLOT(shrink()));
 
 	connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
 
@@ -2548,6 +2554,18 @@ void PDFDocument::jumpToPage(){
 	int index=leCurrentPage->text().toInt();
 	//scrollArea->goToPage(index-1);
 	goToPage(index-1);
+}
+
+void PDFDocument::shrink(){
+    actionEnlargeViewer->setVisible(true);
+    actionShrinkViewer->setVisible(false);
+    emit triggeredShrink();
+}
+
+void PDFDocument::enlarge(){
+    actionEnlargeViewer->setVisible(false);
+    actionShrinkViewer->setVisible(true);
+    emit triggeredEnlarge();
 }
 
 void PDFDocument::closeSomething(){

@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>1197</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -149,6 +149,8 @@
    </attribute>
    <addaction name="actionTypeset"/>
    <addaction name="separator"/>
+   <addaction name="actionEnlargeViewer"/>
+   <addaction name="actionShrinkViewer"/>
    <addaction name="actionToggleEmbedded"/>
    <addaction name="actionExternalViewer"/>
    <addaction name="separator"/>
@@ -825,6 +827,16 @@
   <action name="actionToggleEmbedded">
    <property name="text">
     <string>Windowed/Embedded</string>
+   </property>
+  </action>
+  <action name="actionEnlargeViewer">
+   <property name="text">
+    <string>Enlarge Viewer</string>
+   </property>
+  </action>
+  <action name="actionShrinkViewer">
+   <property name="text">
+    <string>Shrink Viewer</string>
    </property>
   </action>
  </widget>

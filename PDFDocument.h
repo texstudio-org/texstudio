@@ -406,6 +406,8 @@ private slots:
 	void search(bool backward, bool incremental);
 	void zoomFromAction();
 	void zoomSliderChange(int pos = 0);
+    void enlarge();
+    void shrink();
 signals:
 	void documentClosed();
 	void reloaded();
@@ -420,6 +422,8 @@ signals:
 	void triggeredQuit();
 	void triggeredPlaceOnLeft();
 	void triggeredConfigure();
+    void triggeredEnlarge();
+    void triggeredShrink();
 	
 	void triggeredClone();
 
