@@ -223,7 +223,10 @@ QString generateSVG(QString latexFile, int index, QString symbolGroupName) {
       
       texfile = file.fileName();
       texfileWithoutSuffix = texfile.left(texfile.length() - 4);
-      svgfile = QString("img%1%2.svg").arg(index,3,10,QChar('0')).arg(symbolGroupName);
+      if(index>0)
+	svgfile = QString("img%1%2.svg").arg(index,3,10,QChar('0')).arg(symbolGroupName);
+      else
+	svgfile=symbolGroupName+".svg";
       qDebug() << texfile;
       qDebug() << texfileWithoutSuffix;
       qDebug() << svgfile;
@@ -231,7 +234,7 @@ QString generateSVG(QString latexFile, int index, QString symbolGroupName) {
       file.close();    
    }
 
-   QString texcommand=QString("latex %1").arg(texfile);
+   QString texcommand=QString("latex -interaction=batchmode %1").arg(texfile);
    QString dvipngcommand=QString("dvisvgm -e -o %1 %2.dvi").arg(svgfile).arg(texfileWithoutSuffix);
 
    qDebug() << texcommand;
@@ -299,7 +302,7 @@ void writeImageComments(const Command &cmd, const QString &fileName)
 QString generatePNG(QString latexFile, int index, QString symbolGroupName,QString batikConvert) {
     
    QString texfile, texfileWithoutSuffix,pngfile;
-   int latexret, dvipngret,convertret;
+   int latexret, dvipngret,convertret,rmret;
 
    QTemporaryFile file("XXXXXX.tex");
    file.setAutoRemove(false);
@@ -310,7 +313,10 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName,QStrin
       
       texfile = file.fileName();
       texfileWithoutSuffix = texfile.left(texfile.length() - 4);
-      pngfile = QString("img%1%2.png").arg(index,3,10,QChar('0')).arg(symbolGroupName);
+      if(index>0)
+	pngfile = QString("img%1%2.png").arg(index,3,10,QChar('0')).arg(symbolGroupName);
+      else
+	pngfile=symbolGroupName+".png";
       qDebug() << texfile;
       qDebug() << texfileWithoutSuffix;
       qDebug() << pngfile;
@@ -318,9 +324,10 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName,QStrin
       file.close();    
    }
 
-   QString texcommand=QString("latex %1").arg(texfile);
+   QString texcommand=QString("latex -interaction=batchmode %1").arg(texfile);
    QString dvipngcommand=QString("dvisvgm -e -o %1.svg %2.dvi").arg(texfileWithoutSuffix).arg(texfileWithoutSuffix);
    QString convertCommand=QString("%1 %2.svg %3").arg(batikConvert).arg(texfileWithoutSuffix).arg(pngfile);
+   QString removeCommand=QString("rm %1.svg").arg(texfileWithoutSuffix);
    //QString dvipngcommand=QString("dvipng  --strict --picky --freetype -x 1440 -bg Transparent -D 600 -O -1.2in,-1.2in -T bbox -z 6 -o %1 %2.dvi").arg(pngfile).arg(texfileWithoutSuffix);
 
    qDebug() << texcommand;
@@ -330,6 +337,7 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName,QStrin
    latexret = system(texcommand.toLatin1());
    dvipngret= system(dvipngcommand.toLatin1());
    convertret= system(convertCommand.toLatin1());
+   rmret=system(removeCommand.toLatin1());
    
    if (latexret) {
       qDebug() << "Error compiling the latex file";
@@ -343,6 +351,10 @@ QString generatePNG(QString latexFile, int index, QString symbolGroupName,QStrin
    
    if(convertret) { 
       qDebug() << "Error converting svg to png";
+      return QString();
+   }
+   if(rmret) { 
+      qDebug() << "Error removing svg";
       return QString();
    }
    
@@ -421,6 +433,7 @@ Command getCommandDefinition(const QDomElement &e, QList<Package> unicodePackage
    cmd.mathMode = e.firstChildElement("mathMode").text() == "true" ? true : false;
    cmd.forcePNG = e.firstChildElement("forcePNG").text() == "true" ? true : false;
    cmd.iconMode = e.firstChildElement("iconMode").text() == "true" ? true : false;
+   cmd.name = e.firstChildElement("name").text();
    qDebug()<<cmd.iconMode;
    cmd.comment = e.firstChildElement("comment").text();
    cmd.latexCommand = e.firstChildElement("latexCommand").text();
@@ -534,10 +547,16 @@ int main(int argc, char** argv)
        content = generateLatexFile(preamble,commands[i]);
        qDebug() << content;
        if(commands[i].forcePNG){
-	  pngfile = generatePNG(content,i+1,symbolGroupName,batik);
+	  if(commands[i].name.isEmpty())
+	    pngfile = generatePNG(content,i+1,symbolGroupName,batik);
+	  else
+	    pngfile = generatePNG(content,-1,commands[i].name,batik);
 	  writeImageComments(commands[i],pngfile);
        }else{
-	 pngfile = generateSVG(content,i+1,symbolGroupName);
+	 if(commands[i].name.isEmpty())
+	    pngfile = generateSVG(content,i+1,symbolGroupName);
+	 else
+	    pngfile = generateSVG(content,-1,commands[i].name);
 	 writeSVGComments(commands[i],pngfile);
        }
        //readImageComments(pngfile);

@@ -1987,20 +1987,20 @@ void PDFDocument::init(bool embedded)
 	actionPaste->setIcon(getRealIcon("paste"));
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
-	actionTypeset->setIcon(QIcon(":/images/build.png"));
+    actionTypeset->setIcon(getRealIcon("build"));
 
-	actionCursor_follows_scrolling->setIcon(QIcon(":/images/syncSource.png"));
-	actionScrolling_follows_cursor->setIcon(QIcon(":/images/syncViewer.png"));
+    actionCursor_follows_scrolling->setIcon(getRealIcon("syncSource"));
+    actionScrolling_follows_cursor->setIcon(getRealIcon("syncViewer"));
 
 	if (embedded) {
-		actionToggleEmbedded->setIcon(QIcon(":/images/windowed-viewer.png"));
+        actionToggleEmbedded->setIcon(getRealIcon("windowed-viewer"));
 		actionToggleEmbedded->setToolTip(tr("Windowed Viewer"));
 	} else {
-		actionToggleEmbedded->setIcon(QIcon(":/images/embedded-viewer.png"));
+        actionToggleEmbedded->setIcon(getRealIcon("embedded-viewer"));
 		actionToggleEmbedded->setToolTip(tr("Embedded Viewer"));
 	}
 
-    actionExternalViewer->setIcon(QIcon(":/images/viewpdf.png"));
+    actionExternalViewer->setIcon(getRealIcon("viewpdf"));
 	if(embedded){
         actionTypeset->setVisible(false);
     }else{

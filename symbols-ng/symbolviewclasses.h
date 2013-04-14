@@ -29,6 +29,7 @@ struct Command{
    QString unicodeCommand;
    QString ImageCommand;
    QString comment;
+   QString name;
    bool mathMode;
    bool forcePNG;
    bool iconMode;
