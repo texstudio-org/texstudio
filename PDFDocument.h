@@ -358,6 +358,8 @@ public:
 	static bool isCompiling, isMaybeCompiling;
 	bool embeddedMode;
 	bool autoClose;
+
+    void setStateEnlarged(bool state);
 	
 protected:
 	virtual void changeEvent(QEvent *event);

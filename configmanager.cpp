@@ -524,6 +524,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Mode", (int*)&previewMode, (int)PM_INLINE, &pseudoDialog->comboBoxPreviewMode);
 	registerOption("Preview/Auto Preview", (int*)&autoPreview, 1, &pseudoDialog->comboBoxAutoPreview);
 	registerOption("Preview/Auto Preview Delay", &autoPreviewDelay, 300, &pseudoDialog->spinBoxAutoPreviewDelay);
+
 	
 	//pdf preview
 	QRect screen = QApplication::desktop()->availableGeometry();
@@ -544,6 +545,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Magnifier Border", &pdfDocumentConfig->magnifierBorder, false, &pseudoDialog->checkBoxPreviewMagnifierBorder);
 	
 	registerOption("Preview/Sync File Mask", &pdfDocumentConfig->syncFileMask, "*.tex", &pseudoDialog->lineEditPreviewSyncFileMask);
+
+    registerOption("Preview/EnlargedEmbedded",&viewerEnlarged,false);
 	
 #ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);

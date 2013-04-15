@@ -120,6 +120,9 @@ public:
 	PreviewMode previewMode; 
 	AutoPreviewMode autoPreview;
 	int autoPreviewDelay;
+
+    // embedded viewer
+    bool viewerEnlarged;
 	
 	//files
 	QString lastDocument; //last opened document, for file open directory
