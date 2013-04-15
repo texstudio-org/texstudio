@@ -677,7 +677,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
 	
 	menu->addSeparator();
-	newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste.png");
+    newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste");
 	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
 	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 	newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
@@ -821,10 +821,10 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "tabular",tr("Quick &Tabular..."), SLOT(QuickTabular()));
 	newManagedAction(menu, "tabbing",tr("Quick T&abbing..."), SLOT(QuickTabbing()));
 	newManagedAction(menu, "array",tr("Quick &Array..."), SLOT(QuickArray()));
-	newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()), QKeySequence(), ":images/image.png");
+    newManagedAction(menu, "graphic",tr("Insert &Graphic..."), SLOT(QuickGraphics()), QKeySequence(), "image");
 #ifdef Q_OS_WIN
 	if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
-		newManagedAction(menu, "math",tr("Math Assistant..."), SLOT(QuickMath()), QKeySequence(), ":images/TexTablet.png");
+        newManagedAction(menu, "math",tr("Math Assistant..."), SLOT(QuickMath()), QKeySequence(), "TexTablet");
 	}
 #endif
 
