@@ -2557,15 +2557,18 @@ void PDFDocument::jumpToPage(){
 }
 
 void PDFDocument::shrink(){
-    actionEnlargeViewer->setVisible(true);
-    actionShrinkViewer->setVisible(false);
+    setStateEnlarged(false);
     emit triggeredShrink();
 }
 
 void PDFDocument::enlarge(){
-    actionEnlargeViewer->setVisible(false);
-    actionShrinkViewer->setVisible(true);
+    setStateEnlarged(true);
     emit triggeredEnlarge();
+}
+
+void PDFDocument::setStateEnlarged(bool state){
+    actionEnlargeViewer->setVisible(!state);
+    actionShrinkViewer->setVisible(state);
 }
 
 void PDFDocument::closeSomething(){

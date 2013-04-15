@@ -4486,7 +4486,11 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		viewer->fillRenderCache(pg);
 		
 		if (preserveDuplicates) break;
-	}
+    }
+    if(embedded){
+        if(configManager.viewerEnlarged)
+            enlargeEmbeddedPDFViewer();
+    }
 #else
 	txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
@@ -5500,7 +5504,7 @@ void Texmaker::pdfClosed(){
   PDFDocument* from = qobject_cast<PDFDocument*>(sender());
   if(from){
     if(from->embeddedMode){
-      shrinkEmbeddedPDFViewer();
+      shrinkEmbeddedPDFViewer(true);
       QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
       int sum=0;
       int last=0;
@@ -5534,7 +5538,7 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 			sum+=i;
 		}
 		sz.clear();
-		if(pdfSplitterRel<0.1) //sanity check
+        if(pdfSplitterRel<0.1 || pdfSplitterRel>0.9) //sanity check
 			pdfSplitterRel=0.5;
 		sz << sum-qRound(pdfSplitterRel*sum);
 		sz << qRound(pdfSplitterRel*sum);
@@ -8177,8 +8181,19 @@ void Texmaker::enlargeEmbeddedPDFViewer(){
     if(!viewer->embeddedMode)
         return;
     EditorTabs->hide();
+    configManager.viewerEnlarged=true;
+    viewer->setStateEnlarged(true);
 }
 
-void Texmaker::shrinkEmbeddedPDFViewer(){
+void Texmaker::shrinkEmbeddedPDFViewer(bool preserveConfig){
     EditorTabs->show();
+    if(!preserveConfig)
+        configManager.viewerEnlarged=false;
+    QList<PDFDocument*> oldPDFs = PDFDocument::documentList();
+    if(oldPDFs.isEmpty())
+        return;
+    PDFDocument* viewer=oldPDFs.first();
+    if(!viewer->embeddedMode)
+        return;
+    viewer->setStateEnlarged(false);
 }
