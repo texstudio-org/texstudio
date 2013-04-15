@@ -5903,6 +5903,7 @@ bool Texmaker::gotoMark(bool backward, int id) {
 void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord){
 	if (!FocusEditorForFile(fileName, true))
 		if (!load(fileName)) return;
+    shrinkEmbeddedPDFViewer();
 	gotoLine(line);
 	Q_ASSERT(currentEditor());
 	
