@@ -29,6 +29,7 @@
 #include "qdocument.h"
 
 #include "qsimplecolorpicker.h"
+#include "utilsSystem.h"
 
 /*!
 	\ingroup dialogs
@@ -67,11 +68,11 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	m_table->horizontalHeaderItem(6)->setToolTip(tr("Wave underline"));
 	m_table->horizontalHeaderItem(6)->setIcon(QIcon(":/images/qcodeedit/waveUnderline.png"));
 	m_table->horizontalHeaderItem(7)->setToolTip(tr("Text color (aka foreground)"));
-	m_table->horizontalHeaderItem(7)->setIcon(QIcon(":/images/qcodeedit/textcolor.png"));
+    m_table->horizontalHeaderItem(7)->setIcon(getRealIcon("format-text-color"));
 	m_table->horizontalHeaderItem(8)->setToolTip(tr("Background color"));
-	m_table->horizontalHeaderItem(8)->setIcon(QIcon(":/images/qcodeedit/fillcolor.png"));
+    m_table->horizontalHeaderItem(8)->setIcon(getRealIcon("format-fill-color"));
 	m_table->horizontalHeaderItem(9)->setToolTip(tr("Lines color (used by all lines formatting : underline, overline, ...)"));
-	m_table->horizontalHeaderItem(9)->setIcon(QIcon(":/images/qcodeedit/strokecolor.png"));
+    m_table->horizontalHeaderItem(9)->setIcon(getRealIcon("format-stroke-color"));
 	m_table->horizontalHeaderItem(10)->setText(tr("Font Family"));
 	m_table->horizontalHeaderItem(11)->setText(tr("Size")); // don't vary point size as the drwaing engine can't cope with it
 	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: If the size is larger that the line spacing, characters may be clipped."));
