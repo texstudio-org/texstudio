@@ -40,11 +40,14 @@
 <file>images-ng/filenew.svgz</file>
 <file>images-ng/fileopen.svgz</file>
 <file>images-ng/filesave.svgz</file>
+<file>images-ng/format-fill-color.svg</file>
 <file>images-ng/format-justify-center.svg</file>
 <file>images-ng/format-justify-fill.svg</file>
 <file>images-ng/format-justify-left.svg</file>
 <file>images-ng/format-justify-right.svg</file>
+<file>images-ng/format-stroke-color.svg</file>
 <file>images-ng/format-text-bold.svg</file>
+<file>images-ng/format-text-color.svg</file>
 <file>images-ng/format-text-italic.svg</file>
 <file>images-ng/format-text-underline.svg</file>
 <file>images-ng/forward.svg</file>
@@ -55,6 +58,7 @@
 <file>images-ng/goto.svg</file>
 <file>images-ng/help.svgz</file>
 <file>images-ng/home.svg</file>
+<file>images-ng/image.svg</file>
 <file>images-ng/itemize.svgz</file>
 <file>images-ng/lbook0.svgz</file>
 <file>images-ng/lbook1.svgz</file>
@@ -75,6 +79,10 @@
 <file>images-ng/redo.svg</file>
 <file>images-ng/remCol.svg</file>
 <file>images-ng/remRow.svg</file>
+<file>images-ng/replaceall.svg</file>
+<file>images-ng/replacedown.svg</file>
+<file>images-ng/replaceup.svg</file>
+<file>images-ng/replaceup.svgz</file>
 <file>images-ng/right.svgz</file>
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer.svg</file>
