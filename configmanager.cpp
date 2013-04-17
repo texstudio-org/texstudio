@@ -1672,8 +1672,8 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
 	}
 	// update quote replacement
 	static const char * open[8] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/};
-	static const char * close[8] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9C" /*”*/};
-	if (replaceQuotes >= 1 && replaceQuotes < 7) {
+	static const char * close[8] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9D" /*”*/};
+	if (replaceQuotes >= 1 && replaceQuotes < 8) {
 		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, QString::fromUtf8(open[replaceQuotes]), "", "(?language:latex)(?<=\\s|[(:]|^)\""));
 		completerConfig->userMacro.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, QString::fromUtf8(close[replaceQuotes]), "", "(?language:latex)(?<=\\S)\""));
 	}
