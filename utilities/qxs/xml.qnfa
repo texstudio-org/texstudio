@@ -40,6 +40,14 @@
 			<stop>'</stop>
 			<escape>\\</escape>
 		</context>
+		
+	<sequence parenthesis="round:open">\(</sequence>
+	<sequence parenthesis="round:close">\)</sequence>
+	<sequence parenthesis="curly:open">\{</sequence>
+	<sequence parenthesis="curly:close">\}</sequence>
+	<sequence parenthesis="square:open">\[</sequence>
+	<sequence parenthesis="square:close">\]</sequence>
+
 	</context>
 	
 	<!-- <sequence id="tag/stop" parenthesis="xmltag:close@nomatch" indent="1" fold="1" format="keyword" >&lt;/[a-zA-Z0-9_:]+&gt;</sequence> -->
