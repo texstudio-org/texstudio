@@ -81,10 +81,20 @@ void UnicodeInsertion::keyPressEvent(QKeyEvent * k){
 
 
 void UnicodeInsertion::editChanged(const QString& newText){
-	QString nt = newText;
+	QString nt = newText.trimmed();
+	if (nt.startsWith('\'')) {
+		if (nt.length() < 2) return;
+		unsigned int unicode = nt.at(1).unicode();
+		if (nt.at(1).isHighSurrogate()) {
+			if (nt.length() < 3) return;
+			unicode = (((unicode & 0x3FF) << 10) | (nt.at(2).unicode() & 0x3FF)) + 0x10000;
+		}
+		edit->setText("0x"+QString::number(unicode, 16));
+		return;
+	}
 	int base=16;
-	if (newText.startsWith("0x",Qt::CaseInsensitive)) nt.remove(0,2);
-	else if (newText.startsWith("x",Qt::CaseInsensitive)) nt.remove(0,1);
+	if (nt.startsWith("0x",Qt::CaseInsensitive)) nt.remove(0,2);
+	else if (nt.startsWith("x",Qt::CaseInsensitive)) nt.remove(0,1);
 	else base=10;
 
 	unsigned int c = QString(nt).toUInt(0,base);
@@ -96,7 +106,7 @@ void UnicodeInsertion::editChanged(const QString& newText){
 	setTableText(0,8,unicodePointToString(c));
 	for (int i=0;i<base;i++)
 		setTableText(2,i,unicodePointToString(c*base+i));
-	if (newText.length() < 2)
+	if (nt.length() < 2)
 		table->resizeRowsToContents();
 	//table->resizeColumnsToContents();
 	//for (int i=0;i<16;i++)
