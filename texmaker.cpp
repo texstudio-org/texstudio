@@ -5792,7 +5792,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 
 	updateHighlighting();
-	
+
 	mCompleterNeedsUpdate=false;
 }
 
@@ -7550,6 +7550,8 @@ void Texmaker::updateHighlighting(){
 			ed->highlight();
 		}
 	}
+
+	updateUserMacros(false); //update macros depending on the language to newLatex
 }
 
 void Texmaker::toggleGrammar(int type){
