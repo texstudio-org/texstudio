@@ -142,6 +142,7 @@ void writeSVGComments(const Command &cmd, const QString &fileName)
               additional+="UnicodePackages=\""+pkgListToString(cmd.unicodePackages)+"\" ";
           }
           ts<<"<desc "<<"Packages=\""<<pkgListToString(cmd.packages)<<"\" />\n";
+	  ts<<"<additionalInfo "<<additional<<" />\n";
       }
       ts<<line<<"\n";
   }

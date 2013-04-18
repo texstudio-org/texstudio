@@ -61,7 +61,7 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
         if(fileName.isEmpty())
             fileName=findResourceFile("symbols/"+iconName);
 		QTableWidgetItem* item= new QTableWidgetItem();
-        QString Command,text;
+        QString Command,text,UniCode;
 
         if(fileName.endsWith("svg")){
             QFile file( fileName );
@@ -103,10 +103,32 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
                 QDomNode n=nl.at(0);
                 text=n.toElement().attribute("Packages");
             }
+            nl=root.elementsByTagName("additionalInfo");
+            if(!nl.isEmpty()){
+                QDomNode n=nl.at(0);
+                UniCode=n.toElement().attribute("CommandUnicode");
+
+            }
         }else{
             QImage img=QImage(fileName);
             Command=img.text("Command");
             text = img.text("Packages");
+            UniCode = img.text("CommandUnicode");
+        }
+        if(!UniCode.isEmpty()){
+            // convert to real unicode
+            QString helper;
+            QStringList listOfChars=UniCode.split(",");
+            for(int i=0;i<listOfChars.size();i++){
+                QString StrCode=listOfChars.value(i,"");
+                StrCode=StrCode.mid(2); // Remove U+
+                bool ok;
+                int code=StrCode.toInt(&ok);
+                if(ok)
+                    helper+=QChar(code);
+            }
+            UniCode=helper;
+
         }
 		item->setIcon(QIcon(fileName));
         item->setText(Command);
@@ -116,6 +138,8 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
             Map->insert(Command,0);
 		} else item->setData(Qt::UserRole,0);
 		item->setData(Qt::UserRole+2,iconName);
+        if(!UniCode.isEmpty())
+            item->setData(Qt::UserRole+4,UniCode);
 		QString label;
 		QStringList args,pkgs;
 
@@ -148,6 +172,8 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 					label = label + pkgs[j] ;
 			}
 		}
+        if(!UniCode.isEmpty())
+            label += "<br>" + tr("Unicode Character: ") + UniCode;
 		item->setToolTip(label);
 		setItem(i/cols,i%cols,item);
 		listOfItems << item;
