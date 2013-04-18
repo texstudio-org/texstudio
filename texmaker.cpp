@@ -3740,8 +3740,12 @@ void Texmaker::InsertSymbol(QTableWidgetItem *item) {
 			item=item->data(Qt::UserRole+1).value<QTableWidgetItem*>();
 			cnt=item->data(Qt::UserRole).toInt();
 		}
-		item->setData(Qt::UserRole,cnt+1);
-		code_symbol=item->text();
+        if(configManager.insertUTF && item->data(Qt::UserRole+4).isValid()){
+            code_symbol=item->data(Qt::UserRole+4).toString();
+        }else{
+            code_symbol=item->text();
+        }
+        item->setData(Qt::UserRole,cnt+1);
 		InsertTag(code_symbol,code_symbol.length(),0);
 		SetMostUsedSymbols(item);
 	}

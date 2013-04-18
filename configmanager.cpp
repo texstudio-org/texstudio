@@ -375,6 +375,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Files/Autoload",&autoLoadChildren,false, &pseudoDialog->checkBoxAutoLoad);
 
     registerOption("Editor/UseEscForClosingFullscreen",&disableEscForClosingFullscreen,false,&pseudoDialog->checkBoxDisableEscForClosingfullscreen);
+
+    registerOption("Tools/Insert Unicode From SymbolGrid",&insertUTF,false, &pseudoDialog->checkBoxInsertSymbolAsUCS);
 	
 	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
