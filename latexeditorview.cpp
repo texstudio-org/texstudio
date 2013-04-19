@@ -2020,6 +2020,21 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	case LatexParser::Graphics:
 		if(config->toolTipPreview){
 			QString fname=getDocument()->getAbsoluteFilePath(value,"");
+            QFileInfo fi(fname);
+            if(!fi.exists()){
+                fname=getDocument()->getAbsoluteFilePath(value,"png");  // try png
+                fi.setFile(fname);
+            }
+            if(!fi.exists()){
+                fname=getDocument()->getAbsoluteFilePath(value,"pdf");  // try pdf
+                fi.setFile(fname);
+            }
+            if(!fi.exists()){
+                fname=getDocument()->getAbsoluteFilePath(value,"jpg");  // try jpg
+                fi.setFile(fname);
+                if(!fi.exists())
+                    return; // no image file found
+            }
 			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showImgPreview(fname);
 		}
