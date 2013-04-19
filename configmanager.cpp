@@ -2297,8 +2297,9 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 	if (cmd.user || rerunnable.contains(cmd.id)) {
 		QIcon icon;
 		pb = new QPushButton();
-		icon.addFile(":/images/repeat-compile.png", QSize(), QIcon::Normal, QIcon::On);
-		icon.addFile(":/images/repeat-compile-off.png", QSize(), QIcon::Normal, QIcon::Off);
+        //icon=getRealIcon("repeat-compile");
+        icon.addFile(getRealIconFile("repeat-compile"), QSize(), QIcon::Normal, QIcon::On);
+        icon.addFile(getRealIconFile("repeat-compile-off"), QSize(), QIcon::Normal, QIcon::Off);
 		pb->setIcon(icon);
 		pb->setToolTip(tr("Repeat contained compilation commands"));
 		pb->setCheckable(true);
