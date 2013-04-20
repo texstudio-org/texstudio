@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="font_textsf48.svg">
+   sodipodi:docname="font_textsc48.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -70,14 +70,15 @@
        transform="translate(0,1004.3622)" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="2.5644531"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+       x="-0.17382812"
        y="1043.2743"
        id="text2985"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan2986"
-         x="2.5644531"
-         y="1043.2743">Sf</tspan></text>
+         id="tspan3026"
+         x="-0.17382812"
+         y="1043.2743"
+         dx="0 -3">Sc</tspan></text>
   </g>
 </svg>
