@@ -126,7 +126,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bCount->setObjectName(("bCount"));
 	bCount->setMinimumSize(buttonSize);
 	bCount->setMaximumSize(buttonSize);
-    bCount->setIcon(QIcon("count"));
+    bCount->setIcon(getRealIcon("count"));
 	gridLayout->addWidget(bCount, 0, 5, 1, 1);
 
 	QFrame *frameFindOptions = new QFrame(this);
