@@ -4,6 +4,7 @@
 <file>images-ng/addRow.svg</file>
 <file>images-ng/alignCols.svgz</file>
 <file>images-ng/application-exit.svgz</file>
+<file>images-ng/asymptote.svg</file>
 <file>images-ng/back.svg</file>
 <file>images-ng/badbox.svg</file>
 <file>images-ng/bold.svg</file>
@@ -83,13 +84,18 @@
 <file>images-ng/lbook7.svgz</file>
 <file>images-ng/lbook8.svgz</file>
 <file>images-ng/lbook9.svgz</file>
+<file>images-ng/leftright.svg</file>
 <file>images-ng/left.svgz</file>
 <file>images-ng/list-add.svgz</file>
 <file>images-ng/list-remove.svgz</file>
+<file>images-ng/math6.svg</file>
+<file>images-ng/math7.svg</file>
+<file>images-ng/metapost.svg</file>
 <file>images-ng/modified.svgz</file>
 <file>images-ng/overline.svg</file>
 <file>images-ng/pasteCol.svg</file>
 <file>images-ng/preferences-system.svg</file>
+<file>images-ng/pstricks.svg</file>
 <file>images-ng/redo.svg</file>
 <file>images-ng/remCol.svg</file>
 <file>images-ng/remRow.svg</file>
@@ -103,6 +109,7 @@
 <file>images-ng/strikeout.svg</file>
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer.svg</file>
+<file>images-ng/tikz.svg</file>
 <file>images-ng/underline.svg</file>
 <file>images-ng/undo.svg</file>
 <file>images-ng/up.svgz</file>
