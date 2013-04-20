@@ -459,16 +459,16 @@ void Texmaker::setupDockWidgets(){
     addSymbolGrid("wasysym", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Miscellaneous text symbols (wasysym)"));
     addSymbolGrid("special", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++,2,10,QLatin1Char('0')),tr("Accented letters"));
 	
-	MostUsedSymbolWidget=addSymbolGrid("!mostused",":/images/math6.png",tr("Most used symbols"));
+    MostUsedSymbolWidget=addSymbolGrid("!mostused",getRealIconFile("math6"),tr("Most used symbols"));
 	MostUsedSymbolWidget->loadSymbols(MapForSymbols->keys(),MapForSymbols);
-	FavoriteSymbolWidget=addSymbolGrid("!favorite",":/images/math7.png",tr("Favorites"));
+    FavoriteSymbolWidget=addSymbolGrid("!favorite",getRealIconFile("math7"),tr("Favorites"));
 	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
 	
-	addTagList("brackets", ":/images/leftright.png", tr("Left/Right Brackets"),"brackets_tags.xml");
-	addTagList("pstricks", ":/images/pstricks.png", tr("Pstricks Commands"),"pstricks_tags.xml");
-	addTagList("metapost", ":/images/metapost.png", tr("MetaPost Commands"),"metapost_tags.xml");
-	addTagList("tikz", ":/images/tikz.png", tr("Tikz Commands"),"tikz_tags.xml");
-	addTagList("asymptote", ":/images/asymptote.png", tr("Asymptote Commands"),"asymptote_tags.xml");
+    addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"),"brackets_tags.xml");
+    addTagList("pstricks", getRealIconFile("pstricks"), tr("Pstricks Commands"),"pstricks_tags.xml");
+    addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"),"metapost_tags.xml");
+    addTagList("tikz", getRealIconFile("tikz"), tr("Tikz Commands"),"tikz_tags.xml");
+    addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"),"asymptote_tags.xml");
 	
 	leftPanel->showWidgets(configManager.newLeftPanelLayout);
 	
