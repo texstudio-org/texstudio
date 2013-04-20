@@ -53,7 +53,9 @@
 <file>images-ng/forward.svg</file>
 <file>images-ng/go-first.svg</file>
 <file>images-ng/go-last.svg</file>
+<file>images-ng/go-next-diff.svg</file>
 <file>images-ng/go-next.svg</file>
+<file>images-ng/go-previous-diff.svg</file>
 <file>images-ng/go-previous.svg</file>
 <file>images-ng/goto.svg</file>
 <file>images-ng/help.svgz</file>
