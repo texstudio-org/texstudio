@@ -6,6 +6,7 @@
 <file>images-ng/application-exit.svgz</file>
 <file>images-ng/back.svg</file>
 <file>images-ng/badbox.svg</file>
+<file>images-ng/bold.svg</file>
 <file>images-ng/bookmark1.svgz</file>
 <file>images-ng/bookmark2.svgz</file>
 <file>images-ng/bookmark3.svgz</file>
@@ -25,6 +26,7 @@
 <file>images-ng/config_svn.svg</file>
 <file>images-ng/config_toolbars.svg</file>
 <file>images-ng/configure.svgz</file>
+<file>images-ng/count.svg</file>
 <file>images-ng/cutCol.svg</file>
 <file>images-ng/dialog-error.svg</file>
 <file>images-ng/down.svgz</file>
@@ -61,6 +63,7 @@
 <file>images-ng/help.svgz</file>
 <file>images-ng/home.svg</file>
 <file>images-ng/image.svg</file>
+<file>images-ng/italic.svg</file>
 <file>images-ng/itemize.svgz</file>
 <file>images-ng/lbook0.svgz</file>
 <file>images-ng/lbook1.svgz</file>
@@ -76,6 +79,7 @@
 <file>images-ng/list-add.svgz</file>
 <file>images-ng/list-remove.svgz</file>
 <file>images-ng/modified.svgz</file>
+<file>images-ng/overline.svg</file>
 <file>images-ng/pasteCol.svg</file>
 <file>images-ng/preferences-system.svg</file>
 <file>images-ng/redo.svg</file>
@@ -88,14 +92,17 @@
 <file>images-ng/replaceup.svg</file>
 <file>images-ng/replaceup.svgz</file>
 <file>images-ng/right.svgz</file>
+<file>images-ng/strikeout.svg</file>
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer.svg</file>
+<file>images-ng/underline.svg</file>
 <file>images-ng/undo.svg</file>
 <file>images-ng/up.svgz</file>
 <file>images-ng/viewer.svgz</file>
 <file>images-ng/view-fullscreen.svg</file>
 <file>images-ng/view-left-close.svg</file>
 <file>images-ng/warning.svgz</file>
+<file>images-ng/waveUnderline.svg</file>
 <file>images-ng/windowed-viewer.svgz</file>
 <file>images-ng/zoom-fit-best.svg</file>
 <file>images-ng/zoom-fit-width.svgz</file>
