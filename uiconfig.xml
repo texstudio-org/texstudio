@@ -53,13 +53,13 @@
 
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" icon="font_emph48" shortcut="Ctrl+Shift+E"/>
-    <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="text_italic" shortcut="Ctrl+I"/>
+    <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="font_textit48" shortcut="Ctrl+I"/>
     <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" icon="font_textsl48" shortcut="Ctrl+Shift+S"/>
-    <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="text_bold" shortcut="Ctrl+B"/>
+    <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="font_textbf48" shortcut="Ctrl+B"/>
     <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" icon="font_texttt48" shortcut="Ctrl+Shift+T"/>
     <insert id="textsc" text="Small Caps - \textsc" insert="\textsc{%|}" icon="font_textsc48" shortcut="Ctrl+Shift+C"/>
     <insert id="textsf" text="Sans Serif - \textsf" insert="\textsf{%|}" icon="font_textsf48" shortcut="Ctrl+Shift+A"/>
-    <insert id="underline" text="Underline - \underline" insert="\underline{%|}" icon="text_under"/>
+    <insert id="underline" text="Underline - \underline" insert="\underline{%|}" icon="font_underline48"/>
   </menu>
 
   <menu id="fontsizes" text="Font Sizes">

@@ -42,6 +42,13 @@
 <file>images-ng/filenew.svgz</file>
 <file>images-ng/fileopen.svgz</file>
 <file>images-ng/filesave.svgz</file>
+<file>images-ng/font_emph48.svg</file>
+<file>images-ng/font_textbf48.svg</file>
+<file>images-ng/font_textit48.svg</file>
+<file>images-ng/font_textsf48.svg</file>
+<file>images-ng/font_textsl48.svg</file>
+<file>images-ng/font_texttt48.svg</file>
+<file>images-ng/font_underline48.svg</file>
 <file>images-ng/format-fill-color.svg</file>
 <file>images-ng/format-justify-center.svg</file>
 <file>images-ng/format-justify-fill.svg</file>
