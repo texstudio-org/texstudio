@@ -14,6 +14,7 @@
 ****************************************************************************/
 
 #include "qstatuspanel.h"
+#include "utilsSystem.h"
 
 /*!
 	\file qstatuspanel.cpp
@@ -109,7 +110,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	//		geometry().y(),
 	//		geometry().width(),
 	//		geometry().height());
-	static QPixmap _warn(":/warning.png"), _mod(":/save.png");
+    static QPixmap _warn(getRealIconFile("warning")), _mod(getRealIconFile("save"));
 
 	QString s;
 	QString spacing("    ");
