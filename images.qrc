@@ -88,6 +88,7 @@
 <file>images-ng/left.svgz</file>
 <file>images-ng/list-add.svgz</file>
 <file>images-ng/list-remove.svgz</file>
+<file>images-ng/logpanel.svg</file>
 <file>images-ng/math6.svg</file>
 <file>images-ng/math7.svg</file>
 <file>images-ng/metapost.svg</file>
@@ -106,6 +107,7 @@
 <file>images-ng/replaceup.svg</file>
 <file>images-ng/replaceup.svgz</file>
 <file>images-ng/right.svgz</file>
+<file>images-ng/sidebar.svg</file>
 <file>images-ng/strikeout.svg</file>
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer.svg</file>

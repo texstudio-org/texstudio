@@ -616,6 +616,10 @@ isEmpty(NO_POPPLER_PREVIEW) {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
 }
+!isEmpty(NO_TESTS) {
+    DEFINES += NO_TESTS
+    message("tests disabled as you wish.")
+}
 
 
 # ###############################

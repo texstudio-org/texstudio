@@ -121,7 +121,7 @@ const int LAYOUT_PAGE_PREVIEW=3;
 const int LAYOUT_PAGE_SEARCH=4;
 	
 OutputViewWidget::OutputViewWidget(QWidget * parent): QDockWidget(parent), logModel(0), logpresent(false), tabbedLogView(false){
-	toggleViewAction()->setIcon(QIcon(":/images/logpanel.png"));
+    toggleViewAction()->setIcon(getRealIcon("logpanel"));
 
 	logModel = new LatexLogModel(this);//needs loaded line marks
 	searchResultModel = new SearchResultModel(this);
@@ -537,7 +537,7 @@ QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
 CustomWidgetList::CustomWidgetList(QWidget* p): 
 	QDockWidget(p), toolbox(0), frame(0),stack(0), toolbar(0)
 {
-	toggleViewAction()->setIcon(QIcon(":/images/sidebar.png"));
+    toggleViewAction()->setIcon(getRealIcon("sidebar"));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this,SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
 }
