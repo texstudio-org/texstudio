@@ -211,12 +211,12 @@ void SpellerDialog::toggleIgnoreList(bool forceHide) {
 	if (ui.ignoreListView->isVisible() || forceHide) {
 		foreach (QWidget *w, hideableWidgets) w->hide();
 		ui.pushButtonIgnoreList->setText(tr("Show Ignore List"));
-		ui.pushButtonIgnoreList->setIcon(QIcon(":/images/down-arrow-circle-silver.png"));
+        ui.pushButtonIgnoreList->setIcon(getRealIcon("down-arrow-circle-silver"));
 		resize(width(),height()-(ui.ignoreListView->height()+ui.gridLayout->verticalSpacing()));
 	} else {
 		resize(width(),height()+(ui.listSuggestions->height()+ui.gridLayout->verticalSpacing()));
 		ui.pushButtonIgnoreList->setText(tr("Hide Ignore List"));
-		ui.pushButtonIgnoreList->setIcon(QIcon(":/images/up-arrow-circle-silver.png"));
+        ui.pushButtonIgnoreList->setIcon(getRealIcon("up-arrow-circle-silver"));
 		if (m_speller && !ui.ignoreListView->model())
 			ui.ignoreListView->setModel(m_speller->ignoreListModel());
 		foreach (QWidget *w, hideableWidgets) w->show();

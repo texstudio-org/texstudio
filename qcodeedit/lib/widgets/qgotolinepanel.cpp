@@ -14,6 +14,7 @@
 ****************************************************************************/
 
 #include "qgotolinepanel.h"
+#include "utilsSystem.h"
 
 /*!
 	\file qgotolinepanel.cpp
@@ -51,7 +52,7 @@ QGotoLinePanel::QGotoLinePanel(QWidget *p)
 	
 	setObjectName("gotoLinePanel");
 	
-	bClose->setIcon(QPixmap(":/closeall.png"));
+    bClose->setIcon(getRealIcon("fileclose"));
 }
 
 /*!

@@ -398,16 +398,8 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	hboxLayout->setContentsMargins(-1, 0, -1, 0);
 
 	QSize buttonSize(22,22);
-	/*
-	bClose = new QToolButton(frame_2);
-	bClose->setObjectName(("bClose"));
-	bClose->setMinimumSize(buttonSize);
-	bClose->setMaximumSize(buttonSize);
-	bClose->setIcon(QIcon(":/closeall.png"));
 
-	hboxLayout->addWidget(bClose);
-	*/
-	QLabel* label = new QLabel(frame_2);
+    QLabel* label = new QLabel(frame_2);
 	label->setObjectName(("label"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
 	sizePolicy3.setHorizontalStretch(0);
@@ -434,7 +426,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	bNext->setObjectName(("bNext"));
 	bNext->setMinimumSize(buttonSize);
 	bNext->setMaximumSize(buttonSize);
-	bNext->setIcon(QIcon(":/down.png"));
+    bNext->setIcon(getRealIcon("down"));
 
 	gridLayout->addWidget(bNext, 0, 3, 1, 1);
 
@@ -442,18 +434,10 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	bPrevious->setObjectName(("bPrevious"));
 	bPrevious->setMinimumSize(buttonSize);
 	bPrevious->setMaximumSize(buttonSize);
-	bPrevious->setIcon(QIcon(":/up.png"));
+    bPrevious->setIcon(getRealIcon("up"));
 
 	gridLayout->addWidget(bPrevious, 0, 4, 1, 1);
-/*
-	bCount = new QToolButton(this);
-	bCount->setObjectName(("bCount"));
-	bCount->setMinimumSize(buttonSize);
-	bCount->setMaximumSize(buttonSize);
-	bCount->setIcon(QIcon(":/images/qcodeedit/count.png"));
 
-	gridLayout->addWidget(bCount, 0, 5, 1, 1);
-*/
 	QFrame* frame_6 = new QFrame(this);
 	sizePolicy1.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
 	frame_6->setSizePolicy(sizePolicy1);
@@ -466,73 +450,21 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	cbCase->setChecked(true);
 
 	gridLayout1->addWidget(cbCase, 0, 0, 1, 1);
-/*
-	cbWords = new QCheckBox(frame_6);
-	cbWords->setToolTip(tr("Only searches for whole words."));
-	cbWords->setObjectName(("cbWords"));
-
-	gridLayout1->addWidget(cbWords, 0, 1, 1, 1);
-
-	cbRegExp = new QCheckBox(frame_6);
-	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
-	cbRegExp->setObjectName(("cbRegExp"));
-
-	gridLayout1->addWidget(cbRegExp, 0, 2, 1, 1);
-*/
-/*	cbHighlight = new QCheckBox(frame_6);
-	cbHighlight->setObjectName(("cbHighlight"));
-	cbHighlight->setChecked(true);
-	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
-	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
-	cbHighlight->setSizePolicy(sizePolicy3);
-
-	gridLayout1->addWidget(cbHighlight, 0, 3, 1, 1);
-
-	cbCursor = new QCheckBox(frame_6);
-	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
-	cbCursor->setObjectName(("cbCursor"));
-	cbCursor->setChecked(true);
-
-	gridLayout1->addWidget(cbCursor, 0, 4, 1, 1);
-
-	cbSelection = new QCheckBox(frame_6);
-	cbSelection->setToolTip(tr("Only searches in the selected text."));
-	cbSelection->setObjectName(("cbSelection"));
-
-	gridLayout1->addWidget(cbSelection, 0, 5, 1, 1);
-*/
 
 	gridLayout->addWidget(frame_6, 0, 6, 2, 2,Qt::AlignTop);
-
-
-	//retranslateUi(this);
-	//QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
 
 	// connect by name
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
-	//bClose->setToolTip(QApplication::translate("SearchReplace", "Close search/replace panel", 0, QApplication::UnicodeUTF8));
 	leFind->setToolTip(QApplication::translate("SearchReplace", "Text or pattern to search for", 0, QApplication::UnicodeUTF8));
 	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
 	bPrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous occurence", 0, QApplication::UnicodeUTF8));
-//	bCount->setToolTip(QApplication::translate("SearchReplace", "Count occurences", 0, QApplication::UnicodeUTF8));
 
 	label->setText(QApplication::translate("SearchReplace", " Find :", 0, QApplication::UnicodeUTF8));
 	label->setMinimumWidth(label->sizeHint().width());
 	cbCase->setText(QApplication::translate("SearchReplace", "Case", 0, QApplication::UnicodeUTF8));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
-/*	cbWords->setText(QApplication::translate("SearchReplace", "Words", 0, QApplication::UnicodeUTF8));
-	cbWords->setMinimumWidth(cbWords->sizeHint().width());
-	cbRegExp->setText(QApplication::translate("SearchReplace", "Regexp", 0, QApplication::UnicodeUTF8));
-	cbRegExp->setMinimumWidth(cbRegExp->sizeHint().width());*/
-/*	cbHighlight->setText(QApplication::translate("SearchReplace", "Highlight all", 0, QApplication::UnicodeUTF8));
-	cbHighlight->setMinimumWidth(cbHighlight->sizeHint().width());
-	cbCursor->setText(QApplication::translate("SearchReplace", "Cursor", 0, QApplication::UnicodeUTF8));
-	cbCursor->setMinimumWidth(cbCursor->sizeHint().width());
-	cbSelection->setText(QApplication::translate("SearchReplace", "Selection", 0, QApplication::UnicodeUTF8));
-	cbSelection->setMinimumWidth(cbSelection->sizeHint().width());*/
-	//bReplaceAll->setText(QApplication::translate("SearchReplace", "all", 0, QApplication::UnicodeUTF8));
 
 	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
 	//;
@@ -541,7 +473,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 
 	leFind->installEventFilter(this);
 
-	listOfWidget << cbCase;// << cbWords << cbRegExp/* << cbHighlight << cbCursor << cbSelection*/;
+    listOfWidget << cbCase;
 }
 
 QString PDFBaseSearchDock::getSearchText() const{

@@ -442,11 +442,11 @@ void InsertGraphics::updateLabel(const QString &fname) {
 void InsertGraphics::togglePlacementCheckboxes(bool forceHide) {
 	if (ui.placementCheckboxes->isVisible() || forceHide) {
 		ui.placementCheckboxes->hide();
-		ui.pbPlaceExpand->setIcon(QIcon(":/images/down-arrow-circle-silver.png"));
+        ui.pbPlaceExpand->setIcon(getRealIcon("down-arrow-circle-silver"));
 		resize(width(),height()-(ui.placementCheckboxes->height()+ui.gridLayout->verticalSpacing()));
 	} else {
 		resize(width(),height()+(ui.placementCheckboxes->height()+ui.gridLayout->verticalSpacing()));
-		ui.pbPlaceExpand->setIcon(QIcon(":/images/up-arrow-circle-silver.png"));
+        ui.pbPlaceExpand->setIcon(getRealIcon("up-arrow-circle-silver"));
 		ui.placementCheckboxes->show();
 	}
 }
