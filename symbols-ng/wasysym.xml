@@ -143,6 +143,7 @@
 <package>
 <name>wasysym</name>
 </package>
+<forcePNG>true</forcePNG>
 </commandDefinition>
 
 <commandDefinition>

@@ -217,6 +217,7 @@
    <unicodeCommand>⎰</unicodeCommand>
    <imageCommand>\left \lmoustache \right.</imageCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -226,24 +227,25 @@
    <unicodeCommand>⎱</unicodeCommand>
    <imageCommand>\left \rmoustache \right.</imageCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 <!-- optarg math \lgroup \left \lgroup \right. -->
 <commandDefinition>
    <latexCommand>\lgroup</latexCommand>
-   <unicodeCommand>⟮</unicodeCommand>
    <imageCommand>\left \lgroup \right.</imageCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 <!-- optarg math \rgroup \left \rgroup \right. -->
 <commandDefinition>
    <latexCommand>\rgroup</latexCommand>
-   <unicodeCommand>⟯</unicodeCommand>
    <imageCommand>\left \rgroup \right.</imageCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->

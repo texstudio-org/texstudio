@@ -898,6 +898,7 @@
    <package>
       <name>wasysym</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=wasysym ,pkgsarg= ,savepkgs=wasysym ,savepkgsarg=-->
@@ -1212,6 +1213,7 @@
    <package>
       <name>textcomp</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=textcomp ,pkgsarg= ,savepkgs=textcomp ,savepkgsarg=-->
