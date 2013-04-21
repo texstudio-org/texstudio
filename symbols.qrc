@@ -63,7 +63,7 @@
 <file>symbols-ng/arrows/img061arrows.svg</file>
 <file>symbols-ng/arrows/img062arrows.svg</file>
 <file>symbols-ng/arrows/img063arrows.svg</file>
-<file>symbols-ng/arrows/img064arrows.svg</file>
+<file>symbols-ng/arrows/img064arrows.png</file>
 <file>symbols-ng/arrows/img065arrows.svg</file>
 <file>symbols-ng/arrows/img066arrows.svg</file>
 <file>symbols-ng/arrows/img067arrows.svg</file>
@@ -248,10 +248,10 @@
 <file>symbols-ng/delimiters/img020delimiters.svg</file>
 <file>symbols-ng/delimiters/img021delimiters.svg</file>
 <file>symbols-ng/delimiters/img022delimiters.svg</file>
-<file>symbols-ng/delimiters/img023delimiters.svg</file>
-<file>symbols-ng/delimiters/img024delimiters.svg</file>
-<file>symbols-ng/delimiters/img025delimiters.svg</file>
-<file>symbols-ng/delimiters/img026delimiters.svg</file>
+<file>symbols-ng/delimiters/img023delimiters.png</file>
+<file>symbols-ng/delimiters/img024delimiters.png</file>
+<file>symbols-ng/delimiters/img025delimiters.png</file>
+<file>symbols-ng/delimiters/img026delimiters.png</file>
 <file>symbols-ng/delimiters/img027delimiters.svg</file>
 <file>symbols-ng/delimiters/img028delimiters.svg</file>
 <file>symbols-ng/delimiters/img029delimiters.svg</file>
@@ -333,7 +333,7 @@
 <file>symbols-ng/misc-math/img003misc-math.svg</file>
 <file>symbols-ng/misc-math/img004misc-math.svg</file>
 <file>symbols-ng/misc-math/img005misc-math.svg</file>
-<file>symbols-ng/misc-math/img006misc-math.svg</file>
+<file>symbols-ng/misc-math/img006misc-math.png</file>
 <file>symbols-ng/misc-math/img007misc-math.svg</file>
 <file>symbols-ng/misc-math/img008misc-math.svg</file>
 <file>symbols-ng/misc-math/img009misc-math.svg</file>
@@ -521,7 +521,7 @@
 <file>symbols-ng/misc-text/img094misc-text.svg</file>
 <file>symbols-ng/misc-text/img095misc-text.svg</file>
 <file>symbols-ng/misc-text/img096misc-text.svg</file>
-<file>symbols-ng/misc-text/img097misc-text.svg</file>
+<file>symbols-ng/misc-text/img097misc-text.png</file>
 <file>symbols-ng/misc-text/img098misc-text.svg</file>
 <file>symbols-ng/misc-text/img099misc-text.svg</file>
 <file>symbols-ng/misc-text/img100misc-text.svg</file>
@@ -553,7 +553,7 @@
 <file>symbols-ng/misc-text/img126misc-text.svg</file>
 <file>symbols-ng/misc-text/img127misc-text.svg</file>
 <file>symbols-ng/misc-text/img128misc-text.svg</file>
-<file>symbols-ng/misc-text/img129misc-text.svg</file>
+<file>symbols-ng/misc-text/img129misc-text.png</file>
 <file>symbols-ng/misc-text/img130misc-text.svg</file>
 <file>symbols-ng/misc-text/img131misc-text.svg</file>
 <file>symbols-ng/misc-text/img132misc-text.svg</file>
@@ -673,8 +673,8 @@
 <file>symbols-ng/operators/img111operators.png</file>
 <file>symbols-ng/operators/img112operators.png</file>
 <file>symbols-ng/operators/img113operators.png</file>
-<file>symbols-ng/relation/img001relation.svg</file>
-<file>symbols-ng/relation/img002relation.svg</file>
+<file>symbols-ng/relation/img001relation.png</file>
+<file>symbols-ng/relation/img002relation.png</file>
 <file>symbols-ng/relation/img003relation.svg</file>
 <file>symbols-ng/relation/img004relation.svg</file>
 <file>symbols-ng/relation/img005relation.svg</file>
@@ -1006,7 +1006,7 @@
 <file>symbols-ng/wasysym/img014wasysym.svg</file>
 <file>symbols-ng/wasysym/img015wasysym.svg</file>
 <file>symbols-ng/wasysym/img016wasysym.svg</file>
-<file>symbols-ng/wasysym/img017wasysym.svg</file>
+<file>symbols-ng/wasysym/img017wasysym.png</file>
 <file>symbols-ng/wasysym/img018wasysym.svg</file>
 <file>symbols-ng/wasysym/img019wasysym.svg</file>
 <file>symbols-ng/wasysym/img020wasysym.svg</file>

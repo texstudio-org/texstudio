@@ -664,6 +664,7 @@
    <latexCommand>\rightleftharpoons</latexCommand>
    <unicodeCommand>⇌</unicodeCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->

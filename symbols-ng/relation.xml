@@ -44,6 +44,7 @@
    <latexCommand>\bowtie</latexCommand>
    <unicodeCommand>⋈</unicodeCommand>
    <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -55,6 +56,7 @@
    <package>
       <name>amssymb</name>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
