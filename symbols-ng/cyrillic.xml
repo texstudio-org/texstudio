@@ -2972,6 +2972,7 @@
       <name>babel</name>
       <arguments>russian</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
@@ -3181,6 +3182,7 @@
       <name>babel</name>
       <arguments>ukrainian</arguments>
    </package>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
