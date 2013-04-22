@@ -12,6 +12,7 @@
 <file>images-ng/bookmark2.svgz</file>
 <file>images-ng/bookmark3.svgz</file>
 <file>images-ng/bookmark-new.svg</file>
+<file>images-ng/bookmarks.svg</file>
 <file>images-ng/build.svgz</file>
 <file>images-ng/compile.svgz</file>
 <file>images-ng/config_advancededitor.svg</file>
@@ -110,6 +111,7 @@
 <file>images-ng/right.svgz</file>
 <file>images-ng/sidebar.svg</file>
 <file>images-ng/strikeout.svg</file>
+<file>images-ng/structure.svg</file>
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer.svg</file>
 <file>images-ng/tikz.svg</file>

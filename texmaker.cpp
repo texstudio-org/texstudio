@@ -438,13 +438,13 @@ void Texmaker::setupDockWidgets(){
 		//		connect(structureTreeView, SIGNAL(collapsed(const QModelIndex &)), SLOT(treeWidgetChanged()));
 		//-- connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it ?? also true for view??
 		
-		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), ":/images/structure.png");
+        leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
 	} else leftPanel->setWidgetText(structureTreeView,tr("Structure"));
 	if(!leftPanel->widget("bookmarks")) {
 		QListWidget *bookmarksWidget = bookmarks->widget();
 		connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
 		connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
-		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), ":/images/bookmarks.png");
+        leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
 	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 	
     int cnt=modernStyle ? 11 : 1;
