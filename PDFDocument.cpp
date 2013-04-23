@@ -1071,7 +1071,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		bool mayChangePage = !getScrollArea()->getContinuous();
 		if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
 			int oldValue = scrollBar->value();
-			const int scrollPerWheelStep = scrollBar->singleStep() * 3; // 3: typical empirical value
+			const int scrollPerWheelStep = scrollBar->singleStep() * QApplication::wheelScrollLines();
 			scrollBar->setValue(scrollBar->value() - round(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
 			int delta = oldValue - scrollBar->value();
 			if (delta != 0) {
