@@ -6126,7 +6126,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	QColor repForeground = m_doc->getForeground(); // color for cursor line
 	if ( !repForeground.isValid() )
-		repForeground.setRgb(0,0,0); // Fallback = black
+		repForeground = cxt.palette.text().color(); // Fallback
 
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
