@@ -13,7 +13,7 @@
    height="64px"
    id="svg2993"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="dfrac.svg"
    inkscape:export-filename="G:\TeXstudio\icons\own icons\dfrac.png"
    inkscape:export-xdpi="30.940001"
@@ -28,17 +28,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="10.5625"
-     inkscape:cx="32"
-     inkscape:cy="27.502959"
+     inkscape:cx="26.643984"
+     inkscape:cy="32.18632"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1019"
-     inkscape:window-height="882"
-     inkscape:window-x="242"
-     inkscape:window-y="106"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1280"
+     inkscape:window-height="964"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid4528" />
@@ -60,32 +60,33 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
     <path
-       style="fill:#338000;stroke:#338000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="M 58.662956,29 5.3370438,29"
+       style="fill:#338000;stroke:#338000;stroke-width:5.01336145;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 62.258284,28.109317 -56.8267309,0"
        id="path3028"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
-       x="22.351999"
+       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerifb;-inkscape-font-specification:FreeSerifb Bold Italic"
+       x="26.692919"
        y="53.775146"
        id="text3140"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3142"
-         x="22.351999"
+         x="26.692919"
          y="53.775146">y</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:48px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
-       x="21.92"
+       x="23.692919"
        y="23.668638"
        id="text3144"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3146"
-         x="21.92"
-         y="23.668638">x</tspan></text>
+         x="23.692919"
+         y="23.668638"
+         style="font-size:48px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:FreeSerifb;-inkscape-font-specification:FreeSerifb Bold Italic">x</tspan></text>
   </g>
 </svg>
