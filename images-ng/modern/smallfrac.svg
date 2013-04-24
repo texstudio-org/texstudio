@@ -13,7 +13,7 @@
    height="64px"
    id="svg2993"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="smallfrac.svg"
    inkscape:export-filename="G:\TeXstudio\icons\own icons\frac.png"
    inkscape:export-xdpi="30.940001"
@@ -27,18 +27,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.5625"
-     inkscape:cx="32"
+     inkscape:zoom="10.56"
+     inkscape:cx="33.700633"
      inkscape:cy="32"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1019"
-     inkscape:window-height="882"
-     inkscape:window-x="483"
-     inkscape:window-y="64"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1280"
+     inkscape:window-height="964"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid3908" />
@@ -67,24 +67,24 @@
        x="1"
        y="1" />
     <path
-       style="fill:#800080;stroke:#333333;stroke-width:3.64267254;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.9000001;stroke-opacity:1;stroke-dasharray:none"
-       d="M 54,33 10.125,33"
+       style="fill:#800080;stroke:#333333;stroke-width:4.21667194;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.9000001;stroke-opacity:1;stroke-dasharray:none"
+       d="M 53.452936,32 10.547064,32"
        id="path3028"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <rect
-       style="fill:none;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#333333;stroke-width:2.41400003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3910"
-       width="5"
-       height="5"
-       x="30"
-       y="16" />
+       width="5.886076"
+       height="5.886076"
+       x="28.994461"
+       y="16.193323" />
     <rect
-       y="44"
-       x="30"
-       height="5"
-       width="5"
-       id="rect4420"
-       style="fill:none;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:none;stroke:#333333;stroke-width:2.41400003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3910-4"
+       width="5.886076"
+       height="5.886076"
+       x="28.994461"
+       y="41.920601" />
   </g>
 </svg>
