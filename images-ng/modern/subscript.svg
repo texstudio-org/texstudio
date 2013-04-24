@@ -13,7 +13,7 @@
    height="64px"
    id="svg2993"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="subscript.svg"
    inkscape:export-filename="G:\TeXstudio\icons\own icons\superscript.png"
    inkscape:export-xdpi="30.9375"
@@ -28,14 +28,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="12.328125"
-     inkscape:cx="32"
+     inkscape:cx="30.497402"
      inkscape:cy="32"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1680"
-     inkscape:window-height="995"
+     inkscape:window-width="1280"
+     inkscape:window-height="964"
      inkscape:window-x="-2"
      inkscape:window-y="-3"
      inkscape:window-maximized="1">
@@ -76,12 +76,12 @@
          inkscape:connector-curvature="0" />
     </g>
     <rect
-       style="color:#000000;fill:none;stroke:#333333;stroke-width:2.35714293;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;fill:none;stroke:#333333;stroke-width:4.36763;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3005"
-       width="22"
-       height="22"
-       x="35"
-       y="-57.414879"
+       width="20.199255"
+       height="20.199255"
+       x="35.04866"
+       y="-55.58168"
        transform="scale(1,-1)" />
   </g>
 </svg>
