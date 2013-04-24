@@ -13,7 +13,7 @@
    height="64px"
    id="svg2993"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="dfrac.svg"
    inkscape:export-filename="G:\TeXstudio\icons\own icons\dfrac.png"
    inkscape:export-xdpi="30.940001"
@@ -27,18 +27,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.5625"
-     inkscape:cx="32"
+     inkscape:zoom="1"
+     inkscape:cx="24.184418"
      inkscape:cy="32"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1019"
-     inkscape:window-height="882"
-     inkscape:window-x="242"
-     inkscape:window-y="106"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1280"
+     inkscape:window-height="964"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid4528" />
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -67,24 +67,24 @@
        x="1"
        y="1" />
     <path
-       style="fill:#333333;stroke:#333333;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="M 58.662956,32 5.3370436,32"
+       style="fill:#333333;stroke:#333333;stroke-width:8.37860394;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 57.095416,32 6.9045842,32"
        id="path3028"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <rect
-       style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#333333;stroke-width:2.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect4530"
        width="15"
        height="15"
-       x="25"
-       y="9" />
+       x="24.073965"
+       y="7.4763322" />
     <rect
-       y="40"
-       x="25"
-       height="15"
+       style="fill:none;stroke:#333333;stroke-width:2.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect4530-9"
        width="15"
-       id="rect5040"
-       style="fill:none;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       height="15"
+       x="24.926035"
+       y="41.523666" />
   </g>
 </svg>
