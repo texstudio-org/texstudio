@@ -13,7 +13,7 @@
    height="64px"
    id="svg2993"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="smallfrac.svg"
    inkscape:export-filename="G:\TeXstudio\icons\own icons\frac.png"
    inkscape:export-xdpi="30.940001"
@@ -28,15 +28,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="10.359375"
-     inkscape:cx="32"
-     inkscape:cy="32"
+     inkscape:cx="17.423831"
+     inkscape:cy="36.419537"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
      inkscape:window-width="1019"
      inkscape:window-height="882"
-     inkscape:window-x="483"
+     inkscape:window-x="257"
      inkscape:window-y="64"
      inkscape:window-maximized="0">
     <inkscape:grid
@@ -67,18 +67,18 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
-       x="23.6"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerifb;-inkscape-font-specification:FreeSerifb Bold Italic"
+       x="23.539999"
        y="23.195267"
        id="text3093"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3095"
-         x="23.6"
+         x="23.539999"
          y="23.195267">x</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:FreeSerifb;-inkscape-font-specification:FreeSerifb Bold Italic"
        x="23.959999"
        y="49.704144"
        id="text3097"
