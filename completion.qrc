@@ -68,6 +68,7 @@
 <file>completion/ifxetex.cwl</file>
 <file>completion/import.cwl</file>
 <file>completion/jurabib.cwl</file>
+<file>completion/kantlipsum.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>

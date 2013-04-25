@@ -1110,7 +1110,10 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 	if (singleInstance && runningCommands.contains(cmd))
 		return 0;
 	
-	
+	qDebug() << QFileInfo("\\\\Path\\To\\Some.file").absoluteFilePath();
+	qDebug() << QFileInfo("V:\\Path\\To\\Some.file").absoluteFilePath();
+
+
 	ProcessX* proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
 	if (singleInstance){
@@ -1673,10 +1676,11 @@ void ProcessX::startCommand() {
 	}
 	if (stdoutEnabled || stdoutBuffer) 
 		connect(this, SIGNAL(readyReadStandardOutput()),this, SLOT(readFromStandardOutput()));
-	if (stderrEnabled) 
+	if (stderrEnabled)
 		connect(this, SIGNAL(readyReadStandardError()),this, SLOT(readFromStandardError()));
 	
-	
+	qDebug() << workingDirectory();
+	qDebug() << cmd;
 	QProcess::start(cmd);
 	
 #ifdef PROFILE_PROCESSES
