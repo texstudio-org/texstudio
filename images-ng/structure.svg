@@ -14,8 +14,8 @@
    height="64px"
    id="svg2993"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="bookmarks.svg"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="structure.svg"
    inkscape:export-filename="G:\TeXstudio\icons\own icons\frac.png"
    inkscape:export-xdpi="30.940001"
    inkscape:export-ydpi="30.940001">
@@ -76,17 +76,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="10.359375"
-     inkscape:cx="32"
-     inkscape:cy="32"
+     inkscape:cx="13.176471"
+     inkscape:cy="41.266968"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1019"
-     inkscape:window-height="882"
-     inkscape:window-x="483"
-     inkscape:window-y="64"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid3908" />
@@ -99,7 +99,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -124,30 +124,30 @@
     <rect
        style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3327"
-       width="3"
-       height="51"
-       x="8"
-       y="6" />
+       width="5"
+       height="47"
+       x="7.6999998"
+       y="8.5" />
     <rect
-       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3329"
        width="33"
        height="2"
        x="20"
-       y="20" />
+       y="17" />
     <rect
-       y="31"
+       y="29"
        x="20"
        height="2"
        width="33"
        id="rect3331"
-       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <rect
-       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#333333;fill-opacity:1;stroke:#333333;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3333"
        width="33"
        height="2"
        x="20"
-       y="42" />
+       y="41" />
   </g>
 </svg>
