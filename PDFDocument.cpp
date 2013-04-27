@@ -2002,7 +2002,7 @@ void PDFDocument::init(bool embedded)
 		actionToggleEmbedded->setToolTip(tr("Embedded Viewer"));
 	}
 
-    actionExternalViewer->setIcon(getRealIcon("viewpdf"));
+    actionExternalViewer->setIcon(getRealIcon("acroread"));
 	if(embedded){
         actionTypeset->setVisible(false);
         actionShrinkViewer->setVisible(false);
