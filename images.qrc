@@ -1,5 +1,6 @@
 <RCC>
 <qresource prefix="/">
+<file>images-ng/acroread.svg</file>
 <file>images-ng/addCol.svg</file>
 <file>images-ng/addRow.svg</file>
 <file>images-ng/alignCols.svgz</file>
