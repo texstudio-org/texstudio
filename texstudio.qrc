@@ -14,53 +14,9 @@
         <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
         <file alias="qxs/lua.qnfa">utilities/qxs/lua.qnfa</file>
         <file alias="qxs/homespring.qnfa">utilities/qxs/homespring.qnfa</file>
-        <file alias="closeall.png">images/qcodeedit/closeall.png</file>
-        <file alias="down.png">images/qcodeedit/down.png</file>
-        <file alias="up.png">images/qcodeedit/up.png</file>
-        <file alias="reload.png">images/qcodeedit/reload.png</file>
-        <file alias="warning.png">images/qcodeedit/warning.png</file>
-        <file>images/qcodeedit/bold.png</file>
-        <file>images/qcodeedit/italic.png</file>
-        <file>images/qcodeedit/underline.png</file>
-        <file>images/qcodeedit/overline.png</file>
-        <file>images/qcodeedit/strikeout.png</file>
-        <file>images/qcodeedit/waveUnderline.png</file>
-        <file>images/qcodeedit/textcolor.png</file>
-        <file>images/qcodeedit/fillcolor.png</file>
-        <file>images/qcodeedit/strokecolor.png</file>
-        <file>images/down.png</file>
-        <file>images/up.png</file>
-        <file>images/zoom-fit-width.png</file>
-        <file>images/zoom-fit-best.png</file>
-        <file>images/zoom-original.png</file>
-        <file>images/zoom-in.png</file>
-        <file>images/zoom-out.png</file>
-        <file>images/zoomincursor.png</file>
-        <file>images/zoomoutcursor.png</file>
         <file>images/magnifiercursor.png</file>
         <file>images/hand.png</file>
-        <file>images/go-first.png</file>
-        <file>images/go-last.png</file>
-        <file>images/go-next.png</file>
-        <file>images/go-previous.png</file>
-        <file>images/go-next-diff.png</file>
-        <file>images/go-previous-diff.png</file>
-        <file>images/warning.png</file>
-        <file>images/error.png</file>
         <file>images/asymptote.png</file>
-        <file>images/badbox.png</file>
-        <file>images/lbook.png</file>
-        <file>images/lbook0.png</file>
-        <file>images/lbook1.png</file>
-        <file>images/lbook2.png</file>
-        <file>images/lbook3.png</file>
-        <file>images/lbook4.png</file>
-        <file>images/lbook5.png</file>
-        <file>images/lbook6.png</file>
-        <file>images/lbook7.png</file>
-        <file>images/lbook8.png</file>
-        <file>images/lbook9.png</file>
-        <file>images/leftright.png</file>
         <file alias="blank.png">utilities/html-conversion/blank.png</file>
         <file alias="next.gif">utilities/html-conversion/next.gif</file>
         <file alias="next_d.gif">utilities/html-conversion/next_d.gif</file>
@@ -71,210 +27,28 @@
         <file alias="up.gif">utilities/html-conversion/up.gif</file>
         <file alias="up_d.gif">utilities/html-conversion/up_d.gif</file>
         <file>images/logo128.png</file>
-        <file>images/pstricks.png</file>
-        <file>images/accent1.png</file>
-        <file>images/accent2.png</file>
-        <file>images/accent3.png</file>
-        <file>images/accent4.png</file>
-        <file>images/accent5.png</file>
-        <file>images/accent6.png</file>
-        <file>images/accent7.png</file>
-        <file>images/accent8.png</file>
-        <file>images/accent9.png</file>
-        <file>images/accent10.png</file>
-        <file>images/font_emph48.png</file>
-        <file>images/font_textbf48.png</file>
-        <file>images/font_textit48.png</file>
-        <file>images/font_textsc48.png</file>
-        <file>images/font_textsf48.png</file>
-        <file>images/font_textsl48.png</file>
-        <file>images/font_texttt48.png</file>
-        <file>images/font_underline48.png</file>
-        <file>images/font_mathrm.png</file>
-        <file>images/font_mathit.png</file>
-        <file>images/font_mathbf.png</file>
-        <file>images/font_mathsf.png</file>
-        <file>images/font_mathtt.png</file>
-        <file>images/font_mathcal.png</file>
-        <file>images/font_mathbb.png</file>
-        <file>images/font_mathfrak.png</file>
         <file>images/webpublish.png</file>
         <file>images/egg.png</file>
-        <file>images/back.png</file>
-        <file>images/forward.png</file>
-        <file>images/home.png</file>
         <file>images/splash.png</file>
         <file>images/splash_large.png</file>
-        <file>images/acute.png</file>
         <file>images/appicon.png</file>
         <file>images/previewicon.png</file>
-        <file>images/bar.png</file>
-        <file>images/breve.png</file>
         <file>images/chapter.png</file>
-        <file>images/check.png</file>
-        <file>images/configure.png</file>
-        <file>images/ddot.png</file>
-        <file>images/doc.png</file>
-        <file>images/dot.png</file>
-        <file>images/dvipdf.png</file>
-        <file>images/dvips.png</file>
-        <file>images/empty.png</file>
-        <file>images/enumerate.png</file>
-        <file>images/errornext.png</file>
-        <file>images/errorprev.png</file>
-        <file>images/exit.png</file>
-        <file>images/fileclose.png</file>
-        <file>images/goto.png</file>
-        <file>images/grave.png</file>
-        <file>images/hat.png</file>
-        <file>images/help.png</file>
         <file>images/include.png</file>
-        <file>images/item.png</file>
-        <file>images/itemize.png</file>
-        <file>images/latex.png</file>
-        <file>images/math6.png</file>
-        <file>images/math7.png</file>
-        <file>images/metapost.png</file>
-        <file>images/modified.png</file>
         <file>images/part.png</file>
-        <file>images/viewer.png</file>
-        <file>images/pdflatex.png</file>
-        <file>images/xelatex.png</file>
-        <file>images/lualatex.png</file>
-        <file>images/ps2pdf.png</file>
-        <file>images/build.png</file>
-        <file>images/compile.png</file>
         <file>images/section.png</file>
-        <file>images/structure.png</file>
         <file>images/subsection.png</file>
         <file>images/subsubsection.png</file>
-        <file>images/tilde.png</file>
-        <file>images/tikz.png</file>
-        <file>images/vec.png</file>
-        <file>images/bookmark1.png</file>
-        <file>images/bookmark2.png</file>
-        <file>images/bookmark3.png</file>
-        <file>images/viewdvi.png</file>
-        <file>images/viewlog.png</file>
-        <file>images/viewpdf.png</file>
-        <file>images/viewps.png</file>
         <file>tags/asymptote_tags.xml</file>
         <file>tags/brackets_tags.xml</file>
         <file>tags/metapost_tags.xml</file>
         <file>tags/pstricks_tags.xml</file>
         <file>tags/tikz_tags.xml</file>
-        <file>images/qcodeedit/replaceup.png</file>
-        <file>images/qcodeedit/replacedown.png</file>
         <file>images/masterdoc.png</file>
-        <file>images/qcodeedit/replaceall.png</file>
-        <file>images/qcodeedit/count.png</file>
-        <file>images/addCol.png</file>
-        <file>images/addRow.png</file>
-        <file>images/remCol.png</file>
-        <file>images/remRow.png</file>
-        <file>images/cutCol.png</file>
-        <file>images/pasteCol.png</file>
-        <file>images/alignCols.png</file>
-        <file>images/image.png</file>
-        <file>images/logpanel.png</file>
-        <file>images/sidebar.png</file>
-        <file>images/config_advancededitor.png</file>
-        <file>images/config_commands.png</file>
-        <file>images/config_completion.png</file>
-        <file>images/config_editor.png</file>
-        <file>images/config_general.png</file>
-        <file>images/config_highlighting.png</file>
-        <file>images/config_latexmenus.png</file>
-        <file>images/config_preview.png</file>
-        <file>images/config_quickbuild.png</file>
-        <file>images/config_shortcut.png</file>
-        <file>images/config_svn.png</file>
-        <file>images/config_toolbars.png</file>
         <file>images/down-arrow-circle-silver.png</file>
         <file>images/up-arrow-circle-silver.png</file>
-        <file>images/list-add.png</file>
-        <file>images/list-remove.png</file>
-        <file>images/left.png</file>
-        <file>images/right.png</file>
-        <file>images/bookmarks.png</file>
-        <file>images/repeat-compile.png</file>
-        <file>images/repeat-compile-off.png</file>
-        <file>images/windowed-viewer.png</file>
-        <file>images/embedded-viewer.png</file>
         <file>images/separator.png</file>
         <file>images/TexTablet.png</file>
-        <file>images/user-identity.png</file>
-        <file>images/syncSource.png</file>
-        <file>images/syncViewer.png</file>
-        <file>images/warning_16.png</file>
         <file>utilities/packageList</file>
-    </qresource>
-    <qresource prefix="/classic">
-        <file>images/classic/filenew.png</file>
-        <file>images/classic/fileopen.png</file>
-        <file>images/classic/filesave.png</file>
-        <file>images/classic/modified.png</file>
-        <file>images/classic/editcopy.png</file>
-        <file>images/classic/editcut.png</file>
-        <file>images/classic/editpaste.png</file>
-        <file>images/classic/redo.png</file>
-        <file>images/classic/undo.png</file>
-        <file>images/classic/math-accent.png</file>
-        <file>images/classic/hi16-action-math10.png</file>
-        <file>images/classic/hi16-action-math1.png</file>
-        <file>images/classic/misc-symbols.png</file>
-        <file>images/classic/misc-symbols-wasysym.png</file>
-        <file>images/classic/text_bold.png</file>
-        <file>images/classic/text_italic.png</file>
-        <file>images/classic/text_under.png</file>
-        <file>images/classic/format-justify-center.png</file>
-        <file>images/classic/format-justify-left.png</file>
-        <file>images/classic/format-justify-right.png</file>
-        <file>images/classic/dfrac.png</file>
-        <file>images/classic/math1.png</file>
-        <file>images/classic/math2.png</file>
-        <file>images/classic/math3.png</file>
-        <file>images/classic/math4.png</file>
-        <file>images/classic/math5.png</file>
-        <file>images/classic/mathmode.png</file>
-        <file>images/classic/newline.png</file>
-        <file>images/classic/sqrt.png</file>
-        <file>images/classic/subscript.png</file>
-        <file>images/classic/superscript.png</file>
-        <file>images/classic/smallfrac.png</file>
-    </qresource>
-    <qresource prefix="/modern">
-        <file>images/modern/filenew.png</file>
-        <file>images/modern/fileopen.png</file>
-        <file>images/modern/filesave.png</file>
-        <file>images/modern/modified.png</file>
-        <file>images/modern/editcopy.png</file>
-        <file>images/modern/editcut.png</file>
-        <file>images/modern/editpaste.png</file>
-        <file>images/modern/redo.png</file>
-        <file>images/modern/undo.png</file>
-        <file>images/modern/math-accent.png</file>
-        <file>images/modern/hi16-action-math10.png</file>
-        <file>images/modern/hi16-action-math1.png</file>
-        <file>images/modern/misc-symbols.png</file>
-        <file>images/modern/misc-symbols-wasysym.png</file>
-        <file>images/modern/text_bold.png</file>
-        <file>images/modern/text_italic.png</file>
-        <file>images/modern/text_under.png</file>
-        <file>images/modern/format-justify-center.png</file>
-        <file>images/modern/format-justify-left.png</file>
-        <file>images/modern/format-justify-right.png</file>
-        <file>images/modern/dfrac.png</file>
-        <file>images/modern/math1.png</file>
-        <file>images/modern/math2.png</file>
-        <file>images/modern/math3.png</file>
-        <file>images/modern/math4.png</file>
-        <file>images/modern/math5.png</file>
-        <file>images/modern/mathmode.png</file>
-        <file>images/modern/newline.png</file>
-        <file>images/modern/sqrt.png</file>
-        <file>images/modern/subscript.png</file>
-        <file>images/modern/superscript.png</file>
-        <file>images/modern/smallfrac.png</file>
     </qresource>
 </RCC>
