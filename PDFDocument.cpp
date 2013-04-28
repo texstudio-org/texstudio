@@ -433,9 +433,9 @@ PDFWidget::PDFWidget(bool embedded)
 	}
 
 	if (magnifierCursor == NULL) {
-		magnifierCursor = new QCursor(QPixmap(":/images/magnifiercursor.png"));
-		zoomInCursor = new QCursor(QPixmap(":/images/zoomincursor.png"));
-		zoomOutCursor = new QCursor(QPixmap(":/images/zoomoutcursor.png"));
+        magnifierCursor = new QCursor(QPixmap(getRealIconFile("magnifier")).scaled(32,32,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+        zoomInCursor = new QCursor(QPixmap(getRealIconFile("zoom-in")).scaled(32,32,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+        zoomOutCursor = new QCursor(QPixmap(getRealIconFile("zoom-out")).scaled(32,32,Qt::KeepAspectRatio,Qt::SmoothTransformation));
 	}
 	
 	ctxZoomInAction = new QAction(tr("Zoom In"), this);
