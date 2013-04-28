@@ -7,7 +7,7 @@ BATIK="/home/sdm/Dokumente/Programmieren/texstudio/symbols-ng/batikConvert.sh"
 SYMBOLS_all="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
 #SYMBOLS="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
 #SYMBOLS="misc-math misc-text wasysym delimiters"
-SYMBOLS="cyrillic"
+SYMBOLS="icons"
 
 echo "Deleting old files..."
 
