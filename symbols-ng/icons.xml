@@ -13,7 +13,7 @@
       <additional>\pagestyle{empty}
 		  \setlength{\parindent}{0cm}
 		  \usepackage[T1]{fontenc}
-		  \usepackage{xcolor}
+		  \usepackage{xcolor,amsmath}
 		  \setlength{\fboxsep}{1pt}
 		  \newcommand{\fb}[2][8pt]{\fcolorbox{black!60}{white}{\color{black!60}\makebox[#1][c]{#2}}}
       </additional>
@@ -157,7 +157,7 @@
 </commandDefinition>
 
 <commandDefinition>
-   <latexCommand>\fb{$\lambda$}</latexCommand>
+   <latexCommand>\fb{$\boldsymbol\lambda$}</latexCommand>
    <forcePNG>true</forcePNG>
    <iconMode>true</iconMode>
 </commandDefinition>
@@ -185,7 +185,7 @@
 </commandDefinition>
 
 <commandDefinition>
-   <latexCommand>\fb{$\forall$}</latexCommand>
+   <latexCommand>\fb{$\boldsymbol\forall$}</latexCommand>
    <forcePNG>true</forcePNG>
    <iconMode>true</iconMode>
 </commandDefinition>
