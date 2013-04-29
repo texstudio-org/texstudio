@@ -396,20 +396,20 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.shortcutTree->setColumnWidth(0,200);
 	
 	//create icons
-	createIcon(tr("General"),QIcon(":/images/config_general.png"));
-	createIcon(tr("Commands"),QIcon(":/images/config_commands.png"));
-	createIcon(tr("Build"),QIcon(":/images/config_quickbuild.png"));
-	createIcon(tr("Shortcuts"),QIcon(":/images/config_shortcut.png"));
-	createIcon(tr("Menus"),QIcon(":/images/config_latexmenus.png"), true);
-	createIcon(tr("Toolbars"),QIcon(":/images/config_toolbars.png"), true);
-	createIcon(tr("Editor"),QIcon(":/images/config_editor.png"));
-	createIcon(tr("Adv. Editor"),QIcon(":/images/config_advancededitor.png"), true);
-	createIcon(tr("Syntax Highlighting"),QIcon(":/images/config_highlighting.png"));
-	createIcon(tr("Custom Highlighting"),QIcon(":/images/config_highlighting.png"), true);
-	createIcon(tr("Completion"),QIcon(":/images/config_completion.png"));
-	createIcon(tr("Grammar"),QIcon(":/images/config_editor.png"));
-	createIcon(tr("Preview"),QIcon(":/images/config_preview.png"));
-	createIcon(tr("SVN"),QIcon(":/images/config_svn.png"));
+    createIcon(tr("General"),getRealIcon("config_general"));
+    createIcon(tr("Commands"),getRealIcon("config_commands"));
+    createIcon(tr("Build"),getRealIcon("config_quickbuild"));
+    createIcon(tr("Shortcuts"),getRealIcon("config_shortcut"));
+    createIcon(tr("Menus"),getRealIcon("config_latexmenus"), true);
+    createIcon(tr("Toolbars"),getRealIcon("config_toolbars"), true);
+    createIcon(tr("Editor"),getRealIcon("config_editor"));
+    createIcon(tr("Adv. Editor"),getRealIcon("config_advancededitor"), true);
+    createIcon(tr("Syntax Highlighting"),getRealIcon("config_highlighting"));
+    createIcon(tr("Custom Highlighting"),getRealIcon("config_highlighting"), true);
+    createIcon(tr("Completion"),getRealIcon("config_completion"));
+    createIcon(tr("Grammar"),getRealIcon("config_editor"));
+    createIcon(tr("Preview"),getRealIcon("config_preview"));
+    createIcon(tr("SVN"),getRealIcon("config_svn"));
 	
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),

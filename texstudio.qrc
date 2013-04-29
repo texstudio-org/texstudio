@@ -14,7 +14,6 @@
         <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
         <file alias="qxs/lua.qnfa">utilities/qxs/lua.qnfa</file>
         <file alias="qxs/homespring.qnfa">utilities/qxs/homespring.qnfa</file>
-        <file>images/hand.png</file>
         <file alias="blank.png">utilities/html-conversion/blank.png</file>
         <file alias="next.gif">utilities/html-conversion/next.gif</file>
         <file alias="next_d.gif">utilities/html-conversion/next_d.gif</file>
