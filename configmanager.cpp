@@ -2243,7 +2243,7 @@ void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int r
 
 	QPushButton *pb;
 	if (cmd.user || cmd.meta) {
-		pb = new QPushButton(QIcon(":/images/configure.png"), QString(), parent);
+        pb = new QPushButton(getRealIcon("configure"), QString(), parent);
 		pb->setToolTip(tr("Configure"));
 		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_CONFIG);
 		connect(pb, SIGNAL(clicked()), SLOT(editCommand()));
