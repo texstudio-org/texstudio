@@ -91,7 +91,7 @@ void TemplateManager::checkForOldUserTemplates() {
 // Creates a new template resource from the information of the XML node.
 // The parent is the template manager. You may reparent the resource later.
 // returns 0 if there is no valid resource info in the node
-AbstractTemplateRessource * TemplateManager::createRessourceFromXMLNode(const QDomElement &resElem) {
+AbstractTemplateResource * TemplateManager::createResourceFromXMLNode(const QDomElement &resElem) {
 	if (resElem.tagName() != "Resource") {
 		qDebug() << "Not an XML Resource Node";
 		return 0;
@@ -144,16 +144,16 @@ AbstractTemplateRessource * TemplateManager::createRessourceFromXMLNode(const QD
 
 
 	if (QFileInfo(path).isDir()) {
-		LocalLatexTemplateRessource * tplRessource = new LocalLatexTemplateRessource(path, name, this, icon);
-		tplRessource->setDescription(description);
-		tplRessource->setEditable(isEditable);
-		return tplRessource;
+		LocalLatexTemplateResource * tplResource = new LocalLatexTemplateResource(path, name, this, icon);
+		tplResource->setDescription(description);
+		tplResource->setEditable(isEditable);
+		return tplResource;
 	}
 	return 0;
 }
 
-QList<AbstractTemplateRessource *> TemplateManager::ressourcesFromXMLFile(const QString &filename) {
-	QList<AbstractTemplateRessource *> list;
+QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QString &filename) {
+	QList<AbstractTemplateResource *> list;
 
 	QFile file(filename);
 	if (!file.open(QFile::ReadOnly)) {
@@ -179,9 +179,9 @@ QList<AbstractTemplateRessource *> TemplateManager::ressourcesFromXMLFile(const 
 
 	QDomElement elem = root.firstChildElement("Resource");
 	while (!elem.isNull()) {
-		AbstractTemplateRessource * tplRessource = createRessourceFromXMLNode(elem);
-		if (tplRessource) {
-			list.append(tplRessource);
+		AbstractTemplateResource * tplResource = createResourceFromXMLNode(elem);
+		if (tplResource) {
+			list.append(tplResource);
 		}
 		elem = elem.nextSiblingElement("Resource");
 	}
@@ -198,9 +198,9 @@ TemplateSelector * TemplateManager::createLatexTemplateDialog() {
 		QFile::copy(":/utilities/template_resources.xml", fi.absoluteFilePath()); // set up default
 	}
 
-	QList<AbstractTemplateRessource *> l = ressourcesFromXMLFile(fi.absoluteFilePath());
-	foreach (AbstractTemplateRessource *res, l) {
-		dialog->addRessource(res);
+	QList<AbstractTemplateResource *> l = resourcesFromXMLFile(fi.absoluteFilePath());
+	foreach (AbstractTemplateResource *res, l) {
+		dialog->addResource(res);
 	}
 	return dialog;
 }
@@ -210,10 +210,10 @@ bool TemplateManager::tableTemplateDialogExec() {
     dialog.hideFolderSelection();
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	LocalTableTemplateRessource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images-ng/user.svgz"));
-	LocalTableTemplateRessource builtinTemplates(builtinTemplateDir(), "Builtin", this, QIcon(":/images/appicon.png"));
-	dialog.addRessource(&userTemplates);
-	dialog.addRessource(&builtinTemplates);
+	LocalTableTemplateResource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images-ng/user.svgz"));
+	LocalTableTemplateResource builtinTemplates(builtinTemplateDir(), "Builtin", this, QIcon(":/images/appicon.png"));
+	dialog.addResource(&userTemplates);
+	dialog.addResource(&builtinTemplates);
 
 	bool ok = dialog.exec();
 	if (ok) {
