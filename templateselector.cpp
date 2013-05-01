@@ -13,7 +13,7 @@
 #include "smallUsefulFunctions.h"
 
 const int TemplateSelector::TemplateHandleRole = Qt::UserRole;
-const int TemplateSelector::RessourceRole = Qt::UserRole+1;
+const int TemplateSelector::ResourceRole = Qt::UserRole+1;
 
 
 void PreviewLabel::setScaledPixmap(const QPixmap &pm) {
@@ -88,14 +88,14 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 TemplateSelector::~TemplateSelector() {
 }
 
-void TemplateSelector::addRessource(AbstractTemplateRessource *res)
+void TemplateSelector::addResource(AbstractTemplateResource *res)
 {
 	QTreeWidgetItem *topitem = new QTreeWidgetItem(QStringList() << res->name());
 	topitem->setIcon(0, res->icon());
 	QFont ft = topitem->font(0);
 	ft.setBold(true);
 	topitem->setFont(0, ft);
-	topitem->setData(0, RessourceRole, QVariant::fromValue<AbstractTemplateRessource*>(res));
+	topitem->setData(0, ResourceRole, QVariant::fromValue<AbstractTemplateResource*>(res));
 	ui.templatesTree->addTopLevelItem(topitem);
 
 	foreach (TemplateHandle th, res->getTemplates()) {
@@ -180,7 +180,7 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *pr
 			ui.rbCreateInEditor->setEnabled(true);
 		}
 	} else {
-		AbstractTemplateRessource *res = (currentItem) ? (currentItem->data(0, RessourceRole).value<AbstractTemplateRessource *>()) : 0;
+		AbstractTemplateResource *res = (currentItem) ? (currentItem->data(0, ResourceRole).value<AbstractTemplateResource *>()) : 0;
 		// if !res the currentItem is invalid
 		pbOk->setEnabled(false);
 		ui.lbName->setText(res ? res->name() : "");

@@ -157,36 +157,36 @@ bool LocalTableTemplate::readMetaData() {
 }
 
 
-/*** LocalFileTemplateRessource **********************************************/
+/*** LocalFileTemplateResource **********************************************/
 
-LocalFileTemplateRessource::LocalFileTemplateRessource(QString path, QStringList filters, QString name, QObject *parent, QIcon icon)
-	: QObject(parent), AbstractTemplateRessource(), m_path(path), m_filters(filters), m_name(name), m_icon(icon)
+LocalFileTemplateResource::LocalFileTemplateResource(QString path, QStringList filters, QString name, QObject *parent, QIcon icon)
+	: QObject(parent), AbstractTemplateResource(), m_path(path), m_filters(filters), m_name(name), m_icon(icon)
 { }
 
-LocalFileTemplateRessource::~LocalFileTemplateRessource() {
+LocalFileTemplateResource::~LocalFileTemplateResource() {
 	foreach (LocalFileTemplate *lft, m_templates)
 		delete lft;
 }
 
-QList<TemplateHandle> LocalFileTemplateRessource::getTemplates() {
+QList<TemplateHandle> LocalFileTemplateResource::getTemplates() {
 	QList<TemplateHandle> l;
 	foreach (LocalFileTemplate *tmpl, m_templates)
 		l.append(TemplateHandle(tmpl));
 	return l;
 }
 
-bool LocalFileTemplateRessource::isAccessible() {
+bool LocalFileTemplateResource::isAccessible() {
 	QDir dir(m_path);
 	return dir.exists() && dir.isReadable();
 }
 
-void LocalFileTemplateRessource::setEditable(bool b) {
+void LocalFileTemplateResource::setEditable(bool b) {
 	foreach (LocalFileTemplate *tmpl, m_templates) {
 		tmpl->m_editable = b;
 	}
 }
 
-void LocalFileTemplateRessource::update() {
+void LocalFileTemplateResource::update() {
 	foreach (LocalFileTemplate *lft, m_templates)
 		delete lft;
 	m_templates.clear();
