@@ -40,7 +40,7 @@ public:
 	TemplateHandle selectedTemplate() const;
 	bool createInFolder() const;
 	QString creationFolder() const;
-	void addRessource(AbstractTemplateRessource *res);
+	void addResource(AbstractTemplateResource *res);
     void hideFolderSelection();
 signals:
 	void editTemplateRequest(TemplateHandle th);
@@ -65,7 +65,7 @@ private:
 	PreviewLabel *previewLabel;
 
 	static const int TemplateHandleRole;
-	static const int RessourceRole;
+	static const int ResourceRole;
 };
 
 #endif // TEMPLATESELECTOR_H

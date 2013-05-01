@@ -14,23 +14,14 @@
    <string>Configure TeXstudio</string>
   </property>
   <layout class="QGridLayout">
-   <property name="leftMargin">
-    <number>9</number>
-   </property>
-   <property name="topMargin">
-    <number>9</number>
-   </property>
-   <property name="rightMargin">
-    <number>9</number>
-   </property>
-   <property name="bottomMargin">
-    <number>9</number>
-   </property>
    <property name="horizontalSpacing">
     <number>18</number>
    </property>
    <property name="verticalSpacing">
     <number>6</number>
+   </property>
+   <property name="margin">
+    <number>9</number>
    </property>
    <item row="0" column="0" rowspan="2">
     <widget class="QListWidget" name="contentsWidget">
@@ -75,23 +66,14 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -107,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>706</width>
-            <height>595</height>
+            <width>576</width>
+            <height>517</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -414,7 +396,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -461,7 +443,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -572,16 +554,7 @@
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -657,16 +630,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -818,8 +782,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>200</width>
-               <height>130</height>
+               <width>202</width>
+               <height>124</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -835,7 +799,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -859,7 +823,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -892,7 +856,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -915,16 +879,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageShortcuts">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -975,16 +930,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageLatexMenus">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1033,16 +979,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageToolbars">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1082,8 +1019,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="texstudio.qrc">
-               <normaloff>:/images/left.png</normaloff>:/images/left.png</iconset>
+              <iconset resource="images.qrc">
+               <normaloff>:/images-ng/left.svgz</normaloff>:/images-ng/left.svgz</iconset>
              </property>
             </widget>
            </item>
@@ -1093,8 +1030,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <string notr="true"/>
              </property>
              <property name="icon">
-              <iconset resource="texstudio.qrc">
-               <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
+              <iconset resource="images.qrc">
+               <normaloff>:/images-ng/right.svgz</normaloff>:/images-ng/right.svgz</iconset>
              </property>
             </widget>
            </item>
@@ -1143,16 +1080,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageEditor">
       <layout class="QGridLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <property name="spacing">
@@ -1470,16 +1398,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageAdvEditor">
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1495,8 +1414,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>866</width>
-            <height>882</height>
+            <width>863</width>
+            <height>747</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2017,16 +1936,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageSyntaxHighlighting">
       <layout class="QVBoxLayout" name="verticalLayout_7">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2058,16 +1968,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageCustomHighlighting">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2176,16 +2077,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageCompletion">
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2450,16 +2342,7 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageGrammar">
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2475,8 +2358,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>341</width>
-            <height>528</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2601,7 +2484,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -2662,7 +2545,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -2707,7 +2590,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="texstudio.qrc">
+                 <iconset>
                   <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
                 </property>
                </widget>
@@ -2816,16 +2699,7 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pagePreview">
       <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -3187,16 +3061,7 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageSVN">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -3279,16 +3144,7 @@ them here.</string>
      <property name="sizeConstraint">
       <enum>QLayout::SetMinimumSize</enum>
      </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
+     <property name="margin">
       <number>0</number>
      </property>
      <item>
@@ -3439,7 +3295,7 @@ them here.</string>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="texstudio.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections>
   <connection>

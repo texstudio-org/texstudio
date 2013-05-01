@@ -104,8 +104,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
-             <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
+            <iconset resource="images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
            </property>
           </widget>
          </item>
@@ -134,8 +134,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
-             <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
+            <iconset resource="images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
            </property>
           </widget>
          </item>
@@ -171,8 +171,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
-             <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
+            <iconset resource="images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
            </property>
           </widget>
          </item>
@@ -201,8 +201,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="texstudio.qrc">
-             <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
+            <iconset resource="images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
            </property>
           </widget>
          </item>
@@ -640,7 +640,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="texstudio.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections>
   <connection>
