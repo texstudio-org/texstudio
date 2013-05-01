@@ -60,8 +60,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="texstudio.qrc">
-         <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+        <iconset resource="images.qrc">
+         <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -409,7 +409,7 @@
         <string>as Default</string>
        </property>
        <property name="icon">
-        <iconset resource="texstudio.qrc">
+        <iconset>
          <normaloff>:/classic/images/classic/filesave.png</normaloff>:/classic/images/classic/filesave.png</iconset>
        </property>
       </widget>
@@ -479,6 +479,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
+  <include location="images.qrc"/>
   <include location="texstudio.qrc"/>
  </resources>
  <connections>

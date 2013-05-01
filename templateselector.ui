@@ -190,8 +190,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="texstudio.qrc">
-         <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+        <iconset resource="images.qrc">
+         <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
        </property>
       </widget>
      </item>
@@ -215,11 +215,20 @@
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="warningIcon">
+       <property name="maximumSize">
+        <size>
+         <width>16</width>
+         <height>16</height>
+        </size>
+       </property>
        <property name="text">
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="texstudio.qrc">:/images/warning_16.png</pixmap>
+        <pixmap resource="images.qrc">:/images-ng/warning.svgz</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -242,7 +251,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="texstudio.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections/>
 </ui>

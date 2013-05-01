@@ -42,8 +42,8 @@
         <string>Add</string>
        </property>
        <property name="icon">
-        <iconset resource="texstudio.qrc">
-         <normaloff>:/images/right.png</normaloff>:/images/right.png</iconset>
+        <iconset resource="images.qrc">
+         <normaloff>:/images-ng/right.svgz</normaloff>:/images-ng/right.svgz</iconset>
        </property>
       </widget>
      </item>
@@ -79,12 +79,20 @@
        <property name="text">
         <string>Up</string>
        </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/images-ng/up.svgz</normaloff>:/images-ng/up.svgz</iconset>
+       </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="downButton">
        <property name="text">
         <string>Down</string>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/images-ng/down.svgz</normaloff>:/images-ng/down.svgz</iconset>
        </property>
       </widget>
      </item>
@@ -119,7 +127,7 @@
   <tabstop>listWidget</tabstop>
  </tabstops>
  <resources>
-  <include location="texstudio.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections>
   <connection>

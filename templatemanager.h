@@ -36,7 +36,7 @@ private:
 Q_DECLARE_METATYPE( TemplateHandle )
 
 
-class AbstractTemplateRessource {
+class AbstractTemplateResource {
 public:
 	virtual QList<TemplateHandle> getTemplates() = 0;
 	virtual bool isAccessible() = 0;
@@ -44,10 +44,10 @@ public:
 	virtual QString description() = 0;
 	virtual QIcon icon() = 0;
 protected:
-	AbstractTemplateRessource() {}
+	AbstractTemplateResource() {}
 };
-Q_DECLARE_INTERFACE( AbstractTemplateRessource , "TeXstudio/AbstractTemplateRessource")
-Q_DECLARE_METATYPE( AbstractTemplateRessource * )
+Q_DECLARE_INTERFACE( AbstractTemplateResource , "TeXstudio/AbstractTemplateResource")
+Q_DECLARE_METATYPE( AbstractTemplateResource * )
 
 
 class TemplateManager : public QObject
@@ -62,8 +62,8 @@ public:
 	static bool ensureUserTemplateDirExists();
 	static void checkForOldUserTemplates();
 
-	AbstractTemplateRessource * createRessourceFromXMLNode(const QDomElement &resElem);
-	QList<AbstractTemplateRessource *> ressourcesFromXMLFile(const QString &filename);
+	AbstractTemplateResource * createResourceFromXMLNode(const QDomElement &resElem);
+	QList<AbstractTemplateResource *> resourcesFromXMLFile(const QString &filename);
 	TemplateSelector * createLatexTemplateDialog();
 	bool tableTemplateDialogExec();
 	QString selectedTemplateFile() { return selectedFile; }
