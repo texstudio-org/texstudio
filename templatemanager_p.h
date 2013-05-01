@@ -111,7 +111,7 @@ private:
 class LocalLatexTemplateRessource : public LocalFileTemplateRessource {
 	Q_OBJECT
 public:
-	LocalLatexTemplateRessource(QString path, QString name, QObject *parent, QIcon icon)
+	LocalLatexTemplateRessource(QString path, QString name, QObject *parent, QIcon icon = QIcon())
 		: LocalFileTemplateRessource(path, QStringList() << "*.tex" << "*.zip", name, parent, icon) { update(); }
 protected:
 	virtual LocalFileTemplate* createTemplate(QString file) { return new LocalLatexTemplate(file); }
@@ -120,7 +120,7 @@ protected:
 class LocalTableTemplateRessource : public LocalFileTemplateRessource {
 	Q_OBJECT
 public:
-	LocalTableTemplateRessource(QString path, QString name, QObject *parent, QIcon icon)
+	LocalTableTemplateRessource(QString path, QString name, QObject *parent, QIcon icon = QIcon())
 		: LocalFileTemplateRessource(path, QStringList() << "*.js", name, parent, icon) { update(); }
 protected:
 	virtual LocalFileTemplate* createTemplate(QString file) { return new LocalTableTemplate(file); }

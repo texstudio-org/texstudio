@@ -47,5 +47,6 @@
         <file>images/separator.png</file>
         <file>images/TexTablet.png</file>
         <file>utilities/packageList</file>
+        <file>utilities/template_resources.xml</file>
     </qresource>
 </RCC>

@@ -62,11 +62,11 @@ public:
 	static bool ensureUserTemplateDirExists();
 	static void checkForOldUserTemplates();
 
+	AbstractTemplateRessource * createRessourceFromXMLNode(const QDomElement &resElem);
+	QList<AbstractTemplateRessource *> ressourcesFromXMLFile(const QString &filename);
 	TemplateSelector * createLatexTemplateDialog();
-	TemplateHandle latexTemplateDialogExec();
 	bool tableTemplateDialogExec();
 	QString selectedTemplateFile() { return selectedFile; }
-
 signals:
 	void editRequested(const QString &filename) ;
 public slots:
