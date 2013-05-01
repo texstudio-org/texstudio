@@ -14,11 +14,11 @@ TemplateManager::TemplateManager(QObject *parent) :
 QString TemplateManager::builtinTemplateDir()
 {
 #ifdef Q_OS_MAC
-    QString fn="/Applications/texstudio.app/Contents/Resources/";
-    if(!QDir(fn).isReadable()){ // fallback if program is not packaged as app (e.g. debug build )
-        fn=QCoreApplication::applicationDirPath()+"/templates/";
-    }
-    return fn;
+	QString fn = "/Applications/texstudio.app/Contents/Resources/";
+	if(!QDir(fn).isReadable()) { // fallback if program is not packaged as app (e.g. debug build )
+		return = QCoreApplication::applicationDirPath()+"/templates/";
+	}
+	return fn;
 #endif
 #ifdef Q_OS_WIN
 	return QCoreApplication::applicationDirPath()+"/templates/";
@@ -27,11 +27,11 @@ QString TemplateManager::builtinTemplateDir()
 #define PREFIX ""
 #endif
 #ifndef Q_OS_MAC
-    QString fn=PREFIX"/share/texstudio/";
-    if(!QDir(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
-        fn=QCoreApplication::applicationDirPath()+"/templates/";
-    }
-    return fn;
+	QString fn=PREFIX"/share/texstudio/";
+	if(!QDir(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
+		fn=QCoreApplication::applicationDirPath()+"/templates/";
+	}
+	return fn;
 #endif
 #endif
 }
@@ -87,34 +87,122 @@ void TemplateManager::checkForOldUserTemplates() {
 	}
 }
 
+
+// Creates a new template resource from the information of the XML node.
+// The parent is the template manager. You may reparent the resource later.
+// returns 0 if there is no valid resource info in the node
+AbstractTemplateRessource * TemplateManager::createRessourceFromXMLNode(const QDomElement &resElem) {
+	if (resElem.tagName() != "Resource") {
+		qDebug() << "Not an XML Resource Node";
+		return 0;
+	}
+
+	QString name, path, description;
+	bool isEditable = false;
+	QIcon icon;
+	QDomElement elem = resElem.firstChildElement("Path");
+	if (!elem.isNull())
+		path = elem.text();
+	elem = resElem.firstChildElement("Description");
+	if (!elem.isNull())
+		description = elem.text();
+	elem = resElem.firstChildElement("Editable");
+	if (!elem.isNull())
+		isEditable = elem.text()=="1" || elem.text().toLower()=="true";
+	elem = resElem.firstChildElement("Icon");
+	QStringList iconNames;
+	if (!elem.isNull())
+		iconNames << elem.text();
+	// locate the icon in the resource path
+	QDir d(path);
+	iconNames << "LatexTemplateResource.svg" << "LatexTemplateResource.svgz" << "LatexTemplateResource.png";
+	foreach (const QString &name, iconNames) {
+		if (d.exists(name)) {
+			icon = QIcon(d.absoluteFilePath(name));
+			break;
+		}
+	}
+
+	elem = resElem.firstChildElement("Name");
+	if (!elem.isNull())
+		name = elem.text();
+	if (name.isEmpty())
+		name = tr("Unnamed Resource");
+	else if (name == "%Builtin") {
+		name = tr("Builtin");
+		path = builtinTemplateDir();
+		description = tr("Basic template files shipped with TeXstudio.");
+		isEditable = false;
+		icon = QIcon(":/images/appicon.png");
+	} else if (name == "%User") {
+		name = tr("User");
+		path = userTemplateDir();
+		description = tr("User created template files");
+		isEditable = false;
+		icon = QIcon(":/images-ng/user.svgz");
+	}
+
+
+	if (QFileInfo(path).isDir()) {
+		LocalLatexTemplateRessource * tplRessource = new LocalLatexTemplateRessource(path, name, this, icon);
+		tplRessource->setDescription(description);
+		tplRessource->setEditable(isEditable);
+		return tplRessource;
+	}
+	return 0;
+}
+
+QList<AbstractTemplateRessource *> TemplateManager::ressourcesFromXMLFile(const QString &filename) {
+	QList<AbstractTemplateRessource *> list;
+
+	QFile file(filename);
+	if (!file.open(QFile::ReadOnly)) {
+		qDebug() << "unable to open template resource file" << filename;
+		return list;
+	}
+
+	QDomDocument domDoc;
+	QString errorMsg;
+	int errorLine;
+	if (!domDoc.setContent(&file, &errorMsg, &errorLine)) {
+		file.close();
+		qDebug() << "invalid xml file format" << filename;
+		qDebug() << "at line" << errorLine << ":" << errorMsg;
+		return list;
+	}
+
+	QDomElement root = domDoc.documentElement();
+	if (root.tagName() != "LatexTemplateResources") {
+		qDebug() << "not a template resource configuration file" << filename;
+		return list;
+	}
+
+	QDomElement elem = root.firstChildElement("Resource");
+	while (!elem.isNull()) {
+		AbstractTemplateRessource * tplRessource = createRessourceFromXMLNode(elem);
+		if (tplRessource) {
+			list.append(tplRessource);
+		}
+		elem = elem.nextSiblingElement("Resource");
+	}
+	return list;
+}
+
 TemplateSelector * TemplateManager::createLatexTemplateDialog() {
 	TemplateSelector *dialog = new TemplateSelector(tr("Select Latex Template"));
 	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	LocalLatexTemplateRessource *userTemplates = new LocalLatexTemplateRessource(userTemplateDir(), tr("User"), dialog, QIcon(":/images/user-identity.png"));
-	userTemplates->setDescription(tr("User created template files"));
-	userTemplates->setEditable(true);
-	LocalLatexTemplateRessource *builtinTemplates = new LocalLatexTemplateRessource(builtinTemplateDir(), tr("Builtin"), dialog, QIcon(":/images/appicon.png"));
-	builtinTemplates->setDescription(tr("Basic template files shipped with TeXstudio."));
-	dialog->addRessource(userTemplates);
-	dialog->addRessource(builtinTemplates);
+
+	QFileInfo fi(QDir(configBaseDir), "template_resources.xml");
+	if (!fi.exists()) {
+		QFile::copy(":/utilities/template_resources.xml", fi.absoluteFilePath()); // set up default
+	}
+
+	QList<AbstractTemplateRessource *> l = ressourcesFromXMLFile(fi.absoluteFilePath());
+	foreach (AbstractTemplateRessource *res, l) {
+		dialog->addRessource(res);
+	}
 	return dialog;
-}
-
-TemplateHandle TemplateManager::latexTemplateDialogExec() {
-	TemplateSelector dialog(tr("Select Latex Template"));
-	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
-	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	LocalLatexTemplateRessource *userTemplates = new LocalLatexTemplateRessource(userTemplateDir(), tr("User"), this, QIcon(":/images/user-identity.png"));
-	userTemplates->setDescription(tr("User created template files"));
-	userTemplates->setEditable(true);
-	LocalLatexTemplateRessource *builtinTemplates = new LocalLatexTemplateRessource(builtinTemplateDir(), tr("Builtin"), this, QIcon(":/images/appicon.png"));
-	builtinTemplates->setDescription(tr("Basic template files shipped with TeXstudio."));
-	dialog.addRessource(userTemplates);
-	dialog.addRessource(builtinTemplates);
-
-	bool ok = dialog.exec();
-	return (ok) ? dialog.selectedTemplate() : TemplateHandle();
 }
 
 bool TemplateManager::tableTemplateDialogExec() {
@@ -122,7 +210,7 @@ bool TemplateManager::tableTemplateDialogExec() {
     dialog.hideFolderSelection();
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	LocalTableTemplateRessource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images/user-identity.png"));
+	LocalTableTemplateRessource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images-ng/user.svgz"));
 	LocalTableTemplateRessource builtinTemplates(builtinTemplateDir(), "Builtin", this, QIcon(":/images/appicon.png"));
 	dialog.addRessource(&userTemplates);
 	dialog.addRessource(&builtinTemplates);
