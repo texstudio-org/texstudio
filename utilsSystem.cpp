@@ -153,39 +153,30 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 
 bool modernStyle;
 bool useSystemTheme;
-QString getRealIconFile(const QString& icon){
+QString getRealIconFile(const QString& icon) {
     if (icon.isEmpty() || icon.startsWith(":/")) return icon;
-    if (QFileInfo(":/images-ng/"+icon+".svg").exists())
-        return ":/images-ng/"+icon+".svg";
-    if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
-        return ":/images-ng/"+icon+".svgz"; //voruebergehend
-    if (QFileInfo(":/symbols-ng/icons/"+icon+".svg").exists())
-        return ":/symbols-ng/icons/"+icon+".svg"; //voruebergehend
-    if (QFileInfo(":/symbols-ng/icons/"+icon+".png").exists())
-        return ":/symbols-ng/icons/"+icon+".png"; //voruebergehend
-    if (modernStyle){
-        if(QFileInfo(":/images-ng/modern/"+icon+".svg").exists())
-            return ":/images-ng/modern/"+icon+".svg";
-        if(QFileInfo(":/images-ng/modern/"+icon+".svgz").exists())
-            return ":/images-ng/modern/"+icon+".svgz";
-        if(QFileInfo(":/modern/images/modern/"+icon+".png").exists())
-            return ":/modern/images/modern/"+icon+".png";
-    }
-    if (!modernStyle){
-        if(QFileInfo(":/images-ng/classic/"+icon+".svg").exists())
-            return ":/images-ng/classic/"+icon+".svg";
-        if(QFileInfo(":/images-ng/classic/"+icon+".svgz").exists())
-            return ":/images-ng/classic/"+icon+".svgz";
-        if(QFileInfo(":/classic/images/classic/"+icon+".png").exists())
-            return ":/classic/images/classic/"+icon+".png";
-    }
-    if (QFileInfo(":/images-ng/"+icon+".svg").exists())
-        return ":/images-ng/"+icon+".svg";
-    if (QFileInfo(":/images-ng/"+icon+".svgz").exists())
-        return ":/images-ng/"+icon+".svgz";
-    if (QFileInfo(":/images/"+icon+".png").exists())
-        return ":/images/"+icon+".png";
-    return icon;
+	QStringList iconNames = QStringList()
+			<< ":/images-ng/"+icon+".svg"
+			<< ":/images-ng/"+icon+".svgz"         //voruebergehend
+			<< ":/symbols-ng/icons/"+icon+".svg"   //voruebergehend
+			<< ":/symbols-ng/icons/"+icon+".png";  //voruebergehend
+	if (modernStyle) {
+		iconNames << ":/images-ng/modern/"+icon+".svg"
+				  << ":/images-ng/modern/"+icon+".svgz"
+				  << ":/modern/images/modern/"+icon+".png";
+	} else {
+		iconNames << ":/images-ng/classic/"+icon+".svg"
+				  << ":/images-ng/classic/"+icon+".svgz"
+				  << ":/classic/images/classic/"+icon+".png";
+	}
+	iconNames << ":/images/"+icon+".png";
+
+	foreach (const QString &name, iconNames) {
+		if (QFileInfo(name).exists())
+			return name;
+	}
+
+	return icon;
 }
 
 QIcon getRealIcon(const QString& icon){
