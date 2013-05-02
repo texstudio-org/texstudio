@@ -1109,10 +1109,6 @@ ProcessX* BuildManager::firstProcessOfDirectExpansion(const QString& command, co
 ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& mainFile, bool singleInstance){
 	if (singleInstance && runningCommands.contains(cmd))
 		return 0;
-	
-	qDebug() << QFileInfo("\\\\Path\\To\\Some.file").absoluteFilePath();
-	qDebug() << QFileInfo("V:\\Path\\To\\Some.file").absoluteFilePath();
-
 
 	ProcessX* proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
