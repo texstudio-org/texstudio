@@ -16,7 +16,7 @@ QString TemplateManager::builtinTemplateDir()
 #ifdef Q_OS_MAC
 	QString fn = "/Applications/texstudio.app/Contents/Resources/";
 	if(!QDir(fn).isReadable()) { // fallback if program is not packaged as app (e.g. debug build )
-		return = QCoreApplication::applicationDirPath()+"/templates/";
+		return QCoreApplication::applicationDirPath()+"/templates/";
 	}
 	return fn;
 #endif
