@@ -131,10 +131,10 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
 		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
 		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
@@ -157,10 +157,10 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
 		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
 		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
@@ -183,10 +183,10 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
 		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
 		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
@@ -210,10 +210,10 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
 		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
 		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="rounding:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="rounding:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
