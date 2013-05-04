@@ -1217,15 +1217,15 @@ void Texmaker::createStatusBar() {
 
 	statusLabelMode=new QLabel(status);
 	statusLabelProcess=new QLabel(status);
-	status->addPermanentWidget(statusLabelProcess,0);
-	status->addPermanentWidget(statusLabelMode,0);
+	status->addPermanentWidget(statusLabelProcess, 0);
+	status->addPermanentWidget(statusLabelMode, 0);
 	for (int i=1; i<=3; i++) {
-		QPushButton* pb=new QPushButton(QIcon(QString(":/images/bookmark%1.png").arg(i)),"",status);
+		QPushButton* pb = new QPushButton(QIcon(QString(":/images-ng/bookmark%1.svgz").arg(i)), "", status);
 		pb->setToolTip(tr("Click to jump to the bookmark"));
-		connect(pb,SIGNAL(clicked()),getManagedAction(QString("main/edit/gotoBookmark/bookmark%1").arg(i)),SIGNAL(triggered()));
+		connect(pb, SIGNAL(clicked()), getManagedAction(QString("main/edit/gotoBookmark/bookmark%1").arg(i)), SIGNAL(triggered()));
 		pb->setMaximumSize(20,20);
 		pb->setFlat(true);
-		status->addPermanentWidget(pb,0);
+		status->addPermanentWidget(pb, 0);
 	}
 }
 
