@@ -1245,7 +1245,7 @@ LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
   mHighlightIndex=QModelIndex();
   iconSection.resize(LatexParser::getInstance().structureCommands.count());
   for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-    iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
+    iconSection[i]=getRealIcon(LatexParser::getInstance().structureCommands[i].mid(1));
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -1829,7 +1829,7 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 void LatexDocuments::settingsRead(){
 	model->iconSection.resize(LatexParser::getInstance().structureCommands.count());
 	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-		model->iconSection[i]=QIcon(":/images/"+LatexParser::getInstance().structureCommands[i].mid(1)+".png");
+        model->iconSection[i]=getRealIcon(LatexParser::getInstance().structureCommands[i].mid(1));
 }
 bool LatexDocuments::singleMode() const {
 	return !masterDocument;

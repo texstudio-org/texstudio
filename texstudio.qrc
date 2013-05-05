@@ -30,12 +30,7 @@
         <file>images/splash_large.png</file>
         <file>images/appicon.png</file>
         <file>images/previewicon.png</file>
-        <file>images/chapter.png</file>
         <file>images/include.png</file>
-        <file>images/part.png</file>
-        <file>images/section.png</file>
-        <file>images/subsection.png</file>
-        <file>images/subsubsection.png</file>
         <file>tags/asymptote_tags.xml</file>
         <file>tags/brackets_tags.xml</file>
         <file>tags/metapost_tags.xml</file>
