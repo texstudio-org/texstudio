@@ -1499,10 +1499,33 @@ int QDocument::findLineRegExp(const QString &searchText,  const int& startLine, 
             return i;
     }
 
-    return -1;
+	return -1;
 }
 
-
+/*!
+ * \brief finds the closest line with text equal to lineText by interleavingly checking lines before and after startLine
+ * \param lineText
+ * \param startLine line number to start from
+ * \return line number of the found line, else -1
+ */
+int QDocument::findNearLine(const QString &lineText, int startLine) const {
+	int lineNum = - 1;
+	for (int delta=0; delta<lines(); delta++) {
+		if (startLine+delta < lines()) {
+			if (line(startLine+delta).text() == lineText) {
+				lineNum = startLine + delta;
+				break;
+			}
+		}
+		if (startLine-delta >= 0) {
+			if (line(startLine-delta).text() == lineText) {
+				lineNum = startLine - delta;
+				break;
+			}
+		}
+	}
+	return lineNum;
+}
 
 /*!
 	\return The Y document coordinate of a given line

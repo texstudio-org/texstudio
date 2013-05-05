@@ -252,7 +252,8 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentLine findLine(int& position) const;
 		int findLineContaining(const QString &searchText,  const int& startLine=0, const Qt::CaseSensitivity cs = Qt::CaseSensitive, const bool backward=false) const;
 		int findLineRegExp(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool wholeWord, const bool useRegExp) const;
-		
+		int findNearLine(const QString &lineText, int startLine) const;
+
 		bool isLineModified(const QDocumentLine& l) const;
 		bool hasLineEverBeenModified(const QDocumentLine& l) const;
 		
