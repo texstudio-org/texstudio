@@ -1174,8 +1174,32 @@ void QEditor::fileChanged(const QString& file)
 		if ( autoReload )
 		{
 			emit fileAutoReloading(fileName());
+			// save cursor information
+			int lineNum = cursor().lineNumber();
+			int col = cursor().columnNumber();
+			int anchorLineOffset = cursor().anchorLineNumber() - lineNum;
+			int anchorCol = cursor().anchorColumnNumber();
+			QString lineText = cursor().line().text();
+
 			load(fileName(),m_doc->codec());
 			m_saveState = Undefined;
+
+			// restore cursor position based on lineText
+			int newLineNum = m_doc->findNearLine(lineText, lineNum);
+			QDocumentCursor cur(m_doc, newLineNum+anchorLineOffset, anchorCol, newLineNum, col);
+			if (newLineNum>=0 && cur.isValid()) {
+				setCursor(cur);
+			} else {
+				// fall back to staying on the same line number
+				cur = QDocumentCursor(m_doc, lineNum);
+				if (cur.isValid()) {
+					setCursor(cur);
+				} else {
+					// fall back 2: the new document contains fewer lines than the previous cursor position. -> end ist closest to previous position
+					setCursor(QDocumentCursor(m_doc, m_doc->lineCount()-1));
+				}
+			}
+
 			emit fileReloaded();
 			return;
 		}
