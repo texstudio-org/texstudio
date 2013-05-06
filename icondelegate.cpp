@@ -12,6 +12,7 @@
 #include "mostQtHeaders.h"
  
 #include "icondelegate.h"
+#include "utilsSystem.h"
 
 static const int textMargin = 2;
 
@@ -41,7 +42,8 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	// do layout
 	value = model->data(index, Qt::DecorationRole);
 	QPixmap pixmap = decoration(opt, value);
-    QSize pixmapSize= pixmap.size()/2;
+    const int overScale= isRetinaMac() ? 2 : 1;
+    QSize pixmapSize= pixmap.size()/overScale;
     QRect pixmapRect(QPoint(0,0),pixmapSize);
     //QRect pixmapRect=pixmap.rect();
     qDebug()<<pixmapRect;
@@ -264,9 +266,10 @@ void IconDelegate::doLayout(const QStyleOptionViewItem &option,
 }
 
 QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVariant &variant) const {
+    const int overScale= isRetinaMac() ? 2 : 1;
 	switch (variant.type()) {
 	case QVariant::Icon:
-        return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize*2,
+        return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize*overScale,
 		        option.state & QStyle::State_Enabled
 		        ? QIcon::Normal : QIcon::Disabled,
 		        option.state & QStyle::State_Open
