@@ -518,10 +518,10 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 			
 			for (int i=2013; i>=2007; i--) {
-				//paths << QString("/usr/texbin MACTEX/TEXLIVE%i").arg(i); from texmaker comment
-				paths << QString("/usr/local/texlive/%i/bin/x86_64-darwin/").arg(i);
-				paths << QString("/usr/local/texlive/%i/bin/i386-darwin/").arg(i);
-				paths << QString("/usr/local/texlive/%i/bin/powerpc-darwin/").arg(i);
+                //paths << QString("/usr/texbin MACTEX/TEXLIVE%1").arg(i); from texmaker comment
+                paths << QString("/usr/local/texlive/%1/bin/x86_64-darwin/").arg(i);
+                paths << QString("/usr/local/texlive/%1/bin/i386-darwin/").arg(i);
+                paths << QString("/usr/local/texlive/%1/bin/powerpc-darwin/").arg(i);
 			}
 			foreach (const QString& p, paths)
 				if (QFileInfo(p+fileName).exists())
