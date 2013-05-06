@@ -158,7 +158,7 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 
 			foreach ( int id, lm )
 			{
-				QPixmap pix = mic->markType(id).icon;
+                QPixmap pix = mic->markType(id).icon.pixmap(32);
 
 				if ( pix.isNull() )
 					continue;
