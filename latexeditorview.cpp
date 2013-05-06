@@ -1793,7 +1793,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count){
  * Returns an empty string if there is no math formula.
  */
 QString LatexEditorView::extractMath(QDocumentCursor cursor) {
-	if (!cursor.line().getFormatAt(cursor.columnNumber())==math_DelimiterFormat)
+    if (cursor.line().getFormatAt(cursor.columnNumber())!=math_DelimiterFormat)
 		return QString();
 	int col = cursor.columnNumber();
 	while (col > 0 && cursor.line().getFormatAt(col-1)==math_DelimiterFormat) col--;
