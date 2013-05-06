@@ -97,7 +97,7 @@ struct QLineMarkType
 	bool user;
 	bool focus;
 	QString id;
-	QPixmap icon;
+    QIcon icon;
 	QColor color, defaultColor;
 	int priority;
 	int persistency;
