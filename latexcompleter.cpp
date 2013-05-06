@@ -841,11 +841,14 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
         QString str=*i;
         if(baseCommands.contains(str))
             continue;
+        bool isReference=str.startsWith('@');
+        if(isReference)
+            str=str.mid(1);
         CompletionWord cw(str);
         if(completionType==CT_COMMANDS){
             cw.index=qHash(str);
             cw.snippetLength=str.length();
-            cw.usageCount=2;
+            cw.usageCount= isReference ? 2 : 0; // make reference always visible (most used) in completer
             QList<QPair<int,int> >res=config->usage.values(cw.index);
             foreach(const PairIntInt& elem,res){
                 if(elem.first==cw.snippetLength){

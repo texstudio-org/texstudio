@@ -5739,7 +5739,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	// collect user commands and references
 	foreach(const LatexDocument* doc,docs){
 		foreach(const QString& refCommand, latexParser.possibleCommands["%ref"]){
-			QString temp=refCommand+"{%1}";
+            QString temp='@'+refCommand+"{%1}";
 			foreach (const QString& l, doc->labelItems())
 				words.insert(temp.arg(l));
 		}
@@ -5761,7 +5761,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 
 			//automatic use of cite commands
 			foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
-				QString temp=citeCommand+"{%1}";
+                QString temp='@'+citeCommand+"{%1}";
 				for (int i=0; i<bibTex.ids.count();i++)
 					words.insert(temp.arg(bibTex.ids[i]));
 			}
@@ -5774,7 +5774,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
         }
 		//automatic use of cite commands
 		foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
-			QString temp=citeCommand+"{%1}";
+            QString temp='@'+citeCommand+"{%1}";
             foreach (const QString &value, bibIds)
 				words.insert(temp.arg(value));
 		}
