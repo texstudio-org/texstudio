@@ -380,7 +380,7 @@ void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 			} else if ( field == "focus" ) {
 				t.focus = flag;
 			} else if ( field == "icon" ) {
-				t.icon = QPixmap(value);
+                t.icon = QIcon(value);
 			} else if ( field == "color" ) {
 				//t.color = QColor(value);
 				
