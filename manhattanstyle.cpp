@@ -54,6 +54,7 @@
 #include <QtGui/QStyleOption>
 #include <QtGui/QToolBar>
 #include <QtGui/QToolButton>
+#include "utilsSystem.h"
 
 #if QT_VERSION >= 0x040500
 
@@ -973,7 +974,12 @@ void ManhattanStyle::drawComplexControl(ComplexControl control, const QStyleOpti
             label.palette = panelPalette(option->palette);
             int fw = pixelMetric(PM_DefaultFrameWidth, option, widget);
             label.rect = button.adjusted(fw, fw, -fw, -fw);
-            drawControl(CE_ToolButtonLabel, &label, painter, widget);
+            if(!label.icon.isNull() && isRetinaMac()){
+                label.rect = button.adjusted(4*fw, 4*fw, -4*fw, -4*fw);
+                painter->drawPixmap(label.rect,label.icon.pixmap(label.rect.width()*2,label.rect.height()*2));
+            }else{
+                drawControl(CE_ToolButtonLabel, &label, painter, widget);
+            }
 
             if (toolbutton->subControls & SC_ToolButtonMenu) {
                 tool.state = mflags;
