@@ -976,7 +976,7 @@ void ManhattanStyle::drawComplexControl(ComplexControl control, const QStyleOpti
             label.rect = button.adjusted(fw, fw, -fw, -fw);
             if(!label.icon.isNull() && isRetinaMac()){
                 label.rect = button.adjusted(4*fw, 4*fw, -4*fw, -4*fw);
-                painter->drawPixmap(label.rect,label.icon.pixmap(label.rect.width()*2,label.rect.height()*2));
+                painter->drawPixmap(label.rect,label.icon.pixmap(label.rect.width()*8,label.rect.height()*8));
             }else{
                 drawControl(CE_ToolButtonLabel, &label, painter, widget);
             }
