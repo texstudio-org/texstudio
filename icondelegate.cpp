@@ -41,7 +41,10 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	// do layout
 	value = model->data(index, Qt::DecorationRole);
 	QPixmap pixmap = decoration(opt, value);
-	QRect pixmapRect = pixmap.rect();
+    QSize pixmapSize= pixmap.size()/2;
+    QRect pixmapRect(QPoint(0,0),pixmapSize);
+    //QRect pixmapRect=pixmap.rect();
+    qDebug()<<pixmapRect;
 
 	QFontMetrics fontMetrics(opt.font);
 	QString text = model->data(index, Qt::DisplayRole).toString();
@@ -109,9 +112,9 @@ void IconDelegate::drawDecoration(QPainter *painter, const QStyleOptionViewItem 
 		if (option.state & QStyle::State_Selected) {
 			bool enabled = option.state & QStyle::State_Enabled;
 			QPixmap *pm = selected(pixmap, option.palette, enabled);
-			painter->drawPixmap(rect.topLeft(), *pm);
+            painter->drawPixmap(rect, *pm);
 		} else {
-			painter->drawPixmap(rect.topLeft(), pixmap);
+            painter->drawPixmap(rect, pixmap);
 		}
 	}
 }
@@ -263,7 +266,7 @@ void IconDelegate::doLayout(const QStyleOptionViewItem &option,
 QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVariant &variant) const {
 	switch (variant.type()) {
 	case QVariant::Icon:
-		return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize,
+        return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize*2,
 		        option.state & QStyle::State_Enabled
 		        ? QIcon::Normal : QIcon::Disabled,
 		        option.state & QStyle::State_Open
