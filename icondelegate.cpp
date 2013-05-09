@@ -46,7 +46,6 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     QSize pixmapSize= pixmap.size()/overScale;
     QRect pixmapRect(QPoint(0,0),pixmapSize);
     //QRect pixmapRect=pixmap.rect();
-    qDebug()<<pixmapRect;
 
 	QFontMetrics fontMetrics(opt.font);
 	QString text = model->data(index, Qt::DisplayRole).toString();
