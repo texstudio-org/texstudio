@@ -1504,6 +1504,7 @@ bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
 	return true;
 }
 ///////////////////FILE//////////////////////////////////////
+
 LatexEditorView *Texmaker::editorViewForLabel(LatexDocument *doc, const QString &label) {
 	// doc can be any document, in which the label is valid
 	REQUIRE_RET(doc, 0);
@@ -1513,6 +1514,14 @@ LatexEditorView *Texmaker::editorViewForLabel(LatexDocument *doc, const QString 
 	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(line.document());
 	REQUIRE_RET(targetDoc, 0);
 	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
+}
+
+void guessLanguageFromContent(QLanguageFactory* m_languages, QEditor* e){
+	QDocument* doc = e->document();
+	if (doc->lineCount() == 0) return;
+	if (doc->line(0).text().startsWith("<?xml") ||
+	    doc->line(0).text().startsWith("<!DOCTYPE"))
+		m_languages->setLanguage(e, ".xml");
 }
 
 LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) {
@@ -1575,6 +1584,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 		edit->editor->setFileName(doc->getFileName());
 		disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
 		configureNewEditorView(edit);
+		if (edit->editor->fileInfo().suffix()!="tex")
+			m_languages->setLanguage(edit->editor, f_real);
+		if (!edit->editor->languageDefinition())
+			guessLanguageFromContent(m_languages, edit->editor);
 
 		doc->setLineEnding(edit->editor->document()->originalLineEnding());
 		doc->setEditorView(edit); //update file name (if document didn't exist)
@@ -1618,6 +1631,11 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 	//QTime time;
 	//time.start();
 	edit->editor->load(f_real,QDocument::defaultCodec());
+
+	if (!edit->editor->languageDefinition())
+		guessLanguageFromContent(m_languages, edit->editor);
+
+
 	//qDebug() << "Load time: " << time.elapsed();
 	edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
 	

@@ -72,7 +72,7 @@ public:
     Q_INVOKABLE QString getRelativeFileName(const QString & file, QString basepath, bool keepSuffix=false); //provide function for scripts
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
-	
+
 public slots:
     LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
