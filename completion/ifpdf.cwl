@@ -1,4 +1,4 @@
-# Commands from ifpdf.sty
-# sdm 4.3.'12
+﻿# doncherry/2013-05-11 for ifpdf v2.3
 \ifpdf
+\else
 \fi
