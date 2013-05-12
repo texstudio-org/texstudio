@@ -63,8 +63,11 @@
 <file>completion/graphicx.cwl</file>
 <file>completion/harvard.cwl</file>
 <file>completion/hyperref.cwl</file>
+<file>completion/ifluatex.cwl</file>
 <file>completion/ifpdf.cwl</file>
+<file>completion/iftex.cwl</file>
 <file>completion/ifthen.cwl</file>
+<file>completion/ifvtex.cwl</file>
 <file>completion/ifxetex.cwl</file>
 <file>completion/import.cwl</file>
 <file>completion/jurabib.cwl</file>
