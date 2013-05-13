@@ -341,9 +341,18 @@ bool localAwareLessThan(const QString &s1, const QString &s2) {
 // removes whitespace from the beginning of the string
 QString trimLeft(const QString &s) {
 	int j;
-	for (j=0; j<s.length();j++)
+	for (j=0; j<s.length(); j++)
 		if (s[j]!=' ' && s[j]!='\t' && s[j]!='\r' && s[j]!='\n') break;
 	return s.mid(j);
+}
+
+// removes whitespace from the end of the string
+QString trimRight(const QString &s) {
+	if (s.isEmpty()) return QString();
+	int j;
+	for (j=s.length()-1; j>=0; j--)
+		if (s[j]!=' ' && s[j]!='\t' && s[j]!='\r' && s[j]!='\n') break;
+	return s.left(j+1);
 }
 
 

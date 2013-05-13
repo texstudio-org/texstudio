@@ -62,6 +62,7 @@ QList< CommandArgument > getCommandOptions(const QString &line, int pos=0, int *
 QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace=false);
 
 QString trimLeft(const QString &s);
+QString trimRight(const QString &s);
 
 // find token (e.g. \label \input \section and return content (\section{content})
 QString findToken(const QString &line,const QString &token);
