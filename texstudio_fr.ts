@@ -2262,7 +2262,7 @@ to set the key anyway?</source>
     <message utf8="true">
         <location line="+318"/>
         <source>English Quotes (unicode): “ ”</source>
-        <translation type="unfinished"></translation>
+        <translation>Guillemets anglais (unicode) : “ ”</translation>
     </message>
     <message>
         <location line="+75"/>
@@ -2707,17 +2707,17 @@ to set the key anyway?</source>
     <message>
         <location line="+21"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger silencieusement les fichiers sauvegardés après modifications externes (l&apos;historique défaire/refaire sera perdu)  </translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuiller noter que LaTeX doit quand même être capable de d&apos;afficher le caractère, si bien que le même package doit être présent, comme lorsque la commande LaTeX est utilisée</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Insert Symbol as Unicode</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer un symbole en tant que caractère unicode</translation>
     </message>
     <message>
         <location line="+316"/>
@@ -5343,12 +5343,12 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location line="+187"/>
         <source>Enlarge Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Agrandir l&apos;afficheur</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Réduire l&apos;afficheur</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="+2456"/>
@@ -6339,7 +6339,13 @@ Undo/Redo stack would be discarded by the auto-reload.
 Do you wish to keep up to date by reloading the file?
 
 (Note: You can permanently enable silent reloading in the options.)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+a été modifié par une autre application.
+
+L&apos;historique Défaire/Refaire sera perdu par le rechargement automatique.
+Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
+
+(Remarque : vous pouvez dans les options activer de façon permanente le rechargement sans confirmation.)</translation>
     </message>
     <message>
         <location line="+234"/>
@@ -8209,7 +8215,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     <message>
         <location line="+12"/>
         <source>Unicode Character: </source>
-        <translation type="unfinished"></translation>
+        <translation>Caractère unicode : </translation>
     </message>
 </context>
 <context>
@@ -8484,7 +8490,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="-2"/>
         <source>Unnamed Resource</source>
-        <translation type="unfinished"></translation>
+        <translation>Ressource sans nom </translation>
     </message>
     <message>
         <location line="+4"/>
@@ -10755,12 +10761,12 @@ included document in %1</source>
     <message>
         <location line="+94"/>
         <source>Show embedded PDF large</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le PDF embarqué en grand</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show embedded PDF small</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le PDF embarqué en petit</translation>
     </message>
     <message>
         <location line="+105"/>
