@@ -31,25 +31,26 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
 	addItem(tr("<none>"));
 	for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
 		addItem(QKeySequence(k).toString(QKeySequence::NativeText));
-	for (int c=0; c<=1; c++)
-		for (int s=0; s<=1; s++)
-			for (int a=0; a<=1; a++) {
-				if (a || c || s) {
-					for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
-						addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-					for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
-						addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-					for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
-						addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-					if (a || c) {
-						for (int k=Qt::Key_Left; k<=Qt::Key_Down; k++)
-							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
-						for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
-							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+k).toString(QKeySequence::NativeText));
+	for (int m=0; m<=1; m++)
+		for (int c=0; c<=1; c++)
+			for (int s=0; s<=1; s++)
+				for (int a=0; a<=1; a++) {
+					if (a || c || s || m) {
+						for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
+							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+						for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
+							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+						for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
+							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+						if (a || c) {
+							for (int k=Qt::Key_Left; k<=Qt::Key_Down; k++)
+								addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+							for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
+								addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+						}
 					}
+					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+Qt::Key_Tab).toString(QKeySequence::NativeText));
 				}
-				addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+Qt::Key_Tab).toString(QKeySequence::NativeText));
-			}
 	setEditable(true);
 }
 
