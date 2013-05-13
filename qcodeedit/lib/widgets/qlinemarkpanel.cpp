@@ -158,17 +158,18 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 
 			foreach ( int id, lm )
 			{
-                QPixmap pix = mic->markType(id).icon.pixmap(32);
+				QIcon icon = mic->markType(id).icon;
 
-				if ( pix.isNull() )
+				if ( icon.isNull() )
 					continue;
 
-				int h = qMin(pix.height(), ls),
-					w = qMin(pix.width(), 16),
-					x = count,
-					y = posY + ( (ls - h) >> 1 );
+				int size = qMin(16, ls-4); // (maxWidth, maxHeight) ssuming square icons
 
-				p->drawPixmap(x, y, w, h, pix);
+
+				int x = count,
+					y = posY + ( (ls - size) >> 1 );
+
+				p->drawPixmap(x, y, icon.pixmap(size));
 
 				if (count < 16*(maxMarksPerLine-1))
                     count += 16;
