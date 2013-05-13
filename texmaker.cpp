@@ -1241,7 +1241,10 @@ void Texmaker::UpdateCaption() {
 	if (!currentEditorView())	{
 		title=TEXSTUDIO;
 	} else {
-		title="Document : "+QDir::toNativeSeparators(getCurrentFileName());
+		QString file = QDir::toNativeSeparators(getCurrentFileName());
+		if (file.isEmpty() && EditorTabs->currentIndex()>=0)
+			file = EditorTabs->tabText(EditorTabs->currentIndex());
+		title = file + " - " + TEXSTUDIO;
 		if (currentEditorView()->editor) {
 			NewDocumentStatus();
 			NewDocumentLineEnding();
