@@ -865,7 +865,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+3169"/>
+        <location filename="configdialog.ui" line="+3179"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -875,8 +875,8 @@
         <translation>Annuler</translation>
     </message>
     <message>
-        <location line="-3067"/>
-        <location line="+1322"/>
+        <location line="-3077"/>
+        <location line="+1332"/>
         <source>Appearance</source>
         <translation>Apparence</translation>
     </message>
@@ -909,7 +909,7 @@
         <translation type="obsolete">moderne</translation>
     </message>
     <message>
-        <location line="-1251"/>
+        <location line="-1261"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Affichage de structure/symboles par onglets</translation>
     </message>
@@ -1026,7 +1026,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Afficher le log en cas d&apos;erreurs de compilation</translation>
     </message>
     <message>
-        <location line="+957"/>
+        <location line="+967"/>
         <source>Show Whitespace</source>
         <translation>Afficher les espaces</translation>
     </message>
@@ -1048,8 +1048,8 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Supprimer ligne</translation>
     </message>
     <message>
-        <location line="-1340"/>
-        <location filename="configdialog.cpp" line="+402"/>
+        <location line="-1350"/>
+        <location filename="configdialog.cpp" line="+403"/>
         <source>Shortcuts</source>
         <translation>Raccourcis clavier</translation>
     </message>
@@ -1062,7 +1062,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Lancer latex+bibtex+latex avant compilation si le ou les fichiers .bib ont été modifiés</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+24"/>
         <location line="+170"/>
         <source>1</source>
         <translation></translation>
@@ -1418,7 +1418,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1371"/>
+        <location filename="configdialog.ui" line="-1381"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Ne pas lancer l&apos;afficheur si le fichier dvi/ps/pdf est déjà ouvert</translation>
     </message>
@@ -1431,7 +1431,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">jamais</translation>
     </message>
     <message>
-        <location line="+986"/>
+        <location line="+996"/>
         <source>5 minutes</source>
         <translation>5 minutes</translation>
     </message>
@@ -1627,8 +1627,8 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Prévisualisation automatique :</translation>
     </message>
     <message>
-        <location line="-2106"/>
-        <location line="+960"/>
+        <location line="-2116"/>
+        <location line="+970"/>
         <location line="+1097"/>
         <source>Never</source>
         <translation>Jamais</translation>
@@ -1782,7 +1782,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">troisème</translation>
     </message>
     <message>
-        <location line="-1616"/>
+        <location line="-1626"/>
         <source>Configure TeXstudio</source>
         <translation>Configurer TeXstudio</translation>
     </message>
@@ -1795,7 +1795,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">Inverser les guillemets français &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location line="+1587"/>
+        <location line="+1597"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Limiter la recherche à une sélection existante</translation>
     </message>
@@ -2099,7 +2099,7 @@ to set the key anyway?</source>
         <translation type="obsolete">Afficher tout</translation>
     </message>
     <message>
-        <location line="-298"/>
+        <location line="-308"/>
         <source>Build Options</source>
         <translation>Options de production</translation>
     </message>
@@ -2141,12 +2141,12 @@ to set the key anyway?</source>
         <translation>&lt;inconnu&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2378"/>
+        <location filename="configdialog.ui" line="+2388"/>
         <source>Show Advanced Options</source>
         <translation>Afficher les options avancées</translation>
     </message>
     <message>
-        <location line="-3008"/>
+        <location line="-3018"/>
         <source>Style:</source>
         <translation>Style :</translation>
     </message>
@@ -2157,12 +2157,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1079"/>
+        <location line="+1089"/>
         <source>Font Size:</source>
         <translation>Taille de police :</translation>
     </message>
     <message>
-        <location line="-1066"/>
+        <location line="-1076"/>
         <source>Language:</source>
         <translation>Langue :</translation>
     </message>
@@ -2255,7 +2255,20 @@ to set the key anyway?</source>
         <translation>Toujours (si non redirigé vers &gt; /dev/null)</translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+149"/>
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+Then you can select a new shortcut by one of the following ways:
+(1) select from the dropdown list
+(2) hit the shortcut combination
+(3) type the string of the shortcut</source>
+        <translation>Pour modifier, double-cliquer sur les entrées dans « Raccourci actuel » ou « Raccourci additionel ».
+Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois méthodes suivantes :
+(1) sélectionner à partir de la liste déroulante ;
+(2) saisir la combinaison de touches ;
+(3) taper en toutes lettres le raccourci.  </translation>
+    </message>
+    <message>
+        <location line="+89"/>
         <source>Show All</source>
         <translation>Afficher tout</translation>
     </message>
@@ -2650,7 +2663,7 @@ to set the key anyway?</source>
         <translation>Coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2617"/>
+        <location filename="configdialog.ui" line="-2627"/>
         <source>Update</source>
         <translation>Mise à jour</translation>
     </message>
@@ -2680,17 +2693,17 @@ to set the key anyway?</source>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2554"/>
+        <location filename="configdialog.ui" line="+2564"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée</translation>
     </message>
     <message>
-        <location line="-2320"/>
+        <location line="-2330"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Nombre maximum de compilations répétées :</translation>
     </message>
     <message>
-        <location line="+995"/>
+        <location line="+1005"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Garder l&apos;indentation des fichiers inclus dans l&apos;arborescence de structure</translation>
     </message>
@@ -2818,7 +2831,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
     </message>
     <message>
-        <location line="-1677"/>
+        <location line="-1687"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt; : nom de fichier sans extension ; &lt;b&gt;@&lt;/b&gt; : numéro de ligne ; &lt;b&gt;?[sélecteur][caractère terminal]&lt;/b&gt; : nom de fichier formaté
@@ -2881,7 +2894,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>Recherche de chemins pour les commandes</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2148"/>
+        <location filename="configdialog.ui" line="+2158"/>
         <source>Cache Size:</source>
         <translation>Taille du cache:</translation>
     </message>
@@ -2965,7 +2978,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>Charger automatiquement les fichiers inclus</translation>
     </message>
     <message>
-        <location line="-749"/>
+        <location line="-759"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -2985,7 +2998,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>Sélection des documents les plus récemment utilisés</translation>
     </message>
     <message>
-        <location line="+1519"/>
+        <location line="+1529"/>
         <source>Smooth Scrolling</source>
         <translation>Défilement doux</translation>
     </message>
@@ -7967,7 +7980,7 @@ Faites-vous confiance à ce script ?</translation>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-689"/>
+        <location filename="configdialog.cpp" line="-690"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;défaut&gt;</translation>
     </message>
@@ -7980,7 +7993,7 @@ Faites-vous confiance à ce script ?</translation>
 <context>
     <name>ShortcutDelegate</name>
     <message>
-        <location line="+135"/>
+        <location line="+136"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;aucun&gt;</translation>
     </message>
