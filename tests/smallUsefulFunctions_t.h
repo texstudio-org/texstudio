@@ -397,6 +397,32 @@ private slots:
 		QEQUAL(ret, out);
 		QEQUAL(retCmd, outCmd);
 	}
+	void test_trimLeft_data(){
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<QString>("trimmedLine");
+
+		QTest::newRow("leftSpace") << " ab" << "ab";
+		QTest::newRow("rightSpace") << "ab " << "ab ";
+		QTest::newRow("bothSpace") << " ab " << "ab ";
+	}
+	void test_trimLeft(){
+		QFETCH(QString, line);
+		QFETCH(QString, trimmedLine);
+		QEQUAL(trimLeft(line), trimmedLine);
+	}
+	void test_trimRight_data(){
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<QString>("trimmedLine");
+
+		QTest::newRow("leftSpace") << " ab" << " ab";
+		QTest::newRow("rightSpace") << "ab " << "ab";
+		QTest::newRow("bothSpace") << " ab " << " ab";
+	}
+	void test_trimRight(){
+		QFETCH(QString, line);
+		QFETCH(QString, trimmedLine);
+		QEQUAL(trimRight(line), trimmedLine);
+	}
 	void test_getSimplifiedSVNVersion_data(){
 		QTest::addColumn<QString>("versionString");
 		QTest::addColumn<int>("out");
