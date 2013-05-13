@@ -709,7 +709,7 @@
     </message>
     <message>
         <source>Show log after compiling if there are errors</source>
-        <translation>Ukázat po sestavení zápis, pokud se vyskytnou chyby</translation>
+        <translation type="obsolete">Ukázat po sestavení zápis, pokud se vyskytnou chyby</translation>
     </message>
     <message>
         <source>1</source>
@@ -2331,6 +2331,50 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Smooth Scrolling</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show messages when starting compiling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>English Quotes (unicode): “ ”</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide grammar errors in non-text environments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide spelling errors in non-text environments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep indentation of includes in structure tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show help on commands in internal pdf viewer (texdoc)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Symbol as Unicode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3511,7 +3555,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Invalid language format</source>
-        <translation>Neplatný formát jazyka</translation>
+        <translation type="obsolete">Neplatný formát jazyka</translation>
     </message>
     <message>
         <source>Invalid codec</source>
@@ -3799,6 +3843,10 @@ Do you want to overwrite it?</source>
         <translation>Předloha se zadaným názvem již existuje.
 Chcete ji přepsat?</translation>
     </message>
+    <message>
+        <source>LaTeX Project Public License (LPPL)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MathAssistant</name>
@@ -3876,6 +3924,10 @@ Chcete ji přepsat?</translation>
     <message>
         <source>Search Results</source>
         <translation>Výsledky hledání</translation>
+    </message>
+    <message>
+        <source>Failed to load log file &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4448,6 +4500,14 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
         <source>Searching for</source>
         <translation>Hledání</translation>
     </message>
+    <message>
+        <source>Enlarge Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shrink Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -4869,7 +4929,7 @@ has been modified by another application.
 
 Undo/Redo stack would be discarded by the auto-reload.
 Do you wish to keep up to date by reloading the file?</source>
-        <translation>%1
+        <translation type="obsolete">%1
 byl změněn jiným programem.
 
 Automatické znovunahrání vyřazuje zásobník Zpět/Znovu.
@@ -5184,6 +5244,16 @@ Pokud si tohoto varování nebudete všímat, TeXstudio se pokusí soubor
 uložit do zadaného umístění. Pokud ale na disku není dost místa, povede
 to ke ztrátě dat.
 </translation>
+    </message>
+    <message>
+        <source>%1
+has been modified by another application.
+
+Undo/Redo stack would be discarded by the auto-reload.
+Do you wish to keep up to date by reloading the file?
+
+(Note: You can permanently enable silent reloading in the options.)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5733,6 +5803,21 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
         <source>Could not gzopen() file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>QIODevice::Append is not supported for GZIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZIODevice</name>
+    <message>
+        <source>QIODevice::Append is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QuaZipFilePrivate</name>
@@ -5858,6 +5943,10 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <source>Cancel</source>
         <translation>Zrušit</translation>
+    </message>
+    <message>
+        <source>graphicx Package</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6328,6 +6417,10 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <source>Packages: </source>
         <translation>Balíky: </translation>
     </message>
+    <message>
+        <source>Unicode Character: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SyntaxCheck</name>
@@ -6554,6 +6647,14 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unnamed Resource</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8577,16 +8678,6 @@ zavřít, předtím než jej budete moci přepsat.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
-
-Do you want to allow and run the new, overriding command?
-
-(a) Allow the new command for this document (only if you trust this document)
-(b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
-(c) Don&apos;t use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>(a) allow for this document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8605,6 +8696,32 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>System Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close latest open environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show embedded PDF large</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show embedded PDF small</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
+
+Do you want to allow and run the new, overriding command?
+
+(a) Yes, allow the new command for this document (only if you trust this document)
+(b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
+(c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to read profile file %1.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9424,7 +9541,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;

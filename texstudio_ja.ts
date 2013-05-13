@@ -371,7 +371,7 @@
 <context>
     <name>BuildManager</name>
     <message>
-        <location filename="buildmanager.cpp" line="+186"/>
+        <location filename="buildmanager.cpp" line="+193"/>
         <location line="+3"/>
         <source>Biber</source>
         <translation>Biber</translation>
@@ -382,28 +382,28 @@
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location line="+407"/>
+        <location line="+409"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation>txs:///command[...またはtxs:///command{...の修飾子が使用されていますが、サポートされているのは構文を純粋にするためのスラッシュ接尾語付きのtxs:///command/[...かtxs:///command/{...の修飾子のみです。</translation>
     </message>
     <message>
-        <location line="-404"/>
+        <location line="-406"/>
         <location line="+3"/>
         <source>Internal PDF Viewer (Windowed)</source>
         <translation>組み込みPDFビューア（別枠）</translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+351"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>コマンドが%1レベルに展開されています。&quot;%2&quot;の展開を続けますか?</translation>
     </message>
     <message>
-        <location line="+792"/>
+        <location line="+817"/>
         <source>Internal Pdf Viewer</source>
         <translation>組み込みPDFビューア</translation>
     </message>
     <message>
-        <location line="-1151"/>
+        <location line="-1178"/>
         <location line="+22"/>
         <source>DVI-&gt;PDF Chain</source>
         <translation>DVI-&gt;PDFチェーン</translation>
@@ -425,14 +425,14 @@
         <translation>コンパイル &amp; 表示</translation>
     </message>
     <message>
-        <location line="-108"/>
+        <location line="-115"/>
         <location line="+20"/>
-        <location line="+1265"/>
+        <location line="+1299"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
-        <location line="-1177"/>
+        <location line="-1204"/>
         <location line="+19"/>
         <source>PS Chain</source>
         <translation>PSチェーン</translation>
@@ -473,12 +473,12 @@
         <translation>Asymptote PDFチェーン</translation>
     </message>
     <message>
-        <location line="+462"/>
+        <location line="+464"/>
         <source>Failed to understand command %1</source>
         <translation>コマンド%1が理解できません</translation>
     </message>
     <message>
-        <location line="-458"/>
+        <location line="-460"/>
         <source>Recompile Bibliography</source>
         <translation>参考文献の再コンパイル</translation>
     </message>
@@ -495,18 +495,18 @@
         <translation>DVI-&gt;PS-&gt;PDFチェーン</translation>
     </message>
     <message>
-        <location line="+1320"/>
+        <location line="+1347"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>非推奨の2つのスラッシュのコマンドdde://を用いています。さらにスラッシュを加えて3つのスラッシュコマンドdde:///に変更してください。</translation>
     </message>
     <message>
-        <location line="-926"/>
+        <location line="-951"/>
         <location line="+1"/>
         <source>Command %1 not defined</source>
         <translation>コマンド%1は定義されていません</translation>
     </message>
     <message>
-        <location line="-391"/>
+        <location line="-393"/>
         <source>Precompile</source>
         <translation>プリコンパイル</translation>
     </message>
@@ -537,12 +537,12 @@
         <translation>既定の索引ツール</translation>
     </message>
     <message>
-        <location line="+779"/>
+        <location line="+807"/>
         <source>Error: No command given</source>
         <translation>エラー: コマンドが与えられていません</translation>
     </message>
     <message>
-        <location line="-789"/>
+        <location line="-817"/>
         <location line="+3"/>
         <source>Internal PDF Viewer (Embedded)</source>
         <translation>組み込みPDFビューア（埋め込み）</translation>
@@ -589,7 +589,7 @@
         <translation>既定値に戻す</translation>
     </message>
     <message>
-        <location filename="cleandialog.cpp" line="+62"/>
+        <location filename="cleandialog.cpp" line="+63"/>
         <source>Open Files</source>
         <translation>ファイルを開く</translation>
     </message>
@@ -637,7 +637,7 @@
 <context>
     <name>CodeSnippet</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="+1510"/>
+        <location filename="smallUsefulFunctions.cpp" line="+1552"/>
         <location line="+1"/>
         <source>something</source>
         <translation>something</translation>
@@ -661,19 +661,24 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+1323"/>
-        <location line="+1519"/>
+        <location filename="configdialog.ui" line="+1160"/>
+        <location line="+1748"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location line="-1940"/>
+        <location line="-2006"/>
         <location line="+170"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location line="-165"/>
+        <location line="-382"/>
+        <source>Show messages when starting compiling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+217"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -687,8 +692,53 @@
         <source>4</source>
         <translation>4</translation>
     </message>
+    <message utf8="true">
+        <location line="+375"/>
+        <source>English Quotes (unicode): “ ”</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
-        <location line="+2186"/>
+        <location line="+85"/>
+        <source>Hide grammar errors in non-text environments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Hide spelling errors in non-text environments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+358"/>
+        <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Keep indentation of includes in structure tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Show help on commands in internal pdf viewer (texdoc)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Insert Symbol as Unicode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1393"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -723,17 +773,22 @@
         <translation>SVN</translation>
     </message>
     <message>
+        <location line="+314"/>
+        <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="configdialog.ui" line="+733"/>
         <source>dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-29"/>
+        <location filename="configdialog.cpp" line="-343"/>
         <source>Diff</source>
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1906"/>
+        <location filename="configdialog.ui" line="-1972"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
@@ -743,17 +798,17 @@
         <translation>スロット</translation>
     </message>
     <message>
-        <location line="+1753"/>
+        <location line="+1819"/>
         <source>Auto Preview:</source>
         <translation>自動プレビュー:</translation>
     </message>
     <message>
-        <location line="-2042"/>
+        <location line="-2105"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>bibファイルが変更されていたらtxs:///recompile-bibliographyを実行。</translation>
     </message>
     <message>
-        <location line="-194"/>
+        <location line="-197"/>
         <source> days</source>
         <translation>日</translation>
     </message>
@@ -783,20 +838,20 @@
         <translation>フォント:</translation>
     </message>
     <message>
-        <location line="+2367"/>
+        <location line="+2433"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location line="-1565"/>
+        <location line="-1631"/>
         <location filename="configdialog.cpp" line="+2"/>
         <source>Menus</source>
         <translation>メニュー</translation>
     </message>
     <message>
         <location line="-203"/>
-        <location line="+908"/>
-        <location line="+1083"/>
+        <location line="+960"/>
+        <location line="+1097"/>
         <source>Never</source>
         <translation>しない</translation>
     </message>
@@ -816,7 +871,7 @@
         <translation>特殊コマンドの位置:</translation>
     </message>
     <message>
-        <location line="-173"/>
+        <location line="-211"/>
         <source>Use single line selection as Search Word</source>
         <translation>単語検索として単一行選択を使用</translation>
     </message>
@@ -826,7 +881,7 @@
         <translation>行番号を表示しない</translation>
     </message>
     <message>
-        <location line="+661"/>
+        <location line="+699"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>続きの文字が補完候補全てに共通している場合、それらを&lt;Tab&gt;で自動挿入できます。</translation>
     </message>
@@ -845,27 +900,27 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;?m&quot;&lt;/b&gt; （&lt;b&gt;%&lt;/b&gt;に一致した）拡張子なしの二重引用符付きファイル名、 &lt;b&gt;?me&lt;/b&gt; 拡張子ありのファイル名（例 example.tex）</translation>
     </message>
     <message>
-        <location line="-656"/>
+        <location line="-694"/>
         <source>All Line Numbers</source>
         <translation>すべての行番号</translation>
     </message>
     <message>
-        <location line="-206"/>
+        <location line="-176"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>フランス語の逆引用符:  &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location line="+1174"/>
+        <location line="+1182"/>
         <source>Check for Bad Words</source>
         <translation>良くない単語を確認</translation>
     </message>
     <message>
-        <location line="-1627"/>
+        <location line="-1693"/>
         <source>Additional Search Paths:</source>
         <translation>追加の検索パス:</translation>
     </message>
     <message>
-        <location line="+1597"/>
+        <location line="+1663"/>
         <source>Long Range Repetitions:</source>
         <translation>広範囲の繰り返し:</translation>
     </message>
@@ -889,12 +944,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location line="-479"/>
+        <location line="-546"/>
         <source>No Line Wrap</source>
         <translation>行のワードラップをしない</translation>
     </message>
     <message>
-        <location line="+1090"/>
+        <location line="+1157"/>
         <source>Replace beamer class by article</source>
         <translation>beamerクラスをarticleクラスで置換</translation>
     </message>
@@ -919,12 +974,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>オリジナルのサイズ</translation>
     </message>
     <message>
-        <location line="-1592"/>
+        <location line="-1600"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>ドイツ語の引用符:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location line="+812"/>
+        <location line="+820"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>&apos;\&apos;がタイプされたら即座に補完を開始します。Ctrl+Spaceで手動で補完を開始することもできます。</translation>
     </message>
@@ -944,7 +999,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>描画モード:</translation>
     </message>
     <message>
-        <location line="-1467"/>
+        <location line="-1533"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX構文解析</translation>
     </message>
@@ -954,32 +1009,32 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>カスタム強調表示</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2435"/>
+        <location filename="configdialog.ui" line="+2501"/>
         <source>Full Page PDF Preview</source>
         <translation>全ページのPDFプレビュー</translation>
     </message>
     <message>
-        <location line="-1166"/>
+        <location line="-1204"/>
         <source>Mouse Wheel Zoom</source>
         <translation>マウスホイールによるズーム</translation>
     </message>
     <message>
-        <location line="-1443"/>
+        <location line="-1471"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>タブ形式の構造/シンボル表示</translation>
     </message>
     <message>
-        <location line="+2061"/>
+        <location line="+2127"/>
         <source>Use following completion files:</source>
         <translation>次の補完ファイルを使用:</translation>
     </message>
     <message>
-        <location line="-1867"/>
+        <location line="-1933"/>
         <source>Dictionaries</source>
         <translation>辞書</translation>
     </message>
     <message>
-        <location line="+2055"/>
+        <location line="+2121"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
@@ -994,7 +1049,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>ウィンドウの大きさに合わせる</translation>
     </message>
     <message>
-        <location line="-2059"/>
+        <location line="-2125"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>コンパイルの繰り返しの最大数:</translation>
     </message>
@@ -1009,12 +1064,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>スペルチェック辞書のディレクトリ:</translation>
     </message>
     <message>
-        <location line="+1324"/>
+        <location line="+1390"/>
         <source>Behind Line Break</source>
         <translation>改行の後ろ</translation>
     </message>
     <message>
-        <location line="-1535"/>
+        <location line="-1601"/>
         <source>Ignore Most System Colors</source>
         <translation>システムの色設定を無視</translation>
     </message>
@@ -1024,7 +1079,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>一部のLaTeX構成物（例えは参照）は正しく表示されるまでに複数回のコンパイルが必要です。</translation>
     </message>
     <message>
-        <location line="+1024"/>
+        <location line="+1090"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>アクセント記号タイプ時に回避策を無効化（Mac OS Xのみ）</translation>
     </message>
@@ -1049,7 +1104,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>特別なルール2:</translation>
     </message>
     <message>
-        <location line="-1834"/>
+        <location line="-1900"/>
         <source>Only For User Commands</source>
         <translation>ユーザーコマンドに対してのみ</translation>
     </message>
@@ -1059,7 +1114,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>配色:</translation>
     </message>
     <message>
-        <location line="+1479"/>
+        <location line="+1531"/>
         <source>5 minutes</source>
         <translation>5分</translation>
     </message>
@@ -1079,32 +1134,32 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>20分</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+147"/>
         <source>Disable fixed pitch mode</source>
         <translation>修正パッチモードを無効化</translation>
     </message>
     <message>
-        <location line="-193"/>
+        <location line="-221"/>
         <source>Auto Save All Files:</source>
         <translation>全てのファイルを自動保存:</translation>
     </message>
     <message>
-        <location line="+462"/>
+        <location line="+490"/>
         <source>In First Character</source>
         <translation>最初の文字で区別</translation>
     </message>
     <message>
-        <location line="-755"/>
+        <location line="-878"/>
         <source>Auto Detect Encoding of Loaded Files</source>
         <translation>読み込んだファイルのエンコーディングを自動検出する</translation>
     </message>
     <message>
-        <location line="-830"/>
+        <location line="-773"/>
         <source>Automatically check every</source>
         <translation>次の期間ごとに自動的に確認</translation>
     </message>
     <message>
-        <location line="+2443"/>
+        <location line="+2509"/>
         <source>Border</source>
         <translation>罫線</translation>
     </message>
@@ -1134,19 +1189,19 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>自動遅延プレビュー:</translation>
     </message>
     <message>
-        <location line="-1648"/>
+        <location line="-1701"/>
         <location filename="configdialog.cpp" line="-3"/>
-        <location filename="configmanager.cpp" line="+1119"/>
+        <location filename="configmanager.cpp" line="+1136"/>
         <source>Editor</source>
         <translation>エディタ</translation>
     </message>
     <message>
-        <location line="+830"/>
+        <location line="+883"/>
         <source>Custom Environment</source>
         <translation>カスタム環境</translation>
     </message>
     <message>
-        <location line="-219"/>
+        <location line="-257"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>ツールチップとしてエディタ上の式のプレビューを表示</translation>
     </message>
@@ -1156,17 +1211,17 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>太いカーソル</translation>
     </message>
     <message>
-        <location line="-1368"/>
+        <location line="-1396"/>
         <source>Language:</source>
         <translation>言語:</translation>
     </message>
     <message>
-        <location line="+2533"/>
+        <location line="+2599"/>
         <source>Always show preview in preview panel</source>
         <translation>プレビューパネルでプレビューを常に表示</translation>
     </message>
     <message>
-        <location line="-1467"/>
+        <location line="-1475"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>csquotesパッケージ: \enquote{  }</translation>
     </message>
@@ -1176,7 +1231,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>詳細なエディタ設定</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1482"/>
+        <location filename="configdialog.ui" line="+1490"/>
         <source>Inline</source>
         <translation>インライン</translation>
     </message>
@@ -1200,32 +1255,32 @@ to set the key anyway?</source>
 それでもこのキーを設定しますか?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1546"/>
+        <location filename="configdialog.ui" line="-1615"/>
         <source>Indent and Unindent Automatically With Spaces Only</source>
         <translation>空白のみで字下げと字下げの解除を自動的に行う</translation>
     </message>
     <message>
-        <location line="-890"/>
+        <location line="-887"/>
         <source>Modern</source>
         <translation>モダン</translation>
     </message>
     <message>
-        <location line="+1048"/>
+        <location line="+971"/>
         <source>Line Spacing:</source>
         <translation>行間隔:</translation>
     </message>
     <message>
-        <location line="+493"/>
+        <location line="+636"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>描画された行のキャッシュが有効ならその行はキャッシュに保存されるので、再描画する必要がありません。より多くのメモリを使用した、スピードの向上につながります（特にMac）。</translation>
     </message>
     <message>
-        <location line="-972"/>
+        <location line="-1038"/>
         <source>Log File</source>
         <translation>ログファイル</translation>
     </message>
     <message>
-        <location line="+719"/>
+        <location line="+747"/>
         <source>Close search and replace panel together</source>
         <translation>検索・置換パネルを共に閉じる</translation>
     </message>
@@ -1240,7 +1295,7 @@ to set the key anyway?</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+619"/>
+        <location filename="configdialog.ui" line="+657"/>
         <source>ToolTip-Help</source>
         <translation>ツールチップヘルプ</translation>
     </message>
@@ -1250,12 +1305,12 @@ to set the key anyway?</source>
         <translation>四角</translation>
     </message>
     <message>
-        <location line="-2753"/>
+        <location line="-2819"/>
         <source>Style:</source>
         <translation>スタイル:</translation>
     </message>
     <message>
-        <location line="+2188"/>
+        <location line="+2254"/>
         <source>Internal</source>
         <translation>組み込み</translation>
     </message>
@@ -1265,12 +1320,12 @@ to set the key anyway?</source>
         <translation>単語の繰り返しを確認</translation>
     </message>
     <message>
-        <location line="-1044"/>
+        <location line="-1168"/>
         <source>Syntax</source>
         <translation>構文</translation>
     </message>
     <message>
-        <location line="-807"/>
+        <location line="-749"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
@@ -1280,22 +1335,22 @@ to set the key anyway?</source>
         <translation>PDFビューア</translation>
     </message>
     <message>
-        <location line="+374"/>
+        <location line="+543"/>
         <source>Indentation Mode:</source>
         <translation>字下げモード:</translation>
     </message>
     <message>
-        <location line="-847"/>
+        <location line="-1016"/>
         <source>Max. Recent Master Documents:</source>
         <translation>最近開いたマスターファイルの最大数:</translation>
     </message>
     <message>
-        <location line="+1133"/>
+        <location line="+1161"/>
         <source>Tab Width:</source>
         <translation>タブ幅:</translation>
     </message>
     <message>
-        <location line="+908"/>
+        <location line="+946"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>長い繰り返しの単語の最小長:</translation>
     </message>
@@ -1305,22 +1360,22 @@ to set the key anyway?</source>
         <translation>LaTeXコマンドの自動置換</translation>
     </message>
     <message>
-        <location line="-943"/>
+        <location line="-951"/>
         <source>French Quotes (babel): \og \fg{}</source>
         <translation>フランス語の引用符(babel型): \og \fg{}</translation>
     </message>
     <message>
-        <location line="+1636"/>
+        <location line="+1644"/>
         <source>Screen Resolution:</source>
         <translation>スクリーンの解像度:</translation>
     </message>
     <message>
-        <location line="-1720"/>
+        <location line="-1789"/>
         <source>Ignore Indentation</source>
         <translation>字下げを無視する</translation>
     </message>
     <message>
-        <location line="+1270"/>
+        <location line="+1339"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>「悪い」または繰り返されている単語のリストを含む辞書。</translation>
     </message>
@@ -1345,8 +1400,8 @@ to set the key anyway?</source>
         <translation>LTのパス:</translation>
     </message>
     <message>
-        <location line="-2309"/>
-        <location line="+1013"/>
+        <location line="-2375"/>
+        <location line="+1079"/>
         <source>Font Size:</source>
         <translation>フォントサイズ:</translation>
     </message>
@@ -1374,7 +1429,7 @@ to set the key anyway?</source>
         <translation>エラーとして強調表示されない、カンマで区切られたLanguageToolのルールリスト。</translation>
     </message>
     <message>
-        <location line="-1609"/>
+        <location line="-1675"/>
         <location filename="configdialog.cpp" line="-2"/>
         <source>Shortcuts</source>
         <translation>キーボードショートカット</translation>
@@ -1385,17 +1440,17 @@ to set the key anyway?</source>
         <translation>基本的なキーマッピング</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+361"/>
+        <location filename="configdialog.ui" line="+303"/>
         <source>Spelling</source>
         <translation>スペル</translation>
     </message>
     <message>
-        <location line="-50"/>
+        <location line="+66"/>
         <source>No Replacement</source>
         <translation>置換しない</translation>
     </message>
     <message>
-        <location line="+1253"/>
+        <location line="+1261"/>
         <source>Start LanguageTool if not running</source>
         <translation>起動していない場合LanguageToolを起動</translation>
     </message>
@@ -1410,12 +1465,12 @@ to set the key anyway?</source>
         <translation>キャッシュサイズ:</translation>
     </message>
     <message>
-        <location line="-1261"/>
+        <location line="-1328"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>最大文字数を超えたら厳密に行のワードラップを行う</translation>
     </message>
     <message>
-        <location line="+332"/>
+        <location line="+399"/>
         <location filename="configdialog.cpp" line="+208"/>
         <source>Completion</source>
         <translation>コマンドの補完</translation>
@@ -1426,7 +1481,7 @@ to set the key anyway?</source>
         <translation>描画された行のキャッシュを無効化</translation>
     </message>
     <message>
-        <location line="-1194"/>
+        <location line="-1260"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;、&lt;b&gt;@@&lt;/b&gt;そして&lt;b&gt;??&lt;/b&gt;は次のようになります: %、@、?
@@ -1448,17 +1503,17 @@ to set the key anyway?</source>
         <translation>既定のショートカット</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+820"/>
+        <location filename="configdialog.ui" line="+848"/>
         <source>Only Important Line Numbers</source>
         <translation>重要な行番号のみ</translation>
     </message>
     <message>
-        <location line="-295"/>
+        <location line="-326"/>
         <source>Keep Indentation</source>
         <translation>字下げを維持する</translation>
     </message>
     <message>
-        <location line="+834"/>
+        <location line="+903"/>
         <source>Additional Commands</source>
         <translation>追加コマンド</translation>
     </message>
@@ -1468,7 +1523,7 @@ to set the key anyway?</source>
         <translation>ショートカット&lt;%1&gt;はコマンドにすでに割り当てられています:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1398"/>
+        <location filename="configdialog.ui" line="-1464"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;特殊文字&lt;/span&gt;</translation>
     </message>
@@ -1478,7 +1533,7 @@ to set the key anyway?</source>
         <translation>メタコマンド</translation>
     </message>
     <message>
-        <location line="+1543"/>
+        <location line="+1609"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>補完の下部または上部のタブバーの大きさ</translation>
     </message>
@@ -1498,57 +1553,57 @@ to set the key anyway?</source>
         <translation>LanguageTool jarを選択</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-473"/>
+        <location filename="configdialog.ui" line="-511"/>
         <source>Line Wrapping:</source>
         <translation>行のワードラップ:</translation>
     </message>
     <message>
-        <location line="-551"/>
+        <location line="-582"/>
         <source>Indent and Unindent Automatically</source>
         <translation>字下げと字下げの解除を自動的に行う</translation>
     </message>
     <message>
-        <location line="+1514"/>
+        <location line="+1583"/>
         <source>Preview with dvipng</source>
         <translation>dvipngでプレビュー</translation>
     </message>
     <message>
-        <location line="-976"/>
+        <location line="-1043"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>最大文字数を超えたら緩やかに行のワードラップを行う</translation>
     </message>
     <message>
-        <location line="-533"/>
+        <location line="-535"/>
         <source>Keep Indentation With Spaces Only</source>
         <translation>空白のみで字下げを維持する</translation>
     </message>
     <message>
-        <location line="+1582"/>
+        <location line="+1651"/>
         <source>Previously previewed text</source>
         <translation>前にプレビューしたテキスト</translation>
     </message>
     <message>
-        <location line="-2302"/>
+        <location line="-2368"/>
         <source>Default Language:</source>
         <translation>既定の言語:</translation>
     </message>
     <message>
-        <location line="+2591"/>
+        <location line="+2657"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>（svn add時に）プロパティにキーワードを用いる</translation>
     </message>
     <message>
-        <location line="-1923"/>
+        <location line="-1720"/>
         <source>Font Family:</source>
         <translation>フォントファミリー:</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="-31"/>
         <source>Default Font Encoding:</source>
         <translation>既定のフォントエンコーディング:</translation>
     </message>
     <message>
-        <location line="-254"/>
+        <location line="-469"/>
         <source>Commands ($PATH)</source>
         <translation>コマンド($PATH)</translation>
     </message>
@@ -1558,12 +1613,12 @@ to set the key anyway?</source>
         <translation>本当にこの列を削除しますか?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1909"/>
+        <location filename="configdialog.ui" line="+1975"/>
         <source>Precompile Preamble</source>
         <translation>プリアンブルをプリコンパイル</translation>
     </message>
     <message>
-        <location line="-2762"/>
+        <location line="-2828"/>
         <source>Configure TeXstudio</source>
         <translation>TeXstudioの設定</translation>
     </message>
@@ -1573,7 +1628,7 @@ to set the key anyway?</source>
         <translation>類語辞典データベース:</translation>
     </message>
     <message>
-        <location line="+1716"/>
+        <location line="+1782"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>非文字キャラクタを押すと選択したテキストを補完</translation>
     </message>
@@ -1603,32 +1658,32 @@ to set the key anyway?</source>
         <translation>辞書データベースの閲覧</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1433"/>
+        <location filename="configdialog.ui" line="-1441"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>フランス語の引用符:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+186"/>
+        <location filename="configdialog.cpp" line="+191"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
         <translation>画像 (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1681"/>
+        <location filename="configdialog.ui" line="+1689"/>
         <source>Magnifier Size:</source>
         <translation>拡大鏡の大きさ:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-5"/>
+        <location filename="configdialog.cpp" line="-10"/>
         <source>Insert Separator</source>
         <translation>罫線を挿入</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2630"/>
+        <location filename="configdialog.ui" line="-2696"/>
         <source>Classic</source>
         <translation>クラシック</translation>
     </message>
     <message>
-        <location line="+1043"/>
+        <location line="+986"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>utf-16/utf-8かISO 8859-1しか決定できません!</translation>
     </message>
@@ -1638,13 +1693,13 @@ to set the key anyway?</source>
         <translation>javaを選択</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-342"/>
+        <location filename="configdialog.ui" line="-285"/>
         <location filename="configdialog.cpp" line="-153"/>
         <source>Command</source>
         <translation>コマンド</translation>
     </message>
     <message>
-        <location line="+976"/>
+        <location line="+1042"/>
         <location line="+47"/>
         <source>Add Line</source>
         <translation>行の追加</translation>
@@ -1655,7 +1710,7 @@ to set the key anyway?</source>
         <translation>最も使用されている</translation>
     </message>
     <message>
-        <location line="-515"/>
+        <location line="-570"/>
         <source>Maximal Characters:</source>
         <translation>最大文字数:</translation>
     </message>
@@ -1665,32 +1720,32 @@ to set the key anyway?</source>
         <translation>DTXファイル</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-929"/>
+        <location filename="configdialog.ui" line="-937"/>
         <source>Check and update bibliography before compiling</source>
         <translation>コンパイル前に参考文献を確認・更新</translation>
     </message>
     <message>
-        <location line="+583"/>
+        <location line="+522"/>
         <source>Citations</source>
         <translation>引用</translation>
     </message>
     <message>
-        <location line="+255"/>
+        <location line="+341"/>
         <source>Show Line Change State</source>
         <translation>行変更の状態を表示</translation>
     </message>
     <message>
-        <location line="-860"/>
+        <location line="-888"/>
         <source>User Commands</source>
         <translation>ユーザーコマンド</translation>
     </message>
     <message>
-        <location line="+1660"/>
+        <location line="+1726"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>段落中で繰り返し使われている言葉を強調表示する。</translation>
     </message>
     <message>
-        <location line="-1114"/>
+        <location line="-1122"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>英語の引用符:  `` &apos;&apos;</translation>
     </message>
@@ -1700,12 +1755,12 @@ to set the key anyway?</source>
         <translation>別のアイコンの読み出し</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+474"/>
+        <location filename="configdialog.ui" line="+415"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>ウィンドウ端で緩やかに行のワードラップを行う</translation>
     </message>
     <message>
-        <location line="+1143"/>
+        <location line="+1210"/>
         <source>Scaled Size</source>
         <translation>拡大されたサイズ</translation>
     </message>
@@ -1725,38 +1780,38 @@ to set the key anyway?</source>
         <translation>表の自動整形</translation>
     </message>
     <message>
-        <location line="-1608"/>
-        <location line="+1294"/>
+        <location line="-1674"/>
+        <location line="+1322"/>
         <source>Appearance</source>
         <translation>外観</translation>
     </message>
     <message>
-        <location line="+1285"/>
+        <location line="+1323"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>パネルが隠れている場合ツールチップとしてプレビューを表示</translation>
     </message>
     <message>
-        <location line="-2168"/>
+        <location line="-2234"/>
         <source>Check Now</source>
         <translation>直ちに確認する</translation>
     </message>
     <message>
-        <location line="+1967"/>
+        <location line="+2033"/>
         <source>Ignored Rules:</source>
         <translation>無視するルール:</translation>
     </message>
     <message>
-        <location line="-1197"/>
+        <location line="-1236"/>
         <source>Inline Checking:</source>
         <translation>インラインチェック:</translation>
     </message>
     <message>
-        <location line="-368"/>
+        <location line="-395"/>
         <source>Close Log-View with Esc-Key</source>
         <translation>Escキーでログビューワーを閉じる</translation>
     </message>
     <message>
-        <location line="+1194"/>
+        <location line="+1260"/>
         <source>Typical</source>
         <translation>典型的</translation>
     </message>
@@ -1777,57 +1832,57 @@ to set the key anyway?</source>
         <translation>行の削除</translation>
     </message>
     <message>
-        <location line="-1482"/>
+        <location line="-1548"/>
         <source>Last Checked:</source>
         <translation>最後の確認日:</translation>
     </message>
     <message>
-        <location line="+1673"/>
+        <location line="+1739"/>
         <source>Use Placeholders</source>
         <translation>プレースホルダーを使用</translation>
     </message>
     <message>
-        <location line="-840"/>
+        <location line="-948"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>モノスペースフォントのみ表示</translation>
     </message>
     <message>
-        <location line="+1327"/>
+        <location line="+1435"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>dvips/ghostscriptでプレビュー</translation>
     </message>
     <message>
-        <location line="-1164"/>
+        <location line="-1202"/>
         <source>Show Whitespace</source>
         <translation>空白を表示</translation>
     </message>
     <message>
-        <location line="-1141"/>
+        <location line="-1169"/>
         <source>Always Show Structure of Master Document</source>
         <translation>マスターファイルの構造を常に表示</translation>
     </message>
     <message>
-        <location line="+1255"/>
+        <location line="+1283"/>
         <source>Auto Complete Parentheses</source>
         <translation>括弧の自動補完</translation>
     </message>
     <message>
-        <location line="+213"/>
+        <location line="+251"/>
         <source>QCE (recommended)</source>
         <translation>QCE（推奨）</translation>
     </message>
     <message>
-        <location line="-641"/>
+        <location line="-591"/>
         <source>Replace Double Quotes:</source>
         <translation>二重引用符の置換:</translation>
     </message>
     <message>
-        <location line="+79"/>
+        <location line="-95"/>
         <source>References</source>
         <translation>参考文献</translation>
     </message>
     <message>
-        <location line="+1078"/>
+        <location line="+1202"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>等価な、より長い単語間に指定された数の単語しかない場合広範囲の繰り返しとしてマークする。</translation>
     </message>
@@ -1837,12 +1892,12 @@ to set the key anyway?</source>
         <translation>文法ワードリストディレクトリを選択</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1602"/>
+        <location filename="configdialog.ui" line="-1668"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>（/dev/nullへリダイレクトされていないなら）常にする</translation>
     </message>
     <message>
-        <location line="+1003"/>
+        <location line="+1069"/>
         <source>Separate Line (No Indent)</source>
         <translation>別の行（インデントなし）</translation>
     </message>
@@ -1862,12 +1917,12 @@ to set the key anyway?</source>
         <translation>別の行（最初の列にインデントする）</translation>
     </message>
     <message>
-        <location line="-226"/>
+        <location line="-264"/>
         <source>Draw cursor as a thick line</source>
         <translation>太線でカーソルを描画</translation>
     </message>
     <message>
-        <location line="+198"/>
+        <location line="+236"/>
         <source>Special Commands:</source>
         <translation>特殊コマンド:</translation>
     </message>
@@ -1892,27 +1947,27 @@ to set the key anyway?</source>
         <translation>コマンドの検索パス</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1358"/>
+        <location filename="configdialog.ui" line="-1424"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>コマンド (%: 拡張子なしファイル名 - @: 行番号 - ?: 拡張ファイル名オプション)</translation>
     </message>
     <message>
-        <location line="+845"/>
+        <location line="+873"/>
         <source>Show Line Numbers:</source>
         <translation>行番号を表示:</translation>
     </message>
     <message>
-        <location line="-244"/>
+        <location line="-82"/>
         <source>Folding</source>
         <translation>折りたたむ</translation>
     </message>
     <message>
-        <location line="+727"/>
+        <location line="+603"/>
         <source>Formats</source>
         <translation>フォーマット</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+309"/>
+        <location filename="configdialog.cpp" line="+313"/>
         <source>You have enabled the advanced options. This allows to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
@@ -1921,17 +1976,17 @@ options again to only view the most common settings.</source>
 一般的な設定のみを見るには再度高度なオプションを無効化します。</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1614"/>
+        <location filename="configdialog.ui" line="-1680"/>
         <source>Use System Theme Icons</source>
         <translation>システムのテーマアイコンを使用</translation>
     </message>
     <message>
-        <location line="+1516"/>
+        <location line="+1582"/>
         <source>Disable cache of character width</source>
         <translation>文字幅のキャッシュを無効化</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-492"/>
+        <location filename="configdialog.cpp" line="-496"/>
         <source>Basic highlighting</source>
         <translation>基本的な強調表示</translation>
     </message>
@@ -1946,22 +2001,22 @@ options again to only view the most common settings.</source>
         <translation>タブバーの大きさ</translation>
     </message>
     <message>
-        <location line="-614"/>
+        <location line="-652"/>
         <source>Special options</source>
         <translation>特別なオプション</translation>
     </message>
     <message>
-        <location line="-595"/>
+        <location line="-623"/>
         <source>Toolbar Customization</source>
         <translation>ツールバーのカスタマイズ</translation>
     </message>
     <message>
-        <location line="+1123"/>
+        <location line="+1189"/>
         <source>Preferred Commands Set:</source>
         <translation>好みのコマンドセット:</translation>
     </message>
     <message>
-        <location line="-653"/>
+        <location line="-691"/>
         <source>Show State Panel</source>
         <translation>状態パネルを表示</translation>
     </message>
@@ -1976,7 +2031,7 @@ options again to only view the most common settings.</source>
         <translation>追加の辞書をダウンロード: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1353"/>
+        <location filename="configdialog.ui" line="+1391"/>
         <source>Synchronized Files Types:</source>
         <translation>同期するファイルのタイプ:</translation>
     </message>
@@ -2005,13 +2060,13 @@ them here.</source>
         <translation>追加のショートカット</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1189"/>
+        <location filename="configdialog.ui" line="-1313"/>
         <location filename="configdialog.cpp" line="+15"/>
         <source>Grammar</source>
         <translation>文法</translation>
     </message>
     <message>
-        <location line="+516"/>
+        <location line="+640"/>
         <source>Hacks/Workarounds</source>
         <translation>ハック/回避策</translation>
     </message>
@@ -2021,7 +2076,7 @@ them here.</source>
         <translation>SVNディレクトリの検索深度: </translation>
     </message>
     <message>
-        <location line="-2447"/>
+        <location line="-2513"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: 拡張子なしファイル名; &lt;b&gt;@&lt;/b&gt;: 行番号; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: 書式設定されたファイル名
@@ -2033,22 +2088,22 @@ them here.</source>
         <translation>ログビューワーをタブ化</translation>
     </message>
     <message>
-        <location line="+1563"/>
+        <location line="+1629"/>
         <source>One Line Per Cell</source>
         <translation>セルあたり1行</translation>
     </message>
     <message>
-        <location line="-1451"/>
+        <location line="-1517"/>
         <source>Max. Recent Documents:</source>
         <translation>最近開いた文書の最大数:</translation>
     </message>
     <message>
-        <location line="+1281"/>
+        <location line="+1319"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>ツールチップとしてエディタ上のテキストにヘルプを表示</translation>
     </message>
     <message>
-        <location line="+736"/>
+        <location line="+764"/>
         <source>Words Between Repetitions:</source>
         <translation>繰り返しの間の単語:</translation>
     </message>
@@ -2063,32 +2118,31 @@ them here.</source>
         <translation>dvipng --follow (parallel)でプレビュー</translation>
     </message>
     <message>
-        <location line="-1942"/>
+        <location line="-2008"/>
         <source>Show stdout:</source>
         <translation>標準出力に表示:</translation>
     </message>
     <message>
-        <location line="+1616"/>
+        <location line="+1682"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>等価な言葉の間に指定された数の単語しかない場合、それらを繰り返しとしてマークする。</translation>
     </message>
     <message>
-        <location line="-1364"/>
+        <location line="-1430"/>
         <source>Show All</source>
         <translation>すべて表示</translation>
     </message>
     <message>
-        <location line="-287"/>
         <source>Show log after compiling if there are errors</source>
-        <translation>エラーがある場合コンパイル後にログを表示</translation>
+        <translation type="obsolete">エラーがある場合コンパイル後にログを表示</translation>
     </message>
     <message>
-        <location line="-227"/>
+        <location line="-514"/>
         <source>TextLabel</source>
         <translation>テキストのラベル</translation>
     </message>
     <message>
-        <location line="+2246"/>
+        <location line="+2312"/>
         <source>Always show both</source>
         <translation>常に両方表示</translation>
     </message>
@@ -2098,32 +2152,32 @@ them here.</source>
         <translation>単語リストのディレクトリ:</translation>
     </message>
     <message>
-        <location line="-1720"/>
+        <location line="-1786"/>
         <source>Build Options</source>
         <translation>ビルドオプション</translation>
     </message>
     <message>
-        <location line="+879"/>
+        <location line="+907"/>
         <source>Search Panel</source>
         <translation>検索パネル</translation>
     </message>
     <message>
-        <location line="+1251"/>
+        <location line="+1289"/>
         <source>Scale Option:</source>
         <translation>拡大率オプション:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+314"/>
+        <location filename="configdialog.cpp" line="+319"/>
         <source>Select a File</source>
         <translation>ファイルを選択</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1449"/>
+        <location filename="configdialog.ui" line="-1521"/>
         <source>Automatically load included files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-755"/>
+        <location line="-749"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -2138,7 +2192,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1491"/>
+        <location line="+1519"/>
         <source>Smooth Scrolling</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2146,7 +2200,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 <context>
     <name>ConfigManager</name>
     <message>
-        <location filename="configmanager.cpp" line="+1210"/>
+        <location filename="configmanager.cpp" line="+1211"/>
         <source>Add</source>
         <translation>追加</translation>
     </message>
@@ -2191,7 +2245,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>tiny</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-86"/>
+        <location filename="configmanager.cpp" line="-87"/>
         <source>Restore Default</source>
         <translation>既定値に戻す</translation>
     </message>
@@ -2521,7 +2575,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>マスターファイル: </translation>
     </message>
     <message>
-        <location line="+705"/>
+        <location line="+706"/>
         <source>Repeat contained compilation commands</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2541,7 +2595,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>イタリック体 - \mathit{}</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-715"/>
+        <location filename="configmanager.cpp" line="-716"/>
         <source>&amp;* Open all files</source>
         <translation>すべてのファイルを開く(&amp;*)</translation>
     </message>
@@ -2764,7 +2818,7 @@ Do you want to remove them?</source>
         <translation>数式の書体(&amp;y)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="+1176"/>
+        <location filename="configmanager.cpp" line="+1177"/>
         <source>Browse program</source>
         <translation>プログラムの選択</translation>
     </message>
@@ -2784,7 +2838,7 @@ Do you want to remove them?</source>
         <translation>上付き添字 - ^{}</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-815"/>
+        <location filename="configmanager.cpp" line="-816"/>
         <source>File list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2951,17 +3005,17 @@ Are you sure you want to undo all changes?</source>
 <context>
     <name>FileChooser</name>
     <message>
-        <location filename="filechooser.ui" line="+107"/>
+        <location filename="filechooser.ui" line="+103"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location line="-69"/>
+        <location line="-66"/>
         <source>File</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location line="+76"/>
+        <location line="+73"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -3290,7 +3344,7 @@ Missing \includegraphics options.</source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="+915"/>
+        <location filename="latexcompleter.cpp" line="+927"/>
         <location line="+9"/>
         <source>all</source>
         <translation>すべて</translation>
@@ -3344,12 +3398,11 @@ Missing \includegraphics options.</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location line="+2033"/>
         <source>Invalid language format</source>
-        <translation>無効な言語形式</translation>
+        <translation type="obsolete">無効な言語形式</translation>
     </message>
     <message>
-        <location line="-2031"/>
+        <location line="+2"/>
         <source>BLOCKS</source>
         <translation>BLOCKS</translation>
     </message>
@@ -3359,12 +3412,12 @@ Missing \includegraphics options.</source>
         <translation>LABELS</translation>
     </message>
     <message>
-        <location line="+2051"/>
+        <location line="+2104"/>
         <source>Invalid codec</source>
         <translation>無効なコーデック</translation>
     </message>
     <message>
-        <location line="-2049"/>
+        <location line="-2102"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHY</translation>
     </message>
@@ -3379,7 +3432,7 @@ Missing \includegraphics options.</source>
         <translation>不明なエラー。クラッシュの可能性があります。TeXstudioを再スタートしてください</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="+2059"/>
+        <location filename="latexdocument.cpp" line="+2112"/>
         <source>Unknown magic comment</source>
         <translation>不明なマジックコメント</translation>
     </message>
@@ -3387,7 +3440,7 @@ Missing \includegraphics options.</source>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location line="-865"/>
+        <location line="-852"/>
         <source>Line</source>
         <translation>行</translation>
     </message>
@@ -3411,7 +3464,7 @@ Missing \includegraphics options.</source>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="latexeditorview.cpp" line="+2332"/>
+        <location filename="latexeditorview.cpp" line="+2444"/>
         <source>Remove Bookmark</source>
         <translation>ブックマークを削除</translation>
     </message>
@@ -3421,56 +3474,56 @@ Missing \includegraphics options.</source>
         <translation>すべて非表示</translation>
     </message>
     <message>
-        <location line="-509"/>
-        <location line="+55"/>
+        <location line="-544"/>
+        <location line="+59"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location line="-1592"/>
-        <location line="+1325"/>
+        <location line="-1663"/>
+        <location line="+1401"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shiftが押されました =&gt; 候補を隠しました</translation>
     </message>
     <message>
-        <location line="+725"/>
+        <location line="+751"/>
         <source>Collapse Level %1</source>
         <translation>レベル%1を非表示</translation>
     </message>
     <message>
-        <location line="-1923"/>
-        <location filename="texmaker.cpp" line="+6061"/>
+        <location line="-2010"/>
+        <location filename="texmaker.cpp" line="+6137"/>
         <source>Go to Definition</source>
         <translation>定義へ移動</translation>
     </message>
     <message>
-        <location line="+1893"/>
+        <location line="+1980"/>
         <source>Bookmark</source>
         <translation>ブックマーク</translation>
     </message>
     <message>
-        <location line="-1987"/>
+        <location line="-2089"/>
         <source>Open %1</source>
         <translation>%1を開く</translation>
     </message>
     <message>
-        <location line="+72"/>
+        <location line="+87"/>
         <source>use other&apos;s</source>
         <translation>他人の物を使用</translation>
     </message>
     <message>
-        <location line="-84"/>
+        <location line="-99"/>
         <source>New BibTeX Entry %1</source>
         <translation>新しいBibTeX項目 %1</translation>
     </message>
     <message>
-        <location line="+1506"/>
+        <location line="+1573"/>
         <source>label missing!</source>
         <translation>ラベルが見つかりません!</translation>
     </message>
     <message>
-        <location line="-1426"/>
+        <location line="-1478"/>
         <source>use yours</source>
         <translation>ユーザーのものを使用</translation>
     </message>
@@ -3480,38 +3533,38 @@ Missing \includegraphics options.</source>
         <translation>PDFへ移動</translation>
     </message>
     <message>
-        <location line="+1922"/>
+        <location line="+2009"/>
         <source>Expand All</source>
         <translation>すべて展開する</translation>
     </message>
     <message>
-        <location line="-475"/>
+        <location line="-510"/>
         <source>Warning:</source>
         <translation>警告:</translation>
     </message>
     <message>
-        <location line="-1464"/>
+        <location line="-1516"/>
         <source>Thesaurus...</source>
         <translation>類語辞典</translation>
     </message>
     <message>
-        <location line="+336"/>
+        <location line="+346"/>
         <source>untitled</source>
         <translation type="unfinished">タイトルなし</translation>
     </message>
     <message>
-        <location line="+1077"/>
+        <location line="+1119"/>
         <location line="+22"/>
         <source>label multiple times defined!</source>
         <translation>ラベルが複数回定義されています!</translation>
     </message>
     <message>
-        <location line="+508"/>
+        <location line="+543"/>
         <source>Expand Level %1</source>
         <translation>レベル %1を展開</translation>
     </message>
     <message>
-        <location line="-482"/>
+        <location line="-517"/>
         <source>Citation missing</source>
         <translation>引用が欠けています</translation>
     </message>
@@ -3528,37 +3581,39 @@ Missing \includegraphics options.</source>
         <translation>BibTeX IDは空白で終了しています。後続する空白はBibTeXでは無視されます。</translation>
     </message>
     <message>
-        <location line="-1524"/>
+        <location line="-1591"/>
+        <location line="+31"/>
         <source>Open package documentation</source>
         <translation>パッケージのドキュメントを開く</translation>
     </message>
     <message>
-        <location line="+1959"/>
+        <location line="+2030"/>
         <source>Unnamed Bookmark</source>
         <translation>名前なしブックマーク</translation>
     </message>
     <message>
-        <location line="-2009"/>
+        <location line="-2111"/>
         <source>always ignore</source>
         <translation>常に無視する</translation>
     </message>
     <message>
-        <location line="+1553"/>
+        <location line="+1620"/>
         <source>Citation correct (reading ...)</source>
         <translation>正しい引用（...の読み込み）</translation>
     </message>
     <message>
-        <location line="-1519"/>
+        <location line="-1586"/>
         <source>Open Bibliography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+841"/>
+        <location line="+885"/>
+        <location line="+31"/>
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1017"/>
+        <location line="+1044"/>
         <source>Save Preview Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3697,6 +3752,11 @@ Missing \includegraphics options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+49"/>
+        <source>LaTeX Project Public License (LPPL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="maketemplatedialog.cpp" line="+38"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
@@ -3734,7 +3794,12 @@ Do you want to overwrite it?</source>
         <translation>ログファイルのサイズがとても大きいです（&gt; %1 MB） 本当に読み込みますか?</translation>
     </message>
     <message>
-        <location line="+116"/>
+        <location line="+27"/>
+        <source>Failed to load log file &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+89"/>
         <source>Search Results</source>
         <translation>検索結果</translation>
     </message>
@@ -3782,7 +3847,7 @@ Do you want to overwrite it?</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+66"/>
         <source>Enables case sensitive search.</source>
         <translation>大文字と小文字を区別して検索する。</translation>
     </message>
@@ -3790,7 +3855,7 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFClockDock</name>
     <message>
-        <location line="+497"/>
+        <location line="+449"/>
         <source>%1min</source>
         <translation>%1分</translation>
     </message>
@@ -3818,7 +3883,7 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="PDFDocument.ui" line="+645"/>
+        <location filename="PDFDocument.ui" line="+647"/>
         <source>s</source>
         <translation>s</translation>
     </message>
@@ -3882,7 +3947,7 @@ Do you want to overwrite it?</source>
         <translation>戻る</translation>
     </message>
     <message>
-        <location line="-748"/>
+        <location line="-750"/>
         <source>Grid</source>
         <translation>グリッド</translation>
     </message>
@@ -3892,17 +3957,17 @@ Do you want to overwrite it?</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+2091"/>
+        <location filename="PDFDocument.cpp" line="+2111"/>
         <source>Zoom</source>
         <translation>拡大縮小</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="+285"/>
+        <location filename="PDFDocument.ui" line="+287"/>
         <source>&amp;Copy</source>
         <translation>コピー(&amp;C)</translation>
     </message>
     <message>
-        <location line="-269"/>
+        <location line="-271"/>
         <source>&amp;Edit</source>
         <translation>編集(&amp;E)</translation>
     </message>
@@ -3917,7 +3982,7 @@ Do you want to overwrite it?</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location line="+325"/>
+        <location line="+327"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
@@ -3932,27 +3997,27 @@ Do you want to overwrite it?</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location line="-283"/>
+        <location line="-285"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+1055"/>
+        <location filename="PDFDocument.cpp" line="+1086"/>
         <source>Print</source>
         <translation>印刷</translation>
     </message>
     <message>
-        <location line="-1083"/>
+        <location line="-1114"/>
         <source>Scale</source>
         <translation>スケール</translation>
     </message>
     <message>
-        <location line="+636"/>
+        <location line="+665"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="+717"/>
+        <location filename="PDFDocument.ui" line="+719"/>
         <source>Presentation</source>
         <translation>プレゼンテーション</translation>
     </message>
@@ -3967,12 +4032,12 @@ Do you want to overwrite it?</source>
         <translation>テンプレートから新規作成</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-787"/>
+        <location filename="PDFDocument.cpp" line="-816"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location line="-118"/>
+        <location line="-121"/>
         <source>Windowed Viewer</source>
         <translation>ウィンドウ化ビューワー</translation>
     </message>
@@ -4007,7 +4072,7 @@ Do you want to overwrite it?</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+714"/>
+        <location filename="PDFDocument.cpp" line="+746"/>
         <source>No SyncTeX data available</source>
         <translation>利用できるSyncTeXデータがありません</translation>
     </message>
@@ -4017,7 +4082,7 @@ Do you want to overwrite it?</source>
         <translation>左側に配置</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-276"/>
+        <location filename="PDFDocument.cpp" line="-291"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>ファイル&quot;%1&quot;が見つかりません; 消去されていると思われます。</translation>
     </message>
@@ -4177,17 +4242,17 @@ Do you want to overwrite it?</source>
         <translation>スクリプトのリストを再読み込み</translation>
     </message>
     <message>
-        <location line="-564"/>
+        <location line="-566"/>
         <source>&amp;Configure</source>
         <translation>設定(&amp;C)</translation>
     </message>
     <message>
-        <location line="+778"/>
+        <location line="+780"/>
         <source>Windowed/Embedded</source>
         <translation>ウィンドウ化/埋め込み化</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+462"/>
+        <location filename="PDFDocument.cpp" line="+477"/>
         <source>Page %1 of %2</source>
         <translation>%2のうちの%1ページ目</translation>
     </message>
@@ -4242,7 +4307,7 @@ Do you want to overwrite it?</source>
         <translation>拡大(&amp;I)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-805"/>
+        <location filename="PDFDocument.cpp" line="-834"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
@@ -4262,7 +4327,7 @@ Do you want to overwrite it?</source>
         <translation>メーリングリストにEmailを送る</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+831"/>
+        <location filename="PDFDocument.cpp" line="+860"/>
         <source>Open PDF</source>
         <translation>PDFを開く</translation>
     </message>
@@ -4276,12 +4341,12 @@ Do you want to overwrite it?</source>
         <translation>スクリプトのフォルダを表示</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-489"/>
+        <location filename="PDFDocument.cpp" line="-504"/>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
         <translation>PDFファイル&quot;%1&quot;は不完全です。2秒してから再度実行してください。</translation>
     </message>
     <message>
-        <location line="+235"/>
+        <location line="+250"/>
         <source>Searching for</source>
         <translation>次を検索</translation>
     </message>
@@ -4291,7 +4356,7 @@ Do you want to overwrite it?</source>
         <translation>複数の表示を同期する</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-258"/>
+        <location filename="PDFDocument.cpp" line="-273"/>
         <source>%1
 does not look like a valid PDF document.
 
@@ -4361,12 +4426,22 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>連続ページ(&amp;C)</translation>
     </message>
     <message>
-        <location line="-654"/>
+        <location line="+42"/>
+        <source>Enlarge Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Shrink Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-703"/>
         <source>Toolbar</source>
         <translation>ツールバー</translation>
     </message>
     <message>
-        <location line="+126"/>
+        <location line="+128"/>
         <source>Fit to &amp;Window</source>
         <translation>ウィンドウに合わせる(&amp;W)</translation>
     </message>
@@ -4376,12 +4451,12 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>前のページ(&amp;P)</translation>
     </message>
     <message>
-        <location line="-98"/>
+        <location line="-100"/>
         <source>&amp;Window</source>
         <translation>ウィンドウ(&amp;W)</translation>
     </message>
     <message>
-        <location line="+542"/>
+        <location line="+544"/>
         <source>About Scripts...</source>
         <translation>スクリプトについて</translation>
     </message>
@@ -4422,17 +4497,17 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>進む</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-437"/>
+        <location filename="PDFDocument.cpp" line="-454"/>
         <source>Embedded Viewer</source>
         <translation>埋め込みビューワー</translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="-802"/>
+        <location filename="PDFDocument.ui" line="-804"/>
         <source>untitled.pdf[*]</source>
         <translation>untitled.pdf[*]</translation>
     </message>
     <message>
-        <location line="+668"/>
+        <location line="+670"/>
         <source>Ctrl+M, F3</source>
         <translation>Ctrl+M, F3</translation>
     </message>
@@ -4463,7 +4538,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>ソースへ移動(&amp;G)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+831"/>
+        <location filename="PDFDocument.cpp" line="+863"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
@@ -4474,7 +4549,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished">Ctrl+T</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-777"/>
+        <location filename="PDFDocument.cpp" line="-806"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation type="unfinished">のうちの</translation>
@@ -4483,7 +4558,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFFontsDock</name>
     <message>
-        <location filename="PDFDocks.cpp" line="-552"/>
+        <location filename="PDFDocks.cpp" line="-488"/>
         <source>no</source>
         <translation>いいえ</translation>
     </message>
@@ -4539,7 +4614,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFMovie</name>
     <message>
-        <location filename="PDFDocument.cpp" line="-1721"/>
+        <location filename="PDFDocument.cpp" line="-1738"/>
         <source>&amp;Play</source>
         <translation>再生(&amp;P)</translation>
     </message>
@@ -4595,7 +4670,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFOverviewDock</name>
     <message>
-        <location line="+205"/>
+        <location line="+206"/>
         <source>Overview</source>
         <translation>概要</translation>
     </message>
@@ -4603,7 +4678,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFSearchDock</name>
     <message>
-        <location filename="PDFDocks.cpp" line="+487"/>
+        <location filename="PDFDocks.cpp" line="+423"/>
         <source>Sync</source>
         <translation>同期</translation>
     </message>
@@ -4611,7 +4686,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="PDFDocument.cpp" line="+573"/>
+        <location filename="PDFDocument.cpp" line="+580"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
@@ -4621,17 +4696,17 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>ページ数:</translation>
     </message>
     <message>
-        <location line="-1111"/>
+        <location line="-1118"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location line="+565"/>
+        <location line="+572"/>
         <source>Go to Source</source>
         <translation>ソースへ移動</translation>
     </message>
     <message>
-        <location line="-557"/>
+        <location line="-564"/>
         <source>Fit to Width</source>
         <translation>幅に合わせる</translation>
     </message>
@@ -4651,7 +4726,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>ウィンドウに合わせる</translation>
     </message>
     <message>
-        <location line="+447"/>
+        <location line="+454"/>
         <source>Could not open link:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4701,7 +4776,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="+1504"/>
+        <location filename="buildmanager.cpp" line="+1532"/>
         <source>Process started: %1</source>
         <translation>開始されたプロセス: %1</translation>
     </message>
@@ -4729,12 +4804,12 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="utilsUI.cpp" line="+74"/>
+        <location filename="utilsUI.cpp" line="+68"/>
         <source>none</source>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="codesnippet.cpp" line="+262"/>
+        <location filename="codesnippet.cpp" line="+265"/>
         <source>Select a File</source>
         <translation>ファイルを選択</translation>
     </message>
@@ -4803,7 +4878,7 @@ Restart from the beginning ?</source>
 <context>
     <name>QEditor</name>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="+4186"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="+4232"/>
         <source>Cut</source>
         <translation>切り取り</translation>
     </message>
@@ -4813,8 +4888,8 @@ Restart from the beginning ?</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location line="-3658"/>
-        <location line="+812"/>
+        <location line="-3702"/>
+        <location line="+837"/>
         <source>Cu&amp;t</source>
         <translation>切り取り(&amp;t)</translation>
     </message>
@@ -4824,7 +4899,7 @@ Restart from the beginning ?</source>
         <translation>編集</translation>
     </message>
     <message>
-        <location line="+2821"/>
+        <location line="+2840"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
@@ -4844,13 +4919,13 @@ Restart from the beginning ?</source>
         <translation>元に戻す</translation>
     </message>
     <message>
-        <location line="-2689"/>
+        <location line="-2708"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="-956"/>
-        <location line="+802"/>
+        <location line="-981"/>
+        <location line="+827"/>
         <source>&amp;Copy</source>
         <translation>コピー(&amp;C)</translation>
     </message>
@@ -4860,20 +4935,20 @@ Restart from the beginning ?</source>
         <translation>編集(&amp;E)</translation>
     </message>
     <message>
-        <location line="-749"/>
-        <location line="+733"/>
+        <location line="-774"/>
+        <location line="+758"/>
         <source>&amp;Find</source>
         <translation>検索(&amp;F)</translation>
     </message>
     <message>
-        <location line="-838"/>
-        <location line="+825"/>
+        <location line="-863"/>
+        <location line="+850"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
     <message>
-        <location line="-836"/>
-        <location line="+835"/>
+        <location line="-861"/>
+        <location line="+860"/>
         <source>&amp;Undo</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
@@ -4883,7 +4958,7 @@ Restart from the beginning ?</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="+2832"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="+2851"/>
         <source>Select to document start</source>
         <translation>ドキュメントの最初までを選択</translation>
     </message>
@@ -4893,12 +4968,12 @@ Restart from the beginning ?</source>
         <translation>行頭までを選択</translation>
     </message>
     <message>
-        <location line="-3464"/>
+        <location line="-3508"/>
         <source>Local</source>
         <translation>ローカル</translation>
     </message>
     <message>
-        <location line="+3484"/>
+        <location line="+3528"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
@@ -4913,19 +4988,18 @@ Restart from the beginning ?</source>
         <translation>無効</translation>
     </message>
     <message>
-        <location line="-2983"/>
         <source>%1
 has been modified by another application.
 
 Undo/Redo stack would be discarded by the auto-reload.
 Do you wish to keep up to date by reloading the file?</source>
-        <translation>%1は別のアプリケーションで変更されています。
+        <translation type="obsolete">%1は別のアプリケーションで変更されています。
 
 「元に戻す/やり直す」の履歴は自動再読みの際に破棄されます。
 ファイルを再読み込みして最新に保ちますか?</translation>
     </message>
     <message>
-        <location line="+2988"/>
+        <location line="+5"/>
         <source>Move cursor down</source>
         <translation>カーソルを下へ移動</translation>
     </message>
@@ -4945,24 +5019,24 @@ Do you wish to keep up to date by reloading the file?</source>
         <translation>左の単語を削除</translation>
     </message>
     <message>
-        <location line="-3593"/>
-        <location line="+760"/>
+        <location line="-3637"/>
+        <location line="+785"/>
         <source>Co&amp;mment</source>
         <translation>コメントアウト(&amp;m)</translation>
     </message>
     <message>
-        <location line="-796"/>
-        <location line="+792"/>
+        <location line="-821"/>
+        <location line="+817"/>
         <source>&amp;Paste</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location line="+2819"/>
+        <location line="+2838"/>
         <source>Select up</source>
         <translation>上を選択</translation>
     </message>
     <message>
-        <location line="-3277"/>
+        <location line="-3321"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -4976,7 +5050,7 @@ Press &quot;Ignore&quot; to ignore this warning.
 </translation>
     </message>
     <message>
-        <location line="+3264"/>
+        <location line="+3308"/>
         <source>Move cursor right (1 character)</source>
         <translation>カーソルを（1文字分）右へ移動</translation>
     </message>
@@ -5011,23 +5085,23 @@ Press &quot;Ignore&quot; to ignore this warning.
         <translation>カーソルを行頭へ移動</translation>
     </message>
     <message>
-        <location line="-3268"/>
+        <location line="-3312"/>
         <source>Conflict!</source>
         <translation>衝突!</translation>
     </message>
     <message>
-        <location line="+3273"/>
+        <location line="+3317"/>
         <source>Move cursor one page up</source>
         <translation>カーソルを1ページ分上へ移動</translation>
     </message>
     <message>
-        <location line="-3582"/>
-        <location line="+771"/>
+        <location line="-3626"/>
+        <location line="+796"/>
         <source>&amp;Unindent</source>
         <translation>インデントの解除(&amp;U)</translation>
     </message>
     <message>
-        <location line="+2835"/>
+        <location line="+2854"/>
         <source>Delete right word</source>
         <translation>右の単語を削除</translation>
     </message>
@@ -5037,24 +5111,24 @@ Press &quot;Ignore&quot; to ignore this warning.
         <translation>パネル</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="-2809"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="-2828"/>
         <source>Search</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location line="+2772"/>
+        <location line="+2791"/>
         <location line="+16"/>
         <location line="+16"/>
         <source>Internal</source>
         <translation>内部</translation>
     </message>
     <message>
-        <location line="-3469"/>
+        <location line="-3513"/>
         <source>Old Mac</source>
         <translation>Old Mac (CR)</translation>
     </message>
     <message>
-        <location line="+3492"/>
+        <location line="+3536"/>
         <source>Previous placeholder</source>
         <translation>前のプレースホルダー</translation>
     </message>
@@ -5074,13 +5148,13 @@ Press &quot;Ignore&quot; to ignore this warning.
         <translation>（1文字分）右を選択</translation>
     </message>
     <message>
-        <location line="-3518"/>
-        <location line="+709"/>
+        <location line="-3562"/>
+        <location line="+734"/>
         <source>&amp;Goto line...</source>
         <translation>指定行へ移動(&amp;G)</translation>
     </message>
     <message>
-        <location line="-389"/>
+        <location line="-414"/>
         <source>There seems to be not enough space to save the file at
 %1
 
@@ -5106,23 +5180,23 @@ result in data loss.
     </message>
     <message>
         <location line="-296"/>
-        <location line="+691"/>
+        <location line="+716"/>
         <source>Input binding</source>
         <translation>入力拘束</translation>
     </message>
     <message>
-        <location line="-727"/>
-        <location line="+719"/>
+        <location line="-752"/>
+        <location line="+744"/>
         <source>&amp;Replace</source>
         <translation>置換(&amp;R)</translation>
     </message>
     <message>
-        <location line="+2840"/>
+        <location line="+2859"/>
         <source>Replace</source>
         <translation>置換</translation>
     </message>
     <message>
-        <location line="-3211"/>
+        <location line="-3255"/>
         <source>I failed to acquire write permissions on the file %1.
 
 Perhaps it is read-only or opened in another program?</source>
@@ -5131,7 +5205,7 @@ Perhaps it is read-only or opened in another program?</source>
 読み込み専用か別のプログラムで開いていませんか?</translation>
     </message>
     <message>
-        <location line="+3167"/>
+        <location line="+3211"/>
         <source>Move cursor left (1 word)</source>
         <translation>カーソルを（1単語分）左へ移動</translation>
     </message>
@@ -5156,26 +5230,26 @@ Perhaps it is read-only or opened in another program?</source>
         <translation>1ページ分上を選択</translation>
     </message>
     <message>
-        <location line="-3979"/>
-        <location line="+484"/>
-        <location line="+687"/>
+        <location line="-4025"/>
+        <location line="+486"/>
+        <location line="+712"/>
         <source>Default</source>
         <translation>既定</translation>
     </message>
     <message>
-        <location line="-798"/>
-        <location line="+778"/>
+        <location line="-823"/>
+        <location line="+803"/>
         <source>&amp;Indent</source>
         <translation>インデント(&amp;I)</translation>
     </message>
     <message>
-        <location line="-640"/>
+        <location line="-665"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
         <location line="-98"/>
-        <location line="+743"/>
+        <location line="+768"/>
         <source>&amp;Select all</source>
         <translation>全て選択(&amp;S)</translation>
     </message>
@@ -5185,7 +5259,7 @@ Perhaps it is read-only or opened in another program?</source>
         <translation>検索(&amp;S)</translation>
     </message>
     <message>
-        <location line="+2822"/>
+        <location line="+2841"/>
         <source>Select all</source>
         <translation>全て選択</translation>
     </message>
@@ -5195,7 +5269,7 @@ Perhaps it is read-only or opened in another program?</source>
         <translation>次のプレースホルダーまたは1単語右</translation>
     </message>
     <message>
-        <location line="-3071"/>
+        <location line="-3115"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
@@ -5204,18 +5278,18 @@ Should I save the document as it is to restore the file?
 </translation>
     </message>
     <message>
-        <location line="+3077"/>
+        <location line="+3121"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
     <message>
-        <location line="-3579"/>
-        <location line="+726"/>
+        <location line="-3623"/>
+        <location line="+751"/>
         <source>Fin&amp;d next</source>
         <translation>次を検索(&amp;d)</translation>
     </message>
     <message>
-        <location line="+2802"/>
+        <location line="+2821"/>
         <source>Move cursor to document end</source>
         <translation>カーソルをドキュメントの終わりに移動</translation>
     </message>
@@ -5225,35 +5299,46 @@ Should I save the document as it is to restore the file?
         <translation>強制改行</translation>
     </message>
     <message>
-        <location line="-3049"/>
+        <location line="-3093"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
         <translation>これはおかしいです: ファイル%1はもう除去されません。
 おそらく他の誰かが復元していて、（変更されたかもしれない）バージョンを上書きすることはありません。</translation>
     </message>
     <message>
-        <location line="+3070"/>
+        <location line="+3114"/>
         <source>Unindent selection</source>
         <translation>選択部分のインデントの解除</translation>
     </message>
     <message>
-        <location line="-3045"/>
+        <location line="-3089"/>
         <source>File changed</source>
         <translation>ファイルは変更されました</translation>
     </message>
     <message>
         <location line="-563"/>
-        <location line="+753"/>
+        <location line="+778"/>
         <source>Unc&amp;omment</source>
         <translation>コメントアウトの解除(&amp;o)</translation>
     </message>
     <message>
-        <location line="-645"/>
+        <location line="-670"/>
         <source>Conservative</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location line="+3466"/>
+        <location line="+456"/>
+        <source>%1
+has been modified by another application.
+
+Undo/Redo stack would be discarded by the auto-reload.
+Do you wish to keep up to date by reloading the file?
+
+(Note: You can permanently enable silent reloading in the options.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3054"/>
         <source>Select to line end</source>
         <translation>行末までを選択</translation>
     </message>
@@ -5263,7 +5348,7 @@ Probably someone else restored it and therefore I&apos;m not going to override t
         <translation>次のプレースホルダー</translation>
     </message>
     <message>
-        <location line="-3198"/>
+        <location line="-3242"/>
         <source>Only part of the file could be written:
 %1
 
@@ -5283,7 +5368,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>DOS/Windows</translation>
     </message>
     <message>
-        <location line="+3460"/>
+        <location line="+3504"/>
         <source>Select left (1 word)</source>
         <translation>（1単語分）左を選択</translation>
     </message>
@@ -5293,17 +5378,17 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>カーソルのミラーを上に作成</translation>
     </message>
     <message>
-        <location line="-3537"/>
+        <location line="-3581"/>
         <source>Dynamic line wrapping</source>
         <translation>動的な行のワードラップ</translation>
     </message>
     <message>
-        <location line="+835"/>
+        <location line="+860"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location line="+2703"/>
+        <location line="+2722"/>
         <source>Create cursor mirror down</source>
         <translation>カーソルのミラーを下に作成</translation>
     </message>
@@ -5313,18 +5398,18 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>（1単語分）右を選択</translation>
     </message>
     <message>
-        <location line="-3038"/>
+        <location line="-3082"/>
         <location line="+4"/>
         <source>File deleted</source>
         <translation>ファイルが消去されました</translation>
     </message>
     <message>
-        <location line="+3020"/>
+        <location line="+3064"/>
         <source>Move cursor to line end</source>
         <translation>カーソルを行末へ移動</translation>
     </message>
     <message>
-        <location line="-3160"/>
+        <location line="-3204"/>
         <location line="+15"/>
         <source>Writing the document to file
 %1
@@ -5340,7 +5425,7 @@ Possible causes include disk failure or a full harddisk.</source>
 ディスク障害やハードディスク全体の故障の原因になりえます。</translation>
     </message>
     <message>
-        <location line="+3194"/>
+        <location line="+3238"/>
         <source>Indent selection</source>
         <translation>選択部分のインデント</translation>
     </message>
@@ -5350,7 +5435,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>上書きモードへ移行</translation>
     </message>
     <message>
-        <location line="-3218"/>
+        <location line="-3262"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -5359,12 +5444,12 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>保存に失敗しました</translation>
     </message>
     <message>
-        <location line="+3139"/>
+        <location line="+3183"/>
         <source>Move cursor up</source>
         <translation>カーソルを上へ移動</translation>
     </message>
     <message>
-        <location line="-3450"/>
+        <location line="-3494"/>
         <source>Line endings</source>
         <translation>行末文字</translation>
     </message>
@@ -5381,7 +5466,7 @@ Possible causes include disk failure or a full harddisk.</source>
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="+57"/>
+        <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="+58"/>
         <source>Bold</source>
         <translation>太字</translation>
     </message>
@@ -5875,7 +5960,7 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
 <context>
     <name>QSearchReplacePanel</name>
     <message>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="+152"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="+153"/>
         <source>This interprets the search text as a regular expression.
 Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
@@ -5905,13 +5990,13 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
  \n = 改行、\r キャリッジリターン、\t = タブ、 \\ = \</translation>
     </message>
     <message>
-        <location line="+301"/>
+        <location line="+297"/>
         <location line="+5"/>
         <source>Count result</source>
         <translation>カウント結果</translation>
     </message>
     <message>
-        <location line="-312"/>
+        <location line="-308"/>
         <source>Ask before any match is replaced.</source>
         <translation>一致した部分を置換する前に尋ねる。</translation>
     </message>
@@ -5921,12 +6006,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>大文字と小文字を区別して検索。</translation>
     </message>
     <message>
-        <location line="+408"/>
+        <location line="+404"/>
         <source>The search text occurs %1 times within the search scope.</source>
         <translation>検索範囲内に検索テキストが%1回見つかっています。</translation>
     </message>
     <message>
-        <location line="-380"/>
+        <location line="-376"/>
         <source>Starts the search from the current cursor position.</source>
         <translation>現在のカーソル位置から検索を開始。</translation>
     </message>
@@ -5936,7 +6021,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>検索の一致と置換したテキストを強調表示。</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+381"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
         <translation>現在のカーソル位置より後ろで検索テキストが%1回見つかっています。検索範囲の最初から再度始めますか?</translation>
     </message>
@@ -5948,7 +6033,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation type="obsolete">行: %1 表示される列: %2 テキストの列: %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="+147"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="+148"/>
         <source>(%1 min %2 s ago)</source>
         <translation>（%1分%2秒前）</translation>
     </message>
@@ -5992,7 +6077,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>QuaGzipFile</name>
     <message>
-        <location filename="quazip/quazip/quagzipfile.cpp" line="+36"/>
+        <location filename="quazip/quazip/quagzipfile.cpp" line="+42"/>
         <source>Opening gzip for both reading and writing is not supported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6004,6 +6089,19 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location line="+6"/>
         <source>Could not gzopen() file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZIODevice</name>
+    <message>
+        <location filename="quazip/quazip/quaziodevice.cpp" line="+121"/>
+        <source>QIODevice::Append is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6023,7 +6121,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location line="+283"/>
+        <location line="+294"/>
         <location line="+32"/>
         <location line="+84"/>
         <location line="+55"/>
@@ -6079,7 +6177,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>pt</translation>
     </message>
     <message>
-        <location filename="quickdocumentdialog.cpp" line="+384"/>
+        <location filename="quickdocumentdialog.cpp" line="+388"/>
         <location line="+10"/>
         <location line="+10"/>
         <location line="+10"/>
@@ -6102,22 +6200,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>左:</translation>
     </message>
     <message>
-        <location line="-260"/>
+        <location line="-258"/>
         <source>Title</source>
         <translation>タイトル</translation>
     </message>
     <message>
-        <location line="+66"/>
+        <location line="-70"/>
         <source>Other Options</source>
         <translation>その他のオプション</translation>
     </message>
     <message>
-        <location line="+188"/>
+        <location line="+322"/>
         <source>Margins</source>
         <translation>余白</translation>
     </message>
     <message>
-        <location line="-284"/>
+        <location line="-282"/>
         <source>Document Class</source>
         <translation>ドキュメントクラス</translation>
     </message>
@@ -6132,22 +6230,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>文書の作者</translation>
     </message>
     <message>
-        <location line="-33"/>
+        <location line="-46"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location line="+172"/>
+        <location line="+170"/>
         <source>Encoding</source>
         <translation>エンコーディング</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-30"/>
         <source>Typeface Size</source>
         <translation>フォントサイズ</translation>
     </message>
     <message>
-        <location line="+278"/>
+        <location line="+276"/>
         <source>Right:</source>
         <translation>右:</translation>
     </message>
@@ -6157,32 +6255,37 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>幅:</translation>
     </message>
     <message>
-        <location line="-58"/>
+        <location line="-53"/>
         <source>makeidx Package</source>
         <translation>makeidxパッケージの使用</translation>
     </message>
     <message>
-        <location line="+336"/>
+        <location line="+7"/>
+        <source>graphicx Package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+324"/>
         <source>Bottom:</source>
         <translation>下:</translation>
     </message>
     <message>
-        <location line="-372"/>
+        <location line="-340"/>
         <source>Paper Size</source>
         <translation>用紙サイズ</translation>
     </message>
     <message>
-        <location line="-130"/>
+        <location line="-173"/>
         <source>Class Options</source>
         <translation>クラスオプション</translation>
     </message>
     <message>
-        <location line="+190"/>
+        <location line="+201"/>
         <source>Geometry</source>
         <translation>寸法</translation>
     </message>
     <message>
-        <location filename="quickdocumentdialog.cpp" line="-361"/>
+        <location filename="quickdocumentdialog.cpp" line="-365"/>
         <source>Quick Start</source>
         <translation>簡単テンプレート(一般文書)</translation>
     </message>
@@ -6318,7 +6421,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>ScriptObject</name>
     <message>
-        <location filename="scriptobject.cpp" line="+230"/>
+        <location filename="scriptobject.cpp" line="+231"/>
         <source>Yes, allow all calls it will ever make</source>
         <translation>はい、すべての呼び出しを許可します</translation>
     </message>
@@ -6369,8 +6472,8 @@ Do you trust this script?</source>
 <context>
     <name>SearchReplace</name>
     <message>
-        <location filename="PDFDocks.cpp" line="-100"/>
-        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="-265"/>
+        <location filename="PDFDocks.cpp" line="-93"/>
+        <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="-261"/>
         <source>Case</source>
         <translation>大文字・小文字</translation>
     </message>
@@ -6450,7 +6553,7 @@ Do you trust this script?</source>
         <translation>一致を数える</translation>
     </message>
     <message>
-        <location filename="PDFDocks.cpp" line="-3"/>
+        <location filename="PDFDocks.cpp" line="-2"/>
         <source>Find previous occurence</source>
         <translation>前を検索</translation>
     </message>
@@ -6502,7 +6605,7 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-693"/>
+        <location filename="configdialog.cpp" line="-698"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;none&gt;</translation>
     </message>
@@ -6685,25 +6788,30 @@ Do you trust this script?</source>
 <context>
     <name>SymbolGridWidget</name>
     <message>
-        <location filename="symbolgridwidget.cpp" line="+93"/>
+        <location filename="symbolgridwidget.cpp" line="+164"/>
         <source>Packages: </source>
         <translation>パッケージ:</translation>
     </message>
     <message>
-        <location line="-19"/>
+        <location line="-17"/>
         <source>Command: </source>
         <translation>コマンド: </translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+15"/>
         <source>Package: </source>
         <translation>パッケージ:</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Unicode Character: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="syntaxcheck.cpp" line="+335"/>
+        <location filename="syntaxcheck.cpp" line="+350"/>
         <source>no error</source>
         <translation>エラー無し</translation>
     </message>
@@ -6892,7 +7000,7 @@ Do you trust this script?</source>
 <context>
     <name>TemplateManager</name>
     <message>
-        <location filename="templatemanager.cpp" line="+49"/>
+        <location filename="templatemanager.cpp" line="+59"/>
         <source>TeXstudio found user templates in deprecated locations.
 From now on user templates are hosted at
 %1
@@ -6922,44 +7030,49 @@ failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+9"/>
-        <location line="+14"/>
+        <location line="+48"/>
+        <source>Unnamed Resource</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+62"/>
         <source>Select Latex Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-11"/>
-        <location line="+14"/>
-        <location line="+16"/>
+        <location line="-54"/>
+        <location line="+75"/>
         <source>User</source>
         <translation type="unfinished">ユーザー</translation>
     </message>
     <message>
-        <location line="-29"/>
-        <location line="+14"/>
+        <location line="-73"/>
         <source>User created template files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-12"/>
-        <location line="+14"/>
+        <location line="-8"/>
         <source>Builtin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-13"/>
-        <location line="+14"/>
+        <location line="+2"/>
         <source>Basic template files shipped with TeXstudio.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+75"/>
         <source>Select Table Template</source>
         <translation type="unfinished">表テンプレートを選択</translation>
     </message>
     <message>
-        <location filename="templatemanager_p.cpp" line="+108"/>
-        <location line="+33"/>
+        <location filename="templatemanager_p.cpp" line="+46"/>
+        <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+62"/>
+        <location line="+36"/>
         <source>You do not have read permission to this file:</source>
         <translation type="unfinished">このファイルの読み込み権限がありません:</translation>
     </message>
@@ -6971,12 +7084,12 @@ failed.</source>
         <translation type="obsolete">編集</translation>
     </message>
     <message>
-        <location filename="templateselector.cpp" line="+233"/>
+        <location filename="templateselector.cpp" line="+246"/>
         <source>Are you sure to delete the following template?</source>
         <translation>本当に次のテンプレートを削除しますか?</translation>
     </message>
     <message>
-        <location line="-35"/>
+        <location line="-41"/>
         <source>Remove</source>
         <translation>削除</translation>
     </message>
@@ -6989,7 +7102,7 @@ failed.</source>
         <translation type="obsolete">このファイルの読み込み権限がありません:</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+48"/>
         <location line="+5"/>
         <source>You do not have permission to remove this file.</source>
         <translation>このファイルを削除する権限がありません。</translation>
@@ -7000,12 +7113,12 @@ failed.</source>
         <translation>確認してください</translation>
     </message>
     <message>
-        <location line="-202"/>
+        <location line="-215"/>
         <source>No Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+129"/>
+        <location line="+136"/>
         <source>&lt;No Name&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7040,7 +7153,7 @@ failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+13"/>
         <location line="+10"/>
         <location line="+10"/>
         <source>This template cannot be edited.</source>
@@ -7052,12 +7165,12 @@ failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-173"/>
+        <location line="-186"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+58"/>
         <source>Select Target Folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7070,17 +7183,17 @@ failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+41"/>
+        <location line="+63"/>
         <source>Package:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+36"/>
         <source>Description:</source>
         <translation type="unfinished">説明:</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="-68"/>
         <source>description text</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7093,8 +7206,8 @@ failed.</source>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-5059"/>
-        <location line="+5048"/>
+        <location filename="texmaker.cpp" line="-5133"/>
+        <location line="+5122"/>
         <source>Cut</source>
         <translation>切り取り</translation>
     </message>
@@ -7107,12 +7220,12 @@ failed.</source>
         <translation type="obsolete">XML</translation>
     </message>
     <message>
-        <location line="+1831"/>
+        <location line="+1942"/>
         <source>Yes</source>
         <translation>はい</translation>
     </message>
     <message>
-        <location line="-7328"/>
+        <location line="-7516"/>
         <source>&amp;New</source>
         <translation>新規作成(&amp;N)</translation>
     </message>
@@ -7126,8 +7239,8 @@ failed.</source>
         <translation>切り取り(&amp;u)</translation>
     </message>
     <message>
-        <location line="+397"/>
-        <location line="+5048"/>
+        <location line="+400"/>
+        <location line="+5122"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
@@ -7142,7 +7255,7 @@ failed.</source>
         <translation>編集</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-5456"/>
+        <location filename="texmaker.cpp" line="-5533"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
@@ -7162,12 +7275,12 @@ failed.</source>
         <translation>数式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+226"/>
+        <location filename="texmaker.cpp" line="+227"/>
         <source>Type</source>
         <translation>タイプ</translation>
     </message>
     <message>
-        <location line="-170"/>
+        <location line="-171"/>
         <source>Unin&amp;dent</source>
         <translation>インデントの解除(&amp;d)</translation>
     </message>
@@ -7197,17 +7310,17 @@ failed.</source>
         <translation>検索(&amp;F)</translation>
     </message>
     <message>
-        <location line="+357"/>
+        <location line="+360"/>
         <source>&amp;Help</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location line="-163"/>
+        <location line="-165"/>
         <source>&amp;Math</source>
         <translation>数式(&amp;M)</translation>
     </message>
     <message>
-        <location line="-214"/>
+        <location line="-215"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
@@ -7222,48 +7335,48 @@ failed.</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location line="+147"/>
+        <location line="+148"/>
         <location line="+143"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location line="-432"/>
+        <location line="-433"/>
         <source>Delimiters</source>
         <translation>区切り文字</translation>
     </message>
     <message>
-        <location line="+314"/>
+        <location line="+315"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location line="+6042"/>
+        <location line="+6146"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>注意: テキストが手動で編集されるとダイアログは自動的に閉じます!</translation>
     </message>
     <message>
-        <location line="-4792"/>
-        <location line="+5411"/>
+        <location line="-4866"/>
+        <location line="+5555"/>
         <source>Open Files</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location line="-5840"/>
-        <location line="+1284"/>
-        <location line="+1497"/>
-        <location line="+388"/>
+        <location line="-5994"/>
+        <location line="+1299"/>
+        <location line="+1504"/>
+        <location line="+394"/>
         <location line="+118"/>
         <location line="+2"/>
         <location line="+8"/>
         <location line="+2"/>
-        <location line="+376"/>
-        <location line="+2328"/>
+        <location line="+391"/>
+        <location line="+2439"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location line="-6961"/>
+        <location line="-7136"/>
         <source>Go to</source>
         <translation>移動</translation>
     </message>
@@ -7277,8 +7390,8 @@ failed.</source>
         <translation type="obsolete">LaTeXテンプレートを選択</translation>
     </message>
     <message>
-        <location line="-463"/>
-        <location line="+4400"/>
+        <location line="-464"/>
+        <location line="+4450"/>
         <source>Ready</source>
         <translation>準備完了</translation>
     </message>
@@ -7293,32 +7406,32 @@ failed.</source>
         <translation>ツール</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-498"/>
+        <location filename="texmaker.cpp" line="-507"/>
         <source>Type: %1</source>
         <translation>タイプ: %1</translation>
     </message>
     <message>
-        <location line="-3258"/>
+        <location line="-3297"/>
         <source>Focus Editor</source>
         <translation>エディタにフォーカスを移動</translation>
     </message>
     <message>
-        <location line="+697"/>
+        <location line="+717"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>ファイル%1の読み込み権限がありません。</translation>
     </message>
     <message>
-        <location line="-891"/>
+        <location line="-912"/>
         <source>Previous Warning</source>
         <translation>前の警告</translation>
     </message>
     <message>
-        <location line="+268"/>
+        <location line="+271"/>
         <source>S&amp;ave Profile...</source>
         <translation>プロファイルを保存(&amp;a)</translation>
     </message>
     <message>
-        <location line="-249"/>
+        <location line="-252"/>
         <source>Jump to Match</source>
         <translation>一致部分に移動</translation>
     </message>
@@ -7344,17 +7457,17 @@ failed.</source>
         <translation>その他のテキスト記号 (wasysym)</translation>
     </message>
     <message>
-        <location line="+5933"/>
+        <location line="+6003"/>
         <source>Remove all favorites</source>
         <translation>すべてのお気に入りを削除</translation>
     </message>
     <message>
-        <location line="-5774"/>
+        <location line="-5844"/>
         <source>Continue F&amp;ind</source>
         <translation>検索を続ける(&amp;i)</translation>
     </message>
     <message>
-        <location line="+275"/>
+        <location line="+276"/>
         <source>Focus Viewer</source>
         <translation>ビューワーにフォーカスを移動</translation>
     </message>
@@ -7373,12 +7486,12 @@ failed.</source>
         <translation>次の文書</translation>
     </message>
     <message>
-        <location line="+6384"/>
+        <location line="+6556"/>
         <source>Reached beginning of text.</source>
         <translation>テキストの最初に到達しました。</translation>
     </message>
     <message>
-        <location line="-6616"/>
+        <location line="-6789"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
@@ -7388,7 +7501,7 @@ failed.</source>
         <translation>SVN &amp;update...</translation>
     </message>
     <message>
-        <location line="+194"/>
+        <location line="+195"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;Makeindex</translation>
     </message>
@@ -7397,7 +7510,7 @@ failed.</source>
         <translation type="obsolete">テンプレートを用いて表を再構築する</translation>
     </message>
     <message>
-        <location line="+6915"/>
+        <location line="+7089"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -7410,7 +7523,7 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location line="-6417"/>
+        <location line="-6589"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>この文書を&apos;マスターファイル&apos;にする</translation>
     </message>
@@ -7422,12 +7535,12 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <location filename="texmaker.cpp" line="-260"/>
-        <location line="+5048"/>
+        <location line="+5122"/>
         <source>Paste Before</source>
         <translation>前に貼り付け</translation>
     </message>
     <message>
-        <location line="-1381"/>
+        <location line="-1409"/>
         <source>No open project or tex file to clean.</source>
         <translation>削除するべき開いているプロジェクトやtexファイルがありません。</translation>
     </message>
@@ -7441,12 +7554,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">列の貼り付け</translation>
     </message>
     <message>
-        <location line="+2274"/>
+        <location line="+2398"/>
         <source>Save Profile</source>
         <translation>プロファイルを保存</translation>
     </message>
     <message>
-        <location line="-6383"/>
+        <location line="-6556"/>
         <source>Old Mac (CR)</source>
         <translation>Old Mac (CR)</translation>
     </message>
@@ -7459,12 +7572,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">いいえ、既定のコマンドを起動します</translation>
     </message>
     <message>
-        <location line="+5727"/>
+        <location line="+5797"/>
         <source>Remove from favorites</source>
         <translation>お気に入りから削除する</translation>
     </message>
     <message>
-        <location line="-5939"/>
+        <location line="-6009"/>
         <source>Relation symbols</source>
         <translation>関係演算子</translation>
     </message>
@@ -7479,38 +7592,38 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>行末まで削除(&amp;n)</translation>
     </message>
     <message>
-        <location line="+3604"/>
+        <location line="+3644"/>
         <source>Labels:</source>
         <translation>ラベル:</translation>
     </message>
     <message>
-        <location line="-3761"/>
+        <location line="-3801"/>
         <source>Arrow symbols</source>
         <translation>矢印</translation>
     </message>
     <message>
-        <location line="+364"/>
+        <location line="+365"/>
         <source>Quick &amp;Letter...</source>
         <translation>簡単テンプレート(手紙)(&amp;L)</translation>
     </message>
     <message>
-        <location line="+6991"/>
+        <location line="+7172"/>
         <location line="+5"/>
         <source>No, kill the programm</source>
         <translation>いいえ、プログラムを停止します</translation>
     </message>
     <message>
-        <location line="-7241"/>
+        <location line="-7423"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>古いリビジョンを表示(&amp;o)</translation>
     </message>
     <message>
-        <location line="+5990"/>
+        <location line="+6060"/>
         <source>commit comment:</source>
         <translation>コメントをコミットする:</translation>
     </message>
     <message>
-        <location line="-5813"/>
+        <location line="-5882"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;LaTeXmk</translation>
     </message>
@@ -7530,13 +7643,13 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>関連ファイルの削除(&amp;C)</translation>
     </message>
     <message>
-        <location line="-270"/>
-        <location line="+6639"/>
+        <location line="-271"/>
+        <location line="+6812"/>
         <source>&amp;Close</source>
         <translation>閉じる(&amp;C)</translation>
     </message>
     <message>
-        <location line="-6603"/>
+        <location line="-6776"/>
         <source>&amp;Count</source>
         <translation>カウント(&amp;C)</translation>
     </message>
@@ -7546,7 +7659,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>移動(&amp;G)</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+52"/>
         <source>&amp;Index</source>
         <translation>索引(&amp;I)</translation>
     </message>
@@ -7557,27 +7670,27 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location line="-187"/>
+        <location line="-188"/>
         <source>&amp;Paste</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location line="+135"/>
+        <location line="+136"/>
         <source>&amp;Tools</source>
         <translation>ツール(&amp;T)</translation>
     </message>
     <message>
-        <location line="+6317"/>
+        <location line="+6489"/>
         <source>Load Profile</source>
         <translation>プロファイルを読み込む</translation>
     </message>
     <message>
-        <location line="-6759"/>
+        <location line="-6933"/>
         <source>Sweave files</source>
         <translation>ファイルをスウィーブする</translation>
     </message>
     <message>
-        <location line="+665"/>
+        <location line="+669"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>TeXstudioの設定(&amp;C)</translation>
     </message>
@@ -7588,17 +7701,17 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>一番近くのブロック</translation>
     </message>
     <message>
-        <location line="-344"/>
+        <location line="-347"/>
         <source>Save &amp;As...</source>
         <translation>名前をつけて保存(&amp;A)</translation>
     </message>
     <message>
-        <location line="+5451"/>
+        <location line="+5528"/>
         <source>Remove master document role</source>
         <translation>マスターファイルを削除</translation>
     </message>
     <message>
-        <location line="-5560"/>
+        <location line="-5637"/>
         <source>Cyrillic letters</source>
         <translation>キリル文字</translation>
     </message>
@@ -7608,37 +7721,37 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>ユニコード文字の挿入</translation>
     </message>
     <message>
-        <location line="+3954"/>
+        <location line="+4003"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>書き込み権限のないディレクトリにある文章はコンパイルできません。</translation>
     </message>
     <message>
-        <location line="+1939"/>
+        <location line="+1960"/>
         <source>check in whole directory ?</source>
         <translation>ディレクトリ全体をチェックインしますか?</translation>
     </message>
     <message>
-        <location line="-6095"/>
+        <location line="-6165"/>
         <source>MetaPost Commands</source>
         <translation>Metapostのコマンド</translation>
     </message>
     <message>
-        <location line="+309"/>
+        <location line="+310"/>
         <source>C&amp;onvert to Html...</source>
         <translation>HTMLに変換(&amp;o)</translation>
     </message>
     <message>
-        <location line="-196"/>
+        <location line="-197"/>
         <source>Jump to previous difference</source>
         <translation>前の差分へ移動</translation>
     </message>
     <message>
-        <location line="+299"/>
+        <location line="+300"/>
         <source>Ma&amp;cros</source>
         <translation>マクロ(&amp;c)</translation>
     </message>
     <message>
-        <location line="+5159"/>
+        <location line="+5235"/>
         <source>Insert Label</source>
         <translation>ラベルを挿入</translation>
     </message>
@@ -7654,7 +7767,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>%1として挿入</translation>
     </message>
     <message>
-        <location line="-5452"/>
+        <location line="-5529"/>
         <source>Declare Conflict Resolved</source>
         <translation>衝突解決を宣言する</translation>
     </message>
@@ -7675,36 +7788,52 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>外部を選択</translation>
     </message>
     <message>
-        <location line="+3751"/>
+        <location line="+3798"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>組み込みpdfビューワーを開くためにコマンドを呼び出しました。
 しかし、組み込みpdfビューワーなしでコンパイルされたTeXstudioを使用しています。</translation>
     </message>
     <message>
-        <location line="+1574"/>
+        <location line="+17"/>
+        <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
+
+Do you want to allow and run the new, overriding command?
+
+(a) Yes, allow the new command for this document (only if you trust this document)
+(b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
+(c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1587"/>
         <source>Create Label</source>
         <translation>ラベルを作成</translation>
     </message>
     <message>
-        <location line="+1762"/>
+        <location line="+1144"/>
+        <source>Failed to read profile file %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+723"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
         <translation>TeXstudioは %1 のためクラッシュしました。
 そのまま起動し続けますか? これはデータの破壊につながるかもしれません。</translation>
     </message>
     <message>
-        <location line="-3632"/>
+        <location line="-3774"/>
         <source>Edit User &amp;Tags</source>
         <translation>ユーザタグを編集(&amp;T)</translation>
     </message>
     <message>
-        <location line="-3551"/>
+        <location line="-3591"/>
         <source>Find &amp;Dialog...</source>
         <translation>検索ダイアログ(&amp;D)</translation>
     </message>
     <message>
-        <location line="+6597"/>
+        <location line="+6770"/>
         <source>&amp;Find Next</source>
         <translation>次を検索(&amp;F)</translation>
     </message>
@@ -7713,7 +7842,7 @@ Do you want to keep it running? This may cause data corruption.</source>
         <translation type="obsolete">上へ移動</translation>
     </message>
     <message>
-        <location line="-6357"/>
+        <location line="-6529"/>
         <location line="+10"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
@@ -7723,12 +7852,12 @@ Do you want to keep it running? This may cause data corruption.</source>
         <translation type="obsolete">バイナリ</translation>
     </message>
     <message>
-        <location line="+4391"/>
+        <location line="+4454"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>マスターモードに切り替える前にファイルを保存してください!</translation>
     </message>
     <message>
-        <location line="-3058"/>
+        <location line="-3088"/>
         <location line="+47"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
@@ -7751,13 +7880,13 @@ Do you want to keep it running? This may cause data corruption.</source>
         <translation type="obsolete">二度と警告しない。</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-364"/>
+        <location filename="texmaker.cpp" line="-371"/>
         <location line="+48"/>
         <source>File not found:</source>
         <translation>ファイルが見つかりませんでした:</translation>
     </message>
     <message>
-        <location line="-172"/>
+        <location line="-173"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -7766,22 +7895,22 @@ Otherwise there might be random errors and crashes.</source>
 さもないとランダムエラーやクラッシュが生じるかもしれません。</translation>
     </message>
     <message>
-        <location line="-1130"/>
+        <location line="-1156"/>
         <source>Next Change</source>
         <translation>次の変更</translation>
     </message>
     <message>
-        <location line="+272"/>
+        <location line="+275"/>
         <source>Expand</source>
         <translation>展開する</translation>
     </message>
     <message>
-        <location line="+6771"/>
+        <location line="+6943"/>
         <source>Conflict!</source>
         <translation>衝突!</translation>
     </message>
     <message>
-        <location line="-6762"/>
+        <location line="-6934"/>
         <source>Word Repetition</source>
         <translation>単語の繰り返し</translation>
     </message>
@@ -7791,12 +7920,12 @@ Otherwise there might be random errors and crashes.</source>
         <translation>書式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-182"/>
+        <location filename="texmaker.cpp" line="-184"/>
         <source>Remove Placeholders</source>
         <translation>プレースホルダーを除去</translation>
     </message>
     <message>
-        <location line="-80"/>
+        <location line="-81"/>
         <source>Line Ending</source>
         <translation>行末文字</translation>
     </message>
@@ -7806,23 +7935,23 @@ Otherwise there might be random errors and crashes.</source>
         <translation>強制改行を繰り返す(&amp;e)</translation>
     </message>
     <message>
-        <location line="+5339"/>
+        <location line="+5416"/>
         <source>Insert</source>
         <translation>挿入</translation>
     </message>
     <message>
-        <location line="-5222"/>
-        <location line="+307"/>
+        <location line="-5298"/>
+        <location line="+309"/>
         <source>Insert language as TeX comment</source>
         <translation>TeXコメントとして言語を挿入</translation>
     </message>
     <message>
-        <location line="-299"/>
+        <location line="-301"/>
         <source>Quick &amp;Start...</source>
         <translation>簡単テンプレート(一般文書)(&amp;S)</translation>
     </message>
     <message>
-        <location line="-349"/>
+        <location line="-350"/>
         <source>Left/Right Brackets</source>
         <translation>左/右 括弧</translation>
     </message>
@@ -7837,12 +7966,12 @@ Otherwise there might be random errors and crashes.</source>
         <translation>ベースファイルに関して2つのファイルの差分を表示</translation>
     </message>
     <message>
-        <location line="+345"/>
+        <location line="+348"/>
         <source>Grammer Mistake Special %1</source>
         <translation>文法上の間違い（スペシャル %1）</translation>
     </message>
     <message>
-        <location line="-193"/>
+        <location line="-196"/>
         <source>Normal</source>
         <translation>標準</translation>
     </message>
@@ -7852,38 +7981,38 @@ Otherwise there might be random errors and crashes.</source>
         <translation>SVNの衝突の確認</translation>
     </message>
     <message>
-        <location line="+322"/>
+        <location line="+325"/>
         <source>Close Something</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location line="-199"/>
+        <location line="-202"/>
         <source>Previous Bad Box</source>
         <translation>前の良くないボックス</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+34"/>
         <source>Refresh Structure</source>
         <translation>文書構造の更新</translation>
     </message>
     <message>
-        <location line="+5653"/>
+        <location line="+5722"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location line="-5548"/>
+        <location line="-5617"/>
         <source>Previous Document</source>
         <translation>前の文書</translation>
     </message>
     <message>
-        <location line="-429"/>
+        <location line="-430"/>
         <source>Miscellaneous text symbols</source>
         <translation>その他のテキスト記号</translation>
     </message>
     <message>
-        <location line="+6814"/>
+        <location line="+6987"/>
         <source>Reached end of text.</source>
         <translation>テキストの最後に到達しました。</translation>
     </message>
@@ -7892,37 +8021,37 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">タイトルなし</translation>
     </message>
     <message>
-        <location line="-6704"/>
+        <location line="-6877"/>
         <source>S&amp;VN...</source>
         <translation>S&amp;VN...</translation>
     </message>
     <message>
-        <location line="+255"/>
+        <location line="+256"/>
         <source>Insert &amp;Graphic...</source>
         <translation>画像挿入(&amp;G)</translation>
     </message>
     <message>
-        <location line="-237"/>
+        <location line="-238"/>
         <source>Clos&amp;e All</source>
         <translation>全て閉じる(&amp;e)</translation>
     </message>
     <message>
-        <location line="+6636"/>
+        <location line="+6809"/>
         <source>&amp;Find Previous</source>
         <translation>前を検索(&amp;F)</translation>
     </message>
     <message>
-        <location line="-1204"/>
+        <location line="-1300"/>
         <source>Show all open documents in this tree</source>
         <translation>このツリーの開いている文章すべてを表示</translation>
     </message>
     <message>
-        <location line="-5088"/>
+        <location line="-5162"/>
         <source>Align Windows</source>
         <translation>ウィンドウを並べる</translation>
     </message>
     <message>
-        <location line="-214"/>
+        <location line="-217"/>
         <source>Parenthesis</source>
         <translation>括弧</translation>
     </message>
@@ -7937,7 +8066,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>重複行へ移動</translation>
     </message>
     <message>
-        <location line="+208"/>
+        <location line="+209"/>
         <source>Quick T&amp;abbing...</source>
         <translation>簡単タブ区切り(&amp;a)</translation>
     </message>
@@ -7947,7 +8076,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>簡単行列(&amp;A)</translation>
     </message>
     <message>
-        <location line="-374"/>
+        <location line="-376"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>ブックマーク</translation>
@@ -7957,7 +8086,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">\hline を追加</translation>
     </message>
     <message>
-        <location line="+170"/>
+        <location line="+171"/>
         <source>Find &amp;Next</source>
         <translation>次を検索(&amp;N)</translation>
     </message>
@@ -7967,7 +8096,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>前を検索(&amp;P)</translation>
     </message>
     <message>
-        <location line="+282"/>
+        <location line="+285"/>
         <source>Collapse</source>
         <translation>非表示</translation>
     </message>
@@ -7976,7 +8105,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">コマンド(&amp;C)</translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-178"/>
         <source>Complete</source>
         <translation>補完</translation>
     </message>
@@ -7986,28 +8115,28 @@ Otherwise there might be random errors and crashes.</source>
         <translation>次のエラー</translation>
     </message>
     <message>
-        <location line="+4179"/>
+        <location line="+4228"/>
         <location line="+10"/>
         <source>File not found</source>
         <translation>ファイルが見つかりませんでした</translation>
     </message>
     <message>
-        <location line="-4317"/>
+        <location line="-4366"/>
         <source>Check &amp;in...</source>
         <translation>チェックイン(&amp;i)</translation>
     </message>
     <message>
-        <location line="+348"/>
+        <location line="+351"/>
         <source>Long-range Word Repetition</source>
         <translation>広範囲の単語の繰り返し</translation>
     </message>
     <message>
-        <location line="-363"/>
+        <location line="-366"/>
         <source>&amp;Open...</source>
         <translation>開く(&amp;O)</translation>
     </message>
     <message>
-        <location line="+407"/>
+        <location line="+410"/>
         <source>&amp;Options</source>
         <translation>オプション(&amp;O)</translation>
     </message>
@@ -8017,17 +8146,17 @@ Otherwise there might be random errors and crashes.</source>
         <translation>良くない単語</translation>
     </message>
     <message>
-        <location line="-198"/>
+        <location line="-201"/>
         <source>Select Command</source>
         <translation>コマンドを選択</translation>
     </message>
     <message>
-        <location line="+501"/>
+        <location line="+504"/>
         <source>Click to jump to the bookmark</source>
         <translation>クリックしてブックマークに移動</translation>
     </message>
     <message>
-        <location line="+6590"/>
+        <location line="+6769"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>はい、ループを止めて修復しようと試みます</translation>
     </message>
@@ -8040,53 +8169,53 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">行を削除</translation>
     </message>
     <message>
-        <location line="-1424"/>
+        <location line="-1536"/>
         <source>Remove all</source>
         <translation>全て削除</translation>
     </message>
     <message>
-        <location line="-374"/>
+        <location line="-367"/>
         <source>Close document</source>
         <translation>文章を閉じる</translation>
     </message>
     <message>
-        <location line="-5284"/>
+        <location line="-5361"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ の補完</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+54"/>
         <source>Generate &amp;Random Text...</source>
         <translation>ランダムテキストを生成(&amp;R)</translation>
     </message>
     <message>
-        <location line="+221"/>
-        <location line="+5048"/>
+        <location line="+223"/>
+        <location line="+5122"/>
         <source>Paste After</source>
         <translation>後に貼り付け</translation>
     </message>
     <message>
-        <location line="-1293"/>
+        <location line="-1321"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>ログを見る前にファイルを保存・コンパイルする必要があります</translation>
     </message>
     <message>
-        <location line="-1913"/>
+        <location line="-1926"/>
         <source>Join lines before wrapping</source>
         <translation>ワードラップを行う前に行を結合する</translation>
     </message>
     <message>
-        <location line="-2025"/>
+        <location line="-2060"/>
         <source>Quick &amp;Tabular...</source>
         <translation>簡単表作成(&amp;T)</translation>
     </message>
     <message>
-        <location line="+5221"/>
+        <location line="+5297"/>
         <source>Insert \ref to Label</source>
         <translation>ラベルに \ref を挿入</translation>
     </message>
     <message>
-        <location line="-5432"/>
+        <location line="-5509"/>
         <source>Erase &amp;Line</source>
         <translation>行を削除(&amp;L)</translation>
     </message>
@@ -8105,12 +8234,12 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">(La)TeXマクロ</translation>
     </message>
     <message>
-        <location line="+6484"/>
+        <location line="+6657"/>
         <source>Problem</source>
         <translation>問題点</translation>
     </message>
     <message>
-        <location line="-2579"/>
+        <location line="-2703"/>
         <source>Could not start %1.</source>
         <translation>%1を起動させることができませんでした。</translation>
     </message>
@@ -8119,18 +8248,18 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">行を追加</translation>
     </message>
     <message>
-        <location line="-1754"/>
+        <location line="-1767"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>類語辞典データベースを読み込めません</translation>
     </message>
     <message>
-        <location line="-2143"/>
+        <location line="-2179"/>
         <source>Normal Text</source>
         <translation>通常のテキスト</translation>
     </message>
     <message>
-        <location line="-483"/>
-        <location line="+1016"/>
+        <location line="-484"/>
+        <location line="+1020"/>
         <source>Normal Mode</source>
         <translation>標準モード</translation>
     </message>
@@ -8139,7 +8268,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">TXSプロファイル</translation>
     </message>
     <message>
-        <location line="-689"/>
+        <location line="-692"/>
         <source>Check in P&amp;DF</source>
         <translation>PDFをチェックインする(&amp;D)</translation>
     </message>
@@ -8149,38 +8278,38 @@ Otherwise there might be random errors and crashes.</source>
         <translation>2つのファイルの差分を表示</translation>
     </message>
     <message>
-        <location line="+1318"/>
+        <location line="+1345"/>
         <location line="+48"/>
         <source>You do not have read permission to this file:</source>
         <translation>このファイルの読み込み権限がありません:</translation>
     </message>
     <message>
-        <location line="+5651"/>
+        <location line="+5799"/>
         <source>You do not have read permission to this file.</source>
         <translation>ファイルの読み込み権限がありません。</translation>
     </message>
     <message>
-        <location line="-2820"/>
+        <location line="-2946"/>
         <source>Log File not found!</source>
         <translation>ログファイルが見つかりません!</translation>
     </message>
     <message>
-        <location line="+3108"/>
+        <location line="+3247"/>
         <source>No, kill the program</source>
         <translation>いいえ、プログラムを停止します</translation>
     </message>
     <message>
-        <location line="-7023"/>
+        <location line="-7210"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>文献項目を挿入(&amp;I)</translation>
     </message>
     <message>
-        <location line="-223"/>
+        <location line="-224"/>
         <source>Previous Change</source>
         <translation>前の変更</translation>
     </message>
     <message>
-        <location line="+531"/>
+        <location line="+534"/>
         <source>Language</source>
         <translation>言語</translation>
     </message>
@@ -8189,38 +8318,38 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="obsolete">現在のセッションを保存</translation>
     </message>
     <message>
-        <location line="-867"/>
+        <location line="-871"/>
         <source>PDF files</source>
         <translation>PDFファイル</translation>
     </message>
     <message>
-        <location line="+416"/>
+        <location line="+417"/>
         <source>Re&amp;name Environment</source>
         <translation>環境名を付け替える(&amp;n)</translation>
     </message>
     <message>
-        <location line="+266"/>
+        <location line="+269"/>
         <source>Check LaTeX Installation</source>
         <translation>LaTeXのインストールを確認</translation>
     </message>
     <message>
-        <location line="+1226"/>
+        <location line="+1257"/>
         <location line="+47"/>
         <source>Don&apos;t Save and Close</source>
         <translation>保存せず閉じる</translation>
     </message>
     <message>
-        <location line="-1637"/>
+        <location line="-1671"/>
         <source>&amp;Searching</source>
         <translation>検索(&amp;S)</translation>
     </message>
     <message>
-        <location line="+136"/>
+        <location line="+137"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location line="-53"/>
+        <location line="-54"/>
         <source>Next Warning</source>
         <translation>次の警告</translation>
     </message>
@@ -8230,12 +8359,12 @@ Otherwise there might be random errors and crashes.</source>
         <translation>置換(&amp;R)</translation>
     </message>
     <message>
-        <location line="+6581"/>
+        <location line="+6754"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>単語の繰り返し検索は起動しているオンラインスペルチェックでしか作動しません!</translation>
     </message>
     <message>
-        <location line="-6645"/>
+        <location line="-6818"/>
         <source>Restore Previous Session</source>
         <translation>前回のセッションを復元する</translation>
     </message>
@@ -8250,34 +8379,34 @@ Otherwise there might be random errors and crashes.</source>
         <translation>印刷</translation>
     </message>
     <message>
-        <location line="+196"/>
+        <location line="+197"/>
         <source>Thesaurus...</source>
         <translation>類語辞典</translation>
     </message>
     <message>
-        <location line="+6426"/>
+        <location line="+6598"/>
         <source>Find Word Repetitions</source>
         <translation>単語の繰り返しを検索</translation>
     </message>
     <message>
-        <location line="-6280"/>
+        <location line="-6450"/>
         <source>Fullscreen Mode</source>
         <translation>全画面表示モード</translation>
     </message>
     <message>
-        <location line="-378"/>
+        <location line="-381"/>
         <source>New From &amp;Template...</source>
         <translation>テンプレートから新規作成(&amp;T)</translation>
     </message>
     <message>
-        <location line="+790"/>
+        <location line="+793"/>
         <source>
 included document in %1</source>
         <translation>
 %1 の文章に含まれています</translation>
     </message>
     <message>
-        <location line="+744"/>
+        <location line="+773"/>
         <source>Save As</source>
         <translation>名前をつけて保存</translation>
     </message>
@@ -8290,49 +8419,49 @@ included document in %1</source>
         <translation type="obsolete">Qtスクリプト</translation>
     </message>
     <message>
-        <location line="-1331"/>
+        <location line="-1362"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location line="-134"/>
+        <location line="-135"/>
         <source>&amp;Select all matches...</source>
         <translation>一致した全てを選択(&amp;S)</translation>
     </message>
     <message>
-        <location line="-207"/>
+        <location line="-208"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
         <translation>文書の構造</translation>
     </message>
     <message>
-        <location line="+253"/>
+        <location line="+254"/>
         <location line="+1"/>
-        <location line="+4072"/>
+        <location line="+4121"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>LaTeXのエラーはありませんでした!</translation>
     </message>
     <message>
-        <location line="-4123"/>
+        <location line="-4172"/>
         <source>Toggle Bookmark</source>
         <translation>ブックマークの切り替え</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+3"/>
-        <location filename="texmaker.cpp" line="-461"/>
+        <location filename="texmaker.cpp" line="-462"/>
         <source>Central</source>
         <translation>中央部</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+584"/>
+        <location filename="texmaker.cpp" line="+586"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>ユーザー(&amp;U)</translation>
     </message>
     <message>
-        <location line="-197"/>
+        <location line="-198"/>
         <source>Lock &amp;PDF</source>
         <translation>PDFをロックする(&amp;P)</translation>
     </message>
@@ -8343,13 +8472,13 @@ included document in %1</source>
         <translation>メッセージ / ログファイル</translation>
     </message>
     <message>
-        <location line="+421"/>
+        <location line="+424"/>
         <location line="+5"/>
         <source>Everything</source>
         <translation>すべて</translation>
     </message>
     <message>
-        <location line="-210"/>
+        <location line="-213"/>
         <location line="+1"/>
         <source>No LaTeX warnings detected !</source>
         <translation>LaTeXの警告は見つかりませんでした!</translation>
@@ -8375,27 +8504,27 @@ included document in %1</source>
         <translation>コメントアウト(&amp;C)</translation>
     </message>
     <message>
-        <location line="+56"/>
+        <location line="+57"/>
         <source>&amp;Compile</source>
         <translation>コンパイル(&amp;C)</translation>
     </message>
     <message>
-        <location line="-447"/>
+        <location line="-449"/>
         <source>TeX files</source>
         <translation>TeXファイル</translation>
     </message>
     <message>
-        <location line="+2568"/>
+        <location line="+2605"/>
         <source>No dictionary available.</source>
         <translation>利用可能な辞書がありません。</translation>
     </message>
     <message>
-        <location line="-2173"/>
+        <location line="-2209"/>
         <source>Hard Line &amp;Break...</source>
         <translation>強制改行(&amp;B)</translation>
     </message>
     <message>
-        <location line="+280"/>
+        <location line="+283"/>
         <source>Automatically Restore &amp;Session at Next Start</source>
         <translation>次回起動時に自動的にセッションを復旧(&amp;S)</translation>
     </message>
@@ -8405,17 +8534,17 @@ included document in %1</source>
         <translation>TeXstudioについて</translation>
     </message>
     <message>
-        <location line="-195"/>
+        <location line="-197"/>
         <source>Find Word Repetitions...</source>
         <translation>単語の繰り返しを検索</translation>
     </message>
     <message>
-        <location line="+320"/>
+        <location line="+322"/>
         <source>Default</source>
         <translation>既定</translation>
     </message>
     <message>
-        <location line="-348"/>
+        <location line="-350"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
@@ -8433,17 +8562,17 @@ Are you sure you want to continue?</source>
 本当に続けますか?</translation>
     </message>
     <message>
-        <location line="-166"/>
+        <location line="-167"/>
         <source>Debug undo stack</source>
         <translation>アンドゥスタックをデバック</translation>
     </message>
     <message>
-        <location line="+3954"/>
+        <location line="+4001"/>
         <source>Unknown internal command: %1</source>
         <translation>不明な内部コマンド: %1</translation>
     </message>
     <message>
-        <location line="-3588"/>
+        <location line="-3632"/>
         <source>Load &amp;Profile...</source>
         <translation>プロファイルの読み込み(&amp;P)</translation>
     </message>
@@ -8453,7 +8582,7 @@ Are you sure you want to continue?</source>
         <translation>マクロを編集(&amp;M)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-289"/>
+        <location filename="texmaker.cpp" line="-292"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
@@ -8463,7 +8592,7 @@ Are you sure you want to continue?</source>
         <translation>インデント(&amp;I)</translation>
     </message>
     <message>
-        <location line="+7191"/>
+        <location line="+7379"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -8477,37 +8606,37 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation>停止しようとしましたが、何も起きませんでした。</translation>
     </message>
     <message>
-        <location line="-6947"/>
+        <location line="-7132"/>
         <source>Highlighting</source>
         <translation>強調表示</translation>
     </message>
     <message>
-        <location line="-144"/>
+        <location line="-146"/>
         <source>Insert \ref to Next Label</source>
         <translation>次のラベルに \ref を挿入</translation>
     </message>
     <message>
-        <location line="-181"/>
+        <location line="-182"/>
         <source>Move Line &amp;Down</source>
         <translation>1行下へ移動(&amp;D)</translation>
     </message>
     <message>
-        <location line="+145"/>
+        <location line="+146"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location line="-176"/>
+        <location line="-177"/>
         <source>Jump to next difference</source>
         <translation>次の差分へ移動</translation>
     </message>
     <message>
-        <location line="+5439"/>
+        <location line="+5516"/>
         <source>Show only current document in this tree</source>
         <translation>このツリーの現在の文章のみを表示</translation>
     </message>
     <message>
-        <location line="-5383"/>
+        <location line="-5460"/>
         <source>Previous mark</source>
         <translation>前のマーク</translation>
     </message>
@@ -8527,32 +8656,32 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation>1行上へ移動(&amp;U)</translation>
     </message>
     <message>
-        <location line="+3766"/>
+        <location line="+3809"/>
         <source>Can&apos;t detect the file name</source>
         <translation>ファイルが見つかりません</translation>
     </message>
     <message>
-        <location line="-3922"/>
+        <location line="-3965"/>
         <source>Greek letters</source>
         <translation>ギリシャ文字</translation>
     </message>
     <message>
-        <location line="+7357"/>
+        <location line="+7539"/>
         <source>Yes, continue the loop</source>
         <translation>はい、ループを続けます</translation>
     </message>
     <message>
-        <location line="-6893"/>
+        <location line="-7072"/>
         <source>Grammer Mistake</source>
         <translation>文法上の間違い</translation>
     </message>
     <message>
-        <location line="-276"/>
+        <location line="-279"/>
         <source>Goto Bookmark</source>
         <translation>ブックマークへ移動</translation>
     </message>
     <message>
-        <location line="+2201"/>
+        <location line="+2237"/>
         <source>Smart scope selecting</source>
         <translation>スマートな範囲選択</translation>
     </message>
@@ -8561,12 +8690,12 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation type="obsolete">列を削除</translation>
     </message>
     <message>
-        <location line="-1868"/>
+        <location line="-1901"/>
         <source>User Manual...</source>
         <translation>ユーザーマニュアル</translation>
     </message>
     <message>
-        <location line="-410"/>
+        <location line="-413"/>
         <source>Save A&amp;ll</source>
         <translation>全て保存(&amp;l)</translation>
     </message>
@@ -8575,22 +8704,22 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation type="obsolete">下へ移動</translation>
     </message>
     <message>
-        <location line="+7156"/>
+        <location line="+7331"/>
         <source>SVN Conflict!</source>
         <translation>SVNで衝突!</translation>
     </message>
     <message>
-        <location line="-6833"/>
+        <location line="-7007"/>
         <source>Open Documents</source>
         <translation>文章を開く</translation>
     </message>
     <message>
-        <location line="+3230"/>
+        <location line="+3269"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location line="-3359"/>
+        <location line="-3398"/>
         <source>View &amp;DVI</source>
         <translation>DVIファイルを表示(&amp;D)</translation>
     </message>
@@ -8600,62 +8729,62 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation>ログを表示(&amp;L)</translation>
     </message>
     <message>
-        <location line="+4103"/>
+        <location line="+4151"/>
         <location line="+10"/>
         <source>Could not open browser</source>
         <translation>ブラウザを開けません</translation>
     </message>
     <message>
-        <location line="-4126"/>
+        <location line="-4174"/>
         <source>View PD&amp;F</source>
         <translation>PDFファイルを表示(&amp;F)</translation>
     </message>
     <message>
-        <location line="+6868"/>
+        <location line="+7042"/>
         <source>Open Compare File</source>
         <translation>比較するファイルを開く</translation>
     </message>
     <message>
-        <location line="-6863"/>
+        <location line="-7037"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location line="+139"/>
+        <location line="+141"/>
         <location line="+5"/>
         <source>Level %1</source>
         <translation>レベル %1</translation>
     </message>
     <message>
-        <location line="-117"/>
+        <location line="-119"/>
         <source>Insert \ref to Previous Label</source>
         <translation>前のラベルに \ref を挿入</translation>
     </message>
     <message>
-        <location line="+5591"/>
+        <location line="+5660"/>
         <location line="+11"/>
         <source>Add to favorites</source>
         <translation>お気に入りに追加する</translation>
     </message>
     <message>
-        <location line="+1408"/>
-        <location line="+74"/>
+        <location line="+1520"/>
+        <location line="+80"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudioの非常事態</translation>
     </message>
     <message>
-        <location line="-7202"/>
+        <location line="-7390"/>
         <source>Pre&amp;view Selection/Parantheses</source>
         <translation>選択部 / 括弧 をプレビュー(&amp;v)</translation>
     </message>
     <message>
-        <location line="+293"/>
+        <location line="+296"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeXコマンドリファレンス</translation>
     </message>
     <message>
-        <location line="-348"/>
+        <location line="-351"/>
         <source>Replace Prev</source>
         <translation>前を置換</translation>
     </message>
@@ -8675,7 +8804,7 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation>全て置換(&amp;A)</translation>
     </message>
     <message>
-        <location line="+7095"/>
+        <location line="+7270"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -8686,19 +8815,19 @@ subversionで生成されたソースの代わりに差分を表示するには�
 </translation>
     </message>
     <message>
-        <location line="-3634"/>
+        <location line="-3769"/>
         <source>Quick Start</source>
         <translation>簡単テンプレート(一般文書)</translation>
     </message>
     <message>
-        <location line="-3081"/>
-        <location line="+5046"/>
+        <location line="-3118"/>
+        <location line="+5120"/>
         <source>Unindent Section</source>
         <translation>節のインデントの解除</translation>
     </message>
     <message>
-        <location line="-5047"/>
-        <location line="+5046"/>
+        <location line="-5121"/>
+        <location line="+5120"/>
         <source>Indent Section</source>
         <translation>節のインデント</translation>
     </message>
@@ -8707,7 +8836,7 @@ subversionで生成されたソースの代わりに差分を表示するには�
         <translation type="obsolete">(La)TeX</translation>
     </message>
     <message>
-        <location line="-5352"/>
+        <location line="-5429"/>
         <source>Next Bad Box</source>
         <translation>次の良くないボックス</translation>
     </message>
@@ -8716,7 +8845,7 @@ subversionで生成されたソースの代わりに差分を表示するには�
         <translation type="obsolete">前回の保存時より新しい内容が含まれています。閉じる前にファイルに保存しますか?</translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+76"/>
         <source>Cl&amp;ear Markers</source>
         <translation>マーカーを削除する(&amp;e)</translation>
     </message>
@@ -8725,7 +8854,7 @@ subversionで生成されたソースの代わりに差分を表示するには�
         <translation type="obsolete">TXSテストの結果</translation>
     </message>
     <message>
-        <location line="-312"/>
+        <location line="-313"/>
         <source>Favorites</source>
         <translation>お気に入り</translation>
     </message>
@@ -8750,34 +8879,34 @@ subversionで生成されたソースの代わりに差分を表示するには�
         <translation>作業ディレクトリをSVNでアップデート(&amp;w)</translation>
     </message>
     <message>
-        <location line="+1066"/>
+        <location line="+1092"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>%1 からクラッシュの復旧ファイルが &quot;%2&quot;にたいして見つかりました。
 元に戻しますか?</translation>
     </message>
     <message>
-        <location line="-912"/>
+        <location line="-938"/>
         <source>Find Mismatch</source>
         <translation>不一致を検索</translation>
     </message>
     <message>
-        <location line="+918"/>
+        <location line="+944"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>復旧ファイル &quot;%1&quot; を開くのに失敗しました。</translation>
     </message>
     <message>
-        <location line="-962"/>
+        <location line="-988"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>LaTeXに変換(&amp;n)</translation>
     </message>
     <message>
-        <location line="+98"/>
+        <location line="+99"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>ソースをHTMLに変換(&amp;o)</translation>
     </message>
     <message>
-        <location line="+190"/>
+        <location line="+192"/>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
         <translation>この文書を&apos;マスターファイル&apos;にする(&amp;M)</translation>
     </message>
@@ -8791,48 +8920,48 @@ Do you want to restore it?</source>
         <translation>標準モード (現在のマスターファイル :</translation>
     </message>
     <message>
-        <location line="-451"/>
+        <location line="-453"/>
         <source>&amp;Wizards</source>
         <translation>ウィザード(&amp;W)</translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-176"/>
         <source>Go Back</source>
         <translation>前へ移動</translation>
     </message>
     <message>
-        <location line="+2217"/>
-        <location line="+1818"/>
+        <location line="+2253"/>
+        <location line="+1831"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>開いているドキュメントはありません</translation>
     </message>
     <message>
-        <location line="-3790"/>
+        <location line="-3836"/>
         <source>Grammar errors</source>
         <translation>文法エラー</translation>
     </message>
     <message>
-        <location line="+3457"/>
+        <location line="+3497"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ファイルが見つかりません。
 コンパイル前にドキュメントを保存してください。</translation>
     </message>
     <message>
-        <location line="-4074"/>
+        <location line="-4118"/>
         <source>Plaintext files</source>
         <translation>プレーンテキストファイル</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+6748"/>
+        <location line="+6922"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>すべてのファイル</translation>
     </message>
     <message>
-        <location line="-6408"/>
+        <location line="-6581"/>
         <source>Unnamed Bookmark</source>
         <translation>名前なしブックマーク</translation>
     </message>
@@ -8843,33 +8972,33 @@ Do you trust this document?</source>
 この文章を信用しますか?</translation>
     </message>
     <message>
-        <location line="+1558"/>
+        <location line="+1592"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>保存して閉じる</translation>
     </message>
     <message>
-        <location line="-1793"/>
+        <location line="-1827"/>
         <source>Accented letters</source>
         <translation>アクセント付き文字</translation>
     </message>
     <message>
-        <location line="+366"/>
+        <location line="+367"/>
         <source>Math Assistant...</source>
         <translation>数式アシスタント</translation>
     </message>
     <message>
-        <location line="+6981"/>
+        <location line="+7162"/>
         <source>Yes, try to recover</source>
         <translation>はい、修復しようと試みます</translation>
     </message>
     <message>
-        <location line="-3100"/>
+        <location line="-3233"/>
         <source>Text Analysis</source>
         <translation>テキスト解析</translation>
     </message>
     <message>
-        <location line="+2722"/>
+        <location line="+2848"/>
         <location line="+201"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -8880,34 +9009,34 @@ Do you trust this document?</source>
         <translation type="obsolete">\hline を削除</translation>
     </message>
     <message>
-        <location line="-7077"/>
+        <location line="-7252"/>
         <source>Open &amp;Recent</source>
         <translation>最近開いたファイル(&amp;R)</translation>
     </message>
     <message>
-        <location line="+7254"/>
+        <location line="+7436"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudioは無限ループに陥ったかもしれないため一時停止しました。
 プログラムを起動し続けますか? これはデータの破壊につながるかもしれません。</translation>
     </message>
     <message>
-        <location line="-3086"/>
+        <location line="-3219"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>ランダムテキスト生成器は既存の単語から新規テキストを作成しますので、何らかのテキストファイルを開いてください</translation>
     </message>
     <message>
-        <location line="-3457"/>
+        <location line="-3503"/>
         <source>Master Document</source>
         <translation>マスターファイル</translation>
     </message>
     <message>
-        <location line="-689"/>
+        <location line="-692"/>
         <source>Try to merge differences</source>
         <translation>差分を併合</translation>
     </message>
     <message>
-        <location line="+195"/>
+        <location line="+196"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>補助ファイルの削除(&amp;a)</translation>
     </message>
@@ -8916,7 +9045,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="obsolete">表テンプレートを選択</translation>
     </message>
     <message>
-        <location line="-303"/>
+        <location line="-304"/>
         <source>Tikz Commands</source>
         <translation>Tikzのコマンド</translation>
     </message>
@@ -8926,18 +9055,18 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>単語 / コマンド / 環境 の削除(&amp;W)</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <location line="+86"/>
         <source>&amp;Bibliography</source>
         <translation>文献(&amp;B)</translation>
     </message>
     <message>
-        <location line="-192"/>
+        <location line="-193"/>
         <source>Next mark</source>
         <translation>次のマーク</translation>
     </message>
     <message>
-        <location line="+230"/>
+        <location line="+231"/>
         <location line="+6"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
@@ -8948,7 +9077,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>PSファイルを表示(&amp;w)</translation>
     </message>
     <message>
-        <location line="+5262"/>
+        <location line="+5338"/>
         <source>Move document to &amp;front</source>
         <translation>文章を一番前へ移動(&amp;f)</translation>
     </message>
@@ -8957,22 +9086,22 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="obsolete">ファイル&quot;%1&quot;を見つけられませんでした</translation>
     </message>
     <message>
-        <location line="+1610"/>
+        <location line="+1708"/>
         <source>Open Base File</source>
         <translation>ベースとなるファイルを開く</translation>
     </message>
     <message>
-        <location line="-1619"/>
+        <location line="-1717"/>
         <source>Set this document as master document</source>
         <translation>この文章をマスターファイルとして設定する</translation>
     </message>
     <message>
-        <location line="-3171"/>
+        <location line="-3212"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>ある一定の文字数後に強制改行を挿入します:</translation>
     </message>
     <message>
-        <location line="-2059"/>
+        <location line="-2094"/>
         <source>Check Spelling...</source>
         <translation>スペルチェック</translation>
     </message>
@@ -9031,7 +9160,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished">XML</translation>
     </message>
     <message>
-        <location filename="utilsUI.cpp" line="-50"/>
+        <location filename="utilsUI.cpp" line="-46"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
         <translation type="unfinished">二度と警告しない。</translation>
@@ -9103,35 +9232,34 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished">テンプレートを用いて表を再構築する</translation>
     </message>
     <message>
-        <location line="+163"/>
+        <location line="+94"/>
+        <source>Show embedded PDF large</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show embedded PDF small</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+70"/>
         <source>Save Current Settings</source>
         <comment>menu</comment>
         <translation type="unfinished">現在のセッションを保存</translation>
     </message>
     <message>
-        <location line="+881"/>
+        <location line="+904"/>
         <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+356"/>
+        <location line="+364"/>
         <location line="+47"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2236"/>
-        <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
-
-Do you want to allow and run the new, overriding command?
-
-(a) Allow the new command for this document (only if you trust this document)
-(b) Allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
-(c) Don&apos;t use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
+        <location line="+2255"/>
         <source>(a) allow for this document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9146,25 +9274,25 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2537"/>
+        <location line="+2664"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+15"/>
+        <location line="+14"/>
         <location line="+9"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished">TXSプロファイル</translation>
     </message>
     <message>
-        <location line="+846"/>
+        <location line="+861"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7344"/>
+        <location line="-7532"/>
         <source>Session</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9179,7 +9307,12 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+246"/>
+        <location line="+171"/>
+        <source>Close latest open environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+76"/>
         <source>Add magic comments ...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9194,17 +9327,17 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+168"/>
+        <location line="+170"/>
         <source>Packages Help...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1052"/>
+        <location line="+1080"/>
         <source>Loading of last session failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+72"/>
+        <location line="+73"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -9213,7 +9346,7 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+324"/>
+        <location line="+326"/>
         <source>Load Session</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9239,12 +9372,12 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1554"/>
+        <location line="-1587"/>
         <source>List Of Open Documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+287"/>
+        <location line="+289"/>
         <location line="+1"/>
         <location line="+178"/>
         <location line="+4"/>
@@ -9802,7 +9935,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>追加</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+49"/>
         <source>Down</source>
         <translation>下へ</translation>
     </message>
@@ -9814,12 +9947,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>ユーザー</translation>
     </message>
     <message>
-        <location filename="userquickdialog.ui" line="+7"/>
+        <location filename="userquickdialog.ui" line="+11"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location line="-80"/>
+        <location line="-88"/>
         <source>Quick Build Command</source>
         <translation>簡単コンパイルのコマンド</translation>
     </message>
@@ -9916,7 +10049,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>コンパイルの回数 :</translation>
     </message>
     <message>
-        <location line="+167"/>
+        <location line="+170"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
@@ -9938,7 +10071,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>右揃え</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="-300"/>
+        <location filename="webpublishdialog.ui" line="-303"/>
         <location filename="webpublishdialog.cpp" line="-5"/>
         <source>Convert to Html</source>
         <translation>HTMLに変換</translation>
@@ -9986,7 +10119,7 @@ htmlファイルは%1ディレクトリにあります。</translation>
         <translation>入力ファイルをコンパイルしています。しばらくお待ちください...</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="+193"/>
+        <location filename="webpublishdialog.ui" line="+196"/>
         <source>Width of the largest image</source>
         <translation>画像の最大幅</translation>
     </message>
@@ -9996,7 +10129,7 @@ htmlファイルは%1ディレクトリにあります。</translation>
         <translation>入力ファイルが見つかりません。</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="-301"/>
+        <location filename="webpublishdialog.ui" line="-304"/>
         <source>LaTeX options</source>
         <translation>LaTeX関連のオプション</translation>
     </message>
@@ -10016,12 +10149,12 @@ htmlファイルは%1ディレクトリにあります。</translation>
         <translation>入力ファイルをコンパイルする回数</translation>
     </message>
     <message>
-        <location line="+262"/>
+        <location line="+265"/>
         <source>Images options</source>
         <translation>画像関連のオプション</translation>
     </message>
     <message>
-        <location line="-51"/>
+        <location line="-54"/>
         <source>Launch</source>
         <translation>変換</translation>
     </message>
@@ -10064,7 +10197,7 @@ htmlファイルは%1ディレクトリにあります。</translation>
         <translation>何ページ目から目次に表示するか :</translation>
     </message>
     <message>
-        <location line="+227"/>
+        <location line="+230"/>
         <source>Browser :</source>
         <translation>ブラウザ :</translation>
     </message>
@@ -10079,7 +10212,7 @@ htmlファイルは%1ディレクトリにあります。</translation>
         <translation>ブラウザを実行しています。</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="-93"/>
+        <location filename="webpublishdialog.ui" line="-96"/>
         <source>Text displayed at the bottom of each html files </source>
         <translation>各ファイルの最下部に表示するテキストを設定してください</translation>
     </message>
@@ -10149,14 +10282,13 @@ htmlファイルは%1ディレクトリにあります。</translation>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="-171"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -10164,12 +10296,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.cpp" line="-110"/>
+        <location line="-110"/>
         <source>Writing index page</source>
         <translation>表紙を書き込んでいます</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="+164"/>
+        <location filename="webpublishdialog.ui" line="-7"/>
         <source>Navigation :</source>
         <translation>ナビゲーションの種類 :</translation>
     </message>
@@ -10182,12 +10314,12 @@ p, li { white-space: pre-wrap; }
         <translation>開けません</translation>
     </message>
     <message>
-        <location filename="webpublishdialog.ui" line="+152"/>
+        <location filename="webpublishdialog.ui" line="+155"/>
         <source>Images Width :</source>
         <translation>画像の幅 :</translation>
     </message>
     <message>
-        <location line="-214"/>
+        <location line="-217"/>
         <source>Set the value of the LaTeX tocdepth counter</source>
         <translation>LaTeXのtocdepthカウンタの値を指定してください</translation>
     </message>
@@ -10304,7 +10436,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+33"/>
         <source>Target folder not empty.</source>
         <translation type="unfinished"></translation>
     </message>
