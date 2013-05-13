@@ -110,7 +110,8 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	//		geometry().y(),
 	//		geometry().width(),
 	//		geometry().height());
-    static QPixmap _warn(getRealIconFile("warning")), _mod(getRealIconFile("save"));
+	static QPixmap _warn = QPixmap(getRealIconFile("warning")).scaledToHeight(16, Qt::SmoothTransformation);
+	static QPixmap _mod = QPixmap(getRealIconFile("save")).scaledToHeight(16, Qt::SmoothTransformation);
 
 	QString s;
 	QString spacing("    ");
