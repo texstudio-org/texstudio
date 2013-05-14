@@ -995,7 +995,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</oldsource>
-        <translation type="unfinished">&lt;i&gt;Seletores:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nome do arquivo sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão, &lt;b&gt;r&lt;/b&gt;: caminho relativo ao arquivo mestre, &lt;b&gt;*&lt;/b&gt;: todos os arquivos obedecendo ao padrão&lt;br /&gt;
+        <translation>&lt;i&gt;Seletores:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nome do arquivo sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão, &lt;b&gt;r&lt;/b&gt;: caminho relativo ao arquivo mestre, &lt;b&gt;*&lt;/b&gt;: todos os arquivos obedecendo ao padrão&lt;br /&gt;
 anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mestre&lt;br /&gt;
 &lt;i&gt;Caracteres de encerramento:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: encerra seletor. Os seguintes caracteres encerram o seletor e têm significado adicional&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: entre aspas, &lt;b&gt;.&lt;/b&gt; (ponto) adiciona um ponto ao fim, (espaço): adiciona um espaço ao fim&lt;br /&gt;
@@ -1155,12 +1155,12 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location line="-501"/>
         <source>Show messages when starting compiling</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar mensagens ao iniciar a compilação</translation>
     </message>
     <message utf8="true">
         <location line="+602"/>
         <source>English Quotes (unicode): “ ”</source>
-        <translation type="unfinished"></translation>
+        <translation>Aspas Inglesas (unicode): &quot; &quot;</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -1175,12 +1175,12 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location line="+34"/>
         <source>Hide grammar errors in non-text environments</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocultar erros gramaticais em ambientes não textuais</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hide spelling errors in non-text environments</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocultar erros ortográficos em ambientes não textuais</translation>
     </message>
     <message>
         <location line="+169"/>
@@ -1200,32 +1200,32 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location line="+7"/>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativar tecla &apos;Esc&apos; para sair do modo de tela cheia</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Manter recuo de &apos;includes&apos; na estrutura</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir ajuda para comandos no visualizador de pdf interno (texdoc)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar silenciosamente os arquivos salvos alterados externamente (descarta pilha fazer/desfazer)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuidado, pois o LaTeX ainda precisa ser capaz de renderizar o caracter, assim, os mesmos pacotes do código LaTeX precisam estar presentes</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Insert Symbol as Unicode</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir Símbolo como Unicode</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2706,7 +2706,7 @@ Personalizado</translation>
     <message>
         <location line="+7"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você necessita adicionar uma ação para a barra de ferramentas (da lista de ações no lado direito), antes que possa carregar um icone para este item.</translation>
     </message>
     <message>
         <location line="+148"/>
@@ -4722,7 +4722,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+49"/>
         <source>LaTeX Project Public License (LPPL)</source>
-        <translation type="unfinished"></translation>
+        <translation>LaTeX Project Public License (LPPL)</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.cpp" line="+38"/>
@@ -4780,7 +4780,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+27"/>
         <source>Failed to load log file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao carregar o arquivo de log &quot;%1&quot;</translation>
     </message>
     <message>
         <location line="+85"/>
@@ -5348,12 +5348,12 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+5"/>
         <source>Enlarge Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir Visualizador</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Reduzir Visualizador</translation>
     </message>
     <message>
         <location line="-134"/>
@@ -6171,7 +6171,13 @@ Undo/Redo stack would be discarded by the auto-reload.
 Do you wish to keep up to date by reloading the file?
 
 (Note: You can permanently enable silent reloading in the options.)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+foi modificado por outra aplicação.
+
+A pilha Desfazer/Fazer será descartada pelo auto-recarregamento .
+Você deseja atualizar recarregando o arquivo?
+
+(Nota: Você pode habilitar a recarga silenciosa permanentemente nas opções.)</translation>
     </message>
     <message>
         <location line="+234"/>
@@ -7151,12 +7157,12 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="quazip/quazip/quaziodevice.cpp" line="+121"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append não é suportado por QuaZIODevice</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::ReadWrite não é suportado por QuaZIODevice</translation>
     </message>
 </context>
 <context>
@@ -7236,7 +7242,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location line="+7"/>
         <source>graphicx Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote graphicx</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -7895,7 +7901,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="+12"/>
         <source>Unicode Character: </source>
-        <translation type="unfinished"></translation>
+        <translation>Caracter Unicode:</translation>
     </message>
 </context>
 <context>
@@ -8132,7 +8138,7 @@ falhou.</translation>
     <message>
         <location line="+48"/>
         <source>Unnamed Resource</source>
-        <translation type="unfinished"></translation>
+        <translation>Recurso Não Nomeado</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -8168,7 +8174,7 @@ falhou.</translation>
     <message>
         <location filename="templatemanager_p.cpp" line="+46"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>A pasta alvo não está vazia. É recomendável a utilização de novas pastas, caso contrário arquivos existentes podem ser sobreescritos. Você deseja realmente utilizar esta pasta?</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -8992,17 +8998,17 @@ falhou.</translation>
     <message>
         <location line="+35"/>
         <source>Close latest open environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar o último ambiente aberto</translation>
     </message>
     <message>
         <location line="+168"/>
         <source>Show embedded PDF large</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir PDF integrado maior</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show embedded PDF small</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir PDF integrado menor</translation>
     </message>
     <message>
         <location line="+3634"/>
@@ -9013,12 +9019,18 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"></translation>
+        <translation>O documento &quot;%1&quot; deseja sobrescrever o comando &quot;%2&quot; com &quot;%3&quot;.
+
+Voce deseja permitir e executar o novo comando?
+
+(a) Sim, permitir o novo comando para este documento (somente se você confia neste documento)
+(b) Sim, permitir o novo comando ser utilizado para todos os documentos (somente se você confia no novo comando para atuar em qualquer documento)
+(c) Não, utilizar o comando &quot;%3&quot; e executar o comando padrão &quot;%2</translation>
     </message>
     <message>
         <location line="+2731"/>
         <source>Failed to read profile file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao ler o arquivo de perfil %1.</translation>
     </message>
     <message>
         <location line="+825"/>
@@ -10483,7 +10495,7 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
     <message>
         <location line="+146"/>
         <source>Encoding Aliases: </source>
-        <translation type="unfinished">Nome da Codificação</translation>
+        <translation>Nome da Codificação: </translation>
     </message>
     <message>
         <location line="+881"/>
