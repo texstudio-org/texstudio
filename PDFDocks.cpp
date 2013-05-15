@@ -129,7 +129,7 @@ void PDFOutlineDock::fillInfo()
 	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
 		fillToc(*toc, tree, 0);
-		connect(tree, SIGNAL(itemSelectionChanged()), this, SLOT(followTocSelection()));
+		connect(tree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(followTocSelection()));
 		delete toc;
 	} else {
 		QTreeWidgetItem *item = new QTreeWidgetItem();
