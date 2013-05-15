@@ -130,6 +130,7 @@
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
 <file>completion/subfig.cwl</file>
+<file>completion/subfigure.cwl</file>
 <file>completion/supertabular.cwl</file>
 <file>completion/svninfo.cwl</file>
 <file>completion/svn-multi.cwl</file>
