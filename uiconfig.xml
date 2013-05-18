@@ -29,7 +29,7 @@
   </menu>
 
   <menu id="environment" text="&amp;Environments">
-    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%n%|%n\end{%&lt;environment-name%>}" shortcut="Ctrl+E"/>
+    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%n%&lt;content%>%n\end{environment-name}" shortcut="Ctrl+E"/>
     <insert id="center" text="\begin{center}" insert="\begin{center}%n%|%n\end{center}" icon="format-justify-center"/>
     <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="format-justify-left"/>
     <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%n%|%n\end{flushright}" icon="format-justify-right"/>
