@@ -1069,7 +1069,7 @@ void Texmaker::setupToolBars() {
 				} else {
 					QMenu* menu=qobject_cast<QMenu*>(obj);
 					if (!menu) {
-						qWarning("Unkown toolbar command %s", qPrintable(actionName));
+						qWarning("Unknown toolbar command %s", qPrintable(actionName));
 						continue;
 					}
 					//Case 4: A submenu mapped on a toolbutton
@@ -7990,15 +7990,14 @@ void Texmaker::recoverFromCrash(){
 	if (!wasLoop) {
 		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
 		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover"), QMessageBox::AcceptRole));
-		mb->addButton(tr("No, kill the programm"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
+		mb->addButton(tr("No, kill the program"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
 	} else {
 		mb->setText(tr( "TeXstudio has been paused due to a possible endless loop.\nDo you want to keep the program running? This may cause data corruption."));
 		mb->setDefaultButton(mb->addButton(tr("Yes, stop the loop and try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("Yes, continue the loop"), QMessageBox::RejectRole);
-		mb->addButton(tr("No, kill the programm"), QMessageBox::DestructiveRole);
+		mb->addButton(tr("No, kill the program"), QMessageBox::DestructiveRole);
 	}
 	
-
 	//show the dialog (non modal, because on Windows showing the dialog modal here, permanently disables all other windows)
 	mb->setWindowFlags(Qt::WindowStaysOnTopHint);
 	mb->setWindowModality(Qt::NonModal);
