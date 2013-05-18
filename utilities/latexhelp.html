@@ -1143,16 +1143,16 @@ this substitution takes place.</dd>
 </dl>
 <h3><a name="SEC21" href="#TOC21">\newenvironment</a></h3>
 <pre>
- \newenvironment{nam}[args]{begdef}{enddef}
- \newenvironment{nam}[args][default]{begdef}{enddef}
- \renewenvironment{nam}[args]{begdef}{enddef}
+ \newenvironment{env_name}[args]{begdef}{enddef}
+ \newenvironment{env_name}[args][default]{begdef}{enddef}
+ \renewenvironment{env_name}[args]{begdef}{enddef}
 </pre>
 <p>These commands define or redefine an environment.</p>
 <dl>
-<dt><code>nam</code></dt>
+<dt><code>env_name</code></dt>
 <dd>The name of the environment. For <code>\newenvironment</code>
 there must be no currently defined environment by that name, and
-the command <code>\nam</code> must be undefined. For
+the command <code>\env_name</code> must be undefined. For
 <code>\renewenvironment</code> the environment must already be
 defined.</dd>
 <dt><code>args</code></dt>
@@ -1164,12 +1164,12 @@ newly-defined environment. The default is no arguments.</dd>
 argument.</dd>
 <dt><code>begdef</code></dt>
 <dd>The text substituted for every occurrence of
-<code>\begin{nam}</code>; a parameter of the form <code>#n</code>
+<code>\begin{env_name}</code>; a parameter of the form <code>#n</code>
 in <code>cmd</code> is replaced by the text of the nth argument
 when this substitution takes place.</dd>
 <dt><code>enddef</code></dt>
 <dd>The text substituted for every occurrence of
-<code>\end{nam}</code>. It may not contain any argument
+<code>\end{env_name}</code>. It may not contain any argument
 parameters.</dd>
 </dl>
 <h3><a name="SEC22" href="#TOC22">\newtheorem</a></h3>

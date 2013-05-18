@@ -555,6 +555,6 @@ QScriptValue UniversalInputDialogScript::get(const QScriptValue& id){
 				return engine->newVariant(mp.valueToQVariant());
 		return QScriptValue();
 	}
-	engine->currentContext()->throwError(tr("Unkown variable %1").arg(id.toString()));
+	engine->currentContext()->throwError(tr("Unknown variable %1").arg(id.toString()));
 	return QScriptValue();
 }
