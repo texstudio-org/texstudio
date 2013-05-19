@@ -2719,10 +2719,13 @@ Personalizado</translation>
     </message>
     <message>
         <location line="+148"/>
-        <source>You have enabled the advanced options. This allows to
+        <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation>Você habilitou as opções avançadas. Isto permite
+        <oldsource>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</oldsource>
+        <translation type="unfinished">Você habilitou as opções avançadas. Isto permite
 configurar TXS em detalhes. Desabilite as opções
 avançadas novamente para somente visualizar
 os ajustes mais comuns.</translation>
@@ -9047,7 +9050,7 @@ Voce deseja permitir e executar o novo comando?
         <translation>Falha ao ler o arquivo de perfil %1.</translation>
     </message>
     <message>
-        <location line="+825"/>
+        <location line="+824"/>
         <source>System Report</source>
         <translation>Relatório do Sistema</translation>
     </message>
@@ -9056,7 +9059,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">Erro seguinte</translation>
     </message>
     <message>
-        <location line="-7395"/>
+        <location line="-7394"/>
         <source>Previous Warning</source>
         <oldsource>Previous warning</oldsource>
         <translation>Alerta Anterior</translation>
@@ -9213,13 +9216,13 @@ documento incluído em %1</translation>
     </message>
     <message>
         <location line="+3796"/>
-        <location line="+80"/>
+        <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio Emergência</translation>
     </message>
     <message>
-        <location line="-84"/>
+        <location line="-83"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
         <translation>TeXstudio teve uma falha devido a %1.
@@ -9232,11 +9235,13 @@ Você deseja continuar executando o programa? Isto pode causar perda de dados.</
     <message>
         <location line="+2"/>
         <location line="+5"/>
-        <source>No, kill the programm</source>
-        <translation>Não, terminar o programa</translation>
+        <location line="+72"/>
+        <source>No, kill the program</source>
+        <oldsource>No, kill the programm</oldsource>
+        <translation type="unfinished">Não, terminar o programa</translation>
     </message>
     <message>
-        <location line="-3"/>
+        <location line="-75"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudio foi pausado devido a possibilidade de um loop infinito.
@@ -9251,7 +9256,7 @@ Deseja manter o programa em execução? Isto pode causar perda de dados.</transl
         <translation type="obsolete">Sim, continue o loop.</translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+74"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -9265,7 +9270,9 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <translation>Sim</translation>
     </message>
     <message>
-        <location line="+0"/>
+        <location line="-77"/>
+        <location line="+5"/>
+        <location line="+72"/>
         <source>No, kill the program</source>
         <translation>Não, terminar o programa</translation>
     </message>
@@ -9279,7 +9286,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <translation type="obsolete">&amp;Compilar</translation>
     </message>
     <message>
-        <location line="-7323"/>
+        <location line="-7322"/>
         <location line="+40"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
@@ -11089,8 +11096,9 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     </message>
     <message>
         <location line="+35"/>
-        <source>Unkown variable %1</source>
-        <translation>Variável desconhecida %1</translation>
+        <source>Unknown variable %1</source>
+        <oldsource>Unkown variable %1</oldsource>
+        <translation type="unfinished">Variável desconhecida %1</translation>
     </message>
 </context>
 <context>

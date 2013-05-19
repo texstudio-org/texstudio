@@ -2200,9 +2200,12 @@ them here.</source>
     </message>
     <message>
         <location filename="configdialog.cpp" line="+148"/>
-        <source>You have enabled the advanced options. This allows to
+        <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
+        <oldsource>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8868,13 +8871,13 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <location filename="texmaker.cpp" line="+541"/>
-        <location line="+80"/>
+        <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-84"/>
+        <location line="-83"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
@@ -8882,11 +8885,13 @@ Do you want to keep it running? This may cause data corruption.</source>
     <message>
         <location line="+2"/>
         <location line="+5"/>
-        <source>No, kill the programm</source>
+        <location line="+72"/>
+        <source>No, kill the program</source>
+        <oldsource>No, kill the programm</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+72"/>
+        <location line="-1"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -8898,7 +8903,9 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished">Так</translation>
     </message>
     <message>
-        <location line="+0"/>
+        <location line="-77"/>
+        <location line="+5"/>
+        <location line="+72"/>
         <source>No, kill the program</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8908,7 +8915,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7778"/>
+        <location line="-7777"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9259,12 +9266,12 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1972"/>
+        <location line="+1971"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7540"/>
+        <location line="-7539"/>
         <source>New From &amp;Template...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9937,7 +9944,8 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <location line="+35"/>
-        <source>Unkown variable %1</source>
+        <source>Unknown variable %1</source>
+        <oldsource>Unkown variable %1</oldsource>
         <translation type="unfinished"></translation>
     </message>
 </context>
