@@ -2818,9 +2818,12 @@ leur usage en les activant ici.</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="+489"/>
-        <source>You have enabled the advanced options. This allows to
+        <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
+        <oldsource>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</oldsource>
         <translation>Vous avez activé les options avancées. Ceci permet une
 configuration fine de TXS. Pour ne voir que les réglages
 de base, il suffit de désactiver ces options avancées.</translation>
@@ -10421,13 +10424,13 @@ Faites-vous confiance à ce document ?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="+541"/>
-        <location line="+80"/>
+        <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation>Urgence TeXstudio</translation>
     </message>
     <message>
-        <location line="-84"/>
+        <location line="-83"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
         <translation>TeXstudio s&apos;est arrêté de façon anormale en raison de : %1
@@ -10440,11 +10443,13 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location line="+2"/>
         <location line="+5"/>
-        <source>No, kill the programm</source>
+        <location line="+72"/>
+        <source>No, kill the program</source>
+        <oldsource>No, kill the programm</oldsource>
         <translation>Non, fermer le programme</translation>
     </message>
     <message>
-        <location line="+72"/>
+        <location line="-1"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10458,17 +10463,12 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>Oui</translation>
     </message>
     <message>
-        <location line="+0"/>
-        <source>No, kill the program</source>
-        <translation>Non, fermer le programme</translation>
-    </message>
-    <message>
         <location line="+4"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>J&apos;essaie de m&apos;arrêter, mais il ne se passe rien.</translation>
     </message>
     <message>
-        <location line="-7778"/>
+        <location line="-7777"/>
         <source>PDF files</source>
         <translation>Fichiers PDF</translation>
     </message>
@@ -10799,7 +10799,7 @@ included document in %1</source>
         <translation>La lecture du fichier de profile %1 a échoué.</translation>
     </message>
     <message>
-        <location line="+825"/>
+        <location line="+824"/>
         <source>System Report</source>
         <translation>Rapport système</translation>
     </message>
@@ -10816,7 +10816,7 @@ included document in %1</source>
         <translation type="obsolete">Supprimer tout</translation>
     </message>
     <message>
-        <location line="-1973"/>
+        <location line="-1972"/>
         <source>Insert Label</source>
         <translation>Insérer un label</translation>
     </message>
@@ -11568,7 +11568,8 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <location line="+35"/>
-        <source>Unkown variable %1</source>
+        <source>Unknown variable %1</source>
+        <oldsource>Unkown variable %1</oldsource>
         <translation>Variable %1 inconnue</translation>
     </message>
 </context>
