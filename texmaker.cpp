@@ -7230,6 +7230,8 @@ void Texmaker::saveProfile(){
 void Texmaker::loadProfile(){
 	QString currentDir=configManager.configBaseDir;
 	QString fname = QFileDialog::getOpenFileName(this,tr("Load Profile"),currentDir,tr("TXS Profile","filter")+"(*.txsprofile *.tmxprofile);;"+tr("All files")+" (*)");  //*.tmxprofile for compatibility - may be removed later
+	if (fname.isNull())
+		return;
 	if(QFileInfo(fname).isReadable()){
 		bool macro=false;
 		bool userCommand=false;
