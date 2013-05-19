@@ -2185,7 +2185,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <source>You have enabled the advanced options. This allows to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation>Povolil jste pokročilé volby. To umožní nastavit TXS daleko
+        <translation type="obsolete">Povolil jste pokročilé volby. To umožní nastavit TXS daleko
 podrobněji. Zakažte znovu pokročilé volby, pokud chcete
 vidět jen nejběžnější nastavení.</translation>
     </message>
@@ -2381,6 +2381,12 @@ Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled the advanced options. This allows one to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8163,7 +8169,7 @@ Chcete jej nechat běžet? To může způsobit poškození dat.</translation>
     </message>
     <message>
         <source>No, kill the programm</source>
-        <translation>Ne, zabít program</translation>
+        <translation type="obsolete">Ne, zabít program</translation>
     </message>
     <message>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
@@ -9047,7 +9053,11 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     </message>
     <message>
         <source>Unkown variable %1</source>
-        <translation>Neznámá proměnná %1</translation>
+        <translation type="obsolete">Neznámá proměnná %1</translation>
+    </message>
+    <message>
+        <source>Unknown variable %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

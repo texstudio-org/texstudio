@@ -2723,9 +2723,12 @@ hier erzwungen werden.</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="+148"/>
-        <source>You have enabled the advanced options. This allows to
+        <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
+        <oldsource>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</oldsource>
         <translation>Sie haben die Anzeige der erweiterten Optionen aktiviert. Hierduch können Sie sehr viele Details von TeXstudio konfigurieren. Schalten sie diese Option wieder aus, um nur die gängigsten Einstellungen anzuzeigen.</translation>
     </message>
     <message>
@@ -10138,13 +10141,13 @@ Do you trust this document?</source>
     </message>
     <message>
         <location filename="texmaker.cpp" line="+541"/>
-        <location line="+80"/>
+        <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio Notfall</translation>
     </message>
     <message>
-        <location line="-84"/>
+        <location line="-83"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
         <translation>TeXstudio ist abgestürzt wegen %1. Möchten Sie es weiterlaufen lassen ? Dies könnte Daten zerstören.</translation>
@@ -10156,11 +10159,13 @@ Do you want to keep it running? This may cause data corruption.</source>
     <message>
         <location line="+2"/>
         <location line="+5"/>
-        <source>No, kill the programm</source>
+        <location line="+72"/>
+        <source>No, kill the program</source>
+        <oldsource>No, kill the programm</oldsource>
         <translation>Nein, beende TeXstudio</translation>
     </message>
     <message>
-        <location line="+72"/>
+        <location line="-1"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10172,17 +10177,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location line="+0"/>
-        <source>No, kill the program</source>
-        <translation>Nein, beende TeXstudio</translation>
-    </message>
-    <message>
         <location line="+4"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Beenden hat nicht funktioniert.</translation>
     </message>
     <message>
-        <location line="-7778"/>
+        <location line="-7777"/>
         <source>PDF files</source>
         <translation>PDF Dateien</translation>
     </message>
@@ -10508,7 +10508,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation>Profil-Datei %1 konnte nicht geöffnet werden.</translation>
     </message>
     <message>
-        <location line="+825"/>
+        <location line="+824"/>
         <source>System Report</source>
         <translation>Systembericht</translation>
     </message>
@@ -10517,7 +10517,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation type="obsolete">Prüfe LaTeX Installation</translation>
     </message>
     <message>
-        <location line="-7088"/>
+        <location line="-7087"/>
         <location line="+5125"/>
         <source>Paste Before</source>
         <translation>Vorher einfügen</translation>
@@ -11275,7 +11275,8 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <location line="+35"/>
-        <source>Unkown variable %1</source>
+        <source>Unknown variable %1</source>
+        <oldsource>Unkown variable %1</oldsource>
         <translation>Unbekannte Variable %1</translation>
     </message>
 </context>

@@ -1977,10 +1977,13 @@ to set the key anyway?</source>
     </message>
     <message>
         <location filename="configdialog.cpp" line="+313"/>
-        <source>You have enabled the advanced options. This allows to
+        <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation>高度なオプションを有効化しました。
+        <oldsource>You have enabled the advanced options. This allows to
+configure TXS in great detail. Disable the advanced
+options again to only view the most common settings.</oldsource>
+        <translation type="unfinished">高度なオプションを有効化しました。
 これで詳細にTXSを設定することが可能です。
 一般的な設定のみを見るには再度高度なオプションを無効化します。</translation>
     </message>
@@ -7234,12 +7237,12 @@ failed.</source>
         <translation type="obsolete">XML</translation>
     </message>
     <message>
-        <location line="+1942"/>
+        <location line="+1941"/>
         <source>Yes</source>
         <translation>はい</translation>
     </message>
     <message>
-        <location line="-7519"/>
+        <location line="-7518"/>
         <source>&amp;New</source>
         <translation>新規作成(&amp;N)</translation>
     </message>
@@ -7623,11 +7626,13 @@ Press &quot;Cancel&quot;to do nothing.
     <message>
         <location line="+7175"/>
         <location line="+5"/>
-        <source>No, kill the programm</source>
-        <translation>いいえ、プログラムを停止します</translation>
+        <location line="+72"/>
+        <source>No, kill the program</source>
+        <oldsource>No, kill the programm</oldsource>
+        <translation type="unfinished">いいえ、プログラムを停止します</translation>
     </message>
     <message>
-        <location line="-7426"/>
+        <location line="-7498"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>古いリビジョンを表示(&amp;o)</translation>
     </message>
@@ -8308,12 +8313,14 @@ Otherwise there might be random errors and crashes.</source>
         <translation>ログファイルが見つかりません!</translation>
     </message>
     <message>
-        <location line="+3247"/>
+        <location line="+3169"/>
+        <location line="+5"/>
+        <location line="+72"/>
         <source>No, kill the program</source>
         <translation>いいえ、プログラムを停止します</translation>
     </message>
     <message>
-        <location line="-7213"/>
+        <location line="-7212"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>文献項目を挿入(&amp;I)</translation>
     </message>
@@ -8606,7 +8613,7 @@ Are you sure you want to continue?</source>
         <translation>インデント(&amp;I)</translation>
     </message>
     <message>
-        <location line="+7382"/>
+        <location line="+7381"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -8620,7 +8627,7 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
         <translation>停止しようとしましたが、何も起きませんでした。</translation>
     </message>
     <message>
-        <location line="-7135"/>
+        <location line="-7134"/>
         <source>Highlighting</source>
         <translation>強調表示</translation>
     </message>
@@ -8782,13 +8789,13 @@ TeXstudioを起動し続けますか? これはデータの破壊につながる
     </message>
     <message>
         <location line="+1520"/>
-        <location line="+80"/>
+        <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudioの非常事態</translation>
     </message>
     <message>
-        <location line="-7393"/>
+        <location line="-7392"/>
         <source>Pre&amp;view Selection/Parantheses</source>
         <translation>選択部 / 括弧 をプレビュー(&amp;v)</translation>
     </message>
@@ -9301,12 +9308,12 @@ Do you want to create it?</source>
         <translation type="unfinished">TXSプロファイル</translation>
     </message>
     <message>
-        <location line="+861"/>
+        <location line="+860"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7535"/>
+        <location line="-7534"/>
         <source>Session</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9760,8 +9767,9 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
     <name>UniversalInputDialogScript</name>
     <message>
         <location filename="scriptengine.cpp" line="+558"/>
-        <source>Unkown variable %1</source>
-        <translation>不明な変数 %1</translation>
+        <source>Unknown variable %1</source>
+        <oldsource>Unkown variable %1</oldsource>
+        <translation type="unfinished">不明な変数 %1</translation>
     </message>
     <message>
         <location line="-35"/>
