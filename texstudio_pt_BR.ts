@@ -1164,7 +1164,11 @@ Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Para editar clique duas vezes nas entradas &apos;Atalho Atual&apos; ou &apos;Atalho Adicional&apos;.
+Então você pode selecionar um novo atalho das seguintes maneiras:
+(1) selecionar na lista de opções
+(2) pressionar a combinação de teclas para o atalho
+(3) digitar o texto para o atalho</translation>
     </message>
     <message utf8="true">
         <location line="+407"/>
@@ -2725,8 +2729,8 @@ options again to only view the most common settings.</source>
         <oldsource>You have enabled the advanced options. This allows to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</oldsource>
-        <translation type="unfinished">Você habilitou as opções avançadas. Isto permite
-configurar TXS em detalhes. Desabilite as opções
+        <translation>Você habilitou as opções avançadas. Isto permitirá
+a configuração de TXS em detalhes. Desabilite as opções
 avançadas novamente para somente visualizar
 os ajustes mais comuns.</translation>
     </message>
@@ -7151,7 +7155,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="quazip/quazip/quagzipfile.cpp" line="+36"/>
         <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append não é suportado por GZIP</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -9238,7 +9242,7 @@ Você deseja continuar executando o programa? Isto pode causar perda de dados.</
         <location line="+72"/>
         <source>No, kill the program</source>
         <oldsource>No, kill the programm</oldsource>
-        <translation type="unfinished">Não, terminar o programa</translation>
+        <translation>Não, terminar o programa</translation>
     </message>
     <message>
         <location line="-75"/>
@@ -9268,13 +9272,6 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <location line="+1"/>
         <source>Yes</source>
         <translation>Sim</translation>
-    </message>
-    <message>
-        <location line="-77"/>
-        <location line="+5"/>
-        <location line="+72"/>
-        <source>No, kill the program</source>
-        <translation>Não, terminar o programa</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -11098,7 +11095,7 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
         <location line="+35"/>
         <source>Unknown variable %1</source>
         <oldsource>Unkown variable %1</oldsource>
-        <translation type="unfinished">Variável desconhecida %1</translation>
+        <translation>Variável desconhecida %1</translation>
     </message>
 </context>
 <context>
