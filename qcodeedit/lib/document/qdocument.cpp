@@ -2308,7 +2308,7 @@ QList<int> QDocumentLineHandle::getBreaks(){
     return res;
 }
 
-void QDocumentLineHandle::updateWrap() const
+void QDocumentLineHandle::updateWrap(int lineNr) const
 {
 	QReadLocker locker(&mLock);
 	m_indent = 0;
@@ -2325,7 +2325,7 @@ void QDocumentLineHandle::updateWrap() const
 
 	if ( m_layout )
 	{
-		layout();
+		layout(lineNr);
 		return;
 	}
 
@@ -2483,7 +2483,7 @@ void QDocumentLineHandle::updateWrap() const
 
 void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
 	int oldLW = m_frontiers.count();
-	updateWrap();
+	updateWrap(line);
 	int lw = m_frontiers.count();
 	if ( lw == oldLW ) return;
 	if ( !m_doc ) return;
@@ -3143,7 +3143,7 @@ void QDocumentLineHandle::applyOverlays() const
 	//setFlag(QDocumentLine::FormatsApplied, true);
 }
 
-void QDocumentLineHandle::layout() const
+void QDocumentLineHandle::layout(int lineNr) const
 {
 	//needs locking at caller !
 	bool needLayout = m_doc->impl()->m_workArounds & QDocument::ForceQTextLayout;
@@ -3203,6 +3203,8 @@ void QDocumentLineHandle::layout() const
 		// Begin layouting
 		m_layout->beginLayout();
 
+
+		int oldLW = m_frontiers.size();
 		m_frontiers.clear();
 
 		int i = 0, rx = 0, height = 0, minwidth = 0;
@@ -3252,6 +3254,13 @@ void QDocumentLineHandle::layout() const
 		m_frontiers.pop_back();
 
 		m_layout->endLayout();
+
+		int lw = m_frontiers.size();
+		if ( m_doc && lw != oldLW ) {
+			if ( lw ) m_doc->impl()->m_wrapped[lineNr] = lw;
+			else m_doc->impl()->m_wrapped.remove(lineNr);
+			m_doc->impl()->m_height += (lw-oldLW)*m_doc->impl()->m_lineSpacing;
+		}
 	} else {
 		if ( m_layout )
 			delete m_layout;
@@ -3396,7 +3405,7 @@ int QDocumentLineHandle::getPictureCookieHeight() const{
 }
 
 
-void QDocumentLineHandle::draw(	QPainter *p,
+void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 								int xOffset,
 								int vWidth,
 								const QVector<int>& sel,
@@ -3407,7 +3416,7 @@ void QDocumentLineHandle::draw(	QPainter *p,
 {
 	QReadLocker locker(&mLock);
 	if ( hasFlag(QDocumentLine::LayoutDirty) )
-		layout();
+		layout(lineNr);
 
 
 	if ( m_layout )
@@ -6365,7 +6374,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				pr->fillRect(m_leftMargin, 0, qMax(m_width,lineCacheWidth), ht, fullSel ? selbg : bg);
 			} else
 				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
-			h->draw(pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,0,ht);
+			h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,0,ht);
 			if (useLineCache) {
 				p->drawPixmap(cxt.xoffset,0,*px);
 				delete pr;
@@ -6591,7 +6600,7 @@ void QDocumentPrivate::setWidth(int width)
 				QDocumentLineHandle *h = it.key() < m_lines.count() ? m_lines.at(it.key()) : 0;
 
 				if ( h )
-					h->updateWrap();
+					h->updateWrap(it.key());
 
 				int sz = h ? h->m_frontiers.count() : 0;
 
@@ -6657,7 +6666,7 @@ void QDocumentPrivate::setWidth()
 			QDocumentLineHandle *l = m_lines.at(i);
 			int olw = l->m_frontiers.count();
 
-			l->updateWrap();
+			l->updateWrap(i);
 
 			int lw = l->m_frontiers.count();
 
@@ -6722,7 +6731,7 @@ void QDocumentPrivate::adjustWidth(int line)
 	{
 		int olw = l->m_frontiers.count();
 
-		l->updateWrap();
+		l->updateWrap(line);
 
 		int lw = l->m_frontiers.count();
 
