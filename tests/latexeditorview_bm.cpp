@@ -145,7 +145,7 @@ void LatexEditorViewBenchmark::linePaint(){
 
 	*/
 	QBENCHMARK {
-		dlh->draw(&pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, cxt.palette, fullSel);
+		dlh->draw(0, &pnt, cxt.xoffset, cxt.width, m_selectionBoundaries, cxt.palette, fullSel);
 	}
 	pnt.end();
 	delete px;

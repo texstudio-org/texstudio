@@ -97,7 +97,7 @@ public:
 		
 		QDocument* document() const;
 
-		void updateWrap() const;
+		void updateWrap(int lineNr) const;
 		void updateWrapAndNotifyDocument(int ownLineNumber) const;
 		
 		void setFormats(const QVector<int>& formats);
@@ -116,7 +116,8 @@ public:
 		
 		void shiftOverlays(int position, int offset);
 		
-		void draw(	QPainter *p,
+		void draw(	int lineNr,
+					QPainter *p,
 					int xOffset,
 					int vWidth,
 					const QVector<int>& sel,
@@ -175,7 +176,7 @@ public:
 		}
 
 	private:
-		void layout() const;
+		void layout(int lineNr) const;
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
 		
@@ -194,7 +195,7 @@ public:
 		mutable quint16 m_state;
 		mutable QTextLayout *m_layout;
 		mutable QVector<int> m_cache;
-		mutable QVector< QPair<int, int> > m_frontiers;
+		mutable QVector< QPair<int, int> > m_frontiers; //list of line wraps, <character, x in pixel (if it were unwrapped) >
 		
 		QNFAMatchContext m_context;
 		
