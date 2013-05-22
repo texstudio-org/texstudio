@@ -80,7 +80,7 @@ int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool de
 			if (CommonEOW.contains(cur)) break; // check for all quotation marks
 		doubleQuoteChar=false;
 		if (inCmd) {
-			if (CommonEOW.indexOf(cur)>=0) {
+			if (CommonEOW.indexOf(cur)>=0 || cur.isDigit()) {
 				if (i-start==1) i++;
 				break;
 			}
