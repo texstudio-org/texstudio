@@ -335,7 +335,7 @@ class QCE_EXPORT QDocument : public QObject
 		bool linesPartiallyFolded(int fromInc, int toInc);
 		void correctFolding(int fromInc, int toInc, bool forceCorrection = false);
 		QList<int> foldedLines();
-		void foldLines(const QList<int> &lines);
+		void foldLines(QList<int> &lines);
 
 		void adjustWidth(int line);
 

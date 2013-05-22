@@ -1991,10 +1991,18 @@ QList<int> QDocument::foldedLines() {
 	return lines;
 }
 
-void QDocument::foldLines(const QList<int> &lines) {
-	// TODO: can we speed this up by iterating over the lines? To do so, we probably need to assume/check that lines are ordered
-	foreach (int l, lines) {
-		foldBlockAt(false, l);
+// fold only lines if they are at the exact specified positions
+void QDocument::foldLines(QList<int> &lines) {
+	if (lines.isEmpty())
+		return;
+
+	qSort(lines);
+	QFoldedLineIterator fli = languageDefinition()->foldedLineIterator(this);
+	while (fli.lineNr <= lines.last()) {
+		if (fli.open && !fli.collapsedBlockStart && lines.contains(fli.lineNr)) {
+			languageDefinition()->collapse(this, fli.lineNr);
+		}
+		++fli;
 	}
 }
 
