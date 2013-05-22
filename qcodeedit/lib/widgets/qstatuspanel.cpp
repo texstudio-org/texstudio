@@ -111,7 +111,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	//		geometry().width(),
 	//		geometry().height());
 	static QPixmap _warn = QPixmap(getRealIconFile("warning")).scaledToHeight(16, Qt::SmoothTransformation);
-	static QPixmap _mod = QPixmap(getRealIconFile("save")).scaledToHeight(16, Qt::SmoothTransformation);
+	static QPixmap _mod = QPixmap(getRealIconFile("filesave")).scaledToHeight(16, Qt::SmoothTransformation);
 
 	QString s;
 	QString spacing("    ");
@@ -141,7 +141,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	p->drawText(xpos, ascent, s);
 	xpos += fm.width(s) + 10;
 
-
+	bool displayModifyIcon = false; // we never need this, because it's displayed in the editor tab.
 	int sz = qMin(height(), _mod.height());
 	QString timeDiff;
 	if(e->displayModifyTime() && e->document()){
@@ -150,7 +150,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	}
 
 	xpos += 10;
-	if ( e->isContentModified() )
+	if ( displayModifyIcon && e->isContentModified() )
 	{
 		p->drawPixmap(xpos, (height() - sz) / 2, sz, sz, _mod);
 		xpos += sz;
