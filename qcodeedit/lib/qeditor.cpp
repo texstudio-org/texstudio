@@ -3111,7 +3111,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	ensureCursorVisible();
 #ifdef  Q_WS_MAC
 	//repaintCursor(); // squeeze for a little speed
-	m_blink.start(QApplication::cursorFlashTime() / 2, this);
+	if (QApplication::cursorFlashTime() > 0) {
+		m_blink.start(QApplication::cursorFlashTime() / 2, this);
+	}
 #else
 	repaintCursor();
 #endif
@@ -3777,7 +3779,9 @@ void QEditor::resizeEvent(QResizeEvent *)
 void QEditor::focusInEvent(QFocusEvent *e)
 {
 	setFlag(CursorOn, true);
-	m_blink.start(QApplication::cursorFlashTime() / 2, this);
+	if (QApplication::cursorFlashTime() > 0) {
+		m_blink.start(QApplication::cursorFlashTime() / 2, this);
+	}
 	//ensureCursorVisible();
 
 	QAbstractScrollArea::focusInEvent(e);
