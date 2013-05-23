@@ -35,6 +35,11 @@
     </message>
     <message>
         <location line="+2"/>
+        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -59,7 +64,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-9"/>
+        <location line="-10"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5012,7 +5017,7 @@ Restart from the beginning ?</source>
 <context>
     <name>QEditor</name>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="+4232"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="+4238"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
@@ -5022,7 +5027,7 @@ Restart from the beginning ?</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location line="-3702"/>
+        <location line="-3708"/>
         <location line="+837"/>
         <source>Cu&amp;t</source>
         <translation>Cor&amp;tar</translation>
@@ -5033,7 +5038,7 @@ Restart from the beginning ?</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location line="+2840"/>
+        <location line="+2846"/>
         <source>Find</source>
         <translation>Encontrar</translation>
     </message>
@@ -5048,7 +5053,7 @@ Restart from the beginning ?</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location line="-2708"/>
+        <location line="-2714"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
@@ -5092,7 +5097,7 @@ Restart from the beginning ?</source>
         <translation>Local</translation>
     </message>
     <message>
-        <location line="+3528"/>
+        <location line="+3534"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
@@ -5109,7 +5114,7 @@ Deshacer/Rehacer pila sería descartada por la autorecarga.
 ¿Deseas mantener actualizado el archivo recargándolo?</translation>
     </message>
     <message>
-        <location line="-3645"/>
+        <location line="-3651"/>
         <location line="+785"/>
         <source>Co&amp;mment</source>
         <translation>Co&amp;mentario</translation>
@@ -5174,12 +5179,12 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
         <translation>&amp;Reemplazar</translation>
     </message>
     <message>
-        <location line="+2859"/>
+        <location line="+2865"/>
         <source>Replace</source>
         <translation>Reemplazar</translation>
     </message>
     <message>
-        <location line="-4046"/>
+        <location line="-4052"/>
         <location line="+486"/>
         <location line="+712"/>
         <source>Default</source>
@@ -5340,7 +5345,7 @@ Do you wish to keep up to date by reloading the file?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3026"/>
+        <location line="+3032"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7431,7 +7436,7 @@ failed.</source>
     </message>
     <message>
         <location line="+1598"/>
-        <location line="+5555"/>
+        <location line="+5557"/>
         <source>Open Files</source>
         <translation>Abrir Archivos</translation>
     </message>
@@ -7440,7 +7445,7 @@ failed.</source>
         <translation type="obsolete">Limpiar</translation>
     </message>
     <message>
-        <location line="-5994"/>
+        <location line="-5996"/>
         <location line="+1299"/>
         <location line="+1504"/>
         <location line="+394"/>
@@ -7449,12 +7454,12 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+391"/>
-        <location line="+2439"/>
+        <location line="+2441"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="-7139"/>
+        <location line="-7141"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
@@ -7569,12 +7574,12 @@ failed.</source>
     </message>
     <message>
         <location line="-271"/>
-        <location line="+6815"/>
+        <location line="+6817"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location line="-6648"/>
+        <location line="-6650"/>
         <location line="+40"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
@@ -7693,12 +7698,12 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+647"/>
+        <location line="+649"/>
         <source>Conflict!</source>
         <translation>!Conflicto!</translation>
     </message>
     <message>
-        <location line="-7121"/>
+        <location line="-7123"/>
         <source>Remove Placeholders</source>
         <translation>Remover marcadores de posición</translation>
     </message>
@@ -7861,12 +7866,12 @@ Do you want to create it?</source>
         <translation>Modo Normal</translation>
     </message>
     <message>
-        <location line="+6501"/>
+        <location line="+6503"/>
         <source>You do not have read permission to this file.</source>
         <translation>Usted no tiene permiso para leer este archivo.</translation>
     </message>
     <message>
-        <location line="-6602"/>
+        <location line="-6604"/>
         <source>Language</source>
         <translation>Lenguaje</translation>
     </message>
@@ -9046,7 +9051,7 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2731"/>
+        <location line="+2733"/>
         <source>Failed to read profile file %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9056,7 +9061,7 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7283"/>
+        <location line="-7285"/>
         <location line="+309"/>
         <source>Insert language as TeX comment</source>
         <translation type="unfinished"></translation>
@@ -9289,7 +9294,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+150"/>
+        <location line="+152"/>
         <source>Problem</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9417,19 +9422,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished">Si</translation>
     </message>
     <message>
-        <location line="-77"/>
-        <location line="+5"/>
-        <location line="+72"/>
-        <source>No, kill the program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+4"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6197"/>
+        <location line="-6199"/>
         <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>

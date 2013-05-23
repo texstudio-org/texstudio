@@ -9,7 +9,7 @@
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="+41"/>
+        <location filename="aboutdialog.cpp" line="+42"/>
         <source>Thanks to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -24,7 +24,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="-15"/>
+        <location filename="aboutdialog.cpp" line="-16"/>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,6 +45,11 @@
     </message>
     <message>
         <location line="+2"/>
+        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -59,7 +64,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5"/>
+        <location line="-6"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5298,7 +5303,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="+2664"/>
+        <location line="+2670"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5560,7 +5565,7 @@ Do you wish to keep up to date by reloading the file?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3284"/>
+        <location line="-3290"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -7602,7 +7607,7 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+391"/>
-        <location line="+2439"/>
+        <location line="+2441"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -7612,8 +7617,8 @@ failed.</source>
         <translation>У Вас нема дозволу для читання цього файла.</translation>
     </message>
     <message>
-        <location line="-5718"/>
-        <location line="+5555"/>
+        <location line="-5720"/>
+        <location line="+5557"/>
         <source>Open Files</source>
         <translation>Відкрити файли</translation>
     </message>
@@ -7622,7 +7627,7 @@ failed.</source>
         <translation type="obsolete">Документ був змінений. Чи потрібно зберегти його перед закриванням?</translation>
     </message>
     <message>
-        <location line="-5364"/>
+        <location line="-5366"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Зберегти і закрити</translation>
@@ -8082,12 +8087,12 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+6815"/>
+        <location line="+6817"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6814"/>
+        <location line="-6816"/>
         <source>Clos&amp;e All</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8420,7 +8425,7 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6602"/>
+        <location line="+6604"/>
         <source>Problem</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8440,7 +8445,7 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">Zeile entfernen</translation>
     </message>
     <message>
-        <location line="-2452"/>
+        <location line="-2454"/>
         <location line="+10"/>
         <source>Could not open browser</source>
         <translation type="unfinished"></translation>
@@ -8642,7 +8647,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1503"/>
+        <location line="+1505"/>
         <location line="+201"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -8654,7 +8659,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7515"/>
+        <location filename="texmaker.cpp" line="-7517"/>
         <source>Sweave files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8717,7 +8722,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+576"/>
+        <location line="+578"/>
         <source>Open Compare File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8796,7 +8801,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7454"/>
+        <location filename="texmaker.cpp" line="-7456"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
@@ -8854,7 +8859,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished">&amp;Math</translation>
     </message>
     <message>
-        <location line="+6636"/>
+        <location line="+6638"/>
         <source>Reached beginning of text.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8903,19 +8908,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished">Так</translation>
     </message>
     <message>
-        <location line="-77"/>
-        <location line="+5"/>
-        <location line="+72"/>
-        <source>No, kill the program</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+4"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7777"/>
+        <location line="-7779"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9012,7 +9010,7 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+61"/>
         <source>Failed to read profile file %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9043,7 +9041,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7363"/>
+        <location line="-7365"/>
         <source>Previous Change</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9266,12 +9264,12 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1971"/>
+        <location line="+1973"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7539"/>
+        <location line="-7541"/>
         <source>New From &amp;Template...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9318,7 +9316,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6404"/>
+        <location line="+6406"/>
         <source>Find Word Repetitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9333,7 +9331,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6478"/>
+        <location line="-6480"/>
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
