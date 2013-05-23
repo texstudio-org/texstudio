@@ -58,6 +58,11 @@
     </message>
     <message>
         <location line="+1"/>
+        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
         <translation>TeXstudio contém uma imagem de Alexander Klink.</translation>
     </message>
@@ -6226,7 +6231,7 @@ Você deseja atualizar recarregando o arquivo?
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="+2664"/>
+        <location line="+2670"/>
         <source>None</source>
         <translation>Nenhum</translation>
     </message>
@@ -8722,12 +8727,12 @@ falhou.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+6815"/>
+        <location line="+6817"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>
     <message>
-        <location line="-6814"/>
+        <location line="-6816"/>
         <source>Clos&amp;e All</source>
         <translation>F&amp;echar Todos</translation>
     </message>
@@ -9049,7 +9054,7 @@ Voce deseja permitir e executar o novo comando?
 (c) Não, utilizar o comando &quot;%3&quot; e executar o comando padrão &quot;%2</translation>
     </message>
     <message>
-        <location line="+2731"/>
+        <location line="+2733"/>
         <source>Failed to read profile file %1.</source>
         <translation>Falha ao ler o arquivo de perfil %1.</translation>
     </message>
@@ -9063,7 +9068,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">Erro seguinte</translation>
     </message>
     <message>
-        <location line="-7394"/>
+        <location line="-7396"/>
         <source>Previous Warning</source>
         <oldsource>Previous warning</oldsource>
         <translation>Alerta Anterior</translation>
@@ -9178,7 +9183,7 @@ Voce deseja permitir e executar o novo comando?
         <translation>Documentação dos Pacotes...</translation>
     </message>
     <message>
-        <location line="+7012"/>
+        <location line="+7014"/>
         <source>Yes, try to recover</source>
         <translation>Sim, tentar recuperar</translation>
     </message>
@@ -9197,7 +9202,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">&amp;Etiquetas do Usuário</translation>
     </message>
     <message>
-        <location line="-7064"/>
+        <location line="-7066"/>
         <source>Align Windows</source>
         <translation>Alinhar Janelas</translation>
     </message>
@@ -9219,7 +9224,7 @@ documento incluído em %1</translation>
         <translation>Tipo: %1</translation>
     </message>
     <message>
-        <location line="+3796"/>
+        <location line="+3798"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -9283,7 +9288,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <translation type="obsolete">&amp;Compilar</translation>
     </message>
     <message>
-        <location line="-7322"/>
+        <location line="-7324"/>
         <location line="+40"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
@@ -9812,7 +9817,7 @@ Você confia neste documento?</translation>
         <translation>TXS perfil</translation>
     </message>
     <message>
-        <location line="+155"/>
+        <location line="+157"/>
         <source>Find Word Repetitions</source>
         <oldsource>Find word repetitions</oldsource>
         <translation>Localizar Repetições de Palavras</translation>
@@ -9877,7 +9882,7 @@ Pressione &quot;OK&quot; para exibir as diferenças ao invés de fonte gerada po
 Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
-        <location line="-6898"/>
+        <location line="-6900"/>
         <location line="+5125"/>
         <source>Copy</source>
         <translation>Copiar</translation>
@@ -9927,7 +9932,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+391"/>
-        <location line="+2439"/>
+        <location line="+2441"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -9937,7 +9942,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation>Você não tem permissão par ler este arquivo.</translation>
     </message>
     <message>
-        <location line="-5648"/>
+        <location line="-5650"/>
         <source>Save As</source>
         <translation>Salvar Como</translation>
     </message>
@@ -10206,7 +10211,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location line="+175"/>
-        <location line="+5555"/>
+        <location line="+5557"/>
         <source>Open Files</source>
         <translation>Abrir Arquivos</translation>
     </message>
@@ -10215,7 +10220,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">O documento contém trabalho não salvo. Deseja salvá-lo antes de fechar?</translation>
     </message>
     <message>
-        <location line="-5364"/>
+        <location line="-5366"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Salvar e Fechar</translation>
@@ -10701,7 +10706,7 @@ Deseja criá-lo?</translation>
         <translation type="obsolete">Desculpe. não foi possível encontrar o arquivo &quot;%1&quot;</translation>
     </message>
     <message>
-        <location line="+2703"/>
+        <location line="+2705"/>
         <source>Problem</source>
         <translation>Problema</translation>
     </message>

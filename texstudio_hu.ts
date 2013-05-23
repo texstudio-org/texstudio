@@ -9,7 +9,7 @@
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="+41"/>
+        <location filename="aboutdialog.cpp" line="+42"/>
         <source>Thanks to </source>
         <translation>Köszönet az alábbiaknak: </translation>
     </message>
@@ -24,7 +24,7 @@
         <translation>A TeXstudio névjegye</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="-15"/>
+        <location filename="aboutdialog.cpp" line="-16"/>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation>Használt Qt verzió: %1, fordítva a Qt %2 %3 verzióval</translation>
     </message>
@@ -45,6 +45,11 @@
     </message>
     <message>
         <location line="+2"/>
+        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
         <translation>A TeXstudio Alexander Klink egyik képét tartalmazza.</translation>
     </message>
@@ -59,7 +64,7 @@
         <translation>A TeXstudio használja a Crystal Project (LGPL) ikonjait, valamint az Oxygen ikontémát (CC-BY-SA 3.0).</translation>
     </message>
     <message>
-        <location line="-5"/>
+        <location line="-6"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
         <translation>A TeXstudio kódot tartalmaz az alábbi programokból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) és SyncTeX (Jerome Laurens).</translation>
     </message>
@@ -5091,7 +5096,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="+2664"/>
+        <location line="+2670"/>
         <source>None</source>
         <translation>Nincs</translation>
     </message>
@@ -5353,7 +5358,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <location line="-3284"/>
+        <location line="-3290"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -7471,12 +7476,12 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+13"/>
-        <location line="+6815"/>
+        <location line="+6817"/>
         <source>&amp;Close</source>
         <translation>&amp;Bezárás</translation>
     </message>
     <message>
-        <location line="-6814"/>
+        <location line="-6816"/>
         <source>Clos&amp;e All</source>
         <translation>Minden be&amp;zárása</translation>
     </message>
@@ -7774,7 +7779,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Profil betöltése</translation>
     </message>
     <message>
-        <location line="+150"/>
+        <location line="+152"/>
         <source>Problem</source>
         <translation>Probléma</translation>
     </message>
@@ -7784,7 +7789,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Szóismétlés keresése csak aktivált azonnali helyesírás-ellenőrzéssel működik!</translation>
     </message>
     <message>
-        <location line="-6114"/>
+        <location line="-6116"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Legyen a jelenlegi dokumentum a &apos;Mesterdokumentum&apos;</translation>
     </message>
@@ -7875,7 +7880,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <location line="+8"/>
         <location line="+2"/>
         <location line="+391"/>
-        <location line="+2439"/>
+        <location line="+2441"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -7885,7 +7890,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Nincs olvasási jogosultsága a fájlra.</translation>
     </message>
     <message>
-        <location line="-7472"/>
+        <location line="-7474"/>
         <location line="+6925"/>
         <location line="+9"/>
         <source>All files</source>
@@ -7904,7 +7909,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="-4456"/>
-        <location line="+5555"/>
+        <location line="+5557"/>
         <source>Open Files</source>
         <translation>Nyitott fájlok</translation>
     </message>
@@ -7913,7 +7918,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation type="obsolete">A dokumentum mentetlen munkát tartalmaz. Szeretné menteni bezárás előtt?</translation>
     </message>
     <message>
-        <location line="-5364"/>
+        <location line="-5366"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Mentés és bezárás</translation>
@@ -8269,14 +8274,14 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>&amp;Dokumentum mozgatása hátra</translation>
     </message>
     <message>
-        <location line="+1503"/>
+        <location line="+1505"/>
         <location line="+201"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX fájlok (*.tex);;Minden fájl (*)</translation>
     </message>
     <message>
-        <location line="-7235"/>
+        <location line="-7237"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Megmutatja a különbséget az alapfájllal kapcsolatban lévő két fájl között</translation>
     </message>
@@ -8334,7 +8339,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>TXL profil</translation>
     </message>
     <message>
-        <location line="+576"/>
+        <location line="+578"/>
         <source>Open Compare File</source>
         <translation>Ellenőrző fájl megnyitása</translation>
     </message>
@@ -8384,7 +8389,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Különbség</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7605"/>
+        <location filename="texmaker.cpp" line="-7607"/>
         <source>Sweave files</source>
         <translation>Sweave fájlok</translation>
     </message>
@@ -8499,7 +8504,7 @@ Megbízik a leírásban?</translation>
         <translation>&amp;Matematika</translation>
     </message>
     <message>
-        <location line="+6636"/>
+        <location line="+6638"/>
         <source>Reached beginning of text.</source>
         <translation>Elértem a szöveg elejét</translation>
     </message>
@@ -8559,19 +8564,12 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
         <translation>Igen</translation>
     </message>
     <message>
-        <location line="-77"/>
-        <location line="+5"/>
-        <location line="+72"/>
-        <source>No, kill the program</source>
-        <translation>Nem, megszakítom a program futását</translation>
-    </message>
-    <message>
         <location line="+4"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Megkíséreltem megszakítani a program futását, de semmi nem történt</translation>
     </message>
     <message>
-        <location line="-7777"/>
+        <location line="-7779"/>
         <source>PDF files</source>
         <translation>PDF fájlok</translation>
     </message>
@@ -8586,7 +8584,7 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
         <translation>Kiemelés</translation>
     </message>
     <message>
-        <location line="+7055"/>
+        <location line="+7057"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>A TeXstudio megállt, feltehetőleg egy végtelen ciklus miatt.
@@ -8599,7 +8597,7 @@ Biztosan mégis futtani akarja? Adatok veszhetnek el.</translation>
         <translation>TeX dtx fájl</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7249"/>
+        <location filename="texmaker.cpp" line="-7251"/>
         <source>&amp;Index</source>
         <translation>&amp;Index</translation>
     </message>
@@ -8669,7 +8667,7 @@ included document in %1</source>
         <translation>Makrók &amp;szerkesztése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+3799"/>
+        <location filename="texmaker.cpp" line="+3801"/>
         <source>Yes, try to recover</source>
         <translation>Igen, megkíséreltem a helyreállítást</translation>
     </message>
@@ -8684,7 +8682,7 @@ included document in %1</source>
         <translation>Igen, folytatom a ciklust</translation>
     </message>
     <message>
-        <location line="-7363"/>
+        <location line="-7365"/>
         <source>Previous Change</source>
         <translation>Legutóbbi változtatás</translation>
     </message>
@@ -8907,12 +8905,12 @@ included document in %1</source>
         <translation>\ref beszúrása címkére</translation>
     </message>
     <message>
-        <location line="+1971"/>
+        <location line="+1973"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7539"/>
+        <location line="-7541"/>
         <source>New From &amp;Template...</source>
         <translation>Új, &amp;sablonból...</translation>
     </message>
@@ -8976,7 +8974,7 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+61"/>
         <source>Failed to read profile file %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8996,7 +8994,7 @@ Do you want to create it?</source>
         <translation>&amp;Előző</translation>
     </message>
     <message>
-        <location line="-6478"/>
+        <location line="-6480"/>
         <source>Long-range Word Repetition</source>
         <translation>Távoli szóismétlés</translation>
     </message>

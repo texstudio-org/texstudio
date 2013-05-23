@@ -9,7 +9,7 @@
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="+41"/>
+        <location filename="aboutdialog.cpp" line="+42"/>
         <source>Thanks to </source>
         <translation>Dank an </translation>
     </message>
@@ -40,7 +40,7 @@
         <translation type="obsolete">Projekt Homepage : &lt;a href=&quot;http://texstudio.sourceforge.net/&quot;&gt;http://texstudio.sourceforge.net/&lt;/a&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="-15"/>
+        <location filename="aboutdialog.cpp" line="-16"/>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation>Nutze Qt-Version %1, kompiliert mit QT %2 %3</translation>
     </message>
@@ -61,6 +61,11 @@
     </message>
     <message>
         <location line="+2"/>
+        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation>TeXstudio nutzt QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov und weitere).</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
         <translation>TeXstudio verwendet ein Bild von Alexander Klink.</translation>
     </message>
@@ -87,7 +92,7 @@
         <translation type="obsolete">TeXstudio verwendet TexTablet (MIT Lizenz, Copyright (c) 2012 Steven Lovegrove)</translation>
     </message>
     <message>
-        <location line="-5"/>
+        <location line="-6"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
         <translation>TeXstudio verwendet Code von Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) und SyncTeX (von Jerome Laurens).</translation>
     </message>
@@ -6213,7 +6218,7 @@ Soll die Datei neugeladen werden?
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location line="+2664"/>
+        <location line="+2670"/>
         <source>None</source>
         <translation>Kein</translation>
     </message>
@@ -6475,7 +6480,7 @@ Soll die Datei neugeladen werden?
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location line="-3284"/>
+        <location line="-3290"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -8509,12 +8514,12 @@ failed.</source>
     </message>
     <message>
         <location line="+20"/>
-        <location line="+6815"/>
+        <location line="+6817"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
     <message>
-        <location line="-6811"/>
+        <location line="-6813"/>
         <source>Print...</source>
         <translation>Drucken...</translation>
     </message>
@@ -8727,7 +8732,7 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+391"/>
-        <location line="+2439"/>
+        <location line="+2441"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -8737,8 +8742,8 @@ failed.</source>
         <translation>Sie besitzen nicht die nötigen Rechte um diese Datei zu lesen.</translation>
     </message>
     <message>
-        <location line="-5718"/>
-        <location line="+5555"/>
+        <location line="-5720"/>
+        <location line="+5557"/>
         <source>Open Files</source>
         <translation>Dateien öffnen</translation>
     </message>
@@ -8747,7 +8752,7 @@ failed.</source>
         <translation type="obsolete">Das Dokument ist verändert worden. Wollen Sie es vor dem Schließen speichern?</translation>
     </message>
     <message>
-        <location line="-5364"/>
+        <location line="-5366"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Speichern und schließen</translation>
@@ -9520,7 +9525,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>&amp;Quelltext als HTML exportieren...</translation>
     </message>
     <message>
-        <location line="+6602"/>
+        <location line="+6604"/>
         <source>Problem</source>
         <translation>Problem</translation>
     </message>
@@ -9580,7 +9585,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation type="obsolete">Entferne \hline</translation>
     </message>
     <message>
-        <location line="-2452"/>
+        <location line="-2454"/>
         <location line="+10"/>
         <source>Could not open browser</source>
         <translation>Konnte Browser nicht öffnen</translation>
@@ -9824,7 +9829,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>Schiebe Dokument zum &amp;Ende</translation>
     </message>
     <message>
-        <location line="+1503"/>
+        <location line="+1505"/>
         <location line="+201"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -9836,7 +9841,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7515"/>
+        <location filename="texmaker.cpp" line="-7517"/>
         <source>Sweave files</source>
         <translation>Sweave-Dateien</translation>
     </message>
@@ -9899,7 +9904,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>TXS Profil</translation>
     </message>
     <message>
-        <location line="+576"/>
+        <location line="+578"/>
         <source>Open Compare File</source>
         <translation>Vergleichsdatei öffnen</translation>
     </message>
@@ -10001,7 +10006,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
         <translation>Einfacher Text</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7454"/>
+        <location filename="texmaker.cpp" line="-7456"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Lesezeichen</translation>
@@ -10116,7 +10121,7 @@ Do you trust this document?</source>
         <translation>&amp;Mathe</translation>
     </message>
     <message>
-        <location line="+6636"/>
+        <location line="+6638"/>
         <source>Reached beginning of text.</source>
         <translation>Textanafang erreicht.</translation>
     </message>
@@ -10182,7 +10187,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Beenden hat nicht funktioniert.</translation>
     </message>
     <message>
-        <location line="-7777"/>
+        <location line="-7779"/>
         <source>PDF files</source>
         <translation>PDF Dateien</translation>
     </message>
@@ -10266,7 +10271,7 @@ included document in %1</source>
         <translation>Art: %1</translation>
     </message>
     <message>
-        <location line="+3802"/>
+        <location line="+3804"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudio wurde angehalten wegen des Verdachts einer Endlosschleife.
@@ -10305,7 +10310,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
         <translation>Ja, lasse die Schleife weiterlaufen</translation>
     </message>
     <message>
-        <location line="-7363"/>
+        <location line="-7365"/>
         <source>Previous Change</source>
         <translation>Vorherige Änderung</translation>
     </message>
@@ -10503,7 +10508,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
 </translation>
     </message>
     <message>
-        <location line="+2731"/>
+        <location line="+2733"/>
         <source>Failed to read profile file %1.</source>
         <translation>Profil-Datei %1 konnte nicht geöffnet werden.</translation>
     </message>
@@ -10517,7 +10522,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation type="obsolete">Prüfe LaTeX Installation</translation>
     </message>
     <message>
-        <location line="-7087"/>
+        <location line="-7089"/>
         <location line="+5125"/>
         <source>Paste Before</source>
         <translation>Vorher einfügen</translation>
@@ -10625,7 +10630,7 @@ Do you want to create it?</source>
         <translation>Datei &quot;%1&quot; existiert nicht. Soll sie angelegt werden ?</translation>
     </message>
     <message>
-        <location line="+178"/>
+        <location line="+180"/>
         <source>Find Word Repetitions</source>
         <translation>Wortwiederholung finden</translation>
     </message>
@@ -10640,7 +10645,7 @@ Do you want to create it?</source>
         <translation>F&amp;inde vorherigen Treffer</translation>
     </message>
     <message>
-        <location line="-6478"/>
+        <location line="-6480"/>
         <source>Long-range Word Repetition</source>
         <translation>Wortwiederholung über längeren Abstand</translation>
     </message>

@@ -75,6 +75,10 @@
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
         <translation>TeXstudio používá TexTablet (licence MIT, autorské právo (c) 2012 Steven Lovegrove).</translation>
     </message>
+    <message>
+        <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
