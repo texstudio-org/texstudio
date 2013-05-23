@@ -62,7 +62,7 @@
     <message>
         <location line="+2"/>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utilse QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov et contributeurs).</translation>
     </message>
     <message>
         <location line="+1"/>
