@@ -457,6 +457,11 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 		move(frameGeometry().right() > screen.right()?screen.left():x(),
 		     frameGeometry().bottom() > screen.bottom()?screen.left():y());
 	}
+
+#if QT_VERSION < 0x040800
+	ui.checkBoxVisualColumnMode->setChecked(false);
+	ui.checkBoxVisualColumnMode->setEnabled(false);
+#endif
 }
 
 ConfigDialog::~ConfigDialog() {

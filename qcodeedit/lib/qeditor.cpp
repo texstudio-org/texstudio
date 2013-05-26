@@ -4297,18 +4297,22 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 		cutBuffer.clear();
 		break;
 	case CursorLeft: case SelectCursorLeft:
-		op = QDocumentCursor::Left;
+		if (flag(BidiVisualColumnMode)) op = QDocumentCursor::Left;
+		else op = QDocumentCursor::PreviousCharacter;
 		cutBuffer.clear();
 		break;
 	case CursorRight: case SelectCursorRight:
-		op = QDocumentCursor::Right;
+		if (flag(BidiVisualColumnMode)) op = QDocumentCursor::Right;
+		else op = QDocumentCursor::NextCharacter;
 		cutBuffer.clear();
 		break;
 	case CursorWordLeft: case SelectCursorWordLeft:
-		op = QDocumentCursor::WordLeft;
+		if (flag(BidiVisualColumnMode)) op = QDocumentCursor::WordLeft;
+		else op = QDocumentCursor::PreviousWord;
 		break;
 	case CursorWordRight: case SelectCursorWordRight:
-		op = QDocumentCursor::WordRight;
+		if (flag(BidiVisualColumnMode)) op = QDocumentCursor::WordRight;
+		else op = QDocumentCursor::NextWord;
 		break;
 	case CursorStartOfLine: case SelectCursorStartOfLine:
 		op = QDocumentCursor::StartOfLine;

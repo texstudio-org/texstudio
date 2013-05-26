@@ -1425,7 +1425,7 @@ Then you can select a new shortcut by one of the following ways:
             <x>0</x>
             <y>-252</y>
             <width>898</width>
-            <height>916</height>
+            <height>942</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1852,6 +1852,13 @@ Then you can select a new shortcut by one of the following ways:
                <widget class="QCheckBox" name="checkBoxAutoLRM">
                 <property name="text">
                  <string>Automatically insert LRM characters</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxVisualColumnMode">
+                <property name="text">
+                 <string>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</string>
                 </property>
                </widget>
               </item>
