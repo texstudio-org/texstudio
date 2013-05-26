@@ -37,6 +37,8 @@ public:
 	bool texdocHelpInInternalViewer;
 	bool silentReload;
 	
+	bool autoInsertLRM;
+
 	void settingsChanged();
 private:
 	QString lastFontFamily;

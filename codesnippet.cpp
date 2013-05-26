@@ -353,6 +353,10 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 	int baseLine=cursor->lineNumber();
 	int baseLineIndent = cursor->columnNumber(); //text before inserted word moves placeholders to the right
 	int lastLineRemainingLength = curLine.text().length()-baseLineIndent; //last line will has length: indentation + codesnippet + lastLineRemainingLength
+	if (editor->flag(QEditor::AutoInsertLRM) && cursor->isRTL()
+			&& line.size() > 2 && (line.at(0).direction() == QChar::DirL || line.at(1).direction() == QChar::DirL) //starts with strong left-to-right
+			&& line[line.length()-1].direction() == QChar::DirON) //but ends with weak (e.g. "foobar{}", backslash is handled by completer)
+		line += QChar(LRM);
 	editor->document()->clearLanguageMatches();
 	editor->insertText(*cursor,line); //don't use cursor->insertText to keep autoindentation working
 

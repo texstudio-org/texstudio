@@ -1008,6 +1008,10 @@ QDocumentSelection QDocumentCursor::selection() const
 	return s;
 }
 
+bool QDocumentCursor::isRTL() const{
+	return m_handle && m_handle->isRTL();
+}
+
 void QDocumentCursor::sort(QDocumentCursor& from, QDocumentCursor& to){
 	if (from < to) return;
 	QDocumentCursorHandle* temp = to.m_handle;

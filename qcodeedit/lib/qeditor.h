@@ -105,6 +105,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			AutoCloseChars		= 0x01000000,
 			AutoIndent		= 0x02000000,
 			WeakIndent		= 0x04000000,
+			AutoInsertLRM		= 0x08000000,
 			
 			SilentReloadOnExternalChanges = 0x10000000,
 
@@ -659,5 +660,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::MoveFlags)
 inline bool QEditor::atPlaceholder() {
 	return m_curPlaceHolder >= 0 && m_curPlaceHolder<m_placeHolders.count();
 }
+
+const int LRM = 0x200E;
 
 #endif

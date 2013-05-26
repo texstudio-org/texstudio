@@ -167,6 +167,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		bool hasColumnMemory() const;
 		void setColumnMemory(bool y);
 		
+		bool isRTL() const;
+
 		virtual void execute(QDocumentCommand *c);
 		
 		inline void ref() { m_ref.ref(); }

@@ -71,6 +71,7 @@ public:
 private:
 	friend class LatexEditorView;
 	const LatexCompleterConfig* completerConfig;
+	const LatexEditorViewConfig* editorViewConfig;
 	QList<QAction *> baseActions;
 	
 	QMenu* contextMenu;
@@ -79,23 +80,30 @@ private:
 	QPoint lastMousePressLeft;
 	bool isDoubleClick;  // event sequence of a double click: press, release, double click, release - this is true on the second release
 };
+
+static const QString LRMStr = QChar(LRM);
+
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
 	              (editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance()))  {
 		//update completer if necessary
 		editor->emitNeedUpdatedCompleter();
 		bool autoOverriden = editor->isAutoOverrideText(event->text());
-		editor->write(event->text());
+		if (editorViewConfig->autoInsertLRM && event->text() == "\\" && editor->cursor().isRTL())
+			editor->write(LRMStr + event->text());
+		else
+			editor->write(event->text());
 		if (autoOverriden) LatexEditorView::completer->complete(editor,LatexCompleter::CF_OVERRIDEN_BACKSLASH);
 		else LatexEditorView::completer->complete(editor,0);
 		return true;
 	}
-	if (!event->text().isEmpty()) {
+	QString text = event->text();
+	if (!text.isEmpty()) {
 		Q_ASSERT(completerConfig); 
 		QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : 0;
 		QDocumentLine line = editor->cursor().selectionStart().line();
 		int column = editor->cursor().selectionStart().columnNumber();
-		QString prev = line.text().mid(0, column)+event->text(); //TODO: optimize
+		QString prev = line.text().mid(0, column)+text; //TODO: optimize
 		for (int i=0;i<completerConfig->userMacro.size();i++) {
 			const Macro& m = completerConfig->userMacro[i];			
 			if (m.trigger.isEmpty() || !(m.triggers & Macro::ST_REGEX)) continue;
@@ -132,6 +140,23 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 */
 				return true;
 			}
+
+			if (editorViewConfig->autoInsertLRM && text.length() == 1 && editor->cursor().isRTL()) {
+				if (text.at(0) == '}') {
+					bool autoOverride = editor->isAutoOverrideText("}");
+					bool previousIsLRM = editor->cursor().previousChar().unicode() == LRM;
+					bool block = previousIsLRM || autoOverride;
+					if (block) editor->document()->beginMacro();
+					if (previousIsLRM) editor->cursor().deletePreviousChar(); //todo mirrors
+					if (autoOverride) {
+						editor->write("}"); //separated, so autooverride works
+						editor->write(LRMStr);
+					} else editor->write("}"+LRMStr);
+					if (block) editor->document()->endMacro();
+					return true;
+				}
+			}
+
 		}
 		//		for (int i=0;i<LatexEditorView::completer)
 		
@@ -569,6 +594,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	
 	editor->setInputBinding(defaultInputBinding);
 	defaultInputBinding->completerConfig = completer->getConfig();
+	defaultInputBinding->editorViewConfig = config;
 	Q_ASSERT(defaultInputBinding->completerConfig);
 	editor->document()->setLineEndingDirect(QDocument::Local);
 	mainlay->addWidget(editor);
@@ -1144,6 +1170,7 @@ void LatexEditorView::updateSettings(){
 	editor->setFlag(QEditor::ReplaceTabs,config->indentWithSpaces);
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
 	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
+	editor->setFlag(QEditor::AutoInsertLRM, config->autoInsertLRM);
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::SilentReloadOnExternalChanges, config->silentReload);

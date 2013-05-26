@@ -3046,6 +3046,14 @@ QVector<int> QDocumentLineHandle::getFormats() const
 	return m_formats;
 }
 
+bool QDocumentLineHandle::isRTL() const{
+	if (!m_layout) return false;
+	else {
+		QReadLocker locker(&mLock);
+		return m_layout && m_layout->textOption().textDirection() == Qt::RightToLeft;
+	}
+}
+
 QVector<int> QDocumentLineHandle::compose() const
 {
 	// don't do locking here as it is mainly called by draw !!!!
@@ -4414,6 +4422,11 @@ void QDocumentCursorHandle::setColumnMemory(bool y)
 	else
 		clearFlag(ColumnMemory);
 	refreshColumnMemory();
+}
+
+bool QDocumentCursorHandle::isRTL() const{
+	QDocumentLine l = line();
+	return l.isRTL(); //todo: also check for column position?
 }
 
 void QDocumentCursorHandle::setPosition(int pos, int m)
