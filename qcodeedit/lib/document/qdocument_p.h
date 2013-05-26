@@ -215,7 +215,7 @@ class QCE_EXPORT QDocumentPrivate
 		int m_delayedUpdateBlocks;
 		
 		QMap<int, int> m_hidden;
-		QMap<int, int> m_wrapped;
+		QMap<int, int> m_wrapped; //map of wrapped lines, (line number => line breaks in logical line)
 		QVector< QPair<QDocumentLineHandle*, int> > m_largest;
 		
 		struct Match
