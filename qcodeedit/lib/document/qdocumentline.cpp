@@ -421,6 +421,10 @@ bool QDocumentLine::isRTL() const{
 	return m_handle->isRTL();
 }
 
+QTextLayout* QDocumentLine::getLayout() const{
+	return m_handle ? m_handle->m_layout : 0;
+}
+
 /*!
 	\return whether the line has at least one overlay of a given format id
 */

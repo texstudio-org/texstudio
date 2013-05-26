@@ -37,7 +37,7 @@ public:
 	bool texdocHelpInInternalViewer;
 	bool silentReload;
 	
-	bool autoInsertLRM;
+	bool autoInsertLRM, visualColumnMode;
 
 	void settingsChanged();
 private:

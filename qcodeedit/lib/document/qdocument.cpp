@@ -4476,9 +4476,39 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 	int beg = 0, end = m_doc->lines();
 
+#if QT_VERSION >= 0x040800
+	if (l1.isRTL()) {
+		int tempOffset = m_begOffset;
+		switch (op) {
+		case QDocumentCursor::Left:
+			for (int i=0;i<count;i++)
+				tempOffset = l1.getLayout()->leftCursorPosition(tempOffset);
+			count = m_begOffset - tempOffset;
+			if (count < 0) { count = - count; op = QDocumentCursor::NextCharacter; }
+			break;
+		case QDocumentCursor::Right:
+			for (int i=0;i<count;i++)
+				tempOffset = l1.getLayout()->rightCursorPosition(tempOffset);
+			count = tempOffset - m_begOffset;
+			if (count < 0) { count = - count; op = QDocumentCursor::PreviousCharacter; }
+			break;
+		case QDocumentCursor::WordLeft:
+			if (l1.getLayout()->leftCursorPosition(tempOffset) > tempOffset)
+				op = QDocumentCursor::NextWord;
+			break;
+		case QDocumentCursor::WordRight:
+			if (l1.getLayout()->rightCursorPosition(tempOffset) < tempOffset)
+				op = QDocumentCursor::PreviousWord;
+			break;
+		}
+	}
+#endif
+
+
 	switch ( op )
 	{
-		case QDocumentCursor::Left :
+		case QDocumentCursor::Left:
+		case QDocumentCursor::PreviousCharacter :
 		{
 			if ( atStart() )
 				return false;
@@ -4520,6 +4550,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 		}
 
 		case QDocumentCursor::Right :
+		case QDocumentCursor::NextCharacter:
 		{
 			if ( atEnd() )
 				return false;

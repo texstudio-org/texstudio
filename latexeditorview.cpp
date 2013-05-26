@@ -1171,6 +1171,7 @@ void LatexEditorView::updateSettings(){
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
 	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
 	editor->setFlag(QEditor::AutoInsertLRM, config->autoInsertLRM);
+	editor->setFlag(QEditor::BidiVisualColumnMode, config->visualColumnMode);
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::SilentReloadOnExternalChanges, config->silentReload);

@@ -192,6 +192,7 @@ class QCE_EXPORT QDocumentLine
 		void removeCookie(int type);
 
 		bool isRTL() const;
+		QTextLayout* getLayout() const;
 private:
 		QDocumentLineHandle *m_handle;
 };
