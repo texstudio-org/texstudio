@@ -224,6 +224,8 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		QDocumentSelection selection() const;
 		
+		bool isRTL() const;
+
 		QDocument* document() const;
 		
 		inline QDocumentCursorHandle* handle() const

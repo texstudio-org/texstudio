@@ -190,6 +190,8 @@ class QCE_EXPORT QDocumentLine
 		QVariant getCookie(int type);
 		void setCookie(int type,QVariant data);
 		void removeCookie(int type);
+
+		bool isRTL() const;
 private:
 		QDocumentLineHandle *m_handle;
 };

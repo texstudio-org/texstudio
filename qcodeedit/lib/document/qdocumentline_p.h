@@ -175,6 +175,7 @@ public:
 			return mCookies.remove(type);
 		}
 
+		bool isRTL() const;
 	private:
 		void layout(int lineNr) const;
 		void applyOverlays() const;

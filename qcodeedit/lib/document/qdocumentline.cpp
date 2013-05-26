@@ -417,6 +417,10 @@ void QDocumentLine::removeCookie(int type){
 	m_handle->removeCookie(type);
 }
 
+bool QDocumentLine::isRTL() const{
+	return m_handle->isRTL();
+}
+
 /*!
 	\return whether the line has at least one overlay of a given format id
 */

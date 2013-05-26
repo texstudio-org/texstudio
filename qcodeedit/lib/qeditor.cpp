@@ -4697,6 +4697,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 				m_cursor.movePosition(cutBuffer.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
 			} 
 			
+			if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
+				autoBracket = "}" + QString(QChar(LRM));
+
 			QDocumentCursor copiedCursor = c.selectionEnd();
 			PlaceHolder ph(autoBracket.length(),copiedCursor);
 			ph.autoOverride = true;
