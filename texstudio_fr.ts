@@ -870,7 +870,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+3179"/>
+        <location filename="configdialog.ui" line="+3202"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -880,7 +880,7 @@
         <translation>Annuler</translation>
     </message>
     <message>
-        <location line="-3077"/>
+        <location line="-3100"/>
         <location line="+1332"/>
         <source>Appearance</source>
         <translation>Apparence</translation>
@@ -1040,7 +1040,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Tab. (nb d&apos;espaces) :</translation>
     </message>
     <message>
-        <location line="+695"/>
+        <location line="+718"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Remplacement automatique des macros LaTeX</translation>
     </message>
@@ -1053,7 +1053,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Supprimer ligne</translation>
     </message>
     <message>
-        <location line="-1350"/>
+        <location line="-1373"/>
         <location filename="configdialog.cpp" line="+403"/>
         <source>Shortcuts</source>
         <translation>Raccourcis clavier</translation>
@@ -1104,7 +1104,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     <message>
         <location line="+117"/>
         <location filename="configdialog.cpp" line="+3"/>
-        <location filename="configmanager.cpp" line="+1136"/>
+        <location filename="configmanager.cpp" line="+1139"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
@@ -1113,7 +1113,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Afficher la prévisualisation en info-bulle si le panneau est caché</translation>
     </message>
     <message>
-        <location line="+1657"/>
+        <location line="+1680"/>
         <source>Always show preview in preview panel</source>
         <translation>Toujours afficher l&apos;aperçu dans le panneau d&apos;aperçu</translation>
     </message>
@@ -1143,7 +1143,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>Aperçu avec dvips/ghostscript</translation>
     </message>
     <message>
-        <location line="-1154"/>
+        <location line="-1177"/>
         <source>Close search and replace panel together</source>
         <translation>Fermer ensemble « Rechercher » et « Remplacer » </translation>
     </message>
@@ -1189,12 +1189,12 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Afficher les numéros de ligne importants</translation>
     </message>
     <message>
-        <location line="+603"/>
+        <location line="+626"/>
         <source>Formats</source>
         <translation>Formats</translation>
     </message>
     <message>
-        <location line="-417"/>
+        <location line="-440"/>
         <source>Show Line Change State</source>
         <translation>Afficher l&apos;état du changement de ligne</translation>
     </message>
@@ -1218,7 +1218,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>seuls choix possibles: UTF-16, UTF-8 et ISO 8859-1 !</translation>
     </message>
     <message>
-        <location line="+742"/>
+        <location line="+765"/>
         <source>Custom Environment</source>
         <translation>Environnement personnalisé</translation>
     </message>
@@ -1312,7 +1312,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Télécharger le dictionnaire : %1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2135"/>
+        <location filename="configdialog.ui" line="-2158"/>
         <location filename="configdialog.cpp" line="+142"/>
         <source>Command</source>
         <translation>Commande</translation>
@@ -1343,7 +1343,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>Compilations</translation>
     </message>
     <message>
-        <location line="+326"/>
+        <location line="+331"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
         <translation>Avant de pouvoir charger une icône pour cet item, vous devez ajouter une action (extraite de la liste d&apos;action à droite) à la barre d&apos;outils.</translation>
     </message>
@@ -1352,12 +1352,12 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Compilation rapide</translation>
     </message>
     <message>
-        <location line="-318"/>
+        <location line="-323"/>
         <source>Custom Highlighting</source>
         <translation>Surligneur personnalisé</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1125"/>
+        <location filename="configdialog.ui" line="+1148"/>
         <location filename="configdialog.cpp" line="+1"/>
         <source>Completion</source>
         <translation>Complétion</translation>
@@ -1368,7 +1368,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation></translation>
     </message>
     <message>
-        <location line="+126"/>
+        <location line="+131"/>
         <source>Browse thesaurus database</source>
         <translation>Localiser thésaurus</translation>
     </message>
@@ -1408,7 +1408,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Assistant</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-351"/>
+        <location filename="configdialog.cpp" line="-356"/>
         <source>Basic highlighting</source>
         <translation>Surlignement de base</translation>
     </message>
@@ -1423,7 +1423,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1381"/>
+        <location filename="configdialog.ui" line="-1404"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Ne pas lancer l&apos;afficheur si le fichier dvi/ps/pdf est déjà ouvert</translation>
     </message>
@@ -1468,7 +1468,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Prévisualisation de la portion</translation>
     </message>
     <message>
-        <location line="+998"/>
+        <location line="+1021"/>
         <source>Command:</source>
         <translation>Commande :</translation>
     </message>
@@ -1520,8 +1520,8 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Mise à l&apos;échelle</translation>
     </message>
     <message>
-        <location line="-1735"/>
-        <location line="+1748"/>
+        <location line="-1758"/>
+        <location line="+1771"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1555,7 +1555,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>Aperçu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1388"/>
+        <location filename="configdialog.ui" line="-1411"/>
         <source>Search Panel</source>
         <translation>Panneau de recherche</translation>
     </message>
@@ -1569,7 +1569,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">un nb de caractères de au plus :</translation>
     </message>
     <message>
-        <location line="+227"/>
+        <location line="+250"/>
         <source>Hacks/Workarounds</source>
         <translation>Contournements</translation>
     </message>
@@ -1585,7 +1585,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation>Désactiver la taille du cache de caractère</translation>
     </message>
     <message>
-        <location line="-218"/>
+        <location line="-241"/>
         <source>Auto Complete Parentheses</source>
         <translation>Autocomplétion des parenthèses</translation>
     </message>
@@ -1599,7 +1599,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Désactiver l&apos;astuce pour les caractères accentués (seulement pour Mac OS X)</translation>
     </message>
     <message>
-        <location line="+441"/>
+        <location line="+464"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Complétion automatique pour les macros LaTeX</translation>
     </message>
@@ -1632,9 +1632,9 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Prévisualisation automatique :</translation>
     </message>
     <message>
-        <location line="-2116"/>
+        <location line="-2139"/>
         <location line="+970"/>
-        <location line="+1097"/>
+        <location line="+1120"/>
         <source>Never</source>
         <translation>Jamais</translation>
     </message>
@@ -1745,7 +1745,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">guillemets allemands : &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location line="-309"/>
+        <location line="-332"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Afficher l&apos;aperçu en info-bulle pour les formules dans l&apos;éditeur</translation>
     </message>
@@ -1832,7 +1832,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">Langue par défaut</translation>
     </message>
     <message>
-        <location line="+148"/>
+        <location line="+153"/>
         <source>Select dictionary directory</source>
         <translation>Sélection du répertoire du dictionnaire</translation>
     </message>
@@ -1861,7 +1861,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">Mode de rendu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+127"/>
+        <location filename="configdialog.ui" line="+150"/>
         <source>Try to automatically choose best display options</source>
         <translation>Essayer de choisir automatiquement les meilleures options d&apos;affichage</translation>
     </message>
@@ -1880,13 +1880,13 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">Vérification en ligne :</translation>
     </message>
     <message>
-        <location line="-684"/>
+        <location line="-707"/>
         <source>Spelling</source>
         <translation>Correction orthographique</translation>
     </message>
     <message>
         <location line="+7"/>
-        <location filename="configdialog.cpp" line="-142"/>
+        <location filename="configdialog.cpp" line="-147"/>
         <source>Grammar</source>
         <translation>Grammaire</translation>
     </message>
@@ -1906,7 +1906,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation>Syntaxe</translation>
     </message>
     <message>
-        <location line="+1159"/>
+        <location line="+1182"/>
         <source>Internal</source>
         <translation>Interne</translation>
     </message>
@@ -1950,7 +1950,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation>Java :</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+132"/>
+        <location filename="configdialog.cpp" line="+137"/>
         <source>Select the grammar word lists dir</source>
         <translation>Sélectionner le dossier des listes de mots</translation>
     </message>
@@ -1985,7 +1985,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">Règles spéciales 4 :</translation>
     </message>
     <message>
-        <location line="-169"/>
+        <location line="-174"/>
         <source>LaTeX checking</source>
         <translation>Vérification LaTeX</translation>
     </message>
@@ -2078,7 +2078,7 @@ to set the key anyway?</source>
         <translation type="obsolete">Compilations utilisateur</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1692"/>
+        <location filename="configdialog.ui" line="-1715"/>
         <location filename="configdialog.cpp" line="+227"/>
         <source>Menus</source>
         <translation>Menus</translation>
@@ -2141,17 +2141,17 @@ to set the key anyway?</source>
         <translation>Fichiers DTX</translation>
     </message>
     <message>
-        <location line="+208"/>
+        <location line="+213"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;inconnu&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2388"/>
+        <location filename="configdialog.ui" line="+2411"/>
         <source>Show Advanced Options</source>
         <translation>Afficher les options avancées</translation>
     </message>
     <message>
-        <location line="-3018"/>
+        <location line="-3041"/>
         <source>Style:</source>
         <translation>Style :</translation>
     </message>
@@ -2438,7 +2438,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Coupure de ligne brutale après un maximum de caractères</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+180"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Désactiver l&apos;astuce pour les caractères accentués (Mac OS X seulement)</translation>
     </message>
@@ -2643,7 +2643,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Remplacer Keywords par Properties (en cas de « svn add »)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-391"/>
+        <location filename="configdialog.cpp" line="-396"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation>Le raccourci &lt;%1&gt; est déjà utilisé pour :</translation>
     </message>
@@ -2668,7 +2668,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2627"/>
+        <location filename="configdialog.ui" line="-2650"/>
         <source>Update</source>
         <translation>Mise à jour</translation>
     </message>
@@ -2698,12 +2698,12 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2564"/>
+        <location filename="configdialog.ui" line="+2587"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée</translation>
     </message>
     <message>
-        <location line="-2330"/>
+        <location line="-2353"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Nombre maximum de compilations répétées :</translation>
     </message>
@@ -2738,7 +2738,22 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Insérer un symbole en tant que caractère unicode</translation>
     </message>
     <message>
-        <location line="+316"/>
+        <location line="+62"/>
+        <source>Bi-Di</source>
+        <translation>Écriture bidirectionnelle (BiDi)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Automatically insert LRM characters</source>
+        <translation>Insérer automatiquement des marques gauche-à-droite</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
+        <translation>Mode de curseur en colonne visuelle (déplacement du curseur selon la direction des touches de flèches dans les textes de droite à gauche)</translation>
+    </message>
+    <message>
+        <location line="+264"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Démarre la complétion dès que « \ » est saisi. Autrement, la complétion peut toujours être démarée manuellement au moyen de Ctrl+Espace.</translation>
     </message>
@@ -2822,7 +2837,7 @@ voulez inclure des fichiers de complétion personnalisés, vous pouvez forcer
 leur usage en les activant ici.</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+489"/>
+        <location filename="configdialog.cpp" line="+494"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
@@ -2839,7 +2854,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
     </message>
     <message>
-        <location line="-1687"/>
+        <location line="-1710"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt; : nom de fichier sans extension ; &lt;b&gt;@&lt;/b&gt; : numéro de ligne ; &lt;b&gt;?[sélecteur][caractère terminal]&lt;/b&gt; : nom de fichier formaté
@@ -2902,7 +2917,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>Recherche de chemins pour les commandes</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2158"/>
+        <location filename="configdialog.ui" line="+2181"/>
         <source>Cache Size:</source>
         <translation>Taille du cache:</translation>
     </message>
@@ -2912,7 +2927,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation> MB</translation>
     </message>
     <message>
-        <location line="-1738"/>
+        <location line="-1761"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Package csquotes : \enquote{  }</translation>
     </message>
@@ -4677,13 +4692,13 @@ la commande \caption n&apos;est pas valide.</translation>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="latexeditorview.cpp" line="+335"/>
-        <location line="+1401"/>
+        <location filename="latexeditorview.cpp" line="+360"/>
+        <location line="+1404"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>touche shift pressée =&gt; suggestions cachées</translation>
     </message>
     <message>
-        <location line="-1395"/>
+        <location line="-1398"/>
         <source>always ignore</source>
         <translation>toujours ignorer</translation>
     </message>
@@ -4693,7 +4708,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Nouvel entrée BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1573"/>
+        <location line="+1576"/>
         <source>label missing!</source>
         <translation>étiquette manquante !</translation>
     </message>
@@ -4727,7 +4742,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">citation manquante !</translation>
     </message>
     <message>
-        <location line="-1588"/>
+        <location line="-1591"/>
         <source>Open %1</source>
         <translation>Ouvrir %1</translation>
     </message>
@@ -4757,7 +4772,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Citation correcte</translation>
     </message>
     <message>
-        <location line="+1524"/>
+        <location line="+1527"/>
         <source>Citation missing</source>
         <translation>Citation manquante</translation>
     </message>
@@ -4776,7 +4791,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Citation correcte (lecture en cours...)</translation>
     </message>
     <message>
-        <location line="-1478"/>
+        <location line="-1481"/>
         <source>Go to PDF</source>
         <translation>Atteindre le PDF</translation>
     </message>
@@ -4787,12 +4802,12 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Aller à la définition</translation>
     </message>
     <message>
-        <location line="+335"/>
+        <location line="+336"/>
         <source>untitled</source>
         <translation>sans nom</translation>
     </message>
     <message>
-        <location line="+1632"/>
+        <location line="+1634"/>
         <source>Remove Bookmark</source>
         <translation>&amp;Supprimer le signet</translation>
     </message>
@@ -4848,7 +4863,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Images</translation>
     </message>
     <message>
-        <location line="-1960"/>
+        <location line="-1963"/>
         <source>Open Bibliography</source>
         <translation>Ouvrir la bibliographie</translation>
     </message>
@@ -7988,7 +8003,7 @@ Faites-vous confiance à ce script ?</translation>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-690"/>
+        <location filename="configdialog.cpp" line="-695"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;défaut&gt;</translation>
     </message>
