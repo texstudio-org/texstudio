@@ -567,7 +567,7 @@ debug{
         tests/testutil.h \
         tests/qcetestutil.h \
         tests/smallUsefulFunctions_t.h \
-        tests/buildManager_t.h \
+	tests/buildmanager_t.h \
         tests/codesnippet_t.h \
         tests/scriptengine_t.h \
         tests/qdocumentcursor_t.h \
