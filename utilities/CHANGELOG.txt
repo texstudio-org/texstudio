@@ -1,7 +1,29 @@
 (you may also want to check the usermanual)
 
-TeXstudio 2.5.1 -> TeXstudio 2.5.2
+TeXstudio 2.5.2 -> TeXstudio 2.6
 -----------------------------------------
+- Retina Mac support
+- switched to svg icons
+- folded lines are now stored in the session
+- option to load package documentation into internal embedded pdf viewer
+- option to silently reload files on external changes
+- make %todo as well as %TODO marker for "to-do" list
+- "Align Table Columns" now works on many more enviroments such as 
+  matrix, align. align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
+- template resources are now configured via template_resources.xml (allows to customize resource locations)
+- template json files are now UTF-8
+- basic Pweave highlighting
+- arbitrary dictionary names are now possible in % !TeX spellcheck = ... magic comment
+- new macro trigger depending on the current syntax highlighting
+- allow to suppress tests in debug mode by preprocessor define NO-TESTS
+- fix some issues with RTL languages
+- fix animated scrolling
+- a number of new completion files included
+- lots of small corrections and improvements
+
+
+TeXstudio 2.5.1 -> TeXstudio 2.5.2  SVN 3707
+--------------------------------------------
 - new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
 - add support to display CJK and Cyrillic in PDF viewer
 - increased maximum possible tab width to 32
