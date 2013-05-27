@@ -746,7 +746,10 @@ bool LatexEditorView::isNonTextFormat(int format){
 	return format == numbersFormat
 			|| format == verbatimFormat
 			|| format == pictureFormat
-			|| format == sweaveFormat
+			|| format == pweaveDelimiterFormat
+			|| format == pweaveBlockFormat
+			|| format == sweaveDelimiterFormat
+			|| format == sweaveBlockFormat
 			|| format == math_DelimiterFormat;
 }
 
@@ -1144,7 +1147,8 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
     LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
-    LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::sweaveFormat, LatexEditorView::math_DelimiterFormat;
+	LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
+	LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat;
 int LatexEditorView::syntaxErrorFormat,LatexEditorView::preEditFormat;
 int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
 
@@ -1216,9 +1220,13 @@ void LatexEditorView::updateFormatSettings(){
 															F(wordRepetition) F(wordRepetitionLongRange) F(badWord)
 															F(grammarMistake)
 															F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
-															F(numbers) F(verbatim) F(picture) F(sweave)
+															F(numbers) F(verbatim) F(picture)
+															&pweaveDelimiterFormat, "pweave-delimiter",
+															&pweaveBlockFormat, "pweave-block",
+															&sweaveDelimiterFormat, "sweave-delimiter",
+															&sweaveBlockFormat, "sweave-block",
 															&math_DelimiterFormat, "math-delimiter",
-                                                            &preEditFormat,"preedit",
+															&preEditFormat,"preedit",
 															0, 0
 														 };
 #undef F

@@ -138,7 +138,7 @@ private:
 	
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
 	wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
-	numbersFormat, verbatimFormat, pictureFormat, sweaveFormat, math_DelimiterFormat;
+	numbersFormat, verbatimFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
 	static QList<int> formatsList;
