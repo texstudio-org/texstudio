@@ -1,17 +1,25 @@
 <!DOCTYPE QNFA>
-<QNFA language="(La)TeX" extensions="tex;sty;cls;ins;cfg;ltx" defaultLineMark="">
+<QNFA language="Pweave" extensions="Pnw" defaultLineMark="">
 <!-- Note: languages name is used to determine on-line checking. If changed also sources have to be adapted (latexeditorview.cpp) -->
-<!--
-parenthesis weights:
-40: \[ \]  $   \(  \[
-30: \begin{..}
-20: \verb*  *
-10: { }
-8-2: \part, \chapter, \section, ...  (very low weight, because they are difficult to match, e.g in { \n .. \section \n .. })
-0: (, ), \{, \}, [, ]
-(if you change this, don't forget to also update the values for user defined
-environments in smallUsefulFunctions.cpp)
--->
+
+	<context id="pweave" format="pweave-block" transparency="true">	
+		<start parenthesis="pweave:open@nocomplete" parenthesisWeight="50" fold="1" format="pweave-delimiter">&lt;%</start>
+		<stop parenthesis="pweave:close@nocomplete" parenthesisWeight="50" fold="1" format="pweave-delimiter">%&gt;</stop>
+	</context>
+	
+	<context id="pweave" format="pweave-block" transparency="true">	
+		<start parenthesis="sweave:open@nocomplete" parenthesisWeight="30" fold="1" format="pweave-delimiter">&lt;&lt;[^>]*>>=</start>
+		<stop parenthesis="sweave:close@nocomplete" parenthesisWeight="30" fold="1" format="pweave-delimiter">@</stop>
+	</context>
+
+
+	<!-- *********************************************************************************************************************
+	     TODO: everything below is just copied from tex.qnfa. So it would be better to use <embed target="(La)TeX">
+	     However there seems to be a bug that the pweave context is not propagated into other contexts when they are embedded.
+		 This results in  $sqrt{2} = <%= sqrt(2) %>$ partly being highlighted as comment.
+		 Temporary workaround: It works correctly if we copy the the code.
+		 *********************************************************************************************************************-->
+	
 	<sequence parenthesis="round:open" parenthesisWeight="00">\(</sequence>
 	<sequence parenthesis="round:close" parenthesisWeight="00">\)</sequence>
 	<sequence parenthesis="texcurly:open" parenthesisWeight="00">\\{</sequence>
@@ -247,7 +255,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z@]+</sequence>
-	
+
 </QNFA>
 
 

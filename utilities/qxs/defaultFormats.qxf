@@ -92,8 +92,19 @@
     <format id="verbatim" >
         <foreground>#008080</foreground>
     </format>
-    <format id="sweave" >
+    <format id="sweave-block" >
         <foreground>#800000</foreground>
+    </format>
+	<format id="sweave-delimiter" >
+        <bold>true</bold>
+        <foreground>#0095ff</foreground>
+    </format>
+    <format id="pweave-block" >
+        <foreground>#800000</foreground>
+    </format>
+	<format id="pweave-delimiter" >
+        <bold>true</bold>
+        <foreground>#0095ff</foreground>
     </format>
     <format id="picture" >
         <foreground>#804000</foreground>

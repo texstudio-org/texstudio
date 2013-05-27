@@ -293,6 +293,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
   QStringList filters;
   filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx)";
   filters << tr("Plaintext files")+" (*.txt)";
+  filters << tr("Pweave files")+" (*.Pnw)";
   filters << tr("Sweave files")+" (*.Snw *.Rnw)";
   filters << tr("PDF files")+" (*.pdf)";
   filters << tr("All files")+" (*)";
