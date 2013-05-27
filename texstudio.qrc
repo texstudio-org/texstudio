@@ -8,6 +8,8 @@
         <file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
         <file alias="qxs/txsmacro.qnfa">utilities/qxs/txsmacro.qnfa</file>
         <file alias="qxs/dtx.qnfa">utilities/qxs/dtx.qnfa</file>
+        <file alias="qxs/pweave.qnfa">utilities/qxs/pweave.qnfa</file>
+        <file alias="qxs/sweave.qnfa">utilities/qxs/sweave.qnfa</file>
         <file alias="qxs/txstest.qnfa">utilities/qxs/txstest.qnfa</file>
         <file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
         <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
