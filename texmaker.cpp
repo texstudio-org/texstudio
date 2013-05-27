@@ -1335,7 +1335,8 @@ void Texmaker::NewDocumentStatus() {
 	}
 	QEditor * ed = edView->editor;
 	actSave->setEnabled(ed->isContentModified() || ed->fileName().isEmpty());
-	EditorTabs->setTabIcon(index, ed->isContentModified() ? getRealIcon("modified") : QIcon(":/images/empty.png"));
+	static QIcon modified = getRealIcon("modified"), empty =  QIcon(":/images/empty.png"); //cache icons, getRealIcon is *really* slow
+	EditorTabs->setTabIcon(index, ed->isContentModified() ? modified : empty);
 	QString tabText = edView->displayName().replace("&", "&&");
 	if (EditorTabs->tabText(index) != tabText) {
 		EditorTabs->setTabText(index, tabText);
