@@ -920,9 +920,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "0", tr("Word Repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 0);
 	newManagedAction(submenu, "1", tr("Long-range Word Repetition"), "toggleGrammar", 0, "", QList<QVariant>() << 1);
 	newManagedAction(submenu, "2", tr("Bad words"), "toggleGrammar", 0, "", QList<QVariant>() << 2);
-	newManagedAction(submenu, "3", tr("Grammer Mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
+    newManagedAction(submenu, "3", tr("Grammar Mistake"), "toggleGrammar", 0, "", QList<QVariant>() << 3);
 	for (int i=4;i<8;i++)
-		newManagedAction(submenu, QString("%1").arg(i), tr("Grammer Mistake Special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
+        newManagedAction(submenu, QString("%1").arg(i), tr("Grammar Mistake Special %1").arg(i-3), "toggleGrammar", 0, "", QList<QVariant>() << i);
 	for (int i=0;i<submenu->actions().size();i++)
 		if (!submenu->actions()[i]->isCheckable()){
 			submenu->actions()[i]->setCheckable(true);
