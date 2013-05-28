@@ -836,7 +836,7 @@
     </message>
     <message>
         <location filename="configdialog.ui" line="+971"/>
-        <location filename="configdialog.cpp" line="+142"/>
+        <location filename="configdialog.cpp" line="+143"/>
         <source>Command</source>
         <translation>Aktion</translation>
     </message>
@@ -880,7 +880,7 @@
     <message>
         <location filename="configdialog.ui" line="+144"/>
         <location filename="configdialog.cpp" line="+5"/>
-        <location filename="configmanager.cpp" line="+1136"/>
+        <location filename="configmanager.cpp" line="+1139"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -895,7 +895,7 @@
         <translation>SVN</translation>
     </message>
     <message>
-        <location line="+126"/>
+        <location line="+131"/>
         <source>Browse thesaurus database</source>
         <translation>Wähle Thesaurus Datenbank</translation>
     </message>
@@ -918,7 +918,7 @@
         <translation>Bilder (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <location line="-558"/>
+        <location line="-564"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>Das eingegebene Tastaturkürzel ist ungültig.</translation>
     </message>
@@ -1002,7 +1002,7 @@
         <translation type="obsolete">Zeige Vorschau als Tooltip, wenn das Panel unsichtbar ist</translation>
     </message>
     <message>
-        <location line="+1774"/>
+        <location line="+1797"/>
         <source>Always show preview in preview panel</source>
         <translation>Zeige die Vorschau nur im Vorschaupanel</translation>
     </message>
@@ -1032,7 +1032,7 @@
         <translation>Vorschau mit dvips/ghostscript</translation>
     </message>
     <message>
-        <location line="-1154"/>
+        <location line="-1177"/>
         <source>Close search and replace panel together</source>
         <translation>Schließe Such- und Ersetzenpanel zusammen</translation>
     </message>
@@ -1072,7 +1072,7 @@
         <translation>Zeige Leerzeichen</translation>
     </message>
     <message>
-        <location line="+455"/>
+        <location line="+478"/>
         <source>Custom Environment</source>
         <translation>Benutzerdefinierte Umgebung</translation>
     </message>
@@ -1128,7 +1128,7 @@
         <translation type="obsolete">modern</translation>
     </message>
     <message>
-        <location line="-2923"/>
+        <location line="-2946"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Struktur/Symbolansicht mit Tabs</translation>
     </message>
@@ -1190,7 +1190,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">%%, @@ or ?? wird zu: %, @ oder ?</translation>
     </message>
     <message>
-        <location line="+1662"/>
+        <location line="+1685"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Automatisches Ersetzen von LaTeX-Kommandos</translation>
     </message>
@@ -1231,19 +1231,19 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation>Nutze die folgenden Wortlisten:</translation>
     </message>
     <message>
-        <location line="-1432"/>
-        <location filename="configdialog.cpp" line="+231"/>
+        <location line="-1455"/>
+        <location filename="configdialog.cpp" line="+232"/>
         <source>Shortcuts</source>
         <translation>Tastaturkürzel</translation>
     </message>
     <message>
-        <location line="+1208"/>
+        <location line="+1231"/>
         <location filename="configdialog.cpp" line="+7"/>
         <source>Completion</source>
         <translation>Vervollständigung</translation>
     </message>
     <message>
-        <location line="-726"/>
+        <location line="-749"/>
         <source>Folding</source>
         <translation>Codefaltung</translation>
     </message>
@@ -1270,7 +1270,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Wichtige Zeilennummern anzeigen</translation>
     </message>
     <message>
-        <location line="+417"/>
+        <location line="+440"/>
         <source>Formats</source>
         <translation>Formate</translation>
     </message>
@@ -1285,7 +1285,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location line="-3077"/>
+        <location line="-3100"/>
         <location line="+1332"/>
         <source>Appearance</source>
         <translation>Darstellung</translation>
@@ -1350,7 +1350,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Assistent</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-31"/>
+        <location filename="configdialog.cpp" line="-32"/>
         <source>Basic highlighting</source>
         <translation>Grundlegende Hervorhebung</translation>
     </message>
@@ -1410,7 +1410,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Ausschnittvorschau</translation>
     </message>
     <message>
-        <location line="+998"/>
+        <location line="+1021"/>
         <source>Command:</source>
         <translation>Befehl:</translation>
     </message>
@@ -1461,8 +1461,8 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Skalierte Größe</translation>
     </message>
     <message>
-        <location line="-1735"/>
-        <location line="+1748"/>
+        <location line="-1758"/>
+        <location line="+1771"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1486,7 +1486,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+24"/>
+        <location filename="configdialog.cpp" line="+25"/>
         <source>Adv. Editor</source>
         <translation>Erweiterter Editor</translation>
     </message>
@@ -1496,7 +1496,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1388"/>
+        <location filename="configdialog.ui" line="-1411"/>
         <source>Search Panel</source>
         <translation>Suchpanel</translation>
     </message>
@@ -1510,7 +1510,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">max. Zeichen:</translation>
     </message>
     <message>
-        <location line="+227"/>
+        <location line="+250"/>
         <source>Hacks/Workarounds</source>
         <translation></translation>
     </message>
@@ -1525,7 +1525,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation>Cache für Buchstabenbreiten ausschalten</translation>
     </message>
     <message>
-        <location line="-218"/>
+        <location line="-241"/>
         <source>Auto Complete Parentheses</source>
         <translation>Klammern automatisch schließen</translation>
     </message>
@@ -1539,7 +1539,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Akzenttastenblockade deaktivieren (nur MacOSX)</translation>
     </message>
     <message>
-        <location line="+441"/>
+        <location line="+464"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Starte automatisch Vervollständigung wenn LaTeX-Kommandos eingegeben werden</translation>
     </message>
@@ -1572,9 +1572,9 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Automatische Vorschau:</translation>
     </message>
     <message>
-        <location line="-2116"/>
+        <location line="-2139"/>
         <location line="+970"/>
-        <location line="+1097"/>
+        <location line="+1120"/>
         <source>Never</source>
         <translation>Nie</translation>
     </message>
@@ -1685,7 +1685,7 @@ Beispiele: ?ame&quot;: Vollständiger, absoluter Dateiname mit Endung umgeben vo
         <translation type="obsolete">Deutsche Anführungszeichen:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location line="-309"/>
+        <location line="-332"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Zeige Vorschau als Tooltip auf Text im Editor</translation>
     </message>
@@ -1754,12 +1754,12 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation type="obsolete">Relative Schriftgröße der Reiter:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-28"/>
+        <location filename="configdialog.cpp" line="-29"/>
         <source>Diff</source>
         <translation>Diff</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+22"/>
         <source>Toolbars</source>
         <translation>Symbolleisten</translation>
     </message>
@@ -1772,7 +1772,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation type="obsolete">Standardsprache</translation>
     </message>
     <message>
-        <location line="+148"/>
+        <location line="+153"/>
         <source>Select dictionary directory</source>
         <translation>Wörterbuch-Verzeichnis auswählen</translation>
     </message>
@@ -1801,7 +1801,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation type="obsolete">Zeichenmodus:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+127"/>
+        <location filename="configdialog.ui" line="+150"/>
         <source>Try to automatically choose best display options</source>
         <translation>Suche selbständig die beste Anzeigestrategie</translation>
     </message>
@@ -1820,13 +1820,13 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation type="obsolete">Interaktives Überprüfen:</translation>
     </message>
     <message>
-        <location line="-684"/>
+        <location line="-707"/>
         <source>Spelling</source>
         <translation>Rechtschreibung</translation>
     </message>
     <message>
         <location line="+7"/>
-        <location filename="configdialog.cpp" line="-142"/>
+        <location filename="configdialog.cpp" line="-147"/>
         <source>Grammar</source>
         <translation>Grammatik</translation>
     </message>
@@ -1846,7 +1846,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation>Syntax</translation>
     </message>
     <message>
-        <location line="+1159"/>
+        <location line="+1182"/>
         <source>Internal</source>
         <translation>Intern</translation>
     </message>
@@ -1890,7 +1890,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+132"/>
+        <location filename="configdialog.cpp" line="+137"/>
         <source>Select the grammar word lists dir</source>
         <translation>Wähle Grammatikwortlistenverzeichnis</translation>
     </message>
@@ -1925,7 +1925,7 @@ Welcher der drei Weisen spricht immer die Wahrheit?</translation>
         <translation type="obsolete">Speziele Regeln 4:</translation>
     </message>
     <message>
-        <location line="-169"/>
+        <location line="-175"/>
         <source>LaTeX checking</source>
         <translation>LaTeX Prüfung</translation>
     </message>
@@ -2012,8 +2012,8 @@ to set the key anyway?</source>
         <translation type="obsolete">Benutzerbefehle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1692"/>
-        <location filename="configdialog.cpp" line="+227"/>
+        <location filename="configdialog.ui" line="-1715"/>
+        <location filename="configdialog.cpp" line="+228"/>
         <source>Menus</source>
         <translation>Menüs</translation>
     </message>
@@ -2064,22 +2064,22 @@ to set the key anyway?</source>
         <translation type="obsolete">Zeilenabstand</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-19"/>
+        <location filename="configdialog.cpp" line="-20"/>
         <source>DTX files</source>
         <translation>DTX Dateien</translation>
     </message>
     <message>
-        <location line="+208"/>
+        <location line="+214"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unbekannt&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2388"/>
+        <location filename="configdialog.ui" line="+2411"/>
         <source>Show Advanced Options</source>
         <translation>Zeige erweiterte Optionen</translation>
     </message>
     <message>
-        <location line="-3018"/>
+        <location line="-3041"/>
         <source>Style:</source>
         <translation>Stil:</translation>
     </message>
@@ -2378,7 +2378,7 @@ Ein neuer Tastenkürzel kann mit einer der dreifolgenden Methoden gewählt werde
         <translation>Harter Zeilenumbruch nach max. Zeichen</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+180"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Akzenttastenblockade deaktivieren (nur Mac OS X)</translation>
     </message>
@@ -2583,7 +2583,7 @@ Ein neuer Tastenkürzel kann mit einer der dreifolgenden Methoden gewählt werde
         <translation>Schlüsselwörter durch Eigenschaften ersetzen (bei svn add)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-391"/>
+        <location filename="configdialog.cpp" line="-397"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation>Das Tastatürkürzel &lt;%1&gt; ist bereits dem folgenden Befehl zugewiesen:</translation>
     </message>
@@ -2599,6 +2599,11 @@ Ein neuer Tastenkürzel kann mit einer der dreifolgenden Methoden gewählt werde
     </message>
     <message>
         <location line="+22"/>
+        <source>Sweave / Pweave</source>
+        <translation>Sweave / Pweave</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Lua</source>
         <translation></translation>
     </message>
@@ -2613,7 +2618,7 @@ Ein neuer Tastenkürzel kann mit einer der dreifolgenden Methoden gewählt werde
         <translation>Syntaxhervorhebung</translation>
     </message>
     <message>
-        <location line="+319"/>
+        <location line="+324"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
         <translation>Es muss eine Aktion (aus der der Liste der Aktionen rechts) zur Toolbar zugefügt werde, bevor ein Icon geladen werden kann.</translation>
     </message>
@@ -2623,12 +2628,12 @@ Ein neuer Tastenkürzel kann mit einer der dreifolgenden Methoden gewählt werde
         <translation>Nutze SVN-Versionen um vor der letzten gespeicherten Version rückgängig zu machen</translation>
     </message>
     <message>
-        <location line="-2330"/>
+        <location line="-2353"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Maximale Anzahl der Übersetzungen:</translation>
     </message>
     <message>
-        <location line="+1345"/>
+        <location line="+1368"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Startet die Vervollständigung sobald &apos;\&apos; eingegeben wird. Alternativ kann die Vervollständigung immer manuell mit Strg+Leertaste gestartet werden.</translation>
     </message>
@@ -2742,7 +2747,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Größe der Reiter am oberen oder unteren Rand des Vervollständigen-Dialogs</translation>
     </message>
     <message>
-        <location line="-1687"/>
+        <location line="-1710"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: Dateiname ohne Endung; &lt;b&gt;@&lt;/b&gt;: Zeilennummer; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: Formatierter Dateiname
@@ -2918,6 +2923,21 @@ Wenn &lt;b&gt;c:&lt;/b&gt; vorangestellt wird (inkl. Doppelpunkt), wird die aktu
         <translation>Eine Zeile pro Tabellenzelle</translation>
     </message>
     <message>
+        <location line="+10"/>
+        <source>Bi-Di</source>
+        <translation>Bidirektionale Schriften</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Automatically insert LRM characters</source>
+        <translation>Automatisch LRM (Links-nach-Rechts) Zeichen einfügen</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
+        <translation>Visueller Spaltenmodus des Cursors (d.h. der Cursor bewegt such in Richtung der Pfeiltasten auch bei Rechts-nach-Links-Texten)</translation>
+    </message>
+    <message>
         <location line="+1187"/>
         <source>Cache Size:</source>
         <translation>Cache-Größe:</translation>
@@ -2938,7 +2958,7 @@ Wenn &lt;b&gt;c:&lt;/b&gt; vorangestellt wird (inkl. Doppelpunkt), wird die aktu
         <translation>Trenner einfügen</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1682"/>
+        <location filename="configdialog.ui" line="-1705"/>
         <source>Automatically load included files</source>
         <translation>Eingebundene Dateien automatisch laden</translation>
     </message>
@@ -4513,7 +4533,7 @@ Fehlender \caption Kommando.</translation>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="latexeditorview.cpp" line="+341"/>
+        <location filename="latexeditorview.cpp" line="+366"/>
         <source>always ignore</source>
         <translation>immer ignorieren</translation>
     </message>
@@ -4523,7 +4543,7 @@ Fehlender \caption Kommando.</translation>
         <translation>Neuer BibTeX Eintrag %1</translation>
     </message>
     <message>
-        <location line="+1573"/>
+        <location line="+1584"/>
         <source>label missing!</source>
         <translation>Label fehlt!</translation>
     </message>
@@ -4557,13 +4577,13 @@ Fehlender \caption Kommando.</translation>
         <translation type="obsolete">Zitat fehlt!</translation>
     </message>
     <message>
-        <location line="-1621"/>
-        <location line="+1401"/>
+        <location line="-1632"/>
+        <location line="+1412"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift gedrückt =&gt; keine Vorschläge</translation>
     </message>
     <message>
-        <location line="-1368"/>
+        <location line="-1379"/>
         <source>Open %1</source>
         <translation>Öffne %1</translation>
     </message>
@@ -4589,7 +4609,7 @@ Fehlender \caption Kommando.</translation>
         <translation>Andere benutzen</translation>
     </message>
     <message>
-        <location line="+1524"/>
+        <location line="+1535"/>
         <source>Citation missing</source>
         <translation>Zitat fehlt</translation>
     </message>
@@ -4608,23 +4628,23 @@ Fehlender \caption Kommando.</translation>
         <translation>Ziate korrekt (lese ...)</translation>
     </message>
     <message>
-        <location line="-1478"/>
+        <location line="-1489"/>
         <source>Go to PDF</source>
         <translation>Gehe zu PDF</translation>
     </message>
     <message>
         <location line="-6"/>
-        <location filename="texmaker.cpp" line="+6140"/>
+        <location filename="texmaker.cpp" line="+6142"/>
         <source>Go to Definition</source>
         <translation>Springe zur Definition</translation>
     </message>
     <message>
-        <location line="+335"/>
+        <location line="+339"/>
         <source>untitled</source>
         <translation>unbenannt</translation>
     </message>
     <message>
-        <location line="+1170"/>
+        <location line="+1177"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>Die BibTeX ID endet mit einem Leerzeichen. Leerzeichen am Ende werden von BibTeX nicht ingoriert.</translation>
     </message>
@@ -4664,12 +4684,12 @@ Fehlender \caption Kommando.</translation>
         <translation>Ebene %1 ausklappen</translation>
     </message>
     <message>
-        <location line="-2121"/>
+        <location line="-2132"/>
         <source>Open Bibliography</source>
         <translation>Bibliographie öffnen</translation>
     </message>
     <message>
-        <location line="+885"/>
+        <location line="+896"/>
         <location line="+31"/>
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation>texdoc brauchte zu lang um die Paketdokumentation zu öffnen:</translation>
@@ -6583,12 +6603,12 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="+68"/>
+        <location filename="additionaltranslations.cpp" line="+71"/>
         <source>normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location line="-50"/>
+        <location line="-53"/>
         <source>comment</source>
         <translation>Kommentar</translation>
     </message>
@@ -6613,7 +6633,27 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
         <translation></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+1"/>
+        <source>pweave-delimiter</source>
+        <translation>pweave-Begrenzer</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>pweave-block</source>
+        <translation>pweave-Block</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>sweave-delimiter</source>
+        <translation>sweave-Begrenzer</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>sweave-block</source>
+        <translation>sweave-Block</translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>braceMatch</source>
         <translation>Klammermarkierung</translation>
     </message>
@@ -6781,7 +6821,7 @@ Do you want them to be saved?</source>
 Wollen Sie es speichern?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-51"/>
+        <location filename="additionaltranslations.cpp" line="-54"/>
         <source>background</source>
         <translation>Hintergrundfarbe</translation>
     </message>
@@ -6856,7 +6896,7 @@ Wollen Sie es speichern?</translation>
         <translation>Zeile:Lesezeichen9</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="+41"/>
         <source>replacement</source>
         <translation>Ersetzung</translation>
     </message>
@@ -6882,7 +6922,7 @@ Wollen Sie es speichern?</translation>
         <translation>LaTeX Syntaxfehler</translation>
     </message>
     <message>
-        <location line="-25"/>
+        <location line="-28"/>
         <source>commentTodo</source>
         <translation>Todo-Kommentar</translation>
     </message>
@@ -6892,12 +6932,11 @@ Wollen Sie es speichern?</translation>
         <translation></translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>sweave</source>
-        <translation>Sweave</translation>
+        <translation type="obsolete">Sweave</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+12"/>
         <source>picture</source>
         <translation>picture</translation>
     </message>
@@ -6944,12 +6983,12 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
         <translation>Priorität bestimmt welches Format zu oberst gezeichnet wird, falls mehrere anwendbar sind. </translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-34"/>
+        <location filename="additionaltranslations.cpp" line="-37"/>
         <source>align-ampersand</source>
         <translation>Ausrichtungstrennzeichen (&amp;&amp;)</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+15"/>
         <source>wordRepetition</source>
         <translation>Wortwiederholung</translation>
     </message>
@@ -7792,7 +7831,7 @@ Vertrauen Sie diesem Skript?</translation>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-690"/>
+        <location filename="configdialog.cpp" line="-696"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Vorgabe&gt;</translation>
     </message>
@@ -8438,7 +8477,7 @@ failed.</source>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-5726"/>
+        <location filename="texmaker.cpp" line="-5727"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -8486,40 +8525,40 @@ failed.</source>
         <translation>Meldungen/Logdatei</translation>
     </message>
     <message>
-        <location line="-236"/>
-        <location line="+1023"/>
+        <location line="-237"/>
+        <location line="+1024"/>
         <source>Normal Mode</source>
         <translation>Normaler Modus</translation>
     </message>
     <message>
-        <location line="-1022"/>
-        <location line="+4453"/>
+        <location line="-1023"/>
+        <location line="+4455"/>
         <source>Ready</source>
         <translation>Fertig</translation>
     </message>
     <message>
-        <location line="-4150"/>
+        <location line="-4151"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location line="+1572"/>
+        <location line="+1573"/>
         <source>Save As</source>
         <translation>Speichern unter</translation>
     </message>
     <message>
-        <location line="-1557"/>
+        <location line="-1558"/>
         <source>Save &amp;As...</source>
         <translation>Speichern &amp;unter...</translation>
     </message>
     <message>
         <location line="+20"/>
-        <location line="+6817"/>
+        <location line="+6818"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
     <message>
-        <location line="-6813"/>
+        <location line="-6814"/>
         <source>Print...</source>
         <translation>Drucken...</translation>
     </message>
@@ -8535,18 +8574,18 @@ failed.</source>
     </message>
     <message>
         <location line="+408"/>
-        <location line="+5125"/>
+        <location line="+5126"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location line="-5124"/>
-        <location line="+5125"/>
+        <location line="-5125"/>
+        <location line="+5126"/>
         <source>Cut</source>
         <translation>Ausschneiden</translation>
     </message>
     <message>
-        <location line="-5449"/>
+        <location line="-5450"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Als LaTeX &amp;einfügen</translation>
     </message>
@@ -8601,7 +8640,7 @@ failed.</source>
         <translation type="obsolete">Sie können integrierte Templates nicht editieren.</translation>
     </message>
     <message>
-        <location line="+1939"/>
+        <location line="+1940"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Kann Thesaurus Datenbank nicht laden</translation>
     </message>
@@ -8624,18 +8663,18 @@ failed.</source>
         <translation>Textanalyse</translation>
     </message>
     <message>
-        <location line="-4007"/>
+        <location line="-4008"/>
         <location line="+40"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;Latex</translation>
     </message>
     <message>
-        <location line="+3340"/>
+        <location line="+3341"/>
         <source>Quick Start</source>
         <translation>Assistent für ein neues Dokument</translation>
     </message>
     <message>
-        <location line="-3315"/>
+        <location line="-3316"/>
         <source>Quick &amp;Start...</source>
         <translation>Assistent für ein &amp;neues Dokument...</translation>
     </message>
@@ -8664,7 +8703,7 @@ failed.</source>
         <translation type="obsolete">Benutzer &amp;Makros</translation>
     </message>
     <message>
-        <location line="+3386"/>
+        <location line="+3387"/>
         <source>Edit User &amp;Tags</source>
         <translation>Benutzer &amp;Makros ändern</translation>
     </message>
@@ -8677,7 +8716,7 @@ failed.</source>
         <translation type="obsolete">Benutzer&amp;befehle ändern</translation>
     </message>
     <message>
-        <location line="-3473"/>
+        <location line="-3474"/>
         <location line="+143"/>
         <source>&amp;View</source>
         <translation>&amp;Anzeige</translation>
@@ -8723,7 +8762,7 @@ failed.</source>
         <translation>Klicken um zum Lesezeichen zu springen</translation>
     </message>
     <message>
-        <location line="+389"/>
+        <location line="+390"/>
         <location line="+1299"/>
         <location line="+1504"/>
         <location line="+394"/>
@@ -8783,9 +8822,9 @@ failed.</source>
         <translation type="obsolete">Logdatei nicht gefunden!</translation>
     </message>
     <message>
-        <location line="-3727"/>
+        <location line="-3728"/>
         <location line="+1"/>
-        <location line="+4124"/>
+        <location line="+4125"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Keine LaTeX-Fehler gefunden!</translation>
@@ -8801,7 +8840,7 @@ failed.</source>
         <translation type="obsolete">Normaler Modus (aktuelles Masterdokument:</translation>
     </message>
     <message>
-        <location line="-4291"/>
+        <location line="-4292"/>
         <source>Toggle Bookmark</source>
         <translation>Lesezeichen umschalten</translation>
     </message>
@@ -9126,7 +9165,7 @@ failed.</source>
         <translation>Aktuelle Datei zur &apos;&amp;Masterdatei&apos; erklären</translation>
     </message>
     <message>
-        <location line="+6260"/>
+        <location line="+6261"/>
         <source>Load Profile</source>
         <translation>Lade Profil</translation>
     </message>
@@ -9156,8 +9195,8 @@ failed.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6934"/>
-        <location line="+6925"/>
+        <location filename="texmaker.cpp" line="-6935"/>
+        <location line="+6926"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
@@ -9167,7 +9206,7 @@ failed.</source>
         <translation type="obsolete">D&amp;vi anzeigen</translation>
     </message>
     <message>
-        <location line="-6680"/>
+        <location line="-6681"/>
         <source>&amp;New</source>
         <translation>&amp;Neu</translation>
     </message>
@@ -9295,7 +9334,7 @@ failed.</source>
         <translation>&amp;Assistenten</translation>
     </message>
     <message>
-        <location line="+3600"/>
+        <location line="+3601"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
@@ -9327,7 +9366,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>Achtung: Dialog wird automatisch geschlossen, wenn der Text editiert wird !</translation>
     </message>
     <message>
-        <location line="-6016"/>
+        <location line="-6017"/>
         <source>Close Something</source>
         <translation>Schließe etwas</translation>
     </message>
@@ -9367,13 +9406,13 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
     </message>
     <message>
         <location line="+100"/>
-        <location line="+5123"/>
+        <location line="+5124"/>
         <source>Indent Section</source>
         <translation>Bereich einrücken</translation>
     </message>
     <message>
-        <location line="-5122"/>
-        <location line="+5123"/>
+        <location line="-5123"/>
+        <location line="+5124"/>
         <source>Unindent Section</source>
         <translation>Bereich ausrücken</translation>
     </message>
@@ -9472,12 +9511,12 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
-        <location line="-4461"/>
+        <location line="-4463"/>
         <source>TeX files</source>
         <translation>TeX Dateien</translation>
     </message>
     <message>
-        <location line="+2589"/>
+        <location line="+2591"/>
         <source>Smart scope selecting</source>
         <translation>Intelligente Bereichsauswahl</translation>
     </message>
@@ -9492,18 +9531,18 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>Tabellen</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-2213"/>
+        <location filename="texmaker.cpp" line="-2214"/>
         <source>Insert Unicode Character...</source>
         <translation>Unicodezeichen einfügen...</translation>
     </message>
     <message>
-        <location line="+4660"/>
+        <location line="+4661"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>Die Datei muss gespeichert sein, bevor sie als Masterdokument verwendet werden kann!</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-5146"/>
+        <location filename="texmaker.cpp" line="-5148"/>
         <source>Central</source>
         <translation>Zentral</translation>
     </message>
@@ -9520,12 +9559,12 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation type="obsolete">F&amp;inde vorherige</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+595"/>
+        <location filename="texmaker.cpp" line="+596"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>&amp;Quelltext als HTML exportieren...</translation>
     </message>
     <message>
-        <location line="+6604"/>
+        <location line="+6605"/>
         <source>Problem</source>
         <translation>Problem</translation>
     </message>
@@ -9591,7 +9630,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>Konnte Browser nicht öffnen</translation>
     </message>
     <message>
-        <location line="-4370"/>
+        <location line="-4371"/>
         <source>SVN &amp;update...</source>
         <translation></translation>
     </message>
@@ -9641,12 +9680,12 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>Offene Dokumente</translation>
     </message>
     <message>
-        <location line="-595"/>
+        <location line="-596"/>
         <source>Plaintext files</source>
         <translation>Einfache Textdatei</translation>
     </message>
     <message>
-        <location line="+261"/>
+        <location line="+262"/>
         <source>Open &amp;Recent</source>
         <translation>Zuletzt &amp;geöffnet</translation>
     </message>
@@ -9656,12 +9695,12 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>Lösche &amp;Vorschau in Zeile</translation>
     </message>
     <message>
-        <location line="+5954"/>
+        <location line="+5955"/>
         <source>check in whole directory ?</source>
         <translation>Check-in im ganzen Verzeichnis ?</translation>
     </message>
     <message>
-        <location line="-5921"/>
+        <location line="-5922"/>
         <source>Parenthesis</source>
         <translation>Klammer</translation>
     </message>
@@ -9683,7 +9722,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>&amp;Profil speichern...</translation>
     </message>
     <message>
-        <location line="+3710"/>
+        <location line="+3711"/>
         <source>Could not start %1.</source>
         <translation>Konnte %1 nicht starten.</translation>
     </message>
@@ -9703,7 +9742,7 @@ Sie müssen ein neuerstelltes Dokument abspeichern, bevor Sie es erzeugen könne
         <translation>Speichere Profil</translation>
     </message>
     <message>
-        <location line="-6607"/>
+        <location line="-6608"/>
         <source>&amp;Searching</source>
         <translation>&amp;Suchen</translation>
     </message>
@@ -9775,7 +9814,7 @@ TeXstudio unterstützt keine mehrfachen Instanzen der gleichen Datei.
 SInd Sie sicher, dass Sie weitermachen möchten ?</translation>
     </message>
     <message>
-        <location line="+3536"/>
+        <location line="+3537"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Dieser Befehl wurde aufgerufen, um den internen PDF-Betrachter zu öffnen.
@@ -9786,7 +9825,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation type="obsolete">PDF Dateien</translation>
     </message>
     <message>
-        <location line="-3945"/>
+        <location line="-3946"/>
         <source>Show difference between two files</source>
         <translation>Zeige Unterschiede zwischen zwei Dateien</translation>
     </message>
@@ -9819,7 +9858,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation type="obsolete">Setze Herv&amp;orhebung...</translation>
     </message>
     <message>
-        <location line="+5504"/>
+        <location line="+5505"/>
         <source>Move document to &amp;front</source>
         <translation>Schiebe Dokument nach &amp;vorne</translation>
     </message>
@@ -9841,7 +9880,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7517"/>
+        <location filename="texmaker.cpp" line="-7518"/>
         <source>Sweave files</source>
         <translation>Sweave-Dateien</translation>
     </message>
@@ -9887,7 +9926,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>Sprache</translation>
     </message>
     <message>
-        <location line="+3509"/>
+        <location line="+3510"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Ein Dokument kann nicht in einem schreibgeschützten Verzeichnis kompiliert werden.</translation>
     </message>
@@ -10006,7 +10045,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
         <translation>Einfacher Text</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7456"/>
+        <location filename="texmaker.cpp" line="-7457"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Lesezeichen</translation>
@@ -10074,7 +10113,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
         <translation>Richte Spalten aneinander aus</translation>
     </message>
     <message>
-        <location line="+3797"/>
+        <location line="+3798"/>
         <source>Unknown internal command: %1</source>
         <translation>Unbekannter interner Befehl: %1</translation>
     </message>
@@ -10088,7 +10127,7 @@ Do you trust this document?</source>
         <translation type="obsolete">Nein, nutze vorgegebene Befehle</translation>
     </message>
     <message>
-        <location line="-3832"/>
+        <location line="-3833"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>Ben&amp;utzer</translation>
@@ -10121,7 +10160,7 @@ Do you trust this document?</source>
         <translation>&amp;Mathe</translation>
     </message>
     <message>
-        <location line="+6638"/>
+        <location line="+6639"/>
         <source>Reached beginning of text.</source>
         <translation>Textanafang erreicht.</translation>
     </message>
@@ -10187,7 +10226,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Beenden hat nicht funktioniert.</translation>
     </message>
     <message>
-        <location line="-7779"/>
+        <location line="-7780"/>
         <source>PDF files</source>
         <translation>PDF Dateien</translation>
     </message>
@@ -10260,7 +10299,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Hervorhebung</translation>
     </message>
     <message>
-        <location line="+409"/>
+        <location line="+410"/>
         <source>
 included document in %1</source>
         <translation>eingebunden in Dokument %1</translation>
@@ -10310,7 +10349,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
         <translation>Ja, lasse die Schleife weiterlaufen</translation>
     </message>
     <message>
-        <location line="-7365"/>
+        <location line="-7366"/>
         <source>Previous Change</source>
         <translation>Vorherige Änderung</translation>
     </message>
@@ -10490,7 +10529,17 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
         <translation>Zeige den integrieten PDF-Betrachter klein</translation>
     </message>
     <message>
-        <location line="+3637"/>
+        <location line="+22"/>
+        <source>Grammar Mistake</source>
+        <translation>Grammatikfehler</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Grammar Mistake Special %1</source>
+        <translation>Grammatikfehler Spezial %1</translation>
+    </message>
+    <message>
+        <location line="+3614"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10522,14 +10571,14 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation type="obsolete">Prüfe LaTeX Installation</translation>
     </message>
     <message>
-        <location line="-7089"/>
-        <location line="+5125"/>
+        <location line="-7090"/>
+        <location line="+5126"/>
         <source>Paste Before</source>
         <translation>Vorher einfügen</translation>
     </message>
     <message>
-        <location line="-5124"/>
-        <location line="+5125"/>
+        <location line="-5125"/>
+        <location line="+5126"/>
         <source>Paste After</source>
         <translation>Danach einfügen</translation>
     </message>
@@ -10556,7 +10605,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation>Füge \ref zum Label ein</translation>
     </message>
     <message>
-        <location line="-5568"/>
+        <location line="-5569"/>
         <source>New From &amp;Template...</source>
         <translation>Neue Datei aus &amp;Vorlage...</translation>
     </message>
@@ -10582,17 +10631,15 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation>Wortwiederholung</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Grammer Mistake</source>
-        <translation>Grammatikfehler</translation>
+        <translation type="obsolete">Grammatikfehler</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Grammer Mistake Special %1</source>
-        <translation>Grammatikfehler Spezial %1</translation>
+        <translation type="obsolete">Grammatikfehler Spezial %1</translation>
     </message>
     <message>
-        <location line="+46"/>
+        <location line="+51"/>
         <source>Save Current Settings</source>
         <comment>menu</comment>
         <translation>Speichere aktuelle Konfiguration</translation>
@@ -10603,7 +10650,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation>LaTeX Installation prüfen</translation>
     </message>
     <message>
-        <location line="+1258"/>
+        <location line="+1259"/>
         <location line="+47"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Das Dokument &quot;%1&quot; enthält ungesicherte Änderungen. Möchten Sie diese speichern, bevor es geschlossen wird ?</translation>
@@ -10645,7 +10692,7 @@ Do you want to create it?</source>
         <translation>F&amp;inde vorherigen Treffer</translation>
     </message>
     <message>
-        <location line="-6480"/>
+        <location line="-6481"/>
         <source>Long-range Word Repetition</source>
         <translation>Wortwiederholung über längeren Abstand</translation>
     </message>
@@ -10665,7 +10712,7 @@ Do you want to create it?</source>
         <translation>&amp;DVI anzeigen</translation>
     </message>
     <message>
-        <location line="+2141"/>
+        <location line="+2142"/>
         <source>No dictionary available.</source>
         <translation>Kein Wörterbuch verfügbar.</translation>
     </message>
@@ -10690,7 +10737,7 @@ Do you want to create it?</source>
         <translation>Logdatei nicht gefunden!</translation>
     </message>
     <message>
-        <location line="-3552"/>
+        <location line="-3553"/>
         <source>Normal Mode (current master document: </source>
         <translation>Normaler Modus (aktuelles Masterdokument: </translation>
     </message>
@@ -10700,7 +10747,7 @@ Do you want to create it?</source>
         <translation>Mak&amp;ros</translation>
     </message>
     <message>
-        <location line="+784"/>
+        <location line="+785"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Eine Crashsicherheitskopie vom %1 wurde für die Datei &quot;%2&quot; gefunden.
@@ -10712,7 +10759,7 @@ Soll das Dokument damit wiederhergestellt werden?</translation>
         <translation>Sicherheitskopie &quot;%1&quot; konnte nicht geöffnet werden.</translation>
     </message>
     <message>
-        <location line="-845"/>
+        <location line="-846"/>
         <source>Math Assistant...</source>
         <translation>Formel-Assistent...</translation>
     </message>
@@ -10727,7 +10774,7 @@ Soll das Dokument damit wiederhergestellt werden?</translation>
         <translation>Fokus auf Betrachter</translation>
     </message>
     <message>
-        <location line="+900"/>
+        <location line="+901"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -10756,7 +10803,7 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
         <translation type="obsolete">Tabellenvorlage auswählen</translation>
     </message>
     <message>
-        <location line="-1363"/>
+        <location line="-1364"/>
         <source>&amp;Line Operations</source>
         <translation>&amp;Zeilen</translation>
     </message>
@@ -10784,12 +10831,12 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
         <translation type="obsolete">Vor</translation>
     </message>
     <message>
-        <location line="+1000"/>
+        <location line="+1001"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Sie besitzen nicht die nötigen Rechte um diese Datei zu lesen\n%1</translation>
     </message>
     <message>
-        <location line="-973"/>
+        <location line="-974"/>
         <source>Go Back</source>
         <translation>Zurück</translation>
     </message>
@@ -10799,12 +10846,12 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
         <translation>Vor</translation>
     </message>
     <message>
-        <location line="+1236"/>
+        <location line="+1237"/>
         <source>Could not write template meta data:</source>
         <translation>Vorlageninformationen konnen nicht gespeichert werden:</translation>
     </message>
     <message>
-        <location line="-1319"/>
+        <location line="-1320"/>
         <source>Session</source>
         <translation>Sitzung</translation>
     </message>
@@ -10839,7 +10886,7 @@ Andernfalls können Fehler und Programmabstürze auftreten.</translation>
         <translation>Pakethilfe ...</translation>
     </message>
     <message>
-        <location line="+1083"/>
+        <location line="+1084"/>
         <source>Loading of last session failed.</source>
         <translation>Das Laden der letzten Sitzung ist fehlgeschlagen.</translation>
     </message>
@@ -10879,21 +10926,21 @@ this other file before you can overwrite it.</source>
         <translation>Das Speichern der Sitzung ist fehlgeschlagen.</translation>
     </message>
     <message>
-        <location line="-1590"/>
+        <location line="-1591"/>
         <source>List Of Open Documents</source>
         <translation>Liste der offenen Dokumente</translation>
     </message>
     <message>
         <location line="+289"/>
         <location line="+1"/>
-        <location line="+181"/>
+        <location line="+182"/>
         <location line="+4"/>
         <location line="+1"/>
         <source>Encoding</source>
         <translation>Zeichenkodierung</translation>
     </message>
     <message>
-        <location line="-164"/>
+        <location line="-165"/>
         <source>More Encodings...</source>
         <translation>Weitere Zeichenkodierungen...</translation>
     </message>
@@ -10903,7 +10950,7 @@ this other file before you can overwrite it.</source>
         <translation>Füge die Zeichenkodierung als TeX-Kommentar ein</translation>
     </message>
     <message>
-        <location line="+149"/>
+        <location line="+150"/>
         <source>Encoding Aliases: </source>
         <translation>Zeichekodierungsaliases: </translation>
     </message>

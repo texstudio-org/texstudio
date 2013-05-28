@@ -10902,13 +10902,15 @@ included document in %1</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Grammer Mistake</source>
-        <translation>Erreur grammaticale</translation>
+        <source>Grammar Mistake</source>
+        <oldsource>Grammer Mistake</oldsource>
+        <translation type="unfinished">Erreur grammaticale</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Grammer Mistake Special %1</source>
-        <translation>Erreur grammaticale spéciale %1</translation>
+        <source>Grammar Mistake Special %1</source>
+        <oldsource>Grammer Mistake Special %1</oldsource>
+        <translation type="unfinished">Erreur grammaticale spéciale %1</translation>
     </message>
     <message>
         <location line="+46"/>

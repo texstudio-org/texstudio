@@ -2393,6 +2393,22 @@ configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bi-Di</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically insert LRM characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sweave / Pweave</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -5542,7 +5558,7 @@ Chcete, aby byly uloženy?</translation>
     </message>
     <message>
         <source>sweave</source>
-        <translation>Sweave</translation>
+        <translation type="obsolete">Sweave</translation>
     </message>
     <message>
         <source>picture</source>
@@ -5667,6 +5683,22 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
         <translation>Velikost písma poměrná k velikosti písma editoru.
 
 Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky zastřiženy.</translation>
+    </message>
+    <message>
+        <source>pweave-delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pweave-block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sweave-delimiter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sweave-block</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8466,11 +8498,11 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     </message>
     <message>
         <source>Grammer Mistake</source>
-        <translation>Mluvnický omyl</translation>
+        <translation type="obsolete">Mluvnický omyl</translation>
     </message>
     <message>
         <source>Grammer Mistake Special %1</source>
-        <translation>Zvláštní mluvnický omyl %1</translation>
+        <translation type="obsolete">Zvláštní mluvnický omyl %1</translation>
     </message>
     <message>
         <source>Save Current Settings</source>
@@ -8740,6 +8772,18 @@ Do you want to allow and run the new, overriding command?
     </message>
     <message>
         <source>Failed to read profile file %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pweave files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar Mistake</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grammar Mistake Special %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
