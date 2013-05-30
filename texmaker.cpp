@@ -4250,11 +4250,11 @@ void Texmaker::InsertRef(const QString &refCmd) {
 	QStringList labels;
 	if(edView && edView->document){
 		QList<LatexDocument*> docs;
-		if (documents.singleMode()) docs << edView->document;
-		else docs << documents.documents;
+        docs << edView->document->getListOfDocs();
 		foreach(const LatexDocument* doc,docs)
 			labels << doc->labelItems();
 	} else return;
+    labels.sort();
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
 	if (dialog.exec() && !labels.isEmpty()) {
