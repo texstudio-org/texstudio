@@ -169,7 +169,7 @@ void SpellerDialog::SpellingNextWord() {
 			QStringList suggWords=m_speller->suggest(latexReader.word);
 
 			QDocumentCursor wordSelection(editor->document(),curLine,latexReader.wordStartIndex);
-			wordSelection.movePosition(latexReader.index-latexReader.wordStartIndex,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+			wordSelection.movePosition(latexReader.index-latexReader.wordStartIndex,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 			editor->setCursor(wordSelection);
 
 			ui.listSuggestions->setEnabled(true);

@@ -13,10 +13,10 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 	QDocumentCursor cur(c);
 	bool stopSearch=false;
 	if(cur.columnNumber()>1){
-		cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+		cur.movePosition(2,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 		QString res=cur.selectedText();
 		if(res=="\\\\") stopSearch=true;
-		cur.movePosition(2,QDocumentCursor::Right);
+		cur.movePosition(2,QDocumentCursor::NextCharacter);
 	}
 	const QStringList tokens("\\\\");
 	int result=0;
@@ -27,12 +27,12 @@ void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 			QDocumentCursor ch(cur);
 			int res=findNextToken(ch,tokens,true,true);
 			if(res==-2){
-				cur.movePosition(1,QDocumentCursor::Left);
+				cur.movePosition(1,QDocumentCursor::PreviousCharacter);
 				cur.insertText("\\\\\n");
 			}else{
-				ch.movePosition(2,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+				ch.movePosition(2,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 				if(ch.selectedText().contains(QRegExp("^\\S+$"))){
-					cur.movePosition(1,QDocumentCursor::Left);
+					cur.movePosition(1,QDocumentCursor::PreviousCharacter);
 					cur.insertText("\\\\\n");
 				}
 			}
@@ -62,7 +62,7 @@ void LatexTables::removeRow(QDocumentCursor &c){
 		}
 	}
 	int result=findNextToken(cur,tokens,false,true);
-	if(result==0) cur.movePosition(2,QDocumentCursor::Right);
+	if(result==0) cur.movePosition(2,QDocumentCursor::NextCharacter);
 	if(result==-2) cur.movePosition(1,QDocumentCursor::EndOfLine);
 	bool breakLoop=false;
 	while(!(breakLoop=(findNextToken(cur,tokens,true)==-1)) && c.isWithinSelection(cur) ){
@@ -71,7 +71,7 @@ void LatexTables::removeRow(QDocumentCursor &c){
 		// check if end of cursor is at line end
 		QDocumentCursor c2(cur.document(),cur.anchorLineNumber(),cur.anchorColumnNumber());
 		if(c2.atLineEnd()) {
-			c2.movePosition(1,QDocumentCursor::Right);
+			c2.movePosition(1,QDocumentCursor::NextCharacter);
 			cur.moveTo(c2,QDocumentCursor::KeepAnchor);
 		}
 		// remove text
@@ -112,7 +112,7 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	}
 	cur.insertText(def);
 	//continue adding col
-	cur.movePosition(2,QDocumentCursor::Right);
+	cur.movePosition(2,QDocumentCursor::NextCharacter);
 	QString line;
 	bool breakLoop=false;
 	int result=2;
@@ -131,7 +131,7 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 			QStringList tokens("\\\\");
 			int res=findNextToken(ch,tokens,true,true);
 			if(res==0){
-				ch.movePosition(2,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+				ch.movePosition(2,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 				if(ch.selectedText().contains(QRegExp("^\\S+$")))
 					break;
 			}
@@ -156,7 +156,7 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 		}
 		if(result<=0){
 			int count= result==0 ? 2 : 1;
-			cur.movePosition(count,QDocumentCursor::Left);
+			cur.movePosition(count,QDocumentCursor::PreviousCharacter);
 			if(pasteBuffer.isEmpty()) {
 				cur.insertText("& ");
 			}else{
@@ -173,9 +173,9 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 		int pos_hline=rxHL.indexIn(text);
 		if(pos_hline>-1){
 			int l=rxHL.cap().length();
-			cur.movePosition(l,QDocumentCursor::Right);
+			cur.movePosition(l,QDocumentCursor::NextCharacter);
 		}
-		if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
+		if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::NextCharacter);
 		line=cur.line().text();
 		if(line.contains("\\end{")) breakLoop=true;
 	}
@@ -211,7 +211,7 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 	}else{
 		cur.insertText(def);
 	}
-	cur.movePosition(2,QDocumentCursor::Right);
+	cur.movePosition(2,QDocumentCursor::NextCharacter);
 	// remove column
 	QString line;
 	bool breakLoop=false;
@@ -252,16 +252,16 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 				LatexParser::resolveCommandOptions(selText,0,values);
 				values.takeFirst();
 				values.prepend(QString("{%1}").arg(add-1));
-				cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
-				if(result==0) cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+				cur.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
+				if(result==0) cur.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 				cur.insertText("\\multicolumn"+values.join(""));
 			}else{
 				//normal handling
 				if(result==2 && column>0) {
-					cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+					cur.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 				}
 				if(result==0) {
-					cur.movePosition(2,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+					cur.movePosition(2,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 				}
 				QString zw=cur.selectedText();
 				if(cutBuffer){
@@ -292,7 +292,7 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 				}
 				cur.removeSelectedText();
 				if(column>0) {
-					cur.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+					cur.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 					cur.removeSelectedText();
 				}
 				cur.insertText(keep);
@@ -300,7 +300,7 @@ void LatexTables::removeColumn(QDocument *doc,const int lineNumber,const int col
 			const QStringList tokens("\\\\");
 			breakLoop=(findNextToken(cur,tokens)==-1);
 		}
-		if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::Right);
+		if(cur.atLineEnd()) cur.movePosition(1,QDocumentCursor::NextCharacter);
 		line=cur.line().text();
 		if(line.contains("\\end{")) breakLoop=true;
 	}
@@ -319,7 +319,7 @@ int LatexTables::findNextToken(QDocumentCursor &cur,QStringList tokens,bool keep
 	int nextToken=-1;
 	int offset=0;
 	QDocumentCursor::MoveOperation mvNextLine= backwards ? QDocumentCursor::PreviousLine : QDocumentCursor::NextLine;
-	QDocumentCursor::MoveOperation mvNextChar= backwards ? QDocumentCursor::Left : QDocumentCursor::Right;
+	QDocumentCursor::MoveOperation mvNextChar= backwards ? QDocumentCursor::PreviousCharacter : QDocumentCursor::NextCharacter;
 	QDocumentCursor::MoveOperation mvStartOfLine= backwards ? QDocumentCursor::EndOfLine : QDocumentCursor::StartOfLine;
 	QDocumentCursor::MoveFlag mvFlag= keepAnchor ? QDocumentCursor::KeepAnchor : QDocumentCursor::MoveAnchor;
 	do{
@@ -380,7 +380,7 @@ int LatexTables::getColumn(QDocumentCursor &cur){
 	QDocumentCursor c(cur);
 	QStringList tokens("\\\\");
 	int result=findNextToken(c,tokens,true,true);
-	if(result==0) c.movePosition(2,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+	if(result==0) c.movePosition(2,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 	if(c.lineNumber()==cur.lineNumber() && c.selectedText().contains(QRegExp("^\\s*$"))){
 		c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
 		QString zw=c.selectedText();

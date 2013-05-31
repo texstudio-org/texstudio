@@ -125,7 +125,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 				if (block) editor->document()->beginMacro();
 				if (c.hasSelection()) c.removeSelectedText();
 				if (completerConfig->userMacro[i].triggerRegex.matchedLength() > 1) {
-					c.movePosition(realMatchLen-1, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+					c.movePosition(realMatchLen-1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 					c.removeSelectedText();
 				}
 				
@@ -332,7 +332,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					QVariant var=cursor.line().getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE);
 					if (var.isValid()){
 						QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
-						wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						wordSelection.movePosition(fr.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						editor->setCursor(wordSelection);
 	
 						const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
@@ -353,7 +353,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					lastSpellCheckedWord=word;
 					word=latexToPlainWord(word);
 					QDocumentCursor wordSelection(editor->document(),cursor.lineNumber(),fr.offset);
-					wordSelection.movePosition(fr.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+					wordSelection.movePosition(fr.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 					editor->setCursor(wordSelection);
 					
 					if (event->modifiers() & Qt::ShiftModifier) {

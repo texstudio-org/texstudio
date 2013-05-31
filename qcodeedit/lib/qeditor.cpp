@@ -4697,8 +4697,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		if (autoComplete) {
 			if (!cutBuffer.isEmpty()) {
 				c.insertText(cutBuffer+autoBracket);
-				m_cursor.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
-				m_cursor.movePosition(cutBuffer.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+				m_cursor.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+				m_cursor.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			} 
 			
 			if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
@@ -4716,7 +4716,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			} else {
 				copiedCursor.insertText(autoBracket);
 				addPlaceHolder(ph);
-				m_cursor.movePosition(autoBracket.length(), QDocumentCursor::Left, QDocumentCursor::MoveAnchor);
+				m_cursor.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
 			}
 		}
 	}

@@ -242,14 +242,14 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 					switch (op.type){
 					case DiffOp::Delete:
                         cur.moveTo(i,op.start+offset);
-						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cur.movePosition(op.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cur.removeSelectedText();
 						break;
 					case DiffOp::Insert:
 						break;
 					case DiffOp::Replace:
                         cur.moveTo(i,op.start+offset);
-						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cur.movePosition(op.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cur.insertText(op.text);
 						if(op.text.isEmpty() && cur.line().text().isEmpty()){
 							cur.deletePreviousChar();
@@ -266,7 +266,7 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 					case DiffOp::Insert:
                         cur.moveTo(i,op.start+offset);
 						removeLine=op.length==doc->line(i).length();
-						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cur.movePosition(op.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cur.removeSelectedText();
                         offset=-op.length;
 						if(removeLine){
@@ -424,7 +424,7 @@ QDocumentCursor diffSearchBoundaries(LatexDocument *doc,int ln,int col,int fid,i
 	if(fr.length>0 && fr.offset==0 && direction<1){
 		//search backward
 		if(ln>0){
-			beginCur.movePosition(1,QDocumentCursor::Left);
+			beginCur.movePosition(1,QDocumentCursor::PreviousCharacter);
 			QDocumentCursor zw=diffSearchBoundaries(doc,beginCur.lineNumber(),beginCur.columnNumber(),fid,-1);
 			if(zw.isValid())
 				beginCur=zw;
@@ -433,7 +433,7 @@ QDocumentCursor diffSearchBoundaries(LatexDocument *doc,int ln,int col,int fid,i
 	if(fr.length>0 && fr.offset+fr.length==endCur.line().length() && direction>-1){
 		//search backward
 		if(ln+1<doc->lineCount()){
-			endCur.movePosition(1,QDocumentCursor::Right);
+			endCur.movePosition(1,QDocumentCursor::NextCharacter);
 			QDocumentCursor zw=diffSearchBoundaries(doc,endCur.lineNumber(),endCur.columnNumber(),fid,1);
 			if(zw.isValid())
 				endCur=zw;
@@ -540,7 +540,7 @@ void diffMerge(LatexDocument *doc){
 					switch (op.type){
 					case DiffOp::Delete:
 						cur.moveTo(i,op.start);
-						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cur.movePosition(op.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cur.removeSelectedText();
 						if(cur.line().text().isEmpty()){
 							cur.eraseLine();
@@ -551,7 +551,7 @@ void diffMerge(LatexDocument *doc){
 						break;
 					case DiffOp::Replace:
 						cur.moveTo(i,op.start);
-						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cur.movePosition(op.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cur.insertText(op.text);
 						if(op.text.isEmpty() && cur.line().text().isEmpty()){
 							cur.deletePreviousChar();
@@ -569,7 +569,7 @@ void diffMerge(LatexDocument *doc){
 					case DiffOp::Insert:
 						cur.moveTo(i,op.start);
 						removeLine=op.length==doc->line(i).length();
-						cur.movePosition(op.length,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cur.movePosition(op.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cur.removeSelectedText();
 						if(removeLine){
 							cur.deletePreviousChar();
