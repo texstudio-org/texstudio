@@ -334,9 +334,9 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 				int offset=searchWord.indexOf("{");
 				int length=searchWord.length()-offset-1;
 				selector.moveTo(endLine,start+1+offset);
-				selector.movePosition(length-1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+				selector.movePosition(length-1,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 				selector.replaceSelectedText(newEnv);
-				cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+				cursor->movePosition(closeCurl-cursor->columnNumber()+1,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 				QString first=lines.first();
 				int pos=first.indexOf('{');
 				pos=first.indexOf('{',pos+1); //pos of second {
@@ -378,7 +378,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 					if(wordBreak<0)
 						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
 					else
-						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 					cursor->removeSelectedText();
 					return;
 				}
@@ -387,10 +387,10 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 					if(openBracket<0) openBracket=1e9;
 					if(closeCurl<0) closeCurl=1e9;
 					if(openCurl<openBracket && openCurl<closeCurl &&openCurl<=wordBreak){
-						cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cursor->movePosition(openCurl-cursor->columnNumber(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cursor->removeSelectedText();
 						int curl=line.length()-line.indexOf("{");
-						cursor->movePosition(curl,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+						cursor->movePosition(curl,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 						cursor->removeSelectedText();
 						return;
 					}
@@ -465,9 +465,9 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 		selector.setColumnNumber(realAnchorOffset);
 		bool ok = true;
 		if (curOffset > anchOffset)
-			ok = selector.movePosition(curOffset - anchOffset, QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+			ok = selector.movePosition(curOffset - anchOffset, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 		else if (curOffset < anchOffset)
-			ok=selector.movePosition(anchOffset-curOffset, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+			ok=selector.movePosition(anchOffset-curOffset, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 		if (!ok) return;
 		editor->setCursor(selector);
 	} else if (autoSelectPlaceholder!=-1) {
@@ -480,7 +480,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 		QDocumentCursor oldCursor = editor->cursor();
 		editor->cursor().insertText(savedSelection,true);
 		if (!editor->cursor().hasSelection() && alwaysSelect) {
-			oldCursor.movePosition(savedSelection.length(), QDocumentCursor::Right, QDocumentCursor::KeepAnchor);
+			oldCursor.movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			editor->setCursor(oldCursor);
 		}
 		if (autoSelectPlaceholder!=-1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text

@@ -2764,7 +2764,7 @@ void Texmaker::editEraseWordCmdEnv(){
 			currentEditorView()->editor->document()->beginMacro();
 			cursor.movePosition(1,QDocumentCursor::EndOfWord);
 			cursor.movePosition(1,QDocumentCursor::StartOfWord,QDocumentCursor::KeepAnchor);
-			cursor.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+			cursor.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 			cursor.removeSelectedText();
 			// remove curly brakets as well
 			if(cursor.nextChar()==QChar('{')){
@@ -2773,7 +2773,7 @@ void Texmaker::editEraseWordCmdEnv(){
 				int col=cursor.columnNumber();
 				int i=findClosingBracket(line,col);
 				if(i>-1) {
-					cursor.movePosition(i-col+1,QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+					cursor.movePosition(i-col+1,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 					cursor.removeSelectedText();
 					QDocument* doc=currentEditorView()->editor->document();
 					QString searchWord="\\end{"+value+"}";
@@ -2796,7 +2796,7 @@ void Texmaker::editEraseWordCmdEnv(){
 						line=doc->line(endLine).text();
 						int start=line.indexOf(searchWord);
 						cursor.moveTo(endLine,start);
-						cursor.movePosition(searchWord.length(),QDocumentCursor::Right,QDocumentCursor::KeepAnchor);
+						cursor.movePosition(searchWord.length(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 						cursor.removeSelectedText();
 						cursor.moveTo(startLine,startCol); // move cursor back to text edit pos
 					}
@@ -2808,7 +2808,7 @@ void Texmaker::editEraseWordCmdEnv(){
 			currentEditorView()->editor->document()->beginMacro();
 			cursor.movePosition(1,QDocumentCursor::EndOfWord);
 			cursor.movePosition(1,QDocumentCursor::StartOfWord,QDocumentCursor::KeepAnchor);
-			cursor.movePosition(1,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+			cursor.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
 			cursor.removeSelectedText();
 			// remove curly brakets as well
 			if(cursor.nextChar()==QChar('{')){

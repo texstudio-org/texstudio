@@ -138,7 +138,7 @@ public:
 			for (int i=cursor.columnNumber()-curStart; i>0; i--) cursor.deletePreviousChar();
 			if (!autoOverridenText.isEmpty()){
 				cursor.insertText(autoOverridenText);
-				cursor.movePosition(autoOverridenText.length(), QDocumentCursor::Left);
+				cursor.movePosition(autoOverridenText.length(), QDocumentCursor::PreviousCharacter);
 				editor->resizeAutoOverridenPlaceholder(cursor, autoOverridenText.size());
 				autoOverridenText="";
 			}
@@ -229,12 +229,12 @@ public:
 			int curpos = editor->cursor().columnNumber();
 			if (curpos < maxWritten) {
 				QDocumentCursor c = editor->cursor();
-				c.movePosition(maxWritten-curpos, QDocumentCursor::Right);
+				c.movePosition(maxWritten-curpos, QDocumentCursor::NextCharacter);
 				editor->setCursor(c);
 			}
 			editor->insertText(autoOverridenText);
 			QDocumentCursor c = editor->cursor();
-			c.movePosition(autoOverridenText.length() + (curpos<maxWritten?maxWritten-curpos:0), QDocumentCursor::Left);
+			c.movePosition(autoOverridenText.length() + (curpos<maxWritten?maxWritten-curpos:0), QDocumentCursor::PreviousCharacter);
 			editor->setCursor(c);
 			editor->resizeAutoOverridenPlaceholder(c, autoOverridenText.size());
 		}
