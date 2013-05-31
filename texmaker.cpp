@@ -5083,7 +5083,11 @@ void Texmaker::GeneralOptions() {
 				QMap<QString, QString>::const_iterator i;
 				for (i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
 					QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
-					addEnvironmentToDom(doc,i.key(),envMode);
+                    QString env=i.key();
+                    if(env.contains('*')){
+                        env.replace("*","\\*");
+                    }
+                    addEnvironmentToDom(doc,env,envMode);
 				}
 			}
 			QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
@@ -7534,16 +7538,29 @@ void Texmaker::updateHighlighting(){
 	QStringList envList;
 	envList<<"math"<<"verbatim";
 	bool updateNecessary=false;
-	QMultiHash<QString, QString>::const_iterator it = latexParser.environmentAliases.constBegin();
-	while (it != latexParser.environmentAliases.constEnd()) {
-		if(envList.contains(it.value())){
-			if(!detectedEnvironmentsForHighlighting.contains(it.key())){
-				detectedEnvironmentsForHighlighting.insert(it.key(),it.value());
-				updateNecessary=true;
-			}
-		}
-		++it;
-	}
+    QMultiHash<QString, QString>::const_iterator it = latexParser.environmentAliases.constBegin();
+    while (it != latexParser.environmentAliases.constEnd()) {
+        if(envList.contains(it.value())){
+            if(!detectedEnvironmentsForHighlighting.contains(it.key())){
+                detectedEnvironmentsForHighlighting.insert(it.key(),it.value());
+                updateNecessary=true;
+            }
+        }
+        ++it;
+    }
+    foreach(LatexDocument *doc,documents.getDocuments()){
+        QMultiHash<QString, QString>::const_iterator it = doc->ltxCommands.environmentAliases.constBegin();
+        while (it != doc->ltxCommands.environmentAliases.constEnd()) {
+            if(envList.contains(it.value())){
+                if(!detectedEnvironmentsForHighlighting.contains(it.key())){
+                    detectedEnvironmentsForHighlighting.insert(it.key(),it.value());
+                    updateNecessary=true;
+                }
+            }
+            ++it;
+    }
+    }
+    qDebug()<<detectedEnvironmentsForHighlighting.keys();
 	if(!updateNecessary)
 		return;
 	
@@ -7564,7 +7581,11 @@ void Texmaker::updateHighlighting(){
 	//detected math envs
 	for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
 		QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
-		addEnvironmentToDom(doc,i.key(),envMode);
+        QString env=i.key();
+        if(env.contains('*')){
+            env.replace("*","\\*");
+        }
+        addEnvironmentToDom(doc,env,envMode);
 	}
 	QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
 	m_languages->addLanguage(m_lang);
