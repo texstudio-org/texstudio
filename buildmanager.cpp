@@ -1675,8 +1675,8 @@ void ProcessX::startCommand() {
 	if (stderrEnabled)
 		connect(this, SIGNAL(readyReadStandardError()),this, SLOT(readFromStandardError()));
 	
-	qDebug() << workingDirectory();
-	qDebug() << cmd;
+    //qDebug() << workingDirectory();
+    //qDebug() << cmd;
 	QProcess::start(cmd);
 	
 #ifdef PROFILE_PROCESSES
