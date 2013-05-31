@@ -7560,7 +7560,6 @@ void Texmaker::updateHighlighting(){
             ++it;
     }
     }
-    qDebug()<<detectedEnvironmentsForHighlighting.keys();
 	if(!updateNecessary)
 		return;
 	
