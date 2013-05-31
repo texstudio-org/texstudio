@@ -4454,6 +4454,7 @@ void QDocumentCursorHandle::setPosition(int pos, int m)
 	*/
 }
 
+
 bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCursor::MoveMode& m)
 {
 	if ( !m_doc )
@@ -4485,12 +4486,42 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				tempOffset = l1.getLayout()->leftCursorPosition(tempOffset);
 			count = m_begOffset - tempOffset;
 			if (count < 0) { count = - count; op = QDocumentCursor::NextCharacter; }
+			else if (count == 0) {
+				QPoint current = l1.cursorToDocumentOffset(m_begOffset);
+				if (current.y() == 0
+						&& current.x() == l1.cursorToX(l1.xToCursor(0))) //cursor is at start of line (compare x-position instead index because there might be multiple characters at the same position)
+					count = m_begOffset + 1; //jump to previous line
+				else {
+					count = 1;
+
+					//test if moving in plus/minus direction moves the cursor left
+					QPoint pp = l1.cursorToDocumentOffset(m_begOffset+1);
+					QPoint pm = l1.cursorToDocumentOffset(m_begOffset-1);
+					if ((pp.y() < pm.y() || (pp.y() == pm.y() && pp.x() < pm.x())))
+						op = QDocumentCursor::NextCharacter;
+				}
+			}
 			break;
 		case QDocumentCursor::Right:
 			for (int i=0;i<count;i++)
 				tempOffset = l1.getLayout()->rightCursorPosition(tempOffset);
 			count = tempOffset - m_begOffset;
 			if (count < 0) { count = - count; op = QDocumentCursor::PreviousCharacter; }
+			else if (count == 0) {
+				QPoint current = l1.cursorToDocumentOffset(m_begOffset);
+				int lineHeight = (l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
+				if (current.y() == lineHeight
+					&& current.x() == l1.cursorToDocumentOffset(l1.documentOffsetToCursor(document()->width()+5, lineHeight + QDocumentPrivate::m_lineSpacing / 2)).x())
+					count = l1.length() - m_begOffset + 1;
+				else {
+					count = 1;
+					//test if moving in plus/minus direction moves the cursor right
+					QPoint pp = l1.cursorToDocumentOffset(m_begOffset+1);
+					QPoint pm = l1.cursorToDocumentOffset(m_begOffset-1);
+					if ((pp.y() < pm.y() || (pp.y() == pm.y() && pp.x() < pm.x())))
+						op = QDocumentCursor::PreviousCharacter;
+				}
+			}
 			break;
 		case QDocumentCursor::WordLeft:
 			if (l1.getLayout()->leftCursorPosition(tempOffset) > tempOffset)

@@ -176,8 +176,8 @@ public:
 		}
 
 		bool isRTL() const;
+		void layout(int lineNr) const; //public for unittests
 	private:
-		void layout(int lineNr) const;
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
 		
