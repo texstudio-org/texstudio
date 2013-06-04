@@ -59,7 +59,7 @@
     <message>
         <location line="+1"/>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utiliza QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov e colaboradores).</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1283,17 +1283,17 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+10"/>
         <source>Bi-Di</source>
-        <translation type="unfinished"></translation>
+        <translation>Bi-Di</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Automatically insert LRM characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir automaticamente caracteres LRM</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursor em modo de coluna visual (mover cursor na direção das setas em texto da direita para esquerda)</translation>
     </message>
     <message>
         <location line="+175"/>
@@ -2688,7 +2688,7 @@ Você não conseguirá mais inserir este caracter em seu texto. Deseja realmente
     <message>
         <location line="+1"/>
         <source>Sweave / Pweave</source>
-        <translation type="unfinished"></translation>
+        <translation>Sweave / Pweave</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6703,22 +6703,22 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="-39"/>
         <source>pweave-delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>delimitador pweave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>pweave-block</source>
-        <translation type="unfinished"></translation>
+        <translation>bloco pweave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>sweave-delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>delimitador sweave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>sweave-block</source>
-        <translation type="unfinished"></translation>
+        <translation>bloco sweave</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -9078,12 +9078,12 @@ falhou.</translation>
     <message>
         <location line="+22"/>
         <source>Grammar Mistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro Gramatical</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Grammar Mistake Special %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro Gramatical Especial %1</translation>
     </message>
     <message>
         <location line="+3614"/>
