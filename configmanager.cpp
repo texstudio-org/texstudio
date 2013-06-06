@@ -352,7 +352,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("StructureView/Indentation", &indentationInStructure, -1);
 	registerOption("StructureView/IndentIncludes", &indentIncludesInStructure, false, &pseudoDialog->checkBoxIndentIncludesInStructureTree);
 	
-	enviromentModes << "verbatim" << "numbers" << "picture";
+	enviromentModes << "verbatim" << "numbers" << "picture" << "comment";
 	
 	
 	

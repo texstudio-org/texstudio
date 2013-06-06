@@ -589,7 +589,7 @@ void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QStr
 	QDomElement tag = doc.createElement("context");
 	tag.setAttribute("id",EnvironMode=="numbers"?"mathMyEnv":"myVerb");
 	tag.setAttribute("format",EnvironMode);
-	tag.setAttribute("transparency","true");
+	if (EnvironMode != "comment") tag.setAttribute("transparency","true");
 	QDomElement child1 = doc.createElement("start");
 	child1.setAttribute("parenthesis",QString("my%1:open").arg(EnvironName));
 	child1.setAttribute("fold","true");
