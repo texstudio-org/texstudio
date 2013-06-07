@@ -14,11 +14,6 @@
 #include "utilsVersion.h"
 extern const char* TEXSTUDIO_SVN_VERSION;
 
-#ifdef QT_NO_DEBUG
-#define COMPILED_DEBUG_OR_RELEASE "R"
-#else
-#define COMPILED_DEBUG_OR_RELEASE "D"
-#endif
 
 AboutDialog::AboutDialog(QWidget *parent)
 		:QDialog(parent) {

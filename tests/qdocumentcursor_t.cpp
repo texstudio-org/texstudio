@@ -589,41 +589,53 @@ void QDocumentCursorTest::bidiMoving_data(){
 	QTest::addColumn<int>("line");
 	QTest::addColumn<int>("column");
 	QTest::addColumn<int>("movement");
+	QTest::addColumn<int>("dir");
 	QTest::addColumn<int>("newLine");
 	QTest::addColumn<int>("newColumn");
 
+	const int L = (int)QDocumentCursor::Left;
+	const int R = (int)QDocumentCursor::Right;
+
 	QString withMarkers = QString::fromUtf8("\n" "ه‎\\glqq{}‎‎" "\n"); //rendered as \glqq{}o
-	QTest::newRow("with all markers 1")  << withMarkers << 1<<0  << +1 << 2<<0;
-	QTest::newRow("with all markers 2")  << withMarkers << 1<<0  << -1 << 1<<11; //????? that is not the same position as if run manually (there it skips 11 and goes to 10)
-	QTest::newRow("with all markers 2b") << withMarkers << 1<<11 << -1 << 1<<10;
-	QTest::newRow("with all markers 2r") << withMarkers << 1<<11 << +1 << 1<<0;
-	QTest::newRow("with all markers 3")  << withMarkers << 1<<10 << -1 << 1<<9;
-	QTest::newRow("with all markers 3r") << withMarkers << 1<<10 << +1 << 1<<11; //again, skips 11 if run interactively
-	QTest::newRow("with all markers 4")  << withMarkers << 1<<9 << -1 << 1<<8;
-	QTest::newRow("with all markers 5")  << withMarkers << 1<<8 << -1 << 1<<7;
-	QTest::newRow("with all markers 6")  << withMarkers << 1<<7 << -1 << 1<<6;
-	QTest::newRow("with all markers 7")  << withMarkers << 1<<1 << -1 << 0<<0; //jump over invisible marker
+	QTest::newRow("with all markers 1")  << withMarkers << 1<<0  << 1 << R << 2<<0;
+	QTest::newRow("with all markers 2")  << withMarkers << 1<<0  << 1 << L << 1<<11; //????? that is not the same position as if run manually (there it skips 11 and goes to 10)
+	QTest::newRow("with all markers 2b") << withMarkers << 1<<11 << 1 << L << 1<<10;
+	QTest::newRow("with all markers 2r") << withMarkers << 1<<11 << 1 << R << 1<<0;
+	QTest::newRow("with all markers 3")  << withMarkers << 1<<10 << 1 << L << 1<<9;
+	QTest::newRow("with all markers 3r") << withMarkers << 1<<10 << 1 << R << 1<<11; //again, skips 11 if run interactively
+	QTest::newRow("with all markers 4")  << withMarkers << 1<<9 << 1 << L << 1<<8;
+	QTest::newRow("with all markers 5")  << withMarkers << 1<<8 << 1 << L << 1<<7;
+	QTest::newRow("with all markers 6")  << withMarkers << 1<<7 << 1 << L << 1<<6;
+	QTest::newRow("with all markers 7")  << withMarkers << 1<<1 << 1 << L << 0<<0; //jump over invisible marker
 
 	QString withSomeMarkers = QString::fromUtf8("\n" "ه‎\\test{}" "\n"); //rendered as {}\testo
-	QTest::newRow("with some markers 1")  << withSomeMarkers << 1<<0  << +1 << 2<<0;
-	QTest::newRow("with some markers 2")  << withSomeMarkers << 1<<0  << -1 << 1<<6;
-	QTest::newRow("with some markers 2r") << withSomeMarkers << 1<<6  << +1 << 1<<0;
-	QTest::newRow("with some markers 3")  << withSomeMarkers << 1<<2  << -1 << 1<<1;
-	QTest::newRow("with some markers 4")  << withSomeMarkers << 1<<1  << -1 << 1<<7;
-	QTest::newRow("with some markers 5")  << withSomeMarkers << 1<<7  << -1 << 1<<8;
-	QTest::newRow("with some markers 5r") << withSomeMarkers << 1<<7  << +1 << 1<<1;
-	QTest::newRow("with some markers 6")  << withSomeMarkers << 1<<8  << -1 << 1<<9;
-	QTest::newRow("with some markers 6r") << withSomeMarkers << 1<<8  << +1 << 1<<7;
-	QTest::newRow("with some markers 6")  << withSomeMarkers << 1<<9  << -1 << 0<<0;
+	QTest::newRow("with some markers 1")  << withSomeMarkers << 1<<0  << 1 << R << 2<<0;
+	QTest::newRow("with some markers 2")  << withSomeMarkers << 1<<0  << 1 << L << 1<<6;
+	QTest::newRow("with some markers 2r") << withSomeMarkers << 1<<6  << 1 << R << 1<<0;
+	QTest::newRow("with some markers 3")  << withSomeMarkers << 1<<2  << 1 << L << 1<<1;
+	QTest::newRow("with some markers 4")  << withSomeMarkers << 1<<1  << 1 << L << 1<<7;
+	QTest::newRow("with some markers 5")  << withSomeMarkers << 1<<7  << 1 << L << 1<<8;
+	QTest::newRow("with some markers 5r") << withSomeMarkers << 1<<7  << 1 << R << 1<<1;
+	QTest::newRow("with some markers 6")  << withSomeMarkers << 1<<8  << 1 << L << 1<<9;
+	QTest::newRow("with some markers 6r") << withSomeMarkers << 1<<8  << 1 << R << 1<<7;
+	QTest::newRow("with some markers 6")  << withSomeMarkers << 1<<9  << 1 << L << 0<<0;
 
 	QString withOtherMarkers = QString::fromUtf8("\n" "ه\\glqq{}‎" "\n"); //rendered as glqq{}\o
-	QTest::newRow("with other markers 1")  << withOtherMarkers << 1<<0  << +1 << 2<<0;
-	QTest::newRow("with other markers 2")  << withOtherMarkers << 1<<0  << -1 << 1<<1;
-	QTest::newRow("with other markers 3")  << withOtherMarkers << 1<<1  << -1 << 1<<9; //this is 8 if run manually (9 is invisible control character?)
-	QTest::newRow("with other markers 3r") << withOtherMarkers << 1<<9  << +1 << 1<<1;
-	QTest::newRow("with other markers 4")  << withOtherMarkers << 1<<9  << -1 << 1<<8;
-	QTest::newRow("with other markers 5")  << withOtherMarkers << 1<<8  << -1 << 1<<7;
-	QTest::newRow("with other markers 6")  << withOtherMarkers << 1<<2  << -1 << 0<<0;
+	QTest::newRow("with other markers 1")  << withOtherMarkers << 1<<0  << 1 << R << 2<<0;
+	QTest::newRow("with other markers 2")  << withOtherMarkers << 1<<0  << 1 << L << 1<<1;
+	QTest::newRow("with other markers 3")  << withOtherMarkers << 1<<1  << 1 << L << 1<<9; //this is 8 if run manually (9 is invisible control character?)
+	QTest::newRow("with other markers 3r") << withOtherMarkers << 1<<9  << 1 << R << 1<<1;
+	QTest::newRow("with other markers 4")  << withOtherMarkers << 1<<9  << 1 << L << 1<<8;
+	QTest::newRow("with other markers 5")  << withOtherMarkers << 1<<8  << 1 << L << 1<<7;
+	QTest::newRow("with other markers 6")  << withOtherMarkers << 1<<2  << 1 << L << 0<<0;
+
+	QString full = QString::fromUtf8("\n" "دددددددد" "\n");
+	QTest::newRow("start of line")  << full << 1<<4  << 1 << (int)QDocumentCursor::StartOfLine << 1<<0; //that's actually just like in ltr in this case
+	QTest::newRow("end of line")    << full << 1<<4  << 1 << (int)QDocumentCursor::EndOfLine   << 1<<8;
+
+	QString combined = QString::fromUtf8("\n" "دددددtest" "\n");
+	QTest::newRow("start of line")  << combined << 1<<4  << 1 << (int)QDocumentCursor::StartOfLine << 1<<0;
+	QTest::newRow("end of line")    << combined << 1<<4  << 1 << (int)QDocumentCursor::EndOfLine   << 1<<5; //appended ltr text does not count
 
 }
 
@@ -631,6 +643,7 @@ void QDocumentCursorTest::bidiMoving(){
 	QFETCH(QString, text);
 	QFETCH(int, line);
 	QFETCH(int, column);
+	QFETCH(int, dir);
 	QFETCH(int, movement);
 	QFETCH(int, newLine);
 	QFETCH(int, newColumn);
@@ -642,8 +655,7 @@ void QDocumentCursorTest::bidiMoving(){
 		doc->line(i).handle()->layout(i);
 
 	QDocumentCursor c(doc, line, column);
-	if (movement < 0) c.movePosition(-movement, QDocumentCursor::Left);
-	else  c.movePosition(movement, QDocumentCursor::Right);
+	c.movePosition(movement, (QDocumentCursor::MoveOperation)dir);
 	QEQUAL2(c.lineNumber(), newLine, "line" );
 	QEQUAL2(c.columnNumber(), newColumn, "column" );
 #endif

@@ -4766,6 +4766,19 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 
 		case QDocumentCursor::StartOfBlock :
+			if ( l1.isRTL() ) { //todo: test if this also works for non-rtl
+				const int targetPosition = document()->width()+5; //it is rtl
+
+				QPoint curPos = l1.cursorToDocumentOffset(m_begOffset);
+				int target = l1.documentOffsetToCursor(targetPosition, curPos.y());
+				if (m_begOffset == target) target = l1.documentOffsetToCursor(targetPosition, 0);
+				if (m_begOffset == target) return false;
+				m_begOffset = target;
+				refreshColumnMemory(); //??
+				return true;
+			}
+
+
 			if ( atBlockStart() )
 				return false;
 
@@ -4785,6 +4798,25 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 
 		case QDocumentCursor::EndOfBlock :
+			if ( l1.isRTL() ) {
+				const int targetPosition = 0; //it is rtl
+
+				QPoint curPos = l1.cursorToDocumentOffset(offset);
+				int target = l1.documentOffsetToCursor(targetPosition, curPos.y());
+				QPoint newPosition = l1.cursorToDocumentOffset(target);
+				if (newPosition.y() > curPos.y()) { //it is usually moved one character to far to the right in the next line
+					QPoint p = l1.cursorToDocumentOffset(target+1);
+					QPoint m = l1.cursorToDocumentOffset(target-1);
+					if (p.y() == curPos.y()) target += 1;
+					else if (m.y() == curPos.y()) target -= 1;
+				}
+				if (m_begOffset == target) target = l1.documentOffsetToCursor(targetPosition, (l1.getLayout()->lineCount() - 1 + 1) * QDocumentPrivate::m_lineSpacing);
+				if (m_begOffset == target) return false;
+				m_begOffset = target;
+				refreshColumnMemory(); //??
+				return true;
+			}
+
 			if ( atBlockEnd() )
 				return false;
 
