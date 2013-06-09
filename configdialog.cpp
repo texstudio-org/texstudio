@@ -342,6 +342,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.comboBoxEncoding->addItem("UTF-8");
 	foreach(int mib, QTextCodec::availableMibs()) {
 		QTextCodec *codec = QTextCodec::codecForMib(mib);
+		if (!codec) continue;
 		if (codec->name()!="UTF-8") ui.comboBoxEncoding->addItem(codec->name());
 	}
 
