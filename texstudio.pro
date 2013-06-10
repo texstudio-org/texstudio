@@ -671,3 +671,9 @@ SOURCES+=synctex_parser_utils.c synctex_parser.c
 QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
 
 !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
+else {
+  QMAKE_CXXFLAGS += -gstabs -g
+  QMAKE_LFLAGS -= -Wl,-s
+  QMAKE_LFLAGS_RELEASE -= -Wl,-s
+}
+
