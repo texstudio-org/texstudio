@@ -1,3 +1,9 @@
+texstudio (2.6.0) natty; urgency=low
+
+  * 2.6.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 12 Jun 2013 12:17:00 +0200
+
 texstudio (2.5.1) natty; urgency=low
 
   * 2.5.1 bug fix release 
