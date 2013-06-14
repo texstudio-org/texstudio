@@ -9,7 +9,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.cpp" line="+42"/>
+        <location filename="aboutdialog.cpp" line="+37"/>
         <source>Thanks to </source>
         <translation>Merci à </translation>
     </message>
@@ -85,7 +85,7 @@
     <message>
         <location line="-3"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation>TeXstudio utilise des icones du projet Crystal (LGPL) du thème Oxygen (CC-BY-SA 3.0).</translation>
+        <translation>TeXstudio utilise des icônes du projet Crystal (LGPL) du thème Oxygen (CC-BY-SA 3.0).</translation>
     </message>
     <message>
         <source>TeXstudio uses TexTablet (Author: Steven Lovegrove)</source>
@@ -1054,7 +1054,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     </message>
     <message>
         <location line="-1373"/>
-        <location filename="configdialog.cpp" line="+404"/>
+        <location filename="configdialog.cpp" line="+405"/>
         <source>Shortcuts</source>
         <translation>Raccourcis clavier</translation>
     </message>
@@ -1290,7 +1290,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Afficher les options avancées</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-235"/>
+        <location filename="configdialog.cpp" line="-236"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>Ce raccourci n&apos;est pas valable.</translation>
     </message>
@@ -1313,7 +1313,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     </message>
     <message>
         <location filename="configdialog.ui" line="-2158"/>
-        <location filename="configdialog.cpp" line="+143"/>
+        <location filename="configdialog.cpp" line="+144"/>
         <source>Command</source>
         <translation>Commande</translation>
     </message>
@@ -2061,7 +2061,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation>Liste de règles LanguageTool (séparées par des virgules) qui seront surlignées dans un format spécial.</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-204"/>
+        <location filename="configdialog.cpp" line="-205"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
@@ -2079,7 +2079,7 @@ to set the key anyway?</source>
     </message>
     <message>
         <location filename="configdialog.ui" line="-1715"/>
-        <location filename="configdialog.cpp" line="+228"/>
+        <location filename="configdialog.cpp" line="+229"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
@@ -2643,7 +2643,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Remplacer Keywords par Properties (en cas de « svn add »)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-397"/>
+        <location filename="configdialog.cpp" line="-398"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation>Le raccourci &lt;%1&gt; est déjà utilisé pour :</translation>
     </message>
@@ -2653,7 +2653,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Souhaitez-vous supprimer l&apos;ancienne assignation et lier ce raccourci à cette commande ?</translation>
     </message>
     <message>
-        <location line="+162"/>
+        <location line="+163"/>
         <source>Download Additional Dictionaries: %1</source>
         <translation>Télécharger les dictionnaires supplémentaires : %1</translation>
     </message>
@@ -8027,7 +8027,7 @@ Faites-vous confiance à ce script ?</translation>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-696"/>
+        <location filename="configdialog.cpp" line="-697"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;défaut&gt;</translation>
     </message>
@@ -10467,7 +10467,7 @@ Faites-vous confiance à ce document ?</translation>
         <translation type="obsolete">Oui, autoriser tous les documents à utiliser la commande de remplacement</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+557"/>
+        <location filename="texmaker.cpp" line="+559"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10512,7 +10512,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>J&apos;essaie de m&apos;arrêter, mais il ne se passe rien.</translation>
     </message>
     <message>
-        <location line="-7800"/>
+        <location line="-7802"/>
         <source>PDF files</source>
         <translation>Fichiers PDF</translation>
     </message>
@@ -10528,7 +10528,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>Fichiers TeX dtx</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+7085"/>
+        <location filename="texmaker.cpp" line="+7087"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudio a été mis en pause en raison d&apos;une possible boucle infinie.
@@ -10543,7 +10543,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation type="obsolete">Oui, continuer la boucle.</translation>
     </message>
     <message>
-        <location line="-7078"/>
+        <location line="-7080"/>
         <source>Highlighting</source>
         <translation>Surlignement</translation>
     </message>
@@ -10631,7 +10631,7 @@ included document in %1</source>
         <translation type="obsolete">Ma&amp;cros</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+3821"/>
+        <location filename="texmaker.cpp" line="+3823"/>
         <source>Yes, try to recover</source>
         <translation>Oui, tenter de recouvrer</translation>
     </message>
@@ -10646,7 +10646,7 @@ included document in %1</source>
         <translation>Oui, continuer la boucle</translation>
     </message>
     <message>
-        <location line="-7386"/>
+        <location line="-7388"/>
         <source>Previous Change</source>
         <translation>Modification précédente</translation>
     </message>
@@ -10848,7 +10848,7 @@ included document in %1</source>
         <translation>La lecture du fichier de profile %1 a échoué.</translation>
     </message>
     <message>
-        <location line="+840"/>
+        <location line="+842"/>
         <source>System Report</source>
         <translation>Rapport système</translation>
     </message>
@@ -10865,7 +10865,7 @@ included document in %1</source>
         <translation type="obsolete">Supprimer tout</translation>
     </message>
     <message>
-        <location line="-1990"/>
+        <location line="-1992"/>
         <source>Insert Label</source>
         <translation>Insérer un label</translation>
     </message>
