@@ -4889,7 +4889,9 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 		}
 	}
 
-	if (ytarget >= 0) {
+    if (ytarget < 0) { // scroll up even if surrounding is not guaranteed
+        ytarget=0;
+    }
 #if QT_VERSION >= 0x040600
 		if (flag(QEditor::SmoothScrolling) && mflags&Animated) {
 			if (!m_scrollAnimation) {
@@ -4911,7 +4913,6 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 #else
 		verticalScrollBar()->setValue(ytarget);
 #endif
-	}
 
 	int xval = horizontalOffset(),
 		xlen = viewport()->width(),
