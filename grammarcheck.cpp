@@ -403,7 +403,14 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
 	}
 	server = config.languageToolURL;
 	ltPath = config.languageToolAutorun ? config.languageToolPath : "";
-	if (!ltPath.endsWith("jar")) ltPath += "/LanguageTool.jar";
+	if (!ltPath.endsWith("jar")) {
+		QStringList jars; jars << "/LanguageTool.jar" << "/languagetool-server.jar" << "/languagetool-standalone.jar";
+		foreach (const QString& j, jars)
+			if (QFile::exists(ltPath + j)) {
+				ltPath = ltPath + j;
+				break;
+			}
+	}
 	javaPath = config.languageToolJavaPath;
 	
 	ignoredRules.clear();
