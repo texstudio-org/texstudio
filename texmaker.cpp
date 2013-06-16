@@ -5388,7 +5388,7 @@ void Texmaker::focusViewer(){
 		QFileInfo currentFile = currentEditorView()->getDocument()->getFileInfo();
 		foreach (PDFDocument* viewer, viewers) {
 			if (viewer->getMasterFile() == currentFile) {
-				viewer->widget()->setFocus();
+				viewer->focus();
 				return;
 			}
 		}
@@ -5398,14 +5398,14 @@ void Texmaker::focusViewer(){
 			QFileInfo masterFile = masterDoc->getFileInfo();
 			foreach (PDFDocument* viewer, viewers) {
 				if (viewer->getMasterFile() == masterFile) {
-					viewer->widget()->setFocus();
+					viewer->focus();
 					return;
 				}
 			}
 		}
 	}
 	// fall back to first
-	viewers.at(0)->widget()->setFocus();
+	viewers.at(0)->focus();
 }
 
 void Texmaker::viewCloseSomething(){

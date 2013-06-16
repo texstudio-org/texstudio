@@ -3135,6 +3135,14 @@ void PDFDocument::goToPage(const int page)
 		scrollArea->goToPage(page);
 }
 
+void PDFDocument::focus() {
+	widget()->setFocus();
+	if (!embeddedMode) {
+		raise();
+		activateWindow();
+	}
+}
+
 void PDFDocument::dragEnterEvent(QDragEnterEvent *event)
 {
 	// Only accept files for now
