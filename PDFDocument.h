@@ -339,6 +339,7 @@ public:
 	void resetMagnifier();
 	Q_INVOKABLE void goToDestination(const QString& destName);
 	Q_INVOKABLE void goToPage(const int page);
+	Q_INVOKABLE void focus();
 	bool hasSyncData()
 	{
 		return scanner != NULL;
