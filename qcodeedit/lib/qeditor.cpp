@@ -4880,18 +4880,19 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 	int ytarget = -1;
 
 	if ( ypos - surroundingHeight < yval ) {// cursor above
-		ytarget = ypos / ls - surrounding;
+        ytarget = ypos / ls;
 	} else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
 		if (ypos > (yval + ylen) && (mflags & AllowScrollToTop)) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
-			ytarget = ypos / ls - surrounding;
+            ytarget = ypos / ls;
 		} else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
-			ytarget = 1 + (yend - ylen) / ls + surrounding;
+            ytarget = 1 + (yend - ylen) / ls + surrounding + surrounding;
 		}
 	}
 
-    if (ytarget < 0) { // scroll up even if surrounding is not guaranteed
-        ytarget=0;
-    }
+    if(ytarget>=0){
+        ytarget-=surrounding;
+        if(ytarget<0)
+            ytarget=0;
 #if QT_VERSION >= 0x040600
 		if (flag(QEditor::SmoothScrolling) && mflags&Animated) {
 			if (!m_scrollAnimation) {
@@ -4913,6 +4914,7 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 #else
 		verticalScrollBar()->setValue(ytarget);
 #endif
+    }
 
 	int xval = horizontalOffset(),
 		xlen = viewport()->width(),
