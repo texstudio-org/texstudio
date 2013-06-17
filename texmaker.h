@@ -203,12 +203,12 @@ protected slots:
 	void fileMakeTemplate();
 	void fileOpen();
 	void fileRestoreSession(bool showProgress = true);
-	void fileSave();
+    void fileSave(const bool saveSilently=false);
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
 private slots:
 	void fileNewInternal(QString fileName="");
-	void fileSaveAs(const QString& fileName = "");
+    void fileSaveAs(const QString& fileName = "", const bool saveSilently=false);
 protected slots:	
 	void fileClose();
 	void fileCloseAll();

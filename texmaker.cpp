@@ -1822,6 +1822,8 @@ void Texmaker::fileNewInternal(QString fileName) {
 
 	configureNewEditorViewEnd(edit);
 	edit->updateLtxCommands();
+    if(!fileName.isEmpty())
+        fileSave(true);
 }
 
 void Texmaker::fileNew(QString fileName) {
@@ -2071,13 +2073,13 @@ void Texmaker::fileRestoreSession(bool showProgress){
 	restoreSession(s, showProgress);
 }
 
-void Texmaker::fileSave() {
+void Texmaker::fileSave(const bool saveSilently) {
 	if (!currentEditor())
 		return;
 	
     if (currentEditor()->fileName()=="" || !QFileInfo(currentEditor()->fileName()).exists()){
         removeDiffMarkers();// clean document from diff markers first
-		fileSaveAs(currentEditor()->fileName());
+        fileSaveAs(currentEditor()->fileName(),saveSilently);
     } else {
 		/*QFile file( *filenames.find( currentEditorView() ) );
 	if ( !file.open( QIODevice::WriteOnly ) )
@@ -2099,7 +2101,7 @@ void Texmaker::fileSave() {
 	//updateStructure(); (not needed anymore for autoupdate)
 }
 
-void Texmaker::fileSaveAs(const QString& fileName) {
+void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 	if (!currentEditorView())
 		return;
 	
@@ -2121,7 +2123,9 @@ void Texmaker::fileSaveAs(const QString& fileName) {
 	}
 	
 	// get a file name
-	QString fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,fileFilters, &selectedFileFilter);
+    QString fn =fileName;
+    if(!saveSilently || fn.isEmpty())
+        fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,fileFilters, &selectedFileFilter);
 	if (!fn.isEmpty()) {
 		static QRegExp fileExt("\\*(\\.[^ )]+)");
 		if (fileExt.indexIn(selectedFileFilter) > -1) {
@@ -7213,7 +7217,12 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 		Q_ASSERT(curPaths.count()>0);
 		QFileInfo fi(getAbsoluteFilePath(curPaths[0]+name, defaultExt));
 		if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
+            int lineNr=-1;
+            if(currentEditor()){
+                lineNr=currentEditor()->cursor().lineNumber();
+            }
 			fileNew(fi.absoluteFilePath());
+            doc->patchStructure(lineNr,1);
 		}
 	}
 }
