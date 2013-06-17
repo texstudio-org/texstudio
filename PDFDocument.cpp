@@ -3215,7 +3215,7 @@ void PDFDocument::printPDF(){
 		lastPage = pdfWidget->realNumPages();
 	}
 	
-	if(!printer.printerName().isEmpty())
+    if(!printer.printerName().isEmpty())
 	{
 #ifdef Q_WS_WIN
 		QString paper;
@@ -3295,7 +3295,7 @@ void PDFDocument::printPDF(){
 		args << "\"?am.pdf\"";
 		command=args.join(" ");
 	}
-	else return;
+    else return;
 	
 	for(int i=0;i<printer.numCopies();i++)
 		emit runCommand(command, masterFile, masterFile, 0);
