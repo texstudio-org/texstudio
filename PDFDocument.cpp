@@ -2372,6 +2372,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
         qint64 filesize=fi.size();
         fileAlreadyLoaded=fileAlreadyLoaded && (lastModified==curFileLastModified);
         fileAlreadyLoaded=fileAlreadyLoaded && (filesize==curFileSize);
+        fileAlreadyLoaded=fileAlreadyLoaded && fi.exists();
     }
     if(!fileAlreadyLoaded){
         this->masterFile = masterFile;
