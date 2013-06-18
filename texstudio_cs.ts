@@ -77,7 +77,7 @@
     </message>
     <message>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio používá QuaZip (LGPL, autorské právo (c) 2005-2012 Sergey A. Tachenov a přispěvatelé).</translation>
     </message>
 </context>
 <context>
@@ -2329,55 +2329,55 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
     </message>
     <message>
         <source>MRU Document Chooser</source>
-        <translation type="unfinished"></translation>
+        <translation>Volič dokumentu MRU</translation>
     </message>
     <message>
         <source>Smooth Scrolling</source>
-        <translation type="unfinished"></translation>
+        <translation>Plynulé posouvání obrazu</translation>
     </message>
     <message>
         <source>Show messages when starting compiling</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat zprávy při spuštění překladu</translation>
     </message>
     <message utf8="true">
         <source>English Quotes (unicode): “ ”</source>
-        <translation type="unfinished"></translation>
+        <translation>Anglické uvozovky (unicode): “ ”</translation>
     </message>
     <message>
         <source>Hide grammar errors in non-text environments</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt gramatické chyby v ne-textových prostředích</translation>
     </message>
     <message>
         <source>Hide spelling errors in non-text environments</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt pravopisné chyby v ne-textových prostředích</translation>
     </message>
     <message>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakázat klávesu Esc pro zavření zobrazení v režimu na celou obrazovku</translation>
     </message>
     <message>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Převzít odsazení zahrnutých ve stromové struktuře</translation>
     </message>
     <message>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat nápovědu k příkazům ve vnitřním prohlížeči PDF (texdoc)</translation>
     </message>
     <message>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložené soubory nahrát při vnějších změnách tiše znovu (zahodí zásobník kroků zpět/znovu)</translation>
     </message>
     <message>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
     </message>
     <message>
         <source>Insert Symbol as Unicode</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit symbol jako Unicode</translation>
     </message>
     <message>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je potřeba, abyste do pruhu s nástroji přidal činnost (ze seznamu činností na pravé straně), předtím než budete pro tuto položku moci nahrát ikonu.</translation>
     </message>
     <message>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
@@ -2385,29 +2385,35 @@ Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro úpravy dvakrát klepněte na záznamy v Nynější zkratka nebo Doplňková zkratka.
+Potom můžete vybrat novou klávesovou zkratku jedním z následujících způsobů:
+(1) vybrat z rozbalovacího seznamu
+(2) stisknout sled kláves tvořících klávesovou zkratku
+(3) napsat řetězec pro klávesovou zkratku</translation>
     </message>
     <message>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolil jste pokročilé volby. To umožní nastavit TXS daleko
+podrobněji. Zakažte znovu pokročilé volby, pokud chcete
+vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
         <source>Bi-Di</source>
-        <translation type="unfinished"></translation>
+        <translation>Bi-Di</translation>
     </message>
     <message>
         <source>Automatically insert LRM characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky vložit znaky LRM</translation>
     </message>
     <message>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim ukazatele s viditelným sloupcem (tj. přesunout ukazatel ve směru směrových kláves šipek v textu zprava doleva - RTL)</translation>
     </message>
     <message>
         <source>Sweave / Pweave</source>
-        <translation type="unfinished"></translation>
+        <translation>Sweave/Pweave</translation>
     </message>
 </context>
 <context>
@@ -3078,11 +3084,11 @@ hcete je odstranit?</translation>
     </message>
     <message>
         <source>File list</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam souborů</translation>
     </message>
     <message>
         <source>Repeat contained compilation commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakovat obsažené příkazy k překladu</translation>
     </message>
 </context>
 <context>
@@ -3212,20 +3218,21 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     </message>
     <message>
         <source>Select File Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat kódování souboru</translation>
     </message>
     <message>
         <source>File Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Kódování souboru</translation>
     </message>
     <message>
         <source>inputenc Parameter</source>
-        <translation type="unfinished"></translation>
+        <translation>Parametr inputenc</translation>
     </message>
     <message>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation type="unfinished"></translation>
+        <translation>Názvy kodeků jak je očekává balíček inputenc. Názvy jsou zadány pouze pro srovnání.
+Musíte se ujistit, že kódování souboru a hodnota poslaná balíčku inputenc se shodují.</translation>
     </message>
 </context>
 <context>
@@ -3764,7 +3771,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>untitled</source>
-        <translation type="unfinished">Bez názvu</translation>
+        <translation>Bez názvu</translation>
     </message>
 </context>
 <context>
@@ -3879,7 +3886,7 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>LaTeX Project Public License (LPPL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Veřejná licence projektu LaTeX (LaTeX Project Public License - LPPL)</translation>
     </message>
 </context>
 <context>
@@ -3961,7 +3968,7 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Failed to load log file &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se nahrát soubor se záznamem &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -4536,11 +4543,11 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Enlarge Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšit prohlížeč</translation>
     </message>
     <message>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmenšit prohlížeč</translation>
     </message>
 </context>
 <context>
@@ -4697,7 +4704,7 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Could not open link:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se otevřít odkaz:</translation>
     </message>
 </context>
 <context>
@@ -5287,7 +5294,13 @@ Undo/Redo stack would be discarded by the auto-reload.
 Do you wish to keep up to date by reloading the file?
 
 (Note: You can permanently enable silent reloading in the options.)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+byl změněn jiným programem.
+
+Zásobník kroků zpět/znovu by byl automatickým znovunahráním zahozen.
+Chcete uchovat datum znovunahráním souboru?
+
+(Poznámka: Tiché znovunahrání můžete povolit ve volbách v nastavení.)</translation>
     </message>
 </context>
 <context>
@@ -5686,19 +5699,19 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     </message>
     <message>
         <source>pweave-delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>pweave-oddělovací znak</translation>
     </message>
     <message>
         <source>pweave-block</source>
-        <translation type="unfinished"></translation>
+        <translation>pweave-blok</translation>
     </message>
     <message>
         <source>sweave-delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>sweave-oddělovací znak</translation>
     </message>
     <message>
         <source>sweave-block</source>
-        <translation type="unfinished"></translation>
+        <translation>sweave-blok</translation>
     </message>
 </context>
 <context>
@@ -5824,56 +5837,56 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>Line: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Řádek: %1</translation>
     </message>
     <message>
         <source>Column: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sloupec: %1</translation>
     </message>
     <message>
         <source>Selected: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybráno: %1</translation>
     </message>
     <message>
         <source>Lines: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Řádky: %1</translation>
     </message>
 </context>
 <context>
     <name>QuaGzipFile</name>
     <message>
         <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevření gzip jak pro čtení tak pro zápis není podporováno</translation>
     </message>
     <message>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Můžete otevřít gzip buď pro čtení tak nebo zápis. Co zvolíte?</translation>
     </message>
     <message>
         <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se otevřít soubor gzopen()</translation>
     </message>
     <message>
         <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append není pro GZIP podporováno</translation>
     </message>
 </context>
 <context>
     <name>QuaZIODevice</name>
     <message>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::Append není pro QuaZIODevice podporováno</translation>
     </message>
     <message>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation>QIODevice::ReadWrite není pro QuaZIODevice podporováno</translation>
     </message>
 </context>
 <context>
     <name>QuaZipFilePrivate</name>
     <message>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba API ZIP/UNZIP %1</translation>
     </message>
 </context>
 <context>
@@ -5996,7 +6009,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>graphicx Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Balík graphicx</translation>
     </message>
 </context>
 <context>
@@ -6469,7 +6482,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Unicode Character: </source>
-        <translation type="unfinished"></translation>
+        <translation>Znak Unicode: </translation>
     </message>
 </context>
 <context>
@@ -6693,19 +6706,23 @@ se nepodařilo odstranit.</translation>
     </message>
     <message>
         <source>TeXstudio found user templates in deprecated locations.
-From now on user templates are hosted at
+>From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio nalezlo uživatelské předlohy v odmítnutých umístěních.
+Od nynějška jsou uživatelské předlohy hostěny na
+%1
+Má tam TeXstudio přemístit stávající uživatelské předlohy?
+Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
     </message>
     <message>
         <source>Unnamed Resource</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepojmenovaný zdroj</translation>
     </message>
     <message>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cílová složka není prázdná. Doporučuje se použít nových složek, jinak mohou být stávající soubory přepsány. Chcete tuto složku přesto použít?</translation>
     </message>
 </context>
 <context>
@@ -6776,11 +6793,11 @@ If not, they will not be available via the Make Template dialog.</source>
     </message>
     <message>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Doporučuje se použít na předlohy novou složku. Jinak mohou být stávající soubory přepsány.</translation>
     </message>
     <message>
         <source>Select Target Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat cílovou složku</translation>
     </message>
 </context>
 <context>
@@ -6799,11 +6816,11 @@ If not, they will not be available via the Make Template dialog.</source>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Popis:</translation>
     </message>
     <message>
         <source>description text</source>
-        <translation type="unfinished"></translation>
+        <translation>Popisný text</translation>
     </message>
 </context>
 <context>
@@ -8705,60 +8722,61 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     </message>
     <message>
         <source>List Of Open Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam otevřených dokumentů</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation type="unfinished">Kódování znaků</translation>
+        <translation>Kódování znaků</translation>
     </message>
     <message>
         <source>More Encodings...</source>
-        <translation type="unfinished"></translation>
+        <translation>Další kódování...</translation>
     </message>
     <message>
         <source>Insert encoding as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit kódování jako poznámku TeXu</translation>
     </message>
     <message>
         <source>Encoding Aliases: </source>
-        <translation type="unfinished"></translation>
+        <translation>Přezdívky kódování: </translation>
     </message>
     <message>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument &quot;%1&quot; byl změněn, a tak obsahuje neuloženou práci. Chcete ji před ukončením programu uložit?</translation>
     </message>
     <message>
         <source>(a) allow for this document</source>
-        <translation type="unfinished"></translation>
+        <translation>(a) povolit pro tento dokument</translation>
     </message>
     <message>
         <source>(b) allow for all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>(b) povolit pro všechny dokumenty</translation>
     </message>
     <message>
         <source>(c) use the default command</source>
-        <translation type="unfinished"></translation>
+        <translation>(c) použít výchozí příkaz</translation>
     </message>
     <message>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor &quot;%1&quot; neexistuje.
+Chcete jej vytvořit?</translation>
     </message>
     <message>
         <source>System Report</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpráva systému</translation>
     </message>
     <message>
         <source>Close latest open environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít naposledy otevřené prostředí</translation>
     </message>
     <message>
         <source>Show embedded PDF large</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat vložené PDF velké</translation>
     </message>
     <message>
         <source>Show embedded PDF small</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat vložené PDF malé</translation>
     </message>
     <message>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
@@ -8768,23 +8786,29 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument &quot;%1&quot; chce potlačit příkaz &quot;%2&quot; s &quot;%3&quot;.
+
+Chcete to dovolit a spustit nový, hlavní příkaz?
+
+(a) Ano, povolit nový příkaz pro tento dokument (pouze, pokud tomuto dokumentu věříte)
+(b) Ano, povolit, aby byl nový příkaz použit pro všechny dokumenty (pouze, pokud věříte, že nový příkaz zvládne libovolné dokumenty)
+(c) Ne, nepoužívat příkaz &quot;%3&quot; a spustit výchozí příkaz &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Failed to read profile file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se přečíst soubor s profilem %1.</translation>
     </message>
     <message>
         <source>Pweave files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory Pweave</translation>
     </message>
     <message>
         <source>Grammar Mistake</source>
-        <translation type="unfinished"></translation>
+        <translation>Mluvnický omyl</translation>
     </message>
     <message>
         <source>Grammar Mistake Special %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvláštní mluvnický omyl %1</translation>
     </message>
 </context>
 <context>
@@ -9105,7 +9129,7 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     </message>
     <message>
         <source>Unknown variable %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá proměnná %1</translation>
     </message>
 </context>
 <context>
@@ -9702,15 +9726,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Create in Folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit ve složce:</translation>
     </message>
     <message>
         <source>Create in Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit v editoru</translation>
     </message>
     <message>
         <source>Target folder not empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cílová složka není prázdná.</translation>
     </message>
 </context>
 </TS>
