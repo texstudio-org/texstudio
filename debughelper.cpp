@@ -210,11 +210,11 @@ QStringList backtrace_symbols_win(void**, int){
 
 void print_backtrace(const SimulatedCPU& state, const QString& message){
 #ifdef Q_WS_WIN
-	qDebug(qPrintable(message));
+	qDebug("%s", qPrintable(message));
 #define PRINT(...) do { qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__);  } while (0)
 #else
 	fprintf(stderr, "%s\n", qPrintable(message));
-	qDebug(qPrintable(message));
+	qDebug("%s", qPrintable(message));
 #define PRINT(...) do { fprintf(stderr, __VA_ARGS__); qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__); } while (0)
 #endif
 	static int count = 0;
