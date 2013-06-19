@@ -298,7 +298,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
   filters << tr("PDF files")+" (*.pdf)";
   filters << tr("All files")+" (*)";
   fileFilters = filters.join(";;");
-  selectedFileFilter=filters.first();
+  if (!configManager.rememberFileFilter)
+      selectedFileFilter=filters.first();
 
 
   //setup autosave timer

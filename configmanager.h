@@ -128,6 +128,7 @@ public:
 	QString lastDocument; //last opened document, for file open directory
 	QStringList recentFilesList, recentProjectList;
 	int maxRecentFiles, maxRecentProjects;
+	bool rememberFileFilter;
 	bool sessionRestore;
 	bool parseBibTeX, parseMaster;
     bool autoLoadChildren;

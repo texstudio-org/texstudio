@@ -367,6 +367,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Max Recent Projects", &maxRecentProjects, 3, &pseudoDialog->spinBoxMaxRecentProjects);
 	registerOption("Files/Recent Files", &recentFilesList);
 	registerOption("Files/Recent Project Files", &recentProjectList);
+	registerOption("Files/Remember File Filter", &rememberFileFilter, true, &pseudoDialog->checkBoxRememberFileFilter);
 	registerOption("Files/RestoreSession", &sessionRestore);
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);

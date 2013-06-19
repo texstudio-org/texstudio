@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>746</width>
-            <height>600</height>
+            <width>865</width>
+            <height>626</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -351,17 +351,27 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QCheckBox" name="checkBoxParseBibTeX">
                 <property name="text">
                  <string>Parse BibTeX</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QCheckBox" name="checkBoxParseMaster">
                 <property name="text">
                  <string>Always Show Structure of Master Document</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QCheckBox" name="checkBoxRememberFileFilter">
+                <property name="text">
+                 <string>Remember selected file filter in open/save dialog </string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -1423,8 +1433,8 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-252</y>
-            <width>898</width>
+            <y>0</y>
+            <width>897</width>
             <height>942</height>
            </rect>
           </property>
