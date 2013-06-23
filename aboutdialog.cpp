@@ -20,7 +20,8 @@ AboutDialog::AboutDialog(QWidget *parent)
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
 	ui.textBrowser->setHtml(QString("<b>%1 %2</b> (SVN %3)").arg(TEXSTUDIO).arg(TXSVERSION).arg(TEXSTUDIO_SVN_VERSION?TEXSTUDIO_SVN_VERSION:"??") + "<br>" +
-							tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion()).arg(QT_VERSION_STR).arg(COMPILED_DEBUG_OR_RELEASE) + "<br><br>" +
+				(IS_DEVELOPMENT_VERSION ? tr("<b>This is a development version.</b><br>") : "") +
+				tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion()).arg(QT_VERSION_STR).arg(COMPILED_DEBUG_OR_RELEASE) + "<br><br>" +
 				"Copyright (c)<br>" +
 				TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>"
 				"Texmaker: Pascal Brachet<br>"+
