@@ -101,6 +101,16 @@ QToolButton* createToolButtonForAction(QAction* action) {
 	return tb;
 }
 
+void setSubtreeExpanded(QTreeView *view, QModelIndex idx, bool expand) {
+	for (int row=0;; row++) {
+		QModelIndex node = view->model()->index(row, 0, idx);
+		if (!node.isValid())
+			break;
+		setSubtreeExpanded(view, node, expand);
+	}
+	view->setExpanded(idx, expand);
+}
+
 bool browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath, bool list) {
 	QLineEdit* le = qobject_cast<QLineEdit*>(w);
 	QComboBox* cb = qobject_cast<QComboBox*>(w);
