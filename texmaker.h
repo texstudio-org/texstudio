@@ -300,6 +300,8 @@ protected slots:
 	void StructureContextMenu(const QPoint& point);
 	void structureContextMenuCloseDocument();
 	void structureContextMenuSwitchMasterDocument();
+	void structureContextMenuExpandSubitems();
+	void structureContextMenuCollapseSubitems();
 	void SymbolGridContextMenu(QWidget* widget, const QPoint& point);
 	void MostUsedSymbolsTriggered(bool direct=false);
 	void symbolAddFavorite();

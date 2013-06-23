@@ -6112,6 +6112,9 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addSeparator();
 		menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()));
 		menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()));
+		menu.addSeparator();
+		menu.addAction(tr("Expand Subitems"), this, SLOT(structureContextMenuExpandSubitems()));
+		menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 	if (!entry->parent) return;
@@ -6142,7 +6145,11 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addSeparator();
 		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
 		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
-
+		if (!entry->children.isEmpty()) {
+			menu.addSeparator();
+			menu.addAction(tr("Expand Subitems"), this, SLOT(structureContextMenuExpandSubitems()));
+			menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
+		}
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
     if (entry->type==StructureEntry::SE_MAGICCOMMENT) {
@@ -6150,6 +6157,7 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
         menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
         menu.exec(structureTreeView->mapToGlobal(point));
     }
+
 }
 
 void Texmaker::structureContextMenuCloseDocument(){
@@ -6173,6 +6181,13 @@ void Texmaker::structureContextMenuSwitchMasterDocument(){
 	}
 }
 
+void Texmaker::structureContextMenuExpandSubitems() {
+	setSubtreeExpanded(structureTreeView, structureTreeView->currentIndex(), true);
+}
+
+void Texmaker::structureContextMenuCollapseSubitems() {
+	setSubtreeExpanded(structureTreeView, structureTreeView->currentIndex(), false);
+}
 
 void Texmaker::editPasteRef() {
 	if (!currentEditorView()) return;
