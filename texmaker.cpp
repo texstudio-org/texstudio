@@ -4720,10 +4720,9 @@ void Texmaker::commandFromAction(){
 }
 
 void Texmaker::CleanAll() {
-	CleanDialog *cleanDlg = new CleanDialog(this);
-
-	if (cleanDlg->checkClean(documents)) {
-		cleanDlg->exec();
+	CleanDialog cleanDlg(this);
+	if (cleanDlg.checkClean(documents)) {
+		cleanDlg.exec();
 	} else {
 		txsInformation(tr("No open project or tex file to clean."));
 	}
