@@ -263,8 +263,16 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
 	if (match(bestName, keys)) return true;
 	
 	// match also with "_" -> "-" replacement
+	bestName = name;
 	if (bestName.contains('_')) {
 		bestName.replace("_", "-");
+		if (match(bestName, keys)) return true;
+	}
+
+	// match also with "-" -> "_" replacement
+	bestName = name;
+	if (bestName.contains('-')) {
+		bestName.replace("-", "_");
 		if (match(bestName, keys)) return true;
 	}
 
