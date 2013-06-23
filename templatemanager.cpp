@@ -138,7 +138,7 @@ AbstractTemplateResource * TemplateManager::createResourceFromXMLNode(const QDom
 		name = tr("User");
 		path = userTemplateDir();
 		description = tr("User created template files");
-		isEditable = false;
+		isEditable = true;
 		icon = QIcon(":/images-ng/user.svgz");
 	}
 
