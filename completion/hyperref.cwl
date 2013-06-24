@@ -4,16 +4,16 @@
 
 \hypersetup{options}
 
-\href[options]{URL}{text}
-\href{URL}{text}
+\href[options]{URL}{text}#U
+\href{URL}{text}#U
 
-\url{URL}
-\nolinkurl{URL}
+\url{URL}#U
+\nolinkurl{URL}#U
 
-\hyperbaseurl{URL}
-\hyperimage{imageURL}{text}
+\hyperbaseurl{URL}#U
+\hyperimage{imageURL}{text}#U
 \hyperdef{category}{name}{text}
-\hyperref{URL}{category}{name}{text}
+\hyperref{URL}{category}{name}{text}#U
 \hyperref[label]{text}
 \hyperref{text}
 \hyperlink{name}{text}
