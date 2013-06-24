@@ -334,6 +334,74 @@ QString& parseTexOrPDFString(QString& s) {
 	return s;
 }
 
+// joins all the input lines trimming whitespace. A new line is started on comments and empty lines
+QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList& lines) {
+#define flush_tmpLine() if (!tmpLine.isEmpty()) { joinedLines.append(tmpLine); tmpLine.clear(); }
+
+	QStringList joinedLines;
+	QString tmpLine;
+	foreach (const QString &l, lines) {
+		QString rtrimmedLine = trimRight(l);
+
+		if (rtrimmedLine.isEmpty()) { // empty line as separator
+			flush_tmpLine();
+			joinedLines.append(rtrimmedLine);
+			continue;
+		}
+
+		if (tmpLine.isEmpty()) {
+			tmpLine.append(rtrimmedLine);
+		} else {
+			tmpLine.append(" " + rtrimmedLine.trimmed());
+		}
+		int commentStart = LatexParser::commentStart(rtrimmedLine);
+		if (commentStart >= 0) {
+			flush_tmpLine();
+		}
+	}
+	flush_tmpLine();
+	return joinedLines;
+}
+
+// splits lines after maximal number of chars while keeping track of indentation and comments
+QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegExp& breakChars) {
+	QStringList splittedLines;
+	int maxIndent = maxCharPerLine / 2 * 3;
+	foreach (QString line, lines) {
+		int textStart = 0;
+		while (textStart < line.length() && line.at(textStart).isSpace() && textStart < maxIndent) textStart++;
+		if (textStart >= line.length()) { // empty line
+			splittedLines << line;
+			continue;
+		}
+		int maxCharPerLineWithoutIndent = maxCharPerLine - textStart;
+		QString indent = line.left(textStart);
+		line = line.mid(textStart);
+
+		bool inComment = false;
+		while (line.length() > maxCharPerLineWithoutIndent) {
+			if (inComment) line.prepend("% ");
+			int breakAt = line.lastIndexOf(breakChars, maxCharPerLineWithoutIndent);
+			if (breakAt <= 3) breakAt = -1;
+			QString leftPart = line.left(breakAt);
+			splittedLines << indent + leftPart;
+			if (breakAt >= 0) {
+				line.remove(0, breakAt+1);
+				inComment = inComment || (LatexParser::commentStart(leftPart) >= 0);
+			} else {
+				line.clear();
+				break;
+			}
+		}
+		if (line.length() > 0) {
+			if (inComment) line.prepend("% ");
+			splittedLines << indent + line;
+		}
+	}
+	return splittedLines;
+}
+
+
 bool localAwareLessThan(const QString &s1, const QString &s2) {
 	return QString::localeAwareCompare(s1,s2)<0;
 }

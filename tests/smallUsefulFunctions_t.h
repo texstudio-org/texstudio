@@ -423,6 +423,64 @@ private slots:
 		QFETCH(QString, trimmedLine);
 		QEQUAL(trimRight(line), trimmedLine);
 	}
+	void test_joinLinesExceptCommentsAndEmptyLines_data(){
+		QTest::addColumn<QStringList>("in");
+		QTest::addColumn<QStringList>("out");
+
+		QTest::newRow("simple")
+				<< (QStringList() << "ab" << "cd")
+				<< (QStringList() << "ab cd");
+		QTest::newRow("spaces")
+				<< (QStringList() << "\tab " << "\tcd\t" << "ef\n")
+				<< (QStringList() << "\tab cd ef");
+		QTest::newRow("lineAsSeparator")
+				<< (QStringList() << "\tab" << "" << "ef\n")
+				<< (QStringList() << "\tab" << "" << "ef");
+	}
+	void test_joinLinesExceptCommentsAndEmptyLines(){
+		QFETCH(QStringList, in);
+		QFETCH(QStringList, out);
+		QStringList joinedLines = joinLinesExceptCommentsAndEmptyLines(in);
+		QEQUAL(joinedLines.length(), out.length());
+		for (int i=0; i<joinedLines.count(); i++) {
+			QEQUAL2(joinedLines[i], out[i], QString("in join #%1").arg(i));
+		}
+	}
+	void test_splitLines_data() {
+		QTest::addColumn<int>("maxChars");
+		QTest::addColumn<QStringList>("in");
+		QTest::addColumn<QStringList>("out");
+
+		QTest::newRow("splitPosition") << 10
+				<< (QStringList() << "01234 6789 12")
+				<< (QStringList() << "01234 6789" << "12");
+		QTest::newRow("splitPosition2") << 9
+				<< (QStringList() << "01234 6789 12")
+				<< (QStringList() << "01234" << "6789 12");
+		QTest::newRow("commentContinuation") << 24
+				<< (QStringList() << "this is a wrap % inside a comment")
+				<< (QStringList() << "this is a wrap % inside" << "% a comment");
+		QTest::newRow("keepIndentSpace") << 11
+				<< (QStringList() << "  01234 6789 12")
+				<< (QStringList() << "  01234" << "  6789 12");
+		QTest::newRow("keepIndentTab") << 10
+				<< (QStringList() << "\t01234 6789 12")
+				<< (QStringList() << "\t01234" << "\t6789 12");
+		QTest::newRow("keepIndentComment") << 26
+				<< (QStringList() << "  this is a wrap % inside a comment")
+				<< (QStringList() << "  this is a wrap % inside" << "  % a comment");
+	}
+	void test_splitLines(){
+		QFETCH(int, maxChars);
+		QFETCH(QStringList, in);
+		QFETCH(QStringList, out);
+		QRegExp breakChars("[ \t\n\r]");
+		QStringList splittedLines = splitLines(in, maxChars, breakChars);
+		QEQUAL(splittedLines.length(), out.length());
+		for (int i=0; i<splittedLines.count(); i++) {
+			QEQUAL2(splittedLines[i], out[i], QString("in split #%1").arg(i));
+		}
+	}
 	void test_getSimplifiedSVNVersion_data(){
 		QTest::addColumn<QString>("versionString");
 		QTest::addColumn<int>("out");

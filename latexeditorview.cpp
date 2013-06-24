@@ -2149,44 +2149,16 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 		}
 	}
 	if (joinLines) { // start of smart formatting, similar to what emacs (AucTeX) can do, but much simple
-		QStringList lines;  QString tmpLine;
-		for (int i=startLine; i <= endLine; i++)  {
-			QString fullString  = doc->line(i).text();
-			int commentStart    = LatexParser::commentStart(fullString);
-			if (commentStart==-1) {
-				tmpLine.append(" ");
-				tmpLine.append(fullString);
-			} else {
-				lines << tmpLine;
-				lines << fullString;
-				tmpLine.clear();
-			}
-		}
-		lines.append(tmpLine);
-		lines[0].remove(0,1); // remove needless space character from first line
-		
-		QStringList formattedList;
-		for (int i=0; i < lines.size(); i++) {
-			QString bigString = lines.at(i);
-			while (bigString.size() > newLength) {
-				int breakAt=bigString.lastIndexOf(breakChars,newLength);
-				formattedList << bigString.left(breakAt);
-				if (breakAt >= 0) {
-					bigString.remove(0, breakAt+1);
-				} else {
-					bigString.clear();
-					break;
-				}
-			}
-			if (bigString.size() > 0)  formattedList << bigString;
-		}
-		
+		QStringList lines;
+		for (int i=startLine; i <= endLine; i++)
+			lines << doc->line(i).text();
+		lines = joinLinesExceptCommentsAndEmptyLines(lines);
+		lines = splitLines(lines, newLength, breakChars);
+
 		QDocumentCursor vCur = doc->cursor(startLine, 0, endLine, doc->line(endLine).length());
-		editor->insertText(vCur,formattedList.join("\n"));
-		
+		editor->insertText(vCur, lines.join("\n"));
 		editor->setCursor(cur);
-		
-		return ;
+		return;
 	}
 	
 	bool areThereLinesToBreak=false;
@@ -2429,7 +2401,6 @@ void LatexEditorViewConfig::settingsChanged(){
 	
 	lastFontFamily = fontFamily;
 	lastFontSize = fontSize;
-	
 }
 
 
