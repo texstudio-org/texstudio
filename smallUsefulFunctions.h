@@ -54,8 +54,8 @@ QString& parseTexOrPDFString(QString& s);
 QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList& lines);
 QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegExp& breakChars);
 
-//compares two strings local aware
-bool localAwareLessThan(const QString &s1, const QString &s2);
+//compares two strings locale aware
+bool localeAwareLessThan(const QString &s1, const QString &s2);
 
 // true for characters that are valid in latex command names, e.g. \section*
 inline bool isCommandChar(const QChar &c) { return c.isLetter() || c=='*'; }

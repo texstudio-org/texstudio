@@ -76,7 +76,7 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 		encodedString = codec->fromUnicode(elem);
 		pChecker->add(encodedString.data());
 	}
-	qSort(ignoredWordList.begin(),ignoredWordList.end(),localAwareLessThan);
+	qSort(ignoredWordList.begin(),ignoredWordList.end(),localeAwareLessThan);
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
 	ignoredWords=ignoredWordList.toSet();
@@ -115,7 +115,7 @@ void SpellerUtility::addToIgnoreList(QString toIgnore) {
 	pChecker->add(encodedString.data());
 	ignoredWords.insert(word);
 	if (!ignoredWordList.contains(word))
-		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localAwareLessThan), word);
+		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localeAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
 	emit ignoredWordAdded(word);
