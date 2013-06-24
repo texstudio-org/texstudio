@@ -1393,7 +1393,14 @@ void Texmaker::NewDocumentLineEnding(){
 void Texmaker::updateUndoRedoStatus() {
 	if (currentEditor()) {
 		actSave->setEnabled(!currentEditor()->document()->isClean() || currentEditor()->fileName().isEmpty());
-		actUndo->setEnabled(currentEditor()->document()->canUndo());
+		bool canUndo=currentEditor()->document()->canUndo();
+		if(!canUndo && configManager.svnUndo){
+		    QVariant zw=currentEditor()->property("undoRevision");
+		    int undoRevision=zw.canConvert<int>()?zw.toInt():0;
+		    if(undoRevision>=0)
+			canUndo=true;
+		}
+		actUndo->setEnabled(canUndo);
 		actRedo->setEnabled(currentEditor()->document()->canRedo());
 	} else {
 		actSave->setEnabled(false);
