@@ -51,6 +51,9 @@ QString textToLatex(const QString& text);
 // replaces \texorpdfstring{tex}{pdfString} with pdfString
 QString& parseTexOrPDFString(QString& s);
 
+QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList& lines);
+QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegExp& breakChars);
+
 //compares two strings local aware
 bool localAwareLessThan(const QString &s1, const QString &s2);
 
