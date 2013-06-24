@@ -1486,64 +1486,70 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 			    valid.remove('S');
 			}
 		    }
-		    // parse for spell checkable commands
-		    int res=rxCom.indexIn(line);
-		    if(keywords.contains(rxCom.cap(3))){
-			package.optionCommands << rxCom.cap(1);
-		    }
-		    rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
-		    if(keywords.contains(rxCom2.cap(2))){
-			package.optionCommands << rxCom2.cap(1);
-		    }
-		    if(valid.contains('d')){ // definition command
-			if(res>-1){
-			    package.possibleCommands["%definition"] << rxCom.cap(1);
-			}
-			valid.remove('d');
-		    }
-		    if(valid.contains('i')){ // include like command
-			if(res>-1){
-			    package.possibleCommands["%include"] << rxCom.cap(1);
-			}
-			valid.remove('i');
-		    }
-		    if(valid.contains('l')){ // label command
-			if(res>-1){
-			    package.possibleCommands["%label"] << rxCom.cap(1);
-			}
-			valid.remove('l');
-		    }
-		    if(valid.contains('r')){ // ref command
-			if(res>-1){
-			    package.possibleCommands["%ref"] << rxCom.cap(1);
-			}
-			valid.remove('r');
-		    }
-		    if(valid.contains('c')){ // cite command
-			if(res>-1){
-			    package.possibleCommands["%cite"] << rxCom.cap(1);
-			}
-			valid.remove('c');
-		    }
-		    if(valid.contains('g')){ // definition command
-			if(res>-1){
-			    package.possibleCommands["%graphics"] << rxCom.cap(1);
-			}
-			valid.remove('g');
-		    }
-		    if(valid.contains('u')){ // usepackage command
-			if(res>-1){
-			    package.possibleCommands["%usepackage"] << rxCom.cap(1);
-			}
-			valid.remove('u');
-		    }
-		    if(valid.contains('b')){ // usepackage command
-			if(res>-1){
-			    package.possibleCommands["%bibliography"] << rxCom.cap(1);
-			    package.possibleCommands["%file"] << rxCom.cap(1);
-			}
-			valid.remove('b');
-		    }
+            // parse for spell checkable commands
+            int res=rxCom.indexIn(line);
+            if(keywords.contains(rxCom.cap(3))){
+                package.optionCommands << rxCom.cap(1);
+            }
+            rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
+            if(keywords.contains(rxCom2.cap(2))){
+                package.optionCommands << rxCom2.cap(1);
+            }
+            if(valid.contains('d')){ // definition command
+                if(res>-1){
+                    package.possibleCommands["%definition"] << rxCom.cap(1);
+                }
+                valid.remove('d');
+            }
+            if(valid.contains('i')){ // include like command
+                if(res>-1){
+                    package.possibleCommands["%include"] << rxCom.cap(1);
+                }
+                valid.remove('i');
+            }
+            if(valid.contains('l')){ // label command
+                if(res>-1){
+                    package.possibleCommands["%label"] << rxCom.cap(1);
+                }
+                valid.remove('l');
+            }
+            if(valid.contains('r')){ // ref command
+                if(res>-1){
+                    package.possibleCommands["%ref"] << rxCom.cap(1);
+                }
+                valid.remove('r');
+            }
+            if(valid.contains('c')){ // cite command
+                if(res>-1){
+                    package.possibleCommands["%cite"] << rxCom.cap(1);
+                }
+                valid.remove('c');
+            }
+            if(valid.contains('g')){ // definition command
+                if(res>-1){
+                    package.possibleCommands["%graphics"] << rxCom.cap(1);
+                }
+                valid.remove('g');
+            }
+            if(valid.contains('u')){ // usepackage command
+                if(res>-1){
+                    package.possibleCommands["%usepackage"] << rxCom.cap(1);
+                }
+                valid.remove('u');
+            }
+            if(valid.contains('b')){ // usepackage command
+                if(res>-1){
+                    package.possibleCommands["%bibliography"] << rxCom.cap(1);
+                    package.possibleCommands["%file"] << rxCom.cap(1);
+                }
+                valid.remove('b');
+            }
+            if(valid.contains('U')){ // url command
+                if(res>-1){
+                    package.possibleCommands["%url"] << rxCom.cap(1);
+                }
+                valid.remove('U');
+            }
 		    // normal commands for syntax checking
 		    // will be extended to distinguish between normal and math commands
 		    if(valid.isEmpty() || valid.contains('n')){
