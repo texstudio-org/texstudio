@@ -402,7 +402,7 @@ QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegE
 }
 
 
-bool localAwareLessThan(const QString &s1, const QString &s2) {
+bool localeAwareLessThan(const QString &s1, const QString &s2) {
 	return QString::localeAwareCompare(s1,s2)<0;
 }
 
