@@ -883,7 +883,7 @@ void Texmaker::setupMenus() {
 	//  User
 	menu=newManagedMenu("main/macros",tr("Ma&cros"));
 	updateUserMacros();
-	scriptengine::macros = &configManager.completerConfig->userMacro;
+	scriptengine::macros = &configManager.completerConfig->userMacros;
 
 	//---view---
 	menu=newManagedMenu("main/view",tr("&View"));
@@ -1723,11 +1723,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 	//#endif
 #endif
 	
-	for (int i=0;i<doc->localMacros.size();i++)
-		if (doc->localMacros[i].triggers & Macro::ST_LOAD_THIS_FILE)
-			insertUserTag(doc->localMacros[i].tag, Macro::ST_LOAD_THIS_FILE);
+	runScriptsInList(Macro::ST_LOAD_THIS_FILE, doc->localMacros);
 
-	
 	emit infoLoadFile(f_real);
 	
 	return edit;
@@ -1807,9 +1804,14 @@ void Texmaker::autoRunScripts(){
 }
 
 void Texmaker::runScripts(int trigger){
-	for(int i=0;i<configManager.completerConfig->userMacro.count();i++)
-		if (configManager.completerConfig->userMacro[i].triggers & trigger)
-			insertUserTag(configManager.completerConfig->userMacro[i].tag, trigger);
+	runScriptsInList(trigger, configManager.completerConfig->userMacros);
+}
+
+void Texmaker::runScriptsInList(int trigger, const QList<Macro> &scripts) {
+	foreach (const Macro &macro, scripts) {
+		if (macro.triggers & trigger)
+			insertUserTag(macro.tag, trigger);
+	}
 }
 
 void Texmaker::fileNewInternal(QString fileName) {
@@ -2352,13 +2354,14 @@ void Texmaker::closeEvent(QCloseEvent *e) {
 void Texmaker::updateUserMacros(bool updateMenu){
 	if (updateMenu) configManager.updateUserMacroMenu();
 	QStringList tempLanguages = m_languages->languages();
-	for (int i=0;i<configManager.completerConfig->userMacro.size();i++) {
-		if (configManager.completerConfig->userMacro[i].triggerLanguage.isEmpty()) continue;
-		configManager.completerConfig->userMacro[i].triggerLanguages.clear();
-		QRegExp tempRE(configManager.completerConfig->userMacro[i].triggerLanguage,Qt::CaseInsensitive);
-		for (int j=0;j<tempLanguages.size();j++)
+	for (int i=0; i<configManager.completerConfig->userMacros.size(); i++) {
+		Macro macro = configManager.completerConfig->userMacros[i];
+		if (macro.triggerLanguage.isEmpty()) continue;
+		macro.triggerLanguages.clear();
+		QRegExp tempRE(macro.triggerLanguage, Qt::CaseInsensitive);
+		for (int j=0; j<tempLanguages.size(); j++)
 			if (tempRE.exactMatch(tempLanguages[j]))
-				configManager.completerConfig->userMacro[i].triggerLanguages << m_languages->languageData(tempLanguages[j]).d;
+				macro.triggerLanguages << m_languages->languageData(tempLanguages[j]).d;
 	}
 }
 
@@ -3399,7 +3402,7 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc) {
 		doc->patchStructure(0,len);
 
 		doc->updateMagicCommentScripts();
-		configManager.completerConfig->userMacro << doc->localMacros;
+		configManager.completerConfig->userMacros << doc->localMacros;
 		updateUserMacros();
 	}
 	else {
@@ -4217,7 +4220,7 @@ void Texmaker::insertUserTag() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	int id = action->data().toInt();
-	const QString& userTag=configManager.completerConfig->userMacro.value(id,Macro()).tag;
+	const QString& userTag=configManager.completerConfig->userMacros.value(id,Macro()).tag;
 	insertUserTag(userTag);
 }
 
@@ -4229,7 +4232,7 @@ void Texmaker::insertUserTag(const QString& macro, int triggerId){
 void Texmaker::editMacros() {
 	if (!userMacroDialog)  {
 		userMacroDialog = new UserMenuDialog(0,tr("Edit User &Tags"),m_languages);
-		foreach (const Macro& m, configManager.completerConfig->userMacro) {
+		foreach (const Macro& m, configManager.completerConfig->userMacros) {
 			if(m.name=="TMX:Replace Quote Open" || m.name=="TMX:Replace Quote Close" || m.document)
 				continue;
 			userMacroDialog->addMacro(m);
@@ -4243,12 +4246,12 @@ void Texmaker::editMacros() {
 }
 
 void Texmaker::macroDialogAccepted(){
-	configManager.completerConfig->userMacro.clear();
+	configManager.completerConfig->userMacros.clear();
 	for (int i=0; i<userMacroDialog->macroCount(); i++) {
-		configManager.completerConfig->userMacro << userMacroDialog->getMacro(i);
+		configManager.completerConfig->userMacros << userMacroDialog->getMacro(i);
 	}
 	for (int i=0;i<documents.documents.size();i++)
-		configManager.completerConfig->userMacro << documents.documents[i]->localMacros;
+		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();
 	completer->updateAbbreviations();
 	userMacroDialog->deleteLater();
@@ -5631,9 +5634,9 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 
 void Texmaker::aboutToDeleteDocument(LatexDocument * doc){
 	emit infoFileClosed();
-	for (int i=configManager.completerConfig->userMacro.size()-1;i>=0;i--)
-		if (configManager.completerConfig->userMacro[i].document == doc)
-			configManager.completerConfig->userMacro.removeAt(i);
+	for (int i=configManager.completerConfig->userMacros.size()-1;i>=0;i--)
+		if (configManager.completerConfig->userMacros[i].document == doc)
+			configManager.completerConfig->userMacros.removeAt(i);
 }
 
 //*********************************
@@ -7282,7 +7285,7 @@ void Texmaker::loadProfile(){
 				if(key.startsWith("texmaker/Macros")){
 					QStringList ls = profile->value(key).toStringList();
 					if (!ls.isEmpty()){
-						configManager.completerConfig->userMacro.append(Macro(ls));
+						configManager.completerConfig->userMacros.append(Macro(ls));
 						macro=true;
 					}
 					continue;

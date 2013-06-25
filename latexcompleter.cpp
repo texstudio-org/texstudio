@@ -1009,21 +1009,21 @@ void LatexCompleter::adjustWidget(){
 void LatexCompleter::updateAbbreviations(){
 	REQUIRE(config);
 	QList<CompletionWord> wordsAbbrev;
-	for(int i=0;i<config->userMacro.size();i++){
-		if (config->userMacro[i].abbrev.isEmpty())
+	foreach (const Macro &macro, config->userMacros) {
+		if (macro.abbrev.isEmpty())
 			continue;
 		//CompletionWord cw(abbr);
 		// for compatibility to texmaker ...
-		QString s=config->userMacro[i].tag;
-		if (s.left(1)=="%") {
-			s=s.remove(0,1);
-			s="\\begin{"+s+"}";
+		QString s = macro.tag;
+		if (s.left(1) == "%") {
+			s = s.remove(0,1);
+			s = "\\begin{"+s+"}";
 		}
 		CompletionWord cw(s);
 		// <!compatibility>
-		cw.word=config->userMacro[i].abbrev;
+		cw.word = macro.abbrev;
 		cw.sortWord = makeSortWord(cw.word);
-		cw.setName(config->userMacro[i].abbrev+tr(" (Usertag)"));
+		cw.setName(macro.abbrev+tr(" (Usertag)"));
 		wordsAbbrev << cw;
 	}
 	listModel->setAbbrevWords(wordsAbbrev);

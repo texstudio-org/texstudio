@@ -26,7 +26,7 @@ public:
 	QStringList words;
 	QMultiMap<uint,QPair<int,int> > usage;
 
-	QList<Macro> userMacro;
+	QList<Macro> userMacros;
 
 	void setFiles(const QStringList & newFiles);
 	const QStringList& getLoadedFiles();

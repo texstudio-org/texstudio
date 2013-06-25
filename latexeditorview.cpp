@@ -104,12 +104,11 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		QDocumentLine line = editor->cursor().selectionStart().line();
 		int column = editor->cursor().selectionStart().columnNumber();
 		QString prev = line.text().mid(0, column)+text; //TODO: optimize
-		for (int i=0;i<completerConfig->userMacro.size();i++) {
-			const Macro& m = completerConfig->userMacro[i];			
+		foreach (const Macro &m, completerConfig->userMacros) {
 			if (m.trigger.isEmpty() || !(m.triggers & Macro::ST_REGEX)) continue;
 			if (!m.triggerLanguage.isEmpty() && !m.triggerLanguages.contains(language)) 
 				continue;
-			if (!m.triggerFormatsUnprocessed.isEmpty()) const_cast<Macro&>(completerConfig->userMacro[i]).initTriggerFormats();
+			if (!m.triggerFormatsUnprocessed.isEmpty()) const_cast<Macro&>(m).initTriggerFormats();
 			if (!m.triggerFormats.isEmpty() && (
 					 (!m.triggerFormats.contains(line.getFormatAt(column)) &&
 						!(column > 0 && m.triggerFormats.contains(line.getFormatAt(column-1)))))) //two checks, so it works at beginning and end of an environment
@@ -124,15 +123,15 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 					block = true;
 				if (block) editor->document()->beginMacro();
 				if (c.hasSelection()) c.removeSelectedText();
-				if (completerConfig->userMacro[i].triggerRegex.matchedLength() > 1) {
+				if (m.triggerRegex.matchedLength() > 1) {
 					c.movePosition(realMatchLen-1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 					c.removeSelectedText();
 				}
 				
 				LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
 				REQUIRE_RET(view, true);
-				view->insertMacro(completerConfig->userMacro[i].tag, r, Macro::ST_REGEX);
-				//editor->insertText(c, completerConfig->userMacro[i].tag);
+				view->insertMacro(m.tag, r, Macro::ST_REGEX);
+				//editor->insertText(c, m.tag);
 				if (block) editor->document()->endMacro();
 				editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 				/*			if (editor->languageDefinition())
