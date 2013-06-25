@@ -196,6 +196,7 @@ private slots:
 	void relayToOwnSlot();
 	void autoRunScripts();
 	void runScripts(int trigger);
+	void runScriptsInList(int trigger, const QList<Macro> &scripts);
 	
 protected slots:
 	void fileNew(QString fileName="");
