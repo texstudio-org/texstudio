@@ -1809,7 +1809,7 @@ void Texmaker::runScripts(int trigger){
 
 void Texmaker::runScriptsInList(int trigger, const QList<Macro> &scripts) {
 	foreach (const Macro &macro, scripts) {
-		if (macro.triggers & trigger)
+		if (macro.isActiveForTrigger((Macro::SpecialTrigger)trigger))
 			insertUserTag(macro.tag, trigger);
 	}
 }
@@ -2353,15 +2353,8 @@ void Texmaker::closeEvent(QCloseEvent *e) {
 
 void Texmaker::updateUserMacros(bool updateMenu){
 	if (updateMenu) configManager.updateUserMacroMenu();
-	QStringList tempLanguages = m_languages->languages();
 	for (int i=0; i<configManager.completerConfig->userMacros.size(); i++) {
-		Macro macro = configManager.completerConfig->userMacros[i];
-		if (macro.triggerLanguage.isEmpty()) continue;
-		macro.triggerLanguages.clear();
-		QRegExp tempRE(macro.triggerLanguage, Qt::CaseInsensitive);
-		for (int j=0; j<tempLanguages.size(); j++)
-			if (tempRE.exactMatch(tempLanguages[j]))
-				macro.triggerLanguages << m_languages->languageData(tempLanguages[j]).d;
+		configManager.completerConfig->userMacros[i].parseTriggerLanguage(m_languages);
 	}
 }
 

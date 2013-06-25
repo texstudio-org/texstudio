@@ -105,14 +105,9 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		int column = editor->cursor().selectionStart().columnNumber();
 		QString prev = line.text().mid(0, column)+text; //TODO: optimize
 		foreach (const Macro &m, completerConfig->userMacros) {
-			if (m.trigger.isEmpty() || !(m.triggers & Macro::ST_REGEX)) continue;
-			if (!m.triggerLanguage.isEmpty() && !m.triggerLanguages.contains(language)) 
-				continue;
-			if (!m.triggerFormatsUnprocessed.isEmpty()) const_cast<Macro&>(m).initTriggerFormats();
-			if (!m.triggerFormats.isEmpty() && (
-					 (!m.triggerFormats.contains(line.getFormatAt(column)) &&
-						!(column > 0 && m.triggerFormats.contains(line.getFormatAt(column-1)))))) //two checks, so it works at beginning and end of an environment
-				continue;
+			if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
+			if (!m.isActiveForLanguage(language)) continue;
+			if (!(m.isActiveForFormat(line.getFormatAt(column)) || (column > 0 && m.isActiveForFormat(line.getFormatAt(column-1))))) continue; //two checks, so it works at beginning and end of an environment
 			QRegExp& r = const_cast<QRegExp&>(m.triggerRegex);//a const qregexp doesn't exist
 			if (r.indexIn(prev)!=-1){
 				QDocumentCursor c = editor->cursor();

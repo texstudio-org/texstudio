@@ -235,7 +235,8 @@ SOURCES += main.cpp \
     utilsUI.cpp \
     utilsSystem.cpp \
     latexpackages.cpp \
-    cursorposition.cpp
+    cursorposition.cpp \
+    usermacro.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
