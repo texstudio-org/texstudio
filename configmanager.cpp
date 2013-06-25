@@ -1654,24 +1654,22 @@ QMenu* ConfigManager::updateListMenu(const QString& menuName, const QStringList&
 	return menu;
 }
 
-void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems){
+void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems) {
 	QStringList macronames;
 	// remove quote replacement from list
-	for(int i=0;i<completerConfig->userMacro.count();i++){
-		Macro m=completerConfig->userMacro.at(i);
-		if(m.name==TXS_AUTO_REPLACE_QUOTE_OPEN || m.name==TXS_AUTO_REPLACE_QUOTE_CLOSE){
+	for(int i=0; i<completerConfig->userMacro.count(); i++){
+		Macro m = completerConfig->userMacro.at(i);
+		if(m.name==TXS_AUTO_REPLACE_QUOTE_OPEN || m.name==TXS_AUTO_REPLACE_QUOTE_CLOSE) {
 			completerConfig->userMacro.removeAt(i);
 			i--;
 		}
 	}
 	
-	
-	foreach (const Macro&m , completerConfig->userMacro)
+	foreach (const Macro &m , completerConfig->userMacro)
 		if (!m.document)
-			macronames<<m.name;
+			macronames << m.name;
 	
-	
-	QMenu* recreatedMenu = updateListMenu("main/macros", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
+	QMenu* recreatedMenu = updateListMenu("main/macros", macronames, "tag", true, SLOT(execUserMacro()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit &Macros..."), SLOT(editMacros()));

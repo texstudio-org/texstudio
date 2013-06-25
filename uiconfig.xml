@@ -11,7 +11,8 @@
   
   
   <menu id="sectioning" text="&amp;Sectioning">
-    <insert id="part" text="part" insert="\part{%&lt;title%>}"/>
+    <insert id="part" text="part" insert="%SCRIPT
+	alert('test')"/>
     <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}"/>
     <insert id="section" text="section" insert="\section{%&lt;title%>}"/>
     <insert id="subsection" text="subsection" insert="\subsection{%&lt;title%>}"/>
