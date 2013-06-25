@@ -134,26 +134,24 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 */
 				return true;
 			}
-
-			if (editorViewConfig->autoInsertLRM && text.length() == 1 && editor->cursor().isRTL()) {
-				if (text.at(0) == '}') {
-					bool autoOverride = editor->isAutoOverrideText("}");
-					bool previousIsLRM = editor->cursor().previousChar().unicode() == LRM;
-					bool block = previousIsLRM || autoOverride;
-					if (block) editor->document()->beginMacro();
-					if (previousIsLRM) editor->cursor().deletePreviousChar(); //todo mirrors
-					if (autoOverride) {
-						editor->write("}"); //separated, so autooverride works
-						editor->write(LRMStr);
-					} else editor->write("}"+LRMStr);
-					if (block) editor->document()->endMacro();
-					return true;
-				}
-			}
-
 		}
-		//		for (int i=0;i<LatexEditorView::completer)
-		
+
+		if (editorViewConfig->autoInsertLRM && text.length() == 1 && editor->cursor().isRTL()) {
+			if (text.at(0) == '}') {
+				bool autoOverride = editor->isAutoOverrideText("}");
+				bool previousIsLRM = editor->cursor().previousChar().unicode() == LRM;
+				bool block = previousIsLRM || autoOverride;
+				if (block) editor->document()->beginMacro();
+				if (previousIsLRM) editor->cursor().deletePreviousChar(); //todo mirrors
+				if (autoOverride) {
+					editor->write("}"); //separated, so autooverride works
+					editor->write(LRMStr);
+				} else editor->write("}"+LRMStr);
+				if (block) editor->document()->endMacro();
+				return true;
+			}
+		}
+
 	} else {
 		if (event->key() == Qt::Key_Control) {
 			editor->setMouseTracking(true);
