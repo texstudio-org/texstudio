@@ -69,6 +69,8 @@ public:
 	virtual bool mouseMoveEvent(QMouseEvent *event, QEditor *editor);
 	virtual bool contextMenuEvent(QContextMenuEvent *event, QEditor *editor);
 private:
+	bool runMacros(QKeyEvent *event, QEditor *editor);
+	bool autoInsertLRM(QKeyEvent *event, QEditor *editor);
 	friend class LatexEditorView;
 	const LatexCompleterConfig* completerConfig;
 	const LatexEditorViewConfig* editorViewConfig;
@@ -82,6 +84,66 @@ private:
 };
 
 static const QString LRMStr = QChar(LRM);
+
+bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor) {
+	Q_ASSERT(completerConfig);
+	QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : 0;
+	QDocumentLine line = editor->cursor().selectionStart().line();
+	int column = editor->cursor().selectionStart().columnNumber();
+	QString prev = line.text().mid(0, column) + event->text(); //TODO: optimize
+	foreach (const Macro &m, completerConfig->userMacros) {
+		if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
+		if (!m.isActiveForLanguage(language)) continue;
+		if (!(m.isActiveForFormat(line.getFormatAt(column)) || (column > 0 && m.isActiveForFormat(line.getFormatAt(column-1))))) continue; //two checks, so it works at beginning and end of an environment
+		QRegExp& r = const_cast<QRegExp&>(m.triggerRegex);//a const qregexp doesn't exist
+		if (r.indexIn(prev)!=-1){
+			QDocumentCursor c = editor->cursor();
+			bool block = false;
+			int realMatchLen = r.matchedLength();
+			if (m.triggerLookBehind) realMatchLen -= r.cap(1).length();
+			if (c.hasSelection() || realMatchLen > 1)
+				block = true;
+			if (block) editor->document()->beginMacro();
+			if (c.hasSelection()) c.removeSelectedText();
+			if (m.triggerRegex.matchedLength() > 1) {
+				c.movePosition(realMatchLen-1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+				c.removeSelectedText();
+			}
+
+			LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
+			REQUIRE_RET(view, true);
+			view->insertMacro(m.tag, r, Macro::ST_REGEX);
+			//editor->insertText(c, m.tag);
+			if (block) editor->document()->endMacro();
+			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
+			/*			if (editor->languageDefinition())
+editor->languageDefinition()->clearMatches(editor->document());
+*/
+			return true;
+		}
+	}
+	return false;
+}
+
+bool DefaultInputBinding::autoInsertLRM(QKeyEvent *event, QEditor *editor) {
+	const QString & text = event->text();
+	if (editorViewConfig->autoInsertLRM && text.length() == 1 && editor->cursor().isRTL()) {
+		if (text.at(0) == '}') {
+			bool autoOverride = editor->isAutoOverrideText("}");
+			bool previousIsLRM = editor->cursor().previousChar().unicode() == LRM;
+			bool block = previousIsLRM || autoOverride;
+			if (block) editor->document()->beginMacro();
+			if (previousIsLRM) editor->cursor().deletePreviousChar(); //todo mirrors
+			if (autoOverride) {
+				editor->write("}"); //separated, so autooverride works
+				editor->write(LRMStr);
+			} else editor->write("}"+LRMStr);
+			if (block) editor->document()->endMacro();
+			return true;
+		}
+	}
+	return false;
+}
 
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
@@ -97,61 +159,11 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		else LatexEditorView::completer->complete(editor,0);
 		return true;
 	}
-	QString text = event->text();
-	if (!text.isEmpty()) {
-		Q_ASSERT(completerConfig); 
-		QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : 0;
-		QDocumentLine line = editor->cursor().selectionStart().line();
-		int column = editor->cursor().selectionStart().columnNumber();
-		QString prev = line.text().mid(0, column)+text; //TODO: optimize
-		foreach (const Macro &m, completerConfig->userMacros) {
-			if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
-			if (!m.isActiveForLanguage(language)) continue;
-			if (!(m.isActiveForFormat(line.getFormatAt(column)) || (column > 0 && m.isActiveForFormat(line.getFormatAt(column-1))))) continue; //two checks, so it works at beginning and end of an environment
-			QRegExp& r = const_cast<QRegExp&>(m.triggerRegex);//a const qregexp doesn't exist
-			if (r.indexIn(prev)!=-1){
-				QDocumentCursor c = editor->cursor();
-				bool block = false;
-				int realMatchLen = r.matchedLength();
-				if (m.triggerLookBehind) realMatchLen -= r.cap(1).length();
-				if (c.hasSelection() || realMatchLen > 1)
-					block = true;
-				if (block) editor->document()->beginMacro();
-				if (c.hasSelection()) c.removeSelectedText();
-				if (m.triggerRegex.matchedLength() > 1) {
-					c.movePosition(realMatchLen-1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-					c.removeSelectedText();
-				}
-				
-				LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
-				REQUIRE_RET(view, true);
-				view->insertMacro(m.tag, r, Macro::ST_REGEX);
-				//editor->insertText(c, m.tag);
-				if (block) editor->document()->endMacro();
-				editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
-				/*			if (editor->languageDefinition())
-  editor->languageDefinition()->clearMatches(editor->document());
-*/
-				return true;
-			}
-		}
-
-		if (editorViewConfig->autoInsertLRM && text.length() == 1 && editor->cursor().isRTL()) {
-			if (text.at(0) == '}') {
-				bool autoOverride = editor->isAutoOverrideText("}");
-				bool previousIsLRM = editor->cursor().previousChar().unicode() == LRM;
-				bool block = previousIsLRM || autoOverride;
-				if (block) editor->document()->beginMacro();
-				if (previousIsLRM) editor->cursor().deletePreviousChar(); //todo mirrors
-				if (autoOverride) {
-					editor->write("}"); //separated, so autooverride works
-					editor->write(LRMStr);
-				} else editor->write("}"+LRMStr);
-				if (block) editor->document()->endMacro();
-				return true;
-			}
-		}
-
+	if (!event->text().isEmpty()) {
+		if (runMacros(event, editor))
+			return true;
+		if (autoInsertLRM(event, editor))
+			return true;
 	} else {
 		if (event->key() == Qt::Key_Control) {
 			editor->setMouseTracking(true);
