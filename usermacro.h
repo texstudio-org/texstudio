@@ -19,7 +19,6 @@ public:
 	Macro();
 	Macro(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
 	Macro(const QStringList &fieldList);
-	void init(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
 	QString name, tag, abbrev;
 	QString trigger;
 	QRegExp triggerRegex;
@@ -34,6 +33,7 @@ public:
 	
 	LatexDocument* document;
 private:
+	void init(const QString& nname, const QString& ntag, const QString& nabbrev, const QString& ntrigger);
 	void initTriggerFormats();
 
 	SpecialTriggers triggers;

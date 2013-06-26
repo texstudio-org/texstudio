@@ -2447,7 +2447,7 @@ void LatexDocument::updateMagicCommentScripts(){
 	
 	localMacros.clear();
 	
-	QRegExp trigger(" *// *(Trigger) *[:=](.*)");
+	QRegExp rxTrigger(" *// *(Trigger) *[:=](.*)");
 	
 	StructureEntryIterator iter(magicCommentList);
 	while (iter.hasNext()) {
@@ -2455,23 +2455,21 @@ void LatexDocument::updateMagicCommentScripts(){
 		QString seName, val;
 		splitMagicComment(se->title, seName, val);
 		if (seName=="TXS-SCRIPT") {
-			Macro newMacro;
-			newMacro.name = val;
-			newMacro.trigger = "";
-			newMacro.abbrev = "";
-			newMacro.tag = "%SCRIPT\n";
+			QString name = val;
+			QString trigger = "";
+			QString tag = "%SCRIPT\n";
 			
 			int l = se->getRealLineNumber() + 1;
 			for (; l < lineCount(); l++) {
 				QString lt = line(l).text().trimmed();
 				if (lt.endsWith("TXS-SCRIPT-END") || !(lt.isEmpty() || lt.startsWith("%"))  ) break;
 				lt.remove(0,1);
-				newMacro.tag += lt + "\n";
-				if (trigger.exactMatch(lt))
-					newMacro.trigger = trigger.cap(2).trimmed();
+				tag += lt + "\n";
+				if (rxTrigger.exactMatch(lt))
+					trigger = rxTrigger.cap(2).trimmed();
 			}
 			
-			newMacro.init(newMacro.name,newMacro.tag,newMacro.abbrev,newMacro.trigger);
+			Macro newMacro(name, tag, "", trigger);
 			newMacro.document = this;
 			localMacros.append(newMacro);
 		}
