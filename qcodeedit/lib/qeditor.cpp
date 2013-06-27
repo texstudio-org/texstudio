@@ -3156,7 +3156,13 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 #ifdef Q_WS_MAC
     QString preEdit=e->preeditString();
     if( !preEdit.isEmpty()){
-        int i=m_cursor.columnNumber();
+        int i=-1;
+        if(preEditSet){
+            i=preEditColumnNumber;
+            m_cursor.movePosition(preEditLength,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
+        }else{
+            i=m_cursor.columnNumber();
+        }
         m_cursor.insertText(preEdit);
         m_cursor.line().addOverlay(QFormatRange(i,preEdit.length(),m_preEditFormat));
         preEditSet=true;
