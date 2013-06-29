@@ -784,7 +784,7 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 		alignment = "l"; // may be more. But thats caught by the fallback (filling with additional "l").
 	}
 	// assume alignment in second arg except for the following environments (which have it in the third one)
-	else if (tabularNames.contains(tableType)) {
+    else if (args.count() > 1 && tabularNames.contains(tableType)) {
 		alignment = args.at(1).value;
 	} else if (tabularNamesWithOneOption.contains(tableType)) {
 		if (args.count()<3) alignment = ""; // incomplete definition -> fall back to defaults
