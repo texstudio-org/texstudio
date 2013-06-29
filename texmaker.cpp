@@ -7767,8 +7767,9 @@ void Texmaker::removeDiffMarkers(bool theirs){
 	
 	diffRemoveMarkers(doc,theirs);
 	QList<QObject *>lst=doc->children();
-	qDeleteAll(lst);
-	
+	foreach (QObject* o, lst)
+		delete o;
+
 	LatexEditorView *edView=currentEditorView();
 	edView->documentContentChanged(0,edView->document->lines());
 	

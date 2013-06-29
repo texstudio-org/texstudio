@@ -123,7 +123,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool clone
 
 
 QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column, int lineTo, int columnTo)
- : QObject(doc),m_handle(new QDocumentCursorHandle(doc, line, column, lineTo, columnTo))
+ : QObject(0),m_handle(new QDocumentCursorHandle(doc, line, column, lineTo, columnTo))
 {
 	m_handle->ref();
 }
