@@ -778,7 +778,18 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	QList<CommandArgument> args = getCommandOptions(text, index, &cellsStart);
 	if (args.count() < 1) return;
 	QString tableType = args.at(0).value;
-	
+    // special treatment for tabu/longtabu
+    if((tableType=="tabu" || tableType=="longtabu")&& args.count()==1){ //special treatment for tabu to linewidth etc.
+            int startExtra=cellsStart;
+            int endExtra=text.indexOf("{",startExtra);
+            if(endExtra>=0 && endExtra>startExtra){
+                QString textHelper=text;
+                textHelper.remove(startExtra,endExtra-startExtra); // remove to/spread definition
+                args = getCommandOptions(textHelper, index, &cellsStart);
+                cellsStart+=endExtra-startExtra;
+            }
+    }
+
 	QString alignment;
 	if (args.count() < 2 && mathTables.contains(tableType)) {
 		alignment = "l"; // may be more. But thats caught by the fallback (filling with additional "l").
@@ -789,14 +800,12 @@ void LatexTables::alignTableCols(QDocumentCursor &cur){
 	} else if (tabularNamesWithOneOption.contains(tableType)) {
 		if (args.count()<3) alignment = ""; // incomplete definition -> fall back to defaults
 		else alignment = args.at(2).value;
-	} else return; // not a registered table environment
-	
+    } else return; // not a registered table environment
 	int cellsEnd = text.indexOf("\\end{"+tableType);
 	if (cellsEnd<0) return;
 	QString beginPart = text.left(cellsStart);
 	QString endPart = text.mid(cellsEnd);
-	
-	
+		
 	LatexTableModel ltm;
 	ltm.setContent(text.mid(cellsStart, cellsEnd-cellsStart));
 	
