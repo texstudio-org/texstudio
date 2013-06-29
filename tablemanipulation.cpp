@@ -416,6 +416,19 @@ QString LatexTables::getDef(QDocumentCursor &cur){
 		if(!env.startsWith("{")||!env.endsWith("}")) return QString();
 		env=env.mid(1);
 		env.chop(1);
+        // special treatment for tabu/longtabu
+        if((env=="tabu"||env=="longtabu")&&values.count()<2){
+            int startExtra=pos+env.length()+2;
+            int endExtra=line.indexOf("{",startExtra);
+            if(endExtra>=0 && endExtra>startExtra){
+                QString textHelper=line;
+                textHelper.remove(startExtra,endExtra-startExtra); // remove to/spread definition
+                LatexParser::resolveCommandOptions(textHelper,pos,values,&starts);
+                for(int i=1;i<starts.count();i++){
+                    starts[i]+=endExtra-startExtra;
+                }
+            }
+        }
 		int numberOfOptions=-1;
 		if(tabularNames.contains(env)) numberOfOptions=0;
 		if(tabularNamesWithOneOption.contains(env)) numberOfOptions=1;
