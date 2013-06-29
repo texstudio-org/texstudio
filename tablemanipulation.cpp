@@ -642,6 +642,7 @@ QStringList LatexTables::splitColDef(QString def){
 						multiplier=0;
 					}
 					multiplier_str.clear();
+                    inMultiplier=false;
 				}
 			}
 		}
@@ -652,6 +653,18 @@ QStringList LatexTables::splitColDef(QString def){
 			inDef=true;
 		if(ch=='{')
 			curl++;
+        if(inMultiplier && curl==0){ // multiplier not in braces
+            multiplier_str.append(ch);
+            bool ok;
+            multiplier=multiplier_str.toInt(&ok);
+            if(ok){
+                inMultiplied=true;
+            }else{
+                multiplier=0;
+            }
+            multiplier_str.clear();
+            inMultiplier=false;
+        }
 		if(ch=='s' || ch=='S') {
 
 		}
@@ -660,7 +673,7 @@ QStringList LatexTables::splitColDef(QString def){
 		if(ch==']')
 			sqrBracket--;
 		if((ch.isLetter() || ch==']') && !inAt && !inDef && curl==0 && sqrBracket==0){
-			if ((ch=='s' || ch=='S') && i+1<def.length() && def.at(i+1)=='[')
+            if ((ch=='s' || ch=='S' || ch=='X') && i+1<def.length() && def.at(i+1)=='[')
 				continue;
 			if((i+1<def.length()) && def.at(i+1)=='{'){
 				appendDef=true;
@@ -685,6 +698,16 @@ void LatexTables::simplifyColDefs(QStringList &colDefs) {
 	for (int i=0; i<colDefs.count(); i++) {
 		QString colDef = colDefs.at(i);
 		colDef.remove('|');
+        if (colDef.startsWith('>')) {
+            if (colDef.at(1) == '{') {
+                int start=1;
+                int cb = findClosingBracket(colDef, start);
+                if (cb >= 0 && colDef.at(cb) == '}' && cb+1 < colDef.length()) colDef=colDef.mid(cb+1);
+                else colDef="l"; // fall back
+            } else {
+                colDef="l"; // fall back
+            }
+        }
 		if (colDef.startsWith('@')) {
 			if (colDef.at(1) == '{') {
 				int start=1;
@@ -694,11 +717,16 @@ void LatexTables::simplifyColDefs(QStringList &colDefs) {
 			} else {
 				colDef="l"; // fall back
 			}
-		} else if(colDef.length() >= 2 && colDef.at(1) == '{') {
+        }
+        if(colDef.length() >= 2 && colDef.at(1) == '{') {
 			colDef = colDef.at(0);
-		} else if(colDef.length() >= 2 && colDef.at(1) == '[') {
+        }
+        if(colDef.length() >= 2 && colDef.at(1) == '[') {
 			colDef = colDef.at(0);
 		}
+        if(colDef.length() >= 2 && colDef.at(1) == '<') {
+            colDef = colDef.at(0);
+        }
 		colDefs.replace(i, colDef);
 	}
 }
