@@ -11,11 +11,11 @@
   
   
   <menu id="sectioning" text="&amp;Sectioning">
-    <insert id="part" text="part" insert="\part{%&lt;title%>}"/>
-    <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}"/>
-    <insert id="section" text="section" insert="\section{%&lt;title%>}"/>
-    <insert id="subsection" text="subsection" insert="\subsection{%&lt;title%>}"/>
-    <insert id="subsubsection" text="subsubsection" insert="\subsubsection{%&lt;title%>}"/>
+    <insert id="part" text="part" insert="\part{%&lt;title%>}" icon="part"/>
+    <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}" icon="chapter"/>
+    <insert id="section" text="section" insert="\section{%&lt;title%>}" icon="section"/>
+    <insert id="subsection" text="subsection" insert="\subsection{%&lt;title%>}" icon="subsection"/>
+    <insert id="subsubsection" text="subsubsection" insert="\subsubsection{%&lt;title%>}" icon="subsubsection"/>
     <insert id="paragraph" text="paragraph" insert="\paragraph{%&lt;title%>}"/>
     <insert id="subparagraph" text="subparagraph" insert="\subparagraph{%&lt;title%>}"/>
 
