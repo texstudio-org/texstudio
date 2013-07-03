@@ -173,7 +173,6 @@ private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
 	void openPackageDocumentation(QString package = QString());
-	void openPackageDocumentationError();
 	void emitChangeDiff();
 	void emitGotoDefinitionFromAction();
 	void emitSyncPDFFromAction();
