@@ -136,7 +136,8 @@ HEADERS += texmaker.h \
     utilsSystem.h \
     utilsVersion.h \
     latexpackages.h \
-    cursorposition.h
+    cursorposition.h \
+    tests/help_t.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \

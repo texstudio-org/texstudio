@@ -32,11 +32,9 @@ void Help::viewTexdoc(QString package)
 		package = act->data().toString();
 	}
 	if (!package.isEmpty()) {
-		QStringList args;
-		args << "--view" << package;
 		QProcess proc(this);
 		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
-		proc.start("texdoc", args);
+		proc.start("texdoc", QStringList() << "--view" << package);
 		if (!proc.waitForFinished(2000)) {
 			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
 			return;
@@ -54,7 +52,39 @@ bool Help::isMiktexTexdoc() {
 		QString answer = QString(proc.readAll());
         texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
 	}
-    return (texDocSystem==1);
+	return (texDocSystem==1);
+}
+
+QString Help::packageDocFile(const QString &package) {
+	QStringList args;
+	if (Help::isMiktexTexdoc()) {
+		args << "--list-only";
+	} else {
+		args << "--list" << "--machine";
+	}
+	args << package;
+	QProcess proc;
+	proc.start("texdoc", args);
+	if (!proc.waitForFinished(2000)) {
+		txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
+		return QString();
+	}
+	QString output = proc.readAllStandardOutput();
+	QStringList allFiles;
+	if (Help::isMiktexTexdoc()) {
+		allFiles = output.split("\r\n");
+	} else {
+		foreach (const QString &line, output.split("\n")) {
+			QStringList cols = line.simplified().split(" ");
+			if (cols.count() > 2)
+				allFiles << cols.at(2);
+		}
+	}
+	foreach (const QString &file, allFiles) {
+		if (file.endsWith(".pdf") || file.endsWith(".dvi"))
+			return file;
+	}
+	return QString();
 }
 
 void Help::texdocAvailableRequest(const QString &package)
@@ -90,8 +120,7 @@ void Help::texdocAvailableRequestFinished(int exitCode)
 }
 
 
-void Help::viewTexdocError()
-{
+void Help::viewTexdocError() {
 	QProcess *proc = qobject_cast<QProcess*>(sender());
 	if (proc) {
 		txsWarning(proc->readAllStandardError());

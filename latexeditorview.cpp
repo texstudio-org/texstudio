@@ -1265,80 +1265,36 @@ void LatexEditorView::openExternalFile(){
 }
 
 void LatexEditorView::openPackageDocumentation(QString package){
-    QString command;
+	QString command;
 	if (package.isEmpty()) {
 		QAction *act = qobject_cast<QAction*>(sender());
 		if (!act) return;
 		package = act->data().toString();
 	}
-    if(package.contains("#")){
-        int i=package.indexOf("#");
-        command=package.mid(i+1);
-        package=package.left(i);
-    }
-    // replace some package denominations
-    if(package=="latex-document"||package=="latex-dev"||package=="latex-mathsymbols")
-        package="latex2e";
-    if(package=="class-scrartcl,scrreprt,scrbook")
-        package="scrartcl";
-    if(package.startsWith("class-"))
-        package=package.mid(6);
-	if (!package.isEmpty()) {
-        if(config->texdocHelpInInternalViewer){
-            QStringList args;
-            if(Help::isMiktexTexdoc()){
-                args << "--list-only";
-            }
-            else {
-                args << "--list" << "--machine";
-            }
-            args << package;
-            QProcess proc(this);
-            //connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
-            proc.start("texdoc", args);
-            if (!proc.waitForFinished(2000)) {
-                txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
-                return;
-            }
-            QString output=proc.readAllStandardOutput();
-	    if(Help::isMiktexTexdoc()){
-		QStringList lst=output.split("\r\n");
-		for(int i=0;i<lst.count();i++){
-		    output=lst.at(i);
-		    if(output.endsWith(".pdf"))
-			emit openInternalDocViewer(output,command);
-		}
-	    }else{
-		QStringList lst=output.split("\n");
-		if(lst.count()>0){
-		    output=lst.first();
-		    output=output.simplified();
-		    lst=output.split(" ");
-		    if(lst.count()>2){
-			output=lst.at(2);
-			if(output.endsWith(".pdf"))
-			    emit openInternalDocViewer(output,command);
-		    }
-		}
-	    }
-        }else{
-            QStringList args;
-            args << "--view" << package;
-            QProcess proc(this);
-            connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(openPackageDocumentationError()));
-            proc.start("texdoc", args);
-            if (!proc.waitForFinished(2000)) {
-                txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
-                return;
-            }
-        }
+	if (package.contains("#")) {
+		int i = package.indexOf("#");
+		command = package.mid(i+1);
+		package = package.left(i);
 	}
-}
-
-void LatexEditorView::openPackageDocumentationError() {
-	QProcess *proc = qobject_cast<QProcess*>(sender());
-	if (proc) {
-		txsWarning(proc->readAllStandardError());
+	// replace some package denominations
+	if (package=="latex-document" || package=="latex-dev" || package=="latex-mathsymbols")
+		package = "latex2e";
+	if (package=="class-scrartcl,scrreprt,scrbook")
+		package = "scrartcl";
+	if (package.startsWith("class-"))
+		package = package.mid(6);
+	if (!package.isEmpty()) {
+		if(config->texdocHelpInInternalViewer) {
+			QString docfile = Help::packageDocFile(package);
+			if (docfile.isEmpty())
+				return;
+			if (docfile.endsWith(".pdf"))
+				emit openInternalDocViewer(docfile, command);
+			else
+				Help::instance()->viewTexdoc(package); // fallback e.g. for dvi
+		}else{
+			Help::instance()->viewTexdoc(package);
+		}
 	}
 }
 
