@@ -2052,6 +2052,8 @@ void Texmaker::insertTableTemplate() {
 void Texmaker::alignTableCols() {
   if (!currentEditor()) return;
   QDocumentCursor cur(currentEditor()->cursor());
+  if(!cur.isValid())
+      return;
   LatexTables::alignTableCols(cur);
 }
 
