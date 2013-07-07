@@ -418,6 +418,7 @@ void QDocumentLine::removeCookie(int type){
 }
 
 bool QDocumentLine::isRTL() const{
+    if (!m_handle) return false;
 	return m_handle->isRTL();
 }
 

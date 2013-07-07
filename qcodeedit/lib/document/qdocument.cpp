@@ -4478,7 +4478,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int beg = 0, end = m_doc->lines();
 
 #if QT_VERSION >= 0x040800
-    if (l1.isValid() && l1.isRTL()) { //sanity check added
+    if (l1.isRTL()) { //sanity check added
 		int tempOffset = m_begOffset;
 		switch (op) {
 		case QDocumentCursor::Left:
