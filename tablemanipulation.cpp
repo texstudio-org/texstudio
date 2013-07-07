@@ -532,13 +532,14 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur){
 int LatexTables::getNumOfColsInMultiColumn(const QString &str, QString *outAlignment, QString *outText){
 	//return the number of columns in mulitcolumn command
 	QStringList values;
-	LatexParser::resolveCommandOptions(str,0,values);
+    QString zw=str.trimmed();
+    LatexParser::resolveCommandOptions(zw,0,values);
 	if(values.length() != 3) return -1;
 	
 	if (outAlignment) *outAlignment = LatexParser::removeOptionBrackets(values.at(1));
 	if (outText) *outText = LatexParser::removeOptionBrackets(values.at(2));
 	
-	QString zw=values.takeFirst();
+    zw=values.takeFirst();
 	if(zw.startsWith("{")&&zw.endsWith("}")){
 		zw.chop(1);
 		zw=zw.mid(1);
