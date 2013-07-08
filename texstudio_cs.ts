@@ -79,6 +79,10 @@
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
         <translation>TeXstudio používá QuaZip (LGPL, autorské právo (c) 2005-2012 Sergey A. Tachenov a přispěvatelé).</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -2415,6 +2419,10 @@ vidět jen nejběžnější nastavení.</translation>
         <source>Sweave / Pweave</source>
         <translation>Sweave/Pweave</translation>
     </message>
+    <message>
+        <source>Remember selected file filter in open/save dialog </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3320,6 +3328,10 @@ Musíte se ujistit, že kódování souboru a hodnota poslaná balíčku inputen
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation>Texdocu trvalo příliš dlouho otevření dokumentace pro balíček:</translation>
     </message>
+    <message>
+        <source>texdoc did not respond to query on package:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>InsertGraphics</name>
@@ -3759,7 +3771,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation>Texdocu trvalo příliš dlouho otevření dokumentace pro balíček:</translation>
+        <translation type="obsolete">Texdocu trvalo příliš dlouho otevření dokumentace pro balíček:</translation>
     </message>
     <message>
         <source>Save Preview Image</source>
@@ -6705,24 +6717,20 @@ se nepodařilo odstranit.</translation>
         <translation>Nemáte oprávnění pro čtení tohoto souboru:</translation>
     </message>
     <message>
-        <source>TeXstudio found user templates in deprecated locations.
->From now on user templates are hosted at
-%1
-Should TeXstudio move the existing user templates there?
-If not, they will not be available via the Make Template dialog.</source>
-        <translation>TeXstudio nalezlo uživatelské předlohy v odmítnutých umístěních.
-Od nynějška jsou uživatelské předlohy hostěny na
-%1
-Má tam TeXstudio přemístit stávající uživatelské předlohy?
-Pokud ne, nebudou dostupné přes dialog Vytvořit předlohu.</translation>
-    </message>
-    <message>
         <source>Unnamed Resource</source>
         <translation>Nepojmenovaný zdroj</translation>
     </message>
     <message>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
         <translation>Cílová složka není prázdná. Doporučuje se použít nových složek, jinak mohou být stávající soubory přepsány. Chcete tuto složku přesto použít?</translation>
+    </message>
+    <message>
+        <source>TeXstudio found user templates in deprecated locations.
+From now on user templates are hosted at
+%1
+Should TeXstudio move the existing user templates there?
+If not, they will not be available via the Make Template dialog.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8809,6 +8817,14 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     <message>
         <source>Grammar Mistake Special %1</source>
         <translation>Zvláštní mluvnický omyl %1</translation>
+    </message>
+    <message>
+        <source>Expand Subitems</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse Subitems</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
