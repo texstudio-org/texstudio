@@ -2001,6 +2001,23 @@ void Texmaker::insertTableTemplate() {
 			env=values.takeFirst();
 			env.remove(0,1);
 			env.remove(env.length()-1,1);
+            // special treatment for tabu/longtabu
+            if((env=="tabu"||env=="longtabu")&&values.count()<1){
+                int startExtra=env.length()+8;
+                int endExtra=tableText.indexOf("{",startExtra);
+                if(endExtra>=0 && endExtra>startExtra){
+                    QString textHelper=tableText;
+                    textHelper.remove(startExtra,endExtra-startExtra); // remove to/spread definition
+                    values.clear();
+                    starts.clear();
+                    LatexParser::resolveCommandOptions(textHelper,0,values,&starts);
+                    for(int i=1;i<starts.count();i++){
+                        starts[i]+=endExtra-startExtra;
+                    }
+                }
+                if(!values.isEmpty())
+                    values.takeFirst();
+            }
 			if(LatexTables::tabularNames.contains(env)){
 				if(!values.isEmpty()){
 					int i=starts.at(1);
