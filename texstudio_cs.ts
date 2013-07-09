@@ -81,7 +81,7 @@
     </message>
     <message>
         <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Toto je vývojářská verze.&lt;/b&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -2421,7 +2421,7 @@ vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation type="unfinished"></translation>
+        <translation>Pamatovat si vybraný souborový filtr v dialogu pro otevírání/ukládání</translation>
     </message>
 </context>
 <context>
@@ -3330,7 +3330,7 @@ Musíte se ujistit, že kódování souboru a hodnota poslaná balíčku inputen
     </message>
     <message>
         <source>texdoc did not respond to query on package:</source>
-        <translation type="unfinished"></translation>
+        <translation>Texdoc neodpověděl na dotaz k balíčku:</translation>
     </message>
 </context>
 <context>
@@ -6730,7 +6730,12 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio nalezlo uživatelské předlohy v zastaralém umístění.
+Od této verze jsou uživatelské předlohy uloženy v následujícím adresáři:
+%1
+Má tam TeXstudio přemístit stávající uživatelské předlohy?
+Jen v tom případě mohou být tyto předlohy dále používány
+z TeXstudia.</translation>
     </message>
 </context>
 <context>
@@ -8820,11 +8825,11 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Expand Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit podpoložky</translation>
     </message>
     <message>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation>Složit podpoložky</translation>
     </message>
 </context>
 <context>
