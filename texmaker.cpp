@@ -98,7 +98,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
     registerCrashHandler(crashHandlerType);
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
-	t->start(3000);
+	t->start(9500);
 
 	setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
