@@ -1077,7 +1077,7 @@ void Guardian::run(){
 	while (running) {
 		int slowOperationWait = slowOperations * 15;
 		do {
-			sleep(4);
+			sleep(10);
 			slowOperationWait -= 1;
 		} while (slowOperationWait >= 0);
 		
@@ -1091,7 +1091,7 @@ void Guardian::run(){
 		if (lastTick == mainEventLoopTicks) errors++;
 		else errors = 0;
 		lastTick = mainEventLoopTicks;
-		if (errors >= 10) {
+		if (errors >= 60) {
 			fprintf(stderr, "Main thread in trouble\n");
 #ifdef HAS_DEBUGGER_PRESENT
 			if (IsDebuggerPresent()) return;
@@ -1103,7 +1103,7 @@ void Guardian::run(){
 				if (repetitions > 50) break;  //give up for now
 			}
 			if (repetitions < 50) //recovered
-				errors = 0;
+				errors -= 6 ; //wait 1 min now
 			//if (repetitions < 50) return; the crash handler can't be debugged, if this thread continues calling it
 		}
 	}
