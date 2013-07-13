@@ -8,6 +8,8 @@ TeXstudio 2.6.0 -> TeXstudio 2.6.2
 - better detection of LagnuageTool
 - similarity dictionary
 - "Align Table Columns" now works also for tabu/longtabu
+- updated poppler library, now displays PDF annotations like highlight and underline
+- updated to Qt 4.8.5 (Windows installer)
 - fix: user templates are editable again
 - fix: broken SVN Undo
 - fix: bug when typing '}' in RTL languages
