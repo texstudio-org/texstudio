@@ -1,5 +1,20 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.6.0 -> TeXstudio 2.6.2
+-----------------------------------------
+- structure tree view: context menu entries to recursively collapse/expand the structure
+- improved hard line wrap with joining lines
+- View -> Focus Viewer now also works for the windowed viewer
+- better detection of LagnuageTool
+- similarity dictionary
+- "Align Table Columns" now works also for tabu/longtabu
+- fix: user templates are editable again
+- fix: broken SVN Undo
+- fix: bug when typing '}' in RTL languages
+- fix: pinyin input method problem on mac
+- fix: Opening package documentation in non-PDF formats
+- more small corrections and improvements
+
 TeXstudio 2.5.2 -> TeXstudio 2.6.0
 -----------------------------------------
 - Retina Mac support
