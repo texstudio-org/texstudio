@@ -156,7 +156,7 @@ public:
     Q_INVOKABLE QStringList containedPackages();
     void updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate=false);
 	
-	QString spellingDictName() const {
+	Q_INVOKABLE QString spellingDictName() const {
 		return mSpellingDictName;
 	}
 	Q_INVOKABLE QString getMagicComment(const QString& name);
