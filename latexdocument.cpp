@@ -2109,12 +2109,14 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->tooltip = QString();
 		se->valid = false;
 	}
+	QString lowerName = name.toLower();
 
-	if (name.toLower() == "spellcheck") {
+
+	if (lowerName == "spellcheck") {
 		mSpellingDictName = val;
 		emit spellingDictChanged(mSpellingDictName);
 		se->valid = true;
-	} else if ((name.toLower() == "texroot")||(name.toLower() == "root")){
+	} else if ((lowerName == "texroot")||(lowerName == "root")){
 		QString fname=findFileName(val);
 		LatexDocument* dc=parent->findDocumentFromName(fname);
 		if(dc)	setMasterDocument(dc);
@@ -2122,7 +2124,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 			parent->addDocToLoad(fname);
 		}
 		se->valid = true;
-	} else if (name.toLower() == "encoding") {
+	} else if (lowerName == "encoding") {
 		bool hasUndo = canUndo();
 		QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
 		if (!codec) {
@@ -2132,7 +2134,9 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		setCodec(codec);
 		if (!hasUndo) clearUndo(); // changing the codec pushes an entry to the undo/redo stack we don't want this for the first parsing at loading
 		se->valid = true;
-	} else if (name.toLower() == "txs-script") {
+	} else if (lowerName == "txs-script") {
+		se->valid = true;
+	} else if (lowerName == "program" || lowerName.startsWith("program:")) {
 		se->valid = true;
 	} else {
 		se->tooltip = tr("Unknown magic comment");
