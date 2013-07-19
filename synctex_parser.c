@@ -71,6 +71,8 @@ Thu Jun 19 09:39:21 UTC 2008
 #       endif
 #   endif
 
+#define SYNCTEX_UNUSED(x) {(void)(x);}
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -1896,6 +1898,8 @@ synctex_status_t _synctex_setup_visible_box(synctex_node_t box) {
 synctex_status_t _synctex_hbox_setup_visible(synctex_node_t node,int h, int v) {
 #	ifdef __DARWIN_UNIX03
 #       pragma unused(v)
+#   else
+		SYNCTEX_UNUSED(v)
 #   endif
 	int itsBtm, itsTop;
 	if (NULL == node || node->class->type != synctex_node_type_hbox) {
@@ -3405,6 +3409,8 @@ int synctex_node_child_count(synctex_node_t node) {
 int synctex_node_column(synctex_node_t node) {
 #	ifdef __DARWIN_UNIX03
 #       pragma unused(node)
+#   else
+		SYNCTEX_UNUSED(node)
 #   endif
 	return -1;
 }
@@ -3441,6 +3447,8 @@ synctex_node_t synctex_sheet_content(synctex_scanner_t scanner,int page) {
 int synctex_display_query(synctex_scanner_t scanner,const char * name,int line,int column) {
 #	ifdef __DARWIN_UNIX03
 #       pragma unused(column)
+#   else
+		SYNCTEX_UNUSED(column)
 #   endif
 	int tag = synctex_scanner_get_tag(scanner,name);
 	size_t size = 0;
@@ -3516,7 +3524,7 @@ int synctex_display_query(synctex_scanner_t scanner,const char * name,int line,i
 			if ((SYNCTEX_START) && (SYNCTEX_END)) {
                 unsigned int best_match = -1;
                 unsigned int next_match = -1;
-                unsigned int best_weight = 0;
+				int best_weight = 0;
                 synctex_node_t * best_ref   = NULL;
 				synctex_node_t * start_ref = (synctex_node_t *)SYNCTEX_START;
 				synctex_node_t * end_ref   = (synctex_node_t *)SYNCTEX_END;
@@ -3869,6 +3877,8 @@ int _synctex_point_v_distance(synctex_point_t hitPoint, synctex_node_t node,sync
 int _synctex_point_v_distance(synctex_point_t hitPoint, synctex_node_t node,synctex_bool_t visible) {
 #	ifdef __DARWIN_UNIX03
 #       pragma unused(visible)
+#   else
+		SYNCTEX_UNUSED(visible)
 #   endif
 	if (node) {
 		int min,max;
@@ -3959,6 +3969,8 @@ synctex_bool_t _synctex_point_in_box(synctex_point_t hitPoint, synctex_node_t no
 int _synctex_node_distance_to_point(synctex_point_t hitPoint, synctex_node_t node, synctex_bool_t visible) {
 #	ifdef __DARWIN_UNIX03
 #       pragma unused(visible)
+#   else
+		SYNCTEX_UNUSED(visible)
 #   endif
 	int result = INT_MAX; /*  when the distance is meaning less (sheet, input...)  */
 	if (node) {
