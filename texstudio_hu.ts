@@ -64,7 +64,12 @@
         <translation>A TeXstudio használja a Crystal Project (LGPL) ikonjait, valamint az Oxygen ikontémát (CC-BY-SA 3.0).</translation>
     </message>
     <message>
-        <location line="-6"/>
+        <location line="-13"/>
+        <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
+        <translation>&lt;b&gt;Fejlesztői verzió.&lt;/b&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location line="+7"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
         <translation>A TeXstudio kódot tartalmaz az alábbi programokból: Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) és SyncTeX (Jerome Laurens).</translation>
     </message>
@@ -1642,7 +1647,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location line="-1559"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation type="unfinished"></translation>
+        <translation>Emlékezzen a kiválasztott fájlszűrőre párbeszédablak megnyitásakor/mentésekor</translation>
     </message>
     <message>
         <location line="+326"/>
@@ -3141,7 +3146,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location line="+30"/>
         <source>texdoc did not respond to query on package:</source>
-        <translation type="unfinished"></translation>
+        <translation>A texdoc nem válaszol az alábbi csomag lekérdezésekor:</translation>
     </message>
 </context>
 <context>
@@ -3449,17 +3454,17 @@ Invalid \caption command.</source>
         <translation type="obsolete">Nem létező nyelvi formátum</translation>
     </message>
     <message>
-        <location line="+2105"/>
+        <location line="+2107"/>
         <source>Invalid codec</source>
         <translation>Nem létező kodek</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+11"/>
         <source>Unknown magic comment</source>
         <translation>Ismeretlen mágikus megjegyzés</translation>
     </message>
     <message>
-        <location line="-2109"/>
+        <location line="-2115"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRÁFIA</translation>
     </message>
@@ -8972,13 +8977,13 @@ included document in %1</source>
         <location line="+1564"/>
         <location line="+34"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation>Almenük kinyitása</translation>
     </message>
     <message>
         <location line="-33"/>
         <location line="+34"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation>Almenük összecsukása</translation>
     </message>
     <message>
         <location line="-18"/>
