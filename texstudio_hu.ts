@@ -717,10 +717,6 @@ támogatott.</translation>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Speciális karakterek&lt;/span&gt;</translation>
     </message>
     <message>
-        <source>Show log after compiling if there are errors</source>
-        <translation type="obsolete">Napló mutatása hibák esetén</translation>
-    </message>
-    <message>
         <location line="+312"/>
         <location filename="configdialog.cpp" line="+405"/>
         <source>Shortcuts</source>
@@ -2108,20 +2104,6 @@ options again to only view the most common settings.</oldsource>
         <translation>Elérési út keresése (parancsok)</translation>
     </message>
     <message>
-        <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension&lt;br /&gt;
-prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
-&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
-&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
-&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
-&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g.example.tex)</source>
-        <translation type="obsolete">&lt;i&gt;Választások:&lt;/i&gt; a következők kombinációja &lt;b&gt;a&lt;/b&gt;: abszolút út, &lt;!--&lt;i&gt;r&lt;/i&gt;: relatív út, --&gt;&lt;b&gt;m&lt;/b&gt;: fájlnév kiterjesztés nélkül,&lt;b&gt;e&lt;/b&gt;: kiterjesztés&lt;br /&gt;
-prepend &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalmazva a kettőspontot)&lt;br /&gt;
-&lt;i&gt;Végjelek:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: zárja a választást. A következő további jelentéssel is bíró karakterek zárják a választást&lt;br /&gt;
-&lt;b&gt;&quot;&lt;/b&gt;: idézőjel bezárása, &lt;b&gt;.&lt;/b&gt; (pont) pontot rak a végére, (szóköz): szóközt rak a végére&lt;br /&gt;
-&lt;i&gt;Példák:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: teljes abszolút fájlnév idézőjelbe rakva, &lt;b&gt;?e)&lt;/b&gt; csak a kiterjesztés a pont nélkül (pl. tex), &lt;br /&gt;
-&lt;b&gt;?m&quot;&lt;/b&gt; idézőjelbe rakott fájlnév kiterjesztés nélkül (úgy, mint &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; fájlnév kiterjesztéssel (pl. pelda.tex)</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="-252"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
@@ -3450,10 +3432,6 @@ Invalid \caption command.</source>
         <translation>MÁGIKUS_MEGJEGYZÉSEK</translation>
     </message>
     <message>
-        <source>Invalid language format</source>
-        <translation type="obsolete">Nem létező nyelvi formátum</translation>
-    </message>
-    <message>
         <location line="+2107"/>
         <source>Invalid codec</source>
         <translation>Nem létező kodek</translation>
@@ -3633,10 +3611,6 @@ Invalid \caption command.</source>
         <location line="+4"/>
         <source>Expand Level %1</source>
         <translation>Szétnyitási szint: %1</translation>
-    </message>
-    <message>
-        <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="obsolete">A texdoc túl sokáig próbálta megnyitni az alábbi csomag dokumentációját:</translation>
     </message>
     <message>
         <location line="-2059"/>
@@ -4745,10 +4719,6 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
         <translation>Hiba</translation>
     </message>
     <message>
-        <source>Could not open browser</source>
-        <translation type="obsolete">A böngésző nem futtatható</translation>
-    </message>
-    <message>
         <location line="+107"/>
         <source>Go to Source</source>
         <translation>Ugrás a forrásra</translation>
@@ -5079,18 +5049,6 @@ Valószínűleg valaki helyreállította, így nem fogom felülírni (a valósz�
         <location line="+25"/>
         <source>File changed</source>
         <translation>Fájl módosult</translation>
-    </message>
-    <message>
-        <source>%1
-has been modified by another application.
-
-Undo/Redo stack would be discarded by the auto-reload.
-Do you wish to keep up to date by reloading the file?</source>
-        <translation type="obsolete">%1-t
-módosította egy másik alkalmazás.
-
-A visszavonás/újra verem elveszne az automatikus újratöltéstől.
-Naprakészen kívánja tartani a fájlt egy újratöltéssel?</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5783,10 +5741,6 @@ Akarja menteni ezeket?</translation>
         <translation>mágikusMegjegyzés</translation>
     </message>
     <message>
-        <source>sweave</source>
-        <translation type="obsolete">sweave</translation>
-    </message>
-    <message>
         <location line="+12"/>
         <source>picture</source>
         <translation>kép</translation>
@@ -6060,10 +6014,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
 </context>
 <context>
     <name>QStatusPanel</name>
-    <message>
-        <source>Line : %1 Visual column : %2 Text column : %3</source>
-        <translation type="obsolete">Sor : %1 Látható oszlop : %2 Szövegoszlop : %3</translation>
-    </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="+149"/>
         <source>(%1 min %2 s ago)</source>
@@ -7931,10 +7881,6 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>A könyvjelzőre ugráshoz kattintson</translation>
     </message>
     <message>
-        <source>untitled</source>
-        <translation type="obsolete">névtelen</translation>
-    </message>
-    <message>
         <location line="+397"/>
         <location line="+1318"/>
         <location line="+1504"/>
@@ -7976,10 +7922,6 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <location line="+5592"/>
         <source>Open Files</source>
         <translation>Nyitott fájlok</translation>
-    </message>
-    <message>
-        <source>The document contains unsaved work. Do you want to save it before closing?</source>
-        <translation type="obsolete">A dokumentum mentetlen munkát tartalmaz. Szeretné menteni bezárás előtt?</translation>
     </message>
     <message>
         <location line="-5399"/>
@@ -8288,10 +8230,6 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>M&amp;inden találat kiválasztása...</translation>
     </message>
     <message>
-        <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
-        <translation type="obsolete">Sajnos nem találom a &quot;%1&quot; fájlt</translation>
-    </message>
-    <message>
         <location line="+343"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;A TeXstudio beállításai...</translation>
@@ -8537,16 +8475,6 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Ismeretlen parancs: %1</translation>
     </message>
     <message>
-        <source>The document %1 want to override the command %2 with %3.
-Do you trust this document?</source>
-        <translation type="obsolete">A(z) %1 leírás a(z) %2 parancsot a(z) %3 paranccsal helyettesítené.
-Megbízik a leírásban?</translation>
-    </message>
-    <message>
-        <source>No, run the default command</source>
-        <translation type="obsolete">Nem, az eredeti parancsot futtatom</translation>
-    </message>
-    <message>
         <location line="-3859"/>
         <source>&amp;User</source>
         <comment>menu</comment>
@@ -8582,14 +8510,6 @@ Megbízik a leírásban?</translation>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS teszteredmények</translation>
-    </message>
-    <message>
-        <source>Yes, always run the overridden command</source>
-        <translation type="obsolete">Igen, mindig lefuttatom az átírt parancsokat</translation>
-    </message>
-    <message>
-        <source>Yes, allow all documents to use the overridden command</source>
-        <translation type="obsolete">Igen, minden esetben megengedem a leírásoknak a parancsok átírását</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="+560"/>
@@ -9025,14 +8945,6 @@ included document in %1</source>
         <location line="+7"/>
         <source>Word Repetition</source>
         <translation>Szóismétlés</translation>
-    </message>
-    <message>
-        <source>Grammer Mistake</source>
-        <translation type="obsolete">Nyelvtani hiba</translation>
-    </message>
-    <message>
-        <source>Grammer Mistake Special %1</source>
-        <translation type="obsolete">Nyelvtani hiba %1</translation>
     </message>
     <message>
         <location line="+51"/>
@@ -9961,20 +9873,6 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
         <location filename="webpublishdialog.cpp" line="+22"/>
         <source>Convert to Html</source>
         <translation>Konvertálás Html-re</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;LaTeX to Html conversion tool&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;Átalakító eszköz LaTeX-ről to Html-re&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Bitstream Vera Sans&apos;; font-size:9pt; color:#000000;&quot;&gt;Copyright 2004-2006 P.Brachet &amp;amp; J.Amblard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location line="+37"/>
