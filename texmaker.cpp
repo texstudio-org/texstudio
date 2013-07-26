@@ -1580,7 +1580,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
 			updateOpenDocumentMenu(false);
-			updateStructure(false,existingView->document);
+            updateStructure(false,existingView->document,true);
 			existingView->editor->setFocus();
 			UpdateCaption();
 			NewDocumentStatus();
@@ -1685,7 +1685,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 
     }
 	
-    updateStructure(true,doc);
+    updateStructure(true,doc,hidden);
 
     if(!hidden)
         ShowStructure();
@@ -3403,7 +3403,7 @@ void Texmaker::ShowStructure() {
 	leftPanel->setCurrentWidget(structureTreeView);
 }
 
-void Texmaker::updateStructure(bool initial,LatexDocument *doc) {
+void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
 	// collect user define tex commands for completer
 	// initialize List
     if ((!currentEditorView() || !currentEditorView()->document) && !doc) return;
@@ -3421,8 +3421,10 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc) {
         doc->updateStructure();
 	}
 	
-    updateCompleter(doc->getEditorView());
-	cursorPositionChanged();
+    if(!hidden){
+        updateCompleter(doc->getEditorView());
+        cursorPositionChanged();
+    }
 	
 	//structureTreeView->reset();
 }
@@ -5813,11 +5815,12 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             BibTeXFileInfo& bibTex=documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
 			//automatic use of cite commands
+            /* is done later, don't do twice
 			foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
                 QString temp='@'+citeCommand+"{%1}";
 				for (int i=0; i<bibTex.ids.count();i++)
 					words.insert(temp.arg(bibTex.ids[i]));
-			}
+            }*/
 			// add citation to completer for direct citation completion
 			bibIds<<bibTex.ids;
 		}

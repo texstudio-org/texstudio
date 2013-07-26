@@ -331,7 +331,7 @@ protected slots:
 	void EditorTabMoved(int from,int to);
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
-    void updateStructure(bool initial=false, LatexDocument *doc = 0);
+    void updateStructure(bool initial=false, LatexDocument *doc = 0, bool hidden=false);
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
 	void editRemovePlaceHolders();
