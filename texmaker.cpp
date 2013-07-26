@@ -1685,7 +1685,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 
     }
 	
-    updateStructure(true,doc,hidden);
+    updateStructure(true,doc,true);
 
     if(!hidden)
         ShowStructure();
@@ -3497,7 +3497,6 @@ void Texmaker::editRemovePlaceHolders(){
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
-	if(mCompleterNeedsUpdate) updateCompleter();
 	// complete text if no command is present
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
@@ -3513,15 +3512,19 @@ void Texmaker::NormalCompletion() {
 	LatexParser::ContextType ctx=latexParser.findContext(word, c.columnNumber(), command, value);
 	switch(ctx){
 	case LatexParser::Command:
+        if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
 	case LatexParser::Environment:
+        if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
 	case LatexParser::Reference:
+        if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
 	case LatexParser::Citation:
+        if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
 		break;
     case LatexParser::Graphics:
