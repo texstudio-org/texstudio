@@ -415,7 +415,7 @@ protected slots:
 	void ViewLogOrReRun(LatexCompileResult* result);
 	void DisplayLatexError();
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
-	bool NoLatexErrors();
+	bool HasLatexErrors();
 	bool LogExists();
 	void ClearMarkers();
 	/////
