@@ -4850,7 +4850,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 		outputView->loadLogFile(logname,documents.getTemporaryCompileFileName());
 		//display errors in editor
 		DisplayLatexError();
-		if (outputView->getLogModel()->found(LT_ERROR))
+		if (configManager.goToErrorWhenDisplayingLog && HasLatexErrors())
 			if (!gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"))) //jump to next error
 				gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !")); //prev error
 		
@@ -4861,7 +4861,7 @@ void Texmaker::ViewLog(bool noTabChange) {
 void Texmaker::ViewLogOrReRun(LatexCompileResult* result){
 	ViewLog();
 	REQUIRE(result);
-	if (NoLatexErrors()) {
+	if (!HasLatexErrors()) {
 		*result = LCR_NORMAL;
 		if (outputView->getLogModel()->existsReRunWarning())
 			*result = LCR_RERUN;
@@ -4922,8 +4922,8 @@ void Texmaker::DisplayLatexError() {
 		}
 }
 
-bool Texmaker::NoLatexErrors() {
-	return !outputView->getLogModel()->found(LT_ERROR);
+bool Texmaker::HasLatexErrors() {
+	return outputView->getLogModel()->found(LT_ERROR);
 }
 
 bool Texmaker::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage) {

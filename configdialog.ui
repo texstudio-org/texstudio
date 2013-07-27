@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>865</width>
-            <height>626</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -792,8 +792,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>850</width>
-               <height>137</height>
+               <width>858</width>
+               <height>124</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1434,8 +1434,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>897</width>
-            <height>942</height>
+            <width>863</width>
+            <height>826</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1794,6 +1794,13 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                 <property name="text">
                  <string>Insert Symbol as Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="2">
+               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                <property name="text">
+                 <string>Go to error when displaying log</string>
                 </property>
                </widget>
               </item>
@@ -2401,8 +2408,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
