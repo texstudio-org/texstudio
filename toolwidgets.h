@@ -6,8 +6,10 @@
 
 #include "mostQtHeaders.h"
 
+#include "titledpanel.h"
 #include "logeditor.h"
 #include "latexlog.h"
+#include "latexlogwidget.h"
 #include "searchresultmodel.h"
 #include "qdocumentsearch.h"
 
@@ -17,7 +19,7 @@ class PreviewWidget : public QScrollArea
 {
 	Q_OBJECT
 public:
-    PreviewWidget(QWidget * parent = 0);
+	explicit PreviewWidget(QWidget * parent = 0);
 
 public slots:	
 	void previewLatex(const QPixmap& previewImage);
@@ -38,69 +40,46 @@ private:
 	bool mCenter;
 };
 
-class OutputViewWidget: public QDockWidget{
+class OutputViewWidget: public TitledPanel {
 	Q_OBJECT
 public:
-	OutputViewWidget(QWidget * parent = 0);
-	
-	
-	LatexLogModel* getLogModel();
-	void loadLogFile(const QString &logname, const QString & compiledFileName);
-	bool logPresent();
+	explicit OutputViewWidget(QWidget * parent = 0);
+
+	const QString MESSAGES_PAGE;
+	const QString LOG_PAGE;
+	const QString PREVIEW_PAGE;
+	const QString SEARCH_RESULT_PAGE;
+
+	LatexLogWidget* getLogWidget() {return logWidget;}
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
+	QString searchExpression() const;
 	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
-	int getShownPage(){
-		return OutputLayout->currentIndex();
-	}
 
 	virtual void changeEvent(QEvent *event);
-	QString searchExpression();
 public slots:
 	void copy();
 	void resetMessages(bool noTabChange=false); //remove all messages and jumps to the message page (stays hidden if not visible)
 	void resetMessagesAndLog(bool noTabChange=false);
-	void resetLog(bool noTabChange=false);
 	void selectLogEntry(int logEntryNumber, bool makeVisible=true);
-	void showLogOrErrorList(bool noTabChange=false); //this will show the log unless the error list is open
-	void showErrorListOrLog(); //this will show the error list unless log is open
-	void showPreview();
-	void showSearchResults();
-	void gotoLogEntry(int logEntryNumber);
-	void setTabbedLogView(bool tabbed);
 	void previewLatex(const QPixmap& pixmap);
 	void addSearch(QList<QDocumentLineHandle *> search, QDocument* doc);
 	void clearSearch();
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 signals:
-	void locationActivated(int line, QString fileName); //0-based line, absolute file name
-	void logEntryActivated(int logEntryNumber);
-	void tabChanged(int tab);
 	void jumpToSearch(QDocument* doc,int lineNumber);
 private:
 	PreviewWidget *previewWidget;
-	QTableView *OutputTable, *OutputTable2;
-	QTreeView *OutputTree;
-	LogEditor *OutputTextEdit,*OutputLogTextEdit;	
-	QTabBar *logViewerTabBar; //header to select outp (if tabbedLogView, then it is OutputView's TitleBarWidget)
-	QStackedWidget*	OutputLayout;
-	//Latex errors
-	LatexLogModel * logModel; 
+	LatexLogWidget *logWidget;
+	QTreeView *OutputSearchTree;
+	LogEditor *OutputMessages;
 	SearchResultModel *searchResultModel;
-	bool logpresent, tabbedLogView;
 	
 	void retranslateUi();
 private slots:
-	void clickedOnLogModelIndex(const QModelIndex& index);
 	void clickedSearchResult(const QModelIndex& index);
-	void gotoLogLine(int logLine);
-
-	void copyMessage();
-	void copyAllMessages();
-	void copyAllMessagesWithLineNumbers();
-	void showMessageInLog();
 	void copySearchResult();
 };
 

@@ -65,15 +65,13 @@ QVariant LatexLogModel::headerData(int section, Qt::Orientation orientation, int
 	}
 }
 
-void LatexLogModel::reset() {
-	QAbstractTableModel::reset();
-}
-
-int LatexLogModel::count() {
+int LatexLogModel::count() const {
 	return log.count();
 }
 void LatexLogModel::clear() {
+	beginResetModel();
 	log.clear();
+	endResetModel();
 }
 const LatexLogEntry& LatexLogModel::at(int i) {
 	return log.at(i);
@@ -90,6 +88,7 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName) {
 	outputFilter.setSource(baseFileName);	
 	outputFilter.run(doc);
 	
+	beginResetModel();
 	log.clear();
 	QList<LatexLogEntry> laterLog;
 	for (int i = 0; i <outputFilter.m_infoList.count(); i++) {
@@ -102,7 +101,7 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName) {
 	foundType[LT_ERROR]=outputFilter.m_nErrors>0;
 	foundType[LT_BADBOX]=outputFilter.m_nBadBoxes>0;
 	foundType[LT_WARNING]=outputFilter.m_nWarnings>0;
-	reset(); //show changes
+	endResetModel();
 }
 
 bool LatexLogModel::found(LogType lt) const {
@@ -144,3 +143,11 @@ QStringList LatexLogModel::getMissingCitations() const{
 	return sl;
 }
 
+QString LatexLogModel::htmlErrorTable(const QList<int> &errors) {
+	QString msg = "<table>";
+	foreach (int error, errors) {
+		if (error<0 || error >= count()) continue;
+		msg.append(at(error).niceMessage());
+	}
+	return msg.append("</table>");
+}

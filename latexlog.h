@@ -17,9 +17,7 @@ public:
 	QVariant data(const QModelIndex &index, int role) const;
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
-	void reset();
-
-	int count();
+	int count() const;
 	void clear();
 	const LatexLogEntry& at(int i);
 	//	void append(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
@@ -31,6 +29,7 @@ public:
 	int logLineNumberToLogEntryNumber(int logLine) const; //returns the last entry with has a logline number <= logLine, or -1 if none exist
 	bool existsReRunWarning() const;
 	QStringList getMissingCitations() const;
+	QString htmlErrorTable(const QList<int> &errors);
 };
 
 #endif

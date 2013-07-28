@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -112,8 +112,25 @@
               <string>Appearance</string>
              </property>
              <layout class="QGridLayout">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_3">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Color Scheme:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
+                <property name="text">
+                 <string>Ignore Most System Colors</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_9">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -121,7 +138,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Style:</string>
+                 <string>Language:</string>
                 </property>
                </widget>
               </item>
@@ -151,8 +168,8 @@
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_9">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_3">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -160,67 +177,22 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Language:</string>
+                 <string>Style:</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_14">
-                <property name="text">
-                 <string>Color Scheme:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <widget class="QCheckBox" name="checkBoxTabbedStructureView">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Tabbed Structure/Symbol View</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QCheckBox" name="checkBoxTabbedLogView">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Tabbed Log Viewer</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
-                <property name="text">
-                 <string>Ignore Most System Colors</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="3">
-               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
-                <property name="text">
-                 <string>MRU Document Chooser</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
+              <item row="1" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
+                <item>
+                 <property name="text">
+                  <string>Classic</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Modern</string>
+                 </property>
+                </item>
                </widget>
               </item>
               <item row="3" column="1" colspan="3">
@@ -243,6 +215,16 @@
                 </property>
                </widget>
               </item>
+              <item row="2" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxUseSystemTheme">
+                <property name="text">
+                 <string>Use System Theme Icons</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
               <item row="8" column="1" colspan="3">
                <widget class="QComboBox" name="comboBoxLanguage">
                 <property name="sizePolicy">
@@ -251,20 +233,6 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="3">
-               <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
-                <item>
-                 <property name="text">
-                  <string>Classic</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Modern</string>
-                 </property>
-                </item>
                </widget>
               </item>
               <item row="0" column="1" colspan="3">
@@ -277,10 +245,32 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxUseSystemTheme">
+              <item row="7" column="1">
+               <widget class="QCheckBox" name="checkBoxTabbedStructureView">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="text">
-                 <string>Use System Theme Icons</string>
+                 <string>Tabbed Structure/Symbol View</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="2">
+               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>MRU Document Chooser</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -3243,8 +3233,6 @@ them here.</string>
   <tabstop>checkBoxUseSystemTheme</tabstop>
   <tabstop>comboBoxInterfaceFont</tabstop>
   <tabstop>spinBoxInterfaceFontSize</tabstop>
-  <tabstop>checkBoxTabbedLogView</tabstop>
-  <tabstop>checkBoxTabbedStructureView</tabstop>
   <tabstop>comboBoxLanguage</tabstop>
   <tabstop>spinBoxMaxRecentFiles</tabstop>
   <tabstop>spinBoxMaxRecentProjects</tabstop>

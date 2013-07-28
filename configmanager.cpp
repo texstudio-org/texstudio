@@ -520,7 +520,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);	
-	registerOption("LogView/Tabbed", &tabbedLogView, true, &pseudoDialog->checkBoxTabbedLogView);
 	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
 	registerOption("Interface/MRU Document Chooser", &mruDocumentChooser, false, &pseudoDialog->checkBoxMRUDocumentChooser);
 
@@ -1239,7 +1238,6 @@ bool ConfigManager::execConfigDialog() {
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
 	
-	confDlg->ui.checkBoxTabbedLogView->setChecked(tabbedLogView);
 	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
 	
 	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
@@ -1510,8 +1508,6 @@ bool ConfigManager::execConfigDialog() {
 			setInterfaceStyle();
 		}
 		// read checkbox and set logViewer accordingly
-		if (changedProperties.contains(&tabbedLogView))
-			emit tabbedLogViewChanged(tabbedLogView);
 		if (newLeftPanelLayout != !confDlg->ui.checkBoxTabbedStructureView->isChecked()){
 			newLeftPanelLayout = !confDlg->ui.checkBoxTabbedStructureView->isChecked();
 			emit newLeftPanelLayoutChanged(newLeftPanelLayout);
