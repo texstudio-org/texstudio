@@ -36,7 +36,6 @@
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
-#include <QSplitter>
 #include <QSplashScreen>
 #include "session.h"
 #include "qformatfactory.h"
@@ -126,7 +125,8 @@ private:
 	
 	//gui
 	TxsTabWidget *EditorTabs;
-	QSplitter *splitter;
+	QSplitter *mainHSplitter;
+	QSplitter *centralVSplitter;
 	QFrame *centralFrame;
 	QToolBar* centralToolBar;
 	CustomWidgetList *leftPanel;
@@ -410,8 +410,9 @@ protected slots:
 	void AnalyseTextFormDestroyed();
 	void GenerateRandomText();
 	
-	void RealViewLog(bool noTabChange=false);
-	void ViewLog(bool noTabChange=false);
+	bool loadLog();
+	void showLog();
+	void ViewLog();
 	void ViewLogOrReRun(LatexCompileResult* result);
 	void DisplayLatexError();
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
@@ -459,7 +460,7 @@ protected slots:
 	void completerNeedsUpdate();
 	void needUpdatedCompleter();
 	
-	void tabChanged(int i);
+	void outputPageChanged(const QString &id);
 	
 	void gotoLine(int line, int col=0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation);  // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name

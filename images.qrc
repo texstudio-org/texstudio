@@ -150,6 +150,7 @@
 <file>images-ng/zoom-in.svgz</file>
 <file>images-ng/zoom-original.svgz</file>
 <file>images-ng/zoom-out.svgz</file>
+<file>images-ng/classic/close.svg</file>
 <file>images-ng/classic/dfrac.svg</file>
 <file>images-ng/classic/format-justify-center.svgz</file>
 <file>images-ng/classic/mathmode.svg</file>
@@ -158,6 +159,7 @@
 <file>images-ng/classic/sqrt.svg</file>
 <file>images-ng/classic/subscript.svg</file>
 <file>images-ng/classic/superscript.svg</file>
+<file>images-ng/modern/close.svg</file>
 <file>images-ng/modern/dfrac.svg</file>
 <file>images-ng/modern/fileopen.svgz</file>
 <file>images-ng/modern/frac.svg</file>

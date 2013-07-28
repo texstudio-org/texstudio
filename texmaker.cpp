@@ -209,11 +209,15 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	centralLayout->setSpacing(0);
 	centralLayout->setMargin(0);
 	centralLayout->addWidget(centralToolBar);
-	splitter=new QSplitter(Qt::Horizontal);
-	centralLayout->addWidget(splitter);
-	splitter->addWidget(EditorTabs);
-	
-	setCentralWidget(centralFrame);
+	centralLayout->addWidget(EditorTabs);
+
+	centralVSplitter = new QSplitter(Qt::Vertical, this);
+	centralVSplitter->addWidget(centralFrame);
+	centralVSplitter->setStretchFactor(0,2);
+
+	mainHSplitter = new QSplitter(Qt::Horizontal, this);
+	mainHSplitter->addWidget(centralVSplitter);
+	setCentralWidget(mainHSplitter);
 	
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 	
@@ -222,6 +226,11 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 
 	setMenuBar(new DblClickMenuBar());
 	setupMenus();
+	TitledPanelPage *logPage = outputView->pageFromId(outputView->LOG_PAGE);
+	if (logPage) {
+		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errorprev"));
+		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errornext"));
+	}
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
 	
@@ -480,18 +489,12 @@ void Texmaker::setupDockWidgets(){
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);
 		outputView->setObjectName("OutputView");
-		outputView->setWindowTitle(tr("Messages / Log File"));
-		outputView->toggleViewAction()->setText(tr("Messages / Log File"));
-		outputView->setAllowedAreas(Qt::AllDockWidgetAreas);
-		outputView->setFeatures(QDockWidget::DockWidgetClosable);
-		outputView->setTabbedLogView(configManager.tabbedLogView);
-		outputView->hide();
-		addDockWidget(Qt::BottomDockWidgetArea,outputView);
-		connect(outputView,SIGNAL(locationActivated(int,const QString&)),this,SLOT(gotoLine(int,const QString&)));
-		connect(outputView,SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
-		connect(outputView,SIGNAL(tabChanged(int)),this,SLOT(tabChanged(int)));
+		centralVSplitter->addWidget(outputView);
+		centralVSplitter->setStretchFactor(1,1);
+
+		connect(outputView->getLogWidget(),SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
+		connect(outputView,SIGNAL(pageChanged(QString)),this,SLOT(outputPageChanged(QString)));
 		connect(outputView,SIGNAL(jumpToSearch(QDocument*,int)),this,SLOT(jumpToSearch(QDocument*,int)));
-		connect(&configManager,SIGNAL(tabbedLogViewChanged(bool)),outputView,SLOT(setTabbedLogView(bool)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
 		
@@ -1308,16 +1311,11 @@ void Texmaker::CloseEditorTab(int tab) {
 	if (total!=EditorTabs->count() && cur!=tab)//if user clicks cancel stay in clicked editor
 		EditorTabs->setCurrentIndex(cur);
 }
-void Texmaker::showMarkTooltipForLogMessage(QList<int> errors){
+void Texmaker::showMarkTooltipForLogMessage(QList<int> errors) {
 	if (!currentEditorView()) return;
-	REQUIRE(outputView->getLogModel());
-	QString msg = "<table>";
-	foreach (int error, errors) {
-		if (error<0 || error >= outputView->getLogModel()->count()) continue;
-		msg.append(outputView->getLogModel()->at(error).niceMessage());
-	}
-	msg.append("</table>");
-
+	REQUIRE(outputView->getLogWidget());
+	REQUIRE(outputView->getLogWidget()->getLogModel());
+	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 	currentEditorView()->setLineMarkToolTip(msg);
 }
 
@@ -1558,7 +1556,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 	
 	if (f_real.endsWith(".log",Qt::CaseInsensitive) &&
 			txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-		outputView->loadLogFile(f,documents.getTemporaryCompileFileName());
+		outputView->getLogWidget()->loadLogFile(f,documents.getTemporaryCompileFileName());
 		DisplayLatexError();
 		return 0;
 	}
@@ -1693,7 +1691,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
 	
 	if (asProject) documents.setMasterDocument(edit->document);
 	
-	if (outputView->logPresent()) DisplayLatexError(); //show marks
+	if (outputView->getLogWidget()->logPresent()) DisplayLatexError(); //show marks
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
 	LatexDocument* master = edit->document->getTopMasterDocument();
@@ -3290,7 +3288,7 @@ void Texmaker::SaveSettings(const QString& configName) {
   if(!PDFDocument::documentList().isEmpty()){
     PDFDocument* doc=PDFDocument::documentList().first();
     if(doc->embeddedMode){
-      QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+	  QList<int> sz=mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
       int sum=0;
       int last=0;
       foreach(int i,sz){
@@ -4632,8 +4630,10 @@ void Texmaker::runInternalCommand(const QString& cmd, const QFileInfo& mainfile,
 		runInternalPdfViewer(mainfile, options);
 	else if (cmd == BuildManager::CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY)
 		runBibliographyIfNecessary(mainfile);
-	else if (cmd == BuildManager::CMD_VIEW_LOG)
-		RealViewLog();
+	else if (cmd == BuildManager::CMD_VIEW_LOG) {
+		loadLog();
+		ViewLog();
+	}
 	else txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
@@ -4828,46 +4828,47 @@ bool Texmaker::LogExists() {
 	else return false;
 }
 
-
-//shows the log (even if it is empty)
-void Texmaker::RealViewLog(bool noTabChange) {
-	ViewLog(noTabChange);
-	outputView->showLogOrErrorList(noTabChange);
-}
-
-//shows the log if there are errors
-void Texmaker::ViewLog(bool noTabChange) {
-	outputView->resetLog(noTabChange);
+bool Texmaker::loadLog() {
+	outputView->getLogWidget()->resetLog();
 	QString finame=documents.getTemporaryCompileFileName();
 	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
-		return;
+		return false;
 	}
 	QString logname=buildManager.findFile(getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log"), buildManager.additionalLogPaths);
 	QFileInfo fic(logname);
-	if (!logname.isEmpty() && fic.exists() && fic.isReadable()) {
-		//OutputLogTextEdit->insertLine("LOG FILE :");
-		outputView->loadLogFile(logname,documents.getTemporaryCompileFileName());
-		//display errors in editor
-		DisplayLatexError();
-		if (configManager.goToErrorWhenDisplayingLog && HasLatexErrors())
-			if (!gotoNearLogEntry(LT_ERROR,false,tr("No LaTeX errors detected !"))) //jump to next error
-				gotoNearLogEntry(LT_ERROR,true,tr("No LaTeX errors detected !")); //prev error
-		
-	} else if (!fic.exists()) txsWarning(tr("Log File not found!"));
-	else txsWarning(tr("Log File is not readable!"));
+	return outputView->getLogWidget()->loadLogFile(logname,documents.getTemporaryCompileFileName());
+}
+
+void Texmaker::showLog() {
+	outputView->showPage(outputView->LOG_PAGE);
+}
+
+//shows the log (even if it is empty)
+void Texmaker::ViewLog() {
+	showLog();
+	DisplayLatexError();
+	if (configManager.goToErrorWhenDisplayingLog && HasLatexErrors()) {
+		int errorMarkID = outputView->getLogWidget()->getLogModel()->markID(LT_ERROR);
+		if (!gotoMark(false, errorMarkID)) {
+			gotoMark(true, errorMarkID);
+		}
+	}
 }
 
 void Texmaker::ViewLogOrReRun(LatexCompileResult* result){
-	ViewLog();
+	loadLog();
 	REQUIRE(result);
-	if (!HasLatexErrors()) {
+	if (HasLatexErrors()) {
+		ViewLog();
+		*result = LCR_ERROR;
+	} else {
 		*result = LCR_NORMAL;
-		if (outputView->getLogModel()->existsReRunWarning())
+		if (outputView->getLogWidget()->getLogModel()->existsReRunWarning())
 			*result = LCR_RERUN;
 		else if (configManager.runLaTeXBibTeXLaTeX) {
 			//run bibtex if citation is unknown to bibtex but contained in an included bib file
-			QStringList missingCitations = outputView->getLogModel()->getMissingCitations();
+			QStringList missingCitations = outputView->getLogWidget()->getLogModel()->getMissingCitations();
 			bool runBibTeX = false;
 			foreach (const QString & s,missingCitations) {
 				for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
@@ -4884,7 +4885,7 @@ void Texmaker::ViewLogOrReRun(LatexCompileResult* result){
 			if (runBibTeX)
 				*result = LCR_RERUN_WITH_BIBLIOGRAPHY;
 		}
-	} else *result = LCR_ERROR;
+	}
 }
 
 ////////////////////////// ERRORS /////////////////////////////
@@ -4901,7 +4902,7 @@ void Texmaker::DisplayLatexError() {
 	}
 	//backward, so the more important marks (with lower indices) will be inserted last and
 	//returned first be QMultiHash.value
-	LatexLogModel* logModel = outputView->getLogModel();
+	LatexLogModel* logModel = outputView->getLogWidget()->getLogModel();
 	QHash<QString, LatexEditorView*> tempFilenames; //temporary maps the filenames (as they appear in this log!) to the editor
 	for (int i = logModel->count()-1; i >= 0; i--)
 		if (logModel->at(i).oldline!=-1){
@@ -4923,20 +4924,20 @@ void Texmaker::DisplayLatexError() {
 }
 
 bool Texmaker::HasLatexErrors() {
-	return outputView->getLogModel()->found(LT_ERROR);
+	return outputView->getLogWidget()->getLogModel()->found(LT_ERROR);
 }
 
 bool Texmaker::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage) {
-	if (!outputView->logPresent()) {
-		ViewLog();
+	if (!outputView->getLogWidget()->logPresent()) {
+		loadLog();
 	}
-	if (outputView->logPresent()) {
-		if (outputView->getLogModel()->found((LogType) lt)){
-			outputView->showErrorListOrLog(); //always show log if a mark of this type exists (even if is in another file)
-			return gotoMark(backward, outputView->getLogModel()->markID((LogType) lt));
+	if (outputView->getLogWidget()->logPresent()) {
+		if (outputView->getLogWidget()->getLogModel()->found((LogType) lt)){
+			showLog();
+			DisplayLatexError();
+			return gotoMark(backward, outputView->getLogWidget()->getLogModel()->markID((LogType) lt));
 		} else {
 			txsInformation(notFoundMessage);
-			//OutputTextEdit->setCursorPosition(0 , 0);
 		}
 	}
 	return false;
@@ -5567,7 +5568,7 @@ void Texmaker::pdfClosed(){
   if(from){
     if(from->embeddedMode){
       shrinkEmbeddedPDFViewer(true);
-      QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+	  QList<int> sz=mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
       int sum=0;
       int last=0;
       foreach(int i,sz){
@@ -5593,8 +5594,8 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
 	PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
 	if(embedded){
-		splitter->addWidget(pdfviewerWindow);
-		QList<int> sz=splitter->sizes(); // set widths to 50%, eventually restore user setting
+		mainHSplitter->addWidget(pdfviewerWindow);
+		QList<int> sz=mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
 		int sum=0;
 		foreach(int i,sz){
 			sum+=i;
@@ -5604,7 +5605,7 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 			pdfSplitterRel=0.5;
 		sz << sum-qRound(pdfSplitterRel*sum);
 		sz << qRound(pdfSplitterRel*sum);
-		splitter->setSizes(sz);
+		mainHSplitter->setSizes(sz);
 	}
 	connect(pdfviewerWindow, SIGNAL(triggeredAbout()), SLOT(HelpAbout()));
     connect(pdfviewerWindow, SIGNAL(triggeredEnlarge()), SLOT(enlargeEmbeddedPDFViewer()));
@@ -5859,8 +5860,13 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	mCompleterNeedsUpdate=false;
 }
 
-void Texmaker::tabChanged(int i) {
-	if (i>0 && i<3 && !outputView->logPresent()) RealViewLog(true);
+void Texmaker::outputPageChanged(const QString &id) {
+	if (id == outputView->LOG_PAGE && !outputView->getLogWidget()->logPresent()) {
+		if (!loadLog())
+			return;
+		if (HasLatexErrors())
+			ViewLog();
+	}
 }
 
 void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
@@ -5878,7 +5884,7 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 		int col=outputView->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
 		currentEditor()->setCursorPosition(lineNumber,col,false);
 		currentEditor()->ensureCursorVisible(QEditor::Navigation);
-		outputView->showSearchResults();
+		outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 	}
 	QDocumentCursor highlight = currentEditor()->cursor();
 	highlight.movePosition(outputView->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
@@ -5915,8 +5921,8 @@ bool Texmaker::gotoLine(int line, const QString &fileName){
 }
 
 void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
-	if (logEntryNumber<0 || logEntryNumber>=outputView->getLogModel()->count()) return;
-	QString fileName = outputView->getLogModel()->at(logEntryNumber).file;
+	if (logEntryNumber<0 || logEntryNumber>=outputView->getLogWidget()->getLogModel()->count()) return;
+	QString fileName = outputView->getLogWidget()->getLogModel()->at(logEntryNumber).file;
 	if (!FocusEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	//get line
@@ -5940,15 +5946,9 @@ bool Texmaker::gotoLogEntryAt(int newLineNumber) {
 	QPoint p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
 
-	REQUIRE_RET(outputView->getLogModel(), true);
+	REQUIRE_RET(outputView->getLogWidget()->getLogModel(), true);
 	QList<int> errors = currentEditorView()->lineToLogEntries.values(lh);
-	QString msg = "<table>";
-	foreach (int error, errors) {
-		if (error<0 || error >= outputView->getLogModel()->count()) continue;
-		msg.append(outputView->getLogModel()->at(error).niceMessage());
-	}
-	msg.append(outputView->getLogModel()->at(logEntryNumber).niceMessage());
-	msg.append("</table>");
+	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 
 	QToolTip::showText(p, msg, 0);
 	LatexEditorView::hideTooltipWhenLeavingLine=newLineNumber;
@@ -6254,7 +6254,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_PANEL||
 			(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
-		outputView->showPreview();
+		outputView->showPage(outputView->PREVIEW_PAGE);
 		outputView->previewLatex(QPixmap(imageFile));
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
@@ -6632,7 +6632,7 @@ void Texmaker::editFindGlobal(){
 				if (ed->fileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
 					doc->setTemporaryFileName(buildManager.createTemporaryFileName());
 				outputView->addSearch(lines, doc);
-				outputView->showSearchResults();
+				outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 			}
 		}
 	}
@@ -8286,13 +8286,13 @@ void Texmaker::enlargeEmbeddedPDFViewer(){
     PDFDocument* viewer=oldPDFs.first();
     if(!viewer->embeddedMode)
         return;
-    EditorTabs->hide();
+	centralVSplitter->hide();
     configManager.viewerEnlarged=true;
     viewer->setStateEnlarged(true);
 }
 
 void Texmaker::shrinkEmbeddedPDFViewer(bool preserveConfig){
-    EditorTabs->show();
+	centralVSplitter->show();
     if(!preserveConfig)
         configManager.viewerEnlarged=false;
     QList<PDFDocument*> oldPDFs = PDFDocument::documentList();

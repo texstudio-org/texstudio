@@ -63,7 +63,7 @@ public:
 	QString interfaceFontFamily;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
-	bool tabbedLogView, newLeftPanelLayout;
+	bool newLeftPanelLayout;
 	bool mruDocumentChooser;
 	bool configShowAdvancedOptions, configRiddled;
 	bool centralVisible;
@@ -209,7 +209,6 @@ public:
 	void populateCustomActions(QListWidget* parent, QMenu* menu, bool go=false);
 
 signals:
-	void tabbedLogViewChanged(bool changed);
 	void newLeftPanelLayoutChanged(bool newValue);
 	void watchedMenuChanged(const QString& menuId);
 public:

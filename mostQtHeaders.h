@@ -96,6 +96,7 @@
 #include <QSettings>
 #include <QSize>
 #include <QSpinBox>
+#include <QSplitter>
 #include <QStack>
 #include <QStackedWidget>
 #include <QStandardItemModel>

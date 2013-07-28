@@ -137,7 +137,9 @@ HEADERS += texmaker.h \
     utilsVersion.h \
     latexpackages.h \
     cursorposition.h \
-    tests/help_t.h
+    tests/help_t.h \
+    titledpanel.h \
+    latexlogwidget.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -237,7 +239,9 @@ SOURCES += main.cpp \
     utilsSystem.cpp \
     latexpackages.cpp \
     cursorposition.cpp \
-    usermacro.cpp
+    usermacro.cpp \
+    titledpanel.cpp \
+    latexlogwidget.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
