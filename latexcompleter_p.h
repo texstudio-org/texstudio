@@ -13,7 +13,7 @@ class CompletionListModel : public QAbstractListModel {
 	Q_OBJECT
 
 public:
-    CompletionListModel(QObject *parent = 0): QAbstractListModel(parent),mostUsedUpdated(false),mCanFetchMore(false),mLastMU(0),mEnvMode(false), mWordCount(0) {}
+    CompletionListModel(QObject *parent = 0): QAbstractListModel(parent),mostUsedUpdated(false),mCanFetchMore(false),mLastMU(0),mEnvMode(false), mWordCount(0), mCitCount(-1) {}
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role)const;
@@ -40,7 +40,7 @@ private:
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-    QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations;
+    QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations,wordsCitationCommands;
 	QSet<QChar> acceptedChars;
 	int mostUsedUpdated;
 
@@ -51,7 +51,7 @@ private:
 
     bool mEnvMode;
 
-	int mWordCount;
+    int mWordCount,mCitCount;
 
     QList<CompletionWord>::iterator it;
 

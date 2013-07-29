@@ -7,7 +7,7 @@ class QDocumentCursor;
 class QEditor;
 class Texmaker;
 
-enum CompletionType { CT_COMMANDS,CT_NORMALTEXT,CT_CITATIONS};
+enum CompletionType { CT_COMMANDS,CT_NORMALTEXT,CT_CITATIONS,CT_CITATIONCOMMANDS};
 
 struct CodeSnippetPlaceHolder{
 	int offset, length;

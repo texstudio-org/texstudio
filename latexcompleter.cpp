@@ -646,11 +646,30 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 	int cnt=0;
 	QString sortWord = makeSortWord(word);
 	if(!fetchMore){
-		it=qLowerBound(baselist.begin(),baselist.end(),CompletionWord(word));
+        it=qLowerBound(baselist.begin(),baselist.end(),CompletionWord(word));
 	}
+    // special treatment for citation commands as they generated on the fly
+    if(!it->word.startsWith(word,cs)){
+        int i=word.lastIndexOf("{");
+        QString test=word.left(i)+"{@}";
+        if (wordsCitationCommands.contains(CompletionWord(test))){
+            QString citeStart=word.mid(i+1);
+            foreach(const CompletionWord id,wordsCitations){
+                if(id.word.startsWith(citeStart)){
+                    CompletionWord cw(test);
+                    cw.word.replace("@",id.word);
+                    cw.sortWord.replace("@",id.word);
+                    cw.lines[0].replace("@",id.word);
+                    words.append(cw);
+                }
+            }
+        }
+    }
+    //
 	while(it!=baselist.end()){
 		if (it->word.startsWith(word,cs) &&
 		              (!checkFirstChar || it->word[1] == word[1]) ){
+
 			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
                 if(mEnvMode){
                     CompletionWord cw=*it;
@@ -667,8 +686,21 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 
                     if(!words.contains(cw))
                         words.append(cw);
-                }else
-                    words.append(*it);
+                }else{
+                    // cite command
+                    if(wordsCitationCommands.contains(*it)){
+                        foreach(const CompletionWord id,wordsCitations){
+                            CompletionWord cw=*it;
+                            cw.word.replace("@",id.word);
+                            cw.sortWord.replace("@",id.word);
+                            cw.lines[0].replace("@",id.word);
+                            words.append(cw);
+                        }
+                        cnt+=wordsCitations.length();
+                    }else{
+                        words.append(*it);
+                    }
+                }
 				cnt++;
 			}
 		}else{
@@ -872,6 +904,9 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
         break;
     case CT_CITATIONS:
         wordsCitations=newWordList;
+        break;
+    case CT_CITATIONCOMMANDS:
+        wordsCitationCommands=newWordList;
         break;
     default:
         wordsCommands=newWordList;
@@ -1504,3 +1539,4 @@ void LatexCompleterConfig::setFiles(const QStringList &newFiles) {
 const QStringList& LatexCompleterConfig::getLoadedFiles(){
 	return files;
 }
+

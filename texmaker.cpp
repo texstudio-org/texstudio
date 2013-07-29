@@ -5833,11 +5833,15 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             bibIds<<doc->bibItems();
         }
 		//automatic use of cite commands
+        QStringList citationCommands;
 		foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
-            QString temp='@'+citeCommand+"{%1}";
-            foreach (const QString &value, bibIds)
-				words.insert(temp.arg(value));
-		}
+            QString temp='@'+citeCommand+"{@}";
+            citationCommands.append(temp);
+            words.insert(temp);
+            /*foreach (const QString &value, bibIds)
+                words.insert(temp.arg(value));*/
+        }
+        completer->setAdditionalWords(citationCommands.toSet(),CT_CITATIONCOMMANDS);
 		completer->setAdditionalWords(bibIds.toSet(),CT_CITATIONS);
 	}
 	
