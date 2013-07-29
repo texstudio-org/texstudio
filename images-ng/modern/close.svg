@@ -111,7 +111,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="27.311999"
-     inkscape:cx="0.27051715"
+     inkscape:cx="-11.098112"
      inkscape:cy="7.8391404"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -121,7 +121,9 @@
      inkscape:window-height="824"
      inkscape:window-x="-10"
      inkscape:window-y="164"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
   <metadata
      id="metadata3832">
     <rdf:RDF>
@@ -132,10 +134,15 @@
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <dc:title />
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+           rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Tim Hoffmann</dc:title>
+          </cc:Agent>
+        </dc:creator>
       </cc:Work>
       <cc:License
-         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+         rdf:about="http://creativecommons.org/licenses/by/3.0/">
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits
@@ -146,8 +153,6 @@
            rdf:resource="http://creativecommons.org/ns#Attribution" />
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
-        <cc:requires
-           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
       </cc:License>
     </rdf:RDF>
   </metadata>
@@ -159,19 +164,19 @@
     <g
        id="g2996"
        transform="matrix(0.78234098,0,0,0.78234098,1.7412722,1.7412722)"
-       style="stroke-width:2.04514405;stroke-miterlimit:4;stroke-dasharray:none">
+       style="stroke-width:1.78950104;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path2998"
          d="m 1.5,14.5 13,-13"
-         style="fill:none;stroke:#e1e1e1;stroke-width:2.04514405;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:none;stroke:#e1e1e1;stroke-width:1.78950104;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
          id="path3816"
          d="m 1.5,1.5 13,13"
-         style="fill:none;stroke:#e1e1e1;stroke-width:2.04514405;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:none;stroke:#e1e1e1;stroke-width:1.78950104;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     </g>
   </g>
 </svg>
