@@ -110,14 +110,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="38.625"
-     inkscape:cx="8.0793796"
-     inkscape:cy="8"
+     inkscape:zoom="27.311999"
+     inkscape:cx="-11.098112"
+     inkscape:cy="7.8391404"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
-     inkscape:window-width="1117"
+     inkscape:window-width="1306"
      inkscape:window-height="824"
      inkscape:window-x="-10"
      inkscape:window-y="164"
@@ -130,12 +130,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+           rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Tim Hoffmann</dc:title>
+          </cc:Agent>
+        </dc:creator>
       </cc:Work>
       <cc:License
-         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+         rdf:about="http://creativecommons.org/licenses/by/3.0/">
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits
@@ -146,8 +151,6 @@
            rdf:resource="http://creativecommons.org/ns#Attribution" />
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
-        <cc:requires
-           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
       </cc:License>
     </rdf:RDF>
   </metadata>
@@ -156,18 +159,22 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      style="filter:url(#filter3863)">
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 1.5,14.5 13,-13"
-       id="path2998"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter3863)"
-       d="m -6.9142395,11.134304 13,-12.9999998"
-       id="path2998-1"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       transform="matrix(-1,0,0,1,7.5857605,3.3656959)" />
+    <g
+       id="g2996"
+       transform="matrix(0.78234098,0,0,0.78234098,1.7412722,1.7412722)"
+       style="stroke-width:1.78950104;stroke-miterlimit:4;stroke-dasharray:none;fill:#000000;stroke:#000000">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path2998"
+         d="m 1.5,14.5 13,-13"
+         style="fill:#000000;stroke:#000000;stroke-width:1.78950104;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3816"
+         d="m 1.5,1.5 13,13"
+         style="fill:#000000;stroke:#000000;stroke-width:1.78950104;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
   </g>
 </svg>
