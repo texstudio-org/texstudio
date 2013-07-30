@@ -39,7 +39,7 @@
     <message>
         <location line="-6"/>
         <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Esta é uma versão de desenvolvimento.&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1165,7 +1165,7 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
     <message>
         <location line="-837"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation type="unfinished"></translation>
+        <translation>Lembrar-se do filtro de arquivos selecionado no diálogo abrir/salvar</translation>
     </message>
     <message>
         <location line="+326"/>
@@ -4085,7 +4085,7 @@ Você deseja desfazer as alterações?</translation>
     <message>
         <location line="+30"/>
         <source>texdoc did not respond to query on package:</source>
-        <translation type="unfinished"></translation>
+        <translation>texdoc não respondeu a consulta sobre o pacote:</translation>
     </message>
 </context>
 <context>
@@ -9119,13 +9119,13 @@ Voce deseja permitir e executar o novo comando?
         <location line="+1572"/>
         <location line="+34"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir Subitens</translation>
     </message>
     <message>
         <location line="-33"/>
         <location line="+34"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation>Recolher Subitens</translation>
     </message>
     <message>
         <location line="+1149"/>
@@ -10063,7 +10063,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location line="-6988"/>
         <source>Pweave files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos pweave</translation>
     </message>
     <message>
         <location line="+262"/>
