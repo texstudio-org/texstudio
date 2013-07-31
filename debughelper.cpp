@@ -6,7 +6,9 @@
 #ifndef NO_CRASH_HANDLER
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_X86_64
-#elif (defined(ppc) || defined(__ppc__))
+#elif (defined(ppc) || defined(__ppc__) || defined(__powerpc__) || defined(__POWERPC__))
+#define CPU_IS_PPC
+#elif (defined(ppc64) || defined(__ppc64__) || defined(__powerpc64__) || defined(__POWERPC64__))
 #define CPU_IS_PPC
 #elif (defined(arm) || defined(__arm__))
 #define CPU_IS_ARM
