@@ -4900,6 +4900,7 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
         if(ytarget<0)
             ytarget=0;
 #if QT_VERSION >= 0x040600
+		int absDeltaY = qAbs(ytarget - verticalScrollBar()->value());
 		if (flag(QEditor::SmoothScrolling) && mflags&Animated) {
 			if (!m_scrollAnimation) {
 				m_scrollAnimation = new QPropertyAnimation(this);
@@ -4911,8 +4912,13 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 			m_scrollAnimation->setEndValue(ytarget);
 			m_scrollAnimation->setTargetObject(verticalScrollBar());
 			m_scrollAnimation->setPropertyName("value");
-			m_scrollAnimation->setDuration(300);
-			m_scrollAnimation->setEasingCurve(QEasingCurve::InOutQuart);
+			m_scrollAnimation->setDuration(absDeltaY > 20 ? 300 : (absDeltaY * 300) / 20);
+			if (absDeltaY > 40)
+				m_scrollAnimation->setEasingCurve(QEasingCurve::InOutQuart);
+			else if (absDeltaY > 20)
+				m_scrollAnimation->setEasingCurve(QEasingCurve::InOutQuad);
+			else
+				m_scrollAnimation->setEasingCurve(QEasingCurve::Linear);
 			m_scrollAnimation->start();
 		} else {
 			verticalScrollBar()->setValue(ytarget);
