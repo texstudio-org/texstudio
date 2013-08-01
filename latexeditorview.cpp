@@ -1907,7 +1907,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		{
 			QString text;
 			if(config->toolTipHelp) {
-				QString text = completer->lookupWord("\\begin{"+value+"}");
+                text = completer->lookupWord("\\begin{"+value+"}");
 				if(!text.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 			}
 			if (text.isEmpty() && config->toolTipPreview) {
