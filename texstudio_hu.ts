@@ -656,7 +656,7 @@ támogatott.</translation>
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+3212"/>
+        <location filename="configdialog.ui" line="+3209"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -666,23 +666,22 @@ támogatott.</translation>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location line="-3110"/>
-        <location line="+1342"/>
+        <location line="-3107"/>
+        <location line="+1332"/>
         <source>Appearance</source>
         <translation>Megjelenés</translation>
     </message>
     <message>
-        <location line="-1271"/>
+        <location line="-1187"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Lapokra bontott struktúra/szimbólum nézet</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Tabbed Log Viewer</source>
-        <translation>Lapokra bontott naplómegjelenítő</translation>
+        <translation type="obsolete">Lapokra bontott naplómegjelenítő</translation>
     </message>
     <message>
-        <location line="+97"/>
+        <location line="+29"/>
         <source>Files</source>
         <translation>Fájlok</translation>
     </message>
@@ -761,12 +760,12 @@ támogatott.</translation>
         <translation>Összezárás</translation>
     </message>
     <message>
-        <location line="+626"/>
+        <location line="+633"/>
         <source>Formats</source>
         <translation>Formátumok</translation>
     </message>
     <message>
-        <location line="-440"/>
+        <location line="-447"/>
         <source>Show Line Change State</source>
         <translation>Sor módosítási állapotának megjelenítése</translation>
     </message>
@@ -801,7 +800,7 @@ támogatott.</translation>
         <translation>Napló bezárása Escape-pel</translation>
     </message>
     <message>
-        <location line="+1860"/>
+        <location line="+1867"/>
         <source>Always show preview in preview panel</source>
         <translation>Mindig mutasson előnézetet az előnézet panelen</translation>
     </message>
@@ -831,12 +830,12 @@ támogatott.</translation>
         <translation>Előnézet dvips/ghostscript-tel</translation>
     </message>
     <message>
-        <location line="-1177"/>
+        <location line="-1184"/>
         <source>Close search and replace panel together</source>
         <translation>Keresés és csere panelek együttes bezárása</translation>
     </message>
     <message>
-        <location line="+670"/>
+        <location line="+677"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Latex parancsok automatikus cseréje</translation>
     </message>
@@ -906,7 +905,7 @@ támogatott.</translation>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2158"/>
+        <location filename="configdialog.ui" line="-2165"/>
         <location filename="configdialog.cpp" line="+14"/>
         <source>Command</source>
         <translation>Parancs</translation>
@@ -942,7 +941,7 @@ támogatott.</translation>
         <translation>Egyéni kiemelés</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1148"/>
+        <location filename="configdialog.ui" line="+1155"/>
         <location filename="configdialog.cpp" line="+1"/>
         <source>Completion</source>
         <translation>Kiegészítés</translation>
@@ -978,7 +977,7 @@ támogatott.</translation>
         <translation>Alapvető billenyűparancsok</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-408"/>
+        <location filename="configdialog.ui" line="-415"/>
         <source>5 minutes</source>
         <translation>5 percenként</translation>
     </message>
@@ -998,7 +997,7 @@ támogatott.</translation>
         <translation>Óránként</translation>
     </message>
     <message>
-        <location line="+1021"/>
+        <location line="+1028"/>
         <source>Command:</source>
         <translation>Parancs:</translation>
     </message>
@@ -1013,8 +1012,8 @@ támogatott.</translation>
         <translation>Méret:</translation>
     </message>
     <message>
-        <location line="-1758"/>
-        <location line="+1771"/>
+        <location line="-1765"/>
+        <location line="+1778"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1044,7 +1043,7 @@ támogatott.</translation>
         <translation>Előnézet</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1411"/>
+        <location filename="configdialog.ui" line="-1418"/>
         <source>Search Panel</source>
         <translation>Keresés panel</translation>
     </message>
@@ -1054,7 +1053,7 @@ támogatott.</translation>
         <translation>Különleges beállítások</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+257"/>
         <source>Hacks/Workarounds</source>
         <translation>Buherálás/Kerülő megoldások</translation>
     </message>
@@ -1069,7 +1068,7 @@ támogatott.</translation>
         <translation>Karakterszélesség tárolójának kiiktatása</translation>
     </message>
     <message>
-        <location line="-241"/>
+        <location line="-248"/>
         <source>Auto Complete Parentheses</source>
         <translation>Zárójel automatikus bezárása</translation>
     </message>
@@ -1079,7 +1078,7 @@ támogatott.</translation>
         <translation>Nagyítás az egérgörgővel</translation>
     </message>
     <message>
-        <location line="+464"/>
+        <location line="+471"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>A kiegészítő automatikusan működésbe lép LaTeX parancsok begépelésekor</translation>
     </message>
@@ -1104,9 +1103,9 @@ támogatott.</translation>
         <translation>Preambulum előfordítása</translation>
     </message>
     <message>
-        <location line="-2139"/>
+        <location line="-2146"/>
         <location line="+970"/>
-        <location line="+1120"/>
+        <location line="+1127"/>
         <source>Never</source>
         <translation>Soha</translation>
     </message>
@@ -1121,7 +1120,7 @@ támogatott.</translation>
         <translation>További parancsok</translation>
     </message>
     <message>
-        <location line="-332"/>
+        <location line="-339"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>A képletekről előnézetet mutat &quot;felugró-súgó&quot;-ként</translation>
     </message>
@@ -1131,12 +1130,12 @@ támogatott.</translation>
         <translation>Előnézetet mutasson tippként, ha a panel rejtve van</translation>
     </message>
     <message>
-        <location line="-1636"/>
+        <location line="-1626"/>
         <source>Configure TeXstudio</source>
         <translation>A TeXstudio beállításai</translation>
     </message>
     <message>
-        <location line="+1607"/>
+        <location line="+1597"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Keresési tartomány megszorítása egy létező kiválasztásra</translation>
     </message>
@@ -1161,7 +1160,7 @@ támogatott.</translation>
         <translation>Szótár könyvtár választása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+150"/>
+        <location filename="configdialog.ui" line="+157"/>
         <source>Try to automatically choose best display options</source>
         <translation>Automatikusan megpróbálja a legjobb megjelenítési opciót választani</translation>
     </message>
@@ -1176,7 +1175,7 @@ támogatott.</translation>
         <translation>A rederelt sorok tárolójának kiiktatása</translation>
     </message>
     <message>
-        <location line="-707"/>
+        <location line="-714"/>
         <source>Spelling</source>
         <translation>Betűzés</translation>
     </message>
@@ -1202,7 +1201,7 @@ támogatott.</translation>
         <translation>Helyesírás</translation>
     </message>
     <message>
-        <location line="+1182"/>
+        <location line="+1189"/>
         <source>Internal</source>
         <translation>Belső</translation>
     </message>
@@ -1313,7 +1312,7 @@ to set the key anyway?</source>
 Biztosan ezt szeretné beállítani?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1715"/>
+        <location filename="configdialog.ui" line="-1722"/>
         <location filename="configdialog.cpp" line="+229"/>
         <source>Menus</source>
         <translation>Menük</translation>
@@ -1360,38 +1359,38 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>&lt;ismeretlen&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2411"/>
+        <location filename="configdialog.ui" line="+2418"/>
         <source>Show Advanced Options</source>
         <translation>Haladó beállítások megjelenítése</translation>
     </message>
     <message>
-        <location line="-3051"/>
+        <location line="-2992"/>
         <source>Style:</source>
         <translation>Stílus:</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="-26"/>
         <source>Font:</source>
         <translation>Betűtípus:</translation>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1099"/>
+        <location line="+1072"/>
         <source>Font Size:</source>
         <translation>Betűméret:</translation>
     </message>
     <message>
-        <location line="-1086"/>
+        <location line="-1098"/>
         <source>Language:</source>
         <translation>Nyelv:</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="-23"/>
         <source>Color Scheme:</source>
         <translation>Színséma:</translation>
     </message>
     <message>
-        <location line="+90"/>
+        <location line="+70"/>
         <source>Classic</source>
         <translation>Klasszikus</translation>
     </message>
@@ -1401,17 +1400,17 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Modern</translation>
     </message>
     <message>
-        <location line="-56"/>
+        <location line="-68"/>
         <source>Ignore Most System Colors</source>
         <translation>A legtöbb rendszerszín mellőzése</translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+96"/>
         <source>Use System Theme Icons</source>
         <translation>Rendszertéma ikonok használata</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+80"/>
         <source>Max. Recent Documents:</source>
         <translation>Legutóbbi dokumentumok max. száma:</translation>
     </message>
@@ -1616,7 +1615,7 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Kemény sortörés a max. karakterszám után</translation>
     </message>
     <message>
-        <location line="+180"/>
+        <location line="+187"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Kerülő megoldás kiiktatása ékezetek gépelésekor (csak Mac OS X esetén)</translation>
     </message>
@@ -1641,7 +1640,7 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Rederelési mód:</translation>
     </message>
     <message>
-        <location line="-1559"/>
+        <location line="-1566"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Emlékezzen a kiválasztott fájlszűrőre párbeszédablak megnyitásakor/mentésekor</translation>
     </message>
@@ -1708,6 +1707,11 @@ Then you can select a new shortcut by one of the following ways:
         <location line="+3"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Szimbólum beszúrása Unicode karakterként</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Go to error when displaying log</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+62"/>
@@ -1927,7 +1931,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Kiemelések</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2650"/>
+        <location filename="configdialog.ui" line="-2657"/>
         <source>Update</source>
         <translation>Frissítés</translation>
     </message>
@@ -1957,17 +1961,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2587"/>
+        <location filename="configdialog.ui" line="+2594"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Az utolsó mentés előtti verzió visszaállításához az SVN kiadásokat használja</translation>
     </message>
     <message>
-        <location line="-2353"/>
+        <location line="-2360"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Fordításismétlések maximális száma:</translation>
     </message>
     <message>
-        <location line="+1368"/>
+        <location line="+1375"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>A kiegészítő elindul, mihelyst egy \ jelet begépelünk, egyébként a Ctrl+Space lenyomására.</translation>
     </message>
@@ -2063,7 +2067,7 @@ options again to only view the most common settings.</oldsource>
         <translation>A tab bar mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
-        <location line="-1710"/>
+        <location line="-1717"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: fájlnév kiterjesztés nélkül &lt;b&gt;@&lt;/b&gt;: sor száma; &lt;b&gt;?[választó][végjel]&lt;/b&gt;: formázott fájnév</translation>
@@ -2130,7 +2134,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Félkövér kurzor</translation>
     </message>
     <message>
-        <location line="+227"/>
+        <location line="+234"/>
         <source>Table Autoformating</source>
         <translation>Táblázat automatikus formázása</translation>
     </message>
@@ -2185,7 +2189,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Elválasztó jel beszúrása</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1705"/>
+        <location filename="configdialog.ui" line="-1712"/>
         <source>Automatically load included files</source>
         <translation>Tartalmazott fájlok automatikus betöltése</translation>
     </message>
@@ -2206,12 +2210,12 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
 &lt;b&gt;?m&quot;&lt;/b&gt; idézőjelbe rakott fájlnév kiterjesztés nélkül (úgy, mint &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; fájlnév kiterjesztéssel (pl. pelda.tex)</translation>
     </message>
     <message>
-        <location line="-385"/>
+        <location line="-321"/>
         <source>MRU Document Chooser</source>
         <translation>MRU dokumentum választó</translation>
     </message>
     <message>
-        <location line="+1539"/>
+        <location line="+1475"/>
         <source>Smooth Scrolling</source>
         <translation>Finom görgetés</translation>
     </message>
@@ -2223,13 +2227,13 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <location line="+1"/>
         <location line="+151"/>
         <location line="+2"/>
-        <location line="+271"/>
-        <location line="+11"/>
+        <location line="+270"/>
+        <location line="+9"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location line="-385"/>
+        <location line="-382"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
@@ -2249,7 +2253,7 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location line="+355"/>
+        <location line="+352"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
@@ -2264,8 +2268,8 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>Mesterdokumentum:</translation>
     </message>
     <message>
-        <location line="-439"/>
-        <location line="+922"/>
+        <location line="-436"/>
+        <location line="+919"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
@@ -2585,7 +2589,7 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>&amp;* Minden fájl megnyitása</translation>
     </message>
     <message>
-        <location line="-798"/>
+        <location line="-795"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -2605,7 +2609,7 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>szó után</translation>
     </message>
     <message>
-        <location line="+751"/>
+        <location line="+748"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
     </message>
@@ -2826,14 +2830,14 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>Két negyed - \qquad</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-1015"/>
+        <location filename="configmanager.cpp" line="-1013"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Engedélyezte az automatikus cserét, bár előfordulnak makrók triggerekkel, mint például (?language:latex)(?&lt;=\s|^) vagy (?language:latex)(?&lt;=\S), melyek ilyenkor megváltozhatnak.
 Szeretné azokat eltávolítani?</translation>
     </message>
     <message>
-        <location line="+914"/>
+        <location line="+912"/>
         <source>Configure</source>
         <translation>Beállítás</translation>
     </message>
@@ -2848,7 +2852,7 @@ Szeretné azokat eltávolítani?</translation>
         <translation>Alapértelmezés visszaállítása</translation>
     </message>
     <message>
-        <location line="-1055"/>
+        <location line="-1052"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Új menüelem beszúrása (elé)</translation>
     </message>
@@ -2858,7 +2862,7 @@ Szeretné azokat eltávolítani?</translation>
         <translation>Új almenü beszúrása (elé)</translation>
     </message>
     <message>
-        <location line="+379"/>
+        <location line="+376"/>
         <source>File list</source>
         <translation>Fájl lista</translation>
     </message>
@@ -3358,7 +3362,7 @@ Invalid \caption command.</source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="+1026"/>
+        <location filename="latexcompleter.cpp" line="+1061"/>
         <source> (Usertag)</source>
         <translation> (Usertag)</translation>
     </message>
@@ -3563,7 +3567,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="-6"/>
-        <location filename="texmaker.cpp" line="+6179"/>
+        <location filename="texmaker.cpp" line="+6189"/>
         <source>Go to Definition</source>
         <translation>Ugrás a Definícióra</translation>
     </message>
@@ -3674,6 +3678,60 @@ Invalid \caption command.</source>
         <location line="+2"/>
         <source>Message</source>
         <translation>Üzenet</translation>
+    </message>
+</context>
+<context>
+    <name>LatexLogWidget</name>
+    <message>
+        <location filename="latexlogwidget.cpp" line="+27"/>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Másolás</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Copy All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Copy All With Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>No log file available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Log File</source>
+        <translation type="unfinished">Naplófájl</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Issues and Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Log file not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <location line="+36"/>
+        <source>Log file not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
+        <translation type="unfinished">A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
     </message>
 </context>
 <context>
@@ -3789,57 +3847,64 @@ Do you want to overwrite it?</source>
 <context>
     <name>OutputViewWidget</name>
     <message>
-        <location filename="toolwidgets.cpp" line="+287"/>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation>A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
+        <translation type="obsolete">A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
     </message>
     <message>
-        <location line="-130"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Másolás</translation>
+        <translation type="obsolete">&amp;Másolás</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Copy all</source>
-        <translation>&amp;Minden másolása</translation>
+        <translation type="obsolete">&amp;Minden másolása</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Copy all with line numbers</source>
-        <translation>&amp;Minden másolása sorszámokkal</translation>
+        <translation type="obsolete">&amp;Minden másolása sorszámokkal</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Show in log</source>
-        <translation>&amp;Log mutatása</translation>
+        <translation type="obsolete">&amp;Log mutatása</translation>
     </message>
     <message>
-        <location line="+148"/>
         <source>Failed to load log file &quot;%1&quot;</source>
-        <translation>A(z) &quot;%1&quot; log fájl betöltése meghiúsult</translation>
+        <translation type="obsolete">A(z) &quot;%1&quot; log fájl betöltése meghiúsult</translation>
     </message>
     <message>
-        <location line="+85"/>
+        <location filename="toolwidgets.cpp" line="+132"/>
+        <location line="+108"/>
         <source>Messages</source>
         <translation>Üzenetek</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Log File</source>
-        <translation>Naplófájl</translation>
+        <translation type="obsolete">Naplófájl</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Errors</source>
-        <translation>Hibák</translation>
+        <translation type="obsolete">Hibák</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-119"/>
+        <location line="+118"/>
+        <source>Messages / Log File</source>
+        <translation type="unfinished">Üzenet- / naplófájl</translation>
+    </message>
+    <message>
+        <location line="-102"/>
+        <location line="+104"/>
+        <source>Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-98"/>
+        <location line="+99"/>
         <source>Preview</source>
         <translation>Előnézet</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-87"/>
+        <location line="+88"/>
         <source>Search Results</source>
         <translation>Keresési eredmények</translation>
     </message>
@@ -4727,7 +4792,7 @@ Megnyitása programösszeomlást okozhat. Mindenképpen meg akarja nyitni?</tran
 <context>
     <name>PreviewWidget</name>
     <message>
-        <location filename="toolwidgets.cpp" line="-301"/>
+        <location filename="toolwidgets.cpp" line="-142"/>
         <source>zoom in </source>
         <translation>nagyítás</translation>
     </message>
@@ -7184,19 +7249,19 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-5933"/>
-        <location line="+1025"/>
+        <location filename="texmaker.cpp" line="-5934"/>
+        <location line="+1019"/>
         <source>Normal Mode</source>
         <translation>Normál mód</translation>
     </message>
     <message>
-        <location line="-1024"/>
-        <location line="+4482"/>
+        <location line="-1018"/>
+        <location line="+4478"/>
         <source>Ready</source>
         <translation>Kész</translation>
     </message>
     <message>
-        <location line="-4313"/>
+        <location line="-4309"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -7288,23 +7353,21 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Asymptote parancsok</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <location line="+1"/>
         <source>Messages / Log File</source>
-        <translation>Üzenet- / naplófájl</translation>
+        <translation type="obsolete">Üzenet- / naplófájl</translation>
     </message>
     <message>
-        <location line="+68"/>
+        <location line="+73"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location line="+1605"/>
+        <location line="+1600"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location line="-1589"/>
+        <location line="-1584"/>
         <source>Save A&amp;ll</source>
         <translation>Összes men&amp;tése</translation>
     </message>
@@ -7325,18 +7388,18 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+408"/>
-        <location line="+5158"/>
+        <location line="+5165"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location line="-5157"/>
-        <location line="+5158"/>
+        <location line="-5164"/>
+        <location line="+5165"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location line="-5531"/>
+        <location line="-5538"/>
         <source>Go to</source>
         <translation>Ugrás</translation>
     </message>
@@ -7490,12 +7553,12 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+13"/>
-        <location line="+6867"/>
+        <location line="+6874"/>
         <source>&amp;Close</source>
         <translation>&amp;Bezárás</translation>
     </message>
     <message>
-        <location line="-6866"/>
+        <location line="-6873"/>
         <source>Clos&amp;e All</source>
         <translation>Minden be&amp;zárása</translation>
     </message>
@@ -7763,12 +7826,12 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>&amp;Legyen a jelenlegi dokumentum a &apos;Mesterdokumentum&apos;</translation>
     </message>
     <message>
-        <location line="-680"/>
+        <location line="-674"/>
         <source>TeX files</source>
         <translation>TeX fájlok</translation>
     </message>
     <message>
-        <location line="+2617"/>
+        <location line="+2606"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Sortörés ennyi karakter után:</translation>
     </message>
@@ -7783,12 +7846,12 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Sorok összefűzése törés előtt</translation>
     </message>
     <message>
-        <location line="+2450"/>
+        <location line="+2458"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>Mentse a fájlt mester módba váltás előtt!</translation>
     </message>
     <message>
-        <location line="+1921"/>
+        <location line="+1925"/>
         <source>Load Profile</source>
         <translation>Profil betöltése</translation>
     </message>
@@ -7803,7 +7866,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Szóismétlés keresése csak aktivált azonnali helyesírás-ellenőrzéssel működik!</translation>
     </message>
     <message>
-        <location line="-6166"/>
+        <location line="-6173"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Legyen a jelenlegi dokumentum a &apos;Mesterdokumentum&apos;</translation>
     </message>
@@ -7829,13 +7892,13 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+31"/>
-        <location line="+5156"/>
+        <location line="+5163"/>
         <source>Indent Section</source>
         <translation>Fejezet behúzása</translation>
     </message>
     <message>
-        <location line="-5155"/>
-        <location line="+5156"/>
+        <location line="-5162"/>
+        <location line="+5163"/>
         <source>Unindent Section</source>
         <translation>Fejezet behúzásának megszüntetése</translation>
     </message>
@@ -7871,26 +7934,26 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+2"/>
-        <location filename="texmaker.cpp" line="-5984"/>
+        <location filename="texmaker.cpp" line="-5994"/>
         <source>Central</source>
         <translation>Központi</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+1041"/>
+        <location filename="texmaker.cpp" line="+1044"/>
         <source>Click to jump to the bookmark</source>
         <translation>A könyvjelzőre ugráshoz kattintson</translation>
     </message>
     <message>
-        <location line="+397"/>
+        <location line="+392"/>
         <location line="+1318"/>
-        <location line="+1504"/>
-        <location line="+393"/>
-        <location line="+118"/>
+        <location line="+1509"/>
+        <location line="+387"/>
+        <location line="+127"/>
         <location line="+2"/>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+395"/>
-        <location line="+2478"/>
+        <location line="+2482"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -7900,8 +7963,8 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Nincs olvasási jogosultsága a fájlra.</translation>
     </message>
     <message>
-        <location line="-7542"/>
-        <location line="+6976"/>
+        <location line="-7543"/>
+        <location line="+6977"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Minden fájl</translation>
@@ -7918,13 +7981,13 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location line="-4470"/>
-        <location line="+5592"/>
+        <location line="-4482"/>
+        <location line="+5604"/>
         <source>Open Files</source>
         <translation>Nyitott fájlok</translation>
     </message>
     <message>
-        <location line="-5399"/>
+        <location line="-5411"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Mentés és bezárás</translation>
@@ -7943,18 +8006,18 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+600"/>
-        <location line="+1830"/>
+        <location line="+1837"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>Nincs dokumentum megnyitva</translation>
     </message>
     <message>
-        <location line="-1842"/>
+        <location line="-1849"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Tezaurusz betöltése nem lehetséges</translation>
     </message>
     <message>
-        <location line="+1345"/>
+        <location line="+1350"/>
         <source>Labels:</source>
         <translation>Címkék:</translation>
     </message>
@@ -7971,7 +8034,7 @@ You have to save a document before you can compile it.</source>
 El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
-        <location line="+342"/>
+        <location line="+344"/>
         <source>Text Analysis</source>
         <translation>Szöveganalízis</translation>
     </message>
@@ -7981,20 +8044,18 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>A véletlen szöveg-generátor új szövegeket hoz létre létező szavakból, úgyhogy meg kell nyitni néhány szövegfájlt</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+26"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>A fájlt menteni és fordítani kell a napló megtekintése előtt</translation>
     </message>
     <message>
-        <location line="-4140"/>
-        <location line="+1"/>
-        <location line="+4150"/>
+        <location line="-4134"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nincs LaTeX hiba!</translation>
     </message>
     <message>
-        <location line="-4150"/>
+        <location line="+1"/>
         <location line="+1"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Nincs LaTeX figyelmeztetés!</translation>
@@ -8006,18 +8067,18 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>Nincsenek rossz szövegdobozok!</translation>
     </message>
     <message>
-        <location line="+4253"/>
+        <location line="+4256"/>
         <location line="+10"/>
         <source>File not found</source>
         <translation>A fájl nem található</translation>
     </message>
     <message>
-        <location line="-3691"/>
+        <location line="-3694"/>
         <source>Master Document</source>
         <translation>Mesterdokumentum</translation>
     </message>
     <message>
-        <location line="+4850"/>
+        <location line="+4857"/>
         <source>Close document</source>
         <translation>Dokumentum bezárása</translation>
     </message>
@@ -8074,13 +8135,13 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
     </message>
     <message>
-        <location line="-2007"/>
+        <location line="-2011"/>
         <location line="+10"/>
         <source>Could not open browser</source>
         <translation>A böngésző nem futtatható</translation>
     </message>
     <message>
-        <location line="-4396"/>
+        <location line="-4399"/>
         <source>SVN &amp;update...</source>
         <translation>SVN &amp;frissítés...</translation>
     </message>
@@ -8130,17 +8191,17 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>Dokumentumok megnyitása</translation>
     </message>
     <message>
-        <location line="+5792"/>
+        <location line="+5799"/>
         <source>check in whole directory ?</source>
         <translation>Az egész könyvtárban legyen az ellenőrzés?</translation>
     </message>
     <message>
-        <location line="-6389"/>
+        <location line="-6390"/>
         <source>Plaintext files</source>
         <translation>Plaintext fájlok</translation>
     </message>
     <message>
-        <location line="+263"/>
+        <location line="+257"/>
         <source>Open &amp;Recent</source>
         <translation>&amp;Korábban szerkesztett dokumentum megnyitása</translation>
     </message>
@@ -8160,12 +8221,12 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>&amp;Profil mentése...</translation>
     </message>
     <message>
-        <location line="+3737"/>
+        <location line="+3739"/>
         <source>Could not start %1.</source>
         <translation>%1 nem tudott elindulni.</translation>
     </message>
     <message>
-        <location line="+1422"/>
+        <location line="+1427"/>
         <source>Show all open documents in this tree</source>
         <translation>Megmutat minden megnyitott dokumentumot ebből a fából</translation>
     </message>
@@ -8180,7 +8241,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <translation>Profil mentése</translation>
     </message>
     <message>
-        <location line="-6657"/>
+        <location line="-6664"/>
         <source>&amp;Searching</source>
         <translation>&amp;Keresés</translation>
     </message>
@@ -8266,7 +8327,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Hibakeresés visszavonása</translation>
     </message>
     <message>
-        <location line="+5534"/>
+        <location line="+5541"/>
         <source>Move document to &amp;front</source>
         <translation>D&amp;okumentum mozgatása előre</translation>
     </message>
@@ -8283,7 +8344,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>LaTeX fájlok (*.tex);;Minden fájl (*)</translation>
     </message>
     <message>
-        <location line="-7304"/>
+        <location line="-7311"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Megmutatja a különbséget az alapfájllal kapcsolatban lévő két fájl között</translation>
     </message>
@@ -8324,17 +8385,16 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+3536"/>
+        <location line="+3538"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>A dokumentum nem fordítható írásvédett könyvtárban.</translation>
     </message>
     <message>
-        <location line="+147"/>
         <source>Log File is not readable!</source>
-        <translation>A log fájl nem olvasható!</translation>
+        <translation type="obsolete">A log fájl nem olvasható!</translation>
     </message>
     <message>
-        <location line="+2422"/>
+        <location line="+2574"/>
         <location line="+9"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
@@ -8391,7 +8451,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Különbség</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7675"/>
+        <location filename="texmaker.cpp" line="-7676"/>
         <source>Sweave files</source>
         <translation>Sweave fájlok</translation>
     </message>
@@ -8444,7 +8504,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Könyvjelzők</translation>
     </message>
     <message>
-        <location line="+162"/>
+        <location line="+156"/>
         <source>Erase until E&amp;nd of Line</source>
         <translation>&amp;Sor végéig töröl</translation>
     </message>
@@ -8470,12 +8530,12 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Oszlopok elrendezése</translation>
     </message>
     <message>
-        <location line="+3824"/>
+        <location line="+3826"/>
         <source>Unknown internal command: %1</source>
         <translation>Ismeretlen parancs: %1</translation>
     </message>
     <message>
-        <location line="-3859"/>
+        <location line="-3861"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>Fel&amp;használó</translation>
@@ -8496,7 +8556,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>&amp;Matematika</translation>
     </message>
     <message>
-        <location line="+6688"/>
+        <location line="+6695"/>
         <source>Reached beginning of text.</source>
         <translation>Elértem a szöveg elejét.</translation>
     </message>
@@ -8553,12 +8613,12 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
         <translation>Megkíséreltem megszakítani a program futását, de semmi nem történt.</translation>
     </message>
     <message>
-        <location line="-7849"/>
+        <location line="-7850"/>
         <source>PDF files</source>
         <translation>PDF fájlok</translation>
     </message>
     <message>
-        <location line="+637"/>
+        <location line="+631"/>
         <source>Align Windows</source>
         <translation>Ablakok elrendezése</translation>
     </message>
@@ -8568,7 +8628,7 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
         <translation>Kiemelés</translation>
     </message>
     <message>
-        <location line="+7126"/>
+        <location line="+7133"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>A TeXstudio megállt, feltehetőleg egy végtelen ciklus miatt.
@@ -8581,7 +8641,7 @@ Biztosan mégis futtani akarja? Adatok veszhetnek el.</translation>
         <translation>TeX dtx fájl</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7320"/>
+        <location filename="texmaker.cpp" line="-7327"/>
         <source>&amp;Index</source>
         <translation>&amp;Index</translation>
     </message>
@@ -8602,13 +8662,13 @@ Biztosan mégis futtani akarja? Adatok veszhetnek el.</translation>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location line="+584"/>
+        <location line="+579"/>
         <source>
 included document in %1</source>
         <translation>Tartalmazott dokumentum %1-ben</translation>
     </message>
     <message>
-        <location line="-576"/>
+        <location line="-571"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>&amp;Segédfájlok törlése...</translation>
     </message>
@@ -8651,7 +8711,7 @@ included document in %1</source>
         <translation>Makrók &amp;szerkesztése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+3843"/>
+        <location filename="texmaker.cpp" line="+3850"/>
         <source>Yes, try to recover</source>
         <translation>Igen, megkíséreltem a helyreállítást</translation>
     </message>
@@ -8666,17 +8726,17 @@ included document in %1</source>
         <translation>Igen, folytatom a ciklust</translation>
     </message>
     <message>
-        <location line="-7434"/>
+        <location line="-7441"/>
         <source>Previous Change</source>
         <translation>Legutóbbi változtatás</translation>
     </message>
     <message>
-        <location line="-340"/>
+        <location line="-334"/>
         <source>Pweave files</source>
         <translation>Pweave fájlok</translation>
     </message>
     <message>
-        <location line="+341"/>
+        <location line="+335"/>
         <source>Next Change</source>
         <translation>Következő változtatás</translation>
     </message>
@@ -8862,24 +8922,24 @@ included document in %1</source>
     </message>
     <message>
         <location line="+81"/>
-        <location line="+5158"/>
+        <location line="+5165"/>
         <source>Paste Before</source>
         <translation>Beillesztés elé</translation>
     </message>
     <message>
-        <location line="-5157"/>
-        <location line="+5158"/>
+        <location line="-5164"/>
+        <location line="+5165"/>
         <source>Paste After</source>
         <translation>Beillesztés utána</translation>
     </message>
     <message>
-        <location line="-3890"/>
+        <location line="-3902"/>
         <location line="+47"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>A(z) &quot;%1&quot; dokumentum mentetlen munkát tartalmaz. Szeretné menteni bezárás előtt?</translation>
     </message>
     <message>
-        <location line="+2249"/>
+        <location line="+2254"/>
         <source>(a) allow for this document</source>
         <translation>(a) engedélyezés erre a dokumentumra</translation>
     </message>
@@ -8894,7 +8954,7 @@ included document in %1</source>
         <translation>(c) alapértelmezett parancs használata</translation>
     </message>
     <message>
-        <location line="+1564"/>
+        <location line="+1571"/>
         <location line="+34"/>
         <source>Expand Subitems</source>
         <translation>Almenük kinyitása</translation>
@@ -8921,7 +8981,7 @@ included document in %1</source>
         <translation>Rendszerüzenet</translation>
     </message>
     <message>
-        <location line="-7610"/>
+        <location line="-7617"/>
         <source>New From &amp;Template...</source>
         <translation>Új, &amp;sablonból...</translation>
     </message>
@@ -8975,7 +9035,7 @@ Beleegyezik a cserébe?
 (c) Nem, nem akarom használni a(z) &quot;%3&quot; parancsot az alapértelmezett &quot;%2&quot; parancs helyett</translation>
     </message>
     <message>
-        <location line="+2690"/>
+        <location line="+2697"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>A(z) &quot;%1&quot; fájl nem létezik. Létre szeretné hozni?</translation>
@@ -9001,7 +9061,7 @@ Do you want to create it?</source>
         <translation>&amp;Előző</translation>
     </message>
     <message>
-        <location line="-6530"/>
+        <location line="-6537"/>
         <source>Long-range Word Repetition</source>
         <translation>Távoli szóismétlés</translation>
     </message>
@@ -9021,32 +9081,31 @@ Do you want to create it?</source>
         <translation>&amp;Dvi megjelenítése</translation>
     </message>
     <message>
-        <location line="+2168"/>
+        <location line="+2163"/>
         <source>No dictionary available.</source>
         <translation>Nincs elérhető szótár.</translation>
     </message>
     <message>
-        <location line="+1260"/>
+        <location line="+1265"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Jelenlegi fájl&gt;</translation>
     </message>
     <message>
-        <location line="+558"/>
+        <location line="+560"/>
         <source>No open project or tex file to clean.</source>
         <translation>Nincs tisztítandó nyitott projekt vagy tex fájl.</translation>
     </message>
     <message>
-        <location line="+103"/>
         <source>Log File not found!</source>
-        <translation>A naplófájl nem található!</translation>
+        <translation type="obsolete">A naplófájl nem található!</translation>
     </message>
     <message>
-        <location line="+1307"/>
+        <location line="+1415"/>
         <source>Create Label</source>
         <translation>Címke készítése</translation>
     </message>
     <message>
-        <location line="-4885"/>
+        <location line="-4892"/>
         <source>Normal Mode (current master document: </source>
         <translation>Normál mód (jelenlegi mesterdokumentum:</translation>
     </message>
@@ -9056,7 +9115,7 @@ Do you want to create it?</source>
         <translation>&amp;Makrók</translation>
     </message>
     <message>
-        <location line="+792"/>
+        <location line="+787"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Úgy tűnik, a(z) &quot;%1&quot; fájl a(z) &quot;%2&quot; fájl helyreállított változata.
@@ -9068,7 +9127,7 @@ Kicseréljük vele?</translation>
         <translation>A(z) &quot;%1&quot; helyreállított fájl betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location line="-853"/>
+        <location line="-848"/>
         <source>Math Assistant...</source>
         <translation>Math Assistant...</translation>
     </message>
@@ -9083,7 +9142,7 @@ Kicseréljük vele?</translation>
         <translation>Fókusz megjelenítő</translation>
     </message>
     <message>
-        <location line="+905"/>
+        <location line="+900"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -9104,7 +9163,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
         <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
     </message>
     <message>
-        <location line="-1375"/>
+        <location line="-1370"/>
         <source>&amp;Line Operations</source>
         <translation>&amp;Sor műveletek</translation>
     </message>
@@ -9134,7 +9193,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
         <translation>Előre</translation>
     </message>
     <message>
-        <location line="+980"/>
+        <location line="+975"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Nincs jogosultsága olvasni a(z) %1 fájlt.</translation>
     </message>
@@ -9144,7 +9203,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
         <translation>A sablon meta adata nem írható:</translation>
     </message>
     <message>
-        <location line="-1331"/>
+        <location line="-1326"/>
         <source>Session</source>
         <translation>Munkamenet</translation>
     </message>
@@ -9179,7 +9238,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
         <translation>Súgó csomagok...</translation>
     </message>
     <message>
-        <location line="+1114"/>
+        <location line="+1109"/>
         <source>Loading of last session failed.</source>
         <translation>Utolsó munkamenet betöltése meghiúsult.</translation>
     </message>
@@ -9224,21 +9283,21 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
         <translation>Munkamenet mentése meghiúsult.</translation>
     </message>
     <message>
-        <location line="-1617"/>
+        <location line="-1612"/>
         <source>List Of Open Documents</source>
         <translation>Megnyitott dokumentumok listája</translation>
     </message>
     <message>
         <location line="+289"/>
         <location line="+1"/>
-        <location line="+182"/>
+        <location line="+177"/>
         <location line="+4"/>
         <location line="+1"/>
         <source>Encoding</source>
         <translation>Kódolás</translation>
     </message>
     <message>
-        <location line="-165"/>
+        <location line="-160"/>
         <source>More Encodings...</source>
         <translation>További kódolások...</translation>
     </message>
@@ -9248,7 +9307,7 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
         <translation>Kódolás beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location line="+150"/>
+        <location line="+145"/>
         <source>Encoding Aliases: </source>
         <translation>Aliasok kódolása:</translation>
     </message>
@@ -9592,6 +9651,14 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <location line="+1"/>
         <source>Remove Own Word</source>
         <translation>Saját szó eltávolítása</translation>
+    </message>
+</context>
+<context>
+    <name>TitledPanel</name>
+    <message>
+        <location filename="titledpanel.cpp" line="+114"/>
+        <source>Close</source>
+        <translation type="unfinished">Bezárás</translation>
     </message>
 </context>
 <context>

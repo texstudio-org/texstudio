@@ -1044,7 +1044,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Tabbed Log Viewer</source>
-        <translation>Prohlížeč zápisů s kartami</translation>
+        <translation type="obsolete">Prohlížeč zápisů s kartami</translation>
     </message>
     <message>
         <source>Language</source>
@@ -2422,6 +2422,10 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Pamatovat si vybraný souborový filtr v dialogu pro otevírání/ukládání</translation>
+    </message>
+    <message>
+        <source>Go to error when displaying log</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3826,6 +3830,49 @@ Neplatný příkaz \caption.</translation>
     </message>
 </context>
 <context>
+    <name>LatexLogWidget</name>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Kopírovat</translation>
+    </message>
+    <message>
+        <source>&amp;Copy All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copy All With Line Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No log file available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log File</source>
+        <translation type="unfinished">Soubor se záznamem</translation>
+    </message>
+    <message>
+        <source>Issues and Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log file not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log file not readable.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
+        <translation type="unfinished">Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+    </message>
+</context>
+<context>
     <name>LetterDialog</name>
     <message>
         <source>Quick Letter</source>
@@ -3940,23 +3987,23 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation>Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+        <translation type="obsolete">Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopírovat</translation>
+        <translation type="obsolete">&amp;Kopírovat</translation>
     </message>
     <message>
         <source>&amp;Copy all</source>
-        <translation>&amp;Kopírovat vše</translation>
+        <translation type="obsolete">&amp;Kopírovat vše</translation>
     </message>
     <message>
         <source>&amp;Copy all with line numbers</source>
-        <translation>&amp;Kopírovat vše s čísly řádků</translation>
+        <translation type="obsolete">&amp;Kopírovat vše s čísly řádků</translation>
     </message>
     <message>
         <source>&amp;Show in log</source>
-        <translation>&amp;Ukázat v zápisu</translation>
+        <translation type="obsolete">&amp;Ukázat v zápisu</translation>
     </message>
     <message>
         <source>Messages</source>
@@ -3964,11 +4011,11 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Log File</source>
-        <translation>Soubor se záznamem</translation>
+        <translation type="obsolete">Soubor se záznamem</translation>
     </message>
     <message>
         <source>Errors</source>
-        <translation>Chyby</translation>
+        <translation type="obsolete">Chyby</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -3980,7 +4027,15 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Failed to load log file &quot;%1&quot;</source>
-        <translation>Nepodařilo se nahrát soubor se záznamem &quot;%1&quot;</translation>
+        <translation type="obsolete">Nepodařilo se nahrát soubor se záznamem &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Messages / Log File</source>
+        <translation type="unfinished">Zprávy/Soubor se zápisem</translation>
+    </message>
+    <message>
+        <source>Log</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6872,7 +6927,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Messages / Log File</source>
-        <translation>Zprávy/Soubor se zápisem</translation>
+        <translation type="obsolete">Zprávy/Soubor se zápisem</translation>
     </message>
     <message>
         <source>Normal Mode</source>
@@ -8024,7 +8079,7 @@ Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřn�
     </message>
     <message>
         <source>Log File is not readable!</source>
-        <translation>Soubor se zápisem není čitelný!</translation>
+        <translation type="obsolete">Soubor se zápisem není čitelný!</translation>
     </message>
     <message>
         <source>TXS Profile</source>
@@ -8585,7 +8640,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     </message>
     <message>
         <source>Log File not found!</source>
-        <translation>Soubor se zápisem nebyl nalezen!</translation>
+        <translation type="obsolete">Soubor se zápisem nebyl nalezen!</translation>
     </message>
     <message>
         <source>Create Label</source>
@@ -9136,6 +9191,13 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     <message>
         <source>Remove Own Word</source>
         <translation>Odstranit vlastní slovo</translation>
+    </message>
+</context>
+<context>
+    <name>TitledPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Zavřít</translation>
     </message>
 </context>
 <context>
