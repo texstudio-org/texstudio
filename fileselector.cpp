@@ -1,7 +1,7 @@
 #include "fileselector.h"
 
-FileSelector::FileSelector(QWidget *parent) :
-		QWidget(parent)
+FileSelector::FileSelector(QWidget *parent, bool multiselect) :
+	QWidget(parent), multiselect(multiselect)
 {
 	setLayout(new QVBoxLayout());
 	list = new QListWidget(this);
@@ -19,6 +19,11 @@ FileSelector::FileSelector(QWidget *parent) :
 	list->setPalette(p);
 
 	setAttribute(Qt::WA_DeleteOnClose);
+
+	if (multiselect) {
+		list->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+	}
 }
 
 void FileSelector::init(const QStringList& files, int current){
@@ -63,7 +68,7 @@ void FileSelector::filterChanged(const QString& newFilter){
 
 	QStringList filterList = nf.split(" ");
 
-	QPair<QString, int> oldFile = currentFile();
+	QList<QPair<QString, int> > oldFiles = currentFiles();
 	list->clear();
 	foreach (const QString& s, rawFiles) {
 		bool skip = false;
@@ -76,15 +81,24 @@ void FileSelector::filterChanged(const QString& newFilter){
 		list->addItem(s);
 	}
 
-	if (oldFile.second >= 0) {
-		for (int i=0;i<list->count();i++)
-			if (list->item(i)->text() == oldFile.first) {
-				oldFile.second-=1;
-				if (oldFile.second < 0){
-					list->setCurrentRow(i);
-					return;
+	if (!oldFiles.isEmpty()) {
+		bool foundOne = false;
+		for (int o=0;o<oldFiles.size();o++){
+			const QPair<QString, int>& oldFile = oldFiles[o];
+			int duplicate = oldFile.second;
+			for (int i=0;i<list->count();i++)
+				if (list->item(i)->text() == oldFile.first) {
+					duplicate -= 1;
+					if (duplicate < 0){
+						if (!foundOne) list->setCurrentRow(i);
+						else if (list->selectionModel() && list->model()) list->selectionModel()->select(list->model()->index(i,0), QItemSelectionModel::Select);
+						foundOne = true;
+						break;
+					}
 				}
-			}
+		}
+		if (foundOne)
+			return;
 	}
 
 	list->setCurrentRow(0);
@@ -124,6 +138,7 @@ bool FileSelector::eventFilter(QObject * obj, QEvent * event){
 	return QObject::eventFilter(obj, event);
 }
 
+typedef QPair<QString, int> QPairStringInt;
 void FileSelector::emitChoosen(){
 	QString jumpTo = filter->text().mid(filter->text().lastIndexOf(':')+1);
 	int line = -1, col = -1;
@@ -135,17 +150,27 @@ void FileSelector::emitChoosen(){
 			col = sl[1].trimmed().toInt();
 		}
 	}
-	emit fileChoosen(currentFile().first, currentFile().second, line, col);
+	foreach (const QPairStringInt& p, currentFiles())
+		emit fileChoosen(p.first, p.second, line, col);
 	close();
 }
 
-QPair<QString, int> FileSelector::currentFile(){
-	int index = list->currentRow();
-	if (index < 0 || index >= rawFiles.count()) return QPair<QString, int>("", -1);
-	QString file = list->item(index)->text();
-	int duplicate = 0;
-	for (int i=0;i<index;i++)
-		if (list->item(i)->text() == file)
-			duplicate++;
-	return QPair<QString, int>(file, duplicate);
+QList<QPair<QString, int> > FileSelector::currentFiles(){
+	QList<QPair<QString, int> > result;
+	int cindex = list->currentRow();
+	if (cindex < 0 || cindex >= rawFiles.count()) return result;
+	QList<int> indices;
+	if (!multiselect) indices << cindex;
+	else if (list->selectionModel())
+		foreach (const QModelIndex& index, list->selectionModel()->selectedIndexes())
+			indices << index.row();
+	foreach (int index, indices) {
+		QString file = list->item(index)->text();
+		int duplicate = 0;
+		for (int i=0;i<index;i++)
+			if (list->item(i)->text() == file)
+				duplicate++;
+		result << QPair<QString, int>(file, duplicate);
+	}
+	return result;
 }
