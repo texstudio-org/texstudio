@@ -1999,6 +1999,7 @@ void ConfigManager::setManagedShortCut(QAction* act, int num, const QKeySequence
 		if (oldIndex > num) //allow to remove the first shortcut, by setting it to the second one
 			shortcuts.removeAt(oldIndex);
 	}
+	if (num < 0) num = 0;
 	if (num < shortcuts.size()) shortcuts[num] = ks;
 	else shortcuts << ks;
 	act->setShortcuts(shortcuts);
