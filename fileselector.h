@@ -7,7 +7,7 @@ class FileSelector : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit FileSelector(QWidget *parent = 0);
+	explicit FileSelector(QWidget *parent = 0, bool multiselect = false);
 	void init(const QStringList& files, int current);
 	void setCentered(const QRect& rect);
 signals:
@@ -21,7 +21,8 @@ private:
 	QListWidget *list;
 	QLineEdit	*filter;
 	QStringList rawFiles;
-	QPair<QString, int> currentFile();
+	QList<QPair<QString, int> > currentFiles();
+	bool multiselect;
 };
 
 #endif // FILESELECTOR_H

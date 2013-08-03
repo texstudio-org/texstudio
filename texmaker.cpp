@@ -2377,7 +2377,16 @@ void Texmaker::updateUserMacros(bool updateMenu){
 
 void Texmaker::fileOpenRecent() {
 	QAction *action = qobject_cast<QAction *>(sender());
-	if (action) load(action->data().toString());
+	if (!action) return;
+	QString fn = action->data().toString();
+	if (!QFile::exists(fn)) {
+		if (txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(fn))){
+			if (configManager.recentFilesList.removeAll(fn))
+				configManager.updateRecentFiles();
+			return;
+		}
+	}
+	load(fn);
 }
 void Texmaker::fileOpenAllRecent() {
 	foreach (const QString& s, configManager.recentFilesList)
@@ -2385,7 +2394,7 @@ void Texmaker::fileOpenAllRecent() {
 }
 void Texmaker::fileRecentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this);
+	fileSelector = new FileSelector(this, true);
 
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
@@ -2396,7 +2405,15 @@ void Texmaker::fileRecentList(){
 
 void Texmaker::fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
 	Q_UNUSED(duplicate);
-	if (!load(doc)) return;
+	if (!QFile::exists(doc)) {
+		if (txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(doc))){
+			if (configManager.recentFilesList.removeAll(doc) + configManager.recentProjectList.removeAll(doc) > 0)
+				configManager.updateRecentFiles();
+			return;
+		}
+	}
+
+	if (!load(doc, duplicate < configManager.recentProjectList.count(doc))) return;
 	if (lineNr < 0) return;
 	REQUIRE(currentEditor());
 	currentEditor()->setCursorPosition(lineNr, column);
@@ -2409,7 +2426,7 @@ bool mruEditorViewLessThan(const LatexEditorView* e1, const LatexEditorView* e2)
 
 void Texmaker::viewDocumentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this);
+	fileSelector = new FileSelector(this, false);
 
 	QStringList sl;
 	LatexEditorView *curEdView = currentEditorView();
@@ -2464,7 +2481,16 @@ void Texmaker::fileOpenFirstNonOpen(){
 
 void Texmaker::fileOpenRecentProject() {
 	QAction *action = qobject_cast<QAction *>(sender());
-	if (action) load(action->data().toString(),true);
+	if (!action) return;
+	QString fn = action->data().toString();
+	if (!QFile::exists(fn)) {
+		if (txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(fn))){
+			if (configManager.recentProjectList.removeAll(fn))
+				configManager.updateRecentFiles();
+			return;
+		}
+	}
+	load(fn, true);
 }
 
 void Texmaker::loadSession(const QString &fileName) {
