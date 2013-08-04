@@ -212,6 +212,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	centralLayout->addWidget(EditorTabs);
 
 	centralVSplitter = new QSplitter(Qt::Vertical, this);
+	centralVSplitter->setChildrenCollapsible(false);
 	centralVSplitter->addWidget(centralFrame);
 	centralVSplitter->setStretchFactor(0,1);
 
