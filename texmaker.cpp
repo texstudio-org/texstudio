@@ -213,7 +213,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 
 	centralVSplitter = new QSplitter(Qt::Vertical, this);
 	centralVSplitter->addWidget(centralFrame);
-	centralVSplitter->setStretchFactor(0,2);
+	centralVSplitter->setStretchFactor(0,1);
 
 	mainHSplitter = new QSplitter(Qt::Horizontal, this);
 	mainHSplitter->addWidget(centralVSplitter);
@@ -490,7 +490,7 @@ void Texmaker::setupDockWidgets(){
 		outputView = new OutputViewWidget(this);
 		outputView->setObjectName("OutputView");
 		centralVSplitter->addWidget(outputView);
-		centralVSplitter->setStretchFactor(1,1);
+		centralVSplitter->setStretchFactor(1,0);
 
 		connect(outputView->getLogWidget(),SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 		connect(outputView,SIGNAL(pageChanged(QString)),this,SLOT(outputPageChanged(QString)));
