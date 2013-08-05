@@ -284,6 +284,11 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 		savedSelection=cursor->selectedText();
 		editBlockOpened = true;
 		cursor->beginEditBlock();
+		// TODO: This is a workaround. clearLanguageMatches() does not work properly
+		// after removeSelectedText() See https://sourceforge.net/p/texstudio/bugs/708/
+		// reason: MatchLists in QDocumentPrivate.m_matches are not updated during
+		// removeSelectedText()
+		editor->document()->clearLanguageMatches();
 		cursor->removeSelectedText();
 	}else if(!editor->cutBuffer.isEmpty()){
 		savedSelection=editor->cutBuffer;
