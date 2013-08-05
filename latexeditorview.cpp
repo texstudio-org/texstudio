@@ -52,12 +52,7 @@ QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "P
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding():completerConfig(0),contextMenu(0),isDoubleClick(false) {
-		keylog = new QFile("keylog.txt");
-		keylog->open(QFile::WriteOnly);
-		stream = new QTextStream(keylog);
-	}
-	~DefaultInputBinding() {keylog->close();}
+	DefaultInputBinding():completerConfig(0),contextMenu(0),isDoubleClick(false) {}
 	virtual QString id() const {
 		return "TXS::DefaultInputBinding";
 	}
@@ -86,8 +81,6 @@ private:
 	
 	QPoint lastMousePressLeft;
 	bool isDoubleClick;  // event sequence of a double click: press, release, double click, release - this is true on the second release
-	QFile * keylog;
-	QTextStream * stream;
 };
 
 static const QString LRMStr = QChar(LRM);
@@ -153,10 +146,9 @@ bool DefaultInputBinding::autoInsertLRM(QKeyEvent *event, QEditor *editor) {
 }
 
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
-	*stream << QString("press   %1 '%2'     %3 %4\n").arg(event->key(), 8).arg(event->text(), 1).arg(event->count()).arg(event->modifiers());
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
 	              (editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance()))  {
-				//update completer if necessary
+		//update completer if necessary
 		editor->emitNeedUpdatedCompleter();
 		bool autoOverriden = editor->isAutoOverrideText(event->text());
 		if (editorViewConfig->autoInsertLRM && event->text() == "\\" && editor->cursor().isRTL())
@@ -194,8 +186,6 @@ void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor) {
 
 
 bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor) {
-	*stream << QString("release %1     '%2' %3 %4\n").arg(event->key(), 8).arg(event->text(), 1).arg(event->count()).arg(event->modifiers());
-	stream->flush();
 	if (event->key() == Qt::Key_Control) {
 		editor->setMouseTracking(false);
 		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
