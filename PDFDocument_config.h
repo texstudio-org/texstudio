@@ -3,6 +3,7 @@
 
 #include <QByteArray>
 struct PDFDocumentConfig{
+	bool autoHideToolbars;
 	int windowLeft, windowTop;
 	int windowWidth, windowHeight;
 	bool windowMaximized;
@@ -18,8 +19,6 @@ struct PDFDocumentConfig{
 
 	int magnifierSize, magnifierShape;
 	bool magnifierBorder;
-
-
 
 	QString syncFileMask;
 

@@ -1901,7 +1901,10 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		move(x,y);
 		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
 	}
-	
+
+	if (embeddedMode && globalConfig->autoHideToolbars) {
+		setToolbarsVisible(false);
+	}
 
 	//batch test: 
 	/*QString test = QProcessEnvironment::systemEnvironment().value("TEST");
@@ -3171,6 +3174,24 @@ void PDFDocument::dropEvent(QDropEvent *event)
 		}
 		event->acceptProposedAction();
 	}
+}
+
+void PDFDocument::enterEvent(QEvent *event)
+{
+	setToolbarsVisible(true);
+}
+
+void PDFDocument::leaveEvent(QEvent *event)
+{
+	if (embeddedMode && globalConfig->autoHideToolbars) {
+		setToolbarsVisible(false);
+	}
+}
+
+bool PDFDocument::setToolbarsVisible(bool visible)
+{
+	toolBar->setVisible(visible);
+	statusbar->setVisible(visible);
 }
 
 void PDFDocument::doFindDialog(const QString command)

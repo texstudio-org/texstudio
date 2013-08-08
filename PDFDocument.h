@@ -367,6 +367,9 @@ protected:
 	virtual void closeEvent(QCloseEvent *event);
 	virtual void dragEnterEvent(QDragEnterEvent *event);
 	virtual void dropEvent(QDropEvent *event);
+	virtual void enterEvent(QEvent *event);
+	virtual void leaveEvent(QEvent *event);
+	bool setToolbarsVisible(bool visible);
 
 public slots:
 	void reload(bool fillCache=true);
