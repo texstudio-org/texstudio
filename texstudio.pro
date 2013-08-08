@@ -369,6 +369,7 @@ unix {
 	texstudio_hu.qm \
 	texstudio_ja.qm \
 	texstudio_pt_BR.qm \
+	texstudio_ru.qm \
 	texstudio_zh_CN.qm \
         qt_cs.qm \
         qt_de.qm \
