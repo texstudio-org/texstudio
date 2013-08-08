@@ -22,7 +22,7 @@ public:
 
 	bool load(const QString &file);
 	bool load(const ConfigManager &config); //
-	bool save(const QString &file) const;
+	bool save(const QString &file, bool relPaths=true) const;
 
 	const QList<FileInSession> files() const { return m_files; }
 	void addFile(FileInSession f);
@@ -44,6 +44,7 @@ public:
 	void setPDFEmbedded(bool b) { m_pdfEmbedded = b; }
 	bool PDFEmbedded() const { return m_pdfEmbedded; }
 
+	static QString fmtPath(const QDir &dir, const QString &file, bool relPath=true);
 
 private:
 	static QString m_fileExtension;
