@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -2398,8 +2398,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3078,6 +3078,13 @@ them here.</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QCheckBox" name="autoHideToolbars">
+            <property name="text">
+             <string>Auto-hide Toolbars in Embedded Mode</string>
             </property>
            </widget>
           </item>
