@@ -92,6 +92,7 @@
 <file>completion/mdframed.cwl</file>
 <file>completion/mdwlist.cwl</file>
 <file>completion/menukeys.cwl</file>
+<file>completion/mhchem.cwl</file>
 <file>completion/microtype.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
