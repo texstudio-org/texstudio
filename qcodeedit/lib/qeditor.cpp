@@ -3153,7 +3153,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 		return;
 	}
 	*/
-#ifdef Q_WS_MAC
+//#ifdef Q_WS_MAC
     QString preEdit=e->preeditString();
     if( !preEdit.isEmpty()){
         int i=-1;
@@ -3170,7 +3170,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         preEditLength=preEdit.length();
         preEditLineNumber=m_cursor.lineNumber();
     }
-#endif
+//#endif
 
 	if ( e->commitString().count() ) {
 		m_cursor.beginEditBlock();
@@ -3193,9 +3193,19 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 		m_cursor.endEditBlock();
 	}
 
+    if( preEdit.isEmpty() && e->commitString().isEmpty() && preEditSet) {
+        m_cursor.beginEditBlock();
+        m_cursor.movePosition(preEditLength, QDocumentCursor::Left, QDocumentCursor::KeepAnchor);
+        m_cursor.removeSelectedText();
+        m_cursor.endEditBlock();
+        preEditSet = false;
+        preEditLength = 0;
+    }
+
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		b->postInputMethodEvent(e, this);
-	
+
+    e->accept();
 }
 
 /*!
