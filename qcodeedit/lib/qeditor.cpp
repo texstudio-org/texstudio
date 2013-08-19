@@ -3609,8 +3609,11 @@ void QEditor::dropEvent(QDropEvent *e)
 
 	QDocumentCursor c(cursorForPosition(mapToContents(e->pos())));
 
-	if ( (e->source() == this) && (m_cursor.isWithinSelection(c)) )
+    if ( (e->source() == this) && (m_cursor.isWithinSelection(c)) ){
+        e->setDropAction(Qt::CopyAction);
+        e->accept();
 		return;
+    }
 
 	if (
 			e
@@ -4275,7 +4278,7 @@ void QEditor::startDrag()
 	Qt::DropActions actions = Qt::CopyAction | Qt::MoveAction;
 	Qt::DropAction action = drag->exec(actions, Qt::MoveAction);
 
-	if ( (action == Qt::MoveAction) && (drag->target() != this) )
+    if ( (action == Qt::MoveAction) && (drag->target() != this))
 	{
 		m_cursor.removeSelectedText();
 
