@@ -154,7 +154,7 @@ public:
 	
 	Q_INVOKABLE bool containsPackage(const QString& name);
     Q_INVOKABLE QStringList containedPackages();
-    void updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate=false);
+    bool updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate=false, bool delayUpdate=false);
 	
 	Q_INVOKABLE QString spellingDictName() const {
 		return mSpellingDictName;

@@ -278,6 +278,7 @@ inline bool isDefinitionArgument(const QString &arg) {
 }
 
 void LatexDocument::patchStructure(int linenr, int count) {
+    //qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
 	
 	if (!baseStructure) return;
 	
@@ -752,7 +753,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
             parent->updateMasterSlaveRelations(this);
         }
 	}//for each line handle
-	
 	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
     if(!isHidden()){
         mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
@@ -799,9 +799,10 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	foreach(se,MapOfMagicComments.values())
 		delete se;
 	
+    bool updateLtxCommands=false;
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
 		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
-        updateCompletionFiles(forceUpdate);
+        updateLtxCommands=updateCompletionFiles(forceUpdate,false,true);
 	}
 	
 	if (bibTeXFilesNeedsUpdate)
@@ -819,20 +820,26 @@ void LatexDocument::patchStructure(int linenr, int count) {
                 elem->edView->updateCitationFormats();
         }
     }
-	
-	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
+
+    if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
-	if(updateSyntaxCheck) {
-		foreach(LatexDocument* elem,getListOfDocs()){
+
+    if(updateSyntaxCheck || updateLtxCommands) {
+        if(edView){
+            edView->updateLtxCommands(true);
+            //qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
+        }
+        /*foreach(LatexDocument* elem,getListOfDocs()){
 			//getEditorView()->reCheckSyntax();//todo: signal
             if(elem->edView){
                 elem->edView->updateLtxCommands();
+                qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
 				elem->edView->reCheckSyntax();
             }
-		}
+        }*/
 	}
-	
+    //qDebug()<<"update View"<< QTime::currentTime().toString("HH:mm:ss:zzz");
 	//update view
 	if(edView)
 		edView->documentContentChanged(linenr, count);
@@ -845,6 +852,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
     foreach(QString fname,lstFilesToLoad){
         parent->addDocToLoad(fname);
     }
+    //qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
 }
 
 #ifndef QT_NO_DEBUG
@@ -2307,7 +2315,7 @@ QSet<QString> LatexDocument::additionalCommandsList(){
     return pck.completionWords.toSet();
 }
 
-void LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate){
+bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate,bool delayUpdate){
 
     QStringList files=mUsepackageList.values();
 	bool update=forceUpdate;
@@ -2357,15 +2365,21 @@ void LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 		patchLinesContaining(newCmds);
 	}
 	
+    if(delayUpdate)
+        return update;
+
 	if(update){
-		foreach(LatexDocument* elem,getListOfDocs()){
+        LatexEditorView *edView=getEditorView();
+        edView->updateLtxCommands(true);
+        /*foreach(LatexDocument* elem,getListOfDocs()){
 			LatexEditorView *edView=elem->getEditorView();
 			if(edView){
 				edView->updateLtxCommands();
 				edView->reCheckSyntax();
 			}
-		}
+        }*/
 	}
+    return false;
 }
 
 void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
