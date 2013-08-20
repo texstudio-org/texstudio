@@ -2084,6 +2084,9 @@ void Texmaker::fileOpen() {
 	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,fileFilters,  &selectedFileFilter);
 	foreach (const QString& fn, files)
 		load(fn);
+    // update completer
+    if(currentEditorView())
+        updateCompleter(currentEditorView());
 }
 
 void Texmaker::fileRestoreSession(bool showProgress){
@@ -2582,6 +2585,9 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 	if (!s.PDFFile().isEmpty()) {
 		runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded()?"--embedded":"--windowed");
 	}
+    // update completer
+    if(currentEditorView())
+        updateCompleter(currentEditorView());
 }
 
 Session Texmaker::getCurrentSession() {
