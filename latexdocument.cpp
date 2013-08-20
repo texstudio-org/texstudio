@@ -345,7 +345,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if(i>=0) elem=elem.left(i);
 			ltxCommands.possibleCommands["user"].remove(elem);
 			removedUserCommands << elem;
-			updateSyntaxCheck=true;
+            //updateSyntaxCheck=true;
 		}
 		if (mLabelItem.contains(dlh)) {
 			QList<ReferencePair> labels=mLabelItem.values(dlh);
@@ -525,7 +525,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
 						def=1;
 				}
 				ltxCommands.possibleCommands["user"].insert(name);
-				addedUserCommands << name;
+                if(!removedUserCommands.removeAll(name)){
+                    addedUserCommands << name;
+                }
 				if(def==1){
 					QString helper=name;
 					for (int j=0; j<options; j++) {
@@ -548,7 +550,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}
 				mUserCommandList.insert(line(i).handle(),name);
 				// remove obsolete Overlays (maybe this can be refined
-				updateSyntaxCheck=true;
+                //updateSyntaxCheck=true;
 				continue;
 			}
 			// special treatment \def
@@ -561,14 +563,16 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					//qDebug()<< name << ":"<< optionStr;
 					int options=optionStr.mid(1).toInt(); //returns 0 if conversion fails
 					ltxCommands.possibleCommands["user"].insert(name);
-					addedUserCommands << name;
+                    if(!removedUserCommands.removeAll(name)){
+                        addedUserCommands << name;
+                    }
 					for (int j=0; j<options; j++) {
 						if (j==0) name.append("{%<arg1%|%>}");
 						else name.append(QString("{%<arg%1%>}").arg(j+1));
 					}
 					mUserCommandList.insert(line(i).handle(),name);
 					// remove obsolete Overlays (maybe this can be refined
-					updateSyntaxCheck=true;
+                    //updateSyntaxCheck=true;
 				}
 				continue;
 			}
@@ -826,6 +830,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 
     if(updateSyntaxCheck || updateLtxCommands) {
+        //qDebug()<<"update ltx"<< QTime::currentTime().toString("HH:mm:ss:zzz");
         if(edView){
             edView->updateLtxCommands(true);
             //qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
