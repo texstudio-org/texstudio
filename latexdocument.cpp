@@ -722,7 +722,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
                     //parent->addDocToLoad(fname);
                 }
 
-				newInclude->valid = dc;
+                newInclude->valid = !fname.isEmpty();
 				newInclude->setLine(line(i).handle(), i);
 				newInclude->columnNumber = offset;
 				flatStructure << newInclude;
@@ -1325,8 +1325,8 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		if (entry->appendix) return QVariant(QColor(200,230,200));
 		else return QVariant();
 	case Qt::ForegroundRole:
-		if((entry->type==StructureEntry::SE_INCLUDE) && (entry->valid)) {
-			return QVariant(Qt::red);
+        if(entry->type==StructureEntry::SE_INCLUDE) {
+            return entry->valid ? QVariant() : QVariant(Qt::red); // not found files marked red, else black (green is not easily readable)
 		}else return QVariant();
 	case Qt::FontRole:
 		if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
