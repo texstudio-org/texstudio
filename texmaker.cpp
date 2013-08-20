@@ -265,7 +265,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	completer->setConfig(configManager.completerConfig);
     connect(completer,SIGNAL(showImagePreview(QString)),this,SLOT(showImgPreview(QString)));
     connect(this,SIGNAL(ImgPreview(QString)),completer,SLOT(bibtexSectionFound(QString)));
-	updateCompleter();
+    //updateCompleter();
 	LatexEditorView::setCompleter(completer);
 	completer->updateAbbreviations();
 	
@@ -274,7 +274,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	TemplateManager::checkForOldUserTemplates();
 
 	if (configManager.sessionRestore) {
-		fileRestoreSession(false);
+        fileRestoreSession(false);
 		ToggleRememberAct->setChecked(true);
 	}
 	

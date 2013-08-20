@@ -628,17 +628,34 @@ LatexEditorView::~LatexEditorView() {
     }
 }
 
-void LatexEditorView::updateLtxCommands(){
+void LatexEditorView::updateLtxCommands(bool updateAll){
 	if(!document)
 		return;
 	if(!document->parent)
 		return;
 	
 	LatexParser ltxCommands=LatexParser::getInstance();
-	foreach(const LatexDocument *elem,document->getListOfDocs()){
+    QList<LatexDocument *>listOfDocs=document->getListOfDocs();
+    foreach(const LatexDocument *elem,listOfDocs){
 		ltxCommands.append(elem->ltxCommands);
 	}
-	SynChecker.setLtxCommands(ltxCommands);
+
+    if(updateAll){
+        foreach(const LatexDocument *elem,listOfDocs){
+
+            LatexEditorView *view=elem->getEditorView();
+            if(view){
+                view->setLtxCommands(ltxCommands);
+                view->reCheckSyntax();
+            }
+        }
+    }else{
+        SynChecker.setLtxCommands(ltxCommands);
+    }
+}
+
+void LatexEditorView::setLtxCommands(const LatexParser& cmds){
+    SynChecker.setLtxCommands(cmds);
 }
 
 void LatexEditorView::paste(){

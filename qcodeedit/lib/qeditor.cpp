@@ -2881,7 +2881,7 @@ bool QEditor::protectedCursor(const QDocumentCursor& c) const
 void QEditor::keyPressEvent(QKeyEvent *e)
 {
         //tm.start();
-        //qDebug("pressed");
+     //qDebug()<<"pressed"<<QTime::currentTime().toString("HH:mm:ss:zzz");
 	// reset hover counter
 	m_hoverCount=-1;
 

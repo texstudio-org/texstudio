@@ -209,7 +209,8 @@ public slots:
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
 	void viewActivated();
 	void clearOverlays();
-	void updateLtxCommands();
+    void updateLtxCommands(bool updateAll=false);
+    void setLtxCommands(const LatexParser& cmds);
 	void paste();
     void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0, bool allowWrite=false);
 
