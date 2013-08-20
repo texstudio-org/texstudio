@@ -207,9 +207,9 @@ protected slots:
     void fileSave(const bool saveSilently=false);
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
+	void fileSaveAs(const QString& fileName = "", const bool saveSilently=false);
 private slots:
 	void fileNewInternal(QString fileName="");
-    void fileSaveAs(const QString& fileName = "", const bool saveSilently=false);
 protected slots:	
 	void fileClose();
 	void fileCloseAll();
