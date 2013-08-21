@@ -53,29 +53,6 @@ HEADERS += texmaker.h \
     debughelper.h \
     thesaurusdialog.h \
     xmltagslistwidget.h \
-    hunspell/affentry.hxx \
-    hunspell/affixmgr.hxx \
-    hunspell/atypes.hxx \
-    hunspell/baseaffix.hxx \
-    hunspell/csutil.hxx \
-    hunspell/dictmgr.hxx \
-    hunspell/hashmgr.hxx \
-    hunspell/htypes.hxx \
-    hunspell/hunspell.hxx \
-    hunspell/hunspell.h \
-    hunspell/langnum.hxx \
-    hunspell/license.hunspell \
-    hunspell/phonet.hxx \
-    hunspell/suggestmgr.hxx \
-    hunspell/license.myspell \
-    hunspell/filemgr.hxx \
-    hunspell/hunzip.hxx \
-    hunspell/w_char.hxx \
-    hunspell/replist.hxx \
-    qcodeedit/lib/qeditorinputbinding.h \
-    qcodeedit/lib/qeditorinputbindinginterface.h \
-    qcodeedit/lib/qformat.h \
-    qcodeedit/lib/qnfa/xml2qnfa.h \
     randomtextgenerator.h \
     templateselector.h \
     bibtexdialog.h \
@@ -174,21 +151,7 @@ SOURCES += main.cpp \
     codesnippet.cpp \
     thesaurusdialog.cpp \
     xmltagslistwidget.cpp \
-    hunspell/affentry.cxx \
-    hunspell/affixmgr.cxx \
-    hunspell/csutil.cxx \
-    hunspell/dictmgr.cxx \
-    hunspell/hashmgr.cxx \
-    hunspell/hunspell.cxx \
-    hunspell/phonet.cxx \
-    hunspell/replist.cxx \
-    hunspell/suggestmgr.cxx \
-    hunspell/utf_info.cxx \
-    hunspell/filemgr.cxx \
-    hunspell/hunzip.cxx \
     encodingdialog.cpp \
-    qcodeedit/lib/qeditorinputbinding.cpp \
-    qcodeedit/lib/qformat.cpp \
     randomtextgenerator.cpp \
     templateselector.cpp \
     bibtexdialog.cpp \
@@ -454,102 +417,13 @@ unix {
         utilities
 }
 
-# ##########QCODEEDIT###############
-DEFINES += _QCODE_EDIT_BUILD_
-DEPENDPATH += qcodeedit/lib/ \
-    qcodeedit/lib/document \
-    qcodeedit/lib/language \
-    qcodeedit/lib/widgets \
-    qcodeedit/lib/qnfa
-INCLUDEPATH += qcodeedit/lib/ \
-    qcodeedit/lib/document \
-    qcodeedit/lib/language \
-    qcodeedit/lib/widgets \
-    qcodeedit/lib/qnfa
-QT *= xml
+include(hunspell/hunspell.pri)
 
-# Input
-HEADERS += qcodeedit/lib/qce-config.h \
-    qcodeedit/lib/qeditor.h \
-    qcodeedit/lib/qeditorfactory.h \
-    qcodeedit/lib/qcodeedit.h \
-    qcodeedit/lib/qpanellayout.h \
-    qcodeedit/lib/qformatfactory.h \
-    qcodeedit/lib/qformatscheme.h \
-    qcodeedit/lib/qlinemarksinfocenter.h \
-    qcodeedit/lib/qreliablefilewatch.h \
-    qcodeedit/lib/document/qdocument.h \
-    qcodeedit/lib/document/qdocument_p.h \
-    qcodeedit/lib/document/qdocumentcommand.h \
-    qcodeedit/lib/document/qdocumentcursor.h \
-    qcodeedit/lib/document/qdocumentline.h \
-    qcodeedit/lib/document/qdocumentsearch.h \
-    qcodeedit/lib/qcodecompletionengine.h \
-    qcodeedit/lib/qlanguagedefinition.h \
-    qcodeedit/lib/qlanguagefactory.h \
-    qcodeedit/lib/widgets/qpanel.h \
-    qcodeedit/lib/widgets/qlinenumberpanel.h \
-    qcodeedit/lib/widgets/qlinemarkpanel.h \
-    qcodeedit/lib/widgets/qlinechangepanel.h \
-    qcodeedit/lib/widgets/qfoldpanel.h \
-    qcodeedit/lib/widgets/qstatuspanel.h \
-    qcodeedit/lib/widgets/qsearchreplacepanel.h \
-    qcodeedit/lib/widgets/qgotolinedialog.h \
-    qcodeedit/lib/widgets/qgotolinepanel.h \
-    qcodeedit/lib/widgets/qeditconfig.h \
-    qcodeedit/lib/widgets/qformatconfig.h \
-    qcodeedit/lib/widgets/qsimplecolorpicker.h \
-    qcodeedit/lib/widgets/qcalltip.h     
-SOURCES += qcodeedit/lib/qeditor.cpp \
-    qcodeedit/lib/qeditorfactory.cpp \
-    qcodeedit/lib/qcodeedit.cpp \
-    qcodeedit/lib/qpanellayout.cpp \
-    qcodeedit/lib/qformatscheme.cpp \
-    qcodeedit/lib/qlinemarksinfocenter.cpp \
-    qcodeedit/lib/qreliablefilewatch.cpp \
-    qcodeedit/lib/document/qdocument.cpp \
-    qcodeedit/lib/document/qdocumentcommand.cpp \
-    qcodeedit/lib/document/qdocumentcursor.cpp \
-    qcodeedit/lib/document/qdocumentcursor_p.h \
-    qcodeedit/lib/document/qdocumentline.cpp \
-    qcodeedit/lib/document/qdocumentline_p.h \
-    qcodeedit/lib/document/qdocumentsearch.cpp \
-    qcodeedit/lib/qcodecompletionengine.cpp \
-    qcodeedit/lib/qlanguagedefinition.cpp \
-    qcodeedit/lib/qlanguagefactory.cpp \
-    qcodeedit/lib/widgets/qpanel.cpp \
-    qcodeedit/lib/widgets/qlinenumberpanel.cpp \
-    qcodeedit/lib/widgets/qlinemarkpanel.cpp \
-    qcodeedit/lib/widgets/qlinechangepanel.cpp \
-    qcodeedit/lib/widgets/qfoldpanel.cpp \
-    qcodeedit/lib/widgets/qstatuspanel.cpp \
-    qcodeedit/lib/widgets/qsearchreplacepanel.cpp \
-    qcodeedit/lib/widgets/qgotolinedialog.cpp \
-    qcodeedit/lib/widgets/qgotolinepanel.cpp \
-    qcodeedit/lib/widgets/qeditconfig.cpp \
-    qcodeedit/lib/widgets/qformatconfig.cpp \
-    qcodeedit/lib/widgets/qsimplecolorpicker.cpp \
-    qcodeedit/lib/widgets/qcalltip.cpp
-FORMS += qcodeedit/lib/widgets/gotoline.ui \
-    qcodeedit/lib/widgets/gotolinedialog.ui \
-    qcodeedit/lib/widgets/editconfig.ui \
-    qcodeedit/lib/widgets/formatconfig.ui
-DEFINES += QNFA_BUILD
-HEADERS += qcodeedit/lib/qnfa/qnfa.h \
-    qcodeedit/lib/qnfa/qnfadefinition.h \
-    qcodeedit/lib/qnfa/light_vector.h \
-    qcodeedit/lib/qnfa/xml2qnfa.h
-SOURCES += qcodeedit/lib/qnfa/qnfa.cpp \
-    qcodeedit/lib/qnfa/qnfadefinition.cpp \
-    qcodeedit/lib/qnfa/xml2qnfa.cpp
+include(qcodeedit/qcodeedit.pri)
 
-# ###############################
-
-# ##########QUAZIP###############
 DEFINES += QUAZIP_STATIC
-
-# Input
 include(quazip/quazip/quazip.pri)
+
 
 # ###############################
 
