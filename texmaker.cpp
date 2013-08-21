@@ -218,6 +218,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 
 	mainHSplitter = new QSplitter(Qt::Horizontal, this);
 	mainHSplitter->addWidget(centralVSplitter);
+	mainHSplitter->setChildrenCollapsible(false);
 	setCentralWidget(mainHSplitter);
 	
 	setContextMenuPolicy(Qt::ActionsContextMenu);
