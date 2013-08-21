@@ -526,6 +526,12 @@ void fillRectBorder(QPainter& painter, const QRect& inner, const QRect& outer){
 	painter.drawRect(inner.x(), inner.bottom(), inner.width(), outer.bottom() - inner.bottom());
 }
 
+QPixmap invertColors(const QPixmap &pixmap) {
+	QImage img = pixmap.toImage();
+	img.invertPixels();
+	return QPixmap::fromImage(img);
+}
+
 void PDFWidget::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
@@ -546,6 +552,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			QRect drawTo = pageRect(pageNr);
             image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor *overScale, dpi * scaleFactor*overScale,
                                       0,0, newRect.width()*overScale, newRect.height()*overScale,true,true);
+			if (globalConfig->invertColors)
+				image = invertColors(image);
 			fillRectBorder(painter, drawTo, newRect);
             painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
 			if (pageNr==highlightPage && !highlightPath.isEmpty() ) {
@@ -599,6 +607,9 @@ void PDFWidget::paintEvent(QPaintEvent *event)
                         dpi * scaleFactor * overScale,
                         dpi * scaleFactor * overScale,
                         0,0,drawGrid.width()*overScale,drawGrid.height()*overScale,true,true);
+				if (globalConfig->invertColors)
+					temp = invertColors(temp);
+
 				if (drawGrid != basicGrid) 
 					fillRectBorder(painter, drawGrid, basicGrid);
                 painter.drawPixmap(QRect(drawGrid.left(), drawGrid.top(),temp.width()/overScale,temp.height()/overScale), temp);
@@ -2222,6 +2233,9 @@ void PDFDocument::init(bool embedded)
 	conf->linkOptionToObject(&globalConfig->followFromScroll, actionCursor_follows_scrolling);
 	conf->registerOption("Preview/Sync Multiple Views", &globalConfig->syncViews, true);
 	conf->linkOptionToObject(&globalConfig->syncViews, actionSynchronize_multiple_views);
+	conf->registerOption("Preview/Invert Colors", &globalConfig->invertColors, false);
+	conf->linkOptionToObject(&globalConfig->invertColors, actionInvertColors);
+	connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
 

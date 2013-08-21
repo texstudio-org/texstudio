@@ -26,6 +26,7 @@ struct PDFDocumentConfig{
 //live options
 	bool continuous,singlepagestep;
 	bool followFromCursor, followFromScroll, syncViews;
+	bool invertColors;
 	int gridx,gridy;
 };
 

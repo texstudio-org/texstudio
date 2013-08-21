@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>1197</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -53,6 +53,8 @@
     <addaction name="actionScrolling_follows_cursor"/>
     <addaction name="actionCursor_follows_scrolling"/>
     <addaction name="actionSynchronize_multiple_views"/>
+    <addaction name="separator"/>
+    <addaction name="actionInvertColors"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -837,6 +839,14 @@
   <action name="actionShrinkViewer">
    <property name="text">
     <string>Shrink Viewer</string>
+   </property>
+  </action>
+  <action name="actionInvertColors">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Invert Colors</string>
    </property>
   </action>
  </widget>
