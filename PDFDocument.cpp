@@ -37,6 +37,8 @@
 #include "smallUsefulFunctions.h"
 #include "PDFDocument_config.h"
 #include "configmanagerinterface.h"
+#include "pdfannotationdlg.h"
+
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
@@ -777,19 +779,9 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	event->accept();
 }
 
-void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
-{
-	if (clickedLink) {
-		int page;
-		QPointF scaledPos;
-		mapToScaledPosition(event->pos(), page, scaledPos);
-		if (page>-1 && clickedLink->linkArea().contains(scaledPos)) {
-			doLink(clickedLink);
-		}
-	} else if (clickedAnnotation && clickedAnnotation->subType() == Poppler::Annotation::AMovie) {
-		int page;
-		QPointF scaledPos;
-		mapToScaledPosition(event->pos(), page, scaledPos);
+void PDFWidget::annotationClicked(Poppler::Annotation *annotation, const QPointF &scaledPos) {
+	switch (annotation->subType()) {
+	case Poppler::Annotation::AMovie: {
 #ifdef PHONON
 		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos) ) {
 			if (movie) delete movie;
@@ -799,9 +791,38 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			movie->play();
 		}
 #else
+		Q_UNUSED(scaledPos)
 		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
 #endif
+		break;
+		}
 
+	case Poppler::Annotation::AText:
+	case Poppler::Annotation::ACaret:
+	case Poppler::Annotation::AHighlight: {
+		PDFAnnotationDlg * dlg = new PDFAnnotationDlg(annotation, this);
+		dlg->show();
+		break;
+	}
+	default:
+		;
+	}
+}
+
+void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+	if (clickedLink) {
+		int page;
+		QPointF scaledPos;
+		mapToScaledPosition(event->pos(), page, scaledPos);
+		if (page>-1 && clickedLink->linkArea().contains(scaledPos)) {
+			doLink(clickedLink);
+		}
+	} else if (clickedAnnotation) {
+		int page;
+		QPointF scaledPos;
+		mapToScaledPosition(event->pos(), page, scaledPos);
+		annotationClicked(clickedAnnotation, scaledPos);
 	} else if (currentTool == kPresentation) {
 		if (event->button() == Qt::LeftButton) goNext();
 		else if (event->button() == Qt::RightButton) goPrev();
@@ -1161,6 +1182,30 @@ void PDFWidget::updateCursor()
 		break;
 	}
 }
+QRect PDFWidget::mapPopplerRectToWidget(QRectF r, const QSizeF &pageSize) const {
+	r.setWidth(r.width() * scaleFactor * dpi / 72.0 * pageSize.width());
+	r.setHeight(r.height() * scaleFactor * dpi / 72.0 * pageSize.height());
+	r.moveLeft(r.left() * scaleFactor * dpi / 72.0 * pageSize.width());
+	r.moveTop(r.top() * scaleFactor * dpi / 72.0 * pageSize.height());
+	QRect rr = r.toRect().normalized();
+	rr.setTopLeft(mapToGlobal(rr.topLeft()));
+	return rr;
+}
+
+void listAnnotationDetails(const Poppler::Annotation *an) {
+	qDebug() << "*** Poppler Annotation ***";
+	qDebug() << "subtype       " << an->subType();
+	qDebug() << "author        " << an->author();
+	qDebug() << "contents      " << an->contents();
+	qDebug() << "uniqueName    " << an->uniqueName();
+	qDebug() << "modifDate     " << an->modificationDate();
+	qDebug() << "creationDate  " << an->creationDate();
+	qDebug() << "flags         " << an->flags();
+	qDebug() << "boundary      " << an->boundary();
+	qDebug() << "style.color   " << an->style.color;
+	qDebug() << "window.topleft" << an->window.topLeft;
+	//qDebug() << "revisions     " << an->revisions();
+}
 
 void PDFWidget::updateCursor(const QPoint& pos)
 {
@@ -1179,26 +1224,34 @@ void PDFWidget::updateCursor(const QPoint& pos)
 		if (link->linkArea().contains(scaledPos)) {
 			setCursor(Qt::PointingHandCursor);
 			if (link->linkType() == Poppler::Link::Browse) {
-				QPoint globalPos = mapToGlobal(pos);
 				const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse*>(link);
 				Q_ASSERT(browse != NULL);
-				QRectF r = link->linkArea();
-				r.setWidth(r.width() * scaleFactor * dpi / 72.0 * page->pageSizeF().width());
-				r.setHeight(r.height() * scaleFactor * dpi / 72.0 * page->pageSizeF().height());
-				r.moveLeft(r.left() * scaleFactor * dpi / 72.0 * page->pageSizeF().width());
-				r.moveTop(r.top() * scaleFactor * dpi / 72.0 * page->pageSizeF().height());
-				QRect rr = r.toRect().normalized();
-				rr.setTopLeft(mapToGlobal(rr.topLeft()));
-				QToolTip::showText(globalPos, browse->url(), this, rr);
+				QRect r = mapPopplerRectToWidget(link->linkArea(), page->pageSizeF());
+				QToolTip::showText(mapToGlobal(pos), browse->url(), this, r);
 			}
 			delete page;
 			return;
 		}
 	}
-	
+
 	foreach (Poppler::Annotation* annot, page->annotations()) {
-		if (annot->boundary().contains(scaledPos) && annot->subType() == Poppler::Annotation::AMovie){
-			setCursor(Qt::PointingHandCursor);
+		if (annot->boundary().contains(scaledPos)) {
+			switch (annot->subType()) {
+			case Poppler::Annotation::AMovie:
+				setCursor(Qt::PointingHandCursor);
+				break;
+			case Poppler::Annotation::AText:
+			case Poppler::Annotation::ACaret:
+			case Poppler::Annotation::AHighlight: {
+				setCursor(Qt::PointingHandCursor);
+				QString text = QString("<b>%1</b><hr>%2").arg(annot->author(), annot->contents());
+				QRect r = mapPopplerRectToWidget(annot->boundary(), page->pageSizeF());
+				QToolTip::showText(mapToGlobal(pos), text, this, r);
+				break;
+			}
+			default:
+				;
+			}
 			delete page;
 			return;
 		}

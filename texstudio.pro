@@ -116,7 +116,8 @@ HEADERS += texmaker.h \
     cursorposition.h \
     tests/help_t.h \
     titledpanel.h \
-    latexlogwidget.h
+    latexlogwidget.h \
+    pdfannotationdlg.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -204,7 +205,8 @@ SOURCES += main.cpp \
     cursorposition.cpp \
     usermacro.cpp \
     titledpanel.cpp \
-    latexlogwidget.cpp
+    latexlogwidget.cpp \
+    pdfannotationdlg.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
@@ -233,7 +235,8 @@ FORMS += structdialog.ui \
     PDFDocument.ui \
     cleandialog.ui \
     maketemplatedialog.ui \
-    texdocdialog.ui
+    texdocdialog.ui \
+    pdfannotationdlg.ui
 TRANSLATIONS += texstudio_cs.ts \
     texstudio_de.ts \
     texstudio_es.ts \
@@ -244,7 +247,8 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_uk.ts \
     texstudio_ru.ts \
     texstudio_ja.ts \
-    texstudio_zh_CN.ts
+    texstudio_zh_CN.ts \
+    pdfannotationdlg.ui
 
 # ###############################
 win32:RC_FILE = win.rc
