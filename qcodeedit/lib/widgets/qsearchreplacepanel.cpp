@@ -88,7 +88,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
-    bClose->setIcon(getRealIcon("fileclose"));
+    bClose->setIcon(getRealIconCached("fileclose"));
 	gridLayout->addWidget(bClose, 0, 0, 1, 1);
 
 	QLabel* lbFind = new QLabel(this);
@@ -112,21 +112,21 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bNext->setObjectName(("bNext"));
 	bNext->setMinimumSize(buttonSize);
 	bNext->setMaximumSize(buttonSize);
-    bNext->setIcon(getRealIcon("down"));
+    bNext->setIcon(getRealIconCached("down"));
 	gridLayout->addWidget(bNext, 0, 3, 1, 1);
 
 	bPrevious = new QToolButton(this);
 	bPrevious->setObjectName(("bPrevious"));
 	bPrevious->setMinimumSize(buttonSize);
 	bPrevious->setMaximumSize(buttonSize);
-    bPrevious->setIcon(getRealIcon("up"));
+    bPrevious->setIcon(getRealIconCached("up"));
 	gridLayout->addWidget(bPrevious, 0, 4, 1, 1);
 
 	bCount = new QToolButton(this);
 	bCount->setObjectName(("bCount"));
 	bCount->setMinimumSize(buttonSize);
 	bCount->setMaximumSize(buttonSize);
-    bCount->setIcon(getRealIcon("count"));
+    bCount->setIcon(getRealIconCached("count"));
 	gridLayout->addWidget(bCount, 0, 5, 1, 1);
 
 	QFrame *frameFindOptions = new QFrame(this);
@@ -211,21 +211,21 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bReplaceNext->setObjectName(("bReplaceNext"));
 	bReplaceNext->setMinimumSize(buttonSize);
 	bReplaceNext->setMaximumSize(buttonSize);
-    bReplaceNext->setIcon(getRealIcon("replacedown"));
+    bReplaceNext->setIcon(getRealIconCached("replacedown"));
 	gridLayout->addWidget(bReplaceNext, 1, 3, 1, 1);
 
 	bReplacePrevious = new QToolButton(this);
 	bReplacePrevious->setObjectName(("bReplacePrevious"));
 	bReplacePrevious->setMinimumSize(buttonSize);
 	bReplacePrevious->setMaximumSize(buttonSize);
-    bReplacePrevious->setIcon(getRealIcon("replaceup"));
+    bReplacePrevious->setIcon(getRealIconCached("replaceup"));
 	gridLayout->addWidget(bReplacePrevious, 1, 4, 1, 1);
 
 	bReplaceAll = new QToolButton(this);
 	bReplaceAll->setObjectName(("bReplaceAll"));
 	bReplaceAll->setMinimumSize(buttonSize);
 	bReplaceAll->setMaximumSize(buttonSize);
-    bReplaceAll->setIcon(getRealIcon("replaceall"));
+    bReplaceAll->setIcon(getRealIconCached("replaceall"));
 	gridLayout->addWidget(bReplaceAll, 1, 5, 1, 1);
 
 	QFrame* frameReplaceOptions = new QFrame(this);

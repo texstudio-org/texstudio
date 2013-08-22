@@ -5,6 +5,7 @@
 #include <CoreFoundation/CFBundle.h>
 #endif
 
+QCache<QString,QIcon>IconCache;
 
 int getSimplifiedSVNVersion(QString svnVersion) {
 	int cutoff = svnVersion.indexOf(QRegExp("[^0-9]"));
@@ -187,6 +188,31 @@ QIcon getRealIcon(const QString& icon){
 #endif
     //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
     return QIcon(getRealIconFile(icon));
+}
+
+QIcon getRealIconCached(const QString& icon){
+    if(IconCache.contains(icon)){
+        return *IconCache[icon];
+    }
+    if (icon.isEmpty()) return QIcon();
+
+    if (icon.startsWith(":/")){
+            QIcon *icn=new QIcon(icon);
+            IconCache.insert(icon,icn);
+            return *icn;
+    }
+#if QT_VERSION >= 0x040600
+    if (useSystemTheme && QIcon::hasThemeIcon(icon)){
+        QIcon *icn=new QIcon(QIcon::fromTheme(icon));
+        IconCache.insert(icon,icn);
+        return *icn;
+}
+
+#endif
+    //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+    QIcon *icn=new QIcon(getRealIconFile(icon));
+    IconCache.insert(icon,icn);
+    return *icn;
 }
 
 bool isFileRealWritable(const QString& filename) {

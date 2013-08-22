@@ -2,6 +2,7 @@
 #define UTILSSYSTEM_H
 
 #include "mostQtHeaders.h"
+#include <QCache>
 
 #define REQUIRE(x)  do { Q_ASSERT((x)); if (!(x)) return; } while (0)
 #define REQUIRE_RET(x,e) do { Q_ASSERT((x)); if (!(x)) return (e); } while (0)
@@ -11,7 +12,6 @@
 #else
 #define LIST_RESERVE(list, count)
 #endif
-
 
 extern const char* TEXSTUDIO_SVN_VERSION;
 
@@ -31,6 +31,7 @@ extern bool modernStyle;
 extern bool useSystemTheme;
 QString getRealIconFile(const QString& icon);
 QIcon getRealIcon(const QString& icon);
+QIcon getRealIconCached(const QString& icon);
 
 //returns if the file is writable (QFileInfo.isWritable works in different ways on Windows and Linux)
 bool isFileRealWritable(const QString& filename);
