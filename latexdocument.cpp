@@ -1254,11 +1254,11 @@ StructureEntry* StructureEntryIterator::next(){
 
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
   iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
-  iconWarning(getRealIcon("warning")), m_singleMode(false){
+  iconWarning(getRealIconCached("warning")), m_singleMode(false){
   mHighlightIndex=QModelIndex();
   iconSection.resize(LatexParser::getInstance().structureCommands.count());
   for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-    iconSection[i]=getRealIcon(LatexParser::getInstance().structureCommands[i].mid(1));
+    iconSection[i]=getRealIconCached(LatexParser::getInstance().structureCommands[i].mid(1));
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;

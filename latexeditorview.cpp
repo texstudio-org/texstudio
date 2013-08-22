@@ -2433,12 +2433,12 @@ void LatexEditorView::lineMarkContextMenuRequested(int lineNumber, QPoint global
 		}
 	}
 
-    QAction *act = new QAction(getRealIcon("lbook"),tr("Unnamed Bookmark"), &menu);
+    QAction *act = new QAction(getRealIconCached("lbook"),tr("Unnamed Bookmark"), &menu);
 	act->setData(-1);
 	menu.addAction(act);
 
 	for (int i=0; i<10; i++) {
-        QAction *act = new QAction(getRealIcon(QString("lbook%1").arg(i)), tr("Bookmark")+QString(" %1").arg(i), &menu);
+        QAction *act = new QAction(getRealIconCached(QString("lbook%1").arg(i)), tr("Bookmark")+QString(" %1").arg(i), &menu);
 		act->setData(i);
 		menu.addAction(act);
 	}

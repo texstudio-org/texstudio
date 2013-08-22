@@ -52,7 +52,7 @@ QGotoLinePanel::QGotoLinePanel(QWidget *p)
 	
 	setObjectName("gotoLinePanel");
 	
-    bClose->setIcon(getRealIcon("fileclose"));
+    bClose->setIcon(getRealIconCached("fileclose"));
 }
 
 /*!
