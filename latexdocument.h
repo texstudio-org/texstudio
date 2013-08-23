@@ -140,7 +140,7 @@ public:
 	Q_INVOKABLE QString getTemporaryFileName() const;
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension) const;
 	
-	void setMasterDocument(LatexDocument* doc);
+    void setMasterDocument(LatexDocument* doc, bool recheck=true);
 	Q_INVOKABLE LatexDocument* getMasterDocument() const{
 		return masterDocument;
 	}
@@ -337,7 +337,7 @@ public:
 	void updateBibFiles(bool updateFiles=true);
 	
 	void updateStructure();
-	void updateMasterSlaveRelations(LatexDocument *doc);
+    void updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs=true);
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
@@ -348,6 +348,8 @@ public:
     void removeDocs(QStringList removeIncludes);
     void hideDocInEditor(LatexEditorView *edView);
     QString findPackageByCommand(const QString command);
+    void enablePatch(const bool enable);
+    bool patchEnabled();
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
@@ -357,6 +359,8 @@ private slots:
 	void bibTeXFilesNeedUpdate();
 public slots:
 	void lineGrammarChecked(const void* doc,const void* line,int lineNr, const QList<GrammarError>& errors);
+private:
+    bool m_patchEnabled;
 };
 
 #endif // LATEXDOCUMENT_H

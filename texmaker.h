@@ -73,7 +73,7 @@ public:
 	bool tobemaximized,tobefullscreen;
 
 public slots:
-    LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false);
+    LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false, bool recheck=true);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 	
@@ -580,6 +580,8 @@ protected:
 	void restoreBookmarks(LatexEditorView *edView);
 	
     bool completerPreview;
+
+    bool recheckLabels;
 	
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
