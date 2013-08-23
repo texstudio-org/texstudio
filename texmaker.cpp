@@ -11,7 +11,7 @@
  ***************************************************************************/
 //#include <stdlib.h>
 
-//#include "/usr/include/valgrind/callgrind.h"
+#include "/usr/include/valgrind/callgrind.h"
 
 #include "texmaker.h"
 #include "latexeditorview.h"
@@ -1579,6 +1579,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	if (existingView) {
 		if (asProject) documents.setMasterDocument(existingView->document);
 		if(existingView->document->isHidden()){
+            existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
 			documents.deleteDocument(existingView->document,true);
 			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
@@ -1632,6 +1633,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	
 	doc=new LatexDocument(this);
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+    if(hidden)
+        edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
 	configureNewEditorView(edit);
 	
 	edit->document=documents.findDocument(f_real);
@@ -2541,7 +2544,7 @@ void Texmaker::fileSaveSession() {
 }
 
 void Texmaker::restoreSession(const Session &s, bool showProgress) {
-//CALLGRIND_START_INSTRUMENTATION;
+CALLGRIND_START_INSTRUMENTATION;
 	fileCloseAll();
 
 	cursorHistory->setInsertionEnabled(false);
@@ -2606,7 +2609,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
     // update completer
     if(currentEditorView())
         updateCompleter(currentEditorView());
-//CALLGRIND_STOP_INSTRUMENTATION;
+CALLGRIND_STOP_INSTRUMENTATION;
 }
 
 Session Texmaker::getCurrentSession() {
