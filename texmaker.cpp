@@ -11,7 +11,7 @@
  ***************************************************************************/
 //#include <stdlib.h>
 
-#include "/usr/include/valgrind/callgrind.h"
+//#include "/usr/include/valgrind/callgrind.h"
 
 #include "texmaker.h"
 #include "latexeditorview.h"
@@ -2542,7 +2542,7 @@ void Texmaker::fileSaveSession() {
 }
 
 void Texmaker::restoreSession(const Session &s, bool showProgress) {
-CALLGRIND_START_INSTRUMENTATION;
+//CALLGRIND_START_INSTRUMENTATION;
 	fileCloseAll();
 
 	cursorHistory->setInsertionEnabled(false);
@@ -2592,7 +2592,7 @@ CALLGRIND_START_INSTRUMENTATION;
     // update completer
     if(currentEditorView())
         updateCompleter(currentEditorView());
-CALLGRIND_STOP_INSTRUMENTATION;
+//CALLGRIND_STOP_INSTRUMENTATION;
 }
 
 Session Texmaker::getCurrentSession() {
