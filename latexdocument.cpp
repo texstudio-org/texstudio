@@ -157,7 +157,7 @@ void LatexDocument::initClearStructure() {
 void LatexDocument::updateStructure() {
 	initClearStructure();
 	
-	patchStructure(0, lineCount());
+    patchStructure(0, -1);
 	
 	emit structureLost(this);
 }
@@ -279,8 +279,16 @@ inline bool isDefinitionArgument(const QString &arg) {
 
 void LatexDocument::patchStructure(int linenr, int count) {
     //qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
-	
+    if(!parent->patchEnabled())
+        return;
+
 	if (!baseStructure) return;
+
+    bool recheckLabels=true;
+    if(count<0){
+        count=lineCount();
+        recheckLabels=false;
+    }
 	
 	emit toBeChanged();
 	
@@ -720,7 +728,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
                 removedIncludes.removeAll(fname);
                 mIncludedFilesList.insert(line(i).handle(),fname);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
-                if(dc)	dc->setMasterDocument(this);
+                if(dc)	dc->setMasterDocument(this,recheckLabels);
                 else {
                     lstFilesToLoad << fname;
                     //parent->addDocToLoad(fname);
@@ -1009,12 +1017,14 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(const QString& name)
 	return result;
 }
 
-void LatexDocument::setMasterDocument(LatexDocument* doc){
+void LatexDocument::setMasterDocument(LatexDocument* doc,bool recheck){
 	masterDocument=doc;
 	QList<LatexDocument *>listOfDocs=getListOfDocs();
-	foreach(LatexDocument *elem,listOfDocs){
-		elem->recheckRefsLabels();
-	}
+    if(recheck){
+        foreach(LatexDocument *elem,listOfDocs){
+            elem->recheckRefsLabels();
+        }
+    }
 }
 
 QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visitedDocs){
@@ -1570,6 +1580,7 @@ LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterD
 	showLineNumbersInStructure=false;
 	indentationInStructure=-1;
 	indentIncludesInStructure=0;
+    m_patchEnabled=true;
 }
 
 LatexDocuments::~LatexDocuments(){
@@ -2229,15 +2240,15 @@ void LatexDocuments::bibTeXFilesNeedUpdate(){
 	bibTeXFilesModified=true;
 }
 
-void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
+void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs){
 	//update Master/Child relations
 	//remove old settings ...
-	doc->setMasterDocument(0);
+    doc->setMasterDocument(0,false);
     QList<LatexDocument*> docs=getDocuments();
     foreach(LatexDocument* elem,docs){
 		if(elem->getMasterDocument()==doc){
-			elem->setMasterDocument(0);
-			elem->recheckRefsLabels();
+            elem->setMasterDocument(0,recheckRefs);
+            //elem->recheckRefsLabels();
 		}
 	}
 	
@@ -2248,7 +2259,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 			continue;
 		QStringList includedFiles=elem->includedFiles();
 		if(includedFiles.contains(fname)){
-			doc->setMasterDocument(elem);
+            doc->setMasterDocument(elem,recheckRefs);
             break;
 		}
 	}
@@ -2258,15 +2269,16 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc){
 	foreach(const QString& fname,includedFiles){
 		LatexDocument* child=this->findDocumentFromName(fname);
 		if(child){
-			child->setMasterDocument(doc);
+            child->setMasterDocument(doc,recheckRefs);
 			LatexEditorView *edView=child->getEditorView();
-			if(edView)
+            if(edView && recheckRefs)
 				edView->reCheckSyntax(); // redo syntax checking (in case of defined commands)
 		}
 	}
 	
 	//recheck references
-	doc->recheckRefsLabels();
+    if(recheckRefs)
+        doc->recheckRefsLabels();
 }
 
 const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs) const {
@@ -2558,6 +2570,14 @@ void LatexDocument::patchLinesContaining(const QStringList cmds){
       }
     }
   }
+}
+
+void LatexDocuments::enablePatch(const bool enable){
+    m_patchEnabled=enable;
+}
+
+bool LatexDocuments::patchEnabled(){
+    return m_patchEnabled;
 }
 
 QString LatexDocuments::findPackageByCommand(const QString command){

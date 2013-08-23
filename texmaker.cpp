@@ -90,6 +90,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
 	highlightLanguageActions = 0;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
 	completerPreview=false;
+    recheckLabels=true;
 	
 	ReadSettings();
 	
@@ -1539,7 +1540,7 @@ void guessLanguageFromContent(QLanguageFactory* m_languages, QEditor* e){
 		m_languages->setLanguage(e, ".xml");
 }
 
-LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) {
+LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,bool recheck) {
 	QString f_real=f;
 #ifdef Q_WS_WIN
 	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
@@ -1665,12 +1666,11 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden) 
         MarkCurrentFileAsRecent();
     }
 	
-	
-	
-	
-	documents.updateMasterSlaveRelations(doc);
-	
-	edit->updateLtxCommands();
+    documents.updateMasterSlaveRelations(doc,recheck);
+
+    if(recheck){
+        edit->updateLtxCommands();
+    }
 	
     if(!hidden){
         if (QFile::exists(f_real + ".recover.bak~")
@@ -1857,9 +1857,8 @@ void Texmaker::fileReloaded(){
 	}else{
 		LatexDocument* document=documents.findDocument(mEditor->fileName());
 		if (!document) return;
-		int len=document->lineCount();
 		document->initClearStructure();
-		document->patchStructure(0,len);
+        document->patchStructure(0,-1);
 	}
 }
 
@@ -2553,6 +2552,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 		progress.setMinimumDuration(3000);
 		progress.setLabel(new QLabel());
 	}
+    recheckLabels=false; // impede label rechecking on hidden docs
 
 	bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
 
@@ -2563,7 +2563,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 			progress.setValue(i);
 			progress.setLabelText(QFileInfo(f.fileName).fileName());
 		}
-		LatexEditorView* edView=load(f.fileName, f.fileName==s.masterFile());
+        LatexEditorView* edView=load(f.fileName, f.fileName==s.masterFile(),false,false);
 		if (edView) {
 			int line = f.cursorLine;
 			int col = f.cursorCol;
@@ -2580,6 +2580,20 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 			edView->document->foldLines(f.foldedLines);
 		}
 	}
+    // update ref/labels in one go;
+    QList<LatexDocument*> completedDocs;
+    foreach(LatexDocument *doc,documents.getDocuments()){
+        doc->recheckRefsLabels();
+        if(completedDocs.contains(doc))
+            continue;
+        LatexEditorView *edView=doc->getEditorView();
+        if(edView){
+            edView->updateLtxCommands(true);
+            completedDocs<<doc->getListOfDocs();
+        }
+    }
+    recheckLabels=true;
+
 	if (showProgress) {
 		progress.setValue(progress.maximum());
 	}
@@ -3446,8 +3460,8 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
     if(!doc)
         doc = currentEditorView()->document;
 	if(initial){
-		int len=doc->lineCount();
-		doc->patchStructure(0,len);
+        //int len=doc->lineCount();
+        doc->patchStructure(0,-1); //len
 
 		doc->updateMagicCommentScripts();
 		configManager.completerConfig->userMacros << doc->localMacros;
@@ -5897,7 +5911,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 
-	updateHighlighting();
+    updateHighlighting();
 
 	mCompleterNeedsUpdate=false;
 }
@@ -7685,14 +7699,16 @@ void Texmaker::updateHighlighting(){
 	
 	newLaTeX = m_lang.d;
 	Q_ASSERT(oldLaTeX != newLaTeX);
+    documents.enablePatch(false);
 	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		QEditor* ed = edView->editor;
 		//if (customEnvironmentChanged) ed->highlight();
 		if (ed->languageDefinition() == oldLaTeX) {
 			ed->setLanguageDefinition(newLaTeX);
-			ed->highlight();
+            ed->highlight();
 		}
 	}
+    documents.enablePatch(true);
 
 	updateUserMacros(false); //update macros depending on the language to newLatex
 }
@@ -8253,7 +8269,9 @@ void Texmaker::checkLatexInstall(){
 
 void Texmaker::addDocToLoad(QString filename){
     //qDebug()<<"fname:"<<filename;
-    load(filename,false,true);
+    if(filename.isEmpty())
+        return;
+    load(filename,false,true,recheckLabels);
 }
 
 void Texmaker::moveCursorTodlh(){
