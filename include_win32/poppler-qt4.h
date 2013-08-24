@@ -1,10 +1,19 @@
 /* poppler-qt.h: qt interface to poppler
  * Copyright (C) 2005, Net Integration Technologies, Inc.
  * Copyright (C) 2005, 2007, Brad Hards <bradh@frogmouth.net>
- * Copyright (C) 2005-2009, Albert Astals Cid <aacid@kde.org>
+ * Copyright (C) 2005-2012, Albert Astals Cid <aacid@kde.org>
  * Copyright (C) 2005, Stefan Kebekus <stefan.kebekus@math.uni-koeln.de>
- * Copyright (C) 2006-2009, Pino Toscano <pino@kde.org>
+ * Copyright (C) 2006-2011, Pino Toscano <pino@kde.org>
  * Copyright (C) 2009 Shawn Rutledge <shawn.t.rutledge@gmail.com>
+ * Copyright (C) 2010 Suzuki Toshiya <mpsuzuki@hiroshima-u.ac.jp>
+ * Copyright (C) 2010 Matthias Fauconneau <matthias.fauconneau@gmail.com>
+ * Copyright (C) 2011 Andreas Hartmetz <ahartmetz@gmail.com>
+ * Copyright (C) 2011 Glad Deschrijver <glad.deschrijver@gmail.com>
+ * Copyright (C) 2012, Guillermo A. Amaral B. <gamaral@kde.org>
+ * Copyright (C) 2012, Fabio D'Urso <fabiodurso@hotmail.it>
+ * Copyright (C) 2012, Tobias Koenig <tobias.koenig@kdab.com>
+ * Copyright (C) 2012 Adam Reichold <adamreichold@myopera.com>
+ * Copyright (C) 2012 Thomas Freitag <Thomas.Freitag@alfa.de>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +64,30 @@ namespace Poppler {
 
     class PDFConverter;
     class PSConverter;
+
+    /**
+	Debug/error function.
+
+	This function type is used for debugging & error output;
+	the first parameter is the actual message, the second is the unaltered
+	closure argument which was passed to the setDebugErrorFunction call.
+
+	\since 0.16
+    */
+    typedef void (*PopplerDebugFunc)(const QString & /*message*/, const QVariant & /*closure*/);
+
+    /**
+	Set a new debug/error output function.
+
+	If not set, by default error and debug messages will be sent to the
+	Qt \p qDebug() function.
+
+	\param debugFunction the new debug function
+	\param closure user data which will be passes as-is to the debug function
+
+	\since 0.16
+    */
+    POPPLER_QT4_EXPORT void setDebugErrorFunction(PopplerDebugFunc debugFunction, const QVariant &closure);
 
     /**
         Describes the physical location of text on a document page
@@ -278,6 +311,8 @@ delete it;
        Container class for an embedded file with a PDF document
     */
     class POPPLER_QT4_EXPORT EmbeddedFile {
+	friend class DocumentData;
+	friend class AnnotationPrivate;
     public:
 	/// \cond PRIVATE
 	EmbeddedFile(EmbFile *embfile);
@@ -350,6 +385,7 @@ delete it;
 
     private:
 	Q_DISABLE_COPY(EmbeddedFile)
+	EmbeddedFile(EmbeddedFileData &dd);
 
 	EmbeddedFileData *m_embeddedFile;
     };
@@ -387,6 +423,31 @@ delete it;
 	    Opening,   ///< The action when a page is "opened"
 	    Closing    ///< The action when a page is "closed"
 	};
+	
+	/**
+	   How the text is going to be returned
+	   \since 0.16
+	*/
+	enum TextLayout {
+	    PhysicalLayout,   ///< The text is layouted to resemble the real page layout
+	    RawOrderLayout          ///< The text is returned without any type of processing
+	};
+
+        /**
+           Additional flags for the renderToPainter method
+           \since 0.16
+        */
+        enum PainterFlag {
+            /**
+               Do not save/restore the caller-owned painter.
+
+               renderToPainter() by default preserves, using save() + restore(),
+               the state of the painter specified; if this is not needed, this
+               flag can avoid this job
+             */
+            DontSaveAndRestore = 0x00000001
+        };
+        Q_DECLARE_FLAGS( PainterFlags, PainterFlag )
 
 	/** 
 	   Render the page to a QImage using the current
@@ -428,6 +489,51 @@ delete it;
         */
 	QImage renderToImage(double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1, Rotation rotate = Rotate0) const;
 
+        /**
+           Render the page to the specified QPainter using the current
+           \link Document::renderBackend() Document renderer\endlink.
+
+           If \p x = \p y = \p w = \p h = -1, the method will automatically
+           compute the size of the page area from the horizontal and vertical
+           resolutions specified in \p xres and \p yres. Otherwise, the
+           method renders only a part of the page, specified by the
+           parameters (\p x, \p y, \p w, \p h) in pixel coordinates.
+
+           \param painter the painter to paint on
+
+           \param x specifies the left x-coordinate of the box, in
+           pixels.
+
+           \param y specifies the top y-coordinate of the box, in
+           pixels.
+
+           \param w specifies the width of the box, in pixels.
+
+           \param h specifies the height of the box, in pixels.
+
+           \param xres horizontal resolution of the graphics device,
+           in dots per inch
+
+           \param yres vertical resolution of the graphics device, in
+           dots per inch
+
+           \param rotate how to rotate the page
+
+           \param flags additional painter flags
+
+           \warning The parameter (\p x, \p y, \p w, \p h) are not
+           well-tested. Unusual or meaningless parameters may lead to
+           rather unexpected results.
+
+           \returns whether the painting succeeded
+
+           \note This method is only supported for Arthur
+
+           \since 0.16
+        */
+        bool renderToPainter(QPainter* painter, double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,
+                             Rotation rotate = Rotate0, PainterFlags flags = 0) const;
+
 	/**
 	   Get the page thumbnail if it exists.
 
@@ -440,6 +546,18 @@ delete it;
 
 	/**
 	   Returns the text that is inside a specified rectangle
+
+	   \param rect the rectangle specifying the area of interest,
+	   with coordinates given in points, i.e., 1/72th of an inch.
+	   If rect is null, all text on the page is given
+	
+	   \since 0.16
+	**/
+	QString text(const QRectF &rect, TextLayout textLayout) const;
+
+	/**
+	   Returns the text that is inside a specified rectangle.
+	   The text is returned using the physical layout of the page
 
 	   \param rect the rectangle specifying the area of interest,
 	   with coordinates given in points, i.e., 1/72th of an inch.
@@ -472,8 +590,33 @@ delete it;
 	   \param caseSensitive be case sensitive?
 	   \param rotate the rotation to apply for the search order
 	**/
-	bool search(const QString &text, QRectF &rect, SearchDirection direction, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
+	Q_DECL_DEPRECATED bool search(const QString &text, QRectF &rect, SearchDirection direction, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
 	
+	/**
+	   Returns true if the specified text was found.
+
+	   \param text the text the search
+	   \param rectXXX in all directions is used to return where the text was found, for NextResult and PreviousResult
+	               indicates where to continue searching for
+	   \param direction in which direction do the search
+	   \param caseSensitive be case sensitive?
+	   \param rotate the rotation to apply for the search order
+	   \since 0.14
+	**/
+	bool search(const QString &text, double &rectLeft, double &rectTop, double &rectRight, double &rectBottom, SearchDirection direction, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
+	
+	/**
+	   Returns a list of all occurrences of the specified text on the page.
+	   
+	   \param text the text to search
+	   \param caseSensitive whether to be case sensitive
+	   \param rotate the rotation to apply for the search order
+	   
+	   \warning Do not use the returned QRectF as arguments of another search call because of truncation issues if qreal is defined as float.
+	   
+	   \since 0.22
+	**/
+	QList<QRectF> search(const QString &text, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
 
 	/**
 	   Returns a list of text of the page
@@ -494,12 +637,12 @@ delete it;
 	QList<TextBox*> textList(Rotation rotate = Rotate0) const;
 
 	/**
-	   \return The dimensions (cropbox) of the page, in points (i.e. 1/72th on an inch)
+	   \return The dimensions (cropbox) of the page, in points (i.e. 1/72th of an inch)
 	*/
 	QSizeF pageSizeF() const;
 
 	/**
-	   \return The dimensions (cropbox) of the page, in points (i.e. 1/72th on an inch)
+	   \return The dimensions (cropbox) of the page, in points (i.e. 1/72th of an inch)
 	*/
 	QSize pageSize() const;
 
@@ -549,11 +692,34 @@ delete it;
 	
 	/**
 	 Returns the annotations of the page
+
+	 \note If you call this method twice, you get different objects
+	       pointing to the same annotations (see Annotation).
+	       The caller owns the returned objects and they should be deleted
+	       when no longer required.
 	*/
 	QList<Annotation*> annotations() const;
 
 	/**
+	 Adds an annotation to the page
+
+	 \note Ownership of the annotation object stays with the caller, who can
+	       delete it at any time.
+	 \since 0.20
+	*/
+	void addAnnotation( const Annotation *ann );
+
+	/**
+	 Removes an annotation from the page and destroys the annotation object
+
+	 \note There mustn't be other Annotation objects pointing this annotation
+	 \since 0.20
+	*/
+	void removeAnnotation( const Annotation *ann );
+
+	/**
 	 Returns the form fields on the page
+	 The caller gets the ownership of the returned objects.
 
 	 \since 0.6
 	*/
@@ -614,7 +780,7 @@ delete it;
    \subsection document-rendering-backend Backends
 
    %Poppler offers a different backends for rendering the pages. Currently
-   there two backends (see #RenderBackend), but only the Splash engine works
+   there are two backends (see #RenderBackend), but only the Splash engine works
    well and has been tested.
 
    The available rendering backends can be discovered via availableRenderBackends().
@@ -680,9 +846,22 @@ delete it;
 	enum RenderHint {
 	    Antialiasing = 0x00000001,      ///< Antialiasing for graphics
 	    TextAntialiasing = 0x00000002,  ///< Antialiasing for text
-	    TextHinting = 0x00000004        ///< Hinting for text \since 0.12.1
+	    TextHinting = 0x00000004,       ///< Hinting for text \since 0.12.1
+	    TextSlightHinting = 0x00000008, ///< Lighter hinting for text when combined with TextHinting \since 0.18
+	    OverprintPreview = 0x00000010   ///< Overprint preview \since 0.22
 	};
 	Q_DECLARE_FLAGS( RenderHints, RenderHint )
+
+	/**
+	   Form types
+
+	   \since 0.22
+	*/
+	enum FormType {
+	    NoForm,    ///< Document doesn't contain forms
+	    AcroForm,  ///< AcroForm
+	    XfaForm    ///< Adobe XML Forms Architecture (XFA), currently unsupported
+	};
 
 	/**
 	  Set a color display profile for the current document.
@@ -768,6 +947,8 @@ delete it;
      
 	   Note that this follows the PDF standard of being zero based - if you
 	   want the first page, then you need an index of zero.
+	
+	   The caller gets the ownership of the returned object.
 
 	   \param index the page number index
 	*/
@@ -1180,6 +1361,27 @@ QString subject = m_doc->info("Subject");
 	QStringList scripts() const;
 
 	/**
+	   The PDF identifiers.
+
+	   \param permanentId an optional pointer to a variable where store the
+	   permanent ID of the document
+	   \param updateId an optional pointer to a variable where store the
+	   update ID of the document
+
+	   \return whether the document has the IDs
+
+	   \since 0.16
+	*/
+	bool getPdfId(QByteArray *permanentId, QByteArray *updateId) const;
+
+	/**
+	   Returns the type of forms contained in the document
+
+	   \since 0.22
+	*/
+	FormType formType() const;
+
+	/**
 	   Destructor.
 	*/
 	~Document();
@@ -1279,9 +1481,11 @@ height = dummy.height();
               \since 0.10
              */
             enum PSOption {
-                Printing = 0x00000001,              ///< The PS is generated for priting purpouses
+                Printing = 0x00000001,              ///< The PS is generated for printing purposes
                 StrictMargins = 0x00000002,
-                ForceRasterization = 0x00000004
+                ForceRasterization = 0x00000004,
+                PrintToEPS = 0x00000008,            ///< Output EPS instead of PS \since 0.20
+                HideAnnotations = 0x00000010        ///< Don't print annotations \since 0.20
             };
             Q_DECLARE_FLAGS( PSOptions, PSOption )
 
@@ -1361,6 +1565,7 @@ height = dummy.height();
               \since 0.10
              */
             void setPSOptions(PSOptions options);
+
             /**
               The currently set options for the PS export.
 
@@ -1369,6 +1574,15 @@ height = dummy.height();
               \since 0.10
              */
             PSOptions psOptions() const;
+
+            /**
+              Sets a function that will be called each time a page is converted.
+
+              The payload belongs to the caller.
+
+              \since 0.16
+             */
+            void setPageConvertedCallback(void (* callback)(int page, void *payload), void *payload);
 
             bool convert();
 
@@ -1430,6 +1644,13 @@ height = dummy.height();
        \since 0.12
     */
     POPPLER_QT4_EXPORT bool isCmsAvailable();
+    
+    /**
+       Whether the overprint preview functionality is available.
+
+       \since 0.22
+    */
+    POPPLER_QT4_EXPORT bool isOverprintPreviewAvailable();
 
     class SoundData;
     /**
@@ -1515,7 +1736,7 @@ height = dummy.height();
        \since 0.10
     */
     class POPPLER_QT4_EXPORT MovieObject {
-    friend class Page;
+    friend class AnnotationPrivate;
     public:
 	/**
 	   The play mode for playing the movie
@@ -1554,6 +1775,20 @@ height = dummy.height();
 	*/
 	PlayMode playMode() const;
 
+	/**
+	   Returns whether a poster image should be shown if the movie is not playing.
+	   \since 0.22
+	*/
+	bool showPosterImage() const;
+
+	/**
+	   Returns the poster image that should be shown if the movie is not playing.
+	   If the image is null but showImagePoster() returns @c true, the first frame of the movie
+	   should be used as poster image.
+	   \since 0.22
+	*/
+	QImage posterImage() const;
+
     private:
 	/// \cond PRIVATE
 	MovieObject( AnnotMovie *ann );
@@ -1566,6 +1801,7 @@ height = dummy.height();
 
 }
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::Page::PainterFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::Document::RenderHints)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::PDFConverter::PDFOptions)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::PSConverter::PSOptions)
