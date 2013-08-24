@@ -1192,6 +1192,8 @@ QRect PDFWidget::mapPopplerRectToWidget(QRectF r, const QSizeF &pageSize) const 
 	return rr;
 }
 
+#if 0
+//only used for testing
 void listAnnotationDetails(const Poppler::Annotation *an) {
 	qDebug() << "*** Poppler Annotation ***";
 	qDebug() << "subtype       " << an->subType();
@@ -1202,10 +1204,9 @@ void listAnnotationDetails(const Poppler::Annotation *an) {
 	qDebug() << "creationDate  " << an->creationDate();
 	qDebug() << "flags         " << an->flags();
 	qDebug() << "boundary      " << an->boundary();
-	qDebug() << "style.color   " << an->style.color;
-	qDebug() << "window.topleft" << an->window.topLeft;
 	//qDebug() << "revisions     " << an->revisions();
 }
+#endif
 
 void PDFWidget::updateCursor(const QPoint& pos)
 {
