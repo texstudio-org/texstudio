@@ -1861,7 +1861,7 @@ bool LatexDocuments::singleMode() const {
 
 void LatexDocuments::updateBibFiles(bool updateFiles){
   mentionedBibTeXFiles.clear();
-  foreach (LatexDocument* doc, documents) {
+  foreach (LatexDocument* doc, getDocuments() ) {
     if(updateFiles){
       QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
       QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
