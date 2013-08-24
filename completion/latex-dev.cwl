@@ -62,7 +62,7 @@
 \ProvideTextCommand{cmd}{encoding}[num][default]{definition}#*
 \RequirePackage[optionlist]{package}#*
 \RequirePackage[optionlist]{package}[release]#*
-\RequirePackage{package}#*
+\RequirePackage{package}#u
 \RequirePackage{package}[release]#*
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
