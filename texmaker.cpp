@@ -2087,8 +2087,30 @@ void Texmaker::fileOpen() {
 		}
 	}
 	QStringList files = QFileDialog::getOpenFileNames(this,tr("Open Files"),currentDir,fileFilters,  &selectedFileFilter);
+
+    recheckLabels=false; // impede label rechecking on hidden docs
+    QList<LatexEditorView*>listViews;
 	foreach (const QString& fn, files)
-		load(fn);
+        listViews<<load(fn);
+
+    // update ref/labels in one go;
+    QList<LatexDocument*> completedDocs;
+    foreach(LatexEditorView* edView,listViews){
+        if(!edView)
+            continue;
+        LatexDocument *docBase=edView->getDocument();
+        foreach(LatexDocument *doc,docBase->getListOfDocs()){
+            doc->recheckRefsLabels();
+            if(completedDocs.contains(doc))
+                continue;
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView){
+                edView->updateLtxCommands(true);
+                completedDocs<<doc->getListOfDocs();
+            }
+        }
+    }
+    recheckLabels=true;
     // update completer
     if(currentEditorView())
         updateCompleter(currentEditorView());
@@ -2544,7 +2566,6 @@ void Texmaker::fileSaveSession() {
 }
 
 void Texmaker::restoreSession(const Session &s, bool showProgress) {
-//CALLGRIND_START_INSTRUMENTATION;
 	fileCloseAll();
 
 	cursorHistory->setInsertionEnabled(false);
@@ -2609,7 +2630,6 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
     // update completer
     if(currentEditorView())
         updateCompleter(currentEditorView());
-//CALLGRIND_STOP_INSTRUMENTATION;
 }
 
 Session Texmaker::getCurrentSession() {
