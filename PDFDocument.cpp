@@ -38,6 +38,8 @@
 #include "PDFDocument_config.h"
 #include "configmanagerinterface.h"
 #include "pdfannotationdlg.h"
+#include "pdfannotation.h"
+#include "titledpanel.h"
 
 //#include "GlobalParams.h"
 
@@ -2189,11 +2191,24 @@ void PDFDocument::init(bool embedded)
 	statusBar()->addPermanentWidget(buttonZoomIn);
 	connect(buttonZoomIn, SIGNAL(clicked()), actionZoom_In, SLOT(trigger()));
 
+	QSplitter * vSplitter = new QSplitter(Qt::Vertical);
+
 	scrollArea = new PDFScrollArea;
 	scrollArea->setBackgroundRole(QPalette::Dark);
 	//scrollArea->setAlignment(Qt::AlignCenter);
 	scrollArea->setPDFWidget(pdfWidget);
-	setCentralWidget(scrollArea);
+	vSplitter->addWidget(scrollArea);
+
+	annotationPanel = new TitledPanel();
+	annotationPanel->toggleViewAction()->setText(tr("Annotations"));
+	annotationPanel->setVisible(false);
+	annotationTable = new PDFAnnotationTableView();
+	TitledPanelPage * annotationPage = new TitledPanelPage(annotationTable, "pdfannotations", tr("Annotations"));
+	annotationPanel->appendPage(annotationPage);
+	vSplitter->setStretchFactor(0, 2);
+	vSplitter->setStretchFactor(1, 1);
+	vSplitter->addWidget(annotationPanel);
+	setCentralWidget(vSplitter);
 	
 	connect(scrollArea, SIGNAL(resized()), pdfWidget, SLOT(windowResized()));
 
@@ -2295,6 +2310,8 @@ void PDFDocument::init(bool embedded)
 
 	menuShow->addAction(toolBar->toggleViewAction());
 	menuShow->addSeparator();
+
+	menuShow->addAction(annotationPanel->toggleViewAction());
 
 	QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
 	if(embedded)
@@ -2539,6 +2556,12 @@ void PDFDocument::reload(bool fillCache)
 							
 		pdfWidget->setDocument(document);
 		pdfWidget->show();
+
+		annotations = new PDFAnnotations(this);
+		annotationTable->setModel(annotations->createModel());
+		annotationTable->resizeColumnsToContents();
+		annotationTable->resizeRowsToContents();
+		connect(annotationTable, SIGNAL(annotationClicked(const PDFAnnotation*)), SLOT(gotoAnnotation(const PDFAnnotation*)));
 
 		if (!embeddedMode)
 			pdfWidget->setFocus();
@@ -2808,6 +2831,16 @@ void PDFDocument::search(bool backwards, bool incremental){
 			delete page;
 		}
 	}
+}
+
+void PDFDocument::gotoAnnotation(const PDFAnnotation *ann) {
+	if (!pdfWidget) return;
+	QPoint topLeft = pdfWidget->mapFromScaledPosition(ann->pageNum(), ann->popplerAnnotation()->boundary().topLeft()) / pdfWidget->totalScaleFactor();
+	QPoint bottomRight = pdfWidget->mapFromScaledPosition(ann->pageNum(), ann->popplerAnnotation()->boundary().bottomRight() / pdfWidget->totalScaleFactor());
+	QPainterPath p;
+	p.addRect(QRect(topLeft, bottomRight));
+	pdfWidget->setHighlightPath(ann->pageNum(), p);
+	pdfWidget->update();
 }
 
 void PDFDocument::loadSyncData()

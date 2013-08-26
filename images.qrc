@@ -169,5 +169,8 @@
 <file>images-ng/modern/sqrt.svg</file>
 <file>images-ng/modern/subscript.svg</file>
 <file>images-ng/modern/superscript.svg</file>
+<file>images-ng/annotation_caret.svg</file>
+<file>images-ng/annotation_highlight.svg</file>
+<file>images-ng/annotation_text.svg</file>
 </qresource>
 </RCC>

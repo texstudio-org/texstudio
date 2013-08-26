@@ -49,6 +49,11 @@ class ConfigManagerInterface;
 class PDFDocument;
 class PDFWidget;
 
+class TitledPanel;
+class PDFAnnotations;
+class PDFAnnotation;
+class PDFAnnotationTableView;
+
 class PDFMagnifier : public QLabel
 {
 	Q_OBJECT
@@ -294,7 +299,7 @@ private:
 	QList<int> pageHistory;
 	int pageHistoryIndex;
 
-    PDFDocument *pdfdocument;
+	PDFDocument *pdfdocument;
 };
 
 class PDFSearchResult {
@@ -412,6 +417,8 @@ private slots:
 	void jumpToPage();
 
 	void search(bool backward, bool incremental);
+	void gotoAnnotation(const PDFAnnotation *ann);
+
 	void zoomFromAction();
 	void zoomSliderChange(int pos = 0);
     void enlarge();
@@ -453,6 +460,11 @@ private:
 	
 	PDFWidget	*pdfWidget;
 	PDFScrollArea	*scrollArea;
+	TitledPanel * annotationPanel;
+	PDFAnnotations * annotations;
+	PDFAnnotationTableView * annotationTable;
+
+
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
 	QLineEdit *leCurrentPage;

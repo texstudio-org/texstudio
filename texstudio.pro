@@ -117,7 +117,8 @@ HEADERS += texmaker.h \
     tests/help_t.h \
     titledpanel.h \
     latexlogwidget.h \
-    pdfannotationdlg.h
+    pdfannotationdlg.h \
+    pdfannotation.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -206,7 +207,8 @@ SOURCES += main.cpp \
     usermacro.cpp \
     titledpanel.cpp \
     latexlogwidget.cpp \
-    pdfannotationdlg.cpp
+    pdfannotationdlg.cpp \
+    pdfannotation.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \

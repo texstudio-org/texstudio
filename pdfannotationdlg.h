@@ -20,7 +20,6 @@ public:
 private:
 	Ui::PDFAnnotationDlg *ui;
 
-	QString subType(Poppler::Annotation::SubType subtype);
 };
 
 #endif // PDFANNOTATIONDLG_H
