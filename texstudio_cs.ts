@@ -2427,6 +2427,10 @@ vidět jen nejběžnější nastavení.</translation>
         <source>Go to error when displaying log</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Auto-hide Toolbars in Embedded Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -4039,6 +4043,99 @@ Chcete ji přepsat?</translation>
     </message>
 </context>
 <context>
+    <name>PDFAnnotation</name>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Line</source>
+        <translation type="unfinished">Řádek</translation>
+    </message>
+    <message>
+        <source>Geometric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stamp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caret</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Movie</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationDlg</name>
+    <message>
+        <source>Annotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished">Uživatel</translation>
+    </message>
+    <message>
+        <source>mod Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationModel</name>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished">Autor</translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished">Strana</translation>
+    </message>
+</context>
+<context>
     <name>PDFBaseSearchDock</name>
     <message>
         <source>Search</source>
@@ -4615,6 +4712,14 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     <message>
         <source>Shrink Viewer</source>
         <translation>Zmenšit prohlížeč</translation>
+    </message>
+    <message>
+        <source>Invert Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Annotations</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5779,6 +5884,14 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     <message>
         <source>sweave-block</source>
         <translation>sweave-blok</translation>
+    </message>
+    <message>
+        <source>link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>preedit</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8885,6 +8998,25 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     <message>
         <source>Collapse Subitems</source>
         <translation>Složit podpoložky</translation>
+    </message>
+    <message>
+        <source>Homespring</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pweave</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sweave</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
