@@ -741,7 +741,7 @@
     <message>
         <location filename="configdialog.ui" line="+144"/>
         <location filename="configdialog.cpp" line="+5"/>
-        <location filename="configmanager.cpp" line="+1140"/>
+        <location filename="configmanager.cpp" line="+1141"/>
         <source>Editor</source>
         <translation>Редактор</translation>
     </message>
@@ -895,7 +895,7 @@
         <translation type="obsolete">Команди SVN</translation>
     </message>
     <message>
-        <location line="+1103"/>
+        <location line="+1110"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Глибина пошуку SVN каталогів: </translation>
     </message>
@@ -916,7 +916,7 @@
         <translation type="obsolete">сучасна</translation>
     </message>
     <message>
-        <location line="-2879"/>
+        <location line="-2886"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Структура/Символи у вигляді вкладок</translation>
     </message>
@@ -1038,7 +1038,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Формати</translation>
     </message>
     <message>
-        <location line="+1206"/>
+        <location line="+1213"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -1048,7 +1048,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Відміна</translation>
     </message>
     <message>
-        <location line="-3107"/>
+        <location line="-3114"/>
         <location line="+1332"/>
         <source>Appearance</source>
         <translation>Зовнішній вигляд</translation>
@@ -1140,7 +1140,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+856"/>
+        <location line="+863"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1165,12 +1165,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished">Пошук</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2409"/>
+        <location filename="configdialog.ui" line="-2416"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+996"/>
+        <location line="+972"/>
         <source>5 minutes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1190,7 +1190,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1028"/>
+        <location line="+1052"/>
         <source>Command:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1297,8 +1297,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <location line="-2146"/>
-        <location line="+970"/>
-        <location line="+1127"/>
+        <location line="+946"/>
+        <location line="+1151"/>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1313,12 +1313,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-339"/>
+        <location line="-363"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-101"/>
+        <location line="-77"/>
         <source>Show help as tooltip on text in editor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1333,7 +1333,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+123"/>
+        <location line="+99"/>
         <source>Line Wrapping:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1357,7 +1357,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Schriftart</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+157"/>
+        <location filename="configdialog.ui" line="+181"/>
         <source>Try to automatically choose best display options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1554,12 +1554,12 @@ to set the key anyway?</source>
         <translation type="unfinished">&lt;невідомий&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2418"/>
+        <location filename="configdialog.ui" line="+2425"/>
         <source>Show Advanced Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2992"/>
+        <location line="-2999"/>
         <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1815,7 +1815,7 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+147"/>
         <source>No Line Wrap</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1835,7 +1835,7 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+187"/>
+        <location line="+92"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1894,7 +1894,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+358"/>
+        <location line="+334"/>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1929,7 +1929,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+86"/>
         <source>Bi-Di</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2106,7 +2106,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+55"/>
+        <source>Auto-hide Toolbars in Embedded Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+30"/>
         <source>Automatically check in after save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2161,7 +2166,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2360"/>
+        <location line="-2367"/>
         <source>Maximum Compile Repetitions:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2395,7 +2400,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1475"/>
+        <location line="+1451"/>
         <source>Smooth Scrolling</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2449,7 +2454,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     </message>
     <message>
         <location line="-436"/>
-        <location line="+919"/>
+        <location line="+920"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;нема&gt;</translation>
     </message>
@@ -2784,7 +2789,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished">A&amp;bstände im Mathematikmodus</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-812"/>
+        <location filename="configmanager.cpp" line="-813"/>
         <source>&amp;* Open all files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2824,7 +2829,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="+759"/>
+        <location filename="configmanager.cpp" line="+760"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3033,13 +3038,13 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-1013"/>
+        <location filename="configmanager.cpp" line="-1014"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+912"/>
+        <location line="+913"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3054,7 +3059,7 @@ Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1052"/>
+        <location line="-1053"/>
         <source>Insert New Menu Item (before)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3631,7 +3636,7 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2107"/>
+        <location line="+2131"/>
         <source>Invalid codec</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3641,7 +3646,7 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2115"/>
+        <location line="-2139"/>
         <source>BIBLIOGRAPHY</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3649,7 +3654,7 @@ Invalid \caption command.</source>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location line="+1236"/>
+        <location line="+1259"/>
         <source>untitled</source>
         <translation type="unfinished">без назви</translation>
     </message>
@@ -3683,7 +3688,7 @@ Invalid \caption command.</source>
         <translation>новий пункт BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1540"/>
+        <location line="+1557"/>
         <source>label missing!</source>
         <translation>Хибна мітка!</translation>
     </message>
@@ -3718,13 +3723,13 @@ Invalid \caption command.</source>
         <translation type="obsolete">Хибна цитата!</translation>
     </message>
     <message>
-        <location line="-1588"/>
-        <location line="+1368"/>
+        <location line="-1605"/>
+        <location line="+1385"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>натиснути shift =&gt; приховати пропозиції</translation>
     </message>
     <message>
-        <location line="-1335"/>
+        <location line="-1352"/>
         <source>Open %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3750,7 +3755,7 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1491"/>
+        <location line="+1508"/>
         <source>Citation missing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3765,18 +3770,18 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1445"/>
+        <location line="-1462"/>
         <source>Go to PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-6"/>
-        <location filename="texmaker.cpp" line="+6189"/>
+        <location filename="texmaker.cpp" line="+6264"/>
         <source>Go to Definition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+339"/>
+        <location line="+356"/>
         <source>untitled</source>
         <translation type="unfinished">без назви</translation>
     </message>
@@ -3821,12 +3826,12 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2059"/>
+        <location line="-2076"/>
         <source>Open Bibliography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1899"/>
+        <location line="+1916"/>
         <source>Save Preview Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4106,6 +4111,120 @@ Do you want to overwrite it?</source>
     </message>
 </context>
 <context>
+    <name>PDFAnnotation</name>
+    <message>
+        <location filename="pdfannotation.cpp" line="+29"/>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Line</source>
+        <translation type="unfinished">Рядок</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Geometric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Highlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Stamp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Ink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Caret</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Attachment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Movie</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationDlg</name>
+    <message>
+        <location filename="pdfannotationdlg.ui" line="+14"/>
+        <source>Annotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>mod Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Type</source>
+        <translation type="unfinished">Тип</translation>
+    </message>
+</context>
+<context>
+    <name>PDFAnnotationModel</name>
+    <message>
+        <location filename="pdfannotation.cpp" line="+154"/>
+        <source>Author</source>
+        <translation type="unfinished">Автор</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type</source>
+        <translation type="unfinished">Тип</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Modified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PDFBaseSearchDock</name>
     <message>
         <location filename="PDFDocks.cpp" line="+383"/>
@@ -4154,7 +4273,7 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+84"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4383,7 +4502,12 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+2457"/>
+        <location line="+8"/>
+        <source>Invert Colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PDFDocument.cpp" line="+2545"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4393,7 +4517,13 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+290"/>
+        <location line="-341"/>
+        <location line="+3"/>
+        <source>Annotations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+644"/>
         <source>No SyncTeX data available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4408,7 +4538,7 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="PDFDocument.ui" line="-808"/>
+        <location filename="PDFDocument.ui" line="-818"/>
         <source>&amp;Help</source>
         <translation type="unfinished">&amp;Допомога</translation>
     </message>
@@ -4423,7 +4553,7 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+12"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4669,17 +4799,17 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-411"/>
+        <location filename="PDFDocument.cpp" line="-427"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+507"/>
+        <location line="+523"/>
         <source>Open PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+244"/>
+        <location line="+264"/>
         <source>Print</source>
         <translation type="unfinished">Друкувати</translation>
     </message>
@@ -4724,7 +4854,7 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-748"/>
+        <location filename="PDFDocument.cpp" line="-784"/>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4742,7 +4872,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-334"/>
+        <location line="-352"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4778,7 +4908,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+853"/>
+        <location line="+887"/>
         <source>Page %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4788,7 +4918,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-938"/>
+        <location line="-972"/>
         <source>Windowed Viewer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4798,7 +4928,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+706"/>
+        <location line="+730"/>
         <source>Searching for</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4862,7 +4992,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFMovie</name>
     <message>
-        <location filename="PDFDocument.cpp" line="-2393"/>
+        <location filename="PDFDocument.cpp" line="-2483"/>
         <source>File %1 does not exists</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4959,12 +5089,12 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+454"/>
+        <location line="+484"/>
         <source>Could not open link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+652"/>
+        <location line="+685"/>
         <source>Go to Page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4974,7 +5104,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-653"/>
+        <location line="-686"/>
         <source>Error</source>
         <translation type="unfinished">Помилка</translation>
     </message>
@@ -5369,7 +5499,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="+2676"/>
+        <location line="+2689"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5631,7 +5761,7 @@ Do you wish to keep up to date by reloading the file?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3296"/>
+        <location line="-3309"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -5851,32 +5981,37 @@ Do you want them to be saved?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+2"/>
         <source>verbatim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+4"/>
         <source>pweave-delimiter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-1"/>
         <source>pweave-block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-1"/>
         <source>sweave-delimiter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-1"/>
         <source>sweave-block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+5"/>
         <source>braceMatch</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5962,6 +6097,11 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <location line="+15"/>
+        <source>preedit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>normal</source>
         <translation type="unfinished">звичайний</translation>
     </message>
@@ -5978,7 +6118,7 @@ Do you want them to be saved?</source>
         <translation type="unfinished">&lt;за замовчуванням&gt;</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-18"/>
+        <location filename="additionaltranslations.cpp" line="-19"/>
         <source>structure</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5988,7 +6128,7 @@ Do you want them to be saved?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-28"/>
+        <location line="-29"/>
         <source>commentTodo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5998,7 +6138,7 @@ Do you want them to be saved?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+13"/>
         <source>picture</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7459,7 +7599,7 @@ failed.</source>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-5764"/>
+        <location filename="texmaker.cpp" line="-5834"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -7512,22 +7652,22 @@ failed.</source>
     </message>
     <message>
         <location line="-1018"/>
-        <location line="+4478"/>
+        <location line="+4548"/>
         <source>Ready</source>
         <translation>Готовий</translation>
     </message>
     <message>
-        <location line="-4179"/>
+        <location line="-4249"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location line="+1600"/>
+        <location line="+1626"/>
         <source>Save As</source>
         <translation>Зберегти як</translation>
     </message>
     <message>
-        <location line="-1558"/>
+        <location line="-1584"/>
         <source>Exit</source>
         <translation>Вийти</translation>
     </message>
@@ -7538,18 +7678,18 @@ failed.</source>
     </message>
     <message>
         <location line="+408"/>
-        <location line="+5165"/>
+        <location line="+5235"/>
         <source>Copy</source>
         <translation>Копіювати</translation>
     </message>
     <message>
-        <location line="-5164"/>
-        <location line="+5165"/>
+        <location line="-5234"/>
+        <location line="+5235"/>
         <source>Cut</source>
         <translation>Вирізати</translation>
     </message>
     <message>
-        <location line="-5435"/>
+        <location line="-5505"/>
         <source>Refresh Structure</source>
         <translation>Обновити структуру</translation>
     </message>
@@ -7580,7 +7720,7 @@ failed.</source>
         <translation type="obsolete">Ви не можете редагувати вбудований шаблон.</translation>
     </message>
     <message>
-        <location line="+2000"/>
+        <location line="+2070"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Неможливо завантажити Базу Тезауруса</translation>
     </message>
@@ -7603,18 +7743,18 @@ failed.</source>
         <translation>Аналіз тексту</translation>
     </message>
     <message>
-        <location line="-4035"/>
+        <location line="-4105"/>
         <location line="+40"/>
         <source>&amp;LaTeX</source>
         <translation type="unfinished">&amp;Latex</translation>
     </message>
     <message>
-        <location line="+3367"/>
+        <location line="+3437"/>
         <source>Quick Start</source>
         <translation>Майстер створення документа</translation>
     </message>
     <message>
-        <location line="-3414"/>
+        <location line="-3484"/>
         <location line="+86"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Бібліографія</translation>
@@ -7628,7 +7768,7 @@ failed.</source>
         <translation type="obsolete">&amp;Теги користувача</translation>
     </message>
     <message>
-        <location line="+3413"/>
+        <location line="+3483"/>
         <source>Edit User &amp;Tags</source>
         <translation>Р&amp;едагувати теги користувача</translation>
     </message>
@@ -7641,7 +7781,7 @@ failed.</source>
         <translation type="obsolete">Редагувати к&amp;оманди користувача</translation>
     </message>
     <message>
-        <location line="-3500"/>
+        <location line="-3570"/>
         <location line="+143"/>
         <source>&amp;View</source>
         <translation>&amp;Вигляд</translation>
@@ -7677,8 +7817,8 @@ failed.</source>
         <translation>Клацніть для переходу на закладку</translation>
     </message>
     <message>
-        <location line="+392"/>
-        <location line="+1318"/>
+        <location line="+393"/>
+        <location line="+1387"/>
         <location line="+1509"/>
         <location line="+387"/>
         <location line="+127"/>
@@ -7686,7 +7826,7 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+395"/>
-        <location line="+2482"/>
+        <location line="+2484"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -7696,8 +7836,8 @@ failed.</source>
         <translation>У Вас нема дозволу для читання цього файла.</translation>
     </message>
     <message>
-        <location line="-5768"/>
-        <location line="+5604"/>
+        <location line="-5839"/>
+        <location line="+5675"/>
         <source>Open Files</source>
         <translation>Відкрити файли</translation>
     </message>
@@ -7706,7 +7846,7 @@ failed.</source>
         <translation type="obsolete">Документ був змінений. Чи потрібно зберегти його перед закриванням?</translation>
     </message>
     <message>
-        <location line="-5411"/>
+        <location line="-5457"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Зберегти і закрити</translation>
@@ -7724,7 +7864,7 @@ failed.</source>
         <translation>Відміна</translation>
     </message>
     <message>
-        <location line="+2132"/>
+        <location line="+2176"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Неможливо знайти ім&apos;я файла</translation>
     </message>
@@ -7737,13 +7877,13 @@ failed.</source>
         <translation type="obsolete">Log файл не знайдено!</translation>
     </message>
     <message>
-        <location line="-3754"/>
+        <location line="-3824"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Не виявлено помилок LaTeX!</translation>
     </message>
     <message>
-        <location line="+4260"/>
+        <location line="+4330"/>
         <location line="+10"/>
         <source>File not found</source>
         <translation>Файл не знайдено</translation>
@@ -7753,7 +7893,7 @@ failed.</source>
         <translation type="obsolete">Звичайний режим (поточний головний документ:</translation>
     </message>
     <message>
-        <location line="-4320"/>
+        <location line="-4390"/>
         <source>Toggle Bookmark</source>
         <translation>Встановити закладку</translation>
     </message>
@@ -7966,7 +8106,7 @@ failed.</source>
         <translation>&amp;Майстри</translation>
     </message>
     <message>
-        <location line="+3627"/>
+        <location line="+3697"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Неможливо знайти ім&apos;я файла.
@@ -7983,7 +8123,7 @@ You have to save a document before you can compile it.</source>
         <translation>Увага: діалог автоматично закриється, якщо текст змінений вручну!</translation>
     </message>
     <message>
-        <location line="-6068"/>
+        <location line="-6138"/>
         <source>Close Something</source>
         <translation>Закрити щось</translation>
     </message>
@@ -8023,13 +8163,13 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location line="+100"/>
-        <location line="+5163"/>
+        <location line="+5233"/>
         <source>Indent Section</source>
         <translation>Встановити відступ для секції</translation>
     </message>
     <message>
-        <location line="-5162"/>
-        <location line="+5163"/>
+        <location line="-5232"/>
+        <location line="+5233"/>
         <source>Unindent Section</source>
         <translation>Зняти відступ для секції</translation>
     </message>
@@ -8054,7 +8194,7 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">Шаблони</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+4"/>
+        <location filename="additionaltranslations.cpp" line="+5"/>
         <source>Edit</source>
         <translation>Редагувати</translation>
     </message>
@@ -8123,7 +8263,7 @@ You have to save a document before you can compile it.</source>
         <translation>Жоден документ не відкритий</translation>
     </message>
     <message>
-        <location line="-4231"/>
+        <location line="-4301"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8164,12 +8304,12 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+6874"/>
+        <location line="+6944"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6873"/>
+        <location line="-6943"/>
         <source>Clos&amp;e All</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8410,7 +8550,7 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location line="+5"/>
-        <location line="+6977"/>
+        <location line="+7047"/>
         <location line="+9"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
@@ -8481,28 +8621,28 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6618"/>
+        <location filename="texmaker.cpp" line="-6688"/>
         <source>Insert Unicode Character...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4693"/>
+        <location line="+4763"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-5184"/>
+        <location filename="texmaker.cpp" line="-5256"/>
         <source>Central</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+600"/>
+        <location filename="texmaker.cpp" line="+602"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6661"/>
+        <location line="+6731"/>
         <source>Problem</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8528,7 +8668,7 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-4399"/>
+        <location line="-4469"/>
         <source>SVN &amp;update...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8593,12 +8733,12 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6006"/>
+        <location line="+6076"/>
         <source>check in whole directory ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5973"/>
+        <location line="-6043"/>
         <source>Parenthesis</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8608,7 +8748,7 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3739"/>
+        <location line="+3809"/>
         <source>Could not start %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8628,7 +8768,7 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6664"/>
+        <location line="-6734"/>
         <source>&amp;Searching</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8688,13 +8828,13 @@ You have to save a document before you can compile it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3563"/>
+        <location line="+3633"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3972"/>
+        <location line="-4042"/>
         <source>Show difference between two files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8714,7 +8854,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5541"/>
+        <location line="+5611"/>
         <source>Move document to &amp;front</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8724,7 +8864,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1541"/>
+        <location line="+1543"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -8736,7 +8876,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7586"/>
+        <location filename="texmaker.cpp" line="-7658"/>
         <source>Sweave files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8782,7 +8922,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished">Мова інтерфейсу</translation>
     </message>
     <message>
-        <location line="+3538"/>
+        <location line="+3608"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8794,7 +8934,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+595"/>
+        <location line="+597"/>
         <source>Open Compare File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8843,8 +8983,26 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
+        <source>Homespring</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Pweave</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>QtScript</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
@@ -8873,7 +9031,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7524"/>
+        <location filename="texmaker.cpp" line="-7596"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
@@ -8905,12 +9063,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3826"/>
+        <location line="+3896"/>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3861"/>
+        <location line="-3931"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation type="unfinished">&amp;Користувач</translation>
@@ -8931,7 +9089,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished">&amp;Math</translation>
     </message>
     <message>
-        <location line="+6695"/>
+        <location line="+6765"/>
         <source>Reached beginning of text.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8947,7 +9105,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+560"/>
+        <location filename="texmaker.cpp" line="+562"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -8985,7 +9143,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7850"/>
+        <location line="-7922"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8995,13 +9153,13 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-5"/>
+        <location filename="additionaltranslations.cpp" line="-8"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
@@ -9060,7 +9218,7 @@ included document in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2875"/>
+        <location line="+2945"/>
         <source>Type: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9087,7 +9245,7 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+746"/>
+        <location line="+748"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
@@ -9113,7 +9271,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7441"/>
+        <location line="-7513"/>
         <source>Previous Change</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9309,24 +9467,31 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <location line="+81"/>
-        <location line="+5165"/>
+        <location line="+5235"/>
         <source>Paste Before</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5164"/>
-        <location line="+5165"/>
+        <location line="-5234"/>
+        <location line="+5235"/>
         <source>Paste After</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3902"/>
+        <location line="-3946"/>
         <location line="+47"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2254"/>
+        <location line="+62"/>
+        <location line="+26"/>
+        <location line="+78"/>
+        <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2132"/>
         <source>(a) allow for this document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9363,12 +9528,12 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2009"/>
+        <location line="+2011"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7617"/>
+        <location line="-7689"/>
         <source>New From &amp;Template...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9405,7 +9570,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6463"/>
+        <location line="+6533"/>
         <source>Find Word Repetitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9420,7 +9585,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6537"/>
+        <location line="-6607"/>
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9440,7 +9605,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2163"/>
+        <location line="+2233"/>
         <source>No dictionary available.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9460,7 +9625,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5282"/>
+        <location line="-5352"/>
         <source>Ma&amp;cros</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9470,7 +9635,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+397"/>
+        <location line="+399"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation type="unfinished"></translation>
@@ -9481,7 +9646,7 @@ Do you want to restore it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-848"/>
+        <location line="-850"/>
         <source>Math Assistant...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9496,14 +9661,14 @@ Do you want to restore it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+900"/>
+        <location line="+902"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+131"/>
         <location line="+48"/>
         <source>File not found:</source>
         <translation type="unfinished"></translation>
@@ -9515,7 +9680,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1370"/>
+        <location line="-1371"/>
         <source>&amp;Line Operations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9545,7 +9710,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+975"/>
+        <location line="+976"/>
         <source>You do not have read permission to the file %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9555,7 +9720,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1326"/>
+        <location line="-1327"/>
         <source>Session</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9590,7 +9755,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1109"/>
+        <location line="+1135"/>
         <source>Loading of last session failed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9604,7 +9769,7 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+320"/>
+        <location line="+346"/>
         <source>Load Session</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9630,7 +9795,7 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1612"/>
+        <location line="-1664"/>
         <source>List Of Open Documents</source>
         <translation type="unfinished"></translation>
     </message>
