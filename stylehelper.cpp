@@ -29,8 +29,8 @@
 
 #include "stylehelper.h"
 
-#include <QtGui/QPixmapCache>
-#include <QtGui/QWidget>
+#include <QPixmapCache>
+#include <QWidget>
 
 #if QT_VERSION >= 0x040500
 // Clamps float color values within (0, 255)

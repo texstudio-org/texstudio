@@ -5,9 +5,9 @@
 #include "scriptengine.h"
 #include "configmanager.h"
 
-QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu";
-QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx";
-QStringList LatexTables::mathTables = QStringList() << "align" << "align*" << "array" << "matrix" << "bmatrix" << "pmatrix" << "vmatrix" << "Vmatrix" << "split" << "multline" << "multline*" << "gather" << "gather*" << "flalign" << "flalign*" << "alignat" << "alignat*" << "cases";
+QStringList LatexTables::tabularNames; // = QStringList() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu";
+QStringList LatexTables::tabularNamesWithOneOption;// = QStringList() << "tabular*" << "tabularx";
+QStringList LatexTables::mathTables;// = QStringList() << "align" << "align*" << "array" << "matrix" << "bmatrix" << "pmatrix" << "vmatrix" << "Vmatrix" << "split" << "multline" << "multline*" << "gather" << "gather*" << "flalign" << "flalign*" << "alignat" << "alignat*" << "cases";
 
 void LatexTables::addRow(QDocumentCursor &c,const int numberOfColumns ){
 	QDocumentCursor cur(c);

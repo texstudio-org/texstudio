@@ -5,7 +5,7 @@
 #include "testutil.h"
 #include "smallUsefulFunctions.h"
 #include "qdocument_p.h"
-#include <QtTest/QtTest>
+#include <QtTest>
 Q_DECLARE_METATYPE(QList<int>);
 
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
@@ -95,8 +95,8 @@ void QEditorTest::loadSave(){
 	editor->setFileCodec(QTextCodec::codecForName("iso-8859-5"));
 	editor->load(tfn,autodetect?0:outCodec);
 	editor->document()->setLineEnding(editor->document()->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
-	QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromAscii(editor->getFileCodec()->name()):"<null>"));
-	QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromAscii(editor->getFileCodec()->name())).arg(QString::fromAscii(outCodec->name())).arg(autodetect)));
+    QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromLatin1(editor->getFileCodec()->name()):"<null>"));
+    QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromLatin1(editor->getFileCodec()->name())).arg(QString::fromLatin1(outCodec->name())).arg(autodetect)));
 	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
 
 	//Save

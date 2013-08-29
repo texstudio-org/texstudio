@@ -13,20 +13,40 @@ SearchResultModel::~SearchResultModel(){
 }
 
 void SearchResultModel::addSearch(const SearchInfo& search){
-	m_searches.append(search);
-	int lineNumber = 0;
-	m_searches.last().lineNumberHints.clear();
-	for (int i=0;i<search.lines.size();i++){
-		lineNumber = search.doc->indexOf(search.lines[i], lineNumber);
-		m_searches.last().lineNumberHints << lineNumber;
-	}
+#if QT_VERSION<0x050000
+#else
+    beginResetModel();
+#endif
+
+    m_searches.append(search);
+    int lineNumber = 0;
+    m_searches.last().lineNumberHints.clear();
+    for (int i=0;i<search.lines.size();i++){
+        lineNumber = search.doc->indexOf(search.lines[i], lineNumber);
+        m_searches.last().lineNumberHints << lineNumber;
+    }
+#if QT_VERSION<0x050000
 	reset();
+#else
+    endResetModel();
+#endif
 }
 
 void SearchResultModel::clear(){
-	m_searches.clear();
+#if QT_VERSION<0x050000
+#else
+    beginResetModel();
+#endif
+
+    m_searches.clear();
 	mExpression.clear();
-	reset();
+
+#if QT_VERSION<0x050000
+    reset();
+#else
+    endResetModel();
+#endif
+
 }
 
 void SearchResultModel::removeSearch(const QDocument* doc){

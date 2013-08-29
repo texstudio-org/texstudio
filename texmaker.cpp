@@ -3310,9 +3310,9 @@ void Texmaker::ReadSettings(bool reread) {
 	QStringList sl = config->childKeys();
 	if (!sl.empty()) {
 		foreach (const QString& key, sl) {
-			int k = key.toInt();
-			if (k==0) continue;
-			configManager.editorKeys.insert(k, config->value(key).toInt());
+            //int k = key.toInt(); compatibility to old ?
+            if (key.isEmpty()) continue;
+            configManager.editorKeys.insert(key, config->value(key).toInt());
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
 	}
@@ -3439,14 +3439,14 @@ void Texmaker::SaveSettings(const QString& configName) {
 	config->setValue("StructureView/SingleDocMode",documents.model->getSingleDocMode());
 	
 	
-	QHash<int, int> keys = QEditor::getEditOperations(true);
+    QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
 	config->beginGroup("Editor Key Mapping");
 	if (!keys.empty() || !config->childKeys().empty()) {
 		config->remove("");
-		QHash<int, int>::const_iterator i = keys.begin();
+        QHash<QString, int>::const_iterator i = keys.begin();
 		while (i != keys.constEnd()) {
-			config->setValue(QString::number(i.key()), i.value());
+            config->setValue(i.key(), i.value());
 			++i;
 		}
 	}

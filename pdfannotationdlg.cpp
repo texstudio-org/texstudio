@@ -1,3 +1,4 @@
+#ifndef NO_POPPLER_PREVIEW
 #include "pdfannotationdlg.h"
 #include "ui_pdfannotationdlg.h"
 #include "poppler-annotation.h"
@@ -18,4 +19,4 @@ PDFAnnotationDlg::~PDFAnnotationDlg()
 {
 	delete ui;
 }
-
+#endif

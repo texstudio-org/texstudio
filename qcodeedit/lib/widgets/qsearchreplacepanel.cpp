@@ -265,34 +265,34 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	connect(cReplace->lineEdit(),SIGNAL(textEdited(QString)),SLOT(cReplace_textEdited(QString)));
 
 	// set texts
-	bClose->setToolTip(QApplication::translate("SearchReplace", "Close search/replace panel", 0, QApplication::UnicodeUTF8));
-	cFind->setToolTip(QApplication::translate("SearchReplace", "Text or pattern to search for", 0, QApplication::UnicodeUTF8));
-	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next", 0, QApplication::UnicodeUTF8));
-	bPrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous", 0, QApplication::UnicodeUTF8));
-	bCount->setToolTip(QApplication::translate("SearchReplace", "Count occurences", 0, QApplication::UnicodeUTF8));
-	cReplace->setToolTip(QApplication::translate("SearchReplace", "Replacement text", 0, QApplication::UnicodeUTF8));
-	bReplaceNext->setToolTip(QApplication::translate("SearchReplace", "Replace and find next", 0, QApplication::UnicodeUTF8));
-	bReplacePrevious->setToolTip(QApplication::translate("SearchReplace", "Replace and find previous", 0, QApplication::UnicodeUTF8));
-	bReplaceAll->setToolTip(QApplication::translate("SearchReplace", "Replace all", 0, QApplication::UnicodeUTF8));
+    bClose->setToolTip(tr("SearchReplace", "Close search/replace panel", 0));
+    cFind->setToolTip(tr("SearchReplace", "Text or pattern to search for", 0));
+    bNext->setToolTip(tr("SearchReplace", "Find next", 0));
+    bPrevious->setToolTip(tr("SearchReplace", "Find previous", 0));
+    bCount->setToolTip(tr("SearchReplace", "Count occurences", 0));
+    cReplace->setToolTip(tr("SearchReplace", "Replacement text", 0));
+    bReplaceNext->setToolTip(tr("SearchReplace", "Replace and find next", 0));
+    bReplacePrevious->setToolTip(tr("SearchReplace", "Replace and find previous", 0));
+    bReplaceAll->setToolTip(tr("SearchReplace", "Replace all", 0));
 
-	lbFind->setText(QApplication::translate("SearchReplace", "Find:", 0, QApplication::UnicodeUTF8));
+    lbFind->setText(tr("SearchReplace", "Find:", 0));
 	lbFind->setMinimumWidth(lbFind->sizeHint().width());
-	cbCase->setText(QApplication::translate("SearchReplace", "Case", 0, QApplication::UnicodeUTF8));
+    cbCase->setText(tr("SearchReplace", "Case", 0));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
-	cbWords->setText(QApplication::translate("SearchReplace", "Words", 0, QApplication::UnicodeUTF8));
+    cbWords->setText(tr("SearchReplace", "Words", 0));
 	cbWords->setMinimumWidth(cbWords->sizeHint().width());
-	cbRegExp->setText(QApplication::translate("SearchReplace", "Regexp", 0, QApplication::UnicodeUTF8));
+    cbRegExp->setText(tr("SearchReplace", "Regexp", 0));
 	cbRegExp->setMinimumWidth(cbRegExp->sizeHint().width());
-	cbHighlight->setText(QApplication::translate("SearchReplace", "Highlight all", 0, QApplication::UnicodeUTF8));
+    cbHighlight->setText(tr("SearchReplace", "Highlight all", 0));
 	cbHighlight->setMinimumWidth(cbHighlight->sizeHint().width());
-	cbCursor->setText(QApplication::translate("SearchReplace", "Cursor", 0, QApplication::UnicodeUTF8));
+    cbCursor->setText(tr("SearchReplace", "Cursor", 0));
 	cbCursor->setMinimumWidth(cbCursor->sizeHint().width());
-	cbSelection->setText(QApplication::translate("SearchReplace", "Selection", 0, QApplication::UnicodeUTF8));
+    cbSelection->setText(tr("SearchReplace", "Selection", 0));
 	cbSelection->setMinimumWidth(cbSelection->sizeHint().width());
-	lbReplace->setText(QApplication::translate("SearchReplace", "Replace:", 0, QApplication::UnicodeUTF8));
-	cbPrompt->setText(QApplication::translate("SearchReplace", "Prompt on replace", 0, QApplication::UnicodeUTF8));
+    lbReplace->setText(tr("SearchReplace", "Replace:", 0));
+    cbPrompt->setText(tr("SearchReplace", "Prompt on replace", 0));
 	cbPrompt->setMinimumWidth(cbPrompt->sizeHint().width());
-	cbEscapeSeq->setText(QApplication::translate("SearchReplace", "Escape sequences", 0, QApplication::UnicodeUTF8));
+    cbEscapeSeq->setText(tr("SearchReplace", "Escape sequences", 0));
 	cbEscapeSeq->setMinimumWidth(cbEscapeSeq->sizeHint().width());
 
 	minimum_width=bClose->sizeHint().width()

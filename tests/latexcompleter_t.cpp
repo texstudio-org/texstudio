@@ -279,7 +279,7 @@ void LatexCompleterTest::simple(){
 	}
 	edView->complete(0);
 	foreach (const QString& s, log){
-		char key = s.at(0).toAscii();
+		char key = s.at(0).toLatin1();
 		QTest::keyClick(edView->editor, key);
 		QString text = s.mid(2);
 		QString ist=edView->editor->text();

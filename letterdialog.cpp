@@ -48,7 +48,7 @@ LetterDialog::LetterDialog(QWidget *parent, const char *name)
 	ui.comboBoxEncoding->insertItem(18, "cp1250");
 	ui.comboBoxEncoding->insertItem(19, "NONE");
 
-	ui.checkBox->setChecked(TRUE);
+    ui.checkBox->setChecked(true);
 	setWindowTitle(tr("Quick Letter"));
 }
 

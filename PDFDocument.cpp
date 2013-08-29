@@ -928,7 +928,7 @@ void PDFWidget::doLink(const Poppler::Link *link)
 		{
 			const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse*>(link);
 			Q_ASSERT(browse != NULL);
-			QUrl url = QUrl::fromEncoded(browse->url().toAscii());
+			QUrl url = QUrl::fromEncoded(browse->url().toLatin1());
 			if (url.scheme() == "file" || url.scheme().isEmpty() /*i.e. is relative */) {
 				PDFDocument *doc = getPDFDocument();
 				if (doc) {

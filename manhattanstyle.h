@@ -30,7 +30,11 @@
 #ifndef MANHATTANSTYLE_H
 #define MANHATTANSTYLE_H
 #include <QStyle>
+#include <QProxyStyle>
+
+#if QT_VERSION < 0x050000
 #include <QWindowsStyle>
+#endif
 
 #if QT_VERSION >= 0x040500
 QT_BEGIN_NAMESPACE
@@ -39,8 +43,11 @@ class QBrush;
 QT_END_NAMESPACE
 
 class ManhattanStylePrivate;
-
+#if QT_VERSION < 0x050000
 class ManhattanStyle : public QWindowsStyle
+#else
+class ManhattanStyle : public QProxyStyle
+#endif
 {
     Q_OBJECT;
 

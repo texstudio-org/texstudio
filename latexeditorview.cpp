@@ -46,7 +46,7 @@
 
 #include "help.h"
 
-QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
+QStringList LatexEditorView::checkedLanguages;// = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
 
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {

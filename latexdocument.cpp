@@ -1336,12 +1336,12 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		default: return QVariant();
 		}
 	case Qt::BackgroundRole:
-		if (index==mHighlightIndex) return QVariant(Qt::lightGray);
+        if (index==mHighlightIndex) return QVariant(QColor(Qt::lightGray));
 		if (entry->appendix) return QVariant(QColor(200,230,200));
 		else return QVariant();
 	case Qt::ForegroundRole:
         if(entry->type==StructureEntry::SE_INCLUDE) {
-            return entry->valid ? QVariant() : QVariant(Qt::red); // not found files marked red, else black (green is not easily readable)
+            return entry->valid ? QVariant() : QVariant(QColor(Qt::red)); // not found files marked red, else black (green is not easily readable)
 		}else return QVariant();
 	case Qt::FontRole:
 		if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
@@ -1496,8 +1496,18 @@ void LatexDocumentsModel::setHighlightedEntry(StructureEntry* entry){
 }
 
 void LatexDocumentsModel::resetAll(){
+#if QT_VERSION<0x050000
+#else
+    beginResetModel();
+#endif
+
 	mHighlightIndex=QModelIndex();
-	reset();
+
+#if QT_VERSION<0x050000
+    reset();
+#else
+    endResetModel();
+#endif
 }
 
 void LatexDocumentsModel::resetHighlight(){
@@ -2150,7 +2160,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = true;
 	} else if (lowerName == "encoding") {
 		bool hasUndo = canUndo();
-		QTextCodec *codec = QTextCodec::codecForName(val.toAscii());
+		QTextCodec *codec = QTextCodec::codecForName(val.toLatin1());
 		if (!codec) {
 			se->tooltip = tr("Invalid codec");
 			return;

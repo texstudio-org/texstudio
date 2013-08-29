@@ -747,7 +747,11 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
 	
 	if (hasOption(RegExp)) 
-		for ( int i = m_regexp.numCaptures(); i >= 0; --i )
+#if QT_VERSION<0x040600
+        for ( int i = m_regexp.numCaptures(); i >= 0; --i )
+#else
+        for ( int i = m_regexp.captureCount(); i >= 0; --i )
+#endif
 			replacement.replace(QString("\\") + QString::number(i),
 								m_regexp.cap(i));
 

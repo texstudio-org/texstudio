@@ -322,8 +322,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		static inline const QList<QEditor*>& editors() { return m_editors; }		
 
 		static QString translateEditOperation(const EditOperation& op);
-		static void setEditOperations(const QHash<int, int>& newOptions, bool mergeWithDefault=false);
-		static QHash<int, int> getEditOperations(bool excludeDefault=false);
+        static void setEditOperations(const QHash<QString, int>& newOptions, bool mergeWithDefault=false);
+        static QHash<QString, int> getEditOperations(bool excludeDefault=false);
 		static QSet<int> getAvailableOperations();
 		static void registerEditOperation(const EditOperation& op);
 		static void addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key);
@@ -634,9 +634,9 @@ public slots:
 		static QHash<QString, QEditorInputBindingInterface*> m_registeredBindings;
 		
 		static bool m_defaultKeysSet;
-		static QHash<int, int> m_registeredKeys;
+        static QHash<QString, int> m_registeredKeys;
 		static QSet<int> m_registeredOperations;
-		static QHash<int, int> m_registeredDefaultKeys;
+        static QHash<QString, int> m_registeredDefaultKeys;
 
 		static int m_manageMenu;
 

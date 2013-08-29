@@ -21,7 +21,7 @@ void BibTeXFileInfo::parse(QByteArray& data){
 	linksTo.clear();
 	if (data.startsWith("link ")) {
 		//handle obscure bib tex feature, a just line containing "link fileName"
-		linksTo  = QString::fromAscii(data.constData(),data.count()).mid(5).trimmed();
+        linksTo  = QString::fromLatin1(data.constData(),data.count()).mid(5).trimmed();
 	} else {
 		enum BibTeXState {BTS_IN_SPACE,  //searches the first @, ignore everything before it
 						  BTS_IN_TYPE,   //read until bracket ( or { e.g in @article{, reset if @comment
