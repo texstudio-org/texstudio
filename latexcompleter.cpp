@@ -735,8 +735,14 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		}
 	}
 	
-	if(!fetchMore)
+    if(!fetchMore){
+#if QT_VERSION>=QT_VERSION_CHECK(5,0,0)
+        beginResetModel();
+        endResetModel();
+#else
 		reset();
+#endif
+    }
 }
 void CompletionListModel::incUsage(const QModelIndex &index){
 	if (!index.isValid())
