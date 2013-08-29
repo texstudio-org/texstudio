@@ -187,7 +187,7 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
  << QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
 */
 QChar transformCharacter(const QChar& c){
-	switch (c.toAscii()){
+    switch (c.toLatin1()){
 	case 'a': return QChar(0xE4);
 	case 'o': return QChar(0xF6);
 	case 'u': return QChar(0xFC);
@@ -210,7 +210,7 @@ QString latexToPlainWord(const QString& word) {
 			//decode all meta characters starting with a backslash (c++ syntax: don't use an actual backslash there or it creates a multi line comment)
 			i++;
 			if (i>=word.length()) break;
-			switch (word[i].toAscii()) {
+            switch (word[i].toLatin1()) {
 			case '-': //Trennung [separation] (german-babel-package also: \")
 			case '/': //ligatur preventing (german-package also: "|)
 				break;
@@ -232,7 +232,7 @@ QString latexToPlainWord(const QString& word) {
 			//decode all meta characters starting with "
 			i++;
 			if (i>=word.length()) break;
-			switch (word[i].toAscii()) {
+            switch (word[i].toLatin1()) {
 			case '~':
 				result.append('-'); //- ohne Trennung (without separation)
 				break;
@@ -1331,7 +1331,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 	while ((wordStartIndex = nextToken(line, index,inEnv,!inReferenz))!=-1) {
 		word=line.mid(wordStartIndex,index-wordStartIndex);
 		if (word.length()==0) return NW_NOTHING; //should never happen
-		switch (word.at(0).toAscii()) {
+        switch (word.at(0).toLatin1()) {
 		case '%':
 			return NW_COMMENT; //return comment start
 		case '[':

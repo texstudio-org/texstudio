@@ -2437,7 +2437,7 @@ void Texmaker::fileOpenAllRecent() {
 }
 void Texmaker::fileRecentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this, true);
+    fileSelector = QSharedPointer<FileSelector>(new FileSelector(this, true));
 
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
@@ -2469,7 +2469,7 @@ bool mruEditorViewLessThan(const LatexEditorView* e1, const LatexEditorView* e2)
 
 void Texmaker::viewDocumentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
-    fileSelector = new FileSelector(this, false);
+    fileSelector = QSharedPointer<FileSelector>(new FileSelector(this, false));
 
 	QStringList sl;
 	LatexEditorView *curEdView = currentEditorView();
