@@ -73,7 +73,7 @@
 bool programStopped = false;
 Texmaker* txsInstance = 0;
 
-Texmaker::Texmaker(QWidget *parent, Qt::WFlags flags, QSplashScreen *splash)
+Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
 	
 	programStopped = false;
@@ -1770,15 +1770,27 @@ void Texmaker::linkToEditorSlot(QAction* act, const char* methodName, const QLis
 	if (!args.isEmpty())
 		act->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
 	for (int i=0;i<LatexEditorView::staticMetaObject.methodCount();i++)
-		if (signature == LatexEditorView::staticMetaObject.method(i).signature()) {
+#if QT_VERSION>=0x050000
+        if (signature == LatexEditorView::staticMetaObject.method(i).methodSignature()) {
 			act->setProperty("editorViewSlot", methodName);
 			return;
 		} //else qDebug() << LatexEditorView::staticMetaObject.method(i).signature();
 	for (int i=0;i<QEditor::staticMetaObject.methodCount();i++)
-		if (signature == QEditor::staticMetaObject.method(i).signature()) {
+        if (signature == QEditor::staticMetaObject.method(i).methodSignature()) {
 			act->setProperty("editorSlot", methodName);
 			return;
 		}
+#else
+        if (signature == LatexEditorView::staticMetaObject.method(i).signature()) {
+            act->setProperty("editorViewSlot", methodName);
+            return;
+        } //else qDebug() << LatexEditorView::staticMetaObject.method(i).signature();
+    for (int i=0;i<QEditor::staticMetaObject.methodCount();i++)
+        if (signature == QEditor::staticMetaObject.method(i).signature()) {
+            act->setProperty("editorSlot", methodName);
+            return;
+        }
+#endif
 	
 	qDebug() << methodName << signature;
 	Q_ASSERT(false);
@@ -2457,7 +2469,7 @@ bool mruEditorViewLessThan(const LatexEditorView* e1, const LatexEditorView* e2)
 
 void Texmaker::viewDocumentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this, false);
+    fileSelector = new FileSelector(this, false);
 
 	QStringList sl;
 	LatexEditorView *curEdView = currentEditorView();
@@ -2648,12 +2660,13 @@ Session Texmaker::getCurrentSession() {
 	s.setCurrentFile(currentEditorView()?currentEditor()->fileName():"");
 
 	s.setBookmarks(bookmarks->getBookmarks());
-
+#ifndef NO_POPPLER_PREVIEW
 	if (!PDFDocument::documentList().isEmpty()) {
 		PDFDocument *doc = PDFDocument::documentList().at(0);
 		s.setPDFEmbedded(doc->embeddedMode);
 		s.setPDFFile(doc->fileName());
 	}
+#endif
 
 	return s;
 }
@@ -5097,13 +5110,21 @@ void Texmaker::GeneralOptions() {
 	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
 	QStringList loadFiles=configManager.completerConfig->getLoadedFiles();
 	
-	
+#if QT_VERSION<0x050000
 	if (configManager.possibleMenuSlots.isEmpty()) {
 		for (int i=0;i<staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).signature());
 		for (int i=0;i<QEditor::staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append("editor:"+QString(QEditor::staticMetaObject.method(i).signature()));
 		for (int i=0;i<LatexEditorView::staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append("editorView:"+QString(LatexEditorView::staticMetaObject.method(i).signature()));
 		configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
 	}
+#else
+    if (configManager.possibleMenuSlots.isEmpty()) {
+        for (int i=0;i<staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).methodSignature());
+        for (int i=0;i<QEditor::staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append("editor:"+QString(QEditor::staticMetaObject.method(i).methodSignature()));
+        for (int i=0;i<LatexEditorView::staticMetaObject.methodCount();i++) configManager.possibleMenuSlots.append("editorView:"+QString(LatexEditorView::staticMetaObject.method(i).methodSignature()));
+        configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
+    }
+#endif
 	
 	if (configManager.execConfigDialog()) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -5487,6 +5508,7 @@ void Texmaker::focusEditor(){
 }
 
 void Texmaker::focusViewer(){
+    #ifndef NO_POPPLER_PREVIEW
 	QList<PDFDocument*> viewers = PDFDocument::documentList();
 	if (viewers.isEmpty()) return;
 
@@ -5513,6 +5535,7 @@ void Texmaker::focusViewer(){
 	}
 	// fall back to first
 	viewers.at(0)->focus();
+#endif
 }
 
 void Texmaker::viewCloseSomething(){
@@ -6449,6 +6472,7 @@ void Texmaker::showImgPreview(const QString& fname){
             LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
         }
     }
+#ifndef NO_POPPLER_PREVIEW
     if(suffix=="pdf"){
         //render pdf preview
         PDFRenderManager *renderManager=new PDFRenderManager(this,1);
@@ -6460,6 +6484,7 @@ void Texmaker::showImgPreview(const QString& fname){
             delete renderManager;
         }
     }
+#endif
 }
 
 void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
@@ -6488,8 +6513,10 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
         QToolTip::showText(p, text, 0);
         LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
     }
+#ifndef NO_POPPLER_PREVIEW
     PDFRenderManager* renderManager = qobject_cast<PDFRenderManager*>(sender());
     delete renderManager;
+#endif
 }
 
 void Texmaker::showPreview(const QString& text){
@@ -8313,6 +8340,7 @@ void Texmaker::moveCursorTodlh(){
 }
 
 void Texmaker::openInternalDocViewer(QString package,const QString command){
+#ifndef NO_POPPLER_PREVIEW
     runInternalCommand("txs:///view-pdf-internal", QFileInfo(package), "--embedded");
     QList<PDFDocument*> pdfs = PDFDocument::documentList();
     if(pdfs.count()>0){
@@ -8323,6 +8351,7 @@ void Texmaker::openInternalDocViewer(QString package,const QString command){
         if(!command.isEmpty())
             pdf->doFindAgain();
     }
+#endif
 }
 
 void Texmaker::CloseEnv(){
@@ -8363,6 +8392,7 @@ void Texmaker::CloseEnv(){
 }
 
 void Texmaker::enlargeEmbeddedPDFViewer(){
+#ifndef NO_POPPLER_PREVIEW
     QList<PDFDocument*> oldPDFs = PDFDocument::documentList();
     if(oldPDFs.isEmpty())
         return;
@@ -8372,9 +8402,11 @@ void Texmaker::enlargeEmbeddedPDFViewer(){
 	centralVSplitter->hide();
     configManager.viewerEnlarged=true;
     viewer->setStateEnlarged(true);
+#endif
 }
 
 void Texmaker::shrinkEmbeddedPDFViewer(bool preserveConfig){
+#ifndef NO_POPPLER_PREVIEW
 	centralVSplitter->show();
     if(!preserveConfig)
         configManager.viewerEnlarged=false;
@@ -8385,4 +8417,5 @@ void Texmaker::shrinkEmbeddedPDFViewer(bool preserveConfig){
     if(!viewer->embeddedMode)
         return;
     viewer->setStateEnlarged(false);
+#endif
 }

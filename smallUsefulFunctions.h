@@ -43,9 +43,9 @@ QString latexToPlainWord(const QString& word);
 //extracts the section name after \section is removed (brackets removal)
 QString extractSectionName(const QString& word,bool precut=false);
 //closing bracket (opening and closing bracket considered correctly)
-int findClosingBracket(const QString& word,int &start,QChar oc='{',QChar cc='}');
+int findClosingBracket(const QString& word,int &start,QChar oc=QChar('{'),QChar cc=QChar('}'));
 //opening bracket (opening and closing bracket considered correctly), start at "start"
-int findOpeningBracket(const QString& word,int start,QChar oc='{',QChar cc='}');
+int findOpeningBracket(const QString& word,int start,QChar oc=QChar('{'),QChar cc=QChar('}'));
 //replaces character with corresponding LaTeX commands
 QString textToLatex(const QString& text);
 // replaces \texorpdfstring{tex}{pdfString} with pdfString
