@@ -18,7 +18,7 @@ Q_DECLARE_METATYPE(RunCommandFlags);
 Q_DECLARE_METATYPE(ProcessX*);
 Q_DECLARE_METATYPE(QAction*);
 Q_DECLARE_METATYPE(QMenu*);
-Q_DECLARE_METATYPE(QFileInfo);
+//Q_DECLARE_METATYPE(QFileInfo);
 Q_DECLARE_METATYPE(SubScriptObject*);
 Q_DECLARE_METATYPE(QEditor*);
 Q_DECLARE_METATYPE(QList<LatexDocument*>);
@@ -526,11 +526,17 @@ QScriptValue UniversalInputDialogScript::add(const QScriptValue& def, const QScr
 	if (id.isValid()) properties.last().name = id.toString();
 	return engine->newQObject(w);
 }
-
+#if QT_VERSION<0x05000
 QScriptValue UniversalInputDialogScript::exec(){
 	if (!UniversalInputDialog::exec()) return QScriptValue();
 	return getAll();
 }
+#else
+QScriptValue UniversalInputDialogScript::execDialog(){
+    if (!UniversalInputDialog::exec()) return QScriptValue();
+    return getAll();
+}
+#endif
 
 QScriptValue UniversalInputDialogScript::getAll(){
 	QScriptValue res = engine->newArray(properties.size());

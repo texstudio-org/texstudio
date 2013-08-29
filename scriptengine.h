@@ -47,7 +47,11 @@ public:
 	~UniversalInputDialogScript();
 public slots:
 	QScriptValue add(const QScriptValue& def, const QScriptValue& description, const QScriptValue& id = QScriptValue());
-	QScriptValue exec();
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+    QScriptValue execDialog();
+#else
+    QScriptValue exec();
+#endif
 	QScriptValue getAll();
 	QScriptValue get(const QScriptValue& id);
 private:

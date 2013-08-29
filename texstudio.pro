@@ -9,6 +9,7 @@ QT += network \
     script \
     printsupport \
     widgets \
+    concurrent \
     uitools
 !isEmpty(PHONON){
     QT += phonon
@@ -440,6 +441,7 @@ include(quazip/quazip/quazip.pri)
 debug{
     message(Creating debug version)
     CONFIG -= release
+    QT += testlib
 
     SOURCES += tests/testmanager.cpp \
         tests/testutil.cpp \
@@ -473,10 +475,15 @@ debug{
         tests/syntaxcheck_t.h
 # win32:LIBS += -lQtTest4
 win32:LIBS += -lQtTestd4
-unix:!macx:LIBS += -lQtTest
+#unix:!macx:LIBS += -lQtTest
 macx:LIBS += -framework QtTest
 }
 macx:LIBS += -framework CoreFoundation
+
+unix {
+    LIBS += -L/usr/lib \
+    -lz
+}
 
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set

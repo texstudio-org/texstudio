@@ -42,9 +42,9 @@ public:
 	QString delayedFileLoad;
 	Texmaker *mw;  // Moved from private:
 	TexmakerApp(int & argc, char ** argv);
-	#if QT_VERSION >= 0x040400
+    #if QT_VERSION >= 0x040400
 	TexmakerApp(QString &id,int & argc, char ** argv);
-	#endif
+    #endif
 	~TexmakerApp();
 	void init(QStringList &cmdLine);   // This function does all the initialization instead of the constructor.
 /*really slow global event logging:
@@ -110,8 +110,13 @@ bool TexmakerApp::event(QEvent * event) {
 
 int main(int argc, char ** argv) {
 // This is a dummy constructor so that the programs loads fast.
+#if QT_VERSION<0x050000
 	QStringList environment = QProcess::systemEnvironment();
 	QString user=environment.filter(QRegExp("^USERNAME=|^USER=",Qt::CaseInsensitive)).first();
+#else
+    QString user="USER=sdm";
+#endif
+
 	if(!user.isEmpty()){
 		int l=user.indexOf("=",0);
 		user="_"+user.right(user.length()-l-1);
@@ -120,7 +125,7 @@ int main(int argc, char ** argv) {
 #if QT_VERSION >= 0x040400
 	TexmakerApp a(user,argc, argv);
 #else
-	TexmakerApp a(argc, argv);
+    TexmakerApp a(argc, argv);
 	DSingleApplication instance(user);
 #endif
 	bool startAlways=false;

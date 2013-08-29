@@ -84,7 +84,7 @@ void LatexStyleParser::run(){
                     if(result.startsWith(td)){
                         if(result.length()>td.length()){
                             QChar c=result.at(td.length());
-                            switch(c.toAscii()){
+                            switch(c.toLatin1()){
                             case '#':;
                             case '{':;
                             case '[':addCommand=false;

@@ -1665,7 +1665,7 @@ void ProcessX::startCommand() {
 #endif
 	
 	if (cmd.startsWith("txs:///")){
-        emit started(QPrivateSignal());
+        emit started();
 		emit finished(0);
 		emit finished(0, NormalExit);
 		return;

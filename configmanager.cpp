@@ -651,7 +651,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	QCoreApplication::installTranslator(basicTranslator);
 	
 	//------------------files--------------------
-	newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
+    newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toLatin1().data());
 	
 	//----------------------------dictionaries-------------------------
 	
@@ -1143,26 +1143,26 @@ bool ConfigManager::execConfigDialog() {
 	const int editorKeys_EditOperationRole = Qt::UserRole;
 	
 	Q_ASSERT((int)Qt::CTRL == (int)Qt::ControlModifier && (int)Qt::ALT == (int)Qt::AltModifier && (int)Qt::SHIFT == (int)Qt::ShiftModifier && (int)Qt::META == (int)Qt::MetaModifier);
-	QMultiMap<int, int> keysReversed;
-	QHash<int, int>::const_iterator it = this->editorKeys.constBegin();
+    QMultiMap<int,QString> keysReversed;
+    QHash<QString, int>::const_iterator it = this->editorKeys.constBegin();
 	while (it != this->editorKeys.constEnd()) {
 		keysReversed.insertMulti(it.value(), it.key());
 		++it;
 	}
 	int ht=confDlg->ui.comboBoxLanguage->minimumSizeHint().height();
 	foreach(const int elem, editorAvailableOperations){
-		QList<int> keys=keysReversed.values(elem);
+        QList<QString> keys=keysReversed.values(elem);
 		bool listEmpty=false;
 		if(keys.isEmpty()){
-			keys<< 0;
+            keys<< "";
 			listEmpty=true;
 		}
-		foreach(const int key,keys){
+        foreach(const QString key,keys){
 			QTreeWidgetItem * twi=0;
 			if(listEmpty){
 				twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << tr("<none>"));
 			} else {
-				twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << QKeySequence(key).toString(QKeySequence::NativeText));
+                twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << QKeySequence::fromString(key).toString(QKeySequence::NativeText));
 			}
 			twi->setData(0, editorKeys_EditOperationRole, elem);
 			twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
@@ -1293,7 +1293,7 @@ bool ConfigManager::execConfigDialog() {
 				changedProperties << managedProperties[i].storage;
 		
 		//files
-		newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toAscii().data());
+		newFileEncoding=QTextCodec::codecForName(newFileEncodingName.toLatin1().data());
 		
 		if (changedProperties.contains(&maxRecentFiles) || changedProperties.contains(&maxRecentProjects))
 			updateRecentFiles(true);
@@ -1480,7 +1480,7 @@ bool ConfigManager::execConfigDialog() {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText);
 			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
-				this->editorKeys.insert(kSeq, editOperation);
+                this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
 
 		//menus
@@ -1774,7 +1774,7 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id, QActi
 QAction* ConfigManager::getManagedAction(const QString& id) {
 	QAction* act=0;
 	if (menuParent) act=menuParent->findChild<QAction*>(id);
-	if (act==0) qWarning("Can't find internal action %s",id.toAscii().data());
+	if (act==0) qWarning("Can't find internal action %s",id.toLatin1().data());
 	return act;
 }
 QList<QAction *> ConfigManager::getManagedActions(const QStringList& ids, const QString &commonPrefix) {
@@ -1786,7 +1786,7 @@ QList<QAction *> ConfigManager::getManagedActions(const QStringList& ids, const 
 	QAction *act;
 	foreach(const QString& id, ids) {
 		act=menuParent->findChild<QAction*>(commonPrefix+id);
-		if (act==0) qWarning("Can't find internal action %s",id.toAscii().data());
+		if (act==0) qWarning("Can't find internal action %s",id.toLatin1().data());
 		else actions << act;
 	}
 	return actions;
@@ -1794,7 +1794,7 @@ QList<QAction *> ConfigManager::getManagedActions(const QStringList& ids, const 
 QMenu* ConfigManager::getManagedMenu(const QString& id) {
 	QMenu* menu=0;
 	if (menuParent) menu=menuParent->findChild<QMenu*>(id);
-	if (menu==0) qWarning("Can't find internal menu %s",id.toAscii().data());
+	if (menu==0) qWarning("Can't find internal menu %s",id.toLatin1().data());
 	return menu;
 }
 void ConfigManager::removeManagedMenus(){
@@ -2053,10 +2053,10 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 	QList<QAction *> acts=menu->actions();
 	for (int i=0; i<acts.size(); i++)
 		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
-		else {
-			QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text().replace("&","")
-			                                         << managedMenuShortcuts.value(acts[i]->objectName()+"0", QKeySequence())
-			                                         << acts[i]->shortcut().toString(QKeySequence::NativeText));
+        else {
+            QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text().replace("&","")
+                                                     //<< managedMenuShortcuts.value(acts[i]->objectName(), "").toString() //TODO
+                                                     << acts[i]->shortcut().toString(QKeySequence::NativeText));
 			if (!acts[i]->isSeparator()) {
 				twi->setIcon(0,acts[i]->icon());
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);

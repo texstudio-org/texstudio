@@ -16,11 +16,11 @@ inline void translatePlaceholder(const QString& content, QString& curLine, CodeS
 	bool translatable = (ph.flags & CodeSnippetPlaceHolder::Translatable) && !CodeSnippet::debugDisableAutoTranslate;
 	if (translatable)
 	for (int i=0;i<content.length();i++) 
-		if (!content[i].toAscii()){ //don't translate non ascii placeholders
+        if (!content[i].toLatin1()){ //don't translate non ascii placeholders
 			translatable = false;
 			break;
 		}
-	QString trans = !translatable ? content : QApplication::translate("CodeSnippet_PlaceHolder", content.toAscii().constData());
+    QString trans = !translatable ? content : QApplication::translate("CodeSnippet_PlaceHolder", content.toLatin1().constData());
 	if (columnshift < 0) {
 		curLine = curLine.left(curLine.length() + columnshift) + trans + curLine.right(-columnshift); 
 		ph.offset += columnshift;
@@ -41,7 +41,7 @@ void parseSnippetPlaceHolder(const QString& snippet, int& i, QString& curLine, C
 	for (;i<snippet.length(); i++){
 		if (snippet.at(i) == '%' && i+1<snippet.length()) {
 			i++;
-			switch (snippet.at(i).toAscii()){
+            switch (snippet.at(i).toLatin1()){
 				case'|': ph.flags |= CodeSnippetPlaceHolder::AutoSelect; break;
 				case '>': translatePlaceholder(tmpPlaceHolderContent, curLine, ph); return;
 				case '%': tmpPlaceHolderContent+='%'; ph.length++; break;
@@ -124,7 +124,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 				curLine+=currentChar;
 				word.append(currentChar);
 				if(firstLine){
-				    switch (currentChar.toAscii()) {
+                    switch (currentChar.toLatin1()) {
 				    case '{':
 				    case '}':
 					sortWord.append('!');
@@ -142,7 +142,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 			}
 		} else {
 			escape=false;
-			switch (currentChar.toAscii()) {
+            switch (currentChar.toLatin1()) {
 			case '%':
 				word+='%';
 				curLine+='%';
@@ -167,7 +167,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 				curLine += "%"; word += "%";
 				// no break
 			case 'n':
-				if (currentChar.toAscii() == '\n' || replacePercentNewline) {
+                if (currentChar.toLatin1() == '\n' || replacePercentNewline) {
 					lines.append(curLine);
 					placeHolders.append(QList<CodeSnippetPlaceHolder>());
 					curLine.clear();

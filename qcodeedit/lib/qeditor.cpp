@@ -38,6 +38,7 @@
 
 #include "qreliablefilewatch.h"
 #include "smallUsefulFunctions.h"
+#include <QDrag>
 
 #if QT_VERSION >= 0x040600
 #include <QPropertyAnimation>
@@ -167,9 +168,9 @@ QList<QEditor*> QEditor::m_editors;
 QEditorInputBindingInterface* QEditor::m_defaultBinding = 0;
 QHash<QString, QEditorInputBindingInterface*> QEditor::m_registeredBindings;
 bool QEditor::m_defaultKeysSet = false;
-QHash<int, int> QEditor::m_registeredKeys;
+QHash<QString, int> QEditor::m_registeredKeys;
 QSet<int> QEditor::m_registeredOperations;
-QHash<int, int> QEditor::m_registeredDefaultKeys;
+QHash<QString, int> QEditor::m_registeredDefaultKeys;
 
 
 /*!
@@ -3979,7 +3980,8 @@ void QEditor::registerEditOperation(const EditOperation& op){
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-	m_registeredKeys.insert(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key, op);
+    QKeySequence qkey=QKeySequence(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key);
+    m_registeredKeys.insert(qkey.toString(), op);
 	m_registeredOperations << op;
 }
 
@@ -3992,7 +3994,8 @@ void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::Stan
 }
 
 QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-	EditOperation op = (EditOperation) m_registeredKeys.value(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key , NoOperation);
+    QKeySequence qkey=QKeySequence(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key);
+    EditOperation op = (EditOperation) m_registeredKeys.value(qkey.toString() , NoOperation);
 	static const int MAX_JUMP_TO_PLACEHOLDER = 5;
 	switch (op){
 	case IndentSelection: case UnindentSelection:
@@ -4023,13 +4026,13 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	return op;
 }
 
-void QEditor::setEditOperations(const QHash<int, int> &newOptions, bool mergeWithDefault){
+void QEditor::setEditOperations(const QHash<QString, int> &newOptions, bool mergeWithDefault){
 	if (!mergeWithDefault) {
 		m_registeredKeys = newOptions;
 		return;
 	}
 	m_registeredKeys = m_registeredDefaultKeys;
-	QHash<int, int>::const_iterator i = newOptions.begin();
+    QHash<QString, int>::const_iterator i = newOptions.begin();
 	while (i != newOptions.constEnd()) {
 		m_registeredKeys.insert(i.key(),i.value());
 		++i;
@@ -4040,7 +4043,7 @@ QSet<int> QEditor::getAvailableOperations(){
 	return m_registeredOperations;
 }
 
-QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
+QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	if (!m_defaultKeysSet) { //todo: thread safe lock
 		m_defaultKeysSet = true;
 	#ifndef Q_WS_MAC  // Use the default Windows bindings.
@@ -4191,12 +4194,12 @@ QHash<int, int> QEditor::getEditOperations(bool excludeDefault){
 	}
 	if (!excludeDefault) return m_registeredKeys;
 	else {
-		QHash<int,int> result;
+        QHash<QString,int> result;
 		result = m_registeredKeys;
 
-		QHash<int, int>::const_iterator i = m_registeredDefaultKeys.begin();
+        QHash<QString, int>::const_iterator i = m_registeredDefaultKeys.begin();
 		while (i != m_registeredDefaultKeys.constEnd()) {
-			QHash<int, int>::iterator j = result.find(i.key());
+            QHash<QString, int>::iterator j = result.find(i.key());
 			if (j!=result.end() && j.value() == i.value()) result.erase(j);
 			++i;
 		}

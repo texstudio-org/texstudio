@@ -1,6 +1,6 @@
 #ifndef PDFANNOTATION_H
 #define PDFANNOTATION_H
-
+#ifndef NO_POPPLER_PREVIEW
 #include "poppler-annotation.h"
 
 class PDFDocument;
@@ -100,6 +100,6 @@ private slots:
 private:
 };
 
-
+#endif
 
 #endif // PDFANNOTATION_H

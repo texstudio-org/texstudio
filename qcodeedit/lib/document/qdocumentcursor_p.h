@@ -172,7 +172,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		virtual void execute(QDocumentCommand *c);
 		
 		inline void ref() { m_ref.ref(); }
-		inline void deref() { if ( m_ref ) m_ref.deref(); if ( !m_ref ) delete this; }
+        inline void deref() { if ( !m_ref.deref() ) delete this; }
 		
 		inline bool hasFlag(int f) const { return m_flags & f; }
 		inline void setFlag(int f) { m_flags |= f; }

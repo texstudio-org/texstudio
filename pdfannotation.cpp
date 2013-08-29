@@ -1,3 +1,4 @@
+#ifndef NO_POPPLER_PREVIEW
 #include "PDFDocument.h"
 #include "pdfannotation.h"
 #include "poppler-annotation.h"
@@ -230,3 +231,4 @@ void PDFAnnotationTableView::onClick(const QModelIndex &index) {
 	emit annotationClicked(annModel->itemForIndex(index));
 }
 
+#endif

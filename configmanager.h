@@ -41,7 +41,7 @@ public:
 	bool autodetectLoadedFile;
 	QStringList commonEncodings;
 
-	QHash<int, int> editorKeys;
+    QHash<QString, int> editorKeys;
 	QSet<int> editorAvailableOperations;
 
 	//build
