@@ -120,7 +120,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
         lockName = env.value(lockNameOverride);
     else { 
         static QString var = lockNameOverride+"="+lockName;
-        static QByteArray varba = var.toAscii();
+        static QByteArray varba = var.toLatin1();
         putenv(varba.data()); //putenv doesn't copy the string
     }
 #endif

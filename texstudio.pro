@@ -6,7 +6,10 @@ exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
     svg \
-    script
+    script \
+    printsupport \
+    widgets \
+    uitools
 !isEmpty(PHONON){
     QT += phonon
     DEFINES += PHONON

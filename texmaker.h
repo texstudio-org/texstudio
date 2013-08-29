@@ -44,6 +44,8 @@
 #include "latexstyleparser.h"
 #include "diffoperations.h"
 
+#include <QProgressDialog>
+
 typedef QHash<QString,int> SymbolList;
 
 enum SVNSTATUS {
@@ -63,7 +65,7 @@ class Texmaker : public QMainWindow {
 	Q_OBJECT
 	
 public:
-	Texmaker(QWidget *parent = 0, Qt::WFlags flags = 0, QSplashScreen *splash = 0);
+    Texmaker(QWidget *parent = 0, Qt::WindowFlags flags = 0, QSplashScreen *splash = 0);
 	~Texmaker();
 	
 	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
@@ -566,7 +568,7 @@ protected:
 	QString fileFilters;
 	QString selectedFileFilter;
 
-	QWeakPointer<FileSelector> fileSelector;
+    QSharedPointer<FileSelector> fileSelector;
 	
 	bool runBibliographyIfNecessaryEntered;
 	

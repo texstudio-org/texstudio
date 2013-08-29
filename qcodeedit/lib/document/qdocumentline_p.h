@@ -131,8 +131,8 @@ public:
 		inline QString& textBuffer() { setFlag(QDocumentLine::LayoutDirty, true); return m_text; }
 		
 		inline void ref() { m_ref.ref(); }
-		inline void deref() { if ( m_ref ) m_ref.deref(); if ( !m_ref ) delete this; }
-		int getRef(){ return m_ref; }
+        inline void deref() { if ( !m_ref.deref() ) delete this; }
+        int getRef(){ return m_ref.fetchAndAddRelaxed(0); }
 
 		QList<int> getBreaks();
 		void clearFrontiers(){

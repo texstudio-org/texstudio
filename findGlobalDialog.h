@@ -1,7 +1,7 @@
 #ifndef FINDGLOBALDIALOG_H
 #define FINDGLOBALDIALOG_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 
 namespace Ui {
     class findGlobalDialog;
@@ -13,7 +13,7 @@ public:
 	enum SearchScope
 	{
 			Local		= 0,
-			OpenedFiles		= 1,
+            OpenedFiles		= 1
 	};
 
     findGlobalDialog(QWidget *parent = 0);
