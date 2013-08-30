@@ -17,7 +17,7 @@
 #include <QItemEditorCreatorBase>
 #include <QStyledItemDelegate>
 
-static const QRegExpValidator wordValidator;//(QRegExp("[^<].*"),0);
+static const QRegExpValidator wordValidator(QRegExp("[^<].*"),0);
 
 SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
 	:QDialog(parent),m_statusBar(0),m_speller(utility),editor(0),editorView(0) {
