@@ -46,7 +46,7 @@
 
 #include "help.h"
 
-QStringList LatexEditorView::checkedLanguages;// = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
+QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
 
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding {
@@ -550,6 +550,7 @@ Q_DECLARE_METATYPE(LatexEditorView*);
 
 LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),curChangePos(-1),config(aconfig),bibReader(0) {
 	Q_ASSERT(config);
+
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
 	mainlay->setMargin(0);

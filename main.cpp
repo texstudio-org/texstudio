@@ -110,12 +110,8 @@ bool TexmakerApp::event(QEvent * event) {
 
 int main(int argc, char ** argv) {
 // This is a dummy constructor so that the programs loads fast.
-#if QT_VERSION<0x050000
 	QStringList environment = QProcess::systemEnvironment();
 	QString user=environment.filter(QRegExp("^USERNAME=|^USER=",Qt::CaseInsensitive)).first();
-#else
-    QString user="USER=sdm";
-#endif
 
 	if(!user.isEmpty()){
 		int l=user.indexOf("=",0);

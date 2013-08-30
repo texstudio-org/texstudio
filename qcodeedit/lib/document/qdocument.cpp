@@ -2205,7 +2205,11 @@ QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
 
 QDocumentLineHandle::~QDocumentLineHandle()
 {
+#if QT_VERSION>=0x050000
     Q_ASSERT(!m_ref.load());
+#else
+    Q_ASSERT(!m_ref);
+#endif
 
 	if ( m_doc && m_doc->impl() )
 		m_doc->impl()->emitLineDeleted(this);
@@ -4014,7 +4018,11 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column,
 QDocumentCursorHandle::~QDocumentCursorHandle()
 {
 	//qDebug("Cursor handle deleted : 0x%x", this);
+#if QT_VERSION>=0x050000
     Q_ASSERT(!m_ref.load());
+#else
+    Q_ASSERT(!m_ref);
+#endif
 
 	if (isAutoUpdated())
 		setAutoUpdated(false);

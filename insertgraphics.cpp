@@ -35,9 +35,9 @@ QValidator::State PlacementValidator::validate(QString &input, int &pos) const {
 	return QRegExpValidator::validate(input, pos);
 }
 
-QStringList InsertGraphics::widthUnits;// = QStringList() << "\\linewidth" << "cm" << "mm" << "";
-QStringList InsertGraphics::heightUnits;// = QStringList() << "\\textheight" << "cm" << "mm" << "";
-QStringList InsertGraphics::m_imageFormats;// = QStringList() << "eps" << "jpg" << "png" << "pdf";
+QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";
+QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm" << "";
+QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "png" << "pdf";
 
 InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 		: QDialog(parent) {

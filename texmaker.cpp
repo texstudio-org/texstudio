@@ -1649,7 +1649,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	
 	//QTime time;
 	//time.start();
-	edit->editor->load(f_real,QDocument::defaultCodec());
+    edit->editor->load(f_real,QDocument::defaultCodec());
 
 	if (!edit->editor->languageDefinition())
 		guessLanguageFromContent(m_languages, edit->editor);
