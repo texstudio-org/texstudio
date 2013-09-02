@@ -27,9 +27,8 @@ PDFQueue::PDFQueue(QObject *parent): QObject(parent){
 }
 
 void PDFQueue::deref() {
-    if ( m_ref )
-	m_ref.deref();
-    if ( !m_ref ) {
+    if ( !m_ref.deref() )
+    {
 	delete this;
     }
 }
