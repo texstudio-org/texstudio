@@ -46,7 +46,7 @@ public:
 
     inline void ref() { m_ref.ref(); }
     void deref();
-    int getRef(){ return m_ref; }
+    int getRef(){ return m_ref.fetchAndAddRelaxed(0);; }
 
     QQueue<RenderCommand> mCommands;
     QSemaphore mCommandsAvailable;

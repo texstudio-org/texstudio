@@ -488,7 +488,9 @@ unix {
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
+  contains(QT_VERSION, ^4\\..*\\..*) { #Qt4
     unix:!macx {
+    
         INCLUDEPATH += /usr/include/poppler/qt4
         LIBS += -L/usr/lib \
             -lpoppler-qt4 \
@@ -506,6 +508,28 @@ isEmpty(NO_POPPLER_PREVIEW) {
 	LIBS += ./zlib1.dll \
 	    ./libpoppler-qt4.dll \
     }
+  }else:{ # Qt5
+    unix:!macx {
+    
+	INCLUDEPATH += /home/sdm/Dokumente/Programmieren/poppler/include/poppler/qt5
+        LIBS += -L/usr/lib \
+	     -L/home/sdm/Dokumente/Programmieren/poppler/lib \
+            -lpoppler-qt5 \
+            -lz
+    }
+    macx {
+        INCLUDEPATH += /usr/local/include/poppler/qt5
+        LIBS += -L/usr/lib \
+            -L/usr/local/lib \
+            -lpoppler-qt5 \
+            -lz
+    }
+    win32 {
+	INCLUDEPATH  += ./include_win32
+	LIBS += ./zlib1.dll \
+	    ./libpoppler-qt5.dll \
+    }
+  }
 }
 !isEmpty(NO_POPPLER_PREVIEW) {
     DEFINES += NO_POPPLER_PREVIEW

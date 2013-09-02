@@ -457,13 +457,13 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
-	leFind->setToolTip(QApplication::translate("SearchReplace", "Text or pattern to search for", 0, QApplication::UnicodeUTF8));
-	bNext->setToolTip(QApplication::translate("SearchReplace", "Find next occurence", 0, QApplication::UnicodeUTF8));
-	bPrevious->setToolTip(QApplication::translate("SearchReplace", "Find previous occurence", 0, QApplication::UnicodeUTF8));
+    leFind->setToolTip(tr("SearchReplace", "Text or pattern to search for", 0));
+    bNext->setToolTip(tr("SearchReplace", "Find next occurence", 0));
+    bPrevious->setToolTip(tr("SearchReplace", "Find previous occurence", 0));
 
-	label->setText(QApplication::translate("SearchReplace", " Find :", 0, QApplication::UnicodeUTF8));
+    label->setText(tr("SearchReplace", " Find :", 0));
 	label->setMinimumWidth(label->sizeHint().width());
-	cbCase->setText(QApplication::translate("SearchReplace", "Case", 0, QApplication::UnicodeUTF8));
+    cbCase->setText(tr("SearchReplace", "Case", 0));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
 
 	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
@@ -890,12 +890,12 @@ void PDFClockDock::paintEvent(QPaintEvent * event){
 	QPainter p(this);
 	QRect r = rect();
 	p.fillRect(r, QColor::fromRgb(0,0,0));
-	p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(start.secsTo(end), 1),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
+    p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(start.secsTo(end), qint64(1) ),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
 	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
 	QFont f = p.font();
 	f.setPixelSize(r.height());
 	QFontMetrics met(f);
-	QString rem = tr("%1min").arg(qMax(0,QDateTime::currentDateTime().secsTo(end)/60));
+    QString rem = tr("%1min").arg(qMax(qint64(0),QDateTime::currentDateTime().secsTo(end)/60));
 	p.setFont(f);
 	p.setPen(QColor::fromRgb(255,255,255));
 	p.drawText(r, Qt::AlignRight | Qt::AlignVCenter, rem);

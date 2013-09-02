@@ -1622,7 +1622,7 @@ void PDFWidget::doPageDialog()
 	if (document.isNull()) return;
 	bool ok;
 	setCursor(Qt::ArrowCursor);
-	int pageNo = QInputDialog::getInteger(this, tr("Go to Page"),
+    int pageNo = QInputDialog::getInt(this, tr("Go to Page"),
 						   tr("Page number:"), realPageIndex + 1,
 						   1, realNumPages(), 1, &ok);
 	if (ok)
@@ -2805,7 +2805,14 @@ void PDFDocument::search(bool backwards, bool incremental){
 			if(!page)
 				return;
 
+
+#if QT_VERSION < 0x05000
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
+#else
+            double rectLeft, rectTop, rectRight, rectBottom;
+            if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
+                lastSearchResult.selRect=QRectF(rectLeft, rectTop, rectRight, rectBottom);
+#endif
 				lastSearchResult.doc = this;
 				lastSearchResult.pageIdx = pageIdx;
 				QPainterPath p;
