@@ -890,12 +890,12 @@ void PDFClockDock::paintEvent(QPaintEvent * event){
 	QPainter p(this);
 	QRect r = rect();
 	p.fillRect(r, QColor::fromRgb(0,0,0));
-    p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(start.secsTo(end), qint64(1) ),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
+    p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(qint64(start.secsTo(end)), qint64(1) ),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
 	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
 	QFont f = p.font();
 	f.setPixelSize(r.height());
 	QFontMetrics met(f);
-    QString rem = tr("%1min").arg(qMax(qint64(0),QDateTime::currentDateTime().secsTo(end)/60));
+    QString rem = tr("%1min").arg(qMax(qint64(0),qint64(QDateTime::currentDateTime().secsTo(end)/60)));
 	p.setFont(f);
 	p.setPen(QColor::fromRgb(255,255,255));
 	p.drawText(r, Qt::AlignRight | Qt::AlignVCenter, rem);
