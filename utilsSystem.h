@@ -29,6 +29,9 @@ QString findResourceFile(const QString& fileName, bool allowOverride = false, QS
 
 extern bool modernStyle;
 extern bool useSystemTheme;
+
+extern QCache<QString,QIcon>IconCache;
+
 QString getRealIconFile(const QString& icon);
 QIcon getRealIcon(const QString& icon);
 QIcon getRealIconCached(const QString& icon);

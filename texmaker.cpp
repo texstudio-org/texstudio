@@ -72,6 +72,7 @@
 
 bool programStopped = false;
 Texmaker* txsInstance = 0;
+QCache<QString,QIcon>IconCache;
 
 Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false) {
@@ -340,6 +341,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 
 Texmaker::~Texmaker(){
 
+    IconCache.clear();
 	QDocument::setDefaultFormatScheme(m_formatsOldDefault); //prevents crash when deleted latexeditorview accesses the default format scheme, as m_format is going to be deleted
 
 	programStopped = true;
