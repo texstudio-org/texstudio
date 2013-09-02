@@ -5,8 +5,6 @@
 #include <CoreFoundation/CFBundle.h>
 #endif
 
-QCache<QString,QIcon>IconCache;
-
 int getSimplifiedSVNVersion(QString svnVersion) {
 	int cutoff = svnVersion.indexOf(QRegExp("[^0-9]"));
 	if (cutoff < 0)
