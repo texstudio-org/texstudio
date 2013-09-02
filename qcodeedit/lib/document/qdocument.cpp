@@ -7537,7 +7537,7 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		it = areas.insert(m.line, n);
 
-		if ( it != areas.end() && (it - 1) != areas.end() )
+        if ( it != areas.end() && it != areas.begin() )
 		{
 			tmp = it - 1;
 			int off = tmp.key() + *tmp - l;
