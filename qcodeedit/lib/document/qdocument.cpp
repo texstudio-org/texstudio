@@ -3910,13 +3910,14 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			}
 #endif
-			if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
-			    p->setPen(Qt::lightGray);
-			    p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
-			}
-			p->setPen(oldpen);
+
+            //p->setPen(oldpen);
 		}
 
+        if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
+            p->setPen(Qt::lightGray);
+            p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
+        }
 		if ( unbounded ){
 		    p->fillRect(
 			    xpos, ypos,
