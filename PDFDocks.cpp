@@ -267,7 +267,7 @@ QVariant PDFOverviewModel::data ( const QModelIndex & index, int role) const{
 		}
 		return cache[index.row()];
 	case Qt::BackgroundColorRole:
-		return Qt::gray;
+        return QColor(Qt::gray);
 	}
 	return QVariant();
 }
