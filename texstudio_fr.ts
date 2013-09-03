@@ -161,7 +161,7 @@
     <message>
         <location line="+8"/>
         <source>Quick Array</source>
-        <translation>Assistant Matrice</translation>
+        <translation>Assistant matrice</translation>
     </message>
 </context>
 <context>
@@ -4563,7 +4563,7 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <location line="+70"/>
         <source>User Defined</source>
-        <translation>Défini par l&apos;utilisateur</translation>
+        <translation>Définies par l&apos;utilisateur</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -9503,7 +9503,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+5"/>
         <source>Quick &amp;Array...</source>
-        <translation>Assistant m&amp;atrice...</translation>
+        <translation>Assistant matri&amp;ce...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -10012,7 +10012,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location filename="additionaltranslations.cpp" line="+4"/>
         <source>Table</source>
-        <translation>Table</translation>
+        <translation>Tableau</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="-2305"/>
@@ -11007,31 +11007,31 @@ included document in %1</source>
         <location line="+1"/>
         <source>Add Column</source>
         <comment>table</comment>
-        <translation>Ajouter colonne</translation>
+        <translation>Ajouter une colonne</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Remove Row</source>
         <comment>table</comment>
-        <translation>Supprimer ligne</translation>
+        <translation>Supprimer une ligne</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Remove Column</source>
         <comment>table</comment>
-        <translation>Supprimer colonne</translation>
+        <translation>Supprimer une colonne</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Cut Column</source>
         <comment>table</comment>
-        <translation>Couper colonne</translation>
+        <translation>Couper une colonne</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Paste Column</source>
         <comment>table</comment>
-        <translation>Coller colonne</translation>
+        <translation>Coller une colonne</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -12085,7 +12085,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location line="-245"/>
         <source>Edit Macros</source>
-        <translation>Éditer les &amp;macros</translation>
+        <translation>Éditer les macros</translation>
     </message>
     <message>
         <location line="+341"/>
