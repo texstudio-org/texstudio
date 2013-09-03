@@ -38,7 +38,7 @@ public:
 	TestToken(const QString& str, int atype):QString(str),type(atype),soll(str){}
 	TestToken(const QString& str, const QString result, int atype):QString(str),type(atype),soll(result){}
 	bool operator ==(const QString &other) {
-        return other.operator ==(soll.toUtf8());
+        return soll.compare(other)==0;
 	}
 private:
 	QString soll;
@@ -130,7 +130,7 @@ class SmallUsefulFunctionsTest: public QObject{
 		addRow("escaped characters", filter, QList<TestToken>() << "hallo" << TestToken("\\%",NW_IGNORED_TOKEN) << "abc");
 		addRow("escaped characters", filter, QList<TestToken>() << "1234" << TestToken("\\%\\&\\_",NW_IGNORED_TOKEN)  << "567890");
 		addRow("special characters", filter,
-			   QList<TestToken>() << "lösbar" << " " << TestToken("l\"osbar","lösbar",LatexReader::NW_TEXT) << " " << TestToken("l\\\"osbar","lösbar",LatexReader::NW_TEXT) << " " << TestToken("l\\\"{o}sbar","lösbar",LatexReader::NW_TEXT) << " " << "örtlich" <<" " <<TestToken("\"ortlich","örtlich",LatexReader::NW_TEXT)<<" " <<TestToken("\\\"ortlich","örtlich",LatexReader::NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich","örtlich",LatexReader::NW_TEXT) );
+               QList<TestToken>() << QString::fromUtf8("lösbar") << " " << TestToken("l\"osbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << TestToken("l\\\"osbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << TestToken("l\\\"{o}sbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << QString::fromUtf8("örtlich") <<" " <<TestToken("\"ortlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT)<<" " <<TestToken("\\\"ortlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT) );
 	}
 	void nextWord_complex_test(bool commands){
 		//get data

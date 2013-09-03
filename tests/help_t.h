@@ -16,18 +16,28 @@ private slots:
 		QTest::addColumn<QString>("package");
 		QTest::addColumn<QString>("fileWithoutPath");
 
-		QTest::newRow("fancyhdr") << "fancyhdr" << "fancyhdr.dvi";
+        QTest::newRow("fancyhdr") << "fancyhdr" << "fancyhdr.dvi;fancyhdr.pdf";
 		QTest::newRow("xcolor") << "xcolor" << "xcolor.pdf";
-		QTest::newRow("graphicx") << "graphicx" << "graphicx.pdf";
-		QTest::newRow("fancyref") << "fancyref" << "freftest.dvi";
+        QTest::newRow("graphicx") << "graphicx" << "graphicx.pdf;grfguide.pdf";
+        QTest::newRow("fancyref") << "fancyref" << "freftest.dvi;fancyref.pdf";
 	}
 
 	void packageDocFile() {
 		QFETCH(QString, package);
 		QFETCH(QString, fileWithoutPath);
-
+        QStringList lst=fileWithoutPath.split(";");
 		QString file = Help::packageDocFile(package);
-		QEQUAL(QFileInfo(file).fileName(), fileWithoutPath);
+        bool found=false;
+        for(int i=(lst.count()-1);i>0;i--){
+            QString fileName=lst.at(i);
+            if(fileName==QFileInfo(file).fileName()){
+                QEQUAL(QFileInfo(file).fileName(), fileName);
+                found=true;
+                break;
+            }
+        }
+        if(!found)
+            QEQUAL(QFileInfo(file).fileName(), lst.value(0,""));
 	}
 
 private:
