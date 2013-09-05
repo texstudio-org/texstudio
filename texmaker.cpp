@@ -3308,7 +3308,20 @@ void Texmaker::ReadSettings(bool reread) {
 		QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
 		QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
 	};
-	config->beginGroup("Editor Key Mapping");
+    // import and remove old key mapping
+    {config->beginGroup("Editor Key Mapping");
+    QStringList sl = config->childKeys();
+    if (!sl.empty()) {
+        foreach (const QString& key, sl) {
+            int k = key.toInt();
+            if (k==0) continue;
+            configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
+        }
+        QEditor::setEditOperations(configManager.editorKeys);
+        config->remove("");
+    }
+    config->endGroup();}
+    config->beginGroup("Editor Key Mapping New");
 	QStringList sl = config->childKeys();
 	if (!sl.empty()) {
 		foreach (const QString& key, sl) {
@@ -3443,7 +3456,7 @@ void Texmaker::SaveSettings(const QString& configName) {
 	
     QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
-	config->beginGroup("Editor Key Mapping");
+    config->beginGroup("Editor Key Mapping New");
 	if (!keys.empty() || !config->childKeys().empty()) {
 		config->remove("");
         QHash<QString, int>::const_iterator i = keys.begin();
