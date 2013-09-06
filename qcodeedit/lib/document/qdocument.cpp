@@ -3606,8 +3606,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			// TODO : clip more accurately (i.e inside ranges)
 			if ( xpos > maxWidth ){
-				if( d->hardLineWrap()||d->lineWidthConstraint() ) continue;
-				else if (m_frontiers.isEmpty()) break;				
+                if( d->hardLineWrap()||d->lineWidthConstraint() ) continue;
+                else if (m_frontiers.isEmpty()) break;
 				//else break;
 			}
 
@@ -3664,11 +3664,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			const bool currentSelected = (fullSel || (fmt & FORMAT_SELECTION));
 			if ( currentSelected )
 			{
-				p->setPen(ht);
+                p->setPen(ht);
 
-				p->fillRect(xpos, ypos,
-							rwidth, QDocumentPrivate::m_lineSpacing,
-							pal.highlight());
+                p->fillRect(xpos, ypos,
+                            rwidth, QDocumentPrivate::m_lineSpacing,
+                            pal.highlight());
 
 			} else {
 				if ( formats[0].foreground.isValid() ) p->setPen(formats[0].foreground);
@@ -3676,7 +3676,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				else if ( formats[2].foreground.isValid() ) p->setPen(formats[2].foreground);
 				else p->setPen(pal.text().color());
 
-				if ( formats[0].background.isValid() )
+                if ( formats[0].background.isValid() )
 				{
 					p->fillRect(xpos, ypos,
 								rwidth, QDocumentPrivate::m_lineSpacing,
@@ -3691,7 +3691,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					p->fillRect(xpos, ypos,
 								rwidth, QDocumentPrivate::m_lineSpacing,
 								formats[2].background);
-				}
+                }
 			}
 
 			if ( r.format & FORMAT_SPACE )
@@ -3773,7 +3773,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					if (!color.isValid()) color = pal.text().color();
 					d->drawText(*p, newFont, color, currentSelected, xpos, ypos, rng); //ypos instead of baseline
 				} else {
-					p->drawText(xpos, baseline, rng);
+                    p->drawText(xpos, baseline, rng);
 					xpos += rwidth;
 				}
 			}
@@ -3901,14 +3901,14 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					}
 
 					dir ^= 1;
- 				}
+                }
 
 				continuingWave = true;
  			} else {
 				continuingWave = false;
 				dir = 0;
 
-			}
+            }
 #endif
 
             //p->setPen(oldpen);
@@ -6244,11 +6244,11 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
-	//QTime t;
-	//t.start();
+    //QTime t;
+    //t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
-	int i, realln, pos = 0,
+    int i, realln, pos = 0, visiblePos = 0,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
 		lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
 
@@ -6297,6 +6297,11 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	//qDebug("lines [%i, %i]", firstLine, lastLine);
 
 	pos += firstLine * m_lineSpacing;
+    visiblePos = pos;
+    if(visiblePos<cxt.yoffset){
+        int n= (cxt.yoffset-visiblePos) / m_lineSpacing;
+        visiblePos = pos + n * m_lineSpacing;
+    }
 
 	// adjust first line to take selections into account...
 	foreach ( const QDocumentSelection& s, cxt.selections )
@@ -6498,7 +6503,13 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				pr->fillRect(m_leftMargin, 0, qMax(m_width,lineCacheWidth), ht, fullSel ? selbg : bg);
 			} else
 				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
-			h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,0,ht);
+
+            int y=0;
+            if(!useLineCache && visiblePos>pos)
+                y=visiblePos-pos;
+
+            h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
+
 			if (useLineCache) {
 				p->drawPixmap(cxt.xoffset,0,*px);
 				delete pr;
@@ -6536,12 +6547,12 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		}
 
 		p->restore();
-		//qDebug("drawing line %i in %i ms", i, t.elapsed());
+        //qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 
 	m_oldLineCacheOffset = cxt.xoffset;
 	m_oldLineCacheWidth = lineCacheWidth;
-	//qDebug("painting done"); // in %i ms...", t.elapsed());
+    //qDebug("painting done in %i ms...", t.elapsed());
 
 	//mark placeholder which will probably be removed
 	if (cxt.lastPlaceHolder >=0 
