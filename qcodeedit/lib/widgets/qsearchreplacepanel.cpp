@@ -265,34 +265,34 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	connect(cReplace->lineEdit(),SIGNAL(textEdited(QString)),SLOT(cReplace_textEdited(QString)));
 
 	// set texts
-    bClose->setToolTip(tr("SearchReplace", "Close search/replace panel", 0));
-    cFind->setToolTip(tr("SearchReplace", "Text or pattern to search for", 0));
-    bNext->setToolTip(tr("SearchReplace", "Find next", 0));
-    bPrevious->setToolTip(tr("SearchReplace", "Find previous", 0));
-    bCount->setToolTip(tr("SearchReplace", "Count occurences", 0));
-    cReplace->setToolTip(tr("SearchReplace", "Replacement text", 0));
-    bReplaceNext->setToolTip(tr("SearchReplace", "Replace and find next", 0));
-    bReplacePrevious->setToolTip(tr("SearchReplace", "Replace and find previous", 0));
-    bReplaceAll->setToolTip(tr("SearchReplace", "Replace all", 0));
+    bClose->setToolTip(tr("Close search/replace panel"));
+    cFind->setToolTip(tr("Text or pattern to search for"));
+    bNext->setToolTip(tr("Find next"));
+    bPrevious->setToolTip(tr("Find previous"));
+    bCount->setToolTip(tr("Count occurences"));
+    cReplace->setToolTip(tr("Replacement text"));
+    bReplaceNext->setToolTip(tr("Replace and find next"));
+    bReplacePrevious->setToolTip(tr("Replace and find previous"));
+    bReplaceAll->setToolTip(tr("Replace all"));
 
-    lbFind->setText(tr("SearchReplace", "Find:", 0));
+    lbFind->setText(tr("Find:"));
 	lbFind->setMinimumWidth(lbFind->sizeHint().width());
-    cbCase->setText(tr("SearchReplace", "Case", 0));
+    cbCase->setText(tr("Case"));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
-    cbWords->setText(tr("SearchReplace", "Words", 0));
+    cbWords->setText(tr("Words"));
 	cbWords->setMinimumWidth(cbWords->sizeHint().width());
-    cbRegExp->setText(tr("SearchReplace", "Regexp", 0));
+    cbRegExp->setText(tr("Regexp"));
 	cbRegExp->setMinimumWidth(cbRegExp->sizeHint().width());
-    cbHighlight->setText(tr("SearchReplace", "Highlight all", 0));
+    cbHighlight->setText(tr("Highlight all"));
 	cbHighlight->setMinimumWidth(cbHighlight->sizeHint().width());
-    cbCursor->setText(tr("SearchReplace", "Cursor", 0));
+    cbCursor->setText(tr("Cursor"));
 	cbCursor->setMinimumWidth(cbCursor->sizeHint().width());
-    cbSelection->setText(tr("SearchReplace", "Selection", 0));
+    cbSelection->setText(tr("Selection"));
 	cbSelection->setMinimumWidth(cbSelection->sizeHint().width());
-    lbReplace->setText(tr("SearchReplace", "Replace:", 0));
-    cbPrompt->setText(tr("SearchReplace", "Prompt on replace", 0));
+    lbReplace->setText(tr("Replace:"));
+    cbPrompt->setText(tr("Prompt on replace"));
 	cbPrompt->setMinimumWidth(cbPrompt->sizeHint().width());
-    cbEscapeSeq->setText(tr("SearchReplace", "Escape sequences", 0));
+    cbEscapeSeq->setText(tr("Escape sequences"));
 	cbEscapeSeq->setMinimumWidth(cbEscapeSeq->sizeHint().width());
 
 	minimum_width=bClose->sizeHint().width()

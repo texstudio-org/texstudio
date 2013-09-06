@@ -457,13 +457,13 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
-    leFind->setToolTip(tr("SearchReplace", "Text or pattern to search for", 0));
-    bNext->setToolTip(tr("SearchReplace", "Find next occurence", 0));
-    bPrevious->setToolTip(tr("SearchReplace", "Find previous occurence", 0));
+    leFind->setToolTip(tr("Text or pattern to search for"));
+    bNext->setToolTip(tr("Find next occurence"));
+    bPrevious->setToolTip(tr("Find previous occurence"));
 
-    label->setText(tr("SearchReplace", " Find :", 0));
+    label->setText(tr(" Find :"));
 	label->setMinimumWidth(label->sizeHint().width());
-    cbCase->setText(tr("SearchReplace", "Case", 0));
+    cbCase->setText(tr("Case"));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
 
 	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
