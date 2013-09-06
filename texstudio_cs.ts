@@ -4145,6 +4145,26 @@ Chcete ji přepsat?</translation>
         <source>Enables case sensitive search.</source>
         <translation>Povolí hledání rozlišující velká a malá písmena.</translation>
     </message>
+    <message>
+        <source>Text or pattern to search for</source>
+        <translation type="unfinished">Hledaný text nebo vzor (RegEx)</translation>
+    </message>
+    <message>
+        <source>Find next occurence</source>
+        <translation type="unfinished">Najít další výskyt</translation>
+    </message>
+    <message>
+        <source>Find previous occurence</source>
+        <translation type="unfinished">Najít předchozí výskyt</translation>
+    </message>
+    <message>
+        <source> Find :</source>
+        <translation type="unfinished">Hledat:</translation>
+    </message>
+    <message>
+        <source>Case</source>
+        <translation type="unfinished">Písmovka</translation>
+    </message>
 </context>
 <context>
     <name>PDFClockDock</name>
@@ -5992,6 +6012,82 @@ V nahrazovacím textu jsou \1 až \9 nahrazeny pomocí naleziště odpovídajíc
 která připravý další znak na vytištění nebo zobrazení
 jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
+    <message>
+        <source>Close search/replace panel</source>
+        <translation type="unfinished">Zavřít panel hledání/nahrazení</translation>
+    </message>
+    <message>
+        <source>Text or pattern to search for</source>
+        <translation type="unfinished">Hledaný text nebo vzor (RegEx)</translation>
+    </message>
+    <message>
+        <source>Find next</source>
+        <translation type="unfinished">Najít další</translation>
+    </message>
+    <message>
+        <source>Find previous</source>
+        <translation type="unfinished">Najít předchozí</translation>
+    </message>
+    <message>
+        <source>Count occurences</source>
+        <translation type="unfinished">Počítat výskyty</translation>
+    </message>
+    <message>
+        <source>Replacement text</source>
+        <translation type="unfinished">Text nahrazení</translation>
+    </message>
+    <message>
+        <source>Replace and find next</source>
+        <translation type="unfinished">Nahradit a najít další</translation>
+    </message>
+    <message>
+        <source>Replace and find previous</source>
+        <translation type="unfinished">Nahradit a najít předchozí</translation>
+    </message>
+    <message>
+        <source>Replace all</source>
+        <translation type="unfinished">Nahradit vše</translation>
+    </message>
+    <message>
+        <source>Find:</source>
+        <translation type="unfinished">Hledat:</translation>
+    </message>
+    <message>
+        <source>Case</source>
+        <translation type="unfinished">Písmovka</translation>
+    </message>
+    <message>
+        <source>Words</source>
+        <translation type="unfinished">Slova</translation>
+    </message>
+    <message>
+        <source>Regexp</source>
+        <translation type="unfinished">Regulární výraz</translation>
+    </message>
+    <message>
+        <source>Highlight all</source>
+        <translation type="unfinished">Zvýraznit vše</translation>
+    </message>
+    <message>
+        <source>Cursor</source>
+        <translation type="unfinished">Ukazatel</translation>
+    </message>
+    <message>
+        <source>Selection</source>
+        <translation type="unfinished">Výběr</translation>
+    </message>
+    <message>
+        <source>Replace:</source>
+        <translation type="unfinished">Nahradit:</translation>
+    </message>
+    <message>
+        <source>Prompt on replace</source>
+        <translation type="unfinished">Ptát se při nahrazení</translation>
+    </message>
+    <message>
+        <source>Escape sequences</source>
+        <translation type="unfinished">Únikové znaky (např.: \n)</translation>
+    </message>
 </context>
 <context>
     <name>QStatusPanel</name>
@@ -6352,47 +6448,47 @@ Důvěřujete tomuto skriptu?</translation>
     <name>SearchReplace</name>
     <message>
         <source>Close search/replace panel</source>
-        <translation>Zavřít panel hledání/nahrazení</translation>
+        <translation type="obsolete">Zavřít panel hledání/nahrazení</translation>
     </message>
     <message>
         <source> Find :</source>
-        <translation>Hledat:</translation>
+        <translation type="obsolete">Hledat:</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation>Hledaný text nebo vzor (RegEx)</translation>
+        <translation type="obsolete">Hledaný text nebo vzor (RegEx)</translation>
     </message>
     <message>
         <source>Find next occurence</source>
-        <translation>Najít další výskyt</translation>
+        <translation type="obsolete">Najít další výskyt</translation>
     </message>
     <message>
         <source>Find previous occurence</source>
-        <translation>Najít předchozí výskyt</translation>
+        <translation type="obsolete">Najít předchozí výskyt</translation>
     </message>
     <message>
         <source>Words</source>
-        <translation>Slova</translation>
+        <translation type="obsolete">Slova</translation>
     </message>
     <message>
         <source>Cursor</source>
-        <translation>Ukazatel</translation>
+        <translation type="obsolete">Ukazatel</translation>
     </message>
     <message>
         <source>Selection</source>
-        <translation>Výběr</translation>
+        <translation type="obsolete">Výběr</translation>
     </message>
     <message>
         <source>Highlight all</source>
-        <translation>Zvýraznit vše</translation>
+        <translation type="obsolete">Zvýraznit vše</translation>
     </message>
     <message>
         <source>Regexp</source>
-        <translation>Regulární výraz</translation>
+        <translation type="obsolete">Regulární výraz</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation>Písmovka</translation>
+        <translation type="obsolete">Písmovka</translation>
     </message>
     <message>
         <source>Replace :</source>
@@ -6400,47 +6496,47 @@ Důvěřujete tomuto skriptu?</translation>
     </message>
     <message>
         <source>Replacement text</source>
-        <translation>Text nahrazení</translation>
+        <translation type="obsolete">Text nahrazení</translation>
     </message>
     <message>
         <source>Prompt on replace</source>
-        <translation>Ptát se při nahrazení</translation>
+        <translation type="obsolete">Ptát se při nahrazení</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation>Nahradit vše</translation>
+        <translation type="obsolete">Nahradit vše</translation>
     </message>
     <message>
         <source>Escape sequences</source>
-        <translation>Únikové znaky (např.: \n)</translation>
+        <translation type="obsolete">Únikové znaky (např.: \n)</translation>
     </message>
     <message>
         <source>Count occurences</source>
-        <translation>Počítat výskyty</translation>
+        <translation type="obsolete">Počítat výskyty</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation>Najít další</translation>
+        <translation type="obsolete">Najít další</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation>Najít předchozí</translation>
+        <translation type="obsolete">Najít předchozí</translation>
     </message>
     <message>
         <source>Replace and find next</source>
-        <translation>Nahradit a najít další</translation>
+        <translation type="obsolete">Nahradit a najít další</translation>
     </message>
     <message>
         <source>Replace and find previous</source>
-        <translation>Nahradit a najít předchozí</translation>
+        <translation type="obsolete">Nahradit a najít předchozí</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation>Hledat:</translation>
+        <translation type="obsolete">Hledat:</translation>
     </message>
     <message>
         <source>Replace:</source>
-        <translation>Nahradit:</translation>
+        <translation type="obsolete">Nahradit:</translation>
     </message>
 </context>
 <context>

@@ -16,6 +16,7 @@
 #include "qdocument.h"
 #include "smallUsefulFunctions.h"
 
+
 /*
 	Document model :
 
@@ -3316,8 +3317,8 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 			merged[i] = m_composited.at(i);
 
 		// separate spaces to ease rendering loop
-		if ( m_text.at(i).isSpace() )
-			merged[i] |= FORMAT_SPACE;
+        if ( m_text.at(i).isSpace() )
+            merged[i] |= FORMAT_SPACE;
 	}
 
 	if (sel) {
@@ -3434,9 +3435,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 								int yStart,
 								int yEnd) const
 {
-	QReadLocker locker(&mLock);
+    QReadLocker locker(&mLock);
 	if ( hasFlag(QDocumentLine::LayoutDirty) )
-		layout(lineNr);
+        layout(lineNr);
 
 
 	if ( m_layout )
@@ -3516,10 +3517,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 		// draw line width when hard wrapping is activated
 		if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
-			p->save();
+            p->save();
 			p->setPen(Qt::lightGray);
 			p->drawLine(m_doc->impl()->width(), yStart, m_doc->impl()->width(), yEnd);
-			p->restore();
+            p->restore();
 		}
 
 	} else {
@@ -6255,8 +6256,8 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
-    QTime t;
-    t.start();
+    //QTime t;
+    //t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
     int i, realln, pos = 0, visiblePos = 0,
@@ -6563,7 +6564,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	m_oldLineCacheOffset = cxt.xoffset;
 	m_oldLineCacheWidth = lineCacheWidth;
-    qDebug("painting done in %i ms...", t.elapsed());
+    //qDebug("painting done in %i ms...", t.elapsed());
 
 	//mark placeholder which will probably be removed
 	if (cxt.lastPlaceHolder >=0 
