@@ -3618,7 +3618,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			d->m_formatScheme->extractFormats(fmt, fmts, formats, newFont);
 
 			if (newFont != lastFont) {
-				d->tunePainter(p, newFont);
+                d->tunePainter(p, newFont);
 				lastFont = newFont;
 			}
 
@@ -3657,7 +3657,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			}
 
 			int xspos = xpos;
-			const QPen oldpen = p->pen();
+            //const QPen oldpen = p->pen();
 			const int baseline = ypos + QDocumentPrivate::m_ascent;
 
 
@@ -3863,27 +3863,35 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 				int cp = 0;
 				brokenWave = false;
+                QVector<QPoint> lstOfPoints;
+                lstOfPoints<<QPoint(xspos,ycenter);
 
 				while ( cp < rwidth )
  				{
 					if ( !cp && !continuingWave )
 					{
 						dir = 0;
-						p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
+                        //p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
+                        lstOfPoints<<QPoint(xspos+1,ycenter+1);
 						++cp;
 					} else if ( !cp && brokenWave ) {
-						if ( !dir )
-							p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-						else
-							p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
+                        if ( !dir ){
+                            //p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
+                            lstOfPoints<<QPoint(xspos+1,ycenter+1);
+                        }else{
+                            //p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
+                            lstOfPoints<<QPoint(xspos+1,ycenter-1);
+                        }
 
 					} else {
 						if ( cp + 2 > rwidth)
 						{
 							if ( !dir )
-								p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
+                                lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+                                //p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
 							else
-								p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
+                                lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+                                //p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
 
 							// trick to keep current direction
 							dir ^= 1;
@@ -3892,9 +3900,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							++cp;
 						} else {
 							if ( !dir )
-								p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
+                                lstOfPoints<<QPoint(xspos+cp+2,ycenter+1);
+                                //p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
 							else
-								p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
+                                lstOfPoints<<QPoint(xspos+cp+2,ycenter-1);
+                                //p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
 
 							cp += 2;
 						}
@@ -3902,6 +3912,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 					dir ^= 1;
                 }
+                p->drawLines(lstOfPoints);
 
 				continuingWave = true;
  			} else {
@@ -6244,8 +6255,8 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
-    //QTime t;
-    //t.start();
+    QTime t;
+    t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
     int i, realln, pos = 0, visiblePos = 0,
@@ -6552,7 +6563,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	m_oldLineCacheOffset = cxt.xoffset;
 	m_oldLineCacheWidth = lineCacheWidth;
-    //qDebug("painting done in %i ms...", t.elapsed());
+    qDebug("painting done in %i ms...", t.elapsed());
 
 	//mark placeholder which will probably be removed
 	if (cxt.lastPlaceHolder >=0 
