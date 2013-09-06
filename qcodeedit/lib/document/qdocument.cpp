@@ -3913,7 +3913,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 					dir ^= 1;
                 }
-                p->drawLines(lstOfPoints);
+                p->drawPolyline(lstOfPoints.data(),lstOfPoints.count());
 
 				continuingWave = true;
  			} else {
