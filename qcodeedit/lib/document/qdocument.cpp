@@ -6292,8 +6292,8 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
-    QTime t;
-    t.start();
+    //QTime t;
+    //t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false, fullSel;
     int i, realln, pos = 0, visiblePos = 0,
@@ -6555,6 +6555,12 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
             int y=0;
             if(!useLineCache && visiblePos>pos)
                 y=visiblePos-pos;
+            if(!useLineCache && (pos+ht)>(cxt.yoffset+cxt.height)){
+                while((pos+ht)>(cxt.yoffset+cxt.height)){
+                    ht-=m_lineSpacing;
+                }
+                ht+=m_lineSpacing;
+            }
 
             h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
@@ -6600,7 +6606,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	m_oldLineCacheOffset = cxt.xoffset;
 	m_oldLineCacheWidth = lineCacheWidth;
-    qDebug("painting done in %i ms...", t.elapsed());
+    //qDebug("painting done in %i ms...", t.elapsed());
 
 	//mark placeholder which will probably be removed
 	if (cxt.lastPlaceHolder >=0 
