@@ -3592,7 +3592,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				column = 0;
 				ypos += QDocumentPrivate::m_lineSpacing;
 				if(ypos>yEnd) {
-				    return;
+                    break;
 				}
 				xpos = indent;
 
@@ -3962,22 +3962,18 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
             p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
         }
 
-        if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
-            p->setPen(Qt::lightGray);
-            p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
-        }
 		if ( unbounded ){
 		    p->fillRect(
 			    xpos, ypos,
 			    maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
 			    pal.highlight()
-			    );
-		    if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
-			p->setPen(Qt::lightGray);
-			p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
-		    }
+			    );   
 		}
 
+        if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
+            p->setPen(Qt::lightGray);
+            p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
+        }
 	}
 }
 
