@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- License: 	GPLv2 or later
+     Author: 	Thomas Braun
+     date: 	8 mai 2009
+     description: draft version of the new data format for generating png symbols for kile
+-->
+
+<!-- These two identify the file as symbol source file -->
+<!DOCTYPE KileSymbolSources>
+<symbols>
+
+	<!-- define the file format, therefore allow future changes
+	     version 0.20 was added to subversion-->
+	<formatVersion major="0" minor ="22" />
+
+	<!-- This is part of the png filename, e.g. "math" results in img001math.png, img002math.png and so on-->
+	<symbolGroupName>math</symbolGroupName>
+
+	<!-- Define the preamble of the latex document, the default preamble should work for all cases
+	     Note: Using \usepackage{} in <additional> will _not_ result in the symbol being dependend on the package-->
+	<preamble>
+		<class>article</class>
+		<arguments>10pt</arguments>
+		<additional>\pagestyle{empty}</additional>
+	</preamble>
+
+	<!--  the packages needed for <unicodeCommand> to work -->
+	<unicodeCommandPackages>
+	    <package>
+	       <name>inputenc</name>
+	       <arguments>utf8x</arguments>
+	    </package>
+	    <package>
+	       <name>ucs</name>
+	    </package>
+	</unicodeCommandPackages>
+
+	<!-- define the command for which the png should be created, only <latexCommand> is mandatory-->
+	<commandDefinition>
+		<latexCommand>\"{a}</latexCommand>
+	</commandDefinition>
+
+	<!-- example with implicit mathMode, usually best when the command needs mathMode
+	     the command is being placed inside \ensuremath{}-->
+	<commandDefinition>
+		<latexCommand>\neq</latexCommand>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<!-- example including all optional tags:
+	     	<unicodeCommand>The UTF-8 version of <latexCommand> result
+		<imageCommand>	Use this latex command for generating the image instead of <latexCommand>
+		<comment>	UTF-8 string which describes the command and/or gives user hints
+		<package>	Define the packages which are needed for <imageCommand> to work,
+				The tag <arguments> may be empty. The number of <packages> is not limited. The order
+				of the package inclusion is given here.
+	-->
+	<commandDefinition>
+		<latexCommand>\neq</latexCommand>
+		<unicodeCommand>≠</unicodeCommand>
+		<imageCommand>\neq</imageCommand>
+		<mathMode>true</mathMode>
+		<comment>This command gives nice weather! And one can use
+		any fancy UTF-8 characters like ä,ö,ü,ß or even Берлин. 8 мая and 了防疫第.
+		Even HTML markup like &lt;b&gt; bold &lt;/b&gt; is possible.</comment>
+		<package>
+			<name>amsmath</name>
+			<arguments>fleqn</arguments>
+		</package>
+	</commandDefinition>
+
+</symbols>
