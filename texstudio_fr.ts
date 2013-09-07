@@ -5326,27 +5326,27 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location line="+11"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Texte ou motif à chercher</translation>
+        <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find next occurence</source>
-        <translation type="unfinished">Chercher l&apos;occurence suivante</translation>
+        <translation>Chercher l&apos;occurence suivante</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find previous occurence</source>
-        <translation type="unfinished">Chercher l&apos;occurence précédente</translation>
+        <translation>Chercher l&apos;occurence précédente</translation>
     </message>
     <message>
         <location line="+2"/>
         <source> Find :</source>
-        <translation type="unfinished">Chercher:</translation>
+        <translation>Chercher :</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Case</source>
-        <translation type="unfinished">Sensible à la casse</translation>
+        <translation>Sensible à la casse</translation>
     </message>
 </context>
 <context>
@@ -7643,97 +7643,97 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location line="+30"/>
         <source>Close search/replace panel</source>
-        <translation type="unfinished">Fermer le panneau chercher/remplacer</translation>
+        <translation>Fermer le panneau chercher/remplacer</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Texte ou motif à chercher</translation>
+        <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher le suivant</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find previous</source>
-        <translation type="unfinished">Chercher précédent</translation>
+        <translation>Trouver le précédent</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Count occurences</source>
-        <translation type="unfinished">Compter les occurences</translation>
+        <translation>Compter les occurences</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replacement text</source>
-        <translation type="unfinished">Texte de remplacement</translation>
+        <translation>Texte de remplacement</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace and find next</source>
-        <translation type="unfinished">Remplacer et chercher le suivant</translation>
+        <translation>Remplacer et chercher le suivant</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace and find previous</source>
-        <translation type="unfinished">Remplacer et chercher précédent</translation>
+        <translation>Remplacer et chercher précédent</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace all</source>
-        <translation type="unfinished">Remplacer tout</translation>
+        <translation>Remplacer tout</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Find:</source>
-        <translation type="unfinished">Chercher :</translation>
+        <translation>Chercher :</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Case</source>
-        <translation type="unfinished">Sensible à la casse</translation>
+        <translation>Sensible à la casse</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Words</source>
-        <translation type="unfinished">Mots</translation>
+        <translation>Mots</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Regexp</source>
-        <translation type="unfinished">Expression rationnelle</translation>
+        <translation>Expression rationnelle</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Highlight all</source>
-        <translation type="unfinished">Surligner tout</translation>
+        <translation>Surligner tout</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Cursor</source>
-        <translation type="unfinished">Curseur</translation>
+        <translation>Curseur</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Selection</source>
-        <translation type="unfinished">Sélection</translation>
+        <translation>Sélection</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Replace:</source>
-        <translation type="unfinished">Remplacer :</translation>
+        <translation>Remplacer :</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Prompt on replace</source>
-        <translation type="unfinished">Confirmer avant remplacement</translation>
+        <translation>Confirmer avant remplacement</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Escape sequences</source>
-        <translation type="unfinished">Séquences d&apos;échappement</translation>
+        <translation>Séquences d&apos;échappement</translation>
     </message>
     <message>
         <source>Enables the use of escape characters. These are:
