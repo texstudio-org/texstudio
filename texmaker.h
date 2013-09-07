@@ -568,7 +568,7 @@ protected:
 	QString fileFilters;
 	QString selectedFileFilter;
 
-	QWeakPointer<FileSelector> fileSelector;
+	QPointer<FileSelector> fileSelector;
 	
 	bool runBibliographyIfNecessaryEntered;
 	
