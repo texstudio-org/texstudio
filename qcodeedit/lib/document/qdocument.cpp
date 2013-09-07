@@ -3558,12 +3558,22 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		int wrap = 0, xpos = QDocumentPrivate::m_leftMargin, ypos = 0;
 		bool leading = ranges.first().format & FORMAT_SPACE;
 
+        int mergeXpos=-1,mergeFormat=-1;
+        QString mergeText;
 		foreach ( const RenderRange& r, ranges )
 		{
 			++rngIdx;
 
 			if ( wrap != r.wrap )
 			{
+                //flush mergedRange
+                if(mergeXpos>=0){
+                    p->restore();
+                    p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+                    mergeXpos=-1;
+                    mergeText.clear();
+                }
+
 #ifndef Q_OS_WIN
 				continuingWave = false;
 #endif
@@ -3613,6 +3623,15 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			}
 
 			fmt = r.format;
+
+            if(mergeXpos>=0 && (fmt&(~FORMAT_SPACE)) != (mergeFormat&(~FORMAT_SPACE))){
+                // flush
+                p->restore();
+                p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+                mergeXpos=-1;
+                mergeText.clear();
+            }
+
 			int fmts[FORMAT_MAX_COUNT];
 			QFormat formats[FORMAT_MAX_COUNT];
 			int newFont = lastFont;
@@ -3659,7 +3678,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			int xspos = xpos;
             //const QPen oldpen = p->pen();
-			const int baseline = ypos + QDocumentPrivate::m_ascent;
+            const int baseline = ypos + QDocumentPrivate::m_ascent;
 
 
 			const bool currentSelected = (fullSel || (fmt & FORMAT_SELECTION));
@@ -3732,6 +3751,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						}
 
 						xpos += xoff;
+                        if(mergeXpos>=0){
+                            mergeText+=QString(toff,' ');
+                        }
 					} else {
 						++column;
 
@@ -3760,6 +3782,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						}
 
 						xpos += currentSpaceWidth;
+                        if(mergeXpos>=0){
+                            mergeText+=" ";
+                        }
 					}
 				}
 
@@ -3774,8 +3799,14 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					if (!color.isValid()) color = pal.text().color();
 					d->drawText(*p, newFont, color, currentSelected, xpos, ypos, rng); //ypos instead of baseline
 				} else {
-                    p->drawText(xpos, baseline, rng);
-					xpos += rwidth;
+                    //merge ranges if possible
+                    mergeText+=rng;
+                    if(mergeXpos<0){
+                        mergeXpos=xpos;
+                        mergeFormat=fmt;
+                        p->save();
+                    }
+                    xpos += rwidth;
 				}
 			}
 
@@ -3925,6 +3956,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
             //p->setPen(oldpen);
 		}
+        if(mergeXpos>=0){
+            //final flush
+            p->restore();
+            p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+        }
 
         if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
             p->setPen(Qt::lightGray);
@@ -6519,6 +6555,12 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
             int y=0;
             if(!useLineCache && visiblePos>pos)
                 y=visiblePos-pos;
+            if(!useLineCache && (pos+ht)>(cxt.yoffset+cxt.height)){
+                while((pos+ht)>(cxt.yoffset+cxt.height)){
+                    ht-=m_lineSpacing;
+                }
+                ht+=m_lineSpacing;
+            }
 
             h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
