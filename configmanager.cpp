@@ -848,7 +848,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	aliases.insert("main/edit/eraseLine", "main/edit/lineoperations/eraseLine");
 	aliases.insert("main/edit/eraseEndLine", "main/edit/lineoperations/eraseEndLine");
 
-	int size = config->beginReadArray("keysetting");
+    int size = config->beginReadArray("keysetting");
 	for (int i = 0; i < size; ++i) {
 		config->setArrayIndex(i);
 		QString id = config->value("id").toString();
@@ -1980,7 +1980,7 @@ void ConfigManager::modifyManagedShortcuts(){
 		else { } //backward compatibility
 		if (num!=-1) id.chop(2);
 		QAction * act= getManagedAction(id);
-		if (act) setManagedShortCut(act, num, managedMenuNewShortcuts[i].second);
+        if (act) setManagedShortCut(act, num, QKeySequence(managedMenuNewShortcuts[i].second));
 	}
 }
 
