@@ -531,12 +531,15 @@ void Texmaker::updateToolBarMenu(const QString& menuName){
 					REQUIRE(combo);
 					
 					QFontMetrics fontMetrics(tb.toolbar->font());
-					QStringList list;
+					QStringList actionTexts;
+					QList<QIcon> actionIcons;
 					foreach (const QAction* act, menu->actions())
-						if (!act->isSeparator())
-							list.append(act->text());
-					createComboToolButton(tb.toolbar,list,-1,this,SLOT(callToolButtonAction()),"",combo);
-					
+						if (!act->isSeparator()) {
+							actionTexts.append(act->text());
+							actionIcons.append(act->icon());
+						}
+					createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), "", combo);
+
 					if (menuName == "main/view/documents") {
 						//workaround to select the current document
 						int index = EditorTabs->currentIndex();
@@ -1067,7 +1070,7 @@ void Texmaker::setupToolBars() {
 					tagsWidget->populate();
 				QStringList list=tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep+1));
 				if (list.isEmpty()) continue;
-				QToolButton* combo=createComboToolButton(mtb.toolbar,list,0,this,SLOT(insertXmlTagFromToolButtonAction()));
+				QToolButton* combo=createComboToolButton(mtb.toolbar,list,QList<QIcon>(),0,this,SLOT(insertXmlTagFromToolButtonAction()));
 				combo->setProperty("tagsID", actionName);
 				mtb.toolbar->addWidget(combo);
 			} else {
@@ -1087,11 +1090,14 @@ void Texmaker::setupToolBars() {
 					//Case 4: A submenu mapped on a toolbutton
 					configManager.watchedMenus << actionName;
 					QStringList list;
+					QList<QIcon> icons;
 					foreach (const QAction* act, menu->actions())
-						if (!act->isSeparator())
+						if (!act->isSeparator()) {
 							list.append(act->text());
+							icons.append(act->icon());
+						}
 					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
-					QToolButton* combo=createComboToolButton(mtb.toolbar,list,0,this,SLOT(callToolButtonAction()));
+					QToolButton* combo=createComboToolButton(mtb.toolbar,list,icons,0,this,SLOT(callToolButtonAction()));
 					combo->setProperty("menuID", actionName);
 					mtb.toolbar->addWidget(combo);
 				}

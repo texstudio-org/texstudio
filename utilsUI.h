@@ -12,7 +12,7 @@ void txsWarning(const QString &message, bool &noWarnAgain);
 void txsCritical(const QString& message);
 
 //setup toolbutton as substitute for const combobox
-QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
+QToolButton* createComboToolButton(QWidget *parent, const QStringList& list, const QList<QIcon>& icons, int height,const QObject * receiver, const char * member,QString defaultElem="",QToolButton *combo=0);
 //find the tool button which contains a given action
 QToolButton* comboToolButtonFromAction(QAction* action);
 
