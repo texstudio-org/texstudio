@@ -8331,6 +8331,20 @@ void Texmaker::checkLatexInstall(){
 	runCommand("printenv", &buffer);
 #endif
 	result+=buffer;
+
+
+
+	result+= "\n\nCommand configuration in TeXstudio:\n";
+	const CommandMapping& cmds = buildManager.getAllCommands();
+	foreach (const CommandInfo& ci, cmds)
+		result += QString("    %1 (%2)%3: %4\n").arg(ci.displayName).arg(ci.id).arg(ci.rerunCompiler?" (r)":"").arg(ci.commandLine);
+
+	result+= "\nAdditional Search Paths:\n";
+	result+= "    Command: "+buildManager.additionalSearchPaths+"\n";
+	result+= "    Log: "+buildManager.additionalLogPaths+"\n";
+	result+= "    Pdf: "+buildManager.additionalPdfPaths+"\n";
+
+
 	currentEditorView()->editor->setText(result, false);
 }
 
