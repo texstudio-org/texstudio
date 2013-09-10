@@ -2806,7 +2806,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 				return;
 
 
-#if QT_VERSION < 0x05000
+#if QT_VERSION < 0x050000
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
 #else
             double rectLeft, rectTop, rectRight, rectBottom;
