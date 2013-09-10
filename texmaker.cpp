@@ -6535,7 +6535,9 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
 }
 
 void Texmaker::showPreview(const QString& text){
-	LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
+    LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
+    if(!edView)
+        edView=currentEditorView();
 	if (!edView) return;
 	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
 	if (m_endingLine<0) return; // can't create header
