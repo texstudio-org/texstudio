@@ -15,8 +15,8 @@ UpdateChecker::UpdateChecker() :
 // compares two versions strings
 // Meaning of result: v1 [result] v2, e.g. v1 Older than v2
 UpdateChecker::VersionCompareResult UpdateChecker::versionCompare(const QString &v1, const QString &v2) {
-	QStringList v1parts = v1.split('.');
-	QStringList v2parts = v2.split('.');
+	QStringList v1parts = v1.split(' ')[0].split('.');
+	QStringList v2parts = v2.split(' ')[0].split('.');
 
 	for (int i=v1parts.count(); i<v2parts.count(); i++) {
 		v1parts.append("0");

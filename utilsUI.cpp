@@ -31,7 +31,7 @@ void txsCritical(const QString &message){
 	QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 
-QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
+QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, const QList<QIcon>& icons, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
 	const QFontMetrics &fm = parent->fontMetrics();
 	if (height == -1) height = 0;
 	else if (height == 0) {
@@ -47,6 +47,7 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int 
 	if (height != 0)
 		combo->setMinimumHeight(height);
 	combo->setPopupMode(QToolButton::MenuButtonPopup);
+	combo->setToolButtonStyle(Qt::ToolButtonTextOnly);
 
 	// remove old actions
 	foreach(QAction * mAction, combo->actions())
@@ -55,10 +56,12 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, int 
 	QMenu *mMenu=new QMenu(combo);
 	int max=0;
 	bool defaultSet = false;
-	foreach(const QString& elem,list){
-		QAction* mAction=mMenu->addAction(elem,receiver,member);
-		max=qMax(max,fm.width(elem+"        "));
-		if(elem==defaultElem) {
+	for (int i=0; i<list.length(); i++) {
+		QString text = list[i];
+		QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
+		QAction* mAction=mMenu->addAction(icon, text, receiver, member);
+		max = qMax(max, fm.width(text+"        "));
+		if (text == defaultElem) {
 			combo->setDefaultAction(mAction);
 			defaultSet = true;
 		}
