@@ -5895,6 +5895,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	}
 	
 	//add cite/ref commands from the cwls to latexParser.citeCommands
+    /* disable old mechanism, now markers are placed in cwl
 	static QRegExp citeCommandCheck(QRegExp("^\\\\([Cc]ite.*|.*\\{(%<)?(keylist|bibid)(%>)?\\}.*)"));
 	static QRegExp refCommandCheck(QRegExp("^\\\\.*\\{(%<)?labelid(%>)?\\}.*"));
 	foreach (const QString& cmd, words)
@@ -5904,7 +5905,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		} else if (refCommandCheck.exactMatch(cmd)){
 			int lastBracket = cmd.lastIndexOf('{');
 			latexParser.possibleCommands["%ref"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
-		}
+        }
 	foreach (const QString& cmd, configManager.completerConfig->words)
 		if (citeCommandCheck.exactMatch(cmd)) {
 			int lastBracket = cmd.lastIndexOf('{');
@@ -5912,7 +5913,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		} else if (refCommandCheck.exactMatch(cmd)){
 			int lastBracket = cmd.lastIndexOf('{');
 			latexParser.possibleCommands["%ref"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
-		}
+        }*/
 
 	// collect user commands and references
 	foreach(const LatexDocument* doc,docs){
@@ -5955,6 +5956,13 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
         QStringList citationCommands;
 		foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
             QString temp='@'+citeCommand+"{@}";
+            citationCommands.append(temp);
+            words.insert(temp);
+            /*foreach (const QString &value, bibIds)
+                words.insert(temp.arg(value));*/
+        }
+        foreach(QString citeCommand, latexParser.possibleCommands["%citeExtended"]){
+            QString temp='@'+citeCommand.replace("bibid","@");
             citationCommands.append(temp);
             words.insert(temp);
             /*foreach (const QString &value, bibIds)

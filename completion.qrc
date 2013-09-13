@@ -36,6 +36,7 @@
 <file>completion/color.cwl</file>
 <file>completion/colortbl.cwl</file>
 <file>completion/coordsys.cwl</file>
+<file>completion/csquotes.cwl</file>
 <file>completion/currvita.cwl</file>
 <file>completion/cyrillic.cwl</file>
 <file>completion/diagxy.cwl</file>

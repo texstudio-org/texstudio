@@ -1525,6 +1525,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                 }
                 valid.remove('c');
             }
+            if(valid.contains('C')){ // cite command
+                if(res>-1){
+                    package.possibleCommands["%citeExtended"] << line;
+                }
+                valid.remove('C');
+            }
             if(valid.contains('g')){ // definition command
                 if(res>-1){
                     package.possibleCommands["%graphics"] << rxCom.cap(1);
