@@ -151,7 +151,7 @@
 \chapter[short]{title}
 \chaptermark{code}#*
 \chaptername{name}#*
-\cite{keylist}
+\cite{keylist}#c
 \cite[add. text]{keylist}
 \circle{diameter}#*
 \circle*{diameter}#*
@@ -300,7 +300,7 @@
 \newtheorem{envname}{caption}
 \newtheorem{envname}{caption}[within]
 \newtheorem*{envname}{caption}
-\nocite{keylist}
+\nocite{keylist}#c
 \nocorr#*
 \nocorrlist{charlist}#*
 \nofiles
