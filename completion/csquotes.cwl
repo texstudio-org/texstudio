@@ -43,7 +43,7 @@
 \par#S
 \quote#S
 \textcquote[prenote][postnote]{bibid}[punct]{text}#C
-\textcquote{bibid}{%<text%>}#C
+\textcquote{bibid}{text}#C
 \textcquote*{bibid}{text}#C
 \textelp#S
 \textquote#S

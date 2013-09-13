@@ -1527,7 +1527,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             }
             if(valid.contains('C')){ // cite command
                 if(res>-1){
-                    package.possibleCommands["%citeExtended"] << line;
+                    if(!line.contains("%")){
+                        line.replace("{","{%<");
+                        line.replace("}","%>}");
+                    }
+                    package.possibleCommands["%citeExtended"] << line.simplified();
+                    hideFromCompletion=true;
                 }
                 valid.remove('C');
             }

@@ -5962,7 +5962,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
                 words.insert(temp.arg(value));*/
         }
         foreach(QString citeCommand, latexParser.possibleCommands["%citeExtended"]){
-            QString temp='@'+citeCommand.replace("bibid","@");
+            QString temp='@'+citeCommand.replace("%<bibid%>","@");
             citationCommands.append(temp);
             words.insert(temp);
             /*foreach (const QString &value, bibIds)
