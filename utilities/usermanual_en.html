@@ -1518,6 +1518,7 @@ cwl files are used by the completer to propose possible commands and by the synt
 </ul>
 <h3>4.13.1 Command format</h3>
 <p>The command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. New lines can be included in a command by <code>%n</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>).
+Texstudio uses the key-name as hint whether a text is expected as first command-option. If the key-name is "text" or "title", the syntax inside the option is checked, otherwise it is ignored. This works only for the first command element.
 </p>
 <h3>4.13.2 Classification format</h3>
 <p>The follwing classifications are known to TXS:</p>
@@ -1531,6 +1532,7 @@ cwl files are used by the completer to propose possible commands and by the synt
   <tr><td>n</td><td>valid only in text environment (i.e. not math env)</td></tr>
   <tr><td>r</td><td>this command declares a reference like "\ref{key}"</td></tr>
   <tr><td>c</td><td>this command declares a citation like "\cite{key}"</td></tr>
+  <tr><td>C</td><td>this command declares a complex citation like "\textcquote{bibid}{text}". The key needs to be given as <code>bibid</code></td></tr>
   <tr><td>l</td><td>this command declares a label like "\label{key}"</td></tr>
   <tr><td>d</td><td>this command declares a definition command like "\newcommand{cmd}{def}"</td></tr>
   <tr><td>g</td><td>this command declares an include graphics command like "\includegraphics{file}"</td></tr>
