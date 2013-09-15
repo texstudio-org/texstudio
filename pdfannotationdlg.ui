@@ -23,21 +23,21 @@
       </font>
      </property>
      <property name="text">
-      <string>User</string>
+      <string notr="true">User</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="lbModDate">
      <property name="text">
-      <string>mod Date</string>
+      <string notr="true">mod Date</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="lbType">
      <property name="text">
-      <string>Type</string>
+      <string notr="true">Type</string>
      </property>
     </widget>
    </item>
