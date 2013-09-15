@@ -8,9 +8,12 @@ QT += network \
     svg \
     script \
     printsupport \
+    concurrent
+greaterThan(QT_MAJOR_VERSION, 4) {
+QT += \
     widgets \
-    concurrent \
     uitools
+}
 !isEmpty(PHONON){
     QT += phonon
     DEFINES += PHONON
@@ -487,7 +490,7 @@ unix {
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
-  contains(QT_VERSION, ^4\\..*\\..*) { #Qt4
+  !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
     unix:!macx {
     
         INCLUDEPATH += /usr/include/poppler/qt4
