@@ -1,12 +1,12 @@
 DEFINES += _QCODE_EDIT_BUILD_
 DEPENDPATH += $$PWD/lib/ \
     $$PWD/lib/document \
-    $$PWD/lib/language \
+#    $$PWD/lib/language \
     $$PWD/lib/widgets \
     $$PWD/lib/qnfa
 INCLUDEPATH += $$PWD/lib/ \
     $$PWD/lib/document \
-    $$PWD/lib/language \
+#    $$PWD/lib/language \
     $$PWD/lib/widgets \
     $$PWD/lib/qnfa
 QT *= xml
