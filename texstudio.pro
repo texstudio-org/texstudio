@@ -563,7 +563,7 @@ CONFIG(team):!CONFIG(build_pass) {
 }
 OTHER_FILES += universalinputdialog.*
 
-
+# add SVN revision (deprecated)
 exists(./.svn/entries)|exists(./.svn/wc.db){
   win32: {
     QMAKE_PRE_LINK += \"$${PWD}/svn_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
@@ -587,6 +587,26 @@ exists(./.svn/entries)|exists(./.svn/wc.db){
   }
   SOURCES += svn_revision.cpp
 
+}
+
+# add mercurial revision
+exists(./.hg) {
+  win32: {
+    message(HG)
+    QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
+    LIBS += hg_revision.o
+  } else {
+    # Just as a fall back. TODO: implement this analogous to the svn_revision an linux and mac
+    message(TODO: hg revision not yet automatically read)
+    system(echo \"const char * TEXSTUDIO_HG_REVISION = 0;\" > hg_revision.cpp)
+    SOURCES += hg_revision.cpp
+  }
+} else {
+  !exists(./hg_revision.cpp){
+    win32: system(echo const char * TEXSTUDIO_HG_REVISION = 0; > hg_revision.cpp)
+    else: system(echo \"const char * TEXSTUDIO_HG_REVISION = 0;\" > hg_revision.cpp)
+  }
+  SOURCES += hg_revision.cpp
 }
 
 # moved to the end because it seems to destroy the precompiled header
