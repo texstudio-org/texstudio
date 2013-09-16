@@ -597,8 +597,9 @@ exists(./.hg) {
     LIBS += hg_revision.o
   } else {
     # Just as a fall back. TODO: implement this analogous to the svn_revision an linux and mac
-    message(TODO: hg revision not yet automatically read)
-    system(echo \"const char * TEXSTUDIO_HG_REVISION = 0;\" > hg_revision.cpp)
+    VERSION = $$system(hg identify -n)
+    message(HG $$VERSION)
+    system(echo \"const char * TEXSTUDIO_HG_REVISION = $$VERSION;\" > hg_revision.cpp)
     SOURCES += hg_revision.cpp
   }
 } else {
