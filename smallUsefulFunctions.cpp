@@ -1352,6 +1352,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
                 if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
                 else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
                 else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
+                else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION_EXT;
 				if (result != NW_NOTHING) {
 					wordStartIndex=reference;
 					--index;
@@ -1532,6 +1533,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                         line.replace("}","%>}");
                     }
                     package.possibleCommands["%citeExtended"] << line.simplified();
+                    package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
                     hideFromCompletion=true;
                 }
                 valid.remove('C');
