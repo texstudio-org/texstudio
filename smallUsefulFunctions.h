@@ -182,7 +182,8 @@ struct LatexReader{
 		NW_REFERENCE=5,
 		NW_LABEL=6,
 		NW_CITATION=7,
-		NW_PUNCTATION=8 
+        NW_PUNCTATION=8,
+        NW_CITATION_EXT=9  // citation with bibid in arbitrary command option
 	};
 	
 	//Returns the next word (giving meaning to the nextToken tokens)
