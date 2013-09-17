@@ -597,10 +597,8 @@ exists(./.hg) {
     LIBS += hg_revision.o
   } else {
     # Just as a fall back. TODO: implement this analogous to the svn_revision an linux and mac
-    VERSION = $$system(hg identify -n)
-    message(HG $$VERSION)
-    system(echo \"const char * TEXSTUDIO_HG_REVISION = \\\"$$VERSION\\\";\" > hg_revision.cpp)
-    SOURCES += hg_revision.cpp
+    QMAKE_PRE_LINK += \"$${PWD}/hg_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\"
+    LIBS += hg_revision.o
   }
 } else {
   !exists(./hg_revision.cpp){
