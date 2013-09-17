@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE KileSymbolSources>
+<symbols>
+
+   <formatVersion major="0" minor ="22" />
+
+   <symbolGroupName>user</symbolGroupName>
+
+   <preamble>
+      <class>article</class>
+      <arguments>12pt</arguments>
+      <additional>\pagestyle{empty}
+		  \setlength{\parindent}{0cm}
+		  \usepackage[T1]{fontenc}
+      </additional>
+   </preamble>
+
+   <unicodeCommandPackages>
+      <package>
+         <name>inputenc</name>
+         <arguments>utf8</arguments>
+      </package>
+   </unicodeCommandPackages>
+
+   <!-- insert stuff here    -->
+<symbolGroupName>delimiters</symbolGroupName>
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \downarrow  -->
+<commandDefinition>
+   <latexCommand>\downarrow</latexCommand>
+   <unicodeCommand>↓</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Downarrow  -->
+<commandDefinition>
+   <latexCommand>\Downarrow</latexCommand>
+   <unicodeCommand>⇓</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math [  -->
+<commandDefinition>
+   <latexCommand>[</latexCommand>
+   <unicodeCommand>[</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math ]  -->
+<commandDefinition>
+   <latexCommand>]</latexCommand>
+   <unicodeCommand>]</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \langle  -->
+<commandDefinition>
+   <latexCommand>\langle</latexCommand>
+   <unicodeCommand>⟨</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \rangle  -->
+<commandDefinition>
+   <latexCommand>\rangle</latexCommand>
+   <unicodeCommand>⟩</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math |  -->
+<commandDefinition>
+   <latexCommand>|</latexCommand>
+   <unicodeCommand>|</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \|  -->
+<commandDefinition>
+   <latexCommand>\|</latexCommand>
+   <unicodeCommand>‖</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \lceil  -->
+<commandDefinition>
+   <latexCommand>\lceil</latexCommand>
+   <unicodeCommand>⌈</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \rceil  -->
+<commandDefinition>
+   <latexCommand>\rceil</latexCommand>
+   <unicodeCommand>⌉</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \uparrow  -->
+<commandDefinition>
+   <latexCommand>\uparrow</latexCommand>
+   <unicodeCommand>↑</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Uparrow  -->
+<commandDefinition>
+   <latexCommand>\Uparrow</latexCommand>
+   <unicodeCommand>⇑</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \lfloor  -->
+<commandDefinition>
+   <latexCommand>\lfloor</latexCommand>
+   <unicodeCommand>⌊</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \rfloor  -->
+<commandDefinition>
+   <latexCommand>\rfloor</latexCommand>
+   <unicodeCommand>⌋</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \updownarrow  -->
+<commandDefinition>
+   <latexCommand>\updownarrow</latexCommand>
+   <unicodeCommand>↕</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Updownarrow  -->
+<commandDefinition>
+   <latexCommand>\Updownarrow</latexCommand>
+   <unicodeCommand>⇕</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math (  -->
+<commandDefinition>
+   <latexCommand>(</latexCommand>
+   <unicodeCommand>(</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math )  -->
+<commandDefinition>
+   <latexCommand>)</latexCommand>
+   <unicodeCommand>)</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \{  -->
+<commandDefinition>
+   <latexCommand>\{</latexCommand>
+   <unicodeCommand>\{</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \}  -->
+<commandDefinition>
+   <latexCommand>\}</latexCommand>
+   <unicodeCommand>\}</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math /  -->
+<commandDefinition>
+   <latexCommand>/</latexCommand>
+   <unicodeCommand>/</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \backslash  -->
+<commandDefinition>
+   <latexCommand>\backslash</latexCommand>
+   <unicodeCommand>\</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \lmoustache \left \lmoustache \right. -->
+<commandDefinition>
+   <latexCommand>\lmoustache</latexCommand>
+   <unicodeCommand>⎰</unicodeCommand>
+   <imageCommand>\left \lmoustache \right.</imageCommand>
+   <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \rmoustache \left \rmoustache \right. -->
+<commandDefinition>
+   <latexCommand>\rmoustache</latexCommand>
+   <unicodeCommand>⎱</unicodeCommand>
+   <imageCommand>\left \rmoustache \right.</imageCommand>
+   <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \lgroup \left \lgroup \right. -->
+<commandDefinition>
+   <latexCommand>\lgroup</latexCommand>
+   <imageCommand>\left \lgroup \right.</imageCommand>
+   <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \rgroup \left \rgroup \right. -->
+<commandDefinition>
+   <latexCommand>\rgroup</latexCommand>
+   <imageCommand>\left \rgroup \right.</imageCommand>
+   <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \arrowvert \left \arrowvert \right. -->
+<commandDefinition>
+   <latexCommand>\arrowvert</latexCommand>
+   <imageCommand>\left \arrowvert \right.</imageCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \Arrowvert \left \Arrowvert \right. -->
+<commandDefinition>
+   <latexCommand>\Arrowvert</latexCommand>
+   <imageCommand>\left \Arrowvert \right.</imageCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- optarg math \bracevert \left \bracevert \right. -->
+<commandDefinition>
+   <latexCommand>\bracevert</latexCommand>
+   <imageCommand>\left \bracevert \right.</imageCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
+<!-- arg math \lvert  -->
+<commandDefinition>
+   <latexCommand>\lvert</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
+<!-- arg math \rvert  -->
+<commandDefinition>
+   <latexCommand>\rvert</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
+<!-- arg math \lVert  -->
+<commandDefinition>
+   <latexCommand>\lVert</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg=-->
+<!-- arg math \rVert  -->
+<commandDefinition>
+   <latexCommand>\rVert</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ulcorner  -->
+<commandDefinition>
+   <latexCommand>\ulcorner</latexCommand>
+   <unicodeCommand>⌜</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \urcorner  -->
+<commandDefinition>
+   <latexCommand>\urcorner</latexCommand>
+   <unicodeCommand>⌝</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \llcorner  -->
+<commandDefinition>
+   <latexCommand>\llcorner</latexCommand>
+   <unicodeCommand>⌞</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lrcorner  -->
+<commandDefinition>
+   <latexCommand>\lrcorner</latexCommand>
+   <unicodeCommand>⌟</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+</symbols>
