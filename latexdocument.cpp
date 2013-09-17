@@ -658,11 +658,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					packagesHelper.replaceInStrings(QRegExp("^"),preambel);
 				}
 				QStringList packages;
-				foreach(const QString& elem,packagesHelper)
+                foreach(QString elem,packagesHelper){
+                    elem=elem.simplified();
 					if(latexParser.packageAliases.contains(elem))
 						packages << latexParser.packageAliases.values(elem);
 					else
 						packages << elem;
+                }
 
 				foreach(const QString& elem,packages){
 					if(!removedUsepackages.removeAll(elem))
