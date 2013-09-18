@@ -112,7 +112,7 @@ private:
 	void setupDockWidgets();
 	void setupToolBars();
 	void createStatusBar();
-	bool FocusEditorForFile(QString f, bool checkTemporaryNames = false);
+	bool ActivateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool closeAllFilesAsking(); //asks the user and close all files
 	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
@@ -465,7 +465,7 @@ protected slots:
 	
 	void outputPageChanged(const QString &id);
 	
-	void gotoLine(int line, int col=0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation);  // line is 0 based
+	void gotoLine(int line, int col=0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus=true);  // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
