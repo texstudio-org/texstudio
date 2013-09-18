@@ -2055,7 +2055,7 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 		if (acts[i]->menu()) managedMenuToTreeWidget(menuitem, acts[i]->menu());
         else {
             QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text().replace("&","")
-                                                     //<< managedMenuShortcuts.value(acts[i]->objectName(), "").toString() //TODO
+                                                     << managedMenuShortcuts.value(acts[i]->objectName() + "0", QKeySequence()).toString()
                                                      << acts[i]->shortcut().toString(QKeySequence::NativeText));
 			if (!acts[i]->isSeparator()) {
 				twi->setIcon(0,acts[i]->icon());
