@@ -1266,7 +1266,7 @@ void Texmaker::UpdateCaption() {
 		if (currentEditorView()->editor) {
 			NewDocumentStatus();
 			NewDocumentLineEnding();
-			currentEditorView()->editor->setFocus();
+			//currentEditorView()->editor->setFocus();
 		}
 	}
 	setWindowTitle(title);
@@ -1518,13 +1518,16 @@ QString Texmaker::getRelativeFileName(const QString & file,QString basepath,bool
     return getRelativeBaseNameToPath(file,basepath,true,keepSuffix);
 }
 
-bool Texmaker::FocusEditorForFile(QString f, bool checkTemporaryNames) {
+bool Texmaker::ActivateEditorForFile(QString f, bool checkTemporaryNames, bool setFocus) {
 	LatexEditorView* edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
 	saveCurrentCursorToHistory();
 	if (!EditorTabs->containsEditor(edView)) return false;
 	EditorTabs->setCurrentEditor(edView);
-	edView->editor->setFocus();
+	if (setFocus) {
+		edView->editor->setFocus();
+		qDebug() << "activate focus";
+	}
 	return true;
 }
 ///////////////////FILE//////////////////////////////////////
@@ -2641,7 +2644,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 	if (showProgress) {
 		progress.setValue(progress.maximum());
 	}
-	FocusEditorForFile(s.currentFile());
+	ActivateEditorForFile(s.currentFile());
 	cursorHistory->setInsertionEnabled(true);
 
 	if (!s.PDFFile().isEmpty()) {
@@ -6022,7 +6025,7 @@ void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
 	currentEditorView()->temporaryHighlight(highlight);
 }
 
-void Texmaker::gotoLine(int line, int col, LatexEditorView *edView, QEditor::MoveFlags mflags) {
+void Texmaker::gotoLine(int line, int col, LatexEditorView *edView, QEditor::MoveFlags mflags, bool setFocus) {
 	bool changeCurrentEditor = (edView != currentEditorView());
 	if (!edView)
 		edView = currentEditorView(); // default
@@ -6037,7 +6040,10 @@ void Texmaker::gotoLine(int line, int col, LatexEditorView *edView, QEditor::Mov
 	}
 	edView->editor->setCursorPosition(line,col,false);
 	edView->editor->ensureCursorVisible(mflags);
-	edView->editor->setFocus();
+	if (setFocus) {
+		edView->editor->setFocus();
+		qDebug() << "goto focus";
+	}
 }
 
 bool Texmaker::gotoLine(int line, const QString &fileName){
@@ -6054,7 +6060,7 @@ bool Texmaker::gotoLine(int line, const QString &fileName){
 void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	if (logEntryNumber<0 || logEntryNumber>=outputView->getLogWidget()->getLogModel()->count()) return;
 	QString fileName = outputView->getLogWidget()->getLogModel()->at(logEntryNumber).file;
-	if (!FocusEditorForFile(fileName, true))
+	if (!ActivateEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	//get line
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
@@ -6095,10 +6101,10 @@ bool Texmaker::gotoMark(bool backward, int id) {
 }
 
 void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord){
-	if (!FocusEditorForFile(fileName, true))
+	if (!ActivateEditorForFile(fileName, true, activate))
 		if (!load(fileName)) return;
     shrinkEmbeddedPDFViewer();
-	gotoLine(line);
+	gotoLine(line, 0, 0, QEditor::Navigation, activate);
 	Q_ASSERT(currentEditor());
 	
 	//qDebug() << line << guessedWord;
