@@ -2030,7 +2030,7 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-	if(!embedded){
+	if (!embedded) {
 		connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
 		connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
 		// in embedded mode this would lead to an ambigous shortcut overload with forward/back actions of the cursor history
@@ -2390,8 +2390,8 @@ void PDFDocument::init(bool embedded)
 		actionPresentation->setShortcut(QKeySequence());
 		action_Print->setShortcut(QKeySequence());
 		actionFileOpen->setShortcut(QKeySequence());
-		actionLast_Page->setShortcut(QKeySequence());
-		actionFirst_Page->setShortcut(QKeySequence());
+//		actionLast_Page->setShortcut(QKeySequence());
+//		actionFirst_Page->setShortcut(QKeySequence());
 	}
 }
 
