@@ -1529,8 +1529,28 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             if(valid.contains('C')){ // cite command
                 if(res>-1){
                     if(!line.contains("%")){
-                        line.replace("{","{%<");
-                        line.replace("}","%>}");
+                        //add placeholders to brackets like () to (%<..%>)
+                        const QString brackets = "{}[]()<>";
+                        int lastOpen = -1, openType = -1;
+                        for (int i = 0; i < line.size(); i++) {
+                            int index = brackets.indexOf(line[i]);
+                            if (index>=0) {
+                                if (index % 2 == 0) {
+                                    lastOpen = i;
+                                    openType = index/2;
+                                } else {
+                                    if (lastOpen == -1 || openType != index/2)
+                                        continue;
+                                    if (lastOpen == i-1)
+                                        continue;
+                                    line.insert(lastOpen+1, "%<");
+                                    i+=2;
+                                    line.insert(i, "%>");
+                                    lastOpen = -1;
+                                    i+=2;
+                                }
+                            }
+                        }
                     }
                     package.possibleCommands["%citeExtended"] << line.simplified();
                     package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);

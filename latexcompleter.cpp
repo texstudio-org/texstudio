@@ -697,8 +697,10 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
                             for(int i=0;i<cw.placeHolders.count();i++) {
                                 if(cw.placeHolders[i].isEmpty())
                                     continue;
-                                CodeSnippetPlaceHolder& ph=cw.placeHolders[i].first();
-                                ph.offset+=id.word.length()-1;
+                                for(int j=0;j<cw.placeHolders[i].count();j++) {
+                                    CodeSnippetPlaceHolder& ph=cw.placeHolders[i][j];
+                                    ph.offset+=id.word.length()-1;
+                                }
                             }
                             words.append(cw);
                         }
