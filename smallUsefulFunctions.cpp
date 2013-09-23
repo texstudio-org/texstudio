@@ -1529,10 +1529,14 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             if(valid.contains('C')){ // cite command
                 if(res>-1){
                     if(!line.contains("%")){
+                        int start=0;
+                        if(line.startsWith("\\begin")){
+                            start=line.indexOf("}")+1;
+                        }
                         //add placeholders to brackets like () to (%<..%>)
                         const QString brackets = "{}[]()<>";
                         int lastOpen = -1, openType = -1;
-                        for (int i = 0; i < line.size(); i++) {
+                        for (int i = start; i < line.size(); i++) {
                             int index = brackets.indexOf(line[i]);
                             if (index>=0) {
                                 if (index % 2 == 0) {
