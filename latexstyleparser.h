@@ -18,7 +18,7 @@ public:
 protected:
     void run();
 
-    QStringList readPackage(QString fn);
+    QStringList readPackage(QString fn,QStringList& parsedPackages);
     QStringList readPackageTexDef(QString fn);
     QStringList readPackageTracing(QString fn);
     QString kpsewhich(QString name);

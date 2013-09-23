@@ -45,12 +45,12 @@ void LatexStyleParser::run(){
             topPackage=fn;
             topPackage.chop(4);
         }
-		QString fullName=kpsewhich(fn); // find file
-		if(fullName.isEmpty())
-		    continue;
+	QString fullName=kpsewhich(fn); // find file
+	if(fullName.isEmpty())
+	    continue;
 
-		QStringList results;
-        results=readPackage(fullName); // parse package(s)
+	QStringList results,parsedPackages;
+	results=readPackage(fullName,parsedPackages); // parse package(s)
         results.sort();
 
         if(texdefMode){
@@ -152,11 +152,14 @@ void LatexStyleParser::addFile(QString filename){
 	mFilesAvailable.release();
 }
 
-QStringList LatexStyleParser::readPackage(QString fn){
+QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages){
+    if(parsedPackages.contains(fn))
+	return QStringList();
     QFile data(fn);
     QStringList results;
     if(data.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream stream(&data);
+	parsedPackages<<fn;
         QString line;
         QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
         QRegExp rxCom("\\\\(newcommand|providecommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
@@ -258,7 +261,7 @@ QStringList LatexStyleParser::readPackage(QString fn){
                 QString name=rxInput.cap(1);
                 name=kpsewhich(name);
                 if(!name.isEmpty() && name!=fn) // avoid indefinite loops
-                    results << readPackage(name);
+		    results << readPackage(name,parsedPackages);
                 continue;
             }
             if(rxNewLength.indexIn(line)>-1){
