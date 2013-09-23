@@ -691,7 +691,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
                     if(wordsCitationCommands.contains(*it)){
                         foreach(const CompletionWord id,wordsCitations){
                             CompletionWord cw=*it;
-                            int index=cw.word.indexOf("@");
+                            int index=cw.lines[0].indexOf("@");
                             cw.word.replace("@",id.word);
                             cw.sortWord.replace("@",id.word);
                             cw.lines[0].replace("@",id.word);
