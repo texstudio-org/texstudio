@@ -14,9 +14,9 @@
 \textquote[manual citation][punct]{text}
 \textquote*[manual citation][punct]{text}
 
-\foreigntextquote{language}{text}#*
+\foreigntextquote{language}{text}
 \foreigntextquote*{language}{text}#*
-\foreigntextquote{language}[manual citation]{text}#*
+\foreigntextquote{language}[manual citation]{text}
 \foreigntextquote*{language}[manual citation]{text}#*
 \foreigntextquote{language}[][punct]{text}#*
 \foreigntextquote*{language}[][punct]{text}#*
@@ -37,9 +37,9 @@
 \blockquote[][punct]{text}#*
 \blockquote[manual citation][punct]{text}#*
 
-\foreignblockquote{language}{text}#*
+\foreignblockquote{language}{text}
 \foreignblockquote*{language}{text}#*
-\foreignblockquote{language}[manual citation]{text}#*
+\foreignblockquote{language}[manual citation]{text}
 \foreignblockquote*{language}[manual citation]{text}#*
 \foreignblockquote{language}[][punct]{text}#*
 \foreignblockquote*{language}[][punct]{text}#*
@@ -96,95 +96,95 @@
 
 \textcquote{bibid}{text}#C
 \textcquote[prenote]{bibid}{text}#C
-\textcquote[][postnote]{bibid}{text}#C
-\textcquote[prenote][postnote]{bibid}{text}#C
-\textcquote{bibid}[punct]{text}#*C
-\textcquote[prenote]{bibid}[punct]{text}#*C
-\textcquote[][postnote]{bibid}[punct]{text}#*C
-\textcquote[prenote][postnote]{bibid}[punct]{text}#*C
+#\textcquote[][postnote]{bibid}{text}#*C
+#\textcquote[prenote][postnote]{bibid}{text}#*C
+#\textcquote{bibid}[punct]{text}#*C
+#\textcquote[prenote]{bibid}[punct]{text}#*C
+#\textcquote[][postnote]{bibid}[punct]{text}#*C
+#\textcquote[prenote][postnote]{bibid}[punct]{text}#*C
 \textcquote*{bibid}{text}#C
 \textcquote*[prenote]{bibid}{text}#C
-\textcquote*[][postnote]{bibid}{text}#C
-\textcquote*[prenote][postnote]{bibid}{text}#C
-\textcquote*{bibid}[punct]{text}#*C
-\textcquote*[prenote]{bibid}[punct]{text}#*C
-\textcquote*[][postnote]{bibid}[punct]{text}#*C
-\textcquote*[prenote][postnote]{bibid}[punct]{text}#*C
+#\textcquote*[][postnote]{bibid}{text}#*C
+#\textcquote*[prenote][postnote]{bibid}{text}#*C
+#\textcquote*{bibid}[punct]{text}#*C
+#\textcquote*[prenote]{bibid}[punct]{text}#*C
+#\textcquote*[][postnote]{bibid}[punct]{text}#*C
+#\textcquote*[prenote][postnote]{bibid}[punct]{text}#*C
 
 \foreigntextcquote{language}{bibid}{text}#C
 \foreigntextcquote{language}[prenote]{bibid}{text}#C
-\foreigntextcquote{language}[][postnote]{bibid}{text}#C
-\foreigntextcquote{language}[prenote][postnote]{bibid}{text}#C
-\foreigntextcquote{language}{bibid}[punct]{text}#*C
-\foreigntextcquote{language}[prenote]{bibid}[punct]{text}#*C
-\foreigntextcquote{language}[][postnote]{bibid}[punct]{text}#*C
-\foreigntextcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}[][postnote]{bibid}{text}#*C
+#\foreigntextcquote{language}[prenote][postnote]{bibid}{text}#*C
+#\foreigntextcquote{language}{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}[prenote]{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}[][postnote]{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 \foreigntextcquote{language}*{bibid}{text}#C
 \foreigntextcquote{language}*[prenote]{bibid}{text}#C
-\foreigntextcquote{language}*[][postnote]{bibid}{text}#C
-\foreigntextcquote{language}*[prenote][postnote]{bibid}{text}#C
-\foreigntextcquote{language}*{bibid}[punct]{text}#*C
-\foreigntextcquote{language}*[prenote]{bibid}[punct]{text}#*C
-\foreigntextcquote{language}*[][postnote]{bibid}[punct]{text}#*C
-\foreigntextcquote{language}*[prenote][postnote]{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}*[][postnote]{bibid}{text}#*C
+#\foreigntextcquote{language}*[prenote][postnote]{bibid}{text}#*C
+#\foreigntextcquote{language}*{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}*[prenote]{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}*[][postnote]{bibid}[punct]{text}#*C
+#\foreigntextcquote{language}*[prenote][postnote]{bibid}[punct]{text}#*C
 
 \hyphentextcquote{language}{bibid}{text}#C
 \hyphentextcquote{language}[prenote]{bibid}{text}#C
-\hyphentextcquote{language}[][postnote]{bibid}{text}#C
-\hyphentextcquote{language}[prenote][postnote]{bibid}{text}#C
-\hyphentextcquote{language}{bibid}[punct]{text}#*C
-\hyphentextcquote{language}[prenote]{bibid}[punct]{text}#*C
-\hyphentextcquote{language}[][postnote]{bibid}[punct]{text}#*C
-\hyphentextcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}[][postnote]{bibid}{text}#*C
+#\hyphentextcquote{language}[prenote][postnote]{bibid}{text}#*C
+#\hyphentextcquote{language}{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}[prenote]{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}[][postnote]{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 \hyphentextcquote{language}*{bibid}{text}#C
 \hyphentextcquote{language}*[prenote]{bibid}{text}#C
-\hyphentextcquote{language}*[][postnote]{bibid}{text}#C
-\hyphentextcquote{language}*[prenote][postnote]{bibid}{text}#C
-\hyphentextcquote{language}*{bibid}[punct]{text}#*C
-\hyphentextcquote{language}*[prenote]{bibid}[punct]{text}#*C
-\hyphentextcquote{language}*[][postnote]{bibid}[punct]{text}#*C
-\hyphentextcquote{language}*[prenote][postnote]{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}*[][postnote]{bibid}{text}#*C
+#\hyphentextcquote{language}*[prenote][postnote]{bibid}{text}#*C
+#\hyphentextcquote{language}*{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}*[prenote]{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}*[][postnote]{bibid}[punct]{text}#*C
+#\hyphentextcquote{language}*[prenote][postnote]{bibid}[punct]{text}#*C
 
 
 \blockcquote{bibid}{text}#C
 \blockcquote[prenote]{bibid}{text}#C
-\blockcquote[][postnote]{bibid}{text}#C
-\blockcquote[prenote][postnote]{bibid}{text}#C
-\blockcquote{bibid}[punct]{text}#*C
-\blockcquote[prenote]{bibid}[punct]{text}#*C
-\blockcquote[][postnote]{bibid}[punct]{text}#*C
-\blockcquote[prenote][postnote]{bibid}[punct]{text}#*C
+#\blockcquote[][postnote]{bibid}{text}#*C
+#\blockcquote[prenote][postnote]{bibid}{text}#*C
+#\blockcquote{bibid}[punct]{text}#*C
+#\blockcquote[prenote]{bibid}[punct]{text}#*C
+#\blockcquote[][postnote]{bibid}[punct]{text}#*C
+#\blockcquote[prenote][postnote]{bibid}[punct]{text}#*C
 
 \foreignblockcquote{language}{bibid}{text}#C
 \foreignblockcquote{language}[prenote]{bibid}{text}#C
-\foreignblockcquote{language}[][postnote]{bibid}{text}#C
-\foreignblockcquote{language}[prenote][postnote]{bibid}{text}#C
-\foreignblockcquote{language}{bibid}[punct]{text}#*C
-\foreignblockcquote{language}[prenote]{bibid}[punct]{text}#*C
-\foreignblockcquote{language}[][postnote]{bibid}[punct]{text}#*C
-\foreignblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
+#\foreignblockcquote{language}[][postnote]{bibid}{text}#*C
+#\foreignblockcquote{language}[prenote][postnote]{bibid}{text}#*C
+#\foreignblockcquote{language}{bibid}[punct]{text}#*C
+#\foreignblockcquote{language}[prenote]{bibid}[punct]{text}#*C
+#\foreignblockcquote{language}[][postnote]{bibid}[punct]{text}#*C
+#\foreignblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 
-\hyphenblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#C
+#\hyphenblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 
 \hyphenblockcquote{language}{bibid}{text}#C
 \hyphenblockcquote{language}[prenote]{bibid}{text}#C
-\hyphenblockcquote{language}[][postnote]{bibid}{text}#C
-\hyphenblockcquote{language}[prenote][postnote]{bibid}{text}#C
-\hyphenblockcquote{language}{bibid}[punct]{text}#*C
-\hyphenblockcquote{language}[prenote]{bibid}[punct]{text}#*C
-\hyphenblockcquote{language}[][postnote]{bibid}[punct]{text}#*C
-\hyphenblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
+#\hyphenblockcquote{language}[][postnote]{bibid}{text}#*C
+#\hyphenblockcquote{language}[prenote][postnote]{bibid}{text}#*C
+#\hyphenblockcquote{language}{bibid}[punct]{text}#*C
+#\hyphenblockcquote{language}[prenote]{bibid}[punct]{text}#*C
+#\hyphenblockcquote{language}[][postnote]{bibid}[punct]{text}#*C
+#\hyphenblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 
-\hybridblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#C
+#\hybridblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 
 \hybridblockcquote{language}{bibid}{text}#C
 \hybridblockcquote{language}[prenote]{bibid}{text}#C
-\hybridblockcquote{language}[][postnote]{bibid}{text}#C
-\hybridblockcquote{language}[prenote][postnote]{bibid}{text}#C
-\hybridblockcquote{language}{bibid}[punct]{text}#*C
-\hybridblockcquote{language}[prenote]{bibid}[punct]{text}#*C
-\hybridblockcquote{language}[][postnote]{bibid}[punct]{text}#*C
-\hybridblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
+#\hybridblockcquote{language}[][postnote]{bibid}{text}#*C
+#\hybridblockcquote{language}[prenote][postnote]{bibid}{text}#*C
+#\hybridblockcquote{language}{bibid}[punct]{text}#*C
+#\hybridblockcquote{language}[prenote]{bibid}[punct]{text}#*C
+#\hybridblockcquote{language}[][postnote]{bibid}[punct]{text}#*C
+#\hybridblockcquote{language}[prenote][postnote]{bibid}[punct]{text}#*C
 
 \begin{displayquote}
 \begin{displayquote}[manual citation]
@@ -206,32 +206,32 @@
 
 \begin{displaycquote}{bibid}#C
 \begin{displaycquote}[prenote]{bibid}#C
-\begin{displaycquote}[][postnote]{bibid}#C
-\begin{displaycquote}[prenote][postnote]{bibid}#C
-\begin{displaycquote}{bibid}[punct]#*C
-\begin{displaycquote}[prenote]{bibid}[punct]#*C
-\begin{displaycquote}[][postnote]{bibid}[punct]#*C
-\begin{displaycquote}[prenote][postnote]{bibid}[punct]#*C
+#\begin{displaycquote}[][postnote]{bibid}#*C
+#\begin{displaycquote}[prenote][postnote]{bibid}#*C
+#\begin{displaycquote}{bibid}[punct]#*C
+#\begin{displaycquote}[prenote]{bibid}[punct]#*C
+#\begin{displaycquote}[][postnote]{bibid}[punct]#*C
+#\begin{displaycquote}[prenote][postnote]{bibid}[punct]#*C
 \end{displaycquote}
 
 \begin{foreigndisplaycquote}{bibid}#C
 \begin{foreigndisplaycquote}[prenote]{bibid}#C
-\begin{foreigndisplaycquote}[][postnote]{bibid}#C
-\begin{foreigndisplaycquote}[prenote][postnote]{bibid}#C
-\begin{foreigndisplaycquote}{bibid}[punct]#*C
-\begin{foreigndisplaycquote}[prenote]{bibid}[punct]#*C
-\begin{foreigndisplaycquote}[][postnote]{bibid}[punct]#*C
-\begin{foreigndisplaycquote}[prenote][postnote]{bibid}[punct]#*C
+#\begin{foreigndisplaycquote}[][postnote]{bibid}#*C
+#\begin{foreigndisplaycquote}[prenote][postnote]{bibid}#*C
+#\begin{foreigndisplaycquote}{bibid}[punct]#*C
+#\begin{foreigndisplaycquote}[prenote]{bibid}[punct]#*C
+#\begin{foreigndisplaycquote}[][postnote]{bibid}[punct]#*C
+#\begin{foreigndisplaycquote}[prenote][postnote]{bibid}[punct]#*C
 \end{foreigndisplaycquote}
 
 \begin{hyphendisplaycquote}{bibid}#C
 \begin{hyphendisplaycquote}[prenote]{bibid}#C
-\begin{hyphendisplaycquote}[][postnote]{bibid}#C
-\begin{hyphendisplaycquote}[prenote][postnote]{bibid}#C
-\begin{hyphendisplaycquote}{bibid}[punct]#*C
-\begin{hyphendisplaycquote}[prenote]{bibid}[punct]#*C
-\begin{hyphendisplaycquote}[][postnote]{bibid}[punct]#*C
-\begin{hyphendisplaycquote}[prenote][postnote]{bibid}[punct]#*C
+#\begin{hyphendisplaycquote}[][postnote]{bibid}#*C
+#\begin{hyphendisplaycquote}[prenote][postnote]{bibid}#*C
+#\begin{hyphendisplaycquote}{bibid}[punct]#*C
+#\begin{hyphendisplaycquote}[prenote]{bibid}[punct]#*C
+#\begin{hyphendisplaycquote}[][postnote]{bibid}[punct]#*C
+#\begin{hyphendisplaycquote}[prenote][postnote]{bibid}[punct]#*C
 \end{hyphendisplaycquote}
 
 \textelp{}
