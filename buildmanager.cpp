@@ -809,7 +809,7 @@ QString getCommandLineGhostscript(){
 	return "";
 }
 
-#elif defined(Q_WS_X11)
+#elif defined(Q_WS_X11) || defined(Q_OS_LINUX)
 
 // xdvi %.dvi  -sourceposition @:%.tex
 // kdvi "file:%.dvi#src:@ %.tex"
