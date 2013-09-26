@@ -2379,7 +2379,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 	//patch lines for new commands (ref,def, etc)
 	LatexParser& latexParser = LatexParser::getInstance();
 	QStringList categories;
-    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include";
+    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include";
 	QStringList newCmds;
 	foreach(const QString elem,categories){
 		QStringList cmds=ltxCommands.possibleCommands[elem].values();

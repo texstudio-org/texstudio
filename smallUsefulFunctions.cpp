@@ -874,6 +874,8 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			return Reference;
         else if (possibleCommands["%cite"].contains(command))
 			return Citation;
+        else if (possibleCommands["%citeExtendedCommand"].contains(command))
+            return Citation_Ext;
         else if (possibleCommands["%graphics"].contains(command))
             return Graphics;
 		else return Option;
@@ -1328,6 +1330,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 	bool inOption=false;
 	bool inEnv=false;
 	bool inReferenz=false;
+    int inReferenzExt=0;
 	while ((wordStartIndex = nextToken(line, index,inEnv,!inReferenz))!=-1) {
 		word=line.mid(wordStartIndex,index-wordStartIndex);
 		if (word.length()==0) return NW_NOTHING; //should never happen
@@ -1347,22 +1350,26 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 			if(lp->environmentCommands.contains(lastCommand)) inEnv=true;
 			break; //ignore
 		case '}':
-			if (reference!=-1) {
-				NextWordFlag result = NW_NOTHING;
-                if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
-                else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
-                else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
-                else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION_EXT;
-				if (result != NW_NOTHING) {
-					wordStartIndex=reference;
-					--index;
-					word=line.mid(reference,index-reference);
-					return result;
-				}
-			}
-			lastCommand="";
-			inOption=false;
-			inEnv=false;
+            if(inReferenzExt>1){
+                inReferenzExt--;
+            }else{
+                if (reference!=-1) {
+                    NextWordFlag result = NW_NOTHING;
+                    if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
+                    else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
+                    else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
+                    else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION;
+                    if (result != NW_NOTHING) {
+                        wordStartIndex=reference;
+                        --index;
+                        word=line.mid(reference,index-reference);
+                        return result;
+                    }
+                }
+                lastCommand="";
+                inOption=false;
+                inEnv=false;
+            }
 			break;//command doesn't matter anymore
 		case '$': case '^': case '&':
 			return NW_COMMAND;
@@ -1379,6 +1386,22 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 					lastCommand=word;
 					inReferenz=true;
 				}
+                if (lp->possibleCommands["%citeExtendedCommand"].contains(word)){
+                    QString line;
+                    foreach(line,lp->possibleCommands["%citeExtended"]){
+                        if(line.startsWith(word))
+                            break;
+                        line.clear();
+                    }
+                    if(!line.isEmpty()){
+                        reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+                        lastCommand=word;
+                        line=line.remove(QRegExp("[.*]"));
+                        int pos=line.indexOf("%<bibid%>");
+                        line=line.left(pos);
+                        inReferenzExt=line.count("{");
+                    }
+                }
 				if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty()||word=="\\begin"||word=="\\end") {
 					lastCommand=word;
 				}
@@ -1557,7 +1580,8 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                         }
                     }
                     package.possibleCommands["%citeExtended"] << line.simplified();
-                    package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
+                    if(!line.startsWith("\\begin")) // HANDLE begin extra
+                        package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
                     hideFromCompletion=true;
                 }
                 valid.remove('C');
