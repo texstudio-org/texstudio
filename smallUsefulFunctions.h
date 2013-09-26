@@ -112,7 +112,7 @@ public:
 	LatexParser();
 	void init();
 
-    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option, Graphics};
+    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics};
 	// realizes whether col is in a \command or in a parameter {}
 	int findContext(QString &line, int &column) const;
 	
@@ -182,8 +182,7 @@ struct LatexReader{
 		NW_REFERENCE=5,
 		NW_LABEL=6,
 		NW_CITATION=7,
-        NW_PUNCTATION=8,
-        NW_CITATION_EXT=9  // citation with bibid in arbitrary command option
+        NW_PUNCTATION=8
 	};
 	
 	//Returns the next word (giving meaning to the nextToken tokens)

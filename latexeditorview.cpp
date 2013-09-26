@@ -1971,7 +1971,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
 		}
 		break;
-	case LatexParser::Citation:
+    case LatexParser::Citation:;
+    case LatexParser::Citation_Ext:
     {
         QString tooltip(tr("Citation correct (reading ...)"));
         QString bibID;
