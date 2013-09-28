@@ -3243,15 +3243,6 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 
 		const QPoint mousePos = mapToContents(e->pos());
 
-		if ( m_scroll.isActive() )
-		{
-			if ( viewport()->rect().contains(e->pos()) )
-				m_scroll.stop();
-		} else {
-			if ( !viewport()->rect().contains(e->pos()) )
-				m_scroll.start(100, this);
-		}
-
 		QDocumentCursor newCursor = cursorForPosition(mousePos);
 
 		if ( newCursor.isNull() )
@@ -3445,8 +3436,6 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		if ( b->mouseReleaseEvent(e, this) )
 			return;
 
-	m_scroll.stop();
-
 	repaintCursor();
 
 	if ( flag(MaybeDrag) )
@@ -3604,6 +3593,8 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 
 		m_dragAndDrop = c;
 
+		ensureCursorVisible(m_dragAndDrop, KeepSurrounding);
+
 		crect = cursorRect(m_dragAndDrop);
 		viewport()->update(crect);
 	}
@@ -3707,9 +3698,6 @@ void QEditor::changeEvent(QEvent *e)
 		m_doc->setFont(font());
 		//setTabStop(iTab);
 
-	}  else if ( e->type() == QEvent::ActivationChange ) {
-		if ( !isActiveWindow() )
-			m_scroll.stop();
 	}
 }
 
@@ -4880,36 +4868,29 @@ bool QEditor::isCursorVisible() const
 /*!
 	\brief Ensure that the current cursor is visible
 */
-void QEditor::ensureCursorVisible(MoveFlags mflags)
-{
-	if ( !isVisible() )
-	{
-		setFlag(EnsureVisible, true);
-		return;
-	}	
-	
-	QPoint pos = m_cursor.documentPosition();
+void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflags){
+	QPoint pos = cursor.documentPosition();
 	int surrounding = (mflags&KeepSurrounding) ? m_cursorSurroundingLines : 0;
 
 	const int ls = document()->getLineSpacing();
 
 	int surroundingHeight = ls * surrounding;
-	
+
 	int ypos = pos.y(),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
 	int ytarget = -1;
 
-	if ( ypos - surroundingHeight < yval ) {// cursor above
+     if ( ypos - surroundingHeight < yval ) {// cursor above
         ytarget = ypos / ls;
-	} else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
-		if (ypos > (yval + ylen) && (mflags & AllowScrollToTop)) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
+     } else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
+          if (ypos > (yval + ylen) && (mflags & AllowScrollToTop)) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
             ytarget = ypos / ls;
-		} else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
+          } else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
             ytarget = 1 + (yend - ylen) / ls + surrounding + surrounding;
-		}
-	}
+          }
+     }
 
     if(ytarget>=0){
         ytarget-=surrounding;
@@ -4957,11 +4938,25 @@ void QEditor::ensureCursorVisible(MoveFlags mflags)
 		horizontalScrollBar()
 			->setValue(qMax(horizontalScrollBar()->value(), xpos - xlen + 4));
 	}
-	
-	setFlag(EnsureVisible, false);
 
 	if ((mflags&ExpandFold) && m_cursor.line().isHidden())
 		document()->expandParents(m_cursor.lineNumber());
+}
+
+/*!
+	\brief Ensure that the current cursor is visible
+*/
+void QEditor::ensureCursorVisible(MoveFlags mflags)
+{
+	if ( !isVisible() )
+	{
+		setFlag(EnsureVisible, true);
+		return;
+	}	
+	
+	ensureCursorVisible(m_cursor, mflags);
+	
+	setFlag(EnsureVisible, false);
 }
 
 
