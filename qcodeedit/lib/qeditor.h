@@ -473,6 +473,7 @@ public slots:
 		void setContentClean(bool y);
 		
 		void emitCursorPositionChanged();
+		void ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflags = NoFlags);
 		void ensureCursorVisible(MoveFlags mflags = NoFlags);
 		
 		virtual void setContentModified(bool y);
@@ -621,7 +622,7 @@ public slots:
 		bool m_selection;
 		QRect m_crect, m_margins;
 		QPoint m_clickPoint, m_dragPoint;
-		QBasicTimer m_blink, m_scroll, m_click, m_drag;
+		QBasicTimer m_blink, m_click, m_drag;
 
 		bool mDisplayModifyTime;
 		
