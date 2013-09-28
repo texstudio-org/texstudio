@@ -450,7 +450,8 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 	QProcess *p = new QProcess();
 	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
 	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
-	p->start(javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer");
+
+	p->start(javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
 	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
 	p->waitForStarted();
 	
