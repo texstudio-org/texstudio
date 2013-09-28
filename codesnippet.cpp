@@ -273,7 +273,9 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 		sfDlg.setDir(directory);
 		if (sfDlg.exec()) {
 			QString fn=sfDlg.fileName();
-			line.replace(rx,getRelativeBaseNameToPath(fn,path));
+            if(!path.isEmpty())
+                fn=getRelativeBaseNameToPath(fn,path);
+            line.replace(rx,fn);
 		} else return;
 	}
 
