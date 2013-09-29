@@ -10,10 +10,17 @@
  ***************************************************************************/
 
 #include "logeditor.h"
+#include "configmanager.h"
 
 LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent) {
 //setToolTip(tr("Click to jump to the line"));
 	highlighter = new LogHighlighter(document());
+	ConfigManagerInterface *config = ConfigManager::getInstance();
+	QVariant fontFamily = config->getOption("LogView/FontFamily");
+	if (fontFamily.isValid()) setFontFamily(fontFamily.toString());
+	bool ok;
+	int fontSize = config->getOption("LogView/FontSize").toInt(&ok);
+	if (ok && fontSize > 0) setFontPointSize(fontSize);
 }
 LogEditor::~LogEditor() {
 }
