@@ -378,7 +378,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 
 	fmConfig=new QFormatConfig(ui.formatConfigBox);
 	fmConfig->addCategory(tr("Basic highlighting")) << "normal" <<"background" <<"comment" <<"commentTodo" <<"keyword" <<"extra-keyword" <<"math-delimiter" <<"math-keyword" <<"numbers" <<"text" <<"align-ampersand" <<"environment" <<"structure" <<"link" <<"escapeseq" << "verbatim" << "picture" << "preedit";
-	fmConfig->addCategory(tr("LaTeX checking")) <<"braceMatch" <<"braceMismatch" <<"latexSyntaxMistake" <<"referencePresent" <<"referenceMissing" <<"referenceMultiple" <<"citationPresent" <<"citationMissing"  <<"temporaryCodeCompletion";
+    fmConfig->addCategory(tr("LaTeX checking")) <<"braceMatch" <<"braceMismatch" <<"latexSyntaxMistake" <<"referencePresent" <<"referenceMissing" <<"referenceMultiple" <<"citationPresent" <<"citationMissing" <<"packagePresent" <<"packageMissing" <<"temporaryCodeCompletion";
 	fmConfig->addCategory(tr("Language checking")) <<"spellingMistake" << "wordRepetition" << "wordRepetitionLongRange"<< "badWord" << "grammarMistake" << "grammarMistakeSpecial1" << "grammarMistakeSpecial2" << "grammarMistakeSpecial3" << "grammarMistakeSpecial4";
 	fmConfig->addCategory(tr("Line highlighting"))     <<"line:error" <<"line:warning" <<"line:badbox" <<"line:bookmark" <<"line:bookmark0" <<"line:bookmark1" <<"line:bookmark2" <<"line:bookmark3" <<"line:bookmark4" <<"line:bookmark5" <<"line:bookmark6"  <<"line:bookmark7" <<"line:bookmark8"<<"line:bookmark9"<<"current";
 	fmConfig->addCategory(tr("Search")) <<"search"<<"replacement"<<"selection";
