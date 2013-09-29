@@ -416,7 +416,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		//package help
-		if( (context==LatexParser::Command || context==LatexParser::Option) && ctxCommand=="\\usepackage"){
+		if( (context==LatexParser::Command && ctxCommand=="\\usepackage") || context==LatexParser::Package){
 			QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
 			QString packageName;
 			if (ctxValue.contains(',')) {
@@ -724,7 +724,7 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::RefOverlay));
 		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%include"].contains(ctxCommand)) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::FileOverlay));
-		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%usepackage"].contains(ctxCommand)) {
+		} else if (context==LatexParser::Package) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UsepackageOverlay));
 		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%bibliography"].contains(ctxCommand)) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::BibFileOverlay));
