@@ -96,6 +96,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	ReadSettings();
 
+    qRegisterMetaType<QSet<QString> >();
     readinAllPackageNames(); // asynchrnous read in of all available sty/cls
 	
 	txsInstance = this;
@@ -131,6 +132,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	qRegisterMetaType<QList<GrammarError> >();
 	qRegisterMetaType<LatexParser>();
 	qRegisterMetaType<GrammarCheckerConfig>();
+
 	grammarCheck = new GrammarCheck();
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
@@ -7701,21 +7703,17 @@ void Texmaker::packageParserFinished(){
 
 void Texmaker::readinAllPackageNames(){
 	if (!packageListReader) {
-#ifdef Q_OS_WIN
-		packageListReader = new MiktexPackageListReader(this);
-#else
 		QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
 		QString baseDir;
 		if (!QFileInfo(cmd_latex).isRelative())
 			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
 		packageListReader = new KpathSeaParser(this,baseDir+"kpsewhich");
-#endif
-		connect(packageListReader, SIGNAL(scanCompleted(QStringList)), this, SLOT(packageListReadCompleted(QStringList)));
+        connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 		packageListReader->start();
 	}
 }
 
-void Texmaker::packageListReadCompleted(QStringList packages){
+void Texmaker::packageListReadCompleted(QSet<QString> packages){
 	latexPackageList = packages;
 	packageListReader->wait();
 	packageListReader=0;

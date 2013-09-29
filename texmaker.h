@@ -49,6 +49,8 @@
 
 typedef QHash<QString,int> SymbolList;
 
+typedef QSet<QString> StringSet;
+
 enum SVNSTATUS {
 	Unknown=0,
 	Unmanaged,
@@ -61,6 +63,8 @@ enum SVNSTATUS {
 class UserMenuDialog;
 class GrammarCheck;
 class FileSelector;
+
+Q_DECLARE_METATYPE(QSet<QString>)
 
 class Texmaker : public QMainWindow {
 	Q_OBJECT
@@ -538,7 +542,7 @@ private slots:
 	void stopPackageParser();
 	void packageParserFinished();
     void readinAllPackageNames();
-	void packageListReadCompleted(QStringList packages);
+    void packageListReadCompleted(QSet<QString> packages);
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -576,7 +580,7 @@ protected:
 	bool runBibliographyIfNecessaryEntered;
 	
 	LatexStyleParser *latexStyleParser;
-	PackageListReader *packageListReader;
+    KpathSeaParser *packageListReader;
 		
 	QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	
@@ -591,7 +595,7 @@ protected:
 	
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
-    QStringList latexPackageList;
+    QSet<QString> latexPackageList;
 
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
