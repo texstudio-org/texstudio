@@ -85,7 +85,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
 	latexStyleParser=0;
-    kpathSeaParser=0;
+	packageListReader=0;
 	bibtexEntryActions = 0;
 	biblatexEntryActions = 0;
 	bibTypeActions = 0;
@@ -357,9 +357,9 @@ Texmaker::~Texmaker(){
 		latexStyleParser->stop();
 		latexStyleParser->wait();
 	}
-    if(kpathSeaParser){
-        kpathSeaParser->quit();
-        kpathSeaParser->wait();
+	if(packageListReader){
+		packageListReader->quit();
+		packageListReader->wait();
     }
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
@@ -1534,7 +1534,6 @@ bool Texmaker::ActivateEditorForFile(QString f, bool checkTemporaryNames, bool s
 	EditorTabs->setCurrentEditor(edView);
 	if (setFocus) {
 		edView->editor->setFocus();
-		qDebug() << "activate focus";
 	}
 	return true;
 }
@@ -6025,7 +6024,6 @@ void Texmaker::gotoLine(int line, int col, LatexEditorView *edView, QEditor::Mov
 	edView->editor->ensureCursorVisible(mflags);
 	if (setFocus) {
 		edView->editor->setFocus();
-		qDebug() << "goto focus";
 	}
 }
 
@@ -7702,21 +7700,25 @@ void Texmaker::packageParserFinished(){
 }
 
 void Texmaker::readinAllPackageNames(){
-    if(!kpathSeaParser){
-        QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
-        QString baseDir;
-        if(!QFileInfo(cmd_latex).isRelative())
-            baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
-        kpathSeaParser=new KpathSeaParser(this,baseDir+"kpsewhich");
-        connect(kpathSeaParser,SIGNAL(scanCompleted(QStringList)),this,SLOT(kpathScanCompleted(QStringList)));
-        kpathSeaParser->start();
-    }
+	if (!packageListReader) {
+#ifdef Q_OS_WIN
+		packageListReader = new MiktexPackageListReader(this);
+#else
+		QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
+		QString baseDir;
+		if (!QFileInfo(cmd_latex).isRelative())
+			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
+		packageListReader = new KpathSeaParser(this,baseDir+"kpsewhich");
+#endif
+		connect(packageListReader, SIGNAL(scanCompleted(QStringList)), this, SLOT(packageListReadCompleted(QStringList)));
+		packageListReader->start();
+	}
 }
 
-void Texmaker::kpathScanCompleted(QStringList packages){
-    latexPackageList=packages;
-    kpathSeaParser->wait();
-    kpathSeaParser=0;
+void Texmaker::packageListReadCompleted(QStringList packages){
+	latexPackageList = packages;
+	packageListReader->wait();
+	packageListReader=0;
 }
 
 QString Texmaker::clipboardText(const QClipboard::Mode& mode) const{

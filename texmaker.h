@@ -538,7 +538,7 @@ private slots:
 	void stopPackageParser();
 	void packageParserFinished();
     void readinAllPackageNames();
-    void kpathScanCompleted(QStringList packages);
+	void packageListReadCompleted(QStringList packages);
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -576,7 +576,7 @@ protected:
 	bool runBibliographyIfNecessaryEntered;
 	
 	LatexStyleParser *latexStyleParser;
-    KpathSeaParser *kpathSeaParser;
+	PackageListReader *packageListReader;
 		
 	QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	
