@@ -2,44 +2,34 @@
 #define KPATHSEAPARSER_H
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
+#include <QThread>
+#include <QSemaphore>
+#include <QMutex>
+#include <QQueue>
 
-class PackageListReader : public SafeThread
+class KpathSeaParser : public SafeThread
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit PackageListReader(QObject *parent=0) : SafeThread(parent) {}
+    explicit KpathSeaParser(QObject *parent = 0,QString kpsecmd="");
+    void stop();
 
 protected:
-	void run();
-	virtual QStringList parseOutput(const QString &output);
-	QString cmd;
-	QStringList arguments;
+    void run();
+
+    QString kpsewhich();
+    QString mpm(QString arg);
 
 signals:
-	void scanCompleted(QStringList packages);
+    void scanCompleted(QStringList packages);
+
+public slots:
+
+private:
+
+    QString kpseWhichCmd;
+
+
 };
-
-
-class KpathSeaParser : public PackageListReader
-{
-	Q_OBJECT
-public:
-	explicit KpathSeaParser(QObject *parent = 0,QString kpsecmd="");
-protected:
-	QStringList parseOutput(const QString &output);
-};
-
-
-class MiktexPackageListReader : public PackageListReader
-{
-	Q_OBJECT
-public:
-	explicit MiktexPackageListReader(QObject *parent = 0);
-protected:
-	QStringList parseOutput(const QString &output);
-};
-
-
-
 
 #endif // LATEXSTYLEPARSER_H
