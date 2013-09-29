@@ -967,6 +967,7 @@ LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObj
 	workingDir="/";
 	dirReader=0;
     bibReader=0;
+    packageList=0;
 	widget=new QWidget(qobject_cast<QWidget*>(parent()));
 	//widget->setAutoFillBackground(true);
 	QVBoxLayout *layout = new QVBoxLayout;
@@ -1085,6 +1086,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	forcedRef=flags & CF_FORCE_REF;
 	forcedGraphic=flags & CF_FORCE_GRAPHIC;
 	forcedCite=flags & CF_FORCE_CITE;
+    forcedPackage= flags & CF_FORCE_PACKAGE;
 	startedFromTriggerKey= !(flags &CF_FORCE_VISIBLE_LIST);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -1129,6 +1131,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	completerInputBinding->setMostUsed(config->preferedCompletionTab,true);
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
+    bool handled=true;
 	if(forcedGraphic){
 		if(!dirReader){
 			dirReader=new directoryReader(this);
@@ -1139,17 +1142,24 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		QSet<QString> files;
 		listModel->setBaseWords(files,CT_NORMALTEXT);
 		listModel->baselist=listModel->wordsText;
-	}else{
-		if(forcedCite){
-			listModel->baselist=listModel->wordsCitations;
-		}else{
-			if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
-			else listModel->baselist=listModel->wordsCommands;
-			listModel->baselist << listModel->wordsAbbrev;
-			QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
-			std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
-		}
-	}
+        handled=true;
+    }
+    if(forcedCite){
+        listModel->baselist=listModel->wordsCitations;
+        handled=true;
+    }
+    if(forcedPackage){
+        listModel->setBaseWords(packageList->toSet(),CT_NORMALTEXT);
+        listModel->baselist=listModel->wordsText;
+        handled=true;
+    }
+    if(!handled){
+        if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
+        else listModel->baselist=listModel->wordsCommands;
+        listModel->baselist << listModel->wordsAbbrev;
+        QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->wordsAbbrev.length();
+        std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
+    }
 	if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder()<editor->placeHolderCount() )
 	{
 		PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
@@ -1163,7 +1173,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		if (flags & CF_FORCE_GRAPHIC) start=0;
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
 		if (flags & CF_NORMAL_TEXT) eow+="{";
-		if (flags & CF_FORCE_CITE){
+        if (flags & CF_FORCE_CITE){
 			eow+="{";
 			eow.remove(".");
 			eow.remove(":");
@@ -1177,6 +1187,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 			eow.remove(":");
 			eow.remove("_");
 		}
+        if (flags & CF_FORCE_PACKAGE) {
+            eow+="{";
+            eow.remove("_");
+        }
 		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
@@ -1187,6 +1201,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				if (flags & CF_NORMAL_TEXT) start=i+1;
 				if (flags & CF_FORCE_GRAPHIC) start=i+1;
 				if (flags & CF_FORCE_CITE) start=i+1;
+                if (flags & CF_FORCE_PACKAGE) start=i+1;
 				break;
 			}
 		}
@@ -1283,6 +1298,10 @@ void LatexCompleter::setConfig(LatexCompleterConfig* config){
 }
 LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;
+}
+
+void LatexCompleter::setPackageList(QStringList *lst){
+    packageList=lst;
 }
 
 int LatexCompleter::countWords() {

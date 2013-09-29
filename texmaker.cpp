@@ -85,6 +85,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	userMacroDialog = 0;
 	mCompleterNeedsUpdate=false;
 	latexStyleParser=0;
+    kpathSeaParser=0;
 	bibtexEntryActions = 0;
 	biblatexEntryActions = 0;
 	bibTypeActions = 0;
@@ -94,6 +95,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     recheckLabels=true;
 	
 	ReadSettings();
+
+    readinAllPackageNames(); // asynchrnous read in of all available sty/cls
 	
 	txsInstance = this;
 	static int crashHandlerType = 1;
@@ -268,6 +271,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	completer=new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
+    completer->setPackageList(&latexPackageList);
     connect(completer,SIGNAL(showImagePreview(QString)),this,SLOT(showImgPreview(QString)));
     connect(this,SIGNAL(ImgPreview(QString)),completer,SLOT(bibtexSectionFound(QString)));
     //updateCompleter();
@@ -353,6 +357,10 @@ Texmaker::~Texmaker(){
 		latexStyleParser->stop();
 		latexStyleParser->wait();
 	}
+    if(kpathSeaParser){
+        kpathSeaParser->quit();
+        kpathSeaParser->wait();
+    }
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
@@ -3643,6 +3651,11 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
+    case LatexParser::Option:
+        if(latexParser.possibleCommands["%usepackage"].contains(command)){
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
+            break;
+        }
 	default:
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
@@ -5897,27 +5910,6 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		}
 	}
 	
-	//add cite/ref commands from the cwls to latexParser.citeCommands
-    /* disable old mechanism, now markers are placed in cwl
-	static QRegExp citeCommandCheck(QRegExp("^\\\\([Cc]ite.*|.*\\{(%<)?(keylist|bibid)(%>)?\\}.*)"));
-	static QRegExp refCommandCheck(QRegExp("^\\\\.*\\{(%<)?labelid(%>)?\\}.*"));
-	foreach (const QString& cmd, words)
-		if (citeCommandCheck.exactMatch(cmd)) { //todo: get rid of duplication
-			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.possibleCommands["%cite"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
-		} else if (refCommandCheck.exactMatch(cmd)){
-			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.possibleCommands["%ref"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
-        }
-	foreach (const QString& cmd, configManager.completerConfig->words)
-		if (citeCommandCheck.exactMatch(cmd)) {
-			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.possibleCommands["%cite"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
-		} else if (refCommandCheck.exactMatch(cmd)){
-			int lastBracket = cmd.lastIndexOf('{');
-			latexParser.possibleCommands["%ref"].insert(lastBracket > 0 ? cmd.left(lastBracket) : cmd);
-        }*/
-
 	// collect user commands and references
 	foreach(const LatexDocument* doc,docs){
 		foreach(const QString& refCommand, latexParser.possibleCommands["%ref"]){
@@ -5941,13 +5933,6 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 			}
             BibTeXFileInfo& bibTex=documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
-			//automatic use of cite commands
-            /* is done later, don't do twice
-			foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
-                QString temp='@'+citeCommand+"{%1}";
-				for (int i=0; i<bibTex.ids.count();i++)
-					words.insert(temp.arg(bibTex.ids[i]));
-            }*/
 			// add citation to completer for direct citation completion
 			bibIds<<bibTex.ids;
 		}
@@ -5968,8 +5953,6 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             QString temp='@'+citeCommand.replace("%<bibid%>","@");
             citationCommands.append(temp);
             words.insert(temp);
-            /*foreach (const QString &value, bibIds)
-                words.insert(temp.arg(value));*/
         }
         completer->setAdditionalWords(citationCommands.toSet(),CT_CITATIONCOMMANDS);
 		completer->setAdditionalWords(bibIds.toSet(),CT_CITATIONS);
@@ -7716,6 +7699,24 @@ void Texmaker::stopPackageParser(){
 void Texmaker::packageParserFinished(){
 	delete latexStyleParser;
 	latexStyleParser=0;
+}
+
+void Texmaker::readinAllPackageNames(){
+    if(!kpathSeaParser){
+        QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
+        QString baseDir;
+        if(!QFileInfo(cmd_latex).isRelative())
+            baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
+        kpathSeaParser=new KpathSeaParser(this,baseDir+"kpsewhich");
+        connect(kpathSeaParser,SIGNAL(scanCompleted(QStringList)),this,SLOT(kpathScanCompleted(QStringList)));
+        kpathSeaParser->start();
+    }
+}
+
+void Texmaker::kpathScanCompleted(QStringList packages){
+    latexPackageList=packages;
+    kpathSeaParser->wait();
+    kpathSeaParser=0;
 }
 
 QString Texmaker::clipboardText(const QClipboard::Mode& mode) const{
