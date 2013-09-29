@@ -14,14 +14,23 @@
    <string>Configure TeXstudio</string>
   </property>
   <layout class="QGridLayout">
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="rightMargin">
+    <number>9</number>
+   </property>
+   <property name="bottomMargin">
+    <number>9</number>
+   </property>
    <property name="horizontalSpacing">
     <number>18</number>
    </property>
    <property name="verticalSpacing">
     <number>6</number>
-   </property>
-   <property name="margin">
-    <number>9</number>
    </property>
    <item row="0" column="0" rowspan="2">
     <widget class="QListWidget" name="contentsWidget">
@@ -66,14 +75,23 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -89,8 +107,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>576</width>
+            <height>622</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -554,7 +572,16 @@
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -630,7 +657,16 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -782,8 +818,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>217</width>
-               <height>107</height>
+               <width>200</width>
+               <height>130</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -879,7 +915,16 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageShortcuts">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -940,7 +985,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageLatexMenus">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -989,7 +1043,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageToolbars">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1090,7 +1153,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageEditor">
       <layout class="QGridLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <property name="spacing">
@@ -1227,6 +1299,13 @@ Then you can select a new shortcut by one of the following ways:
               <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
                <property name="text">
                 <string>Syntax</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlinePackageCheck">
+               <property name="text">
+                <string>Package</string>
                </property>
               </widget>
              </item>
@@ -1408,7 +1487,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageAdvEditor">
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1424,8 +1512,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
-            <height>899</height>
+            <width>866</width>
+            <height>978</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1976,7 +2064,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageSyntaxHighlighting">
       <layout class="QVBoxLayout" name="verticalLayout_7">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2008,7 +2105,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageCustomHighlighting">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2117,7 +2223,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageCompletion">
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2382,7 +2497,16 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageGrammar">
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2398,8 +2522,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>341</width>
+            <height>528</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2739,7 +2863,16 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pagePreview">
       <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -3108,7 +3241,16 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageSVN">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -3191,7 +3333,16 @@ them here.</string>
      <property name="sizeConstraint">
       <enum>QLayout::SetMinimumSize</enum>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>

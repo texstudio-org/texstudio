@@ -1617,6 +1617,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	// find closed master doc
 	if(doc){
 		LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+        edit->setLatexPackageList(&latexPackageList);
 		edit->document=doc;
 		edit->editor->setFileName(doc->getFileName());
 		disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit->document,SLOT(patchStructure(int,int)));
@@ -1653,6 +1654,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	
 	doc=new LatexDocument(this);
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
+    edit->setLatexPackageList(&latexPackageList);
     if(hidden)
         edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
 	configureNewEditorView(edit);
@@ -1854,6 +1856,7 @@ void Texmaker::runScriptsInList(int trigger, const QList<Macro> &scripts) {
 void Texmaker::fileNewInternal(QString fileName) {
 	LatexDocument *doc = new LatexDocument(this);
 	LatexEditorView *edit = new LatexEditorView (0, configManager.editorConfig, doc);
+    edit->setLatexPackageList(&latexPackageList);
 	if (configManager.newFileEncoding)
 		edit->editor->setFileCodec(configManager.newFileEncoding);
 	else
@@ -7715,6 +7718,11 @@ void Texmaker::readinAllPackageNames(){
 
 void Texmaker::packageListReadCompleted(QSet<QString> packages){
 	latexPackageList = packages;
+    foreach(LatexDocument *doc,documents.getDocuments()){
+        LatexEditorView *edView=doc->getEditorView();
+        if(edView)
+            edView->updatePackageFormats();
+    }
 	packageListReader->wait();
 	packageListReader=0;
 }

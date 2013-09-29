@@ -91,6 +91,7 @@ public:
     bool containsBibTeXId(QString id);
 
     void updateCitationFormats();
+    void updatePackageFormats();
 	
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;
@@ -125,6 +126,10 @@ public:
 	static void selectOptionInLatexArg(QDocumentCursor &cur);
     void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 	QDocumentCursor parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses=true);
+    void setLatexPackageList(QSet<QString> *lst){
+        latexPackageList=lst;
+    }
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -137,11 +142,14 @@ private:
 	QPoint m_point;
 	
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
+    packagePresentFormat,packageMissingFormat,
 	wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
 	numbersFormat, verbatimFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
 	static QList<int> formatsList;
+
+    QSet<QString> *latexPackageList;
 	
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;
