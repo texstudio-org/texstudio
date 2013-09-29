@@ -42,6 +42,7 @@
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
 #include "latexstyleparser.h"
+#include "kpathseaParser.h"
 #include "diffoperations.h"
 
 #include <QProgressDialog>
@@ -536,6 +537,8 @@ private slots:
 	void packageScanCompleted(QString name);
 	void stopPackageParser();
 	void packageParserFinished();
+    void readinAllPackageNames();
+    void kpathScanCompleted(QStringList packages);
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -573,6 +576,7 @@ protected:
 	bool runBibliographyIfNecessaryEntered;
 	
 	LatexStyleParser *latexStyleParser;
+    KpathSeaParser *kpathSeaParser;
 		
 	QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	
@@ -586,6 +590,8 @@ protected:
     bool recheckLabels;
 	
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
+
+    QStringList latexPackageList;
 
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
