@@ -872,6 +872,8 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			return Label;
         else if (possibleCommands["%ref"].contains(command))
 			return Reference;
+        else if (possibleCommands["%usepackage"].contains(command))
+            return Package;
         else if (possibleCommands["%cite"].contains(command))
 			return Citation;
         else if (possibleCommands["%citeExtendedCommand"].contains(command))

@@ -1984,6 +1984,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
 		}
 		break;
+    case LatexParser::Package:
+        if(latexPackageList->contains(value)){
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package is present!"));
+        } else {
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not recognized!"));
+        }
+        break;
     case LatexParser::Citation:;
     case LatexParser::Citation_Ext:
     {
