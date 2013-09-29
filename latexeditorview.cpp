@@ -1137,6 +1137,22 @@ LatexCompleter* LatexEditorView::getCompleter(){
 	return LatexEditorView::completer;
 }
 
+void LatexEditorView::updatePackageFormats(){
+    for (int i=0; i<editor->document()->lines(); i++) {
+        QList<QFormatRange> li=editor->document()->line(i).getOverlays();
+        QString curLineText=editor->document()->line(i).text();
+        for (int j=0; j<li.size(); j++)
+            if (li[j].format == packagePresentFormat || li[j].format == packageMissingFormat){
+                int newFormat=latexPackageList->contains(curLineText.mid(li[j].offset,li[j].length))?packagePresentFormat:packageMissingFormat;
+                if (newFormat!=li[j].format) {
+                    editor->document()->line(i).removeOverlay(li[j]);
+                    li[j].format=newFormat;
+                    editor->document()->line(i).addOverlay(li[j]);
+                }
+            }
+    }
+}
+
 void LatexEditorView::updateCitationFormats(){
     for (int i=0; i<editor->document()->lines(); i++) {
         QList<QFormatRange> li=editor->document()->line(i).getOverlays();
@@ -1167,7 +1183,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 	lineMarkPanel->setToolTipForTouchedMark(tooltip);
 }
 
-int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,
+int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,LatexEditorView::packageMissingFormat,LatexEditorView::packagePresentFormat,
     LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
 	LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
 	LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat;
@@ -1233,7 +1249,8 @@ void LatexEditorView::updateFormatSettings(){
 #define F(n) &n##Format, #n, 
 		const void * formats[] = {F(environment)
 															F(referenceMultiple) F(referencePresent) F(referenceMissing)
-															F(citationPresent) F(citationMissing)
+                                                            F(citationPresent) F(citationMissing)
+                                                            F(packageMissing) F(packagePresent)
 															&syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
 															F(structure)
 															&deleteFormat, "diffDelete",
@@ -1265,7 +1282,7 @@ void LatexEditorView::updateFormatSettings(){
 		grammarFormatsDisabled.resize(9);
 		grammarFormatsDisabled.fill(false);
 		formatsList<<SpellerUtility::spellcheckErrorFormat<<referencePresentFormat<<citationPresentFormat<<referenceMissingFormat;
-		formatsList<<referenceMultipleFormat<<citationMissingFormat<<environmentFormat<<syntaxErrorFormat;
+        formatsList<<referenceMultipleFormat<<citationMissingFormat<<packageMissingFormat<<packagePresentFormat<<environmentFormat<<syntaxErrorFormat;
 		formatsList<<wordRepetitionFormat<<structureFormat<<insertFormat<<deleteFormat<<replaceFormat;
 	}	
 }
@@ -1523,19 +1540,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		
 		//remove all overlays used for latex things, in descending frequency
         line.clearOverlays(formatsList); //faster as it avoids multiple lock/unlock operations
-        /*line.clearOverlays(SpellerUtility::spellcheckErrorFormat);
-		line.clearOverlays(referencePresentFormat);
-		line.clearOverlays(citationPresentFormat);
-		line.clearOverlays(referenceMissingFormat);
-		line.clearOverlays(referenceMultipleFormat);
-		line.clearOverlays(citationMissingFormat);
-		line.clearOverlays(environmentFormat);
-		line.clearOverlays(syntaxErrorFormat);
-		line.clearOverlays(wordRepetitionFormat);
-		line.clearOverlays(structureFormat);
-		line.clearOverlays(insertFormat);
-		line.clearOverlays(deleteFormat);
-        line.clearOverlays(replaceFormat);*/
 		
 		bool addedOverlaySpellCheckError = false;
 		bool addedOverlayReference = false;
@@ -1543,6 +1547,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		bool addedOverlayEnvironment = false;
 		bool addedOverlayStyleHint = false;
 		bool addedOverlayStructure = false;
+        bool addedOverlayPackage = false;
 		
 		// diff presentation
 		QVariant cookie=line.getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
@@ -1619,10 +1624,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
 				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 				QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
-				/*
-    containedReferences->insert(ref,dlh);
-    int cnt=containedLabels->count(ref);
-    */
 				int cnt=document->countLabels(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
@@ -1633,10 +1634,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==LatexReader::NW_LABEL && config->inlineReferenceChecking) {
 				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 				QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
-				/*
-    containedLabels->insert(ref,dlh);
-    int cnt=containedLabels->count(ref);
-    */
+
 				int cnt=document->countLabels(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
@@ -1660,6 +1658,20 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					}
 				addedOverlayCitation = true;
 			}
+            if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
+                QStringList packages=lr.word.split(",");
+                int pos=lr.wordStartIndex;
+                foreach ( const QString &pck, packages) {
+                    QString rpck =  trimLeft(pck); // left spaces are ignored by \cite, right space not
+                    //check and highlight
+                    if(latexPackageList->contains(rpck))
+                        line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packagePresentFormat));
+                    else
+                        line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packageMissingFormat));
+                    pos+=pck.length()+1;
+                }
+                addedOverlayPackage = true;
+            }
 			if (status==LatexReader::NW_COMMENT) break;
 			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller
 					&& (!config->hideNonTextSpellingErrors || (!isNonTextFormat(line.getFormatAt(lr.wordStartIndex)) && !isNonTextFormat(line.getFormatAt(lr.index-1)) ))
@@ -1679,6 +1691,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			updateWrapping |= addedOverlaySpellCheckError && ff->format(SpellerUtility::spellcheckErrorFormat).widthChanging();
 			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
 			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
+            updateWrapping |= addedOverlayPackage && (ff->format(packagePresentFormat).widthChanging() || ff->format(packageMissingFormat).widthChanging());
 			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();
 			updateWrapping |= addedOverlayStyleHint && ff->format(wordRepetitionFormat).widthChanging();
 			updateWrapping |= addedOverlayStructure && ff->format(structureFormat).widthChanging();

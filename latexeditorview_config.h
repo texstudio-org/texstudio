@@ -17,7 +17,7 @@ public:
 	int cursorSurroundLines;
 	bool boldCursor;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
-	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking;
+    bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking, inlinePackageChecking;
 	bool hideNonTextSpellingErrors, hideNonTextGrammarErrors;
 	QString fontFamily;
 	int fontSize;

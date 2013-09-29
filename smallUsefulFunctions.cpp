@@ -1358,6 +1358,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
                     if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
                     else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
                     else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
+                    else if (lp->possibleCommands["%usepackage"].contains(lastCommand)) result = NW_PACKAGE;
                     else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION;
                     if (result != NW_NOTHING) {
                         wordStartIndex=reference;
@@ -1381,7 +1382,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 		case '\\':
 			if (word.length()==1 || !(EscapedChars.contains(word.at(1)) || CharacterAlteringChars.contains(word.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
-                if (lp->possibleCommands["%ref"].contains(word)||lp->possibleCommands["%label"].contains(word)||lp->possibleCommands["%cite"].contains(word)){
+                if (lp->possibleCommands["%ref"].contains(word)||lp->possibleCommands["%label"].contains(word)||lp->possibleCommands["%cite"].contains(word)||lp->possibleCommands["%usepackage"].contains(word)){
 					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 					lastCommand=word;
 					inReferenz=true;

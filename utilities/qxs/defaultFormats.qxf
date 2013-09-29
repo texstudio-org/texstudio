@@ -269,6 +269,24 @@
 		<waveUnderline>true</waveUnderline>
 		<foreground>#008000</foreground>
 	</format>
+	<format id="packagePresent" >
+		<bold>false</bold>
+		<italic>false</italic>
+		<overline>false</overline>
+		<underline>false</underline>
+		<strikeout>false</strikeout>
+		<waveUnderline>false</waveUnderline>
+		<foreground>#008000</foreground>
+	</format>
+	<format id="packageMissing" >
+		<bold>false</bold>
+		<italic>false</italic>
+		<overline>false</overline>
+		<underline>false</underline>
+		<strikeout>false</strikeout>
+		<waveUnderline>true</waveUnderline>
+		<foreground>#008000</foreground>
+	</format>
 	<format id="structure" >
 		<bold>true</bold>
 		<italic>false</italic>
