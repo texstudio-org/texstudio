@@ -1,67 +1,109 @@
 #include "kpathseaParser.h"
 
-void PackageListReader::run() {
-	if(cmd.isEmpty()) return;
-
-	QProcess proc(0);
-	proc.start(cmd, arguments);
-	proc.waitForFinished();
-	QString output;
-	if (proc.exitCode() == 0) {
-		output = proc.readAllStandardOutput();
-	}
-	QStringList packages = parseOutput(output);
-	emit scanCompleted(packages);
-}
-
-QStringList PackageListReader::parseOutput(const QString &output) {
-	Q_UNUSED(output);
-	return QStringList();
-}
-
-
-KpathSeaParser::KpathSeaParser(QObject *parent, QString kpsecmd) :
-	PackageListReader(parent)
+KpathSeaParser::KpathSeaParser(QObject *parent,QString kpsecmd) :
+    SafeThread(parent)
 {
-	cmd = kpsecmd;
-	arguments = QStringList() << "-show-path" << "ls-R";;
+    kpseWhichCmd=kpsecmd;
 }
 
-QStringList KpathSeaParser::parseOutput(const QString &output) {
-	if (output.isEmpty()) return QStringList();
-	QStringList lstOfFiles = output.split(":");
-	QStringList results;
+
+
+void KpathSeaParser::run(){
+    QString fullName=kpsewhich(); // find lcoations of ls-R (file database of tex)
+    QStringList results;
+    if(fullName.isEmpty()){
+	// try specical treatment for miktex as it does not use ls-R
+	QString result=mpm("--version");
+	if(result.isEmpty())
+	    return;
+	result=mpm("--list");
+	QStringList lstOfPackages=result.split("\n");
 	QStringList::iterator it;
-	foreach (QString fn, lstOfFiles) {
-		fn=fn.trimmed()+"/ls-R";
-		QFile data(fn);
-		QString line;
-		if (data.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QTextStream stream(&data);
-			while (!stream.atEnd()) {
-				line = stream.readLine();
-				if (line.endsWith(".sty") || line.endsWith(".cls")) {
-					line.chop(4);
-					it=qLowerBound(results.begin(),results.end(),line);
-					if(it==results.end() || *it!=line)
-						results.insert(it,line);
-				}
+	foreach(QString pck,lstOfPackages){
+	    if(pck.startsWith("i")){
+		pck=pck.simplified();
+		QStringList zw=pck.split(" ");
+		if(zw.count()==4){
+		    pck=zw.at(3);
+		    result=mpm("--print-package-info "+pck);
+		    qDebug()<<pck;
+		    QStringList lines=result.split("\n");
+		    bool pckFound=false;
+		    for(int i=0;i<lines.count();i++){
+			if(lines.at(i).startsWith("run-time files:")){
+			    pckFound=true;
+			    continue;
 			}
+			if(pckFound){
+			    QString fn=lines.at(i).simplified();
+			    fn=QFileInfo(fn).fileName();
+			    if(fn.endsWith(".sty")||fn.endsWith(".sty")){
+				fn.chop(4);
+				it=qLowerBound(results.begin(),results.end(),fn);
+				if(it==results.end() || *it!=fn)
+				    results.insert(it,fn);
+			    }
+			    if(fn.endsWith(":"))
+				break;
+			}
+		    }
 		}
+	    }
 	}
-	return results;
+    }else{
+	QStringList lstOfFiles=fullName.split(":");
+	QStringList::iterator it;
+	foreach(QString fn,lstOfFiles){
+	    fn=fn.trimmed()+"/ls-R";
+	    QFile data(fn);
+	    QString line;
+	    if(data.open(QIODevice::ReadOnly | QIODevice::Text)){
+		QTextStream stream(&data);
+		while(!stream.atEnd()) {
+		    line = stream.readLine();
+		    if(line.endsWith(".sty")||line.endsWith(".cls")){
+			line.chop(4);
+			it=qLowerBound(results.begin(),results.end(),line);
+			if(it==results.end() || *it!=line)
+			    results.insert(it,line);
+		    }
+		}
+	    }
+	}
+    }
+    emit scanCompleted(results);
 }
 
 
-MiktexPackageListReader::MiktexPackageListReader(QObject *parent) :
-	PackageListReader(parent)
-{
-	cmd = "mpm.exe";
-	arguments = QStringList() << "--list-package-names";
+
+QString KpathSeaParser::kpsewhich(){
+    if(!kpseWhichCmd.isEmpty()){
+        QProcess myProc(0);
+        QStringList arguments;
+        arguments << "-show-path" << "ls-R";
+        myProc.start(kpseWhichCmd,arguments);
+        myProc.waitForFinished();
+        QString result;
+        if(myProc.exitCode()==0){
+            result=myProc.readAllStandardOutput();
+        }
+	return result.trimmed();
+    }
+    return "";
 }
 
-QStringList MiktexPackageListReader::parseOutput(const QString &output) {
-	QStringList packages = output.split("\r\n");
-	packages.removeAll("");
-	return packages;
+QString KpathSeaParser::mpm(QString arg){
+    if(!kpseWhichCmd.isEmpty()){
+	QString mpmCmd=kpseWhichCmd.replace("kpsewhich","mpm");
+	QProcess myProc(0);
+	QStringList arguments=arg.split(" ");
+	myProc.start(mpmCmd,arguments);
+	myProc.waitForFinished();
+	QString result;
+	if(myProc.exitCode()==0){
+	    result=myProc.readAllStandardOutput();
+	}
+	return result.trimmed();
+    }
+    return "";
 }
