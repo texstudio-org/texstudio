@@ -17,8 +17,8 @@ public:
 protected:
     void run();
 
-    QStringList readPackage(QString fn,QStringList& parsedPackages);
     QString kpsewhich();
+    QString mpm(QString arg);
 
 signals:
     void scanCompleted(QStringList packages);
