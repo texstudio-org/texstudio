@@ -108,7 +108,7 @@
     <insert id="10" text="\H{}" insert="\H{}" icon="accent10"/>
   </menu>
 
-  <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.png);;All files (*.*)%)}"/>
+  <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.jpg *.png);;All files (*.*)%)}"/>
   <insert id="include" text="\include{file}" insert="%SCRIPT&#10;
   fnOld=editor.fileName();
   fnMaster=documentManager.getTemporaryCompileFileName();
