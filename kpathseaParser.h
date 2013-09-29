@@ -21,7 +21,7 @@ protected:
     QString mpm(QString arg);
 
 signals:
-    void scanCompleted(QStringList packages);
+    void scanCompleted(QSet<QString> packages);
 
 public slots:
 

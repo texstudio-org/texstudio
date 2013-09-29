@@ -1149,7 +1149,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         handled=true;
     }
     if(forcedPackage){
-        listModel->setBaseWords(packageList->toSet(),CT_NORMALTEXT);
+        listModel->setBaseWords(*packageList,CT_NORMALTEXT);
         listModel->baselist=listModel->wordsText;
         handled=true;
     }
@@ -1300,7 +1300,7 @@ LatexCompleterConfig* LatexCompleter::getConfig() const{
 	return config;
 }
 
-void LatexCompleter::setPackageList(QStringList *lst){
+void LatexCompleter::setPackageList(QSet<QString> *lst){
     packageList=lst;
 }
 

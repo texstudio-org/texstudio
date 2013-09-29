@@ -50,7 +50,7 @@ public:
 	void setConfig(LatexCompleterConfig* config);
 	LatexCompleterConfig* getConfig() const;
 
-    void setPackageList(QStringList *lst);
+    void setPackageList(QSet<QString> *lst);
 	
 	QString lookupWord(QString id);
 	
@@ -85,7 +85,7 @@ private:
 	directoryReader *dirReader;
 	QEditor *editor;
 
-    QStringList *packageList;
+    QSet<QString> *packageList;
 	
 	QWidget *widget;
 	QTabBar *tbBelow,*tbAbove;
