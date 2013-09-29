@@ -112,7 +112,7 @@ public:
 	LatexParser();
 	void init();
 
-    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics};
+    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package};
 	// realizes whether col is in a \command or in a parameter {}
 	int findContext(QString &line, int &column) const;
 	
