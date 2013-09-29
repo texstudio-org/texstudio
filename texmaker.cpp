@@ -6048,6 +6048,7 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	QString fileName = outputView->getLogWidget()->getLogModel()->at(logEntryNumber).file;
 	if (!ActivateEditorForFile(fileName, true))
 		if (!load(fileName)) return;
+	if (currentEditorView()->logEntryToLine.isEmpty()) DisplayLatexError(); // workaround: make sure logEntryToLine is populated (not sure if we also always want to display the markers)
 	//get line
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
 	if (!lh) return;
