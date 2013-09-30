@@ -1986,7 +1986,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		break;
     case LatexParser::Package:
         if(latexPackageList->contains(value)){
-            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package is present!"));
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package present"));
         } else {
             QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not recognized!"));
         }
