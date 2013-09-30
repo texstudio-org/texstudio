@@ -595,7 +595,7 @@ protected:
 	
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
-    QSet<QString> latexPackageList;
+    QSet<QString> latexPackageList,currentPackageList;
 
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);

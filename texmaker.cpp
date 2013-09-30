@@ -3655,8 +3655,22 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
-    case LatexParser::Option:
+    case LatexParser::Package:
         if(latexParser.possibleCommands["%usepackage"].contains(command)){
+            QString preambel;
+            if(command.endsWith("theme")){ // special treatment for  \usetheme
+                preambel=command;
+                preambel.remove(0,4);
+                preambel.prepend("beamer");
+                currentPackageList.clear();
+                foreach(QString elem,latexPackageList){
+                    if(elem.startsWith(preambel))
+                        currentPackageList<<elem.mid(preambel.length());
+                }
+                completer->setPackageList(&currentPackageList);
+            }else{
+                completer->setPackageList(&latexPackageList);
+            }
             currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
             break;
         }
