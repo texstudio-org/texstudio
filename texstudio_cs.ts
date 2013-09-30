@@ -2431,6 +2431,10 @@ vidět jen nejběžnější nastavení.</translation>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Package</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -3793,6 +3797,14 @@ Neplatný příkaz \caption.</translation>
         <source>untitled</source>
         <translation>Bez názvu</translation>
     </message>
+    <message>
+        <source>Package present</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package not recognized!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -4097,15 +4109,7 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished">Uživatel</translation>
-    </message>
-    <message>
-        <source>mod Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Uživatel</translation>
     </message>
 </context>
 <context>
@@ -6159,10 +6163,17 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
 </context>
 <context>
+    <name>QuaZipFile</name>
+    <message>
+        <source>ZIP/UNZIP API error %1</source>
+        <translation type="unfinished">Chyba API ZIP/UNZIP %1</translation>
+    </message>
+</context>
+<context>
     <name>QuaZipFilePrivate</name>
     <message>
         <source>ZIP/UNZIP API error %1</source>
-        <translation>Chyba API ZIP/UNZIP %1</translation>
+        <translation type="obsolete">Chyba API ZIP/UNZIP %1</translation>
     </message>
 </context>
 <context>
