@@ -1661,10 +1661,16 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
             if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
                 QStringList packages=lr.word.split(",");
                 int pos=lr.wordStartIndex;
+                QString preambel;
+                if(lr.lastCommand.endsWith("theme")){ // special treatment for  \usetheme
+                    preambel=lr.lastCommand;
+                    preambel.remove(0,4);
+                    preambel.prepend("beamer");
+                }
                 foreach ( const QString &pck, packages) {
                     QString rpck =  trimLeft(pck); // left spaces are ignored by \cite, right space not
                     //check and highlight
-                    if(latexPackageList->contains(rpck))
+                    if(latexPackageList->contains(preambel+rpck))
                         line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packagePresentFormat));
                     else
                         line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packageMissingFormat));
@@ -1985,10 +1991,18 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
     case LatexParser::Package:
-        if(latexPackageList->contains(value)){
-            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package present"));
-        } else {
-            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not recognized!"));
+        {
+            QString preambel;
+            if(command.endsWith("theme")){ // special treatment for  \usetheme
+                preambel=command;
+                preambel.remove(0,4);
+                preambel.prepend("beamer");
+            }
+            if(latexPackageList->contains(preambel+value)){
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package present"));
+            } else {
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not recognized!"));
+            }
         }
         break;
     case LatexParser::Citation:;
