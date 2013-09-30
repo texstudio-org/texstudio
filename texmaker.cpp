@@ -7721,25 +7721,32 @@ void Texmaker::packageParserFinished(){
 
 void Texmaker::readinAllPackageNames(){
 	if (!packageListReader) {
+		// preliminarily use cached packages
+		QSet<QString> cachedPackages = KpathSeaParser::readPackageList(QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
+		packageListReadCompleted(cachedPackages);
+		// start reading actually installed packages
 		QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
 		QString baseDir;
 		if (!QFileInfo(cmd_latex).isRelative())
 			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
 		packageListReader = new KpathSeaParser(this,baseDir+"kpsewhich");
-        connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
+		connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 		packageListReader->start();
 	}
 }
 
 void Texmaker::packageListReadCompleted(QSet<QString> packages){
 	latexPackageList = packages;
-    foreach(LatexDocument *doc,documents.getDocuments()){
-        LatexEditorView *edView=doc->getEditorView();
-        if(edView)
-            edView->updatePackageFormats();
-    }
-	packageListReader->wait();
-	packageListReader=0;
+	if (qobject_cast<KpathSeaParser*>(sender())) {
+		KpathSeaParser::savePackageList(packages, QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
+		packageListReader->wait();
+		packageListReader=0;
+	}
+	foreach(LatexDocument *doc,documents.getDocuments()){
+		LatexEditorView *edView=doc->getEditorView();
+		if(edView)
+		edView->updatePackageFormats();
+	}
 }
 
 QString Texmaker::clipboardText(const QClipboard::Mode& mode) const{

@@ -101,3 +101,30 @@ QString KpathSeaParser::mpm(QString arg){
     }
     return "";
 }
+
+
+void KpathSeaParser::savePackageList(QSet<QString> packages, const QString &filename) {
+	QFile f(filename);
+	if (f.open(QFile::WriteOnly | QFile::Text)) {
+		QTextStream out(&f);
+		out << "% detected packages\n";
+		foreach(const QString &str, packages) {
+			out << str << "\n";
+		}
+	}
+}
+
+QSet<QString> KpathSeaParser::readPackageList(const QString &filename) {
+	QFile f(filename);
+	QSet<QString> result;
+	if (f.open(QFile::ReadOnly | QFile::Text)) {
+		QTextStream in(&f);
+		QString line;
+		while (!in.atEnd()) {
+			line = in.readLine();
+			if (line.isEmpty() || line.startsWith('%')) continue;
+			result.insert(line);
+		}
+	}
+	return result;
+}

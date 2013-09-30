@@ -14,6 +14,9 @@ public:
     explicit KpathSeaParser(QObject *parent = 0,QString kpsecmd="");
     void stop();
 
+	static void savePackageList(QSet<QString> packages, const QString &filename);
+	static QSet<QString> readPackageList(const QString &filename);
+
 protected:
     void run();
 
