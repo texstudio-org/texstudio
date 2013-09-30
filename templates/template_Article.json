@@ -1,0 +1,8 @@
+{
+"Name"        : "Article",
+"Description" : "Default LaTeX class for articles.", 
+"Author"      : "TXS built-in",
+"Date"        : "17.8.2009",
+"Version"     : "1.0",
+"License"     : "Public Domain"
+}
