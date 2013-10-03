@@ -31,7 +31,7 @@ public slots:
 private:
 
     QString kpseWhichCmd;
-
+    bool stopped;
 
 };
 

@@ -360,7 +360,7 @@ Texmaker::~Texmaker(){
 		latexStyleParser->wait();
 	}
 	if(packageListReader){
-		packageListReader->quit();
+        packageListReader->stop();
 		packageListReader->wait();
     }
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
