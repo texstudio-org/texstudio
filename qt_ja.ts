@@ -5578,19 +5578,19 @@ Please choose a different file name.</source>
     </message>
     <message>
         <source>Left</source>
-        <translation>→</translation>
+        <translation>Left</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation>↑</translation>
+        <translation>Up</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>←</translation>
+        <translation>Right</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation>↓</translation>
+        <translation>Down</translation>
     </message>
     <message>
         <source>PgUp</source>
