@@ -10,6 +10,7 @@ TeXstudio 2.6.2 -> TeXstudio 2.7.0
 - speed-up command completion window, especially citations
 - improved log panel
 - improved dtx highlighting
+- added support for LilyPond book (.lytex)
 - fix: input method bug
 - fix: shortcuts containing arrow keys did not work in japanese
 - bug fixes, e.g. tooltip does not disappear instantly anymore
