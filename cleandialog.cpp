@@ -87,9 +87,16 @@ void CleanDialog::onReject() {
 void CleanDialog::updateFilesToRemove() {
 	Scope scope = (Scope) ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
 	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
-		if (extList.contains("tex")) {
-		txsWarning("For your own safety clean will not delete *.tex files.");
-		extList.removeAll("tex");
+	QStringList forbiddenExtensions = QStringList() << "tex" << "lytex";
+	QStringList found;
+	foreach (const QString &ext, forbiddenExtensions) {
+		if (extList.contains(ext))
+			found << ext;
+	}
+	if (!found.isEmpty()) {
+		txsWarning(tr("For your own safety clean will not delete the files with the following extensions:") + QString("\n") + extList.join(", "));
+		foreach (QString ext, found)
+			extList.removeAll(ext);
 	}
 	currentExtensions = extList.join(",");
 	ui->leExtensions->setText(currentExtensions);

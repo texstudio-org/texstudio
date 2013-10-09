@@ -112,7 +112,7 @@ class LocalLatexTemplateResource : public LocalFileTemplateResource {
 	Q_OBJECT
 public:
 	LocalLatexTemplateResource(QString path, QString name, QObject *parent, QIcon icon = QIcon())
-		: LocalFileTemplateResource(path, QStringList() << "*.tex" << "*.zip", name, parent, icon) { update(); }
+		: LocalFileTemplateResource(path, QStringList() << "*.tex" << "*.lytex" << "*.zip", name, parent, icon) { update(); }
 protected:
 	virtual LocalFileTemplate* createTemplate(QString file) { return new LocalLatexTemplate(file); }
 };

@@ -313,6 +313,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 
   QStringList filters;
   filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx)";
+  filters << tr("LilyPond files")+" (*.lytex)";
   filters << tr("Plaintext files")+" (*.txt)";
   filters << tr("Pweave files")+" (*.Pnw)";
   filters << tr("Sweave files")+" (*.Snw *.Rnw)";
@@ -1904,15 +1905,10 @@ void Texmaker::fileMakeTemplate() {
 	if (!currentEditorView())
 		return;
 	
-	MakeTemplateDialog templateDialog(TemplateManager::userTemplateDir());
+	MakeTemplateDialog templateDialog(TemplateManager::userTemplateDir(), currentEditor()->fileName());
 	if (templateDialog.exec()) {
 		// save file
 		QString fn = templateDialog.suggestedFile();
-		if (!fn.endsWith(".tex")) {
-			qDebug() << "unexpected template file ending, aborted writing of template";
-			return;
-		}
-
 		QString old_name=currentEditor()->fileName();
 		QTextCodec *mCodec=currentEditor()->getFileCodec();
 		currentEditor()->setFileCodec(QTextCodec::codecForName("utf-8"));
