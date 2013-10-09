@@ -383,7 +383,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	fmConfig->addCategory(tr("Line highlighting"))     <<"line:error" <<"line:warning" <<"line:badbox" <<"line:bookmark" <<"line:bookmark0" <<"line:bookmark1" <<"line:bookmark2" <<"line:bookmark3" <<"line:bookmark4" <<"line:bookmark5" <<"line:bookmark6"  <<"line:bookmark7" <<"line:bookmark8"<<"line:bookmark9"<<"current";
 	fmConfig->addCategory(tr("Search")) <<"search"<<"replacement"<<"selection";
 	fmConfig->addCategory(tr("Diff")) <<"diffDelete"<<"diffAdd"<<"diffReplace";
-	fmConfig->addCategory(tr("DTX files")) << "dtx:guard" << "dtx:macro" << "dtx:verbatim" << "dtx:specialchar";
+	fmConfig->addCategory(tr("DTX files")) << "dtx:guard" << "dtx:macro" << "dtx:verbatim" << "dtx:specialchar" << "dtx:environment";
 	fmConfig->addCategory(tr("Sweave / Pweave")) << "sweave-delimiter" << "sweave-block" << "pweave-delimiter" << "pweave-block";
 	fmConfig->addCategory(tr("Lua")) << "lua:keyword" << "lua:comment";
 

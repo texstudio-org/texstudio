@@ -92,6 +92,12 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 
 	<word id="dtxGuard" format="dtx:guard" ambiguous="true">%</word>
+	
+	<!-- special handling of macrocode environment: don't treat this as parenthesis, because it can be interweaved with tex bracketing
+	     which results in failure of parenthesis matching. See https://sourceforge.net/p/texstudio/bugs/818/ -->
+	<word format="dtx:environment">\\begin{macrocode}</word>
+	<word format="dtx:environment">\\end{macrocode}</word>
+
 
 	<!-- ========================= MATH MODE ====================== -->
 	

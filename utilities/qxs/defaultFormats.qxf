@@ -369,6 +369,15 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#CC8100</foreground>
     </format>	
+    <format id="dtx:environment" >
+        <bold>true</bold>
+        <italic>false</italic>
+        <overline>false</overline>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <waveUnderline>false</waveUnderline>
+        <foreground>#10C010</foreground>
+    </format>	
     <format id="lua:keyword" >
         <bold>false</bold>
         <italic>false</italic>
