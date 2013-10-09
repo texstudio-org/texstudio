@@ -2007,7 +2007,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
             if(latexPackageList->contains(preambel+value)){
                 QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package present"));
             } else {
-                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not recognized!"));
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not found"));
             }
         }
         break;

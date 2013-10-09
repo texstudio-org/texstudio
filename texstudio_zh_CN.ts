@@ -4015,20 +4015,20 @@ Invalid \caption command.</source>
         <translation type="obsolete">引用修订</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="+1973"/>
+        <location filename="latexeditorview.cpp" line="+1979"/>
         <location line="+75"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation></translation>
     </message>
     <message>
-        <location line="-1684"/>
-        <location line="+1405"/>
+        <location line="-1690"/>
+        <location line="+1411"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>按下 Shift 键 =&gt; 隐藏建议</translation>
     </message>
     <message>
-        <location line="-1372"/>
+        <location line="-1378"/>
         <source>Open %1</source>
         <translation>打开 %1</translation>
     </message>
@@ -4043,12 +4043,12 @@ Invalid \caption command.</source>
         <translation>新 BibTeX 栏目 %1</translation>
     </message>
     <message>
-        <location line="+1578"/>
+        <location line="+1584"/>
         <source>label missing!</source>
         <translation>标签丢失 !</translation>
     </message>
     <message>
-        <location line="-1483"/>
+        <location line="-1489"/>
         <source>use yours</source>
         <translation>使用用户的</translation>
     </message>
@@ -4058,7 +4058,7 @@ Invalid \caption command.</source>
         <translation>词典...</translation>
     </message>
     <message>
-        <location line="+1470"/>
+        <location line="+1476"/>
         <location line="+22"/>
         <source>label multiple times defined!</source>
         <translation>定义了多个标签 !</translation>
@@ -4075,7 +4075,7 @@ Invalid \caption command.</source>
         </translation>
     </message>
     <message>
-        <location line="-1570"/>
+        <location line="-1576"/>
         <location line="+31"/>
         <source>Open package documentation</source>
         <translation>打开宏包文件</translation>
@@ -4102,17 +4102,12 @@ Invalid \caption command.</source>
         <translation type="unfinished">未命名</translation>
     </message>
     <message>
-        <location line="+1139"/>
+        <location line="+1145"/>
         <source>Package present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Package not recognized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
+        <location line="+9"/>
         <source>Citation correct (reading ...)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4167,12 +4162,17 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2113"/>
+        <location line="-2119"/>
         <source>Open Bibliography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1953"/>
+        <location line="+1606"/>
+        <source>Package not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+353"/>
         <source>Save Preview Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6277,7 +6277,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>波浪线</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+55"/>
+        <location filename="additionaltranslations.cpp" line="+57"/>
         <source>selection</source>
         <translation>选择</translation>
     </message>
@@ -6287,7 +6287,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>文本颜色(前景色)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-5"/>
+        <location filename="additionaltranslations.cpp" line="-7"/>
         <source>referenceMultiple</source>
         <translation>多次引用</translation>
     </message>
@@ -6380,7 +6380,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>数学关键词</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+54"/>
         <source>preedit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6397,7 +6397,7 @@ Do you want them to be saved?</source>
         <translation>文档修改尚未保存, 是否保存 ?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-68"/>
+        <location filename="additionaltranslations.cpp" line="-71"/>
         <source>line:bookmark</source>
         <translation>行:书签</translation>
     </message>
@@ -6412,7 +6412,7 @@ Do you want them to be saved?</source>
         <translation>搜索</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+27"/>
         <source>replacement</source>
         <translation>替换</translation>
     </message>
@@ -6431,7 +6431,7 @@ Do you want them to be saved?</source>
         <translation type="obsolete">优先级</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-58"/>
+        <location filename="additionaltranslations.cpp" line="-60"/>
         <source>line:error</source>
         <translation>行:错误</translation>
     </message>
@@ -6456,12 +6456,12 @@ Do you want them to be saved?</source>
         <translation>括号匹配</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+26"/>
         <source>structure</source>
         <translation>结构</translation>
     </message>
     <message>
-        <location line="-36"/>
+        <location line="-38"/>
         <source>comment</source>
         <translation>注释</translation>
     </message>
@@ -6471,12 +6471,12 @@ Do you want them to be saved?</source>
         <translation>缺少引用</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+7"/>
         <source>diffDelete</source>
         <translation>删除不同</translation>
     </message>
     <message>
-        <location line="-55"/>
+        <location line="-57"/>
         <source>line:warning</source>
         <translation>行:警告</translation>
     </message>
@@ -6486,7 +6486,7 @@ Do you want them to be saved?</source>
         <translation>下划线</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+52"/>
+        <location filename="additionaltranslations.cpp" line="+54"/>
         <source>current</source>
         <translation>当前</translation>
     </message>
@@ -6496,7 +6496,7 @@ Do you want them to be saved?</source>
         <translation>添加不同</translation>
     </message>
     <message>
-        <location line="-10"/>
+        <location line="-12"/>
         <source>referencePresent</source>
         <translation>引用此处</translation>
     </message>
@@ -6623,7 +6623,17 @@ Do you want them to be saved?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+9"/>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
         <source>txs-test</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6665,6 +6675,11 @@ Do you want them to be saved?</source>
     <message>
         <location line="+1"/>
         <source>dtx:specialchar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>dtx:environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8189,7 +8204,7 @@ failed.</source>
     </message>
     <message>
         <location line="-4991"/>
-        <location line="+5728"/>
+        <location line="+5735"/>
         <source>Open Files</source>
         <translation>打开文件</translation>
     </message>
@@ -8198,7 +8213,7 @@ failed.</source>
         <translation type="obsolete">清除</translation>
     </message>
     <message>
-        <location line="-6204"/>
+        <location line="-6211"/>
         <location line="+1402"/>
         <location line="+1541"/>
         <location line="+387"/>
@@ -8207,12 +8222,12 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+403"/>
-        <location line="+2496"/>
+        <location line="+2503"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location line="-7360"/>
+        <location line="-7367"/>
         <source>Go to</source>
         <translation>跳转到</translation>
     </message>
@@ -8325,7 +8340,7 @@ failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3383"/>
+        <location line="+3390"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -8337,7 +8352,7 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location line="-6807"/>
+        <location line="-6814"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>当前文档设为&apos;主文档&apos;</translation>
     </message>
@@ -8625,7 +8640,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>展开</translation>
     </message>
     <message>
-        <location line="+7167"/>
+        <location line="+7174"/>
         <source>Conflict!</source>
         <translation>冲突 !</translation>
     </message>
@@ -8635,7 +8650,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7342"/>
+        <location filename="texmaker.cpp" line="-7349"/>
         <source>Remove Placeholders</source>
         <translation>删除占位符</translation>
     </message>
@@ -8941,12 +8956,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>显示文档的不同</translation>
     </message>
     <message>
-        <location line="+7416"/>
+        <location line="+7423"/>
         <source>You do not have read permission to this file.</source>
         <translation>没有权限读文档.</translation>
     </message>
     <message>
-        <location line="-6820"/>
+        <location line="-6827"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -9242,12 +9257,12 @@ TeXstudio 不能并行处理同一个文件.
         <translation>&amp;保存所有</translation>
     </message>
     <message>
-        <location line="+7555"/>
+        <location line="+7562"/>
         <source>SVN Conflict!</source>
         <translation>SVN 冲突 !</translation>
     </message>
     <message>
-        <location line="-7231"/>
+        <location line="-7238"/>
         <source>Open Documents</source>
         <translation>打开文档</translation>
     </message>
@@ -9268,7 +9283,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation>查看&amp;PDF</translation>
     </message>
     <message>
-        <location line="+7266"/>
+        <location line="+7273"/>
         <source>Open Compare File</source>
         <translation>打开比较文件</translation>
     </message>
@@ -9277,7 +9292,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation type="obsolete">&lt;当前 文档&gt;</translation>
     </message>
     <message>
-        <location line="-7261"/>
+        <location line="-7268"/>
         <source>&amp;MetaPost</source>
         <translation></translation>
     </message>
@@ -9327,7 +9342,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation>替换&amp;所有</translation>
     </message>
     <message>
-        <location line="+7494"/>
+        <location line="+7501"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -9338,7 +9353,7 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location line="-3840"/>
+        <location line="-3847"/>
         <source>Quick Start</source>
         <translation>快速开始</translation>
     </message>
@@ -9467,7 +9482,7 @@ You have to save a document before you can compile it.</source>
         <translation>文本分析</translation>
     </message>
     <message>
-        <location line="+2917"/>
+        <location line="+2924"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -9478,7 +9493,7 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">删除 \hline</translation>
     </message>
     <message>
-        <location line="-7476"/>
+        <location line="-7483"/>
         <source>Open &amp;Recent</source>
         <translation>&amp;打开最近的</translation>
     </message>
@@ -9545,12 +9560,12 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">对不起, 无法找到 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location line="+1778"/>
+        <location line="+1785"/>
         <source>Open Base File</source>
         <translation>打开基本文件</translation>
     </message>
     <message>
-        <location line="-1787"/>
+        <location line="-1794"/>
         <source>Set this document as master document</source>
         <translation>设置此文档为主文档</translation>
     </message>
@@ -10161,12 +10176,12 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+868"/>
+        <location line="+875"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3560"/>
+        <location line="-3567"/>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10244,7 +10259,7 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+585"/>
+        <location line="+592"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10303,7 +10318,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6392"/>
+        <location line="-6399"/>
         <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>

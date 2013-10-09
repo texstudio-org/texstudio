@@ -3649,27 +3649,27 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="+364"/>
-        <location line="+1405"/>
+        <location line="+1411"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift presionado =&gt; ocultar sugerencias</translation>
     </message>
     <message>
-        <location line="-1384"/>
+        <location line="-1390"/>
         <source>New BibTeX Entry %1</source>
         <translation>Nueva entrada de BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1578"/>
+        <location line="+1584"/>
         <source>label missing!</source>
         <translation>!etiqueta faltante!</translation>
     </message>
     <message>
-        <location line="-1468"/>
+        <location line="-1474"/>
         <source>Thesaurus...</source>
         <translation>Tesauro...</translation>
     </message>
     <message>
-        <location line="+1470"/>
+        <location line="+1476"/>
         <location line="+22"/>
         <source>label multiple times defined!</source>
         <translation>¡etiqueta definida varias veces!</translation>
@@ -3686,7 +3686,7 @@ The wizard does not support command </source>
         </translation>
     </message>
     <message>
-        <location line="-1620"/>
+        <location line="-1626"/>
         <source>always ignore</source>
         <translation>Ignorar siempre</translation>
     </message>
@@ -3728,7 +3728,7 @@ The wizard does not support command </source>
         <translation type="unfinished">sin título</translation>
     </message>
     <message>
-        <location line="+1110"/>
+        <location line="+1116"/>
         <location line="+75"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
@@ -3740,12 +3740,7 @@ The wizard does not support command </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Package not recognized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
+        <location line="+9"/>
         <source>Citation correct (reading ...)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3800,12 +3795,17 @@ The wizard does not support command </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2113"/>
+        <location line="-2119"/>
         <source>Open Bibliography</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1953"/>
+        <location line="+1606"/>
+        <source>Package not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+353"/>
         <source>Save Preview Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5825,7 +5825,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Subrayado de ola</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+56"/>
+        <location filename="additionaltranslations.cpp" line="+58"/>
         <source>selection</source>
         <translation>selección</translation>
     </message>
@@ -5845,7 +5845,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Identificador</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+17"/>
+        <location filename="additionaltranslations.cpp" line="+18"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
@@ -5890,7 +5890,7 @@ Do you want them to be saved?</source>
         <translation>Colores de línea (usados por todos los formatos de línea, subrayado, sobrerayado, ....)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-72"/>
+        <location filename="additionaltranslations.cpp" line="-75"/>
         <source>background</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6156,6 +6156,16 @@ Do you want them to be saved?</source>
     </message>
     <message>
         <location line="+1"/>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>structure</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6227,6 +6237,11 @@ Do you want them to be saved?</source>
     <message>
         <location line="+1"/>
         <source>dtx:specialchar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>dtx:environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7713,7 +7728,7 @@ failed.</source>
     </message>
     <message>
         <location line="+1642"/>
-        <location line="+5728"/>
+        <location line="+5735"/>
         <source>Open Files</source>
         <translation>Abrir Archivos</translation>
     </message>
@@ -7722,7 +7737,7 @@ failed.</source>
         <translation type="obsolete">Limpiar</translation>
     </message>
     <message>
-        <location line="-6204"/>
+        <location line="-6211"/>
         <location line="+1402"/>
         <location line="+1541"/>
         <location line="+387"/>
@@ -7731,12 +7746,12 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+403"/>
-        <location line="+2496"/>
+        <location line="+2503"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="-7360"/>
+        <location line="-7367"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
@@ -7975,12 +7990,12 @@ Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+696"/>
+        <location line="+703"/>
         <source>Conflict!</source>
         <translation>!Conflicto!</translation>
     </message>
     <message>
-        <location line="-7342"/>
+        <location line="-7349"/>
         <source>Remove Placeholders</source>
         <translation>Remover marcadores de posición</translation>
     </message>
@@ -8143,12 +8158,12 @@ Do you want to create it?</source>
         <translation>Modo Normal</translation>
     </message>
     <message>
-        <location line="+6719"/>
+        <location line="+6726"/>
         <source>You do not have read permission to this file.</source>
         <translation>Usted no tiene permiso para leer este archivo.</translation>
     </message>
     <message>
-        <location line="-6820"/>
+        <location line="-6827"/>
         <source>Language</source>
         <translation>Lenguaje</translation>
     </message>
@@ -9361,12 +9376,12 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+868"/>
+        <location line="+875"/>
         <source>System Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7506"/>
+        <location line="-7513"/>
         <location line="+312"/>
         <source>Insert language as TeX comment</source>
         <translation type="unfinished"></translation>
@@ -9634,7 +9649,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+200"/>
+        <location line="+207"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -9732,7 +9747,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6392"/>
+        <location line="-6399"/>
         <source>Could not write template meta data:</source>
         <translation type="unfinished"></translation>
     </message>

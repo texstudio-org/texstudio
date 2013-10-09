@@ -3802,7 +3802,7 @@ Neplatný příkaz \caption.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Package not recognized!</source>
+        <source>Package not found</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5915,6 +5915,18 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     </message>
     <message>
         <source>preedit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>packageMissing</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
