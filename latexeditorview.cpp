@@ -1142,8 +1142,11 @@ void LatexEditorView::updatePackageFormats(){
         QList<QFormatRange> li=editor->document()->line(i).getOverlays();
         QString curLineText=editor->document()->line(i).text();
         for (int j=0; j<li.size(); j++)
-            if (li[j].format == packagePresentFormat || li[j].format == packageMissingFormat){
-                int newFormat=latexPackageList->contains(curLineText.mid(li[j].offset,li[j].length))?packagePresentFormat:packageMissingFormat;
+			if (li[j].format == packagePresentFormat || li[j].format == packageMissingFormat || li[j].format == packageUndefinedFormat){
+				int newFormat = packageUndefinedFormat;
+				if (!latexPackageList->isEmpty()) {
+					newFormat = latexPackageList->contains(curLineText.mid(li[j].offset,li[j].length))?packagePresentFormat:packageMissingFormat;
+				}
                 if (newFormat!=li[j].format) {
                     editor->document()->line(i).removeOverlay(li[j]);
                     li[j].format=newFormat;
@@ -1183,7 +1186,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 	lineMarkPanel->setToolTipForTouchedMark(tooltip);
 }
 
-int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,LatexEditorView::packageMissingFormat,LatexEditorView::packagePresentFormat,
+int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,LatexEditorView::packageMissingFormat,LatexEditorView::packagePresentFormat,LatexEditorView::packageUndefinedFormat,
     LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
 	LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
 	LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat;
@@ -1249,8 +1252,9 @@ void LatexEditorView::updateFormatSettings(){
 #define F(n) &n##Format, #n, 
 		const void * formats[] = {F(environment)
 															F(referenceMultiple) F(referencePresent) F(referenceMissing)
-                                                            F(citationPresent) F(citationMissing)
-                                                            F(packageMissing) F(packagePresent)
+															F(citationPresent) F(citationMissing)
+															F(packageMissing) F(packagePresent)
+															&packageUndefinedFormat, "normal",
 															&syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
 															F(structure)
 															&deleteFormat, "diffDelete",
@@ -1282,7 +1286,7 @@ void LatexEditorView::updateFormatSettings(){
 		grammarFormatsDisabled.resize(9);
 		grammarFormatsDisabled.fill(false);
 		formatsList<<SpellerUtility::spellcheckErrorFormat<<referencePresentFormat<<citationPresentFormat<<referenceMissingFormat;
-        formatsList<<referenceMultipleFormat<<citationMissingFormat<<packageMissingFormat<<packagePresentFormat<<environmentFormat<<syntaxErrorFormat;
+		formatsList<<referenceMultipleFormat<<citationMissingFormat<<packageMissingFormat<<packagePresentFormat<<packageUndefinedFormat<<environmentFormat<<syntaxErrorFormat;
 		formatsList<<wordRepetitionFormat<<structureFormat<<insertFormat<<deleteFormat<<replaceFormat;
 	}	
 }
@@ -1658,7 +1662,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					}
 				addedOverlayCitation = true;
 			}
-            if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
+			if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
                 QStringList packages=lr.word.split(",");
                 int pos=lr.wordStartIndex;
                 QString preambel;
@@ -1670,7 +1674,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                 foreach ( const QString &pck, packages) {
                     QString rpck =  trimLeft(pck); // left spaces are ignored by \cite, right space not
                     //check and highlight
-                    if(latexPackageList->contains(preambel+rpck))
+					if (latexPackageList->isEmpty())
+						line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packageUndefinedFormat));
+					else if(latexPackageList->contains(preambel+rpck))
                         line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packagePresentFormat));
                     else
                         line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packageMissingFormat));
