@@ -4572,7 +4572,7 @@ Fehlender \caption Kommando.</translation>
         <translation>Neuer BibTeX Eintrag %1</translation>
     </message>
     <message>
-        <location line="+1578"/>
+        <location line="+1584"/>
         <source>label missing!</source>
         <translation>Label fehlt!</translation>
     </message>
@@ -4606,13 +4606,13 @@ Fehlender \caption Kommando.</translation>
         <translation type="obsolete">Zitat fehlt!</translation>
     </message>
     <message>
-        <location line="-1626"/>
-        <location line="+1405"/>
+        <location line="-1632"/>
+        <location line="+1411"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift gedrückt =&gt; keine Vorschläge</translation>
     </message>
     <message>
-        <location line="-1372"/>
+        <location line="-1378"/>
         <source>Open %1</source>
         <translation>Öffne %1</translation>
     </message>
@@ -4638,7 +4638,12 @@ Fehlender \caption Kommando.</translation>
         <translation>Andere benutzen</translation>
     </message>
     <message>
-        <location line="+1545"/>
+        <location line="+1526"/>
+        <source>Package not found</source>
+        <translation>Paket nicht gefunden</translation>
+    </message>
+    <message>
+        <location line="+25"/>
         <source>Citation missing</source>
         <translation>Zitat fehlt</translation>
     </message>
@@ -4657,7 +4662,7 @@ Fehlender \caption Kommando.</translation>
         <translation>Ziate korrekt (lese ...)</translation>
     </message>
     <message>
-        <location line="-1499"/>
+        <location line="-1505"/>
         <source>Go to PDF</source>
         <translation>Gehe zu PDF</translation>
     </message>
@@ -4673,17 +4678,16 @@ Fehlender \caption Kommando.</translation>
         <translation>unbenannt</translation>
     </message>
     <message>
-        <location line="+1139"/>
+        <location line="+1145"/>
         <source>Package present</source>
         <translation>Paket vorhanden</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Package not recognized!</source>
-        <translation>Paket nicht erkannt!</translation>
+        <translation type="obsolete">Paket nicht erkannt!</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+30"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>Die BibTeX ID endet mit einem Leerzeichen. Leerzeichen am Ende werden von BibTeX nicht ingoriert.</translation>
     </message>
@@ -4723,7 +4727,7 @@ Fehlender \caption Kommando.</translation>
         <translation>Ebene %1 ausklappen</translation>
     </message>
     <message>
-        <location line="-2113"/>
+        <location line="-2119"/>
         <source>Open Bibliography</source>
         <translation>Bibliographie öffnen</translation>
     </message>
@@ -4732,7 +4736,7 @@ Fehlender \caption Kommando.</translation>
         <translation type="obsolete">texdoc brauchte zu lang um die Paketdokumentation zu öffnen:</translation>
     </message>
     <message>
-        <location line="+1953"/>
+        <location line="+1959"/>
         <source>Save Preview Image</source>
         <translation>Vorschaubild speichern</translation>
     </message>
@@ -5054,7 +5058,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+1"/>
         <source>Geometric</source>
-        <translation>Geometrie</translation>
+        <translation>Figur</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5069,7 +5073,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+1"/>
         <source>Ink</source>
-        <translation type="unfinished"></translation>
+        <translation>Stift</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5079,22 +5083,22 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+1"/>
         <source>Caret</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügemarke</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Anhang</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
 </context>
 <context>
@@ -6840,12 +6844,12 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="+73"/>
+        <location filename="additionaltranslations.cpp" line="+76"/>
         <source>normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location line="-55"/>
+        <location line="-58"/>
         <source>comment</source>
         <translation>Kommentar</translation>
     </message>
@@ -6965,6 +6969,16 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
         <translation>Ungültige Zitat-ID</translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+2"/>
         <source>current</source>
         <translation>Aktuelle Zeile</translation>
@@ -6975,7 +6989,12 @@ zur Verfügung stehen, gehen die Daten verloren.</translation>
         <translation>Suchbereich</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+14"/>
+        <source>dtx:environment</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location line="+3"/>
         <source>preedit</source>
         <translation></translation>
     </message>
@@ -7068,7 +7087,7 @@ Do you want them to be saved?</source>
 Wollen Sie es speichern?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-71"/>
+        <location filename="additionaltranslations.cpp" line="-74"/>
         <source>background</source>
         <translation>Hintergrundfarbe</translation>
     </message>
@@ -7143,7 +7162,7 @@ Wollen Sie es speichern?</translation>
         <translation>Zeile:Lesezeichen9</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+44"/>
         <source>replacement</source>
         <translation>Ersetzung</translation>
     </message>
@@ -7164,7 +7183,7 @@ Wollen Sie es speichern?</translation>
         <translation type="obsolete">Stilhinweis</translation>
     </message>
     <message>
-        <location line="-8"/>
+        <location line="-10"/>
         <source>latexSyntaxMistake</source>
         <translation>LaTeX Syntaxfehler</translation>
     </message>
@@ -7188,7 +7207,7 @@ Wollen Sie es speichern?</translation>
         <translation>picture</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+31"/>
         <source>diffDelete</source>
         <translation>diff (Löschen)</translation>
     </message>
@@ -7230,7 +7249,7 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
         <translation>Priorität bestimmt welches Format zu oberst gezeichnet wird, falls mehrere anwendbar sind. </translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-37"/>
+        <location filename="additionaltranslations.cpp" line="-39"/>
         <source>align-ampersand</source>
         <translation>Ausrichtungstrennzeichen (&amp;&amp;)</translation>
     </message>
@@ -7275,7 +7294,7 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
         <translation>GrammatikfehlerSpezial4</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+18"/>
         <source>txs-test</source>
         <translation></translation>
     </message>
@@ -7299,12 +7318,12 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
         <translation></translation>
     </message>
     <message>
-        <location line="-31"/>
+        <location line="-33"/>
         <source>math-delimiter</source>
         <translation></translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+32"/>
         <source>txs-test-warn</source>
         <translation></translation>
     </message>
@@ -7329,7 +7348,7 @@ Größen &gt;100% können zu abgeschnittenen Buchstaben führen.</translation>
         <translation></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>lua:keyword</source>
         <translation>Lua Schlüsselwort</translation>
     </message>
@@ -9094,7 +9113,7 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+403"/>
-        <location line="+2496"/>
+        <location line="+2503"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
@@ -9104,8 +9123,8 @@ failed.</source>
         <translation>Sie besitzen nicht die nötigen Rechte um diese Datei zu lesen.</translation>
     </message>
     <message>
-        <location line="-5892"/>
-        <location line="+5728"/>
+        <location line="-5899"/>
+        <location line="+5735"/>
         <source>Open Files</source>
         <translation>Dateien öffnen</translation>
     </message>
@@ -9114,7 +9133,7 @@ failed.</source>
         <translation type="obsolete">Das Dokument ist verändert worden. Wollen Sie es vor dem Schließen speichern?</translation>
     </message>
     <message>
-        <location line="-5510"/>
+        <location line="-5517"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Speichern und schließen</translation>
@@ -10189,7 +10208,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>Schiebe Dokument zum &amp;Ende</translation>
     </message>
     <message>
-        <location line="+1572"/>
+        <location line="+1579"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -10201,7 +10220,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7739"/>
+        <location filename="texmaker.cpp" line="-7746"/>
         <source>Sweave files</source>
         <translation>Sweave-Dateien</translation>
     </message>
@@ -10263,7 +10282,7 @@ Allerdings wird eine Version von TeXstudio benutzt, bei dem diese Funktion nicht
         <translation>TXS Profil</translation>
     </message>
     <message>
-        <location line="+620"/>
+        <location line="+627"/>
         <source>Open Compare File</source>
         <translation>Vergleichsdatei öffnen</translation>
     </message>
@@ -10383,7 +10402,7 @@ Drücken Sie &quot;Abbrechen&quot; um nichts weiter zu unternehmen.</translation
         <translation>Einfacher Text</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7672"/>
+        <location filename="texmaker.cpp" line="-7679"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Lesezeichen</translation>
@@ -10522,7 +10541,7 @@ Do you trust this document?</source>
         <translation type="obsolete">Ja, nutze in allen Dokumenten die ersetzten Befehle</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+585"/>
+        <location filename="texmaker.cpp" line="+592"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10564,7 +10583,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Beenden hat nicht funktioniert.</translation>
     </message>
     <message>
-        <location line="-8003"/>
+        <location line="-8010"/>
         <source>PDF files</source>
         <translation>PDF Dateien</translation>
     </message>
@@ -10648,7 +10667,7 @@ included document in %1</source>
         <translation>Art: %1</translation>
     </message>
     <message>
-        <location line="+3875"/>
+        <location line="+3882"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudio wurde angehalten wegen des Verdachts einer Endlosschleife.
@@ -10687,7 +10706,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
         <translation>Ja, lasse die Schleife weiterlaufen</translation>
     </message>
     <message>
-        <location line="-7586"/>
+        <location line="-7593"/>
         <source>Previous Change</source>
         <translation>Vorherige Änderung</translation>
     </message>
@@ -10924,7 +10943,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation>Profil-Datei %1 konnte nicht geöffnet werden.</translation>
     </message>
     <message>
-        <location line="+868"/>
+        <location line="+875"/>
         <source>System Report</source>
         <translation>Systembericht</translation>
     </message>
@@ -10933,7 +10952,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation type="obsolete">Prüfe LaTeX Installation</translation>
     </message>
     <message>
-        <location line="-7310"/>
+        <location line="-7317"/>
         <location line="+5279"/>
         <source>Paste Before</source>
         <translation>Vorher einfügen</translation>

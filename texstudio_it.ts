@@ -3685,7 +3685,7 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
     <name>LatexEditorView</name>
     <message>
         <location filename="latexeditorview.cpp" line="364"/>
-        <location filename="latexeditorview.cpp" line="1769"/>
+        <location filename="latexeditorview.cpp" line="1775"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>shift premuto =&gt; suggerimenti nascosto</translation>
     </message>
@@ -3700,25 +3700,25 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
         <translation>Nuovo elemento BibTeX %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1963"/>
+        <location filename="latexeditorview.cpp" line="1969"/>
         <source>label missing!</source>
         <translation>etichetta mancante!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1965"/>
-        <location filename="latexeditorview.cpp" line="1987"/>
+        <location filename="latexeditorview.cpp" line="1971"/>
+        <location filename="latexeditorview.cpp" line="1993"/>
         <source>label multiple times defined!</source>
         <translation>etichetta definita più volte!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1973"/>
-        <location filename="latexeditorview.cpp" line="2048"/>
+        <location filename="latexeditorview.cpp" line="1979"/>
+        <location filename="latexeditorview.cpp" line="2054"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome file: %1&lt;/b</translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="1990"/>
+        <location filename="latexeditorview.cpp" line="1996"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%n riferimento a questa etichetta</numerusform>
@@ -3760,17 +3760,22 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
         <translation>usa l&apos;altrui</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2029"/>
+        <location filename="latexeditorview.cpp" line="2010"/>
+        <source>Package not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="latexeditorview.cpp" line="2035"/>
         <source>Citation missing</source>
         <translation>Citazione assente</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2032"/>
+        <location filename="latexeditorview.cpp" line="2038"/>
         <source>Warning:</source>
         <translation>Avviso:</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2011"/>
+        <location filename="latexeditorview.cpp" line="2017"/>
         <source>Citation correct (reading ...)</source>
         <translation>Citazione corretta (leggendo ...)</translation>
     </message>
@@ -3791,53 +3796,48 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
         <translation>senza titolo</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2002"/>
+        <location filename="latexeditorview.cpp" line="2008"/>
         <source>Package present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2004"/>
-        <source>Package not recognized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="latexeditorview.cpp" line="2032"/>
+        <location filename="latexeditorview.cpp" line="2038"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>L&apos;identificatore BibTeX termina con uno spazio.
 BibTeX non ignora gli spazi finali.</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2465"/>
+        <location filename="latexeditorview.cpp" line="2471"/>
         <source>Remove Bookmark</source>
         <translation>Rimuovi segnalibro</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2473"/>
+        <location filename="latexeditorview.cpp" line="2479"/>
         <source>Unnamed Bookmark</source>
         <translation>Segnalibro senza nome</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2478"/>
+        <location filename="latexeditorview.cpp" line="2484"/>
         <source>Bookmark</source>
         <translation>Segnalibro</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2504"/>
+        <location filename="latexeditorview.cpp" line="2510"/>
         <source>Collapse All</source>
         <translation>Comprimi tutto</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2508"/>
+        <location filename="latexeditorview.cpp" line="2514"/>
         <source>Collapse Level %1</source>
         <translation>Comprimi livello %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2513"/>
+        <location filename="latexeditorview.cpp" line="2519"/>
         <source>Expand All</source>
         <translation>Espandi tutto</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2517"/>
+        <location filename="latexeditorview.cpp" line="2523"/>
         <source>Expand Level %1</source>
         <translation>Espandi il livello %1</translation>
     </message>
@@ -3847,12 +3847,12 @@ BibTeX non ignora gli spazi finali.</translation>
         <translation>Apri la bibliografia</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2357"/>
+        <location filename="latexeditorview.cpp" line="2363"/>
         <source>Save Preview Image</source>
         <translation>Salva l&apos;immagine di anteprima</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2357"/>
+        <location filename="latexeditorview.cpp" line="2363"/>
         <source>Images</source>
         <translation>Immagini</translation>
     </message>
@@ -6181,101 +6181,116 @@ Perhaps it is read-only or opened in another program?</source>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="167"/>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="168"/>
+        <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="169"/>
         <source>structure</source>
         <translation>struttura</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="168"/>
+        <location filename="additionaltranslations.cpp" line="170"/>
         <source>current</source>
         <translation>attuale</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="170"/>
+        <location filename="additionaltranslations.cpp" line="172"/>
         <source>replacement</source>
         <translation>sostituzione</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="171"/>
+        <location filename="additionaltranslations.cpp" line="173"/>
         <source>diffDelete</source>
         <translation>eliminaDifferenze</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="172"/>
+        <location filename="additionaltranslations.cpp" line="174"/>
         <source>diffAdd</source>
         <translation>aggiungiDifferenze</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="173"/>
+        <location filename="additionaltranslations.cpp" line="175"/>
         <source>diffReplace</source>
         <translation>SostituisciDifferenze</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="174"/>
+        <location filename="additionaltranslations.cpp" line="176"/>
         <source>txs-test</source>
         <translation>test-txs</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="175"/>
+        <location filename="additionaltranslations.cpp" line="177"/>
         <source>txs-test-pass</source>
         <translation>test-txs-successo</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="176"/>
+        <location filename="additionaltranslations.cpp" line="178"/>
         <source>txs-test-fail</source>
         <translation>test-txs-fallimento</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="177"/>
+        <location filename="additionaltranslations.cpp" line="179"/>
         <source>txs-test-warn</source>
         <translation>test-txs-avviso</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="178"/>
+        <location filename="additionaltranslations.cpp" line="180"/>
         <source>txs-test-qdebug</source>
         <translation>test-txs-qdebug</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="179"/>
+        <location filename="additionaltranslations.cpp" line="181"/>
         <source>dtx:guard</source>
         <translation>dtx:guardia</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="180"/>
+        <location filename="additionaltranslations.cpp" line="182"/>
         <source>dtx:macro</source>
         <translation>dtx:macro</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="181"/>
+        <location filename="additionaltranslations.cpp" line="183"/>
         <source>dtx:verbatim</source>
         <translation>dtx:verbatim</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="182"/>
+        <location filename="additionaltranslations.cpp" line="184"/>
         <source>dtx:specialchar</source>
         <translation>dtx:carattereSpeciale</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="183"/>
+        <location filename="additionaltranslations.cpp" line="185"/>
+        <source>dtx:environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="186"/>
         <source>lua:keyword</source>
         <translation>lua:parolaChiave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="184"/>
+        <location filename="additionaltranslations.cpp" line="187"/>
         <source>lua:comment</source>
         <translation>lua:commento</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="185"/>
+        <location filename="additionaltranslations.cpp" line="188"/>
         <source>preedit</source>
         <translation>pre-modifica</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="186"/>
+        <location filename="additionaltranslations.cpp" line="189"/>
         <source>normal</source>
         <translation>normale</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="169"/>
+        <location filename="additionaltranslations.cpp" line="171"/>
         <source>selection</source>
         <translation>selezione</translation>
     </message>
@@ -8459,12 +8474,12 @@ Desideri comunque usare questa cartella?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8322"/>
+        <location filename="texmaker.cpp" line="8329"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Ho tentato il suicidio, ma non è successo nulla.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8340"/>
+        <location filename="texmaker.cpp" line="8347"/>
         <source>System Report</source>
         <translation>Resoconto di sistema</translation>
     </message>
@@ -8996,114 +9011,114 @@ Desideri comunque usare questa cartella?</translation>
         <translation>Definisci il documento corrente come principale</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="187"/>
+        <location filename="additionaltranslations.cpp" line="190"/>
         <source>Custom</source>
         <translation>Personalizzato</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="188"/>
+        <location filename="additionaltranslations.cpp" line="191"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="190"/>
+        <location filename="additionaltranslations.cpp" line="193"/>
         <source>Tools</source>
         <translation>Strumenti</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="191"/>
+        <location filename="additionaltranslations.cpp" line="194"/>
         <source>Math</source>
         <translation>Modalità matematica</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="192"/>
+        <location filename="additionaltranslations.cpp" line="195"/>
         <source>Format</source>
         <translation>Formato</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="193"/>
+        <location filename="additionaltranslations.cpp" line="196"/>
         <source>Table</source>
         <translation>Tabella</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="194"/>
+        <location filename="additionaltranslations.cpp" line="197"/>
         <source>Diff</source>
         <translation>Differenze</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="195"/>
+        <location filename="additionaltranslations.cpp" line="198"/>
         <location filename="texmaker.cpp" line="194"/>
         <source>Central</source>
         <translation>Centrale</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="197"/>
+        <location filename="additionaltranslations.cpp" line="200"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>Binario</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="198"/>
+        <location filename="additionaltranslations.cpp" line="201"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>File dtx TeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="199"/>
+        <location filename="additionaltranslations.cpp" line="202"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="200"/>
+        <location filename="additionaltranslations.cpp" line="203"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="201"/>
+        <location filename="additionaltranslations.cpp" line="204"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="202"/>
+        <location filename="additionaltranslations.cpp" line="205"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="203"/>
+        <location filename="additionaltranslations.cpp" line="206"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="204"/>
+        <location filename="additionaltranslations.cpp" line="207"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="205"/>
+        <location filename="additionaltranslations.cpp" line="208"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>Macro (La)TeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="206"/>
+        <location filename="additionaltranslations.cpp" line="209"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>Risultato test TXS</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="207"/>
+        <location filename="additionaltranslations.cpp" line="210"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>Testo</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="208"/>
+        <location filename="additionaltranslations.cpp" line="211"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
@@ -9201,7 +9216,7 @@ Desideri comunque usare questa cartella?</translation>
         <translation type="obsolete">Templates</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="189"/>
+        <location filename="additionaltranslations.cpp" line="192"/>
         <source>Edit</source>
         <translation>Modifica</translation>
     </message>
@@ -9213,7 +9228,7 @@ Desideri comunque usare questa cartella?</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="2124"/>
-        <location filename="texmaker.cpp" line="7852"/>
+        <location filename="texmaker.cpp" line="7859"/>
         <source>Open Files</source>
         <translation>Apri file</translation>
     </message>
@@ -9681,7 +9696,7 @@ Pertanto, è necessario aprire almeno un file di testo</translation>
         <location filename="texmaker.cpp" line="5115"/>
         <location filename="texmaker.cpp" line="5117"/>
         <location filename="texmaker.cpp" line="5520"/>
-        <location filename="texmaker.cpp" line="8016"/>
+        <location filename="texmaker.cpp" line="8023"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
@@ -9894,34 +9909,34 @@ Desideri crearlo?</translation>
         <translation>Raggiunta la fine del testo.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="7852"/>
-        <location filename="texmaker.cpp" line="8054"/>
-        <location filename="texmaker.cpp" line="8057"/>
+        <location filename="texmaker.cpp" line="7859"/>
+        <location filename="texmaker.cpp" line="8061"/>
+        <location filename="texmaker.cpp" line="8064"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>File LaTeX (*.tex);;Tutti i file (*)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8016"/>
+        <location filename="texmaker.cpp" line="8023"/>
         <source>You do not have read permission to this file.</source>
         <translation>Non hai permessi di lettura su questo file.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8054"/>
+        <location filename="texmaker.cpp" line="8061"/>
         <source>Open Compare File</source>
         <translation>Apri il file da confrontare</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8057"/>
+        <location filename="texmaker.cpp" line="8064"/>
         <source>Open Base File</source>
         <translation>Apri il file di base</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8102"/>
+        <location filename="texmaker.cpp" line="8109"/>
         <source>Conflict!</source>
         <translation>Conflitto!</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="196"/>
+        <location filename="additionaltranslations.cpp" line="199"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
@@ -9933,7 +9948,7 @@ Desideri crearlo?</translation>
         <translation>&amp;Utente</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8103"/>
+        <location filename="texmaker.cpp" line="8110"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -9945,12 +9960,12 @@ Premi &quot;OK&quot; per mostrare le differenze.
 Premi &quot;Cancel&quot; per non fare nulla.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8146"/>
+        <location filename="texmaker.cpp" line="8153"/>
         <source>SVN Conflict!</source>
         <translation>Conflitto SVN!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8147"/>
+        <location filename="texmaker.cpp" line="8154"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -9960,14 +9975,14 @@ Premi &quot;OK&quot; per mostrare le differenze anziché il file sorgente genera
 Premi &quot;Cancel&quot; per non fare nulla.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8237"/>
-        <location filename="texmaker.cpp" line="8316"/>
-        <location filename="texmaker.cpp" line="8322"/>
+        <location filename="texmaker.cpp" line="8244"/>
+        <location filename="texmaker.cpp" line="8323"/>
+        <location filename="texmaker.cpp" line="8329"/>
         <source>TeXstudio Emergency</source>
         <translation>Emergenza in TeXstudio</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8239"/>
+        <location filename="texmaker.cpp" line="8246"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
         <translation>Si è verificato un errore inatteso in TeXstudio a causa di %1.
@@ -9975,19 +9990,19 @@ Vuoi mantenere TeXstudio in esecuzione?
 Questo potrebbe provocare una corruzione di dati.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8240"/>
+        <location filename="texmaker.cpp" line="8247"/>
         <source>Yes, try to recover</source>
         <translation>Sì, tenta di proseguire</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8241"/>
-        <location filename="texmaker.cpp" line="8246"/>
-        <location filename="texmaker.cpp" line="8318"/>
+        <location filename="texmaker.cpp" line="8248"/>
+        <location filename="texmaker.cpp" line="8253"/>
+        <location filename="texmaker.cpp" line="8325"/>
         <source>No, kill the program</source>
         <translation>No, termina il programma</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8243"/>
+        <location filename="texmaker.cpp" line="8250"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudio è in pausa a causa, forse, di un ciclo infinito.
@@ -9995,17 +10010,17 @@ Desideri mantenere TeXstudio in esecuzione?
 Questo potrebbe provocare una corruzione di dati.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8244"/>
+        <location filename="texmaker.cpp" line="8251"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Sì, termina il ciclo e tenta di proseguire</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8245"/>
+        <location filename="texmaker.cpp" line="8252"/>
         <source>Yes, continue the loop</source>
         <translation>Sì, prosegui il ciclo</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8317"/>
+        <location filename="texmaker.cpp" line="8324"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10015,7 +10030,7 @@ Vuoi mantenere TeXstudio in esecuzione?
 Questo potrebbe provocare una corruzione di dati.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="8318"/>
+        <location filename="texmaker.cpp" line="8325"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>

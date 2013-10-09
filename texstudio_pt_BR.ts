@@ -4485,12 +4485,12 @@ O assistente não suporta comandos</translation>
     <name>LatexEditorView</name>
     <message>
         <location filename="latexeditorview.cpp" line="+364"/>
-        <location line="+1405"/>
+        <location line="+1411"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>pressionar shift =&gt; ocultar sugestões</translation>
     </message>
     <message>
-        <location line="-1399"/>
+        <location line="-1405"/>
         <source>always ignore</source>
         <translation>ignorar sempre</translation>
     </message>
@@ -4547,11 +4547,16 @@ O assistente não suporta comandos</translation>
         <translation>sem título</translation>
     </message>
     <message>
+        <location line="+1147"/>
+        <source>Package not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation type="obsolete">texdoc levou muito tempo abrindo a documentação para o pacote:</translation>
     </message>
     <message>
-        <location line="+1100"/>
+        <location line="-41"/>
         <source>label missing!</source>
         <translation>rótulo inexistente!</translation>
     </message>
@@ -4583,12 +4588,7 @@ O assistente não suporta comandos</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Package not recognized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
+        <location line="+9"/>
         <source>Citation correct (reading ...)</source>
         <translation>Citação correta (lendo ...)</translation>
     </message>
@@ -6933,7 +6933,7 @@ mover cursor para a direita (1 caracter)</translation>
         <translation>seq. escape</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+30"/>
         <source>txs-test-warn</source>
         <translation>txs-teste-alerta</translation>
     </message>
@@ -6942,7 +6942,7 @@ mover cursor para a direita (1 caracter)</translation>
         <translation type="obsolete">dica de estilo</translation>
     </message>
     <message>
-        <location line="-36"/>
+        <location line="-38"/>
         <source>pweave-delimiter</source>
         <translation>delimitador pweave</translation>
     </message>
@@ -7053,6 +7053,16 @@ mover cursor para a direita (1 caracter)</translation>
     </message>
     <message>
         <location line="+1"/>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>structure</source>
         <translation>estrutura</translation>
     </message>
@@ -7129,6 +7139,11 @@ mover cursor para a direita (1 caracter)</translation>
         <location line="+1"/>
         <source>dtx:specialchar</source>
         <translation>dtx:caracter especial</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>dtx:environment</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9472,7 +9487,7 @@ Voce deseja permitir e executar o novo comando?
         <translation>Falha ao ler o arquivo de perfil %1.</translation>
     </message>
     <message>
-        <location line="+868"/>
+        <location line="+875"/>
         <source>System Report</source>
         <translation>Relatório do Sistema</translation>
     </message>
@@ -9481,7 +9496,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">Erro seguinte</translation>
     </message>
     <message>
-        <location line="-7617"/>
+        <location line="-7624"/>
         <source>Previous Warning</source>
         <oldsource>Previous warning</oldsource>
         <translation>Alerta Anterior</translation>
@@ -9596,7 +9611,7 @@ Voce deseja permitir e executar o novo comando?
         <translation>Documentação dos Pacotes...</translation>
     </message>
     <message>
-        <location line="+7235"/>
+        <location line="+7242"/>
         <source>Yes, try to recover</source>
         <translation>Sim, tentar recuperar</translation>
     </message>
@@ -9615,7 +9630,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">&amp;Etiquetas do Usuário</translation>
     </message>
     <message>
-        <location line="-7287"/>
+        <location line="-7294"/>
         <source>Align Windows</source>
         <translation>Alinhar Janelas</translation>
     </message>
@@ -9637,7 +9652,7 @@ documento incluído em %1</translation>
         <translation>Tipo: %1</translation>
     </message>
     <message>
-        <location line="+3869"/>
+        <location line="+3876"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -9701,7 +9716,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <translation type="obsolete">&amp;Compilar</translation>
     </message>
     <message>
-        <location line="-7545"/>
+        <location line="-7552"/>
         <location line="+40"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
@@ -10243,7 +10258,7 @@ Você confia neste documento?</translation>
         <translation>Final do texto alcançado.</translation>
     </message>
     <message>
-        <location line="+200"/>
+        <location line="+207"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -10292,7 +10307,7 @@ Pressione &quot;OK&quot; para exibir as diferenças ao invés de fonte gerada po
 Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
-        <location line="-7119"/>
+        <location line="-7126"/>
         <location line="+5279"/>
         <source>Copy</source>
         <translation>Copiar</translation>
@@ -10342,7 +10357,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+403"/>
-        <location line="+2496"/>
+        <location line="+2503"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -10352,7 +10367,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation>Você não tem permissão par ler este arquivo.</translation>
     </message>
     <message>
-        <location line="-5795"/>
+        <location line="-5802"/>
         <source>Save As</source>
         <translation>Salvar Como</translation>
     </message>
@@ -10626,7 +10641,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location line="+194"/>
-        <location line="+5728"/>
+        <location line="+5735"/>
         <source>Open Files</source>
         <translation>Abrir Arquivos</translation>
     </message>
@@ -10635,7 +10650,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">O documento contém trabalho não salvo. Deseja salvá-lo antes de fechar?</translation>
     </message>
     <message>
-        <location line="-5510"/>
+        <location line="-5517"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Salvar e Fechar</translation>

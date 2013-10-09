@@ -3735,7 +3735,7 @@ Invalid \caption command.</source>
         <translation>новий пункт BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1578"/>
+        <location line="+1584"/>
         <source>label missing!</source>
         <translation>відсутня позначка!</translation>
     </message>
@@ -3770,13 +3770,13 @@ Invalid \caption command.</source>
         <translation type="obsolete">Хибна цитата!</translation>
     </message>
     <message>
-        <location line="-1626"/>
-        <location line="+1405"/>
+        <location line="-1632"/>
+        <location line="+1411"/>
         <source>shift pressed =&gt; suggestions hidden</source>
         <translation>натиснути shift =&gt; приховати пропозиції</translation>
     </message>
     <message>
-        <location line="-1372"/>
+        <location line="-1378"/>
         <source>Open %1</source>
         <translation>Відкрити %1</translation>
     </message>
@@ -3802,7 +3802,12 @@ Invalid \caption command.</source>
         <translation>використовувати інший</translation>
     </message>
     <message>
-        <location line="+1545"/>
+        <location line="+1526"/>
+        <source>Package not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
         <source>Citation missing</source>
         <translation>Відсутня цитата</translation>
     </message>
@@ -3817,7 +3822,7 @@ Invalid \caption command.</source>
         <translation>Вірна цитата (читання…)</translation>
     </message>
     <message>
-        <location line="-1499"/>
+        <location line="-1505"/>
         <source>Go to PDF</source>
         <translation>Перейти до PDF</translation>
     </message>
@@ -3833,17 +3838,12 @@ Invalid \caption command.</source>
         <translation>без назви</translation>
     </message>
     <message>
-        <location line="+1139"/>
+        <location line="+1145"/>
         <source>Package present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Package not recognized!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
+        <location line="+30"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>ІД BibTeX закінчується пропуском. Кінцеві пропуски ігноруються BibTeX&apos;ом.</translation>
     </message>
@@ -3883,12 +3883,12 @@ Invalid \caption command.</source>
         <translation>Розкрити рівень %1</translation>
     </message>
     <message>
-        <location line="-2113"/>
+        <location line="-2119"/>
         <source>Open Bibliography</source>
         <translation>Відкрити бібліографію</translation>
     </message>
     <message>
-        <location line="+1953"/>
+        <location line="+1959"/>
         <source>Save Preview Image</source>
         <translation>Зберегти перегляд зображення</translation>
     </message>
@@ -6184,6 +6184,16 @@ Do you want them to be saved?</source>
         <translation>відсутнє цитування</translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>packagePresent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+2"/>
         <source>current</source>
         <translation>поточний</translation>
@@ -6199,7 +6209,12 @@ Do you want them to be saved?</source>
         <translation>заміна</translation>
     </message>
     <message>
-        <location line="+15"/>
+        <location line="+13"/>
+        <source>dtx:environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
         <source>preedit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6221,12 +6236,12 @@ Do you want them to be saved?</source>
         <translation>&lt;типово&gt;</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-19"/>
+        <location filename="additionaltranslations.cpp" line="-20"/>
         <source>structure</source>
         <translation>структура</translation>
     </message>
     <message>
-        <location line="-8"/>
+        <location line="-10"/>
         <source>latexSyntaxMistake</source>
         <translation>синтаксична помилка LaTeX</translation>
     </message>
@@ -6246,7 +6261,7 @@ Do you want them to be saved?</source>
         <translation>зображення</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+31"/>
         <source>diffDelete</source>
         <translation>рівзниця у вилученому</translation>
     </message>
@@ -6281,7 +6296,7 @@ Do you want them to be saved?</source>
         <translation>Пріоритет визначає, який формат вищий за інші, якщо застосовується кілька форматів.</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-37"/>
+        <location filename="additionaltranslations.cpp" line="-39"/>
         <source>align-ampersand</source>
         <translation>вирівнювання амперсандом</translation>
     </message>
@@ -6326,7 +6341,7 @@ Do you want them to be saved?</source>
         <translation>спеціальна граматична помилка 4</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+18"/>
         <source>txs-test</source>
         <translation>txs-тест</translation>
     </message>
@@ -6346,12 +6361,12 @@ Do you want them to be saved?</source>
         <translation>txs-тест-зневадження</translation>
     </message>
     <message>
-        <location line="-31"/>
+        <location line="-33"/>
         <source>math-delimiter</source>
         <translation>математичний роздільник</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+32"/>
         <source>txs-test-warn</source>
         <translation>txs-тест-попередження</translation>
     </message>
@@ -6376,7 +6391,7 @@ Do you want them to be saved?</source>
         <translation>dtx:спеціальний символ</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>lua:keyword</source>
         <translation>lua:ключове слово</translation>
     </message>
@@ -8030,7 +8045,7 @@ failed.</source>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+403"/>
-        <location line="+2496"/>
+        <location line="+2503"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -8040,8 +8055,8 @@ failed.</source>
         <translation>У Вас нема дозволу для читання цього файла.</translation>
     </message>
     <message>
-        <location line="-5892"/>
-        <location line="+5728"/>
+        <location line="-5899"/>
+        <location line="+5735"/>
         <source>Open Files</source>
         <translation>Відкрити файли</translation>
     </message>
@@ -8050,7 +8065,7 @@ failed.</source>
         <translation type="obsolete">Документ був змінений. Чи потрібно зберегти його перед закриванням?</translation>
     </message>
     <message>
-        <location line="-5510"/>
+        <location line="-5517"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Зберегти і закрити</translation>
@@ -9070,7 +9085,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Перемістити документ на &amp;задній план</translation>
     </message>
     <message>
-        <location line="+1572"/>
+        <location line="+1579"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -9082,7 +9097,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Відмінності</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7739"/>
+        <location filename="texmaker.cpp" line="-7746"/>
         <source>Sweave files</source>
         <translation>Файли Sweave</translation>
     </message>
@@ -9140,7 +9155,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Профіль TXS</translation>
     </message>
     <message>
-        <location line="+620"/>
+        <location line="+627"/>
         <source>Open Compare File</source>
         <translation>Відкрити порівнюваний файл</translation>
     </message>
@@ -9243,7 +9258,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Звичайний текст</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7672"/>
+        <location filename="texmaker.cpp" line="-7679"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Закладки</translation>
@@ -9317,7 +9332,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Результати перевірки TXS</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+585"/>
+        <location filename="texmaker.cpp" line="+592"/>
         <location line="+79"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -9358,7 +9373,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Я спробував &quot;померти&quot;, але нічого не вийшло.</translation>
     </message>
     <message>
-        <location line="-8003"/>
+        <location line="-8010"/>
         <source>PDF files</source>
         <translation>Файли PDF</translation>
     </message>
@@ -9468,7 +9483,7 @@ Do you want to create it?</source>
         <translation>Помилка читання файлу профілю &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location line="+771"/>
+        <location line="+778"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>Програма TeXstudio була зупинена через можливе зациклення.
@@ -9495,7 +9510,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Так, продовжити цикл</translation>
     </message>
     <message>
-        <location line="-7586"/>
+        <location line="-7593"/>
         <source>Previous Change</source>
         <translation>Попередня зміна</translation>
     </message>
@@ -9752,12 +9767,12 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Вставити \ref на наступну позначку</translation>
     </message>
     <message>
-        <location line="+2040"/>
+        <location line="+2047"/>
         <source>System Report</source>
         <translation>Системний звіт</translation>
     </message>
     <message>
-        <location line="-7762"/>
+        <location line="-7769"/>
         <source>New From &amp;Template...</source>
         <translation>Новий із &amp;шаблону...</translation>
     </message>
