@@ -142,7 +142,7 @@ private:
 	QPoint m_point;
 	
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
-    packagePresentFormat,packageMissingFormat,
+	packagePresentFormat,packageMissingFormat,packageUndefinedFormat,
 	wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
 	numbersFormat, verbatimFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat;
 	static QList<int> grammarFormats;

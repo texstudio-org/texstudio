@@ -1,5 +1,16 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.6.2 -> TeXstudio 2.6.4
+-----------------------------------------
+- package scanner: queries the tex istallation for installed packages and highlights missing packages
+- basic annotation support in internal pdf viewer
+- improved render speed, especially on mac
+- speed-up loading of hidden documents (option: automatically load included files)
+- speed-up command completion window, especially citations
+- improved log panel
+- fix input method bug
+- bug fixes, e.g. tooltip does not disappear instantly anymore
+
 TeXstudio 2.6.0 -> TeXstudio 2.6.2
 -----------------------------------------
 - structure tree view: context menu entries to recursively collapse/expand the structure
