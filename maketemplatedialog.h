@@ -13,7 +13,7 @@ class MakeTemplateDialog : public QDialog
 	Q_OBJECT
 	
 public:
-	explicit MakeTemplateDialog(QString templateDir, QWidget *parent = 0);
+	explicit MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent = 0);
 	~MakeTemplateDialog();
 
 	QString generateMetaData();
@@ -26,6 +26,7 @@ private slots:
 private:
 	Ui::MakeTemplateDialog *ui;
 	QString m_templateDir;
+	QString m_editorFilename;
 	QFileInfo m_suggestedFile;
 };
 

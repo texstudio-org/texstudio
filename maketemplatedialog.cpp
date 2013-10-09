@@ -2,10 +2,11 @@
 #include "ui_maketemplatedialog.h"
 #include "smallUsefulFunctions.h"
 
-MakeTemplateDialog::MakeTemplateDialog(QString templateDir, QWidget *parent) :
+MakeTemplateDialog::MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::MakeTemplateDialog),
-	m_templateDir(templateDir)
+	m_templateDir(templateDir),
+	m_editorFilename(editorFilename)
 {
 	ui->setupUi(this);
 
@@ -32,7 +33,11 @@ void MakeTemplateDialog::tryAccept()
 		fn.remove(80);
 	}
 	fn.prepend("template_");
-	fn.append(".tex");
+	QString ext = QFileInfo(m_editorFilename).completeSuffix();
+	if (ext.isEmpty()) {
+		ext = "tex";
+	}
+	fn.append("."+ext);
 	m_suggestedFile = QFileInfo(QDir(m_templateDir), fn);
 	if (m_suggestedFile.exists()) {
 		bool abort = txsConfirmWarning(tr("A template with the given name already exists.\nDo you want to overwrite it?")+"\n"+m_suggestedFile.canonicalFilePath());
