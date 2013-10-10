@@ -129,6 +129,7 @@
 \ker#m
 \Lambda#m
 \lambda#m
+\land#m
 \langle#m
 \lbrace#m
 \lbrack#m
@@ -154,6 +155,7 @@
 \ln#m
 \lnot#m
 \log#m
+\lor#m
 \Longleftarrow#m
 \longleftarrow#m
 \longleftrightarrow#m
