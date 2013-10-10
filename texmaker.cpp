@@ -4985,6 +4985,7 @@ bool Texmaker::LogExists() {
 
 bool Texmaker::loadLog() {
 	outputView->getLogWidget()->resetLog();
+	if (!documents.getCurrentDocument()) return false;
 	QString finame=documents.getTemporaryCompileFileName();
 	if (finame=="") {
 		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
