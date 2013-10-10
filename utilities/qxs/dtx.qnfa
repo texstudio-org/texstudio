@@ -93,11 +93,17 @@ environments in smallUsefulFunctions.cpp)
 
 	<word id="dtxGuard" format="dtx:guard" ambiguous="true">%</word>
 	
+
+	<word format="dtx:commands">\DescribeMacro</word>
+	<word format="dtx:commands">\DescribeEnv</word>
+	<word parenthesis="dtxmacro:open" parenthesisWeight="30" fold="1" format="dtx:commands">\\begin{macro}</word>
+	<word parenthesis="dtxmacro:close" parenthesisWeight="30" fold="1" format="dtx:commands">\\end{macro}</word>
+	<word parenthesis="dtxmacro:open" parenthesisWeight="30" fold="1" format="dtx:commands">\\begin{environment}</word>
+	<word parenthesis="dtxmacro:close" parenthesisWeight="30" fold="1" format="dtx:commands">\\end{environment}</word>
 	<!-- special handling of macrocode environment: don't treat this as parenthesis, because it can be interweaved with tex bracketing
 	     which results in failure of parenthesis matching. See https://sourceforge.net/p/texstudio/bugs/818/ -->
-	<word format="dtx:environment">\\begin{macrocode}</word>
-	<word format="dtx:environment">\\end{macrocode}</word>
-
+	<word format="dtx:commands">\\begin{macrocode}</word>
+	<word format="dtx:commands">\\end{macrocode}</word>
 
 	<!-- ========================= MATH MODE ====================== -->
 	
