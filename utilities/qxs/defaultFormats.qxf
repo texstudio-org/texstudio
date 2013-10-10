@@ -369,7 +369,7 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#CC8100</foreground>
     </format>	
-    <format id="dtx:environment" >
+    <format id="dtx:commands" >
         <bold>true</bold>
         <italic>false</italic>
         <overline>false</overline>
