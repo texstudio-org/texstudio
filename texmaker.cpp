@@ -2801,7 +2801,10 @@ void Texmaker::convertToLatex() {
 void Texmaker::editEraseLine() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
+	c.beginEditBlock();
+	c.removeSelectedText(); // reduces multi-line selections to a single line
 	c.eraseLine();
+	c.endEditBlock();
 }
 void Texmaker::editEraseEndLine() {
   if (!currentEditorView()) return;
@@ -2813,45 +2816,58 @@ void Texmaker::editEraseEndLine() {
 void Texmaker::editMoveLineUp() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
-	if (c.lineNumber() <= 0) return;
-	QString lineText = c.line().text();
-	int col = c.columnNumber();
-	c.beginEditBlock();
-	c.clearSelection();
-	c.eraseLine();
-	c.movePosition(1,QDocumentCursor::PreviousLine);
-	c.movePosition(1,QDocumentCursor::StartOfLine);
-	c.insertText(lineText+"\n");
-	c.movePosition(1,QDocumentCursor::PreviousLine);
-	c.setColumnNumber(col);
-	c.endEditBlock();
-	currentEditorView()->editor->setCursor(c);
+	QDocumentCursor anchor(c.document(), c.anchorLineNumber(), c.anchorColumnNumber());
+	QDocumentCursor start = c.selectionStart();
+	QDocumentCursor end = c.selectionEnd();
+	if (start.lineNumber() <= 0) return;
+	start.movePosition(1, QDocumentCursor::StartOfLine);
+	end.movePosition(1, QDocumentCursor::EndOfLine);
+	QDocumentCursor edit(start, end);
+	edit.beginEditBlock();
+	QString text = edit.selectedText();
+	edit.removeSelectedText();
+	edit.eraseLine();
+	edit.movePosition(1, QDocumentCursor::PreviousLine);
+	edit.movePosition(1, QDocumentCursor::StartOfLine);
+	edit.insertText(text+"\n");
+	edit.endEditBlock();
+	c.movePosition(1, QDocumentCursor::Up);
+	anchor.movePosition(1, QDocumentCursor::Up);
+	currentEditorView()->editor->setCursor(QDocumentCursor(anchor, c));
 }
 void Texmaker::editMoveLineDown() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
-	if (c.lineNumber() >= c.document()->lineCount()-1) return;
-	QString lineText = c.line().text();
-	int col = c.columnNumber();
-	c.beginEditBlock();
-	c.clearSelection();
-	c.movePosition(1,QDocumentCursor::StartOfLine);
-	c.eraseLine();
-	c.movePosition(1,QDocumentCursor::EndOfLine);
-	c.insertText("\n"+lineText);
-	c.setColumnNumber(col);
-	c.endEditBlock();
-	currentEditorView()->editor->setCursor(c);
+	QDocumentCursor anchor(c.document(), c.anchorLineNumber(), c.anchorColumnNumber());
+	QDocumentCursor start = c.selectionStart();
+	QDocumentCursor end = c.selectionEnd();
+	if (end.lineNumber() >= c.document()->lineCount()-1) return;
+	start.movePosition(1, QDocumentCursor::StartOfLine);
+	end.movePosition(1, QDocumentCursor::EndOfLine);
+	QDocumentCursor edit(start, end);
+	edit.beginEditBlock();
+	QString text = edit.selectedText();
+	edit.removeSelectedText();
+	edit.eraseLine();
+	edit.movePosition(1, QDocumentCursor::EndOfLine);
+	edit.insertText("\n"+text);
+	edit.endEditBlock();
+	c.movePosition(1, QDocumentCursor::Down);
+	anchor.movePosition(1, QDocumentCursor::Down);
+	currentEditorView()->editor->setCursor(QDocumentCursor(anchor, c));
 }
 void Texmaker::editDuplicateLine() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
-	if (c.lineNumber() >= c.document()->lineCount()-1) return;
-	c.beginEditBlock();
-	c.clearSelection();
-	c.movePosition(1,QDocumentCursor::EndOfLine);
-	c.insertText("\n"+c.line().text());
-	c.endEditBlock();
+	QDocumentCursor start = c.selectionStart();
+	QDocumentCursor end = c.selectionEnd();
+	start.movePosition(1, QDocumentCursor::StartOfLine);
+	end.movePosition(1, QDocumentCursor::EndOfLine);
+	QDocumentCursor edit(start, end);
+	//edit.beginEditBlock();
+	QString text = edit.selectedText();
+	start.insertText(text+"\n");
+	currentEditorView()->editor->setCursor(c);
 }
 
 void Texmaker::editEraseWordCmdEnv(){
