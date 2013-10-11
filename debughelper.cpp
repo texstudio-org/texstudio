@@ -26,7 +26,12 @@
 #define CPU_IS_X86_32
 #endif
 
-#if (defined(__unix__) || defined(unix) || defined(__linux__) || defined(linux) || defined(Q_WS_MACX))
+
+#if (defined(__unix__) || defined(unix) || defined(__linux__) || defined(linux) || defined(__gnu_hurd__) || defined(__FreeBSD__) || defined(__FreeBSD_kernel__))
+#define OS_IS_LINUX_LIKE
+#endif
+
+#if (defined(OS_IS_LINUX_LIKE) || defined(Q_WS_MACX))
 #define OS_IS_UNIX_LIKE
 #endif
 
@@ -227,7 +232,7 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 	void *trace[48];
 	SimulatedCPU copystate = state;
 	int size;
-#if defined(CPU_IS_MIPS) || defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390) || defined(CPU_IS_390X)
+#if defined(CPU_IS_MIPS) || defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390_31) || defined(CPU_IS_390_64)
 	size = backtrace(trace, 48); //always use standard backtrace on exotic architectures
 #else
 	size = copystate.backtrace(trace, 48);
@@ -282,7 +287,7 @@ volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump t
 
 
 
-#ifdef linux
+#ifdef OS_IS_LINUX_LIKE
 #include "signal.h"
 #include "ucontext.h"
 #include "sys/ucontext.h"
@@ -301,7 +306,7 @@ volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump t
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[32]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[1]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[31] //not always used
-#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[34]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[34]
 #elif defined(CPU_IS_ARM)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
@@ -313,9 +318,9 @@ volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump t
 #define FRAME_FROM_UCONTEXT(context) (context)->_u._mc.sc_cfm //does not really make sense
 #elif defined(CPU_IS_MIPS)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.pc
-#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[29]
-#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[30]
-#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gpregs[31]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.sc_regs[29]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.sc_regs[30]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.sc_regs[31]
 #elif defined(CPU_IS_SPARC32)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_nPC]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_O6]
@@ -835,9 +840,9 @@ void SimulatedCPU::set_from_real(){
 	: [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
 #elif defined(CPU_IS_IA64)
 	__asm__(
-	"mov %0 = cfm\n"
-	"mov %1 = r12"
-	: "=r"(frame), "=r"(stack));
+	//"mov %0 = cfm\n"
+	"mov %0 = r12"
+	: /*"=r"(frame),*/ "=r"(stack));
 #elif defined(CPU_IS_MIPS)
 	__asm__( //otherway around in the mov than x86?
 	"move %0, $30\n"
@@ -852,9 +857,9 @@ void SimulatedCPU::set_from_real(){
 	: "=r"(frame), "=r"(stack), "=r" (returnTo));
 #elif defined(CPU_IS_SPARC32)
 	__asm__(
-	"mova %icc, %i6, %0\n"
-	"mova %icc, %o6, %1\n"
-	"mova %icc, %i7, %2\n"
+	"mov %i6, %0\n"
+	"mov %o6, %1\n"
+	"mov %i7, %2\n"
 	: "=r"(frame), "=r"(stack), "=r" (returnTo));
 #elif defined(CPU_IS_S390_31)
 	__asm__(
@@ -946,7 +951,7 @@ void SimulatedCPU::leave(){
 	frame = stack; //??
 	ret();
 }
-#elif defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390) || defined(CPU_IS_390X)
+#elif defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390_31) || defined(CPU_IS_390_64)
 //not really implemented
 //not possible on SPARC? (as register windows are protected)
 void SimulatedCPU::call(char * value){   //bl
