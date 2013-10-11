@@ -58,8 +58,8 @@ QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, cons
 	bool defaultSet = false;
 	for (int i=0; i<list.length(); i++) {
 		QString text = list[i];
-		QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
-		QAction* mAction=mMenu->addAction(icon, text, receiver, member);
+        //QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
+        QAction* mAction=mMenu->addAction(text, receiver, member);
 		max = qMax(max, fm.width(text+"        "));
 		if (text == defaultElem) {
 			combo->setDefaultAction(mAction);
