@@ -1043,12 +1043,12 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 		bool waitForCommand = latexCompiler || (!lastCommandToRun && !singleInstance) || cur.flags & RCF_WAITFORFINISHED;
 		
 		ProcessX* p = newProcessInternal(cur.command, mainFile, singleInstance);
+		REQUIRE_RET(p, false);
 		p->subCommandName = cur.parentCommand;
 		p->subCommandPrimary = expandedCommands.primaryCommand;
 		p->subCommandFlags = cur.flags;
 		connect(p, SIGNAL(finished(int)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
 
-		REQUIRE_RET(p, false);
 		
 		p->setStdoutBuffer(buffer);
 		
@@ -1065,7 +1065,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 				return false;
 			}
 		
-        if (waitForCommand) {
+	   if (waitForCommand) { //what is this? does not really make any sense (waiting is done in the block above) and breaks multiple single-instance pdf viewer calls (30 sec delay)
             p->waitForFinished();
             p->deleteLater();
         }
@@ -1090,7 +1090,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 
 void BuildManager::emitEndRunningSubCommandFromProcessX(int){
 	ProcessX *p = qobject_cast<ProcessX*>(sender());
-	REQUIRE(p);
+	REQUIRE(p); //p can be NULL (although sender() is not null) ! If multiple single instance viewers are in a command. Why? should not happen
 	emit endRunningSubCommand(p, p->subCommandPrimary, p->subCommandName, p->subCommandFlags);
 }
 
@@ -1261,6 +1261,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 				preambleFormatFile = fi.completeBaseName();
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+				REQUIRE(p);
 				addLaTeXInputPaths(p, addPaths);
 				p->setProperty("preamble", preamble_mod);
 				p->setProperty("preambleFile", preambleFormatFile);
@@ -1309,6 +1310,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 	// start conversion
 	// tex -> dvi
 	ProcessX *p1 = firstProcessOfDirectExpansion(CMD_LATEX, QFileInfo(ffn)); //no delete! goes automatically
+	REQUIRE(p1);
 	addLaTeXInputPaths(p1, addPaths);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
@@ -1318,6 +1320,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 		// dvi -> png
 		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
 		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", ffn);
+		REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
@@ -1432,6 +1435,7 @@ void BuildManager::latexPreviewCompleted(int status){
 		if (!p1) return;
 		// dvi -> png
 		ProcessX *p2 = firstProcessOfDirectExpansion(CMD_DVIPNG,p1->getFile());
+		REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
@@ -1441,6 +1445,7 @@ void BuildManager::latexPreviewCompleted(int status){
 		if (!p1) return;
 		// dvi -> ps
 		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvips/[-E]", p1->getFile());
+		REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
@@ -1455,6 +1460,7 @@ void BuildManager::dvi2psPreviewCompleted(int status){
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
 	QString filePs = parseExtendedCommandLine("?am.ps", p2->getFile()).first();
 	ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]",filePs);
+	REQUIRE(p3);
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
 	connect(p3,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
