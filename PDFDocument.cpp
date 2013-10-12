@@ -1270,14 +1270,13 @@ void PDFWidget::adjustSize()
 	QSize pageSize = (gridSizeF() * scaleFactor * dpi / 72.0).toSize();
 	if (pageSize != size()){
 		PDFScrollArea *scrollArea=getScrollArea();
+		if (!scrollArea) return;
 		qreal jumpTo=-1;
 
 		QSize p = scrollArea->viewport()->size();
 
-		if(scrollArea && scrollArea->getContinuous()){
-			if(scrollArea->verticalScrollBar()->maximum()>0){
-				jumpTo=1.0*scrollArea->verticalScrollBar()->value()/(scrollArea->verticalScrollBar()->maximum()+p.height());
-			}
+		if(scrollArea->getContinuous() && scrollArea->verticalScrollBar()->maximum()>0){
+			jumpTo=1.0*scrollArea->verticalScrollBar()->value()/(scrollArea->verticalScrollBar()->maximum()+p.height());
 		}
 		resize(pageSize);
 		if(jumpTo>=0){

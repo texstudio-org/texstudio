@@ -178,8 +178,8 @@ void TitledPanel::setHiddenPageIds(const QStringList& hiddenIds) {
 
 // TODO
 QStringList TitledPanel::hiddenPageIds() const {
-	return mHiddenPageIds;
 	qDebug() << "hidden pages not yet implemented";
+	return mHiddenPageIds;
 }
 
 void TitledPanel::setCurrentPage(const QString &id) {
