@@ -106,7 +106,7 @@ inline int PfxEntry::test_condition(const char * st)
                 pos = NULL;
                 p = nextchar(p);
                 // skip the next character
-                if (!ingroup) for (st++; (opts & aeUTF8) && (*st & 0xc0) == 0x80; st++);
+                if (!ingroup && *st) for (st++; (opts & aeUTF8) && (*st & 0xc0) == 0x80; st++);
                 if (*st == '\0' && p) return 0; // word <= condition
                 break;
             }
@@ -935,7 +935,7 @@ with bit numconds-1 representing the last char at the end of the string.
 
 Note: since entries in the conds[] are 8 bits, only 8 conditions 
 (read that only 8 character positions) can be examined at one
-end of a word (the beginning for prefixes and the end for suffixes).
+end of a word (the beginning for prefixes and the end for suffixes.
 
 So to make this clearer, lets encode the conds array values for the 
 first two affentries for the suffix D described earlier.
