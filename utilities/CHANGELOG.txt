@@ -12,6 +12,7 @@ TeXstudio 2.6.2 -> TeXstudio 2.7.0
 - improved dtx highlighting
 - added support for LilyPond book (.lytex)
 - Edit -> Line operations now also work with selections
+- updated hunspell library to 1.3.2
 - fix: input method bug
 - fix: shortcuts containing arrow keys did not work in japanese
 - bug fixes, e.g. tooltip does not disappear instantly anymore
