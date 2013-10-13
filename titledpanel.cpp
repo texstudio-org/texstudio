@@ -322,7 +322,11 @@ void TitledPanel::updateTopbar() {
 				stack->setCurrentWidget(TitledPanelPage::fromId(id)->m_widget);
 			}
 			topbar->addWidget(tbTopbarSelector);
+#ifdef Q_OS_MAC
+			topbar->layout()->itemAt(topbar->layout()->count()-1)->setAlignment(Qt::AlignVCenter);
+#else
 			topbar->layout()->itemAt(topbar->layout()->count()-1)->setAlignment(Qt::AlignBottom);
+#endif
 		}
 
 
