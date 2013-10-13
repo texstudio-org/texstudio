@@ -76,7 +76,7 @@ public:
     explicit PDFRenderManager(QObject *parent, int limitQueues=-1);
 	~PDFRenderManager();
 
-	enum Error {NoError, FileOpenFailed, PopplerError, FileLocked, FileIncomplete, FileIncompleteAbort };
+	enum Error {NoError, FileOpenFailed, PopplerError, FileLocked, FileIncomplete };
 
 	QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true,bool priority=false,Poppler::Page::Rotation rotate=Poppler::Page::Rotate0);
 	QSharedPointer<Poppler::Document> loadDocument(const QString& fileName, Error &error, bool foreceLoad=false);

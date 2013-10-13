@@ -903,3 +903,42 @@ void PDFClockDock::paintEvent(QPaintEvent * event){
 
 
 #endif
+
+
+MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(0)
+{
+	QHBoxLayout *layout = new QHBoxLayout();
+	setLayout(layout);
+	label = new QLabel("test");
+	label->setWordWrap(true);
+	layout->addWidget(label);
+	layout->setContentsMargins(2, 2, 2, 2);
+
+	setStyleSheet("background: #FFFBBF;");
+	setVisible(false);
+}
+
+/*
+ * Displays the message frame with the given text.
+ *
+ * actions: For each action, a button with the text of the action is inserted into the message panel.
+ *          The action is triggered when the button is pressed.
+ *          The button takes ownership of the action.
+ */
+void MessageFrame::showText(const QString &text, QList<QAction *> actions) {
+	label->setText(text);
+
+	foreach (QPushButton *bt, buttons)
+		delete bt;
+	buttons.clear();
+
+	foreach (QAction *act, actions) {
+		QPushButton *bt = new QPushButton(act->text());
+		act->setParent(bt);
+		bt->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+		buttons.append(bt);
+		connect(bt, SIGNAL(clicked()), act, SIGNAL(triggered()));
+		layout()->addWidget(bt);
+	}
+	show();
+}

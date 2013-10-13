@@ -57,6 +57,7 @@ class TitledPanel;
 class PDFAnnotations;
 class PDFAnnotation;
 class PDFAnnotationTableView;
+class MessageFrame;
 
 class PDFMagnifier : public QLabel
 {
@@ -401,6 +402,7 @@ private slots:
 	void enableZoomActions(qreal);
 	void adjustScaleActions(autoScaleOption);
 	void syncClick(int page, const QPointF& pos, bool activate);
+	void stopReloadTimer();
 	void reloadWhenIdle();
 	void idleReload();
 
@@ -464,6 +466,7 @@ private:
 	
 	PDFWidget	*pdfWidget;
 	PDFScrollArea	*scrollArea;
+	MessageFrame *messageFrame;
 	TitledPanel * annotationPanel;
 	PDFAnnotations * annotations;
 	PDFAnnotationTableView * annotationTable;
