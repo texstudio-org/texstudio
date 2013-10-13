@@ -43,6 +43,17 @@ class QListWidget;
 class QTableWidget;
 class QTreeWidgetItem;
 
+class MessageFrame : public QFrame
+{
+	Q_OBJECT
+public:
+	explicit MessageFrame(QWidget *parent = 0);
+	void showText(const QString &text, QList<QAction *> actions = QList<QAction *>());
+private:
+	QLabel *label;
+	QList<QPushButton *> buttons;
+};
+
 class PDFDock : public QDockWidget
 {
 	Q_OBJECT

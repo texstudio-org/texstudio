@@ -2192,11 +2192,22 @@ void PDFDocument::init(bool embedded)
 
 	QSplitter * vSplitter = new QSplitter(Qt::Vertical);
 
+	// TODO: Make Frame around Label and Scroll area
 	scrollArea = new PDFScrollArea;
 	scrollArea->setBackgroundRole(QPalette::Dark);
 	//scrollArea->setAlignment(Qt::AlignCenter);
 	scrollArea->setPDFWidget(pdfWidget);
-	vSplitter->addWidget(scrollArea);
+
+	QWidget *container = new QWidget;
+	QVBoxLayout *layout = new QVBoxLayout;
+	container->setLayout(layout);
+	messageFrame = new MessageFrame;
+	layout->addWidget(messageFrame);
+	layout->addWidget(scrollArea);
+	layout->setContentsMargins(0, 0, 0, 0);
+	layout->setSpacing(0);
+
+	vSplitter->addWidget(container);
 
 	annotationPanel = new TitledPanel();
 	annotationPanel->toggleViewAction()->setText(tr("Annotations"));
@@ -2489,6 +2500,15 @@ void PDFDocument::fillRenderCache(int pg){
 
 void PDFDocument::reload(bool fillCache)
 {
+	if (reloadTimer) reloadTimer->stop();
+	messageFrame->hide();
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		QVariant fc = act->property("fillCache");
+		if (fc.isValid())
+			fillCache = fc.toBool();
+	}
+
 	static bool isReloading = false;
 	if (isReloading) return;
 	isReloading = true;
@@ -2512,25 +2532,15 @@ void PDFDocument::reload(bool fillCache)
 	QDateTime lastModified=fi.lastModified();
 	qint64 filesize=fi.size();
 	document = renderManager->loadDocument(curFile, error);
-	while( error==PDFRenderManager::FileIncomplete
-				 && curFileSize==filesize
-				 && curFileLastModified==lastModified){
-		QMessageBox::StandardButton button=
-				isMaybeCompiling ?
-					QMessageBox::No
-				: txsConfirmWarning(
-						tr("%1\ndoes not look like a valid PDF document.\n\nEither the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?").arg(curFile),
-						(QMessageBox::Yes|QMessageBox::No|QMessageBox::Retry));
-		switch (button) {
-			case QMessageBox::Retry:
-				document = renderManager->loadDocument(curFile, error);
-				break;
-			case QMessageBox::Yes:
-				document = renderManager->loadDocument(curFile, error,true);
-				break;
-			default:
-				error=PDFRenderManager::FileIncompleteAbort;
-		}
+	if (error==PDFRenderManager::FileIncomplete) {
+		QAction *retryAction = new QAction(tr("Retry"), this);
+		retryAction->setProperty("fillCache", fillCache);
+		connect(retryAction, SIGNAL(triggered()), this, SLOT(reload()));
+		QAction *closeAction = new QAction(tr("Close"), this);
+		connect(closeAction, SIGNAL(triggered()), this, SLOT(stopReloadTimer()));
+		connect(closeAction, SIGNAL(triggered()), messageFrame, SLOT(hide()));
+		messageFrame->showText(tr("%1\ndoes not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.").arg(curFile),
+							   QList<QAction *>() << retryAction << closeAction);
 	}
 
 	curFileSize=filesize; // store size and modification time to check whether reloaded file has been changed meanwhile
@@ -2542,8 +2552,7 @@ void PDFDocument::reload(bool fillCache)
 		case PDFRenderManager::FileOpenFailed:      statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
 		case PDFRenderManager::PopplerError:        statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
 		case PDFRenderManager::FileLocked:          statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
-		case PDFRenderManager::FileIncomplete:      statusBar()->showMessage(tr("PDF file \"%1\" is incomplete. Trying again in 2 seconds.").arg(curFile)); break;
-		case PDFRenderManager::FileIncompleteAbort: statusBar()->showMessage(tr("PDF file \"%1\" is incomplete.").arg(curFile)); break;
+		case PDFRenderManager::FileIncomplete:      break; // message is handled via messageFrame
 		}
 		delete renderManager;
 		renderManager = 0;
@@ -2551,8 +2560,6 @@ void PDFDocument::reload(bool fillCache)
 		if(error==PDFRenderManager::FileIncomplete)
 			reloadWhenIdle();
 	} else {
-		if (reloadTimer) reloadTimer->stop();
-							
 		pdfWidget->setDocument(document);
 		pdfWidget->show();
 
@@ -2584,6 +2591,11 @@ void PDFDocument::reload(bool fillCache)
 
 	QApplication::restoreOverrideCursor();
 	isReloading = false;
+}
+
+void PDFDocument::stopReloadTimer() {
+	if (reloadTimer)
+		reloadTimer->stop();
 }
 
 void PDFDocument::reloadWhenIdle()
