@@ -1,0 +1,237 @@
+<TexMakerXUI>
+<menu id="main/latex" text="&amp;Latex">
+  <insert id="documentclass" text="\documentclass" insert="\documentclass[%&lt;options%|%>]{%&lt;class%>}"/>
+  <insert id="usepackage" text="\usepackage{}" insert="\usepackage[%&lt;options%>]{%&lt;package%|%>}"/>
+  <insert id="amspackages" text="AMS packages" insert="\usepackage{amsmath}%n\usepackage{amsfonts}%n\usepackage{amssymb}" info="The main American Mathematical Society packages"/>
+  <insert id="document" text="\begin{document}" insert="\begin{document}%n%|%n\end{document}" info="Text is allowed only between \begin{document} and \end{document}."/>
+  <insert id="author" text="\author{}" insert="\author{%&lt;names%|%>}" info="The \author command declares the author(s), where names is a list of authors separated by \and commands."/>
+  <insert id="title" text="\title{}" insert="\title{%&lt;title%|%>}" info="The \title command declares text to be the title."/>
+  <insert id="maketitle" text="\maketitle" insert="\maketitle" info="This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page."/>
+  <insert id="tableofcontents" text="\tableofcontents" insert="\tableofcontents" info="Put this command where you want the table of contents to go"/>
+  
+  
+  <menu id="sectioning" text="&amp;Sectioning">
+    <insert id="part" text="part" insert="\part{%&lt;title%>}" icon="part"/>
+    <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}" icon="chapter"/>
+    <insert id="section" text="section" insert="\section{%&lt;title%>}" icon="section"/>
+    <insert id="subsection" text="subsection" insert="\subsection{%&lt;title%>}" icon="subsection"/>
+    <insert id="subsubsection" text="subsubsection" insert="\subsubsection{%&lt;title%>}" icon="subsubsection"/>
+    <insert id="paragraph" text="paragraph" insert="\paragraph{%&lt;title%>}"/>
+    <insert id="subparagraph" text="subparagraph" insert="\subparagraph{%&lt;title%>}"/>
+
+    <insert id="part*" text="part*" insert="\part*{%&lt;title%>}"/>
+    <insert id="chapter*" text="chapter*" insert="\chapter*{%&lt;title%>}"/>
+    <insert id="section*" text="section*" insert="\section*{%&lt;title%>}"/>
+    <insert id="subsection*" text="subsection*" insert="\subsection*{%&lt;title%>}"/>
+    <insert id="subsubsection*" text="subsubsection*" insert="\subsubsection*{%&lt;title%>}"/>
+    <insert id="paragraph*" text="paragraph*" insert="\paragraph*{%&lt;title%>}"/>
+    <insert id="subparagraph*" text="subparagraph*" insert="\subparagraph*{%&lt;title%>}"/>
+  </menu>
+
+  <menu id="environment" text="&amp;Environments">
+    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%n%&lt;content%>%n\end{environment-name}" shortcut="Ctrl+E"/>
+    <insert id="center" text="\begin{center}" insert="\begin{center}%n%|%n\end{center}" icon="format-justify-center"/>
+    <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="format-justify-left"/>
+    <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%n%|%n\end{flushright}" icon="format-justify-right"/>
+    <insert id="quote" text="\begin{quote}" insert="\begin{quote}%n%|%n\end{quote}"/>
+    <insert id="quotation" text="\begin{quotation}" insert="\begin{quotation}%n%|%n\end{quotation}"/>
+    <insert id="verse" text="\begin{verse}" insert="\begin{verse}%n%|%n\end{verse}"/>
+    <insert id="verbatim" text="\begin{verbatim}" insert="\begin{verbatim}%n%|%n\end{verbatim}"/>
+    <insert id="table" text="\begin{table}" insert="\begin{table}%n%|%n\caption{}%n\end{table}"/>
+    <insert id="figure" text="\begin{figure}" insert="\begin{figure}%n%|%n\caption{}%n\end{figure}"/>
+    <insert id="titlepage" text="\begin{titlepage}" insert="\begin{titlepage}%n%|%n\end{titlepage}"/>
+  </menu>
+
+  <menu id="listenvironment" text="&amp;List Environments">
+    <insert id="itemize" text="\begin{itemize}" insert="\begin{itemize}%n\item %|%n\end{itemize}" info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon="itemize"/>
+    <insert id="enumerate" text="\begin{enumerate}" insert="\begin{enumerate}%n\item %|%n\end{enumerate}" info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon="enumerate"/>
+    <insert id="description" text="\begin{description}" insert="\begin{description}%n\item[%&lt;label%>] %|%n\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
+    <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%n\item %|%n\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
+    <insert id="item" text="\item" insert="\item " info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
+  </menu>
+  
+
+  <menu id="fontstyles" text="Font St&amp;yles">
+    <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" icon="font_emph48" shortcut="Ctrl+Shift+E"/>
+    <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="font_textit48" shortcut="Ctrl+I"/>
+    <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" icon="font_textsl48" shortcut="Ctrl+Shift+S"/>
+    <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="font_textbf48" shortcut="Ctrl+B"/>
+    <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" icon="font_texttt48" shortcut="Ctrl+Shift+T"/>
+    <insert id="textsc" text="Small Caps - \textsc" insert="\textsc{%|}" icon="font_textsc48" shortcut="Ctrl+Shift+C"/>
+    <insert id="textsf" text="Sans Serif - \textsf" insert="\textsf{%|}" icon="font_textsf48" shortcut="Ctrl+Shift+A"/>
+    <insert id="underline" text="Underline - \underline" insert="\underline{%|}" icon="font_underline48"/>
+  </menu>
+
+  <menu id="fontsizes" text="Font Sizes">
+    <insert id="tiny" text="tiny" insert="{\tiny %|}"/>
+    <insert id="scriptsize" text="scriptsize" insert="{\scriptsize %|}"/>
+    <insert id="footnotesize" text="footnotesize" insert="{\footnotesize %|}"/>
+    <insert id="small" text="small" insert="{\small %|}"/>
+    <insert id="normalsize" text="normalsize" insert="{\normalsize %|}"/>
+    <insert id="large" text="large" insert="{\large %|}"/>
+    <insert id="Large" text="Large" insert="{\Large %|}"/>
+    <insert id="LARGE" text="LARGE" insert="{\LARGE %|}"/>
+    <insert id="huge" text="huge" insert="{\huge %|}"/>
+    <insert id="Huge" text="Huge" insert="{\Huge %|}"/>
+  </menu>
+
+  
+  <menu id="tabular" text="&amp;Tabular Environment">
+    <insert id="tabbing" text="\begin{tabbing}" insert="\begin{tabbing}%n%|%n\end{tabbing}" info="\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \>  \> more \\%n\end{tabbing}"/>
+    <insert id="tabular" text="\begin{tabular}" insert="\begin{tabular}{%&lt;columns%>}%n%|%n\end{tabular}" info="\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}"/>
+    <insert id="multicolumn" text="\multicolumn" insert="\multicolumn{%&lt;columns%|%>}{%&lt;position%>}{%&lt;text%>}" info="\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry."/>
+    <insert id="hline" text="\hline" insert="\hline" info="The \hline command draws a horizontal line the width of the table."/>
+    <insert id="vline" text="\vline" insert="\vline" info="The \vline command draws a vertical line extending the full height and depth of its row."/>
+    <insert id="cline" text="\cline" insert="\cline{%&lt;from%|%>-%&lt;to%>}" info=""/>
+  </menu>
+
+  <menu id="spacing" text="&amp;Vertical Spacing">
+    <insert id="newpage" text="\newpage" insert="\newpage" info="The \newpage command ends the current page"/>
+    <insert id="linebreak" text="\linebreak" insert="\linebreak" info="The \linebreak command tells LaTeX to break the current line at the point of the command."/>
+    <insert id="pagebreak" text="\pagebreak" insert="\pagebreak" info="The \pagebreak command tells LaTeX to break the current page at the point of the command."/>
+    <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
+    <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
+    <insert id="smallskip" text="\smallskip" insert="\smallskip" info="The \smallskip command adds a 'small' vertical space."/>
+    <insert id="newline" text="New line - \\" insert="\\%n" info="The \newline command breaks the line right where it is." icon="newline" shortcut="Ctrl+Return"/>
+  </menu>
+  
+  <menu id="accents" text="International &amp;Accents">
+    <insert id="1" text="\'{}" insert="\'{}" icon="accent1"/>
+    <insert id="2" text="\`{}" insert="\`{}" icon="accent2"/>
+    <insert id="3" text="\^{}" insert="\^{}" icon="accent3"/>
+    <insert id="4" text="\&quot;{}" insert="\&quot;{}" icon="accent4"/>
+    <insert id="5" text="\~{}" insert="\~{}" icon="accent5"/>
+    <insert id="6" text="\={}" insert="\={}" icon="accent6"/>
+    <insert id="7" text="\.{}" insert="\.{}" icon="accent7"/>
+    <insert id="8" text="\v{}" insert="\v{}" icon="accent8"/>
+    <insert id="9" text="\u{}" insert="\u{}" icon="accent9"/>
+    <insert id="10" text="\H{}" insert="\H{}" icon="accent10"/>
+  </menu>
+
+  <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.jpg *.png);;All files (*.*)%)}"/>
+  <insert id="include" text="\include{file}" insert="%SCRIPT&#10;
+  fnOld=editor.fileName();
+  fnMaster=documentManager.getTemporaryCompileFileName();
+  fileChooser.setDir(fnOld);
+  fileChooser.setFilter(&quot;(TeX files (*.tex);;All files (*.*)&quot;);
+  fileChooser.exec();
+  fn=fileChooser.fileName();
+  fnAbs=documentManager.getAbsoluteFilePath(fn,fnOld,&quot;&quot;)
+  fe=fileExists(fnAbs);
+  fnRel=app.getRelativeFileName(fnAbs,fnOld);
+  txt=cursor.selectedText();
+  cursor.removeSelectedText();
+  cursor.insertText(&quot;\\include{&quot;+fnRel+&quot;}&quot;);
+  if(!fe){
+	app.fileNew();
+	newEditor = documentManager.currentDocument.editorView.editor;
+	fnMaster=app.getRelativeFileName(fnMaster,fnAbs);
+	preamble=&quot;% !TeX root=&quot;+fnMaster+&quot;\n&quot;
+	newEditor.write(preamble)
+	newEditor.write(txt);
+	newEditor.save(fnAbs);
+  }"/>
+  <insert id="input" text="\input{file}" insert="\input{%(TeX files (*.tex);;All files (*.*)%)}"/>
+
+  <separator/>
+
+  <menu id="references" text="Cross References">
+    <insert id="label" text="label" insert="\label{%&lt;key%>}" info="\label{key}"/>
+    <action id="ref" text="ref" slot="1InsertRef()"/> 
+    <action id="eqref" text="eqref" slot="1InsertEqRef()"/> 
+    <action id="pageref" text="pageref" slot="1InsertPageRef()"/> 
+    <insert id="index" text="index" insert="\index{%&lt;key%>}"/>
+    <insert id="cite" text="cite" insert="\cite{%&lt;key%>}"  info="This command generates an in-text citation to the reference associated with the ref entry in the bib file"/>
+    <insert id="footnote" text="footnote" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
+  </menu>
+  
+  <insert id="bibliographystyle" text="\bibliographystyle{}" insert="\bibliographystyle{%|}" info="The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look"/>
+  
+  <action id="bibliography" text="\bibliography{}" slot="1InsertBib()"/> 
+</menu>
+
+<menu id="main/math" text="&amp;Math">
+  
+  <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
+  <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
+  <insert id="equation" text="Numbered equation \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
+  <insert id="align" text="\begin{align}" insert="\begin{align}%n%|%n\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
+  <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
+  <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
+  <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript" shortcut="Ctrl+Shift+U"/>  
+  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
+  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="dfrac" shortcut="Ctrl+Shift+F"/>  
+  <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
+  <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
+  <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
+  <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%n%&lt;content%|%>%n\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
+
+  <menu id="functions" text="Math &amp;Functions">
+    <insert id="arccos" text="\arccos" insert="\arccos "/>
+    <insert id="arcsin" text="\arcsin" insert="\arcsin "/>
+    <insert id="arctan" text="\arctan" insert="\arctan "/>
+    <insert id="cos" text="\cos" insert="\cos "/>
+    <insert id="cosh" text="\cosh" insert="\cosh "/>
+    <insert id="cot" text="\cot" insert="\cot "/>
+    <insert id="coth" text="\coth" insert="\coth "/>
+    <insert id="csc" text="\csc" insert="\csc "/>
+    <insert id="deg" text="\deg" insert="\deg "/>
+    <insert id="det" text="\det" insert="\det "/>
+    <insert id="dim" text="\dim" insert="\dim "/>
+    <insert id="exp" text="\exp" insert="\exp "/>
+    <insert id="gcd" text="\gcd" insert="\gcd "/>
+    <insert id="hom" text="\hom" insert="\hom "/>
+    <insert id="inf" text="\inf" insert="\inf "/>
+    <insert id="ker" text="\ker" insert="\ker "/>
+    <insert id="lg" text="\lg" insert="\lg "/>
+    <insert id="lim" text="\lim" insert="\lim "/>
+    <insert id="liminf" text="\liminf" insert="\liminf "/>
+    <insert id="limsup" text="\limsup" insert="\limsup "/>
+    <insert id="ln" text="\ln" insert="\ln "/>
+    <insert id="log" text="\log" insert="\log "/>
+    <insert id="max" text="\max" insert="\max "/>
+    <insert id="min" text="\min" insert="\min "/>
+    <insert id="sec" text="\sec" insert="\sec "/>
+    <insert id="sin" text="\sin" insert="\sin "/>
+    <insert id="sinh" text="\sinh" insert="\sinh "/>
+    <insert id="sup" text="\sup" insert="\sup "/>
+    <insert id="tan" text="\tan" insert="\tan "/>
+    <insert id="tanh" text="\tanh" insert="\tanh "/>
+  </menu>
+
+  <menu id="fontstyles" text="Math Font St&amp;yles">
+    <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon="font_mathrm"/>
+    <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon="font_mathit"/>
+    <insert id="mathbf" text="Bold - \mathbf{}" insert="\mathbf{%|}" icon="font_mathbf"/>
+    <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon="font_mathsf"/>
+    <insert id="mathtt" text="Typewriter - \mathtt{}" insert="\mathtt{%|}" icon="font_mathtt"/>
+    <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon="font_mathcal"/>
+    <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon="font_mathbb"/>
+    <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon="font_mathfrak"/>
+  </menu>
+
+  <menu id="fontaccent" text="Math &amp;Accents">
+    <insert id="acute" text="\acute{}" insert="\acute{%|}" icon="acute"/>
+    <insert id="grave" text="\grave{}" insert="\grave{%|}" icon="grave"/>
+    <insert id="tilde" text="\tilde{}" insert="\tilde{%|}" icon="tilde"/>
+
+    <insert id="bar" text="\bar{}" insert="\bar{%|}" icon="bar"/>
+    <insert id="vec" text="\vec{}" insert="\vec{%|}" icon="vec"/>
+    <insert id="hat" text="\hat{}" insert="\hat{%|}" icon="hat"/>
+    <insert id="check" text="\check{}" insert="\check{%|}" icon="check"/>
+    <insert id="breve" text="\breve{}" insert="\breve{%|}" icon="breve"/>
+    <insert id="dot" text="\dot{}" insert="\dot{%|}" icon="dot"/>
+    <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon="ddot"/>
+  </menu>
+  
+  <menu id="fontspaces" text="Math S&amp;paces">
+    <insert id="negative" text="Negative - \!" insert="\!" info="Negative thin space"/>
+    <insert id="small" text="Thin - \," insert="\," info="3/18 of a \quad"/>
+    <insert id="medium" text="Medium - \:" insert="\:" info="4/18 of a \quad"/>
+    <insert id="large" text="Thick - \;" insert="\;" info="5/18 of a \quad"/>
+	<insert id="interword" text="Interword - \ " insert="\ " info="regular whitespace"/>
+	<insert id="quad" text="One quad - \quad" insert="\quad " info="A \quad is a horizontal space with a size equal to the font size."/>
+    <insert id="qquad" text="Two quads - \qquad" insert="\qquad" info="Twice the size of a \quad"/>
+  </menu>
+</menu>
+</TexMakerXUI>
