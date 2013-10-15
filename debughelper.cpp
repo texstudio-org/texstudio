@@ -376,9 +376,9 @@ geteip:
 	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
 	if (!dbghelp) return 0;
 
-	LOAD_FUNCTIONREQ(StackWalk64, "StackWalk64");
-	LOAD_FUNCTIONREQ(SymGetModuleBase64, "SymGetModuleBase64");
-	LOAD_FUNCTIONREQ(SymFunctionTableAccess64, "SymFunctionTableAccess64");
+	LOAD_FUNCTIONREQRET(StackWalk64, "StackWalk64", 0);
+	LOAD_FUNCTIONREQRET(SymGetModuleBase64, "SymGetModuleBase64", 0);
+	LOAD_FUNCTIONREQRET(SymFunctionTableAccess64, "SymFunctionTableAccess64", 0);
 
 	//get stackframes
 	QList<DWORD64> stackFrames;
