@@ -2,6 +2,7 @@
 #define PDFANNOTATION_H
 #ifndef NO_POPPLER_PREVIEW
 #include "poppler-annotation.h"
+#include <QTableView>
 
 class PDFDocument;
 class QTableView;
