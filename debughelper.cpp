@@ -103,15 +103,131 @@ struct SimulatedCPU {
 #undef RETURNTO_FROM_UCONTEXT
 #endif
 
+
+//===========================CRASH HANDLER HEADER==============================
+
+#ifdef OS_IS_UNIX_LIKE
+#include "unistd.h"
+#include "sys/wait.h"
+#define SAFE_INT volatile sig_atomic_t
+#else
+#define SAFE_INT int
+#endif
+
+SAFE_INT crashHandlerType = 1;
+SAFE_INT lastErrorWasAssert = 0;
+SAFE_INT lastErrorWasLoop = 0;
+volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
+
+#define CRASH_HANDLER_RECOVER 1
+#define CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER 2
+#define CRASH_HANDLER_LOOP_GUARDIAN_DISABLED 4
+#define CRASH_HANDLER_USE_NATIVE_BACKTRACE 8
+
+
 //===========================STACK TRACE PRINTING=========================
 
 #ifdef Q_WS_WIN
 #include <QSysInfo>
 #include "windows.h"
+#include <QMutex>
 
 //from wine
 //dbghelp.h
 typedef BOOL WINAPI (*SymInitializeFunc)(HANDLE, PCSTR, BOOL);
+
+typedef PVOID WINAPI (*SymFunctionTableAccess64Func)(HANDLE, DWORD64);
+typedef DWORD64 WINAPI (*SymGetModuleBase64Func)(HANDLE, DWORD64);
+typedef enum
+{
+	AddrMode1616,
+	AddrMode1632,
+	AddrModeReal,
+	AddrModeFlat
+} ADDRESS_MODE;
+//
+// New KDHELP structure for 64 bit system support.
+// This structure is preferred in new code.
+//
+typedef struct _KDHELP64 {
+
+	//
+	// address of kernel thread object, as provided in the
+	// WAIT_STATE_CHANGE packet.
+	//
+	DWORD64   Thread;
+
+	//
+	// offset in thread object to pointer to the current callback frame
+	// in kernel stack.
+	//
+	DWORD   ThCallbackStack;
+
+	//
+	// offset in thread object to pointer to the current callback backing
+	// store frame in kernel stack.
+	//
+	DWORD   ThCallbackBStore;
+
+	//
+	// offsets to values in frame:
+	//
+	// address of next callback frame
+	DWORD   NextCallback;
+
+	// address of saved frame pointer (if applicable)
+	DWORD   FramePointer;
+
+
+	//
+	// Address of the kernel function that calls out to user mode
+	//
+	DWORD64   KiCallUserMode;
+
+	//
+	// Address of the user mode dispatcher function
+	//
+	DWORD64   KeUserCallbackDispatcher;
+
+	//
+	// Lowest kernel mode address
+	//
+	DWORD64   SystemRangeStart;
+
+	DWORD64  Reserved[8];
+
+} KDHELP64, *PKDHELP64;
+
+typedef struct _tagADDRESS64 {
+	DWORD64       Offset;
+	WORD          Segment;
+	ADDRESS_MODE  Mode;
+} ADDRESS64, *LPADDRESS64;
+
+typedef struct _STACKFRAME64
+{
+	ADDRESS64   AddrPC;
+	ADDRESS64   AddrReturn;
+	ADDRESS64   AddrFrame;
+	ADDRESS64   AddrStack;
+	ADDRESS64   AddrBStore;
+	PVOID       FuncTableEntry;
+	DWORD64     Params[4];
+	BOOL        Far;
+	BOOL        Virtual;
+	DWORD64     Reserved[3];
+	KDHELP64    KdHelp;
+} STACKFRAME64, *LPSTACKFRAME64;
+
+typedef BOOL (CALLBACK *PREAD_PROCESS_MEMORY_ROUTINE64)(HANDLE, DWORD64, PVOID, DWORD, PDWORD);
+typedef PVOID (CALLBACK *PFUNCTION_TABLE_ACCESS_ROUTINE64)(HANDLE, DWORD64);
+typedef DWORD64 (CALLBACK *PGET_MODULE_BASE_ROUTINE64)(HANDLE, DWORD64);
+typedef DWORD64 (CALLBACK *PTRANSLATE_ADDRESS_ROUTINE64)(HANDLE, HANDLE, LPADDRESS64);
+typedef BOOL WINAPI (*StackWalk64Func)(DWORD, HANDLE, HANDLE, LPSTACKFRAME64, PVOID,
+                                       PREAD_PROCESS_MEMORY_ROUTINE64,
+                                       PFUNCTION_TABLE_ACCESS_ROUTINE64,
+                                       PGET_MODULE_BASE_ROUTINE64,
+                                       PTRANSLATE_ADDRESS_ROUTINE64);
 
 typedef struct _IMAGEHLP_SYMBOL64
 {
@@ -198,6 +314,85 @@ QStringList backtrace_symbols_win(void** addr, int size){
 	return res;
 }
 
+QMutex backtraceMutex;
+
+//from http://jpassing.com/2008/03/12/walking-the-stack-of-the-current-thread/
+//     http://www.codeproject.com/Articles/11132/Walking-the-callstack
+//alternative: __builtin_return_address, but it is said to not work so well
+int backtrace(void ** trace, int size){
+	if (!backtraceMutex.tryLock()) return 0;
+
+	//init crap
+	HANDLE process =  GetCurrentProcess();
+	HANDLE thread = GetCurrentThread();
+
+	if (!initDebugHelp()) return 0; //do not unlock, no need to try it again, if the initialization fails
+
+	CONTEXT context;
+	ZeroMemory( &context, sizeof( CONTEXT ) );
+	STACKFRAME64 stackFrame;
+#if (defined(x86_64) || defined(__x86_64__))
+	RtlCaptureContext( &context );
+#else
+	// Those three registers are enough.
+geteip:
+	context.Eip = (DWORD)&&geteip;
+	__asm__(
+	"mov %%ebp, %0\n"
+	"mov %%esp, %1"
+	: "=r"(context.Ebp), "=r"(context.Esp));
+#endif
+	ZeroMemory( &stackFrame, sizeof( stackFrame ) );
+#ifdef CPU_IS_64
+	DWORD machineType           = IMAGE_FILE_MACHINE_AMD64;
+	stackFrame.AddrPC.Offset    = context.Rip;
+	stackFrame.AddrPC.Mode      = AddrModeFlat;
+	stackFrame.AddrFrame.Offset = context.Rbp;//changed from rsp. correctly?
+	stackFrame.AddrFrame.Mode   = AddrModeFlat;
+	stackFrame.AddrStack.Offset = context.Rsp;
+	stackFrame.AddrStack.Mode   = AddrModeFlat;
+#else
+	DWORD machineType           = IMAGE_FILE_MACHINE_I386;
+	stackFrame.AddrPC.Offset    = context.Eip;
+	stackFrame.AddrPC.Mode      = AddrModeFlat;
+	stackFrame.AddrFrame.Offset = context.Ebp;
+	stackFrame.AddrFrame.Mode   = AddrModeFlat;
+	stackFrame.AddrStack.Offset = context.Esp;
+	stackFrame.AddrStack.Mode   = AddrModeFlat;
+	/* #elif _M_IA64
+    MachineType                 = IMAGE_FILE_MACHINE_IA64;
+    StackFrame.AddrPC.Offset    = Context.StIIP;
+    StackFrame.AddrPC.Mode      = AddrModeFlat;
+    StackFrame.AddrFrame.Offset = Context.IntSp;
+    StackFrame.AddrFrame.Mode   = AddrModeFlat;
+    StackFrame.AddrBStore.Offset= Context.RsBSP;
+    StackFrame.AddrBStore.Mode  = AddrModeFlat;
+    StackFrame.AddrStack.Offset = Context.IntSp;
+    StackFrame.AddrStack.Mode   = AddrModeFlat;
+  #else
+    #error "Unsupported platform"*/
+#endif
+
+	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
+	if (!dbghelp) return 0;
+
+	LOAD_FUNCTIONREQ(StackWalk64, "StackWalk64");
+	LOAD_FUNCTIONREQ(SymGetModuleBase64, "SymGetModuleBase64");
+	LOAD_FUNCTIONREQ(SymFunctionTableAccess64, "SymFunctionTableAccess64");
+
+	//get stackframes
+	QList<DWORD64> stackFrames;
+	int idx = 0;
+	while (idx < size && (*StackWalk64)(machineType, process, thread, &stackFrame, &context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0)) {
+		trace[idx] = reinterpret_cast<void*>(stackFrame.AddrPC.Offset);
+		idx++;
+	}
+
+	backtraceMutex.unlock();
+
+	return idx;
+}
+
 QString temporaryFileNameFormat(){
 	return QDir::tempPath() + QString("/texstudio_backtrace%1.txt");
 }
@@ -232,11 +427,14 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 	void *trace[48];
 	SimulatedCPU copystate = state;
 	int size;
+
 #if defined(CPU_IS_MIPS) || defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390_31) || defined(CPU_IS_390_64)
-	size = backtrace(trace, 48); //always use standard backtrace on exotic architectures
+	bool useNativeBacktrace = true //always use standard backtrace on exotic architectures
 #else
-	size = copystate.backtrace(trace, 48);
+	bool useNativeBacktrace = (crashHandlerType & CRASH_HANDLER_USE_NATIVE_BACKTRACE);
 #endif
+	if (useNativeBacktrace) size = backtrace(trace, 48);
+	else size = copystate.backtrace(trace, 48);
 
 #ifdef Q_WS_WIN
 	QStringList additionalMessages = backtrace_symbols_win(trace, size);
@@ -261,26 +459,6 @@ void print_backtrace(const QString& message){
 }
 
 
-//===========================CRASH HANDLER==============================
-
-
-
-#ifdef OS_IS_UNIX_LIKE
-#include "unistd.h"
-#include "sys/wait.h"
-#define SAFE_INT volatile sig_atomic_t
-#else
-#define SAFE_INT int
-#endif
-
-SAFE_INT crashHandlerType = 1;
-SAFE_INT lastErrorWasAssert = 0;
-SAFE_INT lastErrorWasLoop = 0;
-volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
-
-#define CRASH_HANDLER_RECOVER 1
-#define CRASH_HANDLER_PRINT_BACKTRACE 2
-#define CRASH_HANDLER_LOOP_GUARDIAN_DISABLED 4
 
 
 //=========================POSIX SIGNAL HANDLER===========================
@@ -426,7 +604,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
 		if (type == SIGSEGV && ptrdistance(addr, minstack) < 1024) type = SIGMYSTACKSEGV;
 	}
-	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE || !ccontext) {
+	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER || !ccontext) {
 		print_backtrace(signalIdToName(type));
 		if (!ccontext) return;
 	}
@@ -613,7 +791,7 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 	lastErrorWasAssert = 0;
 	lastErrorWasLoop = 0;
 
-	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE){
+	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER){
 		print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode));
 	}
 
