@@ -4320,7 +4320,7 @@ void Texmaker::QuickDocument() {
 	startDlg->Init();
 	if (startDlg->exec()) {
 		Q_ASSERT(currentEditor());
-		currentEditor()->insertText(startDlg->getNewDocumentText());
+		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
 		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()){
 			currentEditor()->document()->setCodec(codec);
