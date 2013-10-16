@@ -125,7 +125,7 @@ QString QuickDocumentDialog::getNewDocumentText(){
 	if (ui.lineEditTitle->text()!="")
 		tag+="\\title{"+ui.lineEditTitle->text()+"}\n";
 
-	tag+=QString("\\begin{document}\n\n\\end{document}");
+	tag+=QString("\\begin{document}\n%|\n\\end{document}");
 	return tag;
 }
 
