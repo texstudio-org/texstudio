@@ -1136,6 +1136,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 void PDFWidget::setTool(int tool)
 {
 	currentTool = tool;
+	globalConfig->editTool = tool;
 	updateCursor();
 }
 
@@ -2092,7 +2093,10 @@ void PDFDocument::init(bool embedded)
 	//	toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Text)), kSelectText);
 	//	toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Image)), kSelectImage);
 	connect(toolButtonGroup, SIGNAL(buttonClicked(int)), pdfWidget, SLOT(setTool(int)));
-	pdfWidget->setTool(kMagnifier);
+	conf->registerOption("Preview/EditTool", &globalConfig->editTool, kMagnifier);
+	QAbstractButton *bt = toolButtonGroup->button(globalConfig->editTool);
+	if (bt) bt->setChecked(true);
+	pdfWidget->setTool(globalConfig->editTool);
 
 	comboZoom=0;
 

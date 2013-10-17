@@ -24,6 +24,7 @@ struct PDFDocumentConfig{
 
 
 //live options
+	int editTool;
 	bool continuous,singlepagestep;
 	bool followFromCursor, followFromScroll, syncViews;
 	bool invertColors;
