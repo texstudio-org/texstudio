@@ -251,6 +251,9 @@ public:
 	
 	bool isRunning() const;
 signals:
+#if (QT_VERSION >= 0x050000)
+    void started();
+#endif
 	void processNotification(const QString& message);
 	void standardOutputRead(const QString& data);
 	void standardErrorRead(const QString& data);
