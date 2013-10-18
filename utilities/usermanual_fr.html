@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>TexMakerX : user manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css"><!--
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+<h1 align=center><A NAME="top">Tutoriel TexMakerX</a></h1>
+<div style="border: 1px solid red"> Attention: Parties de ce document elles obsolète. Confe aussi le <a href="usermanual_en.html"><em>English translation</em></a>.</div>
+<h2><a name="sommaire"> </a> Sommaire:</h2>
+<ul>
+<li><a href="#SECTION0">1. Configurer TexMakerX</a></li>
+	<ul>
+	<li><a href="#SECTION01">1.1 Configurer l'éditeur</a></li>
+	<li><a href="#SECTION02">1.2 Configurer les commandes associées à LaTeX</a></li>
+	<li><a href="#SECTION03">1.3 Configurer la vérification orthographique</a></li>
+	</ul>
+</ul>
+<ul>
+<li><a href="#SECTION1">2. Rédaction d'un document avec l'éditeur</a></li>
+	<ul>
+	<li><a href="#SECTION11">2.1 Commandes usuelles</a></li>
+	<li><a href="#SECTION12">2.2 Préambule du document</a></li>
+	<li><a href="#SECTION13">2.3 Structuration du document</a></li>
+	<li><a href="#SECTION14">2.4 Navigation à l'intérieur d'un document</a></li>
+	<li><a href="#SECTION15">2.5 Mise en forme du texte avec <b>TexMakerX</b></a></li>
+	<li><a href="#SECTION16">2.6 Espacement - Sauts de ligne</a></li>
+	<li><a href="#SECTION17">2.7 Insertion d'une liste</a></li>
+	<li><a href="#SECTION18">2.8 Insertion d'un tableau</a></li>
+	<li><a href="#SECTION19">2.9 Tabulation</a></li>
+	<li><a href="#SECTION110">2.10 Insertion d'images</a></li>
+	<li><a href="#SECTION111">2.11 Références croisées et notes</a></li>
+	<li><a href="#SECTION112">2.12 Insertion de formules mathématiques</a></li>
+	</ul>
+</ul>
+<ul>
+<li><a href="#SECTION2">3. Compiler son document</a></li>
+	<ul>
+	<li><a href="#SECTION22">3.1 Compiler son document</a></li>
+	<li><a href="#SECTION23">3.2 Les fichiers log</a></li>
+	</ul>
+</ul>
+<ul>
+<li><a href="#SECTION3">4. Autres caractéristiques de <b>TexMakerX</b></a></li>
+	<ul>
+	<li><a href="#SECTION31">4.1 Documents scindés en plusieurs fichiers</a></li>
+	<li><a href="#SECTION32">4.2 Bibliographie</a></li>
+	<li><a href="#SECTION33">4.3 Balises et commandes personnelles</a></li>
+	<li><a href="#SECTION34">4.4 Support Pstricks</a></li>
+	<li><a href="#SECTION35">4.5 Support Metapost</a></li>
+	<li><a href="#SECTION36">4.6 Convertir son document en Html</a></li>
+	<li><a href="#SECTION37">4.7 "Forward/Inverse search" avec TexMakerX</a></li>
+	<li><a href="#SECTION38">4.8 Synopsis de la commande TexMakerX</a></li>
+	<li><a href="#SECTION39">4.9 Raccourcis clavier</a></li>
+	</ul>
+</ul>
+<hr>
+<h1><a name="SECTION0">1. Configurer TexMakerX</a></h1>
+Avant d'utiliser TexMakerX, il faut d'abord configurer l'éditeur et les commandes associées à LaTeX via l'option "Configurer TexMakerX" du menu "Options" ("Préférences" sous macosx).
+<h2><a name="SECTION01">1.1 Configurer l'éditeur</a></h2>
+<p>
+Avant de compiler son premier document, il faut d'abors régler l'encodage utilisé par l'éditeur ("Configurer TexMakerX" -> "Editeur" -> "Encodage"). Il faut ensuite utiliser l'encodage correspondant dans le préambule des documents LaTeX (Exemple : \usepackage[latin]{inputenc}, si l'on utilise l'encodage "ISO-8859-1" pour l'éditeur).
+</p>
+<h2><a name="SECTION02">1.2 Configurer les commandes associées à LaTeX</a></h2>
+<p>Pour pouvoir compiler les documents avec TexMakerX, les chemins vers les commandes associées à LaTeX doivent être définis correctement.<br>
+Les commandes par défaut devraient fonctionner avec les distributions LaTeX standards, mais des changements peuvent quand même être nécessaires ("Configurer TexMakerX" -> "Commandes"). Pour modifier une commande, il suffit d'utiliser le bouton en fin de ligne et de sélectionner le programme correspondant avec le sélecteur de fichiers : TexMakerX adaptera automatiquement la syntaxe (les modifications manuelles sont déconseillées).<br>
+Le caractére <strong>%</strong> représente le nom du fichier courant (sans l'extension) et le caractére <strong>@</strong> sera automatiquement remplacé par le numéro de la ligne courante dans l'éditeur.<br>
+</p>
+<p><IMG src="doc14.png" border="1"></p>
+<h2><a name="SECTION03">1.3 Configurer la vérification orthographique</a></h2>
+<p>
+Le système interne de vérification orthographique utilise les mêmes dictionnaires qu'OpenOffice.org. Seuls les dictionnaires GPL français et anglais sont distribués avec TexMakerX.<br>
+Il est possible de télécharger d'autres dictionnaires à cette adresse : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
+Pour configurer le fonctionnement d'aspell dans TexMakerX : "Configurer TexMakerX" -> "Editeur" -> "Dictionnaire" et utiliser le bouton en fin de ligne pour sélectionner le dictionnaire avec le sélecteur de fichiers.<br>
+<b>Attention : la correction orthographique commence désormais à partir de la position du curseur et non plus à partir du début du document.</b>
+</p>
+<h1><a name="SECTION1">2. Rédaction d'un document avec l'éditeur</a></h1>
+<h2><a name="SECTION11">2.1 Commandes usuelles</a></h2>
+<p>TexMakerX comporte les commandes habituelles d'un éditeur classique : Copier, Coller...<br>
+Elles sont accessibles via le menu "Edition" et la première barre d'outils.</p>
+<p><IMG src="doc1.png" border="1"></p>
+<h2><a name="SECTION12">2.2 Préambule du document</a></h2>
+<p>Il y a plusieurs façons de rédiger le préambule de son document LaTeX.<br>
+La première consiste à utiliser la commande "Démarrage rapide" du menu "Assistants" :</p>
+<p><IMG src="doc2.png" border="1"></p>
+<p>on peut y fixer les principales caractéristiques de son document (classe, format...). Les boutons "+" permettent de rajouter ses propres options. Tous ces réglages sont enregistrés : l'utilisateur les retrouvera à la prochaine utilisation de l'assistant.<br>
+On peut aussi utiliser un modèle de préambule que l'on a préalablement enregistré. Il suffit alors d'utiliser "Enregistrer sous" ou un "copier/coller" pour l'utiliser comme base de son nouveau document.</p>
+<h2><a name="SECTION13">2.3 Structuration du document</a></h2>
+<p>L'un des points forts de LaTeX est la structuration des documents. Pour définir une nouvelle "section" avec <b>TexMakerX</b>, il suffit d'utiliser cette liste de la barre d'outils :</p>
+<p><IMG src="doc3.png" border="1"></p>
+<p>On n'a plus qu'à indiquer le titre voulu et si l'on désire que cette section soit numérotée (elle fera alors partie de la table des matières) :</p>
+<p><IMG src="doc4.png" border="1"></p>
+<h2><a name="SECTION14">2.4 Navigation à l'intérieur d'un document</a></h2>
+<p><b>TexMakerX</b> facilite la navigation dans un long document LaTeX grâce à la vue structure située à gauche de l'interface :</p>
+<p><IMG src="doc5.png" border="1"></p>
+<p>Un simple clic sur un item permet d'atteindre la ligne correspondante dans l'éditeur. Cette vue structure est actualisée à chaque enregistrement ou compilation du document. L'utilisateur peut aussi utiliser la commande "Rafraîchir Structure" du menu "Edition" à tout moment.</p>
+<p>Pour chaque fichier, l'utilisateur peut définir trois "signets" pour accelérer la navigation dans un document. Pour ajouter ou supprimer un "signet", il suffit de cliquer sur un numéro de ligne. Quand vous avez déja défini trois signets, il faut en supprimer un pour pouvoir en ajouter un nouveau. Pour atteindre la ligne correspondante à un signet, il suffit de cliquer sur les boutons "1,2,3" dans la barre d'état de TexMakerX.</p>
+<p><IMG src="doc20.png" border="1"></p>
+<h2><a name="SECTION15">2.5 Mise en forme du texte avec <b>TexMakerX</b></a></h2>
+<p>Le formatage du texte peut se faire rapidement grâce à cette barre d'outils :</p>
+<p><IMG src="doc6.png" border="1"></p>
+<p>Une des caractéristiques de <b>TexMakerX</b> est la possibilité de sélectionner le texte à formater avant de cliquer sur ces boutons. Les balises LaTeX adéquates entourent alors automatiquement le texte sélectionné.</p>
+<h2><a name="SECTION16">2.6 Espacement - Sauts de ligne</a></h2>
+<p>Les commandes d'espacement usuelles sont disponibles dans le menu "LaTeX - Espacement".
+Le bouton "Retour à la ligne" (raccourci-clavier : Ctrl+Return) permet aussi d'insérer rapidement le code LaTeX pour un retour à la ligne.</p>
+<h2><a name="SECTION17">2.7 Insertion d'une liste</a></h2>
+<p>Le menu "LaTeX - Listes" permet d'insérer rapidement le squelette des environnements listes traditionnels de LaTeX. Le raccourci-clavier pour insérer rapidement un item est : Ctrl+Alt+H.</p>
+<h2><a name="SECTION18">2.8 Insertion d'un tableau</a></h2>
+<p><b>TexMakerX</b> propose un assistant permettant d'insérer le code adéquat pour la plupart des tableaux standards. Il suffit d'utiliser la commande "Assistant tableau" du menu "Assistants". On se retrouve alors devant la boîte de dialogue ci-dessous.</p>
+<p><IMG src="doc7.png" border="1"></p>
+<p>On peut y définir les caractéristiques du tableau (nombre de lignes et de colonnes, alignement, séparateur...). Il est même possible d'entrer directement le texte de chaque cellule (on peut aussi les laisser vides et compléter la tableau alors dans l'éditeur). Le code LaTeX adéquat est alors automatiquement inséré.</p>
+<h2><a name="SECTION19">2.9 Tabulation</a></h2>
+<p>L'"Assistant Tabulation" du menu "Assistants" permet d'insérer automatiquement le code LaTeX d'une tabulation simple grâce à la boîte de dialogue ci-dessous.</p>
+<p><IMG src="doc8.png" border="1"></p>
+<h2><a name="SECTION110">2.10 Insertion d'images</a></h2>
+<p>L'insertion d'une image se fait grâce à la commande "\includegraphics{}" du menu "LaTeX". En cliquant sur l'icône "fichier" de la boîte de dialogue ci-dessous, on peut alors sélectionner l'image à inclure.</p>
+<p><IMG src="doc9.png" border="1"></p>
+<p>Remarques :
+<ul>
+<li>Il est conseillé d'inclure un environnement "figure" (menu "LaTeX - Environnements") avant d'insérer une image.</li>
+<li>L'option scale permet de fixer l'échelle du graphique.</li>
+<li>Si l'image est au format Eps, ses dimensions sont affichées dans le panneau "Messages".</li>
+</ul></p>
+<h2><a name="SECTION111">2.11 Références croisées et notes</a></h2>
+<p>La deuxième liste de la barre d'outils est à la disposition des utilisateurs pour insérer rapidement les commandes LaTeX usuelles pour les références croisées et les notes de bas de page. Les labels utilisés dans le document apparaissent dans la vue structure : un clic suffit à les atteindre dans l'éditeur.</p>
+<p><IMG src="doc10.png" border="1"></p>
+<p>Remarque :  Pour la commande \ref , <b>TexMakerX</b> propose de sélectionner un label parmi la liste de labels détectés dans le document (utiliser la commande "Rafraîchir Structure" du menu "Edition" pour actualiser éventuellement la liste).</p>
+<h2><a name="SECTION112">2.12 Insertion de formules mathématiques</a></h2>
+<p>Le passage en mode mathématique (en ligne) se fait avec le bouton "f(x)" de la barre d'outils "Math" ou grâce au raccourci-clavier Ctrl+Alt+M. Pour le mode hors-ligne, on peut utiliser la commande "$$...$$" du menu "Math" ou le raccourci-clavier Alt+Shift+M.<br>
+La barre d'outils mathématiques permet aussi d'insérer d'un seul clic les formes mathématiques les plus courantes (fraction, racine...) ainsi que les balises \left et \right.</p>
+<p><IMG src="doc11.png" border="1"></p>
+<p>Les panneaux de symboles mathématiques situés à gauche permettent d'insérer d'un clic le code LaTeX de près de 400 symboles.</p>
+<p><IMG src="doc12.png" border="1"></p>
+<p>Le menu "Math" permet aussi de définir le style du texte en mode mathématique (accents, styles de caractères,espacement)<br>
+Pour les matrices, un assistant basé sur le même principe que celui pour les tableaux est disponible dans le menu "Assistants". Il permet en plus de fixer l'environnement (array, matrix, pmatrix...). Les cellules peuvent être complétées directement dans l'assistant.</p>
+<p><IMG src="doc13.png" border="1"></p>
+<h1><a name="SECTION2">3. Compiler son document</a></h1>
+<h2><a name="SECTION22">3.1 Compiler son document</a></h2>
+<p>Le plus rapide pour compiler un document est d'utiliser la commande "Compilation rapide" (bouton "Quick" - raccourci-clavier : F1). Cette commande, dont le comportement est à fixer dans la boîte de dialogue de configuration de <b>TexMakerX</b> permet d'enchaîner plusieurs commandes à la suite afin de passer directement du document LaTeX à la visualisation du fichier dvi, postscript ou pdf.<br>
+Sinon, on peut aussi lancer les commandes une par une selon ses besoins via le menu "Outils" (raccourcis-claviers : F2...F12).</p>
+<p>Remarques : 
+<ul>
+<li>Tous les noms des documents doivent avoir une extension (en minuscule) et ne pas comporter d'espaces, sans quoi les commandes échoueront. De même, un fichier "sans nom" ne peut pas être compilé par TexMakerX : il doit d'abord être enregistré.</li>
+<li>Si les chemins vers les outils LaTeX sont mal définis, des messages "Impossible de lancer la commande" apparaîtront.</li>
+<li>La commande "Nettoyer" (menu "Outils") permet d'effacer tous les fichiers générés par LaTeX (sauf le fichier postscript et pdf)</li>
+</ul></p>
+<h2><a name="SECTION23">3.2 Les fichiers log</a></h2>
+<p>Lors de l'utilisation de la commande "Compilation rapide", le fichier log généré par LaTeX est automatiquement affiché dans le panneau "Messages / Fichier Log" si une erreur de compilation est détectée. Un clic dans la colonne "Line" permet alors d'atteindre directement cette ligne dans l'éditeur et le détail de l'erreur est affichée en dessous.
+</p>
+<p><IMG src="doc15.png" border="1"></p>
+<p>Dans les autres cas, un simple clic sur les boutons "Erreur LaTeX suivante" et "Erreur LaTeX précédente" permet d'afficher le fichier log et d'atteindre directement l'erreur recherchée.</p>
+<h1><a name="SECTION3">4. Autres caractéristiques de <b>TexMakerX</b></a></h1>
+<h2><a name="SECTION31">4.1 Documents scindés en plusieurs fichiers</a></h2>
+<p><b>TexMakerX</b> permet aussi de travailler sur un document composé de plusieurs fichiers.<br>
+Pour inclure un fichier .tex dans son document, il suffit d'utiliser la commande "\include{file}" du menu "LaTeX". Une boîte de dialogue permet alors de sélectionner le fichier à inclure. Ce fichier apparaît alors à la fin de la vue "Structure". Un clic sur son nom permet de l'ouvrir automatiquement.<br>
+Il est conseillé alors de déclarer le document "racine" comme "document maître" à l'aide du menu "Options". Dès lors, toute compilation ne se fera plus à partir du document ouvert dans l'éditeur mais à partir du "document maître". On peut ainsi facilement travailler sur les documents "enfants" tout en compilant le document "racine" (qui peut même être fermé). Le menu "Options" permet aussi de retourner au mode "normal" (en désactivant la définition d'un document "maître").</p>
+<h2><a name="SECTION32">4.2 Bibliographie</a></h2>
+<p><b>TexMakerX</b> facilite la rédaction d'un fichier de bibliographie (au format standard .bib) grâce au menu "Bibliographie". Un clic sur un item de ce menu insère directement le code standard associé à ce style de bibliographie. Les commandes optionnelles signalées par "OPT" sont automatiquement effacées par la commande "Clean" du menu "Bibliographie" : il faut donc effacer le "OPT" pour les conserver.</p>
+<p><IMG src="doc16.png" border="1"></p>
+<h2><a name="SECTION33">4.3 Balises et commandes personnelles</a></h2>
+<p><b>TexMakerX</b> permet à l'utilisateur d'enregistrer dix extraits de code LaTeX accessibles par le menu "Utilisateur - Balises utilisateur" et par les raccourcis-claviers (Shift+F1 à Shift+F10). Pour définir ces extraits, il faut lancer la commande "Editer balises utilisateur" dans ce même menu.<br>
+Remarque : le fait d'entrer "%monenvironnement" dans le champ "code LaTeX" insérera le code suivant dans l'éditeur:<br>
+\begin{monenvironnement}<br>
+\end{monenvironnement}</p>
+<p><IMG src="doc17.png" border="1"></p>
+<p>Il est aussi possible de définir des commandes personnelles via le menu "Utilisateur - Commandes utilisateurs". Un % représente le nom du fichier à traiter sans extension. Les commandes, une fois définies, peuvent-être lancées par les raccourcis-claviers Alt+Shift+F1...Alt+Shift+F5 .</p>
+<h2><a name="SECTION34">4.4 Support Pstricks</a></h2>
+<p>Les principales commandes Pstricks peuvent être insérées directement dans le code à partir de l'onglet "Pstricks".</p>
+<h2><a name="SECTION35">4.5 Support Metapost</a></h2>
+<p>L'onglet "Commandes Metapost" permet d'insérer les commandes metapost dans un fichier .mp. La commande "Mpost" peut-être lancée à partir du menu "Outils".</p>
+<h2><a name="SECTION36">4.6 Convertir son document en Html</a></h2>
+<p>L'option "Exporter vers Html" du menu "Outils" permet de transformer son document LaTeX en un site web où chaque page html est composée d'une seule image reproduisant exactement une des pages postscript du document. On évite ainsi les problèmes de mise en page entre le texte et les formules mathématiques des autres outils traditionnels de conversion LaTeX vers html.<br>
+<b>TexMakerX</b> peut aussi créer automatiquement une page index dans le site web correspondant à la traditionnelle tables des matières du document LaTeX. Un clic sur un item de cette page index permet d'atteindre la page web correspondante.
+Il est aussi possible d'insérer des liens externes et internes à l'intérieur des pages web en utilisant la commande \ttwplink{}{} dans le document .tex.<br>
+Synopsis de cette commande :<br>
+\ttwplink{http://www.monsite.com}{texte_lien} (lien externe)<br>
+\ttwplink{page3.html}{texte_lien} (lien interne)<br>
+\ttwplink{name_of_a_label}{texte_lien} (lien interne vers un label)<br>
+Attention : \ttwplink{}{} ne peut-être utilisé que pour exporter son document en html. Une compilation normale d'un document comportant cette commande par LaTeX déclenchera une erreur. Par ailleurs, cette commande est incompatible avec plusieurs "packages" LaTeX dont notamment \hyperref.</p>
+<p><IMG src="doc18.png" border="1"></p>
+<p><IMG src="doc19.png" border="1"></p>
+<h2><a name="SECTION37">4.7 "Forward/inverse search" avec TexMakerX</a></h2>
+<p>
+Certains afficheurs dvi permettent d'afficher directement la page et la zone correspondante à une certaine ligne dans le fichier source LaTeX.<br>
+Pour utiliser cette caractéristique, il faut utiliser le caractère <b>@</b> dans la ligne de commande correspondant à l'afficheur dvi ("Configurer TexMakerX" -> "Commandes").<br>
+Exemples "Forward search" :
+<ul>
+<li>Pour lancer yap : "C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe" -1 -s @%.tex %.dvi</li>
+<li>Pour lancer xdvi : xdvi %.dvi  -sourceposition @:%.tex</li>
+<li>Pour lancer kdvi : kdvi "file:%.dvi#src:@ %.tex"</li>
+</ul>
+Pour l'opération inverse ("Inverse search") :
+<ul>
+<li>Lancer TexMakerX à partir de yap : "C:\Program Files\TexMakerX\TexMakerX.exe" "%f" -line %l <i>(the program arguments : "%f" -line %l )</i></li>
+<li>Lancer TexMakerX à partir de xdvi : xdvi -editor "TexMakerX %f -line" %.dvi -sourceposition @:%.tex</li>
+</ul>
+</p>
+<h2><a name="SECTION38">4.8 Synopsis de la commande TexMakerX</a></h2>
+<p>
+TexMakerX fichier [-master] [-line xx]<br>
+Avec l'option "-master" , le document chargé sera automatiquement défini comme document "maître".<br>
+Avec l'option "-line xx" , TexMakerX demandera s'il doit aller à la ligne xx après avoir chargé le document.
+</p>
+<h2><a name="SECTION39">4.9 Raccourcis clavier</a></h2>
+<p>
+Raccourcis par défaut (*:modifiable - "Configurer TexMakerX" -> "Editeur") :
+<ul>
+<li> Menu "Fichier" :
+	<ul>
+	<li>Nouveau : Ctrl+N</li>
+	<li>Ouvrir : Ctrl+O</li>
+	<li>Enregistrer : Ctrl+S</li>
+	<li>Fermer : Ctrl+W</li>
+	<li>Quitter : Ctrl+Q</li>
+	</ul>
+</li>
+<li> Menu "Editer" :
+	<ul>
+	<li>Défaire : Ctrl+Z</li>
+	<li>Refaire : Ctrl+Y</li>
+	<li>Copier : Ctrl+C</li>
+	<li>Couper : Ctrl+X</li>
+	<li>Coller : Ctrl+V</li>
+	<li>Sélectionner tout : Ctrl+A</li>
+	<li>Commenter : Ctrl+T</li>
+	<li>Décommenter : Ctrl+U</li>
+	<li>Chercher à nouveau : Ctrl+M</li>
+	<li>Remplacer : CTrl+R</li>
+	<li>Aller à la ligne : Ctrl+G</li>
+	<li>Vérifier orthographe (depuis le curseur) : Ctrl+Shift+F7</li>
+	</ul>
+</li>
+<li> Menu "Outils" :
+	<ul>
+	<li>Quick build : F1</li>
+	<li>Latex : F2</li>
+	<li>View dvi : F3</li>
+	<li>Dvi->PS : F4</li>
+	<li>View PS : F5</li>
+	<li>Pdflatex : F6</li>
+	<li>View Pdf : F7</li>
+	<li>PS->Pdf : F8</li>
+	<li>Dvi->Pdf : F9</li>
+	<li>View log : F10</li>
+	<li>Bibtex : F11</li>
+	<li>Make index : F12</li>
+	</ul>
+</li>
+<li> * Menu "LaTeX" :
+	<ul>
+	<li>* item : Ctrl+Shift+I</li>
+	<li>* Italic : Ctrl+I</li>
+	<li>* Slanted : Ctrl+Shift+S</li>
+	<li>* Bold : Ctrl+O</li>
+	<li>* Typewriter : Ctrl+Shift+T</li>
+	<li>* Small caps : Ctrl+Shift+C</li>
+	<li>* Emphasis : Ctrl+Shift+E</li>
+	<li>* New line : Ctrl+Return</li>
+	</ul>
+</li>
+<li> * Menu "Math" :
+	<ul>
+	<li>* Inline math mode : Ctrl+Shift+M</li>
+	<li>* Display math mode : Alt+Shift+M</li>
+	<li>* Numbered equations : Ctrl+Shift+N</li>
+	<li>* Subscript : Ctrl+Shift+D</li>
+	<li>* Superscript : CTrl+Shift+U</li>
+	<li>* Frac : Alt+Shift+F</li>
+	<li>* Dfrac : Ctrl+Shift+F</li>
+	<li>* Sqrt : Ctrl+Shift+Q</li>
+	<li>* Left : Ctrl+Shift+L</li>
+	<li>* Right : Ctrl+Shift+R</li>
+	</ul>
+</li>
+<li> Menu "Utilisateurs" :
+	<ul>
+	<li>Balises utilisateurs : Shift+F1...Shift+F10</li>
+	<li>Commandes utilisateurs : Shift+Alt+F1...Shift+Alt+F10</li>
+	</ul>
+</li>
+</ul>
+</p>
+</body></html>
