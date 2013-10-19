@@ -5571,6 +5571,8 @@ void Texmaker::updateOpenDocumentMenu(bool localChange){
 }
 
 void Texmaker::focusEditor(){
+	raise();
+	activateWindow();
 	if (currentEditorView())
 		currentEditorView()->setFocus();
 }
@@ -5781,6 +5783,7 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(GeneralOptions()));
 	connect(pdfviewerWindow, SIGNAL(syncSource(const QString&, int, bool, QString)), SLOT(syncFromViewer(const QString &, int, bool, QString)));
+	connect(pdfviewerWindow, SIGNAL(focusEditor()), SLOT(focusEditor()));
 	connect(pdfviewerWindow, SIGNAL(runCommand(const QString&, const QFileInfo&, const QFileInfo&, int)), &buildManager, SLOT(runCommand(const QString&, const QFileInfo&, const QFileInfo&, int)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
 	
