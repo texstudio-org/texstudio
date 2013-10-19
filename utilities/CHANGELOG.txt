@@ -1,0 +1,308 @@
+(you may also want to check the usermanual)
+
+TeXstudio 2.6.2 -> TeXstudio 2.7.0
+-----------------------------------------
+- package scanner: queries the tex istallation for installed packages and highlights missing packages
+- package completion
+- basic annotation support in internal pdf viewer
+- improved render speed, especially on mac
+- speed-up loading of hidden documents (option: automatically load included files)
+- speed-up command completion window, especially citations
+- improved log panel
+- improved dtx highlighting
+- added support for LilyPond book (.lytex)
+- Edit -> Line operations now also work with selections
+- updated hunspell library to 1.3.2
+- fix: input method bug
+- fix: shortcuts containing arrow keys did not work in japanese
+- bug fixes, e.g. tooltip does not disappear instantly anymore
+
+TeXstudio 2.6.0 -> TeXstudio 2.6.2
+-----------------------------------------
+- structure tree view: context menu entries to recursively collapse/expand the structure
+- improved hard line wrap with joining lines
+- View -> Focus Viewer now also works for the windowed viewer
+- better detection of LagnuageTool
+- similarity dictionary
+- "Align Table Columns" now works also for tabu/longtabu
+- updated poppler library, now displays PDF annotations like highlight and underline
+- updated to Qt 4.8.5 (Windows installer)
+- fix: user templates are editable again
+- fix: broken SVN Undo
+- fix: bug when typing '}' in RTL languages
+- fix: pinyin input method problem on mac
+- fix: Opening package documentation in non-PDF formats
+- more small corrections and improvements
+
+TeXstudio 2.5.2 -> TeXstudio 2.6.0
+-----------------------------------------
+- Retina Mac support
+- switched to svg icons
+- folded lines are now stored in the session
+- option to load package documentation into internal embedded pdf viewer
+- option to silently reload files on external changes
+- make %todo as well as %TODO marker for "to-do" list
+- "Align Table Columns" now works on many more enviroments such as 
+  matrix, align. align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
+- template resources are now configured via template_resources.xml (allows to customize resource locations)
+- template json files are now UTF-8
+- basic Pweave highlighting
+- arbitrary dictionary names are now possible in % !TeX spellcheck = ... magic comment
+- new macro trigger depending on the current syntax highlighting
+- allow to suppress tests in debug mode by preprocessor define NO-TESTS
+- fix some issues with RTL languages
+- fix animated scrolling
+- a number of new completion files included
+- lots of small corrections and improvements
+
+
+TeXstudio 2.5.1 -> TeXstudio 2.5.2  SVN 3707
+--------------------------------------------
+- new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
+- add support to display CJK and Cyrillic in PDF viewer
+- increased maximum possible tab width to 32
+- fix basic input method support
+- fix missing templates on linux and Mac OS X
+- fix vanishing menu bar on Mac OS X
+- fix crash when saving as an already open file
+- fix viewer might change size because of long status messages
+- changed shortcuts for next/prev document to Ctrl+PgDown/Up
+- several small corrections
+
+
+TeXstudio 2.5 -> TeXstudio 2.5.1  SVN 3445
+-----------------------------------------
+- improved fold panel
+- new template system
+- added support for forward/backward mouse buttons in editor and viewer
+- context menu for inline preview (allows copying of preview image)
+- option to load all included files in order to have a complete
+ref/commands overview
+- added "Open"-context menu entry and link overlay for \bibliography{} commands
+- show image preview on hover over graphic name
+- several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)
+
+
+TeXstudio 2.4 -> TeXstudio 2.5  SVN 3378
+-----------------------------------------
+- cursor history (go back/forward)
+- references, packages and included file names become links on Ctrl+MouseOver
+- insertion of handwritten equations (Windows 7 only, using TexTablet)
+- improved table-code formating, including options to specify the desired format
+- metadata support in LaTeX templates and table templates
+- checking for the correct version of the runtime library
+- more context menus (fold panel, bookmark panel)
+- optionally more bold cursor for better visibility
+- line operations: move up/down, duplicate
+- windows installer: add possibility to associate .tex files with TXS
+- several bug fixes (crashes, compilation, focus, ...)
+
+
+TeXstudio 2.3 -> TeXstudio 2.4  SVN 3255
+-----------------------------------------
+- new build system which allows easier combination of several commands
+- support many new tools: xelatex, lualatex, biber, latexmk, texindy
+- embedded pdf viewer
+- bookmark manager and persistent bookmarks
+- inline grammar checking using LanguageTool
+- basic syntax highlighting for lua and for dtx files
+- biblatex support
+- citation API to insert citations from other applications (JabRef plugin available)
+- table autoformating
+- improved appearance
+- update checker
+- extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events
+- crash protection
+- many small improvements
+- several bug fixes
+
+
+TexMakerX 2.2 -> TeXstudio 2.3  SVN 2459
+-----------------------------------------
+- list of commands accepting \ref/\cite-references can be changed
+- remember search history
+- support for different dictionaries per document
+- find-invalid-bracket feature
+- almost word level inverse pdf search
+- complete file names in graphic including macros
+- improved graphics insertion (new assistant allows editing of existing code, insert by drag-and-drop and copy/paste)
+- improved BibTeX auto calling
+- more methods available for scripting 
+- several bug fixes (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements
+
+TexMakerX 2.1 -> TeXstudio 2.2  SVN 2143
+-----------------------------------------
+- pdf viewer can show multiple pages in continous fashion
+- pdf viewer works non-blocking (multi-threaded)
+- preview works with included files
+- key replacements can trigger arbitrary user macros
+- double quote replacement can easily be selected from predefined list
+- completer distinguishes between usual, most often used and all possible commands
+- saving/loading profiles working
+- more environments are syntax highlighted
+- as always, bug fixes and small improvements
+
+
+TexMakerX 2.0 -> TexMakerX 2.1  SVN 1772
+--------------------------------------
+- improved latex syntax checking: auto detect used packages and more reliable
+- auto detect master/include relations, no master document should be needed anymore
+- extended internal pdf viewer, multiple pages and new features
+- preview of selection is much faster and shown directly in the text
+- easy parenthesis selection
+- as always, bug fixes and small improvements
+
+TexMakerX 1.9.9a -> TexMakerX 2.0  SVN 1495
+--------------------------------------
+- integrated pdf viewer with forward/reverse search based on Texworks
+- online latex syntax checking like spell checking(for simple errors)
+- support to manipulate tables (add/remove lines,columns or \hline)
+- inserted brackets are automatically closed
+- option to limit line length with hard wraps
+- word repetitions are marked as possible style error
+- faster search, highlight matches as default
+- basic editor key mapping become customizable
+- unicode insertion dialog
+- as always, bug fixes and small improvements
+
+TexMakerX 1.9.9 -> TexMakerX 1.9.9a
+--------------------------------------
+- some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.
+- more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking
+- command replacement in completed commands was added
+- a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)
+- tool tip in completer shows the surrounding of the label to which the selected reference is pointing
+- profiles containg predefined short cuts, menu redefinition, editor settings can be imported from a file
+- when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)
+- delete word, a command or an environment by typing ALT-del
+- spell checking is only done in known text commands
+- some dialogs adapted to cope better with small screen sizes
+- lots of bugs removed after user feedback
+
+
+TexMakerX 1.9.3 -> TexMakerX 1.9.9
+--------------------------------------
+- added interactive structure view update
+- added basic scripting
+- added automatically SVN commits
+- added customizable toolbars, environment highlighting and LaTeX menus
+- faster search (= optimized highlighting)
+- extended DDE syntax to start services which aren't running
+- if a called latex hangs it can be killed with escape after 2 seconds
+- fixed folding 
+- fixed single instance mode on mac (by replacing dsingleapplication with qtsingleapplication)
+- several other fixes
+ 
+TexmakerX 1.9.2 -> TexMakerX 1.9.3
+--------------------------------------
+- added a find in open files dialog
+- added automatical bibtex calling
+- added a syntax for the current file in commands as ?c:ame
+- thesaurus is loaded in the background at start up (=>faster first synonym lookup)
+- fixed crash of DDE
+- fixed "keep indentation" mode for code snippets
+- fixed slowdown on mac
+- fixed relative paths in included files bug
+- fixed KDE dark theme
+
+TexmakerX 1.8.1 -> TexMakerX 1.9.2
+--------------------------------------
+- added experimental latex preview
+- added random text generator
+- added integrated synonym dictionary (using openOffice databases, default en, de, fr)
+- added interactive checking of correct \ref to \label matching
+- added BibTeX parser, interactive checking of correct \cite commands and bibtex insert dialog
+- added templates
+- added tabbed log panel
+- extended completer word list using kile cwl files
+- imported more math symbols (+730) from kile
+- imported changes of texmaker 1.8.1->1.9.2 (favourite symbols, new color scheme, a)
+- fixed several bugs
+- see usermanual_en.html for a more detailed description
+
+TexmakerX 1.8 -> TexMakerX 1.8.1
+-------------------------------------
+- added Windows DDE support
+- added free menu key board mapping (also shift+insert key bindings)
+- added word completion
+- added error highlighting
+- improved text analysis (phrases), recent file menu
+- fixed MAC support (compiling, line endings)
+- fixed possible crash with multiple instances and spellchecking
+- more bug fixes
+
+version Texmaker 1.8 -> TexMakerX 1.8
+-------------------------------------
+- editor based on qcodeedit (code folding, better bookmarks, incremental search, ...)
+- interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)
+- code completion adding descriptive texts
+- automatical detection of file encoding
+- --start-always command line option added 
+- stdout is now listed in the list
+- text analysis
+- maintaining author changed, new name, new homepage: texmakerx.sourceforge.net
+
+version 1.7.1 -> 1.8:
+----------------------
+- texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker
+- the spell checker is now based on hunspell-1.2.4
+- the latex errors detection has been improved
+- the background color of the selected symbol is now always the same (to be sure that the symbol is always visible)
+- parentheses matching is back
+- "\end{...}" is now added automatically after "\begin{...}" while using autocompletion
+version 1.7 -> 1.7.1 :
+--------------------
+Bugs fixed :
+- no more crash with the "Previous LaTeX error" command and the syntax highlighting
+- the "find" command starts at cursor and not at the beginning of the document
+version 1.6 -> 1.7 :
+--------------------
+- New search widget
+- Spell checking is now based on hunspell and uses OpenOffice.org dictionaries.
+- New LaTeX log errors detection
+- Indentation "memory"
+- Code completion
+version 1.5 -> 1.6 :
+--------------------
+- spell checking bug has been fixed (when misspelled and original word has not the same size)
+- some keyboard accelerators has been changed (trouble with non latin1 keyboard configuration). Users can now changed some keyboard shortcuts ("latex" and "math" menus)
+- german, russian and chinese translations has been added
+- external browser is now used for the documentation
+- a "-master" option to the program command line has been added. The new synopsis is :
+texmaker file [-master] [-line xxx] 
+- the documentation has been completed
+- parentheses matching is now disabled
+- the config file is now in the ini format
+version 1.4 -> 1.5 :
+----------------------
+- a "most used symbols" panel has been added
+- the math mode "$$...$$" is replaced by "\[ \]"
+- keyboard accelerators has been added in the "latex" and "math" menus
+- the current line number can be added to the latex related commands
+- the colors for the syntax highlighting can now be modified
+- a summary of the latex errors and warnings is displayed before the full log file
+- compilation trouble with Qt>=4.2 has been fixed
+- support for "QFileOpenEvent" has been added (for macosx)
+- minor bugfixes (dialogs layout, french translation...)
+version 1.3 -> 1.4 :
+----------------------
+- Spell checking has been added (aspell is required)
+- Support for the main pstricks commands has been added
+- The html conversion tool is now available on windows (only ghostscript is required)
+- The editor checks now the braces
+- The syntax highlighter can now detect the math mode "\[ \]"
+- Tex files can now be dragged from a file manager to texmaker
+- minor bugfixes (replace dialog, close event...)
+version 1.2.1 -> 1.3 :
+----------------------
+- Texmaker is now a pure QT4 program (qt >= 4.1 is required). The qt3 support library is no more required. The editor is now based on the qt4 QtextEdit object and the symbols icon view is an qt4 QTableWidget object.
+- For each file, three bookmarks can be used to speed up navigation.
+
+version 1.2 -> 1.2.1 : Bugs fixed
+---------------------------------
+- Don't use anymore double-clic to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.
+- Don't use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.
+- A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).
+- Added the option '-line' for the application.
+New synopsis for texmaker : texmaker document.tex [-line xxx]
+Can be used for inverse search.
