@@ -434,6 +434,7 @@ signals:
 	void reloaded();
 	void syncSource(const QString& sourceFile, int line, bool activate, const QString& guessedWord); //view -> source
 	void syncView(const QString& pdfFile, const QFileInfo& masterFile, int page); //view -> other view
+	void focusEditor();
 	void fileDropped(const QUrl& url);
 
 	void runCommand(const QString& command, const QFileInfo& masterFile, const QFileInfo& currentFile, int linenr);

@@ -2308,6 +2308,7 @@ void PDFDocument::init(bool embedded)
 	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
 	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
+	connect(actionFocus_Editor, SIGNAL(triggered()), this, SIGNAL(focusEditor()));
 	connect(actionNew_Window, SIGNAL(triggered()), SIGNAL(triggeredClone()));
 
 	conf->registerOption("Preview/Scrolling Follows Cursor", &globalConfig->followFromCursor, false);

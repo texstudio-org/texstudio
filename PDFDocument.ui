@@ -109,6 +109,7 @@
     <addaction name="actionSide_by_Side"/>
     <addaction name="separator"/>
     <addaction name="actionGo_to_Source"/>
+    <addaction name="actionFocus_Editor"/>
     <addaction name="separator"/>
     <addaction name="actionNew_Window"/>
    </widget>
@@ -847,6 +848,14 @@
    </property>
    <property name="text">
     <string>Invert Colors</string>
+   </property>
+  </action>
+  <action name="actionFocus_Editor">
+   <property name="text">
+    <string>Focus Editor</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+Left</string>
    </property>
   </action>
  </widget>
