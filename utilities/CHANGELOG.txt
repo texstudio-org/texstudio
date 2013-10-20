@@ -1,6 +1,6 @@
 (you may also want to check the usermanual)
 
-TeXstudio 2.6.2 -> TeXstudio 2.7.0
+TeXstudio 2.6.2 -> TeXstudio 2.6.4
 -----------------------------------------
 - package scanner: queries the tex istallation for installed packages and highlights missing packages
 - package completion
