@@ -705,7 +705,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
     newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste");
 	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
-	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parentheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 	newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 	
 	menu->addSeparator();

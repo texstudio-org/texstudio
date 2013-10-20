@@ -165,7 +165,7 @@ struct LatexReader{
 	LatexReader(const LatexParser& lp, const QString& line);
 	
 	/** searches the next token in the line line after/at the index index
-	//there are these possible kind of tokens % (which starts a comment), { or } (as parantheses), \.* (command) or .* (text)
+	//there are these possible kind of tokens % (which starts a comment), { or } (as parentheses), \.* (command) or .* (text)
 	 \param index returns the index of the first character after the word
 	 \param inOption Don't stop at eow characters
 	 \param detectMath If true, returns $ $$ _ ^ & as commands
