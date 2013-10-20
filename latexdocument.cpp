@@ -2233,11 +2233,15 @@ bool LatexDocument::fileExits(QString fname){
  * allowing syncing from PDF to the correct source line also after altering the source document
  */
 void LatexDocument::saveLineSnapshot() {
+	foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
+		dlh->deref();
+	}
 	mLineSnapshot.clear();
 	mLineSnapshot.reserve(lineCount());
 	QDocumentConstIterator it = begin(), e = end();
 	while (it != e) {
 		mLineSnapshot.append(*it);
+		(*it)->ref();
 		it++;
 	}
 }
