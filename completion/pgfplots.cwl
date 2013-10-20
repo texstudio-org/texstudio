@@ -25,3 +25,5 @@
 \addplot file {%<file%>};#/axis,semilogxaxis,semilogyaxis,loglogaxis
 \addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};#/axis,semilogxaxis,semilogyaxis,loglogaxis
 \legend#/axis,semilogxaxis,semilogyaxis,loglogaxis
+\pgfplotsset{%<settings%>}
+\pgfplotsset{compat=%<version number%>,%<other settings%>}
