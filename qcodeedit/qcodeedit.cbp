@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="qcodeedit" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin\Release\qcodeedit" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="lib\.build\moc_qcodecompletionengine.cpp" />
+		<Unit filename="lib\.build\moc_qdocument.cpp" />
+		<Unit filename="lib\.build\moc_qeditconfig.cpp" />
+		<Unit filename="lib\.build\moc_qeditor.cpp" />
+		<Unit filename="lib\.build\moc_qeditorfactory.cpp" />
+		<Unit filename="lib\.build\moc_qfoldpanel.cpp" />
+		<Unit filename="lib\.build\moc_qformatscheme.cpp" />
+		<Unit filename="lib\.build\moc_qgotolinedialog.cpp" />
+		<Unit filename="lib\.build\moc_qlanguagefactory.cpp" />
+		<Unit filename="lib\.build\moc_qlinechangepanel.cpp" />
+		<Unit filename="lib\.build\moc_qlinemarkpanel.cpp" />
+		<Unit filename="lib\.build\moc_qlinemarksinfocenter.cpp" />
+		<Unit filename="lib\.build\moc_qlinenumberpanel.cpp" />
+		<Unit filename="lib\.build\moc_qpanel.cpp" />
+		<Unit filename="lib\.build\moc_qpanellayout.cpp" />
+		<Unit filename="lib\.build\moc_qreliablefilewatch.cpp" />
+		<Unit filename="lib\.build\moc_qsearchreplacepanel.cpp" />
+		<Unit filename="lib\.build\moc_qstatuspanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qcodecompletionengine.cpp" />
+		<Unit filename="lib\.buildd\moc_qdocument.cpp" />
+		<Unit filename="lib\.buildd\moc_qeditconfig.cpp" />
+		<Unit filename="lib\.buildd\moc_qeditor.cpp" />
+		<Unit filename="lib\.buildd\moc_qeditorfactory.cpp" />
+		<Unit filename="lib\.buildd\moc_qfoldpanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qformatscheme.cpp" />
+		<Unit filename="lib\.buildd\moc_qgotolinedialog.cpp" />
+		<Unit filename="lib\.buildd\moc_qlanguagefactory.cpp" />
+		<Unit filename="lib\.buildd\moc_qlinechangepanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qlinemarkpanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qlinemarksinfocenter.cpp" />
+		<Unit filename="lib\.buildd\moc_qlinenumberpanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qpanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qpanellayout.cpp" />
+		<Unit filename="lib\.buildd\moc_qreliablefilewatch.cpp" />
+		<Unit filename="lib\.buildd\moc_qsearchreplacepanel.cpp" />
+		<Unit filename="lib\.buildd\moc_qstatuspanel.cpp" />
+		<Unit filename="lib\document\qdocument.cpp" />
+		<Unit filename="lib\document\qdocument.h" />
+		<Unit filename="lib\document\qdocument_p.h" />
+		<Unit filename="lib\document\qdocumentcommand.cpp" />
+		<Unit filename="lib\document\qdocumentcommand.h" />
+		<Unit filename="lib\document\qdocumentcursor.cpp" />
+		<Unit filename="lib\document\qdocumentcursor.h" />
+		<Unit filename="lib\document\qdocumentline.cpp" />
+		<Unit filename="lib\document\qdocumentline.h" />
+		<Unit filename="lib\document\qdocumentsearch.cpp" />
+		<Unit filename="lib\document\qdocumentsearch.h" />
+		<Unit filename="lib\qce-config.h" />
+		<Unit filename="lib\qcodecompletionengine.cpp" />
+		<Unit filename="lib\qcodecompletionengine.h" />
+		<Unit filename="lib\qcodeedit.cpp" />
+		<Unit filename="lib\qcodeedit.h" />
+		<Unit filename="lib\qeditor.cpp" />
+		<Unit filename="lib\qeditor.h" />
+		<Unit filename="lib\qeditorfactory.cpp" />
+		<Unit filename="lib\qeditorfactory.h" />
+		<Unit filename="lib\qeditsession.cpp" />
+		<Unit filename="lib\qeditsession.h" />
+		<Unit filename="lib\qformat.h" />
+		<Unit filename="lib\qformatfactory.h" />
+		<Unit filename="lib\qformatscheme.cpp" />
+		<Unit filename="lib\qformatscheme.h" />
+		<Unit filename="lib\qlanguagedefinition.cpp" />
+		<Unit filename="lib\qlanguagedefinition.h" />
+		<Unit filename="lib\qlanguagefactory.cpp" />
+		<Unit filename="lib\qlanguagefactory.h" />
+		<Unit filename="lib\qlinemarksinfocenter.cpp" />
+		<Unit filename="lib\qlinemarksinfocenter.h" />
+		<Unit filename="lib\qnfa\light_vector.h" />
+		<Unit filename="lib\qnfa\qnfa.cpp" />
+		<Unit filename="lib\qnfa\qnfa.h" />
+		<Unit filename="lib\qnfa\qnfadefinition.cpp" />
+		<Unit filename="lib\qnfa\qnfadefinition.h" />
+		<Unit filename="lib\qnfa\xml2qnfa.cpp" />
+		<Unit filename="lib\qpanellayout.cpp" />
+		<Unit filename="lib\qpanellayout.h" />
+		<Unit filename="lib\qreliablefilewatch.cpp" />
+		<Unit filename="lib\qreliablefilewatch.h" />
+		<Unit filename="lib\ui_editconfig.h" />
+		<Unit filename="lib\ui_gotoline.h" />
+		<Unit filename="lib\ui_searchreplace.h" />
+		<Unit filename="lib\widgets\qcalltip.cpp" />
+		<Unit filename="lib\widgets\qcalltip.h" />
+		<Unit filename="lib\widgets\qeditconfig.cpp" />
+		<Unit filename="lib\widgets\qeditconfig.h" />
+		<Unit filename="lib\widgets\qfoldpanel.cpp" />
+		<Unit filename="lib\widgets\qfoldpanel.h" />
+		<Unit filename="lib\widgets\qformatconfig.cpp" />
+		<Unit filename="lib\widgets\qformatconfig.h" />
+		<Unit filename="lib\widgets\qgotolinedialog.cpp" />
+		<Unit filename="lib\widgets\qgotolinedialog.h" />
+		<Unit filename="lib\widgets\qlinechangepanel.cpp" />
+		<Unit filename="lib\widgets\qlinechangepanel.h" />
+		<Unit filename="lib\widgets\qlinemarkpanel.cpp" />
+		<Unit filename="lib\widgets\qlinemarkpanel.h" />
+		<Unit filename="lib\widgets\qlinenumberpanel.cpp" />
+		<Unit filename="lib\widgets\qlinenumberpanel.h" />
+		<Unit filename="lib\widgets\qpanel.cpp" />
+		<Unit filename="lib\widgets\qpanel.h" />
+		<Unit filename="lib\widgets\qsearchreplacepanel.cpp" />
+		<Unit filename="lib\widgets\qsearchreplacepanel.h" />
+		<Unit filename="lib\widgets\qsimplecolorpicker.cpp" />
+		<Unit filename="lib\widgets\qsimplecolorpicker.h" />
+		<Unit filename="lib\widgets\qstatuspanel.cpp" />
+		<Unit filename="lib\widgets\qstatuspanel.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

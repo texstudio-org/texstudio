@@ -1,0 +1,15 @@
+[Desktop Entry]
+Categories=Office;Publishing;Qt;X-SuSE-Core-Office;X-Mandriva-Office-Publishing;X-Misc;
+Encoding=UTF-8
+Exec=texstudio %F
+GenericName=LaTeX Editor
+GenericName[fr]=Editeur LaTeX
+Comment=LaTeX development environment
+Comment[fr]=Environnement de développement LaTeX
+Icon=/usr/share/texstudio/texstudio.svg
+MimeType=text/x-tex;
+Name=TeXstudio
+StartupNotify=false
+Terminal=false
+Type=Application
+
