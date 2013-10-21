@@ -2237,7 +2237,9 @@ void LatexDocument::saveLineSnapshot() {
 		dlh->deref();
 	}
 	mLineSnapshot.clear();
+#if (QT_VERSION >= 0x040700)
 	mLineSnapshot.reserve(lineCount());
+#endif
 	QDocumentConstIterator it = begin(), e = end();
 	while (it != e) {
 		mLineSnapshot.append(*it);
