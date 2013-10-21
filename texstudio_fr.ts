@@ -9586,7 +9586,8 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
     <message>
         <location line="+1"/>
-        <source>Pre&amp;view Selection/Parantheses</source>
+        <source>Pre&amp;view Selection/Parentheses</source>
+        <oldsource>Pre&amp;view Selection/Parantheses</oldsource>
         <translation>Pré&amp;visualiser sélection/parenthèses</translation>
     </message>
     <message>
