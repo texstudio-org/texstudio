@@ -705,7 +705,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
     newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste");
 	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
-	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parentheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 	newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 	
 	menu->addSeparator();
@@ -1501,6 +1501,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 	connect(edit,SIGNAL(saveCurrentCursorToHistoryRequested()),this,SLOT(saveCurrentCursorToHistory()));
+	edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 	
 	if(!hidden){
 		EditorTabs->insertEditor(edit, reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1);
@@ -2199,11 +2200,12 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 	if (fileName.isEmpty()) {
 		if (currentEditor()->fileInfo().isFile()) {
 			currentDir = currentEditor()->fileInfo().absoluteFilePath();
-		} else if (!configManager.lastDocument.isEmpty()) {
+        } else /*if (!configManager.lastDocument.isEmpty()) {
 			QFileInfo fi(configManager.lastDocument);
 			if (fi.exists() && fi.isReadable())
 				currentDir=fi.absoluteFilePath();
-		}
+        }*/
+            currentDir = currentDir +"/"+ tr("document");
 	} else {
 		currentDir = fileName;
 		/*QFileInfo currentFile(fileName);
@@ -4690,7 +4692,12 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	QString pdfDefFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
 	QString pdfFile = buildManager.findFile(pdfDefFile, buildManager.additionalPdfPaths);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
-	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
+	int ln = 0;
+	if (currentEditorView()) {
+		ln = currentEditorView()->editor->cursor().lineNumber();
+		int originalLineNumber = currentEditorView()->document->lineToLineSnapshotLineNumber(currentEditorView()->editor->cursor().line());
+		if (originalLineNumber >= 0) ln = originalLineNumber;
+	}
 	foreach (PDFDocument* viewer, oldPDFs) {
 		bool focusViewer = (focus == 1) || (focus == 0 && !viewer->embeddedMode);
 		viewer->loadFile(pdfFile, master, focusViewer);
@@ -4838,7 +4845,12 @@ void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool 
 			}
 		}
 	}
-	if (latex) outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
+	if (latex) {
+		outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
+		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+			edView->document->saveLineSnapshot();
+		}
+	}
 	else outputView->resetMessages(!configManager.showMessagesWhenCompiling);
 	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
@@ -6121,6 +6133,13 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 	if (!ActivateEditorForFile(fileName, true, activate))
 		if (!load(fileName)) return;
     shrinkEmbeddedPDFViewer();
+
+	QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
+	if (l.isValid()) {
+		int originalLineNumber = currentEditorView()->document->indexOf(l, line);
+		if (originalLineNumber >= 0) line = originalLineNumber;
+	}
+
 	gotoLine(line, 0, 0, QEditor::Navigation, activate);
 	Q_ASSERT(currentEditor());
 	
@@ -6831,6 +6850,11 @@ void Texmaker::syncPDFViewer(QDocumentCursor cur, bool inForeground) {
 	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
 		if (inForeground || viewer->followCursor()) {
 			int lineNumber = cur.isValid() ? cur.lineNumber() : currentLine;
+			LatexDocument *doc = qobject_cast<LatexDocument *>(cur.document());
+			if (doc) {
+				int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
+				if (originalLineNumber >= 0) lineNumber = originalLineNumber;
+			}
 			viewer->syncFromSource(getCurrentFileName(), lineNumber, false);
 		}
 		if (inForeground) {
