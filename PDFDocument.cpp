@@ -813,6 +813,8 @@ void PDFWidget::annotationClicked(Poppler::Annotation *annotation, const QPointF
 
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
+	if (pdfdocument && pdfdocument->embeddedMode)
+		setFocus();
 	if (clickedLink) {
 		int page;
 		QPointF scaledPos;
@@ -2405,8 +2407,8 @@ void PDFDocument::init(bool embedded)
 		actionPresentation->setShortcut(QKeySequence());
 		action_Print->setShortcut(QKeySequence());
 		actionFileOpen->setShortcut(QKeySequence());
-//		actionLast_Page->setShortcut(QKeySequence());
-//		actionFirst_Page->setShortcut(QKeySequence());
+		actionLast_Page->setShortcut(QKeySequence());
+		actionFirst_Page->setShortcut(QKeySequence());
 	}
 }
 
