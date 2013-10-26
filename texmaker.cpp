@@ -2213,12 +2213,14 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 	if (fileName.isEmpty()) {
 		if (currentEditor()->fileInfo().isFile()) {
 			currentDir = currentEditor()->fileInfo().absoluteFilePath();
-        } else /*if (!configManager.lastDocument.isEmpty()) {
-			QFileInfo fi(configManager.lastDocument);
-			if (fi.exists() && fi.isReadable())
-				currentDir=fi.absoluteFilePath();
-        }*/
+        } else {
+            if (!configManager.lastDocument.isEmpty()) {
+                QFileInfo fi(configManager.lastDocument);
+                if (fi.exists() && fi.isReadable())
+                    currentDir=fi.absolutePath();
+            }
             currentDir = currentDir +"/"+ tr("document");
+        }
 	} else {
 		currentDir = fileName;
 		/*QFileInfo currentFile(fileName);
