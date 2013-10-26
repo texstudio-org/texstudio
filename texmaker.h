@@ -475,7 +475,7 @@ protected slots:
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id=-1);
-	void syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
+	void syncFromViewer(const QString &fileName, int lineNr, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
 	
 	void goBack();
 	void goForward();
