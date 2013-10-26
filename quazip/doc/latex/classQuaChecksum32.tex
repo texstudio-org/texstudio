@@ -1,0 +1,113 @@
+\section{QuaChecksum32 Class Reference}
+\label{classQuaChecksum32}\index{QuaChecksum32@{QuaChecksum32}}
+
+
+Checksum interface.  
+
+
+
+
+{\ttfamily \#include $<$quazip/quachecksum32.h$>$}
+
+
+
+Inheritance diagram for QuaChecksum32:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classQuaChecksum32__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual quint32 {\bf calculate} (const QByteArray \&data)=0
+\begin{DoxyCompactList}\small\item\em Calculates the checksum for data. \end{DoxyCompactList}\item 
+virtual void {\bf reset} ()=0\label{classQuaChecksum32_ad3f5db3c76b00069db9bda333cb49d57}
+
+\begin{DoxyCompactList}\small\item\em Resets the calculation on a checksun for a stream. \end{DoxyCompactList}\item 
+virtual void {\bf update} (const QByteArray \&buf)=0
+\begin{DoxyCompactList}\small\item\em Updates the calculated checksum for the stream. \end{DoxyCompactList}\item 
+virtual quint32 {\bf value} ()=0
+\begin{DoxyCompactList}\small\item\em Value of the checksum calculated for the stream passed throw \doxyref{update()}{p.}{classQuaChecksum32_a63a6ed3171f9243214d307da67557f7e}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Checksum interface. 
+
+This is an interface for 32 bit checksums. Classes implementing this interface can calcunate a certin checksum in a single step: 
+\begin{DoxyCode}
+ QChecksum32 *crc32 = new QuaCrc32(); 
+ rasoult = crc32->calculate(data);
+\end{DoxyCode}
+ or by streaming the data: 
+\begin{DoxyCode}
+ QChecksum32 *crc32 = new QuaCrc32(); 
+ while(!fileA.atEnd())
+     crc32->update(fileA.read(bufSize));
+ resoultA = crc32->value();
+ crc32->reset();
+ while(!fileB.atEnd())
+     crc32->update(fileB.read(bufSize));
+ resoultB = crc32->value();
+\end{DoxyCode}
+ 
+
+\subsection{Member Function Documentation}
+\index{QuaChecksum32@{QuaChecksum32}!calculate@{calculate}}
+\index{calculate@{calculate}!QuaChecksum32@{QuaChecksum32}}
+\subsubsection[{calculate}]{\setlength{\rightskip}{0pt plus 5cm}virtual quint32 QuaChecksum32::calculate (
+\begin{DoxyParamCaption}
+\item[{const QByteArray \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [pure virtual]}}\label{classQuaChecksum32_a14d800fcfd55b2ae11ef07d3924fe0b1}
+
+
+Calculates the checksum for data. 
+
+{\itshape data\/} source data \begin{DoxyReturn}{Returns}
+data checksum
+\end{DoxyReturn}
+This function has no efect on the value returned by \doxyref{value()}{p.}{classQuaChecksum32_afd836e7534194fce08356be6a8336da7}. 
+
+Implemented in {\bf QuaAdler32} \doxyref{}{p.}{classQuaAdler32_a350e84fd000ebfa3c33503336a7b21bb}, and {\bf QuaCrc32} \doxyref{}{p.}{classQuaCrc32_aaf6fdf6e36e55c97bf9eab6ec65ecb9e}.
+
+\index{QuaChecksum32@{QuaChecksum32}!update@{update}}
+\index{update@{update}!QuaChecksum32@{QuaChecksum32}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void QuaChecksum32::update (
+\begin{DoxyParamCaption}
+\item[{const QByteArray \&}]{buf}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [pure virtual]}}\label{classQuaChecksum32_a63a6ed3171f9243214d307da67557f7e}
+
+
+Updates the calculated checksum for the stream. 
+
+{\itshape buf\/} next portion of data from the stream 
+
+Implemented in {\bf QuaAdler32} \doxyref{}{p.}{classQuaAdler32_aba24f7b16aa0cdc26f81a9ad687fc653}, and {\bf QuaCrc32} \doxyref{}{p.}{classQuaCrc32_a5015d80e04afe6e6d094155b7e99888e}.
+
+\index{QuaChecksum32@{QuaChecksum32}!value@{value}}
+\index{value@{value}!QuaChecksum32@{QuaChecksum32}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}virtual quint32 QuaChecksum32::value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [pure virtual]}}\label{classQuaChecksum32_afd836e7534194fce08356be6a8336da7}
+
+
+Value of the checksum calculated for the stream passed throw \doxyref{update()}{p.}{classQuaChecksum32_a63a6ed3171f9243214d307da67557f7e}. 
+
+\begin{DoxyReturn}{Returns}
+checksum 
+\end{DoxyReturn}
+
+
+Implemented in {\bf QuaAdler32} \doxyref{}{p.}{classQuaAdler32_a2022e1db95c23cef220b335e44d74fb1}, and {\bf QuaCrc32} \doxyref{}{p.}{classQuaCrc32_a957ce46a53862f75c89d6a3ac4f73389}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+quazip/quachecksum32.h\end{DoxyCompactItemize}

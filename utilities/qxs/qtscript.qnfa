@@ -1,0 +1,114 @@
+<!DOCTYPE QNFA>
+<QNFA language="QtScript" extensions="js;qs" >
+	<context id="comment/single" format="comment" >
+		<start>//</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	
+	<context id="comment/single" format="comment" >
+		<start parenthesis="jscomment:open" indent="1" fold="1">/\*</start>
+		<stop parenthesis="jscomment:close" indent="1" fold="1">\*/</stop>
+	</context>
+	
+	<context id="data/string1" format="text" >
+		<start parenthesis="string:open">&quot;</start>
+		<stop parenthesis="string:close">&quot;</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	
+	<context id="data/string2" format="text" >
+		<start parenthesis="simplestring:open">&apos;</start>
+		<stop parenthesis="simplestring:close">&apos;</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	
+	<context id="data/regexp" format="text" >
+		<start>\(/</start>
+		<stop>/</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	<context id="data/regexpb" format="text" >
+		<start>/[^0-9 ]</start>
+		<stop>/</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+
+	<sequence parenthesis="round:open">\(</sequence>
+	<sequence parenthesis="round:close">\)</sequence>
+	<sequence parenthesis="curly:open">\{</sequence>
+	<sequence parenthesis="curly:close">\}</sequence>
+	<sequence parenthesis="square:open">\[</sequence>
+	<sequence parenthesis="square:close">\]</sequence>
+	
+	<list id="keywords" format="keyword">
+		<word>Infinity</word>
+		<word>NaN</word>
+		<word>abstract</word>
+		<word>boolean</word>
+		<word>break</word>
+		<word>byte</word>
+		<word>case</word>
+		<word>catch</word>
+		<word>char</word>
+		<word>class</word>
+		<word>const</word>
+		<word>constructor</word>
+		<word>continue</word>
+		<word>debugger</word>
+		<word>default</word>
+		<word>delete</word>
+		<word>do</word>
+		<word>double</word>
+		<word>else</word>
+		<word>enum</word>
+		<word>export</word>
+		<word>extends</word>
+		<word>false</word>
+		<word>final</word>
+		<word>finally</word>
+		<word>float</word>
+		<word>for</word>
+		<word>function</word>
+		<word>goto</word>
+		<word>if</word>
+		<word>implements</word>
+		<word>import</word>
+		<word>in</word>
+		<word>instanceof</word>
+		<word>int</word>
+		<word>interface</word>
+		<word>long</word>
+		<word>native</word>
+		<word>new</word>
+		<word>package</word>
+		<word>private</word>
+		<word>protected</word>
+		<word>public</word>
+		<word>return</word>
+		<word>short</word>
+		<word>static</word>
+		<word>super</word>
+		<word>switch</word>
+		<word>synchronized</word>
+		<word>this</word>
+		<word>throw</word>
+		<word>throws</word>
+		<word>transient</word>
+		<word>true</word>
+		<word>try</word>
+		<word>typeof</word>
+		<word>undefined</word>
+		<word>var</word>
+		<word>void</word>
+		<word>volatile</word>
+		<word>with</word>
+		<word>while</word>
+	</list>
+	
+	<word id="data/float" format="numbers">-?[0-9]*.[0-9]+</word>
+	<word id="data/decimal" format="numbers">-?[0-9]+</word>
+</QNFA>
