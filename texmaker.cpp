@@ -594,7 +594,8 @@ void Texmaker::setupMenus() {
 
 
 	submenu=newManagedMenu(menu, "utilities",tr("Fifi&x"));
-	newManagedAction(submenu, "rename", tr("Rename/&move file..."), SLOT(fileUtilMove()));
+	newManagedAction(submenu, "rename", tr("Save renamed/&moved file..."), "fileUtilCopyMove",0,QString(),QList<QVariant>() << true);
+	newManagedAction(submenu, "copy", tr("Save copied file..."), "fileUtilCopyMove",0,QString(),QList<QVariant>() << false);
 	newManagedAction(submenu, "delete", tr("&Delete file"), SLOT(fileUtilDelete()));
 	newManagedAction(submenu, "chmod", tr("Set &permissions..."), SLOT(fileUtilPermissions()));
 	submenu->addSeparator();
@@ -2341,18 +2342,20 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 //TODO: handle svn in all these methods
 
-void Texmaker::fileUtilMove(){
+void Texmaker::fileUtilCopyMove(bool move){
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
-	QString newfn = QFileDialog::getSaveFileName(this,tr("Rename/Move"),fn,fileFilters, &selectedFileFilter);
+	QString newfn = QFileDialog::getSaveFileName(this,move ? tr("Rename/Move") : tr("Copy"),fn,fileFilters, &selectedFileFilter);
 	if (newfn.isEmpty()) return;
 	if (fn == newfn) return;
 	QFile::Permissions permissions = QFile(fn).permissions();
-	fileSaveAs(newfn, true);
+	if (move) fileSaveAs(newfn, true);
+	else currentEditor()->saveCopy(newfn);
 	if (documents.getCurrentFileName() != newfn) return;
-	QFile(fn).remove();
+	if (move) QFile(fn).remove();
 	QFile(newfn).setPermissions(permissions); //keep permissions. (better: actually move the file, keeping the inode. but then all that stuff (e.g. master/slave) has to be updated here
 }
+
 
 void Texmaker::fileUtilDelete(){
 	QString fn = documents.getCurrentFileName();
