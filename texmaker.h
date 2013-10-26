@@ -219,6 +219,12 @@ private slots:
 	void fileSaveAs(const QString& fileName, const bool saveSilently);
 	void fileNewInternal(QString fileName="");
 protected slots:	
+	void fileUtilMove();
+	void fileUtilDelete();
+	void fileUtilRevert();
+	void fileUtilPermissions();
+	void fileUtilCopyFileName();
+	void fileUtilCopyMasterFileName();
 	void fileClose();
 	void fileCloseAll();
 	void fileExit();

@@ -591,6 +591,18 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
+
+
+	submenu=newManagedMenu(menu, "utilities",tr("Fifi&x"));
+	newManagedAction(submenu, "rename", tr("Rename/&move file..."), SLOT(fileUtilMove()));
+	newManagedAction(submenu, "delete", tr("&Delete file"), SLOT(fileUtilDelete()));
+	newManagedAction(submenu, "chmod", tr("Set &permissions..."), SLOT(fileUtilPermissions()));
+	submenu->addSeparator();
+	newManagedAction(submenu, "revert", tr("&Revert to saved..."), SLOT(fileUtilRevert()));
+	submenu->addSeparator();
+	newManagedAction(submenu, "copyfilename", tr("Copy filename to &clipboard"), SLOT(fileUtilCopyFileName()));
+	newManagedAction(submenu, "copymasterfilename", tr("Copy master filename to clipboard"), SLOT(fileUtilCopyMasterFileName()));
+
 	QMenu *svnSubmenu=newManagedMenu(menu, "svn",tr("S&VN..."));
 	newManagedAction(svnSubmenu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
 	newManagedAction(svnSubmenu, "svnupdate",tr("SVN &update..."), SLOT(fileUpdate()));
@@ -604,11 +616,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(fileDiffMerge()));
 	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
 	newManagedAction(svnSubmenu, "declareresolved",tr("Declare Conflict Resolved"), SLOT(declareConflictResolved()));
-    newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,"go-next-diff");
-    newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,"go-previous-diff");
+	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,"go-next-diff");
+	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,"go-previous-diff");
 	
 	menu->addSeparator();
-    newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, "fileclose");
+	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, "fileclose");
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 	
 	menu->addSeparator();
@@ -2326,6 +2338,98 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 		EditorTabs->setCurrentEditor(currentEdView);
 	//UpdateCaption();
 }
+
+//TODO: handle svn in all these methods
+
+void Texmaker::fileUtilMove(){
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+	QString newfn = QFileDialog::getSaveFileName(this,tr("Rename/Move"),fn,fileFilters, &selectedFileFilter);
+	if (newfn.isEmpty()) return;
+	if (fn == newfn) return;
+	QFile::Permissions permissions = QFile(fn).permissions();
+	fileSaveAs(newfn, true);
+	if (documents.getCurrentFileName() != newfn) return;
+	QFile(fn).remove();
+	QFile(newfn).setPermissions(permissions); //keep permissions. (better: actually move the file, keeping the inode. but then all that stuff (e.g. master/slave) has to be updated here
+}
+
+void Texmaker::fileUtilDelete(){
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+	if (txsConfirmWarning(tr("Do you really want to delete the file \"%1\"?").arg(fn)))
+		QFile(fn).remove();
+}
+
+void Texmaker::fileUtilRevert(){
+	if (!currentEditor()) return;
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+	if (txsConfirmWarning(tr("Do you really want to revert the file \"%1\"?").arg(documents.getCurrentFileName())))
+		currentEditor()->reload();
+}
+
+void Texmaker::fileUtilPermissions(){
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+
+	QFile f(fn);
+
+	int permissionsRaw = f.permissions();
+	int permissionsUnixLike = ((permissionsRaw & 0x7000) >> 4) | (permissionsRaw & 0x0077); //ignore qt "user" flags
+	QString permissionsUnixLikeHex = QString::number(permissionsUnixLike, 16);
+	QString permissions;
+	const QString PERMISSIONSCODES = "rwx";
+	int flag = QFile::ReadUser; REQUIRE(QFile::ReadUser == 0x400);
+	int temp = permissionsUnixLike;
+	for (int b=0;b<3;b++) {
+		for (int i=0;i<3;i++, flag >>= 1)
+			permissions += (temp & flag) ? PERMISSIONSCODES[i] : QChar('-');
+		flag >>= 1;
+	}
+	QString oldPermissionsUnixLikeHex = permissionsUnixLikeHex, oldPermissions = permissions;
+
+
+	UniversalInputDialog uid;
+	uid.addVariable(&permissionsUnixLikeHex, "Numeric permissions: ");
+	uid.addVariable(&permissions, "Verbose permissions: ");
+	if (uid.exec() == QDialog::Accepted && (permissionsUnixLikeHex != oldPermissionsUnixLikeHex || permissions != oldPermissions)) {
+		if (permissionsUnixLikeHex != oldPermissionsUnixLikeHex)
+			permissionsRaw = permissionsUnixLikeHex.toInt(0, 16);
+		else {
+			permissionsRaw = 0;
+			int flag = QFile::ReadUser;
+			int p = 0;
+			for (int b=0;b<3;b++) {
+				for (int i=0;i<3;i++, flag >>= 1) {
+					if (permissions[p] == '-') p++;
+					else if (permissions[p] == PERMISSIONSCODES[i]) {
+						permissionsRaw |= flag;
+						p++;
+					} else if (!QString("rwx").contains(permissions[p])) {
+						txsWarning("invalid character in permission: "+permissions[p]);
+						return;
+					}
+					if (p >= permissions.length()) p=0; //wrap around
+				}
+				flag >>= 1;
+			}
+		}
+		permissionsRaw = ((permissionsRaw << 4) & 0x7000) | permissionsRaw; //use qt "user" as owner flags
+		f.setPermissions(QFile::Permissions(permissionsRaw)) ;
+	}
+
+
+}
+
+void Texmaker::fileUtilCopyFileName(){
+	QApplication::clipboard()->setText(documents.getCurrentFileName());
+}
+
+void Texmaker::fileUtilCopyMasterFileName(){
+	QApplication::clipboard()->setText(documents.getCompileFileName());
+}
+
 
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
