@@ -770,7 +770,7 @@ int LatexParser::findContext(QString &line,int &column) const{
     QString eow="\\[]{} $";
 	int i=column;
 	if(i>=line.length())
-		i=line.length()-1;
+		i=line.length();
 	if(i>0)
 		i--; // character left of pos is to be checked
 	else
