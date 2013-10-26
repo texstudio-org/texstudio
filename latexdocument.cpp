@@ -2227,6 +2227,38 @@ bool LatexDocument::fileExits(QString fname){
 	return exist;
 }
 
+/*
+ * A line snapshot is a list of DocumentLineHandles at a given time.
+ * For example, this is used to reconstruct the line number at latex compile time
+ * allowing syncing from PDF to the correct source line also after altering the source document
+ */
+void LatexDocument::saveLineSnapshot() {
+	foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
+		dlh->deref();
+	}
+	mLineSnapshot.clear();
+#if (QT_VERSION >= 0x040700)
+	mLineSnapshot.reserve(lineCount());
+#endif
+	QDocumentConstIterator it = begin(), e = end();
+	while (it != e) {
+		mLineSnapshot.append(*it);
+		(*it)->ref();
+		it++;
+	}
+}
+
+// get the line with given lineNumber (0-based) from the snapshot
+QDocumentLine LatexDocument::lineFromLineSnapshot(int lineNumber) {
+	if (lineNumber < 0 || lineNumber >= mLineSnapshot.count()) return QDocumentLine();
+	return QDocumentLine(mLineSnapshot.at(lineNumber));
+}
+
+// returns the 0-based number of the line in the snapshot, or -1 if line is not in the snapshot
+int LatexDocument::lineToLineSnapshotLineNumber(const QDocumentLine &line) {
+	return mLineSnapshot.indexOf(line.handle());
+}
+
 QString LatexDocument::findFileName(QString fname){
 	QString curPath=ensureTrailingDirSeparator(getFileInfo().absolutePath());
 	QString result;
