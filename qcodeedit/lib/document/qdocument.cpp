@@ -4835,16 +4835,18 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( atBlockStart() )
 				return false;
 
-//QMessageBox::information(0,QString::number(m_doc->line(line).cursorToDocumentOffset(offset+1).y()),"a"+QString::number(m_doc->line(line).cursorToDocumentOffset(offset-1).y()),0);
-			if ( m & QDocumentCursor::ThroughWrap &&
-                m_doc->line(line).cursorToDocumentOffset(offset+1).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y()) //not at w. line start
-			{
-                QPoint p = documentPosition();
-                p.rx() = 0;
+			if ( m & QDocumentCursor::ThroughWrap){
+			    if(m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y()) //not at w. line start
+			    {
+				QPoint p = documentPosition();
+				p.rx() = 0;
 
-                m_doc->cursorForDocumentPosition(p, line, offset);
+				m_doc->cursorForDocumentPosition(p, line, offset);
 				m_max = 0;//w.line start, avoiding 0 bug
-                return true;
+				return true;
+			    }
+			    return false;
+
 			}
 
 			m_max = offset = 0;
