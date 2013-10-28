@@ -1602,6 +1602,14 @@ LatexDocuments::~LatexDocuments(){
 void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
     if(hidden){
         hiddenDocuments.append(document);
+        LatexEditorView *edView=document->getEditorView();
+        if (edView) {
+            QEditor* ed=edView->getEditor();
+            if(ed){
+                document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
+                ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+            }
+        }
     }else{
         documents.append(document);
     }
@@ -1646,6 +1654,14 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
         }
         if(n>1){ // at least one related document will be open after removal
             hiddenDocuments.append(document);
+            LatexEditorView *edView=document->getEditorView();
+            if (edView) {
+                QEditor* ed=edView->getEditor();
+                if(ed){
+                    document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
+                    ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+                }
+            }
         }else{
             /*
             // set document.masterdocument = 0
