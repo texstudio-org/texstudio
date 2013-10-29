@@ -1172,8 +1172,10 @@ void QEditor::fileChanged(const QString& file)
 			reconnectWatcher(); 
 		}
 
-		if ( autoReload )
+		if ( autoReload ){
 			reload();
+			return;
+		    }
 	}
 
 	// TODO : check for actual modification (using a checksum?)
