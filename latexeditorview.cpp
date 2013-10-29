@@ -1153,7 +1153,39 @@ void LatexEditorView::updatePackageFormats(){
                     editor->document()->line(i).addOverlay(li[j]);
                 }
             }
-    }
+	}
+}
+
+void LatexEditorView::clearLogMarks() {
+	setLogMarksVisible(false);
+	logEntryToLine.clear();
+	logEntryToMarkID.clear();
+	lineToLogEntries.clear();
+}
+
+void LatexEditorView::addLogEntry(int logEntryNumber, int lineNumber, int markID) {
+	QDocumentLine l=editor->document()->line(lineNumber);
+	lineToLogEntries.insert(l.handle(), logEntryNumber);
+	logEntryToLine[logEntryNumber] = l.handle();
+	logEntryToMarkID[logEntryNumber] = markID;
+}
+
+void LatexEditorView::setLogMarksVisible(bool visible) {
+	if (visible) {
+		foreach(int logEntryNumber, logEntryToMarkID.keys()) {
+			int markID = logEntryToMarkID[logEntryNumber];
+			if (markID >= 0) {
+				QDocumentLine(logEntryToLine[logEntryNumber]).addMark(markID);
+			}
+		}
+	} else {
+		int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
+		int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
+		int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
+		editor->document()->removeMarks(errorMarkID);
+		editor->document()->removeMarks(warningMarkID);
+		editor->document()->removeMarks(badboxMarkID);
+	}
 }
 
 void LatexEditorView::updateCitationFormats(){

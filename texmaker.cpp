@@ -239,6 +239,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	setupMenus();
 	TitledPanelPage *logPage = outputView->pageFromId(outputView->LOG_PAGE);
 	if (logPage) {
+		logPage->addToolbarAction(getManagedAction("main/tools/logmarkers"));
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errorprev"));
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errornext"));
 	}
@@ -511,6 +512,8 @@ void Texmaker::setupDockWidgets(){
 		centralVSplitter->setStretchFactor(1,0);
 
 		connect(outputView->getLogWidget(),SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
+		connect(outputView->getLogWidget(),SIGNAL(logLoaded()),this,SLOT(updateLogEntriesInEditors()));
+		connect(outputView->getLogWidget(),SIGNAL(logResetted()),this,SLOT(clearLogEntriesInEditors()));
 		connect(outputView,SIGNAL(pageChanged(QString)),this,SLOT(outputPageChanged(QString)));
 		connect(outputView,SIGNAL(jumpToSearch(QDocument*,int)),this,SLOT(jumpToSearch(QDocument*,int)));
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
@@ -813,7 +816,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "clean",tr("Cle&an Auxiliary Files..."), SLOT(CleanAll()));
 	menu->addSeparator();
 	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
-	newManagedAction(menu, "clearmarkers",tr("Cl&ear Markers"), SLOT(ClearMarkers()));
+	act = newManagedAction(menu, "logmarkers", tr("Show Log Markers"), 0, 0, "logmarkers");
+	act->setCheckable(true);
+	connect(act, SIGNAL(triggered(bool)), SLOT(setLogMarksVisible(bool)));
 	menu->addSeparator();
 	newManagedAction(menu, "htmlexport",tr("C&onvert to Html..."), SLOT(WebPublish()));
 	newManagedAction(menu, "htmlsourceexport",tr("C&onvert Source to Html..."), SLOT(WebPublishSource()));
@@ -1597,7 +1602,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	if (f_real.endsWith(".log",Qt::CaseInsensitive) &&
 			txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
 		outputView->getLogWidget()->loadLogFile(f,documents.getTemporaryCompileFileName());
-		DisplayLatexError();
+		setLogMarksVisible(true);
 		return 0;
 	}
 
@@ -1736,7 +1741,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	
 	if (asProject) documents.setMasterDocument(edit->document);
 	
-	if (outputView->getLogWidget()->logPresent()) DisplayLatexError(); //show marks
+	if (outputView->getLogWidget()->logPresent()) {
+		updateLogEntriesInEditors();
+		setLogMarksVisible(true);
+	}
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
 	LatexDocument* master = edit->document->getTopMasterDocument();
@@ -4976,7 +4984,7 @@ void Texmaker::beginRunningSubCommand(ProcessX* p, const QString& commandMain, c
 	if (commandMain != subCommand)
 		statusLabelProcess->setText(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName).arg(buildManager.getCommandInfo(subCommand).displayName));
 	if (flags & RCF_COMPILES_TEX)
-		ClearMarkers();
+		clearLogEntriesInEditors();
 	//outputView->resetMessages();
 	connectSubCommand(p, (RCF_SHOW_STDOUT & flags));
 }
@@ -5125,7 +5133,7 @@ void Texmaker::showLog() {
 //shows the log (even if it is empty)
 void Texmaker::ViewLog() {
 	showLog();
-	DisplayLatexError();
+	setLogMarksVisible(true);
 	if (configManager.goToErrorWhenDisplayingLog && HasLatexErrors()) {
 		int errorMarkID = outputView->getLogWidget()->getLogModel()->markID(LT_ERROR);
 		if (!gotoMark(false, errorMarkID)) {
@@ -5167,22 +5175,33 @@ void Texmaker::ViewLogOrReRun(LatexCompileResult* result){
 }
 
 ////////////////////////// ERRORS /////////////////////////////
-void Texmaker::DisplayLatexError() {
+
+// changes visibilita of log markers in all editors
+void Texmaker::setLogMarksVisible(bool visible) {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		edView->setLogMarksVisible(visible);
+	}
+	QAction *act = getManagedAction("main/tools/logmarkers");
+	if (act) act->setChecked(visible);
+}
+
+// removes the log entries from all editors
+void Texmaker::clearLogEntriesInEditors() {
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		edView->clearLogMarks();
+	}
+}
+
+// adds the current log entries to all editors
+void Texmaker::updateLogEntriesInEditors() {
+	clearLogEntriesInEditors();
+	LatexLogModel* logModel = outputView->getLogWidget()->getLogModel();
+	QHash<QString, LatexEditorView*> tempFilenames; //temporary maps the filenames (as they appear in this log!) to the editor
 	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
 	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
 	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		edView->editor->document()->removeMarks(errorMarkID);
-		edView->editor->document()->removeMarks(warningMarkID);
-		edView->editor->document()->removeMarks(badboxMarkID);
-		edView->logEntryToLine.clear();
-		edView->lineToLogEntries.clear();
-	}
-	//backward, so the more important marks (with lower indices) will be inserted last and
-	//returned first be QMultiHash.value
-	LatexLogModel* logModel = outputView->getLogWidget()->getLogModel();
-	QHash<QString, LatexEditorView*> tempFilenames; //temporary maps the filenames (as they appear in this log!) to the editor
-	for (int i = logModel->count()-1; i >= 0; i--)
+
+	for (int i = logModel->count()-1; i >= 0; i--) {
 		if (logModel->at(i).oldline!=-1){
 			LatexEditorView* edView;
 			if (tempFilenames.contains(logModel->at(i).file)) edView=tempFilenames.value(logModel->at(i).file);
@@ -5191,14 +5210,17 @@ void Texmaker::DisplayLatexError() {
 				tempFilenames[logModel->at(i).file]=edView;
 			}
 			if (edView) {
-				QDocumentLine l=edView->editor->document()->line(logModel->at(i).oldline-1);
-				if (logModel->at(i).type==LT_ERROR) l.addMark(errorMarkID);
-				else if (logModel->at(i).type==LT_WARNING) l.addMark(warningMarkID);
-				else if (logModel->at(i).type==LT_BADBOX) l.addMark(badboxMarkID);
-				edView->lineToLogEntries.insert(l.handle(),i);
-				edView->logEntryToLine[i]=l.handle();
+				int markID;
+				switch (logModel->at(i).type) {
+				case LT_ERROR:   markID = errorMarkID;   break;
+				case LT_WARNING: markID = warningMarkID; break;
+				case LT_BADBOX:  markID = badboxMarkID;  break;
+				default: markID = -1;
+				}
+				edView->addLogEntry(i, logModel->at(i).oldline-1, markID);
 			}
 		}
+	}
 }
 
 bool Texmaker::HasLatexErrors() {
@@ -5212,7 +5234,7 @@ bool Texmaker::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage) 
 	if (outputView->getLogWidget()->logPresent()) {
 		if (outputView->getLogWidget()->getLogModel()->found((LogType) lt)){
 			showLog();
-			DisplayLatexError();
+			setLogMarksVisible(true);
 			return gotoMark(backward, outputView->getLogWidget()->getLogModel()->markID((LogType) lt));
 		} else {
 			txsInformation(notFoundMessage);
@@ -5221,17 +5243,8 @@ bool Texmaker::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage) 
 	return false;
 }
 
-void Texmaker::ClearMarkers(){
-	int errorMarkID = QLineMarksInfoCenter::instance()->markTypeId("error");
-	int warningMarkID = QLineMarksInfoCenter::instance()->markTypeId("warning");
-	int badboxMarkID = QLineMarksInfoCenter::instance()->markTypeId("badbox");
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		edView->editor->document()->removeMarks(errorMarkID);
-		edView->editor->document()->removeMarks(warningMarkID);
-		edView->editor->document()->removeMarks(badboxMarkID);
-		//ed->logEntryToLine.clear();
-		//ed->lineToLogEntries.clear();
-	}
+void Texmaker::ClearMarkers() {
+	setLogMarksVisible(false);
 }
 //////////////// HELP /////////////////
 void Texmaker::LatexHelp() {
@@ -6200,7 +6213,10 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	QString fileName = outputView->getLogWidget()->getLogModel()->at(logEntryNumber).file;
 	if (!ActivateEditorForFile(fileName, true))
 		if (!load(fileName)) return;
-	if (currentEditorView()->logEntryToLine.isEmpty()) DisplayLatexError(); // workaround: make sure logEntryToLine is populated (not sure if we also always want to display the markers)
+	if (currentEditorView()->logEntryToLine.isEmpty()) {
+		updateLogEntriesInEditors();
+	}
+	setLogMarksVisible(true);
 	//get line
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
 	if (!lh) return;

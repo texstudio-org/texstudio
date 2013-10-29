@@ -114,6 +114,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString & compile
 		errorTable->resizeRowsToContents();
 
 		selectLogEntry(0);
+		emit logLoaded();
 		return true;
 	}
 
@@ -130,6 +131,7 @@ void LatexLogWidget::resetLog() {
 	logModel->clear();
 	logpresent=false;
 	setInfo("");
+	emit logResetted();
 }
 
 bool LatexLogWidget::logEntryNumberValid(int logEntryNumber) {
