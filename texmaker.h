@@ -419,10 +419,12 @@ protected slots:
 	void GenerateRandomText();
 	
 	bool loadLog();
+	void setLogMarksVisible(bool visible);
+	void clearLogEntriesInEditors();
+	void updateLogEntriesInEditors();
 	void showLog();
 	void ViewLog();
 	void ViewLogOrReRun(LatexCompileResult* result);
-	void DisplayLatexError();
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
 	bool HasLatexErrors();
 	bool LogExists();
