@@ -1131,7 +1131,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	completerInputBinding->setMostUsed(config->preferedCompletionTab,true);
 	widget->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
 	//widget->show();
-    bool handled=true;
+    bool handled=false;
 	if(forcedGraphic){
 		if(!dirReader){
 			dirReader=new directoryReader(this);
