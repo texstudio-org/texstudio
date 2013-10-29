@@ -218,7 +218,13 @@ protected slots:
 private slots:
 	void fileSaveAs(const QString& fileName, const bool saveSilently);
 	void fileNewInternal(QString fileName="");
-protected slots:	
+protected slots:
+	void fileUtilCopyMove(bool move);
+	void fileUtilDelete();
+	void fileUtilRevert();
+	void fileUtilPermissions();
+	void fileUtilCopyFileName();
+	void fileUtilCopyMasterFileName();
 	void fileClose();
 	void fileCloseAll();
 	void fileExit();
@@ -475,7 +481,7 @@ protected slots:
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id=-1);
-	void syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
+	void syncFromViewer(const QString &fileName, int lineNr, bool activate, const QString& guessedWord);  //0 based, absolute file name, raise window
 	
 	void goBack();
 	void goForward();
