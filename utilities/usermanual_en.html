@@ -1,0 +1,1676 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>TeXstudio : user manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="usermanual.css">
+</head>
+<body>
+
+<h1 align=center id="top">TeXstudio : User manual</h1>
+<h2 id="sommaire">Contents:</h2>
+<ul class="two-columns">
+<li><a href="#SECTIONNEW">0. What's new</a>
+	<ul>
+	<li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
+	<li><a href="#SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</a></li>
+	<li><a href="#SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</a></li>
+	<li><a href="#SECTIONNEW260">Version 2.5.2 -> Version 2.6.0</a></li>
+	<li><a href="#SECTIONNEW252">Version 2.5.1 -> Version 2.5.2</a></li>
+	<li><a href="#SECTIONNEW251">Version 2.5 -> Version 2.5.1</a></li>
+	<li><a href="#SECTIONNEW241">Version 2.4 -> Version 2.5</a></li>
+	<li><a href="#SECTIONNEW24">Version 2.3 -> Version 2.4</a></li>
+	<li><a href="#SECTIONNEW23">Version 2.2 -> Version 2.3</a></li>
+	<li><a href="#SECTIONNEW22">Version 2.1 -> Version 2.2</a></li>
+	<li><a href="#SECTIONNEW201">Version 2.0 -> Version 2.1</a></li>
+	<li><a href="#SECTIONNEW199a">Version 1.9.9 -> Version 1.9.9a</a></li>
+	<li><a href="#SECTIONNEW20">Version 1.9.9a -> Version 2.0</a></li>
+	<li><a href="#SECTIONNEW199">Version 1.9.3 -> Version 1.9.9</a></li>
+	<li><a href="#SECTIONNEW19">Version 1.8.1 -> Version 1.9</a></li>
+	</ul>
+</li>
+<li><a href="#SECTION0">1. Configuring TeXstudio</a>
+	<ul>
+	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
+	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
+	<li><a href="#SECTION02a">1.3 Configuring the build system</a></li>
+	<li><a href="#SECTION030">1.4 Configuring some general issues</a></li>
+	<li><a href="#SECTION03">1.4.1 Configuring the spell checker</a></li>
+	<li><a href="#SECTION04">1.4.2 Configuring the thesaurus</a></li>
+	<li><a href="#SECTION041">1.4.3 Configuring the latex syntax checker</a></li>
+	<li><a href="#SECTION044">1.4.4 Configuring the grammar checker</a></li>
+	<li><a href="#SECTION040">1.5 Configuring the autocompletion</a></li>
+	<li><a href="#SECTION05">1.6 Configuring shortcuts</a></li>
+	<li><a href="#SECTION06">1.7 Configuring the Latex/Math-Menu</a></li>
+	<li><a href="#SECTION07">1.8 Configuring the Custom Toolbar</a></li>
+	<li><a href="#SECTION08">1.9 Configuring SVN support</a></li>
+	</ul>
+</li>
+<li><a href="#SECTION1">2. Editing a TeX document</a>
+	<ul>
+	<li><a href="#SECTION11">2.1 Usual commands</a></li>
+	<li><a href="#SECTION12">2.2.1 Setting the preamble of a TeX document</a></li>
+	<li><a href="#SECTION12a">2.2.2 Using Templates to start a new document</a></li>
+	<li><a href="#SECTION13">2.3 Structure of a document</a></li>
+	<li><a href="#SECTION14">2.4 Browsing your document</a></li>
+	<li><a href="#SECTION15">2.5 Formatting your text</a></li>
+	<li><a href="#SECTION16">2.6 Spacings</a></li>
+	<li><a href="#SECTION17">2.7 Inserting a list</a></li>
+	<li><a href="#SECTION18">2.8 Inserting a table</a></li>
+	<li><a href="#SECTION18a">2.8.1 Manipulating a table</a></li>
+	<li><a href="#SECTION19">2.9 Inserting a "tabbing" environment</a></li>
+	<li><a href="#SECTION110">2.10 Inserting a picture</a></li>
+	<li><a href="#SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></li>  
+	<li><a href="#SECTION111">2.11 Cross References and notes</a></li>
+	<li><a href="#SECTION112">2.12 Inserting math formulae</a></li>
+	<li><a href="#SECTION113">2.13 Auto completion</a></li>
+	<li><a href="#SECTION114">2.14 Thesaurus</a></li>
+	<li><a href="#SECTION115">2.15 Special Commands</a></li>
+	</ul>
+</li>
+<li><a href="#SECTION2">3. Compiling a document</a>
+	<ul>
+	<li><a href="#SECTION22">3.1 Compiling</a></li>
+	<li><a href="#SECTION23">3.2 The log files</a></li>
+	</ul>
+</li>
+<li><a href="#SECTION3">4. Other features</a>
+	<ul>
+	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
+	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
+	<li><a href="#SECTION32">4.3 Bibliography</a></li>
+	<li><a href="#SECTION33a">4.4 SVN Support</a></li>
+	<li><a href="#SECTION33">4.5 Personal macros</a></li>
+	<li><a href="#SECTION34">4.6 Pstricks support</a></li>
+	<li><a href="#SECTION35">4.7 Metapost support</a></li>
+	<li><a href="#SECTION36">4.8 The "Convert to Html" command</a></li>
+	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TeXstudio</a></li>
+	<li><a href="#SECTION_TEXCOM">4.10 Advanced header usage</a></li>
+	<li><a href="#SECTION38">4.11 Synopsis of the TeXstudio command</a></li>
+	<li><a href="#SECTION39">4.12 Keyboard shortcuts</a></li>
+	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
+	<li><a href="#TABLETEMPLATE">4.14 Using table templates</a></li>
+	</ul>
+</li>
+</ul>
+<hr>
+<h1 id="SECTIONNEW">0. What's new</h1>
+
+<h2 id="SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</h2>
+<ul>
+<li><p>fix bug that home/end don't work properly if the embedded pdf viewer is open</p></li>
+<li><p>more bug fixes</p></li>
+</ul>
+
+<h2 id="SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</h2>
+<ul>
+<li><p>package scanner: queries the tex istallation for installed packages and highlights missing packages</p></li>
+<li><p>package completion</p></li>
+<li><p>basic annotation support in internal pdf viewer</p></li>
+<li><p>improved render speed, especially on mac</p></li>
+<li><p>speed-up loading of hidden documents (option: automatically load included files)</p></li>
+<li><p>speed-up command completion window, especially citations</p></li>
+<li><p>improved log panel</p></li>
+<li><p>improved dtx highlighting</p></li>
+<li><p>added support for LilyPond book (.lytex)</p></li>
+<li><p>Edit -> Line operations now also work with selections</p></li>
+<li><p>updated hunspell library to 1.3.2</p></li>
+<li><p>fix: input method bug</p></li>
+<li><p>fix: shortcuts containing arrow keys did not work in japanese</p></li>
+<li><p>more bug fixes, e.g. tooltip does not disappear instantly anymore</p></li>
+</ul>
+
+<h2 id="SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</h2>
+<ul>
+<li><p>updated poppler and on Windows Qt (4.8.5)</p></li>
+<li><p>structure tree view: context menu entries to recursively collapse/expand the structure</p></li>
+<li><p>improved hard line wrap with joining lines</p></li>
+<li><p>View -> Focus Viewer now also works for the windowed viewer</p></li>
+<li><p>better detection of LanguageTool and dictionaries</p></li>
+<li><p>"Align Table Columns" now works also for tabu/longtabu</p></li>
+<li><p>many bug fixes: editable user templates, for } in rtl-languages, pinyin input method problem on mac, ...</p></li>
+</ul>
+
+<h2 id="SECTIONNEW260">Version 2.5.2 -> Version 2.6</h2>
+<ul>
+<li><p>the documentation pdf of a package can be displayed in the internal PDF viewer</p></li>
+<li><p>retina support on mac complete for modern style</p></li>
+<li><p>embedded viewer can be enlarged/reduced to take the whole screen for better reading</p></li>
+<li><p>last open (and unclosed) environment can be closed by alt+enter</p></li>
+<li><p>"Align Table Columns" does now work with more environments</p></li>
+<li><p>template resources are now configured via template_resources.xml and are in utf-8</p></li>
+<li><p>basic Pweave highlighting</p></li>
+<li><p>added <code>% !TeX spellcheck = ... magic comment</code></p></li>
+<li><p>new macro trigger depending on the current syntax highlighting</p></li>
+<li><p>improved bidi support for rtl languages</p></li>
+<li><p>several small corrections</p></li>
+</ul>
+
+<h2 id="SECTIONNEW252">Version 2.5.1 -> Version 2.5.2</h2>
+<ul>
+<li><p>new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable</p></li>
+<li><p>add support to display CJK and Cyrillic in PDF viewer</p></li>
+<li><p>increased maximum possible tab width to 32</p></li>
+<li><p>fix basic input method support</p></li>
+<li><p>fix missing templates on Linux and Mac OS X</p></li>
+<li><p>fix vanishing menu bar on Mac OS X</p></li>
+<li><p>fix crash when saving as an already open file</p></li>
+<li><p>fix viewer might change size because of long status messages</p></li>
+<li><p>changed shortcuts for next/prev document to Ctrl+PgDown/Up</p></li>
+<li><p>several small corrections</p></li>
+</ul>
+
+<h2 id="SECTIONNEW251">Version 2.5 -> Version 2.5.1</h2>
+<ul>
+<li><p>new template system</p></li>
+<li><p>improved fold panel</p></li>
+<li><p>added support for forward/backward mouse buttons in editor and viewer</p></li>
+<li><p>context menu for inline preview (allows copying of preview image)</p></li>
+<li><p>option to load all included files in order to have a complete ref/commands overview</p></li>
+<li><p>added "Open" context menu entry and link overlay for \bibliography{} commands</p></li>
+<li><p>show image preview on hover over graphic name</p></li>
+<li><p>several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)</p></li>
+</ul>
+
+<h2 id="SECTIONNEW241">Version 2.4 -> Version 2.5</h2>
+<ul>
+<li><p>cursor history (go back/forward)</p></li>
+<li><p>references, packages and included file names become links on Ctrl+MouseOver</p></li>
+<li><p>insertion of handwritten equations (Windows 7 only, using TexTablet)</p></li>
+<li><p>improved table-code formating, including options to specify the desired format</p></li>
+<li><p>metadata support in LaTeX templates and table templates</p></li>
+<li><p>checking for the correct version of the runtime library</p></li>
+<li><p>more context menus (fold panel, bookmark panel)</p></li>
+<li><p>optionally more bold cursor for better visibility</p></li>
+<li><p>line operations: move up/down, duplicate</p></li>
+<li><p>windows installer: add possibility to associate .tex files with TXS</p></li>
+<li><p>several bug fixes (crashes, compilation, focus, ...)</p></li>
+</ul>
+
+<h2 id="SECTIONNEW24">Version 2.3 -> Version 2.4</h2>
+<ul>
+<li><p>new build system which allows easier combination of several commands</p></li>
+<li><p>support many new tools: xelatex, lualatex, biber, latexmk, texindy</p></li>
+<li><p>embedded pdf viewer</p></li>
+<li><p>bookmark manager and persistent bookmarks</p></li>
+<li><p>inline grammar checking using LanguageTool</p></li>
+<li><p>basic syntax highlighting for lua and for dtx files</p></li>
+<li><p>biblatex support</p></li>
+<li><p>citation API to insert citations from other applications (JabRef plugin available)</p></li>
+<li><p>table autoformating</p></li>
+<li><p>improved appearance</p></li>
+<li><p>update checker</p></li>
+<li><p>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</p></li>
+<li><p>crash protection</p></li>
+<li><p>many small improvements</p></li>
+<li><p>several bug fixes</p></li>
+</ul>
+
+<h2 id="SECTIONNEW23">Version 2.2 -> Version 2.3</h2>
+<ul>
+<li><p>list of commands accepting \ref/\cite-references can be changed</p></li>
+<li><p>remember search history</p></li>
+<li><p>support for different dictionaries per document</p></li>
+<li><p>find-invalid-bracket feature</p></li>
+<li><p>almost word level inverse pdf search</p></li>
+<li><p>complete file names in graphic including macros</p></li>
+<li><p>improved BibTeX auto calling</p></li>
+<li><p>more methods available for scripting </p></li>
+<li><p>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
+</ul>
+
+<h2 id="SECTIONNEW22">Version 2.1 -> Version 2.2</h2>
+<ul>
+	<li><p>improved preview:</p>
+	    <ul><li><p>Pdf viewer can show multiple pages in continous fashion</li>
+	        <li><p>Pdf viewer works non-blocking (multi-threaded)</li>
+  	<li><p>preview works with included files</p></li>
+	    </ul>
+	</li>
+	<li><p>key replacements can trigger arbitrary user macros</p></li>
+	<li><p>double quote replacement can easily be selected from predefined list</p></li>
+	<li><p>completer distinguishes between usual, most often used and all possible commands</p></li>
+	<li><p>saving/loading profiles working
+	<li><p>more environments are syntax highlighted</p></li>
+	<li><p>as always, bug fixes and small improvements</p></li>
+</ul>
+
+<h2 id="SECTIONNEW201">Version 2.0 -> Version 2.1</h2>
+<ul>
+	<li><p>online latex syntax check has been extended</p>
+	    <ul>
+	      <li><p>number of columns is checked in tabulars</p>
+	      <li><p>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p>
+	      <li><p>new commands added</p></li>
+	    </ul>
+	</li>
+	<li><p>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
+	<li><p>improved preview:</p>
+	    <ul><li><p>Pdf viewer can show multiple pages</li>
+	        <li><p>Pdf viewer supports a presentation mode and multiple views</li>
+                <li><p>Pdf viewer has a new overview and clock dock</p></li>
+	        <li><p>Selection preview become faster and is shown within the text</li>  
+	    </ul>
+	</li>
+	<li>easy parenthesis selection</li>
+	<li><p>as always, bug fixes and small improvements</p>
+</ul>
+
+<h2 id="SECTIONNEW20">Version 1.9.9a -> Version 2.0</h2>
+<ul>
+	<li><p>integrated pdf viewer with forward/reverse search</p>
+	<li><p>online latex syntax check (for simple errors)</p>
+	<li><p>support to manipulate tables (add/remove lines,columns or \hline)</p>
+	<li><p>inserted brackets are automatically closed</p>
+	<li><p>option to limit line length with hard wraps</p>
+	<li><p>word repetitions are marked as possible style error</p>
+	<li><p>as always, bug fixes and small improvements</p>
+</ul>
+
+<h2 id="SECTIONNEW199a">Version 1.9.9 -> Version 1.9.9a</h2>
+<ul>
+    <li><p>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.</p>
+    <li><p>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p>
+	<li><p>command replacement in completed commands was added</p>
+	<li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
+	<li><p>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
+	<li><p>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
+	<li><p>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
+	<li><p>delete word, a command or an environment by typing ALT-del</p>
+	<li><p>spell checking is only done in known text commands</p>
+	<li><p>some dialogs adapted to cope better with small screen sizes</p>
+    <li><p>lots of bugs removed after user feedback</p>
+</ul>
+
+<h2 id="SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</h2>
+<ul>
+    <LI><p>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
+    <li><p>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
+    <li><p>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
+    <li><p>a customizable tool bar is available</p>
+    <li><p>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
+    <li><p>global find over all open documents improved</p>
+    <li><p>support of transparent versioning of text documents via svn</p>
+    <li><p>structure view and custom command completer are updated as you type</p>
+    <li><p>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
+    <li><p>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
+    <li><p>dde commands can be modified to start a corresponding program if it is not running</p>
+    <li><p>if a started latex freezes up, you can kill it by pressing escape after 2 seconds</p>
+    <li><p>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited</p>
+    <li><p>lots of bugs removed after user feedback</p>
+</ul>
+
+<h2 id="SECTIONNEW19">Version 1.8.1 -> Version 1.9</h2>
+
+<P>TeXstudio has been diligently extended for the last months. The
+subsequent list gives a probably incomplete overview of new and
+changed functionality:</P>
+<ul>
+	<LI><P>First steps for dynamic syntax highlighting have been
+	implemented. For example references in in commands like \label or
+	\ref are checked and are marked especially if the reference does not
+	exist (in case of referencing) or if it has been defined multiple
+	times.</P>
+	<LI><P>The word completion system has been extended. It now uses
+	&ldquo;kile&rdquo;-word lists which extend the number of known
+	commands considerably. The key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells.
+	Furthermore it can also complete normal text
+	by proposing earlier used text parts. The two modes are
+	distinguished by a backslash as starting letter. And finally &ldquo;User
+	Tags&rdquo; (user defined text blocks) can be inserted  by using
+	user defined abbreviations which replaced in the completion process.
+	The old behavior of using key sequences for inserting user tags
+	certainly is still available. And lastly user defined latex commands
+	are automatically scanned and can be used for command completion.</P>
+	<LI><P>Apart from using wizards, new documents can be created by
+	using templates. User can add own templates which can be edited or
+	removed later on if necessary.</P>
+	<LI><P>The symbol panel was extended. It was also extended by &ldquo;kile&rdquo;
+	symbol list. It also can insert &ldquo;tags&rdquo; from textual
+	lists. And finally the column count automatically adapts to the
+	available horizontal space. Not to mention that unwanted symbol
+	lists can be hidden.</P>
+	<LI><P>The symbol list selector was moved to the left edge to give
+	more room for the symbols, like it was done in texmaker.</P>
+	<LI><P>Hover help was implemented. Hovering the cursor over standard
+	latex commands will present tool tip help. If it is hovers over
+	references, the corresponding text passage which contains the label
+	is shown as tool tip.</P>
+	<LI><P>A preview for selected text can be shown either in the status
+	panel or as tool tip.</P>
+	<LI><P>The status/log/error panel can also be used in a tabbed
+	manner if desired.</P>
+	<LI><P>The online spell checker handles escaped chars like &ldquo;a
+	or \&rdquo;{a} now correctly. It also refrain from spell checking in
+	(some) latex command options like \ref{label} and some more.</P>
+	<LI><P>The context menu of the structure view gives some useful
+	option like selecting a complete section or indenting a section
+	which means changing \section to \subsection and accordingly all
+	included headings as well.</P>
+	<li><p>A thesaurus was added. It allows search for word parts as well.</p>
+	<LI><P>For sure, lots of bugs have been squashed !</P>
+</ul>
+
+
+<h1 id="SECTION0">1. Configuring TeXstudio</h1>
+<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advancde options" in the lower left corner.</p>
+<h2 id="SECTION01">1.1 Configuring the editor</h2>
+<p>
+You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
+TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
+</p>
+<ul>
+<li>"Folding" toggles the editors code-folding capability (hide sections of the text).
+<li>The selection box "Indentation mode" lets you select, wether indented lines are followed by lines of the same indentation after pressing Enter or letting TeXstudio do automatic indentation.
+</ul>
+<p><IMG src="configure_editor.png" border="1" alt="Configure Editor"></p>
+<h2 id="SECTION02">1.2 Configuring the latex related commands</h2>
+<p>TeXstudio can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
+The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TeXstudio will adapt automatically the syntax of the command.<br>
+The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog. <br>
+Section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.<br>
+You can always restore the original settings using the revert button to the right.
+</p>
+<p><IMG src="configure_commands.png" border="1" alt="Configure Commands"></p>
+<h2 id="SECTION02a">1.3 Configuring the build system</h2>
+<p>TeXstudio provides general commands for translating latex.<br>
+The default settings use "pdflatex" and the internal pdf viewer. Other commands and viewer can be selected as well as a different bibliography translator.<br>
+The "embedded pdf viewer" does not open a new window for viewing the pdf document but presents it directly next to the text in the editor.<br>
+A useful alternative might be using the "latexmk" as compile command (if the command is installed on your system), as it handles dependencies with biblatex and index very well.<br>
+The advanced options allows finer customization which is in general not necessary.<br>
+</p>
+<p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p>
+User commands can be defined here by "adding" them. Each user command has  a name like "user%n:" where "%n" is a number. After the colon a name can be stated which is shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
+User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
+Alternatively a command can be directly selected through the file system.
+<p><IMG src="doc21.png" border="1" alt="Configure user commands from known commands"></p>
+
+<h2 id="SECTION02a1">1.3.1 Advanced configuration of the build system</h2>
+
+<p>If you enable the advanced options, you can configure the build system in more details.
+
+<p>Every txs-command is a list of external programs/latex-commands and other txs-commands to call. An external program can be called with its usual command line, while a txs-command with id "foobar" is called by txs:///foobar. <br>
+The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next). 
+
+<p>Each of these txs-command has a unique id, which is shown as tooltip of the displayed name for "normal" commands and in the edit box for user commands. Some important commands are usual: txs:///quick (Build & View, the old quickbuild), txs:///compile (Default compiler), txs:///view (Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex), txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External pdf viewer).
+
+<p>For example, in a typical build configuration you might call txs:///quick by pressing F1, which calls txs:///compile, which first calls txs:///pdflatex that calls the actual pdflatey, and then calls txs:///view, which calls txs:///view-pdf, which calls txs:///view-pdf-internal, which displays the pdf.
+
+<p>There is  no difference between commands defined as command on the command config page, commands defined as build on the build config page, or commands defined as user commands. They are just separated in the GUI to simplify the interface.<br>
+This also means that you can change every command as you want, ignoring its old definition (you could even change its id, when editing the ini file.).
+
+<p>There are however three always defined internal commands, which can only be called and not modified:<br><br>
+
+<table>
+<tr><td>txs:///internal-pdf-viewer</td><td>Opens the internal viewer for the current document</td></tr>
+<tr><td>txs:///view-log</td><td>Views the log file for the current document</td></tr>
+<tr><td>txs:///conditionally-recompile-bibliography</td><td>Checks if the bib files have been modified, and calls txs:///recompile-bibliography, iff that is the case</td></tr>
+</table>
+
+<p>The internal pdf viewer  also accepts the following options (txs:///internal-pdf-viewer) to modify its behaviour:<br><br>
+
+<table>
+<tr><td>--embedded</td><td>Opens the viewer embedded</td></tr>
+<tr><td>--windowed</td><td>Opens the viewer windowed  (default if no option is given)</td></tr>
+<tr><td>--close-(all|windowed|embedded)</td><td>Close all open viewers, or just viewers of a specific kind</td></tr>
+<tr><td>--preserve-existing</td><td>Does not change any existing viewers (i.e. always opens a new one)</td></tr>
+<tr><td>--preserve-(embedded|windowed)</td><td>Does not change any existing embedded/windowed viewers</td></tr>
+<tr><td>--preserve-duplicates</td><td>Only opens the pdf in the first opened viewer</td></tr>
+<tr><td>--(no-)auto-close</td><td>If the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
+<tr><td>--(no-)focus</td><td>If the viewer should be focused, when it is opened (default: focus iff windowed)</td></tr>
+</table>
+
+<p>It is also possible to modify the arguments of called subcommands with argument modifiers or  by adding a new argument . These modifiers are passed through called lists, so it will always change the arguments of the finally called program, even if the directly called subcommand is just a wrapper around another command:<br><br>
+
+<table>
+<tr><td>txs:///foobar --xyz</td><td>This will add the xyz option</td></tr>
+<tr><td>txs:///foobar[--xyz=123]</td><td>This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar)</td></tr>
+<tr><td>txs:///foobar{--xyz=123}</td><td>This will remove --xyz=123 from the foobar command line, ignoring xyz options with other values<td></td></tr>
+<tr><td>txs:///foobar{--xyz}</td><td>This will remove any --xyz option from the foobar command line, regardless of its value</td></tr>
+<tr><td>txs:///foobar{}</td><td>This will remove all options from the foobar command line, leaving only the name of the executable</td></tr>
+
+</table>
+
+<p>
+Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
+ 
+
+<h2 id="SECTION030">1.4 Configuring some general issues</h2>
+<p>This panel allows the setting of some general aspects.</p>
+<ul>
+<li>The "style" and "color scheme" of TeXstudio can be selected. The modern variant is closer to texmaker 1.9.
+<li>The symbol list can either appear "tabbed" (old behaviour, tabbed activated) or can have small symbol tabs besides the symbol lists which leaves more room for the symbols.
+<li>Also the log viewer can appear tabbed which allows faster change between error table, log view and previewer ...
+<li>The language of the menus can be changed directly to ignore system settings.
+</ul>
+<p><IMG src="configure_general.png" border="1" alt="Configure General"></p>
+<h2 id="SECTION03">1.4.1 Configuring the spell checker</h2>
+<p>
+TeXstudio checks the spelling while you type. If the typed text is within a LaTeX-command, TeXstudio takes information from the command-completion-list to determine whether the text is natural language which needs to be checked or just command options which are left alone. Only known LaTeX-commands are considered to be checked in its options! For more information known commands and packages see the section on <a href="#SECTION040">completion</a> <br>
+The spell checker uses the OpenOffice.org dictionaries. By default GPL French, British and German dictionaries are distributed with TeXstudio. Users can download others dictionaries at <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A>. All dictionaries are a stored in one directory.<br>
+To make life easy TeXstudio lets you choose a preferred language for the spell checker. However if you frequently work with files in different languages you may want to override the default behavior. This can be done in two ways. First you can specify the language of the file via the language menu in the status line. This setting will be lost as soon as the file is closed. To permanently save the language of the file TeXstudio supports a special "magic comment" <code>% !TeX spellcheck = de_DE</code>. If this comment is present in a file, its language is automatically set when the file is loaded.
+<p><IMG src="spellcheck_menu.png" border="1" alt="Spellcheck Menu"></p>
+
+Please note: spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.<br><br>
+If the interactive spell checker is enabled (default), any incorrectly spelled word is underlined with a red wave. Right-click on the word to open a menu with a list of possible corrections. In this context menu you can also add the word to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.<br><br>
+Since the internal structure of the dictionaries is complex (e.g. contains rules how to generate a word with in different inflections) it is not possible to simply add words to the dictionary. Instead if a word is missing in the dictionary, you can add it to an ignore list, so that the spell checker won't complain about it. The ignore list is normally saved in the same directory as the dictionary. It's a plain text file with the extension .ign. If this isn't possible (e.g. missing access rights) the list is stored in the user configuration directory.
+</p>
+<h2 id="SECTION04">1.4.2 Configuring the thesaurus</h2>
+<p>
+The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TeXstudio.<br>
+Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
+</p>
+<h2 id="SECTION041">1.4.3 Configuring the latex syntax checker</h2>
+<p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
+Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br></p>
+<h2 id="SECTION044">1.4.4 Configuring the grammar checker</h2>
+<p>The grammar checker is based on the standard http API of <a href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate installation of LanguageTool and java.
+
+<p>Once LanguageTool is installed, you can try it by starting the LanguageTool standalone application, and start TeXstudio afterward.  LanguageTool then creates  a locally running server at the address http://localhost:8081/ and TeXstudio automatically connects to it at startup. When the connection is established, all typed paragraphs are send to LT and after a short delay the possible grammar errors are highlighted.  
+
+<p>To automatically start LanguageTool with TeXstudio, you need to enter the path to LT jar in the grammar page of the config dialog. If the java executable is not in the default PATH, you also need to set the path to it there.
+
+<p>In the advanced config mode, you can also mark certain LT rules as "special" whose matches will then be highlighted in a different/customizable way. This can be useful to do a stylistic analysis, e.g. by creating a own rule in LT highlighting all verbs or all adverbs.
+
+<p>Independent from LanguageTool, TeXstudio also checks for repeated and bad (imprecise/slang) words. The repetition check looks several words behind and marks repetition of short words in the immediate surrounding and repetition of long words up to 10 words before. These distances and lengths can be changed on the advanced grammar config page.
+
+
+<h2 id="SECTION040">1.5 Configuring the autocompletion</h2>
+<p>
+TeXstudio has taken up completion word lists from kile which extended the number of known commands for completion considerably.
+TeXstudio understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
+However TeXstudio allows one to select the additional word lists under 
+"Configure TeXstudio" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
+Concerning auto completion, TeXstudio allows one to adapt the behaviour to your liking.
+Following options are available:</p>
+<ul>
+<li>Completion enabled: self explanatory
+<li>Case sensitive: let's you complete e.g. \Large from \la ...
+<li>in first character: ?
+<li>Auto Complete Common Prefix: if only one item is in the list or all items in the completion list share common starting characters, the common characters are directly inserted, like pressing the key Tab.
+<li>Complete selected text when non-word character is pressed: when in completion mode, pressing a non-word character like space, leads to accepting the selected word. This may speed up typing.
+<li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
+<li>Use Placeholders: if the completed commands have options which need to be filled out, "place holder" are put at this positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
+</ul>
+<p>If your favorite package is not yet present for completion (and then as well not for syntax check), you can provide a list of your own by placing a file "packagename.cwl" in the config directory. This directory is placed in ~/.config/texstudio under linux and usually "c:\Documents and Settings/User/AppData/Roaming/texstudio" under windows. Basically the file contains a list of valid commands. A Description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
+</p>
+
+<p><IMG src="configure_completion.png" border="1" alt="Configure Completion"></p>
+<h2 id="SECTION05">1.6 Configuring shortcuts</h2>
+<p>
+Shortcuts can be changed by double clicking on "Current Shortcut" or "Additional Shortcut".
+A shortcut can be selected from the drop down list or put in as text directly.
+If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected.
+</p>
+<p><IMG src="configure_shortcuts.png" border="1" alt="Configure Shortcuts"></p>
+<h2 id="SECTION06">1.7 Configuring the Latex/Math-Menu (Advanced option)</h2>
+<p>The Math/Latex-Menu can be adapted to user likings.
+For this menu items can be renamed and a new Latex-Code can be placed. The apropriate item can be be directly edited by doubleclicking on them.
+</p>
+<p><IMG src="configure_customizeMenu.png" border="1" alt="Customize Menu"></p>
+<h2 id="SECTION07">1.8 Configuring the Custom Toolbar (Advanced option)</h2>
+<p>One Custom Toolbar is present in TMX. This toolbar can be filled with actions from the Latex-, Math- and User-Menu.
+Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
+</p>
+<p><IMG src="configure_customToolbar.png" border="1" alt="Customize Toolbars"></p>
+<h2 id="SECTION08">1.8 Configuring SVN support</h2>
+<p>To provide documenten versioning, TeXstudio makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
+Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
+</p>
+<p>
+The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the svn configure page, see below.
+Furthermore the user can choose the degree of automation, which TeXstudio provides.
+</p>
+<p>
+"Automatically check in after save" allows TeXstudio to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
+Since text documents are rather small compared to disk spaces, size of the svn database should not be a problem.
+In addition newly saved files (save as) are automatically added to svn control,provided that the directory is alredy under svn control.
+If that is not the case, TeXstudio searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
+If no appropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
+Thus the user does not need to look up the necessary commands to set up a repository. This functionality is only activated when "Auto checkin in" is enabled !
+</p>
+<p>
+With "User SVN revisions to undo before last save" TeXstudio will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in svn history.
+Further undo commands allows one to back further to older revisions, whereas a redo goes forward to more recent versions.
+This is a more interactive approach than choosing svn revisions directly via a menu command, see <a href="#SECTION33a">section 4.3</a>
+</p>
+<p><IMG src="configure_svn.png" border="1" alt="Configure SVN"></p>
+<h1 id="SECTION1">2. Editing a TeX document</h1>
+<h2 id="SECTION11">2.1 Usual commands</h2>
+<p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
+<p><IMG src="doc1.png" border="1" alt="Standard commands"></p>
+<h2 id="SECTION12">2.2.1 Setting the preamble of a TeX document</h2>
+<p>To define the preamble of your document, you can use the "Quick start" wizard ("Wizard" menu).</p>
+<p><IMG src="doc2.png" border="1" alt="Quick Start"></p>
+<p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All yours settings are recorded.</p>
+<p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
+<h2 id="SECTION12a">2.2.2 Using Templates to start a new document</h2>
+<p>For new documents, templates can be used by using the command "File/New from template".
+A dialogue gives a selection of templates.</p>
+<p><IMG src="template.png" border="1" alt="Templates"></p>
+<p>You can either create a new editor document from the template or create it as file(s) on disk and open these in the editor. The former option is not available for multi-file templates.</p>
+<p>New templates can be created by using the command "File/Make Template" on a opened document which you like to have has a template. Note that this dialog currently does not support the full capabilities of the template system. In particular you cannot supply a preview image or create a multi-file template with it. You'll have to do this manually (see the <a href="#SECTION12aa">template format</a>).</p>
+<p>User added templates can be edited or deleted by using the context menu in the template selection dialogue.
+Built-in templates can not be changed.</p>
+<p>User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
+<h3 id="SECTION12aa">2.2.2.1 The Template Format</h3>
+<p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all files in a zip achive. Optionally, meta data is stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported:</p>
+<pre>
+{
+"Name"        : "Book",
+"Author"      : "TXS built-in",
+"Date"        : "04.01.2013",
+"Version"     : "1.1",
+"Description" : "Default LaTeX class for books using separate files for each chapter.",
+"License"     : "Public Domain",
+"FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
+}
+</pre>
+<p>FilesToOpen only has an effect for mutli-file documents. You may add a preview image next to the template file. Again, it must have the same name, but extension ".png".</p>
+
+<h2 id="SECTION13">2.3 Structure of a document</h2>
+<p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box in the tool bar :</p>
+<p><IMG src="doc3.png" border="1" alt="Sectioning"></p>
+<p>This will cause a dialog to pop up which allows you to define the style of the part (section,subsection...).<br>Note : the "Structure View" is automatically updated.</p>
+<p><IMG src="doc4.png" border="1" alt="Structure View"></p>
+<h2 id="SECTION14">2.4 Browsing your document</h2>
+<p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
+<p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
+<p><IMG src="doc5.png" border="1" alt="Appendix"></p>
+<p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" ("Edit" menu) command at any moment.</p>
+<p>Apart from labels,sections,includes and beamer blocks, comments starting with %TODO are also scanned for and presented as section of its own in the structure view.
+This can be used to create a kind of permanent bookmark in the text or just to note where some changes are still necessary.
+</p>
+<p>
+The structure view also offers a context menu which allows one to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
+Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
+
+</p>
+<p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
+<p><IMG src="doc20.png" border="1" alt="Bookmark"></p>
+<h2 id="SECTION15">2.5 Formatting your text</h2>
+<p>You can quickly set the format of a part of your text with this tool bar :</p>
+<p><IMG src="doc6.png" border="1" alt="Format Toolbar"></p>
+<p><b>Additional option:</b> a selected text can be directly framed by certain environments. Example: while clicking on the button "Bold" after having selected the word "Hello" , you will obtain the code: \textbf{Hello}.<br>This option is available for all the environments indicated by "[selection]" in the "LaTeX" menu.</p>
+<h2 id="SECTION16">2.6 Spacings</h2>
+<p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus. To insert quickly the "new line" LaTeX command, you can use the corresponding command in the toolbar (shortcut : Ctrl+Alt+return) </p>
+<h2 id="SECTION17">2.7 Inserting a list</h2>
+<p>The usual list environments code can be insert quickly via the "LaTeX-List" menu.<br>Note : the shortcut for the \item command is Ctrl+Alt+H.</p>
+<h2 id="SECTION18">2.8 Inserting a table</h2>
+<p>With the "Tabular" wizard ("Wizard" menu), t he LaTeX code for a tabular environment can be quickly inserted :</p>
+<p><IMG src="doc7.png" border="1" alt="Tabular Wizard"></p>
+<p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
+<h2 id="SECTION18a">2.8.1 Manipulating tables</h2>
+<p>TeXstudio provides some commands to ease handling of tables. The commands are located at LaTeX &rarr; Manipulate Table and in the Table toolbar. Please be aware that some unexpected results may arise, if the table constructing commands get too complex.
+Following commands are offered:</p>
+<ul>
+<li>Add Row after the current row</li>
+<li>Remove Row: removes the table row in which the cursor </li>
+<li>Add Column: add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column, the column is added as new first column.</li>
+<li>Remove Column: remove current column</li>
+<li>Add/Remove \hline: add/remove \hline in all rows following the current row. If already a command \hline is present, no second command is placed.</li>
+<li>Align Columns: Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source.</li>
+<li>Remodel the table after a template. This allows one to force uniform table set-up in a document. Some templates are predefined, more can be added though it needs some programming in java script. This command is only present in the menu (math/tables)</li>
+</ul>
+<p>TeXstudio also allows block cursors. Press &lt;Ctrl&gt;+&lt;Alt&gt;+&lt;Shift&gt; and drag the cursor with the mouse. The block cursor works like a set of normal cursors. You can copy and paste text as usual. Also you can type in new text, which will be added in every row.</p>
+<p><IMG src="block_selection.png" border="1" alt="Block Selection"></p>
+<h2 id="SECTION19">2.9 Inserting a "tabbing" environment</h2>
+<p>To help you to insert a "tabbing" code, you can use the "Tabbing" wizard ("Wizard" menu) :</p>
+<p><IMG src="doc8.png" border="1" alt="Tabbing Wizard"></p>
+<h2 id="SECTION110">2.10 Inserting a picture</h2>
+<p>To insert a picture in your document, just use the "\includegraphics" command in the "LaTeX" menu. Then, click on the "browser" button in the dialog to select the graphic file.<br>Note : you can insert a "figure" LaTeX environment ("LaTeX - Environments" menu) before inserting the picture.</p>
+<p><IMG src="doc9.png" border="1" alt="Figure Environment"></p>
+<h2 id="SECTION110a">2.10.1 Inserting a picture using a "wizard"</h2>
+<p>Properly inserting figures is a challenge for LaTeX beginners and still quite a bit of text to type for the expert. Therefore TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics options" defines the optional parameter of <code>\insertgraphics[options]{file}</code>. While the most used width/height attributes can be easily set, alternatively you have full control with the user defined setting.<br>
+Place the graphic inside a <code>figure</code> environment if it does not have to be at an exact position in the text. Then LaTeX will determine an optimal position on the page.<br>
+By pressing the "Save as default" button the current settings (except file, caption and label) are stored and will hence be used as default when you open the wizard.<br>
+The wizard also comes into play when you drag   drop an image file to your document or use copy in explorer and paste in TeXstudio. Together with the adjustable default parameters this makes insertion of new pictures very fast. Furthermore, if you start the wizard while the cursor is on picture code, the wizard is used to manipulate the existing picture settings.</p>
+<p><IMG src="wizard_figure.png" border="1" alt="Figure Wizard"></p>
+<h2 id="SECTION111">2.11 Cross References and notes</h2>
+<p>This toolbox in the toolbar allows you to insert quickly the label, cite, ref, footnote... code.<br>Note : the labels used in your documents are displayed in the "Structure View".</p>
+<p><IMG src="doc10.png" border="1" alt="Structure View Labels"></p>
+<p><b>Additional option:</b>for the \ref command, a dialog box allows you to select directly the label.</p>
+<h2 id="SECTION112">2.12 Inserting math formula</h2>
+<p>You can toggle in the "in-line math" environment with the "f(x)" button in the toolbar (shortcut : Ctrl+Alt+M) or with the "Math" menu. The shortcut for the "display math" environment is : Alt+Shift+M.<br> The "Math" toolbar allows you to insert the most currents mathematical forms (frac, sqrt...) like the \left and \right tags.</p>
+<p><IMG src="doc11.png" border="1" alt="Math Toolbar"></p>
+<p>With the "symbols panels" in the structure view, you can insert the code of 400 mathematical symbols.</p>
+<p><IMG src="doc12.png" border="1" alt="Math Symbols Panel"></p>
+<p>You can also define the format of your mathematical text via the "Math" menu.<br>For the "array" environments, a wizard (like the "Tabular" wizard) is available in the "Wizard" menu. With this wizard, you can select the environment : array, matrix, pmatrix.... The cells can be directly completed.</p>
+<p><IMG src="doc13.png" border="1" alt="Array Wizard"></p>
+<h2 id="SECTION113">2.13 Auto Completion</h2>
+<p>Whenever you press \  followed by a letter, a list of possible LaTex tags is shown where you select the right one. If you write additional letters the list is filtered, so that only the tags starting with the already written text are shown. 
+If the list contains words which all start with the same letter combination, you can press Tab to complete all common letters. If only one element is present in the list, Tab selects this one to do the completion, like Enter. This behaviour is similar to tab completion in bash shells.
+You can also press Ctrl+Space to open this list whenever you want.<br>
+If a tag has different options, a short descriptive text is inserted into your text, telling you the meaning of each option. You can press Ctrl+Left, Ctrl+Right to select all positions.<br>
+Furthermore normal text can be completed by starting to type a word and pressing Ctrl+Space. All apropriate words in the current document are used as possible suggestions.<br>
+If a enviroment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate enviroments which are inserted completely with \begin{env}..\end{env}<br>
+And finally user tags can be assigned a abbreviation which can also be used with completion. Just type in the start of the abbreviation and start the completion with Ctrl+Space. The abbreviation should show up in the completion list, especially marked with &ldquo;abbreviation (template)&rdquo;.<br>
+If you change a command by completing a new command, only the command name is substituted. The same is true for environments, where the environment is changed in the \begin- and \end-command.
+</p>
+
+<h2 id="SECTION114">2.14 Thesaurus</h2>
+<p>TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases are used for this.
+By placing the cursor on a word and activating the thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms for this word. Please be patient if you start the thesaurus at first time since loading the database just occurs then and can take a few moments.</p>
+<p><IMG src="thesaurus.png" border="1" alt="Thesaurus"></p>
+<p>The first line to the left contains the word, for which a synonym is searched for.
+The list below gives a list of word classes. The can be chosen to reduce the number of suggestions.
+The column to the right contains the list of suggested synonyms.
+A selected word from this list apears in the first line to the right as proposition for replacement of the text.
+This word can be changed manually. It is also used to do further investigations for words and their synonyms which "start with" or "contain" that word. With "lookup" it can be directly used to look for a synonym for that word.</p>
+<h2 id="SECTION115">2.15 Special Commands</h2>
+<h3>Delete word/command/environment</h3>
+<p>With the shortcut Alt+Del, the word under the cursor is deleted.
+If it is a command, the command is deleted including opening and closing braces.
+E.g. "\textbf{text}" leave "text".
+If it is an environment, the enclosing bengin/end are removed.</p>
+<h3>Rename environment</h3>
+<p>If you place the cursor on an environment name or the corresponding begin- or end-command, after a moment a mirror-cursor is activated on the environment name which allows synchronous change of the environment name in the begin- and end-command.
+So if you want to change a "\begin{tabular}...\end{tabular}" construction to "\begin{tabularx}...\end{tabularx}", place the text cursor on "tabular", wait for a second and then, after the mirror-cursor appears, change "tabular" to "tabularx".</p>
+<h3>Cut Buffer</h3>
+<p>If you select something and then start to type in a command and complete it, the selection is put in as first argument.
+E.g. you have a "text", select it and start typing "\textbf", command which is completed. The resulting text is "\textbf{text}"</p>
+<h1 id="SECTION2">3. Compiling a document</h1>
+<h2 id="SECTION22">3.1 Compiling</h2>
+<p>The easiest way to compile a document is to use the "Compile" command or the "Build&amp;View" command ("Compile" button - shortcut : F6). You can select the default command via the "Configure TeXstudio" dialog.<br>(You can also launch each command one by one in the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
+<p><IMG src="compile_toolbar.png" border="1" alt="compile_toolbar"></p>
+<b>Warning : all yours files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
+<h2 id="SECTION23">3.2 The log files</h2>
+<p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
+Remark : a summary of the latex errors and warnings is displayed before the full log file.</p>
+<p><IMG src="doc15.png" border="1" alt="doc15"></p>
+<p>The "Next Latex Error"and "Previous LaTeX Error" commands allow to get to the errors detected during compilation.</p>
+<p>Lines with errors, warnings, bad boxes will be highlighted with red, yellow or blue background and you can jump between them using Ctrl+Up/Down. (Ctrl+Shift for errors only, Ctrl+Alt for warnings only, Alt+Shift for bad boxes only)<br>
+A tool tip will show more details of the mistake if you jump to a line (it is also shown if you move the mouse over the mark left from the line numbers).</p>
+<h1 id="SECTION3">4. Other features</h1>
+<h2 id="SECTION31">4.1 About documents separated in several files</h2>
+<p>TeXstudio allows you to work onto documents separated in several files.<br>
+To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TeXstudio will open it.</p>
+<p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefore, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
+<p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
+If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio. 
+<br>Note : you can leave the "master" mode with the "Options" menu.</p>
+<h2 id="SECTION32a">4.2 Syntax Check</h2>
+<p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
+The completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
+Furthermore the correctness of tabulars is checked in a little  more detail.
+The number of columns is analyzed and checked in the subsequent rows. If more or less columns are given in a row, a warning maker is shown.<br>
+</p>
+<h2 id="SECTION32">4.3 Bibliography</h2>
+<p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
+<p><IMG src="doc16.png" border="1" alt="Bibliography Menu"></p>
+<h2 id="SECTION33a">4.4 SVN Support</h2>
+<p>
+Apart from the supported svn features already describes in section 1.8, TeXstudio supports two more commands.
+</p>
+<p>
+"File/chekin" performs an explicit save and check in, with a input dialog which asks for an checkin in message which is stored in the svn history.
+</p>
+<p>
+"File/Show old Revisions" pops up a dialog, which shows all alvailable revisions. A selection of an older revision leads to instatanious change of the current document to that older revision.
+You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new 
+most recent version though yet unsaved.
+</p>
+<h2 id="SECTION33">4.5 Personal macros</h2>
+<p>TeXstudio allows you to insert your own macros (shortcuts : Shift+F1...Shift+F10). These macros are defined with the "Macros - Edit Macros" menu.
+Macros can consist of simple text which is directly placed into txs. It can also be an "environment" which are automatically extended by begin/end and it can be a java script.
+The needed functionality can be selected by checkbox.<br>
+The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-command is completed, the macro will be inserted instead. Note that the pseudo-command needs to start with a backslash ("\").<br>
+"Trigger" is a regular expression which triggers the inclusion of the macro: When the last written characters match this expression, they are removed and the macro is inserted/executed. (see <a href="#sectionTriggers">below</a> for more details).<br>
+<br>
+<p><IMG src="doc17.png" border="1" alt="doc17"></p>
+
+<p>
+<h3 id="SECTION33a">4.5.1 Text macros</h3>
+Apart from normal text, some special codes are recognized and replaced on insertion.<br>
+If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).<br>
+Write %&lt;something%&gt; to mark it as descriptive text which can be selected by Ctrl+Left/Right.
+<br>
+The option %(<i>filefilter</i>%) will be replaced by a filename which is asked for in a file dialog. The file filter is the standard Qt-Filefilterformat.
+For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)", see also <a href="http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName">Qt-Doc</a>
+</p>
+<h3 id="SECTION33b">4.5.2 Environment macros</h3>
+The text will be used as environment-name, thus "%environment" will be inserted as:<br>
+\begin{environment }<br>
+<br>
+\end{environment }<br>
+<br>
+Note: texstudio needs that the env-name starts with "%", though that character is not placed on insertion.
+<h3 id="SECTION33c">4.5.3 Javascript macros</h3>
+Instead of using code snippets, you can also make use of javascript.
+To do so, put "%SCRIPT" in the first line. The following code will be interpreted as javascript.
+The language is based on <a href="http://doc.trolltech.com/4.5/ecmascript.html">ECMAScript</a>.
+To access the document these objects are introduced:
+<ul>
+<li>"editor" allows some top level operations like searching/save/load. in the current document</li>
+<li>"cursor" gives access to cursor operations like moving, inserting and deleting texts.</li>
+<li>"fileChooser" gives access to the filechooser dialog, a very simple file selection dialog</li>
+<li>"app" to access application wide things like the clipboard or the menus</li>
+</ul>
+<p>The following table gives an overview on the possible commands.</p>
+<table class="scripting_help">
+  <tr>
+    <th>Command</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+  <th colspan=2>Global scope</th>
+  </tr>
+  <tr>
+  	<td> alert(str), information(str), warning(str) or critical(str) </td>
+	<td> shows str in a messagebox with a certain icon</td>
+  </tr>
+  <tr>
+  	<td> confirm(str) or confirmWarning(str)</td>
+	<td> shows str as a yes/no question in a messagebox </td>
+  </tr>
+  <tr>
+  	<td> debug(str) </td>
+	<td> prints str to stdout </td>
+  </tr>
+  <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
+  <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
+  <tr><td> system(cmd) </td>	<td> Calls cmd and returns a ProcessX object which has this methodes: 
+    <ul>
+    <li>waitForFinished: Wait until the process is finished</li>
+    <li>readAllStandardOutputStr: Returns the stdout</li>
+    <li>readAllStandardErrorStr: Returns the stderr</li>
+    <li>exitCode: The exit code</li>
+    <li>exitStatus: The qt exit status</li>
+    <li>terminate or kill: Stops the process</li>
+    
+    </ul>  </td></tr>
+  <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
+  <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
+  <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
+  <tr><td> setPersistent(name, value) </td>	<td> Sets a global configuration variable. (can change the values of the ini file, requires write privileges) </td></tr>
+  <tr><td> getPersistent(name) </td>	<td> Reads a global configuration variable. (can read all values of the ini file, requires read privileges) </td></tr>
+  <tr><td> hasPersistent(name) </td>	<td> Checks if a global configuration variable exists. (requires read privileges) </td></tr>
+  
+  <tr><td> hasReadPrivileges() </td>	<td> Checks if the script has read privileges </td></tr>
+  <tr><td> hasWritePrivileges() </td>	<td> Checks if the script has write privileges </td></tr>
+  <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>  
+  <tr><td>triggerMatches </td>	<td> Matches of the regular trigger expression, if the script was called by an editor <a href="#sectionTriggers"> trigger</a>.</td></tr>  
+  <tr><td> triggerId </td>	<td> Numeric id of the trigger, if the script was called by an event <a href="#sectionTriggers"> trigger</a>. </td></tr>  
+  <tr><td> include(script) </td>	<td> Includes another script. Can be a filename or the name of a macro. </td></tr>  
+  <tr><td> pdfs </td>	<td> List of all open, internal pdf viewers . </td></tr>  
+    
+  <tr><th colspan=2>Editor object</th></tr>
+  <tr>
+  	<td> editor.search(searchFor, [options], [scope], [callback]) </td>
+	<td> Searchs something in the editor. 
+	     <ul>
+	     <li>searchFor is the text which is searched. It can be either a string (e.g. "..") or a regexp (e.g. /[.]{2}/). </li>
+	     <li>options is a string and a combination of "i", "g", "w" to specify a case-<em>i</em>nsensitive search, a <em>g</em>lobal search (continue after the first match) or a whole-<em>w</em>ord-only search. </li>
+	     <li>scope is a cursor constraining the search scope (see editor.document().cursor).</li>
+	     <li>callback is a function which is called for every match. A cursor describing the position of the match is passed as first argument.</li>
+	  </ul> 
+	  All arguments except searchFor are optional, and the order may be changed (which may not be future compatible). The function returns the number of found matches.
+	  </td>
+  </tr>
+  <tr>
+  	<td> editor.replace(searchFor, [options], [scope], [replaceWith]) </td>
+  	<td> This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.  </td>  	
+  </tr>
+  <tr>
+    <td> editor.undo();</td>
+    <td>undo last command in editor</td>
+  </tr>
+  <tr>
+    <td> editor.redo();</td>
+    <td> redo last command in editor</td>
+  </tr>
+  <tr>
+    <td> editor.cut();</td>
+    <td> cut selection to clipboard</td>
+  </tr>
+  <tr>
+    <td> editor.copy();</td>
+    <td> copy selection to clipboard</td>
+  </tr>
+  <tr>
+    <td> editor.paste();</td>
+    <td> paste clipboard contents</td>
+  </tr>
+  <tr>
+    <td> editor.selectAll();</td>
+    <td> select all</td>
+  </tr>
+  <tr>
+    <td> editor.selectNothing();</td>
+    <td> select nothing (clear selections)</td>
+  </tr>
+  <tr>
+    <td> editor.find();</td>
+    <td> activate "find panel"</td>
+  </tr>
+  <tr>
+    <td> editor.find(QString text, bool highlight, bool regex, bool word=false, bool caseSensitive=false);</td>
+    <td> activate "find panel" with predefined values</td>
+  </tr>
+  <tr>
+    <td> editor.find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);</td>
+    <td> activate "find panel" with predefined values</td>
+  </tr>
+  <tr>
+    <td> editor.findNext();</td>
+    <td> find next</td>
+  </tr>
+  <tr>
+    <td> editor.replacePanel();</td>
+    <td> replace (if find panel open and something is selected)</td>
+  </tr>
+  <tr>
+    <td> editor.gotoLine();</td>
+    <td> activate "goto line panel"</td>
+  </tr>
+  <tr>
+    <td> editor.indentSelection();</td>
+    <td> indent selection</td>
+  </tr>
+  <tr>
+    <td> editor.unindentSelection();</td>
+    <td> unindent selection</td>
+  </tr>
+  <tr>
+    <td> editor.commentSelection();</td>
+    <td> comment selection</td>
+  </tr>
+  <tr>
+    <td> editor.uncommentSelection();</td>
+    <td> uncomment selection</td>
+  </tr>
+  <tr>
+    <td> editor.clearPlaceHolders();</td>
+    <td> clear place holders</td>
+  </tr>
+  <tr>
+    <td> editor.nextPlaceHolder();</td>
+    <td> jump to next place holder</td>
+  </tr>
+  <tr>
+    <td> editor.previousPlaceHolder()</td>
+    <td> jump to previous place holder</td>
+  </tr>
+  <tr>
+    <td> editor.setPlaceHolder(int i, bool selectCursors=true);</td>
+    <td> set Placeholder</td>
+  </tr>
+  <tr>
+    <td> editor.setFileName(f);</td>
+    <td> set filename to <i>f</i></td>
+  </tr>
+  <tr>
+    <td> editor.write(str) </td>
+    <td> inserts str at the current cursors position (if there are cursor mirrors, str will be inserted by all of them) </td>
+  </tr>
+  <tr>
+    <td> editor.insertText(str) </td>
+    <td> inserts str at the current cursor position (cursor mirrors are ignored)</td>
+  </tr>
+  <!--
+  <tr>
+    <td> editor.insertText(cursor, str) </td>
+    <td> inserts str at the position of cursor </td>
+  <tr>-->
+  <tr>
+    <td> editor.setText(<i>text</i>) </td> 
+    <td> replace the whole text of the current document by <i>text</i> </td>
+  </tr>
+  <tr>
+    <td> editor.text()</td>
+    <td> return the text of the complete document</td>
+  </tr>
+  <tr>
+    <td> editor.text(int line)</td>
+    <td> return text of <i>line</i></td>
+  </tr>
+
+  <tr><th colspan=2>Document object</th></tr>
+<tr><td>editor.document().lineCount() </td><td>   Returns the number of lines     </td></tr>
+<tr><td>editor.document().visualLineCount() </td><td>    Returns the number of visual lines (counting wrapped lines)    </td></tr>
+<tr><td>editor.document().cursor(line, [column = 0], [lineTo = -1], [columnTo = length of lineTo]) </td><td>  Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.   </td></tr>
+<tr><td>editor.document().text([removeTrailing = false], [preserveIndent = true]) </td><td>  Returns the complete text of the document </td></tr>
+<tr><td>editor.document().textLines() </td><td>   Returns an array of all text lines     </td></tr>
+<tr><td>editor.document().lineEndingString() </td><td> Returns a string containing the ending of a line (\n or \n\r)       </td></tr>
+<tr><td>editor.document().canUndo() </td><td>   Returns true if undo is possible     </td></tr>
+<tr><td>editor.document().canRedo() </td><td>    Returns true if redo is possible    </td></tr>
+<tr><td>editor.document().expand(lineNr)</td><td>    Expands the line    </td></tr>
+<tr><td>editor.document().collapse(lineNr)</td><td>   Collapse the line     </td></tr>
+<tr><td>editor.document().expandParents(lineNr)</td><td>  Expand all parents of the line until it is visible     </td></tr>
+<tr><td>editor.document().foldBlockAt(bool unFold, lineNr);</td><td>  Collapses or expands the first block before lineNr     </td></tr>
+<tr><td>editor.document().getMasterDocument();</td><td>  Returns the open document which directly includes this document  </td></tr>
+<tr><td>editor.document().getTopMasterDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
+<tr><td>editor.document().getMagicComment(name);</td><td>  Returns the content of a magic comment, if it exists   </td></tr>
+<tr><td>editor.document().updateMagicComment(name, value, [create = false]);</td><td>  Changes a magic comment  </td></tr>
+<tr><td>editor.document().labelItems/refItems/bibItems</td><td>  Returns the ids of all labels/references or included bibliography files. </td></tr>
+
+  <tr><th colspan=2>Document Manager object</th></tr>
+  <tr><td>documentManager.currentDocument </td><td>   Current document (usually the same as editor.document(), unless the script is running in background mode) </td></tr>
+  <tr><td>documents.masterDocument </td><td>   Master document </td></tr>
+  <tr><td>[documentManager.]documents</td><td>   Array of all open documents     </td></tr>
+  <tr><td>documentManager.findDocument(fileName) </td><td>   Returns the open document with a certain file name  </td></tr>
+  <tr><td>documentManager.singleMode() </td><td>   Returns if there is no explicit master document  </td></tr>
+  <tr><td>documentManager.getMasterDocumentForDoc(document) </td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
+  <tr><td>documentManager.findFileFromBibId(id) </td><td>   Returns the file name of the bib file containing an entry with the given id  </td></tr>
+    
+  
+  <tr>
+  <th colspan=2>Cursor object</th>
+  </tr>
+
+  <tr>
+    <td> cursor.atEnd()
+    <td> returns whether the cursor is at the end of the document
+  </tr>
+  <tr>
+    <td> cursor.atStart()
+    <td> returns whether the cursor is at the start of the document
+  </tr>
+  <tr>
+    <td> cursor.atBlockEnd()
+    <td> returns whether the cursor is at the end of a block
+  </tr>
+  <tr>
+    <td> cursor.atBlockStart()
+    <td> returns whether the cursor is at the start of a block
+  </tr>
+  <tr>
+    <td> cursor.atLineEnd()
+    <td> returns whether the cursor is at the end of a line
+  </tr>
+  <tr>
+    <td> cursor.atLineStart()
+    <td> returns whether the cursor is at the start of a line
+  </tr>
+  <tr>
+    <td> cursor.hasSelection()
+    <td> return whether the cursor has a selection
+  </tr>
+  <tr>
+    <td> cursor.lineNumber()
+    <td> returns the line number of the cursor
+  </tr>
+  <tr>
+    <td> cursor.columnNumber()
+    <td> returns the column of the cursor
+  </tr>
+  <tr>
+    <td> cursor.anchorLineNumber() 
+    <td> returns the line number of the anchor.
+  </tr>
+  <tr>
+    <td> cursor.anchorColumnNumber()
+    <td> returns the column of the anchor.
+  </tr>
+  <tr>
+    <td> cursor.shift(int offset)
+    <td>Shift cursor position (text column) by a number of columns (characters)
+  </tr>
+  <tr>
+    <td> cursor.setPosition(int pos, MoveMode m = MoveAnchor)
+    <td> set the cursor position after pos-characters counted from document start (very slow)
+  </tr>
+  <tr>
+    <td> cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);
+    <td> move cursor <i>offset</i> times. MoveOperations may be:
+      <ul>
+	<li>cursorEnums.NoMove
+	<li>cursorEnums.Up
+	<li>cursorEnums.Down
+	<li>cursorEnums.Left
+	<li>cursorEnums.PreviousCharacter = Left
+	<li>cursorEnums.Right
+	<li>cursorEnums.NextCharacter = Right
+	<li>cursorEnums.Start
+	<li>cursorEnums.StartOfLine
+	<li>cursorEnums.StartOfBlock = StartOfLine
+	<li>cursorEnums.StartOfWord
+	<li>cursorEnums.PreviousBlock
+	<li>cursorEnums.PreviousLine = PreviousBlock
+	<li>cursorEnums.PreviousWord
+	<li>cursorEnums.WordLeft
+	<li>cursorEnums.WordRight
+	<li>cursorEnums.End
+	<li>cursorEnums.EndOfLine
+	<li>cursorEnums.EndOfBlock = EndOfLine
+	<li>cursorEnums.EndOfWord
+	<li>cursorEnums.NextWord
+	<li>cursorEnums.NextBlock
+	<li>cursorEnums.NextLine = NextBlock
+      </ul>
+      Options for MoveMode are:
+      <ul>
+	<li>cursorEnums.MoveAnchor
+	<li>cursorEnums.KeepAnchor
+	<li>cursorEnums.ThroughWrap
+      </ul>
+  </tr>
+  <tr>
+    <td> cursor.moveTo(int line, int column);
+    <td> move cursor to <i>line</i> and <i>column</i>
+  </tr>
+  <tr>
+    <td> cursor.eraseLine();
+    <td> remove current line
+  </tr>  
+  <tr>
+    <td> cursor.insertLine(bool keepAnchor = false);
+    <td> insert empty line
+  </tr>  
+  <tr>
+    <td> cursor.insertText(text, bool keepAnchor = false)
+    <td> insert <i>text</i> text at cursor (this function will ignore indentations and mirrors, see editor.write and editor.insertText)
+  </tr>
+  <tr>
+    <td> cursor.selectedText()
+    <td>return the selected text
+  </tr>
+  <tr>
+    <td> cursor.clearSelection();
+    <td>clears selection
+  </tr>
+  <tr>
+    <td> cursor.removeSelectedText();
+    <td> removes selected text
+  </tr>
+  <tr>
+    <td> cursor.replaceSelectedText(text);
+    <td> replace selected text with <i>text</i>
+  </tr>
+  <tr>
+    <td> cursor.deleteChar();
+    <td> removes char right to the cursor
+  </tr>
+  <tr>
+    <td> cursor.deletePreviousChar();
+    <td> removes char left to the cursor
+  </tr>		
+  <tr>
+    <td> cursor.beginEditBlock();
+    <td> begins a new edit block. All cursor operations encapsulated in an edit block are undone/redone at once. 
+  </tr>
+  <tr>
+    <td> cursor.endEditBlock();
+    <td> ends an edit block
+  </tr>
+  <tr><th colspan=2>App object</th></tr>
+  <tr><td>app.getVersion()</td><td>Current version (0xMMmm00)</td></tr>
+  <tr><td>app.clipboard</td><td>Property to read/write to the clipboard</td></tr>
+  <tr><td>app.getCurrentFileName()</td><td>File name of currently edited file</td></tr>
+  <tr><td>app.getAbsoluteFilePath(rel, ext = "")</td><td>Converts a relative filename to an absolute one</td></tr>
+  <tr><td>app.load(file)</td><td>Loads an file </td></tr>
+  <tr><td>app.fileOpen/Save/Close/.../editUndo/.../QuickBuild/... </td><td>All menu commands (i.e. all slots in the texmaker.h file). You can view a list of all currently existing slots on the "menu" page of the config dialog.</td></tr>
+  <tr><td>app.newManagedMenu([parent menu,] id, caption)</td> <td>Creates a new menu and returns it</td></tr>
+  <tr><td>app.getManagedMenu(id)</td> <td>Returns a <a href="http://developer.qt.nokia.com/doc/qt-4.8/QMenu.html">QMenu</a> with a certain id</td></tr>
+  <tr><td>app.newManagedAction(menu, id, caption)<!--, [slot, [shortCut, [icon]]])--></td> <td>Creates a new action and returns it<br>
+    <ul><li>menu: Parent menu</li>
+    <li>id: Id of the new action (the final, unique id will be <i>menu id/action id</i>)</li>
+    <li>caption: Visible text</li>
+<!--    <li>slot: qt-slot-id if the action should be connected to a slot of app</li>
+    <li>shortCut: default shortcut for the new action</li>
+    <li>icon: icon</li>-->
+    </ul>
+    You can use action.triggered.connect(function(){ ... }); to link a function to the returned action (for details see the <a href="http://developer.qt.nokia.com/doc/qt-4.8/scripting.html#signal-to-function-connections">qt signal/slot</a> documentation).
+  </td></tr>
+  <tr><td>app.getManagedAction([id])</td> <td>Returns an <a href="http://developer.qt.nokia.com/doc/qt-4.8/QAction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/.../menuN/action, with usually one menu, e.g. "main/edit/undo", see texmaker.cpp) </td></tr>
+  <tr><td>app.createUI(file, [parent])</td><td>Loads a certain ui file and creates a QWidget* from it</td></tr>
+  <tr><td>app.createUIFromString(string, [parent])</td><td>Creates a QWidget* described in the string</td></tr>
+  <tr><td>app.slowOperationStarted()/slowOperationEnded()</td><td>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</td></tr>
+
+  <tr><th colspan=2>UniversalInputDialog class</th></tr>
+  <tr><td>new UniversalInputDialog()</td><td>Creates a new dialog</td></tr>
+  <tr><td>dialog.add(defaultValue, [description, [id]])</td><td>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. <br> A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</td></tr>
+  <tr><td>dialog.get(nr/id)</td><td>Returns the current value of the nr-th added variable or the variable with a certain id.</td></tr>
+  <tr><td>dialog.getAll()</td><td>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</td></tr>
+  <tr><td>dialog.exec()</td><td>Displays the dialog. Returns null, if the user cancels it, and the values of getAll(), if he accepts it.</td></tr>
+  <tr><td>dialog.show()</td><td>Displays the dialog asynchronously.</td></tr>
+  <tr><td>UniversalInputDialog([[defaultValue_0, description_0, id_0], [defaultValue_1, description_1, id_1], ...])</td><td>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</td></tr>
+  <tr><th colspan=2>FileChooser object</th></tr>
+  <tr>
+	<td> fileChooser.exec()
+	<td> show dialog and wait until it is closed again
+  </tr>
+  <tr>
+	<td> fileChooser.setDir(dir)
+	<td> set directory in the dialog to <i>dir</i>
+  </tr>
+  <tr>
+	<td> fileChooser.setFilter(filter)
+	<td> set file filter to <i>filter</i>, using the QT-format, see above
+  </tr>
+  <tr>
+	<td> fileChooser.fileName()
+	<td> return selected filename (after exec)
+  </tr>  
+</table> 
+
+<br><br>
+<p>Some examples:</p>
+<ul>
+<li>Copy current file name to clipboard: <pre>
+%SCRIPT
+app.clipboard = editor.fileName();</pre>
+</li>
+<li>Execution of editor text: <pre>
+%SCRIPT
+eval(editor.text());</pre>
+</li>
+<li>Show all properties of an object: <pre>
+%SCRIPT
+obj = editor;                                                    //object to show (e.g. the current editor)
+
+app.fileNew();                                                   //create a new document
+newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
+for (var prop in obj)              
+  newEditor.write(prop+"\n");                                    //print the properties
+</pre>
+</li>
+<li>Additional action in the edit menu<pre>
+%SCRIPT
+var menu = app.getManagedMenu("main/edit");                   //get edit menu
+var act = app.newManagedAction(menu, "script", "scripttest"); //add action
+act.triggered.connect(function(){alert("called");});          //register simple handler
+registerAsBackgroundScript("test");                           //keep handler valid</pre></li>
+<li>Asynchronous dialog:<pre>
+%SCRIPT
+var ui = createUI(" ... path to your ui file ...");  //load dialog
+ui.accepted.connect(function(){alert("x");})         //react to dialog closing
+registerAsBackgroundScript("abc");                   //keep function valid
+ui.show();                                           //show dialog
+</pre> The dialog is described in an ui file which can be created with the Qt Designer. </li>
+<li>Calculator:<pre>
+%SCRIPT
+currentLine=editor.text(cursor.lineNumber()); 
+from=currentLine.lastIndexOf("%")+1; 
+to=currentLine.lastIndexOf("="); 
+if (from>=0 && to > from) {
+  toEvaluate = currentLine.substring(from, to);
+  with (Math) { value = eval(toEvaluate);}
+  cursor.eraseLine(); 
+  cursor.insertText(currentLine.substring(0, from)+toEvaluate+"="+value); 
+  cursor.insertLine();
+  cursor.movePosition(1,cursorEnums.Left );
+}
+</pre>
+This will evaluate everything between % and = and write the result after the =. You can use it like a calculator if you write %5+3= in the tex file.
+
+<li>(tikz) Coordinate pair mover:
+<pre>
+%SCRIPT
+var doit = function(){
+var mytext=cursor.selectedText();
+var regExNumberPre = " *[0-9]+([.][0-9]*)? *";
+var regExDigit = /[0-9]/;
+var regExSpace = / /g;
+var regExPairPre = " *(-?"+regExNumberPre+")";
+var regExPair = new RegExp("()[(]"+regExPairPre+","+regExPairPre+"[)]"); ;
+
+//read first coordinate pair
+var regExFirstPairPre = regExPairPre + " *([+-]"+regExNumberPre+")?";
+var regExFirstPair = new RegExp("()[(]"+regExFirstPairPre+","+regExFirstPairPre+"[)]");
+
+//extract offsets (start regex search from first digit, to allow -x - y)
+var matches = regExFirstPair.exec(mytext);
+if (matches == null) throw "missing";
+//throw matches;
+var offsetXPre = matches[4];
+var offsetYPre = matches[8];
+if (offsetXPre == "" && offsetYPre == "") throw "abc";
+var offsetX = offsetXPre == ""?0.0:offsetXPre.replace(regExSpace, "")*1.0;
+var offsetY = offsetYPre == ""?0.0:offsetYPre.replace(regExSpace, "")*1.0;
+
+//move first pair
+var matchpos = mytext.search(regExFirstPair);
+editor.write(mytext.slice(0,matchpos));
+editor.write("("+(matches[2].replace(regExSpace, "")*1.0+offsetX));
+editor.write(", "+(matches[6].replace(regExSpace, "")*1.0+offsetY)+")");
+
+//move other pairs
+var remaining = mytext.slice(matchpos+matches[0].length);
+while (remaining != ""){
+	matches = regExPair.exec(remaining);
+	if (matches == null) break;
+	matchpos = remaining.search(regExPair);
+	editor.write(remaining.slice(0,matchpos));
+	remaining = remaining.slice(matchpos+matches[0].length);
+	editor.write("(" + ((matches[2].replace(regExSpace, "")*1.0)+offsetX) + ", "+ ((matches[4].replace(regExSpace, "")*1.0)+offsetY) + ")");
+} 
+editor.write(remaining);
+}
+doit();
+
+</pre>
+
+This will add to all selected coordinate pairs the offset of the first pair which translates all pairs in a given direction. E.g. if you have (1 + 1, 2 - 1.5) (3, 4) it will change it to (2, 0.5) (4, 2.5).
+
+</ul>
+
+<h3 id="sectionTriggers">4.5.4 Triggers</h3>
+<p>In its simplest form, the trigger is simply a text, which is replaced by the macro. 
+E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
+As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
+You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
+Another such prependable option is <code>(?highlighted-as:..)</code> to restrict a macro to certain, highlighted environments.  (e.g. with <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code> the macro is only activated within the math mode). The possible values correspond to the list on the syntax highlighting config page. <br>
+Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
+<table>
+<tr><td>?txs-start</td><td>TeXstudio is started.</td></tr>
+<tr><td>?new-file</td><td>A new file is created</td></tr>
+<tr><td>?new-from-template</td><td>A new file is created from a template</td></tr>
+<tr><td>?load-file</td><td>A file is loaded</td></tr>
+<tr><td>?load-this-file</td><td>The file containing the macro is loaded (only makes sense, if the  script is defined as <a href="#SECTION_TEXCOM">magic comment</a>)</td></tr>
+<tr><td>?save-file</td><td>A file is saved</td></tr>
+<tr><td>?close-file</td><td>A file is closed</td></tr>
+<tr><td>?master-changed</td><td>A document is un/defined as master document</td></tr>
+<tr><td>?after-typeset</td><td>A latex-like command has ended</td></tr>
+<tr><td>?after-command-run</td><td>A command run has ended (e.g. a compile command that calls latex twice and opens the viewer, will trigger this event once, but after-typeset twice)</td></tr>
+</table>
+<p>Multiple of these special triggers can be combined by | symbols.
+
+<!-- Deprecated:? <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>-->
+<h2 id="SECTION34">4.6 Pstricks support</h2>
+<p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
+<h2 id="SECTION35">4.7 Metapost support</h2>
+<p>The metapost keywords can be inserted with the "Metapost" panel in the "Structure View" and the "mpost" command can be launched via the "Tools" menu.</p>
+<h2 id="SECTION36">4.8 The "Convert to Html" command</h2>
+<p>This command (from the "Tools" menu ) produces a set of html pages from a LaTeX source file with one image for each html page. Each page in the slide presentation corresponds to one of the postscript pages you would obtain running LaTeX.<br>
+The command also produces an index page corresponding to the table of contents you would obtain with LaTeX. Each item of the index page includes a link to the corresponding html page.</p>
+<p>You can create links in the html pages by using the \ttwplink{}{} command in the tex file.<br>
+Synopsis :<br> 
+\ttwplink{http://www.mylink.com}{my text} (external link)<br>
+\ttwplink{page3.html}{my text} (internal link)<br>
+\ttwplink{name_of_a_label}{my text} (internal link)<br>
+<b>Warning : </b>You can't use this command with the hyperref package (and some others packages). This command can only be used with the "Convert to html" tool.</p>
+<p><IMG src="doc18.png" border="1" alt="doc18"></p>
+<p><IMG src="doc19.png" border="1" alt="doc19"></p>
+
+
+<h2 id="SECTION37">4.9 "Forward/Inverse search" with TeXstudio</h2>
+<h3>Integrated pdf-viewer</h3>
+<p>
+TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
+Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can CTRL+left click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".<br> 
+Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
+Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
+Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
+</p>
+
+<h3>General Set-up for external viewers</h3>
+<p>
+Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
+To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
+When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
+On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde://service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde://programpath:service/control/[commands...]</span> to start the program if necessary.
+<br><br>
+Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
+</p>
+
+<h3>Sumatra</h3>
+<p>
+To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TeXstudio path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
+To jump to a line in a running Sumatra (Windows only): <span class="command">dde://SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde://<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
+
+A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
+</p>
+
+<h3>Foxit Reader</h3>
+<p>
+To launch Foxit Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+</p>
+
+<h3>Acrobat Reader</h3>
+<p>
+To launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
+
+To close the document in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+</p>
+
+<h3>Yap (Yet Another Previewer)</h3>
+<p>
+To launch Yap from TeXstudio : <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
+<br><br>
+To launch TeXstudio from Yap: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
+
+A possible value for <i>(your Yap path)</i> is <span class="command">C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe</span>
+</p>
+
+<h3>xdvi</h3>
+<p>
+To launch xdvi from TeXstudio : <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
+
+To launch xdvi from TeXstudio and enable inverse search : <span class="command">xdvi -editor "texstudio %f -line" %.dvi -sourceposition @:%.tex</span>
+</p>
+
+<h3>kdvi</h3>
+<p>
+To launch kdvi from TeXstudio : <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
+</p>
+
+<h3>Okular</h3>
+<p>
+To launch okular from TeXstudio: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
+To launch TeXstudio from Okular: <span class="command">texstudio %f -line %l</span>
+</p>
+
+<h3>Skim</h3>
+<p>
+To launch Skim from TeXstudio: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
+To launch TeXstudio from skim : Command: <span class="command">/applications/texstudio.app/contents/macos/texstudio</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
+A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
+</p>
+<h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
+<p>Texstudio can use special, "magic" comments in the text to adapt options for that document.
+<ul class="magiccomments">
+<li>
+<code>% !TeX spellcheck = de_DE</code>
+<p>This special comment tells txs that this document is written in German and German spell checking is to be used, independent on any general settings.
+</li>
+<li>
+<code>% !TeX encoding = utf8</code>
+<p>The code defines the character encoding of a document.
+</li>
+<li>
+<code>% !TeX root = filename</code>
+<p>The code defines the master document for this file.
+</li>
+<li>
+<code>% !TeX program = pdflatex</code>
+<p>This marks the document as to be compiled with pdflatex. (i.e. overrides the default txs:///quick command)
+</li>
+<li>
+<code>% !TeX TXS-program:latex = txs:///xelatex %</code>
+<p>This overrides the default txs:///latex command to call xelatex instead
+</li>
+<li>
+<code>
+% !TeX TXS-SCRIPT = foobar <br>
+% //Trigger = ?load-this-file <br>
+% app.load("/tmp/test/test.tex"); <br>
+% app.load("/tmp/test/a.tex"); <br>
+% TXS-SCRIPT-END 
+</code>
+<p>This defines a temporary javascript macro which is executed, when the file is loaded, and which in turns loads the two files in /tmp/test. .
+</li>
+</ul>
+<h2 id="SECTION38">4.11 Synopsis of the TeXstudio command</h2>
+<p>
+<code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
+<table>
+<tr><td><code>--master</code></td><td>defines the document as master document.</td></tr>
+<tr><td><code>--line xx[:cc]</code></td><td>TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
+<tr><td><code>--insert-cite citation</code></td><td>Pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
+<tr><td><code>--start-always</code></td><td>TeXstudio will start, even if another instance of it is already running. This allows using of multiple instances.</td></tr>
+<tr><td><code>--pdf-viewer-only</code></td><td>TeXstudio will open as standalone pdf viewer without editor</td></tr>
+<tr><td><code>--page</code></td><td> option, TeXstudio displays a certain page if used as pdf viewer</td></tr>
+</table>
+</p>
+<p>Additional options only available in debug versions of texstudio:
+<table>
+<tr><td><code>--disable-tests</code></td><td>Prevent running any tests.</td></tr>
+<tr><td><code>--execute-tests</code></td><td>Force running the most common tests.</td></tr>
+<tr><td><code>--execute-all-tests</code></td><td>Force running all tests.</td></tr>
+</table>
+Note: The most common tests are run automatically, if there were changes to the executable (i.e. TXS has been compiled since the last run). Furthermore all tests are run once a week.
+</p>
+
+<h2 id="SECTION39">4.12 Keyboard shortcuts</h2>
+<p>
+Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "Editor") -->:
+</p>
+<ul>
+<li> "File" menu :
+	<ul>
+	<li>New : Ctrl+N</li>
+	<li>Open : Ctrl+O</li>
+	<li>Save : Ctrl+S</li>
+	<li>Save as: Ctrl+Alt+S</li>
+	<li>Save all: Ctrl+Shift+Alt+S</li>
+	<li>Close : Ctrl+W</li>
+	<li>Print : Ctrl+P</li>
+	<li>Exit : Ctrl+Q</li>
+	</ul>
+</li>
+<li> "Edit" menu :
+	<ul>
+	<li>Undo : Ctrl+Z</li>
+	<li>Redo : Ctrl+Y</li>
+	<li>Copy : Ctrl+C</li>
+	<li>Cut : Ctrl+X</li>
+	<li>Paste : Ctrl+V</li>
+	<li>Paste as latex: Ctrl+Shift+V</li>
+	<li>Select all : Ctrl+A</li>
+	<li>Remove line : Ctrl+K</li>
+	<li>Show preview : Alt+P</li>
+	<li>Find : Ctrl+F</li>
+	<li>Find next : Ctrl+M</li>
+	<li>Replace : CTrl+R</li>
+	<li>Goto line : Ctrl+G</li>
+	<li>Jump to last change: Ctrl+H</li>
+	<li>Jump to previous change: Ctrl+Shift+H</li>
+	<li>Set Bookmark 0..9: Ctrl+Shift+0..9</li>
+	<li>Jump to Bookmark 0..9: Ctrl+0..9</li>
+	<li>Next Marker: Ctrl+Down</li>
+	<li>Previous Marker: Ctrl+Shift+Up</li>
+	<li>Next Latex Error: Ctrl+Shift+Down</li>
+	<li>Previous Latex Error: Ctrl+Shift+Up</li>
+	<li>Next Latex Bad Box: Shift+Alt+Down</li>
+	<li>Previous Latex Bad Box: Shift+Alt+Up</li>
+	<li>Go to definition: Ctrl+Alt+F</li>
+	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
+	<li>Open Thesaurus : Ctrl+Shift+F8</li>
+	<li>Refresh Structure View : F12</li>
+	<li>Remove placeholders : Ctrl+Shift+K</li>
+	</ul>
+</li>
+<li> "Tools" menu :
+	<ul>
+	<li>Quick build : F1</li>
+	<li>Latex : F2</li>
+	<li>View dvi : F3</li>
+	<li>Dvi->PS : F4</li>
+	<li>View PS : F5</li>
+	<li>Pdflatex : F6</li>
+	<li>View Pdf : F7</li>
+	<li>PS->Pdf : F8</li>
+	<li>Dvi->Pdf : F9</li>
+	<li>Bibtex : F11</li>
+	<li>Make index : F12</li>
+	</ul>
+</li>
+<li>"LaTeX" menu :
+	<ul>
+	<li>item : Ctrl+Shift+I</li>
+	<li>Italic : Ctrl+I</li>
+	<li>Slanted : Ctrl+Shift+S</li>
+	<li>Bold : Ctrl+O</li>
+	<li>Typewriter : Ctrl+Shift+T</li>
+	<li>Small caps : Ctrl+Shift+C</li>
+	<li>Emphasis : Ctrl+Shift+E</li>
+	<li>New line : Ctrl+Return</li>
+	<li>begin{environment} : Ctrl+E</li>
+	<li>Insert reference to next label : Ctrl+Alt+R</li>
+	</ul>
+</li>
+<li>"Math" menu :
+	<ul>
+	<li>Inline math mode : Ctrl+Shift+M</li>
+	<li>Display math mode : Alt+Shift+M</li>
+	<li>Numbered equations : Ctrl+Shift+N</li>
+	<li>Subscript : Ctrl+Shift+D</li>
+	<li>Superscript : CTrl+Shift+U</li>
+	<li>Frac : Alt+Shift+F</li>
+	<li>Dfrac : Ctrl+Shift+F</li>
+	<li>Sqrt : Ctrl+Shift+Q</li>
+	<li>Left : Ctrl+Shift+L</li>
+	<li>Right : Ctrl+Shift+R</li>
+	</ul>
+</li>
+<li>"User" menu :
+	<ul>
+	<li>User tags : Shift+F1...Shift+F10</li>
+	<li>User commands : Shift+Alt+F1...Shift+Alt+F10</li>
+	</ul>
+</li>
+<li>"View" menu :
+	<ul>
+	<li>Next Document : Alt+PgUp</li>
+	<li>Previous Document : Alt+PgDown</li>
+	<li>View log : F10</li>
+	</ul>
+</li>
+</ul>
+<h2 id="CWLDESCRIPTION">4.13 Description of the cwl format</h2>
+<p>
+cwl files are used by the completer to propose possible commands and by the syntax checker to check if a command you wrote actually exists. Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
+<p><code>&lt;command&gt;[#classification]</code><br></p>
+<p>If no classification is given, the command is considered valid at any position in a latex document. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:</p>
+<ul>
+  <li># (at start of line):comment</li>
+  <li># (later):separator for command classifications</li>
+</ul>
+<h3>4.13.1 Command format</h3>
+<p>The command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. New lines can be included in a command by <code>%n</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>).
+Texstudio uses the key-name as hint whether a text is expected as first command-option. If the key-name is "text" or "title", the syntax inside the option is checked, otherwise it is ignored. This works only for the first command element.
+</p>
+<h3>4.13.2 Classification format</h3>
+<p>The follwing classifications are known to TXS:</p>
+<table>
+<tr><th>Classifier</th><th>Meaning</th></tr>
+  <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker may be followed by other classifications.</td></tr>
+  <tr><td>S</td><td>do not show in completer at all. This marker may be followed by other classifications.</td></tr>
+  <tr><td>m</td><td>valid only in math environment</td></tr>
+  <tr><td>t</td><td>valid only in tabular environment (or similar)</td></tr>
+  <tr><td>T</td><td>valid only in tabbing environment</td></tr>
+  <tr><td>n</td><td>valid only in text environment (i.e. not math env)</td></tr>
+  <tr><td>r</td><td>this command declares a reference like "\ref{key}"</td></tr>
+  <tr><td>c</td><td>this command declares a citation like "\cite{key}"</td></tr>
+  <tr><td>C</td><td>this command declares a complex citation like "\textcquote{bibid}{text}". The key needs to be given as <code>bibid</code></td></tr>
+  <tr><td>l</td><td>this command declares a label like "\label{key}"</td></tr>
+  <tr><td>d</td><td>this command declares a definition command like "\newcommand{cmd}{def}"</td></tr>
+  <tr><td>g</td><td>this command declares an include graphics command like "\includegraphics{file}"</td></tr>
+  <tr><td>i</td><td>this command declares an include file command like "\include{file}"</td></tr>
+  <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
+  <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
+  <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
+  <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
+  <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
+</table>
+<p>Examples:<br></p>
+<table>
+	<tr><th>Line</th><th>Explanation</th></tr>
+	<tr><td><code># test</code></td><td>comment</td></tr>
+	<tr><td><code>\typein{msg}#*</code></td><td>unusual command which is only shown in completion "all"</td></tr>
+	<tr><td><code>\sqrt{arg}#m</code></td><td>only in math mode valid</td></tr>
+	<tr><td><code>\pageref{key}#r</code></td><td>declares a reference command which is used correctly for completion</td></tr>
+	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is valid only in the picture environment</td></tr>
+	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
+</table>
+<h2 id="TABLETEMPLATE">4.14 Using table templates</h2>
+<p>Texstudio offers the possibility to reformat an existing latex table after a table template.<br>
+For example, you have entered following table into txs:
+<pre>
+\begin{tabular}{ll}
+a&amp;b\\
+c&amp;d\\
+\end{tabular}
+</pre>
+<p>
+Place the cursor inside the table and select the menu "Latex/Manipulate Tables/Remodel Table Using Template".<br>
+Now you can select a template which defines the formating of the table.
+A number of templates are predefined by txs:
+<ul>
+<li>fullyframed_firstBold</li>
+<li>fullyframed_longtable</li>
+<li>plain_tabular</li>
+<li>plain_tabularx</li>
+<li>rowcolors_tabular</li>
+</ul>
+<p>By selecting the first entry, the table is reformated to:
+<pre>
+\begin{tabular}{|l|l|}
+\hline
+\textbf{a}&amp;\textbf{b}\\ \hline
+c&amp;d\\ \hline
+\end{tabular}
+</pre>
+<p>These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.<p>
+<h3>4.14.1 Creating table templates</h3>
+
+<p>The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.</p>
+<p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formating. Example:</p>
+<pre>
+var metaData = {
+"Name"       : "Colored rows",
+"Description" : "Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.", 
+"Author"      : "Jan Sundermeyer",
+"Date"        : "4.9.2011",
+"Version"     : "1.0"
+}
+</pre>
+<p>The template itself is a javascript (see above) with some prefined variables which contain the whole table. The new table is just placed as replacement of the old one, using information from that variables.
+3 variables are given:
+<ul>
+<li>def   the simplified table definition without any formatting (i.e. ll instead of |l|l|)</li>
+<li>defSplit   the table definition split by column (array=l,l,p{2cm})</li>
+<li>env   the actual enviroment name of the old table like "tabular" or "longtable"</li>
+<li>tab   the actual table. It is a list of lines, each line is a list of columsn which contains the cell content as string</li>
+</ul>
+<br>
+<p>To see the principle of work, the source for the "plain_tabular" template is given here.
+<pre>
+function print(str){ //define this function to make source more readable
+cursor.insertText(str)
+}
+function println(str){ //define this function to make source more readable
+cursor.insertText(str+"\n")
+}
+var arDef=def.split("") // split the table definition (ll -> 'l' 'l')
+println("\\begin{tabular}{"+arDef.join("")+"}") //print table env 
+for(var i=0;i&lt;tab.length;i++){  // loop through all rows of the table
+	var line=tab[i];  // line is a list of all columns of row[i]
+	for(var j=0;j&lt;line.length;j++){ // loop through all columns of a row
+		print(line[j]) // print cell
+		if(j&lt;line.length-1) // if not last columns
+			print("&amp;") // print &amp;
+	}
+	println("\\\\") // close row with \\, note that js demands for backslashes in the string
+}
+println("\\end{tabular}") // close enviroment
+</pre>
+<p>As can be seen in the example, the table has to be rebuilt completely, thus allowing new formatting.
+A second example gives a slightly more elaborate table (fullyframed_firstBold):
+<pre>
+function print(str){
+cursor.insertText(str)
+}
+function println(str){
+cursor.insertText(str+"\n")
+}
+if(env=="tabularx"){
+  println("\\begin{tabularx}{\\linewidth}{|"+defSplit.join("|")+"|}")
+}else{
+    println("\\begin{"+env+"}{|"+defSplit.join("|")+"|}")
+}
+println("\\hline")
+for(var i=0;i&lt;tab.length;i++){
+	var line=tab[i];
+	for(var j=0;j&lt;line.length;j++){
+                var col=line[j];
+                var mt=col.match(/^\\textbf/);
+                if(i==0 &amp;&amp; !mt)
+                  print("\\textbf{")
+		print(line[j])
+                if(i==0 &amp;&amp; !mt)
+                  print("}")
+		if(j&lt;line.length-1)
+			print("&amp;")
+	}
+	println("\\\\ \\hline")
+}
+println("\\end{"+env+"}")
+</pre>
+</p>
+</body></html>
+
