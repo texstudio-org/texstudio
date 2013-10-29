@@ -1,5 +1,12 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.6.4 -> TeXstudio 2.6.6
+-----------------------------------------
+- fix home/end keys with embedded viewer
+- fix macro abbreviation
+- fix log entry locations not updated in editor
+- signed windows installer
+
 TeXstudio 2.6.2 -> TeXstudio 2.6.4
 -----------------------------------------
 - package scanner: queries the tex istallation for installed packages and highlights missing packages
