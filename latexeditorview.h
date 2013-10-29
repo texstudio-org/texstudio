@@ -93,8 +93,12 @@ public:
     void updateCitationFormats();
     void updatePackageFormats();
 	
+	void clearLogMarks();
+	void addLogEntry(int logEntryNumber, int lineNumber, int markID);
+	void setLogMarksVisible(bool visible);
 	QMultiHash<QDocumentLineHandle*, int> lineToLogEntries;
 	QHash<int, QDocumentLineHandle*> logEntryToLine;
+	QHash<int, int> logEntryToMarkID;
 	
 	static int hideTooltipWhenLeavingLine;
 	

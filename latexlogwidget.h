@@ -29,6 +29,8 @@ public:
 	QList<QAction *> displayActions() const {return displayPartsActions->actions();}
 signals:
 	void logEntryActivated(int);
+	void logLoaded();
+	void logResetted();
 public slots:
 
 private slots:
