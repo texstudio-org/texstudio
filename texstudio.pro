@@ -432,6 +432,7 @@ unix {
         utilities
 }
 
+DEFINES += HUNSPELL_STATIC
 include(hunspell/hunspell.pri)
 
 include(qcodeedit/qcodeedit.pri)
