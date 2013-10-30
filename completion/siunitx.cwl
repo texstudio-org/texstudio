@@ -1,293 +1,343 @@
-# siunitx package
-# get it from http://tug.ctan.org/cgi-bin/ctanPackageInformation.py?id=siunitx
-# dsarpe 03.07.2008
-# t_hoffmann 31.03.2012
-
-# Numbers
-\num{number}
-\num[options]{number}
-\numlist[options]{numbers}
-\numrange[options]{numbers}{number2}
-
-# Angles
-\ang{angle}
-\ang[options]{angle}
-
-# Units and values
-\SI{value}{unit commands}
-\SI[options]{value}{unit commands}
-\SI{value}[pre-unit]{unit commands}
-\SI[options]{value}[pre-unit]{unit commands}
-\SIlist[options]{values}{unit commands}
-\SIrange[options]{value1}{value2}{unit commands}
-# Declaration
-\DeclareSIUnit{unit}{definition}#d
-# Powers of units
-\Square
-\ssquare
-\squared
-\cubic
-\cubed
-\per
-\tothe{power}
-\raiseto{power}
-
-# Units with no values
-\si{unit}
-\si[options]{unit}
-
-#
-# pre-defined units, prefixes and powers
-#
-# The seven base SI units
-\kilogram
-\metre
-\second
-\mole
-\kelvin
 \ampere
-\candela
-
-# The SI prefixes
-\yocto
-\zepto
+\amu
+\ang[options]{%<degrees%>
+\ang[options]{decimal number}
+\ang{%<degrees%>
+\ang{decimal number}
+\angstrom
+\arcmin
+\arcminute
+\arcsec
+\arcsecond
+\are
+\as
+\astronomicalunit
+\atomicmass
+\atomicmassunit
 \atto
-\femto
-\pico
-\nano
-\micro
-\milli
-\centi
-\deci
-\deca
-\deka
-\hecto
-\kilo
-\mega
-\giga
-\tera
-\peta
-\exa
-\zetta
-\yotta
-
-# The derived SI units with defined names
+\attosecond
+\bar
+\BAR
+\barn
+\bbar
 \becquerel
+\bel
+\bit
+\bohr
+\byte
+\cancel
+\candela
 \celsius
+\centi
+\centimetre
+\centimetrecubed
+\centimetresquared
+\clight
+\cm
+\cmc
+\cms
 \coulomb
+\cubed
+\cubic
+\cubiccentimetre
+\cubicdecimetre
+\curie
+\dalton
+\day
+\Day
+\dB
+\dday
+\deca
+\deci
+\decibel
+\decimetre
+\DeclareBinaryPrefix{prefix}{symbol}{power of 2}#d
+\DeclareSIPostPower{power macro}{number}#d
+\DeclareSIPrefix{prefix}{symbol}{power of 10}#d
+\DeclareSIPrePower{power macro}{number}#d
+\DeclareSIQualifier{qualifier}{symbol}#d
+\DeclareSIUnit[option]{unit}{definition}#d
+\DeclareSIUnit{unit}{definition}#d
+\degree
+\degreeCelsius
+\deka
+\dm
+\dmc
+\electronmass
+\electronvolt
+\elementarycharge
+\eV
+\exa
+\exbi
+\F
 \farad
-\Gray
+\femto
+\femtofarad
+\femtogram
+\femtomole
+\femtosecond
+\fF
+\fg
+\fmol
+\fs
+\g
+\gal
+\GeV
 \ggray
-\hertz
+\GHz
+\gibi
+\giga
+\gigaelectronvolt
+\gigahertz
+\gigaohm
+\GPa
+\gray
+\Gray
+\GW
+\hartree
+\hectare
+\hecto
+\hectopascal
 \henry
+\hertz
+\highlight
+\hL
+\hl
+\hour
+\Hz
+\J
 \joule
+\K
+\kA
 \katal
+\kelvin
+\keV
+\kg
+\kHz
+\kibi
+\kilo
+\kiloampere
+\kiloelectronvolt
+\kilogram
+\kilohertz
+\kilojoule
+\kilometre
+\kilonewton
+\kiloohm
+\kilovolt
+\kilowatt
+\kilowatthour
+\kJ
+\km
+\kmol
+\kN
+\knot
+\kohm
+\kPa
+\kV
+\kW
+\kWh
+\kWhKL
+\L
+\l
+\liter
+\litre
 \lumen
 \lux
-\newton
-\ohm
-\pascal
-\radian
-\siemens
-\sievert
-\steradian
-\tesla
-\volt
-\watt
-\weber
-
-# Units derived from experiments
-\electronvolt
-\atomicmassunit
-\atomicmass
-
-# Units accepted for use with SI
-\bel
-\Day
-\dday
-\degree
-\hour
-\minute
-\arcmin
-\neper
-\percent
-\arcsec
-\tonne
-
-# Prefixed and abbreviated units
-# Masses
-\kilogram
-\kg
-\femtogram
-\fg
-\picogram
-\pg
-\nanogram
-\nanog
-\microgram
-\micg
-\milligram
+\m
+\mA
+\mebi
+\mega
+\megabecquerel
+\megaelectronvolt
+\megahertz
+\megaohm
+\megawatt
+\meter
+\metre
+\MeV
+\meV
+\MeV
 \mg
-\atomicmass
-\amu
-# Lengths
-\picometre
-\picom
-\nanometre
-\nm
-\micrometre
+\MHz
+\mHz
+\MHz
+\micA
+\micg
+\micl
 \micm
-\millimetre
-\mm
-\centimetre
-\cm
-\decimetre
-\dm
-\kilometre
-\km
-# Times
-\second
-\Sec
-\attosecond
-\as
-\femtosecond
-\fs
-\picosecond
-\ps
-\nanosecond
-\ns
+\micmol
+\micro
+\microampere
+\microfarad
+\microgram
+\microlitre
+\micrometre
+\micromole
 \microsecond
 \mics
-\millisecond
-\ms
-# Moles
-\femtomole
-\fmol
-\picomole
-\pmol
-\nanomole
-\nmol
-\micromole
-\micmol
-\millimole
-\mmol
-# Currents
-\picoampere
-\pA
-\nanoampere
-\nA
-\microampere
-\micA
-\kiloampere
-\kA
-# Areas
-\squarecentimetre
-\centimetresquared
-\cms
-\squaremetre
-\squarekilometre
-# Volumes
-\microlitre
-\micl
-\millilitre
-\ml
-\cubiccentimetre
-\cmc
-\centimetrecubed
-\cubicdecimetre
-\dmc
-# Frequencies
-\hertz
-\Hz
-\millihertz
-\mHz
-\kilohertz
-\kHz
-\megahertz
-\MHz
-\gigahertz
-\GHz
-\terahertz
-\THz
-# potentials
-\millivolt
-\mV
-\kilovolt
-\kV
-# Energies
-\kilojoule
-\kJ
-\electronvolt
-\eV
-\millielectronvolt
-\meV
-\kiloelectronvolt
-\keV
-\megaelectronvolt
-\MeV
-\gigaelectronvolt
-\GeV
-\teraelectronvolt
-\TeV
-\kilowatthour
-\kWh
-# Powers
-\milliwatt
-\kilowatt
-\megawatt
-# Capacitances
-\femtofarad
-\picofarad
-\nanofarad
-\microfarad
-\millifarad
-# Resistances
-\kiloohm
-\megaohm
-\gigaohm
-\millisiemens
-# Forces
-\millinewton
-\kilonewton
-# Other units
-\hectopascal
-\megabecquerel
-\millisievert
-
-# Additional (temporary) SI units
-\angstrom
-\are
-\curie
-\BAR
-\bbar
-\barn
-\gal
-\hectare
+\milli
 \millibar
-\rad
-\rem
-\roentgen
-
-# Defining new units
-\newunit{new unit command}{text}
-\newunit[options]{new unit command}{text}
-\renewunit{new unit command}{text}
-\renewunit[options]{new unit command}{text}
-\provideunit{new unit command}{text}
-\provideunit[options]{new unit command}{text}
-\newpower{power}{num}
+\millielectronvolt
+\millifarad
+\milligram
+\millihertz
+\millilitre
+\millimetre
+\millimole
+\millinewton
+\millisecond
+\millisiemens
+\millisievert
+\millivolt
+\milliwatt
+\minute
+\mL
+\ml
+\mm
+\mmHg
+\mmol
+\MN
+\mN
+\Mohm
+\mohm
+\mol
+\mole
+\MPa
+\ms
+\mV
+\MW
+\mW
+\N
+\nA
+\nano
+\nanoampere
+\nanofarad
+\nanog
+\nanogram
+\nanometre
+\nanomole
+\nanosecond
+\nauticalmile
+\neper
 \newpower[post]{power}{num}
-\renewpower{power}{num}
-\renewpower[post]{power}{num}
-\providepower{power}{num}
-\providepower[post]{power}{num}
-\newprefix{prefix}{symbol}{powers-ten}
+\newpower{power}{num}
 \newprefix[binary]{prefix}{symbol}{powers-ten}
-\renewprefix{prefix}{symbol}{powers-ten}
-\renewprefix[binary]{prefix}{symbol}{powers-ten}
-\provideprefix{prefix}{symbol}{powers-ten}
+\newprefix{prefix}{symbol}{powers-ten}
+\newton
+\newunit[options]{new unit command}{text}
+\newunit{new unit command}{text}
+\ng
+\nm
+\nmol
+\ns
+\num[options]{number}
+\num{number}
+\numlist[options]{numbers}
+\numlist{numbers}
+\numrange[options]{numbers}{number2}
+\numrange{numbers}{number2}
+\nV
+\of
+\ohm
+\Pa
+\pA
+\pascal
+\pebi
+\per
+\percent
+\peta
+\pF
+\pg
+\pico
+\picoampere
+\picofarad
+\picogram
+\picom
+\picometre
+\picomole
+\picosecond
+\planckbar
+\pm
+\pmol
+\providepower[post]{power}{num}
+\providepower{power}{num}
 \provideprefix[binary]{prefix}{symbol}{powers-ten}
-
-# Package options inside document
-\sisetup
-
+\provideprefix{prefix}{symbol}{powers-ten}
+\provideunit[options]{new unit command}{text}
+\provideunit{new unit command}{text}
+\ps
+\pV
+\rad
+\radian
+\raiseto{power}
+\rem
+\renewpower[post]{power}{num}
+\renewpower{power}{num}
+\renewprefix[binary]{prefix}{symbol}{powers-ten}
+\renewprefix{prefix}{symbol}{powers-ten}
+\renewunit[options]{new unit command}{text}
+\renewunit{new unit command}{text}
+\roentgen
+\s
+\Sec
+\second
+\SendSettingsToPgf
+\si[options]{unit}
+\SI[options]{value}[pre-unit]{unit commands}
+\SI[options]{value}{unit commands}
+\si{unit}
+\SI{value}[pre-unit]{unit commands}
+\SI{value}{unit commands}
+\siemens
+\sievert
+\SIlist
+\SIlist[options]{values}{unit commands}
+\SIrange
+\SIrange[options]{value1}{value2}{unit commands}
+\sisetup{options}
+\SIUnitSymbolAngstrom
+\SIUnitSymbolArcminute
+\SIUnitSymbolArcsecond
+\SIUnitSymbolCelsius
+\SIUnitSymbolDegree
+\SIUnitSymbolMicro
+\SIUnitSymbolOhm
+\square
+\Square
+\squarecentimetre
+\squared
+\squarekilometre
+\squaremetre
+\ssquare
+\steradian
+\tablenum
+\tebi
+\tera
+\teraelectronvolt
+\terahertz
+\tesla
+\TeV
+\THz
+\tonne
+\tothe{power}
+\uA
+\ug
+\uL
+\ul
+\um
+\umol
+\us
+\uV
+\uW
+\V
+\volt
+\W
+\watt
+\weber
+\yobi
+\yocto
+\yotta
+\zebi
+\zepto
+\zetta
