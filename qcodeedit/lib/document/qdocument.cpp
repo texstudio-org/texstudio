@@ -4835,18 +4835,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( atBlockStart() )
 				return false;
 
-			if ( m & QDocumentCursor::ThroughWrap){
-			    if(m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y()) //not at w. line start
-			    {
+			if ( m & QDocumentCursor::ThroughWrap && m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y() ){
 				QPoint p = documentPosition();
 				p.rx() = 0;
 
 				m_doc->cursorForDocumentPosition(p, line, offset);
 				m_max = 0;//w.line start, avoiding 0 bug
 				return true;
-			    }
-			    return false;
-
 			}
 
 			m_max = offset = 0;
@@ -4876,13 +4871,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				return false;
 
 			if ( m & QDocumentCursor::ThroughWrap &&
-                m_doc->line(line).cursorToDocumentOffset(offset+2).y()==m_doc->line(line).cursorToDocumentOffset(offset+1).y())//not at w. line end
+			 m_doc->line(line).cursorToDocumentOffset(offset+1).y()==m_doc->line(line).cursorToDocumentOffset(offset).y())//not at w. line end
                 //m_doc->line(line).cursorToDocumentOffset(offset).y()/QDocumentPrivate::m_lineSpacing+1<m_doc->line(line).lineSpan()) //not in the last
 			{
 				int curline=line;
 			    //goto next line start
 			    if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y())
-                    offset++;
+				offset++; //can this ever happen?
 				QPoint p = documentPosition();
 				p.rx() = -1;
 				p.ry() += QDocumentPrivate::m_lineSpacing;
