@@ -392,6 +392,7 @@ public slots:
 		void removeAction(QAction *a, const QString& menu, const QString& toolbar = QString());
 		
 		void load(const QString& file, QTextCodec* codec/* = QTextCodec::codecForLocale()*/);
+		void reload();
 		
 		void setText(const QString& s, bool allowUndo = true);
 		

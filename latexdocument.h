@@ -168,6 +168,12 @@ public:
 
     QString findFileName(QString fname);
     bool fileExits(QString fname);
+
+	void saveLineSnapshot();
+	QDocumentLine lineFromLineSnapshot(int lineNumber);
+	int lineToLineSnapshotLineNumber(const QDocumentLine &line);
+
+    bool remeberAutoReload; //remember whether doc is auto reloaded while hidden (and auto reload is always activated).
 	
 private:
 	QString fileName; //absolute
@@ -191,6 +197,8 @@ private:
 	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
 	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
     QMultiHash<QDocumentLineHandle*,QString> mIncludedFilesList;
+
+	QList<QDocumentLineHandle *> mLineSnapshot;
 	
 	QSet<QString> mCompleterWords; // local list of completer words
     QSet<QString> mCWLFiles;
@@ -216,6 +224,8 @@ private:
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry* se);
 	
 	void gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck);
+
+
 	
 #ifndef QT_NO_DEBUG
 public:
