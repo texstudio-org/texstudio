@@ -237,7 +237,7 @@ private:
 	void useMagnifier(const QMouseEvent *inEvent);
 	void goToDestination(const Poppler::LinkDestination& dest);
 	void doLink(const Poppler::Link *link);
-	void annotationClicked(Poppler::Annotation *annotation, const QPointF &scaledPos);
+	void annotationClicked(Poppler::Annotation *annotation, int page);
 	void doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor=1.0);
 
 	PDFScrollArea* getScrollArea();
