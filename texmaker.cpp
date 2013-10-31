@@ -6484,7 +6484,22 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
         menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
         menu.exec(structureTreeView->mapToGlobal(point));
     }
+    if (entry->type==StructureEntry::SE_INCLUDE) {
+        QMenu menu;
+        menu.addAction(LatexEditorView::tr("Open Document"),this, SLOT(openExternalFile()))->setData(QVariant::fromValue(entry));
+        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
+        menu.exec(structureTreeView->mapToGlobal(point));
+    }
 
+}
+
+void Texmaker::openExternalFile(){
+    QAction *act = qobject_cast<QAction *>(sender());
+    if (!act) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
+    if(entry){
+        openExternalFile(entry->title);
+    }
 }
 
 void Texmaker::structureContextMenuCloseDocument(){
