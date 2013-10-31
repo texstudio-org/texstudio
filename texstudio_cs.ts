@@ -590,6 +590,10 @@
         <source>Files to Delete</source>
         <translation>Soubory ke smazání</translation>
     </message>
+    <message>
+        <source>For your own safety clean will not delete the files with the following extensions:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippet</name>
@@ -4664,11 +4668,11 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
-        <translation>Soubor PDF &quot;%1&quot; není úplný. Nový pokus za 2 sekundy.</translation>
+        <translation type="obsolete">Soubor PDF &quot;%1&quot; není úplný. Nový pokus za 2 sekundy.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
-        <translation>Soubor PDF &quot;%1&quot; není úplný.</translation>
+        <translation type="obsolete">Soubor PDF &quot;%1&quot; není úplný.</translation>
     </message>
     <message>
         <source>Zoom Out</source>
@@ -4687,7 +4691,7 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
 does not look like a valid PDF document.
 
 Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
-        <translation>%1
+        <translation type="obsolete">%1
 nevypadá jako platný dokument PDF.
 
 Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě jednou, jakmile bude sestavení hotovo. Otevření poškozeného dokumentu by mohlo způsobit pád. Přesto jej chcete otevřít?</translation>
@@ -4743,6 +4747,27 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Annotations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus Editor</source>
+        <translation type="unfinished">Zaměřit editor</translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Zavřít</translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5918,15 +5943,15 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>dtx:environment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>packagePresent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>packageMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dtx:commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7783,7 +7808,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Pre&amp;view Selection/Parantheses</source>
-        <translation>Ná&amp;hled na výběr/závorky</translation>
+        <translation type="obsolete">Ná&amp;hled na výběr/závorky</translation>
     </message>
     <message>
         <source>&amp;Uncomment</source>
@@ -8473,7 +8498,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
-        <translation>&amp;Smazat značky</translation>
+        <translation type="obsolete">&amp;Smazat značky</translation>
     </message>
     <message>
         <source>&amp;Math</source>
@@ -9135,6 +9160,66 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LilyPond files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fifi&amp;x</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save renamed/&amp;moved file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save copied file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set &amp;permissions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Revert to saved...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy filename to &amp;clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy master filename to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre&amp;view Selection/Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Log Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>document</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename/Move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the file &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
