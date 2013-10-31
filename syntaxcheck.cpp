@@ -247,7 +247,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 					}
 					continue;
 				}
-				if(word=="\\\\"){
+                if((word=="\\\\")||(word=="\\tabularnewline")){
 					if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
 						Error elem;
 						elem.range=QPair<int,int>(wordstart,word.length());
