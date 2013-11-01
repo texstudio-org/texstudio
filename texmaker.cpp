@@ -2405,8 +2405,8 @@ void Texmaker::fileUtilPermissions(){
 
 
 	UniversalInputDialog uid;
-	uid.addVariable(&permissionsUnixLikeHex, "Numeric permissions: ");
-	uid.addVariable(&permissions, "Verbose permissions: ");
+	uid.addVariable(&permissionsUnixLikeHex, tr("Numeric permissions"));
+	uid.addVariable(&permissions, tr("Verbose permissions"));
 	if (uid.exec() == QDialog::Accepted && (permissionsUnixLikeHex != oldPermissionsUnixLikeHex || permissions != oldPermissions)) {
 		if (permissionsUnixLikeHex != oldPermissionsUnixLikeHex)
 			permissionsRaw = permissionsUnixLikeHex.toInt(0, 16);
