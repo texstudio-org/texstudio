@@ -2425,15 +2425,15 @@ vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
         <source>Go to error when displaying log</source>
-        <translation type="unfinished"></translation>
+        <translation>Přejít při zobrazení zápisu na chybu</translation>
     </message>
     <message>
         <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>V režimu Vložené automaticky skrýt nástrojové pruhy</translation>
     </message>
     <message>
         <source>Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Balíček</translation>
     </message>
 </context>
 <context>
@@ -3799,11 +3799,11 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Package present</source>
-        <translation type="unfinished"></translation>
+        <translation>Balík přítomen</translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Balík nenalezen</translation>
     </message>
 </context>
 <context>
@@ -3849,43 +3849,43 @@ Neplatný příkaz \caption.</translation>
     <name>LatexLogWidget</name>
     <message>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Kopírovat</translation>
+        <translation>&amp;Kopírovat</translation>
     </message>
     <message>
         <source>&amp;Copy All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopírovat vše</translation>
     </message>
     <message>
         <source>&amp;Copy All With Line Numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopírovat vše s čísly řádků</translation>
     </message>
     <message>
         <source>No log file available</source>
-        <translation type="unfinished"></translation>
+        <translation>Není dostupný žádný soubor se zápisem</translation>
     </message>
     <message>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Potíže</translation>
     </message>
     <message>
         <source>Log File</source>
-        <translation type="unfinished">Soubor se záznamem</translation>
+        <translation>Soubor se zápisem</translation>
     </message>
     <message>
         <source>Issues and Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Potíže a zápis</translation>
     </message>
     <message>
         <source>Log file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor se zápisem nebyl nalezen.</translation>
     </message>
     <message>
         <source>Log file not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor se zápisem není čitelný.</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished">Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+        <translation>Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
     </message>
 </context>
 <context>
@@ -4047,65 +4047,65 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Messages / Log File</source>
-        <translation type="unfinished">Zprávy/Soubor se zápisem</translation>
+        <translation>Zprávy/Soubor se zápisem</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam</translation>
     </message>
 </context>
 <context>
     <name>PDFAnnotation</name>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished">Řádek</translation>
+        <translation>Řádek</translation>
     </message>
     <message>
         <source>Geometric</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek</translation>
     </message>
     <message>
         <source>Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýraznění</translation>
     </message>
     <message>
         <source>Stamp</source>
-        <translation type="unfinished"></translation>
+        <translation>Razítko</translation>
     </message>
     <message>
         <source>Ink</source>
-        <translation type="unfinished"></translation>
+        <translation>Pero</translation>
     </message>
     <message>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz</translation>
     </message>
     <message>
         <source>Caret</source>
-        <translation type="unfinished"></translation>
+        <translation>Vsuvka</translation>
     </message>
     <message>
         <source>Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Příloha</translation>
     </message>
     <message>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvuk</translation>
     </message>
     <message>
         <source>Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
 </context>
 <context>
     <name>PDFAnnotationDlg</name>
     <message>
         <source>Annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vysvětlivka</translation>
     </message>
     <message>
         <source>User</source>
@@ -4116,27 +4116,27 @@ Chcete ji přepsat?</translation>
     <name>PDFAnnotationModel</name>
     <message>
         <source>Author</source>
-        <translation type="unfinished">Autor</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraveno</translation>
     </message>
     <message>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořeno</translation>
     </message>
     <message>
         <source>Page</source>
-        <translation type="unfinished">Strana</translation>
+        <translation>Strana</translation>
     </message>
 </context>
 <context>
@@ -4151,23 +4151,23 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Hledaný text nebo vzor (RegEx)</translation>
+        <translation>Hledaný text nebo vzor (RegEx)</translation>
     </message>
     <message>
         <source>Find next occurence</source>
-        <translation type="unfinished">Najít další výskyt</translation>
+        <translation>Najít další výskyt</translation>
     </message>
     <message>
         <source>Find previous occurence</source>
-        <translation type="unfinished">Najít předchozí výskyt</translation>
+        <translation>Najít předchozí výskyt</translation>
     </message>
     <message>
         <source> Find :</source>
-        <translation type="unfinished">Hledat:</translation>
+        <translation>Hledat:</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation type="unfinished">Písmovka</translation>
+        <translation>Rozlišovat velká a malá písmena</translation>
     </message>
 </context>
 <context>
@@ -4739,11 +4739,11 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Invert Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrátit barvy</translation>
     </message>
     <message>
         <source>Annotations</source>
-        <translation type="unfinished"></translation>
+        <translation>Vysvětlivky</translation>
     </message>
 </context>
 <context>
@@ -5911,23 +5911,23 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     </message>
     <message>
         <source>link</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkaz</translation>
     </message>
     <message>
         <source>preedit</source>
-        <translation type="unfinished"></translation>
+        <translation>preedit</translation>
     </message>
     <message>
         <source>dtx:environment</source>
-        <translation type="unfinished"></translation>
+        <translation>dtx: prostředí</translation>
     </message>
     <message>
         <source>packagePresent</source>
-        <translation type="unfinished"></translation>
+        <translation>Balík přítomen</translation>
     </message>
     <message>
         <source>packageMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>Balík nepřítomen</translation>
     </message>
 </context>
 <context>
@@ -6030,79 +6030,79 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>Close search/replace panel</source>
-        <translation type="unfinished">Zavřít panel hledání/nahrazení</translation>
+        <translation>Zavřít panel hledání/nahrazení</translation>
     </message>
     <message>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Hledaný text nebo vzor (RegEx)</translation>
+        <translation>Hledaný text nebo vzor (RegEx)</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation type="unfinished">Najít další</translation>
+        <translation>Najít další</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation type="unfinished">Najít předchozí</translation>
+        <translation>Najít předchozí</translation>
     </message>
     <message>
         <source>Count occurences</source>
-        <translation type="unfinished">Počítat výskyty</translation>
+        <translation>Počítat výskyty</translation>
     </message>
     <message>
         <source>Replacement text</source>
-        <translation type="unfinished">Text nahrazení</translation>
+        <translation>Text nahrazení</translation>
     </message>
     <message>
         <source>Replace and find next</source>
-        <translation type="unfinished">Nahradit a najít další</translation>
+        <translation>Nahradit a najít další</translation>
     </message>
     <message>
         <source>Replace and find previous</source>
-        <translation type="unfinished">Nahradit a najít předchozí</translation>
+        <translation>Nahradit a najít předchozí</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation type="unfinished">Nahradit vše</translation>
+        <translation>Nahradit vše</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation type="unfinished">Hledat:</translation>
+        <translation>Hledat:</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation type="unfinished">Písmovka</translation>
+        <translation>Rozlišovat velká a malá písmena</translation>
     </message>
     <message>
         <source>Words</source>
-        <translation type="unfinished">Slova</translation>
+        <translation>Celé slovo</translation>
     </message>
     <message>
         <source>Regexp</source>
-        <translation type="unfinished">Regulární výraz</translation>
+        <translation>Regulární výraz</translation>
     </message>
     <message>
         <source>Highlight all</source>
-        <translation type="unfinished">Zvýraznit vše</translation>
+        <translation>Zvýraznit vše</translation>
     </message>
     <message>
         <source>Cursor</source>
-        <translation type="unfinished">Ukazatel</translation>
+        <translation>Ukazatel</translation>
     </message>
     <message>
         <source>Selection</source>
-        <translation type="unfinished">Výběr</translation>
+        <translation>Výběr</translation>
     </message>
     <message>
         <source>Replace:</source>
-        <translation type="unfinished">Nahradit:</translation>
+        <translation>Nahradit:</translation>
     </message>
     <message>
         <source>Prompt on replace</source>
-        <translation type="unfinished">Ptát se při nahrazení</translation>
+        <translation>Ptát se při nahrazení</translation>
     </message>
     <message>
         <source>Escape sequences</source>
-        <translation type="unfinished">Únikové znaky (např.: \n)</translation>
+        <translation>Únikové znaky (např.: \n)</translation>
     </message>
 </context>
 <context>
@@ -6178,7 +6178,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <name>QuaZipFile</name>
     <message>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished">Chyba API ZIP/UNZIP %1</translation>
+        <translation>Chyba API ZIP/UNZIP %1</translation>
     </message>
 </context>
 <context>
@@ -7837,7 +7837,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
-        <translation>Pozor: dialog je automaticky zavřen, je-li text ručně upravován!</translation>
+        <translation>Pozor: Dialog je automaticky zavřen, je-li text ručně upravován!</translation>
     </message>
     <message>
         <source>Close Something</source>
@@ -9121,21 +9121,21 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     <message>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Homespring</translation>
     </message>
     <message>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Pweave</translation>
     </message>
     <message>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Sweave</translation>
     </message>
     <message>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor &quot;%1&quot; již neexistuje. Chcete jej odstranit ze seznamu naposledy použitých souborů?</translation>
     </message>
 </context>
 <context>
@@ -9448,7 +9448,7 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     <name>TitledPanel</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Zavřít</translation>
+        <translation>Zavřít</translation>
     </message>
 </context>
 <context>
