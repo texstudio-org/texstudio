@@ -159,6 +159,7 @@ public:
     // disable usage of esc for closing fullscreen view
     bool disableEscForClosingFullscreen;
 	bool goToErrorWhenDisplayingLog;
+	bool showLogMarkersWhenClickingLogEntry;
 
     // input unicode instead of latex command from symbolgrid (if available)
     bool insertUTF;

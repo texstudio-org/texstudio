@@ -6094,7 +6094,9 @@ void Texmaker::gotoLogEntryEditorOnly(int logEntryNumber) {
 	if (currentEditorView()->logEntryToLine.isEmpty()) {
 		updateLogEntriesInEditors();
 	}
-	setLogMarksVisible(true);
+	if (configManager.showLogMarkersWhenClickingLogEntry) {
+		setLogMarksVisible(true);
+	}
 	//get line
 	QDocumentLineHandle* lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
 	if (!lh) return;

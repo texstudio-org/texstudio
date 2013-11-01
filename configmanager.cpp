@@ -377,6 +377,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
     registerOption("Editor/UseEscForClosingFullscreen",&disableEscForClosingFullscreen,false,&pseudoDialog->checkBoxDisableEscForClosingfullscreen);
 	registerOption("Editor/GoToErrorWhenDisplayingLog",&goToErrorWhenDisplayingLog ,true, &pseudoDialog->checkBoxGoToErrorWhenDisplayingLog);
+	registerOption("Editor/ShowLogMarkersWhenClickingLogEntry",&showLogMarkersWhenClickingLogEntry ,true, &pseudoDialog->checkBoxShowLogMarkersWhenClickingLogEntry);
 
     registerOption("Tools/Insert Unicode From SymbolGrid",&insertUTF,false, &pseudoDialog->checkBoxInsertSymbolAsUCS);
 	
