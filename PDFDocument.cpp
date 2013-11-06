@@ -1932,7 +1932,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 
 QList<PDFDocument*> PDFDocument::docList;
 
-PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
+PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded, QMenuBar *menu)
 	   : renderManager(0),curFileSize(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false),syncToSourceBlock(false)
 {
 	REQUIRE(pdfConfig);
@@ -1940,7 +1940,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 	globalConfig = pdfConfig;
 
 	embeddedMode=embedded;
-	init(embedded);
+    init(embedded,menu);
 
 
 	watcher = new QFileSystemWatcher(this);
@@ -2009,7 +2009,7 @@ PDFDocument::~PDFDocument()
 		delete renderManager;
 }
 
-void PDFDocument::init(bool embedded)
+void PDFDocument::init(bool embedded,QMenuBar *menu)
 {
 	ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
 
@@ -2018,7 +2018,7 @@ void PDFDocument::init(bool embedded)
 	setupUi(this);
 	if(embedded){
 #if QT_VERSION>=0x050000
-        setMenuBar(0);
+        setMenuBar(menu);
 #else
         menuBar()->hide();
 #endif
