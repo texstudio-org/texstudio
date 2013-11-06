@@ -330,7 +330,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 	Q_PROPERTY(QString fileName READ fileName)
 
 public:
-	explicit PDFDocument(PDFDocumentConfig* const pdfConfig,bool embedded=false);
+    explicit PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded=false,QMenuBar *menu=0);
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -450,7 +450,7 @@ signals:
 	void triggeredClone();
 
 private:
-    void init(bool embedded=false);
+    void init(bool embedded=false,QMenuBar *menu=0);
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
