@@ -594,6 +594,19 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
+
+
+	submenu=newManagedMenu(menu, "utilities",tr("Fifi&x"));
+	newManagedAction(submenu, "rename", tr("Save renamed/&moved file..."), "fileUtilCopyMove",0,QString(),QList<QVariant>() << true);
+	newManagedAction(submenu, "copy", tr("Save copied file..."), "fileUtilCopyMove",0,QString(),QList<QVariant>() << false);
+	newManagedAction(submenu, "delete", tr("&Delete file"), SLOT(fileUtilDelete()));
+	newManagedAction(submenu, "chmod", tr("Set &permissions..."), SLOT(fileUtilPermissions()));
+	submenu->addSeparator();
+	newManagedAction(submenu, "revert", tr("&Revert to saved..."), SLOT(fileUtilRevert()));
+	submenu->addSeparator();
+	newManagedAction(submenu, "copyfilename", tr("Copy filename to &clipboard"), SLOT(fileUtilCopyFileName()));
+	newManagedAction(submenu, "copymasterfilename", tr("Copy master filename to clipboard"), SLOT(fileUtilCopyMasterFileName()));
+
 	QMenu *svnSubmenu=newManagedMenu(menu, "svn",tr("S&VN..."));
 	newManagedAction(svnSubmenu, "checkin",tr("Check &in..."), SLOT(fileCheckin()));
 	newManagedAction(svnSubmenu, "svnupdate",tr("SVN &update..."), SLOT(fileUpdate()));
@@ -607,11 +620,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(svnSubmenu, "mergediff",tr("Try to merge differences"), SLOT(fileDiffMerge()));
 	newManagedAction(svnSubmenu, "removediffmakers",tr("Remove Difference-Markers"), SLOT(removeDiffMarkers()));
 	newManagedAction(svnSubmenu, "declareresolved",tr("Declare Conflict Resolved"), SLOT(declareConflictResolved()));
-    newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,"go-next-diff");
-    newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,"go-previous-diff");
+	newManagedAction(svnSubmenu, "nextdiff",tr("Jump to next difference"), SLOT(jumpNextDiff()),0,"go-next-diff");
+	newManagedAction(svnSubmenu, "prevdiff",tr("Jump to previous difference"), SLOT(jumpPrevDiff()),0,"go-previous-diff");
 	
 	menu->addSeparator();
-    newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, "fileclose");
+	newManagedAction(menu,"close",tr("&Close"), SLOT(fileClose()), Qt::CTRL+Qt::Key_W, "fileclose");
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 	
 	menu->addSeparator();
@@ -708,7 +721,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
     newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste");
 	newManagedAction(menu,"convertTo",tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
-	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parantheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
+	newManagedAction(menu,"previewLatex",tr("Pre&view Selection/Parentheses"), SLOT(previewLatex()),Qt::ALT+Qt::Key_P);
 	newManagedAction(menu,"removePreviewLatex",tr("C&lear Inline Preview"), SLOT(clearPreview()));
 	
 	menu->addSeparator();
@@ -1506,6 +1519,7 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 	connect(edit,SIGNAL(thesaurus(int,int)),this,SLOT(editThesaurus(int,int)));
 	connect(edit,SIGNAL(changeDiff(QPoint)),this,SLOT(editChangeDiff(QPoint)));
 	connect(edit,SIGNAL(saveCurrentCursorToHistoryRequested()),this,SLOT(saveCurrentCursorToHistory()));
+	edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 	
 	if(!hidden){
 		EditorTabs->insertEditor(edit, reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1);
@@ -1607,6 +1621,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 		if(existingView->document->isHidden()){
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
 			documents.deleteDocument(existingView->document,true);
+            existingView->editor->setFlag(QEditor::SilentReloadOnExternalChanges,existingView->document->remeberAutoReload);
 			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
 			updateOpenDocumentMenu(false);
@@ -2207,11 +2222,14 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 	if (fileName.isEmpty()) {
 		if (currentEditor()->fileInfo().isFile()) {
 			currentDir = currentEditor()->fileInfo().absoluteFilePath();
-		} else if (!configManager.lastDocument.isEmpty()) {
-			QFileInfo fi(configManager.lastDocument);
-			if (fi.exists() && fi.isReadable())
-				currentDir=fi.absoluteFilePath();
-		}
+        } else {
+            if (!configManager.lastDocument.isEmpty()) {
+                QFileInfo fi(configManager.lastDocument);
+                if (fi.exists() && fi.isReadable())
+                    currentDir=fi.absolutePath();
+            }
+            currentDir = currentDir +"/"+ tr("document");
+        }
 	} else {
 		currentDir = fileName;
 		/*QFileInfo currentFile(fileName);
@@ -2332,6 +2350,100 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 		EditorTabs->setCurrentEditor(currentEdView);
 	//UpdateCaption();
 }
+
+//TODO: handle svn in all these methods
+
+void Texmaker::fileUtilCopyMove(bool move){
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+	QString newfn = QFileDialog::getSaveFileName(this,move ? tr("Rename/Move") : tr("Copy"),fn,fileFilters, &selectedFileFilter);
+	if (newfn.isEmpty()) return;
+	if (fn == newfn) return;
+	QFile::Permissions permissions = QFile(fn).permissions();
+	if (move) fileSaveAs(newfn, true);
+	else currentEditor()->saveCopy(newfn);
+	if (documents.getCurrentFileName() != newfn) return;
+	if (move) QFile(fn).remove();
+	QFile(newfn).setPermissions(permissions); //keep permissions. (better: actually move the file, keeping the inode. but then all that stuff (e.g. master/slave) has to be updated here
+}
+
+
+void Texmaker::fileUtilDelete(){
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+	if (txsConfirmWarning(tr("Do you really want to delete the file \"%1\"?").arg(fn)))
+		QFile(fn).remove();
+}
+
+void Texmaker::fileUtilRevert(){
+	if (!currentEditor()) return;
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+	if (txsConfirmWarning(tr("Do you really want to revert the file \"%1\"?").arg(documents.getCurrentFileName())))
+		currentEditor()->reload();
+}
+
+void Texmaker::fileUtilPermissions(){
+	QString fn = documents.getCurrentFileName();
+	if (fn.isEmpty()) return;
+
+	QFile f(fn);
+
+	int permissionsRaw = f.permissions();
+	int permissionsUnixLike = ((permissionsRaw & 0x7000) >> 4) | (permissionsRaw & 0x0077); //ignore qt "user" flags
+	QString permissionsUnixLikeHex = QString::number(permissionsUnixLike, 16);
+	QString permissions;
+	const QString PERMISSIONSCODES = "rwx";
+	int flag = QFile::ReadUser; REQUIRE(QFile::ReadUser == 0x400);
+	int temp = permissionsUnixLike;
+	for (int b=0;b<3;b++) {
+		for (int i=0;i<3;i++, flag >>= 1)
+			permissions += (temp & flag) ? PERMISSIONSCODES[i] : QChar('-');
+		flag >>= 1;
+	}
+	QString oldPermissionsUnixLikeHex = permissionsUnixLikeHex, oldPermissions = permissions;
+
+
+	UniversalInputDialog uid;
+	uid.addVariable(&permissionsUnixLikeHex, tr("Numeric permissions"));
+	uid.addVariable(&permissions, tr("Verbose permissions"));
+	if (uid.exec() == QDialog::Accepted && (permissionsUnixLikeHex != oldPermissionsUnixLikeHex || permissions != oldPermissions)) {
+		if (permissionsUnixLikeHex != oldPermissionsUnixLikeHex)
+			permissionsRaw = permissionsUnixLikeHex.toInt(0, 16);
+		else {
+			permissionsRaw = 0;
+			int flag = QFile::ReadUser;
+			int p = 0;
+			for (int b=0;b<3;b++) {
+				for (int i=0;i<3;i++, flag >>= 1) {
+					if (permissions[p] == '-') p++;
+					else if (permissions[p] == PERMISSIONSCODES[i]) {
+						permissionsRaw |= flag;
+						p++;
+					} else if (!QString("rwx").contains(permissions[p])) {
+						txsWarning("invalid character in permission: "+permissions[p]);
+						return;
+					}
+					if (p >= permissions.length()) p=0; //wrap around
+				}
+				flag >>= 1;
+			}
+		}
+		permissionsRaw = ((permissionsRaw << 4) & 0x7000) | permissionsRaw; //use qt "user" as owner flags
+		f.setPermissions(QFile::Permissions(permissionsRaw)) ;
+	}
+
+
+}
+
+void Texmaker::fileUtilCopyFileName(){
+	QApplication::clipboard()->setText(documents.getCurrentFileName());
+}
+
+void Texmaker::fileUtilCopyMasterFileName(){
+	QApplication::clipboard()->setText(documents.getCompileFileName());
+}
+
 
 void Texmaker::fileClose() {
 	if (!currentEditorView())	return;
@@ -4698,7 +4810,12 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	QString pdfDefFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
 	QString pdfFile = buildManager.findFile(pdfDefFile, buildManager.additionalPdfPaths);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
-	int ln = currentEditorView()?currentEditorView()->editor->cursor().lineNumber():0;
+	int ln = 0;
+	if (currentEditorView()) {
+		ln = currentEditorView()->editor->cursor().lineNumber();
+		int originalLineNumber = currentEditorView()->document->lineToLineSnapshotLineNumber(currentEditorView()->editor->cursor().line());
+		if (originalLineNumber >= 0) ln = originalLineNumber;
+	}
 	foreach (PDFDocument* viewer, oldPDFs) {
 		bool focusViewer = (focus == 1) || (focus == 0 && !viewer->embeddedMode);
 		viewer->loadFile(pdfFile, master, focusViewer);
@@ -4846,7 +4963,12 @@ void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool 
 			}
 		}
 	}
-	if (latex) outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
+	if (latex) {
+		outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
+		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+			edView->document->saveLineSnapshot();
+		}
+	}
 	else outputView->resetMessages(!configManager.showMessagesWhenCompiling);
 	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
@@ -6139,6 +6261,13 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 	if (!ActivateEditorForFile(fileName, true, activate))
 		if (!load(fileName)) return;
     shrinkEmbeddedPDFViewer();
+
+	QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
+	if (l.isValid()) {
+		int originalLineNumber = currentEditorView()->document->indexOf(l, line);
+		if (originalLineNumber >= 0) line = originalLineNumber;
+	}
+
 	gotoLine(line, 0, 0, QEditor::Navigation, activate);
 	Q_ASSERT(currentEditor());
 	
@@ -6357,7 +6486,22 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
         menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
         menu.exec(structureTreeView->mapToGlobal(point));
     }
+    if (entry->type==StructureEntry::SE_INCLUDE) {
+        QMenu menu;
+        menu.addAction(LatexEditorView::tr("Open Document"),this, SLOT(openExternalFile()))->setData(QVariant::fromValue(entry));
+        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
+        menu.exec(structureTreeView->mapToGlobal(point));
+    }
 
+}
+
+void Texmaker::openExternalFile(){
+    QAction *act = qobject_cast<QAction *>(sender());
+    if (!act) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
+    if(entry){
+        openExternalFile(entry->title);
+    }
 }
 
 void Texmaker::structureContextMenuCloseDocument(){
@@ -6849,6 +6993,11 @@ void Texmaker::syncPDFViewer(QDocumentCursor cur, bool inForeground) {
 	foreach (PDFDocument* viewer, PDFDocument::documentList()) {
 		if (inForeground || viewer->followCursor()) {
 			int lineNumber = cur.isValid() ? cur.lineNumber() : currentLine;
+			LatexDocument *doc = qobject_cast<LatexDocument *>(cur.document());
+			if (doc) {
+				int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
+				if (originalLineNumber >= 0) lineNumber = originalLineNumber;
+			}
 			viewer->syncFromSource(getCurrentFileName(), lineNumber, false);
 		}
 		if (inForeground) {

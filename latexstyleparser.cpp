@@ -157,6 +157,7 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
 	parsedPackages<<fn;
         QString line;
         QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
+        QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
         QRegExp rxCom("\\\\(newcommand|providecommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
         QRegExp rxCom2("\\\\(newcommand|providecommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
         QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
@@ -203,6 +204,15 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
                 for (int j=0; j<options; j++) {
                     name.append(QString("{arg%1}").arg(j+1));
                 }
+                name.append("#S");
+                if(!results.contains(name))
+                    results << name;
+                continue;
+            }
+            if(rxLet.indexIn(line)>-1){
+                QString name=rxLet.cap(1);
+                if(name.contains("@"))
+                    continue;
                 name.append("#S");
                 if(!results.contains(name))
                     results << name;
