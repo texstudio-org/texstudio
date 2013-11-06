@@ -2017,7 +2017,11 @@ void PDFDocument::init(bool embedded)
 
 	setupUi(this);
 	if(embedded){
-		menuBar()->hide();
+#if QT_VERSION>=0x050000
+        setMenuBar(0);
+#else
+        menuBar()->hide();
+#endif
 	}
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
