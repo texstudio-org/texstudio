@@ -436,7 +436,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn){
     }
     QStringList args;
     QString result;
-    args<<"-draftmode"<<"-interaction=nonstopmode" << tf->fileName();
+    args<<"-draftmode"<<"-interaction=nonstopmode" << "--disable-installer"<< tf->fileName();
     myProc.setWorkingDirectory(QFileInfo(tf->fileName()).absoluteDir().absolutePath());
     myProc.start(texdefDir+"pdflatex",args);
     args.clear();
