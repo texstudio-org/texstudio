@@ -4824,6 +4824,10 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		
 		if (preserveDuplicates) break;
     }
+#if QT_VERSION>=0x050000
+    if(embedded)
+        setMenuBar(configManager.menuParentsBar);
+#endif
     if(embedded){
         if(configManager.viewerEnlarged)
             enlargeEmbeddedPDFViewer();
@@ -5879,6 +5883,7 @@ void Texmaker::pdfClosed(){
         last=i;
       }
       pdfSplitterRel=1.0*last/sum;
+
     }
   }
   QTimer::singleShot(100, this, SLOT(restoreMacMenuBar()));
@@ -5886,7 +5891,7 @@ void Texmaker::pdfClosed(){
 }
 
 void Texmaker::restoreMacMenuBar(){
-#ifdef Q_OS_MAC
+#if QT_VERSION<0x050000 && defined Q_OS_MAC
   //workaround to restore mac menubar
   menuBar()->setNativeMenuBar(false);
   menuBar()->setNativeMenuBar(true);
@@ -5895,7 +5900,7 @@ void Texmaker::restoreMacMenuBar(){
 
 QObject* Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
-	PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
+    PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded,configManager.menuParentsBar);
 	if(embedded){
 		mainHSplitter->addWidget(pdfviewerWindow);
 		QList<int> sz=mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
