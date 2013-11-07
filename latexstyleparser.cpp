@@ -11,9 +11,17 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     texdefDir=kpsecmd.left(kpsecmd.length()-9);
     QProcess myProc(0);
     //myProc.start(texdefDir+"texdef");
-    myProc.start(texdefDir+"pdflatex -v");
+    myProc.start(texdefDir+"pdflatex --version");
     myProc.waitForFinished();
     texdefMode=(myProc.exitCode()==0);
+    if(texdefMode){
+	QString output=myProc.readAllStandardOutput();
+	output=output.split("\n").first().trimmed();
+	if(output.contains("MiKTeX")){
+	    kpseWhichCmd.chop(9);
+	    kpseWhichCmd.append("findtexmf");
+	}
+    }
 }
 
 void LatexStyleParser::stop(){
