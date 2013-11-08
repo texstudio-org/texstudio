@@ -3034,7 +3034,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if (op == NoOperation) {
 			QString text = e->text();
 
-			if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
+            if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t'))||(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier|Qt::AltModifier)) )
 				break;
 		}
 
