@@ -1602,6 +1602,14 @@ LatexDocuments::~LatexDocuments(){
 void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
     if(hidden){
         hiddenDocuments.append(document);
+        LatexEditorView *edView=document->getEditorView();
+        if (edView) {
+            QEditor* ed=edView->getEditor();
+            if(ed){
+                document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
+                ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+            }
+        }
     }else{
         documents.append(document);
     }
@@ -1646,6 +1654,14 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
         }
         if(n>1){ // at least one related document will be open after removal
             hiddenDocuments.append(document);
+            LatexEditorView *edView=document->getEditorView();
+            if (edView) {
+                QEditor* ed=edView->getEditor();
+                if(ed){
+                    document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
+                    ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+                }
+            }
         }else{
             /*
             // set document.masterdocument = 0
@@ -2225,6 +2241,38 @@ bool LatexDocument::fileExits(QString fname){
 	if (!exist) exist=QFile(getAbsoluteFilePath(curPath+fname,".tex")).exists();
 	if (!exist) exist=QFile(getAbsoluteFilePath(curPath+fname,"")).exists();
 	return exist;
+}
+
+/*
+ * A line snapshot is a list of DocumentLineHandles at a given time.
+ * For example, this is used to reconstruct the line number at latex compile time
+ * allowing syncing from PDF to the correct source line also after altering the source document
+ */
+void LatexDocument::saveLineSnapshot() {
+	foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
+		dlh->deref();
+	}
+	mLineSnapshot.clear();
+#if (QT_VERSION >= 0x040700)
+	mLineSnapshot.reserve(lineCount());
+#endif
+	QDocumentConstIterator it = begin(), e = end();
+	while (it != e) {
+		mLineSnapshot.append(*it);
+		(*it)->ref();
+		it++;
+	}
+}
+
+// get the line with given lineNumber (0-based) from the snapshot
+QDocumentLine LatexDocument::lineFromLineSnapshot(int lineNumber) {
+	if (lineNumber < 0 || lineNumber >= mLineSnapshot.count()) return QDocumentLine();
+	return QDocumentLine(mLineSnapshot.at(lineNumber));
+}
+
+// returns the 0-based number of the line in the snapshot, or -1 if line is not in the snapshot
+int LatexDocument::lineToLineSnapshotLineNumber(const QDocumentLine &line) {
+	return mLineSnapshot.indexOf(line.handle());
 }
 
 QString LatexDocument::findFileName(QString fname){

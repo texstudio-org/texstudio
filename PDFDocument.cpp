@@ -781,19 +781,17 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	event->accept();
 }
 
-void PDFWidget::annotationClicked(Poppler::Annotation *annotation, const QPointF &scaledPos) {
+void PDFWidget::annotationClicked(Poppler::Annotation *annotation, int page) {
 	switch (annotation->subType()) {
 	case Poppler::Annotation::AMovie: {
 #ifdef PHONON
-		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos) ) {
-			if (movie) delete movie;
-			movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(clickedAnnotation), page);
-			movie->place();
-			movie->show();
-			movie->play();
-		}
+		if (movie) delete movie;
+		movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(annotation), page);
+		movie->place();
+		movie->show();
+		movie->play();
 #else
-		Q_UNUSED(scaledPos)
+		Q_UNUSED(page)
 		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
 #endif
 		break;
@@ -826,7 +824,9 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 		int page;
 		QPointF scaledPos;
 		mapToScaledPosition(event->pos(), page, scaledPos);
-		annotationClicked(clickedAnnotation, scaledPos);
+		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos)) {
+			annotationClicked(clickedAnnotation, page);
+		}
 	} else if (currentTool == kPresentation) {
 		if (event->button() == Qt::LeftButton) goNext();
 		else if (event->button() == Qt::RightButton) goPrev();
