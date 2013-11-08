@@ -23,7 +23,7 @@
 #include "qpanel.h"
 #include "qeditor.h"
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 // panel position fix required on some systems to work around a bug in QAbstractScrollArea
 #define _PANEL_POSITION_FIX_
 #endif

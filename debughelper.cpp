@@ -31,7 +31,7 @@
 #define OS_IS_LINUX_LIKE
 #endif
 
-#if (defined(OS_IS_LINUX_LIKE) || defined(Q_WS_MACX))
+#if (defined(OS_IS_LINUX_LIKE) || defined(Q_OS_MAC))
 #define OS_IS_UNIX_LIKE
 #endif
 
@@ -127,7 +127,7 @@ volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump t
 
 //===========================STACK TRACE PRINTING=========================
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #include <QSysInfo>
 #include "windows.h"
 #include <QMutex>
@@ -411,7 +411,7 @@ QStringList backtrace_symbols_win(void**, int){
 
 
 void print_backtrace(const SimulatedCPU& state, const QString& message){
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	qDebug("%s", qPrintable(message));
 #define PRINT(...) do { qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__);  } while (0)
 #else
@@ -436,7 +436,7 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 	if (useNativeBacktrace) size = backtrace(trace, 48);
 	else size = copystate.backtrace(trace, 48);
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	QStringList additionalMessages = backtrace_symbols_win(trace, size);
 	char** messages = 0;
 #else
@@ -518,7 +518,7 @@ void print_backtrace(const QString& message){
 #define SIGMYHANG_CONTINUE SIGRTMIN + 5    //signal send to the main thread, if the endless loop should be continued
 #endif
 
-#ifdef Q_WS_MACX
+#ifdef Q_OS_MAC
 #include "signal.h"
 //#include "ucontext.h"
 #include "sys/signal.h"
@@ -683,7 +683,7 @@ void undoMainThreadRecoveringFromOutside(){
 
 
 //=========================WINDOWS EXCEPTION HANDLER===========================
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 
 
 void * maxStack = 0;
@@ -909,7 +909,7 @@ void undoMainThreadRecoveringFromOutside(){
 #endif
 
 
-#if !defined(USE_SIGNAL_HANDLER) && !defined(Q_WS_WIN)
+#if !defined(USE_SIGNAL_HANDLER) && !defined(Q_OS_WIN32)
 #warning Unrecognized OS. Crash handler will be disabled.
 
 bool recoverMainThreadFromOutside(){
@@ -1178,7 +1178,7 @@ QString getLastCrashInformation(bool & wasLoop){return "";}
 #endif
 
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #define HAS_DEBUGGER_PRESENT
 #else
 #if (!defined(QT_NO_DEBUG) && defined(Q_OS_LINUX))

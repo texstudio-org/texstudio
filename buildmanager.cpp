@@ -5,11 +5,11 @@
 
 #include "userquickdialog.h"
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #include "windows.h"
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #define ON_WIN(x) x
 #define ON_NIX(x)
 #else
@@ -131,7 +131,7 @@ QString BuildManager::chainCommands(const QString& a, const QString& b, const QS
 
 
 BuildManager::BuildManager(): processWaitedFor(0)
-     #ifdef Q_WS_WIN
+     #ifdef Q_OS_WIN32
      , pidInst(0)
      #endif
 {
@@ -142,7 +142,7 @@ BuildManager::~BuildManager() {
 	//remove preview file names
 	foreach(const QString& elem,previewFileNames)
 		removePreviewFiles(elem);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	if (pidInst) DdeUninitialize(pidInst);
 #endif
 }
@@ -356,7 +356,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 
 
 QString BuildManager::findFileInPath(QString fileName) {
-/*#ifdef Q_WS_MAC
+/*#ifdef Q_OS_MAC
 	QProcess *myProcess = new QProcess();
 	myProcess->start("bash -l -c \"echo $PATH\"");
 	myProcess->waitForFinished(3000);
@@ -370,7 +370,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 	if (i==-1) return "";
 	QString path=env[i].mid(5); //skip path=
 //#endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	if (!fileName.contains('.')) fileName+=".exe";
 	QStringList paths=path.split(";"); //windows
 #else
@@ -383,7 +383,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 	return "";
 }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, const char*, const char*, char*, DWORD*);
 QString W32_FileAssociation(QString ext) {
 	if (ext=="") return "";
@@ -502,7 +502,7 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			return fileName+options; //found in path
 		else {
 			//platform dependent mess
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 			//Windows MikTex
 			QString mikPath=getMiKTeXBinPath();
 			if (!mikPath.isEmpty() && QFileInfo(mikPath+fileName).exists())
@@ -512,7 +512,7 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 			if (!livePath.isEmpty() && QFileInfo(livePath+fileName).exists())
 				return "\""+livePath+fileName+"\" "+options; //found
 #endif
-#ifdef Q_WS_MACX
+#ifdef Q_OS_MAC
 			QStringList paths;
 			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/";
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
@@ -714,14 +714,14 @@ bool BuildManager::hasCommandLine(const QString& program){
 	return false;
 }
 
-#if defined(Q_WS_MACX)
+#if defined(Q_OS_MAC)
 
 QString getCommandLineViewDvi(){ return "open %.dvi > /dev/null"; }
 QString getCommandLineViewPs(){ return "open %.ps > /dev/null"; }
 QString getCommandLineViewPdfExternal(){ return "open %.pdf > /dev/null"; }
 QString getCommandLineGhostscript(){ return ""; }
 
-#elif defined(Q_WS_WIN)
+#elif defined(Q_OS_WIN32)
 
 QString getCommandLineViewDvi(){ 
 	const QString yapOptions = " -1 -s @?\"c:ame \"?am.dvi\"";
@@ -1122,7 +1122,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 		connect(proc, SIGNAL(started()), SLOT(runInternalCommandThroughProcessX()));
 	
 	QString addPaths = additionalSearchPaths;
-#ifdef Q_WS_MACX
+#ifdef Q_OS_MAC
 #if (QT_VERSION >= 0x040600)
 	QProcess *myProcess = new QProcess();
 	myProcess->start("bash -l -c \"echo $PATH\"");
@@ -1521,7 +1521,7 @@ QString BuildManager::findFile(const QString& defaultName, const QString& search
 	QString baseName = "/" + base.fileName();
 	              
 	
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	QString dirSep = ";";
 #else
 	QString dirSep = ":";
@@ -1548,7 +1548,7 @@ void BuildManager::removePreviewFiles(QString elem){
 
 
 //DDE things
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #include "windows.h"
 bool BuildManager::executeDDE(QString ddePseudoURL) {
 	//parse URL
@@ -1654,7 +1654,7 @@ ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const Q
 void ProcessX::startCommand() {
 	ended = false;
 	
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	if (cmd.startsWith("dde://") || cmd.startsWith("dde:///")) {
 		onStarted();
 		BuildManager* manager = qobject_cast<BuildManager*>(parent());

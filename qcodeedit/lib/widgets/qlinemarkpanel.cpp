@@ -168,7 +168,7 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 
 				int x = count,
 					y = posY + ( (ls - size) >> 1 );
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
                 QPixmap pix=icon.pixmap(2*size); // oversampling on mac !!!!
 #else
                 QPixmap pix=icon.pixmap(size);

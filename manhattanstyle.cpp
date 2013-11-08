@@ -944,7 +944,7 @@ void ManhattanStyle::drawComplexControl(ComplexControl control, const QStyleOpti
                     if (bflags & State_Sunken || bflags & State_On)
                         drawCornerImage(d->buttonImage_pressed, painter, option->rect, 2, 2, 2, 2);
                     else if (bflags & State_Enabled) {
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
                         if (bflags & State_MouseOver) {
                             drawCornerImage(d->buttonImage, painter, option->rect, 2, 2, 2, 2);
                             QColor shade(255, 255, 255, 50);
@@ -996,7 +996,7 @@ void ManhattanStyle::drawComplexControl(ComplexControl control, const QStyleOpti
                         QColor shade(0, 0, 0, 50);
                         painter->fillRect(tool.rect.adjusted(0, -1, 1, 1), shade);
                     }
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
                     else if (mflags & (State_MouseOver)) {
                         QColor shade(255, 255, 255, 50);
                         painter->fillRect(tool.rect.adjusted(0, -1, 1, 1), shade);
