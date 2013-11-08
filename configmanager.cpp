@@ -507,7 +507,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	//interfaces
 	registerOption("GUI/Style", &modernStyle, false, &pseudoDialog->comboBoxInterfaceModernStyle);
-#ifdef Q_WS_X11
+#if defined Q_WS_X11 || defined Q_OS_LINUX
 	interfaceFontFamily = "<later>";
 	interfaceStyle="<later>";
 #else
@@ -915,7 +915,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	systemPalette = QApplication::palette();
 	defaultStyleName=QApplication::style()->objectName();
 	
-#ifdef Q_WS_X11
+#if defined Q_WS_X11 || defined Q_OS_LINUX
 	if (interfaceFontFamily=="<later>") {
 		//use an interface like Texmaker
 		if (xf.contains("DejaVu Sans",Qt::CaseInsensitive)) interfaceFontFamily="DejaVu Sans";
