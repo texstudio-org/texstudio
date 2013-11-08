@@ -120,7 +120,7 @@ bool browse(QWidget* w, const QString& title, const QString& extension, const QS
 	REQUIRE_RET(le || cb, false);
 	QString oldpath = le ? le->text() : cb->currentText();
 	QString path = oldpath;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	QString pathSep = ";";
 #else
 	QString pathSep = ":";

@@ -872,11 +872,11 @@ void WebPublishDialogConfig::readSettings(QSettings& settings){
 	else browser=settings.value("/browser","firefox").toString();
     //programdir=PREFIX"/share/texstudio";
 #endif
-#ifdef Q_WS_MACX
+#ifdef Q_OS_MAC
 	browser=settings.value("/browser","open").toString();
     //programdir="/Applications/texstudio.app/Contents/Resources";
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	browser=settings.value("/browser","\"C:/Program Files/Internet Explorer/IEXPLORE.EXE\"").toString();
 	//programdir=QCoreApplication::applicationDirPath();
 #endif
