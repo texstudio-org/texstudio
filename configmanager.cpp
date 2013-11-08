@@ -490,7 +490,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 
 	//Paths
-#ifdef Q_WS_MACX
+#ifdef Q_OS_MAC
 	QString defaultSearchPaths = "/usr/local/texlive/2012/bin/x86_64-darwin"; //workaround for xelatex
 #else
 	QString defaultSearchPaths;
@@ -665,7 +665,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 			// fallback to defaults
 			QStringList temp;
 			QStringList fallBackPaths;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN32
 #ifndef PREFIX
 #define PREFIX
 #endif
@@ -704,8 +704,8 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	}
 	if (thesaurus_database == "") { // fall back to system or fixed language
 		QStringList fallBackPaths;
-#ifdef Q_WS_X11
-		fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes" ;
+#ifdef Q_OS_LINUX
+        fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes" ;
 #endif
 		thesaurus_database=findResourceFile("th_"+QString(QLocale::system().name())+"_v2.dat", true, QStringList(), fallBackPaths);
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_US_v2.dat");
@@ -893,7 +893,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	QFontDatabase fdb;
 	QStringList xf = fdb.families();
 	//editor
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	if (editorConfig->fontFamily.isEmpty()){
 		if (xf.contains("Courier New",Qt::CaseInsensitive)) editorConfig->fontFamily="Courier New";
 		else editorConfig->fontFamily=qApp->font().family();
@@ -1168,14 +1168,14 @@ bool ConfigManager::execConfigDialog() {
 			}
 			twi->setData(0, editorKeys_EditOperationRole, elem);
 			twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 			QSize sz=twi->sizeHint(0);
 			twi->setSizeHint(0,QSize(sz.width(),ht));
 #endif
 		}
 	}
 	QTreeWidgetItem * twi=new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	QSize sz=twi->sizeHint(0);
 	twi->setSizeHint(0,QSize(sz.width(),ht));
 #else

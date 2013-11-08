@@ -1,6 +1,6 @@
 #include "utilsSystem.h"
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
 #endif
@@ -39,7 +39,7 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
 }
 
 QString getUserName() {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	return QString(qgetenv("USERNAME"));
 #else
 	return QString(qgetenv("USER"));
@@ -47,7 +47,7 @@ QString getUserName() {
 }
 
 QString getUserDocumentFolder() {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	// typically "C:/Documents and Settings/Username/My Documents"
 	QSettings settings(QSettings::UserScope, "Microsoft", "Windows");
 	settings.beginGroup("CurrentVersion/Explorer/Shell Folders");
@@ -75,7 +75,7 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter, QSt
 	searchFiles<<PREFIX"/share/texstudio"+dn; //X_11
 	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 	CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
 												  kCFURLPOSIXPathStyle);
@@ -118,7 +118,7 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 	searchFiles<<PREFIX"/share/texmakerx/"; //X_11
 	if (fileName.endsWith(".html")) searchFiles<<PREFIX"/share/doc/texstudio/html/";  //for Debian package
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
 #endif
 	searchFiles<<QCoreApplication::applicationDirPath() + "/"; //windows old
@@ -214,7 +214,7 @@ QIcon getRealIconCached(const QString& icon){
 }
 
 bool isFileRealWritable(const QString& filename) {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #if QT_VERSION >= 0x040700
     //bug in 4.7 still present in 4.8.0
     return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
@@ -241,7 +241,7 @@ bool isExistingFileRealWritable(const QString& filename) {
 QString ensureTrailingDirSeparator(const QString& dirPath){
     if (dirPath.endsWith("/")) return dirPath;
     if (dirPath.endsWith(QDir::separator())) return dirPath;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux
 #endif
     return dirPath+"/";

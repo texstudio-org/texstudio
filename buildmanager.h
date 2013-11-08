@@ -217,7 +217,7 @@ private:
 	QMap<QString, PreviewSource> previewFileNameToSource;
 	QHash<QString, QString> preambleHash;
 	void removePreviewFiles(QString elemName);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	unsigned long int pidInst;
 	Q_INVOKABLE bool executeDDE(QString ddePseudoURL);
 #endif

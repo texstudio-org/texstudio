@@ -24,7 +24,7 @@
 #endif
 
 #include <QSplashScreen>
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 #include "windows.h"
 typedef BOOL (*AllowSetForegroundWindowFunc)(DWORD);
 #endif
@@ -154,7 +154,7 @@ int main(int argc, char ** argv) {
 #else
 		if (instance.isRunning()) {
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 			AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
 			if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
 #endif

@@ -7,7 +7,7 @@
 
 #ifndef QT_NO_DEBUG
 
-//defines copied and modified from qglobal.h (can't use Q_WS_WIN to check for windows without including qglobal.h first, but can't really include qglobal.h, because we want to change the assert definition there)
+//defines copied and modified from qglobal.h (can't use Q_OS_WIN32 to check for windows without including qglobal.h first, but can't really include qglobal.h, because we want to change the assert definition there)
 #ifdef MY_WINDOWS
 #undef MY_WINDOWS
 #endif

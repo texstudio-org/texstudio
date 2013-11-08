@@ -44,7 +44,7 @@
 #include <QPropertyAnimation>
 #endif
 
-#ifdef Q_WS_MACX
+#ifdef Q_OS_MAC
 #include <QSysInfo>
 #endif
 
@@ -3035,7 +3035,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			QString text = e->text();
 
 #if QT_VERSION >= 0x050000
-#ifdef Q_OS_MACX
+#ifdef Q_OS_MAC
             if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier))
                 break;
 #else
@@ -3124,7 +3124,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	emitCursorPositionChanged();
 	setFlag(CursorOn, true);
 	ensureCursorVisible();
-#ifdef  Q_WS_MAC
+#ifdef  Q_OS_MAC
 	//repaintCursor(); // squeeze for a little speed
 	if (QApplication::cursorFlashTime() > 0) {
 		m_blink.start(QApplication::cursorFlashTime() / 2, this);
@@ -3168,7 +3168,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 		return;
 	}
 	*/
-//#ifdef Q_WS_MAC
+//#ifdef Q_OS_MAC
     QString preEdit=e->preeditString();
     if( !preEdit.isEmpty()){
         int i=-1;
@@ -3200,7 +3200,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         }
 
 		m_cursor.insertText(e->commitString());
-#if (QT_VERSION < 0x040700) && (defined(Q_WS_MACX))
+#if (QT_VERSION < 0x040700) && (defined(Q_OS_MAC))
 		if(!m_disableAccentHack)
 			m_blockKey=true;
 #endif
@@ -3336,7 +3336,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 			(( e->globalPos() - m_clickPoint).manhattanLength() <
 				QApplication::startDragDistance() ))
 		{
-	#if defined(Q_WS_MAC)
+    #if defined(Q_OS_MAC)
 			m_cursor.select(QDocumentCursor::LineUnderCursor);
 			m_doubleClick = m_cursor;
 	#else
@@ -4048,7 +4048,7 @@ QSet<int> QEditor::getAvailableOperations(){
 QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	if (!m_defaultKeysSet) { //todo: thread safe lock
 		m_defaultKeysSet = true;
-	#ifndef Q_WS_MAC  // Use the default Windows bindings.
+    #ifndef Q_OS_MAC  // Use the default Windows bindings.
 		addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
 		addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
 		addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
@@ -5401,7 +5401,7 @@ QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
 */
 int QEditor::wrapWidth() const
 {
-	#ifdef Q_WS_WIN
+    #ifdef Q_OS_WIN32
 	//if ( verticalScrollBar()->isVisible() )
 	//	return viewport()->width() - verticalScrollBar()->width();
 	#endif

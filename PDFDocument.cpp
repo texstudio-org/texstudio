@@ -2053,7 +2053,7 @@ void PDFDocument::init(bool embedded,QMenuBar *menu)
 	actionFileOpen->setIcon(getRealIcon("fileopen"));
 	actionClose->setIcon(getRealIcon("fileclose"));
 	action_Print->setIcon(getRealIcon("fileprint"));
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	//action_Print->setVisible(false);
 #endif
 	actionUndo->setIcon(getRealIcon("undo"));
@@ -3119,7 +3119,7 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	//current page has changed
 		if(document.isNull())
 			return;
-	//#ifndef Q_WS_MAC
+	//#ifndef Q_OS_MAC
 	// On Mac OS X, disabling these leads to a crash if we hit the end of document while auto-repeating a key
 	// (seems like a Qt bug, but needs further investigation)
 	// 2008-09-07: seems to no longer be a problem, probably thanks to Qt 4.4 update
@@ -3388,7 +3388,7 @@ void PDFDocument::printPDF(){
 	
 	if(!printer.printerName().isEmpty())
 	{
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 		QString paper;
 		switch (printer.paperSize()){
 		case QPrinter::A0:paper="a0";

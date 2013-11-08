@@ -1840,7 +1840,7 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 	QString fnorm = fileName;
 	fnorm.replace("/",QDir::separator()).replace("\\",QDir::separator());
 	//fast check for absolute file names
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
 #else
 	Qt::CaseSensitivity cs = Qt::CaseSensitive;

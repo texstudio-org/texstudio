@@ -744,7 +744,7 @@ void Texmaker::setupMenus() {
 	submenu->addSeparator();
 
 	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	// on win ctrl+alt = altGr, hungarian: altGr+F = [
 	// so we should not use this as shortcut in this special case
 	if (QApplication::keyboardInputLocale().language() == QLocale::Hungarian)
@@ -1416,7 +1416,7 @@ void Texmaker::NewDocumentLineEnding(){
 	QDocument::LineEnding le = currentEditorView()->editor->document()->lineEnding();
 	if (le==QDocument::Conservative) le= currentEditorView()->editor->document()->originalLineEnding();
 	switch (le) {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	case QDocument::Local:
 #endif
 	case QDocument::Windows:
@@ -1582,7 +1582,7 @@ void guessLanguageFromContent(QLanguageFactory* m_languages, QEditor* e){
 
 LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,bool recheck) {
 	QString f_real=f;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
 	if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
 #endif
@@ -1754,7 +1754,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	}
 	
 	
-#ifndef Q_WS_MACX
+#ifndef Q_OS_MAC
     if(!hidden){
         if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
             show();
@@ -1769,7 +1769,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
         }
     }
 	//raise();
-	//#ifdef Q_WS_WIN
+    //#ifdef Q_OS_WIN32
 	//        if (IsIconic (this->winId())) ShowWindow(this->winId(), SW_RESTORE);
 	//#endif
 #endif
@@ -8193,7 +8193,7 @@ void Texmaker::fileDiffMerge(){
 
 LatexDocument* Texmaker::diffLoadDocHidden(QString f){
 	QString f_real=f;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
 	if (regcheck.exactMatch(f)) f_real=regcheck.cap(1);
 #endif
