@@ -2188,8 +2188,8 @@ void PDFDocument::init(bool embedded,QMenuBar *menu)
 	zoomSlider->setMaximum(100);
 	zoomSlider->setFixedWidth(100);
 	zoomSlider->setToolTip(tr("Zoom"));
-	//zoomSlider->setTickInterval(100);
-	//zoomSlider->setTickPosition(QSlider::TicksBelow);
+    //zoomSlider->setTickInterval(100);
+    //zoomSlider->setTickPosition(QSlider::TicksBelow);
 	statusBar()->addPermanentWidget(zoomSlider);
 
 	connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
@@ -3050,18 +3050,22 @@ void PDFDocument::zoomToRight(QWidget *otherWindow)
 }
 
 qreal PDFDocument::zoomSliderPosToScale(int pos) {
+    if(pos==0)
+        return 1.0;
 	if (pos < 0) {
-		return (1-kMinScaleFactor)/abs(zoomSlider->minimum()) * pos + 1;
+        return (1-kMinScaleFactor)/abs(zoomSlider->minimum()+10) * (pos+10) + 1;
 	} else {
-		return (kMaxScaleFactor-1)/zoomSlider->maximum() * pos + 1;
+        return (kMaxScaleFactor-1)/(zoomSlider->maximum()-10) * (pos-10) + 1;
 	}
 }
 
 int PDFDocument::scaleToZoomSliderPos(qreal scale) {
+    if(scale<1.01 && scale>0.99)
+        return 0;
 	if (scale < 1) {
-		return (scale-1) / (1-kMinScaleFactor)*abs(zoomSlider->minimum());
+        return (scale-1) / (1-kMinScaleFactor)*abs(zoomSlider->minimum()+10)-10;
 	} else {
-		return (scale-1) / (kMaxScaleFactor-1)*zoomSlider->maximum();
+        return (scale-1) / (kMaxScaleFactor-1)*(zoomSlider->maximum()-10)+10;
 	}
 }
 
