@@ -330,7 +330,7 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 	Q_PROPERTY(QString fileName READ fileName)
 
 public:
-    explicit PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded=false,QMenuBar *menu=0);
+    explicit PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded=false);
 	virtual ~PDFDocument();
 
 	static PDFDocument *findDocument(const QString &fileName);
@@ -450,7 +450,8 @@ signals:
 	void triggeredClone();
 
 private:
-    void init(bool embedded=false,QMenuBar *menu=0);
+    void init(bool embedded=false);
+    void setupMenus();
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
@@ -472,6 +473,15 @@ private:
 	PDFAnnotations * annotations;
 	PDFAnnotationTableView * annotationTable;
 
+    QMenuBar *menubar;
+    QMenu *menuHelp;
+    QMenu *menuFile;
+    QMenu *menuEdit;
+    QMenu *menuView;
+    QMenu *menuGrid;
+    QMenu *menuWindow;
+    QMenu *menuShow;
+    QMenu *menuEdit_2;
 
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
