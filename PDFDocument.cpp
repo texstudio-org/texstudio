@@ -2093,14 +2093,14 @@ void PDFDocument::setupMenus(){
     menuEdit_2->addAction(actionFind_2);
     menuEdit_2->addAction(actionFind_again);
 
-    menuHelp->setTitle(QApplication::translate("PDFDocument", "&Help", 0, QApplication::UnicodeUTF8));
-    menuFile->setTitle(QApplication::translate("PDFDocument", "&File", 0, QApplication::UnicodeUTF8));
-    menuEdit->setTitle(QApplication::translate("PDFDocument", "&Configure", 0, QApplication::UnicodeUTF8));
-    menuView->setTitle(QApplication::translate("PDFDocument", "&View", 0, QApplication::UnicodeUTF8));
-    menuGrid->setTitle(QApplication::translate("PDFDocument", "Grid", 0, QApplication::UnicodeUTF8));
-    menuWindow->setTitle(QApplication::translate("PDFDocument", "&Window", 0, QApplication::UnicodeUTF8));
-    menuShow->setTitle(QApplication::translate("PDFDocument", "Show", 0, QApplication::UnicodeUTF8));
-    menuEdit_2->setTitle(QApplication::translate("PDFDocument", "&Edit", 0, QApplication::UnicodeUTF8));
+    menuHelp->setTitle(QApplication::translate("PDFDocument", "&Help"));
+    menuFile->setTitle(QApplication::translate("PDFDocument", "&File"));
+    menuEdit->setTitle(QApplication::translate("PDFDocument", "&Configure"));
+    menuView->setTitle(QApplication::translate("PDFDocument", "&View"));
+    menuGrid->setTitle(QApplication::translate("PDFDocument", "Grid"));
+    menuWindow->setTitle(QApplication::translate("PDFDocument", "&Window"));
+    menuShow->setTitle(QApplication::translate("PDFDocument", "Show"));
+    menuEdit_2->setTitle(QApplication::translate("PDFDocument", "&Edit"));
 }
 
 void PDFDocument::init(bool embedded)
