@@ -4824,7 +4824,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		
 		if (preserveDuplicates) break;
     }
-#if QT_VERSION>=0x050000
+#if QT_VERSION>=0x050000 && defined Q_OS_MAC
     if(embedded)
         setMenuBar(configManager.menuParentsBar);
 #endif

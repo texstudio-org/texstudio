@@ -2017,7 +2017,7 @@ void PDFDocument::init(bool embedded,QMenuBar *menu)
 
 	setupUi(this);
 	if(embedded){
-#if QT_VERSION>=0x050000
+#if QT_VERSION>=0x050000 && defined Q_OS_MAC
         setMenuBar(menu);
 #else
         menuBar()->hide();
