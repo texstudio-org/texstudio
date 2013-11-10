@@ -285,7 +285,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	TemplateManager::ensureUserTemplateDirExists();
 	TemplateManager::checkForOldUserTemplates();
 
-	if (configManager.sessionRestore) {
+    QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding); // encodingcallback before restoer session !!!
+    QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
+
+    if (configManager.sessionRestore) {
         fileRestoreSession(false);
 		ToggleRememberAct->setChecked(true);
 	}
@@ -308,9 +311,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     }
     
  */
-  QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
-  QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
-
 
   QStringList filters;
   filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx)";
