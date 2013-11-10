@@ -1185,7 +1185,7 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 				if (badUtf8 == 0) sure = 0;
 			}
 		}
-	}
+	} else sure = 0;
 	if (outSure) *outSure = sure;
 	return guess;
 }
