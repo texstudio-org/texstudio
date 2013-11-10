@@ -5764,7 +5764,7 @@ void Texmaker::pdfClosed(){
 
     }
   }
-  QTimer::singleShot(100, this, SLOT(restoreMacMenuBar()));
+  //QTimer::singleShot(100, this, SLOT(restoreMacMenuBar()));
 #endif
 }
 
@@ -5778,7 +5778,7 @@ void Texmaker::restoreMacMenuBar(){
 
 QObject* Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
-    PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded,configManager.menuParentsBar);
+    PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
 	if(embedded){
 		mainHSplitter->addWidget(pdfviewerWindow);
 		QList<int> sz=mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
