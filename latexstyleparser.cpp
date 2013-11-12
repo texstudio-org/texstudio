@@ -11,9 +11,17 @@ LatexStyleParser::LatexStyleParser(QObject *parent,QString baseDirName,QString k
     texdefDir=kpsecmd.left(kpsecmd.length()-9);
     QProcess myProc(0);
     //myProc.start(texdefDir+"texdef");
-    myProc.start(texdefDir+"pdflatex -v");
+    myProc.start(texdefDir+"pdflatex --version");
     myProc.waitForFinished();
     texdefMode=(myProc.exitCode()==0);
+    if(texdefMode){
+	QString output=myProc.readAllStandardOutput();
+	output=output.split("\n").first().trimmed();
+	if(output.contains("MiKTeX")){
+	    kpseWhichCmd.chop(9);
+	    kpseWhichCmd.append("findtexmf");
+	}
+    }
 }
 
 void LatexStyleParser::stop(){
@@ -157,6 +165,7 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
 	parsedPackages<<fn;
         QString line;
         QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
+        QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
         QRegExp rxCom("\\\\(newcommand|providecommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
         QRegExp rxCom2("\\\\(newcommand|providecommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
         QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
@@ -203,6 +212,15 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
                 for (int j=0; j<options; j++) {
                     name.append(QString("{arg%1}").arg(j+1));
                 }
+                name.append("#S");
+                if(!results.contains(name))
+                    results << name;
+                continue;
+            }
+            if(rxLet.indexIn(line)>-1){
+                QString name=rxLet.cap(1);
+                if(name.contains("@"))
+                    continue;
                 name.append("#S");
                 if(!results.contains(name))
                     results << name;
@@ -426,7 +444,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn){
     }
     QStringList args;
     QString result;
-    args<<"-draftmode"<<"-interaction=nonstopmode" << tf->fileName();
+    args<<"-draftmode"<<"-interaction=nonstopmode" << "--disable-installer"<< tf->fileName();
     myProc.setWorkingDirectory(QFileInfo(tf->fileName()).absoluteDir().absolutePath());
     myProc.start(texdefDir+"pdflatex",args);
     args.clear();

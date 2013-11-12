@@ -71,7 +71,7 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter, QSt
 #define PREFIX ""
 #endif
 
-#if defined( Q_WS_X11 )
+#if defined( Q_WS_X11 ) || defined (Q_OS_LINUX)
 	searchFiles<<PREFIX"/share/texstudio"+dn; //X_11
 	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
@@ -113,7 +113,7 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 	foreach (const QString& s, additionalPreferredPaths)
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 		else searchFiles << s + "/";
-#ifdef Q_WS_X11
+#if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
 	searchFiles<<PREFIX"/share/texstudio/"; //X_11
 	searchFiles<<PREFIX"/share/texmakerx/"; //X_11
 	if (fileName.endsWith(".html")) searchFiles<<PREFIX"/share/doc/texstudio/html/";  //for Debian package

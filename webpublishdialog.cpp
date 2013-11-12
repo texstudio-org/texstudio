@@ -866,7 +866,7 @@ void WebPublishDialogConfig::readSettings(QSettings& settings){
 	noindex=settings.value("/noindex",false).toBool();
 	title=settings.value("/title","").toString();
 	address=settings.value("/address","").toString();
-#ifdef Q_WS_X11
+#if defined Q_WS_X11 || defined Q_OS_LINUX
 	QString kdesession= ::getenv("KDE_FULL_SESSION");
 	if (!kdesession.isEmpty()) browser=settings.value("/browser","konqueror").toString();
 	else browser=settings.value("/browser","firefox").toString();

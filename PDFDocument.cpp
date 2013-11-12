@@ -781,19 +781,17 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	event->accept();
 }
 
-void PDFWidget::annotationClicked(Poppler::Annotation *annotation, const QPointF &scaledPos) {
+void PDFWidget::annotationClicked(Poppler::Annotation *annotation, int page) {
 	switch (annotation->subType()) {
 	case Poppler::Annotation::AMovie: {
 #ifdef PHONON
-		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos) ) {
-			if (movie) delete movie;
-			movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(clickedAnnotation), page);
-			movie->place();
-			movie->show();
-			movie->play();
-		}
+		if (movie) delete movie;
+		movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation*>(annotation), page);
+		movie->place();
+		movie->show();
+		movie->play();
 #else
-		Q_UNUSED(scaledPos)
+		Q_UNUSED(page)
 		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
 #endif
 		break;
@@ -826,7 +824,9 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 		int page;
 		QPointF scaledPos;
 		mapToScaledPosition(event->pos(), page, scaledPos);
-		annotationClicked(clickedAnnotation, scaledPos);
+		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos)) {
+			annotationClicked(clickedAnnotation, page);
+		}
 	} else if (currentTool == kPresentation) {
 		if (event->button() == Qt::LeftButton) goNext();
 		else if (event->button() == Qt::RightButton) goPrev();
@@ -2110,6 +2110,7 @@ void PDFDocument::init(bool embedded)
 	docList.append(this);
 
 	setupUi(this);
+
     if(!embedded){
         setupMenus();
 	}
@@ -2278,8 +2279,8 @@ void PDFDocument::init(bool embedded)
 	zoomSlider->setMaximum(100);
 	zoomSlider->setFixedWidth(100);
 	zoomSlider->setToolTip(tr("Zoom"));
-	//zoomSlider->setTickInterval(100);
-	//zoomSlider->setTickPosition(QSlider::TicksBelow);
+    //zoomSlider->setTickInterval(100);
+    //zoomSlider->setTickPosition(QSlider::TicksBelow);
 	statusBar()->addPermanentWidget(zoomSlider);
 
 	connect(zoomSlider, SIGNAL(valueChanged(int)), this, SLOT(zoomSliderChange(int)));
@@ -3139,18 +3140,22 @@ void PDFDocument::zoomToRight(QWidget *otherWindow)
 }
 
 qreal PDFDocument::zoomSliderPosToScale(int pos) {
+    if(pos==0)
+        return 1.0;
 	if (pos < 0) {
-		return (1-kMinScaleFactor)/abs(zoomSlider->minimum()) * pos + 1;
+        return (1-kMinScaleFactor)/abs(zoomSlider->minimum()+10) * (pos+10) + 1;
 	} else {
-		return (kMaxScaleFactor-1)/zoomSlider->maximum() * pos + 1;
+        return (kMaxScaleFactor-1)/(zoomSlider->maximum()-10) * (pos-10) + 1;
 	}
 }
 
 int PDFDocument::scaleToZoomSliderPos(qreal scale) {
+    if(scale<1.01 && scale>0.99)
+        return 0;
 	if (scale < 1) {
-		return (scale-1) / (1-kMinScaleFactor)*abs(zoomSlider->minimum());
+        return (scale-1) / (1-kMinScaleFactor)*abs(zoomSlider->minimum()+10)-10;
 	} else {
-		return (scale-1) / (kMaxScaleFactor-1)*zoomSlider->maximum();
+        return (scale-1) / (kMaxScaleFactor-1)*(zoomSlider->maximum()-10)+10;
 	}
 }
 

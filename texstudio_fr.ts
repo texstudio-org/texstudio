@@ -11327,7 +11327,17 @@ included document in %1</source>
         <translation>Voulez-vous réellement revenir au fichier « %1 » ?</translation>
     </message>
     <message>
-        <location line="+183"/>
+        <location line="+26"/>
+        <source>Numeric permissions</source>
+        <translation>Permissions (numériques)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Verbose permissions</source>
+        <translation>Permissions (symboliques)</translation>
+    </message>
+    <message>
+        <location line="+156"/>
         <location line="+26"/>
         <location line="+78"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>

@@ -12,7 +12,7 @@
  ***************************************************************************/
 
 #include "mostQtHeaders.h"
- 
+
 #include "texmaker.h"
 #include "smallUsefulFunctions.h"
 
