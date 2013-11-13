@@ -6681,8 +6681,8 @@ void Texmaker::showImgPreview(const QString& fname){
         //    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
         QRect screen = QApplication::desktop()->screenGeometry();
         QPixmap img(imageName);
-        int w=img.width();
-        if(w>screen.width()) w=screen.width()-2;
+		int w = qMin(img.width(), configManager.editorConfig->maxImageTooltipWidth);
+		w = qMin(w, screen.width()-8);
         QString text=QString("<img src=\""+imageName+"\" width=%1 />").arg(w);
         if(completerPreview){
             emit ImgPreview(text);
