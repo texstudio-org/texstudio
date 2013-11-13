@@ -2107,22 +2107,15 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		break;
 	case LatexParser::Graphics:
 		if(config->toolTipPreview){
-			QString fname=getDocument()->getAbsoluteFilePath(value,"");
-            QFileInfo fi(fname);
-            if(!fi.exists()){
-                fname=getDocument()->getAbsoluteFilePath(value,"png");  // try png
-                fi.setFile(fname);
-            }
-            if(!fi.exists()){
-                fname=getDocument()->getAbsoluteFilePath(value,"pdf");  // try pdf
-                fi.setFile(fname);
-            }
-            if(!fi.exists()){
-                fname=getDocument()->getAbsoluteFilePath(value,"jpg");  // try jpg
-                fi.setFile(fname);
-                if(!fi.exists())
-                    return; // no image file found
-            }
+			QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
+			QString fname;
+			QFileInfo fi;
+			foreach (const QString &ext, imageExtensions) {
+				fname=getDocument()->getAbsoluteFilePath(value, ext);  // try png
+				fi.setFile(fname);
+				if (fi.exists()) break;
+			}
+			if (!fi.exists()) return;
 			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showImgPreview(fname);
 		}
@@ -2392,7 +2385,7 @@ void LatexEditorView::saveImageFromAction() {
 
 	QPixmap pm = act->data().value<QPixmap>();
 
-	QString fname = QFileDialog::getSaveFileName(this , tr("Save Preview Image"), lastSaveDir, tr("Images")+" (*.png *.jpg)");
+	QString fname = QFileDialog::getSaveFileName(this , tr("Save Preview Image"), lastSaveDir, tr("Images")+" (*.png *.jpg *.jpeg)");
 	if (fname.isEmpty()) return;
 
 	QFileInfo fi(fname);

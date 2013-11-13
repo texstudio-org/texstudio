@@ -6653,7 +6653,7 @@ void Texmaker::showImgPreview(const QString& fname){
     QFileInfo fi(fname);
     QString suffix;
     QStringList suffixList;
-    suffixList<<"jpg"<<"png"<<"pdf";
+	suffixList<<"jpg"<<"jpeg"<<"png"<<"pdf";
     if(fi.exists()){
         if(!suffixList.contains(fi.suffix()))
                 return;
@@ -6672,7 +6672,7 @@ void Texmaker::showImgPreview(const QString& fname){
     }
 
     suffixList.clear();
-    suffixList<<"jpg"<<"png";
+	suffixList<<"jpg"<<"jpeg"<<"png";
     if(suffixList.contains(suffix)){
         QPoint p;
         //if(previewEquation)
