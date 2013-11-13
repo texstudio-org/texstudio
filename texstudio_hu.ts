@@ -1127,7 +1127,7 @@ támogatott.</translation>
     <message>
         <location line="-77"/>
         <source>Show help as tooltip on text in editor</source>
-        <translation>Előnézetet mutasson tippként, ha a panel rejtve van</translation>
+        <translation type="unfinished">Szöveg súgójának mutatása a szerkesztőben</translation>
     </message>
     <message>
         <location line="-1714"/>
@@ -9659,7 +9659,7 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
     <message>
         <location line="+7"/>
         <source>Total shown phrases</source>
-        <translation>Összes látható mondat</translation>
+        <translation type="unfinished">Összes látható kifejezés</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -9669,12 +9669,12 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
     <message>
         <location line="+28"/>
         <source>Different phrases</source>
-        <translation>Különböző mondatok</translation>
+        <translation type="unfinished">Különböző kifejezések</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Characters in phrases</source>
-        <translation>Karakterek mondatokban</translation>
+        <translation type="unfinished">Karakterek kifejezésekben</translation>
     </message>
     <message>
         <location line="+33"/>
