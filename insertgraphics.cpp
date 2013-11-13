@@ -37,7 +37,7 @@ QValidator::State PlacementValidator::validate(QString &input, int &pos) const {
 
 QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";
 QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm" << "";
-QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "png" << "pdf";
+QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "jpeg" << "png" << "pdf";
 
 InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 		: QDialog(parent) {
@@ -87,7 +87,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	ui.cbPlaceForce->setToolTip(tooltip);
 
 	includeOptionChanged();
-	filter = "Images (*.eps *.jpg *.png *.pdf)";
+	filter = "Images (*.eps *.jpg *jpeg *.png *.pdf)";
 
 	ui.cbWidthUnit->insertItems(0, widthUnits);
 	ui.cbHeightUnit->insertItems(0, heightUnits);
