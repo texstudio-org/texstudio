@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE KileSymbolSources>
+<symbols> 
+
+   <formatVersion major="0" minor ="22" />
+
+   <symbolGroupName>user</symbolGroupName>
+
+   <preamble>
+      <class>article</class>
+      <arguments>12pt</arguments>
+      <additional>\pagestyle{empty}
+		  \setlength{\parindent}{0cm}
+		  \usepackage[T1]{fontenc}
+      </additional>
+   </preamble>
+   
+   <!-- insert stuff here    -->
