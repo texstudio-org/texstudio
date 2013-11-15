@@ -119,17 +119,26 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	QFont f(font());
 	f.setWeight(QFont::Bold);
 	const QFontMetrics sfm(f);
+    bool specialFontUsage=false;
+    QFont specialFont(font());
 	
 	#ifndef WIN32
 	static const QChar wrappingArrow(0x2937);
-	const QFontMetrics specialSfm(sfm);
+    const QFontMetrics specialSfm(sfm);
+#if QT_VERSION >= 0x050000 && defined Q_OS_MAC
+    if(!specialSfm.inFont(wrappingArrow)){
+        specialFontUsage=true;
+        specialFont.setFamily("Gothic Regular");
+        //specialSfm(specialFont);
+    }
+#endif
 	#else
 	// 0xC4 gives a decent wrapping arrow in Wingdings fonts, availables on all windows systems
 	// this is a hackish fallback to workaround Windows issues with Unicode...
 	static const QChar wrappingArrow(0xC4);
-	QFont specialFont(font());
 	specialFont.setRawName("Wingdings");
 	const QFontMetrics specialSfm(specialFont);
+    specialFontUsage=true;
 	#endif
 	
 	int max = e->document()->lines();
@@ -191,21 +200,21 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			p->drawText(width() - 2 - sfm.width(txt),
 						posY,
 						txt);
-			#ifdef WIN32
+            if(specialFontUsage){
             	if (line.lineSpan()>1) {
                 	p->save();
                 	specialFont.setBold(n == cursorLine); //todo: only get bold on the current wrapped line
                 	p->setFont(specialFont);
             	}
-			#endif
+            }
 		
 			for ( int i = 1; i < line.lineSpan(); ++i )
 				p->drawText(width() - 2 - specialSfm.width(wrappingArrow), posY + i * ls, wrappingArrow);
 
-            #ifdef WIN32
+            if(specialFontUsage){
                 if (line.lineSpan()>1) 
                     p->restore();
-            #endif
+            }
 		} else {
 			int yOff = posY - (as + 1) + ls / 2;
 			
