@@ -141,6 +141,9 @@ public:
 	QMenu* updateListMenu(const QString& menuName, const QStringList& items, const QString& namePrefix, bool prefixNumber, const char* slotName, const int baseShortCut, bool alwaysRecreateMenuItems=false, int additionalEntries = 2);
 	void updateUserMacroMenu(bool alwaysRecreateMenuItems=false);
 	
+	QString additionalBibPaths;
+	QString additionalImagePaths;
+
 	//dictionaries
 	QString spellDictDir;
 	QString spellLanguage;

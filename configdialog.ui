@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -782,36 +782,21 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>202</width>
-               <height>124</height>
+               <width>858</width>
+               <height>94</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
+              <property name="verticalSpacing">
+               <number>2</number>
+              </property>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditPathPDF"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEditPathCommands"/>
+              </item>
               <item row="1" column="2">
-               <widget class="QPushButton" name="pushButtonPathLog">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_58">
-                <property name="text">
-                 <string>PDF Viewer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2" rowspan="4">
                <widget class="QPushButton" name="pushButtonPathPdf">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -828,24 +813,25 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_57">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_59">
                 <property name="text">
-                 <string>Log File</string>
+                 <string>Commands ($PATH)</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="lineEditPathPDF"/>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_58">
+                <property name="text">
+                 <string>PDF Viewer</string>
+                </property>
+               </widget>
               </item>
-              <item row="0" column="1" rowspan="3">
+              <item row="0" column="1">
                <widget class="QLineEdit" name="lineEditPathLog"/>
               </item>
-              <item row="6" column="1">
-               <widget class="QLineEdit" name="lineEditPathCommands"/>
-              </item>
-              <item row="6" column="2" rowspan="2">
-               <widget class="QPushButton" name="pushButtonPathCommands">
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pushButtonPathLog">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -861,10 +847,27 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_59">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_57">
                 <property name="text">
-                 <string>Commands ($PATH)</string>
+                 <string>Log File</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QPushButton" name="pushButtonPathCommands">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -1430,9 +1433,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-200</y>
             <width>863</width>
-            <height>849</height>
+            <height>938</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1857,6 +1860,66 @@ Then you can select a new shortcut by one of the following ways:
                <widget class="QCheckBox" name="cbTableFormatingOneLinePerCell">
                 <property name="text">
                  <string>One Line Per Cell</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="gbAdditionalSearchPaths">
+             <property name="title">
+              <string>Additional Search Paths</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <property name="verticalSpacing">
+               <number>2</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_62">
+                <property name="text">
+                 <string>Bib Files</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditPathBib"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditPathImages"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_63">
+                <property name="text">
+                 <string>Image Files</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pushButtonPathBib">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QPushButton" name="pushButtonPathImages">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
                 </property>
                </widget>
               </item>

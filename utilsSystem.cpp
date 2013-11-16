@@ -38,6 +38,14 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
 #endif
 }
 
+QChar getPathListSeparator() {
+#ifdef Q_OS_WIN32
+	return QChar(';');
+#else
+	return QChar(':');
+#endif
+}
+
 QString getUserName() {
 #ifdef Q_OS_WIN32
 	return QString(qgetenv("USERNAME"));
@@ -307,6 +315,20 @@ QString getPathfromFilename(const QString &compFile){
     QString dir=QFileInfo(compFile).absolutePath();
     if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
     return dir;
+}
+
+QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths) {
+	QString s=relName;
+	QString ext = extension;
+	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
+	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
+	QFileInfo fi(s);
+	if (!fi.isRelative()) return s;
+	foreach (const QString &path, searchPaths) {
+		fi.setFile(QDir(path), s);
+		if (fi.exists()) return fi.absoluteFilePath();
+	}
+	return s; // fallback
 }
 
 int x11desktop_env() {

@@ -675,10 +675,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			}
 			//// bibliography ////
 			if (latexParser.possibleCommands["%bibliography"].contains(cmd)) {
+				QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
 				QStringList bibs=name.split(',',QString::SkipEmptyParts);
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				foreach(const QString& elem,bibs){ //latex doesn't seem to allow any spaces in file names
-					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem,getAbsoluteFilePath(elem,"bib")));
+					mMentionedBibTeXFiles.insert(line(i).handle(),FileNamePair(elem,getAbsoluteFilePath(elem,"bib",additionalBibPaths)));
 					if (oldBibs.removeAll(elem) == 0)
 						bibTeXFilesNeedsUpdate = true;
 				}
@@ -1795,23 +1796,12 @@ QString LatexDocuments::getTemporaryCompileFileName() const {
 	return "";
 }
 
-QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &baseDir, const QString &extension) const {
-    QString s=relName;
-    QString ext = extension;
-    if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
-    if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
-    QFileInfo fi(s);
-    if (!fi.isRelative()) return s;
-    if (baseDir.isEmpty()) return s; //what else can we do?
-    QString compilePath=QFileInfo(baseDir).absolutePath();
-    if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
-        compilePath+=QDir::separator();
-    return  compilePath+s;
-}
-
-QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension) const {
-	QString compileFileName=getTemporaryCompileFileName();
-    return  getAbsoluteFilePath(relName,compileFileName,extension);
+QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths) const {
+	QStringList searchPaths;
+	QString compileFileName = getTemporaryCompileFileName();
+	if (!compileFileName.isEmpty()) searchPaths << QFileInfo(compileFileName).absolutePath();
+	searchPaths << additionalSearchPaths;
+	return findAbsoluteFilePath(relName,extension,searchPaths);
 }
 
 LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName) const {
@@ -1889,12 +1879,13 @@ bool LatexDocuments::singleMode() const {
 
 void LatexDocuments::updateBibFiles(bool updateFiles){
   mentionedBibTeXFiles.clear();
+  QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
   foreach (LatexDocument* doc, getDocuments() ) {
     if(updateFiles){
       QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
       QMultiHash<QDocumentLineHandle*,FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
-      for (; it != itend; ++it){
-        if (it.value().absolute.isEmpty()) it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib").replace(QDir::separator(), "/"); //store absolute
+	  for (; it != itend; ++it){
+		it.value().absolute = getAbsoluteFilePath(it.value().relative,".bib",additionalBibPaths).replace(QDir::separator(), "/"); // update absolute path
         mentionedBibTeXFiles << it.value().absolute;
       }
     }
@@ -2593,20 +2584,12 @@ LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const
 	return current->getTopMasterDocument();
 }
 
-QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension) const {
-	QString s=relName;
-	QString ext = extension;
-	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
-	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
-	QFileInfo fi(s);
-	if (!fi.isRelative()) return s;
-	const LatexDocument *masterDoc=getTopMasterDocument();
-	QString compileFileName=masterDoc->getFileName();
-	if (compileFileName.isEmpty()) return s; //what else can we do?
-	QString compilePath=QFileInfo(compileFileName).absolutePath();
-	if (!compilePath.endsWith("\\") && !compilePath.endsWith("/"))
-		compilePath+=QDir::separator();
-	return  compilePath+s;
+QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths) const {
+	QStringList searchPaths;
+	QString compileFileName = getTopMasterDocument()->getFileName();
+	if (!compileFileName.isEmpty()) searchPaths << QFileInfo(compileFileName).absolutePath();
+	searchPaths << additionalSearchPaths;
+	return findAbsoluteFilePath(relName, extension, searchPaths);
 }
 
 void LatexDocuments::lineGrammarChecked(const void* doc,const void* line,int lineNr, const QList<GrammarError>& errors){

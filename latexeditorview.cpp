@@ -2110,8 +2110,9 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
 			QString fname;
 			QFileInfo fi;
+			QStringList imagePaths = ConfigManagerInterface::getInstance()->getOption("Files/Image Paths").toString().split(getPathListSeparator());
 			foreach (const QString &ext, imageExtensions) {
-				fname=getDocument()->getAbsoluteFilePath(value, ext);  // try png
+				fname=getDocument()->getAbsoluteFilePath(value, ext, imagePaths);
 				fi.setFile(fname);
 				if (fi.exists()) break;
 			}

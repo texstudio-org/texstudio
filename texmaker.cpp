@@ -5315,6 +5315,7 @@ void Texmaker::GeneralOptions() {
 	bool inlineCitationChecking=configManager.editorConfig->inlineCitationChecking;
 	bool inlineReferenceChecking=configManager.editorConfig->inlineReferenceChecking;
 	bool inlineSyntaxChecking=configManager.editorConfig->inlineSyntaxChecking;
+	QString additionalBibPaths=configManager.additionalBibPaths;
 	QStringList loadFiles=configManager.completerConfig->getLoadedFiles();
 	
 #if QT_VERSION<0x050000
@@ -5347,12 +5348,15 @@ void Texmaker::GeneralOptions() {
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 		
 		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
+		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
+
 		//update highlighting ???
 		bool updateHighlighting=(inlineSpellChecking!=configManager.editorConfig->inlineSpellChecking);
 		updateHighlighting|=(inlineCitationChecking!=configManager.editorConfig->inlineCitationChecking);
 		updateHighlighting|=(inlineReferenceChecking!=configManager.editorConfig->inlineReferenceChecking);
 		updateHighlighting|=(inlineSyntaxChecking!=configManager.editorConfig->inlineSyntaxChecking);
 		updateHighlighting|=(realtimeChecking!=configManager.editorConfig->realtimeChecking);
+		updateHighlighting|=(additionalBibPaths!=configManager.additionalBibPaths);
 		// check for change in load completion files
 		QStringList newLoadedFiles=configManager.completerConfig->getLoadedFiles();
 		foreach(const QString& elem,newLoadedFiles){
