@@ -355,6 +355,8 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
 
 	connect(ui.pushButtonPathLog, SIGNAL(clicked()), this, SLOT(browsePathLog()));
+	connect(ui.pushButtonPathBib, SIGNAL(clicked()), this, SLOT(browsePathBib()));
+	connect(ui.pushButtonPathImages, SIGNAL(clicked()), this, SLOT(browsePathImages()));
 	connect(ui.pushButtonPathPdf, SIGNAL(clicked()), this, SLOT(browsePathPdf()));
 	connect(ui.pushButtonPathCommands, SIGNAL(clicked()), this, SLOT(browsePathCommands()));
 	
@@ -562,6 +564,15 @@ void ConfigDialog::browseDictDir() {
 void ConfigDialog::browsePathLog(){
 	browse(ui.lineEditPathLog, tr("Search Path for Logs"), "/", QDir::currentPath(), true);
 }
+
+void ConfigDialog::browsePathBib(){
+	browse(ui.lineEditPathBib, tr("Search Path .bib Files"), "/", QDir::currentPath(), true);
+}
+
+void ConfigDialog::browsePathImages(){
+	browse(ui.lineEditPathImages, tr("Search Path for Images"), "/", QDir::currentPath(), true);
+}
+
 void ConfigDialog::browsePathPdf(){
 	browse(ui.lineEditPathPDF, tr("Search Path for PDFs"), "/", QDir::currentPath(), true);
 }

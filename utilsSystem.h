@@ -19,6 +19,8 @@ int getSimplifiedSVNVersion(QString svnVersion = TEXSTUDIO_SVN_VERSION);
 
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 
+QChar getPathListSeparator();
+
 QString getUserName();
 
 QString getUserDocumentFolder();
@@ -46,6 +48,7 @@ QString ensureTrailingDirSeparator(const QString& dirPath);
 QString replaceFileExtension(const QString& filename, const QString& newExtension, bool appendIfNoExt=false);
 QString getRelativeBaseNameToPath(const QString & file, QString basepath, bool baseFile=false, bool keepSuffix=false);
 QString getPathfromFilename(const QString &compFile);
+QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths);
 
 //returns kde version 0,3,4
 int x11desktop_env();

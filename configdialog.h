@@ -115,6 +115,8 @@ private slots:
 	void browseDictDir();
 	void dictDirChanged(const QString& newText);
 	void browsePathLog();
+	void browsePathBib();
+	void browsePathImages();
 	void browsePathPdf();
 	void browsePathCommands();
 	void advancedOptionsToggled(bool on);

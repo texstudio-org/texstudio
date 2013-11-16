@@ -4,7 +4,7 @@
 #include "mostQtHeaders.h"
 #include "bibtexparser.h"
 #include "latexeditorview.h"
-
+#include "configmanagerinterface.h"
 #include "usermacro.h"
 
 class QDocumentLineHandle;
@@ -138,7 +138,7 @@ public:
 	
 	void setTemporaryFileName(const QString& fileName);
 	Q_INVOKABLE QString getTemporaryFileName() const;
-	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension) const;
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths=QStringList()) const;
 	
     void setMasterDocument(LatexDocument* doc, bool recheck=true);
 	Q_INVOKABLE LatexDocument* getMasterDocument() const{
@@ -327,8 +327,7 @@ public:
 	Q_INVOKABLE QString getCurrentFileName() const; //returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
 	Q_INVOKABLE QString getTemporaryCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
-	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="") const;
-    Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &baseDir, const QString &extension) const;
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="", const QStringList &additionalSearchPaths=QStringList()) const;
 	
 	Q_INVOKABLE LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false) const;
 	Q_INVOKABLE LatexDocument* findDocument(const QDocument *qDoc) const;
