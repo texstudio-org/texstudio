@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -2475,8 +2475,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3043,6 +3043,9 @@ them here.</string>
            <widget class="QSpinBox" name="spinBoxPreviewDPI">
             <property name="suffix">
              <string>dpi</string>
+            </property>
+            <property name="maximum">
+             <number>600</number>
             </property>
            </widget>
           </item>
