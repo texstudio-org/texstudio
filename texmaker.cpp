@@ -510,6 +510,7 @@ void Texmaker::setupDockWidgets(){
 		outputView->setObjectName("OutputView");
 		centralVSplitter->addWidget(outputView);
 		centralVSplitter->setStretchFactor(1,0);
+		centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
 
 		connect(outputView->getLogWidget(),SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 		connect(outputView->getLogWidget(),SIGNAL(logLoaded()),this,SLOT(updateLogEntriesInEditors()));
@@ -3581,6 +3582,8 @@ void Texmaker::SaveSettings(const QString& configName) {
 		config->setValue("Geometries/MainwindowY", y());
 		
 		config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
+
+		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 
 		Session s = getCurrentSession();
 		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath());
