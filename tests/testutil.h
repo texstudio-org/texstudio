@@ -25,5 +25,7 @@ private slots:
 void closeMessageBoxLater(bool mustExists=false, QMessageBox::StandardButton button=QMessageBox::NoButton);
 void messageBoxShouldBeClose();
 }
+
+extern bool globalExecuteAllTests;
 #endif
 #endif

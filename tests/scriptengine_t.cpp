@@ -83,33 +83,35 @@ void ScriptEngineTest::script_data(){
 		<< "editor.replace(/[0-9]*/, function(c){return 17+1*c.selectedText();}); "
 		<< "H1728\nHatto2\nHallo3";
 
-	QTest::newRow("Search/Replace Test 1g")
-		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", \"b\"); "
-		<< "Hbllo1\nHbllo2\nHbllo3";
-	QTest::newRow("Search/Replace Test 2g")
-		<< "editor.replace(\"ll\", \"g\", \"tt\", editor.document().cursor(1,0,1,6)); "
-		<< "Hbllo1\nHbtto2\nHbllo3";
-	QTest::newRow("Search/Replace Test 3gg")
-		<< "editor.replace(/b..o/g, function(c){return editor.search(c.selectedText(),\"g\");}); "
-		<< "H21\nH12\nH13";
-	QTest::newRow("Search/Replace Test 4g (no conversion)")
-		<< "editor.replace(/[0-9]*/g, function(c){return 17+c.selectedText();}); "
-		<<  "H1721\nH1712\nH1713";
-	QTest::newRow("Search/Replace Test 5g")
-		<< "editor.replace(/[0-9]*/g, function(c){return 17+1*c.selectedText();}); "
-		<< "H1738\nH1729\nH1730";
-	QTest::newRow("Search/Replace Test 6g")
-		<< "editor.replace(/h/g, 'test'); "
-		<< "H1738\nH1729\nH1730";
-	QTest::newRow("Search/Replace Test 7gi")
-		<< "editor.replace(/h/gi, 'test'); "
-		<< "test1738\ntest1729\ntest1730";
-	QTest::newRow("Search/Replace Test function replacing")
-	       << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
-		<< "H>a<llo1\nH>a<llo2\nH>a<llo3";
-	QTest::newRow("Search/Replace Test function replacing 2")
-	       << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
-		<< "H>al<lo1\nH>am<lo2\nH>al<lo3";
+	if (all) {
+		QTest::newRow("Search/Replace Test 1g")
+			<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", \"b\"); "
+			<< "Hbllo1\nHbllo2\nHbllo3";
+		QTest::newRow("Search/Replace Test 2g")
+			<< "editor.replace(\"ll\", \"g\", \"tt\", editor.document().cursor(1,0,1,6)); "
+			<< "Hbllo1\nHbtto2\nHbllo3";
+		QTest::newRow("Search/Replace Test 3gg")
+			<< "editor.replace(/b..o/g, function(c){return editor.search(c.selectedText(),\"g\");}); "
+			<< "H21\nH12\nH13";
+		QTest::newRow("Search/Replace Test 4g (no conversion)")
+			<< "editor.replace(/[0-9]*/g, function(c){return 17+c.selectedText();}); "
+			<<  "H1721\nH1712\nH1713";
+		QTest::newRow("Search/Replace Test 5g")
+			<< "editor.replace(/[0-9]*/g, function(c){return 17+1*c.selectedText();}); "
+			<< "H1738\nH1729\nH1730";
+		QTest::newRow("Search/Replace Test 6g")
+			<< "editor.replace(/h/g, 'test'); "
+			<< "H1738\nH1729\nH1730";
+		QTest::newRow("Search/Replace Test 7gi")
+			<< "editor.replace(/h/gi, 'test'); "
+			<< "test1738\ntest1729\ntest1730";
+		QTest::newRow("Search/Replace Test function replacing")
+			  << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+			<< "H>a<llo1\nH>a<llo2\nH>a<llo3";
+		QTest::newRow("Search/Replace Test function replacing 2")
+			  << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+			<< "H>al<lo1\nH>am<lo2\nH>al<lo3";
+	}
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
@@ -119,8 +121,7 @@ void ScriptEngineTest::script(){
 	eng.setScript(script);
 	eng.run();
 
-	QEQUAL(edView->editor->document()->text(), newText);
-	
+	QEQUAL(edView->editor->document()->text(), newText);	
 }
 #endif
 
