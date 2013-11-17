@@ -933,6 +933,7 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
 
 void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) {
 	wordsAbbrev=newwords;
+    qSort(wordsAbbrev.begin(), wordsAbbrev.end());
 }
 
 void CompletionListModel::setCitationWords(const QList<CompletionWord> &newwords) {
