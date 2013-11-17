@@ -27,6 +27,13 @@ LatexCompleterTest::~LatexCompleterTest(){
 	config->preferedCompletionTab=LatexCompleterConfig::PreferedCompletionTab(oldPrefered);
 }
 
+void LatexCompleterTest::initTestCase(){
+	edView->editor->emitNeedUpdatedCompleter();
+	QSet<QString> helper;
+	helper << "\\a{" << "\\b" << "\\begin{align*}\n\n\\end{align*}" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>";
+	edView->getCompleter()->setAdditionalWords(helper); //extra words needed for test
+}
+
 void LatexCompleterTest::simple_data(){
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<bool>("eowCompletes");
@@ -37,132 +44,133 @@ void LatexCompleterTest::simple_data(){
 	QTest::addColumn<QString>("preres");
 	QTest::addColumn<QStringList>("log");
 
-	QTest::newRow("simple") << ">><<" << true << false << 0 << 2
+	if (globalExecuteAllTests) {
+		QTest::newRow("simple") << ">><<" << true << false << 0 << 2
+					<< "" << ""
+					<< (QStringList()
+					    << "\\:>>\\<<"
+					    << "a:>>\\a<<"
+					    << "b:>>\\ab<<"
+					    << "s:>>\\abs<<"
+					    << "*:>>\\abstractname{*}<<");
+
+		QTest::newRow("simple no eow comp") << ">><<" << false << false << 0 << 2
+					<< "" << ""
+					<< (QStringList()
+					    << "\\:>>\\<<"
+					    << "a:>>\\a<<"
+					    << "b:>>\\ab<<"
+					    << "s:>>\\abs<<"
+					    << "*:>>\\abs*<<");
+
+
+
+		QTest::newRow("begin") << ">><<" << true << false << 0 << 2
 				<< "" << ""
 				<< (QStringList()
 				    << "\\:>>\\<<"
-				    << "a:>>\\a<<"
-				    << "b:>>\\ab<<"
-				    << "s:>>\\abs<<"
-				    << "*:>>\\abstractname{*}<<");
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\begin{<<"
+				    << "a:>>\\begin{a<<"
+				    << "*:>>\\begin{align*<<");
 
-	QTest::newRow("simple no eow comp") << ">><<" << false << false << 0 << 2
+		QTest::newRow("begin +pc") << ">><<" << true << true << 0 << 2
 				<< "" << ""
 				<< (QStringList()
 				    << "\\:>>\\<<"
-				    << "a:>>\\a<<"
-				    << "b:>>\\ab<<"
-				    << "s:>>\\abs<<"
-				    << "*:>>\\abs*<<");
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\begin{<<"
+				    << "a:>>\\begin{a<<"
+				    << "*:>>\\begin{align*<<");
 
-
-
-	QTest::newRow("begin") << ">><<" << true << false << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\begin{<<"
-			    << "a:>>\\begin{a<<"
-			    << "*:>>\\begin{align*<<");
-
-	QTest::newRow("begin +pc") << ">><<" << true << true << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\begin{<<"
-			    << "a:>>\\begin{a<<"
-			    << "*:>>\\begin{align*<<");
-
-	QTest::newRow("begin no eowc") << ">><<" << false << false << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\beg{<<"
-			    << "*:>>\\beg{*<<");
-
-	QTest::newRow("begin -eowc+pc") << ">><<" << false << true << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\beg{}<<"
-			    << "*:>>\\beg{*}<<");
-
-	QTest::newRow("begin multiple {{%1") << ">><<" << false << false << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\beg{<<"
-			    << "{:>>\\beg{{<<");
-
-	QTest::newRow("begin multiple {{%1") << ">><<" << false << true << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\beg{}<<"
-			    << "{:>>\\beg{{}}<<");
-
-	for (int a=0;a<2;a++)
-	QTest::newRow(qPrintable(QString("begin multiple {{ +ec%1").arg(a))) << ">><<" << true << !!a << 0 << 2
-			<< "" << ""
-			<< (QStringList()
-			    << "\\:>>\\<<"
-			    << "b:>>\\b<<"
-			    << "e:>>\\be<<"
-			    << "g:>>\\beg<<"
-			    << "{:>>\\begin{<<"
-			    << "{:>>\\begin{alignat}{<<");
-	{	}
-
-
-	QTest::newRow("small cmd") << ">><<" << false << false << 0 << 2
+		QTest::newRow("begin no eowc") << ">><<" << false << false << 0 << 2
 				<< "" << ""
 				<< (QStringList()
 				    << "\\:>>\\<<"
-				    << "a:>>\\a<<"
-				    << "{:>>\\a{<<"
-				    );
-	QTest::newRow("small cmd +pc") << ">><<" << false << true << 0 << 2
-				<< "" << ""
-				<< (QStringList()
-				<< "\\:>>\\<<"
-				<< "a:>>\\a<<"
-				<< "{:>>\\a{<<" // pc does not work, as the defined command is \a{
-				<< "-:>>\\a{-<<"
-				);
-	QTest::newRow("small cmd +ec") << ">><<" << true << false << 0 << 2
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\beg{<<"
+				    << "*:>>\\beg{*<<");
+
+		QTest::newRow("begin -eowc+pc") << ">><<" << false << true << 0 << 2
 				<< "" << ""
 				<< (QStringList()
 				    << "\\:>>\\<<"
-				    << "a:>>\\a<<"
-				    << "{:>>\\a{<<"
-				    );
-	QTest::newRow("small cmd +ec+pc") << ">><<" << true << true << 0 << 2
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\beg{}<<"
+				    << "*:>>\\beg{*}<<");
+
+		QTest::newRow("begin multiple {{%1") << ">><<" << false << false << 0 << 2
 				<< "" << ""
 				<< (QStringList()
-				<< "\\:>>\\<<"
-				<< "a:>>\\a<<"
-				<< "{:>>\\a{<<"
-				<< "-:>>\\a{-<<"
-				);
+				    << "\\:>>\\<<"
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\beg{<<"
+				    << "{:>>\\beg{{<<");
 
+		QTest::newRow("begin multiple {{%1") << ">><<" << false << true << 0 << 2
+				<< "" << ""
+				<< (QStringList()
+				    << "\\:>>\\<<"
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\beg{}<<"
+				    << "{:>>\\beg{{}}<<");
+
+		for (int a=0;a<2;a++)
+		QTest::newRow(qPrintable(QString("begin multiple {{ +ec%1").arg(a))) << ">><<" << true << !!a << 0 << 2
+				<< "" << ""
+				<< (QStringList()
+				    << "\\:>>\\<<"
+				    << "b:>>\\b<<"
+				    << "e:>>\\be<<"
+				    << "g:>>\\beg<<"
+				    << "{:>>\\begin{<<"
+				    << "{:>>\\begin{alignat}{<<");
+		{	}
+
+
+		QTest::newRow("small cmd") << ">><<" << false << false << 0 << 2
+					<< "" << ""
+					<< (QStringList()
+					    << "\\:>>\\<<"
+					    << "a:>>\\a<<"
+					    << "{:>>\\a{<<"
+					    );
+		QTest::newRow("small cmd +pc") << ">><<" << false << true << 0 << 2
+					<< "" << ""
+					<< (QStringList()
+					<< "\\:>>\\<<"
+					<< "a:>>\\a<<"
+					<< "{:>>\\a{<<" // pc does not work, as the defined command is \a{
+					<< "-:>>\\a{-<<"
+					);
+		QTest::newRow("small cmd +ec") << ">><<" << true << false << 0 << 2
+					<< "" << ""
+					<< (QStringList()
+					    << "\\:>>\\<<"
+					    << "a:>>\\a<<"
+					    << "{:>>\\a{<<"
+					    );
+		QTest::newRow("small cmd +ec+pc") << ">><<" << true << true << 0 << 2
+					<< "" << ""
+					<< (QStringList()
+					<< "\\:>>\\<<"
+					<< "a:>>\\a<<"
+					<< "{:>>\\a{<<"
+					<< "-:>>\\a{-<<"
+					);
+	} else qDebug("skipped some tests");
 
 	QTest::newRow("smbll cmd") << ">><<" << false << false << 0 << 2
 				<< "" << ""
@@ -270,9 +278,7 @@ void LatexCompleterTest::simple(){
 	edView->editor->setFlag(QEditor::AutoCloseChars, autoParenComplete);
 	edView->editor->setText(text, false);
 	edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
-	QSet<QString> helper;
-	helper << "\\a{" << "\\b" << "\\begin{align*}\n\n\\end{align*}" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>";
-	edView->getCompleter()->setAdditionalWords(helper); //extra words needed for test
+
 	if (!preinsert.isEmpty()) {
 		edView->editor->insertText(preinsert);
 		QEQUAL(edView->editor->text(), preres);

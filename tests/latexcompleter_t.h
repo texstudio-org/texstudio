@@ -17,6 +17,7 @@ class LatexCompleterTest: public QObject{
 		bool oldEowCompletes;
 		int oldPrefered;
 	private slots:
+		void initTestCase();
 		void simple_data();
 		void simple();
 };
