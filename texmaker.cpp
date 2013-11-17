@@ -510,6 +510,7 @@ void Texmaker::setupDockWidgets(){
 		outputView->setObjectName("OutputView");
 		centralVSplitter->addWidget(outputView);
 		centralVSplitter->setStretchFactor(1,0);
+		centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
 
 		connect(outputView->getLogWidget(),SIGNAL(logEntryActivated(int)),this,SLOT(gotoLogEntryEditorOnly(int)));
 		connect(outputView->getLogWidget(),SIGNAL(logLoaded()),this,SLOT(updateLogEntriesInEditors()));
@@ -2222,14 +2223,13 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 	if (fileName.isEmpty()) {
 		if (currentEditor()->fileInfo().isFile()) {
 			currentDir = currentEditor()->fileInfo().absoluteFilePath();
-        } else {
-            if (!configManager.lastDocument.isEmpty()) {
-                QFileInfo fi(configManager.lastDocument);
-                if (fi.exists() && fi.isReadable())
-                    currentDir=fi.absolutePath();
-            }
-            currentDir = currentDir +"/"+ tr("document");
-        }
+		} else {
+			if (!configManager.lastDocument.isEmpty())
+				currentDir = configManager.lastDocument;
+			static QString saveAsDefault;
+			configManager.registerOption("Files/Save As Default",&saveAsDefault,"?a)/document");
+			currentDir = buildManager.parseExtendedCommandLine(saveAsDefault, currentDir, currentDir).value(0, currentDir);
+		}
 	} else {
 		currentDir = fileName;
 		/*QFileInfo currentFile(fileName);
@@ -3581,6 +3581,8 @@ void Texmaker::SaveSettings(const QString& configName) {
 		config->setValue("Geometries/MainwindowY", y());
 		
 		config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
+
+		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 
 		Session s = getCurrentSession();
 		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath());
