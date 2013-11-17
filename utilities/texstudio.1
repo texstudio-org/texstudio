@@ -1,0 +1,41 @@
+.TH TEXSTUDIO 1 "2013\-10\-30" "2.6.6" "latex editor"
+
+.SH NAME
+texstudio \- A LaTeX IDE
+
+.SH SYNOPSIS
+\fBtexstudio\fR [\fB--line\fR \fInum\fR] [\fB--master\fR] [\fB--page\fR \fInum\fR] [\fB--pdf-viewer-only\fR] [\fB--start-always\fR] [\fIFILE\fR]...
+
+.SH DESCRIPTION
+TeXstudio is a LaTeX editor with a graphical user interface. It provides syntax highlighting, auto completion, shortcuts, code folding, spell checking, and more. It integrates LaTeX command line tools. TeXstudio is a QT program based on Texmaker.
+
+.SH OPTIONS
+\fIFILE\fR...
+Files to open.
+.TP
+\fB--line\fR \fInum\fR
+After opening a file, the cursor will be placed at the beginning of the specified line. If more than one filename is provided, the last file will be used.
+.TP
+\fB--master\fR
+The file will be defined as the master document. If more than one filename is provided, the last file will become the master document.
+.TP
+\fB--page\fR \fInum\fR
+This option can only be used in combination with option \fB--pdf-viewer-only\fR in order to tell TeXstudio which page to display.
+.TP
+\fB--pdf-viewer-only\fR
+TeXstudio will open as a standalone pdf viewer without editor. \fIFILE\fR has to be a pdf file, not a tex document. Only the first specified file will be opened.
+.TP
+\fB--start-always\fR
+If this option is provided texstudio starts a new instance even if texstudio is already running.
+.TP
+\fB--insert-cite \fIcitation\fR
+Inserts the bibtex key citation at the current cursor position, automatically taking care of necessary cite commands.
+
+.SH HOMEPAGE
+More information about TeXstudio can be found at \fIhttp://texstudio.sf.net/\fR.
+
+.SH AUTHOR
+TeXstudio was written by Benito van der Zander <\fIbenito@benibela.de\fR> and Pascal Brachet <\fIpbrachet@xm1math.net\fR>.
+.PP
+This manual page was written by Benito van der Zander <\fIbenito@benibela.de\fR> and Tom Jampen <\fItom@cryptography.ch\fR>.
+

@@ -1,0 +1,3651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfigDialog</class>
+ <widget class="QDialog" name="ConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1116</width>
+    <height>674</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Configure TeXstudio</string>
+  </property>
+  <layout class="QGridLayout">
+   <property name="horizontalSpacing">
+    <number>18</number>
+   </property>
+   <property name="verticalSpacing">
+    <number>6</number>
+   </property>
+   <property name="margin">
+    <number>9</number>
+   </property>
+   <item row="0" column="0" rowspan="2">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>410</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>170</width>
+       <height>32000</height>
+      </size>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2" colspan="5">
+    <widget class="QStackedWidget" name="pagesWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>400</width>
+       <height>390</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>12</number>
+     </property>
+     <widget class="QWidget" name="pageGeneral">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>475</width>
+            <height>540</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>9</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="groupBox_6">
+             <property name="title">
+              <string>Appearance</string>
+             </property>
+             <layout class="QGridLayout">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Color Scheme:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
+                <property name="text">
+                 <string>Ignore Most System Colors</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Language:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Font:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Font Size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Style:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxInterfaceModernStyle">
+                <item>
+                 <property name="text">
+                  <string>Classic</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Modern</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="3">
+               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1" colspan="3">
+               <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxUseSystemTheme">
+                <property name="text">
+                 <string>Use System Theme Icons</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxLanguage">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxInterfaceStyle">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QCheckBox" name="checkBoxTabbedStructureView">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Tabbed Structure/Symbol View</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="2">
+               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>MRU Document Chooser</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_7">
+             <property name="title">
+              <string>Files</string>
+             </property>
+             <property name="advancedOption" stdset="0">
+              <bool>true</bool>
+             </property>
+             <layout class="QGridLayout">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Max. Recent Documents:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="spinBoxMaxRecentFiles">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Max. Recent Master Documents:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="spinBoxMaxRecentProjects">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBoxParseBibTeX">
+                <property name="text">
+                 <string>Parse BibTeX</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QCheckBox" name="checkBoxParseMaster">
+                <property name="text">
+                 <string>Always Show Structure of Master Document</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QCheckBox" name="checkBoxRememberFileFilter">
+                <property name="text">
+                 <string>Remember selected file filter in open/save dialog </string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>Dictionaries</string>
+             </property>
+             <layout class="QGridLayout">
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>Thesaurus Database:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="5">
+               <widget class="QPushButton" name="btSelectThesaurusFileName">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="4">
+               <widget class="QComboBox" name="comboBoxThesaurusFileName">
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+                <property name="dirFilter" stdset="0">
+                 <string>*.dat</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="4">
+               <widget class="QLineEdit" name="leDictDir"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_42">
+                <property name="text">
+                 <string>Spelling Dictionary Directory:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="5">
+               <widget class="QComboBox" name="comboBoxSpellcheckLang"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_43">
+                <property name="text">
+                 <string>Default Language:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QPushButton" name="pushButtonDictDir">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="5">
+               <widget class="QLabel" name="labelGetDic">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_Update">
+             <property name="title">
+              <string>Update</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
+                <property name="text">
+                 <string>Automatically check every</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxAutoUpdateCheckIntervalDays">
+                <property name="suffix">
+                 <string> days</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>7</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_56">
+                <property name="text">
+                 <string>Last Checked:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelUpdateCheckDate">
+                <property name="text">
+                 <string notr="true">&lt;checkDate&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonUpdateCheckNow">
+                <property name="text">
+                 <string>Check Now</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageCommands">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBoxCommands">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Commands (%: filename without extension - @: line number - ?: extended filename options)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
+</string>
+         </property>
+         <property name="indent">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
+&lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
+&lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="indent">
+          <number>30</number>
+         </property>
+         <property name="advancedOption" stdset="0">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
+</string>
+         </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
+         <property name="indent">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageQuickBuild">
+      <layout class="QVBoxLayout" stretch="3,1,0">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBoxMetaCommands">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Meta Commands</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxUserCommands">
+         <property name="title">
+          <string>User Commands</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Build Options</string>
+         </property>
+         <property name="advancedOption" stdset="0">
+          <bool>true</bool>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxRunAfterBibTeXChange">
+            <property name="toolTip">
+             <string>Runs txs:///recompile-bibliography, if bib-files were changed.</string>
+            </property>
+            <property name="text">
+             <string>Check and update bibliography before compiling</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxShowMessagesOnCompile">
+            <property name="text">
+             <string>Show messages when starting compiling</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="checkBoxSingleInstanceViewer">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="baseSize">
+             <size>
+              <width>600</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Don't launch a new instance of the viewer if the dvi/ps/pdf file is already opened</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_37">
+            <property name="text">
+             <string>Show stdout:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboBoxShowStdout">
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only For User Commands</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always (If not redirected &gt; /dev/null)</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="toolTip">
+             <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
+            </property>
+            <property name="text">
+             <string>Maximum Compile Repetitions:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="spinBoxRerunLatex">
+            <property name="value">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBox">
+            <property name="text">
+             <string>Additional Search Paths:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QScrollArea" name="scrollAreaPaths">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>858</width>
+               <height>94</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_1">
+              <property name="verticalSpacing">
+               <number>2</number>
+              </property>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditPathPDF"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEditPathCommands"/>
+              </item>
+              <item row="1" column="2">
+               <widget class="QPushButton" name="pushButtonPathPdf">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_59">
+                <property name="text">
+                 <string>Commands ($PATH)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_58">
+                <property name="text">
+                 <string>PDF Viewer</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditPathLog"/>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pushButtonPathLog">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_57">
+                <property name="text">
+                 <string>Log File</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QPushButton" name="pushButtonPathCommands">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageShortcuts">
+      <layout class="QVBoxLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Shortcuts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="shortcutTree">
+         <property name="toolTip">
+          <string>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+Then you can select a new shortcut by one of the following ways:
+(1) select from the dropdown list
+(2) hit the shortcut combination
+(3) type the string of the shortcut</string>
+         </property>
+         <property name="animated">
+          <bool>true</bool>
+         </property>
+         <property name="columnCount">
+          <number>4</number>
+         </property>
+         <attribute name="headerDefaultSectionSize">
+          <number>150</number>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cb_CloseLogByEsc">
+         <property name="text">
+          <string>Close Log-View with Esc-Key</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageLatexMenus">
+      <layout class="QVBoxLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>Menus</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="latexTree">
+         <property name="animated">
+          <bool>true</bool>
+         </property>
+         <property name="columnCount">
+          <number>3</number>
+         </property>
+         <attribute name="headerDefaultSectionSize">
+          <number>250</number>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Command</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Slot</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxShowAllMenus">
+         <property name="text">
+          <string>Show All</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageToolbars">
+      <layout class="QVBoxLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>Toolbar Customization</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="_2">
+         <item row="1" column="1">
+          <widget class="QListWidget" name="listCustomToolBar">
+           <property name="movement">
+            <enum>QListView::Free</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <layout class="QVBoxLayout" name="_3">
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pbToToolbar">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="images.qrc">
+               <normaloff>:/images-ng/left.svgz</normaloff>:/images-ng/left.svgz</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pbFromToolbar">
+             <property name="text">
+              <string notr="true"/>
+             </property>
+             <property name="icon">
+              <iconset resource="images.qrc">
+               <normaloff>:/images-ng/right.svgz</normaloff>:/images-ng/right.svgz</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="spacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBoxToolbars"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QComboBox" name="comboBoxActions"/>
+         </item>
+         <item row="1" column="3">
+          <widget class="QTreeWidget" name="treePossibleToolbarActions">
+           <property name="rootIsDecorated">
+            <bool>false</bool>
+           </property>
+           <property name="animated">
+            <bool>true</bool>
+           </property>
+           <property name="allColumnsShowFocus">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string>1</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageEditor">
+      <layout class="QGridLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Editor</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxFont">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="4">
+           <widget class="QSpinBox" name="spinBoxSize">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="value">
+             <number>12</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxAutoIndent">
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Ignore Indentation</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Keep Indentation</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Indent and Unindent Automatically</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Keep Indentation With Spaces Only</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Indent and Unindent Automatically With Spaces Only</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="4">
+           <widget class="QSpinBox" name="spinBoxLineSpacingPercent">
+            <property name="suffix">
+             <string>%</string>
+            </property>
+            <property name="minimum">
+             <number>100</number>
+            </property>
+            <property name="maximum">
+             <number>500</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1" colspan="4">
+           <widget class="QGroupBox" name="groupBoxInlineChecking">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineSpellCheck">
+               <property name="text">
+                <string>Spelling</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineGrammarCheck">
+               <property name="text">
+                <string>Grammar</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineCitationCheck">
+               <property name="text">
+                <string>Citations</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineReferenceCheck">
+               <property name="text">
+                <string>References</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlineSyntaxCheck">
+               <property name="text">
+                <string>Syntax</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxInlinePackageCheck">
+               <property name="text">
+                <string>Package</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="text">
+             <string>Font Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Line Spacing:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
+            <property name="toolTip">
+             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
+            </property>
+            <property name="text">
+             <string>Auto Detect Encoding of Loaded Files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxReplaceQuotes">
+            <item>
+             <property name="text">
+              <string>No Replacement</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>English Quotes:  `` ''</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>French Quotes:  &quot;&lt; &quot;&gt;</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>German Quotes:  &quot;` &quot;'</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>French Quotes (babel): \og \fg{}</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reverse French Quotes: &quot;&gt; &quot;&lt;</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Package csquotes: \enquote{  }</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>English Quotes (unicode): “ ”</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxShowOnlyMonospacedFonts">
+            <property name="text">
+             <string>Show Only Monospaced Fonts</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_39">
+            <property name="text">
+             <string>Replace Double Quotes:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Inline Checking:</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelEncoding">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Default Font Encoding:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBoxAutoLoad">
+            <property name="text">
+             <string>Automatically load included files</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Indentation Mode:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="4">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
+             <string>Folding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFamily">
+            <property name="text">
+             <string>Font Family:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxEncoding"/>
+          </item>
+          <item row="9" column="2" colspan="3">
+           <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
+            <property name="text">
+             <string>Hide grammar errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
+            <property name="text">
+             <string>Hide spelling errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageAdvEditor">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollArea_2">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-200</y>
+            <width>863</width>
+            <height>938</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="groupBox_9">
+             <property name="title">
+              <string>Appearance</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="2" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <item>
+                 <widget class="QLabel" name="label_33">
+                  <property name="text">
+                   <string>Show Line Numbers:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboboxLineNumbers">
+                  <property name="advancedOption" stdset="0">
+                   <bool>true</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>No Line Numbers</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>All Line Numbers</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Only Important Line Numbers</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_6">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="checkBoxState">
+                <property name="text">
+                 <string>Show State Panel</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
+                   <string>Tab Width:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="sbTabSpace">
+                  <property name="minimum">
+                   <number>2</number>
+                  </property>
+                  <property name="maximum">
+                   <number>32</number>
+                  </property>
+                  <property name="value">
+                   <number>4</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="1">
+               <widget class="QCheckBox" name="checkBoxShowWhitespace">
+                <property name="text">
+                 <string>Show Whitespace</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBoxLineState">
+                <property name="text">
+                 <string>Show Line Change State</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxBoldCursor">
+                <property name="toolTip">
+                 <string>Draw cursor as a thick line</string>
+                </property>
+                <property name="text">
+                 <string>Bold Cursor</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_10">
+             <property name="title">
+              <string>Search Panel</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QCheckBox" name="checkBoxCloseSearchReplaceTogether">
+                <property name="text">
+                 <string>Close search and replace panel together</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxUseLineForSearch">
+                <property name="text">
+                 <string>Use single line selection as Search Word</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxSearchOnlyInSelection">
+                <property name="text">
+                 <string>Restrict search scope to an existing selection</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_11">
+             <property name="title">
+              <string>Special options</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <layout class="QGridLayout" columnstretch="0,1,1,1">
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Maximal Characters:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
+                <property name="text">
+                 <string>Show help as tooltip on text in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>Auto Save All Files:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
+                <property name="text">
+                 <string>Auto Complete Parentheses</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
+                <property name="text">
+                 <string>Mouse Wheel Zoom</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QSpinBox" name="spinBoxWrapLineWidth">
+                <property name="minimum">
+                 <number>20</number>
+                </property>
+                <property name="maximum">
+                 <number>999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QComboBox" name="comboBoxAutoSave">
+                <item>
+                 <property name="text">
+                  <string>Never</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>5 minutes</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>10 minutes</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>20 minutes</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>60 minutes</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_41">
+                <property name="text">
+                 <string>Line Wrapping:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipPreview">
+                <property name="text">
+                 <string>Show preview as tooltip on formulas in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="checkBoxSmoothScrolling">
+                <property name="text">
+                 <string>Smooth Scrolling</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="2">
+               <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
+                <property name="text">
+                 <string>Disable key 'Esc' to close fullscreen-mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
+                <property name="text">
+                 <string>Keep indentation of includes in structure tree</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxTexDocInternal">
+                <property name="text">
+                 <string>Show help on commands in internal pdf viewer (texdoc)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0" colspan="4">
+               <widget class="QCheckBox" name="checkBoxSilentReload">
+                <property name="text">
+                 <string>Silently reload saved files on external changes (discards undo/redo stack)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
+                <property name="toolTip">
+                 <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
+                </property>
+                <property name="text">
+                 <string>Insert Symbol as Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="2">
+               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                <property name="text">
+                 <string>Go to error when displaying log</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1" colspan="2">
+               <widget class="QComboBox" name="comboBoxLineWrap">
+                <item>
+                 <property name="text">
+                  <string>No Line Wrap</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Soft Line Wrap at Window Edge</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Soft Line Wrap after max. Characters</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Hard Line Wrap after max. Characters</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="13" column="2">
+               <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
+                <property name="text">
+                 <string>Show log markers when clicking log entry</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="gbTableAutoformat">
+             <property name="title">
+              <string>Table Autoformating</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayoutTableAutoFormat">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_60">
+                <property name="text">
+                 <string>Special Commands:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="leTableFormatingSpecialCommands"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_61">
+                <property name="text">
+                 <string>Special Commands Position:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="cbTableFormatingSpecialCommandPos">
+                <item>
+                 <property name="text">
+                  <string>Behind Line Break</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Separate Line (No Indent)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Separate Line (Indented to First Column)</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QCheckBox" name="cbTableFormatingOneLinePerCell">
+                <property name="text">
+                 <string>One Line Per Cell</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="gbAdditionalSearchPaths">
+             <property name="title">
+              <string>Additional Search Paths</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <property name="verticalSpacing">
+               <number>2</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_62">
+                <property name="text">
+                 <string>Bib Files</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditPathBib"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditPathImages"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_63">
+                <property name="text">
+                 <string>Image Files</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pushButtonPathBib">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QPushButton" name="pushButtonPathImages">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_15">
+             <property name="title">
+              <string>Bi-Di</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QCheckBox" name="checkBoxAutoLRM">
+                <property name="text">
+                 <string>Automatically insert LRM characters</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxVisualColumnMode">
+                <property name="text">
+                 <string>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_12">
+             <property name="title">
+              <string>Hacks/Workarounds</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackDisableAccentWorkaround">
+                <property name="text">
+                 <string>Disable work-around on accent typing (Mac OS X only)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackAutoRendering">
+                <property name="text">
+                 <string>Try to automatically choose best display options</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackDisableFixedPitch">
+                <property name="text">
+                 <string>Disable fixed pitch mode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
+                <property name="text">
+                 <string>Disable cache of character width</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxHackDisableLineCache">
+                <property name="toolTip">
+                 <string>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</string>
+                </property>
+                <property name="text">
+                 <string>Disable cache of rendered lines</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Render Mode:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBoxHackRenderMode">
+                  <item>
+                   <property name="text">
+                    <string>QCE (recommended)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Qt</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Single Letter</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>2</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageSyntaxHighlighting">
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="formatConfigBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Formats</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageCustomHighlighting">
+      <layout class="QVBoxLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTableWidget" name="twHighlighEnvirons">
+         <property name="rowCount">
+          <number>1</number>
+         </property>
+         <property name="columnCount">
+          <number>2</number>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
+         <row/>
+         <column>
+          <property name="text">
+           <string>Custom Environment</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Type of Environment</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QPushButton" name="pbAddLine">
+           <property name="text">
+            <string>Add Line</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbRemoveLine">
+           <property name="text">
+            <string>Remove Line</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="twCustomSyntax">
+         <property name="rowCount">
+          <number>1</number>
+         </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <row/>
+         <column>
+          <property name="text">
+           <string>Additional Commands</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="pbAddSyntaxLine">
+           <property name="text">
+            <string>Add Line</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbRemoveSyntaxLine">
+           <property name="text">
+            <string>Remove Line</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageCompletion">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Completion</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0" columnstretch="1,1">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxCompletion">
+            <property name="toolTip">
+             <string>Starts the completer as soon as '\' is typed. Alternatively the completer can always be started manually by Ctrl+Space.</string>
+            </property>
+            <property name="text">
+             <string>Automatically start completer when typing LaTeX-Commands</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxCaseSensitive">
+            <property name="text">
+             <string>Case Sensitive</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout">
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Minimum</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
+              <property name="text">
+               <string>In First Character</string>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="checkBoxCompletePrefix">
+            <property name="toolTip">
+             <string>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</string>
+            </property>
+            <property name="text">
+             <string>Auto Complete Common Prefix</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxEOWCompletes">
+            <property name="text">
+             <string>Complete selected text when non-word character is pressed</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Preferred Commands Set:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxPreferedTab">
+              <item>
+               <property name="text">
+                <string>Typical</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Most Used</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>All</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
+            <property name="toolTip">
+             <string>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</string>
+            </property>
+            <property name="text">
+             <string>Auto Replace Latex-Commands</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipHelp">
+            <property name="toolTip">
+             <string>Shows a tooltip with a description of the selected completer command</string>
+            </property>
+            <property name="text">
+             <string>ToolTip-Help</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxUsePlaceholders">
+            <property name="text">
+             <string>Use Placeholders</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="label_40">
+              <property name="toolTip">
+               <string>Size of the tab bar at the bottom or top of the completer</string>
+              </property>
+              <property name="text">
+               <string>Tab Bar Size</string>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxTabRelFontSize">
+              <property name="toolTip">
+               <string>Size of the command set tabs at the bottom or top of the completer</string>
+              </property>
+              <property name="suffix">
+               <string notr="true"> %</string>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>75</number>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Use following completion files:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="completeListWidget">
+         <property name="toolTip">
+          <string>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</string>
+         </property>
+         <property name="flow">
+          <enum>QListView::TopToBottom</enum>
+         </property>
+         <property name="isWrapping" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="resizeMode">
+          <enum>QListView::Adjust</enum>
+         </property>
+         <property name="uniformItemSizes">
+          <bool>false</bool>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageGrammar">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollArea_3">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>880</width>
+            <height>617</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="groupBox_13">
+             <property name="title">
+              <string>Internal</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxGrammarRepetitionCheck">
+                <property name="toolTip">
+                 <string>Words repeated within a paragraph will be highlighted.</string>
+                </property>
+                <property name="text">
+                 <string>Check for Word Repetitions</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_47">
+                <property name="text">
+                 <string>Words Between Repetitions:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QSpinBox" name="spinBoxGrammarRepetitionDistance">
+                <property name="toolTip">
+                 <string>Equal words are marked as repetition if there are no more than this number of words between them.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="2">
+               <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetition">
+                <property name="toolTip">
+                 <string>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="2">
+               <widget class="QSpinBox" name="spinBoxGrammarLongRangeRepetitionMinLength">
+                <property name="toolTip">
+                 <string>Only words with have this length are checked for long range repetitions.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_54">
+                <property name="text">
+                 <string>Long Range Repetitions:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_55">
+                <property name="text">
+                 <string>Min Length of Words with Long Repetition:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_48">
+                <property name="text">
+                 <string>Wordlist Directory:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBoxGrammarBadWordCheck">
+                <property name="toolTip">
+                 <string>Certain informal or weak words will be highlighted.</string>
+                </property>
+                <property name="text">
+                 <string>Check for Bad Words</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="lineEditGrammarWordlists">
+                <property name="toolTip">
+                 <string>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2">
+               <widget class="QPushButton" name="pushButtonGrammarWordlists">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_14">
+             <property name="title">
+              <string>LanguageTool</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_44">
+                <property name="text">
+                 <string>Server URL: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarLTUrl">
+                <property name="toolTip">
+                 <string>Url to connect to LanguageTool. </string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxGrammarLTAutorun">
+                <property name="text">
+                 <string>Start LanguageTool if not running</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_45">
+                <property name="text">
+                 <string>LT Path:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="lineEditGrammarLTPath">
+                <property name="toolTip">
+                 <string>Path containing the LanguageTool java archive.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QPushButton" name="pushButtonGrammarLTPath">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_46">
+                <property name="text">
+                 <string>Ignored Rules:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarLTIgnoredRules">
+                <property name="toolTip">
+                 <string>Comma separated list of LanguageTool rules which will not be highlighted as errors.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_49">
+                <property name="text">
+                 <string>Java:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="lineEditGrammarLTJava">
+                <property name="toolTip">
+                 <string>Java executable, used to start LanguageTool, if it is not running.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2">
+               <widget class="QPushButton" name="pushButtonGrammarLTJava">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarSpecialRules1">
+                <property name="toolTip">
+                 <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarSpecialRules2">
+                <property name="toolTip">
+                 <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarSpecialRules4">
+                <property name="toolTip">
+                 <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarSpecialRules3">
+                <property name="toolTip">
+                 <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_50">
+                <property name="text">
+                 <string>Special Rules 2:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_51">
+                <property name="text">
+                 <string>Special Rules 1:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_52">
+                <property name="text">
+                 <string>Special Rules 3:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_53">
+                <property name="text">
+                 <string>Special Rules 4:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pagePreview">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Segment Preview</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Command:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxDvi2PngMode">
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Preview with dvipng</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Preview with dvipng --follow (parallel)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Preview with dvips/ghostscript</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_32">
+            <property name="text">
+             <string>Display Mode:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxPreviewMode">
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Show preview as tooltip if panel is hidden</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always show preview in preview panel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always show preview as tool tip</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Always show both</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Inline</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>Auto Preview:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxAutoPreview">
+            <item>
+             <property name="text">
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Previously previewed text</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Auto Preview Delay:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
+            <property name="minimum">
+             <number>40</number>
+            </property>
+            <property name="maximum">
+             <number>3000</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="checkBoxReplaceBeamer">
+            <property name="text">
+             <string>Replace beamer class by article</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
+            <property name="text">
+             <string>Precompile Preamble</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Full Page PDF Preview</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Scale Option:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxPreviewScale">
+            <item>
+             <property name="text">
+              <string>Original Size</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fit to Window Width</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fit to Window Size</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Scaled Size</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Scaling:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxPreviewScale">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="suffix">
+             <string>%</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Screen Resolution:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="spinBoxPreviewDPI">
+            <property name="suffix">
+             <string>dpi</string>
+            </property>
+            <property name="maximum">
+             <number>600</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>Magnifier Shape:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboBoxPreviewMagnifierShape">
+            <item>
+             <property name="text">
+              <string>Square</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Circle</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_25">
+            <property name="text">
+             <string>Magnifier Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
+            <property name="suffix">
+             <string>px</string>
+            </property>
+            <property name="prefix">
+             <string/>
+            </property>
+            <property name="minimum">
+             <number>50</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="singleStep">
+             <number>50</number>
+            </property>
+            <property name="value">
+             <number>300</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
+            <property name="text">
+             <string>Border</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string>Synchronized Files Types:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="lineEditPreviewSyncFileMask">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Cache Size:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QSpinBox" name="spinBoxCacheSizeMB">
+            <property name="suffix">
+             <string> MB</string>
+            </property>
+            <property name="minimum">
+             <number>100</number>
+            </property>
+            <property name="maximum">
+             <number>1024</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>512</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QCheckBox" name="autoHideToolbars">
+            <property name="text">
+             <string>Auto-hide Toolbars in Embedded Mode</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>359</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageSVN">
+      <layout class="QVBoxLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="cbAutoCheckin">
+         <property name="text">
+          <string>Automatically check in after save</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbSVNUndo">
+         <property name="text">
+          <string>Use SVN revisions to undo before last saved version</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbKeywordSubstitution">
+         <property name="toolTip">
+          <string>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</string>
+         </property>
+         <property name="text">
+          <string>Substitute Keywords with Properties (on svn add)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>SVN Directory Search Depth: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sbDirSearchDepth">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>554</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="5">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>contentsWidget</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>comboBoxInterfaceStyle</tabstop>
+  <tabstop>comboBoxInterfaceModernStyle</tabstop>
+  <tabstop>checkBoxUseTexmakerPalette</tabstop>
+  <tabstop>checkBoxUseSystemTheme</tabstop>
+  <tabstop>comboBoxInterfaceFont</tabstop>
+  <tabstop>spinBoxInterfaceFontSize</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>spinBoxMaxRecentFiles</tabstop>
+  <tabstop>spinBoxMaxRecentProjects</tabstop>
+  <tabstop>checkBoxParseBibTeX</tabstop>
+  <tabstop>checkBoxParseMaster</tabstop>
+  <tabstop>leDictDir</tabstop>
+  <tabstop>pushButtonDictDir</tabstop>
+  <tabstop>comboBoxSpellcheckLang</tabstop>
+  <tabstop>comboBoxThesaurusFileName</tabstop>
+  <tabstop>btSelectThesaurusFileName</tabstop>
+  <tabstop>checkBoxShowAdvancedOptions</tabstop>
+  <tabstop>checkBoxRunAfterBibTeXChange</tabstop>
+  <tabstop>comboBoxShowStdout</tabstop>
+  <tabstop>spinBoxRerunLatex</tabstop>
+  <tabstop>shortcutTree</tabstop>
+  <tabstop>cb_CloseLogByEsc</tabstop>
+  <tabstop>latexTree</tabstop>
+  <tabstop>checkBoxShowAllMenus</tabstop>
+  <tabstop>comboBoxToolbars</tabstop>
+  <tabstop>listCustomToolBar</tabstop>
+  <tabstop>pbToToolbar</tabstop>
+  <tabstop>pbFromToolbar</tabstop>
+  <tabstop>comboBoxActions</tabstop>
+  <tabstop>treePossibleToolbarActions</tabstop>
+  <tabstop>comboBoxFont</tabstop>
+  <tabstop>spinBoxSize</tabstop>
+  <tabstop>comboBoxEncoding</tabstop>
+  <tabstop>checkBoxAutoDetectOnLoad</tabstop>
+  <tabstop>checkBoxFolding</tabstop>
+  <tabstop>comboBoxAutoIndent</tabstop>
+  <tabstop>comboBoxReplaceQuotes</tabstop>
+  <tabstop>checkBoxRealTimeCheck</tabstop>
+  <tabstop>checkBoxInlineSpellCheck</tabstop>
+  <tabstop>checkBoxInlineGrammarCheck</tabstop>
+  <tabstop>checkBoxInlineCitationCheck</tabstop>
+  <tabstop>checkBoxInlineReferenceCheck</tabstop>
+  <tabstop>checkBoxInlineSyntaxCheck</tabstop>
+  <tabstop>checkBoxLineState</tabstop>
+  <tabstop>checkBoxCloseSearchReplaceTogether</tabstop>
+  <tabstop>checkBoxUseLineForSearch</tabstop>
+  <tabstop>checkBoxSearchOnlyInSelection</tabstop>
+  <tabstop>checkBoxAutoCompleteParens</tabstop>
+  <tabstop>checkBoxMouseWheelZoom</tabstop>
+  <tabstop>checkBoxToolTipHelp2</tabstop>
+  <tabstop>comboBoxLineWrap</tabstop>
+  <tabstop>spinBoxWrapLineWidth</tabstop>
+  <tabstop>comboBoxAutoSave</tabstop>
+  <tabstop>checkBoxHackDisableAccentWorkaround</tabstop>
+  <tabstop>checkBoxHackAutoRendering</tabstop>
+  <tabstop>checkBoxHackDisableFixedPitch</tabstop>
+  <tabstop>checkBoxHackDisableWidthCache</tabstop>
+  <tabstop>checkBoxHackDisableLineCache</tabstop>
+  <tabstop>twHighlighEnvirons</tabstop>
+  <tabstop>pbAddLine</tabstop>
+  <tabstop>pbRemoveLine</tabstop>
+  <tabstop>twCustomSyntax</tabstop>
+  <tabstop>pbAddSyntaxLine</tabstop>
+  <tabstop>pbRemoveSyntaxLine</tabstop>
+  <tabstop>checkBoxCaseSensitiveInFirstCharacter</tabstop>
+  <tabstop>spinBoxTabRelFontSize</tabstop>
+  <tabstop>completeListWidget</tabstop>
+  <tabstop>checkBoxGrammarRepetitionCheck</tabstop>
+  <tabstop>spinBoxGrammarRepetitionDistance</tabstop>
+  <tabstop>spinBoxGrammarLongRangeRepetition</tabstop>
+  <tabstop>spinBoxGrammarLongRangeRepetitionMinLength</tabstop>
+  <tabstop>checkBoxGrammarBadWordCheck</tabstop>
+  <tabstop>lineEditGrammarWordlists</tabstop>
+  <tabstop>pushButtonGrammarWordlists</tabstop>
+  <tabstop>lineEditGrammarLTUrl</tabstop>
+  <tabstop>lineEditGrammarLTIgnoredRules</tabstop>
+  <tabstop>checkBoxGrammarLTAutorun</tabstop>
+  <tabstop>lineEditGrammarLTPath</tabstop>
+  <tabstop>pushButtonGrammarLTPath</tabstop>
+  <tabstop>lineEditGrammarLTJava</tabstop>
+  <tabstop>pushButtonGrammarLTJava</tabstop>
+  <tabstop>lineEditGrammarSpecialRules1</tabstop>
+  <tabstop>lineEditGrammarSpecialRules2</tabstop>
+  <tabstop>lineEditGrammarSpecialRules3</tabstop>
+  <tabstop>lineEditGrammarSpecialRules4</tabstop>
+  <tabstop>comboBoxDvi2PngMode</tabstop>
+  <tabstop>comboBoxPreviewMode</tabstop>
+  <tabstop>comboBoxAutoPreview</tabstop>
+  <tabstop>spinBoxAutoPreviewDelay</tabstop>
+  <tabstop>checkBoxReplaceBeamer</tabstop>
+  <tabstop>checkBoxPrecompilePreamble</tabstop>
+  <tabstop>comboBoxPreviewScale</tabstop>
+  <tabstop>spinBoxPreviewScale</tabstop>
+  <tabstop>spinBoxPreviewDPI</tabstop>
+  <tabstop>comboBoxPreviewMagnifierShape</tabstop>
+  <tabstop>spinBoxPreviewMagnifierSize</tabstop>
+  <tabstop>checkBoxPreviewMagnifierBorder</tabstop>
+  <tabstop>lineEditPreviewSyncFileMask</tabstop>
+  <tabstop>cbAutoCheckin</tabstop>
+  <tabstop>cbSVNUndo</tabstop>
+  <tabstop>cbKeywordSubstitution</tabstop>
+  <tabstop>sbDirSearchDepth</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1024</x>
+     <y>659</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>307</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1105</x>
+     <y>659</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>307</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxCaseSensitive</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxCaseSensitiveInFirstCharacter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>667</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>408</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineSpellCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>558</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineCitationCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>823</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineReferenceCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>956</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineSyntaxCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1088</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackDisableFixedPitch</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>871</x>
+     <y>496</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>657</x>
+     <y>530</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackDisableWidthCache</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>989</x>
+     <y>496</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>657</x>
+     <y>556</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackDisableLineCache</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1011</x>
+     <y>496</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>657</x>
+     <y>582</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxHackRenderMode</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1036</x>
+     <y>496</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1072</x>
+     <y>616</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlineGrammarCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>691</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxAutoUpdateCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBoxAutoUpdateCheckIntervalDays</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>437</x>
+     <y>568</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>514</x>
+     <y>567</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scrollAreaPaths</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>319</x>
+     <y>470</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>342</x>
+     <y>501</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
