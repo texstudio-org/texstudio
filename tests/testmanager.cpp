@@ -28,6 +28,8 @@ const QRegExp TestToken::punctationRegExp("[!():\"?,.;-]");
 
 int totalTestTime;
 char* tempResult;
+bool globalExecuteAllTests;
+
 
 QString TestManager::performTest(QObject* obj){
 	char* argv[3];
@@ -54,6 +56,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	tf.close();
 	tempResult = tfn.data();
 	
+	globalExecuteAllTests = level == TL_ALL;
 	
 	//codeedit, editor are passed as extra parameters and not extracted from edView, so we don't have
 	//to include latexeditorview.h here
