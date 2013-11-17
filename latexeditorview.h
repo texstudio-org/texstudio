@@ -70,6 +70,8 @@ public:
 	Q_PROPERTY(QEditor* editor READ getEditor);
 	Q_PROPERTY(LatexDocument* document READ getDocument);     //<- semicolon necessary due to qt bug 22992
 	
+	LatexEditorViewConfig * getConfig() { return config; }
+
 	Q_INVOKABLE	QString displayName() const;
 
 	//  FindWidget *findwidget;
