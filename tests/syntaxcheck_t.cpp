@@ -7,6 +7,8 @@
 #include "qdocument.h"
 #include "qeditor.h"
 #include "latexdocument.h"
+#include "latexeditorview_config.h"
+
 //#include "syntaxcheck.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
@@ -153,16 +155,23 @@ void SyntaxCheckTest::checktabular(){
 	
 	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
 
+	bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+	bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+	edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+
 	edView->editor->setText(text, false);
 	do{
-        edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+		edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+		QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
 	}while(edView->SynChecker.queuedLines());
 	StackEnvironment env;
 	edView->getEnv(row,env);
 	QString message=edView->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env);
 	QEQUAL(message, expectedMessage);
 	
+	edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+	edView->getConfig()->realtimeChecking = realtimeChecking;
 }
 
 #endif

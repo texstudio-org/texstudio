@@ -16,10 +16,10 @@ private slots:
 		QTest::addColumn<QString>("package");
 		QTest::addColumn<QString>("fileWithoutPath");
 
-        QTest::newRow("fancyhdr") << "fancyhdr" << "fancyhdr.dvi;fancyhdr.pdf";
-		QTest::newRow("xcolor") << "xcolor" << "xcolor.pdf";
-        QTest::newRow("graphicx") << "graphicx" << "graphicx.pdf;grfguide.pdf";
-        QTest::newRow("fancyref") << "fancyref" << "freftest.dvi;fancyref.pdf";
+		QTest::newRow("fancyhdr") << "fancyhdr" << "fancyhdr.dvi;fancyhdr.pdf";
+		QTest::newRow("color") << "color" << "grfguide.pdf";
+		QTest::newRow("graphicx") << "graphicx" << "graphicx.pdf;grfguide.pdf";
+		QTest::newRow("fancyref") << "fancyref" << "freftest.dvi;fancyref.pdf";
 	}
 
 	void packageDocFile() {
