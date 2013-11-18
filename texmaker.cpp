@@ -6198,8 +6198,12 @@ void Texmaker::gotoLine(int line, int col, LatexEditorView *edView, QEditor::Mov
 	saveCurrentCursorToHistory();
 
 	if (changeCurrentEditor) {
-		EditorTabs->setCurrentEditor(edView);
-		mflags &= ~QEditor::Animated;
+        if(EditorTabs->containsEditor(edView)){
+            EditorTabs->setCurrentEditor(edView);
+            mflags &= ~QEditor::Animated;
+        }else{
+            load(edView->getDocument()->getFileName());
+        }
 	}
 	edView->editor->setCursorPosition(line,col,false);
 	edView->editor->ensureCursorVisible(mflags);
@@ -6942,8 +6946,9 @@ void Texmaker::editFindGlobal(){
 			editors << currentEditorView()->editor;
 			break;
 		case 1:
-			foreach (LatexEditorView *edView, EditorTabs->editors()) {
-				editors << edView->editor;
+            foreach (LatexDocument *doc, documents.getDocuments()) {
+                if(doc->getEditorView())
+                    editors << doc->getEditorView()->editor;
 			}
 			break;
 		default:
