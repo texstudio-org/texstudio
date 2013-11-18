@@ -41,7 +41,6 @@
 #include "encodingdialog.h"
 #include "randomtextgenerator.h"
 #include "webpublishdialog.h"
-#include "findGlobalDialog.h"
 #include "thesaurusdialog.h"
 #include "qsearchreplacepanel.h"
 #include "latexcompleter_config.h"
@@ -93,6 +92,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	runningPDFCommands = runningPDFAsyncCommands = 0;
 	completerPreview=false;
     recheckLabels=true;
+    findDlg=0;
 	
 	ReadSettings();
 
@@ -357,6 +357,8 @@ Texmaker::~Texmaker(){
     Guardian::shutdown();
 	
 	delete MapForSymbols;
+    delete findDlg;
+
 	if(latexStyleParser){
 		latexStyleParser->stop();
 		latexStyleParser->wait();
@@ -6935,17 +6937,18 @@ void Texmaker::MostUsedSymbolsTriggered(bool direct){
 void Texmaker::editFindGlobal(){
 	if(!currentEditor()) return;
 	QEditor *e=currentEditor();
-	findGlobalDialog* dlg=new findGlobalDialog(this);
+    if(!findDlg)
+        findDlg=new findGlobalDialog(this);
 	if(e->cursor().hasSelection()){
-		dlg->setSearchWord(e->cursor().selectedText());
+        findDlg->setSearchWord(e->cursor().selectedText());
 	}
-	if(dlg->exec()){
+    if(findDlg->exec()){
 		QList<QEditor *> editors;
-		switch (dlg->getSearchScope()) {
-		case 0:
+        switch (findDlg->getSearchScope()) {
+        case 1:
 			editors << currentEditorView()->editor;
 			break;
-		case 1:
+        case 0:
             foreach (LatexDocument *doc, documents.getDocuments()) {
                 if(doc->getEditorView())
                     editors << doc->getEditorView()->editor;
@@ -6955,13 +6958,13 @@ void Texmaker::editFindGlobal(){
 			break;
 		}
 		outputView->clearSearch();
-		outputView->setSearchExpression(dlg->getSearchWord(),dlg->isCase(),dlg->isWords(),dlg->isRegExp());
+        outputView->setSearchExpression(findDlg->getSearchWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
 		foreach(QEditor *ed,editors){
 			LatexDocument *doc=qobject_cast<LatexDocument*>(ed->document());
 			if (!doc) continue;
 			QList<QDocumentLineHandle *> lines;
 			for(int l=0;l<doc->lineCount();l++){
-				l=doc->findLineRegExp(dlg->getSearchWord(),l,dlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,dlg->isWords(),dlg->isRegExp());
+                l=doc->findLineRegExp(findDlg->getSearchWord(),l,findDlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,findDlg->isWords(),findDlg->isRegExp());
 				if(l>-1) lines << doc->line(l).handle();
 				if(l==-1) break;
 			}
@@ -6974,7 +6977,6 @@ void Texmaker::editFindGlobal(){
 			}
 		}
 	}
-	delete dlg;
 }
 
 // show current cursor position in structure view

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>303</width>
+    <width>312</width>
     <height>172</height>
    </rect>
   </property>
@@ -32,12 +32,12 @@
          </property>
          <item>
           <property name="text">
-           <string>Current Document</string>
+           <string>Open Documents</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Open Documents</string>
+           <string>Current Document</string>
           </property>
          </item>
         </widget>
