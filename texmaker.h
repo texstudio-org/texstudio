@@ -26,6 +26,7 @@
 #include "latexdocument.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
+#include "findGlobalDialog.h"
 //#include "symbollistwidget.h"
 #include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
@@ -605,6 +606,8 @@ protected:
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
     QSet<QString> latexPackageList,currentPackageList;
+
+    findGlobalDialog* findDlg;
 
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
