@@ -42,7 +42,12 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	// do layout
 	value = model->data(index, Qt::DecorationRole);
 	QPixmap pixmap = decoration(opt, value);
-    const int overScale= isRetinaMac() ? 2 : 1;
+#if QT_VERSION >= 0x05000
+    int overScale= painter->device()->devicePixelRatio();
+#else
+    int overScale= isRetinaMac() ? 2 : 1;
+#endif
+
     QSize pixmapSize= pixmap.size()/overScale;
     QRect pixmapRect(QPoint(0,0),pixmapSize);
     //QRect pixmapRect=pixmap.rect();
