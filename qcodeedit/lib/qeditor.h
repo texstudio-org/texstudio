@@ -279,9 +279,21 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool displayModifyTime();
 		void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
 		inline int horizontalOffset() const
-		{ return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0; }
+        {
+#if QT_VERSION >= 0x050000 && defined Q_OS_MAC
+            return horizontalScrollBar()->value();
+#else
+            return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0;
+#endif
+        }
 		inline int verticalOffset() const
-		{ return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->getLineSpacing() : 0; }
+        {
+#if QT_VERSION >= 0x050000 && defined Q_OS_MAC
+            return verticalScrollBar()->value() * m_doc->getLineSpacing();  // does this work always ?
+#else
+            return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->getLineSpacing() : 0;
+#endif
+        }
 		
 		inline QPoint mapToContents(const QPoint &point) const
 		{
