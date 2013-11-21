@@ -1140,7 +1140,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 
 	if (!addPaths.isEmpty()) {
 		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		env.insert("PATH", env.value("PATH") + ":"+addPaths); //apply user path as well
+		env.insert("PATH", env.value("PATH") + getPathListSeparator() + addPaths); //apply user path as well
 		proc->setProcessEnvironment(env);		
 	}	
 	
@@ -1683,8 +1683,11 @@ void ProcessX::startCommand() {
 	
     //qDebug() << workingDirectory();
     //qDebug() << cmd;
+	QByteArray path = qgetenv("PATH");
+	qputenv("PATH", path + getPathListSeparator().toAscii() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 	QProcess::start(cmd);
-	
+	qputenv("PATH", path); // restore
+
 #ifdef PROFILE_PROCESSES
 	connect(this, SIGNAL(finished(int)), SLOT(finished()));
 	time.start();
