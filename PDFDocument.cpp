@@ -225,7 +225,7 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 {
 	page = pageNr;
-#if QT_VERSION >= 0x05000
+#if QT_VERSION >= 0x050000
     overScale= this->devicePixelRatio();
 #else
     overScale= isRetinaMac() ? 2 : 1;
@@ -546,7 +546,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	drawFrame(&painter);
 
 	qreal newDpi = dpi * scaleFactor;
-#if QT_VERSION >= 0x05000
+#if QT_VERSION >= 0x050000
     int overScale= painter.device()->devicePixelRatio();
 #else
 	int overScale= isRetinaMac() ? 2 : 1;
