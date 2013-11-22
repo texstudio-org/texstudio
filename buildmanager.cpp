@@ -1077,7 +1077,11 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 			if (result == LCR_ERROR) return false;
 			if (result == LCR_NORMAL || !rerunnable) continue;
 			if (remainingReRunCount <= 0) continue; //do not abort since the rerun condition might have been trigged accidentally
-			if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) { runCommand(CMD_BIBLIOGRAPHY, mainFile, mainFile, 0); remainingReRunCount--;}
+			if (result == LCR_RERUN_WITH_BIBLIOGRAPHY) {
+				QString tempWaitForFinished; //if it does not wait on bibtex it will fail
+				runCommand(CMD_BIBLIOGRAPHY, mainFile, mainFile, 0, &tempWaitForFinished);
+				remainingReRunCount--;
+			}
 			REQUIRE_RET(result == LCR_RERUN || result == LCR_RERUN_WITH_BIBLIOGRAPHY, false);
 			remainingReRunCount--;
 			i--; //rerun
