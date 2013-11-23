@@ -1872,7 +1872,7 @@ QString LatexEditorView::extractMath(QDocumentCursor cursor) {
 	return parenthizedTextSelection(cursor).selectedText();
 }
 
-void LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos) {
+bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos) {
     LatexParser ltxCommands=LatexParser::getInstance();
     QStringList envAliases = ltxCommands.environmentAliases.values(environment);
 	if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]") {
@@ -1883,10 +1883,12 @@ void LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command
 		if (!text.isEmpty()) {
 			m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showPreview(text);
+			return true;
 		}
 	} else {
 		QToolTip::hideText();
 	}
+	return false;
 }
 
 void LatexEditorView::mouseHovered(QPoint pos){
@@ -1970,25 +1972,19 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			else if (cursor.nextChar()==']') command = "\\]";
 		}
 
-		if (config->toolTipPreview) {
-			showMathEnvPreview(cursor, command, value, pos);
-		} else {
-			if(config->toolTipHelp){
-				QString topic=completer->lookupWord(command);
-				if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
-			}
+		if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
+			; // action is already performed as a side effect
+		} else if (config->toolTipHelp){
+			QString topic=completer->lookupWord(command);
+			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 		}
 		break;
 	case LatexParser::Environment:
-		{
-			QString text;
-			if(config->toolTipHelp) {
-                text = completer->lookupWord("\\begin{"+value+"}");
-				if(!text.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
-			}
-			if (text.isEmpty() && config->toolTipPreview) {
-				showMathEnvPreview(cursor, command, value, pos);
-			}
+		if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
+			; // action is already performed as a side effect
+		} else if (config->toolTipHelp){
+			QString topic=completer->lookupWord("\\begin{"+value+"}");
+			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 		}
 		break;
 	case LatexParser::Reference:
