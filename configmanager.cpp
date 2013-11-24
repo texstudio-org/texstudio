@@ -1673,7 +1673,7 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems) {
 		if (!m.document)
 			macronames << m.name;
 	
-	QMenu* recreatedMenu = updateListMenu("main/macros", macronames, "tag", true, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
+	QMenu* recreatedMenu = updateListMenu("main/macros", macronames, "tag", false, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit &Macros..."), SLOT(editMacros()));
