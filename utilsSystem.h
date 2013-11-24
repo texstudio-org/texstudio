@@ -60,6 +60,7 @@ bool hasAtLeastQt(int major, int minor);
 
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method);
 
+QString execCommand(const QString & cmd);
 
 class ThreadBreaker : public QThread
 {

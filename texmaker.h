@@ -590,7 +590,7 @@ protected:
 	bool runBibliographyIfNecessaryEntered;
 	
 	LatexStyleParser *latexStyleParser;
-    KpathSeaParser *packageListReader;
+	PackageScanner *packageListReader;
 		
 	QMap<QString,QString> detectedEnvironmentsForHighlighting;
 	

@@ -382,6 +382,19 @@ bool connectUnique(const QObject * sender, const char * signal, const QObject * 
 #endif
 }
 
+// run the command in a separate process, wait and return the result
+// use for internal queries that should be silent. Not to be mixed up with BuildManager::runCommand
+QString execCommand(const QString & cmd) {
+	if(cmd.isEmpty()) return QString();
+	QProcess myProc(0);
+	myProc.start(cmd);
+	myProc.waitForFinished();
+	QString result;
+	if(myProc.exitCode() == 0) {
+		result=myProc.readAllStandardOutput();
+	}
+	return result.trimmed();
+}
 
 void ThreadBreaker::sleep(int s){
     QThread::sleep(s);
