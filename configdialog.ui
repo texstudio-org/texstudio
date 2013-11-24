@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1099,7 +1099,7 @@ Then you can select a new shortcut by one of the following ways:
        <property name="spacing">
         <number>6</number>
        </property>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <spacer name="verticalSpacer_5">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -1135,7 +1135,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="6" column="1" colspan="4">
+          <item row="7" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -1186,7 +1186,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="8" column="1" colspan="4">
+          <item row="9" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -1260,17 +1260,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="3" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxAutoDetectOnLoad">
-            <property name="toolTip">
-             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
-            </property>
-            <property name="text">
-             <string>Auto Detect Encoding of Loaded Files</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1" colspan="4">
+          <item row="8" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
@@ -1321,14 +1311,14 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_39">
             <property name="text">
              <string>Replace Double Quotes:</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="9" column="0">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1357,7 +1347,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="10" column="0" colspan="3">
+          <item row="11" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxAutoLoad">
             <property name="text">
              <string>Automatically load included files</string>
@@ -1367,14 +1357,14 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Indentation Mode:</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="4">
+          <item row="5" column="1" colspan="4">
            <widget class="QCheckBox" name="checkBoxFolding">
             <property name="text">
              <string>Folding</string>
@@ -1388,10 +1378,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxEncoding"/>
-          </item>
-          <item row="9" column="2" colspan="3">
+          <item row="10" column="2" colspan="3">
            <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
             <property name="text">
              <string>Hide grammar errors in non-text environments</string>
@@ -1401,13 +1388,40 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="10" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
             <property name="text">
              <string>Hide spelling errors in non-text environments</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_65">
+            <property name="text">
+             <string>Automatic Encoding Detection:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxEncoding"/>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromLatex">
+            <property name="text">
+             <string>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromChars">
+            <property name="toolTip">
+             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
+            </property>
+            <property name="text">
+             <string>Analyze Characters</string>
             </property>
            </widget>
           </item>
@@ -1433,7 +1447,7 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-203</y>
+            <y>0</y>
             <width>863</width>
             <height>997</height>
            </rect>
@@ -1894,7 +1908,7 @@ Then you can select a new shortcut by one of the following ways:
              <property name="title">
               <string>Additional Search Paths</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout">
+             <layout class="QGridLayout" name="gridLayout71">
               <property name="verticalSpacing">
                <number>2</number>
               </property>
@@ -3370,7 +3384,6 @@ them here.</string>
   <tabstop>comboBoxFont</tabstop>
   <tabstop>spinBoxSize</tabstop>
   <tabstop>comboBoxEncoding</tabstop>
-  <tabstop>checkBoxAutoDetectOnLoad</tabstop>
   <tabstop>checkBoxFolding</tabstop>
   <tabstop>comboBoxAutoIndent</tabstop>
   <tabstop>comboBoxReplaceQuotes</tabstop>

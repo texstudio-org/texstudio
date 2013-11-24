@@ -38,7 +38,8 @@ public:
 
 	static QTextCodec* newFileEncoding;
 	QString newFileEncodingName;
-	bool autodetectLoadedFile;
+	bool autoDetectEncodingFromChars;
+	bool autoDetectEncodingFromLatex;
 	QStringList commonEncodings;
 
     QHash<QString, int> editorKeys;
