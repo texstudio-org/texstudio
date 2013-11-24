@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>12</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>475</width>
-            <height>540</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1433,9 +1433,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-200</y>
+            <y>-203</y>
             <width>863</width>
-            <height>938</height>
+            <height>997</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1742,13 +1742,6 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="11" column="0" colspan="2">
-               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
-                <property name="text">
-                 <string>Keep indentation of includes in structure tree</string>
-                </property>
-               </widget>
-              </item>
               <item row="5" column="2" colspan="2">
                <widget class="QCheckBox" name="checkBoxTexDocInternal">
                 <property name="text">
@@ -1760,16 +1753,6 @@ Then you can select a new shortcut by one of the following ways:
                <widget class="QCheckBox" name="checkBoxSilentReload">
                 <property name="text">
                  <string>Silently reload saved files on external changes (discards undo/redo stack)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="0">
-               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
-                <property name="toolTip">
-                 <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
-                </property>
-                <property name="text">
-                 <string>Insert Symbol as Unicode</string>
                 </property>
                </widget>
               </item>
@@ -1804,7 +1787,17 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
-              <item row="13" column="2">
+              <item row="11" column="0">
+               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
+                <property name="toolTip">
+                 <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
+                </property>
+                <property name="text">
+                 <string>Insert Symbol as Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
                <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
                 <property name="text">
                  <string>Show log markers when clicking log entry</string>
@@ -1812,6 +1805,36 @@ Then you can select a new shortcut by one of the following ways:
                </widget>
               </item>
              </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_16">
+             <property name="title">
+              <string>Structure Panel</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_64">
+                <property name="text">
+                 <string>Reference commands in context menu:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
+                <property name="text">
+                 <string>Keep indentation of includes in structure tree</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+             <zorder>checkBoxIndentIncludesInStructureTree</zorder>
+             <zorder>checkBoxIndentIncludesInStructureTree</zorder>
+             <zorder>label_64</zorder>
+             <zorder>leReferenceCommandsInContextMenu</zorder>
             </widget>
            </item>
            <item>
@@ -1878,7 +1901,7 @@ Then you can select a new shortcut by one of the following ways:
               <item row="0" column="0">
                <widget class="QLabel" name="label_62">
                 <property name="text">
-                 <string>Bib Files</string>
+                 <string>Bib Files:</string>
                 </property>
                </widget>
               </item>
@@ -1891,7 +1914,7 @@ Then you can select a new shortcut by one of the following ways:
               <item row="1" column="0">
                <widget class="QLabel" name="label_63">
                 <property name="text">
-                 <string>Image Files</string>
+                 <string>Image Files:</string>
                 </property>
                </widget>
               </item>
@@ -2475,8 +2498,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
