@@ -361,7 +361,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//beginRegisterGroup("texmaker");
 	//files
 	registerOption("Files/New File Encoding", &newFileEncodingName, "utf-8", &pseudoDialog->comboBoxEncoding); //check
-	registerOption("Files/Auto Detect Encoding Of Loaded Files", &autodetectLoadedFile, true, &pseudoDialog->checkBoxAutoDetectOnLoad);
+	registerOption("Files/AutoDetectEncodingFromChars", &autoDetectEncodingFromChars, true, &pseudoDialog->checkBoxAutoDetectEncodingFromChars);
+	registerOption("Files/AutoDetectEncodingFromLatex", &autoDetectEncodingFromLatex, true, &pseudoDialog->checkBoxAutoDetectEncodingFromLatex);
+
 	registerOption("Common Encodings", &commonEncodings, QStringList() << "UTF-8" << "ISO-8859-1" << "windows-1252" << "Apple Roman");
 	//recent files
 	registerOption("Files/Max Recent Files", &maxRecentFiles, 5, &pseudoDialog->spinBoxMaxRecentFiles);
@@ -644,6 +646,13 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	
 	if ((importTexmakerSettings || importTexMakerXSettings) && config->value("Tools/IntegratedPdfViewer", false).toBool())
 		config->setValue("Tools/Pdf", "<default>");
+
+	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting
+		bool b = config->value("Files/Auto Detect Encoding Of Loaded Files").toBool();
+		if (!config->contains("Files/AutoDetectEncodingFromChars")) config->setValue("Files/AutoDetectEncodingFromChars", b);
+		if (!config->contains("Files/AutoDetectEncodingFromLatex")) config->setValue("Files/AutoDetectEncodingFromLatex", b);
+		config->remove("Files/Auto Detect Encoding Of Loaded Files");
+	}
 	
 	//----------managed properties--------------------
 	for (int i=0;i<managedProperties.size();i++)

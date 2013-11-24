@@ -142,9 +142,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 
 	grammarCheckThread.start();
 	
-	if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
+	if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newFileEncoding);
-	
+	if (configManager.autoDetectEncodingFromLatex)
+		QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding); // encodingcallbacks before restoer session !!!
+	if (configManager.autoDetectEncodingFromChars)
+		QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 	
 	QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
 	m_languages = new QLanguageFactory(m_formats, this);
@@ -284,9 +287,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
 	TemplateManager::ensureUserTemplateDirExists();
 	TemplateManager::checkForOldUserTemplates();
-
-    QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding); // encodingcallback before restoer session !!!
-    QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
     if (configManager.sessionRestore) {
         fileRestoreSession(false);
@@ -5348,8 +5348,15 @@ void Texmaker::GeneralOptions() {
 		
 		GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 		
-		if (configManager.autodetectLoadedFile) QDocument::setDefaultCodec(0);
+		if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
+		QDocument::removeGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
+		QDocument::removeGuessEncodingCallback(&LatexParser::guessEncoding);
+		if (configManager.autoDetectEncodingFromLatex)
+			QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
+		if (configManager.autoDetectEncodingFromChars)
+			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
+
 		
 		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
