@@ -70,6 +70,7 @@ public:
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
 	bool indentIncludesInStructure;
+	QString referenceCommandsInContextMenu;
 	
 	//update
 	bool autoUpdateCheck;

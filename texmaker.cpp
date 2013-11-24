@@ -6477,7 +6477,11 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(entry);
 		if (labelEntry) {
 			menu.addAction(tr("Insert Label"),this, SLOT(editPasteRef()))->setData(labelEntry->title);
-			menu.addAction(tr("Insert \\ref to Label"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(labelEntry->title));
+			foreach (QString refCmd, configManager.referenceCommandsInContextMenu.split(",")) {
+				refCmd = refCmd.trimmed();
+				if (!refCmd.startsWith('\\')) continue;
+				menu.addAction(QString(tr("Insert %1 to Label", "autoreplaced, e.g.: Insert \\ref to Label").arg(refCmd)),this, SLOT(editPasteRef()))->setData(QString("%1{%2}").arg(refCmd).arg(labelEntry->title));
+			}
 			menu.addSeparator();
 		} else {
 			menu.addAction(tr("Create Label"),this, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(entry));
