@@ -7923,14 +7923,23 @@ void Texmaker::packageParserFinished(){
 void Texmaker::readinAllPackageNames(){
 	if (!packageListReader) {
 		// preliminarily use cached packages
-		QSet<QString> cachedPackages = KpathSeaParser::readPackageList(QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
+		QSet<QString> cachedPackages = PackageScanner::readPackageList(QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
 		packageListReadCompleted(cachedPackages);
 		// start reading actually installed packages
 		QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
 		QString baseDir;
 		if (!QFileInfo(cmd_latex).isRelative())
 			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
-		packageListReader = new KpathSeaParser(this,baseDir+"kpsewhich");
+#ifdef Q_OS_WIN
+		bool isMiktex = baseDir.contains("miktex", Qt::CaseInsensitive)
+				|| (!baseDir.contains("texlive", Qt::CaseInsensitive) && execCommand(baseDir+"latex.exe --version").contains("miktex", Qt::CaseInsensitive));
+		if (isMiktex)
+			packageListReader = new MiktexPackageScanner(baseDir+"mpm.exe", configManager.configBaseDir, this);
+		else
+			packageListReader = new KpathSeaParser(baseDir+"kpsewhich", this); // TeXlive on windows uses kpsewhich
+#else
+		packageListReader = new KpathSeaParser(baseDir+"kpsewhich", this);
+#endif
 		connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 		packageListReader->start();
 	}
@@ -7938,9 +7947,10 @@ void Texmaker::readinAllPackageNames(){
 
 void Texmaker::packageListReadCompleted(QSet<QString> packages){
 	latexPackageList = packages;
-	if (qobject_cast<KpathSeaParser*>(sender())) {
-		KpathSeaParser::savePackageList(packages, QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
+	if (qobject_cast<PackageScanner*>(sender())) {
+		PackageScanner::savePackageList(packages, QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
 		packageListReader->wait();
+		delete packageListReader;
 		packageListReader=0;
 	}
 	foreach(LatexDocument *doc,documents.getDocuments()){
