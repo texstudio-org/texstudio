@@ -58,7 +58,9 @@ void UpdateChecker::autoCheck() {
 void UpdateChecker::check(bool silent) {
 	this->silent = silent;
 	//connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(fileIsReady(QNetworkReply*)) );
-	QNetworkReply *reply = networkManager->get(QNetworkRequest(QUrl("http://texstudio.sourceforge.net/update/txsUpdate.xml")));
+	QNetworkRequest request = QNetworkRequest(QUrl("http://texstudio.sourceforge.net/update/txsUpdate.xml"));
+	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
+	QNetworkReply *reply = networkManager->get(request);
 	connect(reply, SIGNAL(finished()), this, SLOT(onRequestCompleted()));
 	if (!silent)
 		connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
