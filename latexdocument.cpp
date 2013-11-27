@@ -499,7 +499,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			mAppendixLine=0;
 		}
 		//let %\include be processed
-		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")){
+		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")||curLine.startsWith("%\\import")){
 			curLine.replace(0,1,' ');
 		}
 		int totalLength=curLine.length();
@@ -720,8 +720,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				continue;
 			}
 			
-			//// include,input ////
-			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include";
+			//// include,input,import ////
+			//static const QStringList inputTokens = QStringList() << "\\input" << "\\include" << "\\import";
 			
 			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
@@ -744,6 +744,30 @@ void LatexDocument::patchStructure(int linenr, int count) {
                 updateSyntaxCheck=true;
 				continue;
 			}
+			
+			if (latexParser.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(name)) {
+				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
+				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
+				QString file = name+arg;
+				newInclude->title = file;
+                QString fname=findFileName(file);
+                removedIncludes.removeAll(fname);
+                mIncludedFilesList.insert(line(i).handle(),fname);
+				LatexDocument* dc=parent->findDocumentFromName(fname);
+                if(dc)	dc->setMasterDocument(this,recheckLabels);
+                else {
+                    lstFilesToLoad << fname;
+                    //parent->addDocToLoad(fname);
+                }
+
+                newInclude->valid = !fname.isEmpty();
+				newInclude->setLine(line(i).handle(), i);
+				newInclude->columnNumber = offset;
+				flatStructure << newInclude;
+                updateSyntaxCheck=true;
+				continue;
+			}
+
 			//// all sections ////
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);

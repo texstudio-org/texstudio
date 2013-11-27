@@ -49,9 +49,10 @@ void LatexParser::init(){
     possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite"  ;
     possibleCommands["%label"] << "\\label";
     possibleCommands["%bibliography"] << "\\bibliography";
-    possibleCommands["%file"] << "\\include" << "\\input" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
+    possibleCommands["%file"] << "\\include" << "\\input" << "\\import" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
     possibleCommands["%ref"] << "\\ref" << "\\pageref";
     possibleCommands["%include"] << "\\include" << "\\input";
+    possibleCommands["%import"] << "\\import" << "\\importfrom" << "\\subimport" << "\\subimportfrom";
 }
 
 int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
@@ -489,7 +490,7 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
     // true means that a command is found, with or without arguments ...
     // otherwise a command before the interesting command leads to quiting the loop
 	outName="";
-	outArg="";
+	outArg = "";
 	remainder="";
 	optionStart=-1;
 	QRegExp token("\\\\\\w+\\*?");
@@ -503,7 +504,7 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
         if(values.size()>0){
             QString first=values.takeFirst();
             int start=starts.takeFirst();
-            if(first.startsWith('[')){
+            if(first.startsWith('[')){ // neglect [] arguments before {}
                 if(values.size()>0){
                     first=values.takeFirst();
                     start=starts.takeFirst();
@@ -518,7 +519,14 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
             }
             optionStart=start+1;
             remainder=line.mid(start+first.length());
-            outName=LatexParser::removeOptionBrackets(first);
+            outName = LatexParser::removeOptionBrackets(first);
+            if(values.size()>0){ // if there's something after the firt option (in case of import)
+                first=values.takeFirst();
+                start=starts.takeFirst();
+                optionStart=start+1;
+                remainder=line.mid(start+first.length());
+                outArg = LatexParser::removeOptionBrackets(first);
+            }
             return true;
         }
         remainder=line.mid(tagStart+cmd.length());
