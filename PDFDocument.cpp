@@ -551,8 +551,6 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 #else
 	int overScale= isRetinaMac() ? 2 : 1;
 #endif
-    qDebug()<<overScale;
-
 
 	QRect newRect = rect();
 	PDFDocument *doc=getPDFDocument();
