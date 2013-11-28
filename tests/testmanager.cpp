@@ -65,7 +65,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
 		<< new SmallUsefulFunctionsTest()
-		<< new LatexOutputFilterTest();
+		<< new LatexOutputFilterTest()
 		<< new BuildManagerTest(buildManager)
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentLineTest()
