@@ -18,6 +18,7 @@
 #include "syntaxcheck_t.h"
 #include "updatechecker_t.h"
 #include "help_t.h"
+#include "latexoutputfilter_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+.?");
@@ -63,7 +64,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	totalTestTime = 0;
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
-        << new SmallUsefulFunctionsTest()
+		<< new SmallUsefulFunctionsTest()
+		<< new LatexOutputFilterTest();
 		<< new BuildManagerTest(buildManager)
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentLineTest()

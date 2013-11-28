@@ -272,7 +272,7 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 
 	switch (dwCookie) {
 		//we're looking for a filename
-		case Start : case FileNameHeuristic :
+		case Start : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQoutedFileName :
 			//TeX is opening a file
 			if(strLine.startsWith(":<+ ")) {
 // 				KILE_DEBUG() << "filename detected" << endl;
@@ -331,12 +331,76 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 	}
 }
 
+void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short & dwCookie) {
+	static QString partialFileName;
+	if (dwCookie == Start) partialFileName.clear();
+
+	QChar c;
+	int fnStart = 0;
+	for (int i=0; i<strLine.length(); i++) {
+		if (!partialFileName.isEmpty()) qDebug() << partialFileName;
+		c = strLine.at(i);
+		switch (dwCookie) {
+			case Start:
+				if (c == '(') { dwCookie = ExpectingFileName; continue; }
+				if (c == ')') {
+					if(m_stackFile.count() >= 1 && !m_stackFile.top().reliable()) {
+						//qDebug() << "pop" << m_stackFile.top().file();
+						m_stackFile.pop();
+					}
+				}
+				break;
+			case ExpectingFileName:
+				if (c == '"') { dwCookie = InQoutedFileName; fnStart = i+1; continue; }
+				else { dwCookie = InFileName; fnStart = i; continue; }
+				break;
+			case InQoutedFileName:
+				if (c == '"') {
+					partialFileName += strLine.mid(fnStart, i-fnStart);
+					m_stackFile.push(LOFStackItem(partialFileName));
+					//qDebug() << "push1" << partialFileName;
+					partialFileName.clear();
+					dwCookie = Start; continue;
+				}
+				break;
+			case InFileName:
+				if (c == ')') {
+					partialFileName.clear(); // we don't have to push the filename, because it's directly closed again
+					dwCookie = Start; continue;
+				}
+				if (c.isSpace()) {
+					partialFileName += strLine.mid(fnStart, i-fnStart);
+					m_stackFile.push(LOFStackItem(partialFileName));
+					//qDebug() << "push2" << partialFileName;
+					partialFileName.clear();
+					dwCookie = Start; continue;
+				}
+		}
+	}
+	// special handling at end of line:
+	if (dwCookie == InFileName) {
+		partialFileName += strLine.mid(fnStart);
+		if (strLine.length() < 78  // a)  line is not full: file name must be at end;
+			|| fileExists(partialFileName) // or b) if line is full and the file exists: assume at filename end, otherwise continue with next line
+		) {
+			m_stackFile.push(LOFStackItem(partialFileName));
+			//qDebug() << "push3" << partialFileName;
+			partialFileName.clear();
+			dwCookie = Start;
+		}
+	} else if (dwCookie == InQoutedFileName) {
+		partialFileName += strLine.mid(fnStart);
+	}
+}
+
+
+/*** this is the old heuristics. It's unused right now and will be removed in short. For the moment it remains for testing ***/
 void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short & dwCookie)
 {
 	//KILE_DEBUG() << "==LatexOutputFilter::updateFileStackHeuristic()================";
 	static QString strPartialFileName;
 	static bool quotedFileName = false;
-	bool expectFileName = (dwCookie == FileNameHeuristic);
+	bool expectFileName = (dwCookie == HeuristicSearch);
 	int index = 0;
 
 	// handle special case (bug fix for 101810)
@@ -396,7 +460,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 				}
 				else {
 					//KILE_DEBUG() << "Filename spans more than one line." << endl;
-					dwCookie = FileNameHeuristic;
+					dwCookie = HeuristicSearch;
 				}
 			}
 			//bail out
@@ -768,7 +832,7 @@ short LatexOutputFilter::parseLine(const QString & strLine, short dwCookie)
 			detectBadBox(strLine, dwCookie);
 		break;
 
-		case FileName : case FileNameHeuristic :
+		case FileName : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQoutedFileName :
 			updateFileStack(strLine, dwCookie);
 		break;
 
