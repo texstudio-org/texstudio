@@ -100,6 +100,8 @@ private:
 
 class LatexOutputFilter : public OutputFilter
 {
+	friend class LatexOutputFilterTest;
+
     public:
         LatexOutputFilter();
         ~LatexOutputFilter();
@@ -108,7 +110,9 @@ class LatexOutputFilter : public OutputFilter
 	//void sendProblems();
 	//void updateInfoLists(const QString &texfilename, int selrow, int docrow);
 
-	enum {Start = 0, FileName, FileNameHeuristic, Error, Warning, BadBox, LineNumber};
+	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, LineNumber,
+		  // the following states are only used in updateFileStackHeuristic2
+		  ExpectingFileName=10, InFileName, InQoutedFileName};
 
     protected:
         /**
@@ -117,6 +121,7 @@ class LatexOutputFilter : public OutputFilter
         */
         void updateFileStack(const QString &strLine, short & dwCookie);
 		void updateFileStackHeuristic(const QString &strLine, short & dwCookie);
+		void updateFileStackHeuristic2(const QString &strLine, short & dwCookie);
 
         /**
         Forwards the currently parsed item to the item list.
@@ -153,7 +158,7 @@ class LatexOutputFilter : public OutputFilter
         int m_nBadBoxes;
 
 	int m_nParens;
-    private:
+	private:
         /**
         Stack containing the files parsed by the compiler. The top-most
         element is the currently parsed file.
