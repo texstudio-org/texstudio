@@ -1788,11 +1788,11 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
     lLabel.setText(topic);
     lLabel.adjustSize();
 
-
     int textWidthInPixels = lLabel.width()+10; // +10 good guess
 
-    if (screen.width()-textWidthInPixels>=tt.x()) QToolTip::showText(tt, topic);//-90
-    else {
+    if (screen.width()-textWidthInPixels>=tt.x()) {
+        QToolTip::showText(tt, topic);//-90
+    } else {
         //list->mapToGlobal
         QPoint tt2(tt.x()-textWidthInPixels-width, tt.y());
 
@@ -1817,8 +1817,10 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
                     maxLine=elem;
                 }
             }
+            int averageWidth=lLabel.fontMetrics().averageCharWidth();
+            maxLength=qMin(maxLength,w/averageWidth);
             while(textWidthInPixels>w && maxLength>10){
-                maxLength--;
+                maxLength-=2;
                 lLabel.setText(maxLine.left(maxLength));
                 lLabel.adjustSize();
                 textWidthInPixels=lLabel.width()+10;
