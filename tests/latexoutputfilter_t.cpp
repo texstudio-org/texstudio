@@ -23,6 +23,191 @@ void LatexOutputFilterTest::run_data() {
 	QTest::addColumn<short>("cookieAtEnd");
 	QTest::addColumn<QString>("stackTopFile");
 
+	// *** real-world examples ***
+	// These examples are necessary to further refine the heuristic of bracket/file detection.
+	// Parts of the compiled tex file may be included in the log, which means it can be anything.
+	// A good heuristic should therefore be careful and only detect filenames in situations that really
+	// happen in the log. Currently we probably detect too much as filenames, e.g. does it happen that
+	// a file is closed with ')' and there is plain text following?
+	// When trying to narrow down the detection in the future theses examples give a lower limit
+	// preventing that we will miss real filenames.
+	QTest::newRow("open")
+			<< (QStringList() << "(d:/data/test.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "d:/data/test.tex";
+
+	QTest::newRow("quoted open")
+			<< (QStringList() << "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\ams\\math\\amsopn.sty\""
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\ams\\math\\amsopn.sty");
+	QTest::newRow("quoted open")
+			<< (QStringList() << "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\ams\\math\\amsopn.sty\""
+							  << "Package: amsopn 1999/12/14 v2.01 operator names"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\ams\\math\\amsopn.sty");
+	QTest::newRow("quoted open close")
+			<< (QStringList() << "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\ams\\math\\amsopn.sty\""
+							  << "Package: amsopn 1999/12/14 v2.01 operator names"
+							  << ")"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString();
+	QTest::newRow("quoted close open")
+			<< (QStringList() << "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\base\\minimal.cls\""
+							  << "Document Class: minimal 2001/05/25 Standard LaTeX minimal class"
+							  << ") (\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\base\\inputenc.sty\""
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\base\\inputenc.sty");
+
+	QTest::newRow("open")
+			<< (QStringList() << "(D:\\bugreport\\bug.aux"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("D:\\bugreport\\bug.aux");
+	QTest::newRow("open close")
+			<< (QStringList() << "(D:\\bugreport\\bug.aux)"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString();
+	QTest::newRow("open close")
+			<< (QStringList() << "(D:\\bugreport\\bug.aux)"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString();
+	QTest::newRow("multiple closing 1")
+			<< (QStringList()
+				<< "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\xkeyval\\xkeyval.sty\""
+				<< "Package: xkeyval 2008/08/13 v2.6a package option processing (HA)"
+				<< ""
+				<< "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\generic\\xkeyval\\xkeyval.tex\""
+				<< "\\XKV@toks=\\toks16"
+				<< "\\XKV@tempa@toks=\\toks17"
+				<< "\\XKV@depth=\\count79"
+				<< "File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)"
+				<< ""
+				<< "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\generic\\xkeyval\\keyval.tex\"))"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\xkeyval\\xkeyval.sty");
+	QTest::newRow("multiple closing 2")
+			<< (QStringList()
+				<< "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\xkeyval\\xkeyval.sty\""
+				<< "Package: xkeyval 2008/08/13 v2.6a package option processing (HA)"
+				<< ""
+				<< "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\generic\\xkeyval\\xkeyval.tex\""
+				<< "\\XKV@toks=\\toks16"
+				<< "\\XKV@tempa@toks=\\toks17"
+				<< "\\XKV@depth=\\count79"
+				<< "File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)"
+				<< ""
+				<< "(\"C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\generic\\xkeyval\\keyval.tex\")))"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString();
+	QTest::newRow("multiple closing with space")
+			<< (QStringList()
+				<< "(D:\\foo\\file1.tex"
+				<< "(D:\\foo\\file2.tex"
+				<< "(D:\\foo\\file.aux) )"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("D:\\foo\\file1.tex");
+	QTest::newRow("close with something behind")
+			<< (QStringList()
+				<< "(D:\\foo\\file1.tex"
+				<< "(D:\\foo\\file2.tex"
+				<< ") [1{C:/Users/Foo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("D:\\foo\\file1.tex");
+	// Using TeXlive
+	QTest::newRow("open rel.")
+			<< (QStringList()
+				<< "(./Tex_settings/LaTeXPackages.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./Tex_settings/LaTeXPackages.tex");
+	QTest::newRow("multiple closing with open")
+			<< (QStringList()
+				<< "(d:/dummy.tex"
+				<< "(c:/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te"
+				<< "x)"
+				<< "(c:/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex"
+				<< ")) "
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("");
+	QTest::newRow("multiple closing with open 2")
+			<< (QStringList()
+				<< "(d:/dummy.tex"
+				<< "(c:/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te"
+				<< "x)"
+				<< "(c:/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex"
+				<< ")) (c:/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("c:/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex");
+	QTest::newRow("multiple closing with open and linebreak")
+			<< (QStringList()
+				<< "(d:/dummy.tex"
+				<< "(c:/texlive/2012/texmf-dist/tex/latex/beamer/translator/translator-language-map"
+				<< "pings.tex)) (c:/texlive/2012/texmf-dist/tex/latex/siunitx/siunitx.sty"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("c:/texlive/2012/texmf-dist/tex/latex/siunitx/siunitx.sty");
+	QTest::newRow("multiple files in one line")
+			<< (QStringList()
+				<< "(./_Thesis_.aux (./TeX_files/0a_Cover.aux) (./TeX_files/0b_Abstract.aux)"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./_Thesis_.aux");
+	QTest::newRow("whitespace open")
+			<< (QStringList()
+				<< " (./TeX_files/01_Introduction.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./TeX_files/01_Introduction.tex");
+	QTest::newRow("close with markers in front and open")
+			<< (QStringList()
+				<< "(./TeX_files/0a_Cover.tex [1]"
+				<< "[3] [4]) (./TeX_files/0b_Abstract.tex) [5] [6] (./_Thesis_.toc"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./_Thesis_.toc");
+	QTest::newRow("close with markers in front")
+			<< (QStringList()
+				<< "(./TeX_files/0a_Cover.tex [1]"
+				<< "[3] [4]) (./TeX_files/0b_Abstract.tex) [5] [6] "
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("");
+	QTest::newRow("close with markers in front 2")
+			<< (QStringList()
+				<< "(./TeX_files/0a_Cover.tex [1]"
+				<< "[3] [4]) (./TeX_files/0b_Abstract.tex)"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("");
+	QTest::newRow("close with markers in front 3")
+			<< (QStringList()
+				<< "(./TeX_files/0a_Cover.tex [1]"
+				<< "[3] [4]"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./TeX_files/0a_Cover.tex");
+
+
+
+
+
+	// synthetic examples
+	// these might overconstrain the filename detection heuristic, if there cannot be found any real-world
+	// example supporting those. They might get removed in the future.
+
 	QTest::newRow("open")
 			<< (QStringList() << "(d:/data/test.tex")
 			<< short(LatexOutputFilter::Start)
