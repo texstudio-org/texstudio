@@ -61,10 +61,6 @@ const int kSelectText = 3;
 const int kSelectImage = 4;
 const int kPresentation = 5; //left-click: next, rclick: prev (for these presentation/mouse-pointer)
 
-// duration of highlighting in PDF view (might make configurable?)
-const int kPDFHighlightDuration = 2000;
-const QColor kPDFHighlightColor(255, 255, 0, 63);
-
 static PDFDocumentConfig* globalConfig = 0;
 bool PDFDocument::isCompiling = false;
 bool PDFDocument::isMaybeCompiling = false;
@@ -573,7 +569,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.setRenderHint(QPainter::Antialiasing);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
-				painter.setBrush(kPDFHighlightColor);
+				painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 				painter.drawPath(highlightPath);
 			}
 			if (currentTool == kPresentation)
@@ -633,7 +629,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.translate(drawGrid.left(), drawGrid.top());
 						painter.scale(totalScaleFactor(), totalScaleFactor());
 						painter.setPen(QColor(0, 0, 0, 0));
-						painter.setBrush(kPDFHighlightColor);
+						painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 						//QPainterPath path=highlightPath;
 						//path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
 						painter.drawPath(highlightPath);
@@ -1323,10 +1319,8 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath& path)
 	PDFScrollArea* scrollArea = getScrollArea();
 	if (scrollArea) 
 		scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
-	if (kPDFHighlightDuration > 0)
-		highlightRemover.start(kPDFHighlightDuration);
-	
-	
+	if (globalConfig->highlightDuration > 0)
+		highlightRemover.start(globalConfig->highlightDuration);
 }
 
 

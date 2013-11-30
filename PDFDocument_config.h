@@ -21,7 +21,8 @@ struct PDFDocumentConfig{
 	bool magnifierBorder;
 
 	QString syncFileMask;
-
+	QString highlightColor; // hex rgba, e.g. #FFFF003F
+	int highlightDuration;
 
 //live options
 	int editTool;

@@ -23,4 +23,6 @@ void setSubtreeExpanded(QTreeView *view, QModelIndex idx, bool expand);
 // opens a selection dialog and inserts the selected file(s) or path into widget
 bool browse(QWidget* w, const QString& title, const QString& extension, const QString& startPath = QDir::homePath(), bool list = false);
 
+QColor colorFromRGBAstr(const QString &hex, QColor fallback=QColor());
+
 #endif // UTILSUI_H
