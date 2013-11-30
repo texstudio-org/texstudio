@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>475</width>
+            <height>540</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -782,7 +782,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>858</width>
+               <width>202</width>
                <height>94</height>
               </rect>
              </property>
@@ -1846,7 +1846,6 @@ Then you can select a new shortcut by one of the following ways:
               </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
-             <zorder>checkBoxIndentIncludesInStructureTree</zorder>
              <zorder>label_64</zorder>
              <zorder>leReferenceCommandsInContextMenu</zorder>
             </widget>
@@ -2512,8 +2511,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3012,6 +3011,35 @@ them here.</string>
           <string>Full Page PDF Preview</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_66">
+            <property name="text">
+             <string>Highlight Duration</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="spinBoxHighlightDuration">
+            <property name="specialValueText">
+             <string>Infinite</string>
+            </property>
+            <property name="suffix">
+             <string notr="true"> ms</string>
+            </property>
+            <property name="maximum">
+             <number>86400000</number>
+            </property>
+            <property name="value">
+             <number>2000</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_28">
             <property name="text">
@@ -3079,7 +3107,7 @@ them here.</string>
           <item row="2" column="1">
            <widget class="QSpinBox" name="spinBoxPreviewDPI">
             <property name="suffix">
-             <string>dpi</string>
+             <string> dpi</string>
             </property>
             <property name="maximum">
              <number>600</number>
@@ -3117,7 +3145,7 @@ them here.</string>
           <item row="4" column="1">
            <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
             <property name="suffix">
-             <string>px</string>
+             <string> px</string>
             </property>
             <property name="prefix">
              <string/>
@@ -3143,7 +3171,7 @@ them here.</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_34">
             <property name="text">
              <string>Synchronized Files Types:</string>
@@ -3153,7 +3181,7 @@ them here.</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="8" column="1">
            <widget class="QLineEdit" name="lineEditPreviewSyncFileMask">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -3166,7 +3194,7 @@ them here.</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="label_18">
             <property name="text">
              <string>Cache Size:</string>
@@ -3176,7 +3204,7 @@ them here.</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="9" column="1">
            <widget class="QSpinBox" name="spinBoxCacheSizeMB">
             <property name="suffix">
              <string> MB</string>
@@ -3198,10 +3226,36 @@ them here.</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="10" column="0">
            <widget class="QCheckBox" name="autoHideToolbars">
             <property name="text">
              <string>Auto-hide Toolbars in Embedded Mode</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_67">
+            <property name="text">
+             <string>Highlight Color</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="lineEditHighlightColor">
+            <property name="toolTip">
+             <string>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</string>
+            </property>
+            <property name="inputMask">
+             <string>\#HHHHHHHH;_</string>
+            </property>
+            <property name="text">
+             <string notr="true">#</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>

@@ -559,6 +559,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1, &pseudoDialog->comboBoxPreviewMagnifierShape);
 	registerOption("Preview/Magnifier Border", &pdfDocumentConfig->magnifierBorder, false, &pseudoDialog->checkBoxPreviewMagnifierBorder);
 	
+	registerOption("Preview/HighlightColor", &pdfDocumentConfig->highlightColor, "#FFFF003F", &pseudoDialog->lineEditHighlightColor);
+	registerOption("Preview/HighlightDuration", &pdfDocumentConfig->highlightDuration, 2000, &pseudoDialog->spinBoxHighlightDuration);
 	registerOption("Preview/Sync File Mask", &pdfDocumentConfig->syncFileMask, "*.tex", &pseudoDialog->lineEditPreviewSyncFileMask);
 	registerOption("Preview/AutoHideToolbars", &pdfDocumentConfig->autoHideToolbars, false, &pseudoDialog->autoHideToolbars);
 
