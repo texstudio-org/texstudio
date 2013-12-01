@@ -87,7 +87,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	ui.cbPlaceForce->setToolTip(tooltip);
 
 	includeOptionChanged();
-	filter = "Images (*.eps *.jpg *jpeg *.png *.pdf)";
+	filter = "Images (*.eps *.jpg *.jpeg *.png *.pdf)";
 
 	ui.cbWidthUnit->insertItems(0, widthUnits);
 	ui.cbHeightUnit->insertItems(0, heightUnits);
