@@ -338,7 +338,7 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 	QChar c;
 	int fnStart = 0;
 	for (int i=0; i<strLine.length(); i++) {
-		if (!partialFileName.isEmpty()) qDebug() << partialFileName;
+		// if (!partialFileName.isEmpty()) qDebug() << partialFileName;
 		c = strLine.at(i);
 		switch (dwCookie) {
 			case Start:
