@@ -5995,7 +5995,7 @@ void Texmaker::dropEvent(QDropEvent *event) {
 	bool alreadyMovedCursor = false;
 	for (int i=0; i<uris.length(); i++) {
 		QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
-		if (imageFormats.contains(fi.suffix()) && currentEditor()) {
+		if (imageFormats.contains(fi.suffix().toLower()) && currentEditor()) {
 			if (!alreadyMovedCursor) {
 				QPoint p = currentEditor()->mapToContents(currentEditor()->mapToFrame(currentEditor()->mapFrom(this, event->pos())));
 				QDocumentCursor cur = currentEditor()->cursorForPosition(p);
