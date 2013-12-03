@@ -7620,6 +7620,8 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
             if(currentEditor()){
                 lineNr=currentEditor()->cursor().lineNumber();
             }
+			if (!fi.absoluteDir().exists())
+				fi.absoluteDir().mkpath(".");
 			fileNew(fi.absoluteFilePath());
             doc->patchStructure(lineNr,1);
 		}
