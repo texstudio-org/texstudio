@@ -116,6 +116,9 @@ public:
 	int tableAutoFormatSpecialCommandPos;
 	bool tableAutoFormatOneLinePerCell;
 
+	// LogView
+	double logViewWarnIfFileSizeLargerMB;
+
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE};
 	enum AutoPreviewMode {AP_NEVER = 0, AP_PREVIOUSLY = 1};

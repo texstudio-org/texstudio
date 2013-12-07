@@ -565,7 +565,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/AutoHideToolbars", &pdfDocumentConfig->autoHideToolbars, false, &pseudoDialog->autoHideToolbars);
 
     registerOption("Preview/EnlargedEmbedded",&viewerEnlarged,false);
-	
+
+	// LogView
+	registerOption("LogView/WarnIfFileSizeLargerMB", &logViewWarnIfFileSizeLargerMB, 2.0);
+
 #ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
 	registerOption("Debug/Last Full Test Run", &debugLastFullTestRun);
