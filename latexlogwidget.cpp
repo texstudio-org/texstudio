@@ -90,7 +90,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString & compile
 	if (f.open(QIODevice::ReadOnly)) {
 		double fileSizeLimitMB = ConfigManagerInterface::getInstance()->getOption("LogView/WarnIfFileSizeLargerMB").toDouble();
 		if (f.size() > fileSizeLimitMB*1024*1024 &&
-			!txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(double(f.size()) / 1024 / 1024)), 0, 'f', 2)
+			!txsConfirmWarning(tr("The logfile is very large (%1 MB) are you sure you want to load it?").arg(double(f.size()) / 1024 / 1024, 0, 'f', 2)))
 			return false;
 
 		//QByteArray fullLog = simplifyLineConserving(f.readAll());
