@@ -330,7 +330,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     //managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/commands/viewlog" << "main/edit2/goto/errorprev" << "main/edit2/goto/errornext"	<< "separator"
     //                                      << "main/tools/commands/quickbuild" << "main/tools/commands/latex" << "main/tools/commands/viewdvi" << "main/tools/commands/dvi2ps" << "main/tools/commands/viewps" << "main/tools/commands/pdflatex" << "main/tools/commands/viewpdf"));
     managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit2/goto/errorprev" << "main/edit2/goto/errornext"	<< "separator"
-                                             << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/view" ));
+										  << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" ));
 	//managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
 	//                                      << "tags/brackets/left" << "separator" << "tags/brackets/right"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "tags/brackets/left" << "separator" << "tags/brackets/right"));

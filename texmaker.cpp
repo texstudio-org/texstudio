@@ -786,6 +786,8 @@ void Texmaker::setupMenus() {
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
 	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, "build")->setData(BuildManager::CMD_QUICK);
 	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,"compile")->setData(BuildManager::CMD_COMPILE);
+	newManagedAction(menu, "stopcompile", buildManager.stopBuildAction());
+	buildManager.stopBuildAction()->setParent(menu);  // actions need to be a child of the menu in order to be configurable in toolbars
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_INDEX);
@@ -5767,8 +5769,8 @@ void Texmaker::viewCloseSomething(){
 		fileSelector.data()->deleteLater();
 		return;
 	}
-	if (buildManager.waitingForProcess()) {
-		buildManager.killCurrentProcess();
+	if (buildManager.stopBuildAction()->isEnabled()) {
+		buildManager.stopBuildAction()->trigger();
 		return;
 	}
 	if (unicodeInsertionDialog) {
