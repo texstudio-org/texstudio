@@ -173,5 +173,6 @@
         <file>images-ng/annotation_highlight.svg</file>
         <file>images-ng/annotation_text.svg</file>
         <file>images-ng/logmarkers.svgz</file>
+        <file>images-ng/stop.svgz</file>
     </qresource>
 </RCC>

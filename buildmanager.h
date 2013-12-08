@@ -126,9 +126,12 @@ public:
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
+
+	QAction * stopBuildAction() {return m_stopBuildAction;}
 	
 public slots:
 	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0);
+	Q_INVOKABLE void killCurrentProcess();
 private:
 	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0);
 public:
@@ -141,7 +144,6 @@ public:
 public:
 	Q_INVOKABLE bool waitForProcess(ProcessX* p);
 	Q_INVOKABLE bool waitingForProcess() const;
-	Q_INVOKABLE void killCurrentProcess(); 
 	
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 	
@@ -213,6 +215,7 @@ public:
     }
 
 private:
+	QAction * m_stopBuildAction;
 	QStringList previewFileNames;
 	QMap<QString, PreviewSource> previewFileNameToSource;
 	QHash<QString, QString> preambleHash;

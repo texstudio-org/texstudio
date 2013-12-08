@@ -137,6 +137,10 @@ BuildManager::BuildManager(): processWaitedFor(0)
 {
 	initDefaultCommandNames();
 	connect(this, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequestedDefault(QString,QString*,bool*)));
+
+	m_stopBuildAction = new QAction(getRealIcon("stop"), tr("Stop Compile"), this);
+	connect(m_stopBuildAction, SIGNAL(triggered()), this, SLOT(killCurrentProcess()));
+	m_stopBuildAction->setEnabled(false);
 }
 BuildManager::~BuildManager() {
 	//remove preview file names
@@ -1154,6 +1158,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 bool BuildManager::waitForProcess(ProcessX* p){
 	REQUIRE_RET(!processWaitedFor, false);
 	processWaitedFor = p;
+	m_stopBuildAction->setEnabled(true);
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	QTime time;
 	time.start();
@@ -1169,6 +1174,7 @@ bool BuildManager::waitForProcess(ProcessX* p){
 	QApplication::restoreOverrideCursor();
 	bool result = processWaitedFor;
 	processWaitedFor = 0;
+	m_stopBuildAction->setEnabled(false);
 	return result;
 }
 
