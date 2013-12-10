@@ -11,6 +11,7 @@
 
 #include "spellerutility.h"
 #include "smallUsefulFunctions.h"
+#include "JlCompress.h"
 
 int SpellerUtility::spellcheckErrorFormat = -1;
 
@@ -184,6 +185,33 @@ SpellerManager::~SpellerManager() {
 	}
 }
 
+bool SpellerManager::isOxtDictionary(const QString &fileName) {
+	QFileInfo fi(fileName);
+
+	if (!(QStringList() << "oxt" << "zip").contains(fi.suffix())) return false;
+	QStringList files = JlCompress::getFileList(fileName);
+	QString affFile;
+	QString dicFile;
+	foreach (const QString &f, files) {
+		if (f.endsWith(".aff")) {
+			affFile = f;
+		}
+		if (f.endsWith(".dic")) {
+			dicFile = f;
+		}
+	}
+	if (affFile.length() <= 4 || dicFile.length() <= 4) return false;
+	if (affFile.left(affFile.length()-4) != affFile.left(affFile.length()-4)) return false; // different names
+	return true;
+}
+
+bool SpellerManager::importDictionary(const QString &fileName, const QString &targetDir) {
+	QFileInfo fi(fileName);
+	if (!(QStringList() << "oxt" << "zip").contains(fi.suffix())) return false;
+	QStringList extractedFiles = JlCompress::extractDir(fileName, QDir(targetDir).filePath(fi.fileName()));
+	return !extractedFiles.isEmpty();
+}
+
 void SpellerManager::setIgnoreFilePrefix(const QString &prefix) {
 	ignoreFilePrefix = prefix;
 }
@@ -213,7 +241,6 @@ void SpellerManager::setDictPaths(const QStringList &dictPaths) {
 			dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
 		}
 	}
-	
 
 	// delete after new dict files are identified so a user can reload the new dict in response to a aboutToDelete signal
 	foreach (SpellerUtility *su, oldDicts) {

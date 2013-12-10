@@ -12,6 +12,10 @@
 #define _ZLIBIOAPI_H
 
 
+#ifndef OF
+#define OF _Z_OF
+#endif
+
 #define ZLIB_FILEFUNC_SEEK_CUR (1)
 #define ZLIB_FILEFUNC_SEEK_END (2)
 #define ZLIB_FILEFUNC_SEEK_SET (0)

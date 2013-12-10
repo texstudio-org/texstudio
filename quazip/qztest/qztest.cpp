@@ -157,7 +157,9 @@ int main(int argc, char **argv)
         TestQuaGzipFile testQuaGzipFile;
         err = qMax(err, QTest::qExec(&testQuaGzipFile, app.arguments()));
     }
-    if (err != 0) {
+    if (err == 0) {
+        qDebug("All tests executed successfully");
+    } else {
         qWarning("There were errors in some of the tests above.");
     }
     return err;

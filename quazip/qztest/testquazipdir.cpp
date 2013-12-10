@@ -9,6 +9,7 @@ void TestQuaZipDir::entryList_data()
     QTest::addColumn<QString>("zipName");
     QTest::addColumn<QStringList>("fileNames");
     QTest::addColumn<QString>("dirName");
+    QTest::addColumn<QStringList>("nameFilters");
     // QDir::Filters type breaks Qt meta type system on MSVC
     QTest::addColumn<int>("filter");
     QTest::addColumn<int>("sort");
@@ -16,54 +17,70 @@ void TestQuaZipDir::entryList_data()
     QTest::newRow("simple") << "simple.zip" << (
             QStringList() << "test0.txt" << "testdir1/test1.txt"
             << "testdir2/test2.txt" << "testdir2/subdir/test2sub.txt")
-            << "testdir2" << static_cast<int>(QDir::NoFilter)
+            << "testdir2" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Unsorted)
             << (QStringList() << "test2.txt" << "subdir/");
     QTest::newRow("separate dir") << "sepdir.zip" << (
             QStringList() << "laj/" << "laj/lajfile.txt")
-            << "" << static_cast<int>(QDir::NoFilter)
+            << "" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Unsorted)
             << (QStringList() << "laj/");
     QTest::newRow("separate dir (subdir listing)") << "sepdirsub.zip" << (
             QStringList() << "laj/" << "laj/lajfile.txt")
-            << "laj" << static_cast<int>(QDir::NoFilter)
+            << "laj" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Unsorted)
             << (QStringList() << "lajfile.txt");
     QTest::newRow("dirs only") << "dirsonly.zip" << (
             QStringList() << "file" << "dir/")
-            << "" << static_cast<int>(QDir::Dirs)
+            << "" << QStringList()
+            << static_cast<int>(QDir::Dirs)
             << static_cast<int>(QDir::Unsorted)
             << (QStringList() << "dir/");
     QTest::newRow("files only") << "filesonly.zip" << (
             QStringList() << "file1" << "parent/dir/" << "parent/file2")
-            << "parent" << static_cast<int>(QDir::Files)
+            << "parent" << QStringList()
+            << static_cast<int>(QDir::Files)
             << static_cast<int>(QDir::Unsorted)
             << (QStringList() << "file2");
     QTest::newRow("sorted") << "sorted.zip" << (
             QStringList() << "file1" << "parent/subdir/" << "parent/subdir2/file3" << "parent/file2" << "parent/file0")
-            << "parent" << static_cast<int>(QDir::NoFilter)
+            << "parent" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Name)
             << (QStringList() << "file0" << "file2" << "subdir/" << "subdir2/");
     QTest::newRow("sorted dirs first") << "sorted-dirs.zip" << (
             QStringList() << "file1" << "parent/subdir/" << "parent/subdir2/file3" << "parent/file2" << "parent/file0")
-            << "parent" << static_cast<int>(QDir::NoFilter)
+            << "parent" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Name | QDir::DirsFirst)
             << (QStringList() << "subdir/" << "subdir2/" << "file0" << "file2");
     QTest::newRow("sorted dirs first reversed") << "sorted-reverse.zip" << (
             QStringList() << "file1" << "parent/subdir/" << "parent/subdir2/file3" << "parent/file2" << "parent/file0")
-            << "parent" << static_cast<int>(QDir::NoFilter)
+            << "parent" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Name | QDir::DirsFirst | QDir::Reversed)
             << (QStringList() << "subdir2/" << "subdir/" << "file2" << "file0");
     QTest::newRow("sorted by size") << "sorted-size.zip" << (
             QStringList() << "file000" << "file10")
-            << "/" << static_cast<int>(QDir::NoFilter)
+            << "/" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Size)
             << (QStringList() << "file10" << "file000");
     QTest::newRow("sorted by time") << "sorted-time.zip" << (
             QStringList() << "file04" << "file03" << "file02" << "subdir/subfile")
-            << "/" << static_cast<int>(QDir::NoFilter)
+            << "/" << QStringList()
+            << static_cast<int>(QDir::NoFilter)
             << static_cast<int>(QDir::Time)
             << (QStringList() << "subdir/" << "file04" << "file02" << "file03");
+    QTest::newRow("name filter") << "name-filter.zip" << (
+            QStringList() << "file01" << "file02" << "laj")
+            << "/" << QStringList("file*")
+            << static_cast<int>(QDir::NoFilter)
+            << static_cast<int>(QDir::Name)
+            << (QStringList() << "file01" << "file02");
 }
 
 void TestQuaZipDir::entryList()
@@ -71,6 +88,7 @@ void TestQuaZipDir::entryList()
     QFETCH(QString, zipName);
     QFETCH(QStringList, fileNames);
     QFETCH(QString, dirName);
+    QFETCH(QStringList, nameFilters);
     QFETCH(int, filter);
     QFETCH(int, sort);
     QDir::Filters filters = static_cast<QDir::Filters>(filter);
@@ -87,7 +105,7 @@ void TestQuaZipDir::entryList()
     QuaZip zip(zipName);
     QVERIFY(zip.open(QuaZip::mdUnzip));
     QuaZipDir dir(&zip, dirName);
-    QCOMPARE(dir.entryList(filters, sorting), entries);
+    QCOMPARE(dir.entryList(nameFilters, filters, sorting), entries);
     zip.close();
     curDir.remove(zipName);
 }

@@ -331,7 +331,7 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
             continue;
         if ((fltr & QDir::Files) == 0 && !isDir)
             continue;
-        if (!nmfltr.isEmpty() && QDir::match(nmfltr, relativeName))
+        if (!nmfltr.isEmpty() && !QDir::match(nmfltr, relativeName))
             continue;
         bool ok;
         QuaZipFileInfo info = QuaZipDir_getFileInfo(zip, &ok, relativeName,
