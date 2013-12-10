@@ -684,6 +684,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 			// fallback to defaults
 			QStringList temp;
 			QStringList fallBackPaths;
+#ifdef Q_OS_WIN32
+			fallBackPaths << reverseParseDir("[txs-settings-dir]") << reverseParseDir("[txs-app-dir]");
+#endif
 #ifndef Q_OS_WIN32
 #ifndef PREFIX
 #define PREFIX
@@ -707,8 +710,8 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		}
 	}
 	if (grammarCheckerConfig->wordlistsDir.isEmpty()) {
-		QString sw = findResourceFile("de.stopWords", true, QStringList(), QStringList() << spellDictDir);
-		if (sw=="") sw = findResourceFile("en.stopWords", true, QStringList(), QStringList() << spellDictDir);
+		QString sw = findResourceFile("de.stopWords", true, QStringList(), parseDirList(spellDictDir));
+		if (sw=="") sw = findResourceFile("en.stopWords", true, QStringList(), QStringList() << parseDirList(spellDictDir));
 		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QFileInfo(sw).absolutePath();
 	}
 	
@@ -2865,6 +2868,26 @@ void ConfigManager::getDefaultEncoding(const QByteArray&, QTextCodec*&guess, int
 		guess = newFileEncoding;
 		return;
 	}
+}
+
+QString ConfigManager::parseDir(QString s) const {
+	s.replace("[txs-settings-dir]", configBaseDir);
+	s.replace("[txs-app-dir]", QCoreApplication::applicationDirPath());
+	return s;
+}
+
+QStringList ConfigManager::parseDirList(const QString & s) const {
+	return parseDir(s).split(";");
+}
+
+QString ConfigManager::reverseParseDir(QString s) const {
+	s.replace(configBaseDir, "[txs-settings-dir]");
+	s.replace(QCoreApplication::applicationDirPath(), "[txs-app-dir]");
+	return s;
+}
+
+QString ConfigManager::reverseParseDir(const QStringList & s) const {
+	return reverseParseDir(s.join(";"));
 }
 
 void ConfigManager::managedOptionDialogAccepted(){

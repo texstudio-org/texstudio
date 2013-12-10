@@ -58,8 +58,8 @@ public:
 	SpellerManager();
 	~SpellerManager();
 	void setIgnoreFilePrefix(const QString &ignoreFilePrefix);
-	QString dictPath();
-	void setDictPath(const QString &dictPath);
+	QStringList dictPaths() {return m_dictPaths;}
+	void setDictPaths(const QStringList &dictPaths);
 
 	QStringList availableDicts();
 	static QStringList dictNamesForDir(const QString &dir);
@@ -77,7 +77,7 @@ signals:
 	void dictPathChanged();
 	void defaultSpellerChanged();
 private:
-	QString m_dictPath;
+	QStringList m_dictPaths;
 	QString ignoreFilePrefix;
 	QHash<QString, SpellerUtility *> dicts;
 	QHash<QString, QString> dictFiles;

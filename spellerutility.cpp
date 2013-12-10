@@ -188,28 +188,30 @@ void SpellerManager::setIgnoreFilePrefix(const QString &prefix) {
 	ignoreFilePrefix = prefix;
 }
 
-void SpellerManager::setDictPath(const QString &dictPath) {
-	if (dictPath == m_dictPath) return;
-	m_dictPath = dictPath;
+void SpellerManager::setDictPaths(const QStringList &dictPaths) {
+	if (dictPaths == m_dictPaths) return;
+	m_dictPaths = dictPaths;
 
 	QList<SpellerUtility *> oldDicts = dicts.values();
 
 	dicts.clear();
 	dictFiles.clear();
-	QDir dir(dictPath);
 	QMap<QString, QString> usedFiles;
-	foreach (QFileInfo fi, dir.entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
-		QString realDictFile;
-		if (fi.isSymLink()) realDictFile = QFileInfo(fi.symLinkTarget()).canonicalFilePath();
-		else realDictFile = fi.canonicalFilePath();
-		
-		if ( usedFiles.value(fi.baseName().replace("_", "-"), "") == realDictFile )
-			continue;
-		else 
-			usedFiles.insert(fi.baseName().replace("_", "-"), realDictFile);
-			
-		
-		dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
+	foreach (const QString &path, dictPaths) {
+		QDir dir(path);
+		foreach (QFileInfo fi, dir.entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
+			QString realDictFile;
+			if (fi.isSymLink()) realDictFile = QFileInfo(fi.symLinkTarget()).canonicalFilePath();
+			else realDictFile = fi.canonicalFilePath();
+
+			if ( usedFiles.value(fi.baseName().replace("_", "-"), "") == realDictFile )
+				continue;
+			else
+				usedFiles.insert(fi.baseName().replace("_", "-"), realDictFile);
+
+
+			dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
+		}
 	}
 	
 
