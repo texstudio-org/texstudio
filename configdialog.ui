@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>12</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>475</width>
-            <height>540</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -412,12 +412,16 @@
                </widget>
               </item>
               <item row="0" column="1" colspan="4">
-               <widget class="QLineEdit" name="leDictDir"/>
+               <widget class="QLineEdit" name="leDictDir">
+                <property name="toolTip">
+                 <string>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</string>
+                </property>
+               </widget>
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_42">
                 <property name="text">
-                 <string>Spelling Dictionary Directory:</string>
+                 <string>Spelling Dictionary Directories:</string>
                 </property>
                </widget>
               </item>
@@ -782,7 +786,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>202</width>
+               <width>858</width>
                <height>94</height>
               </rect>
              </property>

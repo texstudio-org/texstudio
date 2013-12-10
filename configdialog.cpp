@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 #include "configdialog.h"
+#include "configmanager.h"
 
 #include "updatechecker.h"
 
@@ -583,7 +584,11 @@ void ConfigDialog::browsePathCommands(){
 void ConfigDialog::dictDirChanged(const QString &newText) {
 	QString lang = ui.comboBoxSpellcheckLang->currentText();
 	ui.comboBoxSpellcheckLang->clear();
-	ui.comboBoxSpellcheckLang->addItems(SpellerManager::dictNamesForDir(newText));
+	ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+	if (!config) return;
+	foreach(const QString & dir, config->parseDirList(newText)) {
+		ui.comboBoxSpellcheckLang->addItems(SpellerManager::dictNamesForDir(dir));
+	}
 	// keep selected language if possible
 	int index = ui.comboBoxSpellcheckLang->findText(lang);
 	if (index >=0) {

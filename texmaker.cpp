@@ -3444,7 +3444,7 @@ void Texmaker::ReadSettings(bool reread) {
 	}
 	
 	spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
-	spellerManager.setDictPath(configManager.spellDictDir);
+	spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
 	spellerManager.setDefaultSpeller(configManager.spellLanguage);
 	
 	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
@@ -5345,7 +5345,7 @@ void Texmaker::GeneralOptions() {
 
 		configManager.editorConfig->settingsChanged();
 		
-		spellerManager.setDictPath(configManager.spellDictDir);
+		spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
 		spellerManager.setDefaultSpeller(configManager.spellLanguage);
 		
 		GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));

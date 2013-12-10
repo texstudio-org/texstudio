@@ -249,6 +249,11 @@ PROPERTY_TYPE_FOREACH_MACRO(REGISTER_OPTION)
 	virtual void updateAllLinkedObjects(const void* optionStorage);
 	
 	static void getDefaultEncoding(const QByteArray& unused, QTextCodec* &guess, int &sure);
+
+	QString parseDir(QString s) const;
+	QStringList parseDirList(const QString & s) const;
+	QString reverseParseDir(QString s) const;
+	QString reverseParseDir(const QStringList & s) const;
 private:
 	void setInterfaceStyle();
 
