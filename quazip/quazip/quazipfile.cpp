@@ -214,7 +214,7 @@ void QuaZipFilePrivate::setZipError(int zipError) const
   if(zipError==UNZ_OK)
     q->setErrorString(QString());
   else
-	q->setErrorString(QuaZipFile::tr("ZIP/UNZIP API error %1").arg(zipError));
+    q->setErrorString(QuaZipFile::tr("ZIP/UNZIP API error %1").arg(zipError));
 }
 
 bool QuaZipFile::open(OpenMode mode)

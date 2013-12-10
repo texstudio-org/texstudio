@@ -77,15 +77,25 @@ void TestJlCompress::compressDir_data()
 {
     QTest::addColumn<QString>("zipName");
     QTest::addColumn<QStringList>("fileNames");
-    QTest::newRow("simple") << "jldir.zip" << (
-            QStringList() << "test0.txt" << "testdir1/test1.txt"
-            << "testdir2/test2.txt" << "testdir2/subdir/test2sub.txt");
+    QTest::addColumn<QStringList>("expected");
+    QTest::newRow("simple") << "jldir.zip"
+        << (QStringList() << "test0.txt" << "testdir1/test1.txt"
+            << "testdir2/test2.txt" << "testdir2/subdir/test2sub.txt")
+		<< (QStringList() << "test0.txt"
+			<< "testdir1/" << "testdir1/test1.txt"
+            << "testdir2/" << "testdir2/test2.txt"
+			<< "testdir2/subdir/" << "testdir2/subdir/test2sub.txt");
+    QTest::newRow("empty dirs") << "jldir_empty.zip"
+		<< (QStringList() << "testdir1/" << "testdir2/testdir3/")
+		<< (QStringList() << "testdir1/" << "testdir2/"
+            << "testdir2/testdir3/");
 }
 
 void TestJlCompress::compressDir()
 {
     QFETCH(QString, zipName);
     QFETCH(QStringList, fileNames);
+    QFETCH(QStringList, expected);
     QDir curDir;
     if (curDir.exists(zipName)) {
         if (!curDir.remove(zipName))
@@ -98,8 +108,8 @@ void TestJlCompress::compressDir()
     // get the file list and check it
     QStringList fileList = JlCompress::getFileList(zipName);
     qSort(fileList);
-    qSort(fileNames);
-    QCOMPARE(fileList, fileNames);
+    qSort(expected);
+    QCOMPARE(fileList, expected);
     removeTestFiles(fileNames, "compressDir_tmp");
     curDir.remove(zipName);
 }

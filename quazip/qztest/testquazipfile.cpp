@@ -17,14 +17,18 @@ void TestQuaZipFile::zipUnzip_data()
     QTest::addColumn<QString>("zipName");
     QTest::addColumn<QStringList>("fileNames");
     QTest::addColumn<QByteArray>("fileNameCodec");
+    QTest::addColumn<QByteArray>("password");
     QTest::newRow("simple") << "simple.zip" << (
             QStringList() << "test0.txt" << "testdir1/test1.txt"
             << "testdir2/test2.txt" << "testdir2/subdir/test2sub.txt")
-        << QByteArray();
+        << QByteArray() << QByteArray();
     QTest::newRow("Cyrillic") << "cyrillic.zip" << (
             QStringList()
             << QString::fromUtf8("русское имя файла с пробелами.txt"))
-        << QByteArray("IBM866");
+        << QByteArray("IBM866") << QByteArray();
+    QTest::newRow("password") << "password.zip" << (
+            QStringList() << "test.txt")
+        << QByteArray() << QByteArray("PassPass");
 }
 
 void TestQuaZipFile::zipUnzip()
@@ -32,6 +36,7 @@ void TestQuaZipFile::zipUnzip()
     QFETCH(QString, zipName);
     QFETCH(QStringList, fileNames);
     QFETCH(QByteArray, fileNameCodec);
+    QFETCH(QByteArray, password);
     QFile testFile(zipName);
     if (testFile.exists()) {
         if (!testFile.remove()) {
@@ -55,7 +60,8 @@ void TestQuaZipFile::zipUnzip()
         }
         QuaZipFile outFile(&testZip);
         QVERIFY(outFile.open(QIODevice::WriteOnly, QuaZipNewInfo(fileName,
-                        inFile.fileName())));
+                        inFile.fileName()),
+                password.isEmpty() ? NULL : password.constData()));
         for (qint64 pos = 0, len = inFile.size(); pos < len; ) {
             char buf[4096];
             qint64 readSize = qMin(static_cast<qint64>(4096), len - pos);
@@ -86,6 +92,14 @@ void TestQuaZipFile::zipUnzip()
     QVERIFY(testUnzip.goToFirstFile());
     foreach (QString fileName, fileNames) {
         QCOMPARE(testUnzip.getCurrentFileName(), fileName);
+        QFile original("tmp/" + fileName);
+        QVERIFY(original.open(QIODevice::ReadOnly));
+        QuaZipFile archived(&testUnzip);
+        QVERIFY(archived.open(QIODevice::ReadOnly,
+                         password.isEmpty() ? NULL : password.constData()));
+        QByteArray originalData = original.readAll();
+        QByteArray archivedData = archived.readAll();
+        QCOMPARE(archivedData, originalData);
         testUnzip.goToNextFile();
     }
     testUnzip.close();

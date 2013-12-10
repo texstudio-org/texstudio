@@ -57,6 +57,10 @@ class SpellerManager: public QObject {
 public:
 	SpellerManager();
 	~SpellerManager();
+
+	static bool isOxtDictionary(const QString &fileName);
+	static bool importDictionary(const QString &fileName, const QString &targetDir);
+
 	void setIgnoreFilePrefix(const QString &ignoreFilePrefix);
 	QStringList dictPaths() {return m_dictPaths;}
 	void setDictPaths(const QStringList &dictPaths);

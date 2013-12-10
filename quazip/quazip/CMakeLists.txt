@@ -5,16 +5,13 @@ include_directories(
 	${ZLIB_INCLUDE_DIRS}
 )
 
-# include with QT_USE selected library parts
-INCLUDE(${QT_USE_FILE})
-
 file(GLOB SRCS "*.c" "*.cpp")
 file(GLOB PUBLIC_HEADERS "*.h")
 
 # Must be added to enable export macro
 ADD_DEFINITIONS(-DQUAZIP_BUILD)
 
-qt4_wrap_cpp(MOC_SRCS ${PUBLIC_HEADERS})
+qt_wrap_cpp(MOC_SRCS ${PUBLIC_HEADERS})
 set(SRCS ${SRCS} ${MOC_SRCS})
 
 add_library(quazip SHARED ${SRCS})

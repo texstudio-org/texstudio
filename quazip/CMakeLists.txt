@@ -1,10 +1,32 @@
 project (QuaZip)
 cmake_minimum_required(VERSION 2.6)
 
-set(qt_min_version "4.5.0")
-find_package(Qt4 REQUIRED)
-set(QT_USE_QTGUI false)
-include(${QT_USE_FILE})
+option(BUILD_WITH_QT4 "Build QuaZip with Qt4 no matter if Qt5 was found" OFF)
+
+if( NOT BUILD_WITH_QT4 )
+    # try Qt5 first, and prefer that if found
+    find_package(Qt5Core QUIET)
+endif()
+
+if (Qt5Core_FOUND)
+    set(QTCORE_LIBRARIES ${Qt5Core_LIBRARIES})
+    include_directories(${Qt5Core_INCLUDE_DIRS})
+
+    macro(qt_wrap_cpp)
+        qt5_wrap_cpp(${ARGN})
+    endmacro()
+else()
+    set(qt_min_version "4.5.0")
+    find_package(Qt4 REQUIRED)
+    set(QT_USE_QTGUI false)
+    include(${QT_USE_FILE})
+    include_directories(${QT_INCLUDES})
+    set(QTCORE_LIBRARIES ${QT_QTCORE_LIBRARY})
+
+    macro(qt_wrap_cpp)
+        qt4_wrap_cpp(${ARGN})
+    endmacro()
+endif()
 
 # Use system zlib on unix and Qt ZLIB on Windows
 IF(UNIX)
