@@ -27,6 +27,7 @@
 
 class CompletionListModel;
 class LatexCompleterConfig;
+class LatexReference;
 //class Reference;
 
 class LatexCompleter : public QObject  {
@@ -42,8 +43,8 @@ public:
 	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType=CT_COMMANDS);
 	void updateAbbreviations();
 	
-	static void parseHelpfile(QString text);
-	static bool hasHelpfile();
+	static void setLatexReference(LatexReference *ref) {latexReference = ref;}
+	static LatexReference * getLatexReference() {return latexReference;}
 	
 	bool acceptTriggerString(const QString& trigger);
 	
@@ -51,8 +52,6 @@ public:
 	LatexCompleterConfig* getConfig() const;
 
     void setPackageList(QSet<QString> *lst);
-	
-	QString lookupWord(QString id);
 	
 	bool close();
 	bool isVisible(){
@@ -96,9 +95,7 @@ private:
 	bool acceptChar(QChar c,int pos);
 	void adjustWidget();
 	
-	static QString helpFile;
-	static QHash<QString, QString> helpIndices;
-	static QHash<QString, int> helpIndicesCache;
+	static LatexReference *latexReference;
 	
 	bool forcedRef;
 	bool forcedGraphic;

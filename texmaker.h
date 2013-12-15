@@ -64,6 +64,7 @@ enum SVNSTATUS {
 class UserMenuDialog;
 class GrammarCheck;
 class FileSelector;
+class LatexReference;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
@@ -128,6 +129,7 @@ private:
 	QFormatScheme *m_formats, *m_formatsOldDefault;
 	QLanguageFactory* m_languages;
 	LatexCompleter* completer;
+	LatexReference* latexReference;
 	
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 	
