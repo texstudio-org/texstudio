@@ -96,6 +96,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	ReadSettings();
 
+	latexReference = new LatexReference();
+	latexReference->setFile(findResourceFile("latex2e.html"));
+
     qRegisterMetaType<QSet<QString> >();
     readinAllPackageNames(); // asynchrnous read in of all available sty/cls
 	
@@ -282,6 +285,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     connect(this,SIGNAL(ImgPreview(QString)),completer,SLOT(bibtexSectionFound(QString)));
     //updateCompleter();
 	LatexEditorView::setCompleter(completer);
+	completer->setLatexReference(latexReference);
 	completer->updateAbbreviations();
 	
 	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
@@ -5258,7 +5262,7 @@ void Texmaker::ClearMarkers() {
 }
 //////////////// HELP /////////////////
 void Texmaker::LatexHelp() {
-	QString latexHelp=findResourceFile("latexhelp.html");
+	QString latexHelp=findResourceFile("latex2e.html");
 	if (latexHelp=="")
 		QMessageBox::warning(this,tr("Error"),tr("File not found"));
 	else if (!QDesktopServices::openUrl("file:///"+latexHelp))
@@ -6153,13 +6157,6 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	
 	completer->setAdditionalWords(words,CT_COMMANDS);
 	if(edView) edView->viewActivated();
-	
-	if (!LatexCompleter::hasHelpfile()) {
-		QFile f(findResourceFile("latexhelp.html"));
-		if (!f.exists() || !f.open(QIODevice::ReadOnly| QIODevice::Text))  LatexCompleter::parseHelpfile("<missing>");
-		else LatexCompleter::parseHelpfile(QTextStream(&f).readAll());
-	}
-	
 	
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 

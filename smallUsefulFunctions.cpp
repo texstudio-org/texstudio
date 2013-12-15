@@ -1844,3 +1844,14 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
         QToolTip::showText(tt2, topic);
     }
 }
+
+QString truncateLines(const QString & s, int maxLines) {
+	int lineCount = 0;
+	for (int i=0; i<s.length(); i++) {
+		if (s[i] == '\n') lineCount++;
+		if (lineCount >= maxLines) {
+			return s.left(i+1) + "...";
+		}
+	}
+	return s;
+}

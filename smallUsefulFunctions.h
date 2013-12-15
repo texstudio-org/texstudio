@@ -106,6 +106,7 @@ enum {
 
 QString getImageAsText(const QPixmap &AImage);
 void showTooltipLimited(QPoint tt,QString topic,int width=0);
+QString truncateLines(const QString & s, int maxLines);
 
 class LatexParser{
 public:

@@ -338,7 +338,8 @@ unix {
         utilities/compile_toolbar.png \
         utilities/template.png \
         utilities/thesaurus.png \
-        utilities/latexhelp.html \
+        utilities/latex2e.html \
+        utilities/latex2e.css \
         utilities/wizard_figure.png \
 	utilities/block_selection.png \
 	utilities/spellcheck_menu.png \

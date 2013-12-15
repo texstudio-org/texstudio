@@ -36,4 +36,34 @@ private:
 
 };
 
+class LatexReference : public QObject
+{
+	Q_OBJECT
+public:
+	explicit LatexReference(QObject *parent=0);
+
+	void setFile(QString filename);
+	bool contains(const QString & command);
+	QString getTextForTooltip(const QString & command);
+	QString getSectionText(const QString & command);
+	QString getPartialText(const QString & command);
+
+protected:
+	void makeIndex();
+
+private:
+	struct Anchor {
+		Anchor() {name = QString(); start_pos = -1; end_pos = -1;}
+		Anchor(const QString & n) {name = n; start_pos = -1; end_pos = -1;}
+		QString name;
+		int start_pos;
+		int end_pos;
+	};
+
+	QString m_filename;
+	QString m_htmltext;
+	QHash<QString, Anchor> m_anchors; // maps commands to their anchor
+	QHash<QString, Anchor> m_sectionAnchors; // maps commands to the anchor of their section
+};
+
 #endif // HELP_H

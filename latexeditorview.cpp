@@ -1974,17 +1974,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
 
 		if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
 			; // action is already performed as a side effect
-		} else if (config->toolTipHelp){
-			QString topic=completer->lookupWord(command);
-			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		} else if (config->toolTipHelp && completer->getLatexReference()) {
+			QString topic = completer->getLatexReference()->getTextForTooltip(command);
+			if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 		}
 		break;
 	case LatexParser::Environment:
 		if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
 			; // action is already performed as a side effect
-		} else if (config->toolTipHelp){
-			QString topic=completer->lookupWord("\\begin{"+value+"}");
-			if(!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+		} else if (config->toolTipHelp && completer->getLatexReference()) {
+			QString topic = completer->getLatexReference()->getTextForTooltip("\\begin{"+value);
+			if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 		}
 		break;
 	case LatexParser::Reference:

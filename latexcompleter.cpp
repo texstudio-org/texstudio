@@ -1,6 +1,7 @@
 #include "latexcompleter.h"
 #include "latexcompleter_p.h"
 #include "latexcompleter_config.h"
+#include "help.h"
 
 #include "smallUsefulFunctions.h"
 
@@ -946,9 +947,7 @@ void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
 
 
 //------------------------------completer-----------------------------------
-QString LatexCompleter::helpFile;
-QHash<QString, QString> LatexCompleter::helpIndices;
-QHash<QString, int> LatexCompleter::helpIndicesCache;
+LatexReference * LatexCompleter::latexReference = 0;
 LatexCompleterConfig* LatexCompleter::config=0;
 
 LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false) {
@@ -1255,35 +1254,6 @@ void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
 	completerInputBinding->setMostUsed(2);
 }
 
-void LatexCompleter::parseHelpfile(QString text) {
-	helpFile="<invalid>";
-	//search alpabetical index label and remove everything before the next tabel
-	int start=text.indexOf("<a name=\"alpha\">");
-	if (start==-1) return;
-	text=text.remove(0,start);
-	text=text.remove(0,text.indexOf("<table>")-1);
-	//split into index and remaining teext
-	int end=text.indexOf("</table>");
-	if (end==-1) return; //no remaining text
-	QString index=text.left(end);
-	helpFile=text.mid(end);
-	//read index, searching for <li><a href="#SEC128">\!</a></li>
-	QRegExp rx("<li><a\\s+(name=\"index.\")?\\s*href=\"#([^\"]+)\">([^> ]+)[^>]*</a></li>");
-	int pos = 0;    // where we are in the string
-	while (pos >= 0) {
-		pos = rx.indexIn(index, pos);
-		if (pos >= 0) {
-			QString id=rx.cap(3);
-			if (!id.startsWith("\\")) id="\\begin{"+id;
-			helpIndices.insert(id.toLower(),rx.cap(2));
-			pos += rx.matchedLength();
-		}
-	}
-	//    QMessageBox::information(0,QString::number(helpIndices.size()),"",0);
-}
-bool LatexCompleter::hasHelpfile() {
-	return !helpFile.isEmpty();
-}
 bool LatexCompleter::acceptTriggerString(const QString& trigger){
 	return trigger=="\\" && (!config || config->enabled);;
 }
@@ -1349,7 +1319,6 @@ void LatexCompleter::cursorPositionChanged() {
 }
 //called when item is clicked, more important: normal (not signal/slot) called when completerbinding change selection
 void LatexCompleter::selectionChanged(const QModelIndex & index) {
-	if (helpIndices.empty()) return;
 	QToolTip::hideText();
 	if (!index.isValid()) return;
     if(forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
@@ -1362,8 +1331,6 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
 	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
 	QString cmd=wordrx.cap(0);
-	QString id=helpIndices.value(cmd,"");
-	if (!forcedCite && id=="") return;
 	QString topic;
 	if(latexParser.possibleCommands["%ref"].contains(cmd)){
 		QString value=listModel->words[index.row()].word;
@@ -1394,47 +1361,29 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 				if(i<l+2) topic+="\n";
 			}
 		}
+	}else if(forcedCite || latexParser.possibleCommands["%cite"].contains(cmd)){
+		QString value=listModel->words[index.row()].word;
+		int i=value.indexOf("{");
+		value.remove(0,i+1);
+		i=value.indexOf("}");
+		value=value.left(i);
+		LatexDocument *document=qobject_cast<LatexDocument *>(editor->document());
+		if(!bibReader){
+			bibReader=new bibtexReader(this);
+			connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
+			connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+			bibReader->start();
+		}
+		QString file=document->findFileFromBibId(value);
+		if(!file.isEmpty())
+			emit searchBibtexSection(file,value);
+		return;
 	}else{
-        if(forcedCite || latexParser.possibleCommands["%cite"].contains(cmd)){
-            QString value=listModel->words[index.row()].word;
-            int i=value.indexOf("{");
-            value.remove(0,i+1);
-            i=value.indexOf("}");
-            value=value.left(i);
-            LatexDocument *document=qobject_cast<LatexDocument *>(editor->document());
-            if(!bibReader){
-                bibReader=new bibtexReader(this);
-                connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
-                connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-                bibReader->start();
-            }
-            QString file=document->findFileFromBibId(value);
-            if(!file.isEmpty())
-                emit searchBibtexSection(file,value);
-            return;
-        }else{
-            QString aim="<a name=\""+id;
-            int pos=helpIndicesCache.value(wordrx.cap(0),-2);
-            if (pos==-2) {
-                //search id in help file
-                //QRegExp aim ("<a\\s+name=\""+id);
-                pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
-                helpIndicesCache.insert(wordrx.cap(0),pos);
-            }
-            if (pos<0) return;
-            //get whole topic of the line
-            int opos=pos;
-            while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
-            topic=helpFile.mid(pos);
-            if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
-            else {
-                QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
-                int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
-                topic=topic.left(nextpos);
-            }
-        }
-    }
-    showTooltip(topic);
+		if (latexReference)
+			topic = latexReference->getTextForTooltip(cmd);
+		if (topic.isEmpty()) return;
+	}
+	showTooltip(topic);
 }
 
 void LatexCompleter::showTooltip(QString topic){
@@ -1459,33 +1408,6 @@ void LatexCompleter::bibtexSectionFound(QString content){
 	showTooltip(content);
 }
 
-
-QString LatexCompleter::lookupWord(QString text){
-	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
-	if (wordrx.indexIn(text)==-1) return "";
-	QString id=helpIndices.value(wordrx.cap(0),"");
-	if (id=="") return "";
-	QString aim="<a name=\""+id;
-	int pos=helpIndicesCache.value(wordrx.cap(0),-2);
-	if (pos==-2) {
-		//search id in help file
-		//QRegExp aim ("<a\\s+name=\""+id);
-		pos=helpFile.indexOf(aim);// aim.indexIn(helpFile);
-		helpIndicesCache.insert(wordrx.cap(0),pos);
-	}
-	if (pos<0) return "";
-	//get whole topic of the line
-	int opos=pos;
-	while (pos>=1 && helpFile.at(pos)!=QChar('\n')) pos--;
-	QString topic=helpFile.mid(pos);
-	if (topic.left(opos-pos).contains("<dt>")) topic=topic.left(topic.indexOf("</dd>"));
-	else {
-		QRegExp anotherLink("<a\\s+name=\\s*\"[^\"]*\"(\\s+href=\\s*\"[^\"]*\")?>\\s*[^< ][^<]*</a>");
-		int nextpos=anotherLink.indexIn(topic,opos-pos+aim.length());
-		topic=topic.left(nextpos);
-	}
-	return topic;
-}
 //ends completion (closes the list) and returns true if there was any
 bool LatexCompleter::close(){
 	if (completerInputBinding->isActive()){
