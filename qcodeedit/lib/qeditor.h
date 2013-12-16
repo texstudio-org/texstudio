@@ -469,6 +469,7 @@ public slots:
 		void fileInConflict();
 		void fileAutoReloading(QString fname);
 		void needUpdatedCompleter();
+        void requestClose();
 
 		void cursorHovered();
 
