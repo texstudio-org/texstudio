@@ -174,6 +174,8 @@ public:
 	int lineToLineSnapshotLineNumber(const QDocumentLine &line);
 
     bool remeberAutoReload; //remember whether doc is auto reloaded while hidden (and auto reload is always activated).
+
+    void emitUpdateCompleter();
 	
 private:
 	QString fileName; //absolute
@@ -226,7 +228,6 @@ private:
 	void gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck);
 
 
-	
 #ifndef QT_NO_DEBUG
 public:
 	QSet<StructureEntry*> StructureContent;
@@ -311,7 +312,7 @@ public:
 	LatexDocuments();
 	~LatexDocuments();
     void addDocument(LatexDocument* document, bool hidden = false);
-    void deleteDocument(LatexDocument* document, bool hidden = false);
+    void deleteDocument(LatexDocument* document, bool hidden = false, bool purge = false);
     void move(int from,int to);
 	Q_INVOKABLE void setMasterDocument(LatexDocument* document);
 	Q_INVOKABLE LatexDocument* getCurrentDocument() const;
@@ -336,7 +337,7 @@ public:
 	void settingsRead();
 	
 	Q_INVOKABLE bool singleMode() const;
-	
+
 	//support for included BibTeX-files
 	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
 	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
@@ -346,7 +347,7 @@ public:
 	void updateBibFiles(bool updateFiles=true);
 	
 	void updateStructure();
-    void updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs=true);
+    void updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs=true, bool updateCompleterNow=false);
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
@@ -368,6 +369,7 @@ private slots:
 	void bibTeXFilesNeedUpdate();
 public slots:
 	void lineGrammarChecked(const void* doc,const void* line,int lineNr, const QList<GrammarError>& errors);
+    void requestedClose();
 private:
     bool m_patchEnabled;
 };

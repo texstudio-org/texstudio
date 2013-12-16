@@ -1047,8 +1047,8 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(const QString& name)
 
 void LatexDocument::setMasterDocument(LatexDocument* doc,bool recheck){
 	masterDocument=doc;
-	QList<LatexDocument *>listOfDocs=getListOfDocs();
     if(recheck){
+        QList<LatexDocument *>listOfDocs=getListOfDocs();
         foreach(LatexDocument *elem,listOfDocs){
             elem->recheckRefsLabels();
         }
@@ -1659,7 +1659,7 @@ void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
     if(!hidden)
         model->structureUpdated(document,0);
 }
-void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
+void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool purge){
     if(!hidden)
         emit aboutToDeleteDocument(document);
 	LatexEditorView *view=document->getEditorView();
@@ -1668,6 +1668,35 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
 	if (document!=masterDocument) {
 		// get list of all affected documents
 		QList<LatexDocument*> lstOfDocs=document->getListOfDocs();
+        // special treatment to remove document in purge mode (hidden doc was deleted on disc)
+        if(purge){
+            LatexDocument *master=document->getTopMasterDocument();
+            hiddenDocuments.removeAll(document);
+            //update children (connection to parents is severed)
+            foreach(LatexDocument *elem,lstOfDocs){
+                if(elem->getMasterDocument()==document){
+                    if(elem->isHidden())
+                        deleteDocument(elem,true,true);
+                    else
+                        elem->setMasterDocument(0);
+                }
+            }
+            delete document;
+            // update parents
+            lstOfDocs=master->getListOfDocs();
+            int n=0;
+            foreach(LatexDocument* elem,lstOfDocs){
+                if(!elem->isHidden()){
+                    n++;
+                    break;
+                }
+            }
+            if(n==0)
+                deleteDocument(master,true,true);
+            else
+                updateMasterSlaveRelations(master,true,true);
+            return;
+        }
         // count open related (child/parent) documents
         int n=0;
         foreach(LatexDocument* elem,lstOfDocs){
@@ -1678,7 +1707,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
             hiddenDocuments.removeAll(document);
             return;
         }
-        if(n>1){ // at least one related document will be open after removal
+        if(n>0){ // at least one related document will be open after removal
             hiddenDocuments.append(document);
             LatexEditorView *edView=document->getEditorView();
             if (edView) {
@@ -1748,6 +1777,13 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden){
 			currentDocument=0;
 	}
 }
+
+void LatexDocuments::requestedClose(){
+    QEditor *editor = qobject_cast<QEditor*>(sender());
+    LatexDocument *doc=qobject_cast<LatexDocument*>(editor->document());
+    deleteDocument(doc,true,true);
+}
+
 void LatexDocuments::setMasterDocument(LatexDocument* document){
 	if (document==masterDocument) return;
 	if (masterDocument!=0 && masterDocument->getEditorView()==0){
@@ -2316,7 +2352,7 @@ void LatexDocuments::bibTeXFilesNeedUpdate(){
 	bibTeXFilesModified=true;
 }
 
-void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs){
+void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs,bool updateCompleterNow){
 	//update Master/Child relations
 	//remove old settings ...
     doc->setMasterDocument(0,false);
@@ -2355,6 +2391,9 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 	//recheck references
     if(recheckRefs)
         doc->recheckRefsLabels();
+
+    if(updateCompleterNow)
+        doc->emitUpdateCompleter();
 }
 
 const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs) const {
@@ -2473,6 +2512,10 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
         }*/
 	}
     return false;
+}
+
+void LatexDocument::emitUpdateCompleter(){
+    emit updateCompleter();
 }
 
 void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){

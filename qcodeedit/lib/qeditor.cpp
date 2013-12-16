@@ -1126,24 +1126,30 @@ void QEditor::fileChanged(const QString& file)
 	{
 		watcher()->removeWatch(QString(), this); //no duplicated questions
 
-		int ret = QMessageBox::warning(this, tr("File deleted"), tr("The file %1 has been deleted on disk.\n"
-									    "Should I save the document as it is to restore the file?\n").arg(fileName()), QMessageBox::Save | QMessageBox::Ignore);
-		if (ret == QMessageBox::Save) {
-			if ( QFileInfo(file).exists() ) {
-				QMessageBox::warning(this, tr("File deleted"), tr("Well, this is strange: The file %1 is not deleted anymore.\n"
-										  "Probably someone else restored it and therefore I'm not going to override the (possible modified) version on the disk.").arg(fileName()), QMessageBox::Ok);
-				m_saveState = Conflict;
-				reconnectWatcher();
-				return;
-			} else {
-				m_saveState = Undefined;
-				save(); //save will reconnect the watcher
-				return;
-			}
-		}
+        if(flag(SilentReloadOnExternalChanges)){ // if hidden, just close the editor
+            emit requestClose();
+            return;
+        }
 
-		if ( QFileInfo(file).exists() )
-			reconnectWatcher();
+        int ret = QMessageBox::warning(this, tr("File deleted"), tr("The file %1 has been deleted on disk.\n"
+                                                                    "Should I save the document as it is to restore the file?\n").arg(fileName()), QMessageBox::Save | QMessageBox::Ignore);
+        if (ret == QMessageBox::Save) {
+            if ( QFileInfo(file).exists() ) {
+                QMessageBox::warning(this, tr("File deleted"), tr("Well, this is strange: The file %1 is not deleted anymore.\n"
+                                                                  "Probably someone else restored it and therefore I'm not going to override the (possible modified) version on the disk.").arg(fileName()), QMessageBox::Ok);
+                m_saveState = Conflict;
+                reconnectWatcher();
+                return;
+            } else {
+                m_saveState = Undefined;
+                save(); //save will reconnect the watcher
+                return;
+            }
+        }
+
+        if ( QFileInfo(file).exists() )
+            reconnectWatcher();
+
 	} else if ( !isContentModified() )
 	{
 		// silently reload file if the editor contains no modification?
