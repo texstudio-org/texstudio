@@ -85,7 +85,7 @@ const QString noSpacePunctation = "!:?,.;)";
   if (i >= (words).length()) break; \
   if ((words)[i].length() == 1 && noSpacePunctation.contains((words)[i][0])) continue; \
   if ((words)[i-1].length() == 1 && ((words)[i-1] == "(" || (words)[i-1] == "\"")) continue; \
-
+  if ((words)[i-1].length() == 2 && (words)[i-1][1] == '.' && (words)[i].length() == 2 && (words)[i][1] == '.') continue; /* abbeviations like "e.g." */ \
 
 void GrammarCheck::process(){
 	REQUIRE(latexParser);
