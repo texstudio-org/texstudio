@@ -3415,7 +3415,9 @@ void PDFDocument::dropEvent(QDropEvent *event)
 void PDFDocument::enterEvent(QEvent *event)
 {
 	Q_UNUSED(event)
-	setToolbarsVisible(true);
+    if (embeddedMode && globalConfig->autoHideToolbars) {
+        setToolbarsVisible(true);
+    }
 }
 
 void PDFDocument::leaveEvent(QEvent *event)
