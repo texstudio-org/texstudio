@@ -1936,7 +1936,7 @@ PDFScrollArea* PDFWidget::getScrollArea()
 QList<PDFDocument*> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
-	   : renderManager(0),curFileSize(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL),syncFromSourceBlock(false),syncToSourceBlock(false)
+	   : renderManager(0),curFileSize(0),exitFullscreen(0), watcher(NULL), reloadTimer(NULL),scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0), syncFromSourceBlock(false),syncToSourceBlock(false)
 {
 	REQUIRE(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -1977,6 +1977,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 	if (embeddedMode && globalConfig->autoHideToolbars) {
 		setToolbarsVisible(false);
 	}
+
 
 	//batch test: 
 	/*QString test = QProcessEnvironment::systemEnvironment().value("TEST");
@@ -2849,6 +2850,11 @@ void PDFDocument::updateToolBarForOrientation(Qt::Orientation orientation) {
 
 
 void PDFDocument::search(bool backwards, bool incremental){
+	if (!dwSearch) return;
+	search(dwSearch->getSearchText(), backwards, incremental, dwSearch->hasFlagCaseSensitive(), dwSearch->hasFlagSync());
+}
+//better use flags for this
+void PDFDocument::search(const QString& searchText, bool backwards, bool incremental, bool caseSensitive, bool sync){
 	if (document.isNull())
 		return;
 
@@ -2859,11 +2865,10 @@ void PDFDocument::search(bool backwards, bool incremental){
 	int deltaPage, firstPage, lastPage;
 	int run, runs;
 
-	QString	searchText = dwSearch->getSearchText();
 	if (searchText.isEmpty())
 		return;
 
-	if (dwSearch->hasFlagCaseSensitive())
+	if (caseSensitive)
 		searchMode = Poppler::Page::CaseSensitive;
 
 	deltaPage = (backwards ? -1 : +1);
@@ -2933,7 +2938,7 @@ void PDFDocument::search(bool backwards, bool incremental){
 				QPainterPath p;
 				p.addRect(lastSearchResult.selRect);
 
-				if (hasSyncData() && dwSearch->hasFlagSync())
+				if (hasSyncData() && sync)
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
@@ -3444,6 +3449,7 @@ void PDFDocument::setToolbarsVisible(bool visible)
 
 void PDFDocument::doFindDialog(const QString command)
 {
+	if (!dwSearch) return;
 	dwSearch->show();
 	dwSearch->setFocus();
 	if(!command.isEmpty())

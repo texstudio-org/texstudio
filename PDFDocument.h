@@ -423,6 +423,9 @@ private slots:
 	void jumpToPage();
 
 	void search(bool backward, bool incremental);
+public:
+	void search(const QString& searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
+private slots:
 	void gotoAnnotation(const PDFAnnotation *ann);
 
 	void zoomFromAction();
