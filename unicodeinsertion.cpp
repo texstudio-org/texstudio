@@ -30,7 +30,7 @@ void QLineEditWithMetaText::paintEvent ( QPaintEvent * ev){
 }
 
 
-UnicodeInsertion::UnicodeInsertion(QWidget* parent): QWidget(parent)
+UnicodeInsertion::UnicodeInsertion(QWidget* parent, int defCharCode): QWidget(parent), defaultCharCode(defCharCode)
 {
 	QLayout* lay = new QVBoxLayout();
 	edit=new QLineEditWithMetaText(this);
@@ -60,10 +60,11 @@ UnicodeInsertion::UnicodeInsertion(QWidget* parent): QWidget(parent)
 	this->setLayout(lay);
 
 
-	edit->setText("0x");
 	setFocusProxy(edit);
 	connect(edit,SIGNAL(textChanged(QString)), SLOT(editChanged(QString)));
 	setAttribute(Qt::WA_DeleteOnClose,true);
+	if (defaultCharCode == 0) edit->setText("0x");
+	else edit->setText(QString("0x%1").arg(defaultCharCode,0,16));
 }
 
 void UnicodeInsertion::setTableText(int r, int c, const QString& s){
@@ -72,7 +73,8 @@ void UnicodeInsertion::setTableText(int r, int c, const QString& s){
 }
 void UnicodeInsertion::keyPressEvent(QKeyEvent * k){
 	if (k->key()==Qt::Key_Enter || k->key()==Qt::Key_Return){
-		if (table->item(0,8) && table->item(0,8)->text()!="")
+		if (table->item(0,8) && table->item(0,8)->text()!="" &&
+			table->item(0,8)->text() != unicodePointToString(defaultCharCode))
 		emit insertCharacter(table->item(0,8)->text());
 		close();
 	}
