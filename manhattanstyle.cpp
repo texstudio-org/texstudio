@@ -536,7 +536,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
             QLinearGradient grad(option->rect.topLeft(), QPoint(rect.center().x(), rect.bottom()));
             QColor startColor = StyleHelper::shadowColor().darker(164);
             QColor endColor = StyleHelper::baseColor().darker(130);
-            grad.setColorAt(0, endColor);
+            grad.setColorAt(0, startColor);
             grad.setColorAt(1, endColor);
             painter->fillRect(option->rect, grad);
             painter->setPen(QColor(255, 255, 255, 60));
@@ -576,8 +576,8 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
             bool horizontal = option->state & State_Horizontal;
             painter->save();
             QPainterPath path;
-            int x = option->rect.x() + horizontal ? 2 : 6;
-            int y = option->rect.y() + horizontal ? 6 : 2;
+            int x = option->rect.x() + (horizontal ? 2 : 6 );
+            int y = option->rect.y() + (horizontal ? 6 : 2 );
             static const int RectHeight = 2;
             if (horizontal) {
                 while (y < option->rect.height() - RectHeight - 6) {

@@ -1164,9 +1164,9 @@ bool SimulatedCPU::stackWalk(){
  // defined NO_CRASH_HANDLER
  
 
-void print_backtrace(const QString& message){}
-void registerCrashHandler(int mode){}
-QString getLastCrashInformation(bool & wasLoop){return "";}
+void print_backtrace(const QString& message){Q_UNUSED(message)}
+void registerCrashHandler(int mode){Q_UNUSED(mode)}
+QString getLastCrashInformation(bool & wasLoop){Q_UNUSED(wasLoop); return "";}
 
 
 

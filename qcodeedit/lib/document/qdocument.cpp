@@ -3776,8 +3776,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							p->setPen(Qt::lightGray);
                             // old: manually drawn dot
                             //use old solution as qt5 is sh***y when finding font substitution
-#if (QT_VERSION >= 0x050000) && defined(Q_OS_MAC)
-							p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
+#if (QT_VERSION >= 0x050000) && defined(Q_OS_MAC) && (QT_VERSION < 0x050200)
+                            p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
 #else
 							p->drawText(QPoint(xpos, baseline), QString((ushort)0xb7));
 #endif
