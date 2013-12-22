@@ -1707,7 +1707,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
             hiddenDocuments.removeAll(document);
             return;
         }
-        if(n>0){ // at least one related document will be open after removal
+        if(n>1){ // at least one related document will be open after removal
             hiddenDocuments.append(document);
             LatexEditorView *edView=document->getEditorView();
             if (edView) {
