@@ -18,10 +18,11 @@ class UnicodeInsertion : public QWidget
 {
 	Q_OBJECT
 public:
-	UnicodeInsertion(QWidget* parent);
+	UnicodeInsertion(QWidget* parent, int defCharCode = 0);
 private:
 	QLineEditWithMetaText* edit;
 	QTableWidget* table;
+	int defaultCharCode;
 
 	void setTableText(int r, int c, const QString& s);
 protected:

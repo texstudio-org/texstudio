@@ -3231,12 +3231,17 @@ void Texmaker::editInsertUnicode(){
 	if (!currentEditorView()) return;
 	QDocumentCursor c=currentEditor()->cursor();
 	if (!c.isValid()) return;
+	int curPoint = 0;
 	if (c.hasSelection()) {
-		c.removeSelectedText();
+		QString sel = c.selectedText();
+		if (sel.length() == 1) curPoint = sel[0].unicode();
+		else if (sel.length() == 2 && sel.at(0).isHighSurrogate() && sel.at(1).isLowSurrogate()) {
+			curPoint = sel.toUcs4().value(0, 0);
+		} else c.setAnchorColumnNumber(c.columnNumber());
 		currentEditor()->setCursor(c);
 	}
 	QPoint offset;
-	UnicodeInsertion * uid = new UnicodeInsertion (currentEditorView());
+	UnicodeInsertion * uid = new UnicodeInsertion (currentEditorView(), curPoint);
 	if (!currentEditor()->getPositionBelowCursor(offset, uid->width(), uid->height())){
 		delete uid;
 		return;
