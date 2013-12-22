@@ -1694,7 +1694,7 @@ void ProcessX::startCommand() {
     //qDebug() << workingDirectory();
     //qDebug() << cmd;
 	QByteArray path = qgetenv("PATH");
-	qputenv("PATH", path + getPathListSeparator().toAscii() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
+    qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 	QProcess::start(cmd);
 	qputenv("PATH", path); // restore
 
