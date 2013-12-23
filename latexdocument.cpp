@@ -1952,7 +1952,7 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
     }
   }
 
-  bool changed=false;
+  //bool changed=false;
   if(updateFiles){
     for (int i=0; i<mentionedBibTeXFiles.count();i++){
       QString &fileName=mentionedBibTeXFiles[i];
@@ -1961,8 +1961,11 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
       if (!bibTeXFiles.contains(fileName))
         bibTeXFiles.insert(fileName,BibTeXFileInfo());
       BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-      if (bibTex.loadIfModified(fileName))
-        changed = true;
+
+      bibTex.loadIfModified(fileName);
+
+      /*if (bibTex.loadIfModified(fileName))
+        changed = true;*/
       if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
         //handle obscure bib tex feature, a just line containing "link fileName"
         mentionedBibTeXFiles.append(bibTex.linksTo);
