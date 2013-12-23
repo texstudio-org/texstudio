@@ -536,7 +536,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
             QLinearGradient grad(option->rect.topLeft(), QPoint(rect.center().x(), rect.bottom()));
             QColor startColor = StyleHelper::shadowColor().darker(164);
             QColor endColor = StyleHelper::baseColor().darker(130);
-            grad.setColorAt(0, endColor);
+            grad.setColorAt(0, startColor);
             grad.setColorAt(1, endColor);
             painter->fillRect(option->rect, grad);
             painter->setPen(QColor(255, 255, 255, 60));

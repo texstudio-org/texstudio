@@ -289,8 +289,8 @@ QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVari
 */
 
 QPixmap *IconDelegate::selected(const QPixmap &pixmap, const QPalette &palette, bool enabled) const {
-	QString key;
-    key.sprintf("%d-%d", pixmap.cacheKey(), enabled);
+    QString key=QString("%1-%2").arg(pixmap.cacheKey()).arg(enabled);
+    //key.sprintf("%d-%d", pixmap.cacheKey(), boolKey);
 	QPixmap *pm = QPixmapCache::find(key);
 	if (!pm) {
 		QImage img = pixmap.toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
