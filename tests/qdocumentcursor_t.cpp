@@ -250,6 +250,8 @@ void QDocumentCursorTest::constMethods(){
 	QFETCH(QString, selectedText);
 	QFETCH(char, previousChar);
 	QFETCH(char, nextChar);
+
+    Q_UNUSED(position)
 	
 	QDocumentCursor c=str2cur(cursor);
 	QVERIFY(c.isValid()); QVERIFY(!c.isNull());

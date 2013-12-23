@@ -32,6 +32,7 @@ void txsCritical(const QString &message){
 }
 
 QToolButton* createComboToolButton(QWidget *parent,const QStringList& list, const QList<QIcon>& icons, int height, const QObject * receiver, const char * member,QString defaultElem,QToolButton *combo){
+    Q_UNUSED(icons)
 	const QFontMetrics &fm = parent->fontMetrics();
 	if (height == -1) height = 0;
 	else if (height == 0) {
