@@ -4333,7 +4333,7 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	QDocumentCursor cur = currentEditor()->cursor();
 	QDocumentCursor origCur = cur;
 	origCur.setAutoUpdated(true);
-	cur.beginEditBlock();
+
 	bool hasCode = false;
 	if (findEnvironmentLines(doc, "figure", cursorLine, startLine, endLine, 20)) {
 		cur.moveTo(startLine, 0, QDocumentCursor::MoveAnchor);
@@ -4366,15 +4366,15 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	if (graphicsDlg->exec()) {
 		QString code = graphicsDlg->getCode();
 		
+        cur.beginEditBlock();
 		editor->cursor().replaceSelectedText(code);
 		if (editor->cursor().hasSelection()) {
 			editor->setCursor(cur.selectionEnd());
 		}
+        cur.endEditBlock();
 	} else {
 		editor->setCursor(origCur);
 	}
-	
-	cur.endEditBlock();
 	
 	delete graphicsDlg;
 }
