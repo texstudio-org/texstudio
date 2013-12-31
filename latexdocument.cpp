@@ -12,7 +12,7 @@
 //FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 FileNamePair::FileNamePair(const QString& rel, const QString& abs):relative(rel),absolute(abs){};
 
-LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0)
+LatexDocument::LatexDocument(QObject *parent):QDocument(parent),edView(0),mAppendixLine(0),mayHaveDiffMarkers(false)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	magicCommentList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
