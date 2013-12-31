@@ -175,6 +175,8 @@ public:
 
     bool remeberAutoReload; //remember whether doc is auto reloaded while hidden (and auto reload is always activated).
 
+    bool mayHaveDiffMarkers;
+
     void emitUpdateCompleter();
 	
 private:

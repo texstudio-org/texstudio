@@ -221,10 +221,11 @@ void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 			lineNr+=elem.text.count("\n");
 		}
 	}
+    doc->mayHaveDiffMarkers = true;
 }
 
 void diffRemoveMarkers(LatexDocument *doc,bool theirs){
-	if(!doc)
+    if(!doc || !doc->mayHaveDiffMarkers)
 		return;
 	
 	QDocumentCursor cur(doc);
@@ -284,6 +285,7 @@ void diffRemoveMarkers(LatexDocument *doc,bool theirs){
 			doc->line(i).removeCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 		}
 	}
+    doc->mayHaveDiffMarkers = false;
 }
 
 void diffChange(LatexDocument *doc,int ln,int col,bool theirs){
