@@ -750,7 +750,7 @@ void ConfigDialog::loadOtherIcon(){
 		txsWarning(tr("You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item."));
 		return;
 	}
-	QString fn = QFileDialog::getOpenFileName(this,tr("Select a File"),"",tr("Images (*.png *.xpm *.jpg *.jpeg *.bmp *.svg)"));
+    QString fn = QFileDialog::getOpenFileName(this,tr("Select a File"),"",tr("Images") + " (*.png *.xpm *.jpg *.jpeg *.bmp *.svg)");
 	if(!fn.isEmpty()){
 		item->setIcon(QIcon(fn));
 		replacedIconsOnMenus->insert(item->data(Qt::UserRole).toString(),fn);
