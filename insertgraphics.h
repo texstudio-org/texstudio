@@ -49,7 +49,6 @@ private:
 
 	QString generateLabel(QString fname);
 	Ui::InsertGraphics ui;
-	QString filter;
 	QFileInfo texFile;
 	QFileInfo masterTexFile;
 	bool autoLabel;

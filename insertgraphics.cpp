@@ -87,7 +87,6 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	ui.cbPlaceForce->setToolTip(tooltip);
 
 	includeOptionChanged();
-	filter = "Images (*.eps *.jpg *.jpeg *.png *.pdf)";
 
 	ui.cbWidthUnit->insertItems(0, widthUnits);
 	ui.cbHeightUnit->insertItems(0, heightUnits);
@@ -392,7 +391,7 @@ void InsertGraphics::chooseFile() {
 	foreach (const QString &fmt, m_imageFormats) {
 		exts.append("*."+fmt);
 	};
-	QString filter = "Images (" + exts.join(" ")+")";
+    QString filter = tr("Images") + " (" + exts.join(" ")+")";
 	fn =QFileDialog::getOpenFileName(this,tr("Select a File","Wizard"),texFile.absolutePath(),filter);
 	if (!fn.isEmpty()) {
 		ui.leFile->setText(fn);
