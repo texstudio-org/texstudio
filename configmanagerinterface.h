@@ -69,7 +69,7 @@ PROPERTY_TYPE_FOREACH_MACRO(VIRTUAL_REGISTER_OPTION)
 	//set an option as variant (don't use it in c++, since it is not type-safe)
 	virtual void setOption(const QString& name, const QVariant& value) = 0;
 	//get an option as variant (don't use it in c++, since it is not type-safe)
-	virtual QVariant getOption(const QString& name) const = 0;
+virtual QVariant getOption(const QString& name, const QVariant &defaultValue=QVariant()) const = 0;
 	//check if an option exists
 	virtual bool existsOption(const QString& name) const = 0;
 	//shows the value of an registered option in the passed widget

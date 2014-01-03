@@ -515,6 +515,7 @@ void Texmaker::setupDockWidgets(){
 		outputView = new OutputViewWidget(this);
 		outputView->setObjectName("OutputView");
 		centralVSplitter->addWidget(outputView);
+		outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
 		centralVSplitter->setStretchFactor(1,0);
 		centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
 
@@ -3597,6 +3598,7 @@ void Texmaker::SaveSettings(const QString& configName) {
 		config->setValue("Files/RestoreSession",ToggleRememberAct->isChecked());
 
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
+		config->setValue("GUI/outputView/visible", outputView->isVisible());
 
 		Session s = getCurrentSession();
 		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath());
