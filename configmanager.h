@@ -242,7 +242,7 @@ PROPERTY_TYPE_FOREACH_MACRO(REGISTER_OPTION)
 	
 	//virtual void registerOption(const QString& name, QVariant* storage, QVariant def);
 	virtual void setOption(const QString& name, const QVariant& value);
-	virtual QVariant getOption(const QString& name) const;
+	virtual QVariant getOption(const QString& name, const QVariant &defaultValue=QVariant()) const;
 	virtual bool existsOption(const QString& name) const;
 	virtual void linkOptionToDialogWidget(const void* optionStorage, QWidget* widget);
 	virtual void linkOptionToObject(const void* optionStorage, QObject* widget, LinkOptions options);

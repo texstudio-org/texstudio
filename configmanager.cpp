@@ -2772,13 +2772,13 @@ void ConfigManager::setOption(const QString& name, const QVariant& value){
 	}
 	persistentConfig->setValue(rname,value);
 }
-QVariant ConfigManager::getOption(const QString& name) const{
+QVariant ConfigManager::getOption(const QString& name, const QVariant & defaultValue) const{
 	REQUIRE_RET(persistentConfig,QVariant());
 	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/"+name);
     const ManagedProperty* option = 0;
 	if (rname.startsWith("texmaker/") && (option = getManagedProperty(rname.mid(9))))
 		return option->valueToQVariant();
-	return persistentConfig->value(rname);
+	return persistentConfig->value(rname, defaultValue);
 }
 
 bool ConfigManager::existsOption(const QString& name) const{
