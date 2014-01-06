@@ -64,9 +64,9 @@ public:
 	void setIgnoreFilePrefix(const QString &ignoreFilePrefix);
 	QStringList dictPaths() {return m_dictPaths;}
 	void setDictPaths(const QStringList &dictPaths);
+	void scanForDictionaries(const QString &path);
 
 	QStringList availableDicts();
-	static QStringList dictNamesForDir(const QString &dir);
 
 	bool hasSpeller(const QString &name);
 	bool hasSimilarSpeller(const QString &name, QString &bestName);

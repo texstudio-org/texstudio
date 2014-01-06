@@ -332,6 +332,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	//ui.contentsWidget->setMovement(QListView::Static);
 
 	//pageGeneral
+	connect(ui.pushButtonImportDictionary, SIGNAL(clicked()), this, SLOT(importDictionary()));
 	connect(ui.pushButtonUpdateCheckNow, SIGNAL(clicked()), this, SLOT(updateCheckNow()));
 	connect(UpdateChecker::instance(), SIGNAL(checkCompleted()), this, SLOT(refreshLastUpdateTime()));
 	refreshLastUpdateTime();
@@ -351,7 +352,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.comboBoxThesaurusFileName->setCompleter(0);
 
 	connect(ui.pushButtonDictDir, SIGNAL(clicked()), this, SLOT(browseDictDir()));
-	connect(ui.leDictDir, SIGNAL(textChanged(QString)), this, SLOT(dictDirChanged(QString)));
+	connect(ui.leDictDir, SIGNAL(textChanged(QString)), this, SLOT(updateDefaultDictSelection(QString)));
 
 	connect(ui.btSelectThesaurusFileName, SIGNAL(clicked()), this, SLOT(browseThesaurus()));
 
@@ -365,7 +366,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
-	ui.labelGetDic->setText(tr("Download Additional Dictionaries: %1").arg("<br><a href=\"http://wiki.services.openoffice.org/wiki/Dictionaries\">http://wiki.services.openoffice.org/wiki/Dictionaries</a>"));
+	ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>").arg("<a href=\"http://extensions.libreoffice.org/extension-center?getCategories=Dictionary\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 	//page custom environment
 	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));
@@ -581,16 +582,23 @@ void ConfigDialog::browsePathCommands(){
 	browse(ui.lineEditPathCommands, tr("Search Path for Commands"), "/", QDir::rootPath(), true);
 }
 
-void ConfigDialog::dictDirChanged(const QString &newText) {
+void ConfigDialog::updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault) {
 	QString lang = ui.comboBoxSpellcheckLang->currentText();
 	ui.comboBoxSpellcheckLang->clear();
+
 	ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
 	if (!config) return;
-	foreach(const QString & dir, config->parseDirList(newText)) {
-		ui.comboBoxSpellcheckLang->addItems(SpellerManager::dictNamesForDir(dir));
+	SpellerManager sm;
+	sm.setDictPaths(config->parseDirList(dictPaths));
+	ui.comboBoxSpellcheckLang->addItems(sm.availableDicts());
+	if (ui.comboBoxSpellcheckLang->count() == 0) {
+		ui.comboBoxSpellcheckLang->addItem("<none>");
 	}
-	// keep selected language if possible
-	int index = ui.comboBoxSpellcheckLang->findText(lang);
+
+	// update selected language
+	int index = -1;
+	if (!newDefault.isNull()) index = ui.comboBoxSpellcheckLang->findText(newDefault);
+	if (index < 0) index = ui.comboBoxSpellcheckLang->findText(lang); // keep selected language
 	if (index >=0) {
 		ui.comboBoxSpellcheckLang->setCurrentIndex(index);
 	}
@@ -800,6 +808,26 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem* parent, const QMenu*
 			if (parent) parent->addChild(twi);
 			else ui.treePossibleToolbarActions->addTopLevelItem(twi);
 	}
+}
+
+void ConfigDialog::importDictionary() {
+	QString filename = QFileDialog::getOpenFileName(this, tr("Import Dictionary"), QString(), tr("OpenOffice Dictionary") + " (*.oxt)", 0, QFileDialog::DontResolveSymlinks);
+	if (filename.isNull()) return;
+
+	ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+	if (!config) return;
+
+	QString targetDir = config->parseDir("[txs-settings-dir]/dictionaries");
+	targetDir.replace("//", "/");  // resolution of [txs-settings-dir] may lead to duplicate path separators
+	SpellerManager::importDictionary(filename, targetDir);
+
+	if (!config->parseDirList(ui.leDictDir->text()).contains(targetDir)) {
+		if (txsConfirm(tr("The dictionary files have been imported to\n%1.\nHowever this path is not contained in the dictionary path list. Do you want to add it?").arg(targetDir))) {
+			ui.leDictDir->setText(ui.leDictDir->text()+";[txs-settings-dir]/dictionaries");
+		}
+	}
+
+	updateDefaultDictSelection(ui.leDictDir->text(), QFileInfo(filename).baseName()); // TODO: better detection for new dictionary name (.dic filename may be different from .oxt filename)
 }
 
 void ConfigDialog::updateCheckNow() {
