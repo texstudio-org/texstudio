@@ -226,20 +226,7 @@ void SpellerManager::setDictPaths(const QStringList &dictPaths) {
 	dictFiles.clear();
 	QMap<QString, QString> usedFiles;
 	foreach (const QString &path, dictPaths) {
-		QDir dir(path);
-		foreach (QFileInfo fi, dir.entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
-			QString realDictFile;
-			if (fi.isSymLink()) realDictFile = QFileInfo(fi.symLinkTarget()).canonicalFilePath();
-			else realDictFile = fi.canonicalFilePath();
-
-			if ( usedFiles.value(fi.baseName().replace("_", "-"), "") == realDictFile )
-				continue;
-			else
-				usedFiles.insert(fi.baseName().replace("_", "-"), realDictFile);
-
-
-			dictFiles.insert(fi.baseName(), fi.canonicalFilePath());
-		}
+		scanForDictionaries(path);
 	}
 
 	// delete after new dict files are identified so a user can reload the new dict in response to a aboutToDelete signal
@@ -250,21 +237,27 @@ void SpellerManager::setDictPaths(const QStringList &dictPaths) {
 	emit dictPathChanged();
 }
 
+void SpellerManager::scanForDictionaries(const QString & path) {
+	if (path.isEmpty()) return;
+	QDirIterator iterator(path, QDirIterator::Subdirectories);
+	while (iterator.hasNext()) {
+		iterator.next();
+		if (!iterator.fileInfo().isDir()) {
+			if (iterator.fileName().endsWith(".dic")) {
+				QFileInfo fi(iterator.fileInfo());
+				QString realDictFile = (fi.isSymLink()) ? QFileInfo(fi.symLinkTarget()).canonicalFilePath() : fi.canonicalFilePath();
+				if (dictFiles.contains(fi.baseName()))
+					continue;
+				dictFiles.insert(fi.baseName(), realDictFile);
+			}
+		}
+	}
+}
+
 QStringList SpellerManager::availableDicts() {
 	if (dictFiles.keys().isEmpty())
 		return QStringList() << emptySpeller->name();
 	return QStringList(dictFiles.keys());
-}
-
-QStringList SpellerManager::dictNamesForDir(const QString &dir) {
-	QStringList dictNames;
-
-	foreach (QFileInfo fi, QDir(dir).entryInfoList(QStringList() << "*.dic", QDir::Files, QDir::Name)) {
-		dictNames << fi.baseName();
-	}
-	if (dictNames.isEmpty())
-		return QStringList() << "<none>";
-	return dictNames;
 }
 
 bool SpellerManager::hasSpeller(const QString &name) {

@@ -113,7 +113,7 @@ private slots:
 	void browseGrammarLTJavaPath();
 	void browseGrammarWordListsDir();
 	void browseDictDir();
-	void dictDirChanged(const QString& newText);
+	void updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault=QString());
 	void browsePathLog();
 	void browsePathBib();
 	void browsePathImages();
@@ -131,6 +131,7 @@ private slots:
 	void insertSeparator();
 	void populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy);
 
+	void importDictionary();
 	void updateCheckNow();
 	void refreshLastUpdateTime();
 

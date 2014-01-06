@@ -37,6 +37,7 @@
 #include <QDesktopWidget>
 #include <QDialog>
 #include <QDir>
+#include <QDirIterator>
 #include <QDockWidget>
 #include <QEvent>
 #include <QEventLoop>
