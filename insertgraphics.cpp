@@ -369,6 +369,8 @@ QString InsertGraphics::getCode() const {
 		fname=QDir::toNativeSeparators(fname);
 	}
 #endif
+	if (fname.contains(' ') && !(fname.length()>1 && fname[0]=='"' && fname[fname.length()-1]=='"'))
+		fname = '"'+fname+'"';
 	insert.append("{"+fname+"}\n");
 	if(conf.useFigure){
 		if(conf.captionBelow) insert.append(getCaptionLabelString(conf));
