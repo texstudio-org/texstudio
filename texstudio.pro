@@ -15,7 +15,11 @@ QT += \
     uitools
 }
 !isEmpty(PHONON){
-    QT += phonon
+    greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
+        QT += phonon4qt5
+    } else { #Qt4
+        QT += phonon
+    }
     DEFINES += PHONON
 }
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
