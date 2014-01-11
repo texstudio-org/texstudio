@@ -36,14 +36,13 @@ public:
 	void setBookmarks(const QList<QVariant> &bookmarkList) { m_bookmarks = bookmarkList; }
 	QList<QVariant> bookmarks() const { return m_bookmarks; }
 
-	static QString fileExtension() { return m_fileExtension; }
-
 	void setPDFFile(const QString &pdf) { m_pdfFile = pdf; }
 	QString PDFFile() const { return m_pdfFile; }
 
 	void setPDFEmbedded(bool b) { m_pdfEmbedded = b; }
 	bool PDFEmbedded() const { return m_pdfEmbedded; }
 
+	static QString fileExtension() { return m_fileExtension; }
 	static QString fmtPath(const QDir &dir, const QString &file, bool relPath=true);
 
 private:

@@ -368,8 +368,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//recent files
 	registerOption("Files/Max Recent Files", &maxRecentFiles, 5, &pseudoDialog->spinBoxMaxRecentFiles);
 	registerOption("Files/Max Recent Projects", &maxRecentProjects, 3, &pseudoDialog->spinBoxMaxRecentProjects);
+	registerOption("Files/Max Recent Sessions", &maxRecentSessions, 5);
 	registerOption("Files/Recent Files", &recentFilesList);
 	registerOption("Files/Recent Project Files", &recentProjectList);
+	registerOption("Files/Recent Session Files", &recentSessionList);
 	registerOption("Files/Remember File Filter", &rememberFileFilter, true, &pseudoDialog->checkBoxRememberFileFilter);
 	registerOption("Files/RestoreSession", &sessionRestore);
 	registerOption("Files/Last Document", &lastDocument);
@@ -1566,18 +1568,10 @@ bool ConfigManager::execConfigDialog() {
 
 
 bool ConfigManager::addRecentFile(const QString & fileName, bool asMaster){ 
-	int p=recentFilesList.indexOf(fileName);
-	bool changed=p!=0;
-	if (p>0) recentFilesList.removeAt(p);
-	if (changed) recentFilesList.prepend(fileName);
-	if (recentFilesList.count()>maxRecentFiles) recentFilesList.removeLast();
-	
+	bool changed = addMostRecent(fileName, recentFilesList, maxRecentFiles);
+
 	if (asMaster) {
-		p=recentProjectList.indexOf(fileName);
-		changed|=p!=0;
-		if (p>0) recentProjectList.removeAt(p);
-		if (p!=0) recentProjectList.prepend(fileName);
-		if (recentProjectList.count()>maxRecentProjects) recentProjectList.removeLast();
+		changed |= addMostRecent(fileName, recentProjectList, maxRecentProjects);
 	}
 	
 	if (changed) updateRecentFiles();

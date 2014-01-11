@@ -1,7 +1,6 @@
 #include "session.h"
 #include "configmanager.h"
 #include "smallUsefulFunctions.h"
-#include "mostQtHeaders.h"
 
 QString Session::m_fileExtension = "txss";
 
