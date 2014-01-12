@@ -40,7 +40,7 @@ void LatexParser::init(){
     possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
+	possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
     possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" << "\\DeclareMathSymbol" <<"\\newlength" << "\\DeclareRobustCommand" << "\\let";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
@@ -1854,4 +1854,21 @@ QString truncateLines(const QString & s, int maxLines) {
 		}
 	}
 	return s;
+}
+
+/*
+ * Utility function for most recent strings, e.g. for filenames
+ * The item is inserted at the front and removed if present in the rest of the list.
+ * The list will not get longer than maxLength.
+ * Returns true if the list contents changed (i.e. item was not already in first place)
+ */
+bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLength) {
+	int p = mostRecentList.indexOf(item);
+	bool changed = (p != 0);
+	if (!changed) return changed;
+
+	if (p > 0) mostRecentList.removeAt(p);
+	mostRecentList.prepend(item);
+	if (mostRecentList.count() > maxLength) mostRecentList.removeLast();
+	return changed;
 }

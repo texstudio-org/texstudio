@@ -613,6 +613,32 @@ private slots:
 		QEQUAL(getParamItem(line, pos, stopAtWhiteSpace), result);
 	}
 
+	void test_addMostRecent_data() {
+		QTest::addColumn<QString>("item");
+		QTest::addColumn<QStringList>("list");
+		QTest::addColumn<int>("maxLength");
+		QTest::addColumn<QStringList>("result");
+
+		QTest::newRow("addEmpty") << "item1" << QStringList() << 2 << (QStringList() << "item1");
+		QTest::newRow("addMax") << "item2" << (QStringList() << "item1") << 2 << (QStringList() << "item2" << "item1");
+		QTest::newRow("addBeyondMax") << "item3" << (QStringList() << "item1" << "item2") << 2 << (QStringList() << "item3" << "item1");
+		QTest::newRow("addExisting1") << "item1" << (QStringList() << "item1" << "item2") << 2 << (QStringList() << "item1" << "item2");
+		QTest::newRow("addExisting2") << "item2" << (QStringList() << "item1" << "item2") << 2 << (QStringList() << "item2" << "item1");
+	}
+
+	void test_addMostRecent() {
+		QFETCH(QString, item);
+		QFETCH(QStringList, list);
+		QFETCH(int, maxLength);
+		QFETCH(QStringList, result);
+
+		addMostRecent(item, list, maxLength);
+		QEQUAL(list.length(), result.length());
+		for (int i=0; i<list.length(); i++) {
+			QEQUAL(list[i], result[i]);
+		}
+	}
+
 };
 
 

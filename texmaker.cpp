@@ -93,6 +93,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	completerPreview=false;
     recheckLabels=true;
     findDlg=0;
+	recentSessionList = 0;
 	
 	ReadSettings();
 
@@ -596,7 +597,13 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu, "loadsession", tr("Load Session..."), SLOT(fileLoadSession()));
 	newManagedAction(submenu, "savesession", tr("Save Session..."), SLOT(fileSaveSession()));
 	newManagedAction(submenu, "restoresession",tr("Restore Previous Session"), SLOT(fileRestoreSession()));
-	
+	submenu->addSeparator();
+	if (!recentSessionList) {
+		recentSessionList = new SessionList(submenu, this);
+		connect(recentSessionList, SIGNAL(loadSessionRequest(QString)), this, SLOT(loadSession(QString)));
+	}
+	recentSessionList->updateMostRecentMenu();
+
 	menu->addSeparator();
 	actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
@@ -2707,6 +2714,7 @@ void Texmaker::fileLoadSession() {
 	QString fn = QFileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
 	loadSession(fn);
+	recentSessionList->addFilenameToList(fn);
 }
 
 void Texmaker::fileSaveSession() {
@@ -2722,8 +2730,11 @@ void Texmaker::fileSaveSession() {
 
 	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
-	if (!getCurrentSession().save(fn))
+	if (!getCurrentSession().save(fn)) {
 		txsCritical(tr("Saving of session failed."));
+		return;
+	}
+	recentSessionList->addFilenameToList(fn);
 }
 
 void Texmaker::restoreSession(const Session &s, bool showProgress) {
