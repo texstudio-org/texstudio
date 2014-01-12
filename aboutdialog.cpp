@@ -29,6 +29,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 				tr("TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).")+"<br>"+
 				tr("TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).")+"<br>"+
 				tr("TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).")+"<br>"+
+				tr("TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).")+"<br>"+
 				tr("TeXstudio contains an image by Alexander Klink.")+"<br>"+
 				tr("TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).")+"<br>"+
 				"<br>"+

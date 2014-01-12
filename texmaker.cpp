@@ -669,6 +669,11 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"moveLineDown",tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu,"duplicateLine",tr("Duplicate Line"), SLOT(editDuplicateLine()));
 
+	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
+	newManagedAction(submenu,"textToLowercase", tr("To Lowercase"), SLOT(editTextToLowercase()));
+	newManagedAction(submenu,"textToUppercase", tr("To Uppercase"), SLOT(editTextToUppercase()));
+	newManagedAction(submenu,"textToTitlecase", tr("To Titlecase"), SLOT(editTextToTitlecase()));
+
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
 	newManagedEditorAction(submenu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
@@ -3413,6 +3418,61 @@ void Texmaker::editSectionPasteBefore(int line) {
 	currentEditorView()->paste();
 }
 
+void Texmaker::editTextToLowercase() {
+	if (!currentEditorView()) return;
+	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+	QString text = m_cursor.selectedText();
+	if (text.isEmpty()) return;
+	m_cursor.beginEditBlock();
+	m_cursor.insertText(text.toLower());
+	m_cursor.endEditBlock();
+}
+
+void Texmaker::editTextToUppercase() {
+	if (!currentEditorView()) return;
+	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+	QString text = m_cursor.selectedText();
+	if (text.isEmpty()) return;
+	m_cursor.beginEditBlock();
+	m_cursor.insertText(text.toUpper());
+	m_cursor.endEditBlock();
+}
+
+void Texmaker::editTextToTitlecase() {
+	if (!currentEditorView()) return;
+	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
+	QString text = m_cursor.selectedText();
+	if (text.isEmpty()) return;
+	m_cursor.beginEditBlock();
+	// easier to be done in javascript
+	scriptengine* eng = new scriptengine();
+	eng->setEditorView(currentEditorView());
+	eng->setScript(
+		"/* \n" \
+		"	* To Title Case 2.1 – http://individed.com/code/to-title-case/ \n" \
+		"	* Copyright © 2008–2013 David Gouch. Licensed under the MIT License.\n" \
+		"*/ \n" \
+		"String.prototype.toTitleCase = function(){\n" \
+		"var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\\.?|via)$/i;\n" \
+		"return this.replace(/[A-Za-z0-9\\u00C0-\\u00FF]+[^\\s-]*/g, function(match, index, title){\n" \
+		"if (index > 0 && index + match.length !== title.length &&\n" \
+		"  match.search(smallWords) > -1 && title.charAt(index - 2) !== \":\" &&\n" \
+		"  (title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&\n" \
+		"  title.charAt(index - 1).search(/[^\\s-]/) < 0) {\n" \
+		"    return match.toLowerCase();\n" \
+		"}\n" \
+		"if (match.substr(1).search(/[A-Z]|\\../) > -1) {\n" \
+		"return match;\n" \
+		"}\n" \
+		"return match.charAt(0).toUpperCase() + match.substr(1);\n" \
+		"});\n" \
+		"};\n" \
+		"cursor.insertText(cursor.selectedText().toTitleCase())"
+	);
+	eng->run();
+	if (!eng->globalObject) delete eng;
+	m_cursor.endEditBlock();
+}
 
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings(bool reread) {
