@@ -131,7 +131,8 @@ HEADERS += texmaker.h \
     pdfannotationdlg.h \
     pdfannotation.h \
     kpathseaParser.h \
-    tests/latexoutputfilter_t.h
+    tests/latexoutputfilter_t.h \
+    sessionlist.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -223,7 +224,8 @@ SOURCES += main.cpp \
     pdfannotationdlg.cpp \
     pdfannotation.cpp \
     kpathseaParser.cpp \
-    tests/latexoutputfilter_t.cpp
+    tests/latexoutputfilter_t.cpp \
+    sessionlist.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \

@@ -108,6 +108,8 @@ QString getImageAsText(const QPixmap &AImage);
 void showTooltipLimited(QPoint tt,QString topic,int width=0);
 QString truncateLines(const QString & s, int maxLines);
 
+bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLength);
+
 class LatexParser{
 public:
 	LatexParser();

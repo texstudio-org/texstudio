@@ -39,6 +39,7 @@
 #include "PDFDocument.h"
 #include <QSplashScreen>
 #include "session.h"
+#include "sessionlist.h"
 #include "qformatfactory.h"
 #include "qlanguagefactory.h"
 #include "qlinemarksinfocenter.h"
@@ -180,7 +181,8 @@ private:
 	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
 	Bookmarks *bookmarks;
-	
+	SessionList *recentSessionList;
+
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
