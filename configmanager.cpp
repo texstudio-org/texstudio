@@ -2354,6 +2354,7 @@ void ConfigManager::createCommandList(QGroupBox* box, const QStringList& order, 
 	scrollAreaCommands->setWidgetResizable(true);
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout* gl=new QGridLayout(scrollAreaWidgetContents);
+	gl->setVerticalSpacing(2);
 	int row = 0;
 	foreach (const QString& id, order){
 		const CommandInfo& cmd = tempCommands.value(id);
