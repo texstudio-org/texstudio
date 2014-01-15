@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -677,10 +677,11 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>
+         <zorder>groupBoxBuildOptions</zorder>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_4">
+        <widget class="QGroupBox" name="groupBoxBuildOptions">
          <property name="title">
           <string>Build Options</string>
          </property>
@@ -782,15 +783,11 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox">
-            <property name="text">
-             <string>Additional Search Paths:</string>
-            </property>
-           </widget>
-          </item>
           <item row="6" column="0" colspan="2">
            <widget class="QScrollArea" name="scrollAreaPaths">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
@@ -799,11 +796,23 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>202</width>
+               <width>860</width>
                <height>94</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
+              <property name="leftMargin">
+               <number>9</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <property name="verticalSpacing">
                <number>2</number>
               </property>
@@ -840,7 +849,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <item row="1" column="0">
                <widget class="QLabel" name="label_58">
                 <property name="text">
-                 <string>PDF Viewer</string>
+                 <string>PDF File</string>
                 </property>
                </widget>
               </item>
@@ -864,13 +873,6 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_57">
-                <property name="text">
-                 <string>Log File</string>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="2">
                <widget class="QPushButton" name="pushButtonPathCommands">
                 <property name="sizePolicy">
@@ -888,8 +890,22 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                </widget>
               </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_57">
+                <property name="text">
+                 <string>Log File</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QLabel" name="label_68">
+            <property name="text">
+             <string>Additional Search Paths:</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -1465,7 +1481,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>625</width>
+            <width>863</width>
             <height>997</height>
            </rect>
           </property>
@@ -2528,8 +2544,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3361,16 +3377,6 @@ them here.</string>
      </widget>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
-      <string>Show Advanced Options</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="5">
     <layout class="QHBoxLayout">
      <property name="spacing">
@@ -3416,6 +3422,16 @@ them here.</string>
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -3735,22 +3751,6 @@ them here.</string>
     <hint type="destinationlabel">
      <x>514</x>
      <y>567</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>scrollAreaPaths</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>319</x>
-     <y>470</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>342</x>
-     <y>501</y>
     </hint>
    </hints>
   </connection>
