@@ -451,8 +451,6 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxUseSystemTheme->setVisible(false);
 #endif
 	
-	ui.scrollAreaPaths->setVisible(false);
-	
 	QRect screen = QApplication::desktop()->screenGeometry();
 	if (!screen.isEmpty()) {
 		int nwidth = width(), nheight = height();
