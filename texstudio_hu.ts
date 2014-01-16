@@ -677,10 +677,6 @@ támogatott.</translation>
         <translation>Lapokra bontott struktúra/szimbólum nézet</translation>
     </message>
     <message>
-        <source>Tabbed Log Viewer</source>
-        <translation type="obsolete">Lapokra bontott naplómegjelenítő</translation>
-    </message>
-    <message>
         <location line="+29"/>
         <source>Files</source>
         <translation>Fájlok</translation>
@@ -1127,7 +1123,7 @@ támogatott.</translation>
     <message>
         <location line="-77"/>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished">Szöveg súgójának mutatása a szerkesztőben</translation>
+        <translation>Szöveg súgójának mutatása a szerkesztőben</translation>
     </message>
     <message>
         <location line="-1714"/>
@@ -1665,7 +1661,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+368"/>
         <source>Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Csomag</translation>
     </message>
     <message utf8="true">
         <location line="+73"/>
@@ -1716,7 +1712,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+7"/>
         <source>Go to error when displaying log</source>
-        <translation type="unfinished"></translation>
+        <translation>Napló megjelenésekor a hibára ugrik</translation>
     </message>
     <message>
         <location line="+86"/>
@@ -1898,7 +1894,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+55"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Beágyazott módban elrejti az eszköztárat</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -3558,7 +3554,7 @@ Invalid \caption command.</source>
     <message>
         <location line="+1526"/>
         <source>Package not found</source>
-        <translation type="unfinished"></translation>
+        <translation>A csomag nem található</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -3594,7 +3590,7 @@ Invalid \caption command.</source>
     <message>
         <location line="+1145"/>
         <source>Package present</source>
-        <translation type="unfinished"></translation>
+        <translation>Csomag létezik</translation>
     </message>
     <message>
         <location line="+30"/>
@@ -3705,53 +3701,53 @@ Invalid \caption command.</source>
     <message>
         <location filename="latexlogwidget.cpp" line="+27"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Másolás</translation>
+        <translation>&amp;Másolás</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Copy All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Minden másolása</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Copy All With Line Numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Minden másolása sorszámokkal</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>No log file available</source>
-        <translation type="unfinished"></translation>
+        <translation>A naplófájl nem elérhető</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredmények</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Log File</source>
-        <translation type="unfinished">Naplófájl</translation>
+        <translation>Naplófájl</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Issues and Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredmények és logok</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>Log file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>A naplófájl nem található.</translation>
     </message>
     <message>
         <location line="+4"/>
         <location line="+36"/>
         <source>Log file not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>A naplófájl nem olvasható.</translation>
     </message>
     <message>
         <location line="-28"/>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished">A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
+        <translation>A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
     </message>
 </context>
 <context>
@@ -3867,54 +3863,22 @@ Do you want to overwrite it?</source>
 <context>
     <name>OutputViewWidget</name>
     <message>
-        <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation type="obsolete">A logfájl nagyon nagy(&gt; %1 MB). Biztosan be akarja tölteni?</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="obsolete">&amp;Másolás</translation>
-    </message>
-    <message>
-        <source>&amp;Copy all</source>
-        <translation type="obsolete">&amp;Minden másolása</translation>
-    </message>
-    <message>
-        <source>&amp;Copy all with line numbers</source>
-        <translation type="obsolete">&amp;Minden másolása sorszámokkal</translation>
-    </message>
-    <message>
-        <source>&amp;Show in log</source>
-        <translation type="obsolete">&amp;Log mutatása</translation>
-    </message>
-    <message>
-        <source>Failed to load log file &quot;%1&quot;</source>
-        <translation type="obsolete">A(z) &quot;%1&quot; log fájl betöltése meghiúsult</translation>
-    </message>
-    <message>
         <location filename="toolwidgets.cpp" line="+132"/>
         <location line="+108"/>
         <source>Messages</source>
         <translation>Üzenetek</translation>
     </message>
     <message>
-        <source>Log File</source>
-        <translation type="obsolete">Naplófájl</translation>
-    </message>
-    <message>
-        <source>Errors</source>
-        <translation type="obsolete">Hibák</translation>
-    </message>
-    <message>
         <location line="-119"/>
         <location line="+118"/>
         <source>Messages / Log File</source>
-        <translation type="unfinished">Üzenet- / naplófájl</translation>
+        <translation>Üzenet- / naplófájl</translation>
     </message>
     <message>
         <location line="-102"/>
         <location line="+104"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Napló</translation>
     </message>
     <message>
         <location line="-98"/>
@@ -3934,57 +3898,57 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfannotation.cpp" line="+30"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Szöveg</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Line</source>
-        <translation type="unfinished">Sor</translation>
+        <translation>Sor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Geometric</source>
-        <translation type="unfinished"></translation>
+        <translation>Geometrikus</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiemelés</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Stamp</source>
-        <translation type="unfinished"></translation>
+        <translation>Bélyeg</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Ink</source>
-        <translation type="unfinished"></translation>
+        <translation>Tinta</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Link</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Caret</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiányjel</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatolás</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Hang</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>Videó</translation>
     </message>
 </context>
 <context>
@@ -3992,15 +3956,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfannotationdlg.ui" line="+14"/>
         <source>Annotation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User</source>
-        <translation type="obsolete">Felhasználó</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="obsolete">Típus</translation>
+        <translation>Magyarázat</translation>
     </message>
 </context>
 <context>
@@ -4008,32 +3964,32 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfannotation.cpp" line="+154"/>
         <source>Author</source>
-        <translation type="unfinished">Szerző</translation>
+        <translation>Szerző</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Szöveg</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type</source>
-        <translation type="unfinished">Típus</translation>
+        <translation>Típus</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Módosított</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>Készített</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldal</translation>
     </message>
 </context>
 <context>
@@ -4051,27 +4007,27 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+11"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Keresendő szöveg vagy minta</translation>
+        <translation>Keresendő szöveg vagy minta</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find next occurence</source>
-        <translation type="unfinished">Következő előfordulás</translation>
+        <translation>Következő előfordulás</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find previous occurence</source>
-        <translation type="unfinished">Előző előfordulás</translation>
+        <translation>Előző előfordulás</translation>
     </message>
     <message>
         <location line="+2"/>
         <source> Find :</source>
-        <translation type="unfinished">Keresendő:</translation>
+        <translation>Keresendő:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Case</source>
-        <translation type="unfinished">Kis-/nagybetű</translation>
+        <translation>Kis-/nagybetű</translation>
     </message>
 </context>
 <context>
@@ -4341,7 +4297,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+8"/>
         <source>Invert Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverz színek</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="+2545"/>
@@ -4357,7 +4313,7 @@ Do you want to overwrite it?</source>
         <location line="-341"/>
         <location line="+3"/>
         <source>Annotations</source>
-        <translation type="unfinished"></translation>
+        <translation>Magyarázatok</translation>
     </message>
     <message>
         <location line="+651"/>
@@ -5841,7 +5797,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location line="+1"/>
         <source>link</source>
-        <translation type="unfinished"></translation>
+        <translation>link</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -5856,22 +5812,22 @@ Akarja menteni ezeket?</translation>
     <message>
         <location line="+26"/>
         <source>packagePresent</source>
-        <translation type="unfinished"></translation>
+        <translation>Csomag létezik</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>packageMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>Csomag hiányzik</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>dtx:environment</source>
-        <translation type="unfinished"></translation>
+        <translation>dtx: környezet</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>preedit</source>
-        <translation type="unfinished"></translation>
+        <translation>előszerkesztés</translation>
     </message>
     <message>
         <location line="-48"/>
@@ -6244,97 +6200,97 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location line="+30"/>
         <source>Close search/replace panel</source>
-        <translation type="unfinished">Keresés/csere panel bezárása</translation>
+        <translation>Keresés/csere panel bezárása</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Keresendő szöveg vagy minta</translation>
+        <translation>Keresendő szöveg vagy minta</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Következő keresés</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find previous</source>
-        <translation type="unfinished">Előző keresése</translation>
+        <translation>Előző keresése</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Count occurences</source>
-        <translation type="unfinished">Előfordulások száma</translation>
+        <translation>Előfordulások száma</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replacement text</source>
-        <translation type="unfinished">Csereszöveg</translation>
+        <translation>Csereszöveg</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace and find next</source>
-        <translation type="unfinished">Következő keresése és cseréje</translation>
+        <translation>Következő keresése és cseréje</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace and find previous</source>
-        <translation type="unfinished">Előző keresése és cseréje</translation>
+        <translation>Előző keresése és cseréje</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace all</source>
-        <translation type="unfinished">Cserélje mind</translation>
+        <translation>Cserélje mind</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Find:</source>
-        <translation type="unfinished">Keresendő:</translation>
+        <translation>Keresendő:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Case</source>
-        <translation type="unfinished">Kis-/nagybetű</translation>
+        <translation>Kis-/nagybetű</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Words</source>
-        <translation type="unfinished">Szavak</translation>
+        <translation>Szavak</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Regexp</source>
-        <translation type="unfinished">Reg. kif.</translation>
+        <translation>Reg. kif.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Highlight all</source>
-        <translation type="unfinished">Mind kiemelése</translation>
+        <translation>Mind kiemelése</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Cursor</source>
-        <translation type="unfinished">Kurzortól</translation>
+        <translation>Kurzortól</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Selection</source>
-        <translation type="unfinished">Kiválasztás</translation>
+        <translation>Kiválasztás</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Replace:</source>
-        <translation type="unfinished">Csere:</translation>
+        <translation>Csere:</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Prompt on replace</source>
-        <translation type="unfinished">Kérdezzen csere előtt</translation>
+        <translation>Kérdezzen csere előtt</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Escape sequences</source>
-        <translation type="unfinished">Escape szekvenciák</translation>
+        <translation>Escape szekvenciák</translation>
     </message>
     <message>
         <location line="+246"/>
@@ -6445,14 +6401,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="quazip/quazip/quazipfile.cpp" line="+217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished">ZIP/UNZIP API hiba %1</translation>
-    </message>
-</context>
-<context>
-    <name>QuaZipFilePrivate</name>
-    <message>
-        <source>ZIP/UNZIP API error %1</source>
-        <translation type="obsolete">ZIP/UNZIP API hiba %1</translation>
+        <translation>ZIP/UNZIP API hiba %1</translation>
     </message>
 </context>
 <context>
@@ -6807,97 +6756,6 @@ Megbízik a parancsfájlban?</translation>
         <location line="+1"/>
         <source>Yes, grant permanent read access to everything</source>
         <translation>Igen, az olvasási jog megadása bármihez</translation>
-    </message>
-</context>
-<context>
-    <name>SearchReplace</name>
-    <message>
-        <source>Find next occurence</source>
-        <translation type="obsolete">Következő előfordulás</translation>
-    </message>
-    <message>
-        <source>Find previous occurence</source>
-        <translation type="obsolete">Előző előfordulás</translation>
-    </message>
-    <message>
-        <source>Prompt on replace</source>
-        <translation type="obsolete">Kérdezzen csere előtt</translation>
-    </message>
-    <message>
-        <source>Replace all</source>
-        <translation type="obsolete">Cserélje mind</translation>
-    </message>
-    <message>
-        <source>Escape sequences</source>
-        <translation type="obsolete">Escape szekvenciák</translation>
-    </message>
-    <message>
-        <source>Case</source>
-        <translation type="obsolete">Kis-/nagybetű</translation>
-    </message>
-    <message>
-        <source>Count occurences</source>
-        <translation type="obsolete">Előfordulások száma</translation>
-    </message>
-    <message>
-        <source>Words</source>
-        <translation type="obsolete">Szavak</translation>
-    </message>
-    <message>
-        <source>Regexp</source>
-        <translation type="obsolete">Reg. kif.</translation>
-    </message>
-    <message>
-        <source>Highlight all</source>
-        <translation type="obsolete">Mind kiemelése</translation>
-    </message>
-    <message>
-        <source>Cursor</source>
-        <translation type="obsolete">Kurzortól</translation>
-    </message>
-    <message>
-        <source>Selection</source>
-        <translation type="obsolete">Kiválasztás</translation>
-    </message>
-    <message>
-        <source>Close search/replace panel</source>
-        <translation type="obsolete">Keresés/csere panel bezárása</translation>
-    </message>
-    <message>
-        <source> Find :</source>
-        <translation type="obsolete">Keresendő:</translation>
-    </message>
-    <message>
-        <source>Replacement text</source>
-        <translation type="obsolete">Csereszöveg</translation>
-    </message>
-    <message>
-        <source>Text or pattern to search for</source>
-        <translation type="obsolete">Keresendő szöveg vagy minta</translation>
-    </message>
-    <message>
-        <source>Find next</source>
-        <translation type="obsolete">Következő keresése</translation>
-    </message>
-    <message>
-        <source>Find previous</source>
-        <translation type="obsolete">Előző keresése</translation>
-    </message>
-    <message>
-        <source>Replace and find next</source>
-        <translation type="obsolete">Következő keresése és cseréje</translation>
-    </message>
-    <message>
-        <source>Replace and find previous</source>
-        <translation type="obsolete">Előző keresése és cseréje</translation>
-    </message>
-    <message>
-        <source>Find:</source>
-        <translation type="obsolete">Keresendő:</translation>
-    </message>
-    <message>
-        <source>Replace:</source>
-        <translation type="obsolete">Csere:</translation>
     </message>
 </context>
 <context>
@@ -7617,10 +7475,6 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <location line="+1"/>
         <source>Asymptote Commands</source>
         <translation>Asymptote parancsok</translation>
-    </message>
-    <message>
-        <source>Messages / Log File</source>
-        <translation type="obsolete">Üzenet- / naplófájl</translation>
     </message>
     <message>
         <location line="+76"/>
@@ -8656,10 +8510,6 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>A dokumentum nem fordítható írásvédett könyvtárban.</translation>
     </message>
     <message>
-        <source>Log File is not readable!</source>
-        <translation type="obsolete">A log fájl nem olvasható!</translation>
-    </message>
-    <message>
         <location line="+2571"/>
         <location line="+9"/>
         <source>TXS Profile</source>
@@ -8737,13 +8587,13 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <location line="+2"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Homespring</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Pweave</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8755,7 +8605,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <location line="+1"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Sweave</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9227,7 +9077,7 @@ included document in %1</source>
         <location line="+26"/>
         <location line="+78"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
-        <translation type="unfinished"></translation>
+        <translation>A(z) &quot;%1&quot; fájl nem létezik. Törölni akarja a nevét az aktuális fájlok listájából?</translation>
     </message>
     <message>
         <location line="+2165"/>
@@ -9385,10 +9235,6 @@ Do you want to create it?</source>
         <location line="+560"/>
         <source>No open project or tex file to clean.</source>
         <translation>Nincs tisztítandó nyitott projekt vagy tex fájl.</translation>
-    </message>
-    <message>
-        <source>Log File not found!</source>
-        <translation type="obsolete">A naplófájl nem található!</translation>
     </message>
     <message>
         <location line="+1406"/>
@@ -9659,7 +9505,7 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
     <message>
         <location line="+7"/>
         <source>Total shown phrases</source>
-        <translation type="unfinished">Összes látható kifejezés</translation>
+        <translation>Összes látható kifejezés</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -9669,12 +9515,12 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
     <message>
         <location line="+28"/>
         <source>Different phrases</source>
-        <translation type="unfinished">Különböző kifejezések</translation>
+        <translation>Különböző kifejezések</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Characters in phrases</source>
-        <translation type="unfinished">Karakterek kifejezésekben</translation>
+        <translation>Karakterek kifejezésekben</translation>
     </message>
     <message>
         <location line="+33"/>
@@ -9801,7 +9647,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <location line="+5"/>
         <source>Min&amp;max words per phrase:</source>
-        <translation>Minimális és maximális szó mondatonként:</translation>
+        <translation>&amp;Minimális és maximális szó mondatonként:</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -9949,7 +9795,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <location filename="titledpanel.cpp" line="+114"/>
         <source>Close</source>
-        <translation type="unfinished">Bezárás</translation>
+        <translation>Bezárás</translation>
     </message>
 </context>
 <context>
