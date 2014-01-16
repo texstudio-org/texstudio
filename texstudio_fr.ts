@@ -5943,7 +5943,7 @@ ne semble pas être un document PDF valide. Le fichier est soit corrompu, soit e
     <message>
         <location line="+14"/>
         <source>Fit to Wi&amp;dth</source>
-        <translation>Ajuster la &amp;largueur</translation>
+        <translation>Ajuster la &amp;largeur</translation>
     </message>
     <message>
         <location line="+41"/>
@@ -6434,7 +6434,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
     <message>
         <location line="+3"/>
         <source>Fit to Width</source>
-        <translation>Ajuster la largueur</translation>
+        <translation>Ajuster la largeur</translation>
     </message>
     <message>
         <location line="+3"/>
