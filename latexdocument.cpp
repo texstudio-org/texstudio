@@ -1858,11 +1858,8 @@ QString LatexDocuments::getTemporaryCompileFileName() const {
 }
 
 QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths) const {
-	QStringList searchPaths;
-	QString compileFileName = getTemporaryCompileFileName();
-	if (!compileFileName.isEmpty()) searchPaths << QFileInfo(compileFileName).absolutePath();
-	searchPaths << additionalSearchPaths;
-	return findAbsoluteFilePath(relName,extension,searchPaths);
+	if (!currentDocument) return relName;
+	return currentDocument->getAbsoluteFilePath(relName, extension, additionalSearchPaths);
 }
 
 LatexDocument* LatexDocuments::findDocumentFromName(const QString& fileName) const {
@@ -2657,10 +2654,16 @@ LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const
 
 QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths) const {
 	QStringList searchPaths;
-	QString compileFileName = getTopMasterDocument()->getFileName();
-	if (!compileFileName.isEmpty()) searchPaths << QFileInfo(compileFileName).absolutePath();
+	const LatexDocument* realMaster = getTopMasterDocument();
+	QString compileFileName = realMaster->getFileName();
+	if (compileFileName.isEmpty()) compileFileName = realMaster->getTemporaryFileName();
+	QString fallbackPath;
+	if (!compileFileName.isEmpty()) {
+		fallbackPath = QFileInfo(compileFileName).absolutePath(); //when the file does not exist, resolve it relative to document (e.g. to create it there)
+		searchPaths << fallbackPath;
+	}
 	searchPaths << additionalSearchPaths;
-	return findAbsoluteFilePath(relName, extension, searchPaths);
+	return findAbsoluteFilePath(relName, extension, searchPaths, fallbackPath);
 }
 
 void LatexDocuments::lineGrammarChecked(const void* doc,const void* line,int lineNr, const QList<GrammarError>& errors){
