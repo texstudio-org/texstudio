@@ -449,15 +449,14 @@ QString getTeXLiveBinPath() {
 	foreach (const QString& baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
 		QSettings reg(baseKey+ "\\Software", QSettings::NativeFormat);
 		QString uninstall;
-		for (int v=2013; v>2008; v--) {
+		for (int v=2014; v>2008; v--) {
 			uninstall = reg.value(QString("microsoft/windows/currentversion/uninstall/TeXLive%1/UninstallString").arg(v), "").toString();
-			if (!uninstall.isEmpty()) break;
-		}
-		if (!uninstall.isEmpty()) {
-			int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
-			QString path = p>0?uninstall.left(p):"";
-			if (QDir(path+"\\bin\\win32").exists())
-				return path+"\\bin\\win32\\";
+			if (!uninstall.isEmpty()) {
+				int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
+				QString path = p > 0 ? uninstall.left(p) : "";
+				if (QDir(path+"\\bin\\win32").exists())
+					return path+"\\bin\\win32\\";
+			}
 		}
 	}
 	//check for path
