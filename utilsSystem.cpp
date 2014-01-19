@@ -317,7 +317,7 @@ QString getPathfromFilename(const QString &compFile){
     return dir;
 }
 
-QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths) {
+QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths, const QString& fallbackPath) {
 	QString s=relName;
 	QString ext = extension;
 	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
@@ -328,7 +328,9 @@ QString findAbsoluteFilePath(const QString & relName, const QString &extension, 
 		fi.setFile(QDir(path), s);
 		if (fi.exists()) return fi.absoluteFilePath();
 	}
-	return s; // fallback
+	QString fbp = fallbackPath;
+	if (!fbp.isEmpty() && !fbp.endsWith('/') && !fbp.endsWith(QDir::separator())) fbp += QDir::separator();
+	return fbp + s; // fallback
 }
 
 int x11desktop_env() {
