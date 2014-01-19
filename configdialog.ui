@@ -677,7 +677,6 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>
-         <zorder>groupBoxBuildOptions</zorder>
         </widget>
        </item>
        <item>
