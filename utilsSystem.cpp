@@ -81,7 +81,6 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter, QSt
 
 #if defined( Q_WS_X11 ) || defined (Q_OS_LINUX)
 	searchFiles<<PREFIX"/share/texstudio"+dn; //X_11
-	searchFiles<<PREFIX"/share/texmakerx"+dn; //X_11
 #endif
 #ifdef Q_OS_MAC
 	CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
@@ -123,7 +122,6 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
 	searchFiles<<PREFIX"/share/texstudio/"; //X_11
-	searchFiles<<PREFIX"/share/texmakerx/"; //X_11
 	if (fileName.endsWith(".html")) searchFiles<<PREFIX"/share/doc/texstudio/html/";  //for Debian package
 #endif
 #ifdef Q_OS_MAC
