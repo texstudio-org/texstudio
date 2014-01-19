@@ -1,5 +1,25 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.6.6 ->
+-----------------------------------------
+- added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)
+- added list of recent sessions
+- speedup of saving for large documents
+- improved filename detection in log files
+- added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)
+- added button to stop a running compilation
+- the dictionary search path can now contain of multiple directories
+- Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported
+- Updated the latex reference manual to to a recent version
+- new option for maximum image tooltip width
+- new option "Reference commands in context menu"
+- new options for additional search paths in editor logic
+- new option for automatic encoding detection: make latex and character based detection selectable separately
+- new options for pdf highlight color and duration
+- find dialog: search in all loaded documents i.e. also in hidden
+- improved synchonization PDF -> source
+- several bugfixes
+
 TeXstudio 2.6.4 -> TeXstudio 2.6.6
 -----------------------------------------
 - fix home/end keys with embedded viewer
