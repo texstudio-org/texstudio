@@ -80,6 +80,8 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
 QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp);
 
 QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp, int cap = 0);
+QList<int> indicesOf(const QString& line, const QString& word, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+QList<int> indicesOf(const QString& line, const QRegExp& rx);
 
 // add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc,const QString& EnvironName,const QString& EnvironMode);

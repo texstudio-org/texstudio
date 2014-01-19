@@ -639,6 +639,57 @@ private slots:
 		}
 	}
 
+	Q_DECLARE_METATYPE(QList<int>);
+
+	void test_indicesOf_data() {
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<QString>("word");
+		QTest::addColumn<bool>("caseSensitive");
+		QTest::addColumn<QList<int> >("result");
+
+		QTest::newRow("noMatch") << "A test, a test, a test" << "foo" << false << (QList<int>());
+		QTest::newRow("multiCS") << "A test, a test, a test" << "a" << true << (QList<int>() << 8 << 16);
+		QTest::newRow("multiCSI") << "A test, a test, a test" << "a" << false << (QList<int>() << 0 << 8 << 16);
+		QTest::newRow("multiCS_end") << "A test, a test, a test" << "test" << true << (QList<int>() << 2 << 10 << 18);
+	}
+
+	void test_indicesOf() {
+		QFETCH(QString, line);
+		QFETCH(QString, word);
+		QFETCH(bool, caseSensitive);
+		QFETCH(QList<int>, result);
+
+		QList<int> indices = indicesOf(line, word, caseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+		QEQUAL(indices.length(), result.length());
+		for (int i=0; i<indices.length(); i++) {
+			QEQUAL(indices[i], result[i]);
+		}
+	}
+
+	void test_indicesOf_RegExp_data() {
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<QString>("rxString");
+		QTest::addColumn<QList<int> >("result");
+
+		QTest::newRow("noMatch") << "A test, a test, a test" << "foo" << (QList<int>());
+		QTest::newRow("multi1") << "A test, a test, a test" << "a\\s+t" << (QList<int>() << 8 << 16);
+		QTest::newRow("multi2") << "A test, a test, a test" << "[aA]\\s+t" << (QList<int>() << 0 << 8 << 16);
+		QTest::newRow("multi3") << "A test, a test, a test" << "test" << (QList<int>() << 2 << 10 << 18);
+	}
+
+	void test_indicesOf_RegExp() {
+		QFETCH(QString, line);
+		QFETCH(QString, rxString);
+		QFETCH(QList<int>, result);
+
+		QList<int> indices = indicesOf(line, QRegExp(rxString));
+		QEQUAL(indices.length(), result.length());
+		for (int i=0; i<indices.length(); i++) {
+			QEQUAL(indices[i], result[i]);
+		}
+	}
+
+
 };
 
 
