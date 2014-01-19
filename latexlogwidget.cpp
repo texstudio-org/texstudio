@@ -110,9 +110,20 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString & compile
 		logModel->parseLogDocument(log->document(), compiledFileName);
 
 		logpresent=true;
-		//update table size
+
+		// workaround to https://sourceforge.net/p/texstudio/feature-requests/622/
+		// There seems to be a bug in Qt (4.8.4) that resizeRowsToContents() does not work correctly if
+		// horizontalHeader()->setStretchLastSection(true) and the tableView has not yet been shown
+		// when iterating through the columns to determine the maximal height, everything is fine
+		// until the last column. There the calculated height is too large.
+		// As a workaround we will temporarily deactivate column stretching.
+		// Note: To reproduce, you can call the viewer via The ViewLog button. When showing the viewer
+		// by clicking the ViewTab, the widget is shown before loading (so there the bug did not appear.)
+		bool visible = errorTable->isVisible();
+		if (!visible) errorTable->horizontalHeader()->setStretchLastSection(false);
 		errorTable->resizeColumnsToContents();
 		errorTable->resizeRowsToContents();
+		if (!visible) errorTable->horizontalHeader()->setStretchLastSection(true);
 
 		selectLogEntry(0);
 		emit logLoaded();
