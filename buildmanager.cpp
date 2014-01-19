@@ -450,7 +450,7 @@ QString getTeXLiveBinPath() {
 		QSettings reg(baseKey+ "\\Software", QSettings::NativeFormat);
 		QString uninstall;
 		for (int v=2013; v>2008; v--) {
-			uninstall = reg.value("microsoft/windows/currentversion/uninstall/TeXLive2010/UninstallString", "").toString();
+			uninstall = reg.value(QString("microsoft/windows/currentversion/uninstall/TeXLive%1/UninstallString").arg(v), "").toString();
 			if (!uninstall.isEmpty()) break;
 		}
 		if (!uninstall.isEmpty()) {
