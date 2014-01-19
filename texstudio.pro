@@ -2,7 +2,6 @@ TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
 CONFIG += qt precompile_header uitools
-exists(texmakerx_my.pri):include(texmakerx_my.pri)
 QT += network \
     xml \
     svg \

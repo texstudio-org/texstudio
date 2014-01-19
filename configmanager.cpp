@@ -403,7 +403,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/WrapLineWidth", &editorConfig->lineWidth, 80, &pseudoDialog->spinBoxWrapLineWidth);
 	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
 	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true, &pseudoDialog->checkBoxAutoCompleteParens);
-	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, -1);
+	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, 0);
 	registerOption("Editor/Cursor Surrounding Lines", &editorConfig->cursorSurroundLines, 5);
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
@@ -590,55 +590,14 @@ ConfigManager::~ConfigManager(){
 QSettings* ConfigManager::readSettings(bool reread) {
 	//load config
 	QSettings *config = persistentConfig;
-	bool importTexmakerSettings = false;
-	bool importTexMakerXSettings = false;
 	if (!config){
 		QString ini = iniFileOverride;
 		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath()+"/texstudio.ini";
 		bool usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
-		if (!usbMode)
-			if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmakerx.ini")) {
-				//import texmaker usb settings
-				usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmakerx.ini")).copy(QCoreApplication::applicationDirPath()+"/texstudio.ini");
-				importTexMakerXSettings = true;
-			}
-		if (!usbMode)
-			if (isExistingFileRealWritable(QCoreApplication::applicationDirPath()+"/texmaker.ini")) {
-				//import texmaker usb settings
-				usbMode=(QFile(QCoreApplication::applicationDirPath()+"/texmaker.ini")).copy(QCoreApplication::applicationDirPath()+"/texstudio.ini");
-				importTexmakerSettings = true;
-			}
 		if (usbMode) {
 			config=new QSettings(ini,QSettings::IniFormat);
 		} else {
 			config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
-			if (config->childGroups().empty()) {
-				QSettings texmakerxsetting(QSettings::IniFormat,QSettings::UserScope,"benibela","texmakerx");				
-				//import texmakerx global settings
-				if (texmakerxsetting.childGroups().empty()) {
-					//import texmaker global settings
-					QSettings oldconfig(QSettings::IniFormat,QSettings::UserScope,"xm1","texmaker");
-					QStringList keys=oldconfig.allKeys();
-					foreach(const QString& key, keys) config->setValue(key,oldconfig.value(key,""));
-					importTexmakerSettings = true;
-				} else {
-					QDir texmakerxdir = QFileInfo(texmakerxsetting.fileName()).dir();
-					QDir texstudiodir = QFileInfo(config->fileName()).dir();
-					if (!texstudiodir.exists()) {
-						QDir txsparent = texstudiodir;
-						txsparent.cdUp();
-						txsparent.mkpath(texstudiodir.absolutePath());
-					}
-					QStringList additionalFiles = texmakerxdir.entryList(QStringList() << "*");
-					foreach (const QString &f, additionalFiles)
-						QFile::copy(texmakerxdir.absoluteFilePath(f),texstudiodir.absoluteFilePath(f));
-					
-					QStringList keys=texmakerxsetting.allKeys();
-					foreach(const QString& key, keys) config->setValue(key,texmakerxsetting.value(key,""));
-					importTexMakerXSettings = true;
-				}
-				
-			}
 		}
 		configFileName=config->fileName();
 		configFileNameBase=configFileName;
@@ -651,9 +610,6 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	
 	config->beginGroup("texmaker");
 	
-	if ((importTexmakerSettings || importTexMakerXSettings) && config->value("Tools/IntegratedPdfViewer", false).toBool())
-		config->setValue("Tools/Pdf", "<default>");
-
 	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting
 		bool b = config->value("Files/Auto Detect Encoding Of Loaded Files").toBool();
 		if (!config->contains("Files/AutoDetectEncodingFromChars")) config->setValue("Files/AutoDetectEncodingFromChars", b);
@@ -678,7 +634,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	
 	//----------------------------dictionaries-------------------------
 	
-	if (spellDictDir.isEmpty() || ((importTexmakerSettings  || importTexMakerXSettings)  && !QFileInfo(QDir(spellDictDir), spellLanguage+".dic").exists())) {
+	if (spellDictDir.isEmpty()) {
 		// non-exeistent or invalid settings for dictionary
 		// try restore from old format where there was only one dictionary - spell_dic can be removed later when users have migrated to the new version
 		QString dic = spell_dic;
@@ -740,10 +696,6 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	
 	
 	//----------------------------editor--------------------
-	if (editorConfig->showlinemultiples==-1) {
-		if (config->value("Editor/Line Numbers",true).toBool()) editorConfig->showlinemultiples=1;  //texmaker import
-		else editorConfig->showlinemultiples=0;
-	}
 	
 	//completion
     QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
@@ -1094,7 +1046,6 @@ bool ConfigManager::execConfigDialog() {
 	
 	lastLanguage = language;
 	QStringList languageFiles=findResourceFiles("translations","texstudio_*.qm") << findResourceFiles("","texstudio_*.qm");
-	languageFiles << findResourceFiles("translations","texmakerx_*.qm") << findResourceFiles("","texmakerx_*.qm");
 	for (int i=languageFiles.count()-1;i>=0;i--){
 		QString temp = languageFiles[i].mid(languageFiles[i].indexOf("_")+1);
 		temp.truncate(temp.indexOf("."));
@@ -2120,8 +2071,6 @@ void ConfigManager::loadTranslations(QString locale){
 		if (locale.length() < 2) locale = "en";
 	}
 	QString txsTranslationFile=findResourceFile("texstudio_"+locale+".qm");
-	if (txsTranslationFile == "")
-		txsTranslationFile=findResourceFile("texmakerx_"+locale+".qm");
 	//if (txsTranslationFile!="") {
 	appTranslator->load(txsTranslationFile);
 	basicTranslator->load(findResourceFile("qt_"+locale+".qm"));
