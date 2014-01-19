@@ -660,6 +660,37 @@ QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp,
 	return res;
 }
 
+/*
+ * a multi-match equivalent of QString::indexOf(QString)
+ */
+QList<int> indicesOf(const QString& line, const QString& word, Qt::CaseSensitivity cs) {
+	QList<int> columns;
+	int col = 0;
+	while (col < line.length()-1) {
+		col = line.indexOf(word, col, cs);
+		if (col < 0) break;
+		columns.append(col);
+		col++;
+	}
+	return columns;
+}
+
+/*
+ * a multi-match equivalent of QString::indexOf(QRegExp)
+ */
+QList<int> indicesOf(const QString& line, const QRegExp &rx) {
+	QList<int> columns;
+	int col = 0;
+	// exact match
+	while (col < line.length()-1) {
+		col = line.indexOf(rx, col);
+		if (col < 0) break;
+		columns.append(col);
+		col++;
+	}
+	return columns;
+}
+
 void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QString& EnvironMode){
 	QDomElement root= doc.documentElement();
 	QDomElement tag = doc.createElement("context");

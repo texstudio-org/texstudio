@@ -6359,6 +6359,70 @@ bool Texmaker::gotoMark(bool backward, int id) {
 		return gotoLogEntryAt(currentEditorView()->editor->document()->findNextMark(id,currentEditorView()->editor->cursor().lineNumber()+1));
 }
 
+
+QList<int> Texmaker::findOccurencesApproximate(QString line, const QString& guessedWord) {
+	QList<int> columns;
+
+	// exact match
+	columns = indicesOf(line, guessedWord);
+	if (columns.isEmpty()) columns = indicesOf(line, guessedWord, Qt::CaseSensitive);
+
+	QString changedWord = guessedWord;
+	if (columns.isEmpty()) {
+		//search again and ignore useless characters
+
+		QString regex;
+		for (int i=0;i<changedWord.size();i++)
+			if (changedWord[i].category() == QChar::Other_Control || changedWord[i].category() == QChar::Other_Format)
+				changedWord[i] = '\1';
+		foreach (const QString& x, changedWord.split('\1', QString::SkipEmptyParts))
+			if (regex.isEmpty()) regex += QRegExp::escape(x);
+			else regex += ".{0,2}" + QRegExp::escape(x);
+		QRegExp rx = QRegExp(regex);
+		columns = indicesOf(line, rx);
+		if (columns.isEmpty()) {
+			rx.setCaseSensitivity(Qt::CaseSensitive);
+			columns = indicesOf(line, rx);
+		}
+	}
+	if (columns.isEmpty()) {
+		//search again and allow additional whitespace
+		QString regex;
+		foreach (const QString & x , changedWord.split(" ",QString::SkipEmptyParts))
+			if (regex.isEmpty()) regex = QRegExp::escape(x);
+			else regex+="\\s+"+QRegExp::escape(x);
+		QRegExp rx = QRegExp(regex);
+		columns = indicesOf(line, rx);
+		if (columns.isEmpty()) {
+			rx.setCaseSensitivity(Qt::CaseSensitive);
+			columns = indicesOf(line, rx);
+		}
+	}
+	if (columns.isEmpty()) {
+		int bestMatch = -1, bestScore = 0;
+		for (int i=0;i<line.size()-guessedWord.size();i++) {
+			int score = 0;
+			for (int c = i, s = 0; c < line.size() && s < guessedWord.size(); c++, s++) {
+				QChar C = line[c], S = guessedWord[s];
+				if (C == S) score += 5; //perfect match
+				else if (C.toLower() == S.toLower()) score += 2; //ok match
+				else if (C.isSpace()) s--; //skip spaces
+				else if (S.isSpace()) c--; //skip spaces
+				else if (S.category() == QChar::Other_Control || S.category() == QChar::Other_Format) {
+					for (s++; s < guessedWord.size() && (guessedWord[s].category() == QChar::Other_Control||guessedWord[s].category() == QChar::Other_Format);s++); //skip nonsense
+					if (s >= guessedWord.size()) continue;
+					if (guessedWord[s] == C) { score += 5; continue; }
+					if (c+1 < line.size() && guessedWord[s] == line[c+1]) { score += 5; c++; continue; }
+					//also skip next character after that nonsense
+				}
+			}
+			if (score > bestScore) bestScore = score, bestMatch = i;
+		}
+			if (bestScore > guessedWord.size()*5 / 3) columns.append(bestMatch); //accept if 0.33 similarity
+	}
+	return columns;
+}
+
 void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, const QString& guessedWord){
 	if (!ActivateEditorForFile(fileName, true, activate))
 		if (!load(fileName)) return;
@@ -6373,72 +6437,32 @@ void Texmaker::syncFromViewer(const QString &fileName, int line, bool activate, 
 	gotoLine(line, 0, 0, QEditor::Navigation, activate);
 	Q_ASSERT(currentEditor());
 	
-	//qDebug() << line << guessedWord;
+	// guessedWord may appear multiple times -> we highlight them all
+	QList<int> columns = findOccurencesApproximate(currentEditor()->cursor().line().text(), guessedWord);
 
-	QString checkLine =currentEditor()->cursor().line().text();
-	int column = checkLine.indexOf(guessedWord);
-	if (column == -1) column = checkLine.indexOf(guessedWord, Qt::CaseInsensitive);
-	QString changedWord = guessedWord;
-	if (column == -1) {//search again and ignore useless characters
-		QString regex;
-		for (int i=0;i<changedWord.size();i++)
-			if (changedWord[i].category() == QChar::Other_Control || changedWord[i].category() == QChar::Other_Format)
-				changedWord[i] = '\1';
-		foreach (const QString& x, changedWord.split('\1', QString::SkipEmptyParts))
-			if (regex.isEmpty()) regex += QRegExp::escape(x);
-			else regex += ".{0,2}" + QRegExp::escape(x);
-		//qDebug() << changedWord << regex;
-		column = checkLine.indexOf(QRegExp(regex), Qt::CaseSensitive);
-		if (column == -1) column = checkLine.indexOf(QRegExp(regex), Qt::CaseInsensitive);
-	}
-	if (column == -1) {//search again and allow additional whitespace
-		QString regex;
-		foreach (const QString & x , changedWord.split(" ",QString::SkipEmptyParts))
-			if (regex.isEmpty()) regex = QRegExp::escape(x);
-			else regex+="\\s+"+QRegExp::escape(x);
-		column = checkLine.indexOf(QRegExp(regex), Qt::CaseSensitive);
-		if (column == -1) column = checkLine.indexOf(QRegExp(regex), Qt::CaseInsensitive);
-	}
-	if (column == -1) {
-		int bestMatch = -1, bestScore = 0;
-		for (int i=0;i<checkLine.size()-guessedWord.size();i++) {
-			int score = 0;
-			for (int c = i, s = 0; c < checkLine.size() && s < guessedWord.size(); c++, s++) {
-				QChar C = checkLine[c], S = guessedWord[s];
-				if (C == S) score += 5; //perfect match
-				else if (C.toLower() == S.toLower()) score += 2; //ok match
-				else if (C.isSpace()) s--; //skip spaces
-				else if (S.isSpace()) c--; //skip spaces
-				else if (S.category() == QChar::Other_Control || S.category() == QChar::Other_Format) {
-					for (s++; s < guessedWord.size() && (guessedWord[s].category() == QChar::Other_Control||guessedWord[s].category() == QChar::Other_Format);s++); //skip nonsense
-					if (s >= guessedWord.size()) continue;
-					if (guessedWord[s] == C) { score += 5; continue; }
-					if (c+1 < checkLine.size() && guessedWord[s] == checkLine[c+1]) { score += 5; c++; continue; }
-					//also skip next character after that nonsense
-				}
-			}
-			if (score > bestScore) bestScore = score, bestMatch = i;
-		}
-		if (bestScore > guessedWord.size()*5 / 3) column = bestMatch; //accept if 0.33 similarity
-	}
-
-	QDocumentCursor highlight(currentEditor()->document(), line, 0);
-	if (column > -1 && !guessedWord.isEmpty()) {
-		int cursorCol = column+guessedWord.length()/2;
-		highlight.setColumnNumber(cursorCol);
-		highlight.movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
-		highlight.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
-		if (!highlight.hasSelection()) { // fallback, if we are not at a word
-			highlight.setColumnNumber(cursorCol);
-			highlight.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-			highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-		}
-		currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol,false);
-		currentEditor()->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ExpandFold);
-	} else {
+	if (columns.isEmpty() || guessedWord.isEmpty()) {
+		// highlight complete line
+		QDocumentCursor highlight(currentEditor()->document(), line, 0);
 		highlight.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+		currentEditorView()->temporaryHighlight(highlight);
+	} else {
+		// highlight all found positions
+		QDocumentCursor highlight(currentEditor()->document(), line, 0);
+		foreach (int col, columns) {
+			int cursorCol = col+guessedWord.length()/2;
+			highlight.setColumnNumber(cursorCol);
+			highlight.movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
+			highlight.movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+			if (!highlight.hasSelection()) { // fallback, if we are not at a word
+				highlight.setColumnNumber(cursorCol);
+				highlight.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+				highlight.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+			}
+			currentEditor()->setCursorPosition(currentEditor()->cursor().lineNumber(), cursorCol,false);
+			currentEditor()->ensureCursorVisible(QEditor::KeepSurrounding | QEditor::ExpandFold);
+			currentEditorView()->temporaryHighlight(highlight);
+		}
 	}
-	currentEditorView()->temporaryHighlight(highlight);
 	
 	if (activate) {
 		raise();
