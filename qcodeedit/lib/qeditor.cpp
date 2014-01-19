@@ -259,7 +259,7 @@ QReliableFileWatch* QEditor::watcher()
 
 ////////////////////////////////////////////////////////////////////////
 
-int QEditor::m_defaultFlags = QEditor::MouseWheelZoom | QEditor::AutoIndent | QEditor::AdjustIndent | QEditor::AutoCloseChars;
+int QEditor::m_defaultFlags = QEditor::MouseWheelZoom | QEditor::AutoIndent | QEditor::AdjustIndent | QEditor::AutoCloseChars | QEditor::ShowPlaceholders;
 
 /*!
 	\return The default flags set to every QEditor upon construction
@@ -2771,10 +2771,12 @@ void QEditor::paintEvent(QPaintEvent *e)
 	{
 		ctx.extra << m_dragAndDrop.handle();
 	}
-	// put placeholder info into paint context
-	ctx.placeHolders=m_placeHolders;
-	ctx.curPlaceHolder=m_curPlaceHolder;
-	ctx.lastPlaceHolder=m_lastPlaceHolder;
+	if (flag(ShowPlaceholders)) {
+		// put placeholder info into paint context
+		ctx.placeHolders=m_placeHolders;
+		ctx.curPlaceHolder=m_curPlaceHolder;
+		ctx.lastPlaceHolder=m_lastPlaceHolder;
+	}
         //qDebug("elapsed %d ms",tm.elapsed());
 	p.save();
 	m_doc->draw(&p, ctx);

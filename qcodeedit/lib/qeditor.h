@@ -108,7 +108,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			AutoInsertLRM		= 0x08000000,
 			BidiVisualColumnMode= 0x10000000,
 
-			SilentReloadOnExternalChanges = 0x20000000,
+			ShowPlaceholders = 0x20000000,
+
+			SilentReloadOnExternalChanges = 0x40000000,
 
 			Accessible		= 0xfffff000
 		};
