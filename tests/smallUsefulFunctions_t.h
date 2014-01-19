@@ -46,6 +46,7 @@ private:
 
 Q_DECLARE_METATYPE(TestToken);
 Q_DECLARE_METATYPE(QList<TestToken>);
+Q_DECLARE_METATYPE(QList<int>);
 
 /*QList<TestToken>& operator<< (QList<TestToken> & list, const char* str){
 	return list << TestToken(str);
@@ -638,8 +639,6 @@ private slots:
 			QEQUAL(list[i], result[i]);
 		}
 	}
-
-	Q_DECLARE_METATYPE(QList<int>);
 
 	void test_indicesOf_data() {
 		QTest::addColumn<QString>("line");
