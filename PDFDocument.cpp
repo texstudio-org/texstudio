@@ -1956,8 +1956,8 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		int& h = globalConfig->windowHeight;
 		int screenNumber = QApplication::desktop()->screenNumber(QPoint(x,y));
 		QRect screen = QApplication::desktop()->availableGeometry(screenNumber);
-		// add some tolerance, as fullscreen seems to have negative coordinate (KDE...)
-		screen.adjust(-5,-5,+5,+5);
+		// add some tolerance, as fullscreen seems to have negative coordinate (KDE, Win7 ...)
+		screen.adjust(-8,-8,+8,+8);
 		if (!screen.contains(x,y)) {
 			// top left is not on screen
 			x = screen.x() + screen.width()*2/3;
@@ -1967,8 +1967,9 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		}
 		if (globalConfig->windowMaximized)
 			showMaximized();
+		else
+			setWindowState(Qt::WindowNoState);
 
-		setWindowState(Qt::WindowNoState);
 		resize(w,h); //important to first resize then move
 		move(x,y);
 		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
