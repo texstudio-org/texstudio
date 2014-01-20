@@ -1236,11 +1236,9 @@ void LatexEditorView::updateSettings(){
 	editor->setSoftLimitedLineWrapping(config->wordwrap==2);
 	editor->setHardLineWrapping(config->wordwrap>2);
 	if(config->wordwrap>1){
-		int lw=config->lineWidth<20?20:config->lineWidth;
-		int w=QFontMetrics(QFont(config->fontFamily, config->fontSize)).averageCharWidth()*(lw+1); // +1 because there is ~1/2 a char margin on each side
-		editor->setWrapLineWidth(w);
+		editor->setWrapAfterNumChars(config->lineWidth);
 	}else{
-		editor->setWrapLineWidth(0);
+		editor->setWrapAfterNumChars(0);
 	}
 	editor->setFlag(QEditor::AutoIndent,config->autoindent);
 	editor->setFlag(QEditor::WeakIndent,config->weakindent);

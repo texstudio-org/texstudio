@@ -315,7 +315,7 @@ QEditor::QEditor(QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
+	mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_wrapAfterNumChars(0),m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -824,7 +824,15 @@ void QEditor::setWrapLineWidth(int l){
 	m_doc->setWidthConstraint(m_LineWidth);
 }
 
-
+void QEditor::setWrapAfterNumChars(int numChars){
+	if (numChars <= 0) {
+		m_wrapAfterNumChars = 0;
+		setWrapLineWidth(0);
+	}
+	m_wrapAfterNumChars = qMax(numChars, 20);
+	int w=QFontMetrics(QDocument::font()).averageCharWidth()*(m_wrapAfterNumChars+1); // +1 because there is ~1/2 a char margin on each side
+	setWrapLineWidth(w);
+}
 
 /*!
 	\return The whole text being edited
@@ -4805,6 +4813,8 @@ void QEditor::zoom(int n)
 	QFont f = m_doc->font();
 	f.setPointSize(qMax(1, f.pointSize() + n));
 	m_doc->setFont(f);
+	if (m_wrapAfterNumChars)
+		setWrapAfterNumChars(m_wrapAfterNumChars); // updates the width for the new font
 }
 
 /*!
