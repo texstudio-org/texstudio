@@ -385,6 +385,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setLineWrapping(bool on);
 		void setHardLineWrapping(bool on);
 		void setSoftLimitedLineWrapping(bool on);
+		void setWrapAfterNumChars(int numChars);
+protected:
 		void setWrapLineWidth(int l);
 public:		
 		virtual void save();
@@ -666,6 +668,7 @@ public slots:
 		int m_cursorSurroundingLines;
 		
 		int m_LineWidth;
+		int m_wrapAfterNumChars;
 
 #if QT_VERSION >= 0x040600
 		QPropertyAnimation *m_scrollAnimation;
