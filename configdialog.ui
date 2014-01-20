@@ -795,7 +795,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>854</width>
+               <width>217</width>
                <height>94</height>
               </rect>
              </property>
@@ -1480,7 +1480,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>865</width>
+            <width>822</width>
             <height>1137</height>
            </rect>
           </property>
@@ -2270,7 +2270,7 @@ Then you can select a new shortcut by one of the following ways:
          <property name="title">
           <string>Completion</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0,0,0" columnstretch="1,1">
+         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0,0" columnstretch="1,1">
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxCompletion">
             <property name="toolTip">
@@ -2489,7 +2489,10 @@ Then you can select a new shortcut by one of the following ways:
           <item row="5" column="1">
            <widget class="QCheckBox" name="checkBoxShowPlaceholders">
             <property name="text">
-             <string>Show Placeholder</string>
+             <string>Show Placeholders</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
