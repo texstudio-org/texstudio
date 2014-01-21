@@ -1,0 +1,49 @@
+<RCC>
+    <qresource prefix="/">
+        <file>uiconfig.xml</file>
+        <file alias="qxs/defaultFormats.qxf">utilities/qxs/defaultFormats.qxf</file>
+        <file alias="qxs/marks.qxm">utilities/qxs/marks.qxm</file>
+        <file alias="qxs/bibtex.qnfa">utilities/qxs/bibtex.qnfa</file>
+        <file alias="qxs/qtscript.qnfa">utilities/qxs/qtscript.qnfa</file>
+        <file alias="qxs/tex.qnfa">utilities/qxs/tex.qnfa</file>
+        <file alias="qxs/txsmacro.qnfa">utilities/qxs/txsmacro.qnfa</file>
+        <file alias="qxs/dtx.qnfa">utilities/qxs/dtx.qnfa</file>
+        <file alias="qxs/pweave.qnfa">utilities/qxs/pweave.qnfa</file>
+        <file alias="qxs/sweave.qnfa">utilities/qxs/sweave.qnfa</file>
+        <file alias="qxs/txstest.qnfa">utilities/qxs/txstest.qnfa</file>
+        <file alias="qxs/xml.qnfa">utilities/qxs/xml.qnfa</file>
+        <file alias="qxs/binary.qnfa">utilities/qxs/binary.qnfa</file>
+        <file alias="qxs/txt.qnfa">utilities/qxs/txt.qnfa</file>
+        <file alias="qxs/lua.qnfa">utilities/qxs/lua.qnfa</file>
+        <file alias="qxs/homespring.qnfa">utilities/qxs/homespring.qnfa</file>
+        <file alias="blank.png">utilities/html-conversion/blank.png</file>
+        <file alias="next.gif">utilities/html-conversion/next.gif</file>
+        <file alias="next_d.gif">utilities/html-conversion/next_d.gif</file>
+        <file alias="prev.gif">utilities/html-conversion/prev.gif</file>
+        <file alias="prev_d.gif">utilities/html-conversion/prev_d.gif</file>
+        <file alias="psheader.txt">utilities/html-conversion/psheader.txt</file>
+        <file alias="style.css">utilities/html-conversion/style.css</file>
+        <file alias="up.gif">utilities/html-conversion/up.gif</file>
+        <file alias="up_d.gif">utilities/html-conversion/up_d.gif</file>
+        <file>images/logo128.png</file>
+        <file>images/webpublish.png</file>
+        <file>images/egg.png</file>
+        <file>images/splash.png</file>
+        <file>images/splash_large.png</file>
+        <file>images/appicon.png</file>
+        <file>images/previewicon.png</file>
+        <file>images/include.png</file>
+        <file>tags/asymptote_tags.xml</file>
+        <file>tags/brackets_tags.xml</file>
+        <file>tags/metapost_tags.xml</file>
+        <file>tags/pstricks_tags.xml</file>
+        <file>tags/tikz_tags.xml</file>
+        <file>images/masterdoc.png</file>
+        <file>images/down-arrow-circle-silver.png</file>
+        <file>images/up-arrow-circle-silver.png</file>
+        <file>images/separator.png</file>
+        <file>images/TexTablet.png</file>
+        <file>utilities/packageList</file>
+        <file>utilities/template_resources.xml</file>
+    </qresource>
+</RCC>
