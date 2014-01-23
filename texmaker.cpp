@@ -294,7 +294,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	TemplateManager::checkForOldUserTemplates();
 
     if (configManager.sessionRestore) {
-        fileRestoreSession(false);
+		fileRestoreSession(false, false);
 		ToggleRememberAct->setChecked(true);
 	}
 	
@@ -2193,7 +2193,7 @@ void Texmaker::fileOpen() {
         updateCompleter(currentEditorView());
 }
 
-void Texmaker::fileRestoreSession(bool showProgress){
+void Texmaker::fileRestoreSession(bool showProgress, bool warnMissing){
 
 	QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
 	Session s;
@@ -2205,7 +2205,7 @@ void Texmaker::fileRestoreSession(bool showProgress){
 		// fallback to loading from the config (import the session saved by TXS <= 2.5.1)
 		s.load(configManager);
 	}
-	restoreSession(s, showProgress);
+	restoreSession(s, showProgress, warnMissing);
 }
 
 void Texmaker::fileSave(const bool saveSilently) {
@@ -2742,7 +2742,7 @@ void Texmaker::fileSaveSession() {
 	recentSessionList->addFilenameToList(fn);
 }
 
-void Texmaker::restoreSession(const Session &s, bool showProgress) {
+void Texmaker::restoreSession(const Session &s, bool showProgress, bool warnMissing) {
 	fileCloseAll();
 
 	cursorHistory->setInsertionEnabled(false);
@@ -2757,6 +2757,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 
 	bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
 
+	QStringList missingFiles;
 	for (int i=0; i<s.files().size(); i++) {
 		FileInSession f = s.files().at(i);
 
@@ -2779,6 +2780,8 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
 			edView->editor->setCursorPosition(line, col);
 			edView->editor->scrollToFirstLine(f.firstLine);
 			edView->document->foldLines(f.foldedLines);
+		} else {
+			missingFiles.append(f.fileName);
 		}
 	}
     // update ref/labels in one go;
@@ -2807,6 +2810,10 @@ void Texmaker::restoreSession(const Session &s, bool showProgress) {
     // update completer
     if(currentEditorView())
         updateCompleter(currentEditorView());
+
+	if (warnMissing && !missingFiles.isEmpty()) {
+		txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
+	}
 }
 
 Session Texmaker::getCurrentSession() {

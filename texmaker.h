@@ -215,7 +215,7 @@ protected slots:
 	void fileNewFromTemplate();
 	void fileMakeTemplate();
 	void fileOpen();
-	void fileRestoreSession(bool showProgress = true);
+	void fileRestoreSession(bool showProgress = true, bool warnMissing = true);
     void fileSave(const bool saveSilently=false);
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
@@ -245,7 +245,7 @@ protected slots:
 	void loadSession(const QString &fileName);
 	void fileSaveSession();
 private slots:
-	void restoreSession(const Session &s, bool showProgress = true);
+	void restoreSession(const Session &s, bool showProgress = true, bool warnMissing = true);
 	Session getCurrentSession();
 protected slots:
 	void MarkCurrentFileAsRecent();

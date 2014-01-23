@@ -830,7 +830,7 @@ void QEditor::setWrapAfterNumChars(int numChars){
 		setWrapLineWidth(0);
 	}
 	m_wrapAfterNumChars = qMax(numChars, 20);
-	int w=QFontMetrics(QDocument::font()).averageCharWidth()*(m_wrapAfterNumChars+1); // +1 because there is ~1/2 a char margin on each side
+	int w=QFontMetrics(QDocument::font()).averageCharWidth()*(m_wrapAfterNumChars+0.5) + 5; // +5 fixed width on left side, 0.5: 1/2 a char margin on right side
 	setWrapLineWidth(w);
 }
 
