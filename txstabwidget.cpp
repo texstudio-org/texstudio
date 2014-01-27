@@ -10,6 +10,7 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 
 	ChangeAwareTabBar *tb = new ChangeAwareTabBar();
 	tb->setContextMenuPolicy(Qt::CustomContextMenu);
+	tb->setUsesScrollButtons(true);
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
 	connect(tb, SIGNAL(currentTabAboutToChange(int,int)), this, SLOT(currentTabAboutToChange(int,int)));
 	setTabBar(tb);
