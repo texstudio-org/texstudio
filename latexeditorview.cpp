@@ -1719,6 +1719,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller
 					&& (!config->hideNonTextSpellingErrors || (!isNonTextFormat(line.getFormatAt(lr.wordStartIndex)) && !isNonTextFormat(line.getFormatAt(lr.index-1)) ))
 					&& !speller->check(lr.word) ) {
+                if(lr.word.endsWith('-') && speller->check(lr.word.left(lr.word.length()-1)))
+                    continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
 				if(lr.word.endsWith('.')) lr.index--;
 				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,SpellerUtility::spellcheckErrorFormat));
 				addedOverlaySpellCheckError = true;
