@@ -7766,8 +7766,14 @@ void Texmaker::loadProfile(){
 		if(profile && config){
 			QStringList keys = profile->allKeys();
 			foreach(const QString& key,keys){
-				//special treatment for macros/usercommands
+                //special treatment for macros/usercommands (list maybe shorter than before)
 				if(key.startsWith("texmaker/Macros")){
+                    if(!macro){ //remove old values
+                        config->beginGroup("texmaker");
+                        config->remove("Macros");
+                        config->endGroup();
+                        configManager.completerConfig->userMacros.clear();
+                    }
 					QStringList ls = profile->value(key).toStringList();
 					if (!ls.isEmpty()){
 						configManager.completerConfig->userMacros.append(Macro(ls));
@@ -7788,9 +7794,9 @@ void Texmaker::loadProfile(){
 		delete profile;
 		delete config;
 		ReadSettings(true);
-		if(macro)
+        if(macro)
 			updateUserMacros();
-		if(userCommand)
+        if(userCommand)
 			updateUserToolMenu();
 	} else txsWarning(tr("Failed to read profile file %1.").arg(fname));
 }
