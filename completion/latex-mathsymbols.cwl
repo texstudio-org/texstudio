@@ -164,6 +164,7 @@
 \Longrightarrow#m
 \longrightarrow#m
 \mapsto#m
+\mathring{letter}#m
 \max#m
 \mid#m
 \min#m

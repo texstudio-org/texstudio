@@ -8,6 +8,10 @@
 \Alph{counter}#*
 \alph{counter}#*
 \and#*
+\AA
+\aa
+\AE
+\ae
 \appendix
 \appendixname#*
 \arabic{counter}#*
@@ -317,6 +321,8 @@
 \null#*
 \obeycr#*
 \oddsidemargin#*
+\oe
+\OE
 \oldstylenums#*
 \onecolumn
 \oval(width,height)#*/picture
@@ -351,6 +357,7 @@
 \put(xcoord,ycoord){text}#*/picture
 \qquad
 \quad
+\r{letter}
 \ref{key}
 \refname{name}
 \righthyphenmin

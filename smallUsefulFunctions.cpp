@@ -40,7 +40,7 @@ void LatexParser::init(){
     possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-	possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\oe" << "\\OE" << "\\ae" << "\\AE" << "\\aa" << "\\AA" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
+    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
     possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" << "\\DeclareMathSymbol" <<"\\newlength" << "\\DeclareRobustCommand" << "\\let";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
