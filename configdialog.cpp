@@ -181,8 +181,9 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 			txsWarning(ConfigDialog::tr("The shortcut you entered is invalid."));
 			return;
 		}
+        QString value_alternative=QKeySequence(box->currentText()).toString(QKeySequence::PortableText);
 		QRegExp rxCharKey("(Shift\\+)?."); // matches all single characters and single characters with shift like "Shift+A", should not match e.g. "F1" or "DEL"
-		if (rxCharKey.exactMatch(value)) {
+        if (rxCharKey.exactMatch(value_alternative)) {
 			if (!txsConfirmWarning(ConfigDialog::tr("The shortcut you entered is a standard character key.\n"
 													"You will not be able to type this character. Do you wish\n"
 													"to set the key anyway?"))) {
