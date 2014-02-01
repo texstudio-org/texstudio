@@ -1,0 +1,691 @@
+SET ISO8859-15
+TRY eiarsntolucéÉmpdgbhfvqjyxèÈzâÂkêÊçÇîÎïÏwûÛôÔàÀëËüÜöÖóÓíÍùÙáÁäÄ½æ¼Æ
+
+WORDCHARS -
+
+NOSUGGEST Z
+
+MAP 12
+MAP aàâä
+MAP eéèêë
+MAP iîïy
+MAP oôö
+MAP uùûü
+MAP cç
+MAP AÀÂÄ
+MAP EÉÈÊË
+MAP IÎÏY
+MAP OÔÖ
+MAP UÙÛÜ
+MAP CÇ
+
+REP 44
+REP f ph
+REP ph f
+REP c qu
+REP qu c
+REP bb b
+REP b bb
+REP cc c
+REP c cc
+REP ff f
+REP f ff
+REP ll l
+REP l ll
+REP mm m
+REP m mm
+REP nn n
+REP n nn
+REP pp p
+REP p pp
+REP rr r
+REP r rr
+REP ss s
+REP s ss
+REP ss c
+REP c ss
+REP tt t
+REP t tt
+REP ½ oe
+REP oe ½
+REP æ ae
+REP ae æ
+REP ai é
+REP é ai
+REP ai è
+REP è ai
+REP ai ê
+REP ê ai
+REP ei é
+REP é ei
+REP ei è
+REP è ei
+REP ei ê
+REP ê ei
+REP sanctionnable punissable
+REP questionnable discutable
+
+PFX C Y 3
+PFX C   0          contre-    [aàâeèéêiîoôuh½æ]
+PFX C   0          contr      [aàâeèéêiîoôu½æ]
+PFX C   0          contre     [^aàâeèéêiîoôu½æ]
+
+PFX D Y 2
+PFX D   0          dé         [^aàâeèéêiîoôuh½æ]
+PFX D   0          dés        [aàâeèéêiîoôuh½æ]
+
+PFX N Y 2
+PFX N   0          dis        [^f]
+PFX N   0          dif        [f]
+
+PFX P Y 1
+PFX P   0          pré        .
+
+PFX R Y 3
+PFX R   0          re         [^aàâeèéêiîoôuhs½æ]
+PFX R   0          ré         [aàâeèéêiîoôuh½æ]
+PFX R   0          res        [s]
+
+PFX O Y 2
+PFX O   0          ré         [^aàâeèéêiîoôuhs½æ]
+PFX O   0          r          [aàâeèéêiîoôuh½æ]
+
+PFX T Y 1
+PFX T   0          sur        .
+
+PFX L N 1
+PFX L   0          l'         [aàâeèéêiîoôuyh½æAÀÂEÈÉÊIÎOÔUYH¼Æ]
+
+PFX M Y 1
+PFX M   0          d'         [aàâeèéêiîoôuyh½æAÀÂEÈÉÊIÎOÔUYH¼Æ]
+
+PFX Q Y 4
+PFX Q   0          qu'        [aàâeèéêiîoôuyh½æAÀÂEÈÉÊIÎOÔUYH¼Æ]
+PFX Q   0          quoiqu'    [aàâeèéêiîoôuyh½æAÀÂEÈÉÊIÎOÔUYH¼Æ]
+PFX Q   0          puisqu'    [aàâeèéêiîoôuyh½æAÀÂEÈÉÊIÎOÔUYH¼Æ]
+PFX Q   0          lorsqu'    [aàâeèéêiîoôuyh½æAÀÂEÈÉÊIÎOÔUYH¼Æ]
+
+PFX U Y 1
+PFX U   0          jusqu'     [aàâeèéêiîoôuyh½æ]
+
+PFX j N 1
+PFX j   0          j'         [aàâeèéêiîoôuyh½æ]
+
+PFX n Y 2
+PFX n   0          n'         [aàâeèéêiîoôuyh½æ]
+PFX n   0          qu'        [aàâeèéêiîoôuyh½æ]
+
+PFX m Y 1
+PFX m   0          m'         [aàâeèéêiîoôuyh½æ]
+
+PFX t Y 1
+PFX t   0          t'         [aàâeèéêiîoôuyh½æ]
+
+PFX l Y 1
+PFX l   0          l'         [aàâeèéêiîoôuyh½æ]
+
+PFX s N 1
+PFX s   0          s'         [aàâeèéêiîoôuyh½æ]
+
+SFX F Y 62
+SFX F   0          s          [^sxz]
+SFX F   ée         é          ée
+SFX F   ie         i          ie
+SFX F   ïe         ï          ïe
+SFX F   ue         u          [^gq]ue
+SFX F   e          s          [^gq]ue
+SFX F   e          s          [éiï]e
+SFX F   uë         u          uë
+SFX F   ë          s          uë
+SFX F   üe         u          üe
+SFX F   üe         us         üe
+SFX F   que        c          [^c]que
+SFX F   que        cs         [^c]que
+SFX F   cque       c          cque
+SFX F   que        s          cque
+SFX F   gue        g          gue
+SFX F   ue         s          gue
+SFX F   che        c          [^è]che
+SFX F   he         s          [^è]che
+SFX F   èche       ec         èche
+SFX F   èche       ecs        èche
+SFX F   ce         x          ce
+SFX F   de         d          de
+SFX F   e          s          de
+SFX F   ffe        f          ffe
+SFX F   fe         s          ffe
+SFX F   lle        l          [eiu]lle
+SFX F   le         s          [eiu]lle
+SFX F   le         l          ale
+SFX F   le         ux         ale
+SFX F   le         l          [iouû]le
+SFX F   e          s          [iouû]le
+SFX F   nne        n          [aeo]nne
+SFX F   ne         s          [aeo]nne
+SFX F   ne         n          [aiou]ne
+SFX F   e          s          [aiou]ne
+SFX F   gne        n          igne
+SFX F   gne        ns         igne
+SFX F   ère        er         ère
+SFX F   ère        ers        ère
+SFX F   re         r          [aiuûy]re
+SFX F   e          s          [aiuûy]re
+SFX F   se         x          [eo]use
+SFX F   se         s          [^us]se
+SFX F   se         s          [^eo]use
+SFX F   sse        x          ousse
+SFX F   esse       e          esse
+SFX F   sse        s          [^u]sse
+SFX F   tte        t          tte
+SFX F   te         s          tte
+SFX F   te         t          [^èt]te
+SFX F   e          s          [^èt]te
+SFX F   ète        et         ète
+SFX F   ète        ets        ète
+SFX F   ève        ef         ève
+SFX F   ève        efs        ève
+SFX F   ve         f          [iïu]ve
+SFX F   ve         fs         [iïu]ve
+SFX F   he         h          [ut]he
+SFX F   e          s          [ut]he
+SFX F   ke         k          ke
+SFX F   e          s          ke
+
+SFX G Y 11
+SFX G   0          s          e
+SFX G   se         r          euse
+SFX G   se         rs         euse
+SFX G   rice       eur        [dt]rice
+SFX G   rice       eurs       [dt]rice
+SFX G   resse      ur         eresse
+SFX G   resse      urs        eresse
+SFX G   oresse     eur        oresse
+SFX G   oresse     eurs       oresse
+SFX G   le         l          ale
+SFX G   e          s          ale
+
+SFX S Y 1
+SFX S   0          s          [^sxz]
+
+SFX X Y 3
+SFX X   0          x          [aeo½]u
+SFX X   l          ux         al
+SFX X   il         ux         ail
+
+SFX u Y 52
+SFX u   0          s          e
+SFX u   0          nt         e
+SFX u   s          t          [^td]s
+SFX u   ts         t          ts
+SFX u   ds         d          ds
+SFX u   0          sent       [^o]is
+SFX u   0          se         [^o]is
+SFX u   0          ses        [^o]is
+SFX u   s          nent       iens
+SFX u   s          ne         iens
+SFX u   s          nes        iens
+SFX u   ers        èrent      iers
+SFX u   ers        ère        iers
+SFX u   ers        ères       iers
+SFX u   s          tent       [^i]ens
+SFX u   s          te         [^i]ens
+SFX u   s          tes        [^i]ens
+SFX u   s          ent        [td]s
+SFX u   s          e          [td]s
+SFX u   s          es         [td]s
+SFX u   ns         gne        [aeo]ins
+SFX u   ns         gnes       [aeo]ins
+SFX u   ns         gnent      [aeo]ins
+SFX u   s          ent        [^e]rs
+SFX u   s          e          [^e]rs
+SFX u   s          es         [^e]rs
+SFX u   s          vent       ois
+SFX u   s          ve         ois
+SFX u   s          ves        ois
+SFX u   oîs        oissent    oîs
+SFX u   oîs        oisse      oîs
+SFX u   oîs        oisses     oîs
+SFX u   s          ent        [pu]s
+SFX u   s          e          [pu]s
+SFX u   s          es         [pu]s
+SFX u   x          t          [fvp][ae]ux
+SFX u   ux         lent       vaux
+SFX u   ux         ille       vaux
+SFX u   ux         illes      vaux
+SFX u   ux         illent     vaux
+SFX u   x          lent       veux
+SFX u   x          ille       veux
+SFX u   x          illes      veux
+SFX u   x          illent     veux
+SFX u   ux         illent     faux
+SFX u   ux         ille       faux
+SFX u   ux         illes      faux
+SFX u   x          vent       peux
+SFX u   eux        uis        peux
+SFX u   eux        uisse      peux
+SFX u   eux        uisses     peux
+SFX u   eux        uissent    peux
+
+SFX g Y 110
+SFX g   ds         d          prends
+SFX g   ds         ne         prends
+SFX g   ds         nes        prends
+SFX g   ds         nent       prends
+SFX g   ts         t          [ae]ts
+SFX g   s          te         [ae]ts
+SFX g   s          tes        [ae]ts
+SFX g   s          tent       [ae]ts
+SFX g   s          t          fais
+SFX g   ais        ont        fais
+SFX g   is         sse        fais
+SFX g   is         sses       fais
+SFX g   is         ssions     fais
+SFX g   is         ssiez      fais
+SFX g   is         ssent      fais
+SFX g   is         ît         [^t][nr]ais
+SFX g   is         it         [^t][nr]ais
+SFX g   0          sent       [^t][nr]ais
+SFX g   0          se         [^t][nr]ais
+SFX g   0          ses        [^t][nr]ais
+SFX g   s          t          trais
+SFX g   s          ent        trais
+SFX g   s          e          trais
+SFX g   s          es         trais
+SFX g   s          t          [és]cris
+SFX g   s          vent       [és]cris
+SFX g   s          ve         [és]cris
+SFX g   s          ves        [és]cris
+SFX g   s          t          [cldf]is
+SFX g   0          ent        [cldf]is
+SFX g   0          e          [cldf]is
+SFX g   0          es         [cldf]is
+SFX g   s          t          uis
+SFX g   0          ent        uis
+SFX g   0          e          uis
+SFX g   0          es         uis
+SFX g   s          t          ois
+SFX g   s          ent        ois
+SFX g   s          e          ois
+SFX g   s          es         ois
+SFX g   s          t          sous
+SFX g   us         lvent      sous
+SFX g   us         lve        sous
+SFX g   us         lves       sous
+SFX g   t          ts         sout
+SFX g   ut         lvent      sout
+SFX g   ut         lve        sout
+SFX g   ut         lves       sout
+SFX g   s          t          meus
+SFX g   s          vent       meus
+SFX g   s          ve         meus
+SFX g   s          ves        meus
+SFX g   s          t          dors
+SFX g   s          ment       dors
+SFX g   s          me         dors
+SFX g   s          mes        dors
+SFX g   s          t          sers
+SFX g   s          vent       sers
+SFX g   s          ve         sers
+SFX g   s          ves        sers
+SFX g   cs         c          vaincs
+SFX g   cs         quent      vaincs
+SFX g   cs         que        vaincs
+SFX g   cs         ques       vaincs
+SFX g   x          t          vaux
+SFX g   ux         lent       vaux
+SFX g   ux         le         vaux
+SFX g   ux         les        vaux
+SFX g   s          t          bous
+SFX g   s          illent     bous
+SFX g   s          ille       bous
+SFX g   s          illes      bous
+SFX g   s          t          sors
+SFX g   s          te         sors
+SFX g   s          tes        sors
+SFX g   s          tent       sors
+SFX g   is         ît         plais
+SFX g   0          ent        plais
+SFX g   0          e          plais
+SFX g   0          es         plais
+SFX g   s          t          tais
+SFX g   0          ent        tais
+SFX g   0          e          tais
+SFX g   0          es         tais
+SFX g   ais        aît        pais
+SFX g   0          sent       pais
+SFX g   0          se         pais
+SFX g   0          ses        pais
+SFX g   s          t          hais
+SFX g   is         ïssent     hais
+SFX g   is         ïsse       hais
+SFX g   is         ïsses      hais
+SFX g   s          t          sais
+SFX g   is         vent       sais
+SFX g   is         che        sais
+SFX g   is         ches       sais
+SFX g   is         chent      sais
+SFX g   s          t          fris
+SFX g   ds         d          sieds
+SFX g   ieds       eyent      sieds
+SFX g   ieds       eye        sieds
+SFX g   ieds       eyes       sieds
+SFX g   ds         d          couds
+SFX g   ds         sent       couds
+SFX g   ds         se         couds
+SFX g   ds         ses        couds
+SFX g   ds         d          mouds
+SFX g   ds         lent       mouds
+SFX g   ds         le         mouds
+SFX g   ds         les        mouds
+
+SFX v Y 13
+SFX v   s          t          ais
+SFX v   ais        ions       [^çe]ais
+SFX v   ais        iez        [^çe]ais
+SFX v   çais       cions      çais
+SFX v   çais       ciez       çais
+SFX v   eais       ions       eais
+SFX v   eais       iez        eais
+SFX v   s          ent        ais
+SFX v   ais        ons        ais
+SFX v   ais        ez         [^çe]ais
+SFX v   çais       cez        çais
+SFX v   ais        z          eais
+SFX v   is         nt         ais
+
+SFX c Y 3
+SFX c   is         nts        ais
+SFX c   is         nte        ais
+SFX c   is         ntes       ais
+
+SFX d Y 16
+SFX d   s          t          sais
+SFX d   ais        ons        sais
+SFX d   ais        ions       sais
+SFX d   sais       tes        sais
+SFX d   ais        iez        sais
+SFX d   s          ent        sais
+SFX d   is         nt         sais
+SFX d   s          t          pouvais
+SFX d   is         nt         pouvais
+SFX d   ais        ons        pouvais
+SFX d   ais        ions       pouvais
+SFX d   ais        ez         pouvais
+SFX d   ais        iez        pouvais
+SFX d   s          ent        pouvais
+SFX d   ouvais     uissions   pouvais
+SFX d   ouvais     uissiez    pouvais
+
+SFX w Y 38
+SFX w   i          s          ai
+SFX w   ai         a          ai
+SFX w   ai         âmes       ai
+SFX w   ai         âtes       ai
+SFX w   ai         èrent      [^çe]ai
+SFX w   çai        cèrent     çai
+SFX w   eai        èrent      eai
+SFX w   i          sse        ai
+SFX w   i          sses       ai
+SFX w   ai         ât         ai
+SFX w   i          ssions     ai
+SFX w   i          ssiez      ai
+SFX w   i          ssent      ai
+SFX w   s          t          s
+SFX w   s          rent       s
+SFX w   is         îmes       is
+SFX w   is         îtes       is
+SFX w   is         ît         is
+SFX w   0          se         [iuû]s
+SFX w   0          ses        [iuû]s
+SFX w   0          sions      [iuû]s
+SFX w   0          siez       [iuû]s
+SFX w   0          sent       [iuû]s
+SFX w   us         ûmes       us
+SFX w   us         ûtes       us
+SFX w   us         ût         us
+SFX w   s          mes        ûs
+SFX w   s          tes        ûs
+SFX w   ins        înmes      ins
+SFX w   ins        întes      ins
+SFX w   0          se         ins
+SFX w   0          ses        ins
+SFX w   ins        înt        ins
+SFX w   0          sions      ins
+SFX w   0          siez       ins
+SFX w   0          sent       ins
+SFX w   s          mes        haïs
+SFX w   s          tes        haïs
+
+SFX x Y 10
+SFX x   i          s          rai
+SFX x   ai         a          rai
+SFX x   ai         ons        rai
+SFX x   ai         ez         rai
+SFX x   ai         ont        rai
+SFX x   0          s          rai
+SFX x   0          t          rai
+SFX x   ai         ions       rai
+SFX x   ai         iez        rai
+SFX x   0          ent        rai
+
+SFX y Y 73
+SFX y   er         è-je       er
+SFX y   er         é          er
+SFX y   er         és         er
+SFX y   er         ée         er
+SFX y   er         ées        er
+SFX y   ir         i          [^o]ir
+SFX y   r          s          [^o]ir
+SFX y   r          e          [^o]ir
+SFX y   r          es         [^o]ir
+SFX y   cevoir     çu         cevoir
+SFX y   cevoir     çus        cevoir
+SFX y   cevoir     çue        cevoir
+SFX y   cevoir     çues       cevoir
+SFX y   re         u          [pd]re
+SFX y   re         us         [pd]re
+SFX y   re         ue         [pd]re
+SFX y   re         ues        [pd]re
+SFX y   re         ts         [au]ire
+SFX y   re         te         [au]ire
+SFX y   re         tes        [au]ire
+SFX y   ire        u          lire
+SFX y   ire        ue         lire
+SFX y   ire        ues        lire
+SFX y   re         t          [dfr]ire
+SFX y   re         ts         [dfr]ire
+SFX y   re         te         [dfr]ire
+SFX y   re         tes        [dfr]ire
+SFX y   re         s          cire 
+SFX y   ettre      is         mettre
+SFX y   ettre      ise        mettre
+SFX y   ettre      ises       mettre
+SFX y   re         u          battre
+SFX y   re         ue         battre
+SFX y   re         us         battre
+SFX y   re         ues        battre
+SFX y   aître      u          [nr]aître
+SFX y   aître      us         [nr]aître
+SFX y   aître      ue         [nr]aître
+SFX y   aître      ues        [nr]aître
+SFX y   re         s          clore
+SFX y   re         se         clore
+SFX y   re         ses        clore
+SFX y   ure        u          clure
+SFX y   ure        us         clure
+SFX y   re         e          clure
+SFX y   re         es         clure
+SFX y   oire       u          oire
+SFX y   oire       us         oire
+SFX y   oire       ue         oire
+SFX y   oire       ues        oire
+SFX y   oître      û          croître
+SFX y   oître      us         croître
+SFX y   oître      ue         croître
+SFX y   oître      ues        croître
+SFX y   ïr         ï          haïr
+SFX y   r          s          haïr
+SFX y   r          e          haïr
+SFX y   r          es         haïr
+SFX y   re         u          vaincre
+SFX y   re         us         vaincre
+SFX y   re         ue         vaincre
+SFX y   re         ues        vaincre
+SFX y   re         i          suivre
+SFX y   re         is         suivre
+SFX y   re         ie         suivre
+SFX y   re         ies        suivre
+SFX y   ivre       écu        vivre
+SFX y   ivre       écus       vivre
+SFX y   ivre       écue       vivre
+SFX y   ivre       écues      vivre
+SFX y   eoir       is         seoir
+SFX y   eoir       ise        seoir
+SFX y   eoir       ises       seoir
+
+SFX z Y 44
+SFX z   érir       is         érir
+SFX z   érir       ise        érir
+SFX z   érir       ises       érir
+SFX z   rir        ert        vrir
+SFX z   rir        erts       vrir
+SFX z   rir        erte       vrir
+SFX z   rir        ertes      vrir
+SFX z   ir         u          [^o]ir
+SFX z   ir         us         [^o]ir
+SFX z   ir         ue         [^o]ir
+SFX z   ir         ues        [^o]ir
+SFX z   oir        u          loir
+SFX z   oir        us         loir
+SFX z   oir        ue         loir
+SFX z   oir        ues        loir
+SFX z   dre        t          indre
+SFX z   dre        ts         indre
+SFX z   dre        te         indre
+SFX z   dre        tes        indre
+SFX z   endre      is         endre
+SFX z   endre      ise        endre
+SFX z   endre      ises       endre
+SFX z   dre        su         coudre
+SFX z   dre        sus        coudre
+SFX z   dre        sue        coudre
+SFX z   dre        sues       coudre
+SFX z   dre        lu         moudre
+SFX z   dre        lus        moudre
+SFX z   dre        lue        moudre
+SFX z   dre        lues       moudre
+SFX z   aître      é          naître
+SFX z   aître      és         naître
+SFX z   aître      ée         naître
+SFX z   aître      ées        naître
+SFX z   re         ts         [és]crire
+SFX z   re         te         [és]crire
+SFX z   re         tes        [és]crire
+SFX z   ure        us         clure
+SFX z   re         se         clure
+SFX z   re         ses        clure
+SFX z   oître      u          croître
+SFX z   oître      us         croître
+SFX z   oître      ue         croître
+SFX z   oître      ues        croître
+
+SFX p N 83
+SFX p   0          nt         e
+SFX p   e          èrent      [^è][^è].e
+SFX p   0          ra         e
+SFX p   0          ront       e
+SFX p   0          rait       e
+SFX p   0          raient     e
+SFX p   ie         yèrent     [aou]ie
+SFX p   elle       elèrent    elle
+SFX p   ère        érèrent    ère
+SFX p   ère        érera      ère
+SFX p   ère        éreront    ère
+SFX p   ère        érerait    ère
+SFX p   ère        éreraient  ère
+SFX p   ège        égèrent    ège
+SFX p   ège        égera      ège
+SFX p   ège        égeront    ège
+SFX p   ège        égerait    ège
+SFX p   ège        égeraient  ège
+SFX p   ève        evèrent    ève
+SFX p   0          ra         ève
+SFX p   0          ront       ève
+SFX p   0          rait       ève
+SFX p   0          raient     ève
+SFX p   ène        énèrent    [^mr]ène
+SFX p   ène        énera      [^mr]ène
+SFX p   ène        éneront    [^mr]ène
+SFX p   ène        énerait    [^mr]ène
+SFX p   ène        éneraient  [^mr]ène
+SFX p   ène        enèrent    [mr]ène
+SFX p   0          ra         [mr]ène
+SFX p   0          ront       [mr]ène
+SFX p   0          rait       [mr]ène
+SFX p   0          raient     [mr]ène
+SFX p   ète        étèrent    [^h]ète
+SFX p   ète        étera      [^h]ète
+SFX p   ète        éteront    [^h]ète
+SFX p   ète        éterait    [^h]ète
+SFX p   ète        éteraient  [^h]ète
+SFX p   ète        etèrent    chète
+SFX p   0          ra         chète
+SFX p   0          ront       chète
+SFX p   0          rait       chète
+SFX p   0          raient     chète
+SFX p   èle        elèrent    èle
+SFX p   0          ra         èle
+SFX p   0          ront       èle
+SFX p   0          rait       èle
+SFX p   0          raient     èle
+SFX p   èche       échèrent   èche
+SFX p   èche       échera     èche
+SFX p   èche       écheront   èche
+SFX p   èche       écherait   èche
+SFX p   èche       écheraient èche
+SFX p   èque       équèrent   èque
+SFX p   èque       équera     èque
+SFX p   èque       équeront   èque
+SFX p   èque       équerait   èque
+SFX p   èque       équeraient èque
+SFX p   ètre       étrèrent   ètre
+SFX p   ètre       étrera     ètre
+SFX p   ètre       étreront   ètre
+SFX p   ètre       étrerait   ètre
+SFX p   ètre       étreraient ètre
+SFX p   ègne       égnèrent   ègne
+SFX p   ègne       égnera     ègne
+SFX p   ègne       égneront   ègne
+SFX p   ègne       égnerait   ègne
+SFX p   ègne       égneraient ègne
+SFX p   ègre       égrèrent   ègre
+SFX p   ègre       égrera     ègre
+SFX p   ègre       égreront   ègre
+SFX p   ègre       égrerait   ègre
+SFX p   ègre       égreraient ègre
+SFX p   èvre       évrèrent   èvre
+SFX p   èvre       évrera     èvre
+SFX p   èvre       évreront   èvre
+SFX p   èvre       évrerait   èvre
+SFX p   èvre       évreraient èvre
+SFX p   t          ent        ait
+SFX p   ait        a          ait
+SFX p   it         nt         ait
+SFX p   ait        ât         ait
+SFX p   it         ssent      ait
+
+SFX q N 14
+SFX q   ïssait     it         ïssait
+SFX q   ssait      t          [^ï]ssait
+SFX q   ait        e          ssait
+SFX q   ait        ent        ssait
+SFX q   t          ent        ssait
+SFX q   it         nt         ssait
+SFX q   ssait      t          ïssait
+SFX q   ssait      rent       ssait
+SFX q   ïssait     ît         ïssait
+SFX q   issait     ît         issait
+SFX q   ssait      ra         ssait
+SFX q   ssait      ront       ssait
+SFX q   ssait      rait       ssait
+SFX q   ssait      raient     ssait
