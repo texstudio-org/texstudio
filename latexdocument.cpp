@@ -573,7 +573,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 					if(!removedUserCommands.removeAll(name)) addedUserCommands << name;
 					if (optionStr.length()) {
 						optionStr = optionStr.trimmed();
-						int lastArg = optionStr[optionStr.length()-1].toAscii() - '0';
+                        int lastArg = optionStr[optionStr.length()-1].toLatin1() - '0';
 						if (optionStr.length() == lastArg * 2) { //#1#2#3...
 							for (int j=1; j<=lastArg; j++)
 								if (j==1) name.append("{%<arg1%|%>}");
