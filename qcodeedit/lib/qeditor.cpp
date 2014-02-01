@@ -4109,6 +4109,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		There can be only one modifier (+ shift), but we also need to make sure
 		that we have a "move key" pressed before we reject it.
 	*/
+        /* whyever fill the list with "invalid" commands ?????
 		QList<Qt::KeyboardModifiers> modifierPairs;
 		modifierPairs <<  (Qt::ControlModifier | Qt::AltModifier) << (Qt::ControlModifier | Qt::MetaModifier) << (Qt::AltModifier | Qt::MetaModifier);
 		QList<Qt::Key> movementKeys;
@@ -4122,7 +4123,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		foreach (Qt::KeyboardModifiers mod, modifierPairs)
 		    foreach (Qt::Key key, movementKeys)
 			addEditOperation(Invalid, mod , key);
-
+       */
 
 		addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
 		addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
