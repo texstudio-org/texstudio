@@ -1319,7 +1319,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 	// start conversion
 	// tex -> dvi
 	ProcessX *p1 = firstProcessOfDirectExpansion(CMD_LATEX, QFileInfo(ffn)); //no delete! goes automatically
-	REQUIRE(p1);
+    if(!p1) return; // command failed, not set ?
 	addLaTeXInputPaths(p1, addPaths);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
@@ -1329,7 +1329,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 		// dvi -> png
 		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
 		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", ffn);
-		REQUIRE(p2);
+        if(!p2) return; // command failed, not set ?
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
@@ -1444,7 +1444,8 @@ void BuildManager::latexPreviewCompleted(int status){
 		if (!p1) return;
 		// dvi -> png
 		ProcessX *p2 = firstProcessOfDirectExpansion(CMD_DVIPNG,p1->getFile());
-		REQUIRE(p2);
+        if(!p2) return; //dvipng does not work
+        //REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
@@ -1454,7 +1455,8 @@ void BuildManager::latexPreviewCompleted(int status){
 		if (!p1) return;
 		// dvi -> ps
 		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvips/[-E]", p1->getFile());
-		REQUIRE(p2);
+        if(!p2) return; //dvips does not work
+        //REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
