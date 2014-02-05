@@ -114,9 +114,9 @@ class SmallUsefulFunctionsTest: public QObject{
 		addRow("simple whitespace", filter,
 			QList<TestToken>() << "abcde" << "    " << "fghik" << "\t" << "Mice");
 		addRow("simple eow", filter,
-		       QList<TestToken>() << "abcde" << ";" << ":" << ";" << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) << "axy" << TestToken("---", "-", LatexReader::NW_PUNCTATION));
+               QList<TestToken>() << "abcde" << ";" << ":" << ";" << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) );//<< "axy" << TestToken("---", "-", LatexReader::NW_PUNCTATION)); "-" is now added to the word ...
 		addRow("simple eow", filter,
-		       QList<TestToken>() << "abcde." << ";" << ":" << ";" << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) << "axy" << TestToken("---", "-", LatexReader::NW_PUNCTATION));
+               QList<TestToken>() << "abcde." << ";" << ":" << ";" << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) );//<< "axy" << TestToken("---", "-", LatexReader::NW_PUNCTATION));
 		addRow("environment+comment",filter,
 			QList<TestToken>() << "Test1234" << "\\begin" << "{" << env("environment") << "}" << "{" << "add" << "}" << "XYZ" << "!" << "!" << "!" << "\\command" << "%"     << "comment" << "\\COMMENT");
 		addRow("some environments", filter,
