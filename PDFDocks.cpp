@@ -902,7 +902,6 @@ void PDFClockDock::paintEvent(QPaintEvent * event){
 }
 
 
-#endif
 
 
 MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(0)
@@ -942,3 +941,5 @@ void MessageFrame::showText(const QString &text, QList<QAction *> actions) {
 	}
 	show();
 }
+
+#endif
