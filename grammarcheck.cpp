@@ -436,6 +436,11 @@ bool GrammarCheckLanguageToolSOAP::isAvailable(){
 	return connectionAvailability >= 0;
 }
 
+QString quoteSpaces(const QString& s){
+	if (!s.contains(' ')) return s;
+	return '"' + s + '"';
+}
+
 void GrammarCheckLanguageToolSOAP::tryToStart(){
 	if (triedToStart) {
 		if (QDateTime::currentDateTime().toTime_t() - startTime < 60*1000 ) {
@@ -451,7 +456,7 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
 	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
 
-	p->start(javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
+	p->start(quoteSpaces(javaPath) + " -cp "+quoteSpaces(ltPath)+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
 	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
 	p->waitForStarted();
 	
