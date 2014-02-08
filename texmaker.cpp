@@ -8598,10 +8598,15 @@ void Texmaker::recoverFromCrash(){
 	mb->setModal(false);
 	mb->show();
 	QApplication::processEvents(QEventLoop::AllEvents);
-	mb->setFocus(); //without it, raise doesn't work. If it is in the loop, the buttons can't be clicked on (windows)
+	mb->setFocus(); //without it, raise doesn't work. If it is in the loop (outside time checking if), the buttons can't be clicked on (windows)
+	QTime t; t.start();
 	while (mb->isVisible()) {
 		QApplication::processEvents(QEventLoop::AllEvents);
-		mb->raise(); //sometimes the box is not visible behind the main window (windows)
+		if (t.elapsed() > 1000 ) {
+			mb->raise(); //sometimes the box is not visible behind the main window (windows)
+			t.restart();
+		}
+		ThreadBreaker::msleep(1);
 	}
 
 	//print edit history
