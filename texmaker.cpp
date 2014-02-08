@@ -2579,6 +2579,12 @@ void Texmaker::updateUserMacros(bool updateMenu){
 	}
 }
 
+void Texmaker::centerFileSelector(){
+	if (!fileSelector) return;
+	fileSelector.data()->setCentered(centralWidget()->geometry());
+}
+
+
 void Texmaker::fileOpenRecent() {
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
@@ -2596,6 +2602,11 @@ void Texmaker::fileOpenAllRecent() {
 	foreach (const QString& s, configManager.recentFilesList)
 		load(s);
 }
+QRect appendToBottom(QRect r, const QRect& s){
+	r.setBottom(r.bottom() + s.height());
+	return r;
+}
+
 void Texmaker::fileRecentList(){
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(this, true);
@@ -2604,7 +2615,7 @@ void Texmaker::fileRecentList(){
 
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
 	fileSelector.data()->setVisible(true);
-	fileSelector.data()->setCentered(centralFrame->geometry());
+	centerFileSelector();
 }
 
 void Texmaker::fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
@@ -2654,7 +2665,7 @@ void Texmaker::viewDocumentList(){
 	fileSelector.data()->init(sl, curIndex);
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(viewDocumentOpenFromChoosen(QString,int,int,int)));
 	fileSelector.data()->setVisible(true);
-	fileSelector.data()->setCentered(centralFrame->geometry());
+	centerFileSelector();
 
 }
 
@@ -6128,8 +6139,7 @@ void Texmaker::changeEvent(QEvent *e) {
 }
 
 void Texmaker::resizeEvent(QResizeEvent *e){
-	if (fileSelector)
-		fileSelector.data()->setCentered(centralFrame->geometry());
+	centerFileSelector();
 	QMainWindow::resizeEvent(e);
 }
 

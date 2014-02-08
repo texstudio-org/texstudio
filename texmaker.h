@@ -233,6 +233,9 @@ protected slots:
 	void fileClose();
 	void fileCloseAll();
 	void fileExit();
+private:
+	void centerFileSelector();
+protected slots:
 	void fileOpenRecent();
 	void fileOpenAllRecent();
 	void fileRecentList();
