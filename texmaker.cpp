@@ -7498,6 +7498,10 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	QString cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
 	QString buffer;
 	runCommand(cmd, &buffer);
+	// runCommand uses the local encoding to fill the buffer, however svn diff appears to
+	// return the text in the same encoding as the file.
+	// Workaround: go back to the ByteArray and encode again with the proper encoding
+	buffer = currentEditor()->getFileCodec()->toUnicode(buffer.toLocal8Bit());
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);
