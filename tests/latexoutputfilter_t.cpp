@@ -199,9 +199,32 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< QString("./TeX_files/0a_Cover.tex");
-
-
-
+	QTest::newRow("unquoted file with backets")
+			<< (QStringList()
+				<< "(./a(balance-bracketed)file.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./a(balance-bracketed)file.tex");
+	QTest::newRow("unquoted file with spaces")
+			<< (QStringList()
+				<< "(./a file with spaces.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./a file with spaces.tex");
+	QTest::newRow("unquoted file with backets and spaces")
+			<< (QStringList()
+				<< "(foo.tex"
+				<< ") (./a (file) with bracets and spaces.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./a (file) with bracets and spaces.tex");
+	QTest::newRow("unquoted file with backets and spaces")
+			<< (QStringList()
+				<< "(foo.tex"
+				<< ") (./a (file) with bracets and spaces.tex continued"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("./a (file) with bracets and spaces.tex");
 
 
 	// synthetic examples
@@ -258,12 +281,12 @@ void LatexOutputFilterTest::run_data() {
 			<< short(LatexOutputFilter::Start)
 			<< "newfile.aux";
 	QTest::newRow("nested 3")
-			<< (QStringList() << "(test.tex bar"
-							  << "(newfile.aux"
+			<< (QStringList() << "(./test.tex bar"
+							  << "(./newfile.aux"
 							  << ")"
 				)
 			<< short(LatexOutputFilter::Start)
-			<< "test.tex";
+			<< "./test.tex";
 	QTest::newRow("continued 1")
 			<< (QStringList() << "foo bar blub            *** this line has 78 chars ***             (/some/path/w"
 				)
@@ -347,6 +370,27 @@ void LatexOutputFilterTest::run() {
 
 }
 
+void LatexOutputFilterTest::fileNameLikelyComplete_data() {
+	QTest::addColumn<QString>("name");
+	QTest::addColumn<bool>("result");
 
+	QTest::newRow("empty") << "" << false;
+	QTest::newRow("text") << "foo" << false;
+	QTest::newRow("text2") << "foo bar" << false;
+	QTest::newRow("text3") << "foo bar baz." << false;
+	QTest::newRow("text4") << "foo bar baz. More" << false;
+	QTest::newRow("file") << "foo.tex" << true;
+	QTest::newRow("file2") << "foo.bar" << true;
+	QTest::newRow("file3") << "foo bar.tex" << true;
+	QTest::newRow("file3") << "foo.jpeg" << true;
+	QTest::newRow("expr") << "filter.parseLine" << false;
+}
+
+void LatexOutputFilterTest::fileNameLikelyComplete() {
+	QFETCH(QString, name);
+	QFETCH(bool, result);
+
+	QEQUAL(LatexOutputFilter::fileNameLikelyComplete(name), result);
+}
 
 #endif

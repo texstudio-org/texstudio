@@ -331,6 +331,23 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 	}
 }
 
+bool LatexOutputFilter::likelyNoFileStart(const QString &s) {
+	if (s.length() < 2) return false; // can't tell because it may be partial
+
+	QChar c0 = s.at(0);
+	QChar c1 = s.at(1);
+	if (c0 == '/') return false;  // abs. linux filename
+	if (c0.isLetter() && c1 == ':') return false;  // abs. win filename
+	if (c0 == '.' && (c1 == '/' || c1 == '\\')) return false;  // rel. filename
+	return true;
+}
+
+// returns true if the given string exists as a file or ends with an extension of 1-4 characters, e.g. ".tex" or ".jpeg"
+bool LatexOutputFilter::fileNameLikelyComplete(const QString &partialFileName) {
+	static QRegExp extensionRx(".*\\.\\w{1,4}$");
+	return QFileInfo(partialFileName).exists() || extensionRx.exactMatch(partialFileName);
+}
+
 void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short & dwCookie) {
 	static QString partialFileName;
 	if (dwCookie == Start) partialFileName.clear();
@@ -352,7 +369,9 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 				break;
 			case ExpectingFileName:
 				if (c == '"') { dwCookie = InQoutedFileName; fnStart = i+1; continue; }
-				else { dwCookie = InFileName; fnStart = i; continue; }
+				else {
+					dwCookie = InFileName; fnStart = i; continue;
+				}
 				break;
 			case InQoutedFileName:
 				if (c == '"') {
@@ -365,15 +384,33 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 				break;
 			case InFileName:
 				if (c == ')') {
-					partialFileName.clear(); // we don't have to push the filename, because it's directly closed again
-					dwCookie = Start; continue;
+					partialFileName += strLine.mid(fnStart, i-fnStart);
+					fnStart = i;
+					// qDebug() << strLine << partialFileName << fileNameLikelyComplete(partialFileName);
+					// we can only guess if the ')' is in the filename or terminates it
+					if (fileNameLikelyComplete(partialFileName) || likelyNoFileStart(partialFileName)) {
+						partialFileName.clear(); // we don't have to push the filename, because it's directly closed again
+						dwCookie = Start; continue;
+					}
 				}
 				if (c.isSpace()) {
 					partialFileName += strLine.mid(fnStart, i-fnStart);
-					m_stackFile.push(LOFStackItem(partialFileName));
-					//qDebug() << "push2" << partialFileName;
-					partialFileName.clear();
-					dwCookie = Start; continue;
+					fnStart = i;
+					// we can only guess if the space is in the filename or terminates it
+					if (fileNameLikelyComplete(partialFileName) || likelyNoFileStart(partialFileName)) {
+						// We need likelyNoFileStart together with the space a an abort criterion for
+						// file scanning in normal text.
+						// It may seem strange at first, that we also push if likelyNoFileStart, but
+						// we have to put something on the stack (assuming there is a corresponding
+						// closing bracket - the more likely case than a missing bracket). Otherwise
+						// we would erronously step down in the stack.
+						// The pushed value (even if its false) will only make for a local error, but
+						// is may even be correct since likelyNoFileStart is also just a heuristic.
+						m_stackFile.push(LOFStackItem(partialFileName));
+						//qDebug() << "push2" << partialFileName;
+						partialFileName.clear();
+						dwCookie = Start; continue;
+					}
 				}
 		}
 	}
