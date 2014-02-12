@@ -122,7 +122,8 @@ class LatexOutputFilter : public OutputFilter
         void updateFileStack(const QString &strLine, short & dwCookie);
 		void updateFileStackHeuristic(const QString &strLine, short & dwCookie);
 		void updateFileStackHeuristic2(const QString &strLine, short & dwCookie);
-
+		static bool likelyNoFileStart(const QString &s);
+		static bool fileNameLikelyComplete(const QString &s);
         /**
         Forwards the currently parsed item to the item list.
         */

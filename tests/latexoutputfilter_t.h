@@ -17,6 +17,9 @@ private slots:
 	void run_data();
 	void run();
 
+	void fileNameLikelyComplete_data();
+	void fileNameLikelyComplete();
+
 	QString stackTopFilename(const LatexOutputFilter &f);
 };
 #endif // QT_NO_DEBUG
