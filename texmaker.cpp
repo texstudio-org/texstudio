@@ -7285,18 +7285,18 @@ void Texmaker::svncreateRep(QString fn){
 	QString cmd=BuildManager::CMD_SVN;
 	QString admin=BuildManager::CMD_SVNADMIN;
 	QString path=QFileInfo(fn).absolutePath();
-	admin+=" create "+path+"/repo";
+    admin+=" create \""+path+"/repo\"";
 	statusLabelProcess->setText(QString(" svn create repo "));
 	QString buffer;
 	runCommand(admin,&buffer);
-	QString scmd=cmd+" mkdir file:///"+path+"/repo/trunk -m\"txs auto generate\"";
+    QString scmd=cmd+" mkdir \"file:///"+path+"/repo/trunk\" -m\"txs auto generate\"";
 	runCommand(scmd,&buffer);
-	scmd=cmd+" mkdir file:///"+path+"/repo/branches -m\"txs auto generate\"";
+    scmd=cmd+" mkdir \"file:///"+path+"/repo/branches\" -m\"txs auto generate\"";
 	runCommand(scmd,&buffer);
-	scmd=cmd+" mkdir file:///"+path+"/repo/tags -m\"txs auto generate\"";
+    scmd=cmd+" mkdir \"file:///"+path+"/repo/tags\" -m\"txs auto generate\"";
 	runCommand(scmd,&buffer);
 	statusLabelProcess->setText(QString(" svn checkout repo"));
-	cmd+=" co file:///"+path+"/repo/trunk "+path;
+    cmd+=" co \"file:///"+path+"/repo/trunk\" \""+path+"\"";
 	runCommand(cmd,&buffer);
 }
 
@@ -7304,7 +7304,7 @@ void Texmaker::svnUndo(bool redo){
 	QString cmd_svn=BuildManager::CMD_SVN;
 	QString fn=currentEditor()->fileName();
 	// get revisions of current file
-	QString cmd=cmd_svn+" log "+fn;
+    QString cmd=cmd_svn+" log \""+fn+"\"";
 	QString buffer;
 	runCommand(cmd, &buffer);
 	QStringList revisions=buffer.split("\n",QString::SkipEmptyParts);
