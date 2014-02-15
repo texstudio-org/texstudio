@@ -2581,6 +2581,8 @@ void QEditor::commentSelection()
 	{
 		m_doc->beginMacro();
 
+		m_definition->clearMatches(m_doc);  // Matches are not handled inside comments. We have to remove them. Otherwise they will stay forever in the comment line.
+
 		if ( !protectedCursor(m_cursor) )
 		insert(m_cursor, txt);
 
@@ -2591,6 +2593,7 @@ void QEditor::commentSelection()
 		m_doc->endMacro();
 
 	} else if ( !protectedCursor(m_cursor) ) {
+		m_definition->clearMatches(m_doc);  // Matches are not handled inside comments. We have to remove them. Otherwise they will stay forever in the comment line.
 		if ( !m_cursor.hasSelection() )
 			insert(m_cursor, txt);
 		else {
