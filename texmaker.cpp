@@ -4819,7 +4819,7 @@ void Texmaker::addMagicCoding() {
 }
 
 ///////////////TOOLS////////////////////
-bool Texmaker::runCommand(const QString& commandline, QString* buffer) {
+bool Texmaker::runCommand(const QString& commandline, QString* buffer, QTextCodec* codecForBuffer) {
 	fileSaveAll(buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
 	if (documents.getTemporaryCompileFileName()=="") {
 		if (buildManager.saveFilesBeforeCompiling==BuildManager::SFBC_ONLY_NAMED && currentEditorView()){
@@ -4840,7 +4840,7 @@ bool Texmaker::runCommand(const QString& commandline, QString* buffer) {
 	
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
 	
-	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer);
+	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer, codecForBuffer);
 }
 
 void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& options){
@@ -7497,11 +7497,7 @@ void Texmaker::changeToRevision(QString rev,QString old_rev){
 	} else return;
 	QString cmd=cmd_svn+" diff -r "+old_revision+":"+new_revision+" "+fn;
 	QString buffer;
-	runCommand(cmd, &buffer);
-	// runCommand uses the local encoding to fill the buffer, however svn diff appears to
-	// return the text in the same encoding as the file.
-	// Workaround: go back to the ByteArray and encode again with the proper encoding
-	buffer = currentEditor()->getFileCodec()->toUnicode(buffer.toLocal8Bit());
+	runCommand(cmd, &buffer, currentEditor()->getFileCodec());
 	// patch
 	svnPatch(currentEditor(),buffer);
 	currentEditor()->setProperty("Revision",rev);

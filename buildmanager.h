@@ -130,10 +130,10 @@ public:
 	QAction * stopBuildAction() {return m_stopBuildAction;}
 	
 public slots:
-	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0);
+	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 	Q_INVOKABLE void killCurrentProcess();
 private:
-	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0);
+	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
@@ -241,6 +241,7 @@ public:
 	void setShowStdout(bool show);
 	QString * getStdoutBuffer();
 	void setStdoutBuffer(QString *buffer);
+	void setStdoutCodec(QTextCodec *codec);
 	bool showStderr() const;
 	void setShowStderr(bool show);
 	void setOverrideEnvironment(const QStringList& env);
@@ -275,6 +276,7 @@ private:
 	QString file;
 	bool isStarted, ended, stderrEnabled, stdoutEnabled, stdoutEnabledOverrideOn;
 	QString *stdoutBuffer;
+	QTextCodec *stdoutCodec;
 	QStringList overriddenEnvironment;
 	QString subCommandName, subCommandPrimary;
 	RunCommandFlags subCommandFlags;

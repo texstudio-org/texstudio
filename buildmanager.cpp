@@ -1002,7 +1002,7 @@ void BuildManager::saveSettings(QSettings &settings){
 	settings.endGroup();
 }
 
-bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString* buffer){
+bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString* buffer, QTextCodec* codecForBuffer ){
 	if (waitingForProcess()) return false;
 	if (unparsedCommandLine.isEmpty()) { emit processNotification(tr("Error: No command given")); return false; }
 	ExpandingOptions options(mainFile, currentFile, currentLine);
@@ -1025,12 +1025,12 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	bool asyncPdf = !(expansion.commands.last().flags & RCF_WAITFORFINISHED) && (expansion.commands.last().flags & RCF_CHANGE_PDF);
 	
 	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
-	bool result = runCommandInternal(expansion, mainFile, buffer);
+	bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer);
 	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	return result;
 }
 
-bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer){
+bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer, QTextCodec* codecForBuffer){
 	const QList<CommandToRun> & commands = expandedCommands.commands;
 	
 	int remainingReRunCount = autoRerunLatex;
@@ -1054,6 +1054,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, 
 
 		
 		p->setStdoutBuffer(buffer);
+		p->setStdoutCodec(codecForBuffer);
 		
 		emit beginRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 		
@@ -1651,7 +1652,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 #endif
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
-    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0) {
+	QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0), stdoutCodec(0) {
 	QString stdoutRedirection = cmd.mid(cmd.lastIndexOf(">") + 1).trimmed();
 	if (stdoutRedirection == "/dev/null" || stdoutRedirection == "txs:///messages"  )  {
 		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
@@ -1727,6 +1728,9 @@ QString * ProcessX::getStdoutBuffer(){
 void ProcessX::setStdoutBuffer(QString *buffer){
 	stdoutBuffer = buffer;
 }
+void ProcessX::setStdoutCodec(QTextCodec *codec){
+	stdoutCodec = codec;
+}
 bool ProcessX::showStderr() const{
 	return stderrEnabled;
 }
@@ -1746,8 +1750,8 @@ const QStringList& ProcessX::overrideEnvironment(){
 
 int ProcessX::exitStatus() const{return QProcess::exitStatus();}
 int ProcessX::exitCode() const{return QProcess::exitCode(); }
-QString ProcessX::readAllStandardOutputStr(){return QString::fromLocal8Bit(QProcess::readAllStandardOutput());}
-QString ProcessX::readAllStandardErrorStr(){return QString::fromLocal8Bit(QProcess::readAllStandardError());}
+QString ProcessX::readAllStandardOutputStr(){return stdoutCodec ? stdoutCodec->toUnicode(QProcess::readAllStandardOutput()) : QString::fromLocal8Bit(QProcess::readAllStandardOutput());}
+QString ProcessX::readAllStandardErrorStr(){return stdoutCodec ? stdoutCodec->toUnicode(QProcess::readAllStandardError()) : QString::fromLocal8Bit(QProcess::readAllStandardError());}
 bool ProcessX::waitForFinished( int msecs ){return QProcess::waitForFinished(msecs);}
 
 bool ProcessX::isRunning() const{
