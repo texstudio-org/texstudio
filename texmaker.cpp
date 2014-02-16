@@ -8698,7 +8698,7 @@ void Texmaker::slowOperationEnded(){
 }
 
 void Texmaker::checkLatexInstall(){
-	fileNew(tr("System Report"));
+	fileNew(tr("System Report") + ".txt");
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 
 	QString result;
@@ -8735,11 +8735,12 @@ void Texmaker::checkLatexInstall(){
 #else
 	runCommand("printenv", &buffer);
 #endif
-	result+=buffer;
+	result+=buffer+"\n";
 
+	result+= "\nSetting file:\n";
+	result+= QDir::toNativeSeparators(configManager.configFileName) + "\n";
 
-
-	result+= "\n\nCommand configuration in TeXstudio:\n";
+	result+= "\nCommand configuration in TeXstudio:\n";
 	const CommandMapping& cmds = buildManager.getAllCommands();
 	foreach (const CommandInfo& ci, cmds)
 		result += QString("    %1 (%2)%3: %4\n").arg(ci.displayName).arg(ci.id).arg(ci.rerunCompiler?" (r)":"").arg(ci.commandLine);
