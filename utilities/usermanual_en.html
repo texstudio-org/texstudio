@@ -1301,7 +1301,7 @@ Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pd
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
 When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
-On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde://service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde://programpath:service/control/[commands...]</span> to start the program if necessary.
+On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde:///service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde:///programpath:service/control/[commands...]</span> to start the program if necessary.
 <br><br>
 Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
 </p>
@@ -1309,8 +1309,8 @@ Below you can find a list of commands for some common viewers. Of course, you ha
 <h3>Sumatra</h3>
 <p>
 To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TeXstudio path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
-To jump to a line in a running Sumatra (Windows only): <span class="command">dde://SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
-To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde://<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To jump to a line in a running Sumatra (Windows only): <span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde:///<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 To launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
 A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
@@ -1324,9 +1324,22 @@ To launch Foxit Reader from TeXstudio: <span class="command">"<i>(your Reader pa
 <h3>Acrobat Reader</h3>
 <p>
 To launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
-To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
 
-To close the document in a running Acrobat Reader (Windows only): <span class="command">dde://acroview/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+Naviation and closing are achieved via DDE commands. Since version 10 of the adobe products the DDE service name contains a letter for the Product and the version number.</p>
+<table>
+<tr><th>Product</th><th>Service name</th></tr>
+<tr><td>Adobe Reader 9</td><td>acroview</td></tr>
+<tr><td>Adobe Acrobat 9</td><td>acroview</td></tr>
+<tr><td>Adobe Reader 10</td><td>acroviewR10</td></tr>
+<tr><td>Adobe Acrobat 10</td><td>acroviewA10</td></tr>
+<tr><td>Adobe Reader 11</td><td>acroviewR11</td></tr>
+<tr><td>Adobe Acrobat 10</td><td>acroviewA11</td></tr>
+</table>
+<p>
+The following example is for Adobe Reader 11:<br> 
+To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
+
+To close the document in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
 </p>
 
 <h3>Yap (Yet Another Previewer)</h3>
