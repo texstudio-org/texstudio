@@ -237,7 +237,7 @@
 \istfile#S
 \istfilename#S
 \languageattribute#S
-\loadglsentries{arg1}{arg2}#i
+\loadglsentries{file}#i
 \makeglossaries
 \newacronymhook#S
 \newacronym{arg1}{arg2}{arg3}{arg4}
