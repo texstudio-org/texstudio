@@ -331,8 +331,11 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 	}
 }
 
-bool LatexOutputFilter::likelyNoFileStart(const QString &s) {
-	if (s.length() < 2) return false; // can't tell because it may be partial
+bool LatexOutputFilter::likelyNoFileStart(const QString &s, const QChar &nextChar) {
+	if (s.length() < 2) {
+		if (nextChar == ')') return true; // a (r) string -> likely no file
+		else return false; // can't tell because it may be partial
+	}
 
 	QChar c0 = s.at(0);
 	QChar c1 = s.at(1);
@@ -388,7 +391,7 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 					fnStart = i;
 					// qDebug() << strLine << partialFileName << fileNameLikelyComplete(partialFileName);
 					// we can only guess if the ')' is in the filename or terminates it
-					if (fileNameLikelyComplete(partialFileName) || likelyNoFileStart(partialFileName)) {
+					if (fileNameLikelyComplete(partialFileName) || likelyNoFileStart(partialFileName, c)) {
 						partialFileName.clear(); // we don't have to push the filename, because it's directly closed again
 						dwCookie = Start; continue;
 					}
@@ -397,7 +400,7 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 					partialFileName += strLine.mid(fnStart, i-fnStart);
 					fnStart = i;
 					// we can only guess if the space is in the filename or terminates it
-					if (fileNameLikelyComplete(partialFileName) || likelyNoFileStart(partialFileName)) {
+					if (fileNameLikelyComplete(partialFileName) || likelyNoFileStart(partialFileName, c)) {
 						// We need likelyNoFileStart together with the space a an abort criterion for
 						// file scanning in normal text.
 						// It may seem strange at first, that we also push if likelyNoFileStart, but
