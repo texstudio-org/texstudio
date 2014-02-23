@@ -218,14 +218,22 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< QString("./a (file) with bracets and spaces.tex");
-	QTest::newRow("unquoted file with backets and spaces")
+	QTest::newRow("bracketed single character")
 			<< (QStringList()
-				<< "(foo.tex"
-				<< ") (./a (file) with bracets and spaces.tex continued"
+				<< "(c:/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg"
+				<< "File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv"
+				<< "e"
+				<< ")"
 				)
 			<< short(LatexOutputFilter::Start)
-			<< QString("./a (file) with bracets and spaces.tex");
-
+			<< "";
+	QTest::newRow("bracketed single character 2")
+			<< (QStringList()
+				<< "(c:/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg"
+				<< "File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "c:/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg";
 
 	// synthetic examples
 	// these might overconstrain the filename detection heuristic, if there cannot be found any real-world
