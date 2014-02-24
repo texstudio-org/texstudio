@@ -187,20 +187,89 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
 //	<< QPair<QString, QString> ("\"\"","") redunant
  << QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
 */
-QChar transformCharacter(const QChar& c){
-    switch (c.toLatin1()){
-	case 'a': return QChar(0xE4);
-	case 'o': return QChar(0xF6);
-	case 'u': return QChar(0xFC);
-	case 'A': return QChar(0xC4);
-	case 'O': return QChar(0xD6);
-	case 'U': return QChar(0xDC);
-	case 's': return QChar(0xDF);
-	default: return c;
+QChar transformCharacter(const QChar& c, const QChar& context){
+	switch (context.toLatin1()) {
+	case '"':  // umlaut
+		switch (c.toLatin1()){
+		case 'a': return QChar(0xE4);
+		case 'e': return QChar(0xEB);
+		case 'i': return QChar(0xEF);
+		case 'o': return QChar(0xF6);
+		case 'u': return QChar(0xFC);
+		case 'A': return QChar(0xC4);
+		case 'E': return QChar(0xCB);
+		case 'I': return QChar(0xCF);
+		case 'O': return QChar(0xD6);
+		case 'U': return QChar(0xDC);
+		case 's': return QChar(0xDF);
+		default: return c;
+		}
+	case '`':  // grave
+		switch (c.toLatin1()){
+		case 'a': return QChar(0xE0);
+		case 'e': return QChar(0xE8);
+		case 'i': return QChar(0xEC);
+		case 'o': return QChar(0xF2);
+		case 'u': return QChar(0xF9);
+		case 'A': return QChar(0xC0);
+		case 'E': return QChar(0xC8);
+		case 'I': return QChar(0xCC);
+		case 'O': return QChar(0xD2);
+		case 'U': return QChar(0xD9);
+		default: return c;
+		}
+	case '\'':  // acute
+		switch (c.toLatin1()){
+		case 'a': return QChar(0xE1);
+		case 'e': return QChar(0xE9);
+		case 'i': return QChar(0xED);
+		case 'o': return QChar(0xF3);
+		case 'u': return QChar(0xFA);
+		case 'y': return QChar(0xFD);
+		case 'A': return QChar(0xC1);
+		case 'E': return QChar(0xC9);
+		case 'I': return QChar(0xCD);
+		case 'O': return QChar(0xD3);
+		case 'U': return QChar(0xDA);
+		case 'Y': return QChar(0xDD);
+		default: return c;
+		}
+	case '^':  // circumflex
+		switch (c.toLatin1()){
+		case 'a': return QChar(0xE2);
+		case 'e': return QChar(0xEA);
+		case 'i': return QChar(0xEE);
+		case 'o': return QChar(0xF4);
+		case 'u': return QChar(0xFB);
+		case 'A': return QChar(0xC2);
+		case 'E': return QChar(0xCA);
+		case 'I': return QChar(0xCE);
+		case 'O': return QChar(0xD4);
+		case 'U': return QChar(0xDB);
+		default: return c;
+		}
+	case '~':  // tilde
+		switch (c.toLatin1()){
+		case 'a': return QChar(0xE3);
+		case 'n': return QChar(0xF1);
+		case 'o': return QChar(0xF5);
+		case 'A': return QChar(0xC3);
+		case 'N': return QChar(0xD1);
+		case 'O': return QChar(0xD5);
+		default: return c;
+		}
+	case 'c':  // cedille
+		switch (c.toLatin1()){
+		case 'c': return QChar(0xE7);
+		case 'C': return QChar(0xC7);
+		default: return c;
+		}
 	}
+	return c;
 }
 
 QString latexToPlainWord(const QString& word) {
+
 	/*	QString result=word;
  for (QList<QPair<QString,QString> >::const_iterator it=latexToPlainWordReplaceList.begin(); it!=latexToPlainWordReplaceList.end(); ++it)
   result.replace(it->first,it->second);*/
@@ -211,7 +280,7 @@ QString latexToPlainWord(const QString& word) {
 			//decode all meta characters starting with a backslash (c++ syntax: don't use an actual backslash there or it creates a multi line comment)
 			i++;
 			if (i>=word.length()) break;
-            switch (word[i].toLatin1()) {
+			switch (word[i].toLatin1()) {
 			case '-': //Trennung [separation] (german-babel-package also: \")
 			case '/': //ligatur preventing (german-package also: "|)
 				break;
@@ -219,7 +288,7 @@ QString latexToPlainWord(const QString& word) {
 			case '"':
 				if (i+3 < word.length()) {
 					if (word[i+1] == '{' && word[i+3] == '}') {
-						result.append(transformCharacter(word[i+2]));
+						result.append(transformCharacter(word[i+2], word[i]));
 						i+=3;
 					} else if (word[i+1] == '\\' || word[i+1] == '"');  //ignore "
 					else i--; //repeat with "
@@ -233,7 +302,7 @@ QString latexToPlainWord(const QString& word) {
 			//decode all meta characters starting with "
 			i++;
 			if (i>=word.length()) break;
-            switch (word[i].toLatin1()) {
+			switch (word[i].toLatin1()) {
 			case '~':
 				result.append('-'); //- ohne Trennung (without separation)
 				break;
@@ -242,7 +311,7 @@ QString latexToPlainWord(const QString& word) {
 			case '"':  //ignore ""
 				break;
 			default:
-				result.append(transformCharacter(word[i]));
+				result.append(transformCharacter(word[i], '"'));
 				
 			}
 		} else result.append(word[i]);
