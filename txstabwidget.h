@@ -22,16 +22,22 @@ signals:
 	void tabMoved(int from,int to);
 	void tabBarContextMenuRequested(QPoint point);
 	void editorAboutToChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
+	void closeCurrentEditorRequest();
+	void currentEditorChanged();
 
 public slots:
-	void insertEditor(LatexEditorView *edView, int pos=-1 /*append*/, bool asCurrent=true);
-	void removeEditor(LatexEditorView *edView);
+	void closeTab(LatexEditorView *edView);
 
 	void gotoNextDocument();
 	void gotoPrevDocument();
 
+	// low level public functions
+	void insertEditor(LatexEditorView *edView, int pos=-1 /*append*/, bool asCurrent=true);
+	void removeEditor(LatexEditorView *edView);
+
 private slots:
 	void currentTabAboutToChange(int from, int to);
+	void closeTab(int i);
 };
 
 class ChangeAwareTabBar : public QTabBar
