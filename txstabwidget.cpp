@@ -19,7 +19,11 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 		setDocumentMode(true);
 		const QTabBar* tb=tabBar();
 		connect(tb,SIGNAL(tabMoved(int,int)),this,SIGNAL(tabMoved(int,int)));
+		connect(this,SIGNAL(tabCloseRequested(int)),this,SLOT(closeTab(int)));
+		setProperty("tabsClosable", true);
+		setProperty("movable", true);
 	}
+	connect(this,SIGNAL(currentChanged(int)),this,SIGNAL(currentEditorChanged()));
 }
 
 void TxsTabWidget::moveTab(int from,int to) {
@@ -92,6 +96,21 @@ void TxsTabWidget::currentTabAboutToChange(int from, int to) {
 	emit editorAboutToChangeByTabClick(edFrom, edTo);
 }
 
+void TxsTabWidget::closeTab(int i) {
+	int cur=currentIndex();
+	int total=count();
+	setCurrentIndex(i);
+	emit closeCurrentEditorRequest();
+	if (cur>i) cur--;//removing moves to left
+	if (total!=count() && cur!=i)//if user clicks cancel stay in clicked editor
+		setCurrentIndex(cur);
+}
+
+void TxsTabWidget::closeTab(LatexEditorView *edView) {
+	int i = indexOf(edView);
+	if (i >= 0) closeTab(i);
+}
+
 void TxsTabWidget::removeEditor(LatexEditorView *edView) {
 	int i = indexOf(edView);
 	if(i >= 0)
@@ -103,8 +122,6 @@ void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent
 	insertTab(pos, edView, "?bug?");
 	if (asCurrent) setCurrentEditor(edView);
 }
-
-
 
 void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event) {
 	if (event->button() == Qt::LeftButton) {

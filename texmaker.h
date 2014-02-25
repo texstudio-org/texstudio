@@ -352,8 +352,7 @@ protected slots:
 	void UpdateCaption();
 	void updateMasterDocumentCaption();
 	void updateUndoRedoStatus();
-	void editorTabChanged(int index);
-	void CloseEditorTab(int tab);
+	void currentEditorChanged();
 	void EditorTabMoved(int from,int to);
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 

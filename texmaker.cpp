@@ -209,11 +209,9 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 
 	connect(&documents, SIGNAL(docToHide(LatexEditorView *)), EditorTabs, SLOT(removeEditor(LatexEditorView *)));
 	connect(EditorTabs, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(editorTabContextMenu(QPoint)));
-	connect(EditorTabs, SIGNAL(currentChanged(int)), SLOT(editorTabChanged(int)));
+	connect(EditorTabs, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
+	connect(EditorTabs, SIGNAL(closeCurrentEditorRequest()), this, SLOT(fileClose()));
 	if (hasAtLeastQt(4,5)){
-		EditorTabs->setProperty("tabsClosable",true);
-		EditorTabs->setProperty("movable",true);
-		connect(EditorTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(CloseEditorTab(int)));
 		connect(EditorTabs, SIGNAL(tabMoved(int,int)), this, SLOT(EditorTabMoved(int,int)));
 	}
 	connect(EditorTabs, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView*,LatexEditorView*)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView*,LatexEditorView*)));
@@ -1343,9 +1341,9 @@ void Texmaker::updateMasterDocumentCaption(){
 	}
 }
 
-void Texmaker::editorTabChanged(int index){
+void Texmaker::currentEditorChanged() {
 	UpdateCaption();
-	if (index < 0) return; //happens if no tab is open
+	if (!currentEditorView()) return;
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
 	if (currentEditorView()) {
@@ -1366,15 +1364,6 @@ void Texmaker::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEdito
 	saveEditorCursorToHistory(edFrom);
 }
 
-void Texmaker::CloseEditorTab(int tab) {
-	int cur=EditorTabs->currentIndex();
-	int total=EditorTabs->count();
-	EditorTabs->setCurrentIndex(tab);
-	fileClose();
-	if (cur>tab) cur--;//removing moves to left
-	if (total!=EditorTabs->count() && cur!=tab)//if user clicks cancel stay in clicked editor
-		EditorTabs->setCurrentIndex(cur);
-}
 void Texmaker::showMarkTooltipForLogMessage(QList<int> errors) {
 	if (!currentEditorView()) return;
 	REQUIRE(outputView->getLogWidget());
@@ -6656,7 +6645,7 @@ void Texmaker::structureContextMenuCloseDocument(){
 	if (!entry) return;
 	LatexDocument* document = entry->document;
 	if (!document) return;
-	if (document->getEditorView()) CloseEditorTab(EditorTabs->indexOf(document->getEditorView()));
+	if (document->getEditorView()) EditorTabs->closeTab(document->getEditorView());
 	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
 }
 void Texmaker::structureContextMenuSwitchMasterDocument(){
