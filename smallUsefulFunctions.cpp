@@ -6,7 +6,7 @@
 const QString CommonEOW=QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
 const QString Punctation="!():\"?,.;-";
 const QString EscapedChars="%&_";
-const QString CharacterAlteringChars="\"";
+const QString CharacterAlteringChars="\"'^`";
 
 LatexParser* LatexParserInstance = 0;
 
@@ -286,14 +286,26 @@ QString latexToPlainWord(const QString& word) {
 				break;
 				
 			case '"':
+            case '\'':
+            case '^':
+            case '`':
+            case '~':
+            case 'c':
 				if (i+3 < word.length()) {
 					if (word[i+1] == '{' && word[i+3] == '}') {
 						result.append(transformCharacter(word[i+2], word[i]));
 						i+=3;
-					} else if (word[i+1] == '\\' || word[i+1] == '"');  //ignore "
-					else i--; //repeat with "
-				} else if (i +1 < word.length() && (word[i+1] == '\\' || word[i+1] == '"'));  //ignore "
-				else i--; //repeat with "
+                        break;
+                    }
+                }
+                if (i +1 < word.length()){
+                    if(word[i+1] == '\\' || word[i+1] == '"')
+                        break;  //ignore "
+                    result.append(transformCharacter(word[i+1], word[i]));
+                    i++;
+                    break;
+                }
+                i--; //repeat with "
 				break;
 			default:
 				i--; //repeat with current char
