@@ -418,27 +418,18 @@ void LatexDocument::patchStructure(int linenr, int count) {
 		s=curLine;
 		l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);
 		if (l>=0) {
-			s=s.mid(l+6,s.length());
-			bool reuse=false;
-			StructureEntry *newMagicComment;
-			if(MapOfMagicComments.contains(dlh)){
-				newMagicComment=MapOfMagicComments.value(dlh);
-				newMagicComment->type=StructureEntry::SE_MAGICCOMMENT;
-				MapOfMagicComments.remove(dlh,newMagicComment);
-				reuse=true;
-			}else{
-				newMagicComment=new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
-			}
+			addMagicComment(s.mid(l+6).trimmed(), i, MapOfMagicComments, iter_magicComment);
+		}
+		l=s.indexOf("% !BIB",0,Qt::CaseInsensitive);
+		if (l>=0) {
+			// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
+			s=s.mid(l+6).trimmed();
 			QString name;
 			QString val;
 			splitMagicComment(s, name, val);
-			
-			parseMagicComment(name, val, newMagicComment);
-			newMagicComment->title=s;
-			newMagicComment->setLine(line(i).handle(), i);
-			newMagicComment->parent=magicCommentList;
-			if(!reuse) emit addElement(magicCommentList,magicCommentList->children.size()); //todo: why here but not in label?
-			iter_magicComment.insert(newMagicComment);
+			if ((name=="TS-program" || name=="program") && (val=="biber" || val=="bibtex")) {
+				addMagicComment(QString("program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
+			}
 		}
 		////Ref
 		//for reference counting (can be placed in command options as well ...
@@ -2220,6 +2211,38 @@ bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QSt
 	name = comment.left(sep).trimmed();
 	val = comment.mid(sep+1).trimmed();
 	return true;
+}
+
+/*!
+  Used by the parser to add a magic comment
+
+\a text is the comment without the leading "! TeX" declaration. e.g. "spellcheck = DE-de"
+\a lineNr - line number of the magic comment
+\a MapOfMagicComments - MutliHashTable of all magic comments
+\a iter_magicComment - iterator over all magic comments placed at the last entry before line
+  */
+void LatexDocument::addMagicComment(const QString &text, int lineNr, QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfMagicComments, QMutableListIterator<StructureEntry*>& iter_magicComment) {
+	bool reuse=false;
+	StructureEntry *newMagicComment;
+	QDocumentLineHandle *dlh = line(lineNr).handle();
+	if(MapOfMagicComments.contains(dlh)){
+		newMagicComment=MapOfMagicComments.value(dlh);
+		newMagicComment->type=StructureEntry::SE_MAGICCOMMENT;
+		MapOfMagicComments.remove(dlh,newMagicComment);
+		reuse=true;
+	}else{
+		newMagicComment=new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
+	}
+	QString name;
+	QString val;
+	splitMagicComment(text, name, val);
+
+	parseMagicComment(name, val, newMagicComment);
+	newMagicComment->title=text;
+	newMagicComment->setLine(dlh, lineNr);
+	newMagicComment->parent=magicCommentList;
+	if(!reuse) emit addElement(magicCommentList,magicCommentList->children.size()); //todo: why here but not in label?
+	iter_magicComment.insert(newMagicComment);
 }
 
 /*!

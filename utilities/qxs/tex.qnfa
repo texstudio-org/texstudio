@@ -91,6 +91,10 @@ environments in smallUsefulFunctions.cpp)
 		<start>% !TeX</start>
 		<stop exclusive="false">\n</stop>
 	</context>
+	<context id="comment/magic-bib" format="magicComment" stayOnLine="true" >
+		<start>% !BIB</start>
+		<stop exclusive="false">\n</stop>
+	</context>
 	
 	<context id="comment/single" format="comment" stayOnLine="true" ambiguous="true">
 		<start>%</start>
