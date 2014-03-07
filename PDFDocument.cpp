@@ -412,6 +412,7 @@ PDFWidget::PDFWidget(bool embedded)
 #endif
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
+	horizontalTextRange.setWidth(-1.0);
 
 	dpi = globalConfig->dpi;
 	if (dpi<=0) dpi = 72; //it crashes if dpi=0
@@ -434,6 +435,9 @@ PDFWidget::PDFWidget(bool embedded)
 		break;
 	case 3:
 		fixedScale(globalConfig->scale / 100.0);
+		break;
+	case 4:
+		fitTextWidth(true);
 		break;
 	}
 
@@ -493,6 +497,7 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 	document = doc;
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
+
 	if(!document.isNull()){
 		docPages=document->numPages();
 		setSinglePageStep(globalConfig->singlepagestep);
@@ -515,6 +520,9 @@ void PDFWidget::windowResized()
 		break;
 	case kFitWidth:
 		fitWidth(true);
+		break;
+	case kFitTextWidth:
+		fitTextWidth(true);
 		break;
 	case kFitWindow:
 		fitWindow(true);
@@ -1696,6 +1704,33 @@ void PDFWidget::fitWidth(bool checked)
 	emit changedScaleOption(scaleOption);
 }
 
+void PDFWidget::fitTextWidth(bool checked)
+{
+	if (checked) {
+		scaleOption = kFitTextWidth;
+		QAbstractScrollArea*	scrollArea = getScrollArea();
+		if (scrollArea && !pages.isEmpty()) {
+			int margin = 8;
+			qreal portWidth = scrollArea->viewport()->width();
+
+			QRectF textRect = horizontalTextRangeF();
+			scaleFactor = portWidth / ((textRect.width() * dpi / 72.0) + 2*margin);
+			if (scaleFactor < kMinScaleFactor)
+				scaleFactor = kMinScaleFactor;
+			else if (scaleFactor > kMaxScaleFactor)
+				scaleFactor = kMaxScaleFactor;
+			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
+			adjustSize();
+			update();
+			updateStatusBar();
+			emit changedZoom(scaleFactor);
+		}
+	}
+	else
+		scaleOption = kFixedMag;
+	emit changedScaleOption(scaleOption);
+}
+
 void PDFWidget::fitWindow(bool checked)
 {
 	if (checked) {
@@ -1900,6 +1935,42 @@ QSizeF PDFWidget::maxPageSizeF() const{
 	}
 	return maxPageSize;
 }
+
+// calculates the maximal horizontal text range (xmin, xmax) over the total document.
+// Note: this may be slow on large documents because each TextBox (~word) is analyzed.
+// Therefore the value is cached.
+// TODO: Replace TextBoxes with the ArtBox of the page once this becomes available via the poppler-qt interface.
+// Only the horizontal values of the returned QRectF have meaning.
+QRectF PDFWidget::horizontalTextRangeF() const{
+	REQUIRE_RET(!document.isNull(), QRectF());
+	qreal textXmin = +1.e99;
+	qreal textXmax = -1.e99;
+	if(!horizontalTextRange.isValid()){
+		QProgressDialog progress(tr("Calculating text width"), tr("Cancel"), 0, docPages);
+		progress.setWindowModality(Qt::WindowModal);
+		progress.setMinimumDuration(500);
+
+		for(int page=0;page<docPages;page++){
+			progress.setValue(page);
+			Poppler::Page *popplerPage=document->page(page);
+			if (!popplerPage) break;
+			foreach (Poppler::TextBox *textbox, popplerPage->textList()) {
+				QRectF bb = textbox->boundingBox();
+				if (textXmin > bb.left()) textXmin = bb.left();
+				if (textXmax < bb.right()) textXmax = bb.right();
+				delete textbox;
+			}
+			delete popplerPage;
+			if (progress.wasCanceled())
+				break;
+		}
+		progress.close();
+		if (textXmax - textXmin > 0) {
+			horizontalTextRange = QRectF(textXmin, 0, textXmax - textXmin, 1);
+		}
+	}
+	return horizontalTextRange;
+}
 QSizeF PDFWidget::gridSizeF(bool ignoreVerticalGrid) const{
 	QSizeF maxPageSize = maxPageSizeF();
 	int usedy = ignoreVerticalGrid?1:gridy;
@@ -2076,6 +2147,7 @@ void PDFDocument::setupMenus(){
     menuView->addAction(actionZoom_Out);
     menuView->addAction(actionActual_Size);
     menuView->addAction(actionFit_to_Width);
+	menuView->addAction(actionFit_to_Text_Width);
     menuView->addAction(actionFit_to_Window);
     menuView->addAction(actionContinuous);
     menuView->addAction(menuGrid->menuAction());
@@ -2152,6 +2224,7 @@ void PDFDocument::init(bool embedded)
 	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
 	actionActual_Size->setIcon(getRealIcon("zoom-original"));
 	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
+	actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
 	actionNew->setIcon(getRealIcon("filenew"));
 	actionFileOpen->setIcon(getRealIcon("fileopen"));
 	actionClose->setIcon(getRealIcon("fileclose"));
@@ -2358,6 +2431,7 @@ void PDFDocument::init(bool embedded)
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
+	connect(actionFit_to_Text_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitTextWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
 	
@@ -2490,6 +2564,7 @@ void PDFDocument::init(bool embedded)
 		actionFit_to_Window->setShortcut(QKeySequence());
 		actionActual_Size->setShortcut(QKeySequence());
 		actionFit_to_Width->setShortcut(QKeySequence());
+		actionFit_to_Text_Width->setShortcut(QKeySequence());
 		actionNew->setShortcut(QKeySequence());
 		actionOpen->setShortcut(QKeySequence());
 		actionClose->setShortcut(QKeySequence());
@@ -3268,6 +3343,7 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 {
 	actionFit_to_Window->setChecked(scaleOption == kFitWindow);
 	actionFit_to_Width->setChecked(scaleOption == kFitWidth);
+	actionFit_to_Text_Width->setChecked(scaleOption == kFitTextWidth);
 	Q_ASSERT(scrollArea);
 	if (scaleOption == kFitWidth) {
 		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)

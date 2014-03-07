@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
-            <height>638</height>
+            <width>475</width>
+            <height>550</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -795,8 +795,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>217</width>
-               <height>94</height>
+               <width>193</width>
+               <height>76</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1480,8 +1480,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>822</width>
-            <height>1137</height>
+            <width>625</width>
+            <height>997</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2553,8 +2553,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3109,6 +3109,11 @@ them here.</string>
             <item>
              <property name="text">
               <string>Scaled Size</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fit to Text Width</string>
              </property>
             </item>
            </widget>
