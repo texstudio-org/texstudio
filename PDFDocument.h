@@ -116,7 +116,8 @@ private:
 typedef enum {
 	kFixedMag,
 	kFitWidth,
-	kFitWindow
+	kFitWindow,
+	kFitTextWidth
 } autoScaleOption;
 
 class PDFScrollArea;
@@ -168,6 +169,7 @@ public:
 	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
+	QRectF horizontalTextRangeF() const;
 
 	Q_INVOKABLE void zoom(qreal scale);
 
@@ -183,6 +185,7 @@ protected slots: //not private, so scripts have access
 	void doPageDialog();
 	
 	void fitWidth(bool checked = true);
+	void fitTextWidth(bool checked = true);
 	void zoomIn();
 	void zoomOut();
 	void jumpToSource();
@@ -300,6 +303,7 @@ private:
 	static QCursor	*zoomOutCursor;
 
 	mutable QSizeF maxPageSize; //cache pageSize
+	mutable QRectF horizontalTextRange;
 
 	QList<int> pageHistory;
 	int pageHistoryIndex;
