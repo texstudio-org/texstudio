@@ -674,7 +674,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
-	newManagedEditorAction(submenu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
+	newManagedAction(submenu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
 	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext");
 	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev");
@@ -3481,6 +3481,24 @@ void Texmaker::editTextToTitlecase() {
 	m_cursor.endEditBlock();
 }
 
+void Texmaker::editFind(){
+#ifndef NO_POPPLER_PREVIEW
+	QWidget* w = QApplication::focusWidget();
+	while (w && !qobject_cast<PDFDocument*>(w))
+		w = w->parentWidget();
+
+	if (qobject_cast<PDFDocument*>(w)){
+		PDFDocument* focusedPdf = qobject_cast<PDFDocument*>(w);
+		if (focusedPdf->embeddedMode) {
+			focusedPdf->search();
+			return;
+		}
+	}
+#endif
+	if (!currentEditor()) return;
+	currentEditor()->find();
+}
+
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings(bool reread) {
 	QuickDocumentDialog::registerOptions(configManager);
@@ -5870,6 +5888,22 @@ void Texmaker::viewCloseSomething(){
 	if (completer && completer->isVisible() && completer->close())
 		return;
 
+#ifndef NO_POPPLER_PREVIEW
+	QWidget* w = QApplication::focusWidget();
+	while (w && !qobject_cast<PDFDocument*>(w))
+		w = w->parentWidget();
+
+	if (qobject_cast<PDFDocument*>(w)) {
+		PDFDocument* focusedPdf = qobject_cast<PDFDocument*>(w);
+		if (focusedPdf->embeddedMode) {
+			focusedPdf->closeSomething();
+			focusedPdf->widget()->setFocus();
+			return;
+		}
+
+	}
+#endif
+
 	if (textAnalysisDlg) {
 		textAnalysisDlg->close();
 		return;
@@ -5881,13 +5915,13 @@ void Texmaker::viewCloseSomething(){
 		return;
 	}
 #ifndef NO_POPPLER_PREVIEW
-  foreach (PDFDocument* doc, PDFDocument::documentList())
-    if (doc->embeddedMode) {
-      doc->close();
-      return;
-    }
+	foreach (PDFDocument* doc, PDFDocument::documentList())
+		if (doc->embeddedMode) {
+			doc->close();
+			return;
+		}
 #endif
-    if(windowState()==Qt::WindowFullScreen && !configManager.disableEscForClosingFullscreen){
+     if(windowState()==Qt::WindowFullScreen && !configManager.disableEscForClosingFullscreen){
           stateFullScreen=saveState(1);
           setWindowState(Qt::WindowNoState);
           restoreState(windowstate,0);

@@ -298,6 +298,7 @@ protected slots:
 	void editTextToLowercase();
 	void editTextToUppercase();
 	void editTextToTitlecase();
+	void editFind();
 	void editPasteLatex();
 	void convertToLatex();
 	void editPasteRef();

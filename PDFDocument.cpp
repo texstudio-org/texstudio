@@ -1068,12 +1068,18 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		usingTool = kNone;
 	}
 
+	if (pdfDoc && pdfDoc->menuShow) {
+		menu.addSeparator();
+		menu.addMenu(pdfDoc->menuShow);
+	}
+
 	QAction *action = menu.exec(event->globalPos());
 
 	if (action == ctxZoomInAction)
 		doZoom(event->pos(), 1);
 	else if (action == ctxZoomOutAction)
 		doZoom(event->pos(), -1);
+
 }
 
 void PDFWidget::jumpToSource()
@@ -2031,8 +2037,7 @@ void PDFDocument::setupMenus(){
     menuGrid->setObjectName(QString::fromUtf8("menuGrid"));
     menuWindow = new QMenu(menubar);
     menuWindow->setObjectName(QString::fromUtf8("menuWindow"));
-    menuShow = new QMenu(menuWindow);
-    menuShow->setObjectName(QString::fromUtf8("menuShow"));
+
     menuEdit_2 = new QMenu(menubar);
     menuEdit_2->setObjectName(QString::fromUtf8("menuEdit_2"));
     setMenuBar(menubar);
@@ -2104,7 +2109,6 @@ void PDFDocument::setupMenus(){
     menuView->setTitle(QApplication::translate("PDFDocument", "&View"));
     menuGrid->setTitle(QApplication::translate("PDFDocument", "Grid"));
     menuWindow->setTitle(QApplication::translate("PDFDocument", "&Window"));
-    menuShow->setTitle(QApplication::translate("PDFDocument", "Show"));
     menuEdit_2->setTitle(QApplication::translate("PDFDocument", "&Edit"));
 }
 
@@ -2116,9 +2120,12 @@ void PDFDocument::init(bool embedded)
 
 	setupUi(this);
 
-    if(!embedded){
-        setupMenus();
-	}
+	menuShow = new QMenu(this);
+	menuShow->setObjectName(QString::fromUtf8("menuShow"));
+	menuShow->setTitle(QApplication::translate("PDFDocument", "Show"));
+	if(!embedded)
+		setupMenus();
+
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	setAttribute(Qt::WA_MacNoClickThrough, true);
@@ -2423,59 +2430,58 @@ void PDFDocument::init(bool embedded)
 	connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
-    if(!embedded){
-        menuShow->addAction(toolBar->toggleViewAction());
-        menuShow->addSeparator();
+	menuShow->addAction(toolBar->toggleViewAction());
+	menuShow->addSeparator();
 
-        menuShow->addAction(annotationPanel->toggleViewAction());
+	menuShow->addAction(annotationPanel->toggleViewAction());
 
-        QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
-        if(embedded)
-            dw->hide();
-        addDockWidget(Qt::LeftDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
+	if(embedded)
+		dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwInfo = new PDFInfoDock(this);
-        dw->hide();
-        addDockWidget(Qt::LeftDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	dw = dwInfo = new PDFInfoDock(this);
+	dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwSearch = new PDFSearchDock(this);
-        if(embedded)
-            dw->hide();
-        connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
-        addDockWidget(Qt::BottomDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
+	dw = dwSearch = new PDFSearchDock(this);
+	if(embedded)
+		dw->hide();
+	connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
 
-        dw = dwFonts = new PDFFontsDock(this);
-        dw->hide();
-        addDockWidget(Qt::BottomDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	dw = dwFonts = new PDFFontsDock(this);
+	dw->hide();
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwOverview = new PDFOverviewDock(this);
-        dw->hide();
-        addDockWidget(Qt::LeftDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	dw = dwOverview = new PDFOverviewDock(this);
+	dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwClock = new PDFClockDock(this);
-        dw->hide();
-        addDockWidget(Qt::BottomDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
-        connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
-    }
+	dw = dwClock = new PDFClockDock(this);
+	dw->hide();
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
+
 	//disable all action shortcuts when embedded
 	if(embedded){
 		actionGo_to_Page->setShortcut(QKeySequence());
@@ -2959,6 +2965,12 @@ void PDFDocument::search(const QString& searchText, bool backwards, bool increme
 			delete page;
 		}
 	}
+}
+
+void PDFDocument::search(){
+	if (!dwSearch) return;
+	dwSearch->show();
+	dwSearch->setFocus();
 }
 
 void PDFDocument::gotoAnnotation(const PDFAnnotation *ann) {

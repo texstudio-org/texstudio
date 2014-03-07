@@ -413,7 +413,9 @@ private slots:
 
 	void setGrid();
 
+public slots:
 	void closeSomething();
+private slots:
 	void tileWindows();
 	void stackWindows();
 	void unminimize();
@@ -425,6 +427,7 @@ private slots:
 	void search(bool backward, bool incremental);
 public:
 	void search(const QString& searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
+	void search();
 private slots:
 	void gotoAnnotation(const PDFAnnotation *ann);
 
@@ -476,15 +479,17 @@ private:
 	PDFAnnotations * annotations;
 	PDFAnnotationTableView * annotationTable;
 
-    QMenuBar *menubar;
-    QMenu *menuHelp;
-    QMenu *menuFile;
-    QMenu *menuEdit;
-    QMenu *menuView;
-    QMenu *menuGrid;
-    QMenu *menuWindow;
-    QMenu *menuShow;
-    QMenu *menuEdit_2;
+	QMenuBar *menubar;
+	QMenu *menuHelp;
+	QMenu *menuFile;
+	QMenu *menuEdit;
+	QMenu *menuView;
+	QMenu *menuGrid;
+	QMenu *menuWindow;
+public:
+	QMenu *menuShow;
+private:
+	QMenu *menuEdit_2;
 
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
