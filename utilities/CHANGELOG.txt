@@ -1,11 +1,10 @@
 (you may also want to check the usermanual)
 
-TeXstudio 2.6.6 ->
+TeXstudio 2.6.6 -> 2.7.0
 -----------------------------------------
 - added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)
 - added list of recent sessions
 - speedup of saving for large documents
-- improved filename detection in log files
 - added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)
 - added button to stop a running compilation
 - the dictionary search path can now contain of multiple directories
@@ -18,6 +17,8 @@ TeXstudio 2.6.6 ->
 - new options for pdf highlight color and duration
 - find dialog: search in all loaded documents i.e. also in hidden
 - improved synchonization PDF -> source
+- support "% !BIB = biber" syntax for compatibility with TeXShop and TeXWorks
+- added several new cwl files
 - several bugfixes
 
 TeXstudio 2.6.4 -> TeXstudio 2.6.6
