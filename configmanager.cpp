@@ -934,12 +934,12 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	config->beginGroup("version");
 	// updated on every access
 	config->setValue("written_by_TXS_version", TXSVERSION);
-	config->setValue("written_by_TXS_SVNversion", getSimplifiedSVNVersion());
+	config->setValue("written_by_TXS_hg_revision", TEXSTUDIO_HG_REVISION);
 	// written just the very first time
 	if (!config->value("created_by_TXS_version").isValid())
 		config->setValue("created_by_TXS_version", TXSVERSION);
-	if (!config->value("created_by_TXS_SVNversion").isValid())
-		config->setValue("created_by_TXS_SVNversion", getSimplifiedSVNVersion());
+	if (!config->value("created_by_TXS_hg_revision").isValid())
+		config->setValue("created_by_TXS_hg_revision", TEXSTUDIO_HG_REVISION);
 	config->endGroup();
 
 	config->beginGroup("texmaker");
