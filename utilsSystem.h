@@ -13,9 +13,7 @@
 #define LIST_RESERVE(list, count)
 #endif
 
-extern const char* TEXSTUDIO_SVN_VERSION;
-
-int getSimplifiedSVNVersion(QString svnVersion = TEXSTUDIO_SVN_VERSION);
+extern const char* TEXSTUDIO_HG_REVISION;
 
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 
