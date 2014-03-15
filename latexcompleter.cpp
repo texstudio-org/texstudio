@@ -1319,17 +1319,32 @@ void LatexCompleter::cursorPositionChanged() {
 }
 //called when item is clicked, more important: normal (not signal/slot) called when completerbinding change selection
 void LatexCompleter::selectionChanged(const QModelIndex & index) {
-	QToolTip::hideText();
-	if (!index.isValid()) return;
+	// Note on tooltip usage: It is not possible to hide and shortly afterwards reshow a tooltip
+	// with the same text (there's some interference between the internal hideTimer of the tooltip and
+	// the internal tooltip-reuse when QToolTip::showText() for the same text. As a result, the tooltip
+	// does not persist. This is a Qt-Bug.
+	// Workaround: we cannot QToolTip::hideText generally and QToolTip::showText as needed. Therefore we have to
+	// hide the tooltip in every single exit branch of the function that does not show the tooltip.
+	if (!index.isValid()) {
+		QToolTip::hideText();
+		return;
+	}
     if(forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
         QString fn=workingDir+QDir::separator()+listModel->words[index.row()].word;
-        emit showImagePreview(fn);
+		QToolTip::hideText();
+		emit showImagePreview(fn);
         return;
     }
     if (!config->tooltipHelp) return;
-	if (index.row() < 0 || index.row()>=listModel->words.size()) return;
+	if (index.row() < 0 || index.row()>=listModel->words.size()) {
+		QToolTip::hideText();
+		return;
+	}
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
-	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) return;
+	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) {
+		QToolTip::hideText();
+		return;
+	}
 	QString cmd=wordrx.cap(0);
 	QString topic;
 	if(latexParser.possibleCommands["%ref"].contains(cmd)){
@@ -1362,6 +1377,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			}
 		}
 	}else if(forcedCite || latexParser.possibleCommands["%cite"].contains(cmd)){
+		QToolTip::hideText();
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
 		value.remove(0,i+1);
@@ -1381,7 +1397,10 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	}else{
 		if (latexReference)
 			topic = latexReference->getTextForTooltip(cmd);
-		if (topic.isEmpty()) return;
+		if (topic.isEmpty()) {
+			QToolTip::hideText();
+			return;
+		}
 	}
 	showTooltip(topic);
 }
