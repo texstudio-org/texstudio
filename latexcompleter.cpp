@@ -1325,7 +1325,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	// does not persist. This is a Qt-Bug.
 	// Workaround: we cannot QToolTip::hideText generally and QToolTip::showText as needed. Therefore we have to
 	// hide the tooltip in every single exit branch of the function that does not show the tooltip.
-	if (!index.isValid()) {
+	if (!index.isValid() || !isVisible()) {
 		QToolTip::hideText();
 		return;
 	}
