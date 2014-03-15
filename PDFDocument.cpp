@@ -1477,6 +1477,9 @@ int PDFWidget::gridRowHeight() const{
 	return gridPageRect(0).height() + GridBorder;
 }
 
+int PDFWidget::gridBorder() const{
+	return GridBorder;
+}
 
 void PDFWidget::setSinglePageStep(bool step){
 	if (singlePageStep == step)
