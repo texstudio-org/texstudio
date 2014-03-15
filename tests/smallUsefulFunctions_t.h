@@ -482,6 +482,7 @@ private slots:
 			QEQUAL2(splittedLines[i], out[i], QString("in split #%1").arg(i));
 		}
 	}
+    /*
 	void test_getSimplifiedSVNVersion_data(){
 		QTest::addColumn<QString>("versionString");
 		QTest::addColumn<int>("out");
@@ -495,7 +496,7 @@ private slots:
 		QFETCH(QString, versionString);
 		QFETCH(int, out);
 		QEQUAL(getSimplifiedSVNVersion(versionString), out);
-	}
+    }*/
 	void test_minimalJsonParse_data(){
 		QTest::addColumn<QString>("jsonData");
 		QTest::addColumn<bool>("retVal");
