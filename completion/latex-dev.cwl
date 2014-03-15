@@ -14,17 +14,17 @@
 \DeclareFontEncodingDefaults{text-settings}{math-settings}#*
 \DeclareFontFamily{encoding}{family}{loading-settings}#*
 \DeclareFontShape{encoding}{family}{series}{shape}{loading-info}{loading-settings}#*
-\DeclareMathAccent{cmd}{type}{sym-font}{slot}#*
+\DeclareMathAccent{cmd}{type}{sym-font}{slot}#*d
 \DeclareMathAlphabet{math-alph}{encoding}{family}{series}{shape}#*
-\DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*
-\DeclareMathRadical{cmd}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*
+\DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
+\DeclareMathRadical{cmd}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
 \DeclareMathSizes{t-size}{mt-size}{s-size}{ss-size}#*
-\DeclareMathSymbol{symbol}{type}{sym-font}{slot}#*
+\DeclareMathSymbol{symbol}{type}{sym-font}{slot}#*d
 \DeclareMathVersion{version}#*
 \DeclareOldFontCommand{cmd}{text-switch}{math-switch}#*
 \DeclareOption*{code}#*
 \DeclareOption{option}{code}#*
-\DeclareRobustCommand#*
+\DeclareRobustCommand#*d
 \DeclareSizeFunction{name}{code}#*
 \DeclareSymbolFont{sym-font}{encoding}{family}{series}{shape}#*
 \DeclareSymbolFontAlphabet{math-alph}{sym-font}#*
@@ -199,7 +199,6 @@
 \parsep#*
 \lineskiplimits#*
 \footheight#*
-\DeclareMathSymbol#*
 # pdftex specials
 \pdfoutput#*
 \pdfadjustspacing#*
