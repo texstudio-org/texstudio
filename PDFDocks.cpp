@@ -746,7 +746,8 @@ void PDFScrollArea::updateScrollBars(){
 	if (!continuous) {
 		vbar->setRange(0, v.height() - p.height());
 	} else {
-		vbar->setRange(0,((pdf->pseudoNumPages() + pdf->gridCols() - 1)/ pdf->gridCols()) * pdf->gridRowHeight() - p.height());
+		int totalRows = ((pdf->pseudoNumPages() + pdf->gridCols() - 1)/ pdf->gridCols());
+		vbar->setRange(0, totalRows * pdf->gridRowHeight() - pdf->gridBorder() - p.height() -1);  // -1 is heuristic to prevent activation of the scrollbar in case of fit-page and one-page documents (might be this should be corrected in another place)
 	}
 
 	if (pdf->getScaleOption() == kFitWindow) {
