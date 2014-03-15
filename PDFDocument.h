@@ -152,6 +152,7 @@ public:
 	Q_INVOKABLE int pageStep();
 	Q_INVOKABLE int gridCols() const;
 	Q_INVOKABLE int gridRowHeight() const;
+	Q_INVOKABLE int gridBorder() const;
 	Q_INVOKABLE PDFDocument * getPDFDocument();
 	Q_INVOKABLE int getPageOffset() const;
 	autoScaleOption getScaleOption() { return scaleOption; }
