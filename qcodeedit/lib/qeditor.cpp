@@ -1134,7 +1134,7 @@ void QEditor::fileChanged(const QString& file)
 	{
 		watcher()->removeWatch(QString(), this); //no duplicated questions
 
-        if(flag(SilentReloadOnExternalChanges)){ // if hidden, just close the editor
+		if(mSilentReloadOnExternalChanges){ // if hidden, just close the editor
             emit requestClose();
             return;
         }
@@ -1164,7 +1164,7 @@ void QEditor::fileChanged(const QString& file)
 		// -> result in undo/redo history loss, still ask confirmation ?
 		bool autoReload = true;
 
-		if ( (canUndo() || canRedo()) && !flag(SilentReloadOnExternalChanges) )
+		if ( (canUndo() || canRedo()) && !mSilentReloadOnExternalChanges )
 		{
 			watcher()->removeWatch(QString(), this); //no duplicated questions
 			
@@ -5639,7 +5639,7 @@ void QEditor::markChanged(QDocumentLineHandle *l, int mark, bool on)
 	emit markChanged(fileName(), l, mark, on);
 }
 
-bool QEditor::displayModifyTime()
+bool QEditor::displayModifyTime() const
 {
     return mDisplayModifyTime;
 }

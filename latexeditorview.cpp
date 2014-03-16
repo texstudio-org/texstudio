@@ -1250,7 +1250,7 @@ void LatexEditorView::updateSettings(){
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::ShowPlaceholders, config->showPlaceholders);
-	editor->setFlag(QEditor::SilentReloadOnExternalChanges, config->silentReload);	
+	editor->setSilentReloadOnExternalChanges(config->silentReload);
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);
 	editor->setCursorBold(config->boldCursor);
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
