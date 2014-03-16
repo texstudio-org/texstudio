@@ -110,7 +110,7 @@ class LatexOutputFilter : public OutputFilter
 	//void sendProblems();
 	//void updateInfoLists(const QString &texfilename, int selrow, int docrow);
 
-	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, LineNumber,
+	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
 		  // the following states are only used in updateFileStackHeuristic2
 		  ExpectingFileName=10, InFileName, InQoutedFileName};
 
@@ -144,6 +144,7 @@ class LatexOutputFilter : public OutputFilter
 	bool detectBadBox(const QString & strLine, short &dwCookie);
 	bool detectLaTeXLineNumber(QString & warning, short & dwCookie, int len);
 	bool detectBadBoxLineNumber(QString & strLine, short & dwCookie, int len);
+	static bool isBadBoxTextQuote(const QString & strLine);
 
 	bool fileExists(const QString & name);
 	QString absoluteFileName(const QString & name); //returns "" if the file doesn't exists, uses m_filelookup
