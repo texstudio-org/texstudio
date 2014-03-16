@@ -83,6 +83,10 @@
         <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Toto je vývojářská verze.&lt;/b&gt;&lt;br&gt;</translation>
     </message>
+    <message>
+        <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ArrayDialog</name>
@@ -547,6 +551,10 @@
         <source>Biber</source>
         <translation>Biber</translation>
     </message>
+    <message>
+        <source>Stop Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -589,6 +597,10 @@
     <message>
         <source>Files to Delete</source>
         <translation>Soubory ke smazání</translation>
+    </message>
+    <message>
+        <source>For your own safety clean will not delete the files with the following extensions:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -681,7 +693,7 @@
     </message>
     <message>
         <source>Images (*.png *.xpm *.jpg *.bmp *.svg)</source>
-        <translation>Obrázky (*.png *.xpm *.jpg *.bmp *.svg)</translation>
+        <translation type="obsolete">Obrázky (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
         <source>The shortcut you entered is invalid.</source>
@@ -1156,7 +1168,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>dpi</source>
-        <translation>dpi</translation>
+        <translation type="obsolete">dpi</translation>
     </message>
     <message>
         <source>Magnifier size:</source>
@@ -1204,7 +1216,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>px</source>
-        <translation>px</translation>
+        <translation type="obsolete">px</translation>
     </message>
     <message>
         <source>Adv. Editor</source>
@@ -1764,7 +1776,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Spelling Dictionary Directory:</source>
-        <translation>Adresář pro pravopisný slovník:</translation>
+        <translation type="obsolete">Adresář pro pravopisný slovník:</translation>
     </message>
     <message>
         <source>Default Language:</source>
@@ -1880,7 +1892,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Auto Detect Encoding of Loaded Files</source>
-        <translation>Automaticky převzít kódování nahraných souborů</translation>
+        <translation type="obsolete">Automaticky převzít kódování nahraných souborů</translation>
     </message>
     <message>
         <source>Line Spacing:</source>
@@ -2096,7 +2108,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Download Additional Dictionaries: %1</source>
-        <translation>Stáhnout další slovníky: %1</translation>
+        <translation type="obsolete">Stáhnout další slovníky: %1</translation>
     </message>
     <message>
         <source>Lua</source>
@@ -2231,7 +2243,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
     </message>
     <message>
         <source>PDF Viewer</source>
-        <translation>Prohlížeč PDF</translation>
+        <translation type="obsolete">Prohlížeč PDF</translation>
     </message>
     <message>
         <source>Log File</source>
@@ -2434,6 +2446,120 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <source>Package</source>
         <translation>Balíček</translation>
+    </message>
+    <message>
+        <source>Spelling Dictionary Directories:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Dictionary...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic Encoding Detection:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Analyze Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show log markers when clicking log entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Structure Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reference commands in context menu:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Search Paths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bib Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image Files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Placeholders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight Duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Infinite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> dpi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>\#HHHHHHHH;_</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download additional dictionaries from %1 or %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path .bib Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Path for Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished">Obrázky</translation>
+    </message>
+    <message>
+        <source>Import Dictionary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OpenOffice Dictionary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The dictionary files have been imported to
+%1.
+However this path is not contained in the dictionary path list. Do you want to add it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3555,6 +3681,10 @@ Neplatný příkaz \caption.</translation>
         <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
         <translation>Identifikátor používaný na odkazování grafiky; např. pomocí \ref{thisLabel}</translation>
     </message>
+    <message>
+        <source>Images</source>
+        <translation type="unfinished">Obrázky</translation>
+    </message>
 </context>
 <context>
     <name>LatexCompleter</name>
@@ -3805,6 +3935,10 @@ Neplatný příkaz \caption.</translation>
         <source>Package not found</source>
         <translation>Balík nenalezen</translation>
     </message>
+    <message>
+        <source>Open Document</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexLogModel</name>
@@ -3885,7 +4019,11 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
-        <translation>Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+        <translation type="obsolete">Soubor se zápisem je příliš rozsáhlý (&gt; %1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+    </message>
+    <message>
+        <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4664,11 +4802,11 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
-        <translation>Soubor PDF &quot;%1&quot; není úplný. Nový pokus za 2 sekundy.</translation>
+        <translation type="obsolete">Soubor PDF &quot;%1&quot; není úplný. Nový pokus za 2 sekundy.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete.</source>
-        <translation>Soubor PDF &quot;%1&quot; není úplný.</translation>
+        <translation type="obsolete">Soubor PDF &quot;%1&quot; není úplný.</translation>
     </message>
     <message>
         <source>Zoom Out</source>
@@ -4687,7 +4825,7 @@ Přesto jej chcete otevřít? Může způsobit pád.</translation>
 does not look like a valid PDF document.
 
 Either the file is corrupt or it is in the process of creation. You may retry after compilation is finished. Opening a corrupt document could cause a crash. Do you want to open it anyway?</source>
-        <translation>%1
+        <translation type="obsolete">%1
 nevypadá jako platný dokument PDF.
 
 Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě jednou, jakmile bude sestavení hotovo. Otevření poškozeného dokumentu by mohlo způsobit pád. Přesto jej chcete otevřít?</translation>
@@ -4744,6 +4882,27 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     <message>
         <source>Annotations</source>
         <translation>Vysvětlivky</translation>
+    </message>
+    <message>
+        <source>Focus Editor</source>
+        <translation type="unfinished">Zaměřit editor</translation>
+    </message>
+    <message>
+        <source>Ctrl+Alt+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Zavřít</translation>
+    </message>
+    <message>
+        <source>%1
+does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5919,7 +6078,7 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     </message>
     <message>
         <source>dtx:environment</source>
-        <translation>dtx: prostředí</translation>
+        <translation type="obsolete">dtx: prostředí</translation>
     </message>
     <message>
         <source>packagePresent</source>
@@ -5928,6 +6087,10 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     <message>
         <source>packageMissing</source>
         <translation>Balík nepřítomen</translation>
+    </message>
+    <message>
+        <source>dtx:commands</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7783,7 +7946,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Pre&amp;view Selection/Parantheses</source>
-        <translation>Ná&amp;hled na výběr/závorky</translation>
+        <translation type="obsolete">Ná&amp;hled na výběr/závorky</translation>
     </message>
     <message>
         <source>&amp;Uncomment</source>
@@ -8473,7 +8636,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Cl&amp;ear Markers</source>
-        <translation>&amp;Smazat značky</translation>
+        <translation type="obsolete">&amp;Smazat značky</translation>
     </message>
     <message>
         <source>&amp;Math</source>
@@ -8791,7 +8954,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     </message>
     <message>
         <source>Insert \ref to Label</source>
-        <translation>Vložit \ref k štítku</translation>
+        <translation type="obsolete">Vložit \ref k štítku</translation>
     </message>
     <message>
         <source>New From &amp;Template...</source>
@@ -9136,6 +9299,99 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     <message>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Soubor &quot;%1&quot; již neexistuje. Chcete jej odstranit ze seznamu naposledy použitých souborů?</translation>
+    </message>
+    <message>
+        <source>LilyPond files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fifi&amp;x</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save renamed/&amp;moved file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save copied file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set &amp;permissions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Revert to saved...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy filename to &amp;clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy master filename to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Text Operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To Lowercase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To Uppercase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To Titlecase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pre&amp;view Selection/Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Log Markers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename/Move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the file &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to revert the file &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numeric permissions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verbose permissions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following files could not be loaded:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert %1 to Label</source>
+        <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

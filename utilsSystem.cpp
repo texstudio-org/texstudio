@@ -5,14 +5,6 @@
 #include <CoreFoundation/CFBundle.h>
 #endif
 
-int getSimplifiedSVNVersion(QString svnVersion) {
-	int cutoff = svnVersion.indexOf(QRegExp("[^0-9]"));
-	if (cutoff < 0)
-		return svnVersion.toInt();
-	else
-		return svnVersion.left(cutoff).toInt();
-}
-
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif

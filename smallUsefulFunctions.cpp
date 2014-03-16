@@ -42,7 +42,7 @@ void LatexParser::init(){
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
     possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\~" << "\\ " << "\\,");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
-    possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" << "\\DeclareMathSymbol" <<"\\newlength" << "\\DeclareRobustCommand" << "\\let";
+	possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\newlength" << "\\let";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
     possibleCommands["%graphics"] << "\\includegraphics";
     possibleCommands["%bibitem"]<< "\\bibitem";
@@ -1223,12 +1223,12 @@ QStringList LatexParser::latexNamesForTextCodec(const QTextCodec *codec) {
 		//case 2025 : return QStringList(); // "GB2312"
 		//case 2026 : return QStringList(); // "Big5"
 		//case 2084 : return QStringList(); // "KOI8-R"
-		//case 2086 : return QStringList(); // "IBM866"
+		case 2086 : return QStringList() << "cp866"; // "IBM866"
 		//case 2088 : return QStringList(); // "KOI8-U"
 		//case 2101 : return QStringList(); // "Big5-HKSCS"
 		//case 2107 : return QStringList(); // "TSCII"
 		case 2250 : return QStringList() << "cp1250"; // "windows-1250"
-		//case 2251 : return QStringList(); // "windows-1251"
+		case 2251 : return QStringList() << "cp1251"; // "windows-1251"
 		case 2252 : return QStringList() << "cp1252" << "ansinew"; // "windows-1252"
 		//case 2253 : return QStringList(); // "windows-1253"
 		//case 2254 : return QStringList(); // "windows-1254"
