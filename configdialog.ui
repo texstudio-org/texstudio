@@ -66,7 +66,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>12</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -89,8 +89,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>475</width>
-            <height>550</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -795,7 +795,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>193</width>
+               <width>860</width>
                <height>76</height>
               </rect>
              </property>
@@ -1480,8 +1480,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>625</width>
-            <height>997</height>
+            <width>863</width>
+            <height>1043</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1680,7 +1680,14 @@ Then you can select a new shortcut by one of the following ways:
               <bool>false</bool>
              </property>
              <layout class="QGridLayout" columnstretch="0,1,1,1">
-              <item row="7" column="0">
+              <item row="6" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
+                <property name="text">
+                 <string>Overwrite Opening Bracket Followed by a Placeholder</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
                <widget class="QLabel" name="label_23">
                 <property name="text">
                  <string>Maximal Characters:</string>
@@ -1697,7 +1704,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
+              <item row="11" column="0">
                <widget class="QLabel" name="label_24">
                 <property name="text">
                  <string>Auto Save All Files:</string>
@@ -1721,7 +1728,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
+              <item row="9" column="1">
                <widget class="QSpinBox" name="spinBoxWrapLineWidth">
                 <property name="minimum">
                  <number>20</number>
@@ -1731,7 +1738,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="9" column="1">
+              <item row="11" column="1">
                <widget class="QComboBox" name="comboBoxAutoSave">
                 <item>
                  <property name="text">
@@ -1760,7 +1767,7 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="8" column="0">
                <widget class="QLabel" name="label_41">
                 <property name="text">
                  <string>Line Wrapping:</string>
@@ -1781,7 +1788,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="11" column="2">
+              <item row="13" column="2">
                <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
                 <property name="text">
                  <string>Disable key 'Esc' to close fullscreen-mode</string>
@@ -1795,21 +1802,21 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="10" column="0" colspan="4">
+              <item row="12" column="0" colspan="4">
                <widget class="QCheckBox" name="checkBoxSilentReload">
                 <property name="text">
                  <string>Silently reload saved files on external changes (discards undo/redo stack)</string>
                 </property>
                </widget>
               </item>
-              <item row="12" column="2">
+              <item row="14" column="2">
                <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
                 <property name="text">
                  <string>Go to error when displaying log</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1" colspan="2">
+              <item row="8" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxLineWrap">
                 <item>
                  <property name="text">
@@ -1833,7 +1840,7 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
-              <item row="11" column="0">
+              <item row="13" column="0">
                <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                 <property name="toolTip">
                  <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
@@ -1843,10 +1850,17 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="14" column="0">
                <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
                 <property name="text">
                  <string>Show log markers when clicking log entry</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
+                <property name="text">
+                 <string>Overwrite Closing Bracket Following a Placeholder</string>
                 </property>
                </widget>
               </item>
@@ -2553,8 +2567,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">

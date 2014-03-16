@@ -109,8 +109,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			BidiVisualColumnMode= 0x10000000,
 
 			ShowPlaceholders = 0x20000000,
-
-			//SilentReloadOnExternalChanges = 0x40000000,
+			OverwriteOpeningBracketFollowedByPlaceholder = 0x40000000,
+			OverwriteClosingBracketFollowingPlaceholder = 0x80000000,
 
 			Accessible		= 0xfffff000
 		};

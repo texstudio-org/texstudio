@@ -4594,7 +4594,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		QChar text0 = text.at(0);
 		if (text0 == c.nextChar()) {
 			// special functions for overwriting existing text
-			if (text0=='}' || text0==')') {
+			if (flag(OverwriteClosingBracketFollowingPlaceholder) && (text0=='}' || text0==')')) {
 				// remove placeholder when typing closing bracket at the end of a placeholder
 				// e.g. \textbf{[ph]|} and typing '}'
 				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
@@ -4608,7 +4608,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 							c.deleteChar();
 						}
 					}
-			} else if (text0=='{' || text0=='[') {
+			} else if (flag(OverwriteOpeningBracketFollowedByPlaceholder) && (text0=='{' || text0=='[')) {
 				// skip over opening bracket if followed by a placeholder
 				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
 					if (m_placeHolders[i].cursor.anchorLineNumber() == c.lineNumber() &&
