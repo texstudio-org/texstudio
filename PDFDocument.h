@@ -116,7 +116,8 @@ private:
 typedef enum {
 	kFixedMag,
 	kFitWidth,
-	kFitWindow
+	kFitWindow,
+	kFitTextWidth
 } autoScaleOption;
 
 class PDFScrollArea;
@@ -169,6 +170,7 @@ public:
 	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
+	QRectF horizontalTextRangeF() const;
 
 	Q_INVOKABLE void zoom(qreal scale);
 
@@ -184,6 +186,7 @@ protected slots: //not private, so scripts have access
 	void doPageDialog();
 	
 	void fitWidth(bool checked = true);
+	void fitTextWidth(bool checked = true);
 	void zoomIn();
 	void zoomOut();
 	void jumpToSource();
@@ -301,6 +304,7 @@ private:
 	static QCursor	*zoomOutCursor;
 
 	mutable QSizeF maxPageSize; //cache pageSize
+	mutable QRectF horizontalTextRange;
 
 	QList<int> pageHistory;
 	int pageHistoryIndex;
@@ -414,7 +418,9 @@ private slots:
 
 	void setGrid();
 
+public slots:
 	void closeSomething();
+private slots:
 	void tileWindows();
 	void stackWindows();
 	void unminimize();
@@ -426,6 +432,7 @@ private slots:
 	void search(bool backward, bool incremental);
 public:
 	void search(const QString& searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
+	void search();
 private slots:
 	void gotoAnnotation(const PDFAnnotation *ann);
 
@@ -477,15 +484,17 @@ private:
 	PDFAnnotations * annotations;
 	PDFAnnotationTableView * annotationTable;
 
-    QMenuBar *menubar;
-    QMenu *menuHelp;
-    QMenu *menuFile;
-    QMenu *menuEdit;
-    QMenu *menuView;
-    QMenu *menuGrid;
-    QMenu *menuWindow;
-    QMenu *menuShow;
-    QMenu *menuEdit_2;
+	QMenuBar *menubar;
+	QMenu *menuHelp;
+	QMenu *menuFile;
+	QMenu *menuEdit;
+	QMenu *menuView;
+	QMenu *menuGrid;
+	QMenu *menuWindow;
+public:
+	QMenu *menuShow;
+private:
+	QMenu *menuEdit_2;
 
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
