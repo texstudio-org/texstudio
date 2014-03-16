@@ -290,7 +290,7 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 			}
 			else {
 			//fallback to the heuristic detection of filenames
-				updateFileStackHeuristic(strLine, dwCookie);
+				updateFileStackHeuristic2(strLine, dwCookie);
 			}
 		break;
 
