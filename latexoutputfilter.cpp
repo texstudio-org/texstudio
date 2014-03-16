@@ -776,7 +776,7 @@ bool LatexOutputFilter::detectBadBox(const QString & strLine, short & dwCookie)
 		case Start :
 			if(reBadBox.indexIn(strLine) != -1) {
 				found = true;
-				dwCookie = Start;
+				dwCookie = ExpectingBadBoxTextQoute;
 				badbox = strLine;
 				flush = detectBadBoxLineNumber(badbox, dwCookie, strLine.length());
 				m_currentItem.message=(badbox);
@@ -805,6 +805,17 @@ bool LatexOutputFilter::detectBadBox(const QString & strLine, short & dwCookie)
 	return found;
 }
 
+// Badboxes may have and additional line displaying the problematic text:
+//   Underfull \hbox (badness 10000) in paragraph at lines 827--831
+//   \T1/cmr/m/n/12 against it (de-pend-ing
+// We use the font definition pattern at the start to identify the line as such
+//
+bool LatexOutputFilter::isBadBoxTextQuote(const QString &strLine)
+{
+	static QRegExp reBadBoxTextQoute("\\\\\\S+/\\S+/\\S+/\\S+/");
+	return (reBadBoxTextQoute.indexIn(strLine) >= 0);
+}
+
 bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCookie, int len)
 {
 	//KILE_DEBUG() << "==LatexOutputFilter::detectBadBoxLineNumber(" << strLine.length() << ")================" << endl;
@@ -816,7 +827,7 @@ bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCook
 	static QRegExp reBadBoxOutput("(.*)has occurred while \\\\output is active^", Qt::CaseInsensitive);
 
 	if(reBadBoxLines.indexIn(strLine) != -1) {
-		dwCookie = Start;
+		dwCookie = ExpectingBadBoxTextQoute;
 		strLine = reBadBoxLines.cap(1);
 		int n1 = reBadBoxLines.cap(2).toInt();
 		int n2 = reBadBoxLines.cap(3).toInt();
@@ -824,14 +835,14 @@ bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCook
 		return true;
 	}
 	else if(reBadBoxLine.indexIn(strLine) != -1) {
-		dwCookie = Start;
+		dwCookie = ExpectingBadBoxTextQoute;
 		strLine = reBadBoxLine.cap(1);
 		m_currentItem.oldline=(reBadBoxLine.cap(2).toInt());
 		//KILE_DEBUG() << "\tBadBox@" << reBadBoxLine.cap(2) << "." << endl;
 		return true;
 	}
 	else if(reBadBoxOutput.indexIn(strLine) != -1) {
-		dwCookie = Start;
+		dwCookie = ExpectingBadBoxTextQoute;
 		strLine = reBadBoxLines.cap(1);
 		m_currentItem.oldline=(0);
 		return true;
@@ -854,6 +865,15 @@ short LatexOutputFilter::parseLine(const QString & strLine, short dwCookie)
 	//KILE_DEBUG() << "==LatexOutputFilter::parseLine(" << strLine.length() << ")================" << endl;
 
 	switch (dwCookie) {
+
+		case ExpectingBadBoxTextQoute:
+			if (isBadBoxTextQuote(strLine)) {
+				dwCookie = Start;
+				break; // next line
+			} else {
+				dwCookie = Start; // reset and treat currently independently
+			}
+			// fall-through - no break
 		case Start :
 			if(!(detectBadBox(strLine, dwCookie) || detectWarning(strLine, dwCookie) || detectError(strLine, dwCookie))) {
 				updateFileStack(strLine, dwCookie);

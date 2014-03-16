@@ -20,6 +20,9 @@ private slots:
 	void fileNameLikelyComplete_data();
 	void fileNameLikelyComplete();
 
+	void isBadBoxTextQuote_data();
+	void isBadBoxTextQuote();
+
 	QString stackTopFilename(const LatexOutputFilter &f);
 };
 #endif // QT_NO_DEBUG

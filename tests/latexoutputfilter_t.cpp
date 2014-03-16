@@ -234,6 +234,74 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< "c:/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg";
+	QTest::newRow("badbox underfull")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Underfull \\hbox (badness 10000) in paragraph"
+				)
+			<< short(LatexOutputFilter::BadBox)
+			<< "c:/test.tex";
+	QTest::newRow("badbox underfull")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Overfull \\hbox (badness 10000) in paragraph"
+				)
+			<< short(LatexOutputFilter::BadBox)
+			<< "c:/test.tex";
+	QTest::newRow("badbox underfull complete single line")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Underfull \\hbox (badness 10000) in paragraph at line 827"
+				)
+			<< short(LatexOutputFilter::ExpectingBadBoxTextQoute)
+			<< "c:/test.tex";
+	QTest::newRow("badbox underfull complete multi line")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Underfull \\hbox (badness 10000) in paragraph at lines 827--831"
+				)
+			<< short(LatexOutputFilter::ExpectingBadBoxTextQoute)
+			<< "c:/test.tex";
+	QTest::newRow("badbox overfull complete single line")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Overfull \\hbox (badness 10000) in paragraph at line 827"
+				)
+			<< short(LatexOutputFilter::ExpectingBadBoxTextQoute)
+			<< "c:/test.tex";
+	QTest::newRow("badbox overfull complete multi line")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Overfull \\hbox (badness 10000) in paragraph at lines 827--831"
+				)
+			<< short(LatexOutputFilter::ExpectingBadBoxTextQoute)
+			<< "c:/test.tex";
+	QTest::newRow("unbalanced open bracket in badbox textqoute")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< ""
+				<< "Underfull \\hbox (badness 10000) in paragraph at lines 827--831"
+				<< "\\T1/cmr/m/n/12 against it (de-pend-ing"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "c:/test.tex";
+	QTest::newRow("unbalanced closing bracket in badbox textqoute")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< ""
+				<< "Underfull \\hbox (badness 7925) in paragraph at lines 827--831"
+				<< "\\T1/cmr/m/n/12 point of view) re-fer-"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "c:/test.tex";
+	QTest::newRow("badbox without text quote")
+			<< (QStringList()
+				<< "(c:/test.tex"
+				<< "Underfull \\hbox (badness 10000) in paragraph at lines 827--831"
+				<< "(c:/test2.tex"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "c:/test2.tex";
 
 	// synthetic examples
 	// these might overconstrain the filename detection heuristic, if there cannot be found any real-world
@@ -399,6 +467,24 @@ void LatexOutputFilterTest::fileNameLikelyComplete() {
 	QFETCH(bool, result);
 
 	QEQUAL(LatexOutputFilter::fileNameLikelyComplete(name), result);
+}
+
+void LatexOutputFilterTest::isBadBoxTextQuote_data() {
+	QTest::addColumn<QString>("line");
+	QTest::addColumn<bool>("result");
+
+	QTest::newRow("empty") << "" << false;
+	QTest::newRow("text") << "foo" << false;
+	QTest::newRow("qoute") << "\\T1/cmr/m/n/12 against it (de-pend-ing" << true;
+	QTest::newRow("qoute2") << "[]\\T1/cmr/m/n/10.95 Fehlermeldung: over-full hbox er-stellt mit fol-gen-dem, lan-gen Satz: Es ist ganz schön schwie-" << true;
+	QTest::newRow("qoute3") << "[]\\LY1/brm/m/n/10 Windows, \\LY1/brm/m/it/10 see" << true;
+}
+
+void LatexOutputFilterTest::isBadBoxTextQuote() {
+	QFETCH(QString, line);
+	QFETCH(bool, result);
+
+	QEQUAL(LatexOutputFilter::isBadBoxTextQuote(line), result);
 }
 
 #endif
