@@ -41,6 +41,10 @@ public:
 	
 	bool autoInsertLRM, visualColumnMode;
 
+	bool overwriteOpeningBracketFollowedByPlaceholder;
+	bool overwriteClosingBracketFollowingPlaceholder;
+
+
 	void settingsChanged();
 private:
 	QString lastFontFamily;
