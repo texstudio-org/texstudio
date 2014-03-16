@@ -4591,21 +4591,42 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			for (int i=0; i<text.length(); i++)
 				c.deleteChar();
 		}
-		// remove placeholder when typing closing bracket at the end of a placeholder
-		// e.g. \textbf{[ph]|} and typing '}'
-		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
-			if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
-			    m_placeHolders[i].cursor.columnNumber() == c.columnNumber() &&
-			    (text.at(0)=='}' || text.at(0)==']') &&
-			    c.nextChar()==text.at(0))
-			{
-				QChar cc = text.at(0);
-				QChar oc = (cc=='}') ? '{' : '[';
-				if (findOpeningBracket(c.line().text(), c.columnNumber()-1, oc, cc) < m_placeHolders[i].cursor.anchorColumnNumber()) {
-					removePlaceHolder(i);
-					c.deleteChar();
-				}
+		QChar text0 = text.at(0);
+		if (text0 == c.nextChar()) {
+			// special functions for overwriting existing text
+			if (text0=='}' || text0==')') {
+				// remove placeholder when typing closing bracket at the end of a placeholder
+				// e.g. \textbf{[ph]|} and typing '}'
+				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+					if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+						m_placeHolders[i].cursor.columnNumber() == c.columnNumber()
+						)
+					{
+						QChar openBracket = (text0=='}') ? '{' : '[';
+						if (findOpeningBracket(c.line().text(), c.columnNumber()-1, openBracket, text0) < m_placeHolders[i].cursor.anchorColumnNumber()) {
+							removePlaceHolder(i);
+							c.deleteChar();
+						}
+					}
+			} else if (text0=='{' || text0=='[') {
+				// skip over opening bracket if followed by a placeholder
+				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+					if (m_placeHolders[i].cursor.anchorLineNumber() == c.lineNumber() &&
+						m_placeHolders[i].cursor.anchorColumnNumber() == c.columnNumber() + 1
+						)  // anchor == start of placeholder
+					{
+						setPlaceHolder(i);
+						if (text.length() == 1) {
+							return; // don't insert the bracket because we've just jumped over it
+						} else {
+							QString remainder(text);
+							remainder.remove(0,1);
+							insertText(c, remainder);
+							return;
+						}
+					}
 			}
+		}
 	}
 	
 	//prepare for auto bracket insertion
