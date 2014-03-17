@@ -1,3 +1,10 @@
+texstudio (2.7.0) natty; urgency=low
+
+  * 2.7.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 17 Mar 2014 11:03:00 +0100
+
+
 texstudio (2.6.6) natty; urgency=low
 
   * 2.6.6 bugfixes (home/end keys)
