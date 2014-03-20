@@ -2,6 +2,7 @@ TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
 CONFIG += qt precompile_header uitools
+CONFIG -= debug
 QT += network \
     xml \
     svg \

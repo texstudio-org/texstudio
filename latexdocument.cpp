@@ -515,12 +515,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
                     }
                 }
 				completerNeedsUpdate=true;
-				QRegExp rx("^\\s*\\[(\\d+)\\](\\[.+\\])?");
-				int options=0;
+				QRegExp rx("^\\s*(\\[.+\\])?");
+				int options=arg.toInt();
 				int def=0;
 				if(rx.indexIn(remainder)>-1){
-					options=rx.cap(1).toInt(); //returns 0 if conversion fails
-					if(!rx.cap(2).isEmpty())
+					if(!rx.cap(1).isEmpty())
 						def=1;
 				}
 				ltxCommands.possibleCommands["user"].insert(name);
@@ -712,7 +711,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// beamer blocks ////
 			
 			if (cmd=="\\begin" && name=="block") {
-				QString s=extractSectionName(remainder,true);
 				StructureEntry *newBlock;
 				if(MapOfBlock.contains(dlh)){
 					newBlock=MapOfBlock.value(dlh);
@@ -721,7 +719,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				}else{
 					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
 				}
-				newBlock->title=s;
+				newBlock->title=arg;
 				newBlock->setLine(line(i).handle(), i);
 				newBlock->parent=blockList;
 				iter_block.insert(newBlock);

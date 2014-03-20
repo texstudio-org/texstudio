@@ -332,21 +332,6 @@ QString latexToPlainWord(const QString& word) {
 	return result;
 }
 
-QString extractSectionName(const QString& word, bool precut) {
-	int i=0;
-	int start=-1;
-	if(!precut) start=word.indexOf("{",i);
-	i=start>-1 ? start : 0;
-	int stop=word.indexOf("}",i);
-	i=word.indexOf("{",i+1);
-	while (i>0 && stop>0 && i<stop) {
-		stop=word.indexOf("}",stop+1);
-		i=word.indexOf("{",i+1);
-	}
-	if (stop<0) stop=word.length();
-	return word.mid(start+1,stop-start-1);
-}
-
 int findClosingBracket(const QString& word,int &start,QChar oc,QChar cc) {
 	int i=0;
 	if(start<0) start=word.indexOf(oc,i);
