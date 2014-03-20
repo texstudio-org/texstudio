@@ -3561,7 +3561,12 @@ void Texmaker::ReadSettings(bool reread) {
         foreach (const QString& key, sl) {
             int k = key.toInt();
             if (k==0) continue;
-            configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
+			int operationID = config->value(key).toInt();
+			QString defaultKey = configManager.editorKeys.key(operationID);
+			if (!defaultKey.isNull()) {
+				configManager.editorKeys.remove(defaultKey);
+			}
+			configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
         }
         QEditor::setEditOperations(configManager.editorKeys);
         config->remove("");
@@ -3571,9 +3576,13 @@ void Texmaker::ReadSettings(bool reread) {
 	QStringList sl = config->childKeys();
 	if (!sl.empty()) {
 		foreach (const QString& key, sl) {
-            //int k = key.toInt(); compatibility to old ?
             if (key.isEmpty()) continue;
-            configManager.editorKeys.insert(key, config->value(key).toInt());
+			int operationID = config->value(key).toInt();
+			QString defaultKey = configManager.editorKeys.key(operationID);
+			if (!defaultKey.isNull()) {
+				configManager.editorKeys.remove(defaultKey);
+			}
+			configManager.editorKeys.insert(key, operationID);
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
 	}
