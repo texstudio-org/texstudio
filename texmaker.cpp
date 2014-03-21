@@ -2215,7 +2215,7 @@ void Texmaker::fileSave(const bool saveSilently) {
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-		if(configManager.autoCheckinAfterSave) {
+        if(configManager.autoCheckinAfterSave && !saveSilently) {
 			checkin(currentEditor()->fileName());
 			if(configManager.svnUndo) currentEditor()->document()->clearUndo();
 		}
@@ -7187,7 +7187,7 @@ void Texmaker::fileCheckin(QString filename){
 	bool wholeDirectory;
 	dialog.addVariable(&wholeDirectory,tr("check in whole directory ?"));
 	if (dialog.exec()==QDialog::Accepted){
-		fileSave();
+        fileSave(true);
 		if(wholeDirectory){
 			fn=QFileInfo(fn).absolutePath();
 		}
