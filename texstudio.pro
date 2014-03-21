@@ -2,7 +2,8 @@ TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
 CONFIG += qt precompile_header uitools
-CONFIG -= debug
+# allow loading extra config by file for automatic compilations (OBS)
+exists(texstudio.pri):include(texstudio.pri)
 QT += network \
     xml \
     svg \
