@@ -61,7 +61,7 @@ public slots:
 	void check(const QString& language, const void* doc, const QList<LineInfo>& lines, int firstLineNr);
 private slots:
 	void process();
-	void backendChecked(uint ticket, const QList<GrammarError>& errors, bool directCall = false);	
+	void backendChecked(uint ticket, int subticket, const QList<GrammarError>& errors, bool directCall = false);
 private:
 	LatexParser* latexParser;
 	GrammarCheckerConfig config;
@@ -71,6 +71,7 @@ private:
 	uint ticket;
 	TicketHash tickets;
 	QList<CheckRequest> requests;
+	QSet<QString> floatingEnvs;
 };
 
 struct CheckRequestBackend;
@@ -80,9 +81,9 @@ public:
 	GrammarCheckBackend(QObject* parent);
 	virtual void init(const GrammarCheckerConfig& config) = 0;
 	virtual bool isAvailable() = 0;
-	virtual void check(uint ticket, const QString& language, const QString& text) = 0;
+	virtual void check(uint ticket, int subticket, const QString& language, const QString& text) = 0;
 signals:
-	void checked(uint ticket, const QList<GrammarError>& errors);	
+	void checked(uint ticket, int subticket, const QList<GrammarError>& errors);
 };
 
 class QNetworkAccessManager;
@@ -94,7 +95,7 @@ public:
 	~GrammarCheckLanguageToolSOAP();
 	virtual void init(const GrammarCheckerConfig& config);
 	virtual bool isAvailable();
-	virtual void check(uint ticket, const QString& language, const QString& text);
+	virtual void check(uint ticket, int subticket, const QString& language, const QString& text);
 private slots:
 	void finished(QNetworkReply* reply);
 private:
