@@ -345,6 +345,83 @@ private slots:
 		QEQUAL(cmd,command);
 		QEQUAL(val,value);
 	}
+	void test_lineStart_data(){
+		QTest::addColumn<QString>("text");
+		QTest::addColumn<int>("pos");
+		QTest::addColumn<int>("start");
+
+		QTest::newRow("empty") << "" << 0 << 0;
+		QTest::newRow("start") << "foo bar" << 0 << 0;
+		QTest::newRow("text") << "foo bar" << 6 << 0;
+		QTest::newRow("newline") << "foo\nbar" << 6 << 4;
+		QTest::newRow("cr") << "foo\rbar" << 6 << 4;
+		QTest::newRow("cr_newline") << "foo\r\nbar" << 6 << 5;
+		QTest::newRow("start_newline") << "foo\nbar" << 4 << 4;
+	}
+	void test_lineStart(){
+		QFETCH(QString, text);
+		QFETCH(int, pos);
+		QFETCH(int, start);
+		QEQUAL(LatexParser::lineStart(text.toAscii(), pos), start);
+	}
+	void test_lineEnd_data(){
+		QTest::addColumn<QString>("text");
+		QTest::addColumn<int>("pos");
+		QTest::addColumn<int>("end");
+
+		QTest::newRow("empty") << "" << 0 << 0;
+		QTest::newRow("end") << "foo bar" << 7 << 7;
+		QTest::newRow("text") << "foo bar" << 1 << 7;
+		QTest::newRow("newline") << "foo\nbar" << 1 << 3;
+		QTest::newRow("cr") << "foo\rbar" << 1 << 3;
+		QTest::newRow("cr_newline") << "foo\r\nbar" << 1 << 3;
+		QTest::newRow("end_newline") << "foo\nbar" << 3 << 3;
+	}
+	void test_lineEnd(){
+		QFETCH(QString, text);
+		QFETCH(int, pos);
+		QFETCH(int, end);
+		QEQUAL(LatexParser::lineEnd(text.toAscii(), pos), end);
+	}
+	void test_getEncodingFromPackage_data() {
+		QTest::addColumn<QString>("text");
+		QTest::addColumn<QString>("encodingName");
+
+		QTest::newRow("empty") << "" << "";
+		QTest::newRow("no info") << "foo bar\nbaz" << "";
+		QTest::newRow("simple") << "\\usepackage[latin1]{inputenc}" << "latin1";
+		QTest::newRow("simple2") << "foo bar\nbaz\n\\usepackage[latin1]{inputenc}" << "latin1";
+		QTest::newRow("spaces") << "  \\usepackage[utf8]{inputenc}  " << "utf8";
+		QTest::newRow("multiple") << "\\usepackage[latin1]{inputenc}\n\\usepackage[utf8]{inputenc}" << "latin1";
+		QTest::newRow("commented") << "  %\\usepackage[latin1]{inputenc}" << "";
+		QTest::newRow("commented2") << "% \\usepackage[latin1]{inputenc}\n\\usepackage[utf8]{inputenc}" << "utf8";
+	}
+	void test_getEncodingFromPackage() {
+		QFETCH(QString, text);
+		QFETCH(QString, encodingName);
+		QEQUAL(encodingName, LatexParser::getEncodingFromPackage(text.toAscii(), text.length(), "inputenc"));
+	}
+	void test_guessEncoding_data() {
+		QTest::addColumn<QString>("text");
+		QTest::addColumn<QString>("encodingName");
+		QTest::newRow("empty") << "" << "";
+		QTest::newRow("no info") << "foo bar\nbaz" << "";
+		QTest::newRow("inputenc") << "\\usepackage[latin1]{inputenc}" << "ISO-8859-1";
+		QTest::newRow("inputenx") << "\\usepackage[utf8]{inputenx}" << "UTF-8";
+	}
+	void test_guessEncoding() {
+		QFETCH(QString, text);
+		QFETCH(QString, encodingName);
+
+		QTextCodec *encoding = 0;
+		int sure = 0;
+		LatexParser::guessEncoding(text.toAscii(), encoding, sure);
+		if (encodingName.isEmpty()) {
+			QEQUAL(0, int(encoding));
+		} else {
+			QEQUAL(encodingName, QString(encoding->name()));
+		}
+	}
 	void test_findClosingBracket_data(){
 		QTest::addColumn<QString>("line");
 		QTest::addColumn<int>("start");
@@ -688,7 +765,6 @@ private slots:
 			QEQUAL(indices[i], result[i]);
 		}
 	}
-
 
 };
 

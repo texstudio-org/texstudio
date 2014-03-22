@@ -1239,16 +1239,6 @@ QStringList LatexParser::latexNamesForTextCodec(const QTextCodec *codec) {
 	return QStringList();
 }
 
-int lineEnd(const QByteArray& data, int index){
-	int r = data.indexOf('\n',index);
-	if (r != -1) return r;
-	r = data.indexOf('\r',index);
-	if (r != -1) return r;
-	r = data.indexOf("\x20\x29",index);
-	if (r != -1) return r;
-	return data.size();
-}
-
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 	const char* str = data.data();
 	int size = data.size();
@@ -1333,47 +1323,66 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 		}
 		index = data.indexOf('=', index + 1);
 	}
-	
-	//search for \usepackage[.*]{inputenc} outside of a comment
-	index = data.indexOf("]{inputenc}");
-	while (index >= 0 && index < headerSize) {
-		int previous = data.lastIndexOf("\\usepackage[",index);
-		if (previous >= 0){
-			int commentStart = data.lastIndexOf('%',index);
-			int commentEnd = lineEnd(data, index);
-			if (commentStart <= commentEnd) {
-				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
-				QTextCodec* codec = QTextCodecForLatexName(encoding);
-				if (codec) {
-					sure = 100;
-					guess = codec;
-					return;
-				}
-			}
+
+	QString encoding = getEncodingFromPackage(data, headerSize, "inputenc");
+	if (encoding.isEmpty())
+		encoding = getEncodingFromPackage(data, headerSize, "inputenx");
+	if (!encoding.isEmpty()) {
+		QTextCodec* codec = QTextCodecForLatexName(encoding);
+		if (codec) {
+			sure = 100;
+			guess = codec;
+			return;
 		}
-		index = data.indexOf("]{inputenc}", index + 1);
-	}
-	
-	//search for \usepackage[.*]{inputenx} outside of a comment
-	index = data.indexOf("]{inputenx}");
-	while (index >= 0 && index < headerSize) {
-		int previous = data.lastIndexOf("\\usepackage[",index);
-		if (previous >= 0){
-			int commentStart = data.lastIndexOf('%',index);
-			int commentEnd = lineEnd(data,index);
-			if (commentStart <= commentEnd) {
-				QString encoding = QString(data.mid(previous+12, index - (previous + 12)));
-				QTextCodec* codec = QTextCodecForLatexName(encoding);
-				if (codec) {
-					sure = 100;
-					guess = codec;
-					return;
-				}
-			}
-		}
-		index = data.indexOf("]{inputenx}", index + 1);
 	}
 	return;
+}
+
+int LatexParser::lineStart(const QByteArray& data, int index) {
+	int n = qMax(data.lastIndexOf('\n', index), data.lastIndexOf('\r', index));
+	int o = data.lastIndexOf("\x20\x29",index);
+	if (n<0 && o<0) return 0;
+	if (n > o) return n+1; // skip over character
+	else return n+2; // skip over both chars
+}
+
+int LatexParser::lineEnd(const QByteArray& data, int index) {
+	int n = data.indexOf('\n',index);
+	int r = data.indexOf('\r',index);
+	if (n<0) n=r; // prevent non-existing value (-1) to be smaller than existing one in qMin
+	else if (r<0) r=n;
+	n = qMin(n, r);
+
+	r = data.indexOf("\x20\x29",index);
+	if (n<0) n=r;
+	else if (r<0) r=n;
+	n = qMin(n, r);
+	if (n >= 0) return r;
+	return data.size();
+}
+
+//search for first \usepackage[.*]{<packageName>} outside of a comment
+// returns the string inside the square brackets
+QString LatexParser::getEncodingFromPackage(const QByteArray& data, int headerSize, const QString &packageName) {
+	QByteArray packageEndToken(QString("]{%1}").arg(packageName).toAscii());
+	QByteArray packageStartToken("\\usepackage[");
+	int index = data.indexOf(packageEndToken);
+	while (index >= 0 && index < headerSize) {
+		int lStart = lineStart(data, index);
+		int lEnd = lineEnd(data, index);
+		QByteArray line(data.mid(lStart, lEnd-lStart));
+		int encEnd = index - lStart;
+		int encStart = line.lastIndexOf(packageStartToken, encEnd);
+		if (encStart >= 0){
+			encStart += packageStartToken.length();
+			int commentStart = line.lastIndexOf('%', encEnd);
+			if (commentStart < 0) {
+				return QString(line.mid(encStart, encEnd - encStart));
+			}
+		}
+		index = data.indexOf(packageEndToken, index + 1);
+	}
+	return QString();
 }
 
 void LatexParser::append(const LatexParser& elem){

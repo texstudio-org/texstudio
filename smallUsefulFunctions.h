@@ -111,6 +111,7 @@ QString truncateLines(const QString & s, int maxLines);
 bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLength);
 
 class LatexParser{
+	friend class SmallUsefulFunctionsTest;
 public:
 	LatexParser();
 	void init();
@@ -158,6 +159,10 @@ public:
 	static void guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure);
 	
 	static LatexParser& getInstance();
+private:
+	static int lineStart(const QByteArray& data, int index);
+	static int lineEnd(const QByteArray& data, int index);
+	static QString getEncodingFromPackage(const QByteArray& data, int headerSize, const QString &packageName);
 };
 
 Q_DECLARE_METATYPE(LatexParser)
