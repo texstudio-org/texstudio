@@ -35,6 +35,12 @@ struct LatexLogEntry {
 	void clear();
 };
 
+#define DEBUG_FILE_STACK 1
+#if DEBUG_FILE_STACK
+	#define PRINT_FILE_STACK(operation, file) {qDebug() << operation << file;}
+#else
+	#define PRINT_FILE_STACK(operation, file)
+#endif
 
 /**
  * An object of this class is used to parse the output messages
@@ -112,7 +118,7 @@ class LatexOutputFilter : public OutputFilter
 
 	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
 		  // the following states are only used in updateFileStackHeuristic2
-		  ExpectingFileName=10, InFileName, InQoutedFileName};
+		  ExpectingFileName=10, InFileName, InQuotedFileName};
 
     protected:
         /**

@@ -407,13 +407,13 @@ void LatexOutputFilterTest::run_data() {
 	QTest::newRow("quoted continued 1")
 			<< (QStringList() << "some text             *** this line has 78 chars ***     (\"/before_the_dot/aux/"
 				)
-			<< short(LatexOutputFilter::InQoutedFileName)
+			<< short(LatexOutputFilter::InQuotedFileName)
 			<< QString();
 	QTest::newRow("quoted continued 2")
 			<< (QStringList() << "some text             *** this line has 78 chars ***     (\"/before_the_dot/aux/"
 							  << "more.tex "
 				)
-			<< short(LatexOutputFilter::InQoutedFileName)
+			<< short(LatexOutputFilter::InQuotedFileName)
 			<< QString();
 	QTest::newRow("quoted continued 3")
 			<< (QStringList() << "some text             *** this line has 78 chars ***     (\"/before_the_dot/aux/"
