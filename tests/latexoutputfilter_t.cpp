@@ -302,6 +302,51 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< "c:/test2.tex";
+	QTest::newRow("TeX open close")
+			<< (QStringList()
+				<< "(d:/main.tex"
+				<< ":<+ file1.tex"
+				<< "("
+				)
+			<< short(LatexOutputFilter::ExpectingFileName)
+			<< "file1.tex";
+	QTest::newRow("TeX open close")
+			<< (QStringList()
+				<< "(d:/main.tex"
+				<< ":<+ file1.tex"
+				<< ":<-"
+				<< ""
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "d:/main.tex";
+	QTest::newRow("TeX double open")
+			<< (QStringList()
+				<< ":<+ file1.tex"
+				<< "(d:/file1.tex"
+				<< ""
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "d:/file1.tex";
+	QTest::newRow("TeX double open close")
+			<< (QStringList()
+				<< "(d:/main.tex"
+				<< ":<+ file1.tex"
+				<< "(d:/file1.tex"
+				<< ")"
+				<< ":<-"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "d:/main.tex";
+	QTest::newRow("TeX open close2")
+			<< (QStringList()
+				<< ":<+ Zusammenfassung.tex"
+				<< ":<-"
+				<< ":<+ Lebenslauf.tex"
+				<< ":<-"
+				<< ""
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "";
 
 	// synthetic examples
 	// these might overconstrain the filename detection heuristic, if there cannot be found any real-world
