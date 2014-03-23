@@ -548,7 +548,7 @@ void LatexOutputFilter::flushCurrentItem()
 		m_stackFile.pop();
 	}
 
-	m_currentItem.file=absoluteFileName(m_stackFile.top().file());
+	m_currentItem.file = m_stackFile.count() <= 0 ? "" : absoluteFileName(m_stackFile.top().file());
 
 	switch (nItemType) {
 		case LT_ERROR:
