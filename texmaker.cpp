@@ -571,11 +571,13 @@ void Texmaker::updateToolBarMenu(const QString& menuName){
 	
 }
 
-// we have to exclude some shortcuts on OSX because the have already reserved meanings
+// we different native shortcuts on OSX and Win/Linux
+// note: in particular many key combination with arrows are reserved for text navigation in OSX
+// and we already set them in QEditor. Don't overwrite them here.
 #ifdef Q_OS_MAC
-#define NON_MAC_ONLY(shortcut) QKeySequence()
+#define MAC_OTHER(shortcutMac, shortcutOther) shortcutMac
 #else
-#define NON_MAC_ONLY(shortcut) shortcut
+#define MAC_OTHER(shortcutMac, shortcutOther) shortcutOther
 #endif
 
 void Texmaker::setupMenus() {
@@ -683,8 +685,8 @@ void Texmaker::setupMenus() {
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
 	newManagedAction(submenu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
-	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext");
-	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev");
+	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext", MAC_OTHER(Qt::CTRL+Qt::Key_G, 0));
+	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev", MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_G, 0));
 	newManagedEditorAction(submenu,"findcount",tr("&Count"), "findCount");
 	newManagedEditorAction(submenu,"select",tr("&Select all matches..."), "selectAllMatches");
 	newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
@@ -697,15 +699,15 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
 
-    newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, "goto");
+	newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", MAC_OTHER(Qt::CTRL+Qt::Key_L, Qt::CTRL+Qt::Key_G), "goto");
 	newManagedEditorAction(submenu,"lastchange",tr("Previous Change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
 	newManagedEditorAction(submenu,"nextchange",tr("Next Change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
-	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",NON_MAC_ONLY(Qt::CTRL+Qt::Key_Up),"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",NON_MAC_ONLY(Qt::CTRL+Qt::Key_Down),"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
+	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark", MAC_OTHER(0, Qt::CTRL+Qt::Key_Up),"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
+	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark", MAC_OTHER(0, Qt::CTRL+Qt::Key_Down),"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
 	submenu->addSeparator();
-	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), NON_MAC_ONLY(Qt::ALT+Qt::Key_Left), "back"));
-	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), NON_MAC_ONLY(Qt::ALT+Qt::Key_Right), "forward"));
+	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), MAC_OTHER(0, Qt::ALT+Qt::Key_Left), "back"));
+	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), MAC_OTHER(0, Qt::ALT+Qt::Key_Right), "forward"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -741,7 +743,7 @@ void Texmaker::setupMenus() {
 	
 	//Edit 2 (for LaTeX related things)
 	menu=newManagedMenu("main/edit2",tr("&Idefix"));
-	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
+	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), MAC_OTHER(0, Qt::ALT+Qt::Key_Delete));
 	
 	menu->addSeparator();
     newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste");
@@ -760,12 +762,12 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("&Go to"));
 	
-	newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",NON_MAC_ONLY(Qt::CTRL+Qt::SHIFT+Qt::Key_Up), "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
-	newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",NON_MAC_ONLY(Qt::CTRL+Qt::SHIFT+Qt::Key_Down), "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",MAC_OTHER(0, Qt::CTRL+Qt::SHIFT+Qt::Key_Up), "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",MAC_OTHER(0, Qt::CTRL+Qt::SHIFT+Qt::Key_Down), "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
 	newManagedAction(submenu,"warningprev",tr("Previous Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
 	newManagedAction(submenu,"warningnext",tr("Next Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
-	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry", NON_MAC_ONLY(Qt::SHIFT+Qt::ALT+Qt::Key_Up), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
-	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry", NON_MAC_ONLY(Qt::SHIFT+Qt::ALT+Qt::Key_Down), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
+	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry", MAC_OTHER(0, Qt::SHIFT+Qt::ALT+Qt::Key_Up), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry", MAC_OTHER(0, Qt::SHIFT+Qt::ALT+Qt::Key_Down), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
 
 	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
@@ -853,7 +855,10 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
 	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
 	menu->addSeparator();
-	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+	act = newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+#ifndef QT_OS_MAC
+	act->setShortcut(Qt::CTRL+Qt::Key_Colon);
+#endif
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 	newManagedAction(menu,"wordrepetions",tr("Find Word Repetitions..."),SLOT(findWordRepetions()));
 	
