@@ -35,7 +35,7 @@ struct LatexLogEntry {
 	void clear();
 };
 
-#define DEBUG_FILE_STACK 1
+#define DEBUG_FILE_STACK 0
 #if DEBUG_FILE_STACK
 	#define PRINT_FILE_STACK(operation, file) {qDebug() << operation << file;}
 #else
