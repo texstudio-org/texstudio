@@ -304,6 +304,11 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 				PRINT_FILE_STACK("pushed", strPartialFileName);
 				strPartialFileName.clear();
 				dwCookie = Start;
+				updateFileStackHeuristic2(strLine, dwCookie);
+			}
+			else if(strLine.startsWith(":<-")) {
+				// nothing to do file was immediately closed again
+				dwCookie = Start;
 			}
 			//The partial filename was followed by an TeX error, meaning the file doesn't exist.
 			//Don't push it on the stack, instead try to detect the error.
