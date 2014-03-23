@@ -4194,9 +4194,14 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
 
 		registerEditOperation(NextPlaceHolder);
-		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		registerEditOperation(PreviousPlaceHolder);
+	#ifdef Q_OS_MAC
+		registerEditOperation(NextPlaceHolderOrWord);
+		registerEditOperation(PreviousPlaceHolderOrWord);
+	#else
+		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
+	#endif
 
 		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
