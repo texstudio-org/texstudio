@@ -272,7 +272,7 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 
 	switch (dwCookie) {
 		//we're looking for a filename
-		case Start : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQoutedFileName :
+		case Start : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQuotedFileName :
 			//TeX is opening a file
 			if(strLine.startsWith(":<+ ")) {
 // 				KILE_DEBUG() << "filename detected" << endl;
@@ -371,12 +371,12 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 				}
 				break;
 			case ExpectingFileName:
-				if (c == '"') { dwCookie = InQoutedFileName; fnStart = i+1; continue; }
+				if (c == '"') { dwCookie = InQuotedFileName; fnStart = i+1; continue; }
 				else {
 					dwCookie = InFileName; fnStart = i; continue;
 				}
 				break;
-			case InQoutedFileName:
+			case InQuotedFileName:
 				if (c == '"') {
 					partialFileName += strLine.mid(fnStart, i-fnStart);
 					m_stackFile.push(LOFStackItem(partialFileName));
@@ -428,7 +428,7 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 			partialFileName.clear();
 			dwCookie = Start;
 		}
-	} else if (dwCookie == InQoutedFileName) {
+	} else if (dwCookie == InQuotedFileName) {
 		partialFileName += strLine.mid(fnStart);
 	}
 }
@@ -892,7 +892,7 @@ short LatexOutputFilter::parseLine(const QString & strLine, short dwCookie)
 			detectBadBox(strLine, dwCookie);
 		break;
 
-		case FileName : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQoutedFileName :
+		case FileName : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQuotedFileName :
 			updateFileStack(strLine, dwCookie);
 		break;
 
