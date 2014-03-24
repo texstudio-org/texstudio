@@ -97,6 +97,7 @@
 <file>completion/metrix.cwl</file>
 <file>completion/mhchem.cwl</file>
 <file>completion/microtype.cwl</file>
+<file>completion/minted.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multimedia.cwl</file>
