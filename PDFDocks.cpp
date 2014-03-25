@@ -575,6 +575,7 @@ PDFScrollArea::PDFScrollArea(QWidget *parent)
        : QAbstractScrollArea(parent),continuous(true),pdf(0), updateWidgetPositionStackWatch(0), onResizeStackWatch(0)
 {
 	viewport()->setBackgroundRole(QPalette::NoRole);
+	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
 	verticalScrollBar()->setSingleStep(20);
 	horizontalScrollBar()->setSingleStep(20);
 	setFocusPolicy(Qt::StrongFocus);
